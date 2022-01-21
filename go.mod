@@ -1,4 +1,4 @@
-module github.com/instill-ai/internal-protogen-go
+module github.com/instill-ai/protogen-go
 
 go 1.17
 
