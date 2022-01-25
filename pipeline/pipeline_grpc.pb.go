@@ -28,6 +28,7 @@ type PipelineClient interface {
 	UpdatePipeline(ctx context.Context, in *UpdatePipelineRequest, opts ...grpc.CallOption) (*PipelineInfo, error)
 	DeletePipeline(ctx context.Context, in *DeletePipelineRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	TriggerPipeline(ctx context.Context, in *TriggerPipelineRequest, opts ...grpc.CallOption) (*structpb.Struct, error)
+	TriggerPipelineByUpload(ctx context.Context, opts ...grpc.CallOption) (Pipeline_TriggerPipelineByUploadClient, error)
 }
 
 type pipelineClient struct {
@@ -110,6 +111,40 @@ func (c *pipelineClient) TriggerPipeline(ctx context.Context, in *TriggerPipelin
 	return out, nil
 }
 
+func (c *pipelineClient) TriggerPipelineByUpload(ctx context.Context, opts ...grpc.CallOption) (Pipeline_TriggerPipelineByUploadClient, error) {
+	stream, err := c.cc.NewStream(ctx, &Pipeline_ServiceDesc.Streams[0], "/instill.pipeline.Pipeline/TriggerPipelineByUpload", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &pipelineTriggerPipelineByUploadClient{stream}
+	return x, nil
+}
+
+type Pipeline_TriggerPipelineByUploadClient interface {
+	Send(*TriggerPipelineRequest) error
+	CloseAndRecv() (*structpb.Struct, error)
+	grpc.ClientStream
+}
+
+type pipelineTriggerPipelineByUploadClient struct {
+	grpc.ClientStream
+}
+
+func (x *pipelineTriggerPipelineByUploadClient) Send(m *TriggerPipelineRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *pipelineTriggerPipelineByUploadClient) CloseAndRecv() (*structpb.Struct, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(structpb.Struct)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // PipelineServer is the server API for Pipeline service.
 // All implementations should embed UnimplementedPipelineServer
 // for forward compatibility
@@ -122,6 +157,7 @@ type PipelineServer interface {
 	UpdatePipeline(context.Context, *UpdatePipelineRequest) (*PipelineInfo, error)
 	DeletePipeline(context.Context, *DeletePipelineRequest) (*emptypb.Empty, error)
 	TriggerPipeline(context.Context, *TriggerPipelineRequest) (*structpb.Struct, error)
+	TriggerPipelineByUpload(Pipeline_TriggerPipelineByUploadServer) error
 }
 
 // UnimplementedPipelineServer should be embedded to have forward compatible implementations.
@@ -151,6 +187,9 @@ func (UnimplementedPipelineServer) DeletePipeline(context.Context, *DeletePipeli
 }
 func (UnimplementedPipelineServer) TriggerPipeline(context.Context, *TriggerPipelineRequest) (*structpb.Struct, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerPipeline not implemented")
+}
+func (UnimplementedPipelineServer) TriggerPipelineByUpload(Pipeline_TriggerPipelineByUploadServer) error {
+	return status.Errorf(codes.Unimplemented, "method TriggerPipelineByUpload not implemented")
 }
 
 // UnsafePipelineServer may be embedded to opt out of forward compatibility for this service.
@@ -308,6 +347,32 @@ func _Pipeline_TriggerPipeline_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Pipeline_TriggerPipelineByUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(PipelineServer).TriggerPipelineByUpload(&pipelineTriggerPipelineByUploadServer{stream})
+}
+
+type Pipeline_TriggerPipelineByUploadServer interface {
+	SendAndClose(*structpb.Struct) error
+	Recv() (*TriggerPipelineRequest, error)
+	grpc.ServerStream
+}
+
+type pipelineTriggerPipelineByUploadServer struct {
+	grpc.ServerStream
+}
+
+func (x *pipelineTriggerPipelineByUploadServer) SendAndClose(m *structpb.Struct) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *pipelineTriggerPipelineByUploadServer) Recv() (*TriggerPipelineRequest, error) {
+	m := new(TriggerPipelineRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // Pipeline_ServiceDesc is the grpc.ServiceDesc for Pipeline service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -348,6 +413,12 @@ var Pipeline_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Pipeline_TriggerPipeline_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "TriggerPipelineByUpload",
+			Handler:       _Pipeline_TriggerPipelineByUpload_Handler,
+			ClientStreams: true,
+		},
+	},
 	Metadata: "pipeline/pipeline.proto",
 }
