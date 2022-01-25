@@ -20,6 +20,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PipelineClient interface {
+	Liveness(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*structpb.Struct, error)
+	Readiness(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*structpb.Struct, error)
 	CreatePipeline(ctx context.Context, in *CreatePipelineRequest, opts ...grpc.CallOption) (*PipelineInfo, error)
 	ListPipelines(ctx context.Context, in *ListPipelinesRequest, opts ...grpc.CallOption) (*ListPipelinesResponse, error)
 	GetPipeline(ctx context.Context, in *GetPipelineRequest, opts ...grpc.CallOption) (*PipelineInfo, error)
@@ -34,6 +36,24 @@ type pipelineClient struct {
 
 func NewPipelineClient(cc grpc.ClientConnInterface) PipelineClient {
 	return &pipelineClient{cc}
+}
+
+func (c *pipelineClient) Liveness(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*structpb.Struct, error) {
+	out := new(structpb.Struct)
+	err := c.cc.Invoke(ctx, "/instill.pipeline.Pipeline/Liveness", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelineClient) Readiness(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*structpb.Struct, error) {
+	out := new(structpb.Struct)
+	err := c.cc.Invoke(ctx, "/instill.pipeline.Pipeline/Readiness", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *pipelineClient) CreatePipeline(ctx context.Context, in *CreatePipelineRequest, opts ...grpc.CallOption) (*PipelineInfo, error) {
@@ -94,6 +114,8 @@ func (c *pipelineClient) TriggerPipeline(ctx context.Context, in *TriggerPipelin
 // All implementations should embed UnimplementedPipelineServer
 // for forward compatibility
 type PipelineServer interface {
+	Liveness(context.Context, *emptypb.Empty) (*structpb.Struct, error)
+	Readiness(context.Context, *emptypb.Empty) (*structpb.Struct, error)
 	CreatePipeline(context.Context, *CreatePipelineRequest) (*PipelineInfo, error)
 	ListPipelines(context.Context, *ListPipelinesRequest) (*ListPipelinesResponse, error)
 	GetPipeline(context.Context, *GetPipelineRequest) (*PipelineInfo, error)
@@ -106,6 +128,12 @@ type PipelineServer interface {
 type UnimplementedPipelineServer struct {
 }
 
+func (UnimplementedPipelineServer) Liveness(context.Context, *emptypb.Empty) (*structpb.Struct, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Liveness not implemented")
+}
+func (UnimplementedPipelineServer) Readiness(context.Context, *emptypb.Empty) (*structpb.Struct, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Readiness not implemented")
+}
 func (UnimplementedPipelineServer) CreatePipeline(context.Context, *CreatePipelineRequest) (*PipelineInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatePipeline not implemented")
 }
@@ -134,6 +162,42 @@ type UnsafePipelineServer interface {
 
 func RegisterPipelineServer(s grpc.ServiceRegistrar, srv PipelineServer) {
 	s.RegisterService(&Pipeline_ServiceDesc, srv)
+}
+
+func _Pipeline_Liveness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelineServer).Liveness(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/instill.pipeline.Pipeline/Liveness",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelineServer).Liveness(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Pipeline_Readiness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelineServer).Readiness(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/instill.pipeline.Pipeline/Readiness",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelineServer).Readiness(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _Pipeline_CreatePipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -251,6 +315,14 @@ var Pipeline_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "instill.pipeline.Pipeline",
 	HandlerType: (*PipelineServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Liveness",
+			Handler:    _Pipeline_Liveness_Handler,
+		},
+		{
+			MethodName: "Readiness",
+			Handler:    _Pipeline_Readiness_Handler,
+		},
 		{
 			MethodName: "CreatePipeline",
 			Handler:    _Pipeline_CreatePipeline_Handler,
