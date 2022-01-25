@@ -1,1 +1,1 @@
-# internal-protogen-go
+# protogen-go
