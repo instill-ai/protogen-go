@@ -153,6 +153,10 @@ func local_request_Pipeline_GetPipeline_0(ctx context.Context, marshaler runtime
 
 }
 
+var (
+	filter_Pipeline_UpdatePipeline_0 = &utilities.DoubleArray{Encoding: map[string]int{"pipeline": 0, "name": 1}, Base: []int{1, 2, 1, 0, 0}, Check: []int{0, 1, 2, 3, 2}}
+)
+
 func request_Pipeline_UpdatePipeline_0(ctx context.Context, marshaler runtime.Marshaler, client PipelineClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq UpdatePipelineRequest
 	var metadata runtime.ServerMetadata
@@ -161,8 +165,15 @@ func request_Pipeline_UpdatePipeline_0(ctx context.Context, marshaler runtime.Ma
 	if berr != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.Pipeline); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if protoReq.UpdateMask == nil || len(protoReq.UpdateMask.GetPaths()) == 0 {
+		if fieldMask, err := runtime.FieldMaskFromRequestBody(newReader(), protoReq.Pipeline); err != nil {
+			return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+		} else {
+			protoReq.UpdateMask = fieldMask
+		}
 	}
 
 	var (
@@ -172,14 +183,21 @@ func request_Pipeline_UpdatePipeline_0(ctx context.Context, marshaler runtime.Ma
 		_   = err
 	)
 
-	val, ok = pathParams["name"]
+	val, ok = pathParams["pipeline.name"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "pipeline.name")
 	}
 
-	protoReq.Name, err = runtime.String(val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "pipeline.name", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "pipeline.name", err)
+	}
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Pipeline_UpdatePipeline_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
 	msg, err := client.UpdatePipeline(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -195,8 +213,15 @@ func local_request_Pipeline_UpdatePipeline_0(ctx context.Context, marshaler runt
 	if berr != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.Pipeline); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if protoReq.UpdateMask == nil || len(protoReq.UpdateMask.GetPaths()) == 0 {
+		if fieldMask, err := runtime.FieldMaskFromRequestBody(newReader(), protoReq.Pipeline); err != nil {
+			return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+		} else {
+			protoReq.UpdateMask = fieldMask
+		}
 	}
 
 	var (
@@ -206,14 +231,21 @@ func local_request_Pipeline_UpdatePipeline_0(ctx context.Context, marshaler runt
 		_   = err
 	)
 
-	val, ok = pathParams["name"]
+	val, ok = pathParams["pipeline.name"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "pipeline.name")
 	}
 
-	protoReq.Name, err = runtime.String(val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "pipeline.name", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "pipeline.name", err)
+	}
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Pipeline_UpdatePipeline_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
 	msg, err := server.UpdatePipeline(ctx, &protoReq)
@@ -422,7 +454,7 @@ func RegisterPipelineHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.Pipeline/UpdatePipeline", runtime.WithHTTPPathPattern("/pipelines/{name}"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.Pipeline/UpdatePipeline", runtime.WithHTTPPathPattern("/pipelines/{pipeline.name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -590,7 +622,7 @@ func RegisterPipelineHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.Pipeline/UpdatePipeline", runtime.WithHTTPPathPattern("/pipelines/{name}"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.Pipeline/UpdatePipeline", runtime.WithHTTPPathPattern("/pipelines/{pipeline.name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -656,7 +688,7 @@ var (
 
 	pattern_Pipeline_GetPipeline_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"pipelines", "name"}, ""))
 
-	pattern_Pipeline_UpdatePipeline_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"pipelines", "name"}, ""))
+	pattern_Pipeline_UpdatePipeline_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"pipelines", "pipeline.name"}, ""))
 
 	pattern_Pipeline_DeletePipeline_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"pipelines", "name"}, ""))
 
