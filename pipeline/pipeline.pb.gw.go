@@ -484,7 +484,7 @@ func RegisterPipelineHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.Pipeline/Liveness", runtime.WithHTTPPathPattern("/liveness"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.Pipeline/Liveness", runtime.WithHTTPPathPattern("/__liveness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -530,7 +530,7 @@ func RegisterPipelineHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.Pipeline/Readiness", runtime.WithHTTPPathPattern("/readiness"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.Pipeline/Readiness", runtime.WithHTTPPathPattern("/__readiness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -737,7 +737,7 @@ func RegisterPipelineHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.Pipeline/Liveness", runtime.WithHTTPPathPattern("/liveness"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.Pipeline/Liveness", runtime.WithHTTPPathPattern("/__liveness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -777,7 +777,7 @@ func RegisterPipelineHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.Pipeline/Readiness", runtime.WithHTTPPathPattern("/readiness"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.Pipeline/Readiness", runtime.WithHTTPPathPattern("/__readiness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -937,11 +937,11 @@ func RegisterPipelineHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 }
 
 var (
-	pattern_Pipeline_Liveness_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"liveness"}, ""))
+	pattern_Pipeline_Liveness_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"__liveness"}, ""))
 
 	pattern_Pipeline_Liveness_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"health", "pipeline"}, ""))
 
-	pattern_Pipeline_Readiness_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"readiness"}, ""))
+	pattern_Pipeline_Readiness_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"__readiness"}, ""))
 
 	pattern_Pipeline_CreatePipeline_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"pipelines"}, ""))
 

@@ -20,8 +20,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PipelineClient interface {
-	Liveness(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*structpb.Struct, error)
-	Readiness(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*structpb.Struct, error)
+	Liveness(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*HealthCheckResponse, error)
+	Readiness(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*HealthCheckResponse, error)
 	CreatePipeline(ctx context.Context, in *CreatePipelineRequest, opts ...grpc.CallOption) (*PipelineInfo, error)
 	ListPipelines(ctx context.Context, in *ListPipelinesRequest, opts ...grpc.CallOption) (*ListPipelinesResponse, error)
 	GetPipeline(ctx context.Context, in *GetPipelineRequest, opts ...grpc.CallOption) (*PipelineInfo, error)
@@ -39,8 +39,8 @@ func NewPipelineClient(cc grpc.ClientConnInterface) PipelineClient {
 	return &pipelineClient{cc}
 }
 
-func (c *pipelineClient) Liveness(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*structpb.Struct, error) {
-	out := new(structpb.Struct)
+func (c *pipelineClient) Liveness(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*HealthCheckResponse, error) {
+	out := new(HealthCheckResponse)
 	err := c.cc.Invoke(ctx, "/instill.pipeline.Pipeline/Liveness", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -48,8 +48,8 @@ func (c *pipelineClient) Liveness(ctx context.Context, in *emptypb.Empty, opts .
 	return out, nil
 }
 
-func (c *pipelineClient) Readiness(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*structpb.Struct, error) {
-	out := new(structpb.Struct)
+func (c *pipelineClient) Readiness(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*HealthCheckResponse, error) {
+	out := new(HealthCheckResponse)
 	err := c.cc.Invoke(ctx, "/instill.pipeline.Pipeline/Readiness", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -149,8 +149,8 @@ func (x *pipelineTriggerPipelineByUploadClient) CloseAndRecv() (*structpb.Struct
 // All implementations should embed UnimplementedPipelineServer
 // for forward compatibility
 type PipelineServer interface {
-	Liveness(context.Context, *emptypb.Empty) (*structpb.Struct, error)
-	Readiness(context.Context, *emptypb.Empty) (*structpb.Struct, error)
+	Liveness(context.Context, *emptypb.Empty) (*HealthCheckResponse, error)
+	Readiness(context.Context, *emptypb.Empty) (*HealthCheckResponse, error)
 	CreatePipeline(context.Context, *CreatePipelineRequest) (*PipelineInfo, error)
 	ListPipelines(context.Context, *ListPipelinesRequest) (*ListPipelinesResponse, error)
 	GetPipeline(context.Context, *GetPipelineRequest) (*PipelineInfo, error)
@@ -164,10 +164,10 @@ type PipelineServer interface {
 type UnimplementedPipelineServer struct {
 }
 
-func (UnimplementedPipelineServer) Liveness(context.Context, *emptypb.Empty) (*structpb.Struct, error) {
+func (UnimplementedPipelineServer) Liveness(context.Context, *emptypb.Empty) (*HealthCheckResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Liveness not implemented")
 }
-func (UnimplementedPipelineServer) Readiness(context.Context, *emptypb.Empty) (*structpb.Struct, error) {
+func (UnimplementedPipelineServer) Readiness(context.Context, *emptypb.Empty) (*HealthCheckResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Readiness not implemented")
 }
 func (UnimplementedPipelineServer) CreatePipeline(context.Context, *CreatePipelineRequest) (*PipelineInfo, error) {
