@@ -7,8 +7,8 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	anypb "google.golang.org/protobuf/types/known/anypb"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
+	structpb "google.golang.org/protobuf/types/known/structpb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -112,7 +112,7 @@ func (c *pipelineClient) TriggerPipelineByUpload(ctx context.Context, opts ...gr
 
 type Pipeline_TriggerPipelineByUploadClient interface {
 	Send(*TriggerPipelineRequest) error
-	CloseAndRecv() (*anypb.Any, error)
+	CloseAndRecv() (*structpb.Struct, error)
 	grpc.ClientStream
 }
 
@@ -124,11 +124,11 @@ func (x *pipelineTriggerPipelineByUploadClient) Send(m *TriggerPipelineRequest) 
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *pipelineTriggerPipelineByUploadClient) CloseAndRecv() (*anypb.Any, error) {
+func (x *pipelineTriggerPipelineByUploadClient) CloseAndRecv() (*structpb.Struct, error) {
 	if err := x.ClientStream.CloseSend(); err != nil {
 		return nil, err
 	}
-	m := new(anypb.Any)
+	m := new(structpb.Struct)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -320,7 +320,7 @@ func _Pipeline_TriggerPipelineByUpload_Handler(srv interface{}, stream grpc.Serv
 }
 
 type Pipeline_TriggerPipelineByUploadServer interface {
-	SendAndClose(*anypb.Any) error
+	SendAndClose(*structpb.Struct) error
 	Recv() (*TriggerPipelineRequest, error)
 	grpc.ServerStream
 }
@@ -329,7 +329,7 @@ type pipelineTriggerPipelineByUploadServer struct {
 	grpc.ServerStream
 }
 
-func (x *pipelineTriggerPipelineByUploadServer) SendAndClose(m *anypb.Any) error {
+func (x *pipelineTriggerPipelineByUploadServer) SendAndClose(m *structpb.Struct) error {
 	return x.ServerStream.SendMsg(m)
 }
 
