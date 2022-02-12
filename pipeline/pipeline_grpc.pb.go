@@ -7,8 +7,8 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	anypb "google.golang.org/protobuf/types/known/anypb"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
-	structpb "google.golang.org/protobuf/types/known/structpb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -27,7 +27,7 @@ type PipelineClient interface {
 	GetPipeline(ctx context.Context, in *GetPipelineRequest, opts ...grpc.CallOption) (*PipelineInfo, error)
 	UpdatePipeline(ctx context.Context, in *UpdatePipelineRequest, opts ...grpc.CallOption) (*PipelineInfo, error)
 	DeletePipeline(ctx context.Context, in *DeletePipelineRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	TriggerPipeline(ctx context.Context, in *TriggerPipelineRequest, opts ...grpc.CallOption) (*structpb.Struct, error)
+	TriggerPipeline(ctx context.Context, in *TriggerPipelineRequest, opts ...grpc.CallOption) (*anypb.Any, error)
 	TriggerPipelineByUpload(ctx context.Context, opts ...grpc.CallOption) (Pipeline_TriggerPipelineByUploadClient, error)
 }
 
@@ -102,8 +102,8 @@ func (c *pipelineClient) DeletePipeline(ctx context.Context, in *DeletePipelineR
 	return out, nil
 }
 
-func (c *pipelineClient) TriggerPipeline(ctx context.Context, in *TriggerPipelineRequest, opts ...grpc.CallOption) (*structpb.Struct, error) {
-	out := new(structpb.Struct)
+func (c *pipelineClient) TriggerPipeline(ctx context.Context, in *TriggerPipelineRequest, opts ...grpc.CallOption) (*anypb.Any, error) {
+	out := new(anypb.Any)
 	err := c.cc.Invoke(ctx, "/instill.pipeline.Pipeline/TriggerPipeline", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -122,7 +122,7 @@ func (c *pipelineClient) TriggerPipelineByUpload(ctx context.Context, opts ...gr
 
 type Pipeline_TriggerPipelineByUploadClient interface {
 	Send(*TriggerPipelineRequest) error
-	CloseAndRecv() (*structpb.Struct, error)
+	CloseAndRecv() (*anypb.Any, error)
 	grpc.ClientStream
 }
 
@@ -134,11 +134,11 @@ func (x *pipelineTriggerPipelineByUploadClient) Send(m *TriggerPipelineRequest) 
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *pipelineTriggerPipelineByUploadClient) CloseAndRecv() (*structpb.Struct, error) {
+func (x *pipelineTriggerPipelineByUploadClient) CloseAndRecv() (*anypb.Any, error) {
 	if err := x.ClientStream.CloseSend(); err != nil {
 		return nil, err
 	}
-	m := new(structpb.Struct)
+	m := new(anypb.Any)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -156,7 +156,7 @@ type PipelineServer interface {
 	GetPipeline(context.Context, *GetPipelineRequest) (*PipelineInfo, error)
 	UpdatePipeline(context.Context, *UpdatePipelineRequest) (*PipelineInfo, error)
 	DeletePipeline(context.Context, *DeletePipelineRequest) (*emptypb.Empty, error)
-	TriggerPipeline(context.Context, *TriggerPipelineRequest) (*structpb.Struct, error)
+	TriggerPipeline(context.Context, *TriggerPipelineRequest) (*anypb.Any, error)
 	TriggerPipelineByUpload(Pipeline_TriggerPipelineByUploadServer) error
 }
 
@@ -185,7 +185,7 @@ func (UnimplementedPipelineServer) UpdatePipeline(context.Context, *UpdatePipeli
 func (UnimplementedPipelineServer) DeletePipeline(context.Context, *DeletePipelineRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeletePipeline not implemented")
 }
-func (UnimplementedPipelineServer) TriggerPipeline(context.Context, *TriggerPipelineRequest) (*structpb.Struct, error) {
+func (UnimplementedPipelineServer) TriggerPipeline(context.Context, *TriggerPipelineRequest) (*anypb.Any, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerPipeline not implemented")
 }
 func (UnimplementedPipelineServer) TriggerPipelineByUpload(Pipeline_TriggerPipelineByUploadServer) error {
@@ -352,7 +352,7 @@ func _Pipeline_TriggerPipelineByUpload_Handler(srv interface{}, stream grpc.Serv
 }
 
 type Pipeline_TriggerPipelineByUploadServer interface {
-	SendAndClose(*structpb.Struct) error
+	SendAndClose(*anypb.Any) error
 	Recv() (*TriggerPipelineRequest, error)
 	grpc.ServerStream
 }
@@ -361,7 +361,7 @@ type pipelineTriggerPipelineByUploadServer struct {
 	grpc.ServerStream
 }
 
-func (x *pipelineTriggerPipelineByUploadServer) SendAndClose(m *structpb.Struct) error {
+func (x *pipelineTriggerPipelineByUploadServer) SendAndClose(m *anypb.Any) error {
 	return x.ServerStream.SendMsg(m)
 }
 
