@@ -27,7 +27,6 @@ type PipelineClient interface {
 	GetPipeline(ctx context.Context, in *GetPipelineRequest, opts ...grpc.CallOption) (*PipelineInfo, error)
 	UpdatePipeline(ctx context.Context, in *UpdatePipelineRequest, opts ...grpc.CallOption) (*PipelineInfo, error)
 	DeletePipeline(ctx context.Context, in *DeletePipelineRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	TriggerPipeline(ctx context.Context, in *TriggerPipelineRequest, opts ...grpc.CallOption) (*anypb.Any, error)
 	TriggerPipelineByUpload(ctx context.Context, opts ...grpc.CallOption) (Pipeline_TriggerPipelineByUploadClient, error)
 }
 
@@ -102,15 +101,6 @@ func (c *pipelineClient) DeletePipeline(ctx context.Context, in *DeletePipelineR
 	return out, nil
 }
 
-func (c *pipelineClient) TriggerPipeline(ctx context.Context, in *TriggerPipelineRequest, opts ...grpc.CallOption) (*anypb.Any, error) {
-	out := new(anypb.Any)
-	err := c.cc.Invoke(ctx, "/instill.pipeline.Pipeline/TriggerPipeline", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *pipelineClient) TriggerPipelineByUpload(ctx context.Context, opts ...grpc.CallOption) (Pipeline_TriggerPipelineByUploadClient, error) {
 	stream, err := c.cc.NewStream(ctx, &Pipeline_ServiceDesc.Streams[0], "/instill.pipeline.Pipeline/TriggerPipelineByUpload", opts...)
 	if err != nil {
@@ -156,7 +146,6 @@ type PipelineServer interface {
 	GetPipeline(context.Context, *GetPipelineRequest) (*PipelineInfo, error)
 	UpdatePipeline(context.Context, *UpdatePipelineRequest) (*PipelineInfo, error)
 	DeletePipeline(context.Context, *DeletePipelineRequest) (*emptypb.Empty, error)
-	TriggerPipeline(context.Context, *TriggerPipelineRequest) (*anypb.Any, error)
 	TriggerPipelineByUpload(Pipeline_TriggerPipelineByUploadServer) error
 }
 
@@ -184,9 +173,6 @@ func (UnimplementedPipelineServer) UpdatePipeline(context.Context, *UpdatePipeli
 }
 func (UnimplementedPipelineServer) DeletePipeline(context.Context, *DeletePipelineRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeletePipeline not implemented")
-}
-func (UnimplementedPipelineServer) TriggerPipeline(context.Context, *TriggerPipelineRequest) (*anypb.Any, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TriggerPipeline not implemented")
 }
 func (UnimplementedPipelineServer) TriggerPipelineByUpload(Pipeline_TriggerPipelineByUploadServer) error {
 	return status.Errorf(codes.Unimplemented, "method TriggerPipelineByUpload not implemented")
@@ -329,24 +315,6 @@ func _Pipeline_DeletePipeline_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Pipeline_TriggerPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TriggerPipelineRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelineServer).TriggerPipeline(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/instill.pipeline.Pipeline/TriggerPipeline",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelineServer).TriggerPipeline(ctx, req.(*TriggerPipelineRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Pipeline_TriggerPipelineByUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
 	return srv.(PipelineServer).TriggerPipelineByUpload(&pipelineTriggerPipelineByUploadServer{stream})
 }
@@ -407,10 +375,6 @@ var Pipeline_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeletePipeline",
 			Handler:    _Pipeline_DeletePipeline_Handler,
-		},
-		{
-			MethodName: "TriggerPipeline",
-			Handler:    _Pipeline_TriggerPipeline_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
