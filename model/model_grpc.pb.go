@@ -23,7 +23,7 @@ type ModelClient interface {
 	Liveness(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*HealthCheckResponse, error)
 	Readiness(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*HealthCheckResponse, error)
 	CreateModelByUpload(ctx context.Context, opts ...grpc.CallOption) (Model_CreateModelByUploadClient, error)
-	CreateModel(ctx context.Context, in *CreateModelRequest, opts ...grpc.CallOption) (*CreateModelsResponse, error)
+	CreateModel(ctx context.Context, in *CreateModelRequest, opts ...grpc.CallOption) (*ModelInfo, error)
 	UpdateModel(ctx context.Context, in *UpdateModelRequest, opts ...grpc.CallOption) (*ModelInfo, error)
 	// This method handle upload file request
 	PredictModelByUpload(ctx context.Context, opts ...grpc.CallOption) (Model_PredictModelByUploadClient, error)
@@ -71,7 +71,7 @@ func (c *modelClient) CreateModelByUpload(ctx context.Context, opts ...grpc.Call
 
 type Model_CreateModelByUploadClient interface {
 	Send(*CreateModelRequest) error
-	CloseAndRecv() (*CreateModelsResponse, error)
+	CloseAndRecv() (*ModelInfo, error)
 	grpc.ClientStream
 }
 
@@ -83,19 +83,19 @@ func (x *modelCreateModelByUploadClient) Send(m *CreateModelRequest) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *modelCreateModelByUploadClient) CloseAndRecv() (*CreateModelsResponse, error) {
+func (x *modelCreateModelByUploadClient) CloseAndRecv() (*ModelInfo, error) {
 	if err := x.ClientStream.CloseSend(); err != nil {
 		return nil, err
 	}
-	m := new(CreateModelsResponse)
+	m := new(ModelInfo)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func (c *modelClient) CreateModel(ctx context.Context, in *CreateModelRequest, opts ...grpc.CallOption) (*CreateModelsResponse, error) {
-	out := new(CreateModelsResponse)
+func (c *modelClient) CreateModel(ctx context.Context, in *CreateModelRequest, opts ...grpc.CallOption) (*ModelInfo, error) {
+	out := new(ModelInfo)
 	err := c.cc.Invoke(ctx, "/instill.model.Model/CreateModel", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -189,7 +189,7 @@ type ModelServer interface {
 	Liveness(context.Context, *emptypb.Empty) (*HealthCheckResponse, error)
 	Readiness(context.Context, *emptypb.Empty) (*HealthCheckResponse, error)
 	CreateModelByUpload(Model_CreateModelByUploadServer) error
-	CreateModel(context.Context, *CreateModelRequest) (*CreateModelsResponse, error)
+	CreateModel(context.Context, *CreateModelRequest) (*ModelInfo, error)
 	UpdateModel(context.Context, *UpdateModelRequest) (*ModelInfo, error)
 	// This method handle upload file request
 	PredictModelByUpload(Model_PredictModelByUploadServer) error
@@ -213,7 +213,7 @@ func (UnimplementedModelServer) Readiness(context.Context, *emptypb.Empty) (*Hea
 func (UnimplementedModelServer) CreateModelByUpload(Model_CreateModelByUploadServer) error {
 	return status.Errorf(codes.Unimplemented, "method CreateModelByUpload not implemented")
 }
-func (UnimplementedModelServer) CreateModel(context.Context, *CreateModelRequest) (*CreateModelsResponse, error) {
+func (UnimplementedModelServer) CreateModel(context.Context, *CreateModelRequest) (*ModelInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateModel not implemented")
 }
 func (UnimplementedModelServer) UpdateModel(context.Context, *UpdateModelRequest) (*ModelInfo, error) {
@@ -287,7 +287,7 @@ func _Model_CreateModelByUpload_Handler(srv interface{}, stream grpc.ServerStrea
 }
 
 type Model_CreateModelByUploadServer interface {
-	SendAndClose(*CreateModelsResponse) error
+	SendAndClose(*ModelInfo) error
 	Recv() (*CreateModelRequest, error)
 	grpc.ServerStream
 }
@@ -296,7 +296,7 @@ type modelCreateModelByUploadServer struct {
 	grpc.ServerStream
 }
 
-func (x *modelCreateModelByUploadServer) SendAndClose(m *CreateModelsResponse) error {
+func (x *modelCreateModelByUploadServer) SendAndClose(m *ModelInfo) error {
 	return x.ServerStream.SendMsg(m)
 }
 
