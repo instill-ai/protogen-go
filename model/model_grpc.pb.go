@@ -32,6 +32,7 @@ type ModelClient interface {
 	ListModels(ctx context.Context, in *ListModelRequest, opts ...grpc.CallOption) (*ListModelResponse, error)
 	GetModel(ctx context.Context, in *GetModelRequest, opts ...grpc.CallOption) (*ModelInfo, error)
 	DeleteModel(ctx context.Context, in *DeleteModelRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteModelVersion(ctx context.Context, in *DeleteModelVersionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type modelClient struct {
@@ -182,6 +183,15 @@ func (c *modelClient) DeleteModel(ctx context.Context, in *DeleteModelRequest, o
 	return out, nil
 }
 
+func (c *modelClient) DeleteModelVersion(ctx context.Context, in *DeleteModelVersionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/instill.model.Model/DeleteModelVersion", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ModelServer is the server API for Model service.
 // All implementations should embed UnimplementedModelServer
 // for forward compatibility
@@ -198,6 +208,7 @@ type ModelServer interface {
 	ListModels(context.Context, *ListModelRequest) (*ListModelResponse, error)
 	GetModel(context.Context, *GetModelRequest) (*ModelInfo, error)
 	DeleteModel(context.Context, *DeleteModelRequest) (*emptypb.Empty, error)
+	DeleteModelVersion(context.Context, *DeleteModelVersionRequest) (*emptypb.Empty, error)
 }
 
 // UnimplementedModelServer should be embedded to have forward compatible implementations.
@@ -233,6 +244,9 @@ func (UnimplementedModelServer) GetModel(context.Context, *GetModelRequest) (*Mo
 }
 func (UnimplementedModelServer) DeleteModel(context.Context, *DeleteModelRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteModel not implemented")
+}
+func (UnimplementedModelServer) DeleteModelVersion(context.Context, *DeleteModelVersionRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteModelVersion not implemented")
 }
 
 // UnsafeModelServer may be embedded to opt out of forward compatibility for this service.
@@ -442,6 +456,24 @@ func _Model_DeleteModel_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Model_DeleteModelVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteModelVersionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelServer).DeleteModelVersion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/instill.model.Model/DeleteModelVersion",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelServer).DeleteModelVersion(ctx, req.(*DeleteModelVersionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Model_ServiceDesc is the grpc.ServiceDesc for Model service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -480,6 +512,10 @@ var Model_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteModel",
 			Handler:    _Model_DeleteModel_Handler,
+		},
+		{
+			MethodName: "DeleteModelVersion",
+			Handler:    _Model_DeleteModelVersion_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
