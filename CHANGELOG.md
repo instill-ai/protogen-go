@@ -1,5 +1,14 @@
 # Changelog
 
+### [0.1.1-alpha](https://github.com/instill-ai/protogen-go/compare/v0.1.0-alpha...v0.1.1-alpha) (2022-02-24)
+
+
+### Bug Fixes
+
+* create TriggerPipeline rpc for new model-backend ([#32](https://github.com/instill-ai/protogen-go/issues/32)) ([02af2ff](https://github.com/instill-ai/protogen-go/commit/02af2ff006ead825392794e05b5f8c26d581c0c6))
+* **model:** move name and version out of updated model info message struct ([#33](https://github.com/instill-ai/protogen-go/issues/33)) ([93ef9d9](https://github.com/instill-ai/protogen-go/commit/93ef9d9fcbcc1e350fa62af9d51b4e0e97e79574))
+* udpate predict method for url/base64 ([#30](https://github.com/instill-ai/protogen-go/issues/30)) ([ed55996](https://github.com/instill-ai/protogen-go/commit/ed559967d7ea0004b2f7347f1384cc7fa2a7a2a0))
+
 ## [0.1.0-alpha](https://github.com/instill-ai/protogen-go/compare/v0.0.0-alpha...v0.1.0-alpha) (2022-02-19)
 
 
