@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.1.2-alpha](https://github.com/instill-ai/protogen-go/compare/v0.1.1-alpha...v0.1.2-alpha) (2022-03-15)
+
+
+### Miscellaneous Chores
+
+* auto-gen by protobufs ([9d7763d](https://github.com/instill-ai/protogen-go/commit/9d7763d0d272776dc2fc87688e441022619a5463))
+
 ### [0.1.1-alpha](https://github.com/instill-ai/protogen-go/compare/v0.1.0-alpha...v0.1.1-alpha) (2022-02-24)
 
 
