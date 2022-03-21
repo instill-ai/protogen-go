@@ -26,9 +26,6 @@ type ModelServiceClient interface {
 	// ReadinessResponse message.
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error)
-	// CreateModel method receives a CreateModelRequest message and returns
-	// a CreateModelResponse message.
-	CreateModel(ctx context.Context, in *CreateModelRequest, opts ...grpc.CallOption) (*CreateModelResponse, error)
 	// CreateModelBinaryFileUpload method receives a
 	// CreateModelBinaryFileUploadRequest message and returns a
 	// CreateModelBinaryFileUploadResponse message.
@@ -77,15 +74,6 @@ func (c *modelServiceClient) Liveness(ctx context.Context, in *LivenessRequest, 
 func (c *modelServiceClient) Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error) {
 	out := new(ReadinessResponse)
 	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/Readiness", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *modelServiceClient) CreateModel(ctx context.Context, in *CreateModelRequest, opts ...grpc.CallOption) (*CreateModelResponse, error) {
-	out := new(CreateModelResponse)
-	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/CreateModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -226,9 +214,6 @@ type ModelServiceServer interface {
 	// ReadinessResponse message.
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error)
-	// CreateModel method receives a CreateModelRequest message and returns
-	// a CreateModelResponse message.
-	CreateModel(context.Context, *CreateModelRequest) (*CreateModelResponse, error)
 	// CreateModelBinaryFileUpload method receives a
 	// CreateModelBinaryFileUploadRequest message and returns a
 	// CreateModelBinaryFileUploadResponse message.
@@ -266,9 +251,6 @@ func (UnimplementedModelServiceServer) Liveness(context.Context, *LivenessReques
 }
 func (UnimplementedModelServiceServer) Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Readiness not implemented")
-}
-func (UnimplementedModelServiceServer) CreateModel(context.Context, *CreateModelRequest) (*CreateModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateModel not implemented")
 }
 func (UnimplementedModelServiceServer) CreateModelBinaryFileUpload(ModelService_CreateModelBinaryFileUploadServer) error {
 	return status.Errorf(codes.Unimplemented, "method CreateModelBinaryFileUpload not implemented")
@@ -338,24 +320,6 @@ func _ModelService_Readiness_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelServiceServer).Readiness(ctx, req.(*ReadinessRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ModelService_CreateModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateModelRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ModelServiceServer).CreateModel(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/instill.model.v1alpha.ModelService/CreateModel",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelServiceServer).CreateModel(ctx, req.(*CreateModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -534,10 +498,6 @@ var ModelService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Readiness",
 			Handler:    _ModelService_Readiness_Handler,
-		},
-		{
-			MethodName: "CreateModel",
-			Handler:    _ModelService_CreateModel_Handler,
 		},
 		{
 			MethodName: "ListModel",
