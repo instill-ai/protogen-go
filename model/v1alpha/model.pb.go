@@ -708,7 +708,7 @@ type Model struct {
 	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	// Model name
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// Model full name (i.e., [user_name/org_name]/model_name)
+	// Model full name (i.e., [user_name/org_name]/full_name)
 	FullName string `protobuf:"bytes,3,opt,name=full_name,json=fullName,proto3" json:"full_name,omitempty"`
 	// Model task
 	Task Model_Task `protobuf:"varint,4,opt,name=task,proto3,enum=instill.model.v1alpha.Model_Task" json:"task,omitempty"`
@@ -1904,7 +1904,7 @@ type ClassificationOutput struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Classification cateogry
+	// Classification category
 	Category string `protobuf:"bytes,1,opt,name=category,proto3" json:"category,omitempty"`
 	// Classification score
 	Score float32 `protobuf:"fixed32,2,opt,name=score,proto3" json:"score,omitempty"`
@@ -2089,7 +2089,7 @@ type BoundingBoxObject struct {
 
 	// Bounding box object category
 	Category string `protobuf:"bytes,1,opt,name=category,proto3" json:"category,omitempty"`
-	// Bounding box object scroe
+	// Bounding box object score
 	Score float32 `protobuf:"fixed32,2,opt,name=score,proto3" json:"score,omitempty"`
 	// Bounding box
 	BoundingBox *BoundingBox `protobuf:"bytes,3,opt,name=bounding_box,json=boundingBox,proto3" json:"bounding_box,omitempty"`
@@ -2154,7 +2154,7 @@ type DetectionOutput struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// A list of buonding box objects
+	// A list of bounding box objects
 	BoundingBoxObjects []*BoundingBoxObject `protobuf:"bytes,1,rep,name=bounding_box_objects,json=boundingBoxObjects,proto3" json:"bounding_box_objects,omitempty"`
 }
 
