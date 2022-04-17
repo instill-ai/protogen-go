@@ -26,36 +26,12 @@ type ConnectorServiceClient interface {
 	// ReadinessResponse message.
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error)
-	// CreateSource method receives a CreateSourceRequest message and returns
-	// a CreateSourceResponse message.
-	CreateSource(ctx context.Context, in *CreateSourceRequest, opts ...grpc.CallOption) (*CreateSourceResponse, error)
-	// CreateDestination method receives a CreateDestinationRequest message and
-	// returns a CreateDestinationResponse message.
-	CreateDestination(ctx context.Context, in *CreateDestinationRequest, opts ...grpc.CallOption) (*CreateDestinationResponse, error)
-	// ListSource method receives a ListSourceRequest message and returns a
-	// ListSourceResponse message.
-	ListSource(ctx context.Context, in *ListSourceRequest, opts ...grpc.CallOption) (*ListSourceResponse, error)
-	// ListDestination method receives a ListDestinationRequest message and
-	// returns a ListDestinationResponse message.
-	ListDestination(ctx context.Context, in *ListDestinationRequest, opts ...grpc.CallOption) (*ListDestinationResponse, error)
-	// GetSource method receives a GetSourceRequest message and returns a
-	// GetSourceResponse message.
-	GetSource(ctx context.Context, in *GetSourceRequest, opts ...grpc.CallOption) (*GetSourceResponse, error)
-	// GetDestination method receives a GetDestinationRequest message and returns
-	// a GetDestinationResponse message.
-	GetDestination(ctx context.Context, in *GetDestinationRequest, opts ...grpc.CallOption) (*GetDestinationResponse, error)
-	// UpdateSource method receives a UpdateSourceRequest message and returns
-	// a UpdateSourceResponse message.
-	UpdateSource(ctx context.Context, in *UpdateSourceRequest, opts ...grpc.CallOption) (*UpdateSourceResponse, error)
-	// UpdateDestination method receives a UpdateDestinationRequest
-	// message and returns a UpdateDestinationResponse message.
-	UpdateDestination(ctx context.Context, in *UpdateDestinationRequest, opts ...grpc.CallOption) (*UpdateDestinationResponse, error)
-	// DeleteSource method receives a DeleteSourceRequest message and returns
-	// a DeleteSourceResponse message.
-	DeleteSource(ctx context.Context, in *DeleteSourceRequest, opts ...grpc.CallOption) (*DeleteSourceResponse, error)
-	// DeleteDestination method receives a DeleteDestinationRequest message and returns
-	// a DeleteDestinationResponse message.
-	DeleteDestination(ctx context.Context, in *DeleteDestinationRequest, opts ...grpc.CallOption) (*DeleteDestinationResponse, error)
+	// ListSourceDefinition method receives a ListSourceDefinitionRequest message and returns
+	// a ListSourceDefinitionResponse message.
+	ListSourceDefinition(ctx context.Context, in *ListSourceDefinitionRequest, opts ...grpc.CallOption) (*ListSourceDefinitionResponse, error)
+	// GetSourceDefinition method receives a GetSourceDefinitionRequest message and returns
+	// a GetSourceDefinitionResponse message.
+	GetSourceDefinition(ctx context.Context, in *GetSourceDefinitionRequest, opts ...grpc.CallOption) (*GetSourceDefinitionResponse, error)
 }
 
 type connectorServiceClient struct {
@@ -84,90 +60,18 @@ func (c *connectorServiceClient) Readiness(ctx context.Context, in *ReadinessReq
 	return out, nil
 }
 
-func (c *connectorServiceClient) CreateSource(ctx context.Context, in *CreateSourceRequest, opts ...grpc.CallOption) (*CreateSourceResponse, error) {
-	out := new(CreateSourceResponse)
-	err := c.cc.Invoke(ctx, "/instill.connector.v1alpha.ConnectorService/CreateSource", in, out, opts...)
+func (c *connectorServiceClient) ListSourceDefinition(ctx context.Context, in *ListSourceDefinitionRequest, opts ...grpc.CallOption) (*ListSourceDefinitionResponse, error) {
+	out := new(ListSourceDefinitionResponse)
+	err := c.cc.Invoke(ctx, "/instill.connector.v1alpha.ConnectorService/ListSourceDefinition", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorServiceClient) CreateDestination(ctx context.Context, in *CreateDestinationRequest, opts ...grpc.CallOption) (*CreateDestinationResponse, error) {
-	out := new(CreateDestinationResponse)
-	err := c.cc.Invoke(ctx, "/instill.connector.v1alpha.ConnectorService/CreateDestination", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *connectorServiceClient) ListSource(ctx context.Context, in *ListSourceRequest, opts ...grpc.CallOption) (*ListSourceResponse, error) {
-	out := new(ListSourceResponse)
-	err := c.cc.Invoke(ctx, "/instill.connector.v1alpha.ConnectorService/ListSource", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *connectorServiceClient) ListDestination(ctx context.Context, in *ListDestinationRequest, opts ...grpc.CallOption) (*ListDestinationResponse, error) {
-	out := new(ListDestinationResponse)
-	err := c.cc.Invoke(ctx, "/instill.connector.v1alpha.ConnectorService/ListDestination", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *connectorServiceClient) GetSource(ctx context.Context, in *GetSourceRequest, opts ...grpc.CallOption) (*GetSourceResponse, error) {
-	out := new(GetSourceResponse)
-	err := c.cc.Invoke(ctx, "/instill.connector.v1alpha.ConnectorService/GetSource", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *connectorServiceClient) GetDestination(ctx context.Context, in *GetDestinationRequest, opts ...grpc.CallOption) (*GetDestinationResponse, error) {
-	out := new(GetDestinationResponse)
-	err := c.cc.Invoke(ctx, "/instill.connector.v1alpha.ConnectorService/GetDestination", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *connectorServiceClient) UpdateSource(ctx context.Context, in *UpdateSourceRequest, opts ...grpc.CallOption) (*UpdateSourceResponse, error) {
-	out := new(UpdateSourceResponse)
-	err := c.cc.Invoke(ctx, "/instill.connector.v1alpha.ConnectorService/UpdateSource", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *connectorServiceClient) UpdateDestination(ctx context.Context, in *UpdateDestinationRequest, opts ...grpc.CallOption) (*UpdateDestinationResponse, error) {
-	out := new(UpdateDestinationResponse)
-	err := c.cc.Invoke(ctx, "/instill.connector.v1alpha.ConnectorService/UpdateDestination", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *connectorServiceClient) DeleteSource(ctx context.Context, in *DeleteSourceRequest, opts ...grpc.CallOption) (*DeleteSourceResponse, error) {
-	out := new(DeleteSourceResponse)
-	err := c.cc.Invoke(ctx, "/instill.connector.v1alpha.ConnectorService/DeleteSource", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *connectorServiceClient) DeleteDestination(ctx context.Context, in *DeleteDestinationRequest, opts ...grpc.CallOption) (*DeleteDestinationResponse, error) {
-	out := new(DeleteDestinationResponse)
-	err := c.cc.Invoke(ctx, "/instill.connector.v1alpha.ConnectorService/DeleteDestination", in, out, opts...)
+func (c *connectorServiceClient) GetSourceDefinition(ctx context.Context, in *GetSourceDefinitionRequest, opts ...grpc.CallOption) (*GetSourceDefinitionResponse, error) {
+	out := new(GetSourceDefinitionResponse)
+	err := c.cc.Invoke(ctx, "/instill.connector.v1alpha.ConnectorService/GetSourceDefinition", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -186,36 +90,12 @@ type ConnectorServiceServer interface {
 	// ReadinessResponse message.
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error)
-	// CreateSource method receives a CreateSourceRequest message and returns
-	// a CreateSourceResponse message.
-	CreateSource(context.Context, *CreateSourceRequest) (*CreateSourceResponse, error)
-	// CreateDestination method receives a CreateDestinationRequest message and
-	// returns a CreateDestinationResponse message.
-	CreateDestination(context.Context, *CreateDestinationRequest) (*CreateDestinationResponse, error)
-	// ListSource method receives a ListSourceRequest message and returns a
-	// ListSourceResponse message.
-	ListSource(context.Context, *ListSourceRequest) (*ListSourceResponse, error)
-	// ListDestination method receives a ListDestinationRequest message and
-	// returns a ListDestinationResponse message.
-	ListDestination(context.Context, *ListDestinationRequest) (*ListDestinationResponse, error)
-	// GetSource method receives a GetSourceRequest message and returns a
-	// GetSourceResponse message.
-	GetSource(context.Context, *GetSourceRequest) (*GetSourceResponse, error)
-	// GetDestination method receives a GetDestinationRequest message and returns
-	// a GetDestinationResponse message.
-	GetDestination(context.Context, *GetDestinationRequest) (*GetDestinationResponse, error)
-	// UpdateSource method receives a UpdateSourceRequest message and returns
-	// a UpdateSourceResponse message.
-	UpdateSource(context.Context, *UpdateSourceRequest) (*UpdateSourceResponse, error)
-	// UpdateDestination method receives a UpdateDestinationRequest
-	// message and returns a UpdateDestinationResponse message.
-	UpdateDestination(context.Context, *UpdateDestinationRequest) (*UpdateDestinationResponse, error)
-	// DeleteSource method receives a DeleteSourceRequest message and returns
-	// a DeleteSourceResponse message.
-	DeleteSource(context.Context, *DeleteSourceRequest) (*DeleteSourceResponse, error)
-	// DeleteDestination method receives a DeleteDestinationRequest message and returns
-	// a DeleteDestinationResponse message.
-	DeleteDestination(context.Context, *DeleteDestinationRequest) (*DeleteDestinationResponse, error)
+	// ListSourceDefinition method receives a ListSourceDefinitionRequest message and returns
+	// a ListSourceDefinitionResponse message.
+	ListSourceDefinition(context.Context, *ListSourceDefinitionRequest) (*ListSourceDefinitionResponse, error)
+	// GetSourceDefinition method receives a GetSourceDefinitionRequest message and returns
+	// a GetSourceDefinitionResponse message.
+	GetSourceDefinition(context.Context, *GetSourceDefinitionRequest) (*GetSourceDefinitionResponse, error)
 }
 
 // UnimplementedConnectorServiceServer should be embedded to have forward compatible implementations.
@@ -228,35 +108,11 @@ func (UnimplementedConnectorServiceServer) Liveness(context.Context, *LivenessRe
 func (UnimplementedConnectorServiceServer) Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Readiness not implemented")
 }
-func (UnimplementedConnectorServiceServer) CreateSource(context.Context, *CreateSourceRequest) (*CreateSourceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateSource not implemented")
+func (UnimplementedConnectorServiceServer) ListSourceDefinition(context.Context, *ListSourceDefinitionRequest) (*ListSourceDefinitionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListSourceDefinition not implemented")
 }
-func (UnimplementedConnectorServiceServer) CreateDestination(context.Context, *CreateDestinationRequest) (*CreateDestinationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateDestination not implemented")
-}
-func (UnimplementedConnectorServiceServer) ListSource(context.Context, *ListSourceRequest) (*ListSourceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListSource not implemented")
-}
-func (UnimplementedConnectorServiceServer) ListDestination(context.Context, *ListDestinationRequest) (*ListDestinationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListDestination not implemented")
-}
-func (UnimplementedConnectorServiceServer) GetSource(context.Context, *GetSourceRequest) (*GetSourceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetSource not implemented")
-}
-func (UnimplementedConnectorServiceServer) GetDestination(context.Context, *GetDestinationRequest) (*GetDestinationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetDestination not implemented")
-}
-func (UnimplementedConnectorServiceServer) UpdateSource(context.Context, *UpdateSourceRequest) (*UpdateSourceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateSource not implemented")
-}
-func (UnimplementedConnectorServiceServer) UpdateDestination(context.Context, *UpdateDestinationRequest) (*UpdateDestinationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateDestination not implemented")
-}
-func (UnimplementedConnectorServiceServer) DeleteSource(context.Context, *DeleteSourceRequest) (*DeleteSourceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteSource not implemented")
-}
-func (UnimplementedConnectorServiceServer) DeleteDestination(context.Context, *DeleteDestinationRequest) (*DeleteDestinationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteDestination not implemented")
+func (UnimplementedConnectorServiceServer) GetSourceDefinition(context.Context, *GetSourceDefinitionRequest) (*GetSourceDefinitionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSourceDefinition not implemented")
 }
 
 // UnsafeConnectorServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -306,182 +162,38 @@ func _ConnectorService_Readiness_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorService_CreateSource_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateSourceRequest)
+func _ConnectorService_ListSourceDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListSourceDefinitionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).CreateSource(ctx, in)
+		return srv.(ConnectorServiceServer).ListSourceDefinition(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.connector.v1alpha.ConnectorService/CreateSource",
+		FullMethod: "/instill.connector.v1alpha.ConnectorService/ListSourceDefinition",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).CreateSource(ctx, req.(*CreateSourceRequest))
+		return srv.(ConnectorServiceServer).ListSourceDefinition(ctx, req.(*ListSourceDefinitionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorService_CreateDestination_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateDestinationRequest)
+func _ConnectorService_GetSourceDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSourceDefinitionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).CreateDestination(ctx, in)
+		return srv.(ConnectorServiceServer).GetSourceDefinition(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.connector.v1alpha.ConnectorService/CreateDestination",
+		FullMethod: "/instill.connector.v1alpha.ConnectorService/GetSourceDefinition",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).CreateDestination(ctx, req.(*CreateDestinationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ConnectorService_ListSource_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListSourceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ConnectorServiceServer).ListSource(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/instill.connector.v1alpha.ConnectorService/ListSource",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).ListSource(ctx, req.(*ListSourceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ConnectorService_ListDestination_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListDestinationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ConnectorServiceServer).ListDestination(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/instill.connector.v1alpha.ConnectorService/ListDestination",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).ListDestination(ctx, req.(*ListDestinationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ConnectorService_GetSource_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetSourceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ConnectorServiceServer).GetSource(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/instill.connector.v1alpha.ConnectorService/GetSource",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).GetSource(ctx, req.(*GetSourceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ConnectorService_GetDestination_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetDestinationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ConnectorServiceServer).GetDestination(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/instill.connector.v1alpha.ConnectorService/GetDestination",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).GetDestination(ctx, req.(*GetDestinationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ConnectorService_UpdateSource_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateSourceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ConnectorServiceServer).UpdateSource(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/instill.connector.v1alpha.ConnectorService/UpdateSource",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).UpdateSource(ctx, req.(*UpdateSourceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ConnectorService_UpdateDestination_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateDestinationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ConnectorServiceServer).UpdateDestination(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/instill.connector.v1alpha.ConnectorService/UpdateDestination",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).UpdateDestination(ctx, req.(*UpdateDestinationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ConnectorService_DeleteSource_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteSourceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ConnectorServiceServer).DeleteSource(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/instill.connector.v1alpha.ConnectorService/DeleteSource",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).DeleteSource(ctx, req.(*DeleteSourceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ConnectorService_DeleteDestination_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteDestinationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ConnectorServiceServer).DeleteDestination(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/instill.connector.v1alpha.ConnectorService/DeleteDestination",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).DeleteDestination(ctx, req.(*DeleteDestinationRequest))
+		return srv.(ConnectorServiceServer).GetSourceDefinition(ctx, req.(*GetSourceDefinitionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -502,44 +214,12 @@ var ConnectorService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ConnectorService_Readiness_Handler,
 		},
 		{
-			MethodName: "CreateSource",
-			Handler:    _ConnectorService_CreateSource_Handler,
+			MethodName: "ListSourceDefinition",
+			Handler:    _ConnectorService_ListSourceDefinition_Handler,
 		},
 		{
-			MethodName: "CreateDestination",
-			Handler:    _ConnectorService_CreateDestination_Handler,
-		},
-		{
-			MethodName: "ListSource",
-			Handler:    _ConnectorService_ListSource_Handler,
-		},
-		{
-			MethodName: "ListDestination",
-			Handler:    _ConnectorService_ListDestination_Handler,
-		},
-		{
-			MethodName: "GetSource",
-			Handler:    _ConnectorService_GetSource_Handler,
-		},
-		{
-			MethodName: "GetDestination",
-			Handler:    _ConnectorService_GetDestination_Handler,
-		},
-		{
-			MethodName: "UpdateSource",
-			Handler:    _ConnectorService_UpdateSource_Handler,
-		},
-		{
-			MethodName: "UpdateDestination",
-			Handler:    _ConnectorService_UpdateDestination_Handler,
-		},
-		{
-			MethodName: "DeleteSource",
-			Handler:    _ConnectorService_DeleteSource_Handler,
-		},
-		{
-			MethodName: "DeleteDestination",
-			Handler:    _ConnectorService_DeleteDestination_Handler,
+			MethodName: "GetSourceDefinition",
+			Handler:    _ConnectorService_GetSourceDefinition_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
