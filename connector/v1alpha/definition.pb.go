@@ -85,7 +85,7 @@ func (ReleaseStage) EnumDescriptor() ([]byte, []int) {
 	return file_instill_connector_v1alpha_definition_proto_rawDescGZIP(), []int{0}
 }
 
-// SourceType enumerates a source connector type
+// SourceType enumerates a source connection type
 type SourceDefinition_SourceType int32
 
 const (
@@ -150,7 +150,7 @@ func (SourceDefinition_SourceType) EnumDescriptor() ([]byte, []int) {
 	return file_instill_connector_v1alpha_definition_proto_rawDescGZIP(), []int{1, 0}
 }
 
-// DestinationType enumerates a destination connector type
+// DestinationType enumerates a destination connection type
 type DestinationDefinition_DestinationType int32
 
 const (
@@ -294,7 +294,7 @@ type SourceDefinition struct {
 	DocumentationUrl string `protobuf:"bytes,5,opt,name=documentation_url,json=documentationUrl,proto3" json:"documentation_url,omitempty"`
 	// SourceDefinition icon
 	Icon string `protobuf:"bytes,6,opt,name=icon,proto3" json:"icon,omitempty"`
-	// SourceDefinition source connector type
+	// SourceDefinition source connection type
 	SourceType SourceDefinition_SourceType `protobuf:"varint,7,opt,name=source_type,json=sourceType,proto3,enum=instill.connector.v1alpha.SourceDefinition_SourceType" json:"source_type,omitempty"`
 	// SourceDefinition spec (i.e.,
 	// io.airbyte.protocol.models.ConnectorSpecification)
@@ -485,7 +485,7 @@ type DestinationDefinition struct {
 	DocumentationUrl string `protobuf:"bytes,5,opt,name=documentation_url,json=documentationUrl,proto3" json:"documentation_url,omitempty"`
 	// DestinationDefinition icon
 	Icon string `protobuf:"bytes,6,opt,name=icon,proto3" json:"icon,omitempty"`
-	// DestinationDefinition destination connector type
+	// DestinationDefinition destination connection type
 	DestinationType DestinationDefinition_DestinationType `protobuf:"varint,7,opt,name=destination_type,json=destinationType,proto3,enum=instill.connector.v1alpha.DestinationDefinition_DestinationType" json:"destination_type,omitempty"`
 	// DestinationDefinition spec (i.e.,
 	// io.airbyte.protocol.models.ConnectorSpecification)

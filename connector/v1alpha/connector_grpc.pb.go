@@ -32,6 +32,12 @@ type ConnectorServiceClient interface {
 	// GetSourceDefinition method receives a GetSourceDefinitionRequest message and returns
 	// a GetSourceDefinitionResponse message.
 	GetSourceDefinition(ctx context.Context, in *GetSourceDefinitionRequest, opts ...grpc.CallOption) (*GetSourceDefinitionResponse, error)
+	// ListDestinationDefinition method receives a ListDestinationDefinitionRequest message and returns
+	// a ListDestinationDefinitionResponse message.
+	ListDestinationDefinition(ctx context.Context, in *ListDestinationDefinitionRequest, opts ...grpc.CallOption) (*ListDestinationDefinitionResponse, error)
+	// GetDestinationDefinition method receives a GetDestinationDefinitionRequest message and returns
+	// a GetDestinationDefinitionResponse message.
+	GetDestinationDefinition(ctx context.Context, in *GetDestinationDefinitionRequest, opts ...grpc.CallOption) (*GetDestinationDefinitionResponse, error)
 }
 
 type connectorServiceClient struct {
@@ -78,6 +84,24 @@ func (c *connectorServiceClient) GetSourceDefinition(ctx context.Context, in *Ge
 	return out, nil
 }
 
+func (c *connectorServiceClient) ListDestinationDefinition(ctx context.Context, in *ListDestinationDefinitionRequest, opts ...grpc.CallOption) (*ListDestinationDefinitionResponse, error) {
+	out := new(ListDestinationDefinitionResponse)
+	err := c.cc.Invoke(ctx, "/instill.connector.v1alpha.ConnectorService/ListDestinationDefinition", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *connectorServiceClient) GetDestinationDefinition(ctx context.Context, in *GetDestinationDefinitionRequest, opts ...grpc.CallOption) (*GetDestinationDefinitionResponse, error) {
+	out := new(GetDestinationDefinitionResponse)
+	err := c.cc.Invoke(ctx, "/instill.connector.v1alpha.ConnectorService/GetDestinationDefinition", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ConnectorServiceServer is the server API for ConnectorService service.
 // All implementations should embed UnimplementedConnectorServiceServer
 // for forward compatibility
@@ -96,6 +120,12 @@ type ConnectorServiceServer interface {
 	// GetSourceDefinition method receives a GetSourceDefinitionRequest message and returns
 	// a GetSourceDefinitionResponse message.
 	GetSourceDefinition(context.Context, *GetSourceDefinitionRequest) (*GetSourceDefinitionResponse, error)
+	// ListDestinationDefinition method receives a ListDestinationDefinitionRequest message and returns
+	// a ListDestinationDefinitionResponse message.
+	ListDestinationDefinition(context.Context, *ListDestinationDefinitionRequest) (*ListDestinationDefinitionResponse, error)
+	// GetDestinationDefinition method receives a GetDestinationDefinitionRequest message and returns
+	// a GetDestinationDefinitionResponse message.
+	GetDestinationDefinition(context.Context, *GetDestinationDefinitionRequest) (*GetDestinationDefinitionResponse, error)
 }
 
 // UnimplementedConnectorServiceServer should be embedded to have forward compatible implementations.
@@ -113,6 +143,12 @@ func (UnimplementedConnectorServiceServer) ListSourceDefinition(context.Context,
 }
 func (UnimplementedConnectorServiceServer) GetSourceDefinition(context.Context, *GetSourceDefinitionRequest) (*GetSourceDefinitionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSourceDefinition not implemented")
+}
+func (UnimplementedConnectorServiceServer) ListDestinationDefinition(context.Context, *ListDestinationDefinitionRequest) (*ListDestinationDefinitionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDestinationDefinition not implemented")
+}
+func (UnimplementedConnectorServiceServer) GetDestinationDefinition(context.Context, *GetDestinationDefinitionRequest) (*GetDestinationDefinitionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDestinationDefinition not implemented")
 }
 
 // UnsafeConnectorServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -198,6 +234,42 @@ func _ConnectorService_GetSourceDefinition_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ConnectorService_ListDestinationDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListDestinationDefinitionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConnectorServiceServer).ListDestinationDefinition(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/instill.connector.v1alpha.ConnectorService/ListDestinationDefinition",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConnectorServiceServer).ListDestinationDefinition(ctx, req.(*ListDestinationDefinitionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ConnectorService_GetDestinationDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDestinationDefinitionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConnectorServiceServer).GetDestinationDefinition(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/instill.connector.v1alpha.ConnectorService/GetDestinationDefinition",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConnectorServiceServer).GetDestinationDefinition(ctx, req.(*GetDestinationDefinitionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ConnectorService_ServiceDesc is the grpc.ServiceDesc for ConnectorService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -220,6 +292,14 @@ var ConnectorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetSourceDefinition",
 			Handler:    _ConnectorService_GetSourceDefinition_Handler,
+		},
+		{
+			MethodName: "ListDestinationDefinition",
+			Handler:    _ConnectorService_ListDestinationDefinition_Handler,
+		},
+		{
+			MethodName: "GetDestinationDefinition",
+			Handler:    _ConnectorService_GetDestinationDefinition_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
