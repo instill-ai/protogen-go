@@ -38,6 +38,21 @@ type ConnectorServiceClient interface {
 	// GetDestinationDefinition method receives a GetDestinationDefinitionRequest message and returns
 	// a GetDestinationDefinitionResponse message.
 	GetDestinationDefinition(ctx context.Context, in *GetDestinationDefinitionRequest, opts ...grpc.CallOption) (*GetDestinationDefinitionResponse, error)
+	// CreateConnector method receives a CreateConnectorRequest message and returns
+	// a CreateConnectorResponse message.
+	CreateConnector(ctx context.Context, in *CreateConnectorRequest, opts ...grpc.CallOption) (*CreateConnectorResponse, error)
+	// ListConnector method receives a ListConnectorRequest message and returns
+	// a ListConnectorResponse message.
+	ListConnector(ctx context.Context, in *ListConnectorRequest, opts ...grpc.CallOption) (*ListConnectorResponse, error)
+	// GetConnector method receives a GetConnectorRequest message and returns
+	// a GetConnectorResponse message.
+	GetConnector(ctx context.Context, in *GetConnectorRequest, opts ...grpc.CallOption) (*GetConnectorResponse, error)
+	// UpdateConnector method receives a UpdateConnectorRequest message and returns
+	// a UpdateConnectorResponse message.
+	UpdateConnector(ctx context.Context, in *UpdateConnectorRequest, opts ...grpc.CallOption) (*UpdateConnectorResponse, error)
+	// DeleteConnector method receives a DeleteConnectorRequest message and returns
+	// a DeleteConnectorResponse message.
+	DeleteConnector(ctx context.Context, in *DeleteConnectorRequest, opts ...grpc.CallOption) (*DeleteConnectorResponse, error)
 }
 
 type connectorServiceClient struct {
@@ -102,6 +117,51 @@ func (c *connectorServiceClient) GetDestinationDefinition(ctx context.Context, i
 	return out, nil
 }
 
+func (c *connectorServiceClient) CreateConnector(ctx context.Context, in *CreateConnectorRequest, opts ...grpc.CallOption) (*CreateConnectorResponse, error) {
+	out := new(CreateConnectorResponse)
+	err := c.cc.Invoke(ctx, "/instill.connector.v1alpha.ConnectorService/CreateConnector", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *connectorServiceClient) ListConnector(ctx context.Context, in *ListConnectorRequest, opts ...grpc.CallOption) (*ListConnectorResponse, error) {
+	out := new(ListConnectorResponse)
+	err := c.cc.Invoke(ctx, "/instill.connector.v1alpha.ConnectorService/ListConnector", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *connectorServiceClient) GetConnector(ctx context.Context, in *GetConnectorRequest, opts ...grpc.CallOption) (*GetConnectorResponse, error) {
+	out := new(GetConnectorResponse)
+	err := c.cc.Invoke(ctx, "/instill.connector.v1alpha.ConnectorService/GetConnector", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *connectorServiceClient) UpdateConnector(ctx context.Context, in *UpdateConnectorRequest, opts ...grpc.CallOption) (*UpdateConnectorResponse, error) {
+	out := new(UpdateConnectorResponse)
+	err := c.cc.Invoke(ctx, "/instill.connector.v1alpha.ConnectorService/UpdateConnector", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *connectorServiceClient) DeleteConnector(ctx context.Context, in *DeleteConnectorRequest, opts ...grpc.CallOption) (*DeleteConnectorResponse, error) {
+	out := new(DeleteConnectorResponse)
+	err := c.cc.Invoke(ctx, "/instill.connector.v1alpha.ConnectorService/DeleteConnector", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ConnectorServiceServer is the server API for ConnectorService service.
 // All implementations should embed UnimplementedConnectorServiceServer
 // for forward compatibility
@@ -126,6 +186,21 @@ type ConnectorServiceServer interface {
 	// GetDestinationDefinition method receives a GetDestinationDefinitionRequest message and returns
 	// a GetDestinationDefinitionResponse message.
 	GetDestinationDefinition(context.Context, *GetDestinationDefinitionRequest) (*GetDestinationDefinitionResponse, error)
+	// CreateConnector method receives a CreateConnectorRequest message and returns
+	// a CreateConnectorResponse message.
+	CreateConnector(context.Context, *CreateConnectorRequest) (*CreateConnectorResponse, error)
+	// ListConnector method receives a ListConnectorRequest message and returns
+	// a ListConnectorResponse message.
+	ListConnector(context.Context, *ListConnectorRequest) (*ListConnectorResponse, error)
+	// GetConnector method receives a GetConnectorRequest message and returns
+	// a GetConnectorResponse message.
+	GetConnector(context.Context, *GetConnectorRequest) (*GetConnectorResponse, error)
+	// UpdateConnector method receives a UpdateConnectorRequest message and returns
+	// a UpdateConnectorResponse message.
+	UpdateConnector(context.Context, *UpdateConnectorRequest) (*UpdateConnectorResponse, error)
+	// DeleteConnector method receives a DeleteConnectorRequest message and returns
+	// a DeleteConnectorResponse message.
+	DeleteConnector(context.Context, *DeleteConnectorRequest) (*DeleteConnectorResponse, error)
 }
 
 // UnimplementedConnectorServiceServer should be embedded to have forward compatible implementations.
@@ -149,6 +224,21 @@ func (UnimplementedConnectorServiceServer) ListDestinationDefinition(context.Con
 }
 func (UnimplementedConnectorServiceServer) GetDestinationDefinition(context.Context, *GetDestinationDefinitionRequest) (*GetDestinationDefinitionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDestinationDefinition not implemented")
+}
+func (UnimplementedConnectorServiceServer) CreateConnector(context.Context, *CreateConnectorRequest) (*CreateConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateConnector not implemented")
+}
+func (UnimplementedConnectorServiceServer) ListConnector(context.Context, *ListConnectorRequest) (*ListConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListConnector not implemented")
+}
+func (UnimplementedConnectorServiceServer) GetConnector(context.Context, *GetConnectorRequest) (*GetConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetConnector not implemented")
+}
+func (UnimplementedConnectorServiceServer) UpdateConnector(context.Context, *UpdateConnectorRequest) (*UpdateConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateConnector not implemented")
+}
+func (UnimplementedConnectorServiceServer) DeleteConnector(context.Context, *DeleteConnectorRequest) (*DeleteConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteConnector not implemented")
 }
 
 // UnsafeConnectorServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -270,6 +360,96 @@ func _ConnectorService_GetDestinationDefinition_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ConnectorService_CreateConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConnectorServiceServer).CreateConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/instill.connector.v1alpha.ConnectorService/CreateConnector",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConnectorServiceServer).CreateConnector(ctx, req.(*CreateConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ConnectorService_ListConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConnectorServiceServer).ListConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/instill.connector.v1alpha.ConnectorService/ListConnector",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConnectorServiceServer).ListConnector(ctx, req.(*ListConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ConnectorService_GetConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConnectorServiceServer).GetConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/instill.connector.v1alpha.ConnectorService/GetConnector",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConnectorServiceServer).GetConnector(ctx, req.(*GetConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ConnectorService_UpdateConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConnectorServiceServer).UpdateConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/instill.connector.v1alpha.ConnectorService/UpdateConnector",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConnectorServiceServer).UpdateConnector(ctx, req.(*UpdateConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ConnectorService_DeleteConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConnectorServiceServer).DeleteConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/instill.connector.v1alpha.ConnectorService/DeleteConnector",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConnectorServiceServer).DeleteConnector(ctx, req.(*DeleteConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ConnectorService_ServiceDesc is the grpc.ServiceDesc for ConnectorService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -300,6 +480,26 @@ var ConnectorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDestinationDefinition",
 			Handler:    _ConnectorService_GetDestinationDefinition_Handler,
+		},
+		{
+			MethodName: "CreateConnector",
+			Handler:    _ConnectorService_CreateConnector_Handler,
+		},
+		{
+			MethodName: "ListConnector",
+			Handler:    _ConnectorService_ListConnector_Handler,
+		},
+		{
+			MethodName: "GetConnector",
+			Handler:    _ConnectorService_GetConnector_Handler,
+		},
+		{
+			MethodName: "UpdateConnector",
+			Handler:    _ConnectorService_UpdateConnector_Handler,
+		},
+		{
+			MethodName: "DeleteConnector",
+			Handler:    _ConnectorService_DeleteConnector_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

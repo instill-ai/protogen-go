@@ -79,8 +79,8 @@ func (SupportedDestinationSyncModes) EnumDescriptor() ([]byte, []int) {
 	return file_instill_connector_v1alpha_spec_proto_rawDescGZIP(), []int{0}
 }
 
-///////////////////////////////
-// Spec represents a spec data
+////////////////////////////////////
+// Spec represents a spec data model
 type Spec struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

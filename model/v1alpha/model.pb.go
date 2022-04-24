@@ -814,7 +814,7 @@ type Model struct {
 	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	// Model name
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// Model full name (i.e., [user_name/org_name]/full_name)
+	// Model full name (i.e., [user_name/org_name]/model_name)
 	FullName string `protobuf:"bytes,3,opt,name=full_name,json=fullName,proto3" json:"full_name,omitempty"`
 	// Model task
 	Task Model_Task `protobuf:"varint,4,opt,name=task,proto3,enum=instill.model.v1alpha.Model_Task" json:"task,omitempty"`

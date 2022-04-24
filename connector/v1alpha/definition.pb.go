@@ -24,7 +24,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// ReleaseStage enumerates the release stage
+// ReleaseStage enumerates the release stages
 type ReleaseStage int32
 
 const (
@@ -282,7 +282,7 @@ type SourceDefinition struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// SourceDefinition ID in UUIDv4
+	// SourceDefinition UUID
 	SourceDefinitionId string `protobuf:"bytes,1,opt,name=source_definition_id,json=sourceDefinitionId,proto3" json:"source_definition_id,omitempty"`
 	// SourceDefinition name
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
@@ -316,9 +316,9 @@ type SourceDefinition struct {
 	ReleaseDate *date.Date `protobuf:"bytes,13,opt,name=release_date,json=releaseDate,proto3" json:"release_date,omitempty"`
 	// SourceDefinition resource requirements
 	ResourceRequirements *structpb.Struct `protobuf:"bytes,14,opt,name=resource_requirements,json=resourceRequirements,proto3" json:"resource_requirements,omitempty"`
-	// SourceDefinition created at time
+	// SourceDefinition created time
 	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	// SourceDefinition update at time
+	// SourceDefinition update time
 	UpdateAt *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=update_at,json=updateAt,proto3" json:"update_at,omitempty"`
 }
 
@@ -473,7 +473,7 @@ type DestinationDefinition struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// DestinationDefinition ID in UUIDv4
+	// DestinationDefinition UUID
 	DestinationDefinitionId string `protobuf:"bytes,1,opt,name=destination_definition_id,json=destinationDefinitionId,proto3" json:"destination_definition_id,omitempty"`
 	// DestinationDefinition name
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
@@ -507,9 +507,9 @@ type DestinationDefinition struct {
 	ReleaseDate *date.Date `protobuf:"bytes,13,opt,name=release_date,json=releaseDate,proto3" json:"release_date,omitempty"`
 	// DestinationDefinition resource requirements
 	ResourceRequirements *structpb.Struct `protobuf:"bytes,14,opt,name=resource_requirements,json=resourceRequirements,proto3" json:"resource_requirements,omitempty"`
-	// DestinationDefinition created at time
+	// DestinationDefinition created time
 	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	// DestinationDefinition update at time
+	// DestinationDefinition update time
 	UpdateAt *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=update_at,json=updateAt,proto3" json:"update_at,omitempty"`
 }
 
