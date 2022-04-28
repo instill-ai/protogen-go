@@ -130,7 +130,60 @@ func (HealthCheckResponse_ServingStatus) EnumDescriptor() ([]byte, []int) {
 	return file_instill_pipeline_v1alpha_pipeline_proto_rawDescGZIP(), []int{1, 0}
 }
 
-// Status enumerates the status of a model version
+// Mode enumerates the pipeline modes
+type Pipeline_Mode int32
+
+const (
+	// Mode: UNSPECIFIED
+	Pipeline_MODE_UNSPECIFIED Pipeline_Mode = 0
+	// Mode: SYNC
+	Pipeline_MODE_SYNC Pipeline_Mode = 1
+	// Mode: ASYNC
+	Pipeline_MODE_ASYNC Pipeline_Mode = 2
+)
+
+// Enum value maps for Pipeline_Mode.
+var (
+	Pipeline_Mode_name = map[int32]string{
+		0: "MODE_UNSPECIFIED",
+		1: "MODE_SYNC",
+		2: "MODE_ASYNC",
+	}
+	Pipeline_Mode_value = map[string]int32{
+		"MODE_UNSPECIFIED": 0,
+		"MODE_SYNC":        1,
+		"MODE_ASYNC":       2,
+	}
+)
+
+func (x Pipeline_Mode) Enum() *Pipeline_Mode {
+	p := new(Pipeline_Mode)
+	*p = x
+	return p
+}
+
+func (x Pipeline_Mode) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (Pipeline_Mode) Descriptor() protoreflect.EnumDescriptor {
+	return file_instill_pipeline_v1alpha_pipeline_proto_enumTypes[2].Descriptor()
+}
+
+func (Pipeline_Mode) Type() protoreflect.EnumType {
+	return &file_instill_pipeline_v1alpha_pipeline_proto_enumTypes[2]
+}
+
+func (x Pipeline_Mode) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use Pipeline_Mode.Descriptor instead.
+func (Pipeline_Mode) EnumDescriptor() ([]byte, []int) {
+	return file_instill_pipeline_v1alpha_pipeline_proto_rawDescGZIP(), []int{11, 0}
+}
+
+// Status enumerates the status of a pipeline
 type Pipeline_Status int32
 
 const (
@@ -171,11 +224,11 @@ func (x Pipeline_Status) String() string {
 }
 
 func (Pipeline_Status) Descriptor() protoreflect.EnumDescriptor {
-	return file_instill_pipeline_v1alpha_pipeline_proto_enumTypes[2].Descriptor()
+	return file_instill_pipeline_v1alpha_pipeline_proto_enumTypes[3].Descriptor()
 }
 
 func (Pipeline_Status) Type() protoreflect.EnumType {
-	return &file_instill_pipeline_v1alpha_pipeline_proto_enumTypes[2]
+	return &file_instill_pipeline_v1alpha_pipeline_proto_enumTypes[3]
 }
 
 func (x Pipeline_Status) Number() protoreflect.EnumNumber {
@@ -184,7 +237,7 @@ func (x Pipeline_Status) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Pipeline_Status.Descriptor instead.
 func (Pipeline_Status) EnumDescriptor() ([]byte, []int) {
-	return file_instill_pipeline_v1alpha_pipeline_proto_rawDescGZIP(), []int{11, 0}
+	return file_instill_pipeline_v1alpha_pipeline_proto_rawDescGZIP(), []int{11, 1}
 }
 
 // HealthCheckRequest represents a request to health check a service
@@ -589,8 +642,6 @@ type Model struct {
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Model instance name
 	InstanceName string `protobuf:"bytes,2,opt,name=instance_name,json=instanceName,proto3" json:"instance_name,omitempty"`
-	// Model version (TO BE DEPRECATED)
-	Version int32 `protobuf:"varint,3,opt,name=version,proto3" json:"version,omitempty"`
 }
 
 func (x *Model) Reset() {
@@ -639,13 +690,6 @@ func (x *Model) GetInstanceName() string {
 	return ""
 }
 
-func (x *Model) GetVersion() int32 {
-	if x != nil {
-		return x.Version
-	}
-	return 0
-}
-
 // Logic represents the content of a logic operator
 type Logic struct {
 	state         protoimpl.MessageState
@@ -685,7 +729,7 @@ func (*Logic) Descriptor() ([]byte, []int) {
 	return file_instill_pipeline_v1alpha_pipeline_proto_rawDescGZIP(), []int{9}
 }
 
-// Model represents the content of a recipe
+// Recipe represents the content of a recipe
 type Recipe struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -773,18 +817,20 @@ type Pipeline struct {
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	// Pipeline description
 	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	// Pipeline status
-	Status Pipeline_Status `protobuf:"varint,4,opt,name=status,proto3,enum=instill.pipeline.v1alpha.Pipeline_Status" json:"status,omitempty"`
 	// Pipeline recipe
-	Recipe *Recipe `protobuf:"bytes,5,opt,name=recipe,proto3" json:"recipe,omitempty"`
+	Recipe *Recipe `protobuf:"bytes,4,opt,name=recipe,proto3" json:"recipe,omitempty"`
+	// Pipeline mode
+	Mode Pipeline_Mode `protobuf:"varint,5,opt,name=mode,proto3,enum=instill.pipeline.v1alpha.Pipeline_Mode" json:"mode,omitempty"`
+	// Pipeline status
+	Status Pipeline_Status `protobuf:"varint,6,opt,name=status,proto3,enum=instill.pipeline.v1alpha.Pipeline_Status" json:"status,omitempty"`
 	// Connector owner UUID
-	OwnerId string `protobuf:"bytes,6,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	OwnerId string `protobuf:"bytes,7,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
 	// Connector full name (i.e., owner_name/pipeline_name)
-	FullName string `protobuf:"bytes,7,opt,name=full_name,json=fullName,proto3" json:"full_name,omitempty"`
+	FullName string `protobuf:"bytes,8,opt,name=full_name,json=fullName,proto3" json:"full_name,omitempty"`
 	// Pipeline created time
-	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// Pipeline updated time
-	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 }
 
 func (x *Pipeline) Reset() {
@@ -840,18 +886,25 @@ func (x *Pipeline) GetDescription() string {
 	return ""
 }
 
-func (x *Pipeline) GetStatus() Pipeline_Status {
-	if x != nil {
-		return x.Status
-	}
-	return Pipeline_STATUS_UNSPECIFIED
-}
-
 func (x *Pipeline) GetRecipe() *Recipe {
 	if x != nil {
 		return x.Recipe
 	}
 	return nil
+}
+
+func (x *Pipeline) GetMode() Pipeline_Mode {
+	if x != nil {
+		return x.Mode
+	}
+	return Pipeline_MODE_UNSPECIFIED
+}
+
+func (x *Pipeline) GetStatus() Pipeline_Status {
+	if x != nil {
+		return x.Status
+	}
+	return Pipeline_STATUS_UNSPECIFIED
 }
 
 func (x *Pipeline) GetOwnerId() string {
@@ -1880,58 +1933,64 @@ var file_instill_pipeline_v1alpha_pipeline_proto_rawDesc = []byte{
 	0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x04,
 	0x6e, 0x61, 0x6d, 0x65, 0x22, 0x26, 0x0a, 0x0b, 0x44, 0x65, 0x73, 0x74, 0x69, 0x6e, 0x61, 0x74,
 	0x69, 0x6f, 0x6e, 0x12, 0x17, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x69, 0x0a, 0x05,
+	0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x4a, 0x0a, 0x05,
 	0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x12, 0x17, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20,
 	0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x28,
 	0x0a, 0x0d, 0x69, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18,
 	0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x0c, 0x69, 0x6e, 0x73, 0x74,
-	0x61, 0x6e, 0x63, 0x65, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1d, 0x0a, 0x07, 0x76, 0x65, 0x72, 0x73,
-	0x69, 0x6f, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x07,
-	0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x22, 0x07, 0x0a, 0x05, 0x4c, 0x6f, 0x67, 0x69, 0x63,
-	0x22, 0x91, 0x02, 0x0a, 0x06, 0x52, 0x65, 0x63, 0x69, 0x70, 0x65, 0x12, 0x3d, 0x0a, 0x06, 0x73,
-	0x6f, 0x75, 0x72, 0x63, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x69, 0x6e,
-	0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76,
-	0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x53, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x42, 0x03, 0xe0,
-	0x41, 0x02, 0x52, 0x06, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x12, 0x4c, 0x0a, 0x0b, 0x64, 0x65,
-	0x73, 0x74, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32,
-	0x25, 0x2e, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69,
-	0x6e, 0x65, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x44, 0x65, 0x73, 0x74, 0x69,
-	0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x0b, 0x64, 0x65, 0x73,
-	0x74, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x3c, 0x0a, 0x06, 0x6d, 0x6f, 0x64, 0x65,
-	0x6c, 0x73, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x69, 0x6e, 0x73, 0x74, 0x69,
+	0x61, 0x6e, 0x63, 0x65, 0x4e, 0x61, 0x6d, 0x65, 0x22, 0x07, 0x0a, 0x05, 0x4c, 0x6f, 0x67, 0x69,
+	0x63, 0x22, 0x91, 0x02, 0x0a, 0x06, 0x52, 0x65, 0x63, 0x69, 0x70, 0x65, 0x12, 0x3d, 0x0a, 0x06,
+	0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x69,
+	0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e,
+	0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x53, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x42, 0x03,
+	0xe0, 0x41, 0x02, 0x52, 0x06, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x12, 0x4c, 0x0a, 0x0b, 0x64,
+	0x65, 0x73, 0x74, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x25, 0x2e, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c,
+	0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x44, 0x65, 0x73, 0x74,
+	0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x0b, 0x64, 0x65,
+	0x73, 0x74, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x3c, 0x0a, 0x06, 0x6d, 0x6f, 0x64,
+	0x65, 0x6c, 0x73, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x69, 0x6e, 0x73, 0x74,
+	0x69, 0x6c, 0x6c, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x61,
+	0x6c, 0x70, 0x68, 0x61, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52,
+	0x06, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x12, 0x3c, 0x0a, 0x06, 0x6c, 0x6f, 0x67, 0x69, 0x63,
+	0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c,
+	0x6c, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70,
+	0x68, 0x61, 0x2e, 0x4c, 0x6f, 0x67, 0x69, 0x63, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x06, 0x6c,
+	0x6f, 0x67, 0x69, 0x63, 0x73, 0x22, 0x89, 0x05, 0x0a, 0x08, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69,
+	0x6e, 0x65, 0x12, 0x13, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03,
+	0xe0, 0x41, 0x03, 0x52, 0x02, 0x69, 0x64, 0x12, 0x17, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65,
+	0x12, 0x25, 0x0a, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0b, 0x64, 0x65, 0x73, 0x63,
+	0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x3d, 0x0a, 0x06, 0x72, 0x65, 0x63, 0x69, 0x70,
+	0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c,
+	0x6c, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70,
+	0x68, 0x61, 0x2e, 0x52, 0x65, 0x63, 0x69, 0x70, 0x65, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x06,
+	0x72, 0x65, 0x63, 0x69, 0x70, 0x65, 0x12, 0x40, 0x0a, 0x04, 0x6d, 0x6f, 0x64, 0x65, 0x18, 0x05,
+	0x20, 0x01, 0x28, 0x0e, 0x32, 0x27, 0x2e, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2e, 0x70,
+	0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e,
+	0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x42, 0x03, 0xe0,
+	0x41, 0x03, 0x52, 0x04, 0x6d, 0x6f, 0x64, 0x65, 0x12, 0x46, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74,
+	0x75, 0x73, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x29, 0x2e, 0x69, 0x6e, 0x73, 0x74, 0x69,
 	0x6c, 0x6c, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x61, 0x6c,
-	0x70, 0x68, 0x61, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x06,
-	0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x12, 0x3c, 0x0a, 0x06, 0x6c, 0x6f, 0x67, 0x69, 0x63, 0x73,
-	0x18, 0x04, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c,
-	0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68,
-	0x61, 0x2e, 0x4c, 0x6f, 0x67, 0x69, 0x63, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x06, 0x6c, 0x6f,
-	0x67, 0x69, 0x63, 0x73, 0x22, 0x8a, 0x04, 0x0a, 0x08, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e,
-	0x65, 0x12, 0x13, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0,
-	0x41, 0x03, 0x52, 0x02, 0x69, 0x64, 0x12, 0x17, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02,
-	0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12,
-	0x25, 0x0a, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x03,
-	0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72,
-	0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x46, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73,
-	0x18, 0x04, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x29, 0x2e, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c,
-	0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68,
-	0x61, 0x2e, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x75,
-	0x73, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x3d,
-	0x0a, 0x06, 0x72, 0x65, 0x63, 0x69, 0x70, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20,
-	0x2e, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e,
-	0x65, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x52, 0x65, 0x63, 0x69, 0x70, 0x65,
-	0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x06, 0x72, 0x65, 0x63, 0x69, 0x70, 0x65, 0x12, 0x1e, 0x0a,
-	0x08, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x42,
-	0x03, 0xe0, 0x41, 0x03, 0x52, 0x07, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x49, 0x64, 0x12, 0x20, 0x0a,
-	0x09, 0x66, 0x75, 0x6c, 0x6c, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09,
-	0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x08, 0x66, 0x75, 0x6c, 0x6c, 0x4e, 0x61, 0x6d, 0x65, 0x12,
-	0x3e, 0x0a, 0x0a, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x5f, 0x61, 0x74, 0x18, 0x08, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42,
-	0x03, 0xe0, 0x41, 0x03, 0x52, 0x09, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x12,
-	0x3e, 0x0a, 0x0a, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x5f, 0x61, 0x74, 0x18, 0x09, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42,
-	0x03, 0xe0, 0x41, 0x03, 0x52, 0x09, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x22,
+	0x70, 0x68, 0x61, 0x2e, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x53, 0x74, 0x61,
+	0x74, 0x75, 0x73, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73,
+	0x12, 0x1e, 0x0a, 0x08, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x07, 0x20, 0x01,
+	0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x07, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x49, 0x64,
+	0x12, 0x20, 0x0a, 0x09, 0x66, 0x75, 0x6c, 0x6c, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x08, 0x20,
+	0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x08, 0x66, 0x75, 0x6c, 0x6c, 0x4e, 0x61,
+	0x6d, 0x65, 0x12, 0x3e, 0x0a, 0x0a, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x5f, 0x61, 0x74,
+	0x18, 0x09, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61,
+	0x6d, 0x70, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x09, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64,
+	0x41, 0x74, 0x12, 0x3e, 0x0a, 0x0a, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x5f, 0x61, 0x74,
+	0x18, 0x0a, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61,
+	0x6d, 0x70, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x09, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64,
+	0x41, 0x74, 0x22, 0x3b, 0x0a, 0x04, 0x4d, 0x6f, 0x64, 0x65, 0x12, 0x14, 0x0a, 0x10, 0x4d, 0x4f,
+	0x44, 0x45, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00,
+	0x12, 0x0d, 0x0a, 0x09, 0x4d, 0x4f, 0x44, 0x45, 0x5f, 0x53, 0x59, 0x4e, 0x43, 0x10, 0x01, 0x12,
+	0x0e, 0x0a, 0x0a, 0x4d, 0x4f, 0x44, 0x45, 0x5f, 0x41, 0x53, 0x59, 0x4e, 0x43, 0x10, 0x02, 0x22,
 	0x60, 0x0a, 0x06, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x16, 0x0a, 0x12, 0x53, 0x54, 0x41,
 	0x54, 0x55, 0x53, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10,
 	0x00, 0x12, 0x16, 0x0a, 0x12, 0x53, 0x54, 0x41, 0x54, 0x55, 0x53, 0x5f, 0x49, 0x4e, 0x41, 0x43,
@@ -2172,95 +2231,97 @@ func file_instill_pipeline_v1alpha_pipeline_proto_rawDescGZIP() []byte {
 	return file_instill_pipeline_v1alpha_pipeline_proto_rawDescData
 }
 
-var file_instill_pipeline_v1alpha_pipeline_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
+var file_instill_pipeline_v1alpha_pipeline_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
 var file_instill_pipeline_v1alpha_pipeline_proto_msgTypes = make([]protoimpl.MessageInfo, 28)
 var file_instill_pipeline_v1alpha_pipeline_proto_goTypes = []interface{}{
 	(PipelineView)(0),                               // 0: instill.pipeline.v1alpha.PipelineView
 	(HealthCheckResponse_ServingStatus)(0),          // 1: instill.pipeline.v1alpha.HealthCheckResponse.ServingStatus
-	(Pipeline_Status)(0),                            // 2: instill.pipeline.v1alpha.Pipeline.Status
-	(*HealthCheckRequest)(nil),                      // 3: instill.pipeline.v1alpha.HealthCheckRequest
-	(*HealthCheckResponse)(nil),                     // 4: instill.pipeline.v1alpha.HealthCheckResponse
-	(*LivenessRequest)(nil),                         // 5: instill.pipeline.v1alpha.LivenessRequest
-	(*LivenessResponse)(nil),                        // 6: instill.pipeline.v1alpha.LivenessResponse
-	(*ReadinessRequest)(nil),                        // 7: instill.pipeline.v1alpha.ReadinessRequest
-	(*ReadinessResponse)(nil),                       // 8: instill.pipeline.v1alpha.ReadinessResponse
-	(*Source)(nil),                                  // 9: instill.pipeline.v1alpha.Source
-	(*Destination)(nil),                             // 10: instill.pipeline.v1alpha.Destination
-	(*Model)(nil),                                   // 11: instill.pipeline.v1alpha.Model
-	(*Logic)(nil),                                   // 12: instill.pipeline.v1alpha.Logic
-	(*Recipe)(nil),                                  // 13: instill.pipeline.v1alpha.Recipe
-	(*Pipeline)(nil),                                // 14: instill.pipeline.v1alpha.Pipeline
-	(*CreatePipelineRequest)(nil),                   // 15: instill.pipeline.v1alpha.CreatePipelineRequest
-	(*CreatePipelineResponse)(nil),                  // 16: instill.pipeline.v1alpha.CreatePipelineResponse
-	(*ListPipelineRequest)(nil),                     // 17: instill.pipeline.v1alpha.ListPipelineRequest
-	(*ListPipelineResponse)(nil),                    // 18: instill.pipeline.v1alpha.ListPipelineResponse
-	(*GetPipelineRequest)(nil),                      // 19: instill.pipeline.v1alpha.GetPipelineRequest
-	(*GetPipelineResponse)(nil),                     // 20: instill.pipeline.v1alpha.GetPipelineResponse
-	(*UpdatePipelinePatch)(nil),                     // 21: instill.pipeline.v1alpha.UpdatePipelinePatch
-	(*UpdatePipelineRequest)(nil),                   // 22: instill.pipeline.v1alpha.UpdatePipelineRequest
-	(*UpdatePipelineResponse)(nil),                  // 23: instill.pipeline.v1alpha.UpdatePipelineResponse
-	(*DeletePipelineRequest)(nil),                   // 24: instill.pipeline.v1alpha.DeletePipelineRequest
-	(*DeletePipelineResponse)(nil),                  // 25: instill.pipeline.v1alpha.DeletePipelineResponse
-	(*Input)(nil),                                   // 26: instill.pipeline.v1alpha.Input
-	(*TriggerPipelineRequest)(nil),                  // 27: instill.pipeline.v1alpha.TriggerPipelineRequest
-	(*TriggerPipelineResponse)(nil),                 // 28: instill.pipeline.v1alpha.TriggerPipelineResponse
-	(*TriggerPipelineBinaryFileUploadRequest)(nil),  // 29: instill.pipeline.v1alpha.TriggerPipelineBinaryFileUploadRequest
-	(*TriggerPipelineBinaryFileUploadResponse)(nil), // 30: instill.pipeline.v1alpha.TriggerPipelineBinaryFileUploadResponse
-	(*timestamppb.Timestamp)(nil),                   // 31: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil),                   // 32: google.protobuf.FieldMask
-	(*structpb.Struct)(nil),                         // 33: google.protobuf.Struct
+	(Pipeline_Mode)(0),                              // 2: instill.pipeline.v1alpha.Pipeline.Mode
+	(Pipeline_Status)(0),                            // 3: instill.pipeline.v1alpha.Pipeline.Status
+	(*HealthCheckRequest)(nil),                      // 4: instill.pipeline.v1alpha.HealthCheckRequest
+	(*HealthCheckResponse)(nil),                     // 5: instill.pipeline.v1alpha.HealthCheckResponse
+	(*LivenessRequest)(nil),                         // 6: instill.pipeline.v1alpha.LivenessRequest
+	(*LivenessResponse)(nil),                        // 7: instill.pipeline.v1alpha.LivenessResponse
+	(*ReadinessRequest)(nil),                        // 8: instill.pipeline.v1alpha.ReadinessRequest
+	(*ReadinessResponse)(nil),                       // 9: instill.pipeline.v1alpha.ReadinessResponse
+	(*Source)(nil),                                  // 10: instill.pipeline.v1alpha.Source
+	(*Destination)(nil),                             // 11: instill.pipeline.v1alpha.Destination
+	(*Model)(nil),                                   // 12: instill.pipeline.v1alpha.Model
+	(*Logic)(nil),                                   // 13: instill.pipeline.v1alpha.Logic
+	(*Recipe)(nil),                                  // 14: instill.pipeline.v1alpha.Recipe
+	(*Pipeline)(nil),                                // 15: instill.pipeline.v1alpha.Pipeline
+	(*CreatePipelineRequest)(nil),                   // 16: instill.pipeline.v1alpha.CreatePipelineRequest
+	(*CreatePipelineResponse)(nil),                  // 17: instill.pipeline.v1alpha.CreatePipelineResponse
+	(*ListPipelineRequest)(nil),                     // 18: instill.pipeline.v1alpha.ListPipelineRequest
+	(*ListPipelineResponse)(nil),                    // 19: instill.pipeline.v1alpha.ListPipelineResponse
+	(*GetPipelineRequest)(nil),                      // 20: instill.pipeline.v1alpha.GetPipelineRequest
+	(*GetPipelineResponse)(nil),                     // 21: instill.pipeline.v1alpha.GetPipelineResponse
+	(*UpdatePipelinePatch)(nil),                     // 22: instill.pipeline.v1alpha.UpdatePipelinePatch
+	(*UpdatePipelineRequest)(nil),                   // 23: instill.pipeline.v1alpha.UpdatePipelineRequest
+	(*UpdatePipelineResponse)(nil),                  // 24: instill.pipeline.v1alpha.UpdatePipelineResponse
+	(*DeletePipelineRequest)(nil),                   // 25: instill.pipeline.v1alpha.DeletePipelineRequest
+	(*DeletePipelineResponse)(nil),                  // 26: instill.pipeline.v1alpha.DeletePipelineResponse
+	(*Input)(nil),                                   // 27: instill.pipeline.v1alpha.Input
+	(*TriggerPipelineRequest)(nil),                  // 28: instill.pipeline.v1alpha.TriggerPipelineRequest
+	(*TriggerPipelineResponse)(nil),                 // 29: instill.pipeline.v1alpha.TriggerPipelineResponse
+	(*TriggerPipelineBinaryFileUploadRequest)(nil),  // 30: instill.pipeline.v1alpha.TriggerPipelineBinaryFileUploadRequest
+	(*TriggerPipelineBinaryFileUploadResponse)(nil), // 31: instill.pipeline.v1alpha.TriggerPipelineBinaryFileUploadResponse
+	(*timestamppb.Timestamp)(nil),                   // 32: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil),                   // 33: google.protobuf.FieldMask
+	(*structpb.Struct)(nil),                         // 34: google.protobuf.Struct
 }
 var file_instill_pipeline_v1alpha_pipeline_proto_depIdxs = []int32{
 	1,  // 0: instill.pipeline.v1alpha.HealthCheckResponse.status:type_name -> instill.pipeline.v1alpha.HealthCheckResponse.ServingStatus
-	3,  // 1: instill.pipeline.v1alpha.LivenessRequest.health_check_request:type_name -> instill.pipeline.v1alpha.HealthCheckRequest
-	4,  // 2: instill.pipeline.v1alpha.LivenessResponse.health_check_response:type_name -> instill.pipeline.v1alpha.HealthCheckResponse
-	3,  // 3: instill.pipeline.v1alpha.ReadinessRequest.health_check_request:type_name -> instill.pipeline.v1alpha.HealthCheckRequest
-	4,  // 4: instill.pipeline.v1alpha.ReadinessResponse.health_check_response:type_name -> instill.pipeline.v1alpha.HealthCheckResponse
-	9,  // 5: instill.pipeline.v1alpha.Recipe.source:type_name -> instill.pipeline.v1alpha.Source
-	10, // 6: instill.pipeline.v1alpha.Recipe.destination:type_name -> instill.pipeline.v1alpha.Destination
-	11, // 7: instill.pipeline.v1alpha.Recipe.models:type_name -> instill.pipeline.v1alpha.Model
-	12, // 8: instill.pipeline.v1alpha.Recipe.logics:type_name -> instill.pipeline.v1alpha.Logic
-	2,  // 9: instill.pipeline.v1alpha.Pipeline.status:type_name -> instill.pipeline.v1alpha.Pipeline.Status
-	13, // 10: instill.pipeline.v1alpha.Pipeline.recipe:type_name -> instill.pipeline.v1alpha.Recipe
-	31, // 11: instill.pipeline.v1alpha.Pipeline.created_at:type_name -> google.protobuf.Timestamp
-	31, // 12: instill.pipeline.v1alpha.Pipeline.updated_at:type_name -> google.protobuf.Timestamp
-	13, // 13: instill.pipeline.v1alpha.CreatePipelineRequest.recipe:type_name -> instill.pipeline.v1alpha.Recipe
-	14, // 14: instill.pipeline.v1alpha.CreatePipelineResponse.pipeline:type_name -> instill.pipeline.v1alpha.Pipeline
-	0,  // 15: instill.pipeline.v1alpha.ListPipelineRequest.view:type_name -> instill.pipeline.v1alpha.PipelineView
-	14, // 16: instill.pipeline.v1alpha.ListPipelineResponse.pipelines:type_name -> instill.pipeline.v1alpha.Pipeline
-	0,  // 17: instill.pipeline.v1alpha.GetPipelineRequest.view:type_name -> instill.pipeline.v1alpha.PipelineView
-	14, // 18: instill.pipeline.v1alpha.GetPipelineResponse.pipeline:type_name -> instill.pipeline.v1alpha.Pipeline
-	2,  // 19: instill.pipeline.v1alpha.UpdatePipelinePatch.status:type_name -> instill.pipeline.v1alpha.Pipeline.Status
-	13, // 20: instill.pipeline.v1alpha.UpdatePipelinePatch.recipe:type_name -> instill.pipeline.v1alpha.Recipe
-	21, // 21: instill.pipeline.v1alpha.UpdatePipelineRequest.pipeline_patch:type_name -> instill.pipeline.v1alpha.UpdatePipelinePatch
-	32, // 22: instill.pipeline.v1alpha.UpdatePipelineRequest.field_mask:type_name -> google.protobuf.FieldMask
-	14, // 23: instill.pipeline.v1alpha.UpdatePipelineResponse.pipeline:type_name -> instill.pipeline.v1alpha.Pipeline
-	26, // 24: instill.pipeline.v1alpha.TriggerPipelineRequest.inputs:type_name -> instill.pipeline.v1alpha.Input
-	33, // 25: instill.pipeline.v1alpha.TriggerPipelineResponse.output:type_name -> google.protobuf.Struct
-	33, // 26: instill.pipeline.v1alpha.TriggerPipelineBinaryFileUploadResponse.output:type_name -> google.protobuf.Struct
-	5,  // 27: instill.pipeline.v1alpha.PipelineService.Liveness:input_type -> instill.pipeline.v1alpha.LivenessRequest
-	7,  // 28: instill.pipeline.v1alpha.PipelineService.Readiness:input_type -> instill.pipeline.v1alpha.ReadinessRequest
-	15, // 29: instill.pipeline.v1alpha.PipelineService.CreatePipeline:input_type -> instill.pipeline.v1alpha.CreatePipelineRequest
-	17, // 30: instill.pipeline.v1alpha.PipelineService.ListPipeline:input_type -> instill.pipeline.v1alpha.ListPipelineRequest
-	19, // 31: instill.pipeline.v1alpha.PipelineService.GetPipeline:input_type -> instill.pipeline.v1alpha.GetPipelineRequest
-	22, // 32: instill.pipeline.v1alpha.PipelineService.UpdatePipeline:input_type -> instill.pipeline.v1alpha.UpdatePipelineRequest
-	24, // 33: instill.pipeline.v1alpha.PipelineService.DeletePipeline:input_type -> instill.pipeline.v1alpha.DeletePipelineRequest
-	27, // 34: instill.pipeline.v1alpha.PipelineService.TriggerPipeline:input_type -> instill.pipeline.v1alpha.TriggerPipelineRequest
-	29, // 35: instill.pipeline.v1alpha.PipelineService.TriggerPipelineBinaryFileUpload:input_type -> instill.pipeline.v1alpha.TriggerPipelineBinaryFileUploadRequest
-	6,  // 36: instill.pipeline.v1alpha.PipelineService.Liveness:output_type -> instill.pipeline.v1alpha.LivenessResponse
-	8,  // 37: instill.pipeline.v1alpha.PipelineService.Readiness:output_type -> instill.pipeline.v1alpha.ReadinessResponse
-	16, // 38: instill.pipeline.v1alpha.PipelineService.CreatePipeline:output_type -> instill.pipeline.v1alpha.CreatePipelineResponse
-	18, // 39: instill.pipeline.v1alpha.PipelineService.ListPipeline:output_type -> instill.pipeline.v1alpha.ListPipelineResponse
-	20, // 40: instill.pipeline.v1alpha.PipelineService.GetPipeline:output_type -> instill.pipeline.v1alpha.GetPipelineResponse
-	23, // 41: instill.pipeline.v1alpha.PipelineService.UpdatePipeline:output_type -> instill.pipeline.v1alpha.UpdatePipelineResponse
-	25, // 42: instill.pipeline.v1alpha.PipelineService.DeletePipeline:output_type -> instill.pipeline.v1alpha.DeletePipelineResponse
-	28, // 43: instill.pipeline.v1alpha.PipelineService.TriggerPipeline:output_type -> instill.pipeline.v1alpha.TriggerPipelineResponse
-	30, // 44: instill.pipeline.v1alpha.PipelineService.TriggerPipelineBinaryFileUpload:output_type -> instill.pipeline.v1alpha.TriggerPipelineBinaryFileUploadResponse
-	36, // [36:45] is the sub-list for method output_type
-	27, // [27:36] is the sub-list for method input_type
-	27, // [27:27] is the sub-list for extension type_name
-	27, // [27:27] is the sub-list for extension extendee
-	0,  // [0:27] is the sub-list for field type_name
+	4,  // 1: instill.pipeline.v1alpha.LivenessRequest.health_check_request:type_name -> instill.pipeline.v1alpha.HealthCheckRequest
+	5,  // 2: instill.pipeline.v1alpha.LivenessResponse.health_check_response:type_name -> instill.pipeline.v1alpha.HealthCheckResponse
+	4,  // 3: instill.pipeline.v1alpha.ReadinessRequest.health_check_request:type_name -> instill.pipeline.v1alpha.HealthCheckRequest
+	5,  // 4: instill.pipeline.v1alpha.ReadinessResponse.health_check_response:type_name -> instill.pipeline.v1alpha.HealthCheckResponse
+	10, // 5: instill.pipeline.v1alpha.Recipe.source:type_name -> instill.pipeline.v1alpha.Source
+	11, // 6: instill.pipeline.v1alpha.Recipe.destination:type_name -> instill.pipeline.v1alpha.Destination
+	12, // 7: instill.pipeline.v1alpha.Recipe.models:type_name -> instill.pipeline.v1alpha.Model
+	13, // 8: instill.pipeline.v1alpha.Recipe.logics:type_name -> instill.pipeline.v1alpha.Logic
+	14, // 9: instill.pipeline.v1alpha.Pipeline.recipe:type_name -> instill.pipeline.v1alpha.Recipe
+	2,  // 10: instill.pipeline.v1alpha.Pipeline.mode:type_name -> instill.pipeline.v1alpha.Pipeline.Mode
+	3,  // 11: instill.pipeline.v1alpha.Pipeline.status:type_name -> instill.pipeline.v1alpha.Pipeline.Status
+	32, // 12: instill.pipeline.v1alpha.Pipeline.created_at:type_name -> google.protobuf.Timestamp
+	32, // 13: instill.pipeline.v1alpha.Pipeline.updated_at:type_name -> google.protobuf.Timestamp
+	14, // 14: instill.pipeline.v1alpha.CreatePipelineRequest.recipe:type_name -> instill.pipeline.v1alpha.Recipe
+	15, // 15: instill.pipeline.v1alpha.CreatePipelineResponse.pipeline:type_name -> instill.pipeline.v1alpha.Pipeline
+	0,  // 16: instill.pipeline.v1alpha.ListPipelineRequest.view:type_name -> instill.pipeline.v1alpha.PipelineView
+	15, // 17: instill.pipeline.v1alpha.ListPipelineResponse.pipelines:type_name -> instill.pipeline.v1alpha.Pipeline
+	0,  // 18: instill.pipeline.v1alpha.GetPipelineRequest.view:type_name -> instill.pipeline.v1alpha.PipelineView
+	15, // 19: instill.pipeline.v1alpha.GetPipelineResponse.pipeline:type_name -> instill.pipeline.v1alpha.Pipeline
+	3,  // 20: instill.pipeline.v1alpha.UpdatePipelinePatch.status:type_name -> instill.pipeline.v1alpha.Pipeline.Status
+	14, // 21: instill.pipeline.v1alpha.UpdatePipelinePatch.recipe:type_name -> instill.pipeline.v1alpha.Recipe
+	22, // 22: instill.pipeline.v1alpha.UpdatePipelineRequest.pipeline_patch:type_name -> instill.pipeline.v1alpha.UpdatePipelinePatch
+	33, // 23: instill.pipeline.v1alpha.UpdatePipelineRequest.field_mask:type_name -> google.protobuf.FieldMask
+	15, // 24: instill.pipeline.v1alpha.UpdatePipelineResponse.pipeline:type_name -> instill.pipeline.v1alpha.Pipeline
+	27, // 25: instill.pipeline.v1alpha.TriggerPipelineRequest.inputs:type_name -> instill.pipeline.v1alpha.Input
+	34, // 26: instill.pipeline.v1alpha.TriggerPipelineResponse.output:type_name -> google.protobuf.Struct
+	34, // 27: instill.pipeline.v1alpha.TriggerPipelineBinaryFileUploadResponse.output:type_name -> google.protobuf.Struct
+	6,  // 28: instill.pipeline.v1alpha.PipelineService.Liveness:input_type -> instill.pipeline.v1alpha.LivenessRequest
+	8,  // 29: instill.pipeline.v1alpha.PipelineService.Readiness:input_type -> instill.pipeline.v1alpha.ReadinessRequest
+	16, // 30: instill.pipeline.v1alpha.PipelineService.CreatePipeline:input_type -> instill.pipeline.v1alpha.CreatePipelineRequest
+	18, // 31: instill.pipeline.v1alpha.PipelineService.ListPipeline:input_type -> instill.pipeline.v1alpha.ListPipelineRequest
+	20, // 32: instill.pipeline.v1alpha.PipelineService.GetPipeline:input_type -> instill.pipeline.v1alpha.GetPipelineRequest
+	23, // 33: instill.pipeline.v1alpha.PipelineService.UpdatePipeline:input_type -> instill.pipeline.v1alpha.UpdatePipelineRequest
+	25, // 34: instill.pipeline.v1alpha.PipelineService.DeletePipeline:input_type -> instill.pipeline.v1alpha.DeletePipelineRequest
+	28, // 35: instill.pipeline.v1alpha.PipelineService.TriggerPipeline:input_type -> instill.pipeline.v1alpha.TriggerPipelineRequest
+	30, // 36: instill.pipeline.v1alpha.PipelineService.TriggerPipelineBinaryFileUpload:input_type -> instill.pipeline.v1alpha.TriggerPipelineBinaryFileUploadRequest
+	7,  // 37: instill.pipeline.v1alpha.PipelineService.Liveness:output_type -> instill.pipeline.v1alpha.LivenessResponse
+	9,  // 38: instill.pipeline.v1alpha.PipelineService.Readiness:output_type -> instill.pipeline.v1alpha.ReadinessResponse
+	17, // 39: instill.pipeline.v1alpha.PipelineService.CreatePipeline:output_type -> instill.pipeline.v1alpha.CreatePipelineResponse
+	19, // 40: instill.pipeline.v1alpha.PipelineService.ListPipeline:output_type -> instill.pipeline.v1alpha.ListPipelineResponse
+	21, // 41: instill.pipeline.v1alpha.PipelineService.GetPipeline:output_type -> instill.pipeline.v1alpha.GetPipelineResponse
+	24, // 42: instill.pipeline.v1alpha.PipelineService.UpdatePipeline:output_type -> instill.pipeline.v1alpha.UpdatePipelineResponse
+	26, // 43: instill.pipeline.v1alpha.PipelineService.DeletePipeline:output_type -> instill.pipeline.v1alpha.DeletePipelineResponse
+	29, // 44: instill.pipeline.v1alpha.PipelineService.TriggerPipeline:output_type -> instill.pipeline.v1alpha.TriggerPipelineResponse
+	31, // 45: instill.pipeline.v1alpha.PipelineService.TriggerPipelineBinaryFileUpload:output_type -> instill.pipeline.v1alpha.TriggerPipelineBinaryFileUploadResponse
+	37, // [37:46] is the sub-list for method output_type
+	28, // [28:37] is the sub-list for method input_type
+	28, // [28:28] is the sub-list for extension type_name
+	28, // [28:28] is the sub-list for extension extendee
+	0,  // [0:28] is the sub-list for field type_name
 }
 
 func init() { file_instill_pipeline_v1alpha_pipeline_proto_init() }
@@ -2615,7 +2676,7 @@ func file_instill_pipeline_v1alpha_pipeline_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_instill_pipeline_v1alpha_pipeline_proto_rawDesc,
-			NumEnums:      3,
+			NumEnums:      4,
 			NumMessages:   28,
 			NumExtensions: 0,
 			NumServices:   1,
