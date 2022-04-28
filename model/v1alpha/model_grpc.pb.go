@@ -40,15 +40,15 @@ type ModelServiceClient interface {
 	// GetModel method receives a GetModelRequest message and returns
 	// a GetModelResponse message.
 	GetModel(ctx context.Context, in *GetModelRequest, opts ...grpc.CallOption) (*GetModelResponse, error)
-	// UpdateModelVersion method receives a UpdateModelVersionRequest message and
-	// returns a UpdateModelVersionResponse message.
-	UpdateModelVersion(ctx context.Context, in *UpdateModelVersionRequest, opts ...grpc.CallOption) (*UpdateModelVersionResponse, error)
+	// UpdateModelInstance method receives a UpdateModelInstanceRequest message and
+	// returns a UpdateModelInstanceResponse message.
+	UpdateModelInstance(ctx context.Context, in *UpdateModelInstanceRequest, opts ...grpc.CallOption) (*UpdateModelInstanceResponse, error)
 	// DeleteModel method receives a DeleteModelRequest message and returns
 	// a DeleteModelResponse message.
 	DeleteModel(ctx context.Context, in *DeleteModelRequest, opts ...grpc.CallOption) (*DeleteModelResponse, error)
-	// DeleteModelVersion method receives a DeleteModelVersionRequest message and
-	// returns a DeleteModelVersionResponse message.
-	DeleteModelVersion(ctx context.Context, in *DeleteModelVersionRequest, opts ...grpc.CallOption) (*DeleteModelVersionResponse, error)
+	// DeleteModelInstance method receives a DeleteModelInstanceRequest message and
+	// returns a DeleteModelInstanceResponse message.
+	DeleteModelInstance(ctx context.Context, in *DeleteModelInstanceRequest, opts ...grpc.CallOption) (*DeleteModelInstanceResponse, error)
 	// TriggerModel method receives a TriggerModelRequest message and
 	// returns a TriggerModelResponse message.
 	TriggerModel(ctx context.Context, in *TriggerModelRequest, opts ...grpc.CallOption) (*TriggerModelResponse, error)
@@ -145,9 +145,9 @@ func (c *modelServiceClient) GetModel(ctx context.Context, in *GetModelRequest, 
 	return out, nil
 }
 
-func (c *modelServiceClient) UpdateModelVersion(ctx context.Context, in *UpdateModelVersionRequest, opts ...grpc.CallOption) (*UpdateModelVersionResponse, error) {
-	out := new(UpdateModelVersionResponse)
-	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/UpdateModelVersion", in, out, opts...)
+func (c *modelServiceClient) UpdateModelInstance(ctx context.Context, in *UpdateModelInstanceRequest, opts ...grpc.CallOption) (*UpdateModelInstanceResponse, error) {
+	out := new(UpdateModelInstanceResponse)
+	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/UpdateModelInstance", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -163,9 +163,9 @@ func (c *modelServiceClient) DeleteModel(ctx context.Context, in *DeleteModelReq
 	return out, nil
 }
 
-func (c *modelServiceClient) DeleteModelVersion(ctx context.Context, in *DeleteModelVersionRequest, opts ...grpc.CallOption) (*DeleteModelVersionResponse, error) {
-	out := new(DeleteModelVersionResponse)
-	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/DeleteModelVersion", in, out, opts...)
+func (c *modelServiceClient) DeleteModelInstance(ctx context.Context, in *DeleteModelInstanceRequest, opts ...grpc.CallOption) (*DeleteModelInstanceResponse, error) {
+	out := new(DeleteModelInstanceResponse)
+	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/DeleteModelInstance", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -241,15 +241,15 @@ type ModelServiceServer interface {
 	// GetModel method receives a GetModelRequest message and returns
 	// a GetModelResponse message.
 	GetModel(context.Context, *GetModelRequest) (*GetModelResponse, error)
-	// UpdateModelVersion method receives a UpdateModelVersionRequest message and
-	// returns a UpdateModelVersionResponse message.
-	UpdateModelVersion(context.Context, *UpdateModelVersionRequest) (*UpdateModelVersionResponse, error)
+	// UpdateModelInstance method receives a UpdateModelInstanceRequest message and
+	// returns a UpdateModelInstanceResponse message.
+	UpdateModelInstance(context.Context, *UpdateModelInstanceRequest) (*UpdateModelInstanceResponse, error)
 	// DeleteModel method receives a DeleteModelRequest message and returns
 	// a DeleteModelResponse message.
 	DeleteModel(context.Context, *DeleteModelRequest) (*DeleteModelResponse, error)
-	// DeleteModelVersion method receives a DeleteModelVersionRequest message and
-	// returns a DeleteModelVersionResponse message.
-	DeleteModelVersion(context.Context, *DeleteModelVersionRequest) (*DeleteModelVersionResponse, error)
+	// DeleteModelInstance method receives a DeleteModelInstanceRequest message and
+	// returns a DeleteModelInstanceResponse message.
+	DeleteModelInstance(context.Context, *DeleteModelInstanceRequest) (*DeleteModelInstanceResponse, error)
 	// TriggerModel method receives a TriggerModelRequest message and
 	// returns a TriggerModelResponse message.
 	TriggerModel(context.Context, *TriggerModelRequest) (*TriggerModelResponse, error)
@@ -281,14 +281,14 @@ func (UnimplementedModelServiceServer) ListModel(context.Context, *ListModelRequ
 func (UnimplementedModelServiceServer) GetModel(context.Context, *GetModelRequest) (*GetModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetModel not implemented")
 }
-func (UnimplementedModelServiceServer) UpdateModelVersion(context.Context, *UpdateModelVersionRequest) (*UpdateModelVersionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateModelVersion not implemented")
+func (UnimplementedModelServiceServer) UpdateModelInstance(context.Context, *UpdateModelInstanceRequest) (*UpdateModelInstanceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateModelInstance not implemented")
 }
 func (UnimplementedModelServiceServer) DeleteModel(context.Context, *DeleteModelRequest) (*DeleteModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteModel not implemented")
 }
-func (UnimplementedModelServiceServer) DeleteModelVersion(context.Context, *DeleteModelVersionRequest) (*DeleteModelVersionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteModelVersion not implemented")
+func (UnimplementedModelServiceServer) DeleteModelInstance(context.Context, *DeleteModelInstanceRequest) (*DeleteModelInstanceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteModelInstance not implemented")
 }
 func (UnimplementedModelServiceServer) TriggerModel(context.Context, *TriggerModelRequest) (*TriggerModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerModel not implemented")
@@ -424,20 +424,20 @@ func _ModelService_GetModel_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelService_UpdateModelVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateModelVersionRequest)
+func _ModelService_UpdateModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateModelInstanceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelServiceServer).UpdateModelVersion(ctx, in)
+		return srv.(ModelServiceServer).UpdateModelInstance(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.model.v1alpha.ModelService/UpdateModelVersion",
+		FullMethod: "/instill.model.v1alpha.ModelService/UpdateModelInstance",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelServiceServer).UpdateModelVersion(ctx, req.(*UpdateModelVersionRequest))
+		return srv.(ModelServiceServer).UpdateModelInstance(ctx, req.(*UpdateModelInstanceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -460,20 +460,20 @@ func _ModelService_DeleteModel_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelService_DeleteModelVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteModelVersionRequest)
+func _ModelService_DeleteModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteModelInstanceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelServiceServer).DeleteModelVersion(ctx, in)
+		return srv.(ModelServiceServer).DeleteModelInstance(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.model.v1alpha.ModelService/DeleteModelVersion",
+		FullMethod: "/instill.model.v1alpha.ModelService/DeleteModelInstance",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelServiceServer).DeleteModelVersion(ctx, req.(*DeleteModelVersionRequest))
+		return srv.(ModelServiceServer).DeleteModelInstance(ctx, req.(*DeleteModelInstanceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -550,16 +550,16 @@ var ModelService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ModelService_GetModel_Handler,
 		},
 		{
-			MethodName: "UpdateModelVersion",
-			Handler:    _ModelService_UpdateModelVersion_Handler,
+			MethodName: "UpdateModelInstance",
+			Handler:    _ModelService_UpdateModelInstance_Handler,
 		},
 		{
 			MethodName: "DeleteModel",
 			Handler:    _ModelService_DeleteModel_Handler,
 		},
 		{
-			MethodName: "DeleteModelVersion",
-			Handler:    _ModelService_DeleteModelVersion_Handler,
+			MethodName: "DeleteModelInstance",
+			Handler:    _ModelService_DeleteModelInstance_Handler,
 		},
 		{
 			MethodName: "TriggerModel",

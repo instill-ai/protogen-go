@@ -287,27 +287,16 @@ func local_request_ModelService_GetModel_0(ctx context.Context, marshaler runtim
 
 }
 
-var (
-	filter_ModelService_UpdateModelVersion_0 = &utilities.DoubleArray{Encoding: map[string]int{"version_patch": 0, "name": 1, "version": 2}, Base: []int{1, 1, 2, 3, 0, 0, 0}, Check: []int{0, 1, 1, 1, 2, 3, 4}}
-)
-
-func request_ModelService_UpdateModelVersion_0(ctx context.Context, marshaler runtime.Marshaler, client ModelServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateModelVersionRequest
+func request_ModelService_UpdateModelInstance_0(ctx context.Context, marshaler runtime.Marshaler, client ModelServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpdateModelInstanceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
 	if berr != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.VersionPatch); err != nil && err != io.EOF {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if protoReq.FieldMask == nil || len(protoReq.FieldMask.GetPaths()) == 0 {
-		if fieldMask, err := runtime.FieldMaskFromRequestBody(newReader(), protoReq.VersionPatch); err != nil {
-			return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-		} else {
-			protoReq.FieldMask = fieldMask
-		}
 	}
 
 	var (
@@ -317,55 +306,41 @@ func request_ModelService_UpdateModelVersion_0(ctx context.Context, marshaler ru
 		_   = err
 	)
 
-	val, ok = pathParams["name"]
+	val, ok = pathParams["model_name"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "model_name")
 	}
 
-	protoReq.Name, err = runtime.String(val)
+	protoReq.ModelName, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "model_name", err)
 	}
 
-	val, ok = pathParams["version"]
+	val, ok = pathParams["instance_name"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "version")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "instance_name")
 	}
 
-	protoReq.Version, err = runtime.Uint64(val)
+	protoReq.InstanceName, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "instance_name", err)
 	}
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelService_UpdateModelVersion_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.UpdateModelVersion(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.UpdateModelInstance(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_ModelService_UpdateModelVersion_0(ctx context.Context, marshaler runtime.Marshaler, server ModelServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateModelVersionRequest
+func local_request_ModelService_UpdateModelInstance_0(ctx context.Context, marshaler runtime.Marshaler, server ModelServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpdateModelInstanceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
 	if berr != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.VersionPatch); err != nil && err != io.EOF {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if protoReq.FieldMask == nil || len(protoReq.FieldMask.GetPaths()) == 0 {
-		if fieldMask, err := runtime.FieldMaskFromRequestBody(newReader(), protoReq.VersionPatch); err != nil {
-			return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-		} else {
-			protoReq.FieldMask = fieldMask
-		}
 	}
 
 	var (
@@ -375,34 +350,27 @@ func local_request_ModelService_UpdateModelVersion_0(ctx context.Context, marsha
 		_   = err
 	)
 
-	val, ok = pathParams["name"]
+	val, ok = pathParams["model_name"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "model_name")
 	}
 
-	protoReq.Name, err = runtime.String(val)
+	protoReq.ModelName, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "model_name", err)
 	}
 
-	val, ok = pathParams["version"]
+	val, ok = pathParams["instance_name"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "version")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "instance_name")
 	}
 
-	protoReq.Version, err = runtime.Uint64(val)
+	protoReq.InstanceName, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "instance_name", err)
 	}
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelService_UpdateModelVersion_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := server.UpdateModelVersion(ctx, &protoReq)
+	msg, err := server.UpdateModelInstance(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -459,8 +427,8 @@ func local_request_ModelService_DeleteModel_0(ctx context.Context, marshaler run
 
 }
 
-func request_ModelService_DeleteModelVersion_0(ctx context.Context, marshaler runtime.Marshaler, client ModelServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteModelVersionRequest
+func request_ModelService_DeleteModelInstance_0(ctx context.Context, marshaler runtime.Marshaler, client ModelServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DeleteModelInstanceRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -470,33 +438,33 @@ func request_ModelService_DeleteModelVersion_0(ctx context.Context, marshaler ru
 		_   = err
 	)
 
-	val, ok = pathParams["name"]
+	val, ok = pathParams["model_name"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "model_name")
 	}
 
-	protoReq.Name, err = runtime.String(val)
+	protoReq.ModelName, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "model_name", err)
 	}
 
-	val, ok = pathParams["version"]
+	val, ok = pathParams["instance_name"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "version")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "instance_name")
 	}
 
-	protoReq.Version, err = runtime.Uint64(val)
+	protoReq.InstanceName, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "instance_name", err)
 	}
 
-	msg, err := client.DeleteModelVersion(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.DeleteModelInstance(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_ModelService_DeleteModelVersion_0(ctx context.Context, marshaler runtime.Marshaler, server ModelServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteModelVersionRequest
+func local_request_ModelService_DeleteModelInstance_0(ctx context.Context, marshaler runtime.Marshaler, server ModelServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DeleteModelInstanceRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -506,27 +474,27 @@ func local_request_ModelService_DeleteModelVersion_0(ctx context.Context, marsha
 		_   = err
 	)
 
-	val, ok = pathParams["name"]
+	val, ok = pathParams["model_name"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "model_name")
 	}
 
-	protoReq.Name, err = runtime.String(val)
+	protoReq.ModelName, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "model_name", err)
 	}
 
-	val, ok = pathParams["version"]
+	val, ok = pathParams["instance_name"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "version")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "instance_name")
 	}
 
-	protoReq.Version, err = runtime.Uint64(val)
+	protoReq.InstanceName, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "instance_name", err)
 	}
 
-	msg, err := server.DeleteModelVersion(ctx, &protoReq)
+	msg, err := server.DeleteModelInstance(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -550,24 +518,24 @@ func request_ModelService_TriggerModel_0(ctx context.Context, marshaler runtime.
 		_   = err
 	)
 
-	val, ok = pathParams["name"]
+	val, ok = pathParams["model_name"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "model_name")
 	}
 
-	protoReq.Name, err = runtime.String(val)
+	protoReq.ModelName, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "model_name", err)
 	}
 
-	val, ok = pathParams["version"]
+	val, ok = pathParams["instance_name"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "version")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "instance_name")
 	}
 
-	protoReq.Version, err = runtime.Uint64(val)
+	protoReq.InstanceName, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "instance_name", err)
 	}
 
 	msg, err := client.TriggerModel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -594,24 +562,24 @@ func local_request_ModelService_TriggerModel_0(ctx context.Context, marshaler ru
 		_   = err
 	)
 
-	val, ok = pathParams["name"]
+	val, ok = pathParams["model_name"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "model_name")
 	}
 
-	protoReq.Name, err = runtime.String(val)
+	protoReq.ModelName, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "model_name", err)
 	}
 
-	val, ok = pathParams["version"]
+	val, ok = pathParams["instance_name"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "version")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "instance_name")
 	}
 
-	protoReq.Version, err = runtime.Uint64(val)
+	protoReq.InstanceName, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "instance_name", err)
 	}
 
 	msg, err := server.TriggerModel(ctx, &protoReq)
@@ -814,18 +782,18 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 
 	})
 
-	mux.Handle("PATCH", pattern_ModelService_UpdateModelVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PATCH", pattern_ModelService_UpdateModelInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/UpdateModelVersion", runtime.WithHTTPPathPattern("/models/{name}/versions/{version}"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/UpdateModelInstance", runtime.WithHTTPPathPattern("/models/{model_name}/instances/{instance_name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelService_UpdateModelVersion_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelService_UpdateModelInstance_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -833,7 +801,7 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			return
 		}
 
-		forward_ModelService_UpdateModelVersion_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelService_UpdateModelInstance_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -860,18 +828,18 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 
 	})
 
-	mux.Handle("DELETE", pattern_ModelService_DeleteModelVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_ModelService_DeleteModelInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/DeleteModelVersion", runtime.WithHTTPPathPattern("/models/{name}/versions/{version}"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/DeleteModelInstance", runtime.WithHTTPPathPattern("/models/{model_name}/instances/{instance_name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelService_DeleteModelVersion_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelService_DeleteModelInstance_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -879,7 +847,7 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			return
 		}
 
-		forward_ModelService_DeleteModelVersion_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelService_DeleteModelInstance_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -889,7 +857,7 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/TriggerModel", runtime.WithHTTPPathPattern("/models/{name}/versions/{version}/outputs"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/TriggerModel", runtime.WithHTTPPathPattern("/models/{model_name}/instances/{instance_name}/outputs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1094,23 +1062,23 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 
 	})
 
-	mux.Handle("PATCH", pattern_ModelService_UpdateModelVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PATCH", pattern_ModelService_UpdateModelInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/UpdateModelVersion", runtime.WithHTTPPathPattern("/models/{name}/versions/{version}"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/UpdateModelInstance", runtime.WithHTTPPathPattern("/models/{model_name}/instances/{instance_name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_UpdateModelVersion_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_UpdateModelInstance_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ModelService_UpdateModelVersion_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelService_UpdateModelInstance_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1134,23 +1102,23 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 
 	})
 
-	mux.Handle("DELETE", pattern_ModelService_DeleteModelVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_ModelService_DeleteModelInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/DeleteModelVersion", runtime.WithHTTPPathPattern("/models/{name}/versions/{version}"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/DeleteModelInstance", runtime.WithHTTPPathPattern("/models/{model_name}/instances/{instance_name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_DeleteModelVersion_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_DeleteModelInstance_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ModelService_DeleteModelVersion_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelService_DeleteModelInstance_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1158,7 +1126,7 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/TriggerModel", runtime.WithHTTPPathPattern("/models/{name}/versions/{version}/outputs"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/TriggerModel", runtime.WithHTTPPathPattern("/models/{model_name}/instances/{instance_name}/outputs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1212,13 +1180,13 @@ var (
 
 	pattern_ModelService_GetModel_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"models", "name"}, ""))
 
-	pattern_ModelService_UpdateModelVersion_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"models", "name", "versions", "version"}, ""))
+	pattern_ModelService_UpdateModelInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"models", "model_name", "instances", "instance_name"}, ""))
 
 	pattern_ModelService_DeleteModel_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"models", "name"}, ""))
 
-	pattern_ModelService_DeleteModelVersion_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"models", "name", "versions", "version"}, ""))
+	pattern_ModelService_DeleteModelInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"models", "model_name", "instances", "instance_name"}, ""))
 
-	pattern_ModelService_TriggerModel_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"models", "name", "versions", "version", "outputs"}, ""))
+	pattern_ModelService_TriggerModel_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"models", "model_name", "instances", "instance_name", "outputs"}, ""))
 
 	pattern_ModelService_TriggerModelBinaryFileUpload_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"instill.model.v1alpha.ModelService", "TriggerModelBinaryFileUpload"}, ""))
 )
@@ -1238,11 +1206,11 @@ var (
 
 	forward_ModelService_GetModel_0 = runtime.ForwardResponseMessage
 
-	forward_ModelService_UpdateModelVersion_0 = runtime.ForwardResponseMessage
+	forward_ModelService_UpdateModelInstance_0 = runtime.ForwardResponseMessage
 
 	forward_ModelService_DeleteModel_0 = runtime.ForwardResponseMessage
 
-	forward_ModelService_DeleteModelVersion_0 = runtime.ForwardResponseMessage
+	forward_ModelService_DeleteModelInstance_0 = runtime.ForwardResponseMessage
 
 	forward_ModelService_TriggerModel_0 = runtime.ForwardResponseMessage
 
