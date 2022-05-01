@@ -1267,7 +1267,7 @@ type TriggerModelBinaryFileUploadRequest struct {
 	ModelName string `protobuf:"bytes,1,opt,name=model_name,json=modelName,proto3" json:"model_name,omitempty"`
 	// Model instance name
 	InstanceName string `protobuf:"bytes,2,opt,name=instance_name,json=instanceName,proto3" json:"instance_name,omitempty"`
-	// list of image's file length
+	// The list of file length for each uploaded binary file
 	FileLengths []uint64 `protobuf:"varint,3,rep,packed,name=file_lengths,json=fileLengths,proto3" json:"file_lengths,omitempty"`
 	// Content of images in bytes
 	Bytes []byte `protobuf:"bytes,4,opt,name=bytes,proto3" json:"bytes,omitempty"`
