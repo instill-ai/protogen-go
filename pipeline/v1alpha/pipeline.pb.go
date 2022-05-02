@@ -1670,7 +1670,7 @@ type TriggerPipelineBinaryFileUploadRequest struct {
 
 	// Pipeline resource name. It must have the format of "pipelines/*"
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// The list of image's file length
+	// The list of file length for each uploaded binary file
 	FileLengths []uint64 `protobuf:"varint,3,rep,packed,name=file_lengths,json=fileLengths,proto3" json:"file_lengths,omitempty"`
 	// Pipeline content in bytes
 	Bytes []byte `protobuf:"bytes,2,opt,name=bytes,proto3" json:"bytes,omitempty"`
