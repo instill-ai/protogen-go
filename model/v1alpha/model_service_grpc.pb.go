@@ -38,6 +38,10 @@ type ModelServiceClient interface {
 	// CreateModel method receives a CreateModelRequest message and returns a
 	// CreateModelResponse
 	CreateModel(ctx context.Context, in *CreateModelRequest, opts ...grpc.CallOption) (*CreateModelResponse, error)
+	// CreateModelBinaryFileUpload method receives a
+	// CreateModelBinaryFileUploadRequest message and returns a
+	// CreateModelBinaryFileUploadResponse message.
+	CreateModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelService_CreateModelBinaryFileUploadClient, error)
 	// GetModel method receives a GetModelRequest message and returns a
 	// GetModelResponse
 	GetModel(ctx context.Context, in *GetModelRequest, opts ...grpc.CallOption) (*GetModelResponse, error)
@@ -137,6 +141,40 @@ func (c *modelServiceClient) CreateModel(ctx context.Context, in *CreateModelReq
 	return out, nil
 }
 
+func (c *modelServiceClient) CreateModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelService_CreateModelBinaryFileUploadClient, error) {
+	stream, err := c.cc.NewStream(ctx, &ModelService_ServiceDesc.Streams[0], "/instill.model.v1alpha.ModelService/CreateModelBinaryFileUpload", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &modelServiceCreateModelBinaryFileUploadClient{stream}
+	return x, nil
+}
+
+type ModelService_CreateModelBinaryFileUploadClient interface {
+	Send(*CreateModelBinaryFileUploadRequest) error
+	CloseAndRecv() (*CreateModelBinaryFileUploadResponse, error)
+	grpc.ClientStream
+}
+
+type modelServiceCreateModelBinaryFileUploadClient struct {
+	grpc.ClientStream
+}
+
+func (x *modelServiceCreateModelBinaryFileUploadClient) Send(m *CreateModelBinaryFileUploadRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *modelServiceCreateModelBinaryFileUploadClient) CloseAndRecv() (*CreateModelBinaryFileUploadResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(CreateModelBinaryFileUploadResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 func (c *modelServiceClient) GetModel(ctx context.Context, in *GetModelRequest, opts ...grpc.CallOption) (*GetModelResponse, error) {
 	out := new(GetModelResponse)
 	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/GetModel", in, out, opts...)
@@ -228,7 +266,7 @@ func (c *modelServiceClient) TriggerModelInstance(ctx context.Context, in *Trigg
 }
 
 func (c *modelServiceClient) TriggerModelInstanceBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelService_TriggerModelInstanceBinaryFileUploadClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ModelService_ServiceDesc.Streams[0], "/instill.model.v1alpha.ModelService/TriggerModelInstanceBinaryFileUpload", opts...)
+	stream, err := c.cc.NewStream(ctx, &ModelService_ServiceDesc.Streams[1], "/instill.model.v1alpha.ModelService/TriggerModelInstanceBinaryFileUpload", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -285,6 +323,10 @@ type ModelServiceServer interface {
 	// CreateModel method receives a CreateModelRequest message and returns a
 	// CreateModelResponse
 	CreateModel(context.Context, *CreateModelRequest) (*CreateModelResponse, error)
+	// CreateModelBinaryFileUpload method receives a
+	// CreateModelBinaryFileUploadRequest message and returns a
+	// CreateModelBinaryFileUploadResponse message.
+	CreateModelBinaryFileUpload(ModelService_CreateModelBinaryFileUploadServer) error
 	// GetModel method receives a GetModelRequest message and returns a
 	// GetModelResponse
 	GetModel(context.Context, *GetModelRequest) (*GetModelResponse, error)
@@ -343,6 +385,9 @@ func (UnimplementedModelServiceServer) ListModel(context.Context, *ListModelRequ
 }
 func (UnimplementedModelServiceServer) CreateModel(context.Context, *CreateModelRequest) (*CreateModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateModel not implemented")
+}
+func (UnimplementedModelServiceServer) CreateModelBinaryFileUpload(ModelService_CreateModelBinaryFileUploadServer) error {
+	return status.Errorf(codes.Unimplemented, "method CreateModelBinaryFileUpload not implemented")
 }
 func (UnimplementedModelServiceServer) GetModel(context.Context, *GetModelRequest) (*GetModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetModel not implemented")
@@ -495,6 +540,32 @@ func _ModelService_CreateModel_Handler(srv interface{}, ctx context.Context, dec
 		return srv.(ModelServiceServer).CreateModel(ctx, req.(*CreateModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
+}
+
+func _ModelService_CreateModelBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ModelServiceServer).CreateModelBinaryFileUpload(&modelServiceCreateModelBinaryFileUploadServer{stream})
+}
+
+type ModelService_CreateModelBinaryFileUploadServer interface {
+	SendAndClose(*CreateModelBinaryFileUploadResponse) error
+	Recv() (*CreateModelBinaryFileUploadRequest, error)
+	grpc.ServerStream
+}
+
+type modelServiceCreateModelBinaryFileUploadServer struct {
+	grpc.ServerStream
+}
+
+func (x *modelServiceCreateModelBinaryFileUploadServer) SendAndClose(m *CreateModelBinaryFileUploadResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *modelServiceCreateModelBinaryFileUploadServer) Recv() (*CreateModelBinaryFileUploadRequest, error) {
+	m := new(CreateModelBinaryFileUploadRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 func _ModelService_GetModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -776,6 +847,11 @@ var ModelService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "CreateModelBinaryFileUpload",
+			Handler:       _ModelService_CreateModelBinaryFileUpload_Handler,
+			ClientStreams: true,
+		},
 		{
 			StreamName:    "TriggerModelInstanceBinaryFileUpload",
 			Handler:       _ModelService_TriggerModelInstanceBinaryFileUpload_Handler,
