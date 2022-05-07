@@ -81,23 +81,28 @@ type OauthConfigSpecification struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// OAuth specific blob. This is a Json Schema used to validate Json configurations used as input to OAuth.
-	// Must be a valid non-nested JSON that refers to properties from ConnectorSpecification.connectionSpecification
+	// OAuth specific blob. This is a Json Schema used to validate Json
+	// configurations used as input to OAuth. Must be a valid non-nested JSON that
+	// refers to properties from ConnectorSpecification.connectionSpecification
 	// using special annotation 'path_in_connector_config'.
-	// These are input values the user is entering through the UI to authenticate to the connector, that might also shared
-	// as inputs for syncing data via the connector.
+	// These are input values the user is entering through the UI to authenticate
+	// to the connector, that might also shared as inputs for syncing data via the
+	// connector.
 	//
 	// Examples:
 	//
-	// if no connector values is shared during oauth flow, oauth_user_input_from_connector_config_specification=[]
-	// if connector values such as 'app_id' inside the top level are used to generate the API url for the oauth flow,
+	// if no connector values is shared during oauth flow,
+	// oauth_user_input_from_connector_config_specification=[] if connector values
+	// such as 'app_id' inside the top level are used to generate the API url for
+	// the oauth flow,
 	//   oauth_user_input_from_connector_config_specification={
 	//     app_id: {
 	//       type: string
 	//       path_in_connector_config: ['app_id']
 	//     }
 	//   }
-	//if connector values such as 'info.app_id' nested inside another object are used to generate the API url for the oauth flow,
+	// if connector values such as 'info.app_id' nested inside another object are
+	// used to generate the API url for the oauth flow,
 	//  oauth_user_input_from_connector_config_specification={
 	//    app_id: {
 	//      type: string
@@ -105,10 +110,12 @@ type OauthConfigSpecification struct {
 	//    }
 	//  }
 	OauthUserInputFromConnectorConfigSpecification *structpb.Struct `protobuf:"bytes,1,opt,name=oauth_user_input_from_connector_config_specification,json=oauthUserInputFromConnectorConfigSpecification,proto3" json:"oauth_user_input_from_connector_config_specification,omitempty"`
-	// OAuth specific blob. This is a Json Schema used to validate Json configurations produced by the OAuth flows as they are
-	// returned by the distant OAuth APIs.
-	// Must be a valid JSON describing the fields to merge back to `ConnectorSpecification.connectionSpecification`.
-	// For each field, a special annotation `path_in_connector_config` can be specified to determine where to merge it,
+	// OAuth specific blob. This is a Json Schema used to validate Json
+	// configurations produced by the OAuth flows as they are returned by the
+	// distant OAuth APIs. Must be a valid JSON describing the fields to merge
+	// back to `ConnectorSpecification.connectionSpecification`. For each field, a
+	// special annotation `path_in_connector_config` can be specified to determine
+	// where to merge it,
 	//
 	// Examples:
 	//
@@ -119,9 +126,11 @@ type OauthConfigSpecification struct {
 	//       }
 	//     }
 	CompleteOauthOutputSpecification *structpb.Struct `protobuf:"bytes,2,opt,name=complete_oauth_output_specification,json=completeOauthOutputSpecification,proto3" json:"complete_oauth_output_specification,omitempty"`
-	// OAuth specific blob. This is a Json Schema used to validate Json configurations persisted as Airbyte Server configurations.
-	// Must be a valid non-nested JSON describing additional fields configured by the Airbyte Instance or Workspace Admins to be used by the
-	// server when completing an OAuth flow (typically exchanging an auth code for refresh token).
+	// OAuth specific blob. This is a Json Schema used to validate Json
+	// configurations persisted as Airbyte Server configurations. Must be a valid
+	// non-nested JSON describing additional fields configured by the Airbyte
+	// Instance or Workspace Admins to be used by the server when completing an
+	// OAuth flow (typically exchanging an auth code for refresh token).
 	//
 	// Examples:
 	//
@@ -134,15 +143,21 @@ type OauthConfigSpecification struct {
 	//       }
 	//     }
 	CompleteOauthServerInputSpecification *structpb.Struct `protobuf:"bytes,3,opt,name=complete_oauth_server_input_specification,json=completeOauthServerInputSpecification,proto3" json:"complete_oauth_server_input_specification,omitempty"`
-	// OAuth specific blob. This is a Json Schema used to validate Json configurations persisted as Airbyte Server configurations that
-	// also need to be merged back into the connector configuration at runtime.
-	// This is a subset configuration of `complete_oauth_server_input_specification` that filters fields out to retain only the ones that
-	// are necessary for the connector to function with OAuth. (some fields could be used during oauth flows but not needed afterwards, therefore
-	// they would be listed in the `complete_oauth_server_input_specification` but not `complete_oauth_server_output_specification`)
-	// Must be a valid non-nested JSON describing additional fields configured by the Airbyte Instance or Workspace Admins to be used by the
-	// connector when using OAuth flow APIs.
-	// These fields are to be merged back to `ConnectorSpecification.connectionSpecification`.
-	// For each field, a special annotation `path_in_connector_config` can be specified to determine where to merge it,
+	// OAuth specific blob. This is a Json Schema used to validate Json
+	// configurations persisted as Airbyte Server configurations that also need to
+	// be merged back into the connector configuration at runtime. This is a
+	// subset configuration of `complete_oauth_server_input_specification` that
+	// filters fields out to retain only the ones that are necessary for the
+	// connector to function with OAuth. (some fields could be used during oauth
+	// flows but not needed afterwards, therefore they would be listed in the
+	// `complete_oauth_server_input_specification` but not
+	// `complete_oauth_server_output_specification`) Must be a valid non-nested
+	// JSON describing additional fields configured by the Airbyte Instance or
+	// Workspace Admins to be used by the connector when using OAuth flow APIs.
+	// These fields are to be merged back to
+	// `ConnectorSpecification.connectionSpecification`. For each field, a special
+	// annotation `path_in_connector_config` can be specified to determine where
+	// to merge it,
 	//
 	// Examples:
 	//
@@ -219,11 +234,15 @@ func (x *OauthConfigSpecification) GetCompleteOauthServerOutputSpecification() *
 	return nil
 }
 
-// Additional and optional specification object to describe what an 'advanced' Auth flow would need to function.
-// - A connector should be able to fully function with the configuration as described by the ConnectorSpecification in a 'basic' mode.
-// - The 'advanced' mode provides easier UX for the user with UI improvements and automations. However, this requires further setup on the
-// server side by instance or workspace admins beforehand. The trade-off is that the user does not have to provide as many technical
-// inputs anymore and the auth process is faster and easier to complete.
+// Additional and optional specification object to describe what an 'advanced'
+// Auth flow would need to function.
+// - A connector should be able to fully function with the configuration as
+// described by the ConnectorSpecification in a 'basic' mode.
+// - The 'advanced' mode provides easier UX for the user with UI improvements
+// and automations. However, this requires further setup on the server side by
+// instance or workspace admins beforehand. The trade-off is that the user does
+// not have to provide as many technical inputs anymore and the auth process is
+// faster and easier to complete.
 type AdvancedAuth struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -231,9 +250,12 @@ type AdvancedAuth struct {
 
 	// AdvancedAuth auth flow type
 	AuthFlowType AdvancedAuth_AuthFlowType `protobuf:"varint,1,opt,name=auth_flow_type,json=authFlowType,proto3,enum=instill.connector.v1alpha.AdvancedAuth_AuthFlowType" json:"auth_flow_type,omitempty"`
-	// AdvancedAuth predicate key, i.e., the JSON Path to a field in the connectorSpecification that should exist for the advanced auth to be applicable
+	// AdvancedAuth predicate key, i.e., the JSON Path to a field in the
+	// connectorSpecification that should exist for the advanced auth to be
+	// applicable
 	PredicateKey []string `protobuf:"bytes,2,rep,name=predicate_key,json=predicateKey,proto3" json:"predicate_key,omitempty"`
-	// AdvancedAuth predicate value, i.e., the value of the predicate key fields for the advanced auth to be applicable
+	// AdvancedAuth predicate value, i.e., the value of the predicate key fields
+	// for the advanced auth to be applicable
 	PredicateValue string `protobuf:"bytes,3,opt,name=predicate_value,json=predicateValue,proto3" json:"predicate_value,omitempty"`
 	// OauthConfigSpecification represents OAuth config specification
 	OauthConfigSpecification *OauthConfigSpecification `protobuf:"bytes,4,opt,name=oauth_config_specification,json=oauthConfigSpecification,proto3" json:"oauth_config_specification,omitempty"`
