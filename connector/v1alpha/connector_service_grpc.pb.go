@@ -75,6 +75,13 @@ type ConnectorServiceClient interface {
 	// DeleteDestinationConnectorRequest message and returns a
 	// DeleteDestinationConnectorResponse message.
 	DeleteDestinationConnector(ctx context.Context, in *DeleteDestinationConnectorRequest, opts ...grpc.CallOption) (*DeleteDestinationConnectorResponse, error)
+	// LookUpSourceConnector method receives a LookUpSourceConnectorRequest
+	// message and returns a LookUpSourceConnectorResponse
+	LookUpSourceConnector(ctx context.Context, in *LookUpSourceConnectorRequest, opts ...grpc.CallOption) (*LookUpSourceConnectorResponse, error)
+	// LookUpDestinationConnector method receives a
+	// LookUpDestinationConnectorRequest message and returns a
+	// LookUpDestinationConnectorResponse
+	LookUpDestinationConnector(ctx context.Context, in *LookUpDestinationConnectorRequest, opts ...grpc.CallOption) (*LookUpDestinationConnectorResponse, error)
 }
 
 type connectorServiceClient struct {
@@ -229,6 +236,24 @@ func (c *connectorServiceClient) DeleteDestinationConnector(ctx context.Context,
 	return out, nil
 }
 
+func (c *connectorServiceClient) LookUpSourceConnector(ctx context.Context, in *LookUpSourceConnectorRequest, opts ...grpc.CallOption) (*LookUpSourceConnectorResponse, error) {
+	out := new(LookUpSourceConnectorResponse)
+	err := c.cc.Invoke(ctx, "/instill.connector.v1alpha.ConnectorService/LookUpSourceConnector", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *connectorServiceClient) LookUpDestinationConnector(ctx context.Context, in *LookUpDestinationConnectorRequest, opts ...grpc.CallOption) (*LookUpDestinationConnectorResponse, error) {
+	out := new(LookUpDestinationConnectorResponse)
+	err := c.cc.Invoke(ctx, "/instill.connector.v1alpha.ConnectorService/LookUpDestinationConnector", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ConnectorServiceServer is the server API for ConnectorService service.
 // All implementations should embed UnimplementedConnectorServiceServer
 // for forward compatibility
@@ -290,6 +315,13 @@ type ConnectorServiceServer interface {
 	// DeleteDestinationConnectorRequest message and returns a
 	// DeleteDestinationConnectorResponse message.
 	DeleteDestinationConnector(context.Context, *DeleteDestinationConnectorRequest) (*DeleteDestinationConnectorResponse, error)
+	// LookUpSourceConnector method receives a LookUpSourceConnectorRequest
+	// message and returns a LookUpSourceConnectorResponse
+	LookUpSourceConnector(context.Context, *LookUpSourceConnectorRequest) (*LookUpSourceConnectorResponse, error)
+	// LookUpDestinationConnector method receives a
+	// LookUpDestinationConnectorRequest message and returns a
+	// LookUpDestinationConnectorResponse
+	LookUpDestinationConnector(context.Context, *LookUpDestinationConnectorRequest) (*LookUpDestinationConnectorResponse, error)
 }
 
 // UnimplementedConnectorServiceServer should be embedded to have forward compatible implementations.
@@ -343,6 +375,12 @@ func (UnimplementedConnectorServiceServer) UpdateDestinationConnector(context.Co
 }
 func (UnimplementedConnectorServiceServer) DeleteDestinationConnector(context.Context, *DeleteDestinationConnectorRequest) (*DeleteDestinationConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteDestinationConnector not implemented")
+}
+func (UnimplementedConnectorServiceServer) LookUpSourceConnector(context.Context, *LookUpSourceConnectorRequest) (*LookUpSourceConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LookUpSourceConnector not implemented")
+}
+func (UnimplementedConnectorServiceServer) LookUpDestinationConnector(context.Context, *LookUpDestinationConnectorRequest) (*LookUpDestinationConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LookUpDestinationConnector not implemented")
 }
 
 // UnsafeConnectorServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -644,6 +682,42 @@ func _ConnectorService_DeleteDestinationConnector_Handler(srv interface{}, ctx c
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ConnectorService_LookUpSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LookUpSourceConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConnectorServiceServer).LookUpSourceConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/instill.connector.v1alpha.ConnectorService/LookUpSourceConnector",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConnectorServiceServer).LookUpSourceConnector(ctx, req.(*LookUpSourceConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ConnectorService_LookUpDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LookUpDestinationConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConnectorServiceServer).LookUpDestinationConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/instill.connector.v1alpha.ConnectorService/LookUpDestinationConnector",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConnectorServiceServer).LookUpDestinationConnector(ctx, req.(*LookUpDestinationConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ConnectorService_ServiceDesc is the grpc.ServiceDesc for ConnectorService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -714,6 +788,14 @@ var ConnectorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteDestinationConnector",
 			Handler:    _ConnectorService_DeleteDestinationConnector_Handler,
+		},
+		{
+			MethodName: "LookUpSourceConnector",
+			Handler:    _ConnectorService_LookUpSourceConnector_Handler,
+		},
+		{
+			MethodName: "LookUpDestinationConnector",
+			Handler:    _ConnectorService_LookUpDestinationConnector_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

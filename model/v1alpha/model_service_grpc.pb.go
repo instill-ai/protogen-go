@@ -51,6 +51,9 @@ type ModelServiceClient interface {
 	// DeleteModel method receives a DeleteModelRequest message and returns a
 	// DeleteModelResponse
 	DeleteModel(ctx context.Context, in *DeleteModelRequest, opts ...grpc.CallOption) (*DeleteModelResponse, error)
+	// LookUpModel method receives a LookUpModelRequest message and returns a
+	// LookUpModelResponse
+	LookUpModel(ctx context.Context, in *LookUpModelRequest, opts ...grpc.CallOption) (*LookUpModelResponse, error)
 	// RenameModel method rename a model
 	RenameModel(ctx context.Context, in *RenameModelRequest, opts ...grpc.CallOption) (*RenameModelResponse, error)
 	// ListModelInstance method receives a ListModelInstanceRequest message and
@@ -59,6 +62,10 @@ type ModelServiceClient interface {
 	// GetModelInstance method receives a GetModelInstanceRequest message and
 	// returns a GetModelInstanceResponse
 	GetModelInstance(ctx context.Context, in *GetModelInstanceRequest, opts ...grpc.CallOption) (*GetModelInstanceResponse, error)
+	// LookUpModelInstance method receives a LookUpModelInstanceRequest message
+	// and returns a
+	// LookUpModelInstanceResponse
+	LookUpModelInstance(ctx context.Context, in *LookUpModelInstanceRequest, opts ...grpc.CallOption) (*LookUpModelInstanceResponse, error)
 	// DeployModelInstance deploy a model instance to online state
 	// TODO: should use [Long-running operations](https://google.aip.dev/151)
 	DeployModelInstance(ctx context.Context, in *DeployModelInstanceRequest, opts ...grpc.CallOption) (*DeployModelInstanceResponse, error)
@@ -70,8 +77,8 @@ type ModelServiceClient interface {
 	GetModelInstanceCard(ctx context.Context, in *GetModelInstanceCardRequest, opts ...grpc.CallOption) (*GetModelInstanceCardResponse, error)
 	///////////////////////////////////////////////////////
 	//
-	// TriggerModelInstance method receives a TriggerModelInstanceRequest message and
-	// returns a TriggerModelInstanceResponse message.
+	// TriggerModelInstance method receives a TriggerModelInstanceRequest message
+	// and returns a TriggerModelInstanceResponse message.
 	TriggerModelInstance(ctx context.Context, in *TriggerModelInstanceRequest, opts ...grpc.CallOption) (*TriggerModelInstanceResponse, error)
 	// TriggerModelInstanceBinaryFileUpload method receives a
 	// TriggerModelInstanceBinaryFileUploadRequest message and returns a
@@ -202,6 +209,15 @@ func (c *modelServiceClient) DeleteModel(ctx context.Context, in *DeleteModelReq
 	return out, nil
 }
 
+func (c *modelServiceClient) LookUpModel(ctx context.Context, in *LookUpModelRequest, opts ...grpc.CallOption) (*LookUpModelResponse, error) {
+	out := new(LookUpModelResponse)
+	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/LookUpModel", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *modelServiceClient) RenameModel(ctx context.Context, in *RenameModelRequest, opts ...grpc.CallOption) (*RenameModelResponse, error) {
 	out := new(RenameModelResponse)
 	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/RenameModel", in, out, opts...)
@@ -223,6 +239,15 @@ func (c *modelServiceClient) ListModelInstance(ctx context.Context, in *ListMode
 func (c *modelServiceClient) GetModelInstance(ctx context.Context, in *GetModelInstanceRequest, opts ...grpc.CallOption) (*GetModelInstanceResponse, error) {
 	out := new(GetModelInstanceResponse)
 	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/GetModelInstance", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *modelServiceClient) LookUpModelInstance(ctx context.Context, in *LookUpModelInstanceRequest, opts ...grpc.CallOption) (*LookUpModelInstanceResponse, error) {
+	out := new(LookUpModelInstanceResponse)
+	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/LookUpModelInstance", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -336,6 +361,9 @@ type ModelServiceServer interface {
 	// DeleteModel method receives a DeleteModelRequest message and returns a
 	// DeleteModelResponse
 	DeleteModel(context.Context, *DeleteModelRequest) (*DeleteModelResponse, error)
+	// LookUpModel method receives a LookUpModelRequest message and returns a
+	// LookUpModelResponse
+	LookUpModel(context.Context, *LookUpModelRequest) (*LookUpModelResponse, error)
 	// RenameModel method rename a model
 	RenameModel(context.Context, *RenameModelRequest) (*RenameModelResponse, error)
 	// ListModelInstance method receives a ListModelInstanceRequest message and
@@ -344,6 +372,10 @@ type ModelServiceServer interface {
 	// GetModelInstance method receives a GetModelInstanceRequest message and
 	// returns a GetModelInstanceResponse
 	GetModelInstance(context.Context, *GetModelInstanceRequest) (*GetModelInstanceResponse, error)
+	// LookUpModelInstance method receives a LookUpModelInstanceRequest message
+	// and returns a
+	// LookUpModelInstanceResponse
+	LookUpModelInstance(context.Context, *LookUpModelInstanceRequest) (*LookUpModelInstanceResponse, error)
 	// DeployModelInstance deploy a model instance to online state
 	// TODO: should use [Long-running operations](https://google.aip.dev/151)
 	DeployModelInstance(context.Context, *DeployModelInstanceRequest) (*DeployModelInstanceResponse, error)
@@ -355,8 +387,8 @@ type ModelServiceServer interface {
 	GetModelInstanceCard(context.Context, *GetModelInstanceCardRequest) (*GetModelInstanceCardResponse, error)
 	///////////////////////////////////////////////////////
 	//
-	// TriggerModelInstance method receives a TriggerModelInstanceRequest message and
-	// returns a TriggerModelInstanceResponse message.
+	// TriggerModelInstance method receives a TriggerModelInstanceRequest message
+	// and returns a TriggerModelInstanceResponse message.
 	TriggerModelInstance(context.Context, *TriggerModelInstanceRequest) (*TriggerModelInstanceResponse, error)
 	// TriggerModelInstanceBinaryFileUpload method receives a
 	// TriggerModelInstanceBinaryFileUploadRequest message and returns a
@@ -398,6 +430,9 @@ func (UnimplementedModelServiceServer) UpdateModel(context.Context, *UpdateModel
 func (UnimplementedModelServiceServer) DeleteModel(context.Context, *DeleteModelRequest) (*DeleteModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteModel not implemented")
 }
+func (UnimplementedModelServiceServer) LookUpModel(context.Context, *LookUpModelRequest) (*LookUpModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LookUpModel not implemented")
+}
 func (UnimplementedModelServiceServer) RenameModel(context.Context, *RenameModelRequest) (*RenameModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RenameModel not implemented")
 }
@@ -406,6 +441,9 @@ func (UnimplementedModelServiceServer) ListModelInstance(context.Context, *ListM
 }
 func (UnimplementedModelServiceServer) GetModelInstance(context.Context, *GetModelInstanceRequest) (*GetModelInstanceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetModelInstance not implemented")
+}
+func (UnimplementedModelServiceServer) LookUpModelInstance(context.Context, *LookUpModelInstanceRequest) (*LookUpModelInstanceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LookUpModelInstance not implemented")
 }
 func (UnimplementedModelServiceServer) DeployModelInstance(context.Context, *DeployModelInstanceRequest) (*DeployModelInstanceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeployModelInstance not implemented")
@@ -622,6 +660,24 @@ func _ModelService_DeleteModel_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ModelService_LookUpModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LookUpModelRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelServiceServer).LookUpModel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/instill.model.v1alpha.ModelService/LookUpModel",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelServiceServer).LookUpModel(ctx, req.(*LookUpModelRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ModelService_RenameModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RenameModelRequest)
 	if err := dec(in); err != nil {
@@ -672,6 +728,24 @@ func _ModelService_GetModelInstance_Handler(srv interface{}, ctx context.Context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelServiceServer).GetModelInstance(ctx, req.(*GetModelInstanceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ModelService_LookUpModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LookUpModelInstanceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelServiceServer).LookUpModelInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/instill.model.v1alpha.ModelService/LookUpModelInstance",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelServiceServer).LookUpModelInstance(ctx, req.(*LookUpModelInstanceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -818,6 +892,10 @@ var ModelService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ModelService_DeleteModel_Handler,
 		},
 		{
+			MethodName: "LookUpModel",
+			Handler:    _ModelService_LookUpModel_Handler,
+		},
+		{
 			MethodName: "RenameModel",
 			Handler:    _ModelService_RenameModel_Handler,
 		},
@@ -828,6 +906,10 @@ var ModelService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetModelInstance",
 			Handler:    _ModelService_GetModelInstance_Handler,
+		},
+		{
+			MethodName: "LookUpModelInstance",
+			Handler:    _ModelService_LookUpModelInstance_Handler,
 		},
 		{
 			MethodName: "DeployModelInstance",

@@ -41,6 +41,9 @@ type PipelineServiceClient interface {
 	// DeletePipeline method receives a DeletePipelineRequest message and returns
 	// a DeletePipelineResponse message.
 	DeletePipeline(ctx context.Context, in *DeletePipelineRequest, opts ...grpc.CallOption) (*DeletePipelineResponse, error)
+	// LookUpPipeline method receives a LookUpPipelineRequest message and returns
+	// a LookUpPipelineResponse
+	LookUpPipeline(ctx context.Context, in *LookUpPipelineRequest, opts ...grpc.CallOption) (*LookUpPipelineResponse, error)
 	// Activate a pipeline.
 	// The `state` of the pipeline after activating is `ACTIVE`.
 	// ActivatePipeline` can be called on Pipelines in the state `INACTIVE`;
@@ -128,6 +131,15 @@ func (c *pipelineServiceClient) UpdatePipeline(ctx context.Context, in *UpdatePi
 func (c *pipelineServiceClient) DeletePipeline(ctx context.Context, in *DeletePipelineRequest, opts ...grpc.CallOption) (*DeletePipelineResponse, error) {
 	out := new(DeletePipelineResponse)
 	err := c.cc.Invoke(ctx, "/instill.pipeline.v1alpha.PipelineService/DeletePipeline", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelineServiceClient) LookUpPipeline(ctx context.Context, in *LookUpPipelineRequest, opts ...grpc.CallOption) (*LookUpPipelineResponse, error) {
+	out := new(LookUpPipelineResponse)
+	err := c.cc.Invoke(ctx, "/instill.pipeline.v1alpha.PipelineService/LookUpPipeline", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -231,6 +243,9 @@ type PipelineServiceServer interface {
 	// DeletePipeline method receives a DeletePipelineRequest message and returns
 	// a DeletePipelineResponse message.
 	DeletePipeline(context.Context, *DeletePipelineRequest) (*DeletePipelineResponse, error)
+	// LookUpPipeline method receives a LookUpPipelineRequest message and returns
+	// a LookUpPipelineResponse
+	LookUpPipeline(context.Context, *LookUpPipelineRequest) (*LookUpPipelineResponse, error)
 	// Activate a pipeline.
 	// The `state` of the pipeline after activating is `ACTIVE`.
 	// ActivatePipeline` can be called on Pipelines in the state `INACTIVE`;
@@ -277,6 +292,9 @@ func (UnimplementedPipelineServiceServer) UpdatePipeline(context.Context, *Updat
 }
 func (UnimplementedPipelineServiceServer) DeletePipeline(context.Context, *DeletePipelineRequest) (*DeletePipelineResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeletePipeline not implemented")
+}
+func (UnimplementedPipelineServiceServer) LookUpPipeline(context.Context, *LookUpPipelineRequest) (*LookUpPipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LookUpPipeline not implemented")
 }
 func (UnimplementedPipelineServiceServer) ActivatePipeline(context.Context, *ActivatePipelineRequest) (*ActivatePipelineResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ActivatePipeline not implemented")
@@ -431,6 +449,24 @@ func _PipelineService_DeletePipeline_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PipelineService_LookUpPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LookUpPipelineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelineServiceServer).LookUpPipeline(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/instill.pipeline.v1alpha.PipelineService/LookUpPipeline",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelineServiceServer).LookUpPipeline(ctx, req.(*LookUpPipelineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PipelineService_ActivatePipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ActivatePipelineRequest)
 	if err := dec(in); err != nil {
@@ -563,6 +599,10 @@ var PipelineService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeletePipeline",
 			Handler:    _PipelineService_DeletePipeline_Handler,
+		},
+		{
+			MethodName: "LookUpPipeline",
+			Handler:    _PipelineService_LookUpPipeline_Handler,
 		},
 		{
 			MethodName: "ActivatePipeline",

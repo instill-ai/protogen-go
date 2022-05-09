@@ -935,6 +935,110 @@ func local_request_ConnectorService_DeleteDestinationConnector_0(ctx context.Con
 
 }
 
+func request_ConnectorService_LookUpSourceConnector_0(ctx context.Context, marshaler runtime.Marshaler, client ConnectorServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq LookUpSourceConnectorRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["permalink"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "permalink")
+	}
+
+	protoReq.Permalink, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "permalink", err)
+	}
+
+	msg, err := client.LookUpSourceConnector(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_ConnectorService_LookUpSourceConnector_0(ctx context.Context, marshaler runtime.Marshaler, server ConnectorServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq LookUpSourceConnectorRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["permalink"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "permalink")
+	}
+
+	protoReq.Permalink, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "permalink", err)
+	}
+
+	msg, err := server.LookUpSourceConnector(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_ConnectorService_LookUpDestinationConnector_0(ctx context.Context, marshaler runtime.Marshaler, client ConnectorServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq LookUpDestinationConnectorRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["permalink"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "permalink")
+	}
+
+	protoReq.Permalink, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "permalink", err)
+	}
+
+	msg, err := client.LookUpDestinationConnector(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_ConnectorService_LookUpDestinationConnector_0(ctx context.Context, marshaler runtime.Marshaler, server ConnectorServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq LookUpDestinationConnectorRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["permalink"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "permalink")
+	}
+
+	protoReq.Permalink, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "permalink", err)
+	}
+
+	msg, err := server.LookUpDestinationConnector(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
 // RegisterConnectorServiceHandlerServer registers the http handlers for service ConnectorService to "mux".
 // UnaryRPC     :call ConnectorServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -1332,6 +1436,52 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 
 	})
 
+	mux.Handle("GET", pattern_ConnectorService_LookUpSourceConnector_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/LookUpSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{permalink=source-connectors/*}:lookUp"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ConnectorService_LookUpSourceConnector_0(rctx, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_ConnectorService_LookUpSourceConnector_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_ConnectorService_LookUpDestinationConnector_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/LookUpDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{permalink=destination-connectors/*}:lookUp"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ConnectorService_LookUpDestinationConnector_0(rctx, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_ConnectorService_LookUpDestinationConnector_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	return nil
 }
 
@@ -1713,6 +1863,46 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 
 	})
 
+	mux.Handle("GET", pattern_ConnectorService_LookUpSourceConnector_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/LookUpSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{permalink=source-connectors/*}:lookUp"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ConnectorService_LookUpSourceConnector_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_ConnectorService_LookUpSourceConnector_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_ConnectorService_LookUpDestinationConnector_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/LookUpDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{permalink=destination-connectors/*}:lookUp"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ConnectorService_LookUpDestinationConnector_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_ConnectorService_LookUpDestinationConnector_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	return nil
 }
 
@@ -1750,6 +1940,10 @@ var (
 	pattern_ConnectorService_UpdateDestinationConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "connectors", "destination_connector.name"}, ""))
 
 	pattern_ConnectorService_DeleteDestinationConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "destination-connectors", "name"}, ""))
+
+	pattern_ConnectorService_LookUpSourceConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "source-connectors", "permalink"}, "lookUp"))
+
+	pattern_ConnectorService_LookUpDestinationConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "destination-connectors", "permalink"}, "lookUp"))
 )
 
 var (
@@ -1786,4 +1980,8 @@ var (
 	forward_ConnectorService_UpdateDestinationConnector_0 = runtime.ForwardResponseMessage
 
 	forward_ConnectorService_DeleteDestinationConnector_0 = runtime.ForwardResponseMessage
+
+	forward_ConnectorService_LookUpSourceConnector_0 = runtime.ForwardResponseMessage
+
+	forward_ConnectorService_LookUpDestinationConnector_0 = runtime.ForwardResponseMessage
 )

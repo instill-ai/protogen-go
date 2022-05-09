@@ -41,6 +41,9 @@ type UserServiceClient interface {
 	// DeleteUser method receives a DeleteUserRequest message and returns a
 	// DeleteUserResponse
 	DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error)
+	// LookUpUser method receives a LookUpUserRequest message and returns a
+	// LookUpUserResponse
+	LookUpUser(ctx context.Context, in *LookUpUserRequest, opts ...grpc.CallOption) (*LookUpUserResponse, error)
 }
 
 type userServiceClient struct {
@@ -114,6 +117,15 @@ func (c *userServiceClient) DeleteUser(ctx context.Context, in *DeleteUserReques
 	return out, nil
 }
 
+func (c *userServiceClient) LookUpUser(ctx context.Context, in *LookUpUserRequest, opts ...grpc.CallOption) (*LookUpUserResponse, error) {
+	out := new(LookUpUserResponse)
+	err := c.cc.Invoke(ctx, "/instill.mgmt.v1alpha.UserService/LookUpUser", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServiceServer is the server API for UserService service.
 // All implementations should embed UnimplementedUserServiceServer
 // for forward compatibility
@@ -141,6 +153,9 @@ type UserServiceServer interface {
 	// DeleteUser method receives a DeleteUserRequest message and returns a
 	// DeleteUserResponse
 	DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error)
+	// LookUpUser method receives a LookUpUserRequest message and returns a
+	// LookUpUserResponse
+	LookUpUser(context.Context, *LookUpUserRequest) (*LookUpUserResponse, error)
 }
 
 // UnimplementedUserServiceServer should be embedded to have forward compatible implementations.
@@ -167,6 +182,9 @@ func (UnimplementedUserServiceServer) UpdateUser(context.Context, *UpdateUserReq
 }
 func (UnimplementedUserServiceServer) DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
+}
+func (UnimplementedUserServiceServer) LookUpUser(context.Context, *LookUpUserRequest) (*LookUpUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LookUpUser not implemented")
 }
 
 // UnsafeUserServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -306,6 +324,24 @@ func _UserService_DeleteUser_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_LookUpUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LookUpUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).LookUpUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/instill.mgmt.v1alpha.UserService/LookUpUser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).LookUpUser(ctx, req.(*LookUpUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -340,6 +376,10 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteUser",
 			Handler:    _UserService_DeleteUser_Handler,
+		},
+		{
+			MethodName: "LookUpUser",
+			Handler:    _UserService_LookUpUser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

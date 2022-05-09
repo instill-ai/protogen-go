@@ -393,7 +393,7 @@ type CreateSourceConnectorResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Connector resource
+	// SourceConnector resource
 	SourceConnector *SourceConnector `protobuf:"bytes,1,opt,name=source_connector,json=sourceConnector,proto3" json:"source_connector,omitempty"`
 }
 
@@ -942,7 +942,7 @@ type CreateDestinationConnectorResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Connector resource
+	// DestinationConnector resource
 	DestinationConnector *DestinationConnector `protobuf:"bytes,1,opt,name=destination_connector,json=destinationConnector,proto3" json:"destination_connector,omitempty"`
 }
 
@@ -1432,6 +1432,207 @@ func (*DeleteDestinationConnectorResponse) Descriptor() ([]byte, []int) {
 	return file_instill_connector_v1alpha_connector_proto_rawDescGZIP(), []int{22}
 }
 
+// LookUpSourceConnectorRequest represents a request to query a source connector
+// by permalink
+type LookUpSourceConnectorRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Permalink of a source connector. For example:
+	// "source-connectors/{uid}"
+	Permalink string `protobuf:"bytes,1,opt,name=permalink,proto3" json:"permalink,omitempty"`
+}
+
+func (x *LookUpSourceConnectorRequest) Reset() {
+	*x = LookUpSourceConnectorRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_instill_connector_v1alpha_connector_proto_msgTypes[23]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *LookUpSourceConnectorRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LookUpSourceConnectorRequest) ProtoMessage() {}
+
+func (x *LookUpSourceConnectorRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_instill_connector_v1alpha_connector_proto_msgTypes[23]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LookUpSourceConnectorRequest.ProtoReflect.Descriptor instead.
+func (*LookUpSourceConnectorRequest) Descriptor() ([]byte, []int) {
+	return file_instill_connector_v1alpha_connector_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *LookUpSourceConnectorRequest) GetPermalink() string {
+	if x != nil {
+		return x.Permalink
+	}
+	return ""
+}
+
+// LookUpSourceConnectorResponse represents a response for a source connector
+type LookUpSourceConnectorResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// SourceConnector resource
+	SourceConnector *SourceConnector `protobuf:"bytes,1,opt,name=source_connector,json=sourceConnector,proto3" json:"source_connector,omitempty"`
+}
+
+func (x *LookUpSourceConnectorResponse) Reset() {
+	*x = LookUpSourceConnectorResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_instill_connector_v1alpha_connector_proto_msgTypes[24]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *LookUpSourceConnectorResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LookUpSourceConnectorResponse) ProtoMessage() {}
+
+func (x *LookUpSourceConnectorResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_instill_connector_v1alpha_connector_proto_msgTypes[24]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LookUpSourceConnectorResponse.ProtoReflect.Descriptor instead.
+func (*LookUpSourceConnectorResponse) Descriptor() ([]byte, []int) {
+	return file_instill_connector_v1alpha_connector_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *LookUpSourceConnectorResponse) GetSourceConnector() *SourceConnector {
+	if x != nil {
+		return x.SourceConnector
+	}
+	return nil
+}
+
+// LookUpDestinationConnectorRequest represents a request to query a destination
+// connector by permalink
+type LookUpDestinationConnectorRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Permalink of a source connector. For example:
+	// "destination-connectors/{uid}"
+	Permalink string `protobuf:"bytes,1,opt,name=permalink,proto3" json:"permalink,omitempty"`
+}
+
+func (x *LookUpDestinationConnectorRequest) Reset() {
+	*x = LookUpDestinationConnectorRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_instill_connector_v1alpha_connector_proto_msgTypes[25]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *LookUpDestinationConnectorRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LookUpDestinationConnectorRequest) ProtoMessage() {}
+
+func (x *LookUpDestinationConnectorRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_instill_connector_v1alpha_connector_proto_msgTypes[25]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LookUpDestinationConnectorRequest.ProtoReflect.Descriptor instead.
+func (*LookUpDestinationConnectorRequest) Descriptor() ([]byte, []int) {
+	return file_instill_connector_v1alpha_connector_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *LookUpDestinationConnectorRequest) GetPermalink() string {
+	if x != nil {
+		return x.Permalink
+	}
+	return ""
+}
+
+// LookUpDestinationConnectorResponse represents a response for a destination
+// connector
+type LookUpDestinationConnectorResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// DestinationConnector resource
+	DestinationConnector *DestinationConnector `protobuf:"bytes,1,opt,name=destination_connector,json=destinationConnector,proto3" json:"destination_connector,omitempty"`
+}
+
+func (x *LookUpDestinationConnectorResponse) Reset() {
+	*x = LookUpDestinationConnectorResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_instill_connector_v1alpha_connector_proto_msgTypes[26]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *LookUpDestinationConnectorResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LookUpDestinationConnectorResponse) ProtoMessage() {}
+
+func (x *LookUpDestinationConnectorResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_instill_connector_v1alpha_connector_proto_msgTypes[26]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LookUpDestinationConnectorResponse.ProtoReflect.Descriptor instead.
+func (*LookUpDestinationConnectorResponse) Descriptor() ([]byte, []int) {
+	return file_instill_connector_v1alpha_connector_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *LookUpDestinationConnectorResponse) GetDestinationConnector() *DestinationConnector {
+	if x != nil {
+		return x.DestinationConnector
+	}
+	return nil
+}
+
 var File_instill_connector_v1alpha_connector_proto protoreflect.FileDescriptor
 
 var file_instill_connector_v1alpha_connector_proto_rawDesc = []byte{
@@ -1703,7 +1904,32 @@ var file_instill_connector_v1alpha_connector_proto_rawDesc = []byte{
 	0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22,
 	0x24, 0x0a, 0x22, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x44, 0x65, 0x73, 0x74, 0x69, 0x6e, 0x61,
 	0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x83, 0x02, 0x0a, 0x1d, 0x63, 0x6f, 0x6d, 0x2e, 0x69, 0x6e,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x41, 0x0a, 0x1c, 0x4c, 0x6f, 0x6f, 0x6b, 0x55, 0x70, 0x53,
+	0x6f, 0x75, 0x72, 0x63, 0x65, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x21, 0x0a, 0x09, 0x70, 0x65, 0x72, 0x6d, 0x61, 0x6c, 0x69,
+	0x6e, 0x6b, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x09, 0x70,
+	0x65, 0x72, 0x6d, 0x61, 0x6c, 0x69, 0x6e, 0x6b, 0x22, 0x76, 0x0a, 0x1d, 0x4c, 0x6f, 0x6f, 0x6b,
+	0x55, 0x70, 0x53, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f,
+	0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x55, 0x0a, 0x10, 0x73, 0x6f, 0x75,
+	0x72, 0x63, 0x65, 0x5f, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x2a, 0x2e, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2e, 0x63, 0x6f,
+	0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e,
+	0x53, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x52,
+	0x0f, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72,
+	0x22, 0x46, 0x0a, 0x21, 0x4c, 0x6f, 0x6f, 0x6b, 0x55, 0x70, 0x44, 0x65, 0x73, 0x74, 0x69, 0x6e,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x21, 0x0a, 0x09, 0x70, 0x65, 0x72, 0x6d, 0x61, 0x6c, 0x69,
+	0x6e, 0x6b, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x09, 0x70,
+	0x65, 0x72, 0x6d, 0x61, 0x6c, 0x69, 0x6e, 0x6b, 0x22, 0x8a, 0x01, 0x0a, 0x22, 0x4c, 0x6f, 0x6f,
+	0x6b, 0x55, 0x70, 0x44, 0x65, 0x73, 0x74, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f,
+	0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x64, 0x0a, 0x15, 0x64, 0x65, 0x73, 0x74, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x63,
+	0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2f,
+	0x2e, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2e, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74,
+	0x6f, 0x72, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x44, 0x65, 0x73, 0x74, 0x69,
+	0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x52,
+	0x14, 0x64, 0x65, 0x73, 0x74, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x6e,
+	0x65, 0x63, 0x74, 0x6f, 0x72, 0x42, 0x83, 0x02, 0x0a, 0x1d, 0x63, 0x6f, 0x6d, 0x2e, 0x69, 0x6e,
 	0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2e, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x2e,
 	0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x42, 0x0e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74,
 	0x6f, 0x72, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x4c, 0x67, 0x69, 0x74, 0x68, 0x75,
@@ -1735,7 +1961,7 @@ func file_instill_connector_v1alpha_connector_proto_rawDescGZIP() []byte {
 	return file_instill_connector_v1alpha_connector_proto_rawDescData
 }
 
-var file_instill_connector_v1alpha_connector_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
+var file_instill_connector_v1alpha_connector_proto_msgTypes = make([]protoimpl.MessageInfo, 27)
 var file_instill_connector_v1alpha_connector_proto_goTypes = []interface{}{
 	(*Connector)(nil),                          // 0: instill.connector.v1alpha.Connector
 	(*SourceConnector)(nil),                    // 1: instill.connector.v1alpha.SourceConnector
@@ -1760,40 +1986,46 @@ var file_instill_connector_v1alpha_connector_proto_goTypes = []interface{}{
 	(*UpdateDestinationConnectorResponse)(nil), // 20: instill.connector.v1alpha.UpdateDestinationConnectorResponse
 	(*DeleteDestinationConnectorRequest)(nil),  // 21: instill.connector.v1alpha.DeleteDestinationConnectorRequest
 	(*DeleteDestinationConnectorResponse)(nil), // 22: instill.connector.v1alpha.DeleteDestinationConnectorResponse
-	(*structpb.Struct)(nil),                    // 23: google.protobuf.Struct
-	(*timestamppb.Timestamp)(nil),              // 24: google.protobuf.Timestamp
-	(View)(0),                                  // 25: instill.connector.v1alpha.View
-	(*fieldmaskpb.FieldMask)(nil),              // 26: google.protobuf.FieldMask
+	(*LookUpSourceConnectorRequest)(nil),       // 23: instill.connector.v1alpha.LookUpSourceConnectorRequest
+	(*LookUpSourceConnectorResponse)(nil),      // 24: instill.connector.v1alpha.LookUpSourceConnectorResponse
+	(*LookUpDestinationConnectorRequest)(nil),  // 25: instill.connector.v1alpha.LookUpDestinationConnectorRequest
+	(*LookUpDestinationConnectorResponse)(nil), // 26: instill.connector.v1alpha.LookUpDestinationConnectorResponse
+	(*structpb.Struct)(nil),                    // 27: google.protobuf.Struct
+	(*timestamppb.Timestamp)(nil),              // 28: google.protobuf.Timestamp
+	(View)(0),                                  // 29: instill.connector.v1alpha.View
+	(*fieldmaskpb.FieldMask)(nil),              // 30: google.protobuf.FieldMask
 }
 var file_instill_connector_v1alpha_connector_proto_depIdxs = []int32{
-	23, // 0: instill.connector.v1alpha.Connector.configuration:type_name -> google.protobuf.Struct
-	24, // 1: instill.connector.v1alpha.Connector.create_time:type_name -> google.protobuf.Timestamp
-	24, // 2: instill.connector.v1alpha.Connector.update_time:type_name -> google.protobuf.Timestamp
+	27, // 0: instill.connector.v1alpha.Connector.configuration:type_name -> google.protobuf.Struct
+	28, // 1: instill.connector.v1alpha.Connector.create_time:type_name -> google.protobuf.Timestamp
+	28, // 2: instill.connector.v1alpha.Connector.update_time:type_name -> google.protobuf.Timestamp
 	0,  // 3: instill.connector.v1alpha.SourceConnector.connector:type_name -> instill.connector.v1alpha.Connector
 	0,  // 4: instill.connector.v1alpha.DestinationConnector.connector:type_name -> instill.connector.v1alpha.Connector
 	1,  // 5: instill.connector.v1alpha.CreateSourceConnectorRequest.source_connector:type_name -> instill.connector.v1alpha.SourceConnector
 	1,  // 6: instill.connector.v1alpha.CreateSourceConnectorResponse.source_connector:type_name -> instill.connector.v1alpha.SourceConnector
-	25, // 7: instill.connector.v1alpha.ListSourceConnectorRequest.view:type_name -> instill.connector.v1alpha.View
+	29, // 7: instill.connector.v1alpha.ListSourceConnectorRequest.view:type_name -> instill.connector.v1alpha.View
 	1,  // 8: instill.connector.v1alpha.ListSourceConnectorResponse.source_connectors:type_name -> instill.connector.v1alpha.SourceConnector
-	25, // 9: instill.connector.v1alpha.GetSourceConnectorRequest.view:type_name -> instill.connector.v1alpha.View
+	29, // 9: instill.connector.v1alpha.GetSourceConnectorRequest.view:type_name -> instill.connector.v1alpha.View
 	1,  // 10: instill.connector.v1alpha.GetSourceConnectorResponse.source_connector:type_name -> instill.connector.v1alpha.SourceConnector
 	1,  // 11: instill.connector.v1alpha.UpdateSourceConnectorRequest.source_connector:type_name -> instill.connector.v1alpha.SourceConnector
-	26, // 12: instill.connector.v1alpha.UpdateSourceConnectorRequest.update_mask:type_name -> google.protobuf.FieldMask
+	30, // 12: instill.connector.v1alpha.UpdateSourceConnectorRequest.update_mask:type_name -> google.protobuf.FieldMask
 	1,  // 13: instill.connector.v1alpha.UpdateSourceConnectorResponse.source_connector:type_name -> instill.connector.v1alpha.SourceConnector
 	2,  // 14: instill.connector.v1alpha.CreateDestinationConnectorRequest.destination_connector:type_name -> instill.connector.v1alpha.DestinationConnector
 	2,  // 15: instill.connector.v1alpha.CreateDestinationConnectorResponse.destination_connector:type_name -> instill.connector.v1alpha.DestinationConnector
-	25, // 16: instill.connector.v1alpha.ListDestinationConnectorRequest.view:type_name -> instill.connector.v1alpha.View
+	29, // 16: instill.connector.v1alpha.ListDestinationConnectorRequest.view:type_name -> instill.connector.v1alpha.View
 	2,  // 17: instill.connector.v1alpha.ListDestinationConnectorResponse.destination_connectors:type_name -> instill.connector.v1alpha.DestinationConnector
-	25, // 18: instill.connector.v1alpha.GetDestinationConnectorRequest.view:type_name -> instill.connector.v1alpha.View
+	29, // 18: instill.connector.v1alpha.GetDestinationConnectorRequest.view:type_name -> instill.connector.v1alpha.View
 	2,  // 19: instill.connector.v1alpha.GetDestinationConnectorResponse.destination_connector:type_name -> instill.connector.v1alpha.DestinationConnector
 	2,  // 20: instill.connector.v1alpha.UpdateDestinationConnectorRequest.destination_connector:type_name -> instill.connector.v1alpha.DestinationConnector
-	26, // 21: instill.connector.v1alpha.UpdateDestinationConnectorRequest.update_mask:type_name -> google.protobuf.FieldMask
+	30, // 21: instill.connector.v1alpha.UpdateDestinationConnectorRequest.update_mask:type_name -> google.protobuf.FieldMask
 	2,  // 22: instill.connector.v1alpha.UpdateDestinationConnectorResponse.destination_connector:type_name -> instill.connector.v1alpha.DestinationConnector
-	23, // [23:23] is the sub-list for method output_type
-	23, // [23:23] is the sub-list for method input_type
-	23, // [23:23] is the sub-list for extension type_name
-	23, // [23:23] is the sub-list for extension extendee
-	0,  // [0:23] is the sub-list for field type_name
+	1,  // 23: instill.connector.v1alpha.LookUpSourceConnectorResponse.source_connector:type_name -> instill.connector.v1alpha.SourceConnector
+	2,  // 24: instill.connector.v1alpha.LookUpDestinationConnectorResponse.destination_connector:type_name -> instill.connector.v1alpha.DestinationConnector
+	25, // [25:25] is the sub-list for method output_type
+	25, // [25:25] is the sub-list for method input_type
+	25, // [25:25] is the sub-list for extension type_name
+	25, // [25:25] is the sub-list for extension extendee
+	0,  // [0:25] is the sub-list for field type_name
 }
 
 func init() { file_instill_connector_v1alpha_connector_proto_init() }
@@ -2079,6 +2311,54 @@ func file_instill_connector_v1alpha_connector_proto_init() {
 				return nil
 			}
 		}
+		file_instill_connector_v1alpha_connector_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*LookUpSourceConnectorRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_instill_connector_v1alpha_connector_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*LookUpSourceConnectorResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_instill_connector_v1alpha_connector_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*LookUpDestinationConnectorRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_instill_connector_v1alpha_connector_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*LookUpDestinationConnectorResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	file_instill_connector_v1alpha_connector_proto_msgTypes[0].OneofWrappers = []interface{}{
 		(*Connector_User)(nil),
@@ -2094,7 +2374,7 @@ func file_instill_connector_v1alpha_connector_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_instill_connector_v1alpha_connector_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   23,
+			NumMessages:   27,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
