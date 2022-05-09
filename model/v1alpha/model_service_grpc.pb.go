@@ -70,12 +70,12 @@ type ModelServiceClient interface {
 	GetModelInstanceCard(ctx context.Context, in *GetModelInstanceCardRequest, opts ...grpc.CallOption) (*GetModelInstanceCardResponse, error)
 	///////////////////////////////////////////////////////
 	//
-	// TriggerModel method receives a TriggerModelRequest message and
-	// returns a TriggerModelResponse message.
+	// TriggerModelInstance method receives a TriggerModelInstanceRequest message and
+	// returns a TriggerModelInstanceResponse message.
 	TriggerModelInstance(ctx context.Context, in *TriggerModelInstanceRequest, opts ...grpc.CallOption) (*TriggerModelInstanceResponse, error)
-	// TriggerModelBinaryFileUpload method receives a
-	// TriggerModelBinaryFileUploadRequest message and returns a
-	// TriggerModelBinaryFileUploadResponse message.
+	// TriggerModelInstanceBinaryFileUpload method receives a
+	// TriggerModelInstanceBinaryFileUploadRequest message and returns a
+	// TriggerModelInstanceBinaryFileUploadResponse message.
 	TriggerModelInstanceBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelService_TriggerModelInstanceBinaryFileUploadClient, error)
 }
 
@@ -355,12 +355,12 @@ type ModelServiceServer interface {
 	GetModelInstanceCard(context.Context, *GetModelInstanceCardRequest) (*GetModelInstanceCardResponse, error)
 	///////////////////////////////////////////////////////
 	//
-	// TriggerModel method receives a TriggerModelRequest message and
-	// returns a TriggerModelResponse message.
+	// TriggerModelInstance method receives a TriggerModelInstanceRequest message and
+	// returns a TriggerModelInstanceResponse message.
 	TriggerModelInstance(context.Context, *TriggerModelInstanceRequest) (*TriggerModelInstanceResponse, error)
-	// TriggerModelBinaryFileUpload method receives a
-	// TriggerModelBinaryFileUploadRequest message and returns a
-	// TriggerModelBinaryFileUploadResponse message.
+	// TriggerModelInstanceBinaryFileUpload method receives a
+	// TriggerModelInstanceBinaryFileUploadRequest message and returns a
+	// TriggerModelInstanceBinaryFileUploadResponse message.
 	TriggerModelInstanceBinaryFileUpload(ModelService_TriggerModelInstanceBinaryFileUploadServer) error
 }
 
