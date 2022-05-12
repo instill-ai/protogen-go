@@ -56,6 +56,12 @@ type ModelServiceClient interface {
 	LookUpModel(ctx context.Context, in *LookUpModelRequest, opts ...grpc.CallOption) (*LookUpModelResponse, error)
 	// RenameModel method rename a model
 	RenameModel(ctx context.Context, in *RenameModelRequest, opts ...grpc.CallOption) (*RenameModelResponse, error)
+	// PublishModel method receives a PublishModelRequest message and returns a
+	// PublishModelResponse
+	PublishModel(ctx context.Context, in *PublishModelRequest, opts ...grpc.CallOption) (*PublishModelResponse, error)
+	// UnpublishModel method receives a UnpublishModelRequest message and returns a
+	// UnpublishModelResponse
+	UnpublishModel(ctx context.Context, in *UnpublishModelRequest, opts ...grpc.CallOption) (*UnpublishModelResponse, error)
 	// ListModelInstance method receives a ListModelInstanceRequest message and
 	// returns a ListModelInstanceResponse
 	ListModelInstance(ctx context.Context, in *ListModelInstanceRequest, opts ...grpc.CallOption) (*ListModelInstanceResponse, error)
@@ -227,6 +233,24 @@ func (c *modelServiceClient) RenameModel(ctx context.Context, in *RenameModelReq
 	return out, nil
 }
 
+func (c *modelServiceClient) PublishModel(ctx context.Context, in *PublishModelRequest, opts ...grpc.CallOption) (*PublishModelResponse, error) {
+	out := new(PublishModelResponse)
+	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/PublishModel", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *modelServiceClient) UnpublishModel(ctx context.Context, in *UnpublishModelRequest, opts ...grpc.CallOption) (*UnpublishModelResponse, error) {
+	out := new(UnpublishModelResponse)
+	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/UnpublishModel", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *modelServiceClient) ListModelInstance(ctx context.Context, in *ListModelInstanceRequest, opts ...grpc.CallOption) (*ListModelInstanceResponse, error) {
 	out := new(ListModelInstanceResponse)
 	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/ListModelInstance", in, out, opts...)
@@ -366,6 +390,12 @@ type ModelServiceServer interface {
 	LookUpModel(context.Context, *LookUpModelRequest) (*LookUpModelResponse, error)
 	// RenameModel method rename a model
 	RenameModel(context.Context, *RenameModelRequest) (*RenameModelResponse, error)
+	// PublishModel method receives a PublishModelRequest message and returns a
+	// PublishModelResponse
+	PublishModel(context.Context, *PublishModelRequest) (*PublishModelResponse, error)
+	// UnpublishModel method receives a UnpublishModelRequest message and returns a
+	// UnpublishModelResponse
+	UnpublishModel(context.Context, *UnpublishModelRequest) (*UnpublishModelResponse, error)
 	// ListModelInstance method receives a ListModelInstanceRequest message and
 	// returns a ListModelInstanceResponse
 	ListModelInstance(context.Context, *ListModelInstanceRequest) (*ListModelInstanceResponse, error)
@@ -435,6 +465,12 @@ func (UnimplementedModelServiceServer) LookUpModel(context.Context, *LookUpModel
 }
 func (UnimplementedModelServiceServer) RenameModel(context.Context, *RenameModelRequest) (*RenameModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RenameModel not implemented")
+}
+func (UnimplementedModelServiceServer) PublishModel(context.Context, *PublishModelRequest) (*PublishModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PublishModel not implemented")
+}
+func (UnimplementedModelServiceServer) UnpublishModel(context.Context, *UnpublishModelRequest) (*UnpublishModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnpublishModel not implemented")
 }
 func (UnimplementedModelServiceServer) ListModelInstance(context.Context, *ListModelInstanceRequest) (*ListModelInstanceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListModelInstance not implemented")
@@ -696,6 +732,42 @@ func _ModelService_RenameModel_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ModelService_PublishModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PublishModelRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelServiceServer).PublishModel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/instill.model.v1alpha.ModelService/PublishModel",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelServiceServer).PublishModel(ctx, req.(*PublishModelRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ModelService_UnpublishModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnpublishModelRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelServiceServer).UnpublishModel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/instill.model.v1alpha.ModelService/UnpublishModel",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelServiceServer).UnpublishModel(ctx, req.(*UnpublishModelRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ModelService_ListModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListModelInstanceRequest)
 	if err := dec(in); err != nil {
@@ -898,6 +970,14 @@ var ModelService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RenameModel",
 			Handler:    _ModelService_RenameModel_Handler,
+		},
+		{
+			MethodName: "PublishModel",
+			Handler:    _ModelService_PublishModel_Handler,
+		},
+		{
+			MethodName: "UnpublishModel",
+			Handler:    _ModelService_UnpublishModel_Handler,
 		},
 		{
 			MethodName: "ListModelInstance",
