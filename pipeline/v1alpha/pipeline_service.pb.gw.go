@@ -829,12 +829,13 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/__liveness"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/__liveness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelineService_Liveness_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelineService_Liveness_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -852,12 +853,13 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/health/pipeline"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/health/pipeline"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelineService_Liveness_1(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelineService_Liveness_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -875,12 +877,13 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/Readiness", runtime.WithHTTPPathPattern("/v1alpha/__readiness"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/Readiness", runtime.WithHTTPPathPattern("/v1alpha/__readiness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelineService_Readiness_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelineService_Readiness_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -898,12 +901,13 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/CreatePipeline", runtime.WithHTTPPathPattern("/v1alpha/pipelines"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/CreatePipeline", runtime.WithHTTPPathPattern("/v1alpha/pipelines"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelineService_CreatePipeline_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelineService_CreatePipeline_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -921,12 +925,13 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/ListPipeline", runtime.WithHTTPPathPattern("/v1alpha/pipelines"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/ListPipeline", runtime.WithHTTPPathPattern("/v1alpha/pipelines"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelineService_ListPipeline_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelineService_ListPipeline_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -944,12 +949,13 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/GetPipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/GetPipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelineService_GetPipeline_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelineService_GetPipeline_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -967,12 +973,13 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/UpdatePipeline", runtime.WithHTTPPathPattern("/v1alpha/{pipeline.name=pipelines/*}"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/UpdatePipeline", runtime.WithHTTPPathPattern("/v1alpha/{pipeline.name=pipelines/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelineService_UpdatePipeline_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelineService_UpdatePipeline_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -990,12 +997,13 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/DeletePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/DeletePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelineService_DeletePipeline_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelineService_DeletePipeline_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1013,12 +1021,13 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/LookUpPipeline", runtime.WithHTTPPathPattern("/v1alpha/{permalink=pipelines/*}:lookUp"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/LookUpPipeline", runtime.WithHTTPPathPattern("/v1alpha/{permalink=pipelines/*}:lookUp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelineService_LookUpPipeline_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelineService_LookUpPipeline_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1036,12 +1045,13 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/ActivatePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}:activate"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/ActivatePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}:activate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelineService_ActivatePipeline_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelineService_ActivatePipeline_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1059,12 +1069,13 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/DeactivatePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}:deactivate"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/DeactivatePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}:deactivate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelineService_DeactivatePipeline_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelineService_DeactivatePipeline_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1082,12 +1093,13 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/RenamePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}:rename"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/RenamePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}:rename"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelineService_RenamePipeline_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelineService_RenamePipeline_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1105,12 +1117,13 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/TriggerPipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}:trigger"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/TriggerPipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}:trigger"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelineService_TriggerPipeline_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelineService_TriggerPipeline_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1174,12 +1187,13 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/__liveness"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/__liveness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelineService_Liveness_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelineService_Liveness_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1194,12 +1208,13 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/health/pipeline"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/health/pipeline"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelineService_Liveness_1(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelineService_Liveness_1(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1214,12 +1229,13 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/Readiness", runtime.WithHTTPPathPattern("/v1alpha/__readiness"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/Readiness", runtime.WithHTTPPathPattern("/v1alpha/__readiness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelineService_Readiness_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelineService_Readiness_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1234,12 +1250,13 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/CreatePipeline", runtime.WithHTTPPathPattern("/v1alpha/pipelines"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/CreatePipeline", runtime.WithHTTPPathPattern("/v1alpha/pipelines"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelineService_CreatePipeline_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelineService_CreatePipeline_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1254,12 +1271,13 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/ListPipeline", runtime.WithHTTPPathPattern("/v1alpha/pipelines"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/ListPipeline", runtime.WithHTTPPathPattern("/v1alpha/pipelines"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelineService_ListPipeline_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelineService_ListPipeline_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1274,12 +1292,13 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/GetPipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/GetPipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelineService_GetPipeline_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelineService_GetPipeline_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1294,12 +1313,13 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/UpdatePipeline", runtime.WithHTTPPathPattern("/v1alpha/{pipeline.name=pipelines/*}"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/UpdatePipeline", runtime.WithHTTPPathPattern("/v1alpha/{pipeline.name=pipelines/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelineService_UpdatePipeline_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelineService_UpdatePipeline_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1314,12 +1334,13 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/DeletePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/DeletePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelineService_DeletePipeline_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelineService_DeletePipeline_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1334,12 +1355,13 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/LookUpPipeline", runtime.WithHTTPPathPattern("/v1alpha/{permalink=pipelines/*}:lookUp"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/LookUpPipeline", runtime.WithHTTPPathPattern("/v1alpha/{permalink=pipelines/*}:lookUp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelineService_LookUpPipeline_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelineService_LookUpPipeline_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1354,12 +1376,13 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/ActivatePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}:activate"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/ActivatePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}:activate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelineService_ActivatePipeline_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelineService_ActivatePipeline_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1374,12 +1397,13 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/DeactivatePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}:deactivate"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/DeactivatePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}:deactivate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelineService_DeactivatePipeline_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelineService_DeactivatePipeline_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1394,12 +1418,13 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/RenamePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}:rename"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/RenamePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}:rename"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelineService_RenamePipeline_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelineService_RenamePipeline_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1414,12 +1439,13 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/TriggerPipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}:trigger"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/TriggerPipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}:trigger"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelineService_TriggerPipeline_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelineService_TriggerPipeline_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1434,12 +1460,13 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/TriggerPipelineBinaryFileUpload", runtime.WithHTTPPathPattern("/instill.pipeline.v1alpha.PipelineService/TriggerPipelineBinaryFileUpload"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.pipeline.v1alpha.PipelineService/TriggerPipelineBinaryFileUpload", runtime.WithHTTPPathPattern("/instill.pipeline.v1alpha.PipelineService/TriggerPipelineBinaryFileUpload"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelineService_TriggerPipelineBinaryFileUpload_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelineService_TriggerPipelineBinaryFileUpload_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)

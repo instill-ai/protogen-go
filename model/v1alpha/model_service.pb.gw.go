@@ -1377,12 +1377,13 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/__liveness"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/__liveness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelService_Liveness_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelService_Liveness_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1400,12 +1401,13 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/health/model"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/health/model"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelService_Liveness_1(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelService_Liveness_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1423,12 +1425,13 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/Readiness", runtime.WithHTTPPathPattern("/v1alpha/__readiness"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/Readiness", runtime.WithHTTPPathPattern("/v1alpha/__readiness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelService_Readiness_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelService_Readiness_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1446,12 +1449,13 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/ListModelDefinition", runtime.WithHTTPPathPattern("/v1alpha/model-definitions"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/ListModelDefinition", runtime.WithHTTPPathPattern("/v1alpha/model-definitions"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelService_ListModelDefinition_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelService_ListModelDefinition_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1469,12 +1473,13 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/GetModelDefinition", runtime.WithHTTPPathPattern("/v1alpha/{name=model-definitions/*}"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/GetModelDefinition", runtime.WithHTTPPathPattern("/v1alpha/{name=model-definitions/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelService_GetModelDefinition_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelService_GetModelDefinition_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1492,12 +1497,13 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/ListModel", runtime.WithHTTPPathPattern("/v1alpha/models"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/ListModel", runtime.WithHTTPPathPattern("/v1alpha/models"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelService_ListModel_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelService_ListModel_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1515,12 +1521,13 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/CreateModel", runtime.WithHTTPPathPattern("/v1alpha/models"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/CreateModel", runtime.WithHTTPPathPattern("/v1alpha/models"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelService_CreateModel_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelService_CreateModel_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1545,12 +1552,13 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/GetModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/GetModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelService_GetModel_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelService_GetModel_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1568,12 +1576,13 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/UpdateModel", runtime.WithHTTPPathPattern("/v1alpha/{model.name=models/*}"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/UpdateModel", runtime.WithHTTPPathPattern("/v1alpha/{model.name=models/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelService_UpdateModel_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelService_UpdateModel_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1591,12 +1600,13 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/DeleteModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/DeleteModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelService_DeleteModel_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelService_DeleteModel_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1614,12 +1624,13 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/LookUpModel", runtime.WithHTTPPathPattern("/v1alpha/{permalink=models/*}:lookUp"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/LookUpModel", runtime.WithHTTPPathPattern("/v1alpha/{permalink=models/*}:lookUp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelService_LookUpModel_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelService_LookUpModel_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1637,12 +1648,13 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/RenameModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}:rename"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/RenameModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}:rename"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelService_RenameModel_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelService_RenameModel_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1660,12 +1672,13 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/PublishModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}:publish"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/PublishModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}:publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelService_PublishModel_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelService_PublishModel_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1683,12 +1696,13 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/UnpublishModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}:unpublish"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/UnpublishModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}:unpublish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelService_UnpublishModel_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelService_UnpublishModel_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1706,12 +1720,13 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/ListModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{parent=models/*}/instances"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/ListModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{parent=models/*}/instances"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelService_ListModelInstance_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelService_ListModelInstance_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1729,12 +1744,13 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/GetModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/GetModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelService_GetModelInstance_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelService_GetModelInstance_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1752,12 +1768,13 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/LookUpModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{permalink=models/*/instances/*}:lookUp"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/LookUpModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{permalink=models/*/instances/*}:lookUp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelService_LookUpModelInstance_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelService_LookUpModelInstance_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1775,12 +1792,13 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/DeployModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}:deploy"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/DeployModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}:deploy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelService_DeployModelInstance_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelService_DeployModelInstance_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1798,12 +1816,13 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/UndeployModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}:undeploy"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/UndeployModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}:undeploy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelService_UndeployModelInstance_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelService_UndeployModelInstance_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1821,12 +1840,13 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/GetModelInstanceCard", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*/readme}"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/GetModelInstanceCard", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*/readme}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelService_GetModelInstanceCard_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelService_GetModelInstanceCard_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1844,12 +1864,13 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/TriggerModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}:trigger"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/TriggerModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}:trigger"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelService_TriggerModelInstance_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelService_TriggerModelInstance_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1913,12 +1934,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/__liveness"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/__liveness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_Liveness_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_Liveness_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1933,12 +1955,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/health/model"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/health/model"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_Liveness_1(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_Liveness_1(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1953,12 +1976,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/Readiness", runtime.WithHTTPPathPattern("/v1alpha/__readiness"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/Readiness", runtime.WithHTTPPathPattern("/v1alpha/__readiness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_Readiness_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_Readiness_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1973,12 +1997,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/ListModelDefinition", runtime.WithHTTPPathPattern("/v1alpha/model-definitions"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/ListModelDefinition", runtime.WithHTTPPathPattern("/v1alpha/model-definitions"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_ListModelDefinition_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_ListModelDefinition_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1993,12 +2018,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/GetModelDefinition", runtime.WithHTTPPathPattern("/v1alpha/{name=model-definitions/*}"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/GetModelDefinition", runtime.WithHTTPPathPattern("/v1alpha/{name=model-definitions/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_GetModelDefinition_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_GetModelDefinition_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2013,12 +2039,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/ListModel", runtime.WithHTTPPathPattern("/v1alpha/models"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/ListModel", runtime.WithHTTPPathPattern("/v1alpha/models"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_ListModel_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_ListModel_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2033,12 +2060,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/CreateModel", runtime.WithHTTPPathPattern("/v1alpha/models"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/CreateModel", runtime.WithHTTPPathPattern("/v1alpha/models"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_CreateModel_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_CreateModel_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2053,12 +2081,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/CreateModelBinaryFileUpload", runtime.WithHTTPPathPattern("/instill.model.v1alpha.ModelService/CreateModelBinaryFileUpload"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/CreateModelBinaryFileUpload", runtime.WithHTTPPathPattern("/instill.model.v1alpha.ModelService/CreateModelBinaryFileUpload"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_CreateModelBinaryFileUpload_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_CreateModelBinaryFileUpload_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2073,12 +2102,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/GetModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/GetModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_GetModel_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_GetModel_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2093,12 +2123,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/UpdateModel", runtime.WithHTTPPathPattern("/v1alpha/{model.name=models/*}"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/UpdateModel", runtime.WithHTTPPathPattern("/v1alpha/{model.name=models/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_UpdateModel_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_UpdateModel_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2113,12 +2144,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/DeleteModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/DeleteModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_DeleteModel_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_DeleteModel_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2133,12 +2165,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/LookUpModel", runtime.WithHTTPPathPattern("/v1alpha/{permalink=models/*}:lookUp"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/LookUpModel", runtime.WithHTTPPathPattern("/v1alpha/{permalink=models/*}:lookUp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_LookUpModel_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_LookUpModel_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2153,12 +2186,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/RenameModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}:rename"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/RenameModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}:rename"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_RenameModel_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_RenameModel_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2173,12 +2207,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/PublishModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}:publish"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/PublishModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}:publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_PublishModel_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_PublishModel_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2193,12 +2228,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/UnpublishModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}:unpublish"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/UnpublishModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}:unpublish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_UnpublishModel_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_UnpublishModel_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2213,12 +2249,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/ListModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{parent=models/*}/instances"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/ListModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{parent=models/*}/instances"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_ListModelInstance_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_ListModelInstance_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2233,12 +2270,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/GetModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/GetModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_GetModelInstance_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_GetModelInstance_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2253,12 +2291,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/LookUpModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{permalink=models/*/instances/*}:lookUp"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/LookUpModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{permalink=models/*/instances/*}:lookUp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_LookUpModelInstance_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_LookUpModelInstance_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2273,12 +2312,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/DeployModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}:deploy"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/DeployModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}:deploy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_DeployModelInstance_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_DeployModelInstance_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2293,12 +2333,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/UndeployModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}:undeploy"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/UndeployModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}:undeploy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_UndeployModelInstance_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_UndeployModelInstance_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2313,12 +2354,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/GetModelInstanceCard", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*/readme}"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/GetModelInstanceCard", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*/readme}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_GetModelInstanceCard_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_GetModelInstanceCard_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2333,12 +2375,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/TriggerModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}:trigger"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/TriggerModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}:trigger"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_TriggerModelInstance_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_TriggerModelInstance_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2353,12 +2396,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/TriggerModelInstanceBinaryFileUpload", runtime.WithHTTPPathPattern("/instill.model.v1alpha.ModelService/TriggerModelInstanceBinaryFileUpload"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.model.v1alpha.ModelService/TriggerModelInstanceBinaryFileUpload", runtime.WithHTTPPathPattern("/instill.model.v1alpha.ModelService/TriggerModelInstanceBinaryFileUpload"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_TriggerModelInstanceBinaryFileUpload_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_TriggerModelInstanceBinaryFileUpload_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)

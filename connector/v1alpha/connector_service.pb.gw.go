@@ -1223,12 +1223,13 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/__liveness"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/__liveness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ConnectorService_Liveness_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ConnectorService_Liveness_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1246,12 +1247,13 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/health/connector"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/health/connector"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ConnectorService_Liveness_1(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ConnectorService_Liveness_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1269,12 +1271,13 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/Readiness", runtime.WithHTTPPathPattern("/v1alpha/__readiness"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/Readiness", runtime.WithHTTPPathPattern("/v1alpha/__readiness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ConnectorService_Readiness_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ConnectorService_Readiness_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1292,12 +1295,13 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/ListSourceConnectorDefinition", runtime.WithHTTPPathPattern("/v1alpha/source-connector-definitions"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/ListSourceConnectorDefinition", runtime.WithHTTPPathPattern("/v1alpha/source-connector-definitions"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ConnectorService_ListSourceConnectorDefinition_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ConnectorService_ListSourceConnectorDefinition_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1315,12 +1319,13 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/GetSourceConnectorDefinition", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connector-definitions/*}"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/GetSourceConnectorDefinition", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connector-definitions/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ConnectorService_GetSourceConnectorDefinition_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ConnectorService_GetSourceConnectorDefinition_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1338,12 +1343,13 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/ListDestinationConnectorDefinition", runtime.WithHTTPPathPattern("/v1alpha/destination-connector-definitions"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/ListDestinationConnectorDefinition", runtime.WithHTTPPathPattern("/v1alpha/destination-connector-definitions"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ConnectorService_ListDestinationConnectorDefinition_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ConnectorService_ListDestinationConnectorDefinition_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1361,12 +1367,13 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/GetDestinationConnectorDefinition", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connector-definitions/*}"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/GetDestinationConnectorDefinition", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connector-definitions/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ConnectorService_GetDestinationConnectorDefinition_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ConnectorService_GetDestinationConnectorDefinition_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1384,12 +1391,13 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/CreateSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/source-connectors"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/CreateSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/source-connectors"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ConnectorService_CreateSourceConnector_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ConnectorService_CreateSourceConnector_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1407,12 +1415,13 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/ListSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/source-connectors"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/ListSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/source-connectors"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ConnectorService_ListSourceConnector_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ConnectorService_ListSourceConnector_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1430,12 +1439,13 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/GetSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/GetSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ConnectorService_GetSourceConnector_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ConnectorService_GetSourceConnector_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1453,12 +1463,13 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/UpdateSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{source_connector.name=source-connectors/*}"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/UpdateSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{source_connector.name=source-connectors/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ConnectorService_UpdateSourceConnector_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ConnectorService_UpdateSourceConnector_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1476,12 +1487,13 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/DeleteSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/DeleteSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ConnectorService_DeleteSourceConnector_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ConnectorService_DeleteSourceConnector_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1499,12 +1511,13 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/LookUpSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{permalink=source-connectors/*}:lookUp"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/LookUpSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{permalink=source-connectors/*}:lookUp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ConnectorService_LookUpSourceConnector_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ConnectorService_LookUpSourceConnector_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1522,12 +1535,13 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/RenameSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}:rename"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/RenameSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}:rename"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ConnectorService_RenameSourceConnector_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ConnectorService_RenameSourceConnector_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1545,12 +1559,13 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/CreateDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/destination-connectors"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/CreateDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/destination-connectors"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ConnectorService_CreateDestinationConnector_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ConnectorService_CreateDestinationConnector_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1568,12 +1583,13 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/ListDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/destination-connectors"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/ListDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/destination-connectors"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ConnectorService_ListDestinationConnector_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ConnectorService_ListDestinationConnector_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1591,12 +1607,13 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/GetDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/GetDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ConnectorService_GetDestinationConnector_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ConnectorService_GetDestinationConnector_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1614,12 +1631,13 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/UpdateDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{destination_connector.name=destination-connectors/*}"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/UpdateDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{destination_connector.name=destination-connectors/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ConnectorService_UpdateDestinationConnector_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ConnectorService_UpdateDestinationConnector_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1637,12 +1655,13 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/DeleteDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/DeleteDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ConnectorService_DeleteDestinationConnector_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ConnectorService_DeleteDestinationConnector_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1660,12 +1679,13 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/LookUpDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{permalink=destination-connectors/*}:lookUp"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/LookUpDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{permalink=destination-connectors/*}:lookUp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ConnectorService_LookUpDestinationConnector_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ConnectorService_LookUpDestinationConnector_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1683,12 +1703,13 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/RenameDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}:rename"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/RenameDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}:rename"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ConnectorService_RenameDestinationConnector_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ConnectorService_RenameDestinationConnector_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1745,12 +1766,13 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/__liveness"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/__liveness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ConnectorService_Liveness_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ConnectorService_Liveness_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1765,12 +1787,13 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/health/connector"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/health/connector"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ConnectorService_Liveness_1(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ConnectorService_Liveness_1(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1785,12 +1808,13 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/Readiness", runtime.WithHTTPPathPattern("/v1alpha/__readiness"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/Readiness", runtime.WithHTTPPathPattern("/v1alpha/__readiness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ConnectorService_Readiness_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ConnectorService_Readiness_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1805,12 +1829,13 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/ListSourceConnectorDefinition", runtime.WithHTTPPathPattern("/v1alpha/source-connector-definitions"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/ListSourceConnectorDefinition", runtime.WithHTTPPathPattern("/v1alpha/source-connector-definitions"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ConnectorService_ListSourceConnectorDefinition_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ConnectorService_ListSourceConnectorDefinition_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1825,12 +1850,13 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/GetSourceConnectorDefinition", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connector-definitions/*}"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/GetSourceConnectorDefinition", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connector-definitions/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ConnectorService_GetSourceConnectorDefinition_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ConnectorService_GetSourceConnectorDefinition_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1845,12 +1871,13 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/ListDestinationConnectorDefinition", runtime.WithHTTPPathPattern("/v1alpha/destination-connector-definitions"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/ListDestinationConnectorDefinition", runtime.WithHTTPPathPattern("/v1alpha/destination-connector-definitions"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ConnectorService_ListDestinationConnectorDefinition_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ConnectorService_ListDestinationConnectorDefinition_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1865,12 +1892,13 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/GetDestinationConnectorDefinition", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connector-definitions/*}"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/GetDestinationConnectorDefinition", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connector-definitions/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ConnectorService_GetDestinationConnectorDefinition_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ConnectorService_GetDestinationConnectorDefinition_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1885,12 +1913,13 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/CreateSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/source-connectors"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/CreateSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/source-connectors"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ConnectorService_CreateSourceConnector_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ConnectorService_CreateSourceConnector_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1905,12 +1934,13 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/ListSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/source-connectors"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/ListSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/source-connectors"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ConnectorService_ListSourceConnector_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ConnectorService_ListSourceConnector_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1925,12 +1955,13 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/GetSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/GetSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ConnectorService_GetSourceConnector_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ConnectorService_GetSourceConnector_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1945,12 +1976,13 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/UpdateSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{source_connector.name=source-connectors/*}"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/UpdateSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{source_connector.name=source-connectors/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ConnectorService_UpdateSourceConnector_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ConnectorService_UpdateSourceConnector_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1965,12 +1997,13 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/DeleteSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/DeleteSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ConnectorService_DeleteSourceConnector_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ConnectorService_DeleteSourceConnector_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1985,12 +2018,13 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/LookUpSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{permalink=source-connectors/*}:lookUp"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/LookUpSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{permalink=source-connectors/*}:lookUp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ConnectorService_LookUpSourceConnector_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ConnectorService_LookUpSourceConnector_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2005,12 +2039,13 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/RenameSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}:rename"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/RenameSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}:rename"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ConnectorService_RenameSourceConnector_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ConnectorService_RenameSourceConnector_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2025,12 +2060,13 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/CreateDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/destination-connectors"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/CreateDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/destination-connectors"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ConnectorService_CreateDestinationConnector_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ConnectorService_CreateDestinationConnector_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2045,12 +2081,13 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/ListDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/destination-connectors"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/ListDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/destination-connectors"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ConnectorService_ListDestinationConnector_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ConnectorService_ListDestinationConnector_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2065,12 +2102,13 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/GetDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/GetDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ConnectorService_GetDestinationConnector_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ConnectorService_GetDestinationConnector_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2085,12 +2123,13 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/UpdateDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{destination_connector.name=destination-connectors/*}"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/UpdateDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{destination_connector.name=destination-connectors/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ConnectorService_UpdateDestinationConnector_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ConnectorService_UpdateDestinationConnector_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2105,12 +2144,13 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/DeleteDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/DeleteDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ConnectorService_DeleteDestinationConnector_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ConnectorService_DeleteDestinationConnector_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2125,12 +2165,13 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/LookUpDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{permalink=destination-connectors/*}:lookUp"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/LookUpDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{permalink=destination-connectors/*}:lookUp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ConnectorService_LookUpDestinationConnector_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ConnectorService_LookUpDestinationConnector_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2145,12 +2186,13 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/RenameDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}:rename"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/instill.connector.v1alpha.ConnectorService/RenameDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}:rename"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ConnectorService_RenameDestinationConnector_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ConnectorService_RenameDestinationConnector_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
