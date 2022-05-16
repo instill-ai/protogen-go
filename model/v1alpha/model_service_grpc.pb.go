@@ -41,6 +41,8 @@ type ModelServiceClient interface {
 	// CreateModelBinaryFileUpload method receives a
 	// CreateModelBinaryFileUploadRequest message and returns a
 	// CreateModelBinaryFileUploadResponse message.
+	//
+	// Endpoint: "POST /v1alpha/models:multipart"
 	CreateModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelService_CreateModelBinaryFileUploadClient, error)
 	// GetModel method receives a GetModelRequest message and returns a
 	// GetModelResponse
@@ -59,8 +61,8 @@ type ModelServiceClient interface {
 	// PublishModel method receives a PublishModelRequest message and returns a
 	// PublishModelResponse
 	PublishModel(ctx context.Context, in *PublishModelRequest, opts ...grpc.CallOption) (*PublishModelResponse, error)
-	// UnpublishModel method receives a UnpublishModelRequest message and returns a
-	// UnpublishModelResponse
+	// UnpublishModel method receives a UnpublishModelRequest message and returns
+	// a UnpublishModelResponse
 	UnpublishModel(ctx context.Context, in *UnpublishModelRequest, opts ...grpc.CallOption) (*UnpublishModelResponse, error)
 	// ListModelInstance method receives a ListModelInstanceRequest message and
 	// returns a ListModelInstanceResponse
@@ -89,6 +91,8 @@ type ModelServiceClient interface {
 	// TriggerModelInstanceBinaryFileUpload method receives a
 	// TriggerModelInstanceBinaryFileUploadRequest message and returns a
 	// TriggerModelInstanceBinaryFileUploadResponse message.
+	//
+	// Endpoint: "POST/v1alpha/{name=models/*/instances/*}:trigger-multipart"
 	TriggerModelInstanceBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelService_TriggerModelInstanceBinaryFileUploadClient, error)
 }
 
@@ -375,6 +379,8 @@ type ModelServiceServer interface {
 	// CreateModelBinaryFileUpload method receives a
 	// CreateModelBinaryFileUploadRequest message and returns a
 	// CreateModelBinaryFileUploadResponse message.
+	//
+	// Endpoint: "POST /v1alpha/models:multipart"
 	CreateModelBinaryFileUpload(ModelService_CreateModelBinaryFileUploadServer) error
 	// GetModel method receives a GetModelRequest message and returns a
 	// GetModelResponse
@@ -393,8 +399,8 @@ type ModelServiceServer interface {
 	// PublishModel method receives a PublishModelRequest message and returns a
 	// PublishModelResponse
 	PublishModel(context.Context, *PublishModelRequest) (*PublishModelResponse, error)
-	// UnpublishModel method receives a UnpublishModelRequest message and returns a
-	// UnpublishModelResponse
+	// UnpublishModel method receives a UnpublishModelRequest message and returns
+	// a UnpublishModelResponse
 	UnpublishModel(context.Context, *UnpublishModelRequest) (*UnpublishModelResponse, error)
 	// ListModelInstance method receives a ListModelInstanceRequest message and
 	// returns a ListModelInstanceResponse
@@ -423,6 +429,8 @@ type ModelServiceServer interface {
 	// TriggerModelInstanceBinaryFileUpload method receives a
 	// TriggerModelInstanceBinaryFileUploadRequest message and returns a
 	// TriggerModelInstanceBinaryFileUploadResponse message.
+	//
+	// Endpoint: "POST/v1alpha/{name=models/*/instances/*}:trigger-multipart"
 	TriggerModelInstanceBinaryFileUpload(ModelService_TriggerModelInstanceBinaryFileUploadServer) error
 }
 
