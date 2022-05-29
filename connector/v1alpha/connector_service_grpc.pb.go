@@ -60,6 +60,16 @@ type ConnectorServiceClient interface {
 	// LookUpSourceConnector method receives a LookUpSourceConnectorRequest
 	// message and returns a LookUpSourceConnectorResponse
 	LookUpSourceConnector(ctx context.Context, in *LookUpSourceConnectorRequest, opts ...grpc.CallOption) (*LookUpSourceConnectorResponse, error)
+	// Connect a source connector.
+	// The "state" of the connector after connecting is "CONNECTED".
+	// ConnectSourceConnector can be called on SourceConnector in the state `DISCONNECTED`;
+	// SourceConnector in a different state (including `CONNECTED`) returns an error.
+	ConnectSourceConnector(ctx context.Context, in *ConnectSourceConnectorRequest, opts ...grpc.CallOption) (*ConnectSourceConnectorResponse, error)
+	// Disconnect a source connector.
+	// The "state" of the connector after disconnecting is "DISCONNECTED".
+	// DisconnectSourceConnector can be called on SourceConnector in the state `CONNECTED`;
+	// SourceConnector in a different state (including `DISCONNECTED`) returns an error.
+	DisconnectSourceConnector(ctx context.Context, in *DisconnectSourceConnectorRequest, opts ...grpc.CallOption) (*DisconnectSourceConnectorResponse, error)
 	// RenameDestinationConnector method receives a RenameSourceConnectorRequest message and returns
 	// a RenameSourceConnectorResponse message.
 	RenameSourceConnector(ctx context.Context, in *RenameSourceConnectorRequest, opts ...grpc.CallOption) (*RenameSourceConnectorResponse, error)
@@ -85,6 +95,16 @@ type ConnectorServiceClient interface {
 	// LookUpDestinationConnectorRequest message and returns a
 	// LookUpDestinationConnectorResponse
 	LookUpDestinationConnector(ctx context.Context, in *LookUpDestinationConnectorRequest, opts ...grpc.CallOption) (*LookUpDestinationConnectorResponse, error)
+	// Connect a destination connector.
+	// The "state" of the connector after connecting is "CONNECTED".
+	// ConnectDestinationConnector can be called on DestinationConnector in the state `DISCONNECTED`;
+	// DestinationConnector in a different state (including `CONNECTED`) returns an error.
+	ConnectDestinationConnector(ctx context.Context, in *ConnectDestinationConnectorRequest, opts ...grpc.CallOption) (*ConnectDestinationConnectorResponse, error)
+	// Disconnect a destination connector.
+	// The "state" of the connector after disconnecting is "DISCONNECTED".
+	// DisconnectDestinationConnector can be called on DestinationConnector in the state `CONNECTED`;
+	// DestinationConnector in a different state (including `DISCONNECTED`) returns an error.
+	DisconnectDestinationConnector(ctx context.Context, in *DisconnectDestinationConnectorRequest, opts ...grpc.CallOption) (*DisconnectDestinationConnectorResponse, error)
 	// RenameDestinationConnector method receives a RenameDestinationConnectorRequest message and returns
 	// a RenameDestinationConnectorResponse message.
 	RenameDestinationConnector(ctx context.Context, in *RenameDestinationConnectorRequest, opts ...grpc.CallOption) (*RenameDestinationConnectorResponse, error)
@@ -206,6 +226,24 @@ func (c *connectorServiceClient) LookUpSourceConnector(ctx context.Context, in *
 	return out, nil
 }
 
+func (c *connectorServiceClient) ConnectSourceConnector(ctx context.Context, in *ConnectSourceConnectorRequest, opts ...grpc.CallOption) (*ConnectSourceConnectorResponse, error) {
+	out := new(ConnectSourceConnectorResponse)
+	err := c.cc.Invoke(ctx, "/instill.connector.v1alpha.ConnectorService/ConnectSourceConnector", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *connectorServiceClient) DisconnectSourceConnector(ctx context.Context, in *DisconnectSourceConnectorRequest, opts ...grpc.CallOption) (*DisconnectSourceConnectorResponse, error) {
+	out := new(DisconnectSourceConnectorResponse)
+	err := c.cc.Invoke(ctx, "/instill.connector.v1alpha.ConnectorService/DisconnectSourceConnector", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *connectorServiceClient) RenameSourceConnector(ctx context.Context, in *RenameSourceConnectorRequest, opts ...grpc.CallOption) (*RenameSourceConnectorResponse, error) {
 	out := new(RenameSourceConnectorResponse)
 	err := c.cc.Invoke(ctx, "/instill.connector.v1alpha.ConnectorService/RenameSourceConnector", in, out, opts...)
@@ -269,6 +307,24 @@ func (c *connectorServiceClient) LookUpDestinationConnector(ctx context.Context,
 	return out, nil
 }
 
+func (c *connectorServiceClient) ConnectDestinationConnector(ctx context.Context, in *ConnectDestinationConnectorRequest, opts ...grpc.CallOption) (*ConnectDestinationConnectorResponse, error) {
+	out := new(ConnectDestinationConnectorResponse)
+	err := c.cc.Invoke(ctx, "/instill.connector.v1alpha.ConnectorService/ConnectDestinationConnector", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *connectorServiceClient) DisconnectDestinationConnector(ctx context.Context, in *DisconnectDestinationConnectorRequest, opts ...grpc.CallOption) (*DisconnectDestinationConnectorResponse, error) {
+	out := new(DisconnectDestinationConnectorResponse)
+	err := c.cc.Invoke(ctx, "/instill.connector.v1alpha.ConnectorService/DisconnectDestinationConnector", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *connectorServiceClient) RenameDestinationConnector(ctx context.Context, in *RenameDestinationConnectorRequest, opts ...grpc.CallOption) (*RenameDestinationConnectorResponse, error) {
 	out := new(RenameDestinationConnectorResponse)
 	err := c.cc.Invoke(ctx, "/instill.connector.v1alpha.ConnectorService/RenameDestinationConnector", in, out, opts...)
@@ -324,6 +380,16 @@ type ConnectorServiceServer interface {
 	// LookUpSourceConnector method receives a LookUpSourceConnectorRequest
 	// message and returns a LookUpSourceConnectorResponse
 	LookUpSourceConnector(context.Context, *LookUpSourceConnectorRequest) (*LookUpSourceConnectorResponse, error)
+	// Connect a source connector.
+	// The "state" of the connector after connecting is "CONNECTED".
+	// ConnectSourceConnector can be called on SourceConnector in the state `DISCONNECTED`;
+	// SourceConnector in a different state (including `CONNECTED`) returns an error.
+	ConnectSourceConnector(context.Context, *ConnectSourceConnectorRequest) (*ConnectSourceConnectorResponse, error)
+	// Disconnect a source connector.
+	// The "state" of the connector after disconnecting is "DISCONNECTED".
+	// DisconnectSourceConnector can be called on SourceConnector in the state `CONNECTED`;
+	// SourceConnector in a different state (including `DISCONNECTED`) returns an error.
+	DisconnectSourceConnector(context.Context, *DisconnectSourceConnectorRequest) (*DisconnectSourceConnectorResponse, error)
 	// RenameDestinationConnector method receives a RenameSourceConnectorRequest message and returns
 	// a RenameSourceConnectorResponse message.
 	RenameSourceConnector(context.Context, *RenameSourceConnectorRequest) (*RenameSourceConnectorResponse, error)
@@ -349,6 +415,16 @@ type ConnectorServiceServer interface {
 	// LookUpDestinationConnectorRequest message and returns a
 	// LookUpDestinationConnectorResponse
 	LookUpDestinationConnector(context.Context, *LookUpDestinationConnectorRequest) (*LookUpDestinationConnectorResponse, error)
+	// Connect a destination connector.
+	// The "state" of the connector after connecting is "CONNECTED".
+	// ConnectDestinationConnector can be called on DestinationConnector in the state `DISCONNECTED`;
+	// DestinationConnector in a different state (including `CONNECTED`) returns an error.
+	ConnectDestinationConnector(context.Context, *ConnectDestinationConnectorRequest) (*ConnectDestinationConnectorResponse, error)
+	// Disconnect a destination connector.
+	// The "state" of the connector after disconnecting is "DISCONNECTED".
+	// DisconnectDestinationConnector can be called on DestinationConnector in the state `CONNECTED`;
+	// DestinationConnector in a different state (including `DISCONNECTED`) returns an error.
+	DisconnectDestinationConnector(context.Context, *DisconnectDestinationConnectorRequest) (*DisconnectDestinationConnectorResponse, error)
 	// RenameDestinationConnector method receives a RenameDestinationConnectorRequest message and returns
 	// a RenameDestinationConnectorResponse message.
 	RenameDestinationConnector(context.Context, *RenameDestinationConnectorRequest) (*RenameDestinationConnectorResponse, error)
@@ -394,6 +470,12 @@ func (UnimplementedConnectorServiceServer) DeleteSourceConnector(context.Context
 func (UnimplementedConnectorServiceServer) LookUpSourceConnector(context.Context, *LookUpSourceConnectorRequest) (*LookUpSourceConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LookUpSourceConnector not implemented")
 }
+func (UnimplementedConnectorServiceServer) ConnectSourceConnector(context.Context, *ConnectSourceConnectorRequest) (*ConnectSourceConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConnectSourceConnector not implemented")
+}
+func (UnimplementedConnectorServiceServer) DisconnectSourceConnector(context.Context, *DisconnectSourceConnectorRequest) (*DisconnectSourceConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DisconnectSourceConnector not implemented")
+}
 func (UnimplementedConnectorServiceServer) RenameSourceConnector(context.Context, *RenameSourceConnectorRequest) (*RenameSourceConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RenameSourceConnector not implemented")
 }
@@ -414,6 +496,12 @@ func (UnimplementedConnectorServiceServer) DeleteDestinationConnector(context.Co
 }
 func (UnimplementedConnectorServiceServer) LookUpDestinationConnector(context.Context, *LookUpDestinationConnectorRequest) (*LookUpDestinationConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LookUpDestinationConnector not implemented")
+}
+func (UnimplementedConnectorServiceServer) ConnectDestinationConnector(context.Context, *ConnectDestinationConnectorRequest) (*ConnectDestinationConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConnectDestinationConnector not implemented")
+}
+func (UnimplementedConnectorServiceServer) DisconnectDestinationConnector(context.Context, *DisconnectDestinationConnectorRequest) (*DisconnectDestinationConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DisconnectDestinationConnector not implemented")
 }
 func (UnimplementedConnectorServiceServer) RenameDestinationConnector(context.Context, *RenameDestinationConnectorRequest) (*RenameDestinationConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RenameDestinationConnector not implemented")
@@ -646,6 +734,42 @@ func _ConnectorService_LookUpSourceConnector_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ConnectorService_ConnectSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ConnectSourceConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConnectorServiceServer).ConnectSourceConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/instill.connector.v1alpha.ConnectorService/ConnectSourceConnector",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConnectorServiceServer).ConnectSourceConnector(ctx, req.(*ConnectSourceConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ConnectorService_DisconnectSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DisconnectSourceConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConnectorServiceServer).DisconnectSourceConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/instill.connector.v1alpha.ConnectorService/DisconnectSourceConnector",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConnectorServiceServer).DisconnectSourceConnector(ctx, req.(*DisconnectSourceConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ConnectorService_RenameSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RenameSourceConnectorRequest)
 	if err := dec(in); err != nil {
@@ -772,6 +896,42 @@ func _ConnectorService_LookUpDestinationConnector_Handler(srv interface{}, ctx c
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ConnectorService_ConnectDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ConnectDestinationConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConnectorServiceServer).ConnectDestinationConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/instill.connector.v1alpha.ConnectorService/ConnectDestinationConnector",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConnectorServiceServer).ConnectDestinationConnector(ctx, req.(*ConnectDestinationConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ConnectorService_DisconnectDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DisconnectDestinationConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConnectorServiceServer).DisconnectDestinationConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/instill.connector.v1alpha.ConnectorService/DisconnectDestinationConnector",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConnectorServiceServer).DisconnectDestinationConnector(ctx, req.(*DisconnectDestinationConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ConnectorService_RenameDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RenameDestinationConnectorRequest)
 	if err := dec(in); err != nil {
@@ -846,6 +1006,14 @@ var ConnectorService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ConnectorService_LookUpSourceConnector_Handler,
 		},
 		{
+			MethodName: "ConnectSourceConnector",
+			Handler:    _ConnectorService_ConnectSourceConnector_Handler,
+		},
+		{
+			MethodName: "DisconnectSourceConnector",
+			Handler:    _ConnectorService_DisconnectSourceConnector_Handler,
+		},
+		{
 			MethodName: "RenameSourceConnector",
 			Handler:    _ConnectorService_RenameSourceConnector_Handler,
 		},
@@ -872,6 +1040,14 @@ var ConnectorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "LookUpDestinationConnector",
 			Handler:    _ConnectorService_LookUpDestinationConnector_Handler,
+		},
+		{
+			MethodName: "ConnectDestinationConnector",
+			Handler:    _ConnectorService_ConnectDestinationConnector_Handler,
+		},
+		{
+			MethodName: "DisconnectDestinationConnector",
+			Handler:    _ConnectorService_DisconnectDestinationConnector_Handler,
 		},
 		{
 			MethodName: "RenameDestinationConnector",

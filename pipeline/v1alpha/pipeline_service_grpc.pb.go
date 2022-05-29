@@ -45,14 +45,14 @@ type PipelineServiceClient interface {
 	// a LookUpPipelineResponse
 	LookUpPipeline(ctx context.Context, in *LookUpPipelineRequest, opts ...grpc.CallOption) (*LookUpPipelineResponse, error)
 	// Activate a pipeline.
-	// The `state` of the pipeline after activating is `ACTIVE`.
-	// ActivatePipeline` can be called on Pipelines in the state `INACTIVE`;
-	// Pipelines in a different state (including `ACTIVE`) returns an error.
+	// The "state" of the pipeline after activating is "ACTIVE".
+	// ActivatePipeline can be called on Pipelines in the state "INACTIVE";
+	// Pipelines in a different state (including "ACTIVE") returns an error.
 	ActivatePipeline(ctx context.Context, in *ActivatePipelineRequest, opts ...grpc.CallOption) (*ActivatePipelineResponse, error)
 	// Deactivate a pipeline.
-	// The `state` of the pipeline after inactivating is `INACTIVE`.
-	// DeactivatePipeline` can be called on Pipelines in the state `ACTIVE`;
-	// Pipelines in a different state (including `INACTIVE`) returns an error.
+	// The "state" of the pipeline after inactivating is "INACTIVE".
+	// DeactivatePipeline can be called on Pipelines in the state "ACTIVE";
+	// Pipelines in a different state (including "INACTIVE") returns an error.
 	DeactivatePipeline(ctx context.Context, in *DeactivatePipelineRequest, opts ...grpc.CallOption) (*DeactivatePipelineResponse, error)
 	// RenamePipeline method receives a RenamePipelineRequest message and returns
 	// a RenamePipelineResponse message.
@@ -249,14 +249,14 @@ type PipelineServiceServer interface {
 	// a LookUpPipelineResponse
 	LookUpPipeline(context.Context, *LookUpPipelineRequest) (*LookUpPipelineResponse, error)
 	// Activate a pipeline.
-	// The `state` of the pipeline after activating is `ACTIVE`.
-	// ActivatePipeline` can be called on Pipelines in the state `INACTIVE`;
-	// Pipelines in a different state (including `ACTIVE`) returns an error.
+	// The "state" of the pipeline after activating is "ACTIVE".
+	// ActivatePipeline can be called on Pipelines in the state "INACTIVE";
+	// Pipelines in a different state (including "ACTIVE") returns an error.
 	ActivatePipeline(context.Context, *ActivatePipelineRequest) (*ActivatePipelineResponse, error)
 	// Deactivate a pipeline.
-	// The `state` of the pipeline after inactivating is `INACTIVE`.
-	// DeactivatePipeline` can be called on Pipelines in the state `ACTIVE`;
-	// Pipelines in a different state (including `INACTIVE`) returns an error.
+	// The "state" of the pipeline after inactivating is "INACTIVE".
+	// DeactivatePipeline can be called on Pipelines in the state "ACTIVE";
+	// Pipelines in a different state (including "INACTIVE") returns an error.
 	DeactivatePipeline(context.Context, *DeactivatePipelineRequest) (*DeactivatePipelineResponse, error)
 	// RenamePipeline method receives a RenamePipelineRequest message and returns
 	// a RenamePipelineResponse message.
