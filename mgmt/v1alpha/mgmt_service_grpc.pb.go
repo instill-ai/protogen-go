@@ -56,7 +56,7 @@ func NewUserServiceClient(cc grpc.ClientConnInterface) UserServiceClient {
 
 func (c *userServiceClient) Liveness(ctx context.Context, in *LivenessRequest, opts ...grpc.CallOption) (*LivenessResponse, error) {
 	out := new(LivenessResponse)
-	err := c.cc.Invoke(ctx, "/instill.mgmt.v1alpha.UserService/Liveness", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/mgmt.v1alpha.UserService/Liveness", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -65,7 +65,7 @@ func (c *userServiceClient) Liveness(ctx context.Context, in *LivenessRequest, o
 
 func (c *userServiceClient) Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error) {
 	out := new(ReadinessResponse)
-	err := c.cc.Invoke(ctx, "/instill.mgmt.v1alpha.UserService/Readiness", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/mgmt.v1alpha.UserService/Readiness", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -74,7 +74,7 @@ func (c *userServiceClient) Readiness(ctx context.Context, in *ReadinessRequest,
 
 func (c *userServiceClient) ListUser(ctx context.Context, in *ListUserRequest, opts ...grpc.CallOption) (*ListUserResponse, error) {
 	out := new(ListUserResponse)
-	err := c.cc.Invoke(ctx, "/instill.mgmt.v1alpha.UserService/ListUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/mgmt.v1alpha.UserService/ListUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -83,7 +83,7 @@ func (c *userServiceClient) ListUser(ctx context.Context, in *ListUserRequest, o
 
 func (c *userServiceClient) CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error) {
 	out := new(CreateUserResponse)
-	err := c.cc.Invoke(ctx, "/instill.mgmt.v1alpha.UserService/CreateUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/mgmt.v1alpha.UserService/CreateUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -92,7 +92,7 @@ func (c *userServiceClient) CreateUser(ctx context.Context, in *CreateUserReques
 
 func (c *userServiceClient) GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserResponse, error) {
 	out := new(GetUserResponse)
-	err := c.cc.Invoke(ctx, "/instill.mgmt.v1alpha.UserService/GetUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/mgmt.v1alpha.UserService/GetUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -101,7 +101,7 @@ func (c *userServiceClient) GetUser(ctx context.Context, in *GetUserRequest, opt
 
 func (c *userServiceClient) UpdateUser(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*UpdateUserResponse, error) {
 	out := new(UpdateUserResponse)
-	err := c.cc.Invoke(ctx, "/instill.mgmt.v1alpha.UserService/UpdateUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/mgmt.v1alpha.UserService/UpdateUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -110,7 +110,7 @@ func (c *userServiceClient) UpdateUser(ctx context.Context, in *UpdateUserReques
 
 func (c *userServiceClient) DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error) {
 	out := new(DeleteUserResponse)
-	err := c.cc.Invoke(ctx, "/instill.mgmt.v1alpha.UserService/DeleteUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/mgmt.v1alpha.UserService/DeleteUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -119,7 +119,7 @@ func (c *userServiceClient) DeleteUser(ctx context.Context, in *DeleteUserReques
 
 func (c *userServiceClient) LookUpUser(ctx context.Context, in *LookUpUserRequest, opts ...grpc.CallOption) (*LookUpUserResponse, error) {
 	out := new(LookUpUserResponse)
-	err := c.cc.Invoke(ctx, "/instill.mgmt.v1alpha.UserService/LookUpUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/mgmt.v1alpha.UserService/LookUpUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -208,7 +208,7 @@ func _UserService_Liveness_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.mgmt.v1alpha.UserService/Liveness",
+		FullMethod: "/mgmt.v1alpha.UserService/Liveness",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).Liveness(ctx, req.(*LivenessRequest))
@@ -226,7 +226,7 @@ func _UserService_Readiness_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.mgmt.v1alpha.UserService/Readiness",
+		FullMethod: "/mgmt.v1alpha.UserService/Readiness",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).Readiness(ctx, req.(*ReadinessRequest))
@@ -244,7 +244,7 @@ func _UserService_ListUser_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.mgmt.v1alpha.UserService/ListUser",
+		FullMethod: "/mgmt.v1alpha.UserService/ListUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).ListUser(ctx, req.(*ListUserRequest))
@@ -262,7 +262,7 @@ func _UserService_CreateUser_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.mgmt.v1alpha.UserService/CreateUser",
+		FullMethod: "/mgmt.v1alpha.UserService/CreateUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).CreateUser(ctx, req.(*CreateUserRequest))
@@ -280,7 +280,7 @@ func _UserService_GetUser_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.mgmt.v1alpha.UserService/GetUser",
+		FullMethod: "/mgmt.v1alpha.UserService/GetUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).GetUser(ctx, req.(*GetUserRequest))
@@ -298,7 +298,7 @@ func _UserService_UpdateUser_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.mgmt.v1alpha.UserService/UpdateUser",
+		FullMethod: "/mgmt.v1alpha.UserService/UpdateUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).UpdateUser(ctx, req.(*UpdateUserRequest))
@@ -316,7 +316,7 @@ func _UserService_DeleteUser_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.mgmt.v1alpha.UserService/DeleteUser",
+		FullMethod: "/mgmt.v1alpha.UserService/DeleteUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).DeleteUser(ctx, req.(*DeleteUserRequest))
@@ -334,7 +334,7 @@ func _UserService_LookUpUser_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.mgmt.v1alpha.UserService/LookUpUser",
+		FullMethod: "/mgmt.v1alpha.UserService/LookUpUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).LookUpUser(ctx, req.(*LookUpUserRequest))
@@ -346,7 +346,7 @@ func _UserService_LookUpUser_Handler(srv interface{}, ctx context.Context, dec f
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var UserService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "instill.mgmt.v1alpha.UserService",
+	ServiceName: "mgmt.v1alpha.UserService",
 	HandlerType: (*UserServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -383,5 +383,5 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "instill/mgmt/v1alpha/mgmt_service.proto",
+	Metadata: "mgmt/v1alpha/mgmt_service.proto",
 }

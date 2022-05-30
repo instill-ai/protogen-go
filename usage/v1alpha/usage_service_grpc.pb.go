@@ -44,7 +44,7 @@ func NewUsageServiceClient(cc grpc.ClientConnInterface) UsageServiceClient {
 
 func (c *usageServiceClient) Liveness(ctx context.Context, in *LivenessRequest, opts ...grpc.CallOption) (*LivenessResponse, error) {
 	out := new(LivenessResponse)
-	err := c.cc.Invoke(ctx, "/instill.usage.v1alpha.UsageService/Liveness", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/usage.v1alpha.UsageService/Liveness", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -53,7 +53,7 @@ func (c *usageServiceClient) Liveness(ctx context.Context, in *LivenessRequest, 
 
 func (c *usageServiceClient) Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error) {
 	out := new(ReadinessResponse)
-	err := c.cc.Invoke(ctx, "/instill.usage.v1alpha.UsageService/Readiness", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/usage.v1alpha.UsageService/Readiness", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -62,7 +62,7 @@ func (c *usageServiceClient) Readiness(ctx context.Context, in *ReadinessRequest
 
 func (c *usageServiceClient) CreateSession(ctx context.Context, in *CreateSessionRequest, opts ...grpc.CallOption) (*CreateSessionResponse, error) {
 	out := new(CreateSessionResponse)
-	err := c.cc.Invoke(ctx, "/instill.usage.v1alpha.UsageService/CreateSession", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/usage.v1alpha.UsageService/CreateSession", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -71,7 +71,7 @@ func (c *usageServiceClient) CreateSession(ctx context.Context, in *CreateSessio
 
 func (c *usageServiceClient) SendReport(ctx context.Context, in *SendReportRequest, opts ...grpc.CallOption) (*SendReportResponse, error) {
 	out := new(SendReportResponse)
-	err := c.cc.Invoke(ctx, "/instill.usage.v1alpha.UsageService/SendReport", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/usage.v1alpha.UsageService/SendReport", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -136,7 +136,7 @@ func _UsageService_Liveness_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.usage.v1alpha.UsageService/Liveness",
+		FullMethod: "/usage.v1alpha.UsageService/Liveness",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UsageServiceServer).Liveness(ctx, req.(*LivenessRequest))
@@ -154,7 +154,7 @@ func _UsageService_Readiness_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.usage.v1alpha.UsageService/Readiness",
+		FullMethod: "/usage.v1alpha.UsageService/Readiness",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UsageServiceServer).Readiness(ctx, req.(*ReadinessRequest))
@@ -172,7 +172,7 @@ func _UsageService_CreateSession_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.usage.v1alpha.UsageService/CreateSession",
+		FullMethod: "/usage.v1alpha.UsageService/CreateSession",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UsageServiceServer).CreateSession(ctx, req.(*CreateSessionRequest))
@@ -190,7 +190,7 @@ func _UsageService_SendReport_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.usage.v1alpha.UsageService/SendReport",
+		FullMethod: "/usage.v1alpha.UsageService/SendReport",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UsageServiceServer).SendReport(ctx, req.(*SendReportRequest))
@@ -202,7 +202,7 @@ func _UsageService_SendReport_Handler(srv interface{}, ctx context.Context, dec 
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var UsageService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "instill.usage.v1alpha.UsageService",
+	ServiceName: "usage.v1alpha.UsageService",
 	HandlerType: (*UsageServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -223,5 +223,5 @@ var UsageService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "instill/usage/v1alpha/usage_service.proto",
+	Metadata: "usage/v1alpha/usage_service.proto",
 }

@@ -106,7 +106,7 @@ func NewModelServiceClient(cc grpc.ClientConnInterface) ModelServiceClient {
 
 func (c *modelServiceClient) Liveness(ctx context.Context, in *LivenessRequest, opts ...grpc.CallOption) (*LivenessResponse, error) {
 	out := new(LivenessResponse)
-	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/Liveness", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/model.v1alpha.ModelService/Liveness", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -115,7 +115,7 @@ func (c *modelServiceClient) Liveness(ctx context.Context, in *LivenessRequest, 
 
 func (c *modelServiceClient) Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error) {
 	out := new(ReadinessResponse)
-	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/Readiness", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/model.v1alpha.ModelService/Readiness", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -124,7 +124,7 @@ func (c *modelServiceClient) Readiness(ctx context.Context, in *ReadinessRequest
 
 func (c *modelServiceClient) ListModelDefinition(ctx context.Context, in *ListModelDefinitionRequest, opts ...grpc.CallOption) (*ListModelDefinitionResponse, error) {
 	out := new(ListModelDefinitionResponse)
-	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/ListModelDefinition", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/model.v1alpha.ModelService/ListModelDefinition", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -133,7 +133,7 @@ func (c *modelServiceClient) ListModelDefinition(ctx context.Context, in *ListMo
 
 func (c *modelServiceClient) GetModelDefinition(ctx context.Context, in *GetModelDefinitionRequest, opts ...grpc.CallOption) (*GetModelDefinitionResponse, error) {
 	out := new(GetModelDefinitionResponse)
-	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/GetModelDefinition", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/model.v1alpha.ModelService/GetModelDefinition", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -142,7 +142,7 @@ func (c *modelServiceClient) GetModelDefinition(ctx context.Context, in *GetMode
 
 func (c *modelServiceClient) ListModel(ctx context.Context, in *ListModelRequest, opts ...grpc.CallOption) (*ListModelResponse, error) {
 	out := new(ListModelResponse)
-	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/ListModel", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/model.v1alpha.ModelService/ListModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -151,7 +151,7 @@ func (c *modelServiceClient) ListModel(ctx context.Context, in *ListModelRequest
 
 func (c *modelServiceClient) CreateModel(ctx context.Context, in *CreateModelRequest, opts ...grpc.CallOption) (*CreateModelResponse, error) {
 	out := new(CreateModelResponse)
-	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/CreateModel", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/model.v1alpha.ModelService/CreateModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -159,7 +159,7 @@ func (c *modelServiceClient) CreateModel(ctx context.Context, in *CreateModelReq
 }
 
 func (c *modelServiceClient) CreateModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelService_CreateModelBinaryFileUploadClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ModelService_ServiceDesc.Streams[0], "/instill.model.v1alpha.ModelService/CreateModelBinaryFileUpload", opts...)
+	stream, err := c.cc.NewStream(ctx, &ModelService_ServiceDesc.Streams[0], "/model.v1alpha.ModelService/CreateModelBinaryFileUpload", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -194,7 +194,7 @@ func (x *modelServiceCreateModelBinaryFileUploadClient) CloseAndRecv() (*CreateM
 
 func (c *modelServiceClient) GetModel(ctx context.Context, in *GetModelRequest, opts ...grpc.CallOption) (*GetModelResponse, error) {
 	out := new(GetModelResponse)
-	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/GetModel", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/model.v1alpha.ModelService/GetModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -203,7 +203,7 @@ func (c *modelServiceClient) GetModel(ctx context.Context, in *GetModelRequest, 
 
 func (c *modelServiceClient) UpdateModel(ctx context.Context, in *UpdateModelRequest, opts ...grpc.CallOption) (*UpdateModelResponse, error) {
 	out := new(UpdateModelResponse)
-	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/UpdateModel", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/model.v1alpha.ModelService/UpdateModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -212,7 +212,7 @@ func (c *modelServiceClient) UpdateModel(ctx context.Context, in *UpdateModelReq
 
 func (c *modelServiceClient) DeleteModel(ctx context.Context, in *DeleteModelRequest, opts ...grpc.CallOption) (*DeleteModelResponse, error) {
 	out := new(DeleteModelResponse)
-	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/DeleteModel", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/model.v1alpha.ModelService/DeleteModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -221,7 +221,7 @@ func (c *modelServiceClient) DeleteModel(ctx context.Context, in *DeleteModelReq
 
 func (c *modelServiceClient) LookUpModel(ctx context.Context, in *LookUpModelRequest, opts ...grpc.CallOption) (*LookUpModelResponse, error) {
 	out := new(LookUpModelResponse)
-	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/LookUpModel", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/model.v1alpha.ModelService/LookUpModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -230,7 +230,7 @@ func (c *modelServiceClient) LookUpModel(ctx context.Context, in *LookUpModelReq
 
 func (c *modelServiceClient) RenameModel(ctx context.Context, in *RenameModelRequest, opts ...grpc.CallOption) (*RenameModelResponse, error) {
 	out := new(RenameModelResponse)
-	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/RenameModel", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/model.v1alpha.ModelService/RenameModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -239,7 +239,7 @@ func (c *modelServiceClient) RenameModel(ctx context.Context, in *RenameModelReq
 
 func (c *modelServiceClient) PublishModel(ctx context.Context, in *PublishModelRequest, opts ...grpc.CallOption) (*PublishModelResponse, error) {
 	out := new(PublishModelResponse)
-	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/PublishModel", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/model.v1alpha.ModelService/PublishModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -248,7 +248,7 @@ func (c *modelServiceClient) PublishModel(ctx context.Context, in *PublishModelR
 
 func (c *modelServiceClient) UnpublishModel(ctx context.Context, in *UnpublishModelRequest, opts ...grpc.CallOption) (*UnpublishModelResponse, error) {
 	out := new(UnpublishModelResponse)
-	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/UnpublishModel", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/model.v1alpha.ModelService/UnpublishModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -257,7 +257,7 @@ func (c *modelServiceClient) UnpublishModel(ctx context.Context, in *UnpublishMo
 
 func (c *modelServiceClient) ListModelInstance(ctx context.Context, in *ListModelInstanceRequest, opts ...grpc.CallOption) (*ListModelInstanceResponse, error) {
 	out := new(ListModelInstanceResponse)
-	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/ListModelInstance", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/model.v1alpha.ModelService/ListModelInstance", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -266,7 +266,7 @@ func (c *modelServiceClient) ListModelInstance(ctx context.Context, in *ListMode
 
 func (c *modelServiceClient) GetModelInstance(ctx context.Context, in *GetModelInstanceRequest, opts ...grpc.CallOption) (*GetModelInstanceResponse, error) {
 	out := new(GetModelInstanceResponse)
-	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/GetModelInstance", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/model.v1alpha.ModelService/GetModelInstance", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -275,7 +275,7 @@ func (c *modelServiceClient) GetModelInstance(ctx context.Context, in *GetModelI
 
 func (c *modelServiceClient) LookUpModelInstance(ctx context.Context, in *LookUpModelInstanceRequest, opts ...grpc.CallOption) (*LookUpModelInstanceResponse, error) {
 	out := new(LookUpModelInstanceResponse)
-	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/LookUpModelInstance", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/model.v1alpha.ModelService/LookUpModelInstance", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -284,7 +284,7 @@ func (c *modelServiceClient) LookUpModelInstance(ctx context.Context, in *LookUp
 
 func (c *modelServiceClient) DeployModelInstance(ctx context.Context, in *DeployModelInstanceRequest, opts ...grpc.CallOption) (*DeployModelInstanceResponse, error) {
 	out := new(DeployModelInstanceResponse)
-	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/DeployModelInstance", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/model.v1alpha.ModelService/DeployModelInstance", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -293,7 +293,7 @@ func (c *modelServiceClient) DeployModelInstance(ctx context.Context, in *Deploy
 
 func (c *modelServiceClient) UndeployModelInstance(ctx context.Context, in *UndeployModelInstanceRequest, opts ...grpc.CallOption) (*UndeployModelInstanceResponse, error) {
 	out := new(UndeployModelInstanceResponse)
-	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/UndeployModelInstance", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/model.v1alpha.ModelService/UndeployModelInstance", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -302,7 +302,7 @@ func (c *modelServiceClient) UndeployModelInstance(ctx context.Context, in *Unde
 
 func (c *modelServiceClient) GetModelInstanceCard(ctx context.Context, in *GetModelInstanceCardRequest, opts ...grpc.CallOption) (*GetModelInstanceCardResponse, error) {
 	out := new(GetModelInstanceCardResponse)
-	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/GetModelInstanceCard", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/model.v1alpha.ModelService/GetModelInstanceCard", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -311,7 +311,7 @@ func (c *modelServiceClient) GetModelInstanceCard(ctx context.Context, in *GetMo
 
 func (c *modelServiceClient) TriggerModelInstance(ctx context.Context, in *TriggerModelInstanceRequest, opts ...grpc.CallOption) (*TriggerModelInstanceResponse, error) {
 	out := new(TriggerModelInstanceResponse)
-	err := c.cc.Invoke(ctx, "/instill.model.v1alpha.ModelService/TriggerModelInstance", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/model.v1alpha.ModelService/TriggerModelInstance", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -319,7 +319,7 @@ func (c *modelServiceClient) TriggerModelInstance(ctx context.Context, in *Trigg
 }
 
 func (c *modelServiceClient) TriggerModelInstanceBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelService_TriggerModelInstanceBinaryFileUploadClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ModelService_ServiceDesc.Streams[1], "/instill.model.v1alpha.ModelService/TriggerModelInstanceBinaryFileUpload", opts...)
+	stream, err := c.cc.NewStream(ctx, &ModelService_ServiceDesc.Streams[1], "/model.v1alpha.ModelService/TriggerModelInstanceBinaryFileUpload", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -526,7 +526,7 @@ func _ModelService_Liveness_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.model.v1alpha.ModelService/Liveness",
+		FullMethod: "/model.v1alpha.ModelService/Liveness",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelServiceServer).Liveness(ctx, req.(*LivenessRequest))
@@ -544,7 +544,7 @@ func _ModelService_Readiness_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.model.v1alpha.ModelService/Readiness",
+		FullMethod: "/model.v1alpha.ModelService/Readiness",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelServiceServer).Readiness(ctx, req.(*ReadinessRequest))
@@ -562,7 +562,7 @@ func _ModelService_ListModelDefinition_Handler(srv interface{}, ctx context.Cont
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.model.v1alpha.ModelService/ListModelDefinition",
+		FullMethod: "/model.v1alpha.ModelService/ListModelDefinition",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelServiceServer).ListModelDefinition(ctx, req.(*ListModelDefinitionRequest))
@@ -580,7 +580,7 @@ func _ModelService_GetModelDefinition_Handler(srv interface{}, ctx context.Conte
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.model.v1alpha.ModelService/GetModelDefinition",
+		FullMethod: "/model.v1alpha.ModelService/GetModelDefinition",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelServiceServer).GetModelDefinition(ctx, req.(*GetModelDefinitionRequest))
@@ -598,7 +598,7 @@ func _ModelService_ListModel_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.model.v1alpha.ModelService/ListModel",
+		FullMethod: "/model.v1alpha.ModelService/ListModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelServiceServer).ListModel(ctx, req.(*ListModelRequest))
@@ -616,7 +616,7 @@ func _ModelService_CreateModel_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.model.v1alpha.ModelService/CreateModel",
+		FullMethod: "/model.v1alpha.ModelService/CreateModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelServiceServer).CreateModel(ctx, req.(*CreateModelRequest))
@@ -660,7 +660,7 @@ func _ModelService_GetModel_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.model.v1alpha.ModelService/GetModel",
+		FullMethod: "/model.v1alpha.ModelService/GetModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelServiceServer).GetModel(ctx, req.(*GetModelRequest))
@@ -678,7 +678,7 @@ func _ModelService_UpdateModel_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.model.v1alpha.ModelService/UpdateModel",
+		FullMethod: "/model.v1alpha.ModelService/UpdateModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelServiceServer).UpdateModel(ctx, req.(*UpdateModelRequest))
@@ -696,7 +696,7 @@ func _ModelService_DeleteModel_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.model.v1alpha.ModelService/DeleteModel",
+		FullMethod: "/model.v1alpha.ModelService/DeleteModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelServiceServer).DeleteModel(ctx, req.(*DeleteModelRequest))
@@ -714,7 +714,7 @@ func _ModelService_LookUpModel_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.model.v1alpha.ModelService/LookUpModel",
+		FullMethod: "/model.v1alpha.ModelService/LookUpModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelServiceServer).LookUpModel(ctx, req.(*LookUpModelRequest))
@@ -732,7 +732,7 @@ func _ModelService_RenameModel_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.model.v1alpha.ModelService/RenameModel",
+		FullMethod: "/model.v1alpha.ModelService/RenameModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelServiceServer).RenameModel(ctx, req.(*RenameModelRequest))
@@ -750,7 +750,7 @@ func _ModelService_PublishModel_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.model.v1alpha.ModelService/PublishModel",
+		FullMethod: "/model.v1alpha.ModelService/PublishModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelServiceServer).PublishModel(ctx, req.(*PublishModelRequest))
@@ -768,7 +768,7 @@ func _ModelService_UnpublishModel_Handler(srv interface{}, ctx context.Context, 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.model.v1alpha.ModelService/UnpublishModel",
+		FullMethod: "/model.v1alpha.ModelService/UnpublishModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelServiceServer).UnpublishModel(ctx, req.(*UnpublishModelRequest))
@@ -786,7 +786,7 @@ func _ModelService_ListModelInstance_Handler(srv interface{}, ctx context.Contex
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.model.v1alpha.ModelService/ListModelInstance",
+		FullMethod: "/model.v1alpha.ModelService/ListModelInstance",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelServiceServer).ListModelInstance(ctx, req.(*ListModelInstanceRequest))
@@ -804,7 +804,7 @@ func _ModelService_GetModelInstance_Handler(srv interface{}, ctx context.Context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.model.v1alpha.ModelService/GetModelInstance",
+		FullMethod: "/model.v1alpha.ModelService/GetModelInstance",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelServiceServer).GetModelInstance(ctx, req.(*GetModelInstanceRequest))
@@ -822,7 +822,7 @@ func _ModelService_LookUpModelInstance_Handler(srv interface{}, ctx context.Cont
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.model.v1alpha.ModelService/LookUpModelInstance",
+		FullMethod: "/model.v1alpha.ModelService/LookUpModelInstance",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelServiceServer).LookUpModelInstance(ctx, req.(*LookUpModelInstanceRequest))
@@ -840,7 +840,7 @@ func _ModelService_DeployModelInstance_Handler(srv interface{}, ctx context.Cont
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.model.v1alpha.ModelService/DeployModelInstance",
+		FullMethod: "/model.v1alpha.ModelService/DeployModelInstance",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelServiceServer).DeployModelInstance(ctx, req.(*DeployModelInstanceRequest))
@@ -858,7 +858,7 @@ func _ModelService_UndeployModelInstance_Handler(srv interface{}, ctx context.Co
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.model.v1alpha.ModelService/UndeployModelInstance",
+		FullMethod: "/model.v1alpha.ModelService/UndeployModelInstance",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelServiceServer).UndeployModelInstance(ctx, req.(*UndeployModelInstanceRequest))
@@ -876,7 +876,7 @@ func _ModelService_GetModelInstanceCard_Handler(srv interface{}, ctx context.Con
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.model.v1alpha.ModelService/GetModelInstanceCard",
+		FullMethod: "/model.v1alpha.ModelService/GetModelInstanceCard",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelServiceServer).GetModelInstanceCard(ctx, req.(*GetModelInstanceCardRequest))
@@ -894,7 +894,7 @@ func _ModelService_TriggerModelInstance_Handler(srv interface{}, ctx context.Con
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.model.v1alpha.ModelService/TriggerModelInstance",
+		FullMethod: "/model.v1alpha.ModelService/TriggerModelInstance",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelServiceServer).TriggerModelInstance(ctx, req.(*TriggerModelInstanceRequest))
@@ -932,7 +932,7 @@ func (x *modelServiceTriggerModelInstanceBinaryFileUploadServer) Recv() (*Trigge
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ModelService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "instill.model.v1alpha.ModelService",
+	ServiceName: "model.v1alpha.ModelService",
 	HandlerType: (*ModelServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -1028,5 +1028,5 @@ var ModelService_ServiceDesc = grpc.ServiceDesc{
 			ClientStreams: true,
 		},
 	},
-	Metadata: "instill/model/v1alpha/model_service.proto",
+	Metadata: "model/v1alpha/model_service.proto",
 }

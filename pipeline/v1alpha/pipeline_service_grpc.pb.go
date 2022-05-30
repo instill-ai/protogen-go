@@ -78,7 +78,7 @@ func NewPipelineServiceClient(cc grpc.ClientConnInterface) PipelineServiceClient
 
 func (c *pipelineServiceClient) Liveness(ctx context.Context, in *LivenessRequest, opts ...grpc.CallOption) (*LivenessResponse, error) {
 	out := new(LivenessResponse)
-	err := c.cc.Invoke(ctx, "/instill.pipeline.v1alpha.PipelineService/Liveness", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pipeline.v1alpha.PipelineService/Liveness", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -87,7 +87,7 @@ func (c *pipelineServiceClient) Liveness(ctx context.Context, in *LivenessReques
 
 func (c *pipelineServiceClient) Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error) {
 	out := new(ReadinessResponse)
-	err := c.cc.Invoke(ctx, "/instill.pipeline.v1alpha.PipelineService/Readiness", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pipeline.v1alpha.PipelineService/Readiness", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -96,7 +96,7 @@ func (c *pipelineServiceClient) Readiness(ctx context.Context, in *ReadinessRequ
 
 func (c *pipelineServiceClient) CreatePipeline(ctx context.Context, in *CreatePipelineRequest, opts ...grpc.CallOption) (*CreatePipelineResponse, error) {
 	out := new(CreatePipelineResponse)
-	err := c.cc.Invoke(ctx, "/instill.pipeline.v1alpha.PipelineService/CreatePipeline", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pipeline.v1alpha.PipelineService/CreatePipeline", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -105,7 +105,7 @@ func (c *pipelineServiceClient) CreatePipeline(ctx context.Context, in *CreatePi
 
 func (c *pipelineServiceClient) ListPipeline(ctx context.Context, in *ListPipelineRequest, opts ...grpc.CallOption) (*ListPipelineResponse, error) {
 	out := new(ListPipelineResponse)
-	err := c.cc.Invoke(ctx, "/instill.pipeline.v1alpha.PipelineService/ListPipeline", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pipeline.v1alpha.PipelineService/ListPipeline", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -114,7 +114,7 @@ func (c *pipelineServiceClient) ListPipeline(ctx context.Context, in *ListPipeli
 
 func (c *pipelineServiceClient) GetPipeline(ctx context.Context, in *GetPipelineRequest, opts ...grpc.CallOption) (*GetPipelineResponse, error) {
 	out := new(GetPipelineResponse)
-	err := c.cc.Invoke(ctx, "/instill.pipeline.v1alpha.PipelineService/GetPipeline", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pipeline.v1alpha.PipelineService/GetPipeline", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -123,7 +123,7 @@ func (c *pipelineServiceClient) GetPipeline(ctx context.Context, in *GetPipeline
 
 func (c *pipelineServiceClient) UpdatePipeline(ctx context.Context, in *UpdatePipelineRequest, opts ...grpc.CallOption) (*UpdatePipelineResponse, error) {
 	out := new(UpdatePipelineResponse)
-	err := c.cc.Invoke(ctx, "/instill.pipeline.v1alpha.PipelineService/UpdatePipeline", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pipeline.v1alpha.PipelineService/UpdatePipeline", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -132,7 +132,7 @@ func (c *pipelineServiceClient) UpdatePipeline(ctx context.Context, in *UpdatePi
 
 func (c *pipelineServiceClient) DeletePipeline(ctx context.Context, in *DeletePipelineRequest, opts ...grpc.CallOption) (*DeletePipelineResponse, error) {
 	out := new(DeletePipelineResponse)
-	err := c.cc.Invoke(ctx, "/instill.pipeline.v1alpha.PipelineService/DeletePipeline", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pipeline.v1alpha.PipelineService/DeletePipeline", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -141,7 +141,7 @@ func (c *pipelineServiceClient) DeletePipeline(ctx context.Context, in *DeletePi
 
 func (c *pipelineServiceClient) LookUpPipeline(ctx context.Context, in *LookUpPipelineRequest, opts ...grpc.CallOption) (*LookUpPipelineResponse, error) {
 	out := new(LookUpPipelineResponse)
-	err := c.cc.Invoke(ctx, "/instill.pipeline.v1alpha.PipelineService/LookUpPipeline", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pipeline.v1alpha.PipelineService/LookUpPipeline", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -150,7 +150,7 @@ func (c *pipelineServiceClient) LookUpPipeline(ctx context.Context, in *LookUpPi
 
 func (c *pipelineServiceClient) ActivatePipeline(ctx context.Context, in *ActivatePipelineRequest, opts ...grpc.CallOption) (*ActivatePipelineResponse, error) {
 	out := new(ActivatePipelineResponse)
-	err := c.cc.Invoke(ctx, "/instill.pipeline.v1alpha.PipelineService/ActivatePipeline", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pipeline.v1alpha.PipelineService/ActivatePipeline", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -159,7 +159,7 @@ func (c *pipelineServiceClient) ActivatePipeline(ctx context.Context, in *Activa
 
 func (c *pipelineServiceClient) DeactivatePipeline(ctx context.Context, in *DeactivatePipelineRequest, opts ...grpc.CallOption) (*DeactivatePipelineResponse, error) {
 	out := new(DeactivatePipelineResponse)
-	err := c.cc.Invoke(ctx, "/instill.pipeline.v1alpha.PipelineService/DeactivatePipeline", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pipeline.v1alpha.PipelineService/DeactivatePipeline", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -168,7 +168,7 @@ func (c *pipelineServiceClient) DeactivatePipeline(ctx context.Context, in *Deac
 
 func (c *pipelineServiceClient) RenamePipeline(ctx context.Context, in *RenamePipelineRequest, opts ...grpc.CallOption) (*RenamePipelineResponse, error) {
 	out := new(RenamePipelineResponse)
-	err := c.cc.Invoke(ctx, "/instill.pipeline.v1alpha.PipelineService/RenamePipeline", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pipeline.v1alpha.PipelineService/RenamePipeline", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -177,7 +177,7 @@ func (c *pipelineServiceClient) RenamePipeline(ctx context.Context, in *RenamePi
 
 func (c *pipelineServiceClient) TriggerPipeline(ctx context.Context, in *TriggerPipelineRequest, opts ...grpc.CallOption) (*TriggerPipelineResponse, error) {
 	out := new(TriggerPipelineResponse)
-	err := c.cc.Invoke(ctx, "/instill.pipeline.v1alpha.PipelineService/TriggerPipeline", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pipeline.v1alpha.PipelineService/TriggerPipeline", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -185,7 +185,7 @@ func (c *pipelineServiceClient) TriggerPipeline(ctx context.Context, in *Trigger
 }
 
 func (c *pipelineServiceClient) TriggerPipelineBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (PipelineService_TriggerPipelineBinaryFileUploadClient, error) {
-	stream, err := c.cc.NewStream(ctx, &PipelineService_ServiceDesc.Streams[0], "/instill.pipeline.v1alpha.PipelineService/TriggerPipelineBinaryFileUpload", opts...)
+	stream, err := c.cc.NewStream(ctx, &PipelineService_ServiceDesc.Streams[0], "/pipeline.v1alpha.PipelineService/TriggerPipelineBinaryFileUpload", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -337,7 +337,7 @@ func _PipelineService_Liveness_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.pipeline.v1alpha.PipelineService/Liveness",
+		FullMethod: "/pipeline.v1alpha.PipelineService/Liveness",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PipelineServiceServer).Liveness(ctx, req.(*LivenessRequest))
@@ -355,7 +355,7 @@ func _PipelineService_Readiness_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.pipeline.v1alpha.PipelineService/Readiness",
+		FullMethod: "/pipeline.v1alpha.PipelineService/Readiness",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PipelineServiceServer).Readiness(ctx, req.(*ReadinessRequest))
@@ -373,7 +373,7 @@ func _PipelineService_CreatePipeline_Handler(srv interface{}, ctx context.Contex
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.pipeline.v1alpha.PipelineService/CreatePipeline",
+		FullMethod: "/pipeline.v1alpha.PipelineService/CreatePipeline",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PipelineServiceServer).CreatePipeline(ctx, req.(*CreatePipelineRequest))
@@ -391,7 +391,7 @@ func _PipelineService_ListPipeline_Handler(srv interface{}, ctx context.Context,
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.pipeline.v1alpha.PipelineService/ListPipeline",
+		FullMethod: "/pipeline.v1alpha.PipelineService/ListPipeline",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PipelineServiceServer).ListPipeline(ctx, req.(*ListPipelineRequest))
@@ -409,7 +409,7 @@ func _PipelineService_GetPipeline_Handler(srv interface{}, ctx context.Context, 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.pipeline.v1alpha.PipelineService/GetPipeline",
+		FullMethod: "/pipeline.v1alpha.PipelineService/GetPipeline",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PipelineServiceServer).GetPipeline(ctx, req.(*GetPipelineRequest))
@@ -427,7 +427,7 @@ func _PipelineService_UpdatePipeline_Handler(srv interface{}, ctx context.Contex
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.pipeline.v1alpha.PipelineService/UpdatePipeline",
+		FullMethod: "/pipeline.v1alpha.PipelineService/UpdatePipeline",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PipelineServiceServer).UpdatePipeline(ctx, req.(*UpdatePipelineRequest))
@@ -445,7 +445,7 @@ func _PipelineService_DeletePipeline_Handler(srv interface{}, ctx context.Contex
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.pipeline.v1alpha.PipelineService/DeletePipeline",
+		FullMethod: "/pipeline.v1alpha.PipelineService/DeletePipeline",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PipelineServiceServer).DeletePipeline(ctx, req.(*DeletePipelineRequest))
@@ -463,7 +463,7 @@ func _PipelineService_LookUpPipeline_Handler(srv interface{}, ctx context.Contex
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.pipeline.v1alpha.PipelineService/LookUpPipeline",
+		FullMethod: "/pipeline.v1alpha.PipelineService/LookUpPipeline",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PipelineServiceServer).LookUpPipeline(ctx, req.(*LookUpPipelineRequest))
@@ -481,7 +481,7 @@ func _PipelineService_ActivatePipeline_Handler(srv interface{}, ctx context.Cont
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.pipeline.v1alpha.PipelineService/ActivatePipeline",
+		FullMethod: "/pipeline.v1alpha.PipelineService/ActivatePipeline",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PipelineServiceServer).ActivatePipeline(ctx, req.(*ActivatePipelineRequest))
@@ -499,7 +499,7 @@ func _PipelineService_DeactivatePipeline_Handler(srv interface{}, ctx context.Co
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.pipeline.v1alpha.PipelineService/DeactivatePipeline",
+		FullMethod: "/pipeline.v1alpha.PipelineService/DeactivatePipeline",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PipelineServiceServer).DeactivatePipeline(ctx, req.(*DeactivatePipelineRequest))
@@ -517,7 +517,7 @@ func _PipelineService_RenamePipeline_Handler(srv interface{}, ctx context.Contex
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.pipeline.v1alpha.PipelineService/RenamePipeline",
+		FullMethod: "/pipeline.v1alpha.PipelineService/RenamePipeline",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PipelineServiceServer).RenamePipeline(ctx, req.(*RenamePipelineRequest))
@@ -535,7 +535,7 @@ func _PipelineService_TriggerPipeline_Handler(srv interface{}, ctx context.Conte
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/instill.pipeline.v1alpha.PipelineService/TriggerPipeline",
+		FullMethod: "/pipeline.v1alpha.PipelineService/TriggerPipeline",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PipelineServiceServer).TriggerPipeline(ctx, req.(*TriggerPipelineRequest))
@@ -573,7 +573,7 @@ func (x *pipelineServiceTriggerPipelineBinaryFileUploadServer) Recv() (*TriggerP
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var PipelineService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "instill.pipeline.v1alpha.PipelineService",
+	ServiceName: "pipeline.v1alpha.PipelineService",
 	HandlerType: (*PipelineServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -632,5 +632,5 @@ var PipelineService_ServiceDesc = grpc.ServiceDesc{
 			ClientStreams: true,
 		},
 	},
-	Metadata: "instill/pipeline/v1alpha/pipeline_service.proto",
+	Metadata: "pipeline/v1alpha/pipeline_service.proto",
 }
