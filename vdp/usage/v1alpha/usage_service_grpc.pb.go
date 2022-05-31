@@ -29,9 +29,9 @@ type UsageServiceClient interface {
 	// CreateSession method receives a CreateSessionRequest message and returns
 	// a CreateSessionResponse message.
 	CreateSession(ctx context.Context, in *CreateSessionRequest, opts ...grpc.CallOption) (*CreateSessionResponse, error)
-	// SendReport method receives a SendReportRequest message and returns a
-	// SendReportResponse message.
-	SendReport(ctx context.Context, in *SendReportRequest, opts ...grpc.CallOption) (*SendReportResponse, error)
+	// SendSessionReport method receives a SendSessionReportRequest message and
+	// returns a SendSessionReportResponse message.
+	SendSessionReport(ctx context.Context, in *SendSessionReportRequest, opts ...grpc.CallOption) (*SendSessionReportResponse, error)
 }
 
 type usageServiceClient struct {
@@ -69,9 +69,9 @@ func (c *usageServiceClient) CreateSession(ctx context.Context, in *CreateSessio
 	return out, nil
 }
 
-func (c *usageServiceClient) SendReport(ctx context.Context, in *SendReportRequest, opts ...grpc.CallOption) (*SendReportResponse, error) {
-	out := new(SendReportResponse)
-	err := c.cc.Invoke(ctx, "/vdp.usage.v1alpha.UsageService/SendReport", in, out, opts...)
+func (c *usageServiceClient) SendSessionReport(ctx context.Context, in *SendSessionReportRequest, opts ...grpc.CallOption) (*SendSessionReportResponse, error) {
+	out := new(SendSessionReportResponse)
+	err := c.cc.Invoke(ctx, "/vdp.usage.v1alpha.UsageService/SendSessionReport", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -93,9 +93,9 @@ type UsageServiceServer interface {
 	// CreateSession method receives a CreateSessionRequest message and returns
 	// a CreateSessionResponse message.
 	CreateSession(context.Context, *CreateSessionRequest) (*CreateSessionResponse, error)
-	// SendReport method receives a SendReportRequest message and returns a
-	// SendReportResponse message.
-	SendReport(context.Context, *SendReportRequest) (*SendReportResponse, error)
+	// SendSessionReport method receives a SendSessionReportRequest message and
+	// returns a SendSessionReportResponse message.
+	SendSessionReport(context.Context, *SendSessionReportRequest) (*SendSessionReportResponse, error)
 }
 
 // UnimplementedUsageServiceServer should be embedded to have forward compatible implementations.
@@ -111,8 +111,8 @@ func (UnimplementedUsageServiceServer) Readiness(context.Context, *ReadinessRequ
 func (UnimplementedUsageServiceServer) CreateSession(context.Context, *CreateSessionRequest) (*CreateSessionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateSession not implemented")
 }
-func (UnimplementedUsageServiceServer) SendReport(context.Context, *SendReportRequest) (*SendReportResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SendReport not implemented")
+func (UnimplementedUsageServiceServer) SendSessionReport(context.Context, *SendSessionReportRequest) (*SendSessionReportResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendSessionReport not implemented")
 }
 
 // UnsafeUsageServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -180,20 +180,20 @@ func _UsageService_CreateSession_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UsageService_SendReport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SendReportRequest)
+func _UsageService_SendSessionReport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendSessionReportRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UsageServiceServer).SendReport(ctx, in)
+		return srv.(UsageServiceServer).SendSessionReport(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.usage.v1alpha.UsageService/SendReport",
+		FullMethod: "/vdp.usage.v1alpha.UsageService/SendSessionReport",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsageServiceServer).SendReport(ctx, req.(*SendReportRequest))
+		return srv.(UsageServiceServer).SendSessionReport(ctx, req.(*SendSessionReportRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -218,8 +218,8 @@ var UsageService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _UsageService_CreateSession_Handler,
 		},
 		{
-			MethodName: "SendReport",
-			Handler:    _UsageService_SendReport_Handler,
+			MethodName: "SendSessionReport",
+			Handler:    _UsageService_SendSessionReport_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
