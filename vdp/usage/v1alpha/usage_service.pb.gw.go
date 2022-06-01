@@ -278,7 +278,7 @@ func RegisterUsageServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.usage.v1alpha.UsageService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/health/mgmt"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.usage.v1alpha.UsageService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/health/usage"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -434,7 +434,7 @@ func RegisterUsageServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.usage.v1alpha.UsageService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/health/mgmt"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.usage.v1alpha.UsageService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/health/usage"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -519,7 +519,7 @@ func RegisterUsageServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 var (
 	pattern_UsageService_Liveness_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "__liveness"}, ""))
 
-	pattern_UsageService_Liveness_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "health", "mgmt"}, ""))
+	pattern_UsageService_Liveness_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "health", "usage"}, ""))
 
 	pattern_UsageService_Readiness_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "__readiness"}, ""))
 
