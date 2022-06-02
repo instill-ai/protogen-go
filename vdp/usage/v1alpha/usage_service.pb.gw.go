@@ -181,25 +181,8 @@ func request_UsageService_SendSessionReport_0(ctx context.Context, marshaler run
 	if berr != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.Report); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["report.session.name"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "report.session.name")
-	}
-
-	err = runtime.PopulateFieldFromPath(&protoReq, "report.session.name", val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "report.session.name", err)
 	}
 
 	msg, err := client.SendSessionReport(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -215,25 +198,8 @@ func local_request_UsageService_SendSessionReport_0(ctx context.Context, marshal
 	if berr != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.Report); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["report.session.name"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "report.session.name")
-	}
-
-	err = runtime.PopulateFieldFromPath(&protoReq, "report.session.name", val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "report.session.name", err)
 	}
 
 	msg, err := server.SendSessionReport(ctx, &protoReq)
@@ -350,7 +316,7 @@ func RegisterUsageServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.usage.v1alpha.UsageService/SendSessionReport", runtime.WithHTTPPathPattern("/v1alpha/{report.session.name=sessions/*}:sendReport"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.usage.v1alpha.UsageService/SendSessionReport", runtime.WithHTTPPathPattern("/v1alpha/reports"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -497,7 +463,7 @@ func RegisterUsageServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.usage.v1alpha.UsageService/SendSessionReport", runtime.WithHTTPPathPattern("/v1alpha/{report.session.name=sessions/*}:sendReport"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.usage.v1alpha.UsageService/SendSessionReport", runtime.WithHTTPPathPattern("/v1alpha/reports"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -525,7 +491,7 @@ var (
 
 	pattern_UsageService_CreateSession_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "sessions"}, ""))
 
-	pattern_UsageService_SendSessionReport_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "sessions", "report.session.name"}, "sendReport"))
+	pattern_UsageService_SendSessionReport_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "reports"}, ""))
 )
 
 var (
