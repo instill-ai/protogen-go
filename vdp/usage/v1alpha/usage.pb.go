@@ -98,7 +98,7 @@ type Session struct {
 	Uid string `protobuf:"bytes,2,opt,name=uid,proto3" json:"uid,omitempty"`
 	// name of the service to collect data from
 	Service Session_Service `protobuf:"varint,3,opt,name=service,proto3,enum=vdp.usage.v1alpha.Session_Service" json:"service,omitempty"`
-	// Session edition, e.g., 'local-ce', 'k8s-ce' and 'ee'
+	// Session edition, allowed values include: 'local-ce' and 'local-ce:dev'
 	Edition string `protobuf:"bytes,4,opt,name=edition,proto3" json:"edition,omitempty"`
 	// Version of the service
 	Version string `protobuf:"bytes,5,opt,name=version,proto3" json:"version,omitempty"`
