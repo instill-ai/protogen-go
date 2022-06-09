@@ -135,7 +135,7 @@ func (ModelInstance_Task) EnumDescriptor() ([]byte, []int) {
 	return file_vdp_model_v1alpha_model_proto_rawDescGZIP(), []int{1, 0}
 }
 
-// State enumerates the lifecycling state of a model instance
+// State enumerates a model instance state
 type ModelInstance_State int32
 
 const (
@@ -491,7 +491,7 @@ func (x *ModelInstance) GetUpdateTime() *timestamppb.Timestamp {
 }
 
 // ModelInstanceCard represents the README card for a model instance. There
-// exists one one and exactly one README card per model instance.
+// exists one and exactly one README card per model instance.
 type ModelInstanceCard struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

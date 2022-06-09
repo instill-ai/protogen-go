@@ -72,9 +72,12 @@ type ConnectorServiceClient interface {
 	// `CONNECTED`; SourceConnector in a different state (including
 	// `DISCONNECTED`) returns an error.
 	DisconnectSourceConnector(ctx context.Context, in *DisconnectSourceConnectorRequest, opts ...grpc.CallOption) (*DisconnectSourceConnectorResponse, error)
-	// RenameDestinationConnector method receives a RenameSourceConnectorRequest
+	// RenameSourceConnector method receives a RenameSourceConnectorRequest
 	// message and returns a RenameSourceConnectorResponse message.
 	RenameSourceConnector(ctx context.Context, in *RenameSourceConnectorRequest, opts ...grpc.CallOption) (*RenameSourceConnectorResponse, error)
+	// ReadSourceConnector method receives a ReadSourceConnectorRequest
+	// message and returns a ReadSourceConnectorResponse message.
+	ReadSourceConnector(ctx context.Context, in *ReadSourceConnectorRequest, opts ...grpc.CallOption) (*ReadSourceConnectorResponse, error)
 	// CreateDestinationConnector method receives a
 	// CreateDestinationConnectorRequest message and returns a
 	// CreateDestinationConnectorResponse message.
@@ -113,6 +116,10 @@ type ConnectorServiceClient interface {
 	// RenameDestinationConnectorRequest message and returns a
 	// RenameDestinationConnectorResponse message.
 	RenameDestinationConnector(ctx context.Context, in *RenameDestinationConnectorRequest, opts ...grpc.CallOption) (*RenameDestinationConnectorResponse, error)
+	// WriteDestinationConnector method receives a
+	// WriteDestinationConnectorRequest message and returns a
+	// WriteDestinationConnectorResponse message.
+	WriteDestinationConnector(ctx context.Context, in *WriteDestinationConnectorRequest, opts ...grpc.CallOption) (*WriteDestinationConnectorResponse, error)
 }
 
 type connectorServiceClient struct {
@@ -258,6 +265,15 @@ func (c *connectorServiceClient) RenameSourceConnector(ctx context.Context, in *
 	return out, nil
 }
 
+func (c *connectorServiceClient) ReadSourceConnector(ctx context.Context, in *ReadSourceConnectorRequest, opts ...grpc.CallOption) (*ReadSourceConnectorResponse, error) {
+	out := new(ReadSourceConnectorResponse)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/ReadSourceConnector", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *connectorServiceClient) CreateDestinationConnector(ctx context.Context, in *CreateDestinationConnectorRequest, opts ...grpc.CallOption) (*CreateDestinationConnectorResponse, error) {
 	out := new(CreateDestinationConnectorResponse)
 	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/CreateDestinationConnector", in, out, opts...)
@@ -339,6 +355,15 @@ func (c *connectorServiceClient) RenameDestinationConnector(ctx context.Context,
 	return out, nil
 }
 
+func (c *connectorServiceClient) WriteDestinationConnector(ctx context.Context, in *WriteDestinationConnectorRequest, opts ...grpc.CallOption) (*WriteDestinationConnectorResponse, error) {
+	out := new(WriteDestinationConnectorResponse)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/WriteDestinationConnector", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ConnectorServiceServer is the server API for ConnectorService service.
 // All implementations should embed UnimplementedConnectorServiceServer
 // for forward compatibility
@@ -397,9 +422,12 @@ type ConnectorServiceServer interface {
 	// `CONNECTED`; SourceConnector in a different state (including
 	// `DISCONNECTED`) returns an error.
 	DisconnectSourceConnector(context.Context, *DisconnectSourceConnectorRequest) (*DisconnectSourceConnectorResponse, error)
-	// RenameDestinationConnector method receives a RenameSourceConnectorRequest
+	// RenameSourceConnector method receives a RenameSourceConnectorRequest
 	// message and returns a RenameSourceConnectorResponse message.
 	RenameSourceConnector(context.Context, *RenameSourceConnectorRequest) (*RenameSourceConnectorResponse, error)
+	// ReadSourceConnector method receives a ReadSourceConnectorRequest
+	// message and returns a ReadSourceConnectorResponse message.
+	ReadSourceConnector(context.Context, *ReadSourceConnectorRequest) (*ReadSourceConnectorResponse, error)
 	// CreateDestinationConnector method receives a
 	// CreateDestinationConnectorRequest message and returns a
 	// CreateDestinationConnectorResponse message.
@@ -438,6 +466,10 @@ type ConnectorServiceServer interface {
 	// RenameDestinationConnectorRequest message and returns a
 	// RenameDestinationConnectorResponse message.
 	RenameDestinationConnector(context.Context, *RenameDestinationConnectorRequest) (*RenameDestinationConnectorResponse, error)
+	// WriteDestinationConnector method receives a
+	// WriteDestinationConnectorRequest message and returns a
+	// WriteDestinationConnectorResponse message.
+	WriteDestinationConnector(context.Context, *WriteDestinationConnectorRequest) (*WriteDestinationConnectorResponse, error)
 }
 
 // UnimplementedConnectorServiceServer should be embedded to have forward compatible implementations.
@@ -489,6 +521,9 @@ func (UnimplementedConnectorServiceServer) DisconnectSourceConnector(context.Con
 func (UnimplementedConnectorServiceServer) RenameSourceConnector(context.Context, *RenameSourceConnectorRequest) (*RenameSourceConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RenameSourceConnector not implemented")
 }
+func (UnimplementedConnectorServiceServer) ReadSourceConnector(context.Context, *ReadSourceConnectorRequest) (*ReadSourceConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReadSourceConnector not implemented")
+}
 func (UnimplementedConnectorServiceServer) CreateDestinationConnector(context.Context, *CreateDestinationConnectorRequest) (*CreateDestinationConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDestinationConnector not implemented")
 }
@@ -515,6 +550,9 @@ func (UnimplementedConnectorServiceServer) DisconnectDestinationConnector(contex
 }
 func (UnimplementedConnectorServiceServer) RenameDestinationConnector(context.Context, *RenameDestinationConnectorRequest) (*RenameDestinationConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RenameDestinationConnector not implemented")
+}
+func (UnimplementedConnectorServiceServer) WriteDestinationConnector(context.Context, *WriteDestinationConnectorRequest) (*WriteDestinationConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WriteDestinationConnector not implemented")
 }
 
 // UnsafeConnectorServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -798,6 +836,24 @@ func _ConnectorService_RenameSourceConnector_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ConnectorService_ReadSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadSourceConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConnectorServiceServer).ReadSourceConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/vdp.connector.v1alpha.ConnectorService/ReadSourceConnector",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConnectorServiceServer).ReadSourceConnector(ctx, req.(*ReadSourceConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ConnectorService_CreateDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateDestinationConnectorRequest)
 	if err := dec(in); err != nil {
@@ -960,6 +1016,24 @@ func _ConnectorService_RenameDestinationConnector_Handler(srv interface{}, ctx c
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ConnectorService_WriteDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WriteDestinationConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConnectorServiceServer).WriteDestinationConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/vdp.connector.v1alpha.ConnectorService/WriteDestinationConnector",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConnectorServiceServer).WriteDestinationConnector(ctx, req.(*WriteDestinationConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ConnectorService_ServiceDesc is the grpc.ServiceDesc for ConnectorService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1028,6 +1102,10 @@ var ConnectorService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ConnectorService_RenameSourceConnector_Handler,
 		},
 		{
+			MethodName: "ReadSourceConnector",
+			Handler:    _ConnectorService_ReadSourceConnector_Handler,
+		},
+		{
 			MethodName: "CreateDestinationConnector",
 			Handler:    _ConnectorService_CreateDestinationConnector_Handler,
 		},
@@ -1062,6 +1140,10 @@ var ConnectorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RenameDestinationConnector",
 			Handler:    _ConnectorService_RenameDestinationConnector_Handler,
+		},
+		{
+			MethodName: "WriteDestinationConnector",
+			Handler:    _ConnectorService_WriteDestinationConnector_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
