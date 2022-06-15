@@ -88,6 +88,12 @@ type ModelServiceClient interface {
 	// TriggerModelInstance method receives a TriggerModelInstanceRequest message
 	// and returns a TriggerModelInstanceResponse message.
 	TriggerModelInstance(ctx context.Context, in *TriggerModelInstanceRequest, opts ...grpc.CallOption) (*TriggerModelInstanceResponse, error)
+	// TriggerModelInstanceBinaryFileUpload method receives a
+	// TriggerModelInstanceBinaryFileUploadRequest message and returns a
+	// TriggerModelInstanceBinaryFileUploadResponse message.
+	//
+	// Endpoint: "POST/v1alpha/{name=models/*/instances/*}:trigger-multipart"
+	TriggerModelInstanceBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelService_TriggerModelInstanceBinaryFileUploadClient, error)
 	// TestModelInstance method receives a TestModelInstanceRequest message
 	// and returns a TestModelInstanceResponse message.
 	TestModelInstance(ctx context.Context, in *TestModelInstanceRequest, opts ...grpc.CallOption) (*TestModelInstanceResponse, error)
@@ -321,6 +327,40 @@ func (c *modelServiceClient) TriggerModelInstance(ctx context.Context, in *Trigg
 	return out, nil
 }
 
+func (c *modelServiceClient) TriggerModelInstanceBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelService_TriggerModelInstanceBinaryFileUploadClient, error) {
+	stream, err := c.cc.NewStream(ctx, &ModelService_ServiceDesc.Streams[1], "/vdp.model.v1alpha.ModelService/TriggerModelInstanceBinaryFileUpload", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &modelServiceTriggerModelInstanceBinaryFileUploadClient{stream}
+	return x, nil
+}
+
+type ModelService_TriggerModelInstanceBinaryFileUploadClient interface {
+	Send(*TriggerModelInstanceBinaryFileUploadRequest) error
+	CloseAndRecv() (*TriggerModelInstanceBinaryFileUploadResponse, error)
+	grpc.ClientStream
+}
+
+type modelServiceTriggerModelInstanceBinaryFileUploadClient struct {
+	grpc.ClientStream
+}
+
+func (x *modelServiceTriggerModelInstanceBinaryFileUploadClient) Send(m *TriggerModelInstanceBinaryFileUploadRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *modelServiceTriggerModelInstanceBinaryFileUploadClient) CloseAndRecv() (*TriggerModelInstanceBinaryFileUploadResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(TriggerModelInstanceBinaryFileUploadResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 func (c *modelServiceClient) TestModelInstance(ctx context.Context, in *TestModelInstanceRequest, opts ...grpc.CallOption) (*TestModelInstanceResponse, error) {
 	out := new(TestModelInstanceResponse)
 	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/TestModelInstance", in, out, opts...)
@@ -331,7 +371,7 @@ func (c *modelServiceClient) TestModelInstance(ctx context.Context, in *TestMode
 }
 
 func (c *modelServiceClient) TestModelInstanceBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelService_TestModelInstanceBinaryFileUploadClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ModelService_ServiceDesc.Streams[1], "/vdp.model.v1alpha.ModelService/TestModelInstanceBinaryFileUpload", opts...)
+	stream, err := c.cc.NewStream(ctx, &ModelService_ServiceDesc.Streams[2], "/vdp.model.v1alpha.ModelService/TestModelInstanceBinaryFileUpload", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -438,6 +478,12 @@ type ModelServiceServer interface {
 	// TriggerModelInstance method receives a TriggerModelInstanceRequest message
 	// and returns a TriggerModelInstanceResponse message.
 	TriggerModelInstance(context.Context, *TriggerModelInstanceRequest) (*TriggerModelInstanceResponse, error)
+	// TriggerModelInstanceBinaryFileUpload method receives a
+	// TriggerModelInstanceBinaryFileUploadRequest message and returns a
+	// TriggerModelInstanceBinaryFileUploadResponse message.
+	//
+	// Endpoint: "POST/v1alpha/{name=models/*/instances/*}:trigger-multipart"
+	TriggerModelInstanceBinaryFileUpload(ModelService_TriggerModelInstanceBinaryFileUploadServer) error
 	// TestModelInstance method receives a TestModelInstanceRequest message
 	// and returns a TestModelInstanceResponse message.
 	TestModelInstance(context.Context, *TestModelInstanceRequest) (*TestModelInstanceResponse, error)
@@ -515,6 +561,9 @@ func (UnimplementedModelServiceServer) GetModelInstanceCard(context.Context, *Ge
 }
 func (UnimplementedModelServiceServer) TriggerModelInstance(context.Context, *TriggerModelInstanceRequest) (*TriggerModelInstanceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerModelInstance not implemented")
+}
+func (UnimplementedModelServiceServer) TriggerModelInstanceBinaryFileUpload(ModelService_TriggerModelInstanceBinaryFileUploadServer) error {
+	return status.Errorf(codes.Unimplemented, "method TriggerModelInstanceBinaryFileUpload not implemented")
 }
 func (UnimplementedModelServiceServer) TestModelInstance(context.Context, *TestModelInstanceRequest) (*TestModelInstanceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TestModelInstance not implemented")
@@ -920,6 +969,32 @@ func _ModelService_TriggerModelInstance_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ModelService_TriggerModelInstanceBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ModelServiceServer).TriggerModelInstanceBinaryFileUpload(&modelServiceTriggerModelInstanceBinaryFileUploadServer{stream})
+}
+
+type ModelService_TriggerModelInstanceBinaryFileUploadServer interface {
+	SendAndClose(*TriggerModelInstanceBinaryFileUploadResponse) error
+	Recv() (*TriggerModelInstanceBinaryFileUploadRequest, error)
+	grpc.ServerStream
+}
+
+type modelServiceTriggerModelInstanceBinaryFileUploadServer struct {
+	grpc.ServerStream
+}
+
+func (x *modelServiceTriggerModelInstanceBinaryFileUploadServer) SendAndClose(m *TriggerModelInstanceBinaryFileUploadResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *modelServiceTriggerModelInstanceBinaryFileUploadServer) Recv() (*TriggerModelInstanceBinaryFileUploadRequest, error) {
+	m := new(TriggerModelInstanceBinaryFileUploadRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 func _ModelService_TestModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(TestModelInstanceRequest)
 	if err := dec(in); err != nil {
@@ -1060,6 +1135,11 @@ var ModelService_ServiceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "CreateModelBinaryFileUpload",
 			Handler:       _ModelService_CreateModelBinaryFileUpload_Handler,
+			ClientStreams: true,
+		},
+		{
+			StreamName:    "TriggerModelInstanceBinaryFileUpload",
+			Handler:       _ModelService_TriggerModelInstanceBinaryFileUpload_Handler,
 			ClientStreams: true,
 		},
 		{

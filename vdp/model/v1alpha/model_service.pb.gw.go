@@ -1321,6 +1321,50 @@ func local_request_ModelService_TriggerModelInstance_0(ctx context.Context, mars
 
 }
 
+func request_ModelService_TriggerModelInstanceBinaryFileUpload_0(ctx context.Context, marshaler runtime.Marshaler, client ModelServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var metadata runtime.ServerMetadata
+	stream, err := client.TriggerModelInstanceBinaryFileUpload(ctx)
+	if err != nil {
+		grpclog.Infof("Failed to start streaming: %v", err)
+		return nil, metadata, err
+	}
+	dec := marshaler.NewDecoder(req.Body)
+	for {
+		var protoReq TriggerModelInstanceBinaryFileUploadRequest
+		err = dec.Decode(&protoReq)
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			grpclog.Infof("Failed to decode request: %v", err)
+			return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+		}
+		if err = stream.Send(&protoReq); err != nil {
+			if err == io.EOF {
+				break
+			}
+			grpclog.Infof("Failed to send request: %v", err)
+			return nil, metadata, err
+		}
+	}
+
+	if err := stream.CloseSend(); err != nil {
+		grpclog.Infof("Failed to terminate client stream: %v", err)
+		return nil, metadata, err
+	}
+	header, err := stream.Header()
+	if err != nil {
+		grpclog.Infof("Failed to get header from client: %v", err)
+		return nil, metadata, err
+	}
+	metadata.HeaderMD = header
+
+	msg, err := stream.CloseAndRecv()
+	metadata.TrailerMD = stream.Trailer()
+	return msg, metadata, err
+
+}
+
 func request_ModelService_TestModelInstance_0(ctx context.Context, marshaler runtime.Marshaler, client ModelServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq TestModelInstanceRequest
 	var metadata runtime.ServerMetadata
@@ -1950,6 +1994,13 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 
 	})
 
+	mux.Handle("POST", pattern_ModelService_TriggerModelInstanceBinaryFileUpload_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
+		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+		return
+	})
+
 	mux.Handle("POST", pattern_ModelService_TestModelInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -2484,6 +2535,27 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 
 	})
 
+	mux.Handle("POST", pattern_ModelService_TriggerModelInstanceBinaryFileUpload_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/TriggerModelInstanceBinaryFileUpload", runtime.WithHTTPPathPattern("/vdp.model.v1alpha.ModelService/TriggerModelInstanceBinaryFileUpload"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ModelService_TriggerModelInstanceBinaryFileUpload_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_ModelService_TriggerModelInstanceBinaryFileUpload_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	mux.Handle("POST", pattern_ModelService_TestModelInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -2574,6 +2646,8 @@ var (
 
 	pattern_ModelService_TriggerModelInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "models", "instances", "name"}, "trigger"))
 
+	pattern_ModelService_TriggerModelInstanceBinaryFileUpload_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"vdp.model.v1alpha.ModelService", "TriggerModelInstanceBinaryFileUpload"}, ""))
+
 	pattern_ModelService_TestModelInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "models", "instances", "name"}, "test"))
 
 	pattern_ModelService_TestModelInstanceBinaryFileUpload_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"vdp.model.v1alpha.ModelService", "TestModelInstanceBinaryFileUpload"}, ""))
@@ -2623,6 +2697,8 @@ var (
 	forward_ModelService_GetModelInstanceCard_0 = runtime.ForwardResponseMessage
 
 	forward_ModelService_TriggerModelInstance_0 = runtime.ForwardResponseMessage
+
+	forward_ModelService_TriggerModelInstanceBinaryFileUpload_0 = runtime.ForwardResponseMessage
 
 	forward_ModelService_TestModelInstance_0 = runtime.ForwardResponseMessage
 
