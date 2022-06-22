@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.0-alpha](https://github.com/instill-ai/protogen-go/compare/v0.1.5-alpha...v0.2.0-alpha) (2022-06-22)
+
+
+### Bug Fixes
+
+* fix duplicate proto files ([88e5ae2](https://github.com/instill-ai/protogen-go/commit/88e5ae2321bba9d747178b017d8b83531cf799d2))
+
+
+### Miscellaneous Chores
+
+* release 0.2.0-alpha ([cd54eec](https://github.com/instill-ai/protogen-go/commit/cd54eec6af65278de6bbb42b5db46be81212299c))
+
 ### [0.1.5-alpha](https://github.com/instill-ai/protogen-go/compare/v0.1.4-alpha...v0.1.5-alpha) (2022-03-22)
 
 
