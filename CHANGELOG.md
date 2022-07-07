@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1-alpha](https://github.com/instill-ai/protogen-go/compare/v0.2.0-alpha...v0.2.1-alpha) (2022-07-07)
+
+
+### Miscellaneous Chores
+
+* release 0.2.1-alpha ([bf4e28a](https://github.com/instill-ai/protogen-go/commit/bf4e28a24933e088a5783b214990d4c534052ac1))
+
 ## [0.2.0-alpha](https://github.com/instill-ai/protogen-go/compare/v0.1.5-alpha...v0.2.0-alpha) (2022-06-22)
 
 
