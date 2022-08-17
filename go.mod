@@ -2,6 +2,10 @@ module github.com/instill-ai/protogen-go
 
 go 1.18
 
+retract (
+	v0.3.0-alpha
+)
+
 require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.7.2
 	google.golang.org/genproto v0.0.0-20220107163113-42d7afdf6368
