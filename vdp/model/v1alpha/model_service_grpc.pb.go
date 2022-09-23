@@ -92,7 +92,7 @@ type ModelServiceClient interface {
 	// TriggerModelInstanceBinaryFileUploadRequest message and returns a
 	// TriggerModelInstanceBinaryFileUploadResponse message.
 	//
-	// Endpoint: "POST/v1alpha/{name=models/*/instances/*}:trigger-multipart"
+	// Endpoint: "POST/v1alpha/{name=models/*/instances/*}/trigger-multipart"
 	TriggerModelInstanceBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelService_TriggerModelInstanceBinaryFileUploadClient, error)
 	// TestModelInstance method receives a TestModelInstanceRequest message
 	// and returns a TestModelInstanceResponse message.
@@ -101,7 +101,7 @@ type ModelServiceClient interface {
 	// TestModelInstanceBinaryFileUploadRequest message and returns a
 	// TestModelInstanceBinaryFileUploadResponse message.
 	//
-	// Endpoint: "POST/v1alpha/{name=models/*/instances/*}:test-multipart"
+	// Endpoint: "POST/v1alpha/{name=models/*/instances/*}/test-multipart"
 	TestModelInstanceBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelService_TestModelInstanceBinaryFileUploadClient, error)
 }
 
@@ -482,7 +482,7 @@ type ModelServiceServer interface {
 	// TriggerModelInstanceBinaryFileUploadRequest message and returns a
 	// TriggerModelInstanceBinaryFileUploadResponse message.
 	//
-	// Endpoint: "POST/v1alpha/{name=models/*/instances/*}:trigger-multipart"
+	// Endpoint: "POST/v1alpha/{name=models/*/instances/*}/trigger-multipart"
 	TriggerModelInstanceBinaryFileUpload(ModelService_TriggerModelInstanceBinaryFileUploadServer) error
 	// TestModelInstance method receives a TestModelInstanceRequest message
 	// and returns a TestModelInstanceResponse message.
@@ -491,7 +491,7 @@ type ModelServiceServer interface {
 	// TestModelInstanceBinaryFileUploadRequest message and returns a
 	// TestModelInstanceBinaryFileUploadResponse message.
 	//
-	// Endpoint: "POST/v1alpha/{name=models/*/instances/*}:test-multipart"
+	// Endpoint: "POST/v1alpha/{name=models/*/instances/*}/test-multipart"
 	TestModelInstanceBinaryFileUpload(ModelService_TestModelInstanceBinaryFileUploadServer) error
 }
 

@@ -64,7 +64,7 @@ type PipelineServiceClient interface {
 	// TriggerPipelineBinaryFileUploadRequest message and returns a
 	// TriggerPipelineBinaryFileUploadResponse message.
 	//
-	// Endpoint: "POST /v1alpha/{name=pipelines/*}:trigger-multipart"
+	// Endpoint: "POST /v1alpha/{name=pipelines/*}/trigger-multipart"
 	TriggerPipelineBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (PipelineService_TriggerPipelineBinaryFileUploadClient, error)
 }
 
@@ -268,7 +268,7 @@ type PipelineServiceServer interface {
 	// TriggerPipelineBinaryFileUploadRequest message and returns a
 	// TriggerPipelineBinaryFileUploadResponse message.
 	//
-	// Endpoint: "POST /v1alpha/{name=pipelines/*}:trigger-multipart"
+	// Endpoint: "POST /v1alpha/{name=pipelines/*}/trigger-multipart"
 	TriggerPipelineBinaryFileUpload(PipelineService_TriggerPipelineBinaryFileUploadServer) error
 }
 

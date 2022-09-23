@@ -1022,7 +1022,7 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1alpha.PipelineService/LookUpPipeline", runtime.WithHTTPPathPattern("/v1alpha/{permalink=pipelines/*}:lookUp"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1alpha.PipelineService/LookUpPipeline", runtime.WithHTTPPathPattern("/v1alpha/{permalink=pipelines/*}/lookUp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1046,7 +1046,7 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1alpha.PipelineService/ActivatePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}:activate"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1alpha.PipelineService/ActivatePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}/activate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1070,7 +1070,7 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1alpha.PipelineService/DeactivatePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}:deactivate"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1alpha.PipelineService/DeactivatePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}/deactivate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1094,7 +1094,7 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1alpha.PipelineService/RenamePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}:rename"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1alpha.PipelineService/RenamePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}/rename"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1118,7 +1118,7 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1alpha.PipelineService/TriggerPipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}:trigger"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1alpha.PipelineService/TriggerPipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}/trigger"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1356,7 +1356,7 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1alpha.PipelineService/LookUpPipeline", runtime.WithHTTPPathPattern("/v1alpha/{permalink=pipelines/*}:lookUp"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1alpha.PipelineService/LookUpPipeline", runtime.WithHTTPPathPattern("/v1alpha/{permalink=pipelines/*}/lookUp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1377,7 +1377,7 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1alpha.PipelineService/ActivatePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}:activate"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1alpha.PipelineService/ActivatePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}/activate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1398,7 +1398,7 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1alpha.PipelineService/DeactivatePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}:deactivate"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1alpha.PipelineService/DeactivatePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}/deactivate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1419,7 +1419,7 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1alpha.PipelineService/RenamePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}:rename"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1alpha.PipelineService/RenamePipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}/rename"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1440,7 +1440,7 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1alpha.PipelineService/TriggerPipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}:trigger"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1alpha.PipelineService/TriggerPipeline", runtime.WithHTTPPathPattern("/v1alpha/{name=pipelines/*}/trigger"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1497,15 +1497,15 @@ var (
 
 	pattern_PipelineService_DeletePipeline_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "pipelines", "name"}, ""))
 
-	pattern_PipelineService_LookUpPipeline_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "pipelines", "permalink"}, "lookUp"))
+	pattern_PipelineService_LookUpPipeline_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "pipelines", "permalink", "lookUp"}, ""))
 
-	pattern_PipelineService_ActivatePipeline_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "pipelines", "name"}, "activate"))
+	pattern_PipelineService_ActivatePipeline_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "pipelines", "name", "activate"}, ""))
 
-	pattern_PipelineService_DeactivatePipeline_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "pipelines", "name"}, "deactivate"))
+	pattern_PipelineService_DeactivatePipeline_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "pipelines", "name", "deactivate"}, ""))
 
-	pattern_PipelineService_RenamePipeline_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "pipelines", "name"}, "rename"))
+	pattern_PipelineService_RenamePipeline_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "pipelines", "name", "rename"}, ""))
 
-	pattern_PipelineService_TriggerPipeline_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "pipelines", "name"}, "trigger"))
+	pattern_PipelineService_TriggerPipeline_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "pipelines", "name", "trigger"}, ""))
 
 	pattern_PipelineService_TriggerPipelineBinaryFileUpload_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"vdp.pipeline.v1alpha.PipelineService", "TriggerPipelineBinaryFileUpload"}, ""))
 )

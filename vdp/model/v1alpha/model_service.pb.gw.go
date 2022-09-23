@@ -1737,7 +1737,7 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/LookUpModel", runtime.WithHTTPPathPattern("/v1alpha/{permalink=models/*}:lookUp"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/LookUpModel", runtime.WithHTTPPathPattern("/v1alpha/{permalink=models/*}/lookUp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1761,7 +1761,7 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/RenameModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}:rename"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/RenameModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}/rename"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1785,7 +1785,7 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/PublishModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}:publish"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/PublishModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1809,7 +1809,7 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/UnpublishModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}:unpublish"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/UnpublishModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}/unpublish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1881,7 +1881,7 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/LookUpModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{permalink=models/*/instances/*}:lookUp"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/LookUpModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{permalink=models/*/instances/*}/lookUp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1905,7 +1905,7 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/DeployModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}:deploy"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/DeployModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}/deploy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1929,7 +1929,7 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/UndeployModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}:undeploy"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/UndeployModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}/undeploy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1977,7 +1977,7 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/TriggerModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}:trigger"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/TriggerModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}/trigger"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2008,7 +2008,7 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/TestModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}:test"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/TestModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}/test"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2309,7 +2309,7 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/LookUpModel", runtime.WithHTTPPathPattern("/v1alpha/{permalink=models/*}:lookUp"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/LookUpModel", runtime.WithHTTPPathPattern("/v1alpha/{permalink=models/*}/lookUp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2330,7 +2330,7 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/RenameModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}:rename"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/RenameModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}/rename"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2351,7 +2351,7 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/PublishModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}:publish"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/PublishModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2372,7 +2372,7 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/UnpublishModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}:unpublish"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/UnpublishModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}/unpublish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2435,7 +2435,7 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/LookUpModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{permalink=models/*/instances/*}:lookUp"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/LookUpModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{permalink=models/*/instances/*}/lookUp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2456,7 +2456,7 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/DeployModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}:deploy"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/DeployModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}/deploy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2477,7 +2477,7 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/UndeployModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}:undeploy"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/UndeployModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}/undeploy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2519,7 +2519,7 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/TriggerModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}:trigger"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/TriggerModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}/trigger"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2561,7 +2561,7 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/TestModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}:test"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelService/TestModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}/test"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2624,31 +2624,31 @@ var (
 
 	pattern_ModelService_DeleteModel_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "models", "name"}, ""))
 
-	pattern_ModelService_LookUpModel_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "models", "permalink"}, "lookUp"))
+	pattern_ModelService_LookUpModel_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "models", "permalink", "lookUp"}, ""))
 
-	pattern_ModelService_RenameModel_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "models", "name"}, "rename"))
+	pattern_ModelService_RenameModel_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "models", "name", "rename"}, ""))
 
-	pattern_ModelService_PublishModel_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "models", "name"}, "publish"))
+	pattern_ModelService_PublishModel_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "models", "name", "publish"}, ""))
 
-	pattern_ModelService_UnpublishModel_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "models", "name"}, "unpublish"))
+	pattern_ModelService_UnpublishModel_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "models", "name", "unpublish"}, ""))
 
 	pattern_ModelService_ListModelInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "models", "parent", "instances"}, ""))
 
 	pattern_ModelService_GetModelInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "models", "instances", "name"}, ""))
 
-	pattern_ModelService_LookUpModelInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "models", "instances", "permalink"}, "lookUp"))
+	pattern_ModelService_LookUpModelInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "models", "instances", "permalink", "lookUp"}, ""))
 
-	pattern_ModelService_DeployModelInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "models", "instances", "name"}, "deploy"))
+	pattern_ModelService_DeployModelInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "models", "instances", "name", "deploy"}, ""))
 
-	pattern_ModelService_UndeployModelInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "models", "instances", "name"}, "undeploy"))
+	pattern_ModelService_UndeployModelInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "models", "instances", "name", "undeploy"}, ""))
 
 	pattern_ModelService_GetModelInstanceCard_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 4, 5, 5, 4}, []string{"v1alpha", "models", "instances", "readme", "name"}, ""))
 
-	pattern_ModelService_TriggerModelInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "models", "instances", "name"}, "trigger"))
+	pattern_ModelService_TriggerModelInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "models", "instances", "name", "trigger"}, ""))
 
 	pattern_ModelService_TriggerModelInstanceBinaryFileUpload_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"vdp.model.v1alpha.ModelService", "TriggerModelInstanceBinaryFileUpload"}, ""))
 
-	pattern_ModelService_TestModelInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "models", "instances", "name"}, "test"))
+	pattern_ModelService_TestModelInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "models", "instances", "name", "test"}, ""))
 
 	pattern_ModelService_TestModelInstanceBinaryFileUpload_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"vdp.model.v1alpha.ModelService", "TestModelInstanceBinaryFileUpload"}, ""))
 )

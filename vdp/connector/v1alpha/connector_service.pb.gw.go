@@ -1920,7 +1920,7 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/LookUpSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{permalink=source-connectors/*}:lookUp"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/LookUpSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{permalink=source-connectors/*}/lookUp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1944,7 +1944,7 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/ConnectSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}:connect"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/ConnectSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}/connect"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1968,7 +1968,7 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/DisconnectSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}:disconnect"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/DisconnectSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}/disconnect"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1992,7 +1992,7 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/RenameSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}:rename"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/RenameSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}/rename"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2016,7 +2016,7 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/ReadSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}:read"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/ReadSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}/read"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2160,7 +2160,7 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/LookUpDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{permalink=destination-connectors/*}:lookUp"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/LookUpDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{permalink=destination-connectors/*}/lookUp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2184,7 +2184,7 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/ConnectDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}:connect"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/ConnectDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}/connect"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2208,7 +2208,7 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/DisconnectDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}:disconnect"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/DisconnectDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}/disconnect"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2232,7 +2232,7 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/RenameDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}:rename"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/RenameDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}/rename"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2256,7 +2256,7 @@ func RegisterConnectorServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/WriteDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}:write"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/WriteDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}/write"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2571,7 +2571,7 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/LookUpSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{permalink=source-connectors/*}:lookUp"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/LookUpSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{permalink=source-connectors/*}/lookUp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2592,7 +2592,7 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/ConnectSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}:connect"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/ConnectSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}/connect"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2613,7 +2613,7 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/DisconnectSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}:disconnect"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/DisconnectSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}/disconnect"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2634,7 +2634,7 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/RenameSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}:rename"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/RenameSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}/rename"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2655,7 +2655,7 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/ReadSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}:read"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/ReadSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=source-connectors/*}/read"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2781,7 +2781,7 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/LookUpDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{permalink=destination-connectors/*}:lookUp"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/LookUpDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{permalink=destination-connectors/*}/lookUp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2802,7 +2802,7 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/ConnectDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}:connect"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/ConnectDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}/connect"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2823,7 +2823,7 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/DisconnectDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}:disconnect"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/DisconnectDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}/disconnect"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2844,7 +2844,7 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/RenameDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}:rename"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/RenameDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}/rename"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2865,7 +2865,7 @@ func RegisterConnectorServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/WriteDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}:write"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorService/WriteDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/{name=destination-connectors/*}/write"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2909,15 +2909,15 @@ var (
 
 	pattern_ConnectorService_DeleteSourceConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "source-connectors", "name"}, ""))
 
-	pattern_ConnectorService_LookUpSourceConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "source-connectors", "permalink"}, "lookUp"))
+	pattern_ConnectorService_LookUpSourceConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "source-connectors", "permalink", "lookUp"}, ""))
 
-	pattern_ConnectorService_ConnectSourceConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "source-connectors", "name"}, "connect"))
+	pattern_ConnectorService_ConnectSourceConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "source-connectors", "name", "connect"}, ""))
 
-	pattern_ConnectorService_DisconnectSourceConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "source-connectors", "name"}, "disconnect"))
+	pattern_ConnectorService_DisconnectSourceConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "source-connectors", "name", "disconnect"}, ""))
 
-	pattern_ConnectorService_RenameSourceConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "source-connectors", "name"}, "rename"))
+	pattern_ConnectorService_RenameSourceConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "source-connectors", "name", "rename"}, ""))
 
-	pattern_ConnectorService_ReadSourceConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "source-connectors", "name"}, "read"))
+	pattern_ConnectorService_ReadSourceConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "source-connectors", "name", "read"}, ""))
 
 	pattern_ConnectorService_CreateDestinationConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "destination-connectors"}, ""))
 
@@ -2929,15 +2929,15 @@ var (
 
 	pattern_ConnectorService_DeleteDestinationConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "destination-connectors", "name"}, ""))
 
-	pattern_ConnectorService_LookUpDestinationConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "destination-connectors", "permalink"}, "lookUp"))
+	pattern_ConnectorService_LookUpDestinationConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "destination-connectors", "permalink", "lookUp"}, ""))
 
-	pattern_ConnectorService_ConnectDestinationConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "destination-connectors", "name"}, "connect"))
+	pattern_ConnectorService_ConnectDestinationConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "destination-connectors", "name", "connect"}, ""))
 
-	pattern_ConnectorService_DisconnectDestinationConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "destination-connectors", "name"}, "disconnect"))
+	pattern_ConnectorService_DisconnectDestinationConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "destination-connectors", "name", "disconnect"}, ""))
 
-	pattern_ConnectorService_RenameDestinationConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "destination-connectors", "name"}, "rename"))
+	pattern_ConnectorService_RenameDestinationConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "destination-connectors", "name", "rename"}, ""))
 
-	pattern_ConnectorService_WriteDestinationConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "destination-connectors", "name"}, "write"))
+	pattern_ConnectorService_WriteDestinationConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "destination-connectors", "name", "write"}, ""))
 )
 
 var (

@@ -670,7 +670,7 @@ func RegisterUserServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserService/LookUpUser", runtime.WithHTTPPathPattern("/v1alpha/{permalink=users/*}:lookUp"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserService/LookUpUser", runtime.WithHTTPPathPattern("/v1alpha/{permalink=users/*}/lookUp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -901,7 +901,7 @@ func RegisterUserServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserService/LookUpUser", runtime.WithHTTPPathPattern("/v1alpha/{permalink=users/*}:lookUp"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserService/LookUpUser", runtime.WithHTTPPathPattern("/v1alpha/{permalink=users/*}/lookUp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -937,7 +937,7 @@ var (
 
 	pattern_UserService_DeleteUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "users", "name"}, ""))
 
-	pattern_UserService_LookUpUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "users", "permalink"}, "lookUp"))
+	pattern_UserService_LookUpUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "users", "permalink", "lookUp"}, ""))
 )
 
 var (
