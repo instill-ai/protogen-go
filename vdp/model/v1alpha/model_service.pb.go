@@ -37,7 +37,7 @@ var file_vdp_model_v1alpha_model_service_proto_rawDesc = []byte{
 	0x64, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
 	0x1a, 0x1d, 0x76, 0x64, 0x70, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2f, 0x76, 0x31, 0x61, 0x6c,
 	0x70, 0x68, 0x61, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32,
-	0xb8, 0x1e, 0x0a, 0x0c, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
+	0x98, 0x22, 0x0a, 0x0c, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
 	0x12, 0x89, 0x01, 0x0a, 0x08, 0x4c, 0x69, 0x76, 0x65, 0x6e, 0x65, 0x73, 0x73, 0x12, 0x22, 0x2e,
 	0x76, 0x64, 0x70, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68,
 	0x61, 0x2e, 0x4c, 0x69, 0x76, 0x65, 0x6e, 0x65, 0x73, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
@@ -279,7 +279,37 @@ var file_vdp_model_v1alpha_model_service_proto_rawDesc = []byte{
 	0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x42, 0x69, 0x6e,
 	0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65, 0x73,
 	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x0c, 0xda, 0x41, 0x09, 0x6e, 0x61, 0x6d, 0x65, 0x2c, 0x66,
-	0x69, 0x6c, 0x65, 0x28, 0x01, 0x1a, 0x13, 0xca, 0x41, 0x10, 0x61, 0x70, 0x69, 0x2e, 0x69, 0x6e,
+	0x69, 0x6c, 0x65, 0x28, 0x01, 0x12, 0x9b, 0x01, 0x0a, 0x11, 0x47, 0x65, 0x74, 0x4d, 0x6f, 0x64,
+	0x65, 0x6c, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x2b, 0x2e, 0x76, 0x64,
+	0x70, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e,
+	0x47, 0x65, 0x74, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2c, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d,
+	0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x47, 0x65, 0x74,
+	0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x2b, 0xda, 0x41, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x82,
+	0xd3, 0xe4, 0x93, 0x02, 0x1e, 0x12, 0x1c, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2f,
+	0x7b, 0x6e, 0x61, 0x6d, 0x65, 0x3d, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73,
+	0x2f, 0x2a, 0x7d, 0x12, 0x8e, 0x01, 0x0a, 0x12, 0x4c, 0x69, 0x73, 0x74, 0x4d, 0x6f, 0x64, 0x65,
+	0x6c, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x2c, 0x2e, 0x76, 0x64, 0x70,
+	0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x4c,
+	0x69, 0x73, 0x74, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2d, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d,
+	0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x4c, 0x69, 0x73,
+	0x74, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x1b, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x15, 0x12,
+	0x13, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2f, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x73, 0x12, 0xae, 0x01, 0x0a, 0x14, 0x43, 0x61, 0x6e, 0x63, 0x65, 0x6c, 0x4d,
+	0x6f, 0x64, 0x65, 0x6c, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x2e, 0x2e,
+	0x76, 0x64, 0x70, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68,
+	0x61, 0x2e, 0x43, 0x61, 0x6e, 0x63, 0x65, 0x6c, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x4f, 0x70, 0x65,
+	0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2f, 0x2e,
+	0x76, 0x64, 0x70, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68,
+	0x61, 0x2e, 0x43, 0x61, 0x6e, 0x63, 0x65, 0x6c, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x4f, 0x70, 0x65,
+	0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x35,
+	0xda, 0x41, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x28, 0x3a, 0x01, 0x2a,
+	0x22, 0x23, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2f, 0x7b, 0x6e, 0x61, 0x6d, 0x65,
+	0x3d, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2f, 0x2a, 0x7d, 0x2f, 0x63,
+	0x61, 0x6e, 0x63, 0x65, 0x6c, 0x1a, 0x13, 0xca, 0x41, 0x10, 0x61, 0x70, 0x69, 0x2e, 0x69, 0x6e,
 	0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2e, 0x74, 0x65, 0x63, 0x68, 0x42, 0xd2, 0x01, 0x0a, 0x15, 0x63,
 	0x6f, 0x6d, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x76, 0x31, 0x61,
 	0x6c, 0x70, 0x68, 0x61, 0x42, 0x11, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x53, 0x65, 0x72, 0x76, 0x69,
@@ -322,30 +352,36 @@ var file_vdp_model_v1alpha_model_service_proto_goTypes = []interface{}{
 	(*TriggerModelInstanceBinaryFileUploadRequest)(nil),  // 21: vdp.model.v1alpha.TriggerModelInstanceBinaryFileUploadRequest
 	(*TestModelInstanceRequest)(nil),                     // 22: vdp.model.v1alpha.TestModelInstanceRequest
 	(*TestModelInstanceBinaryFileUploadRequest)(nil),     // 23: vdp.model.v1alpha.TestModelInstanceBinaryFileUploadRequest
-	(*LivenessResponse)(nil),                             // 24: vdp.model.v1alpha.LivenessResponse
-	(*ReadinessResponse)(nil),                            // 25: vdp.model.v1alpha.ReadinessResponse
-	(*ListModelDefinitionResponse)(nil),                  // 26: vdp.model.v1alpha.ListModelDefinitionResponse
-	(*GetModelDefinitionResponse)(nil),                   // 27: vdp.model.v1alpha.GetModelDefinitionResponse
-	(*ListModelResponse)(nil),                            // 28: vdp.model.v1alpha.ListModelResponse
-	(*CreateModelResponse)(nil),                          // 29: vdp.model.v1alpha.CreateModelResponse
-	(*CreateModelBinaryFileUploadResponse)(nil),          // 30: vdp.model.v1alpha.CreateModelBinaryFileUploadResponse
-	(*GetModelResponse)(nil),                             // 31: vdp.model.v1alpha.GetModelResponse
-	(*UpdateModelResponse)(nil),                          // 32: vdp.model.v1alpha.UpdateModelResponse
-	(*DeleteModelResponse)(nil),                          // 33: vdp.model.v1alpha.DeleteModelResponse
-	(*LookUpModelResponse)(nil),                          // 34: vdp.model.v1alpha.LookUpModelResponse
-	(*RenameModelResponse)(nil),                          // 35: vdp.model.v1alpha.RenameModelResponse
-	(*PublishModelResponse)(nil),                         // 36: vdp.model.v1alpha.PublishModelResponse
-	(*UnpublishModelResponse)(nil),                       // 37: vdp.model.v1alpha.UnpublishModelResponse
-	(*ListModelInstanceResponse)(nil),                    // 38: vdp.model.v1alpha.ListModelInstanceResponse
-	(*GetModelInstanceResponse)(nil),                     // 39: vdp.model.v1alpha.GetModelInstanceResponse
-	(*LookUpModelInstanceResponse)(nil),                  // 40: vdp.model.v1alpha.LookUpModelInstanceResponse
-	(*DeployModelInstanceResponse)(nil),                  // 41: vdp.model.v1alpha.DeployModelInstanceResponse
-	(*UndeployModelInstanceResponse)(nil),                // 42: vdp.model.v1alpha.UndeployModelInstanceResponse
-	(*GetModelInstanceCardResponse)(nil),                 // 43: vdp.model.v1alpha.GetModelInstanceCardResponse
-	(*TriggerModelInstanceResponse)(nil),                 // 44: vdp.model.v1alpha.TriggerModelInstanceResponse
-	(*TriggerModelInstanceBinaryFileUploadResponse)(nil), // 45: vdp.model.v1alpha.TriggerModelInstanceBinaryFileUploadResponse
-	(*TestModelInstanceResponse)(nil),                    // 46: vdp.model.v1alpha.TestModelInstanceResponse
-	(*TestModelInstanceBinaryFileUploadResponse)(nil),    // 47: vdp.model.v1alpha.TestModelInstanceBinaryFileUploadResponse
+	(*GetModelOperationRequest)(nil),                     // 24: vdp.model.v1alpha.GetModelOperationRequest
+	(*ListModelOperationRequest)(nil),                    // 25: vdp.model.v1alpha.ListModelOperationRequest
+	(*CancelModelOperationRequest)(nil),                  // 26: vdp.model.v1alpha.CancelModelOperationRequest
+	(*LivenessResponse)(nil),                             // 27: vdp.model.v1alpha.LivenessResponse
+	(*ReadinessResponse)(nil),                            // 28: vdp.model.v1alpha.ReadinessResponse
+	(*ListModelDefinitionResponse)(nil),                  // 29: vdp.model.v1alpha.ListModelDefinitionResponse
+	(*GetModelDefinitionResponse)(nil),                   // 30: vdp.model.v1alpha.GetModelDefinitionResponse
+	(*ListModelResponse)(nil),                            // 31: vdp.model.v1alpha.ListModelResponse
+	(*CreateModelResponse)(nil),                          // 32: vdp.model.v1alpha.CreateModelResponse
+	(*CreateModelBinaryFileUploadResponse)(nil),          // 33: vdp.model.v1alpha.CreateModelBinaryFileUploadResponse
+	(*GetModelResponse)(nil),                             // 34: vdp.model.v1alpha.GetModelResponse
+	(*UpdateModelResponse)(nil),                          // 35: vdp.model.v1alpha.UpdateModelResponse
+	(*DeleteModelResponse)(nil),                          // 36: vdp.model.v1alpha.DeleteModelResponse
+	(*LookUpModelResponse)(nil),                          // 37: vdp.model.v1alpha.LookUpModelResponse
+	(*RenameModelResponse)(nil),                          // 38: vdp.model.v1alpha.RenameModelResponse
+	(*PublishModelResponse)(nil),                         // 39: vdp.model.v1alpha.PublishModelResponse
+	(*UnpublishModelResponse)(nil),                       // 40: vdp.model.v1alpha.UnpublishModelResponse
+	(*ListModelInstanceResponse)(nil),                    // 41: vdp.model.v1alpha.ListModelInstanceResponse
+	(*GetModelInstanceResponse)(nil),                     // 42: vdp.model.v1alpha.GetModelInstanceResponse
+	(*LookUpModelInstanceResponse)(nil),                  // 43: vdp.model.v1alpha.LookUpModelInstanceResponse
+	(*DeployModelInstanceResponse)(nil),                  // 44: vdp.model.v1alpha.DeployModelInstanceResponse
+	(*UndeployModelInstanceResponse)(nil),                // 45: vdp.model.v1alpha.UndeployModelInstanceResponse
+	(*GetModelInstanceCardResponse)(nil),                 // 46: vdp.model.v1alpha.GetModelInstanceCardResponse
+	(*TriggerModelInstanceResponse)(nil),                 // 47: vdp.model.v1alpha.TriggerModelInstanceResponse
+	(*TriggerModelInstanceBinaryFileUploadResponse)(nil), // 48: vdp.model.v1alpha.TriggerModelInstanceBinaryFileUploadResponse
+	(*TestModelInstanceResponse)(nil),                    // 49: vdp.model.v1alpha.TestModelInstanceResponse
+	(*TestModelInstanceBinaryFileUploadResponse)(nil),    // 50: vdp.model.v1alpha.TestModelInstanceBinaryFileUploadResponse
+	(*GetModelOperationResponse)(nil),                    // 51: vdp.model.v1alpha.GetModelOperationResponse
+	(*ListModelOperationResponse)(nil),                   // 52: vdp.model.v1alpha.ListModelOperationResponse
+	(*CancelModelOperationResponse)(nil),                 // 53: vdp.model.v1alpha.CancelModelOperationResponse
 }
 var file_vdp_model_v1alpha_model_service_proto_depIdxs = []int32{
 	0,  // 0: vdp.model.v1alpha.ModelService.Liveness:input_type -> vdp.model.v1alpha.LivenessRequest
@@ -372,32 +408,38 @@ var file_vdp_model_v1alpha_model_service_proto_depIdxs = []int32{
 	21, // 21: vdp.model.v1alpha.ModelService.TriggerModelInstanceBinaryFileUpload:input_type -> vdp.model.v1alpha.TriggerModelInstanceBinaryFileUploadRequest
 	22, // 22: vdp.model.v1alpha.ModelService.TestModelInstance:input_type -> vdp.model.v1alpha.TestModelInstanceRequest
 	23, // 23: vdp.model.v1alpha.ModelService.TestModelInstanceBinaryFileUpload:input_type -> vdp.model.v1alpha.TestModelInstanceBinaryFileUploadRequest
-	24, // 24: vdp.model.v1alpha.ModelService.Liveness:output_type -> vdp.model.v1alpha.LivenessResponse
-	25, // 25: vdp.model.v1alpha.ModelService.Readiness:output_type -> vdp.model.v1alpha.ReadinessResponse
-	26, // 26: vdp.model.v1alpha.ModelService.ListModelDefinition:output_type -> vdp.model.v1alpha.ListModelDefinitionResponse
-	27, // 27: vdp.model.v1alpha.ModelService.GetModelDefinition:output_type -> vdp.model.v1alpha.GetModelDefinitionResponse
-	28, // 28: vdp.model.v1alpha.ModelService.ListModel:output_type -> vdp.model.v1alpha.ListModelResponse
-	29, // 29: vdp.model.v1alpha.ModelService.CreateModel:output_type -> vdp.model.v1alpha.CreateModelResponse
-	30, // 30: vdp.model.v1alpha.ModelService.CreateModelBinaryFileUpload:output_type -> vdp.model.v1alpha.CreateModelBinaryFileUploadResponse
-	31, // 31: vdp.model.v1alpha.ModelService.GetModel:output_type -> vdp.model.v1alpha.GetModelResponse
-	32, // 32: vdp.model.v1alpha.ModelService.UpdateModel:output_type -> vdp.model.v1alpha.UpdateModelResponse
-	33, // 33: vdp.model.v1alpha.ModelService.DeleteModel:output_type -> vdp.model.v1alpha.DeleteModelResponse
-	34, // 34: vdp.model.v1alpha.ModelService.LookUpModel:output_type -> vdp.model.v1alpha.LookUpModelResponse
-	35, // 35: vdp.model.v1alpha.ModelService.RenameModel:output_type -> vdp.model.v1alpha.RenameModelResponse
-	36, // 36: vdp.model.v1alpha.ModelService.PublishModel:output_type -> vdp.model.v1alpha.PublishModelResponse
-	37, // 37: vdp.model.v1alpha.ModelService.UnpublishModel:output_type -> vdp.model.v1alpha.UnpublishModelResponse
-	38, // 38: vdp.model.v1alpha.ModelService.ListModelInstance:output_type -> vdp.model.v1alpha.ListModelInstanceResponse
-	39, // 39: vdp.model.v1alpha.ModelService.GetModelInstance:output_type -> vdp.model.v1alpha.GetModelInstanceResponse
-	40, // 40: vdp.model.v1alpha.ModelService.LookUpModelInstance:output_type -> vdp.model.v1alpha.LookUpModelInstanceResponse
-	41, // 41: vdp.model.v1alpha.ModelService.DeployModelInstance:output_type -> vdp.model.v1alpha.DeployModelInstanceResponse
-	42, // 42: vdp.model.v1alpha.ModelService.UndeployModelInstance:output_type -> vdp.model.v1alpha.UndeployModelInstanceResponse
-	43, // 43: vdp.model.v1alpha.ModelService.GetModelInstanceCard:output_type -> vdp.model.v1alpha.GetModelInstanceCardResponse
-	44, // 44: vdp.model.v1alpha.ModelService.TriggerModelInstance:output_type -> vdp.model.v1alpha.TriggerModelInstanceResponse
-	45, // 45: vdp.model.v1alpha.ModelService.TriggerModelInstanceBinaryFileUpload:output_type -> vdp.model.v1alpha.TriggerModelInstanceBinaryFileUploadResponse
-	46, // 46: vdp.model.v1alpha.ModelService.TestModelInstance:output_type -> vdp.model.v1alpha.TestModelInstanceResponse
-	47, // 47: vdp.model.v1alpha.ModelService.TestModelInstanceBinaryFileUpload:output_type -> vdp.model.v1alpha.TestModelInstanceBinaryFileUploadResponse
-	24, // [24:48] is the sub-list for method output_type
-	0,  // [0:24] is the sub-list for method input_type
+	24, // 24: vdp.model.v1alpha.ModelService.GetModelOperation:input_type -> vdp.model.v1alpha.GetModelOperationRequest
+	25, // 25: vdp.model.v1alpha.ModelService.ListModelOperation:input_type -> vdp.model.v1alpha.ListModelOperationRequest
+	26, // 26: vdp.model.v1alpha.ModelService.CancelModelOperation:input_type -> vdp.model.v1alpha.CancelModelOperationRequest
+	27, // 27: vdp.model.v1alpha.ModelService.Liveness:output_type -> vdp.model.v1alpha.LivenessResponse
+	28, // 28: vdp.model.v1alpha.ModelService.Readiness:output_type -> vdp.model.v1alpha.ReadinessResponse
+	29, // 29: vdp.model.v1alpha.ModelService.ListModelDefinition:output_type -> vdp.model.v1alpha.ListModelDefinitionResponse
+	30, // 30: vdp.model.v1alpha.ModelService.GetModelDefinition:output_type -> vdp.model.v1alpha.GetModelDefinitionResponse
+	31, // 31: vdp.model.v1alpha.ModelService.ListModel:output_type -> vdp.model.v1alpha.ListModelResponse
+	32, // 32: vdp.model.v1alpha.ModelService.CreateModel:output_type -> vdp.model.v1alpha.CreateModelResponse
+	33, // 33: vdp.model.v1alpha.ModelService.CreateModelBinaryFileUpload:output_type -> vdp.model.v1alpha.CreateModelBinaryFileUploadResponse
+	34, // 34: vdp.model.v1alpha.ModelService.GetModel:output_type -> vdp.model.v1alpha.GetModelResponse
+	35, // 35: vdp.model.v1alpha.ModelService.UpdateModel:output_type -> vdp.model.v1alpha.UpdateModelResponse
+	36, // 36: vdp.model.v1alpha.ModelService.DeleteModel:output_type -> vdp.model.v1alpha.DeleteModelResponse
+	37, // 37: vdp.model.v1alpha.ModelService.LookUpModel:output_type -> vdp.model.v1alpha.LookUpModelResponse
+	38, // 38: vdp.model.v1alpha.ModelService.RenameModel:output_type -> vdp.model.v1alpha.RenameModelResponse
+	39, // 39: vdp.model.v1alpha.ModelService.PublishModel:output_type -> vdp.model.v1alpha.PublishModelResponse
+	40, // 40: vdp.model.v1alpha.ModelService.UnpublishModel:output_type -> vdp.model.v1alpha.UnpublishModelResponse
+	41, // 41: vdp.model.v1alpha.ModelService.ListModelInstance:output_type -> vdp.model.v1alpha.ListModelInstanceResponse
+	42, // 42: vdp.model.v1alpha.ModelService.GetModelInstance:output_type -> vdp.model.v1alpha.GetModelInstanceResponse
+	43, // 43: vdp.model.v1alpha.ModelService.LookUpModelInstance:output_type -> vdp.model.v1alpha.LookUpModelInstanceResponse
+	44, // 44: vdp.model.v1alpha.ModelService.DeployModelInstance:output_type -> vdp.model.v1alpha.DeployModelInstanceResponse
+	45, // 45: vdp.model.v1alpha.ModelService.UndeployModelInstance:output_type -> vdp.model.v1alpha.UndeployModelInstanceResponse
+	46, // 46: vdp.model.v1alpha.ModelService.GetModelInstanceCard:output_type -> vdp.model.v1alpha.GetModelInstanceCardResponse
+	47, // 47: vdp.model.v1alpha.ModelService.TriggerModelInstance:output_type -> vdp.model.v1alpha.TriggerModelInstanceResponse
+	48, // 48: vdp.model.v1alpha.ModelService.TriggerModelInstanceBinaryFileUpload:output_type -> vdp.model.v1alpha.TriggerModelInstanceBinaryFileUploadResponse
+	49, // 49: vdp.model.v1alpha.ModelService.TestModelInstance:output_type -> vdp.model.v1alpha.TestModelInstanceResponse
+	50, // 50: vdp.model.v1alpha.ModelService.TestModelInstanceBinaryFileUpload:output_type -> vdp.model.v1alpha.TestModelInstanceBinaryFileUploadResponse
+	51, // 51: vdp.model.v1alpha.ModelService.GetModelOperation:output_type -> vdp.model.v1alpha.GetModelOperationResponse
+	52, // 52: vdp.model.v1alpha.ModelService.ListModelOperation:output_type -> vdp.model.v1alpha.ListModelOperationResponse
+	53, // 53: vdp.model.v1alpha.ModelService.CancelModelOperation:output_type -> vdp.model.v1alpha.CancelModelOperationResponse
+	27, // [27:54] is the sub-list for method output_type
+	0,  // [0:27] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name

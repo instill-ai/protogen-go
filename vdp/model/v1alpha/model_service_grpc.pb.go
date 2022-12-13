@@ -75,10 +75,8 @@ type ModelServiceClient interface {
 	// LookUpModelInstanceResponse
 	LookUpModelInstance(ctx context.Context, in *LookUpModelInstanceRequest, opts ...grpc.CallOption) (*LookUpModelInstanceResponse, error)
 	// DeployModelInstance deploy a model instance to online state
-	// TODO: should use [Long-running operations](https://google.aip.dev/151)
 	DeployModelInstance(ctx context.Context, in *DeployModelInstanceRequest, opts ...grpc.CallOption) (*DeployModelInstanceResponse, error)
 	// UndeployModelInstance undeploy a model instance to offline state
-	// TODO: should use [Long-running operations](https://google.aip.dev/151)
 	UndeployModelInstance(ctx context.Context, in *UndeployModelInstanceRequest, opts ...grpc.CallOption) (*UndeployModelInstanceResponse, error)
 	// GetModelInstanceCard method receives a GetModelInstanceCardRequest message
 	// and returns a GetModelInstanceCardResponse
@@ -103,6 +101,16 @@ type ModelServiceClient interface {
 	//
 	// Endpoint: "POST/v1alpha/{name=models/*/instances/*}/test-multipart"
 	TestModelInstanceBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelService_TestModelInstanceBinaryFileUploadClient, error)
+	// GetModelOperation method receives a
+	// GetModelOperationRequest message and returns a
+	// GetModelOperationResponse message.
+	GetModelOperation(ctx context.Context, in *GetModelOperationRequest, opts ...grpc.CallOption) (*GetModelOperationResponse, error)
+	// ListModelOperation method receives a ListModelOperationRequest message
+	// and returns a ListModelOperationResponse
+	ListModelOperation(ctx context.Context, in *ListModelOperationRequest, opts ...grpc.CallOption) (*ListModelOperationResponse, error)
+	// CancelModelOperation method receives a CancelModelOperationRequest message
+	// and returns a CancelModelOperationResponse
+	CancelModelOperation(ctx context.Context, in *CancelModelOperationRequest, opts ...grpc.CallOption) (*CancelModelOperationResponse, error)
 }
 
 type modelServiceClient struct {
@@ -404,6 +412,33 @@ func (x *modelServiceTestModelInstanceBinaryFileUploadClient) CloseAndRecv() (*T
 	return m, nil
 }
 
+func (c *modelServiceClient) GetModelOperation(ctx context.Context, in *GetModelOperationRequest, opts ...grpc.CallOption) (*GetModelOperationResponse, error) {
+	out := new(GetModelOperationResponse)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/GetModelOperation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *modelServiceClient) ListModelOperation(ctx context.Context, in *ListModelOperationRequest, opts ...grpc.CallOption) (*ListModelOperationResponse, error) {
+	out := new(ListModelOperationResponse)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/ListModelOperation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *modelServiceClient) CancelModelOperation(ctx context.Context, in *CancelModelOperationRequest, opts ...grpc.CallOption) (*CancelModelOperationResponse, error) {
+	out := new(CancelModelOperationResponse)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/CancelModelOperation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ModelServiceServer is the server API for ModelService service.
 // All implementations should embed UnimplementedModelServiceServer
 // for forward compatibility
@@ -465,10 +500,8 @@ type ModelServiceServer interface {
 	// LookUpModelInstanceResponse
 	LookUpModelInstance(context.Context, *LookUpModelInstanceRequest) (*LookUpModelInstanceResponse, error)
 	// DeployModelInstance deploy a model instance to online state
-	// TODO: should use [Long-running operations](https://google.aip.dev/151)
 	DeployModelInstance(context.Context, *DeployModelInstanceRequest) (*DeployModelInstanceResponse, error)
 	// UndeployModelInstance undeploy a model instance to offline state
-	// TODO: should use [Long-running operations](https://google.aip.dev/151)
 	UndeployModelInstance(context.Context, *UndeployModelInstanceRequest) (*UndeployModelInstanceResponse, error)
 	// GetModelInstanceCard method receives a GetModelInstanceCardRequest message
 	// and returns a GetModelInstanceCardResponse
@@ -493,6 +526,16 @@ type ModelServiceServer interface {
 	//
 	// Endpoint: "POST/v1alpha/{name=models/*/instances/*}/test-multipart"
 	TestModelInstanceBinaryFileUpload(ModelService_TestModelInstanceBinaryFileUploadServer) error
+	// GetModelOperation method receives a
+	// GetModelOperationRequest message and returns a
+	// GetModelOperationResponse message.
+	GetModelOperation(context.Context, *GetModelOperationRequest) (*GetModelOperationResponse, error)
+	// ListModelOperation method receives a ListModelOperationRequest message
+	// and returns a ListModelOperationResponse
+	ListModelOperation(context.Context, *ListModelOperationRequest) (*ListModelOperationResponse, error)
+	// CancelModelOperation method receives a CancelModelOperationRequest message
+	// and returns a CancelModelOperationResponse
+	CancelModelOperation(context.Context, *CancelModelOperationRequest) (*CancelModelOperationResponse, error)
 }
 
 // UnimplementedModelServiceServer should be embedded to have forward compatible implementations.
@@ -570,6 +613,15 @@ func (UnimplementedModelServiceServer) TestModelInstance(context.Context, *TestM
 }
 func (UnimplementedModelServiceServer) TestModelInstanceBinaryFileUpload(ModelService_TestModelInstanceBinaryFileUploadServer) error {
 	return status.Errorf(codes.Unimplemented, "method TestModelInstanceBinaryFileUpload not implemented")
+}
+func (UnimplementedModelServiceServer) GetModelOperation(context.Context, *GetModelOperationRequest) (*GetModelOperationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetModelOperation not implemented")
+}
+func (UnimplementedModelServiceServer) ListModelOperation(context.Context, *ListModelOperationRequest) (*ListModelOperationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListModelOperation not implemented")
+}
+func (UnimplementedModelServiceServer) CancelModelOperation(context.Context, *CancelModelOperationRequest) (*CancelModelOperationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CancelModelOperation not implemented")
 }
 
 // UnsafeModelServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -1039,6 +1091,60 @@ func (x *modelServiceTestModelInstanceBinaryFileUploadServer) Recv() (*TestModel
 	return m, nil
 }
 
+func _ModelService_GetModelOperation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetModelOperationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelServiceServer).GetModelOperation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/vdp.model.v1alpha.ModelService/GetModelOperation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelServiceServer).GetModelOperation(ctx, req.(*GetModelOperationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ModelService_ListModelOperation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListModelOperationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelServiceServer).ListModelOperation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/vdp.model.v1alpha.ModelService/ListModelOperation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelServiceServer).ListModelOperation(ctx, req.(*ListModelOperationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ModelService_CancelModelOperation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CancelModelOperationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelServiceServer).CancelModelOperation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/vdp.model.v1alpha.ModelService/CancelModelOperation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelServiceServer).CancelModelOperation(ctx, req.(*CancelModelOperationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ModelService_ServiceDesc is the grpc.ServiceDesc for ModelService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1129,6 +1235,18 @@ var ModelService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TestModelInstance",
 			Handler:    _ModelService_TestModelInstance_Handler,
+		},
+		{
+			MethodName: "GetModelOperation",
+			Handler:    _ModelService_GetModelOperation_Handler,
+		},
+		{
+			MethodName: "ListModelOperation",
+			Handler:    _ModelService_ListModelOperation_Handler,
+		},
+		{
+			MethodName: "CancelModelOperation",
+			Handler:    _ModelService_CancelModelOperation_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
