@@ -164,7 +164,8 @@ func (*SemanticSegmentationInput_ImageUrl) isSemanticSegmentationInput_Type() {}
 
 func (*SemanticSegmentationInput_ImageBase64) isSemanticSegmentationInput_Type() {}
 
-// SemanticSegmentationOutput represents the output of semantic segmentation task
+// SemanticSegmentationOutput represents the output of semantic segmentation
+// task
 type SemanticSegmentationOutput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

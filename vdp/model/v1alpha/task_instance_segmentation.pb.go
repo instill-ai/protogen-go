@@ -182,7 +182,8 @@ func (*InstanceSegmentationInput_ImageUrl) isInstanceSegmentationInput_Type() {}
 
 func (*InstanceSegmentationInput_ImageBase64) isInstanceSegmentationInput_Type() {}
 
-// InstanceSegmentationOutput represents the output of instance segmentation task
+// InstanceSegmentationOutput represents the output of instance segmentation
+// task
 type InstanceSegmentationOutput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

@@ -3195,8 +3195,8 @@ type GetModelOperationRequest struct {
 	// The name of the operation resource.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// View (default is VIEW_BASIC)
-	// VIEW_UNSPECIFIED/VIEW_BASIC: omit `Model.configuration`, `ModelInstance.configuration`
-	// VIEW_FULL: show full information
+	// VIEW_UNSPECIFIED/VIEW_BASIC: omit `Model.configuration`,
+	// `ModelInstance.configuration` VIEW_FULL: show full information
 	View *View `protobuf:"varint,2,opt,name=view,proto3,enum=vdp.model.v1alpha.View,oneof" json:"view,omitempty"`
 }
 
@@ -3295,7 +3295,8 @@ func (x *GetModelOperationResponse) GetOperation() *longrunning.Operation {
 	return nil
 }
 
-// ListModelOperationRequest represents a request to list all model operations including deploy and undeploy
+// ListModelOperationRequest represents a request to list all model operations
+// including deploy and undeploy
 type ListModelOperationRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -3311,8 +3312,8 @@ type ListModelOperationRequest struct {
 	// Filter expression to list operations
 	Filter *string `protobuf:"bytes,3,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
 	// View (default is VIEW_BASIC)
-	// VIEW_UNSPECIFIED/VIEW_BASIC: omit `Model.configuration`, `ModelInstance.configuration`
-	// VIEW_FULL: show full information
+	// VIEW_UNSPECIFIED/VIEW_BASIC: omit `Model.configuration`,
+	// `ModelInstance.configuration` VIEW_FULL: show full information
 	View *View `protobuf:"varint,4,opt,name=view,proto3,enum=vdp.model.v1alpha.View,oneof" json:"view,omitempty"`
 }
 
@@ -3376,7 +3377,8 @@ func (x *ListModelOperationRequest) GetView() View {
 	return View_VIEW_UNSPECIFIED
 }
 
-// ListModelOperationResponse represents a response for a list of model operations including deploy and undeploy
+// ListModelOperationResponse represents a response for a list of model
+// operations including deploy and undeploy
 type ListModelOperationResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -3492,7 +3494,8 @@ func (x *CancelModelOperationRequest) GetName() string {
 	return ""
 }
 
-// CancelModelOperationResponse represents a response for canceling a model operation
+// CancelModelOperationResponse represents a response for canceling a model
+// operation
 type CancelModelOperationResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
