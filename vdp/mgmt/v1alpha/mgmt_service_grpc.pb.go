@@ -44,6 +44,15 @@ type UserServiceClient interface {
 	// LookUpUser method receives a LookUpUserRequest message and returns a
 	// LookUpUserResponse
 	LookUpUser(ctx context.Context, in *LookUpUserRequest, opts ...grpc.CallOption) (*LookUpUserResponse, error)
+	// GetAuthenticatedUser method receives a GetAuthenticatedUserRequest message and returns
+	// a GetAuthenticatedUserResponse message.
+	GetAuthenticatedUser(ctx context.Context, in *GetAuthenticatedUserRequest, opts ...grpc.CallOption) (*GetAuthenticatedUserResponse, error)
+	// UpdateAuthenticatedUser method receives a UpdateAuthenticatedUserRequest message and returns
+	// a UpdateAuthenticatedUserResponse message.
+	UpdateAuthenticatedUser(ctx context.Context, in *UpdateAuthenticatedUserRequest, opts ...grpc.CallOption) (*UpdateAuthenticatedUserResponse, error)
+	// ExistUsername method receives a ExistUsernameRequest message and returns a
+	// ExistUsernameResponse
+	ExistUsername(ctx context.Context, in *ExistUsernameRequest, opts ...grpc.CallOption) (*ExistUsernameResponse, error)
 }
 
 type userServiceClient struct {
@@ -126,6 +135,33 @@ func (c *userServiceClient) LookUpUser(ctx context.Context, in *LookUpUserReques
 	return out, nil
 }
 
+func (c *userServiceClient) GetAuthenticatedUser(ctx context.Context, in *GetAuthenticatedUserRequest, opts ...grpc.CallOption) (*GetAuthenticatedUserResponse, error) {
+	out := new(GetAuthenticatedUserResponse)
+	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.UserService/GetAuthenticatedUser", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) UpdateAuthenticatedUser(ctx context.Context, in *UpdateAuthenticatedUserRequest, opts ...grpc.CallOption) (*UpdateAuthenticatedUserResponse, error) {
+	out := new(UpdateAuthenticatedUserResponse)
+	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.UserService/UpdateAuthenticatedUser", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) ExistUsername(ctx context.Context, in *ExistUsernameRequest, opts ...grpc.CallOption) (*ExistUsernameResponse, error) {
+	out := new(ExistUsernameResponse)
+	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.UserService/ExistUsername", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServiceServer is the server API for UserService service.
 // All implementations should embed UnimplementedUserServiceServer
 // for forward compatibility
@@ -156,6 +192,15 @@ type UserServiceServer interface {
 	// LookUpUser method receives a LookUpUserRequest message and returns a
 	// LookUpUserResponse
 	LookUpUser(context.Context, *LookUpUserRequest) (*LookUpUserResponse, error)
+	// GetAuthenticatedUser method receives a GetAuthenticatedUserRequest message and returns
+	// a GetAuthenticatedUserResponse message.
+	GetAuthenticatedUser(context.Context, *GetAuthenticatedUserRequest) (*GetAuthenticatedUserResponse, error)
+	// UpdateAuthenticatedUser method receives a UpdateAuthenticatedUserRequest message and returns
+	// a UpdateAuthenticatedUserResponse message.
+	UpdateAuthenticatedUser(context.Context, *UpdateAuthenticatedUserRequest) (*UpdateAuthenticatedUserResponse, error)
+	// ExistUsername method receives a ExistUsernameRequest message and returns a
+	// ExistUsernameResponse
+	ExistUsername(context.Context, *ExistUsernameRequest) (*ExistUsernameResponse, error)
 }
 
 // UnimplementedUserServiceServer should be embedded to have forward compatible implementations.
@@ -185,6 +230,15 @@ func (UnimplementedUserServiceServer) DeleteUser(context.Context, *DeleteUserReq
 }
 func (UnimplementedUserServiceServer) LookUpUser(context.Context, *LookUpUserRequest) (*LookUpUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LookUpUser not implemented")
+}
+func (UnimplementedUserServiceServer) GetAuthenticatedUser(context.Context, *GetAuthenticatedUserRequest) (*GetAuthenticatedUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAuthenticatedUser not implemented")
+}
+func (UnimplementedUserServiceServer) UpdateAuthenticatedUser(context.Context, *UpdateAuthenticatedUserRequest) (*UpdateAuthenticatedUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateAuthenticatedUser not implemented")
+}
+func (UnimplementedUserServiceServer) ExistUsername(context.Context, *ExistUsernameRequest) (*ExistUsernameResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExistUsername not implemented")
 }
 
 // UnsafeUserServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -342,6 +396,60 @@ func _UserService_LookUpUser_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_GetAuthenticatedUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAuthenticatedUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).GetAuthenticatedUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/vdp.mgmt.v1alpha.UserService/GetAuthenticatedUser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).GetAuthenticatedUser(ctx, req.(*GetAuthenticatedUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_UpdateAuthenticatedUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateAuthenticatedUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).UpdateAuthenticatedUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/vdp.mgmt.v1alpha.UserService/UpdateAuthenticatedUser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).UpdateAuthenticatedUser(ctx, req.(*UpdateAuthenticatedUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_ExistUsername_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExistUsernameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).ExistUsername(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/vdp.mgmt.v1alpha.UserService/ExistUsername",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).ExistUsername(ctx, req.(*ExistUsernameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -380,6 +488,18 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "LookUpUser",
 			Handler:    _UserService_LookUpUser_Handler,
+		},
+		{
+			MethodName: "GetAuthenticatedUser",
+			Handler:    _UserService_GetAuthenticatedUser_Handler,
+		},
+		{
+			MethodName: "UpdateAuthenticatedUser",
+			Handler:    _UserService_UpdateAuthenticatedUser_Handler,
+		},
+		{
+			MethodName: "ExistUsername",
+			Handler:    _UserService_ExistUsername_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
