@@ -14,10 +14,10 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// UserPublicServiceClient is the client API for UserPublicService service.
+// MgmtPublicServiceClient is the client API for MgmtPublicService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type UserPublicServiceClient interface {
+type MgmtPublicServiceClient interface {
 	// Liveness method receives a LivenessRequest message and returns a
 	// LivenessResponse message.
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
@@ -37,63 +37,63 @@ type UserPublicServiceClient interface {
 	ExistUsername(ctx context.Context, in *ExistUsernameRequest, opts ...grpc.CallOption) (*ExistUsernameResponse, error)
 }
 
-type userPublicServiceClient struct {
+type mgmtPublicServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewUserPublicServiceClient(cc grpc.ClientConnInterface) UserPublicServiceClient {
-	return &userPublicServiceClient{cc}
+func NewMgmtPublicServiceClient(cc grpc.ClientConnInterface) MgmtPublicServiceClient {
+	return &mgmtPublicServiceClient{cc}
 }
 
-func (c *userPublicServiceClient) Liveness(ctx context.Context, in *LivenessRequest, opts ...grpc.CallOption) (*LivenessResponse, error) {
+func (c *mgmtPublicServiceClient) Liveness(ctx context.Context, in *LivenessRequest, opts ...grpc.CallOption) (*LivenessResponse, error) {
 	out := new(LivenessResponse)
-	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.UserPublicService/Liveness", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.MgmtPublicService/Liveness", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userPublicServiceClient) Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error) {
+func (c *mgmtPublicServiceClient) Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error) {
 	out := new(ReadinessResponse)
-	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.UserPublicService/Readiness", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.MgmtPublicService/Readiness", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userPublicServiceClient) GetAuthenticatedUser(ctx context.Context, in *GetAuthenticatedUserRequest, opts ...grpc.CallOption) (*GetAuthenticatedUserResponse, error) {
+func (c *mgmtPublicServiceClient) GetAuthenticatedUser(ctx context.Context, in *GetAuthenticatedUserRequest, opts ...grpc.CallOption) (*GetAuthenticatedUserResponse, error) {
 	out := new(GetAuthenticatedUserResponse)
-	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.UserPublicService/GetAuthenticatedUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.MgmtPublicService/GetAuthenticatedUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userPublicServiceClient) UpdateAuthenticatedUser(ctx context.Context, in *UpdateAuthenticatedUserRequest, opts ...grpc.CallOption) (*UpdateAuthenticatedUserResponse, error) {
+func (c *mgmtPublicServiceClient) UpdateAuthenticatedUser(ctx context.Context, in *UpdateAuthenticatedUserRequest, opts ...grpc.CallOption) (*UpdateAuthenticatedUserResponse, error) {
 	out := new(UpdateAuthenticatedUserResponse)
-	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.UserPublicService/UpdateAuthenticatedUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.MgmtPublicService/UpdateAuthenticatedUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userPublicServiceClient) ExistUsername(ctx context.Context, in *ExistUsernameRequest, opts ...grpc.CallOption) (*ExistUsernameResponse, error) {
+func (c *mgmtPublicServiceClient) ExistUsername(ctx context.Context, in *ExistUsernameRequest, opts ...grpc.CallOption) (*ExistUsernameResponse, error) {
 	out := new(ExistUsernameResponse)
-	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.UserPublicService/ExistUsername", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.MgmtPublicService/ExistUsername", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// UserPublicServiceServer is the server API for UserPublicService service.
-// All implementations should embed UnimplementedUserPublicServiceServer
+// MgmtPublicServiceServer is the server API for MgmtPublicService service.
+// All implementations should embed UnimplementedMgmtPublicServiceServer
 // for forward compatibility
-type UserPublicServiceServer interface {
+type MgmtPublicServiceServer interface {
 	// Liveness method receives a LivenessRequest message and returns a
 	// LivenessResponse message.
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
@@ -113,153 +113,153 @@ type UserPublicServiceServer interface {
 	ExistUsername(context.Context, *ExistUsernameRequest) (*ExistUsernameResponse, error)
 }
 
-// UnimplementedUserPublicServiceServer should be embedded to have forward compatible implementations.
-type UnimplementedUserPublicServiceServer struct {
+// UnimplementedMgmtPublicServiceServer should be embedded to have forward compatible implementations.
+type UnimplementedMgmtPublicServiceServer struct {
 }
 
-func (UnimplementedUserPublicServiceServer) Liveness(context.Context, *LivenessRequest) (*LivenessResponse, error) {
+func (UnimplementedMgmtPublicServiceServer) Liveness(context.Context, *LivenessRequest) (*LivenessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Liveness not implemented")
 }
-func (UnimplementedUserPublicServiceServer) Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error) {
+func (UnimplementedMgmtPublicServiceServer) Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Readiness not implemented")
 }
-func (UnimplementedUserPublicServiceServer) GetAuthenticatedUser(context.Context, *GetAuthenticatedUserRequest) (*GetAuthenticatedUserResponse, error) {
+func (UnimplementedMgmtPublicServiceServer) GetAuthenticatedUser(context.Context, *GetAuthenticatedUserRequest) (*GetAuthenticatedUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAuthenticatedUser not implemented")
 }
-func (UnimplementedUserPublicServiceServer) UpdateAuthenticatedUser(context.Context, *UpdateAuthenticatedUserRequest) (*UpdateAuthenticatedUserResponse, error) {
+func (UnimplementedMgmtPublicServiceServer) UpdateAuthenticatedUser(context.Context, *UpdateAuthenticatedUserRequest) (*UpdateAuthenticatedUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateAuthenticatedUser not implemented")
 }
-func (UnimplementedUserPublicServiceServer) ExistUsername(context.Context, *ExistUsernameRequest) (*ExistUsernameResponse, error) {
+func (UnimplementedMgmtPublicServiceServer) ExistUsername(context.Context, *ExistUsernameRequest) (*ExistUsernameResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ExistUsername not implemented")
 }
 
-// UnsafeUserPublicServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to UserPublicServiceServer will
+// UnsafeMgmtPublicServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to MgmtPublicServiceServer will
 // result in compilation errors.
-type UnsafeUserPublicServiceServer interface {
-	mustEmbedUnimplementedUserPublicServiceServer()
+type UnsafeMgmtPublicServiceServer interface {
+	mustEmbedUnimplementedMgmtPublicServiceServer()
 }
 
-func RegisterUserPublicServiceServer(s grpc.ServiceRegistrar, srv UserPublicServiceServer) {
-	s.RegisterService(&UserPublicService_ServiceDesc, srv)
+func RegisterMgmtPublicServiceServer(s grpc.ServiceRegistrar, srv MgmtPublicServiceServer) {
+	s.RegisterService(&MgmtPublicService_ServiceDesc, srv)
 }
 
-func _UserPublicService_Liveness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MgmtPublicService_Liveness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(LivenessRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserPublicServiceServer).Liveness(ctx, in)
+		return srv.(MgmtPublicServiceServer).Liveness(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.mgmt.v1alpha.UserPublicService/Liveness",
+		FullMethod: "/vdp.mgmt.v1alpha.MgmtPublicService/Liveness",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserPublicServiceServer).Liveness(ctx, req.(*LivenessRequest))
+		return srv.(MgmtPublicServiceServer).Liveness(ctx, req.(*LivenessRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserPublicService_Readiness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MgmtPublicService_Readiness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ReadinessRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserPublicServiceServer).Readiness(ctx, in)
+		return srv.(MgmtPublicServiceServer).Readiness(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.mgmt.v1alpha.UserPublicService/Readiness",
+		FullMethod: "/vdp.mgmt.v1alpha.MgmtPublicService/Readiness",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserPublicServiceServer).Readiness(ctx, req.(*ReadinessRequest))
+		return srv.(MgmtPublicServiceServer).Readiness(ctx, req.(*ReadinessRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserPublicService_GetAuthenticatedUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MgmtPublicService_GetAuthenticatedUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetAuthenticatedUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserPublicServiceServer).GetAuthenticatedUser(ctx, in)
+		return srv.(MgmtPublicServiceServer).GetAuthenticatedUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.mgmt.v1alpha.UserPublicService/GetAuthenticatedUser",
+		FullMethod: "/vdp.mgmt.v1alpha.MgmtPublicService/GetAuthenticatedUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserPublicServiceServer).GetAuthenticatedUser(ctx, req.(*GetAuthenticatedUserRequest))
+		return srv.(MgmtPublicServiceServer).GetAuthenticatedUser(ctx, req.(*GetAuthenticatedUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserPublicService_UpdateAuthenticatedUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MgmtPublicService_UpdateAuthenticatedUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateAuthenticatedUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserPublicServiceServer).UpdateAuthenticatedUser(ctx, in)
+		return srv.(MgmtPublicServiceServer).UpdateAuthenticatedUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.mgmt.v1alpha.UserPublicService/UpdateAuthenticatedUser",
+		FullMethod: "/vdp.mgmt.v1alpha.MgmtPublicService/UpdateAuthenticatedUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserPublicServiceServer).UpdateAuthenticatedUser(ctx, req.(*UpdateAuthenticatedUserRequest))
+		return srv.(MgmtPublicServiceServer).UpdateAuthenticatedUser(ctx, req.(*UpdateAuthenticatedUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserPublicService_ExistUsername_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MgmtPublicService_ExistUsername_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ExistUsernameRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserPublicServiceServer).ExistUsername(ctx, in)
+		return srv.(MgmtPublicServiceServer).ExistUsername(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.mgmt.v1alpha.UserPublicService/ExistUsername",
+		FullMethod: "/vdp.mgmt.v1alpha.MgmtPublicService/ExistUsername",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserPublicServiceServer).ExistUsername(ctx, req.(*ExistUsernameRequest))
+		return srv.(MgmtPublicServiceServer).ExistUsername(ctx, req.(*ExistUsernameRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// UserPublicService_ServiceDesc is the grpc.ServiceDesc for UserPublicService service.
+// MgmtPublicService_ServiceDesc is the grpc.ServiceDesc for MgmtPublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var UserPublicService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "vdp.mgmt.v1alpha.UserPublicService",
-	HandlerType: (*UserPublicServiceServer)(nil),
+var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "vdp.mgmt.v1alpha.MgmtPublicService",
+	HandlerType: (*MgmtPublicServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Liveness",
-			Handler:    _UserPublicService_Liveness_Handler,
+			Handler:    _MgmtPublicService_Liveness_Handler,
 		},
 		{
 			MethodName: "Readiness",
-			Handler:    _UserPublicService_Readiness_Handler,
+			Handler:    _MgmtPublicService_Readiness_Handler,
 		},
 		{
 			MethodName: "GetAuthenticatedUser",
-			Handler:    _UserPublicService_GetAuthenticatedUser_Handler,
+			Handler:    _MgmtPublicService_GetAuthenticatedUser_Handler,
 		},
 		{
 			MethodName: "UpdateAuthenticatedUser",
-			Handler:    _UserPublicService_UpdateAuthenticatedUser_Handler,
+			Handler:    _MgmtPublicService_UpdateAuthenticatedUser_Handler,
 		},
 		{
 			MethodName: "ExistUsername",
-			Handler:    _UserPublicService_ExistUsername_Handler,
+			Handler:    _MgmtPublicService_ExistUsername_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

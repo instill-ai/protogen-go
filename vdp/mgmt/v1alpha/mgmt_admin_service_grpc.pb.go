@@ -14,10 +14,10 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// UserAdminServiceClient is the client API for UserAdminService service.
+// MgmtAdminServiceClient is the client API for MgmtAdminService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type UserAdminServiceClient interface {
+type MgmtAdminServiceClient interface {
 	// ListUser method receives a ListUserRequest message and returns a
 	// ListUserResponse message.
 	ListUser(ctx context.Context, in *ListUserRequest, opts ...grpc.CallOption) (*ListUserResponse, error)
@@ -38,72 +38,72 @@ type UserAdminServiceClient interface {
 	LookUpUser(ctx context.Context, in *LookUpUserRequest, opts ...grpc.CallOption) (*LookUpUserResponse, error)
 }
 
-type userAdminServiceClient struct {
+type mgmtAdminServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewUserAdminServiceClient(cc grpc.ClientConnInterface) UserAdminServiceClient {
-	return &userAdminServiceClient{cc}
+func NewMgmtAdminServiceClient(cc grpc.ClientConnInterface) MgmtAdminServiceClient {
+	return &mgmtAdminServiceClient{cc}
 }
 
-func (c *userAdminServiceClient) ListUser(ctx context.Context, in *ListUserRequest, opts ...grpc.CallOption) (*ListUserResponse, error) {
+func (c *mgmtAdminServiceClient) ListUser(ctx context.Context, in *ListUserRequest, opts ...grpc.CallOption) (*ListUserResponse, error) {
 	out := new(ListUserResponse)
-	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.UserAdminService/ListUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.MgmtAdminService/ListUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userAdminServiceClient) CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error) {
+func (c *mgmtAdminServiceClient) CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error) {
 	out := new(CreateUserResponse)
-	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.UserAdminService/CreateUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.MgmtAdminService/CreateUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userAdminServiceClient) GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserResponse, error) {
+func (c *mgmtAdminServiceClient) GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserResponse, error) {
 	out := new(GetUserResponse)
-	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.UserAdminService/GetUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.MgmtAdminService/GetUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userAdminServiceClient) UpdateUser(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*UpdateUserResponse, error) {
+func (c *mgmtAdminServiceClient) UpdateUser(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*UpdateUserResponse, error) {
 	out := new(UpdateUserResponse)
-	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.UserAdminService/UpdateUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.MgmtAdminService/UpdateUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userAdminServiceClient) DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error) {
+func (c *mgmtAdminServiceClient) DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error) {
 	out := new(DeleteUserResponse)
-	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.UserAdminService/DeleteUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.MgmtAdminService/DeleteUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userAdminServiceClient) LookUpUser(ctx context.Context, in *LookUpUserRequest, opts ...grpc.CallOption) (*LookUpUserResponse, error) {
+func (c *mgmtAdminServiceClient) LookUpUser(ctx context.Context, in *LookUpUserRequest, opts ...grpc.CallOption) (*LookUpUserResponse, error) {
 	out := new(LookUpUserResponse)
-	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.UserAdminService/LookUpUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.MgmtAdminService/LookUpUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// UserAdminServiceServer is the server API for UserAdminService service.
-// All implementations should embed UnimplementedUserAdminServiceServer
+// MgmtAdminServiceServer is the server API for MgmtAdminService service.
+// All implementations should embed UnimplementedMgmtAdminServiceServer
 // for forward compatibility
-type UserAdminServiceServer interface {
+type MgmtAdminServiceServer interface {
 	// ListUser method receives a ListUserRequest message and returns a
 	// ListUserResponse message.
 	ListUser(context.Context, *ListUserRequest) (*ListUserResponse, error)
@@ -124,178 +124,178 @@ type UserAdminServiceServer interface {
 	LookUpUser(context.Context, *LookUpUserRequest) (*LookUpUserResponse, error)
 }
 
-// UnimplementedUserAdminServiceServer should be embedded to have forward compatible implementations.
-type UnimplementedUserAdminServiceServer struct {
+// UnimplementedMgmtAdminServiceServer should be embedded to have forward compatible implementations.
+type UnimplementedMgmtAdminServiceServer struct {
 }
 
-func (UnimplementedUserAdminServiceServer) ListUser(context.Context, *ListUserRequest) (*ListUserResponse, error) {
+func (UnimplementedMgmtAdminServiceServer) ListUser(context.Context, *ListUserRequest) (*ListUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListUser not implemented")
 }
-func (UnimplementedUserAdminServiceServer) CreateUser(context.Context, *CreateUserRequest) (*CreateUserResponse, error) {
+func (UnimplementedMgmtAdminServiceServer) CreateUser(context.Context, *CreateUserRequest) (*CreateUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateUser not implemented")
 }
-func (UnimplementedUserAdminServiceServer) GetUser(context.Context, *GetUserRequest) (*GetUserResponse, error) {
+func (UnimplementedMgmtAdminServiceServer) GetUser(context.Context, *GetUserRequest) (*GetUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUser not implemented")
 }
-func (UnimplementedUserAdminServiceServer) UpdateUser(context.Context, *UpdateUserRequest) (*UpdateUserResponse, error) {
+func (UnimplementedMgmtAdminServiceServer) UpdateUser(context.Context, *UpdateUserRequest) (*UpdateUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateUser not implemented")
 }
-func (UnimplementedUserAdminServiceServer) DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error) {
+func (UnimplementedMgmtAdminServiceServer) DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
 }
-func (UnimplementedUserAdminServiceServer) LookUpUser(context.Context, *LookUpUserRequest) (*LookUpUserResponse, error) {
+func (UnimplementedMgmtAdminServiceServer) LookUpUser(context.Context, *LookUpUserRequest) (*LookUpUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LookUpUser not implemented")
 }
 
-// UnsafeUserAdminServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to UserAdminServiceServer will
+// UnsafeMgmtAdminServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to MgmtAdminServiceServer will
 // result in compilation errors.
-type UnsafeUserAdminServiceServer interface {
-	mustEmbedUnimplementedUserAdminServiceServer()
+type UnsafeMgmtAdminServiceServer interface {
+	mustEmbedUnimplementedMgmtAdminServiceServer()
 }
 
-func RegisterUserAdminServiceServer(s grpc.ServiceRegistrar, srv UserAdminServiceServer) {
-	s.RegisterService(&UserAdminService_ServiceDesc, srv)
+func RegisterMgmtAdminServiceServer(s grpc.ServiceRegistrar, srv MgmtAdminServiceServer) {
+	s.RegisterService(&MgmtAdminService_ServiceDesc, srv)
 }
 
-func _UserAdminService_ListUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MgmtAdminService_ListUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserAdminServiceServer).ListUser(ctx, in)
+		return srv.(MgmtAdminServiceServer).ListUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.mgmt.v1alpha.UserAdminService/ListUser",
+		FullMethod: "/vdp.mgmt.v1alpha.MgmtAdminService/ListUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserAdminServiceServer).ListUser(ctx, req.(*ListUserRequest))
+		return srv.(MgmtAdminServiceServer).ListUser(ctx, req.(*ListUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserAdminService_CreateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MgmtAdminService_CreateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserAdminServiceServer).CreateUser(ctx, in)
+		return srv.(MgmtAdminServiceServer).CreateUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.mgmt.v1alpha.UserAdminService/CreateUser",
+		FullMethod: "/vdp.mgmt.v1alpha.MgmtAdminService/CreateUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserAdminServiceServer).CreateUser(ctx, req.(*CreateUserRequest))
+		return srv.(MgmtAdminServiceServer).CreateUser(ctx, req.(*CreateUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserAdminService_GetUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MgmtAdminService_GetUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserAdminServiceServer).GetUser(ctx, in)
+		return srv.(MgmtAdminServiceServer).GetUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.mgmt.v1alpha.UserAdminService/GetUser",
+		FullMethod: "/vdp.mgmt.v1alpha.MgmtAdminService/GetUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserAdminServiceServer).GetUser(ctx, req.(*GetUserRequest))
+		return srv.(MgmtAdminServiceServer).GetUser(ctx, req.(*GetUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserAdminService_UpdateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MgmtAdminService_UpdateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserAdminServiceServer).UpdateUser(ctx, in)
+		return srv.(MgmtAdminServiceServer).UpdateUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.mgmt.v1alpha.UserAdminService/UpdateUser",
+		FullMethod: "/vdp.mgmt.v1alpha.MgmtAdminService/UpdateUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserAdminServiceServer).UpdateUser(ctx, req.(*UpdateUserRequest))
+		return srv.(MgmtAdminServiceServer).UpdateUser(ctx, req.(*UpdateUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserAdminService_DeleteUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MgmtAdminService_DeleteUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserAdminServiceServer).DeleteUser(ctx, in)
+		return srv.(MgmtAdminServiceServer).DeleteUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.mgmt.v1alpha.UserAdminService/DeleteUser",
+		FullMethod: "/vdp.mgmt.v1alpha.MgmtAdminService/DeleteUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserAdminServiceServer).DeleteUser(ctx, req.(*DeleteUserRequest))
+		return srv.(MgmtAdminServiceServer).DeleteUser(ctx, req.(*DeleteUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserAdminService_LookUpUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MgmtAdminService_LookUpUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(LookUpUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserAdminServiceServer).LookUpUser(ctx, in)
+		return srv.(MgmtAdminServiceServer).LookUpUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.mgmt.v1alpha.UserAdminService/LookUpUser",
+		FullMethod: "/vdp.mgmt.v1alpha.MgmtAdminService/LookUpUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserAdminServiceServer).LookUpUser(ctx, req.(*LookUpUserRequest))
+		return srv.(MgmtAdminServiceServer).LookUpUser(ctx, req.(*LookUpUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// UserAdminService_ServiceDesc is the grpc.ServiceDesc for UserAdminService service.
+// MgmtAdminService_ServiceDesc is the grpc.ServiceDesc for MgmtAdminService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var UserAdminService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "vdp.mgmt.v1alpha.UserAdminService",
-	HandlerType: (*UserAdminServiceServer)(nil),
+var MgmtAdminService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "vdp.mgmt.v1alpha.MgmtAdminService",
+	HandlerType: (*MgmtAdminServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "ListUser",
-			Handler:    _UserAdminService_ListUser_Handler,
+			Handler:    _MgmtAdminService_ListUser_Handler,
 		},
 		{
 			MethodName: "CreateUser",
-			Handler:    _UserAdminService_CreateUser_Handler,
+			Handler:    _MgmtAdminService_CreateUser_Handler,
 		},
 		{
 			MethodName: "GetUser",
-			Handler:    _UserAdminService_GetUser_Handler,
+			Handler:    _MgmtAdminService_GetUser_Handler,
 		},
 		{
 			MethodName: "UpdateUser",
-			Handler:    _UserAdminService_UpdateUser_Handler,
+			Handler:    _MgmtAdminService_UpdateUser_Handler,
 		},
 		{
 			MethodName: "DeleteUser",
-			Handler:    _UserAdminService_DeleteUser_Handler,
+			Handler:    _MgmtAdminService_DeleteUser_Handler,
 		},
 		{
 			MethodName: "LookUpUser",
-			Handler:    _UserAdminService_LookUpUser_Handler,
+			Handler:    _MgmtAdminService_LookUpUser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

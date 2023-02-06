@@ -32,7 +32,7 @@ var file_vdp_mgmt_v1alpha_mgmt_admin_service_proto_rawDesc = []byte{
 	0x67, 0x6c, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x2e, 0x70,
 	0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1b, 0x76, 0x64, 0x70, 0x2f, 0x6d, 0x67, 0x6d, 0x74, 0x2f, 0x76,
 	0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2f, 0x6d, 0x67, 0x6d, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x32, 0xdb, 0x06, 0x0a, 0x10, 0x55, 0x73, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x53,
+	0x6f, 0x32, 0xdb, 0x06, 0x0a, 0x10, 0x4d, 0x67, 0x6d, 0x74, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x53,
 	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x6f, 0x0a, 0x08, 0x4c, 0x69, 0x73, 0x74, 0x55, 0x73,
 	0x65, 0x72, 0x12, 0x21, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d, 0x67, 0x6d, 0x74, 0x2e, 0x76, 0x31,
 	0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65,
@@ -117,18 +117,18 @@ var file_vdp_mgmt_v1alpha_mgmt_admin_service_proto_goTypes = []interface{}{
 	(*LookUpUserResponse)(nil), // 11: vdp.mgmt.v1alpha.LookUpUserResponse
 }
 var file_vdp_mgmt_v1alpha_mgmt_admin_service_proto_depIdxs = []int32{
-	0,  // 0: vdp.mgmt.v1alpha.UserAdminService.ListUser:input_type -> vdp.mgmt.v1alpha.ListUserRequest
-	1,  // 1: vdp.mgmt.v1alpha.UserAdminService.CreateUser:input_type -> vdp.mgmt.v1alpha.CreateUserRequest
-	2,  // 2: vdp.mgmt.v1alpha.UserAdminService.GetUser:input_type -> vdp.mgmt.v1alpha.GetUserRequest
-	3,  // 3: vdp.mgmt.v1alpha.UserAdminService.UpdateUser:input_type -> vdp.mgmt.v1alpha.UpdateUserRequest
-	4,  // 4: vdp.mgmt.v1alpha.UserAdminService.DeleteUser:input_type -> vdp.mgmt.v1alpha.DeleteUserRequest
-	5,  // 5: vdp.mgmt.v1alpha.UserAdminService.LookUpUser:input_type -> vdp.mgmt.v1alpha.LookUpUserRequest
-	6,  // 6: vdp.mgmt.v1alpha.UserAdminService.ListUser:output_type -> vdp.mgmt.v1alpha.ListUserResponse
-	7,  // 7: vdp.mgmt.v1alpha.UserAdminService.CreateUser:output_type -> vdp.mgmt.v1alpha.CreateUserResponse
-	8,  // 8: vdp.mgmt.v1alpha.UserAdminService.GetUser:output_type -> vdp.mgmt.v1alpha.GetUserResponse
-	9,  // 9: vdp.mgmt.v1alpha.UserAdminService.UpdateUser:output_type -> vdp.mgmt.v1alpha.UpdateUserResponse
-	10, // 10: vdp.mgmt.v1alpha.UserAdminService.DeleteUser:output_type -> vdp.mgmt.v1alpha.DeleteUserResponse
-	11, // 11: vdp.mgmt.v1alpha.UserAdminService.LookUpUser:output_type -> vdp.mgmt.v1alpha.LookUpUserResponse
+	0,  // 0: vdp.mgmt.v1alpha.MgmtAdminService.ListUser:input_type -> vdp.mgmt.v1alpha.ListUserRequest
+	1,  // 1: vdp.mgmt.v1alpha.MgmtAdminService.CreateUser:input_type -> vdp.mgmt.v1alpha.CreateUserRequest
+	2,  // 2: vdp.mgmt.v1alpha.MgmtAdminService.GetUser:input_type -> vdp.mgmt.v1alpha.GetUserRequest
+	3,  // 3: vdp.mgmt.v1alpha.MgmtAdminService.UpdateUser:input_type -> vdp.mgmt.v1alpha.UpdateUserRequest
+	4,  // 4: vdp.mgmt.v1alpha.MgmtAdminService.DeleteUser:input_type -> vdp.mgmt.v1alpha.DeleteUserRequest
+	5,  // 5: vdp.mgmt.v1alpha.MgmtAdminService.LookUpUser:input_type -> vdp.mgmt.v1alpha.LookUpUserRequest
+	6,  // 6: vdp.mgmt.v1alpha.MgmtAdminService.ListUser:output_type -> vdp.mgmt.v1alpha.ListUserResponse
+	7,  // 7: vdp.mgmt.v1alpha.MgmtAdminService.CreateUser:output_type -> vdp.mgmt.v1alpha.CreateUserResponse
+	8,  // 8: vdp.mgmt.v1alpha.MgmtAdminService.GetUser:output_type -> vdp.mgmt.v1alpha.GetUserResponse
+	9,  // 9: vdp.mgmt.v1alpha.MgmtAdminService.UpdateUser:output_type -> vdp.mgmt.v1alpha.UpdateUserResponse
+	10, // 10: vdp.mgmt.v1alpha.MgmtAdminService.DeleteUser:output_type -> vdp.mgmt.v1alpha.DeleteUserResponse
+	11, // 11: vdp.mgmt.v1alpha.MgmtAdminService.LookUpUser:output_type -> vdp.mgmt.v1alpha.LookUpUserResponse
 	6,  // [6:12] is the sub-list for method output_type
 	0,  // [0:6] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name

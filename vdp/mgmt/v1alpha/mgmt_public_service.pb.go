@@ -34,7 +34,7 @@ var file_vdp_mgmt_v1alpha_mgmt_public_service_proto_rawDesc = []byte{
 	0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2f, 0x68, 0x65, 0x61, 0x6c, 0x74, 0x68, 0x63, 0x68,
 	0x65, 0x63, 0x6b, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1b, 0x76, 0x64, 0x70, 0x2f, 0x6d,
 	0x67, 0x6d, 0x74, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2f, 0x6d, 0x67, 0x6d, 0x74,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x8f, 0x06, 0x0a, 0x11, 0x55, 0x73, 0x65, 0x72, 0x50,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x8f, 0x06, 0x0a, 0x11, 0x4d, 0x67, 0x6d, 0x74, 0x50,
 	0x75, 0x62, 0x6c, 0x69, 0x63, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x86, 0x01, 0x0a,
 	0x08, 0x4c, 0x69, 0x76, 0x65, 0x6e, 0x65, 0x73, 0x73, 0x12, 0x21, 0x2e, 0x76, 0x64, 0x70, 0x2e,
 	0x6d, 0x67, 0x6d, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x4c, 0x69, 0x76,
@@ -113,16 +113,16 @@ var file_vdp_mgmt_v1alpha_mgmt_public_service_proto_goTypes = []interface{}{
 	(*ExistUsernameResponse)(nil),           // 9: vdp.mgmt.v1alpha.ExistUsernameResponse
 }
 var file_vdp_mgmt_v1alpha_mgmt_public_service_proto_depIdxs = []int32{
-	0, // 0: vdp.mgmt.v1alpha.UserPublicService.Liveness:input_type -> vdp.mgmt.v1alpha.LivenessRequest
-	1, // 1: vdp.mgmt.v1alpha.UserPublicService.Readiness:input_type -> vdp.mgmt.v1alpha.ReadinessRequest
-	2, // 2: vdp.mgmt.v1alpha.UserPublicService.GetAuthenticatedUser:input_type -> vdp.mgmt.v1alpha.GetAuthenticatedUserRequest
-	3, // 3: vdp.mgmt.v1alpha.UserPublicService.UpdateAuthenticatedUser:input_type -> vdp.mgmt.v1alpha.UpdateAuthenticatedUserRequest
-	4, // 4: vdp.mgmt.v1alpha.UserPublicService.ExistUsername:input_type -> vdp.mgmt.v1alpha.ExistUsernameRequest
-	5, // 5: vdp.mgmt.v1alpha.UserPublicService.Liveness:output_type -> vdp.mgmt.v1alpha.LivenessResponse
-	6, // 6: vdp.mgmt.v1alpha.UserPublicService.Readiness:output_type -> vdp.mgmt.v1alpha.ReadinessResponse
-	7, // 7: vdp.mgmt.v1alpha.UserPublicService.GetAuthenticatedUser:output_type -> vdp.mgmt.v1alpha.GetAuthenticatedUserResponse
-	8, // 8: vdp.mgmt.v1alpha.UserPublicService.UpdateAuthenticatedUser:output_type -> vdp.mgmt.v1alpha.UpdateAuthenticatedUserResponse
-	9, // 9: vdp.mgmt.v1alpha.UserPublicService.ExistUsername:output_type -> vdp.mgmt.v1alpha.ExistUsernameResponse
+	0, // 0: vdp.mgmt.v1alpha.MgmtPublicService.Liveness:input_type -> vdp.mgmt.v1alpha.LivenessRequest
+	1, // 1: vdp.mgmt.v1alpha.MgmtPublicService.Readiness:input_type -> vdp.mgmt.v1alpha.ReadinessRequest
+	2, // 2: vdp.mgmt.v1alpha.MgmtPublicService.GetAuthenticatedUser:input_type -> vdp.mgmt.v1alpha.GetAuthenticatedUserRequest
+	3, // 3: vdp.mgmt.v1alpha.MgmtPublicService.UpdateAuthenticatedUser:input_type -> vdp.mgmt.v1alpha.UpdateAuthenticatedUserRequest
+	4, // 4: vdp.mgmt.v1alpha.MgmtPublicService.ExistUsername:input_type -> vdp.mgmt.v1alpha.ExistUsernameRequest
+	5, // 5: vdp.mgmt.v1alpha.MgmtPublicService.Liveness:output_type -> vdp.mgmt.v1alpha.LivenessResponse
+	6, // 6: vdp.mgmt.v1alpha.MgmtPublicService.Readiness:output_type -> vdp.mgmt.v1alpha.ReadinessResponse
+	7, // 7: vdp.mgmt.v1alpha.MgmtPublicService.GetAuthenticatedUser:output_type -> vdp.mgmt.v1alpha.GetAuthenticatedUserResponse
+	8, // 8: vdp.mgmt.v1alpha.MgmtPublicService.UpdateAuthenticatedUser:output_type -> vdp.mgmt.v1alpha.UpdateAuthenticatedUserResponse
+	9, // 9: vdp.mgmt.v1alpha.MgmtPublicService.ExistUsername:output_type -> vdp.mgmt.v1alpha.ExistUsernameResponse
 	5, // [5:10] is the sub-list for method output_type
 	0, // [0:5] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

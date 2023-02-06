@@ -32,17 +32,17 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 var (
-	filter_UserAdminService_ListUser_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_MgmtAdminService_ListUser_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_UserAdminService_ListUser_0(ctx context.Context, marshaler runtime.Marshaler, client UserAdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_MgmtAdminService_ListUser_0(ctx context.Context, marshaler runtime.Marshaler, client MgmtAdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListUserRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_UserAdminService_ListUser_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtAdminService_ListUser_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -51,14 +51,14 @@ func request_UserAdminService_ListUser_0(ctx context.Context, marshaler runtime.
 
 }
 
-func local_request_UserAdminService_ListUser_0(ctx context.Context, marshaler runtime.Marshaler, server UserAdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_MgmtAdminService_ListUser_0(ctx context.Context, marshaler runtime.Marshaler, server MgmtAdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListUserRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_UserAdminService_ListUser_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtAdminService_ListUser_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -67,7 +67,7 @@ func local_request_UserAdminService_ListUser_0(ctx context.Context, marshaler ru
 
 }
 
-func request_UserAdminService_CreateUser_0(ctx context.Context, marshaler runtime.Marshaler, client UserAdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_MgmtAdminService_CreateUser_0(ctx context.Context, marshaler runtime.Marshaler, client MgmtAdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq CreateUserRequest
 	var metadata runtime.ServerMetadata
 
@@ -84,7 +84,7 @@ func request_UserAdminService_CreateUser_0(ctx context.Context, marshaler runtim
 
 }
 
-func local_request_UserAdminService_CreateUser_0(ctx context.Context, marshaler runtime.Marshaler, server UserAdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_MgmtAdminService_CreateUser_0(ctx context.Context, marshaler runtime.Marshaler, server MgmtAdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq CreateUserRequest
 	var metadata runtime.ServerMetadata
 
@@ -102,10 +102,10 @@ func local_request_UserAdminService_CreateUser_0(ctx context.Context, marshaler 
 }
 
 var (
-	filter_UserAdminService_GetUser_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
+	filter_MgmtAdminService_GetUser_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
-func request_UserAdminService_GetUser_0(ctx context.Context, marshaler runtime.Marshaler, client UserAdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_MgmtAdminService_GetUser_0(ctx context.Context, marshaler runtime.Marshaler, client MgmtAdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetUserRequest
 	var metadata runtime.ServerMetadata
 
@@ -129,7 +129,7 @@ func request_UserAdminService_GetUser_0(ctx context.Context, marshaler runtime.M
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_UserAdminService_GetUser_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtAdminService_GetUser_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -138,7 +138,7 @@ func request_UserAdminService_GetUser_0(ctx context.Context, marshaler runtime.M
 
 }
 
-func local_request_UserAdminService_GetUser_0(ctx context.Context, marshaler runtime.Marshaler, server UserAdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_MgmtAdminService_GetUser_0(ctx context.Context, marshaler runtime.Marshaler, server MgmtAdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetUserRequest
 	var metadata runtime.ServerMetadata
 
@@ -162,7 +162,7 @@ func local_request_UserAdminService_GetUser_0(ctx context.Context, marshaler run
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_UserAdminService_GetUser_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtAdminService_GetUser_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -172,10 +172,10 @@ func local_request_UserAdminService_GetUser_0(ctx context.Context, marshaler run
 }
 
 var (
-	filter_UserAdminService_UpdateUser_0 = &utilities.DoubleArray{Encoding: map[string]int{"user": 0, "name": 1}, Base: []int{1, 4, 5, 2, 0, 0, 0, 0}, Check: []int{0, 1, 1, 2, 4, 2, 2, 3}}
+	filter_MgmtAdminService_UpdateUser_0 = &utilities.DoubleArray{Encoding: map[string]int{"user": 0, "name": 1}, Base: []int{1, 4, 5, 2, 0, 0, 0, 0}, Check: []int{0, 1, 1, 2, 4, 2, 2, 3}}
 )
 
-func request_UserAdminService_UpdateUser_0(ctx context.Context, marshaler runtime.Marshaler, client UserAdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_MgmtAdminService_UpdateUser_0(ctx context.Context, marshaler runtime.Marshaler, client MgmtAdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq UpdateUserRequest
 	var metadata runtime.ServerMetadata
 
@@ -214,7 +214,7 @@ func request_UserAdminService_UpdateUser_0(ctx context.Context, marshaler runtim
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_UserAdminService_UpdateUser_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtAdminService_UpdateUser_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -223,7 +223,7 @@ func request_UserAdminService_UpdateUser_0(ctx context.Context, marshaler runtim
 
 }
 
-func local_request_UserAdminService_UpdateUser_0(ctx context.Context, marshaler runtime.Marshaler, server UserAdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_MgmtAdminService_UpdateUser_0(ctx context.Context, marshaler runtime.Marshaler, server MgmtAdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq UpdateUserRequest
 	var metadata runtime.ServerMetadata
 
@@ -262,7 +262,7 @@ func local_request_UserAdminService_UpdateUser_0(ctx context.Context, marshaler 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_UserAdminService_UpdateUser_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtAdminService_UpdateUser_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -271,7 +271,7 @@ func local_request_UserAdminService_UpdateUser_0(ctx context.Context, marshaler 
 
 }
 
-func request_UserAdminService_DeleteUser_0(ctx context.Context, marshaler runtime.Marshaler, client UserAdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_MgmtAdminService_DeleteUser_0(ctx context.Context, marshaler runtime.Marshaler, client MgmtAdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DeleteUserRequest
 	var metadata runtime.ServerMetadata
 
@@ -297,7 +297,7 @@ func request_UserAdminService_DeleteUser_0(ctx context.Context, marshaler runtim
 
 }
 
-func local_request_UserAdminService_DeleteUser_0(ctx context.Context, marshaler runtime.Marshaler, server UserAdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_MgmtAdminService_DeleteUser_0(ctx context.Context, marshaler runtime.Marshaler, server MgmtAdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DeleteUserRequest
 	var metadata runtime.ServerMetadata
 
@@ -324,10 +324,10 @@ func local_request_UserAdminService_DeleteUser_0(ctx context.Context, marshaler 
 }
 
 var (
-	filter_UserAdminService_LookUpUser_0 = &utilities.DoubleArray{Encoding: map[string]int{"permalink": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
+	filter_MgmtAdminService_LookUpUser_0 = &utilities.DoubleArray{Encoding: map[string]int{"permalink": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
-func request_UserAdminService_LookUpUser_0(ctx context.Context, marshaler runtime.Marshaler, client UserAdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_MgmtAdminService_LookUpUser_0(ctx context.Context, marshaler runtime.Marshaler, client MgmtAdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq LookUpUserRequest
 	var metadata runtime.ServerMetadata
 
@@ -351,7 +351,7 @@ func request_UserAdminService_LookUpUser_0(ctx context.Context, marshaler runtim
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_UserAdminService_LookUpUser_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtAdminService_LookUpUser_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -360,7 +360,7 @@ func request_UserAdminService_LookUpUser_0(ctx context.Context, marshaler runtim
 
 }
 
-func local_request_UserAdminService_LookUpUser_0(ctx context.Context, marshaler runtime.Marshaler, server UserAdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_MgmtAdminService_LookUpUser_0(ctx context.Context, marshaler runtime.Marshaler, server MgmtAdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq LookUpUserRequest
 	var metadata runtime.ServerMetadata
 
@@ -384,7 +384,7 @@ func local_request_UserAdminService_LookUpUser_0(ctx context.Context, marshaler 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_UserAdminService_LookUpUser_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtAdminService_LookUpUser_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -393,13 +393,13 @@ func local_request_UserAdminService_LookUpUser_0(ctx context.Context, marshaler 
 
 }
 
-// RegisterUserAdminServiceHandlerServer registers the http handlers for service UserAdminService to "mux".
-// UnaryRPC     :call UserAdminServiceServer directly.
+// RegisterMgmtAdminServiceHandlerServer registers the http handlers for service MgmtAdminService to "mux".
+// UnaryRPC     :call MgmtAdminServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterUserAdminServiceHandlerFromEndpoint instead.
-func RegisterUserAdminServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server UserAdminServiceServer) error {
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterMgmtAdminServiceHandlerFromEndpoint instead.
+func RegisterMgmtAdminServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server MgmtAdminServiceServer) error {
 
-	mux.Handle("GET", pattern_UserAdminService_ListUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MgmtAdminService_ListUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -407,12 +407,12 @@ func RegisterUserAdminServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserAdminService/ListUser", runtime.WithHTTPPathPattern("/v1alpha/admin/users"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.MgmtAdminService/ListUser", runtime.WithHTTPPathPattern("/v1alpha/admin/users"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_UserAdminService_ListUser_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MgmtAdminService_ListUser_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -420,11 +420,11 @@ func RegisterUserAdminServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 			return
 		}
 
-		forward_UserAdminService_ListUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtAdminService_ListUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_UserAdminService_CreateUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_MgmtAdminService_CreateUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -432,12 +432,12 @@ func RegisterUserAdminServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserAdminService/CreateUser", runtime.WithHTTPPathPattern("/v1alpha/admin/users"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.MgmtAdminService/CreateUser", runtime.WithHTTPPathPattern("/v1alpha/admin/users"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_UserAdminService_CreateUser_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MgmtAdminService_CreateUser_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -445,11 +445,11 @@ func RegisterUserAdminServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 			return
 		}
 
-		forward_UserAdminService_CreateUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtAdminService_CreateUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_UserAdminService_GetUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MgmtAdminService_GetUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -457,12 +457,12 @@ func RegisterUserAdminServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserAdminService/GetUser", runtime.WithHTTPPathPattern("/v1alpha/admin/{name=users/*}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.MgmtAdminService/GetUser", runtime.WithHTTPPathPattern("/v1alpha/admin/{name=users/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_UserAdminService_GetUser_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MgmtAdminService_GetUser_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -470,11 +470,11 @@ func RegisterUserAdminServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 			return
 		}
 
-		forward_UserAdminService_GetUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtAdminService_GetUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("PATCH", pattern_UserAdminService_UpdateUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PATCH", pattern_MgmtAdminService_UpdateUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -482,12 +482,12 @@ func RegisterUserAdminServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserAdminService/UpdateUser", runtime.WithHTTPPathPattern("/v1alpha/admin/{user.name=users/*}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.MgmtAdminService/UpdateUser", runtime.WithHTTPPathPattern("/v1alpha/admin/{user.name=users/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_UserAdminService_UpdateUser_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MgmtAdminService_UpdateUser_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -495,11 +495,11 @@ func RegisterUserAdminServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 			return
 		}
 
-		forward_UserAdminService_UpdateUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtAdminService_UpdateUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("DELETE", pattern_UserAdminService_DeleteUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_MgmtAdminService_DeleteUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -507,12 +507,12 @@ func RegisterUserAdminServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserAdminService/DeleteUser", runtime.WithHTTPPathPattern("/v1alpha/admin/{name=users/*}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.MgmtAdminService/DeleteUser", runtime.WithHTTPPathPattern("/v1alpha/admin/{name=users/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_UserAdminService_DeleteUser_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MgmtAdminService_DeleteUser_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -520,11 +520,11 @@ func RegisterUserAdminServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 			return
 		}
 
-		forward_UserAdminService_DeleteUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtAdminService_DeleteUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_UserAdminService_LookUpUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MgmtAdminService_LookUpUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -532,12 +532,12 @@ func RegisterUserAdminServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserAdminService/LookUpUser", runtime.WithHTTPPathPattern("/v1alpha/admin/{permalink=users/*}/lookUp"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.MgmtAdminService/LookUpUser", runtime.WithHTTPPathPattern("/v1alpha/admin/{permalink=users/*}/lookUp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_UserAdminService_LookUpUser_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MgmtAdminService_LookUpUser_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -545,16 +545,16 @@ func RegisterUserAdminServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 			return
 		}
 
-		forward_UserAdminService_LookUpUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtAdminService_LookUpUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
 	return nil
 }
 
-// RegisterUserAdminServiceHandlerFromEndpoint is same as RegisterUserAdminServiceHandler but
+// RegisterMgmtAdminServiceHandlerFromEndpoint is same as RegisterMgmtAdminServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterUserAdminServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterMgmtAdminServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
@@ -574,151 +574,151 @@ func RegisterUserAdminServiceHandlerFromEndpoint(ctx context.Context, mux *runti
 		}()
 	}()
 
-	return RegisterUserAdminServiceHandler(ctx, mux, conn)
+	return RegisterMgmtAdminServiceHandler(ctx, mux, conn)
 }
 
-// RegisterUserAdminServiceHandler registers the http handlers for service UserAdminService to "mux".
+// RegisterMgmtAdminServiceHandler registers the http handlers for service MgmtAdminService to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterUserAdminServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterUserAdminServiceHandlerClient(ctx, mux, NewUserAdminServiceClient(conn))
+func RegisterMgmtAdminServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterMgmtAdminServiceHandlerClient(ctx, mux, NewMgmtAdminServiceClient(conn))
 }
 
-// RegisterUserAdminServiceHandlerClient registers the http handlers for service UserAdminService
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "UserAdminServiceClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "UserAdminServiceClient"
+// RegisterMgmtAdminServiceHandlerClient registers the http handlers for service MgmtAdminService
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "MgmtAdminServiceClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "MgmtAdminServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "UserAdminServiceClient" to call the correct interceptors.
-func RegisterUserAdminServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client UserAdminServiceClient) error {
+// "MgmtAdminServiceClient" to call the correct interceptors.
+func RegisterMgmtAdminServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client MgmtAdminServiceClient) error {
 
-	mux.Handle("GET", pattern_UserAdminService_ListUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MgmtAdminService_ListUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserAdminService/ListUser", runtime.WithHTTPPathPattern("/v1alpha/admin/users"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.MgmtAdminService/ListUser", runtime.WithHTTPPathPattern("/v1alpha/admin/users"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_UserAdminService_ListUser_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MgmtAdminService_ListUser_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_UserAdminService_ListUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtAdminService_ListUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_UserAdminService_CreateUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_MgmtAdminService_CreateUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserAdminService/CreateUser", runtime.WithHTTPPathPattern("/v1alpha/admin/users"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.MgmtAdminService/CreateUser", runtime.WithHTTPPathPattern("/v1alpha/admin/users"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_UserAdminService_CreateUser_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MgmtAdminService_CreateUser_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_UserAdminService_CreateUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtAdminService_CreateUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_UserAdminService_GetUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MgmtAdminService_GetUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserAdminService/GetUser", runtime.WithHTTPPathPattern("/v1alpha/admin/{name=users/*}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.MgmtAdminService/GetUser", runtime.WithHTTPPathPattern("/v1alpha/admin/{name=users/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_UserAdminService_GetUser_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MgmtAdminService_GetUser_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_UserAdminService_GetUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtAdminService_GetUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("PATCH", pattern_UserAdminService_UpdateUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PATCH", pattern_MgmtAdminService_UpdateUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserAdminService/UpdateUser", runtime.WithHTTPPathPattern("/v1alpha/admin/{user.name=users/*}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.MgmtAdminService/UpdateUser", runtime.WithHTTPPathPattern("/v1alpha/admin/{user.name=users/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_UserAdminService_UpdateUser_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MgmtAdminService_UpdateUser_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_UserAdminService_UpdateUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtAdminService_UpdateUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("DELETE", pattern_UserAdminService_DeleteUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_MgmtAdminService_DeleteUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserAdminService/DeleteUser", runtime.WithHTTPPathPattern("/v1alpha/admin/{name=users/*}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.MgmtAdminService/DeleteUser", runtime.WithHTTPPathPattern("/v1alpha/admin/{name=users/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_UserAdminService_DeleteUser_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MgmtAdminService_DeleteUser_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_UserAdminService_DeleteUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtAdminService_DeleteUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_UserAdminService_LookUpUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MgmtAdminService_LookUpUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserAdminService/LookUpUser", runtime.WithHTTPPathPattern("/v1alpha/admin/{permalink=users/*}/lookUp"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.MgmtAdminService/LookUpUser", runtime.WithHTTPPathPattern("/v1alpha/admin/{permalink=users/*}/lookUp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_UserAdminService_LookUpUser_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MgmtAdminService_LookUpUser_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_UserAdminService_LookUpUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtAdminService_LookUpUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -726,29 +726,29 @@ func RegisterUserAdminServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 }
 
 var (
-	pattern_UserAdminService_ListUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "admin", "users"}, ""))
+	pattern_MgmtAdminService_ListUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "admin", "users"}, ""))
 
-	pattern_UserAdminService_CreateUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "admin", "users"}, ""))
+	pattern_MgmtAdminService_CreateUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "admin", "users"}, ""))
 
-	pattern_UserAdminService_GetUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 2, 5, 3}, []string{"v1alpha", "admin", "users", "name"}, ""))
+	pattern_MgmtAdminService_GetUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 2, 5, 3}, []string{"v1alpha", "admin", "users", "name"}, ""))
 
-	pattern_UserAdminService_UpdateUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 2, 5, 3}, []string{"v1alpha", "admin", "users", "user.name"}, ""))
+	pattern_MgmtAdminService_UpdateUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 2, 5, 3}, []string{"v1alpha", "admin", "users", "user.name"}, ""))
 
-	pattern_UserAdminService_DeleteUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 2, 5, 3}, []string{"v1alpha", "admin", "users", "name"}, ""))
+	pattern_MgmtAdminService_DeleteUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 2, 5, 3}, []string{"v1alpha", "admin", "users", "name"}, ""))
 
-	pattern_UserAdminService_LookUpUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 2, 5, 3, 2, 4}, []string{"v1alpha", "admin", "users", "permalink", "lookUp"}, ""))
+	pattern_MgmtAdminService_LookUpUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 2, 5, 3, 2, 4}, []string{"v1alpha", "admin", "users", "permalink", "lookUp"}, ""))
 )
 
 var (
-	forward_UserAdminService_ListUser_0 = runtime.ForwardResponseMessage
+	forward_MgmtAdminService_ListUser_0 = runtime.ForwardResponseMessage
 
-	forward_UserAdminService_CreateUser_0 = runtime.ForwardResponseMessage
+	forward_MgmtAdminService_CreateUser_0 = runtime.ForwardResponseMessage
 
-	forward_UserAdminService_GetUser_0 = runtime.ForwardResponseMessage
+	forward_MgmtAdminService_GetUser_0 = runtime.ForwardResponseMessage
 
-	forward_UserAdminService_UpdateUser_0 = runtime.ForwardResponseMessage
+	forward_MgmtAdminService_UpdateUser_0 = runtime.ForwardResponseMessage
 
-	forward_UserAdminService_DeleteUser_0 = runtime.ForwardResponseMessage
+	forward_MgmtAdminService_DeleteUser_0 = runtime.ForwardResponseMessage
 
-	forward_UserAdminService_LookUpUser_0 = runtime.ForwardResponseMessage
+	forward_MgmtAdminService_LookUpUser_0 = runtime.ForwardResponseMessage
 )

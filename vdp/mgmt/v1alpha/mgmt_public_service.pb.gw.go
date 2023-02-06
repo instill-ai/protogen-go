@@ -32,17 +32,17 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 var (
-	filter_UserPublicService_Liveness_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_MgmtPublicService_Liveness_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_UserPublicService_Liveness_0(ctx context.Context, marshaler runtime.Marshaler, client UserPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_MgmtPublicService_Liveness_0(ctx context.Context, marshaler runtime.Marshaler, client MgmtPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq LivenessRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_UserPublicService_Liveness_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtPublicService_Liveness_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -51,14 +51,14 @@ func request_UserPublicService_Liveness_0(ctx context.Context, marshaler runtime
 
 }
 
-func local_request_UserPublicService_Liveness_0(ctx context.Context, marshaler runtime.Marshaler, server UserPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_MgmtPublicService_Liveness_0(ctx context.Context, marshaler runtime.Marshaler, server MgmtPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq LivenessRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_UserPublicService_Liveness_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtPublicService_Liveness_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -68,17 +68,17 @@ func local_request_UserPublicService_Liveness_0(ctx context.Context, marshaler r
 }
 
 var (
-	filter_UserPublicService_Liveness_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_MgmtPublicService_Liveness_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_UserPublicService_Liveness_1(ctx context.Context, marshaler runtime.Marshaler, client UserPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_MgmtPublicService_Liveness_1(ctx context.Context, marshaler runtime.Marshaler, client MgmtPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq LivenessRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_UserPublicService_Liveness_1); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtPublicService_Liveness_1); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -87,14 +87,14 @@ func request_UserPublicService_Liveness_1(ctx context.Context, marshaler runtime
 
 }
 
-func local_request_UserPublicService_Liveness_1(ctx context.Context, marshaler runtime.Marshaler, server UserPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_MgmtPublicService_Liveness_1(ctx context.Context, marshaler runtime.Marshaler, server MgmtPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq LivenessRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_UserPublicService_Liveness_1); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtPublicService_Liveness_1); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -104,17 +104,17 @@ func local_request_UserPublicService_Liveness_1(ctx context.Context, marshaler r
 }
 
 var (
-	filter_UserPublicService_Readiness_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_MgmtPublicService_Readiness_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_UserPublicService_Readiness_0(ctx context.Context, marshaler runtime.Marshaler, client UserPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_MgmtPublicService_Readiness_0(ctx context.Context, marshaler runtime.Marshaler, client MgmtPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ReadinessRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_UserPublicService_Readiness_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtPublicService_Readiness_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -123,14 +123,14 @@ func request_UserPublicService_Readiness_0(ctx context.Context, marshaler runtim
 
 }
 
-func local_request_UserPublicService_Readiness_0(ctx context.Context, marshaler runtime.Marshaler, server UserPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_MgmtPublicService_Readiness_0(ctx context.Context, marshaler runtime.Marshaler, server MgmtPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ReadinessRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_UserPublicService_Readiness_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtPublicService_Readiness_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -140,17 +140,17 @@ func local_request_UserPublicService_Readiness_0(ctx context.Context, marshaler 
 }
 
 var (
-	filter_UserPublicService_Readiness_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_MgmtPublicService_Readiness_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_UserPublicService_Readiness_1(ctx context.Context, marshaler runtime.Marshaler, client UserPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_MgmtPublicService_Readiness_1(ctx context.Context, marshaler runtime.Marshaler, client MgmtPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ReadinessRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_UserPublicService_Readiness_1); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtPublicService_Readiness_1); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -159,14 +159,14 @@ func request_UserPublicService_Readiness_1(ctx context.Context, marshaler runtim
 
 }
 
-func local_request_UserPublicService_Readiness_1(ctx context.Context, marshaler runtime.Marshaler, server UserPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_MgmtPublicService_Readiness_1(ctx context.Context, marshaler runtime.Marshaler, server MgmtPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ReadinessRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_UserPublicService_Readiness_1); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtPublicService_Readiness_1); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -175,7 +175,7 @@ func local_request_UserPublicService_Readiness_1(ctx context.Context, marshaler 
 
 }
 
-func request_UserPublicService_GetAuthenticatedUser_0(ctx context.Context, marshaler runtime.Marshaler, client UserPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_MgmtPublicService_GetAuthenticatedUser_0(ctx context.Context, marshaler runtime.Marshaler, client MgmtPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetAuthenticatedUserRequest
 	var metadata runtime.ServerMetadata
 
@@ -184,7 +184,7 @@ func request_UserPublicService_GetAuthenticatedUser_0(ctx context.Context, marsh
 
 }
 
-func local_request_UserPublicService_GetAuthenticatedUser_0(ctx context.Context, marshaler runtime.Marshaler, server UserPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_MgmtPublicService_GetAuthenticatedUser_0(ctx context.Context, marshaler runtime.Marshaler, server MgmtPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetAuthenticatedUserRequest
 	var metadata runtime.ServerMetadata
 
@@ -194,10 +194,10 @@ func local_request_UserPublicService_GetAuthenticatedUser_0(ctx context.Context,
 }
 
 var (
-	filter_UserPublicService_UpdateAuthenticatedUser_0 = &utilities.DoubleArray{Encoding: map[string]int{"user": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
+	filter_MgmtPublicService_UpdateAuthenticatedUser_0 = &utilities.DoubleArray{Encoding: map[string]int{"user": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
-func request_UserPublicService_UpdateAuthenticatedUser_0(ctx context.Context, marshaler runtime.Marshaler, client UserPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_MgmtPublicService_UpdateAuthenticatedUser_0(ctx context.Context, marshaler runtime.Marshaler, client MgmtPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq UpdateAuthenticatedUserRequest
 	var metadata runtime.ServerMetadata
 
@@ -219,7 +219,7 @@ func request_UserPublicService_UpdateAuthenticatedUser_0(ctx context.Context, ma
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_UserPublicService_UpdateAuthenticatedUser_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtPublicService_UpdateAuthenticatedUser_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -228,7 +228,7 @@ func request_UserPublicService_UpdateAuthenticatedUser_0(ctx context.Context, ma
 
 }
 
-func local_request_UserPublicService_UpdateAuthenticatedUser_0(ctx context.Context, marshaler runtime.Marshaler, server UserPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_MgmtPublicService_UpdateAuthenticatedUser_0(ctx context.Context, marshaler runtime.Marshaler, server MgmtPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq UpdateAuthenticatedUserRequest
 	var metadata runtime.ServerMetadata
 
@@ -250,7 +250,7 @@ func local_request_UserPublicService_UpdateAuthenticatedUser_0(ctx context.Conte
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_UserPublicService_UpdateAuthenticatedUser_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtPublicService_UpdateAuthenticatedUser_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -259,7 +259,7 @@ func local_request_UserPublicService_UpdateAuthenticatedUser_0(ctx context.Conte
 
 }
 
-func request_UserPublicService_ExistUsername_0(ctx context.Context, marshaler runtime.Marshaler, client UserPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_MgmtPublicService_ExistUsername_0(ctx context.Context, marshaler runtime.Marshaler, client MgmtPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ExistUsernameRequest
 	var metadata runtime.ServerMetadata
 
@@ -285,7 +285,7 @@ func request_UserPublicService_ExistUsername_0(ctx context.Context, marshaler ru
 
 }
 
-func local_request_UserPublicService_ExistUsername_0(ctx context.Context, marshaler runtime.Marshaler, server UserPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_MgmtPublicService_ExistUsername_0(ctx context.Context, marshaler runtime.Marshaler, server MgmtPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ExistUsernameRequest
 	var metadata runtime.ServerMetadata
 
@@ -311,13 +311,13 @@ func local_request_UserPublicService_ExistUsername_0(ctx context.Context, marsha
 
 }
 
-// RegisterUserPublicServiceHandlerServer registers the http handlers for service UserPublicService to "mux".
-// UnaryRPC     :call UserPublicServiceServer directly.
+// RegisterMgmtPublicServiceHandlerServer registers the http handlers for service MgmtPublicService to "mux".
+// UnaryRPC     :call MgmtPublicServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterUserPublicServiceHandlerFromEndpoint instead.
-func RegisterUserPublicServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server UserPublicServiceServer) error {
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterMgmtPublicServiceHandlerFromEndpoint instead.
+func RegisterMgmtPublicServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server MgmtPublicServiceServer) error {
 
-	mux.Handle("GET", pattern_UserPublicService_Liveness_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MgmtPublicService_Liveness_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -325,12 +325,12 @@ func RegisterUserPublicServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserPublicService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/__liveness"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.MgmtPublicService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/__liveness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_UserPublicService_Liveness_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MgmtPublicService_Liveness_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -338,11 +338,11 @@ func RegisterUserPublicServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			return
 		}
 
-		forward_UserPublicService_Liveness_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtPublicService_Liveness_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_UserPublicService_Liveness_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MgmtPublicService_Liveness_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -350,12 +350,12 @@ func RegisterUserPublicServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserPublicService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/health/mgmt"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.MgmtPublicService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/health/mgmt"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_UserPublicService_Liveness_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MgmtPublicService_Liveness_1(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -363,11 +363,11 @@ func RegisterUserPublicServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			return
 		}
 
-		forward_UserPublicService_Liveness_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtPublicService_Liveness_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_UserPublicService_Readiness_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MgmtPublicService_Readiness_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -375,12 +375,12 @@ func RegisterUserPublicServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserPublicService/Readiness", runtime.WithHTTPPathPattern("/v1alpha/__readiness"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.MgmtPublicService/Readiness", runtime.WithHTTPPathPattern("/v1alpha/__readiness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_UserPublicService_Readiness_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MgmtPublicService_Readiness_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -388,11 +388,11 @@ func RegisterUserPublicServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			return
 		}
 
-		forward_UserPublicService_Readiness_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtPublicService_Readiness_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_UserPublicService_Readiness_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MgmtPublicService_Readiness_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -400,12 +400,12 @@ func RegisterUserPublicServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserPublicService/Readiness", runtime.WithHTTPPathPattern("/v1alpha/ready/mgmt"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.MgmtPublicService/Readiness", runtime.WithHTTPPathPattern("/v1alpha/ready/mgmt"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_UserPublicService_Readiness_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MgmtPublicService_Readiness_1(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -413,11 +413,11 @@ func RegisterUserPublicServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			return
 		}
 
-		forward_UserPublicService_Readiness_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtPublicService_Readiness_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_UserPublicService_GetAuthenticatedUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MgmtPublicService_GetAuthenticatedUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -425,12 +425,12 @@ func RegisterUserPublicServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserPublicService/GetAuthenticatedUser", runtime.WithHTTPPathPattern("/v1alpha/user"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.MgmtPublicService/GetAuthenticatedUser", runtime.WithHTTPPathPattern("/v1alpha/user"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_UserPublicService_GetAuthenticatedUser_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MgmtPublicService_GetAuthenticatedUser_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -438,11 +438,11 @@ func RegisterUserPublicServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			return
 		}
 
-		forward_UserPublicService_GetAuthenticatedUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtPublicService_GetAuthenticatedUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("PATCH", pattern_UserPublicService_UpdateAuthenticatedUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PATCH", pattern_MgmtPublicService_UpdateAuthenticatedUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -450,12 +450,12 @@ func RegisterUserPublicServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserPublicService/UpdateAuthenticatedUser", runtime.WithHTTPPathPattern("/v1alpha/user"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.MgmtPublicService/UpdateAuthenticatedUser", runtime.WithHTTPPathPattern("/v1alpha/user"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_UserPublicService_UpdateAuthenticatedUser_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MgmtPublicService_UpdateAuthenticatedUser_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -463,11 +463,11 @@ func RegisterUserPublicServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			return
 		}
 
-		forward_UserPublicService_UpdateAuthenticatedUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtPublicService_UpdateAuthenticatedUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_UserPublicService_ExistUsername_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MgmtPublicService_ExistUsername_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -475,12 +475,12 @@ func RegisterUserPublicServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserPublicService/ExistUsername", runtime.WithHTTPPathPattern("/v1alpha/{name=users/*}/exists"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.mgmt.v1alpha.MgmtPublicService/ExistUsername", runtime.WithHTTPPathPattern("/v1alpha/{name=users/*}/exists"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_UserPublicService_ExistUsername_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MgmtPublicService_ExistUsername_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -488,16 +488,16 @@ func RegisterUserPublicServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			return
 		}
 
-		forward_UserPublicService_ExistUsername_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtPublicService_ExistUsername_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
 	return nil
 }
 
-// RegisterUserPublicServiceHandlerFromEndpoint is same as RegisterUserPublicServiceHandler but
+// RegisterMgmtPublicServiceHandlerFromEndpoint is same as RegisterMgmtPublicServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterUserPublicServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterMgmtPublicServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
@@ -517,173 +517,173 @@ func RegisterUserPublicServiceHandlerFromEndpoint(ctx context.Context, mux *runt
 		}()
 	}()
 
-	return RegisterUserPublicServiceHandler(ctx, mux, conn)
+	return RegisterMgmtPublicServiceHandler(ctx, mux, conn)
 }
 
-// RegisterUserPublicServiceHandler registers the http handlers for service UserPublicService to "mux".
+// RegisterMgmtPublicServiceHandler registers the http handlers for service MgmtPublicService to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterUserPublicServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterUserPublicServiceHandlerClient(ctx, mux, NewUserPublicServiceClient(conn))
+func RegisterMgmtPublicServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterMgmtPublicServiceHandlerClient(ctx, mux, NewMgmtPublicServiceClient(conn))
 }
 
-// RegisterUserPublicServiceHandlerClient registers the http handlers for service UserPublicService
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "UserPublicServiceClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "UserPublicServiceClient"
+// RegisterMgmtPublicServiceHandlerClient registers the http handlers for service MgmtPublicService
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "MgmtPublicServiceClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "MgmtPublicServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "UserPublicServiceClient" to call the correct interceptors.
-func RegisterUserPublicServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client UserPublicServiceClient) error {
+// "MgmtPublicServiceClient" to call the correct interceptors.
+func RegisterMgmtPublicServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client MgmtPublicServiceClient) error {
 
-	mux.Handle("GET", pattern_UserPublicService_Liveness_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MgmtPublicService_Liveness_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserPublicService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/__liveness"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.MgmtPublicService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/__liveness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_UserPublicService_Liveness_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MgmtPublicService_Liveness_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_UserPublicService_Liveness_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtPublicService_Liveness_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_UserPublicService_Liveness_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MgmtPublicService_Liveness_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserPublicService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/health/mgmt"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.MgmtPublicService/Liveness", runtime.WithHTTPPathPattern("/v1alpha/health/mgmt"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_UserPublicService_Liveness_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MgmtPublicService_Liveness_1(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_UserPublicService_Liveness_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtPublicService_Liveness_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_UserPublicService_Readiness_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MgmtPublicService_Readiness_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserPublicService/Readiness", runtime.WithHTTPPathPattern("/v1alpha/__readiness"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.MgmtPublicService/Readiness", runtime.WithHTTPPathPattern("/v1alpha/__readiness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_UserPublicService_Readiness_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MgmtPublicService_Readiness_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_UserPublicService_Readiness_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtPublicService_Readiness_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_UserPublicService_Readiness_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MgmtPublicService_Readiness_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserPublicService/Readiness", runtime.WithHTTPPathPattern("/v1alpha/ready/mgmt"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.MgmtPublicService/Readiness", runtime.WithHTTPPathPattern("/v1alpha/ready/mgmt"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_UserPublicService_Readiness_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MgmtPublicService_Readiness_1(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_UserPublicService_Readiness_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtPublicService_Readiness_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_UserPublicService_GetAuthenticatedUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MgmtPublicService_GetAuthenticatedUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserPublicService/GetAuthenticatedUser", runtime.WithHTTPPathPattern("/v1alpha/user"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.MgmtPublicService/GetAuthenticatedUser", runtime.WithHTTPPathPattern("/v1alpha/user"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_UserPublicService_GetAuthenticatedUser_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MgmtPublicService_GetAuthenticatedUser_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_UserPublicService_GetAuthenticatedUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtPublicService_GetAuthenticatedUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("PATCH", pattern_UserPublicService_UpdateAuthenticatedUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PATCH", pattern_MgmtPublicService_UpdateAuthenticatedUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserPublicService/UpdateAuthenticatedUser", runtime.WithHTTPPathPattern("/v1alpha/user"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.MgmtPublicService/UpdateAuthenticatedUser", runtime.WithHTTPPathPattern("/v1alpha/user"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_UserPublicService_UpdateAuthenticatedUser_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MgmtPublicService_UpdateAuthenticatedUser_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_UserPublicService_UpdateAuthenticatedUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtPublicService_UpdateAuthenticatedUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_UserPublicService_ExistUsername_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MgmtPublicService_ExistUsername_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.UserPublicService/ExistUsername", runtime.WithHTTPPathPattern("/v1alpha/{name=users/*}/exists"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.mgmt.v1alpha.MgmtPublicService/ExistUsername", runtime.WithHTTPPathPattern("/v1alpha/{name=users/*}/exists"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_UserPublicService_ExistUsername_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MgmtPublicService_ExistUsername_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_UserPublicService_ExistUsername_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtPublicService_ExistUsername_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -691,33 +691,33 @@ func RegisterUserPublicServiceHandlerClient(ctx context.Context, mux *runtime.Se
 }
 
 var (
-	pattern_UserPublicService_Liveness_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "__liveness"}, ""))
+	pattern_MgmtPublicService_Liveness_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "__liveness"}, ""))
 
-	pattern_UserPublicService_Liveness_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "health", "mgmt"}, ""))
+	pattern_MgmtPublicService_Liveness_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "health", "mgmt"}, ""))
 
-	pattern_UserPublicService_Readiness_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "__readiness"}, ""))
+	pattern_MgmtPublicService_Readiness_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "__readiness"}, ""))
 
-	pattern_UserPublicService_Readiness_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "ready", "mgmt"}, ""))
+	pattern_MgmtPublicService_Readiness_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "ready", "mgmt"}, ""))
 
-	pattern_UserPublicService_GetAuthenticatedUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "user"}, ""))
+	pattern_MgmtPublicService_GetAuthenticatedUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "user"}, ""))
 
-	pattern_UserPublicService_UpdateAuthenticatedUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "user"}, ""))
+	pattern_MgmtPublicService_UpdateAuthenticatedUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "user"}, ""))
 
-	pattern_UserPublicService_ExistUsername_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "users", "name", "exists"}, ""))
+	pattern_MgmtPublicService_ExistUsername_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "users", "name", "exists"}, ""))
 )
 
 var (
-	forward_UserPublicService_Liveness_0 = runtime.ForwardResponseMessage
+	forward_MgmtPublicService_Liveness_0 = runtime.ForwardResponseMessage
 
-	forward_UserPublicService_Liveness_1 = runtime.ForwardResponseMessage
+	forward_MgmtPublicService_Liveness_1 = runtime.ForwardResponseMessage
 
-	forward_UserPublicService_Readiness_0 = runtime.ForwardResponseMessage
+	forward_MgmtPublicService_Readiness_0 = runtime.ForwardResponseMessage
 
-	forward_UserPublicService_Readiness_1 = runtime.ForwardResponseMessage
+	forward_MgmtPublicService_Readiness_1 = runtime.ForwardResponseMessage
 
-	forward_UserPublicService_GetAuthenticatedUser_0 = runtime.ForwardResponseMessage
+	forward_MgmtPublicService_GetAuthenticatedUser_0 = runtime.ForwardResponseMessage
 
-	forward_UserPublicService_UpdateAuthenticatedUser_0 = runtime.ForwardResponseMessage
+	forward_MgmtPublicService_UpdateAuthenticatedUser_0 = runtime.ForwardResponseMessage
 
-	forward_UserPublicService_ExistUsername_0 = runtime.ForwardResponseMessage
+	forward_MgmtPublicService_ExistUsername_0 = runtime.ForwardResponseMessage
 )
