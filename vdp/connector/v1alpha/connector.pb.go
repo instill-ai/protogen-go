@@ -950,7 +950,7 @@ func (*DeleteSourceConnectorResponse) Descriptor() ([]byte, []int) {
 }
 
 // LookUpSourceConnectorRequest represents a request to query a source connector
-// by permalink
+// via permalink
 type LookUpSourceConnectorRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2020,7 +2020,7 @@ func (*DeleteDestinationConnectorResponse) Descriptor() ([]byte, []int) {
 }
 
 // LookUpDestinationConnectorRequest represents a request to query a destination
-// connector by permalink
+// connector via permalink
 type LookUpDestinationConnectorRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2590,6 +2590,721 @@ func (*WriteDestinationConnectorResponse) Descriptor() ([]byte, []int) {
 	return file_vdp_connector_v1alpha_connector_proto_rawDescGZIP(), []int{42}
 }
 
+// ListSourceConnectorAdminRequest represents a request to list
+// SourceConnector resources from all users by admin
+type ListSourceConnectorAdminRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The maximum number of connectors to return. The service may return fewer
+	// than this value. If unspecified, at most 10 connectors will be returned.
+	// The maximum value is 100; values above 100 will be coerced to 100.
+	PageSize *int64 `protobuf:"varint,1,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
+	// Page token
+	PageToken *string `protobuf:"bytes,2,opt,name=page_token,json=pageToken,proto3,oneof" json:"page_token,omitempty"`
+	// SourceConnector view (default is VIEW_BASIC)
+	View *View `protobuf:"varint,3,opt,name=view,proto3,enum=vdp.connector.v1alpha.View,oneof" json:"view,omitempty"`
+}
+
+func (x *ListSourceConnectorAdminRequest) Reset() {
+	*x = ListSourceConnectorAdminRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_connector_v1alpha_connector_proto_msgTypes[43]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListSourceConnectorAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListSourceConnectorAdminRequest) ProtoMessage() {}
+
+func (x *ListSourceConnectorAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_connector_v1alpha_connector_proto_msgTypes[43]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListSourceConnectorAdminRequest.ProtoReflect.Descriptor instead.
+func (*ListSourceConnectorAdminRequest) Descriptor() ([]byte, []int) {
+	return file_vdp_connector_v1alpha_connector_proto_rawDescGZIP(), []int{43}
+}
+
+func (x *ListSourceConnectorAdminRequest) GetPageSize() int64 {
+	if x != nil && x.PageSize != nil {
+		return *x.PageSize
+	}
+	return 0
+}
+
+func (x *ListSourceConnectorAdminRequest) GetPageToken() string {
+	if x != nil && x.PageToken != nil {
+		return *x.PageToken
+	}
+	return ""
+}
+
+func (x *ListSourceConnectorAdminRequest) GetView() View {
+	if x != nil && x.View != nil {
+		return *x.View
+	}
+	return View_VIEW_UNSPECIFIED
+}
+
+// ListSourceConnectorAdminResponse represents a response for a list of
+// SourceConnector resources
+type ListSourceConnectorAdminResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// A list of SourceConnector resources
+	SourceConnectors []*SourceConnector `protobuf:"bytes,1,rep,name=source_connectors,json=sourceConnectors,proto3" json:"source_connectors,omitempty"`
+	// Next page token
+	NextPageToken string `protobuf:"bytes,2,opt,name=next_page_token,json=nextPageToken,proto3" json:"next_page_token,omitempty"`
+	// Total count of connector resources
+	TotalSize int64 `protobuf:"varint,3,opt,name=total_size,json=totalSize,proto3" json:"total_size,omitempty"`
+}
+
+func (x *ListSourceConnectorAdminResponse) Reset() {
+	*x = ListSourceConnectorAdminResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_connector_v1alpha_connector_proto_msgTypes[44]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListSourceConnectorAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListSourceConnectorAdminResponse) ProtoMessage() {}
+
+func (x *ListSourceConnectorAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_connector_v1alpha_connector_proto_msgTypes[44]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListSourceConnectorAdminResponse.ProtoReflect.Descriptor instead.
+func (*ListSourceConnectorAdminResponse) Descriptor() ([]byte, []int) {
+	return file_vdp_connector_v1alpha_connector_proto_rawDescGZIP(), []int{44}
+}
+
+func (x *ListSourceConnectorAdminResponse) GetSourceConnectors() []*SourceConnector {
+	if x != nil {
+		return x.SourceConnectors
+	}
+	return nil
+}
+
+func (x *ListSourceConnectorAdminResponse) GetNextPageToken() string {
+	if x != nil {
+		return x.NextPageToken
+	}
+	return ""
+}
+
+func (x *ListSourceConnectorAdminResponse) GetTotalSize() int64 {
+	if x != nil {
+		return x.TotalSize
+	}
+	return 0
+}
+
+// GetSourceConnectorAdminRequest represents a request to query a
+// SourceConnector resource by admin
+type GetSourceConnectorAdminRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// SourceConnectorConnector resource name. It must have the format of
+	// "source-connectors/*"
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// SourceConnector view (default is VIEW_BASIC)
+	View *View `protobuf:"varint,3,opt,name=view,proto3,enum=vdp.connector.v1alpha.View,oneof" json:"view,omitempty"`
+}
+
+func (x *GetSourceConnectorAdminRequest) Reset() {
+	*x = GetSourceConnectorAdminRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_connector_v1alpha_connector_proto_msgTypes[45]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetSourceConnectorAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSourceConnectorAdminRequest) ProtoMessage() {}
+
+func (x *GetSourceConnectorAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_connector_v1alpha_connector_proto_msgTypes[45]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSourceConnectorAdminRequest.ProtoReflect.Descriptor instead.
+func (*GetSourceConnectorAdminRequest) Descriptor() ([]byte, []int) {
+	return file_vdp_connector_v1alpha_connector_proto_rawDescGZIP(), []int{45}
+}
+
+func (x *GetSourceConnectorAdminRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *GetSourceConnectorAdminRequest) GetView() View {
+	if x != nil && x.View != nil {
+		return *x.View
+	}
+	return View_VIEW_UNSPECIFIED
+}
+
+// GetSourceConnectorAdminResponse represents a response for a
+// SourceConnector resource
+type GetSourceConnectorAdminResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// SourceConnector resource
+	SourceConnector *SourceConnector `protobuf:"bytes,1,opt,name=source_connector,json=sourceConnector,proto3" json:"source_connector,omitempty"`
+}
+
+func (x *GetSourceConnectorAdminResponse) Reset() {
+	*x = GetSourceConnectorAdminResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_connector_v1alpha_connector_proto_msgTypes[46]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetSourceConnectorAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSourceConnectorAdminResponse) ProtoMessage() {}
+
+func (x *GetSourceConnectorAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_connector_v1alpha_connector_proto_msgTypes[46]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSourceConnectorAdminResponse.ProtoReflect.Descriptor instead.
+func (*GetSourceConnectorAdminResponse) Descriptor() ([]byte, []int) {
+	return file_vdp_connector_v1alpha_connector_proto_rawDescGZIP(), []int{46}
+}
+
+func (x *GetSourceConnectorAdminResponse) GetSourceConnector() *SourceConnector {
+	if x != nil {
+		return x.SourceConnector
+	}
+	return nil
+}
+
+// LookUpSourceConnectorAdminRequest represents a request to query a source connector
+// via permalink by admin
+type LookUpSourceConnectorAdminRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Permalink of a source connector. For example:
+	// "source-connectors/{uid}"
+	Permalink string `protobuf:"bytes,1,opt,name=permalink,proto3" json:"permalink,omitempty"`
+	// SourceConnector view (default is VIEW_BASIC)
+	View *View `protobuf:"varint,2,opt,name=view,proto3,enum=vdp.connector.v1alpha.View,oneof" json:"view,omitempty"`
+}
+
+func (x *LookUpSourceConnectorAdminRequest) Reset() {
+	*x = LookUpSourceConnectorAdminRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_connector_v1alpha_connector_proto_msgTypes[47]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *LookUpSourceConnectorAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LookUpSourceConnectorAdminRequest) ProtoMessage() {}
+
+func (x *LookUpSourceConnectorAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_connector_v1alpha_connector_proto_msgTypes[47]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LookUpSourceConnectorAdminRequest.ProtoReflect.Descriptor instead.
+func (*LookUpSourceConnectorAdminRequest) Descriptor() ([]byte, []int) {
+	return file_vdp_connector_v1alpha_connector_proto_rawDescGZIP(), []int{47}
+}
+
+func (x *LookUpSourceConnectorAdminRequest) GetPermalink() string {
+	if x != nil {
+		return x.Permalink
+	}
+	return ""
+}
+
+func (x *LookUpSourceConnectorAdminRequest) GetView() View {
+	if x != nil && x.View != nil {
+		return *x.View
+	}
+	return View_VIEW_UNSPECIFIED
+}
+
+// LookUpSourceConnectorAdminResponse represents a response for a source connector
+type LookUpSourceConnectorAdminResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// SourceConnector resource
+	SourceConnector *SourceConnector `protobuf:"bytes,1,opt,name=source_connector,json=sourceConnector,proto3" json:"source_connector,omitempty"`
+}
+
+func (x *LookUpSourceConnectorAdminResponse) Reset() {
+	*x = LookUpSourceConnectorAdminResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_connector_v1alpha_connector_proto_msgTypes[48]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *LookUpSourceConnectorAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LookUpSourceConnectorAdminResponse) ProtoMessage() {}
+
+func (x *LookUpSourceConnectorAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_connector_v1alpha_connector_proto_msgTypes[48]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LookUpSourceConnectorAdminResponse.ProtoReflect.Descriptor instead.
+func (*LookUpSourceConnectorAdminResponse) Descriptor() ([]byte, []int) {
+	return file_vdp_connector_v1alpha_connector_proto_rawDescGZIP(), []int{48}
+}
+
+func (x *LookUpSourceConnectorAdminResponse) GetSourceConnector() *SourceConnector {
+	if x != nil {
+		return x.SourceConnector
+	}
+	return nil
+}
+
+// ListDestinationConnectorAdminRequest represents a request to list
+// DestinationConnector resources from all users by admin
+type ListDestinationConnectorAdminRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The maximum number of connectors to return. The service may return fewer
+	// than this value. If unspecified, at most 10 connectors will be returned.
+	// The maximum value is 100; values above 100 will be coerced to 100.
+	PageSize *int64 `protobuf:"varint,1,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
+	// Page token
+	PageToken *string `protobuf:"bytes,2,opt,name=page_token,json=pageToken,proto3,oneof" json:"page_token,omitempty"`
+	// DestinationConnector view (default is VIEW_BASIC)
+	View *View `protobuf:"varint,3,opt,name=view,proto3,enum=vdp.connector.v1alpha.View,oneof" json:"view,omitempty"`
+}
+
+func (x *ListDestinationConnectorAdminRequest) Reset() {
+	*x = ListDestinationConnectorAdminRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_connector_v1alpha_connector_proto_msgTypes[49]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListDestinationConnectorAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListDestinationConnectorAdminRequest) ProtoMessage() {}
+
+func (x *ListDestinationConnectorAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_connector_v1alpha_connector_proto_msgTypes[49]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListDestinationConnectorAdminRequest.ProtoReflect.Descriptor instead.
+func (*ListDestinationConnectorAdminRequest) Descriptor() ([]byte, []int) {
+	return file_vdp_connector_v1alpha_connector_proto_rawDescGZIP(), []int{49}
+}
+
+func (x *ListDestinationConnectorAdminRequest) GetPageSize() int64 {
+	if x != nil && x.PageSize != nil {
+		return *x.PageSize
+	}
+	return 0
+}
+
+func (x *ListDestinationConnectorAdminRequest) GetPageToken() string {
+	if x != nil && x.PageToken != nil {
+		return *x.PageToken
+	}
+	return ""
+}
+
+func (x *ListDestinationConnectorAdminRequest) GetView() View {
+	if x != nil && x.View != nil {
+		return *x.View
+	}
+	return View_VIEW_UNSPECIFIED
+}
+
+// ListDestinationConnectorAdminResponse represents a response for a list of
+// DestinationConnector resources
+type ListDestinationConnectorAdminResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// A list of DestinationConnector resources
+	DestinationConnectors []*DestinationConnector `protobuf:"bytes,1,rep,name=destination_connectors,json=destinationConnectors,proto3" json:"destination_connectors,omitempty"`
+	// Next page token
+	NextPageToken string `protobuf:"bytes,2,opt,name=next_page_token,json=nextPageToken,proto3" json:"next_page_token,omitempty"`
+	// Total count of connector resources
+	TotalSize int64 `protobuf:"varint,3,opt,name=total_size,json=totalSize,proto3" json:"total_size,omitempty"`
+}
+
+func (x *ListDestinationConnectorAdminResponse) Reset() {
+	*x = ListDestinationConnectorAdminResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_connector_v1alpha_connector_proto_msgTypes[50]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListDestinationConnectorAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListDestinationConnectorAdminResponse) ProtoMessage() {}
+
+func (x *ListDestinationConnectorAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_connector_v1alpha_connector_proto_msgTypes[50]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListDestinationConnectorAdminResponse.ProtoReflect.Descriptor instead.
+func (*ListDestinationConnectorAdminResponse) Descriptor() ([]byte, []int) {
+	return file_vdp_connector_v1alpha_connector_proto_rawDescGZIP(), []int{50}
+}
+
+func (x *ListDestinationConnectorAdminResponse) GetDestinationConnectors() []*DestinationConnector {
+	if x != nil {
+		return x.DestinationConnectors
+	}
+	return nil
+}
+
+func (x *ListDestinationConnectorAdminResponse) GetNextPageToken() string {
+	if x != nil {
+		return x.NextPageToken
+	}
+	return ""
+}
+
+func (x *ListDestinationConnectorAdminResponse) GetTotalSize() int64 {
+	if x != nil {
+		return x.TotalSize
+	}
+	return 0
+}
+
+// GetDestinationConnectorAdminRequest represents a request to query a
+// DestinationConnector resource by admin
+type GetDestinationConnectorAdminRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// DestinationConnectorConnector resource name. It must have the format of
+	// "destination-connectors/*"
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// DestinationConnector view (default is VIEW_BASIC)
+	View *View `protobuf:"varint,3,opt,name=view,proto3,enum=vdp.connector.v1alpha.View,oneof" json:"view,omitempty"`
+}
+
+func (x *GetDestinationConnectorAdminRequest) Reset() {
+	*x = GetDestinationConnectorAdminRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_connector_v1alpha_connector_proto_msgTypes[51]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetDestinationConnectorAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetDestinationConnectorAdminRequest) ProtoMessage() {}
+
+func (x *GetDestinationConnectorAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_connector_v1alpha_connector_proto_msgTypes[51]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetDestinationConnectorAdminRequest.ProtoReflect.Descriptor instead.
+func (*GetDestinationConnectorAdminRequest) Descriptor() ([]byte, []int) {
+	return file_vdp_connector_v1alpha_connector_proto_rawDescGZIP(), []int{51}
+}
+
+func (x *GetDestinationConnectorAdminRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *GetDestinationConnectorAdminRequest) GetView() View {
+	if x != nil && x.View != nil {
+		return *x.View
+	}
+	return View_VIEW_UNSPECIFIED
+}
+
+// GetDestinationConnectorAdminResponse represents a response for a
+// DestinationConnector resource
+type GetDestinationConnectorAdminResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// DestinationConnector resource
+	DestinationConnector *DestinationConnector `protobuf:"bytes,1,opt,name=destination_connector,json=destinationConnector,proto3" json:"destination_connector,omitempty"`
+}
+
+func (x *GetDestinationConnectorAdminResponse) Reset() {
+	*x = GetDestinationConnectorAdminResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_connector_v1alpha_connector_proto_msgTypes[52]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetDestinationConnectorAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetDestinationConnectorAdminResponse) ProtoMessage() {}
+
+func (x *GetDestinationConnectorAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_connector_v1alpha_connector_proto_msgTypes[52]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetDestinationConnectorAdminResponse.ProtoReflect.Descriptor instead.
+func (*GetDestinationConnectorAdminResponse) Descriptor() ([]byte, []int) {
+	return file_vdp_connector_v1alpha_connector_proto_rawDescGZIP(), []int{52}
+}
+
+func (x *GetDestinationConnectorAdminResponse) GetDestinationConnector() *DestinationConnector {
+	if x != nil {
+		return x.DestinationConnector
+	}
+	return nil
+}
+
+// LookUpDestinationConnectorAdminRequest represents a request to query a destination
+// connector via permalink by admin
+type LookUpDestinationConnectorAdminRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Permalink of a destination connector. For example:
+	// "destination-connectors/{uid}"
+	Permalink string `protobuf:"bytes,1,opt,name=permalink,proto3" json:"permalink,omitempty"`
+	// SourceConnector view (default is VIEW_BASIC)
+	View *View `protobuf:"varint,2,opt,name=view,proto3,enum=vdp.connector.v1alpha.View,oneof" json:"view,omitempty"`
+}
+
+func (x *LookUpDestinationConnectorAdminRequest) Reset() {
+	*x = LookUpDestinationConnectorAdminRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_connector_v1alpha_connector_proto_msgTypes[53]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *LookUpDestinationConnectorAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LookUpDestinationConnectorAdminRequest) ProtoMessage() {}
+
+func (x *LookUpDestinationConnectorAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_connector_v1alpha_connector_proto_msgTypes[53]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LookUpDestinationConnectorAdminRequest.ProtoReflect.Descriptor instead.
+func (*LookUpDestinationConnectorAdminRequest) Descriptor() ([]byte, []int) {
+	return file_vdp_connector_v1alpha_connector_proto_rawDescGZIP(), []int{53}
+}
+
+func (x *LookUpDestinationConnectorAdminRequest) GetPermalink() string {
+	if x != nil {
+		return x.Permalink
+	}
+	return ""
+}
+
+func (x *LookUpDestinationConnectorAdminRequest) GetView() View {
+	if x != nil && x.View != nil {
+		return *x.View
+	}
+	return View_VIEW_UNSPECIFIED
+}
+
+// LookUpDestinationConnectorAdminResponse represents a response for a destination
+// connector
+type LookUpDestinationConnectorAdminResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// DestinationConnector resource
+	DestinationConnector *DestinationConnector `protobuf:"bytes,1,opt,name=destination_connector,json=destinationConnector,proto3" json:"destination_connector,omitempty"`
+}
+
+func (x *LookUpDestinationConnectorAdminResponse) Reset() {
+	*x = LookUpDestinationConnectorAdminResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_connector_v1alpha_connector_proto_msgTypes[54]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *LookUpDestinationConnectorAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LookUpDestinationConnectorAdminResponse) ProtoMessage() {}
+
+func (x *LookUpDestinationConnectorAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_connector_v1alpha_connector_proto_msgTypes[54]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LookUpDestinationConnectorAdminResponse.ProtoReflect.Descriptor instead.
+func (*LookUpDestinationConnectorAdminResponse) Descriptor() ([]byte, []int) {
+	return file_vdp_connector_v1alpha_connector_proto_rawDescGZIP(), []int{54}
+}
+
+func (x *LookUpDestinationConnectorAdminResponse) GetDestinationConnector() *DestinationConnector {
+	if x != nil {
+		return x.DestinationConnector
+	}
+	return nil
+}
+
 var File_vdp_connector_v1alpha_connector_proto protoreflect.FileDescriptor
 
 var file_vdp_connector_v1alpha_connector_proto_rawDesc = []byte{
@@ -3059,22 +3774,150 @@ var file_vdp_connector_v1alpha_connector_proto_rawDesc = []byte{
 	0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x4f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x73, 0x22, 0x23, 0x0a,
 	0x21, 0x57, 0x72, 0x69, 0x74, 0x65, 0x44, 0x65, 0x73, 0x74, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f,
 	0x6e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x42, 0xeb, 0x01, 0x0a, 0x19, 0x63, 0x6f, 0x6d, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x63,
+	0x73, 0x65, 0x22, 0xd2, 0x01, 0x0a, 0x1f, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x6f, 0x75, 0x72, 0x63,
+	0x65, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x25, 0x0a, 0x09, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x73,
+	0x69, 0x7a, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x00,
+	0x52, 0x08, 0x70, 0x61, 0x67, 0x65, 0x53, 0x69, 0x7a, 0x65, 0x88, 0x01, 0x01, 0x12, 0x27, 0x0a,
+	0x0a, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x09, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x01, 0x52, 0x09, 0x70, 0x61, 0x67, 0x65, 0x54, 0x6f,
+	0x6b, 0x65, 0x6e, 0x88, 0x01, 0x01, 0x12, 0x39, 0x0a, 0x04, 0x76, 0x69, 0x65, 0x77, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x0e, 0x32, 0x1b, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x63, 0x6f, 0x6e, 0x6e, 0x65,
+	0x63, 0x74, 0x6f, 0x72, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x56, 0x69, 0x65,
+	0x77, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x02, 0x52, 0x04, 0x76, 0x69, 0x65, 0x77, 0x88, 0x01,
+	0x01, 0x42, 0x0c, 0x0a, 0x0a, 0x5f, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x42,
+	0x0d, 0x0a, 0x0b, 0x5f, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x42, 0x07,
+	0x0a, 0x05, 0x5f, 0x76, 0x69, 0x65, 0x77, 0x22, 0xbe, 0x01, 0x0a, 0x20, 0x4c, 0x69, 0x73, 0x74,
+	0x53, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x41,
+	0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x53, 0x0a, 0x11,
+	0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x5f, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72,
+	0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x26, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x63, 0x6f,
+	0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e,
+	0x53, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x52,
+	0x10, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72,
+	0x73, 0x12, 0x26, 0x0a, 0x0f, 0x6e, 0x65, 0x78, 0x74, 0x5f, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x74,
+	0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d, 0x6e, 0x65, 0x78, 0x74,
+	0x50, 0x61, 0x67, 0x65, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x1d, 0x0a, 0x0a, 0x74, 0x6f, 0x74,
+	0x61, 0x6c, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03, 0x52, 0x09, 0x74,
+	0x6f, 0x74, 0x61, 0x6c, 0x53, 0x69, 0x7a, 0x65, 0x22, 0xc0, 0x01, 0x0a, 0x1e, 0x47, 0x65, 0x74,
+	0x53, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x41,
+	0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x5a, 0x0a, 0x04, 0x6e,
+	0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x46, 0x92, 0x41, 0x1b, 0xca, 0x3e,
+	0x18, 0xfa, 0x02, 0x15, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x5f, 0x63, 0x6f, 0x6e, 0x6e, 0x65,
+	0x63, 0x74, 0x6f, 0x72, 0x2e, 0x6e, 0x61, 0x6d, 0x65, 0xe0, 0x41, 0x02, 0xfa, 0x41, 0x22, 0x0a,
+	0x20, 0x61, 0x70, 0x69, 0x2e, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2e, 0x74, 0x65, 0x63,
+	0x68, 0x2f, 0x53, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f,
+	0x72, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x39, 0x0a, 0x04, 0x76, 0x69, 0x65, 0x77, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x1b, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x63, 0x6f, 0x6e, 0x6e,
+	0x65, 0x63, 0x74, 0x6f, 0x72, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x56, 0x69,
+	0x65, 0x77, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x00, 0x52, 0x04, 0x76, 0x69, 0x65, 0x77, 0x88,
+	0x01, 0x01, 0x42, 0x07, 0x0a, 0x05, 0x5f, 0x76, 0x69, 0x65, 0x77, 0x22, 0x74, 0x0a, 0x1f, 0x47,
+	0x65, 0x74, 0x53, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f,
+	0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x51,
+	0x0a, 0x10, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x5f, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74,
+	0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x26, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x63,
 	0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61,
-	0x42, 0x0e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x50, 0x72, 0x6f, 0x74, 0x6f,
-	0x50, 0x01, 0x5a, 0x48, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x69,
-	0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2d, 0x61, 0x69, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x67,
-	0x65, 0x6e, 0x2d, 0x67, 0x6f, 0x2f, 0x76, 0x64, 0x70, 0x2f, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63,
-	0x74, 0x6f, 0x72, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x3b, 0x63, 0x6f, 0x6e, 0x6e,
-	0x65, 0x63, 0x74, 0x6f, 0x72, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xa2, 0x02, 0x03, 0x56,
-	0x43, 0x58, 0xaa, 0x02, 0x15, 0x56, 0x64, 0x70, 0x2e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74,
-	0x6f, 0x72, 0x2e, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xca, 0x02, 0x15, 0x56, 0x64, 0x70,
-	0x5c, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70,
-	0x68, 0x61, 0xe2, 0x02, 0x21, 0x56, 0x64, 0x70, 0x5c, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74,
-	0x6f, 0x72, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65,
-	0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x17, 0x56, 0x64, 0x70, 0x3a, 0x3a, 0x43, 0x6f,
-	0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x3a, 0x3a, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61,
-	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x2e, 0x53, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72,
+	0x52, 0x0f, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f,
+	0x72, 0x22, 0x8a, 0x01, 0x0a, 0x21, 0x4c, 0x6f, 0x6f, 0x6b, 0x55, 0x70, 0x53, 0x6f, 0x75, 0x72,
+	0x63, 0x65, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x21, 0x0a, 0x09, 0x70, 0x65, 0x72, 0x6d, 0x61,
+	0x6c, 0x69, 0x6e, 0x6b, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52,
+	0x09, 0x70, 0x65, 0x72, 0x6d, 0x61, 0x6c, 0x69, 0x6e, 0x6b, 0x12, 0x39, 0x0a, 0x04, 0x76, 0x69,
+	0x65, 0x77, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x1b, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x63,
+	0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61,
+	0x2e, 0x56, 0x69, 0x65, 0x77, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x00, 0x52, 0x04, 0x76, 0x69,
+	0x65, 0x77, 0x88, 0x01, 0x01, 0x42, 0x07, 0x0a, 0x05, 0x5f, 0x76, 0x69, 0x65, 0x77, 0x22, 0x77,
+	0x0a, 0x22, 0x4c, 0x6f, 0x6f, 0x6b, 0x55, 0x70, 0x53, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x43, 0x6f,
+	0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x51, 0x0a, 0x10, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x5f, 0x63,
+	0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x26,
+	0x2e, 0x76, 0x64, 0x70, 0x2e, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x2e, 0x76,
+	0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x53, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x43, 0x6f, 0x6e,
+	0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x52, 0x0f, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x43, 0x6f,
+	0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x22, 0xd7, 0x01, 0x0a, 0x24, 0x4c, 0x69, 0x73, 0x74,
+	0x44, 0x65, 0x73, 0x74, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x6e, 0x65,
+	0x63, 0x74, 0x6f, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x25, 0x0a, 0x09, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x03, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x00, 0x52, 0x08, 0x70, 0x61, 0x67, 0x65,
+	0x53, 0x69, 0x7a, 0x65, 0x88, 0x01, 0x01, 0x12, 0x27, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x65, 0x5f,
+	0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x01,
+	0x48, 0x01, 0x52, 0x09, 0x70, 0x61, 0x67, 0x65, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x88, 0x01, 0x01,
+	0x12, 0x39, 0x0a, 0x04, 0x76, 0x69, 0x65, 0x77, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x1b,
+	0x2e, 0x76, 0x64, 0x70, 0x2e, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x2e, 0x76,
+	0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x56, 0x69, 0x65, 0x77, 0x42, 0x03, 0xe0, 0x41, 0x01,
+	0x48, 0x02, 0x52, 0x04, 0x76, 0x69, 0x65, 0x77, 0x88, 0x01, 0x01, 0x42, 0x0c, 0x0a, 0x0a, 0x5f,
+	0x70, 0x61, 0x67, 0x65, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x42, 0x0d, 0x0a, 0x0b, 0x5f, 0x70, 0x61,
+	0x67, 0x65, 0x5f, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x42, 0x07, 0x0a, 0x05, 0x5f, 0x76, 0x69, 0x65,
+	0x77, 0x22, 0xd2, 0x01, 0x0a, 0x25, 0x4c, 0x69, 0x73, 0x74, 0x44, 0x65, 0x73, 0x74, 0x69, 0x6e,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x41, 0x64,
+	0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x62, 0x0a, 0x16, 0x64,
+	0x65, 0x73, 0x74, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x63, 0x6f, 0x6e, 0x6e, 0x65,
+	0x63, 0x74, 0x6f, 0x72, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x2b, 0x2e, 0x76, 0x64,
+	0x70, 0x2e, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x2e, 0x76, 0x31, 0x61, 0x6c,
+	0x70, 0x68, 0x61, 0x2e, 0x44, 0x65, 0x73, 0x74, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43,
+	0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x52, 0x15, 0x64, 0x65, 0x73, 0x74, 0x69, 0x6e,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x73, 0x12,
+	0x26, 0x0a, 0x0f, 0x6e, 0x65, 0x78, 0x74, 0x5f, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x74, 0x6f, 0x6b,
+	0x65, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d, 0x6e, 0x65, 0x78, 0x74, 0x50, 0x61,
+	0x67, 0x65, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x1d, 0x0a, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c,
+	0x5f, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03, 0x52, 0x09, 0x74, 0x6f, 0x74,
+	0x61, 0x6c, 0x53, 0x69, 0x7a, 0x65, 0x22, 0xcf, 0x01, 0x0a, 0x23, 0x47, 0x65, 0x74, 0x44, 0x65,
+	0x73, 0x74, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74,
+	0x6f, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x64,
+	0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x50, 0x92, 0x41,
+	0x20, 0xca, 0x3e, 0x1d, 0xfa, 0x02, 0x1a, 0x64, 0x65, 0x73, 0x74, 0x69, 0x6e, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x5f, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x2e, 0x6e, 0x61, 0x6d,
+	0x65, 0xe0, 0x41, 0x02, 0xfa, 0x41, 0x27, 0x0a, 0x25, 0x61, 0x70, 0x69, 0x2e, 0x69, 0x6e, 0x73,
+	0x74, 0x69, 0x6c, 0x6c, 0x2e, 0x74, 0x65, 0x63, 0x68, 0x2f, 0x44, 0x65, 0x73, 0x74, 0x69, 0x6e,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x52, 0x04,
+	0x6e, 0x61, 0x6d, 0x65, 0x12, 0x39, 0x0a, 0x04, 0x76, 0x69, 0x65, 0x77, 0x18, 0x03, 0x20, 0x01,
+	0x28, 0x0e, 0x32, 0x1b, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74,
+	0x6f, 0x72, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x56, 0x69, 0x65, 0x77, 0x42,
+	0x03, 0xe0, 0x41, 0x01, 0x48, 0x00, 0x52, 0x04, 0x76, 0x69, 0x65, 0x77, 0x88, 0x01, 0x01, 0x42,
+	0x07, 0x0a, 0x05, 0x5f, 0x76, 0x69, 0x65, 0x77, 0x22, 0x88, 0x01, 0x0a, 0x24, 0x47, 0x65, 0x74,
+	0x44, 0x65, 0x73, 0x74, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x6e, 0x65,
+	0x63, 0x74, 0x6f, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x60, 0x0a, 0x15, 0x64, 0x65, 0x73, 0x74, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x5f, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x2b, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72,
+	0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x44, 0x65, 0x73, 0x74, 0x69, 0x6e, 0x61,
+	0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x52, 0x14, 0x64,
+	0x65, 0x73, 0x74, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63,
+	0x74, 0x6f, 0x72, 0x22, 0x8f, 0x01, 0x0a, 0x26, 0x4c, 0x6f, 0x6f, 0x6b, 0x55, 0x70, 0x44, 0x65,
+	0x73, 0x74, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74,
+	0x6f, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x21,
+	0x0a, 0x09, 0x70, 0x65, 0x72, 0x6d, 0x61, 0x6c, 0x69, 0x6e, 0x6b, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x09, 0x70, 0x65, 0x72, 0x6d, 0x61, 0x6c, 0x69, 0x6e,
+	0x6b, 0x12, 0x39, 0x0a, 0x04, 0x76, 0x69, 0x65, 0x77, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32,
+	0x1b, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x2e,
+	0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x56, 0x69, 0x65, 0x77, 0x42, 0x03, 0xe0, 0x41,
+	0x01, 0x48, 0x00, 0x52, 0x04, 0x76, 0x69, 0x65, 0x77, 0x88, 0x01, 0x01, 0x42, 0x07, 0x0a, 0x05,
+	0x5f, 0x76, 0x69, 0x65, 0x77, 0x22, 0x8b, 0x01, 0x0a, 0x27, 0x4c, 0x6f, 0x6f, 0x6b, 0x55, 0x70,
+	0x44, 0x65, 0x73, 0x74, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x6e, 0x65,
+	0x63, 0x74, 0x6f, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x60, 0x0a, 0x15, 0x64, 0x65, 0x73, 0x74, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x5f, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x2b, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72,
+	0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x44, 0x65, 0x73, 0x74, 0x69, 0x6e, 0x61,
+	0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x52, 0x14, 0x64,
+	0x65, 0x73, 0x74, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63,
+	0x74, 0x6f, 0x72, 0x42, 0xeb, 0x01, 0x0a, 0x19, 0x63, 0x6f, 0x6d, 0x2e, 0x76, 0x64, 0x70, 0x2e,
+	0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68,
+	0x61, 0x42, 0x0e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x50, 0x72, 0x6f, 0x74,
+	0x6f, 0x50, 0x01, 0x5a, 0x48, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f,
+	0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2d, 0x61, 0x69, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x67, 0x65, 0x6e, 0x2d, 0x67, 0x6f, 0x2f, 0x76, 0x64, 0x70, 0x2f, 0x63, 0x6f, 0x6e, 0x6e, 0x65,
+	0x63, 0x74, 0x6f, 0x72, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x3b, 0x63, 0x6f, 0x6e,
+	0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xa2, 0x02, 0x03,
+	0x56, 0x43, 0x58, 0xaa, 0x02, 0x15, 0x56, 0x64, 0x70, 0x2e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63,
+	0x74, 0x6f, 0x72, 0x2e, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xca, 0x02, 0x15, 0x56, 0x64,
+	0x70, 0x5c, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x5c, 0x56, 0x31, 0x61, 0x6c,
+	0x70, 0x68, 0x61, 0xe2, 0x02, 0x21, 0x56, 0x64, 0x70, 0x5c, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63,
+	0x74, 0x6f, 0x72, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x5c, 0x47, 0x50, 0x42, 0x4d,
+	0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x17, 0x56, 0x64, 0x70, 0x3a, 0x3a, 0x43,
+	0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x3a, 0x3a, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68,
+	0x61, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -3090,105 +3933,129 @@ func file_vdp_connector_v1alpha_connector_proto_rawDescGZIP() []byte {
 }
 
 var file_vdp_connector_v1alpha_connector_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_vdp_connector_v1alpha_connector_proto_msgTypes = make([]protoimpl.MessageInfo, 43)
+var file_vdp_connector_v1alpha_connector_proto_msgTypes = make([]protoimpl.MessageInfo, 55)
 var file_vdp_connector_v1alpha_connector_proto_goTypes = []interface{}{
-	(Connector_State)(0),                           // 0: vdp.connector.v1alpha.Connector.State
-	(*Connector)(nil),                              // 1: vdp.connector.v1alpha.Connector
-	(*SourceConnector)(nil),                        // 2: vdp.connector.v1alpha.SourceConnector
-	(*DestinationConnector)(nil),                   // 3: vdp.connector.v1alpha.DestinationConnector
-	(*CreateSourceConnectorRequest)(nil),           // 4: vdp.connector.v1alpha.CreateSourceConnectorRequest
-	(*CreateSourceConnectorResponse)(nil),          // 5: vdp.connector.v1alpha.CreateSourceConnectorResponse
-	(*ListSourceConnectorRequest)(nil),             // 6: vdp.connector.v1alpha.ListSourceConnectorRequest
-	(*ListSourceConnectorResponse)(nil),            // 7: vdp.connector.v1alpha.ListSourceConnectorResponse
-	(*GetSourceConnectorRequest)(nil),              // 8: vdp.connector.v1alpha.GetSourceConnectorRequest
-	(*GetSourceConnectorResponse)(nil),             // 9: vdp.connector.v1alpha.GetSourceConnectorResponse
-	(*UpdateSourceConnectorRequest)(nil),           // 10: vdp.connector.v1alpha.UpdateSourceConnectorRequest
-	(*UpdateSourceConnectorResponse)(nil),          // 11: vdp.connector.v1alpha.UpdateSourceConnectorResponse
-	(*DeleteSourceConnectorRequest)(nil),           // 12: vdp.connector.v1alpha.DeleteSourceConnectorRequest
-	(*DeleteSourceConnectorResponse)(nil),          // 13: vdp.connector.v1alpha.DeleteSourceConnectorResponse
-	(*LookUpSourceConnectorRequest)(nil),           // 14: vdp.connector.v1alpha.LookUpSourceConnectorRequest
-	(*LookUpSourceConnectorResponse)(nil),          // 15: vdp.connector.v1alpha.LookUpSourceConnectorResponse
-	(*ConnectSourceConnectorRequest)(nil),          // 16: vdp.connector.v1alpha.ConnectSourceConnectorRequest
-	(*ConnectSourceConnectorResponse)(nil),         // 17: vdp.connector.v1alpha.ConnectSourceConnectorResponse
-	(*DisconnectSourceConnectorRequest)(nil),       // 18: vdp.connector.v1alpha.DisconnectSourceConnectorRequest
-	(*DisconnectSourceConnectorResponse)(nil),      // 19: vdp.connector.v1alpha.DisconnectSourceConnectorResponse
-	(*RenameSourceConnectorRequest)(nil),           // 20: vdp.connector.v1alpha.RenameSourceConnectorRequest
-	(*RenameSourceConnectorResponse)(nil),          // 21: vdp.connector.v1alpha.RenameSourceConnectorResponse
-	(*ReadSourceConnectorRequest)(nil),             // 22: vdp.connector.v1alpha.ReadSourceConnectorRequest
-	(*ReadSourceConnectorResponse)(nil),            // 23: vdp.connector.v1alpha.ReadSourceConnectorResponse
-	(*CreateDestinationConnectorRequest)(nil),      // 24: vdp.connector.v1alpha.CreateDestinationConnectorRequest
-	(*CreateDestinationConnectorResponse)(nil),     // 25: vdp.connector.v1alpha.CreateDestinationConnectorResponse
-	(*ListDestinationConnectorRequest)(nil),        // 26: vdp.connector.v1alpha.ListDestinationConnectorRequest
-	(*ListDestinationConnectorResponse)(nil),       // 27: vdp.connector.v1alpha.ListDestinationConnectorResponse
-	(*GetDestinationConnectorRequest)(nil),         // 28: vdp.connector.v1alpha.GetDestinationConnectorRequest
-	(*GetDestinationConnectorResponse)(nil),        // 29: vdp.connector.v1alpha.GetDestinationConnectorResponse
-	(*UpdateDestinationConnectorRequest)(nil),      // 30: vdp.connector.v1alpha.UpdateDestinationConnectorRequest
-	(*UpdateDestinationConnectorResponse)(nil),     // 31: vdp.connector.v1alpha.UpdateDestinationConnectorResponse
-	(*DeleteDestinationConnectorRequest)(nil),      // 32: vdp.connector.v1alpha.DeleteDestinationConnectorRequest
-	(*DeleteDestinationConnectorResponse)(nil),     // 33: vdp.connector.v1alpha.DeleteDestinationConnectorResponse
-	(*LookUpDestinationConnectorRequest)(nil),      // 34: vdp.connector.v1alpha.LookUpDestinationConnectorRequest
-	(*LookUpDestinationConnectorResponse)(nil),     // 35: vdp.connector.v1alpha.LookUpDestinationConnectorResponse
-	(*ConnectDestinationConnectorRequest)(nil),     // 36: vdp.connector.v1alpha.ConnectDestinationConnectorRequest
-	(*ConnectDestinationConnectorResponse)(nil),    // 37: vdp.connector.v1alpha.ConnectDestinationConnectorResponse
-	(*DisconnectDestinationConnectorRequest)(nil),  // 38: vdp.connector.v1alpha.DisconnectDestinationConnectorRequest
-	(*DisconnectDestinationConnectorResponse)(nil), // 39: vdp.connector.v1alpha.DisconnectDestinationConnectorResponse
-	(*RenameDestinationConnectorRequest)(nil),      // 40: vdp.connector.v1alpha.RenameDestinationConnectorRequest
-	(*RenameDestinationConnectorResponse)(nil),     // 41: vdp.connector.v1alpha.RenameDestinationConnectorResponse
-	(*WriteDestinationConnectorRequest)(nil),       // 42: vdp.connector.v1alpha.WriteDestinationConnectorRequest
-	(*WriteDestinationConnectorResponse)(nil),      // 43: vdp.connector.v1alpha.WriteDestinationConnectorResponse
-	(*structpb.Struct)(nil),                        // 44: google.protobuf.Struct
-	(*timestamppb.Timestamp)(nil),                  // 45: google.protobuf.Timestamp
-	(View)(0),                                      // 46: vdp.connector.v1alpha.View
-	(*fieldmaskpb.FieldMask)(nil),                  // 47: google.protobuf.FieldMask
-	(SupportedSyncModes)(0),                        // 48: vdp.connector.v1alpha.SupportedSyncModes
-	(SupportedDestinationSyncModes)(0),             // 49: vdp.connector.v1alpha.SupportedDestinationSyncModes
-	(*v1alpha.Recipe)(nil),                         // 50: vdp.pipeline.v1alpha.Recipe
-	(*v1alpha.ModelInstanceOutput)(nil),            // 51: vdp.pipeline.v1alpha.ModelInstanceOutput
+	(Connector_State)(0),                            // 0: vdp.connector.v1alpha.Connector.State
+	(*Connector)(nil),                               // 1: vdp.connector.v1alpha.Connector
+	(*SourceConnector)(nil),                         // 2: vdp.connector.v1alpha.SourceConnector
+	(*DestinationConnector)(nil),                    // 3: vdp.connector.v1alpha.DestinationConnector
+	(*CreateSourceConnectorRequest)(nil),            // 4: vdp.connector.v1alpha.CreateSourceConnectorRequest
+	(*CreateSourceConnectorResponse)(nil),           // 5: vdp.connector.v1alpha.CreateSourceConnectorResponse
+	(*ListSourceConnectorRequest)(nil),              // 6: vdp.connector.v1alpha.ListSourceConnectorRequest
+	(*ListSourceConnectorResponse)(nil),             // 7: vdp.connector.v1alpha.ListSourceConnectorResponse
+	(*GetSourceConnectorRequest)(nil),               // 8: vdp.connector.v1alpha.GetSourceConnectorRequest
+	(*GetSourceConnectorResponse)(nil),              // 9: vdp.connector.v1alpha.GetSourceConnectorResponse
+	(*UpdateSourceConnectorRequest)(nil),            // 10: vdp.connector.v1alpha.UpdateSourceConnectorRequest
+	(*UpdateSourceConnectorResponse)(nil),           // 11: vdp.connector.v1alpha.UpdateSourceConnectorResponse
+	(*DeleteSourceConnectorRequest)(nil),            // 12: vdp.connector.v1alpha.DeleteSourceConnectorRequest
+	(*DeleteSourceConnectorResponse)(nil),           // 13: vdp.connector.v1alpha.DeleteSourceConnectorResponse
+	(*LookUpSourceConnectorRequest)(nil),            // 14: vdp.connector.v1alpha.LookUpSourceConnectorRequest
+	(*LookUpSourceConnectorResponse)(nil),           // 15: vdp.connector.v1alpha.LookUpSourceConnectorResponse
+	(*ConnectSourceConnectorRequest)(nil),           // 16: vdp.connector.v1alpha.ConnectSourceConnectorRequest
+	(*ConnectSourceConnectorResponse)(nil),          // 17: vdp.connector.v1alpha.ConnectSourceConnectorResponse
+	(*DisconnectSourceConnectorRequest)(nil),        // 18: vdp.connector.v1alpha.DisconnectSourceConnectorRequest
+	(*DisconnectSourceConnectorResponse)(nil),       // 19: vdp.connector.v1alpha.DisconnectSourceConnectorResponse
+	(*RenameSourceConnectorRequest)(nil),            // 20: vdp.connector.v1alpha.RenameSourceConnectorRequest
+	(*RenameSourceConnectorResponse)(nil),           // 21: vdp.connector.v1alpha.RenameSourceConnectorResponse
+	(*ReadSourceConnectorRequest)(nil),              // 22: vdp.connector.v1alpha.ReadSourceConnectorRequest
+	(*ReadSourceConnectorResponse)(nil),             // 23: vdp.connector.v1alpha.ReadSourceConnectorResponse
+	(*CreateDestinationConnectorRequest)(nil),       // 24: vdp.connector.v1alpha.CreateDestinationConnectorRequest
+	(*CreateDestinationConnectorResponse)(nil),      // 25: vdp.connector.v1alpha.CreateDestinationConnectorResponse
+	(*ListDestinationConnectorRequest)(nil),         // 26: vdp.connector.v1alpha.ListDestinationConnectorRequest
+	(*ListDestinationConnectorResponse)(nil),        // 27: vdp.connector.v1alpha.ListDestinationConnectorResponse
+	(*GetDestinationConnectorRequest)(nil),          // 28: vdp.connector.v1alpha.GetDestinationConnectorRequest
+	(*GetDestinationConnectorResponse)(nil),         // 29: vdp.connector.v1alpha.GetDestinationConnectorResponse
+	(*UpdateDestinationConnectorRequest)(nil),       // 30: vdp.connector.v1alpha.UpdateDestinationConnectorRequest
+	(*UpdateDestinationConnectorResponse)(nil),      // 31: vdp.connector.v1alpha.UpdateDestinationConnectorResponse
+	(*DeleteDestinationConnectorRequest)(nil),       // 32: vdp.connector.v1alpha.DeleteDestinationConnectorRequest
+	(*DeleteDestinationConnectorResponse)(nil),      // 33: vdp.connector.v1alpha.DeleteDestinationConnectorResponse
+	(*LookUpDestinationConnectorRequest)(nil),       // 34: vdp.connector.v1alpha.LookUpDestinationConnectorRequest
+	(*LookUpDestinationConnectorResponse)(nil),      // 35: vdp.connector.v1alpha.LookUpDestinationConnectorResponse
+	(*ConnectDestinationConnectorRequest)(nil),      // 36: vdp.connector.v1alpha.ConnectDestinationConnectorRequest
+	(*ConnectDestinationConnectorResponse)(nil),     // 37: vdp.connector.v1alpha.ConnectDestinationConnectorResponse
+	(*DisconnectDestinationConnectorRequest)(nil),   // 38: vdp.connector.v1alpha.DisconnectDestinationConnectorRequest
+	(*DisconnectDestinationConnectorResponse)(nil),  // 39: vdp.connector.v1alpha.DisconnectDestinationConnectorResponse
+	(*RenameDestinationConnectorRequest)(nil),       // 40: vdp.connector.v1alpha.RenameDestinationConnectorRequest
+	(*RenameDestinationConnectorResponse)(nil),      // 41: vdp.connector.v1alpha.RenameDestinationConnectorResponse
+	(*WriteDestinationConnectorRequest)(nil),        // 42: vdp.connector.v1alpha.WriteDestinationConnectorRequest
+	(*WriteDestinationConnectorResponse)(nil),       // 43: vdp.connector.v1alpha.WriteDestinationConnectorResponse
+	(*ListSourceConnectorAdminRequest)(nil),         // 44: vdp.connector.v1alpha.ListSourceConnectorAdminRequest
+	(*ListSourceConnectorAdminResponse)(nil),        // 45: vdp.connector.v1alpha.ListSourceConnectorAdminResponse
+	(*GetSourceConnectorAdminRequest)(nil),          // 46: vdp.connector.v1alpha.GetSourceConnectorAdminRequest
+	(*GetSourceConnectorAdminResponse)(nil),         // 47: vdp.connector.v1alpha.GetSourceConnectorAdminResponse
+	(*LookUpSourceConnectorAdminRequest)(nil),       // 48: vdp.connector.v1alpha.LookUpSourceConnectorAdminRequest
+	(*LookUpSourceConnectorAdminResponse)(nil),      // 49: vdp.connector.v1alpha.LookUpSourceConnectorAdminResponse
+	(*ListDestinationConnectorAdminRequest)(nil),    // 50: vdp.connector.v1alpha.ListDestinationConnectorAdminRequest
+	(*ListDestinationConnectorAdminResponse)(nil),   // 51: vdp.connector.v1alpha.ListDestinationConnectorAdminResponse
+	(*GetDestinationConnectorAdminRequest)(nil),     // 52: vdp.connector.v1alpha.GetDestinationConnectorAdminRequest
+	(*GetDestinationConnectorAdminResponse)(nil),    // 53: vdp.connector.v1alpha.GetDestinationConnectorAdminResponse
+	(*LookUpDestinationConnectorAdminRequest)(nil),  // 54: vdp.connector.v1alpha.LookUpDestinationConnectorAdminRequest
+	(*LookUpDestinationConnectorAdminResponse)(nil), // 55: vdp.connector.v1alpha.LookUpDestinationConnectorAdminResponse
+	(*structpb.Struct)(nil),                         // 56: google.protobuf.Struct
+	(*timestamppb.Timestamp)(nil),                   // 57: google.protobuf.Timestamp
+	(View)(0),                                       // 58: vdp.connector.v1alpha.View
+	(*fieldmaskpb.FieldMask)(nil),                   // 59: google.protobuf.FieldMask
+	(SupportedSyncModes)(0),                         // 60: vdp.connector.v1alpha.SupportedSyncModes
+	(SupportedDestinationSyncModes)(0),              // 61: vdp.connector.v1alpha.SupportedDestinationSyncModes
+	(*v1alpha.Recipe)(nil),                          // 62: vdp.pipeline.v1alpha.Recipe
+	(*v1alpha.ModelInstanceOutput)(nil),             // 63: vdp.pipeline.v1alpha.ModelInstanceOutput
 }
 var file_vdp_connector_v1alpha_connector_proto_depIdxs = []int32{
-	44, // 0: vdp.connector.v1alpha.Connector.configuration:type_name -> google.protobuf.Struct
+	56, // 0: vdp.connector.v1alpha.Connector.configuration:type_name -> google.protobuf.Struct
 	0,  // 1: vdp.connector.v1alpha.Connector.state:type_name -> vdp.connector.v1alpha.Connector.State
-	45, // 2: vdp.connector.v1alpha.Connector.create_time:type_name -> google.protobuf.Timestamp
-	45, // 3: vdp.connector.v1alpha.Connector.update_time:type_name -> google.protobuf.Timestamp
+	57, // 2: vdp.connector.v1alpha.Connector.create_time:type_name -> google.protobuf.Timestamp
+	57, // 3: vdp.connector.v1alpha.Connector.update_time:type_name -> google.protobuf.Timestamp
 	1,  // 4: vdp.connector.v1alpha.SourceConnector.connector:type_name -> vdp.connector.v1alpha.Connector
 	1,  // 5: vdp.connector.v1alpha.DestinationConnector.connector:type_name -> vdp.connector.v1alpha.Connector
 	2,  // 6: vdp.connector.v1alpha.CreateSourceConnectorRequest.source_connector:type_name -> vdp.connector.v1alpha.SourceConnector
 	2,  // 7: vdp.connector.v1alpha.CreateSourceConnectorResponse.source_connector:type_name -> vdp.connector.v1alpha.SourceConnector
-	46, // 8: vdp.connector.v1alpha.ListSourceConnectorRequest.view:type_name -> vdp.connector.v1alpha.View
+	58, // 8: vdp.connector.v1alpha.ListSourceConnectorRequest.view:type_name -> vdp.connector.v1alpha.View
 	2,  // 9: vdp.connector.v1alpha.ListSourceConnectorResponse.source_connectors:type_name -> vdp.connector.v1alpha.SourceConnector
-	46, // 10: vdp.connector.v1alpha.GetSourceConnectorRequest.view:type_name -> vdp.connector.v1alpha.View
+	58, // 10: vdp.connector.v1alpha.GetSourceConnectorRequest.view:type_name -> vdp.connector.v1alpha.View
 	2,  // 11: vdp.connector.v1alpha.GetSourceConnectorResponse.source_connector:type_name -> vdp.connector.v1alpha.SourceConnector
 	2,  // 12: vdp.connector.v1alpha.UpdateSourceConnectorRequest.source_connector:type_name -> vdp.connector.v1alpha.SourceConnector
-	47, // 13: vdp.connector.v1alpha.UpdateSourceConnectorRequest.update_mask:type_name -> google.protobuf.FieldMask
+	59, // 13: vdp.connector.v1alpha.UpdateSourceConnectorRequest.update_mask:type_name -> google.protobuf.FieldMask
 	2,  // 14: vdp.connector.v1alpha.UpdateSourceConnectorResponse.source_connector:type_name -> vdp.connector.v1alpha.SourceConnector
-	46, // 15: vdp.connector.v1alpha.LookUpSourceConnectorRequest.view:type_name -> vdp.connector.v1alpha.View
+	58, // 15: vdp.connector.v1alpha.LookUpSourceConnectorRequest.view:type_name -> vdp.connector.v1alpha.View
 	2,  // 16: vdp.connector.v1alpha.LookUpSourceConnectorResponse.source_connector:type_name -> vdp.connector.v1alpha.SourceConnector
 	2,  // 17: vdp.connector.v1alpha.ConnectSourceConnectorResponse.source_connector:type_name -> vdp.connector.v1alpha.SourceConnector
 	2,  // 18: vdp.connector.v1alpha.DisconnectSourceConnectorResponse.source_connector:type_name -> vdp.connector.v1alpha.SourceConnector
 	2,  // 19: vdp.connector.v1alpha.RenameSourceConnectorResponse.source_connector:type_name -> vdp.connector.v1alpha.SourceConnector
 	3,  // 20: vdp.connector.v1alpha.CreateDestinationConnectorRequest.destination_connector:type_name -> vdp.connector.v1alpha.DestinationConnector
 	3,  // 21: vdp.connector.v1alpha.CreateDestinationConnectorResponse.destination_connector:type_name -> vdp.connector.v1alpha.DestinationConnector
-	46, // 22: vdp.connector.v1alpha.ListDestinationConnectorRequest.view:type_name -> vdp.connector.v1alpha.View
+	58, // 22: vdp.connector.v1alpha.ListDestinationConnectorRequest.view:type_name -> vdp.connector.v1alpha.View
 	3,  // 23: vdp.connector.v1alpha.ListDestinationConnectorResponse.destination_connectors:type_name -> vdp.connector.v1alpha.DestinationConnector
-	46, // 24: vdp.connector.v1alpha.GetDestinationConnectorRequest.view:type_name -> vdp.connector.v1alpha.View
+	58, // 24: vdp.connector.v1alpha.GetDestinationConnectorRequest.view:type_name -> vdp.connector.v1alpha.View
 	3,  // 25: vdp.connector.v1alpha.GetDestinationConnectorResponse.destination_connector:type_name -> vdp.connector.v1alpha.DestinationConnector
 	3,  // 26: vdp.connector.v1alpha.UpdateDestinationConnectorRequest.destination_connector:type_name -> vdp.connector.v1alpha.DestinationConnector
-	47, // 27: vdp.connector.v1alpha.UpdateDestinationConnectorRequest.update_mask:type_name -> google.protobuf.FieldMask
+	59, // 27: vdp.connector.v1alpha.UpdateDestinationConnectorRequest.update_mask:type_name -> google.protobuf.FieldMask
 	3,  // 28: vdp.connector.v1alpha.UpdateDestinationConnectorResponse.destination_connector:type_name -> vdp.connector.v1alpha.DestinationConnector
-	46, // 29: vdp.connector.v1alpha.LookUpDestinationConnectorRequest.view:type_name -> vdp.connector.v1alpha.View
+	58, // 29: vdp.connector.v1alpha.LookUpDestinationConnectorRequest.view:type_name -> vdp.connector.v1alpha.View
 	3,  // 30: vdp.connector.v1alpha.LookUpDestinationConnectorResponse.destination_connector:type_name -> vdp.connector.v1alpha.DestinationConnector
 	3,  // 31: vdp.connector.v1alpha.ConnectDestinationConnectorResponse.destination_connector:type_name -> vdp.connector.v1alpha.DestinationConnector
 	3,  // 32: vdp.connector.v1alpha.DisconnectDestinationConnectorResponse.destination_connector:type_name -> vdp.connector.v1alpha.DestinationConnector
 	3,  // 33: vdp.connector.v1alpha.RenameDestinationConnectorResponse.destination_connector:type_name -> vdp.connector.v1alpha.DestinationConnector
-	48, // 34: vdp.connector.v1alpha.WriteDestinationConnectorRequest.sync_mode:type_name -> vdp.connector.v1alpha.SupportedSyncModes
-	49, // 35: vdp.connector.v1alpha.WriteDestinationConnectorRequest.destination_sync_mode:type_name -> vdp.connector.v1alpha.SupportedDestinationSyncModes
-	50, // 36: vdp.connector.v1alpha.WriteDestinationConnectorRequest.recipe:type_name -> vdp.pipeline.v1alpha.Recipe
-	51, // 37: vdp.connector.v1alpha.WriteDestinationConnectorRequest.model_instance_outputs:type_name -> vdp.pipeline.v1alpha.ModelInstanceOutput
-	38, // [38:38] is the sub-list for method output_type
-	38, // [38:38] is the sub-list for method input_type
-	38, // [38:38] is the sub-list for extension type_name
-	38, // [38:38] is the sub-list for extension extendee
-	0,  // [0:38] is the sub-list for field type_name
+	60, // 34: vdp.connector.v1alpha.WriteDestinationConnectorRequest.sync_mode:type_name -> vdp.connector.v1alpha.SupportedSyncModes
+	61, // 35: vdp.connector.v1alpha.WriteDestinationConnectorRequest.destination_sync_mode:type_name -> vdp.connector.v1alpha.SupportedDestinationSyncModes
+	62, // 36: vdp.connector.v1alpha.WriteDestinationConnectorRequest.recipe:type_name -> vdp.pipeline.v1alpha.Recipe
+	63, // 37: vdp.connector.v1alpha.WriteDestinationConnectorRequest.model_instance_outputs:type_name -> vdp.pipeline.v1alpha.ModelInstanceOutput
+	58, // 38: vdp.connector.v1alpha.ListSourceConnectorAdminRequest.view:type_name -> vdp.connector.v1alpha.View
+	2,  // 39: vdp.connector.v1alpha.ListSourceConnectorAdminResponse.source_connectors:type_name -> vdp.connector.v1alpha.SourceConnector
+	58, // 40: vdp.connector.v1alpha.GetSourceConnectorAdminRequest.view:type_name -> vdp.connector.v1alpha.View
+	2,  // 41: vdp.connector.v1alpha.GetSourceConnectorAdminResponse.source_connector:type_name -> vdp.connector.v1alpha.SourceConnector
+	58, // 42: vdp.connector.v1alpha.LookUpSourceConnectorAdminRequest.view:type_name -> vdp.connector.v1alpha.View
+	2,  // 43: vdp.connector.v1alpha.LookUpSourceConnectorAdminResponse.source_connector:type_name -> vdp.connector.v1alpha.SourceConnector
+	58, // 44: vdp.connector.v1alpha.ListDestinationConnectorAdminRequest.view:type_name -> vdp.connector.v1alpha.View
+	3,  // 45: vdp.connector.v1alpha.ListDestinationConnectorAdminResponse.destination_connectors:type_name -> vdp.connector.v1alpha.DestinationConnector
+	58, // 46: vdp.connector.v1alpha.GetDestinationConnectorAdminRequest.view:type_name -> vdp.connector.v1alpha.View
+	3,  // 47: vdp.connector.v1alpha.GetDestinationConnectorAdminResponse.destination_connector:type_name -> vdp.connector.v1alpha.DestinationConnector
+	58, // 48: vdp.connector.v1alpha.LookUpDestinationConnectorAdminRequest.view:type_name -> vdp.connector.v1alpha.View
+	3,  // 49: vdp.connector.v1alpha.LookUpDestinationConnectorAdminResponse.destination_connector:type_name -> vdp.connector.v1alpha.DestinationConnector
+	50, // [50:50] is the sub-list for method output_type
+	50, // [50:50] is the sub-list for method input_type
+	50, // [50:50] is the sub-list for extension type_name
+	50, // [50:50] is the sub-list for extension extendee
+	0,  // [0:50] is the sub-list for field type_name
 }
 
 func init() { file_vdp_connector_v1alpha_connector_proto_init() }
@@ -3715,6 +4582,150 @@ func file_vdp_connector_v1alpha_connector_proto_init() {
 				return nil
 			}
 		}
+		file_vdp_connector_v1alpha_connector_proto_msgTypes[43].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListSourceConnectorAdminRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_connector_v1alpha_connector_proto_msgTypes[44].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListSourceConnectorAdminResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_connector_v1alpha_connector_proto_msgTypes[45].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetSourceConnectorAdminRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_connector_v1alpha_connector_proto_msgTypes[46].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetSourceConnectorAdminResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_connector_v1alpha_connector_proto_msgTypes[47].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*LookUpSourceConnectorAdminRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_connector_v1alpha_connector_proto_msgTypes[48].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*LookUpSourceConnectorAdminResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_connector_v1alpha_connector_proto_msgTypes[49].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListDestinationConnectorAdminRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_connector_v1alpha_connector_proto_msgTypes[50].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListDestinationConnectorAdminResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_connector_v1alpha_connector_proto_msgTypes[51].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetDestinationConnectorAdminRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_connector_v1alpha_connector_proto_msgTypes[52].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetDestinationConnectorAdminResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_connector_v1alpha_connector_proto_msgTypes[53].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*LookUpDestinationConnectorAdminRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_connector_v1alpha_connector_proto_msgTypes[54].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*LookUpDestinationConnectorAdminResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	file_vdp_connector_v1alpha_connector_proto_msgTypes[0].OneofWrappers = []interface{}{
 		(*Connector_User)(nil),
@@ -3726,13 +4737,19 @@ func file_vdp_connector_v1alpha_connector_proto_init() {
 	file_vdp_connector_v1alpha_connector_proto_msgTypes[25].OneofWrappers = []interface{}{}
 	file_vdp_connector_v1alpha_connector_proto_msgTypes[27].OneofWrappers = []interface{}{}
 	file_vdp_connector_v1alpha_connector_proto_msgTypes[33].OneofWrappers = []interface{}{}
+	file_vdp_connector_v1alpha_connector_proto_msgTypes[43].OneofWrappers = []interface{}{}
+	file_vdp_connector_v1alpha_connector_proto_msgTypes[45].OneofWrappers = []interface{}{}
+	file_vdp_connector_v1alpha_connector_proto_msgTypes[47].OneofWrappers = []interface{}{}
+	file_vdp_connector_v1alpha_connector_proto_msgTypes[49].OneofWrappers = []interface{}{}
+	file_vdp_connector_v1alpha_connector_proto_msgTypes[51].OneofWrappers = []interface{}{}
+	file_vdp_connector_v1alpha_connector_proto_msgTypes[53].OneofWrappers = []interface{}{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_vdp_connector_v1alpha_connector_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   43,
+			NumMessages:   55,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

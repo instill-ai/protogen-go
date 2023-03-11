@@ -14,10 +14,10 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// ModelServiceClient is the client API for ModelService service.
+// ModelPublicServiceClient is the client API for ModelPublicService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type ModelServiceClient interface {
+type ModelPublicServiceClient interface {
 	// Liveness method receives a LivenessRequest message and returns a
 	// LivenessResponse message.
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
@@ -43,7 +43,7 @@ type ModelServiceClient interface {
 	// CreateModelBinaryFileUploadResponse message.
 	//
 	// Endpoint: "POST /v1alpha/models:multipart"
-	CreateModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelService_CreateModelBinaryFileUploadClient, error)
+	CreateModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_CreateModelBinaryFileUploadClient, error)
 	// GetModel method receives a GetModelRequest message and returns a
 	// GetModelResponse
 	GetModel(ctx context.Context, in *GetModelRequest, opts ...grpc.CallOption) (*GetModelResponse, error)
@@ -91,7 +91,7 @@ type ModelServiceClient interface {
 	// TriggerModelInstanceBinaryFileUploadResponse message.
 	//
 	// Endpoint: "POST/v1alpha/{name=models/*/instances/*}/trigger-multipart"
-	TriggerModelInstanceBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelService_TriggerModelInstanceBinaryFileUploadClient, error)
+	TriggerModelInstanceBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TriggerModelInstanceBinaryFileUploadClient, error)
 	// TestModelInstance method receives a TestModelInstanceRequest message
 	// and returns a TestModelInstanceResponse message.
 	TestModelInstance(ctx context.Context, in *TestModelInstanceRequest, opts ...grpc.CallOption) (*TestModelInstanceResponse, error)
@@ -100,7 +100,7 @@ type ModelServiceClient interface {
 	// TestModelInstanceBinaryFileUploadResponse message.
 	//
 	// Endpoint: "POST/v1alpha/{name=models/*/instances/*}/test-multipart"
-	TestModelInstanceBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelService_TestModelInstanceBinaryFileUploadClient, error)
+	TestModelInstanceBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TestModelInstanceBinaryFileUploadClient, error)
 	// GetModelOperation method receives a
 	// GetModelOperationRequest message and returns a
 	// GetModelOperationResponse message.
@@ -113,92 +113,92 @@ type ModelServiceClient interface {
 	CancelModelOperation(ctx context.Context, in *CancelModelOperationRequest, opts ...grpc.CallOption) (*CancelModelOperationResponse, error)
 }
 
-type modelServiceClient struct {
+type modelPublicServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewModelServiceClient(cc grpc.ClientConnInterface) ModelServiceClient {
-	return &modelServiceClient{cc}
+func NewModelPublicServiceClient(cc grpc.ClientConnInterface) ModelPublicServiceClient {
+	return &modelPublicServiceClient{cc}
 }
 
-func (c *modelServiceClient) Liveness(ctx context.Context, in *LivenessRequest, opts ...grpc.CallOption) (*LivenessResponse, error) {
+func (c *modelPublicServiceClient) Liveness(ctx context.Context, in *LivenessRequest, opts ...grpc.CallOption) (*LivenessResponse, error) {
 	out := new(LivenessResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/Liveness", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/Liveness", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelServiceClient) Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error) {
+func (c *modelPublicServiceClient) Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error) {
 	out := new(ReadinessResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/Readiness", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/Readiness", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelServiceClient) ListModelDefinition(ctx context.Context, in *ListModelDefinitionRequest, opts ...grpc.CallOption) (*ListModelDefinitionResponse, error) {
+func (c *modelPublicServiceClient) ListModelDefinition(ctx context.Context, in *ListModelDefinitionRequest, opts ...grpc.CallOption) (*ListModelDefinitionResponse, error) {
 	out := new(ListModelDefinitionResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/ListModelDefinition", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/ListModelDefinition", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelServiceClient) GetModelDefinition(ctx context.Context, in *GetModelDefinitionRequest, opts ...grpc.CallOption) (*GetModelDefinitionResponse, error) {
+func (c *modelPublicServiceClient) GetModelDefinition(ctx context.Context, in *GetModelDefinitionRequest, opts ...grpc.CallOption) (*GetModelDefinitionResponse, error) {
 	out := new(GetModelDefinitionResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/GetModelDefinition", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/GetModelDefinition", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelServiceClient) ListModel(ctx context.Context, in *ListModelRequest, opts ...grpc.CallOption) (*ListModelResponse, error) {
+func (c *modelPublicServiceClient) ListModel(ctx context.Context, in *ListModelRequest, opts ...grpc.CallOption) (*ListModelResponse, error) {
 	out := new(ListModelResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/ListModel", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/ListModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelServiceClient) CreateModel(ctx context.Context, in *CreateModelRequest, opts ...grpc.CallOption) (*CreateModelResponse, error) {
+func (c *modelPublicServiceClient) CreateModel(ctx context.Context, in *CreateModelRequest, opts ...grpc.CallOption) (*CreateModelResponse, error) {
 	out := new(CreateModelResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/CreateModel", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/CreateModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelServiceClient) CreateModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelService_CreateModelBinaryFileUploadClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ModelService_ServiceDesc.Streams[0], "/vdp.model.v1alpha.ModelService/CreateModelBinaryFileUpload", opts...)
+func (c *modelPublicServiceClient) CreateModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_CreateModelBinaryFileUploadClient, error) {
+	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[0], "/vdp.model.v1alpha.ModelPublicService/CreateModelBinaryFileUpload", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &modelServiceCreateModelBinaryFileUploadClient{stream}
+	x := &modelPublicServiceCreateModelBinaryFileUploadClient{stream}
 	return x, nil
 }
 
-type ModelService_CreateModelBinaryFileUploadClient interface {
+type ModelPublicService_CreateModelBinaryFileUploadClient interface {
 	Send(*CreateModelBinaryFileUploadRequest) error
 	CloseAndRecv() (*CreateModelBinaryFileUploadResponse, error)
 	grpc.ClientStream
 }
 
-type modelServiceCreateModelBinaryFileUploadClient struct {
+type modelPublicServiceCreateModelBinaryFileUploadClient struct {
 	grpc.ClientStream
 }
 
-func (x *modelServiceCreateModelBinaryFileUploadClient) Send(m *CreateModelBinaryFileUploadRequest) error {
+func (x *modelPublicServiceCreateModelBinaryFileUploadClient) Send(m *CreateModelBinaryFileUploadRequest) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *modelServiceCreateModelBinaryFileUploadClient) CloseAndRecv() (*CreateModelBinaryFileUploadResponse, error) {
+func (x *modelPublicServiceCreateModelBinaryFileUploadClient) CloseAndRecv() (*CreateModelBinaryFileUploadResponse, error) {
 	if err := x.ClientStream.CloseSend(); err != nil {
 		return nil, err
 	}
@@ -209,156 +209,156 @@ func (x *modelServiceCreateModelBinaryFileUploadClient) CloseAndRecv() (*CreateM
 	return m, nil
 }
 
-func (c *modelServiceClient) GetModel(ctx context.Context, in *GetModelRequest, opts ...grpc.CallOption) (*GetModelResponse, error) {
+func (c *modelPublicServiceClient) GetModel(ctx context.Context, in *GetModelRequest, opts ...grpc.CallOption) (*GetModelResponse, error) {
 	out := new(GetModelResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/GetModel", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/GetModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelServiceClient) UpdateModel(ctx context.Context, in *UpdateModelRequest, opts ...grpc.CallOption) (*UpdateModelResponse, error) {
+func (c *modelPublicServiceClient) UpdateModel(ctx context.Context, in *UpdateModelRequest, opts ...grpc.CallOption) (*UpdateModelResponse, error) {
 	out := new(UpdateModelResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/UpdateModel", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/UpdateModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelServiceClient) DeleteModel(ctx context.Context, in *DeleteModelRequest, opts ...grpc.CallOption) (*DeleteModelResponse, error) {
+func (c *modelPublicServiceClient) DeleteModel(ctx context.Context, in *DeleteModelRequest, opts ...grpc.CallOption) (*DeleteModelResponse, error) {
 	out := new(DeleteModelResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/DeleteModel", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/DeleteModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelServiceClient) LookUpModel(ctx context.Context, in *LookUpModelRequest, opts ...grpc.CallOption) (*LookUpModelResponse, error) {
+func (c *modelPublicServiceClient) LookUpModel(ctx context.Context, in *LookUpModelRequest, opts ...grpc.CallOption) (*LookUpModelResponse, error) {
 	out := new(LookUpModelResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/LookUpModel", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/LookUpModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelServiceClient) RenameModel(ctx context.Context, in *RenameModelRequest, opts ...grpc.CallOption) (*RenameModelResponse, error) {
+func (c *modelPublicServiceClient) RenameModel(ctx context.Context, in *RenameModelRequest, opts ...grpc.CallOption) (*RenameModelResponse, error) {
 	out := new(RenameModelResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/RenameModel", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/RenameModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelServiceClient) PublishModel(ctx context.Context, in *PublishModelRequest, opts ...grpc.CallOption) (*PublishModelResponse, error) {
+func (c *modelPublicServiceClient) PublishModel(ctx context.Context, in *PublishModelRequest, opts ...grpc.CallOption) (*PublishModelResponse, error) {
 	out := new(PublishModelResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/PublishModel", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/PublishModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelServiceClient) UnpublishModel(ctx context.Context, in *UnpublishModelRequest, opts ...grpc.CallOption) (*UnpublishModelResponse, error) {
+func (c *modelPublicServiceClient) UnpublishModel(ctx context.Context, in *UnpublishModelRequest, opts ...grpc.CallOption) (*UnpublishModelResponse, error) {
 	out := new(UnpublishModelResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/UnpublishModel", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/UnpublishModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelServiceClient) ListModelInstance(ctx context.Context, in *ListModelInstanceRequest, opts ...grpc.CallOption) (*ListModelInstanceResponse, error) {
+func (c *modelPublicServiceClient) ListModelInstance(ctx context.Context, in *ListModelInstanceRequest, opts ...grpc.CallOption) (*ListModelInstanceResponse, error) {
 	out := new(ListModelInstanceResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/ListModelInstance", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/ListModelInstance", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelServiceClient) GetModelInstance(ctx context.Context, in *GetModelInstanceRequest, opts ...grpc.CallOption) (*GetModelInstanceResponse, error) {
+func (c *modelPublicServiceClient) GetModelInstance(ctx context.Context, in *GetModelInstanceRequest, opts ...grpc.CallOption) (*GetModelInstanceResponse, error) {
 	out := new(GetModelInstanceResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/GetModelInstance", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/GetModelInstance", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelServiceClient) LookUpModelInstance(ctx context.Context, in *LookUpModelInstanceRequest, opts ...grpc.CallOption) (*LookUpModelInstanceResponse, error) {
+func (c *modelPublicServiceClient) LookUpModelInstance(ctx context.Context, in *LookUpModelInstanceRequest, opts ...grpc.CallOption) (*LookUpModelInstanceResponse, error) {
 	out := new(LookUpModelInstanceResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/LookUpModelInstance", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/LookUpModelInstance", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelServiceClient) DeployModelInstance(ctx context.Context, in *DeployModelInstanceRequest, opts ...grpc.CallOption) (*DeployModelInstanceResponse, error) {
+func (c *modelPublicServiceClient) DeployModelInstance(ctx context.Context, in *DeployModelInstanceRequest, opts ...grpc.CallOption) (*DeployModelInstanceResponse, error) {
 	out := new(DeployModelInstanceResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/DeployModelInstance", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/DeployModelInstance", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelServiceClient) UndeployModelInstance(ctx context.Context, in *UndeployModelInstanceRequest, opts ...grpc.CallOption) (*UndeployModelInstanceResponse, error) {
+func (c *modelPublicServiceClient) UndeployModelInstance(ctx context.Context, in *UndeployModelInstanceRequest, opts ...grpc.CallOption) (*UndeployModelInstanceResponse, error) {
 	out := new(UndeployModelInstanceResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/UndeployModelInstance", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/UndeployModelInstance", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelServiceClient) GetModelInstanceCard(ctx context.Context, in *GetModelInstanceCardRequest, opts ...grpc.CallOption) (*GetModelInstanceCardResponse, error) {
+func (c *modelPublicServiceClient) GetModelInstanceCard(ctx context.Context, in *GetModelInstanceCardRequest, opts ...grpc.CallOption) (*GetModelInstanceCardResponse, error) {
 	out := new(GetModelInstanceCardResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/GetModelInstanceCard", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/GetModelInstanceCard", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelServiceClient) TriggerModelInstance(ctx context.Context, in *TriggerModelInstanceRequest, opts ...grpc.CallOption) (*TriggerModelInstanceResponse, error) {
+func (c *modelPublicServiceClient) TriggerModelInstance(ctx context.Context, in *TriggerModelInstanceRequest, opts ...grpc.CallOption) (*TriggerModelInstanceResponse, error) {
 	out := new(TriggerModelInstanceResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/TriggerModelInstance", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/TriggerModelInstance", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelServiceClient) TriggerModelInstanceBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelService_TriggerModelInstanceBinaryFileUploadClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ModelService_ServiceDesc.Streams[1], "/vdp.model.v1alpha.ModelService/TriggerModelInstanceBinaryFileUpload", opts...)
+func (c *modelPublicServiceClient) TriggerModelInstanceBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TriggerModelInstanceBinaryFileUploadClient, error) {
+	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[1], "/vdp.model.v1alpha.ModelPublicService/TriggerModelInstanceBinaryFileUpload", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &modelServiceTriggerModelInstanceBinaryFileUploadClient{stream}
+	x := &modelPublicServiceTriggerModelInstanceBinaryFileUploadClient{stream}
 	return x, nil
 }
 
-type ModelService_TriggerModelInstanceBinaryFileUploadClient interface {
+type ModelPublicService_TriggerModelInstanceBinaryFileUploadClient interface {
 	Send(*TriggerModelInstanceBinaryFileUploadRequest) error
 	CloseAndRecv() (*TriggerModelInstanceBinaryFileUploadResponse, error)
 	grpc.ClientStream
 }
 
-type modelServiceTriggerModelInstanceBinaryFileUploadClient struct {
+type modelPublicServiceTriggerModelInstanceBinaryFileUploadClient struct {
 	grpc.ClientStream
 }
 
-func (x *modelServiceTriggerModelInstanceBinaryFileUploadClient) Send(m *TriggerModelInstanceBinaryFileUploadRequest) error {
+func (x *modelPublicServiceTriggerModelInstanceBinaryFileUploadClient) Send(m *TriggerModelInstanceBinaryFileUploadRequest) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *modelServiceTriggerModelInstanceBinaryFileUploadClient) CloseAndRecv() (*TriggerModelInstanceBinaryFileUploadResponse, error) {
+func (x *modelPublicServiceTriggerModelInstanceBinaryFileUploadClient) CloseAndRecv() (*TriggerModelInstanceBinaryFileUploadResponse, error) {
 	if err := x.ClientStream.CloseSend(); err != nil {
 		return nil, err
 	}
@@ -369,39 +369,39 @@ func (x *modelServiceTriggerModelInstanceBinaryFileUploadClient) CloseAndRecv() 
 	return m, nil
 }
 
-func (c *modelServiceClient) TestModelInstance(ctx context.Context, in *TestModelInstanceRequest, opts ...grpc.CallOption) (*TestModelInstanceResponse, error) {
+func (c *modelPublicServiceClient) TestModelInstance(ctx context.Context, in *TestModelInstanceRequest, opts ...grpc.CallOption) (*TestModelInstanceResponse, error) {
 	out := new(TestModelInstanceResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/TestModelInstance", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/TestModelInstance", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelServiceClient) TestModelInstanceBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelService_TestModelInstanceBinaryFileUploadClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ModelService_ServiceDesc.Streams[2], "/vdp.model.v1alpha.ModelService/TestModelInstanceBinaryFileUpload", opts...)
+func (c *modelPublicServiceClient) TestModelInstanceBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TestModelInstanceBinaryFileUploadClient, error) {
+	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[2], "/vdp.model.v1alpha.ModelPublicService/TestModelInstanceBinaryFileUpload", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &modelServiceTestModelInstanceBinaryFileUploadClient{stream}
+	x := &modelPublicServiceTestModelInstanceBinaryFileUploadClient{stream}
 	return x, nil
 }
 
-type ModelService_TestModelInstanceBinaryFileUploadClient interface {
+type ModelPublicService_TestModelInstanceBinaryFileUploadClient interface {
 	Send(*TestModelInstanceBinaryFileUploadRequest) error
 	CloseAndRecv() (*TestModelInstanceBinaryFileUploadResponse, error)
 	grpc.ClientStream
 }
 
-type modelServiceTestModelInstanceBinaryFileUploadClient struct {
+type modelPublicServiceTestModelInstanceBinaryFileUploadClient struct {
 	grpc.ClientStream
 }
 
-func (x *modelServiceTestModelInstanceBinaryFileUploadClient) Send(m *TestModelInstanceBinaryFileUploadRequest) error {
+func (x *modelPublicServiceTestModelInstanceBinaryFileUploadClient) Send(m *TestModelInstanceBinaryFileUploadRequest) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *modelServiceTestModelInstanceBinaryFileUploadClient) CloseAndRecv() (*TestModelInstanceBinaryFileUploadResponse, error) {
+func (x *modelPublicServiceTestModelInstanceBinaryFileUploadClient) CloseAndRecv() (*TestModelInstanceBinaryFileUploadResponse, error) {
 	if err := x.ClientStream.CloseSend(); err != nil {
 		return nil, err
 	}
@@ -412,37 +412,37 @@ func (x *modelServiceTestModelInstanceBinaryFileUploadClient) CloseAndRecv() (*T
 	return m, nil
 }
 
-func (c *modelServiceClient) GetModelOperation(ctx context.Context, in *GetModelOperationRequest, opts ...grpc.CallOption) (*GetModelOperationResponse, error) {
+func (c *modelPublicServiceClient) GetModelOperation(ctx context.Context, in *GetModelOperationRequest, opts ...grpc.CallOption) (*GetModelOperationResponse, error) {
 	out := new(GetModelOperationResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/GetModelOperation", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/GetModelOperation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelServiceClient) ListModelOperation(ctx context.Context, in *ListModelOperationRequest, opts ...grpc.CallOption) (*ListModelOperationResponse, error) {
+func (c *modelPublicServiceClient) ListModelOperation(ctx context.Context, in *ListModelOperationRequest, opts ...grpc.CallOption) (*ListModelOperationResponse, error) {
 	out := new(ListModelOperationResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/ListModelOperation", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/ListModelOperation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelServiceClient) CancelModelOperation(ctx context.Context, in *CancelModelOperationRequest, opts ...grpc.CallOption) (*CancelModelOperationResponse, error) {
+func (c *modelPublicServiceClient) CancelModelOperation(ctx context.Context, in *CancelModelOperationRequest, opts ...grpc.CallOption) (*CancelModelOperationResponse, error) {
 	out := new(CancelModelOperationResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelService/CancelModelOperation", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/CancelModelOperation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ModelServiceServer is the server API for ModelService service.
-// All implementations should embed UnimplementedModelServiceServer
+// ModelPublicServiceServer is the server API for ModelPublicService service.
+// All implementations should embed UnimplementedModelPublicServiceServer
 // for forward compatibility
-type ModelServiceServer interface {
+type ModelPublicServiceServer interface {
 	// Liveness method receives a LivenessRequest message and returns a
 	// LivenessResponse message.
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
@@ -468,7 +468,7 @@ type ModelServiceServer interface {
 	// CreateModelBinaryFileUploadResponse message.
 	//
 	// Endpoint: "POST /v1alpha/models:multipart"
-	CreateModelBinaryFileUpload(ModelService_CreateModelBinaryFileUploadServer) error
+	CreateModelBinaryFileUpload(ModelPublicService_CreateModelBinaryFileUploadServer) error
 	// GetModel method receives a GetModelRequest message and returns a
 	// GetModelResponse
 	GetModel(context.Context, *GetModelRequest) (*GetModelResponse, error)
@@ -516,7 +516,7 @@ type ModelServiceServer interface {
 	// TriggerModelInstanceBinaryFileUploadResponse message.
 	//
 	// Endpoint: "POST/v1alpha/{name=models/*/instances/*}/trigger-multipart"
-	TriggerModelInstanceBinaryFileUpload(ModelService_TriggerModelInstanceBinaryFileUploadServer) error
+	TriggerModelInstanceBinaryFileUpload(ModelPublicService_TriggerModelInstanceBinaryFileUploadServer) error
 	// TestModelInstance method receives a TestModelInstanceRequest message
 	// and returns a TestModelInstanceResponse message.
 	TestModelInstance(context.Context, *TestModelInstanceRequest) (*TestModelInstanceResponse, error)
@@ -525,7 +525,7 @@ type ModelServiceServer interface {
 	// TestModelInstanceBinaryFileUploadResponse message.
 	//
 	// Endpoint: "POST/v1alpha/{name=models/*/instances/*}/test-multipart"
-	TestModelInstanceBinaryFileUpload(ModelService_TestModelInstanceBinaryFileUploadServer) error
+	TestModelInstanceBinaryFileUpload(ModelPublicService_TestModelInstanceBinaryFileUploadServer) error
 	// GetModelOperation method receives a
 	// GetModelOperationRequest message and returns a
 	// GetModelOperationResponse message.
@@ -538,230 +538,230 @@ type ModelServiceServer interface {
 	CancelModelOperation(context.Context, *CancelModelOperationRequest) (*CancelModelOperationResponse, error)
 }
 
-// UnimplementedModelServiceServer should be embedded to have forward compatible implementations.
-type UnimplementedModelServiceServer struct {
+// UnimplementedModelPublicServiceServer should be embedded to have forward compatible implementations.
+type UnimplementedModelPublicServiceServer struct {
 }
 
-func (UnimplementedModelServiceServer) Liveness(context.Context, *LivenessRequest) (*LivenessResponse, error) {
+func (UnimplementedModelPublicServiceServer) Liveness(context.Context, *LivenessRequest) (*LivenessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Liveness not implemented")
 }
-func (UnimplementedModelServiceServer) Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error) {
+func (UnimplementedModelPublicServiceServer) Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Readiness not implemented")
 }
-func (UnimplementedModelServiceServer) ListModelDefinition(context.Context, *ListModelDefinitionRequest) (*ListModelDefinitionResponse, error) {
+func (UnimplementedModelPublicServiceServer) ListModelDefinition(context.Context, *ListModelDefinitionRequest) (*ListModelDefinitionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListModelDefinition not implemented")
 }
-func (UnimplementedModelServiceServer) GetModelDefinition(context.Context, *GetModelDefinitionRequest) (*GetModelDefinitionResponse, error) {
+func (UnimplementedModelPublicServiceServer) GetModelDefinition(context.Context, *GetModelDefinitionRequest) (*GetModelDefinitionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetModelDefinition not implemented")
 }
-func (UnimplementedModelServiceServer) ListModel(context.Context, *ListModelRequest) (*ListModelResponse, error) {
+func (UnimplementedModelPublicServiceServer) ListModel(context.Context, *ListModelRequest) (*ListModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListModel not implemented")
 }
-func (UnimplementedModelServiceServer) CreateModel(context.Context, *CreateModelRequest) (*CreateModelResponse, error) {
+func (UnimplementedModelPublicServiceServer) CreateModel(context.Context, *CreateModelRequest) (*CreateModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateModel not implemented")
 }
-func (UnimplementedModelServiceServer) CreateModelBinaryFileUpload(ModelService_CreateModelBinaryFileUploadServer) error {
+func (UnimplementedModelPublicServiceServer) CreateModelBinaryFileUpload(ModelPublicService_CreateModelBinaryFileUploadServer) error {
 	return status.Errorf(codes.Unimplemented, "method CreateModelBinaryFileUpload not implemented")
 }
-func (UnimplementedModelServiceServer) GetModel(context.Context, *GetModelRequest) (*GetModelResponse, error) {
+func (UnimplementedModelPublicServiceServer) GetModel(context.Context, *GetModelRequest) (*GetModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetModel not implemented")
 }
-func (UnimplementedModelServiceServer) UpdateModel(context.Context, *UpdateModelRequest) (*UpdateModelResponse, error) {
+func (UnimplementedModelPublicServiceServer) UpdateModel(context.Context, *UpdateModelRequest) (*UpdateModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateModel not implemented")
 }
-func (UnimplementedModelServiceServer) DeleteModel(context.Context, *DeleteModelRequest) (*DeleteModelResponse, error) {
+func (UnimplementedModelPublicServiceServer) DeleteModel(context.Context, *DeleteModelRequest) (*DeleteModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteModel not implemented")
 }
-func (UnimplementedModelServiceServer) LookUpModel(context.Context, *LookUpModelRequest) (*LookUpModelResponse, error) {
+func (UnimplementedModelPublicServiceServer) LookUpModel(context.Context, *LookUpModelRequest) (*LookUpModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LookUpModel not implemented")
 }
-func (UnimplementedModelServiceServer) RenameModel(context.Context, *RenameModelRequest) (*RenameModelResponse, error) {
+func (UnimplementedModelPublicServiceServer) RenameModel(context.Context, *RenameModelRequest) (*RenameModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RenameModel not implemented")
 }
-func (UnimplementedModelServiceServer) PublishModel(context.Context, *PublishModelRequest) (*PublishModelResponse, error) {
+func (UnimplementedModelPublicServiceServer) PublishModel(context.Context, *PublishModelRequest) (*PublishModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PublishModel not implemented")
 }
-func (UnimplementedModelServiceServer) UnpublishModel(context.Context, *UnpublishModelRequest) (*UnpublishModelResponse, error) {
+func (UnimplementedModelPublicServiceServer) UnpublishModel(context.Context, *UnpublishModelRequest) (*UnpublishModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UnpublishModel not implemented")
 }
-func (UnimplementedModelServiceServer) ListModelInstance(context.Context, *ListModelInstanceRequest) (*ListModelInstanceResponse, error) {
+func (UnimplementedModelPublicServiceServer) ListModelInstance(context.Context, *ListModelInstanceRequest) (*ListModelInstanceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListModelInstance not implemented")
 }
-func (UnimplementedModelServiceServer) GetModelInstance(context.Context, *GetModelInstanceRequest) (*GetModelInstanceResponse, error) {
+func (UnimplementedModelPublicServiceServer) GetModelInstance(context.Context, *GetModelInstanceRequest) (*GetModelInstanceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetModelInstance not implemented")
 }
-func (UnimplementedModelServiceServer) LookUpModelInstance(context.Context, *LookUpModelInstanceRequest) (*LookUpModelInstanceResponse, error) {
+func (UnimplementedModelPublicServiceServer) LookUpModelInstance(context.Context, *LookUpModelInstanceRequest) (*LookUpModelInstanceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LookUpModelInstance not implemented")
 }
-func (UnimplementedModelServiceServer) DeployModelInstance(context.Context, *DeployModelInstanceRequest) (*DeployModelInstanceResponse, error) {
+func (UnimplementedModelPublicServiceServer) DeployModelInstance(context.Context, *DeployModelInstanceRequest) (*DeployModelInstanceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeployModelInstance not implemented")
 }
-func (UnimplementedModelServiceServer) UndeployModelInstance(context.Context, *UndeployModelInstanceRequest) (*UndeployModelInstanceResponse, error) {
+func (UnimplementedModelPublicServiceServer) UndeployModelInstance(context.Context, *UndeployModelInstanceRequest) (*UndeployModelInstanceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UndeployModelInstance not implemented")
 }
-func (UnimplementedModelServiceServer) GetModelInstanceCard(context.Context, *GetModelInstanceCardRequest) (*GetModelInstanceCardResponse, error) {
+func (UnimplementedModelPublicServiceServer) GetModelInstanceCard(context.Context, *GetModelInstanceCardRequest) (*GetModelInstanceCardResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetModelInstanceCard not implemented")
 }
-func (UnimplementedModelServiceServer) TriggerModelInstance(context.Context, *TriggerModelInstanceRequest) (*TriggerModelInstanceResponse, error) {
+func (UnimplementedModelPublicServiceServer) TriggerModelInstance(context.Context, *TriggerModelInstanceRequest) (*TriggerModelInstanceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerModelInstance not implemented")
 }
-func (UnimplementedModelServiceServer) TriggerModelInstanceBinaryFileUpload(ModelService_TriggerModelInstanceBinaryFileUploadServer) error {
+func (UnimplementedModelPublicServiceServer) TriggerModelInstanceBinaryFileUpload(ModelPublicService_TriggerModelInstanceBinaryFileUploadServer) error {
 	return status.Errorf(codes.Unimplemented, "method TriggerModelInstanceBinaryFileUpload not implemented")
 }
-func (UnimplementedModelServiceServer) TestModelInstance(context.Context, *TestModelInstanceRequest) (*TestModelInstanceResponse, error) {
+func (UnimplementedModelPublicServiceServer) TestModelInstance(context.Context, *TestModelInstanceRequest) (*TestModelInstanceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TestModelInstance not implemented")
 }
-func (UnimplementedModelServiceServer) TestModelInstanceBinaryFileUpload(ModelService_TestModelInstanceBinaryFileUploadServer) error {
+func (UnimplementedModelPublicServiceServer) TestModelInstanceBinaryFileUpload(ModelPublicService_TestModelInstanceBinaryFileUploadServer) error {
 	return status.Errorf(codes.Unimplemented, "method TestModelInstanceBinaryFileUpload not implemented")
 }
-func (UnimplementedModelServiceServer) GetModelOperation(context.Context, *GetModelOperationRequest) (*GetModelOperationResponse, error) {
+func (UnimplementedModelPublicServiceServer) GetModelOperation(context.Context, *GetModelOperationRequest) (*GetModelOperationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetModelOperation not implemented")
 }
-func (UnimplementedModelServiceServer) ListModelOperation(context.Context, *ListModelOperationRequest) (*ListModelOperationResponse, error) {
+func (UnimplementedModelPublicServiceServer) ListModelOperation(context.Context, *ListModelOperationRequest) (*ListModelOperationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListModelOperation not implemented")
 }
-func (UnimplementedModelServiceServer) CancelModelOperation(context.Context, *CancelModelOperationRequest) (*CancelModelOperationResponse, error) {
+func (UnimplementedModelPublicServiceServer) CancelModelOperation(context.Context, *CancelModelOperationRequest) (*CancelModelOperationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelModelOperation not implemented")
 }
 
-// UnsafeModelServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to ModelServiceServer will
+// UnsafeModelPublicServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ModelPublicServiceServer will
 // result in compilation errors.
-type UnsafeModelServiceServer interface {
-	mustEmbedUnimplementedModelServiceServer()
+type UnsafeModelPublicServiceServer interface {
+	mustEmbedUnimplementedModelPublicServiceServer()
 }
 
-func RegisterModelServiceServer(s grpc.ServiceRegistrar, srv ModelServiceServer) {
-	s.RegisterService(&ModelService_ServiceDesc, srv)
+func RegisterModelPublicServiceServer(s grpc.ServiceRegistrar, srv ModelPublicServiceServer) {
+	s.RegisterService(&ModelPublicService_ServiceDesc, srv)
 }
 
-func _ModelService_Liveness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ModelPublicService_Liveness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(LivenessRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelServiceServer).Liveness(ctx, in)
+		return srv.(ModelPublicServiceServer).Liveness(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelService/Liveness",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/Liveness",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelServiceServer).Liveness(ctx, req.(*LivenessRequest))
+		return srv.(ModelPublicServiceServer).Liveness(ctx, req.(*LivenessRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelService_Readiness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ModelPublicService_Readiness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ReadinessRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelServiceServer).Readiness(ctx, in)
+		return srv.(ModelPublicServiceServer).Readiness(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelService/Readiness",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/Readiness",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelServiceServer).Readiness(ctx, req.(*ReadinessRequest))
+		return srv.(ModelPublicServiceServer).Readiness(ctx, req.(*ReadinessRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelService_ListModelDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ModelPublicService_ListModelDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListModelDefinitionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelServiceServer).ListModelDefinition(ctx, in)
+		return srv.(ModelPublicServiceServer).ListModelDefinition(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelService/ListModelDefinition",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/ListModelDefinition",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelServiceServer).ListModelDefinition(ctx, req.(*ListModelDefinitionRequest))
+		return srv.(ModelPublicServiceServer).ListModelDefinition(ctx, req.(*ListModelDefinitionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelService_GetModelDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ModelPublicService_GetModelDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetModelDefinitionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelServiceServer).GetModelDefinition(ctx, in)
+		return srv.(ModelPublicServiceServer).GetModelDefinition(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelService/GetModelDefinition",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/GetModelDefinition",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelServiceServer).GetModelDefinition(ctx, req.(*GetModelDefinitionRequest))
+		return srv.(ModelPublicServiceServer).GetModelDefinition(ctx, req.(*GetModelDefinitionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelService_ListModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ModelPublicService_ListModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelServiceServer).ListModel(ctx, in)
+		return srv.(ModelPublicServiceServer).ListModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelService/ListModel",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/ListModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelServiceServer).ListModel(ctx, req.(*ListModelRequest))
+		return srv.(ModelPublicServiceServer).ListModel(ctx, req.(*ListModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelService_CreateModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ModelPublicService_CreateModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelServiceServer).CreateModel(ctx, in)
+		return srv.(ModelPublicServiceServer).CreateModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelService/CreateModel",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/CreateModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelServiceServer).CreateModel(ctx, req.(*CreateModelRequest))
+		return srv.(ModelPublicServiceServer).CreateModel(ctx, req.(*CreateModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelService_CreateModelBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(ModelServiceServer).CreateModelBinaryFileUpload(&modelServiceCreateModelBinaryFileUploadServer{stream})
+func _ModelPublicService_CreateModelBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ModelPublicServiceServer).CreateModelBinaryFileUpload(&modelPublicServiceCreateModelBinaryFileUploadServer{stream})
 }
 
-type ModelService_CreateModelBinaryFileUploadServer interface {
+type ModelPublicService_CreateModelBinaryFileUploadServer interface {
 	SendAndClose(*CreateModelBinaryFileUploadResponse) error
 	Recv() (*CreateModelBinaryFileUploadRequest, error)
 	grpc.ServerStream
 }
 
-type modelServiceCreateModelBinaryFileUploadServer struct {
+type modelPublicServiceCreateModelBinaryFileUploadServer struct {
 	grpc.ServerStream
 }
 
-func (x *modelServiceCreateModelBinaryFileUploadServer) SendAndClose(m *CreateModelBinaryFileUploadResponse) error {
+func (x *modelPublicServiceCreateModelBinaryFileUploadServer) SendAndClose(m *CreateModelBinaryFileUploadResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *modelServiceCreateModelBinaryFileUploadServer) Recv() (*CreateModelBinaryFileUploadRequest, error) {
+func (x *modelPublicServiceCreateModelBinaryFileUploadServer) Recv() (*CreateModelBinaryFileUploadRequest, error) {
 	m := new(CreateModelBinaryFileUploadRequest)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -769,277 +769,277 @@ func (x *modelServiceCreateModelBinaryFileUploadServer) Recv() (*CreateModelBina
 	return m, nil
 }
 
-func _ModelService_GetModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ModelPublicService_GetModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelServiceServer).GetModel(ctx, in)
+		return srv.(ModelPublicServiceServer).GetModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelService/GetModel",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/GetModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelServiceServer).GetModel(ctx, req.(*GetModelRequest))
+		return srv.(ModelPublicServiceServer).GetModel(ctx, req.(*GetModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelService_UpdateModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ModelPublicService_UpdateModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelServiceServer).UpdateModel(ctx, in)
+		return srv.(ModelPublicServiceServer).UpdateModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelService/UpdateModel",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/UpdateModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelServiceServer).UpdateModel(ctx, req.(*UpdateModelRequest))
+		return srv.(ModelPublicServiceServer).UpdateModel(ctx, req.(*UpdateModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelService_DeleteModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ModelPublicService_DeleteModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelServiceServer).DeleteModel(ctx, in)
+		return srv.(ModelPublicServiceServer).DeleteModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelService/DeleteModel",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/DeleteModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelServiceServer).DeleteModel(ctx, req.(*DeleteModelRequest))
+		return srv.(ModelPublicServiceServer).DeleteModel(ctx, req.(*DeleteModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelService_LookUpModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ModelPublicService_LookUpModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(LookUpModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelServiceServer).LookUpModel(ctx, in)
+		return srv.(ModelPublicServiceServer).LookUpModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelService/LookUpModel",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/LookUpModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelServiceServer).LookUpModel(ctx, req.(*LookUpModelRequest))
+		return srv.(ModelPublicServiceServer).LookUpModel(ctx, req.(*LookUpModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelService_RenameModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ModelPublicService_RenameModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RenameModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelServiceServer).RenameModel(ctx, in)
+		return srv.(ModelPublicServiceServer).RenameModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelService/RenameModel",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/RenameModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelServiceServer).RenameModel(ctx, req.(*RenameModelRequest))
+		return srv.(ModelPublicServiceServer).RenameModel(ctx, req.(*RenameModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelService_PublishModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ModelPublicService_PublishModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PublishModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelServiceServer).PublishModel(ctx, in)
+		return srv.(ModelPublicServiceServer).PublishModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelService/PublishModel",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/PublishModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelServiceServer).PublishModel(ctx, req.(*PublishModelRequest))
+		return srv.(ModelPublicServiceServer).PublishModel(ctx, req.(*PublishModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelService_UnpublishModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ModelPublicService_UnpublishModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UnpublishModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelServiceServer).UnpublishModel(ctx, in)
+		return srv.(ModelPublicServiceServer).UnpublishModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelService/UnpublishModel",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/UnpublishModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelServiceServer).UnpublishModel(ctx, req.(*UnpublishModelRequest))
+		return srv.(ModelPublicServiceServer).UnpublishModel(ctx, req.(*UnpublishModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelService_ListModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ModelPublicService_ListModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListModelInstanceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelServiceServer).ListModelInstance(ctx, in)
+		return srv.(ModelPublicServiceServer).ListModelInstance(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelService/ListModelInstance",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/ListModelInstance",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelServiceServer).ListModelInstance(ctx, req.(*ListModelInstanceRequest))
+		return srv.(ModelPublicServiceServer).ListModelInstance(ctx, req.(*ListModelInstanceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelService_GetModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ModelPublicService_GetModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetModelInstanceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelServiceServer).GetModelInstance(ctx, in)
+		return srv.(ModelPublicServiceServer).GetModelInstance(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelService/GetModelInstance",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/GetModelInstance",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelServiceServer).GetModelInstance(ctx, req.(*GetModelInstanceRequest))
+		return srv.(ModelPublicServiceServer).GetModelInstance(ctx, req.(*GetModelInstanceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelService_LookUpModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ModelPublicService_LookUpModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(LookUpModelInstanceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelServiceServer).LookUpModelInstance(ctx, in)
+		return srv.(ModelPublicServiceServer).LookUpModelInstance(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelService/LookUpModelInstance",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/LookUpModelInstance",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelServiceServer).LookUpModelInstance(ctx, req.(*LookUpModelInstanceRequest))
+		return srv.(ModelPublicServiceServer).LookUpModelInstance(ctx, req.(*LookUpModelInstanceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelService_DeployModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ModelPublicService_DeployModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeployModelInstanceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelServiceServer).DeployModelInstance(ctx, in)
+		return srv.(ModelPublicServiceServer).DeployModelInstance(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelService/DeployModelInstance",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/DeployModelInstance",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelServiceServer).DeployModelInstance(ctx, req.(*DeployModelInstanceRequest))
+		return srv.(ModelPublicServiceServer).DeployModelInstance(ctx, req.(*DeployModelInstanceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelService_UndeployModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ModelPublicService_UndeployModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UndeployModelInstanceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelServiceServer).UndeployModelInstance(ctx, in)
+		return srv.(ModelPublicServiceServer).UndeployModelInstance(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelService/UndeployModelInstance",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/UndeployModelInstance",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelServiceServer).UndeployModelInstance(ctx, req.(*UndeployModelInstanceRequest))
+		return srv.(ModelPublicServiceServer).UndeployModelInstance(ctx, req.(*UndeployModelInstanceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelService_GetModelInstanceCard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ModelPublicService_GetModelInstanceCard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetModelInstanceCardRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelServiceServer).GetModelInstanceCard(ctx, in)
+		return srv.(ModelPublicServiceServer).GetModelInstanceCard(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelService/GetModelInstanceCard",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/GetModelInstanceCard",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelServiceServer).GetModelInstanceCard(ctx, req.(*GetModelInstanceCardRequest))
+		return srv.(ModelPublicServiceServer).GetModelInstanceCard(ctx, req.(*GetModelInstanceCardRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelService_TriggerModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ModelPublicService_TriggerModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(TriggerModelInstanceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelServiceServer).TriggerModelInstance(ctx, in)
+		return srv.(ModelPublicServiceServer).TriggerModelInstance(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelService/TriggerModelInstance",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/TriggerModelInstance",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelServiceServer).TriggerModelInstance(ctx, req.(*TriggerModelInstanceRequest))
+		return srv.(ModelPublicServiceServer).TriggerModelInstance(ctx, req.(*TriggerModelInstanceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelService_TriggerModelInstanceBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(ModelServiceServer).TriggerModelInstanceBinaryFileUpload(&modelServiceTriggerModelInstanceBinaryFileUploadServer{stream})
+func _ModelPublicService_TriggerModelInstanceBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ModelPublicServiceServer).TriggerModelInstanceBinaryFileUpload(&modelPublicServiceTriggerModelInstanceBinaryFileUploadServer{stream})
 }
 
-type ModelService_TriggerModelInstanceBinaryFileUploadServer interface {
+type ModelPublicService_TriggerModelInstanceBinaryFileUploadServer interface {
 	SendAndClose(*TriggerModelInstanceBinaryFileUploadResponse) error
 	Recv() (*TriggerModelInstanceBinaryFileUploadRequest, error)
 	grpc.ServerStream
 }
 
-type modelServiceTriggerModelInstanceBinaryFileUploadServer struct {
+type modelPublicServiceTriggerModelInstanceBinaryFileUploadServer struct {
 	grpc.ServerStream
 }
 
-func (x *modelServiceTriggerModelInstanceBinaryFileUploadServer) SendAndClose(m *TriggerModelInstanceBinaryFileUploadResponse) error {
+func (x *modelPublicServiceTriggerModelInstanceBinaryFileUploadServer) SendAndClose(m *TriggerModelInstanceBinaryFileUploadResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *modelServiceTriggerModelInstanceBinaryFileUploadServer) Recv() (*TriggerModelInstanceBinaryFileUploadRequest, error) {
+func (x *modelPublicServiceTriggerModelInstanceBinaryFileUploadServer) Recv() (*TriggerModelInstanceBinaryFileUploadRequest, error) {
 	m := new(TriggerModelInstanceBinaryFileUploadRequest)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -1047,43 +1047,43 @@ func (x *modelServiceTriggerModelInstanceBinaryFileUploadServer) Recv() (*Trigge
 	return m, nil
 }
 
-func _ModelService_TestModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ModelPublicService_TestModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(TestModelInstanceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelServiceServer).TestModelInstance(ctx, in)
+		return srv.(ModelPublicServiceServer).TestModelInstance(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelService/TestModelInstance",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/TestModelInstance",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelServiceServer).TestModelInstance(ctx, req.(*TestModelInstanceRequest))
+		return srv.(ModelPublicServiceServer).TestModelInstance(ctx, req.(*TestModelInstanceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelService_TestModelInstanceBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(ModelServiceServer).TestModelInstanceBinaryFileUpload(&modelServiceTestModelInstanceBinaryFileUploadServer{stream})
+func _ModelPublicService_TestModelInstanceBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ModelPublicServiceServer).TestModelInstanceBinaryFileUpload(&modelPublicServiceTestModelInstanceBinaryFileUploadServer{stream})
 }
 
-type ModelService_TestModelInstanceBinaryFileUploadServer interface {
+type ModelPublicService_TestModelInstanceBinaryFileUploadServer interface {
 	SendAndClose(*TestModelInstanceBinaryFileUploadResponse) error
 	Recv() (*TestModelInstanceBinaryFileUploadRequest, error)
 	grpc.ServerStream
 }
 
-type modelServiceTestModelInstanceBinaryFileUploadServer struct {
+type modelPublicServiceTestModelInstanceBinaryFileUploadServer struct {
 	grpc.ServerStream
 }
 
-func (x *modelServiceTestModelInstanceBinaryFileUploadServer) SendAndClose(m *TestModelInstanceBinaryFileUploadResponse) error {
+func (x *modelPublicServiceTestModelInstanceBinaryFileUploadServer) SendAndClose(m *TestModelInstanceBinaryFileUploadResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *modelServiceTestModelInstanceBinaryFileUploadServer) Recv() (*TestModelInstanceBinaryFileUploadRequest, error) {
+func (x *modelPublicServiceTestModelInstanceBinaryFileUploadServer) Recv() (*TestModelInstanceBinaryFileUploadRequest, error) {
 	m := new(TestModelInstanceBinaryFileUploadRequest)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -1091,180 +1091,180 @@ func (x *modelServiceTestModelInstanceBinaryFileUploadServer) Recv() (*TestModel
 	return m, nil
 }
 
-func _ModelService_GetModelOperation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ModelPublicService_GetModelOperation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetModelOperationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelServiceServer).GetModelOperation(ctx, in)
+		return srv.(ModelPublicServiceServer).GetModelOperation(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelService/GetModelOperation",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/GetModelOperation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelServiceServer).GetModelOperation(ctx, req.(*GetModelOperationRequest))
+		return srv.(ModelPublicServiceServer).GetModelOperation(ctx, req.(*GetModelOperationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelService_ListModelOperation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ModelPublicService_ListModelOperation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListModelOperationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelServiceServer).ListModelOperation(ctx, in)
+		return srv.(ModelPublicServiceServer).ListModelOperation(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelService/ListModelOperation",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/ListModelOperation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelServiceServer).ListModelOperation(ctx, req.(*ListModelOperationRequest))
+		return srv.(ModelPublicServiceServer).ListModelOperation(ctx, req.(*ListModelOperationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelService_CancelModelOperation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ModelPublicService_CancelModelOperation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CancelModelOperationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelServiceServer).CancelModelOperation(ctx, in)
+		return srv.(ModelPublicServiceServer).CancelModelOperation(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelService/CancelModelOperation",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/CancelModelOperation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelServiceServer).CancelModelOperation(ctx, req.(*CancelModelOperationRequest))
+		return srv.(ModelPublicServiceServer).CancelModelOperation(ctx, req.(*CancelModelOperationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// ModelService_ServiceDesc is the grpc.ServiceDesc for ModelService service.
+// ModelPublicService_ServiceDesc is the grpc.ServiceDesc for ModelPublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var ModelService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "vdp.model.v1alpha.ModelService",
-	HandlerType: (*ModelServiceServer)(nil),
+var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "vdp.model.v1alpha.ModelPublicService",
+	HandlerType: (*ModelPublicServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Liveness",
-			Handler:    _ModelService_Liveness_Handler,
+			Handler:    _ModelPublicService_Liveness_Handler,
 		},
 		{
 			MethodName: "Readiness",
-			Handler:    _ModelService_Readiness_Handler,
+			Handler:    _ModelPublicService_Readiness_Handler,
 		},
 		{
 			MethodName: "ListModelDefinition",
-			Handler:    _ModelService_ListModelDefinition_Handler,
+			Handler:    _ModelPublicService_ListModelDefinition_Handler,
 		},
 		{
 			MethodName: "GetModelDefinition",
-			Handler:    _ModelService_GetModelDefinition_Handler,
+			Handler:    _ModelPublicService_GetModelDefinition_Handler,
 		},
 		{
 			MethodName: "ListModel",
-			Handler:    _ModelService_ListModel_Handler,
+			Handler:    _ModelPublicService_ListModel_Handler,
 		},
 		{
 			MethodName: "CreateModel",
-			Handler:    _ModelService_CreateModel_Handler,
+			Handler:    _ModelPublicService_CreateModel_Handler,
 		},
 		{
 			MethodName: "GetModel",
-			Handler:    _ModelService_GetModel_Handler,
+			Handler:    _ModelPublicService_GetModel_Handler,
 		},
 		{
 			MethodName: "UpdateModel",
-			Handler:    _ModelService_UpdateModel_Handler,
+			Handler:    _ModelPublicService_UpdateModel_Handler,
 		},
 		{
 			MethodName: "DeleteModel",
-			Handler:    _ModelService_DeleteModel_Handler,
+			Handler:    _ModelPublicService_DeleteModel_Handler,
 		},
 		{
 			MethodName: "LookUpModel",
-			Handler:    _ModelService_LookUpModel_Handler,
+			Handler:    _ModelPublicService_LookUpModel_Handler,
 		},
 		{
 			MethodName: "RenameModel",
-			Handler:    _ModelService_RenameModel_Handler,
+			Handler:    _ModelPublicService_RenameModel_Handler,
 		},
 		{
 			MethodName: "PublishModel",
-			Handler:    _ModelService_PublishModel_Handler,
+			Handler:    _ModelPublicService_PublishModel_Handler,
 		},
 		{
 			MethodName: "UnpublishModel",
-			Handler:    _ModelService_UnpublishModel_Handler,
+			Handler:    _ModelPublicService_UnpublishModel_Handler,
 		},
 		{
 			MethodName: "ListModelInstance",
-			Handler:    _ModelService_ListModelInstance_Handler,
+			Handler:    _ModelPublicService_ListModelInstance_Handler,
 		},
 		{
 			MethodName: "GetModelInstance",
-			Handler:    _ModelService_GetModelInstance_Handler,
+			Handler:    _ModelPublicService_GetModelInstance_Handler,
 		},
 		{
 			MethodName: "LookUpModelInstance",
-			Handler:    _ModelService_LookUpModelInstance_Handler,
+			Handler:    _ModelPublicService_LookUpModelInstance_Handler,
 		},
 		{
 			MethodName: "DeployModelInstance",
-			Handler:    _ModelService_DeployModelInstance_Handler,
+			Handler:    _ModelPublicService_DeployModelInstance_Handler,
 		},
 		{
 			MethodName: "UndeployModelInstance",
-			Handler:    _ModelService_UndeployModelInstance_Handler,
+			Handler:    _ModelPublicService_UndeployModelInstance_Handler,
 		},
 		{
 			MethodName: "GetModelInstanceCard",
-			Handler:    _ModelService_GetModelInstanceCard_Handler,
+			Handler:    _ModelPublicService_GetModelInstanceCard_Handler,
 		},
 		{
 			MethodName: "TriggerModelInstance",
-			Handler:    _ModelService_TriggerModelInstance_Handler,
+			Handler:    _ModelPublicService_TriggerModelInstance_Handler,
 		},
 		{
 			MethodName: "TestModelInstance",
-			Handler:    _ModelService_TestModelInstance_Handler,
+			Handler:    _ModelPublicService_TestModelInstance_Handler,
 		},
 		{
 			MethodName: "GetModelOperation",
-			Handler:    _ModelService_GetModelOperation_Handler,
+			Handler:    _ModelPublicService_GetModelOperation_Handler,
 		},
 		{
 			MethodName: "ListModelOperation",
-			Handler:    _ModelService_ListModelOperation_Handler,
+			Handler:    _ModelPublicService_ListModelOperation_Handler,
 		},
 		{
 			MethodName: "CancelModelOperation",
-			Handler:    _ModelService_CancelModelOperation_Handler,
+			Handler:    _ModelPublicService_CancelModelOperation_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "CreateModelBinaryFileUpload",
-			Handler:       _ModelService_CreateModelBinaryFileUpload_Handler,
+			Handler:       _ModelPublicService_CreateModelBinaryFileUpload_Handler,
 			ClientStreams: true,
 		},
 		{
 			StreamName:    "TriggerModelInstanceBinaryFileUpload",
-			Handler:       _ModelService_TriggerModelInstanceBinaryFileUpload_Handler,
+			Handler:       _ModelPublicService_TriggerModelInstanceBinaryFileUpload_Handler,
 			ClientStreams: true,
 		},
 		{
 			StreamName:    "TestModelInstanceBinaryFileUpload",
-			Handler:       _ModelService_TestModelInstanceBinaryFileUpload_Handler,
+			Handler:       _ModelPublicService_TestModelInstanceBinaryFileUpload_Handler,
 			ClientStreams: true,
 		},
 	},
-	Metadata: "vdp/model/v1alpha/model_service.proto",
+	Metadata: "vdp/model/v1alpha/model_public_service.proto",
 }

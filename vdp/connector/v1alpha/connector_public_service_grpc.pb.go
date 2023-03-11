@@ -14,10 +14,10 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// ConnectorServiceClient is the client API for ConnectorService service.
+// ConnectorPublicServiceClient is the client API for ConnectorPublicService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type ConnectorServiceClient interface {
+type ConnectorPublicServiceClient interface {
 	// Liveness method receives a LivenessRequest message and returns a
 	// LivenessResponse message.
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
@@ -122,252 +122,252 @@ type ConnectorServiceClient interface {
 	WriteDestinationConnector(ctx context.Context, in *WriteDestinationConnectorRequest, opts ...grpc.CallOption) (*WriteDestinationConnectorResponse, error)
 }
 
-type connectorServiceClient struct {
+type connectorPublicServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewConnectorServiceClient(cc grpc.ClientConnInterface) ConnectorServiceClient {
-	return &connectorServiceClient{cc}
+func NewConnectorPublicServiceClient(cc grpc.ClientConnInterface) ConnectorPublicServiceClient {
+	return &connectorPublicServiceClient{cc}
 }
 
-func (c *connectorServiceClient) Liveness(ctx context.Context, in *LivenessRequest, opts ...grpc.CallOption) (*LivenessResponse, error) {
+func (c *connectorPublicServiceClient) Liveness(ctx context.Context, in *LivenessRequest, opts ...grpc.CallOption) (*LivenessResponse, error) {
 	out := new(LivenessResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/Liveness", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/Liveness", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorServiceClient) Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error) {
+func (c *connectorPublicServiceClient) Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error) {
 	out := new(ReadinessResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/Readiness", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/Readiness", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorServiceClient) ListSourceConnectorDefinition(ctx context.Context, in *ListSourceConnectorDefinitionRequest, opts ...grpc.CallOption) (*ListSourceConnectorDefinitionResponse, error) {
+func (c *connectorPublicServiceClient) ListSourceConnectorDefinition(ctx context.Context, in *ListSourceConnectorDefinitionRequest, opts ...grpc.CallOption) (*ListSourceConnectorDefinitionResponse, error) {
 	out := new(ListSourceConnectorDefinitionResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/ListSourceConnectorDefinition", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/ListSourceConnectorDefinition", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorServiceClient) GetSourceConnectorDefinition(ctx context.Context, in *GetSourceConnectorDefinitionRequest, opts ...grpc.CallOption) (*GetSourceConnectorDefinitionResponse, error) {
+func (c *connectorPublicServiceClient) GetSourceConnectorDefinition(ctx context.Context, in *GetSourceConnectorDefinitionRequest, opts ...grpc.CallOption) (*GetSourceConnectorDefinitionResponse, error) {
 	out := new(GetSourceConnectorDefinitionResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/GetSourceConnectorDefinition", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/GetSourceConnectorDefinition", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorServiceClient) ListDestinationConnectorDefinition(ctx context.Context, in *ListDestinationConnectorDefinitionRequest, opts ...grpc.CallOption) (*ListDestinationConnectorDefinitionResponse, error) {
+func (c *connectorPublicServiceClient) ListDestinationConnectorDefinition(ctx context.Context, in *ListDestinationConnectorDefinitionRequest, opts ...grpc.CallOption) (*ListDestinationConnectorDefinitionResponse, error) {
 	out := new(ListDestinationConnectorDefinitionResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/ListDestinationConnectorDefinition", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/ListDestinationConnectorDefinition", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorServiceClient) GetDestinationConnectorDefinition(ctx context.Context, in *GetDestinationConnectorDefinitionRequest, opts ...grpc.CallOption) (*GetDestinationConnectorDefinitionResponse, error) {
+func (c *connectorPublicServiceClient) GetDestinationConnectorDefinition(ctx context.Context, in *GetDestinationConnectorDefinitionRequest, opts ...grpc.CallOption) (*GetDestinationConnectorDefinitionResponse, error) {
 	out := new(GetDestinationConnectorDefinitionResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/GetDestinationConnectorDefinition", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/GetDestinationConnectorDefinition", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorServiceClient) CreateSourceConnector(ctx context.Context, in *CreateSourceConnectorRequest, opts ...grpc.CallOption) (*CreateSourceConnectorResponse, error) {
+func (c *connectorPublicServiceClient) CreateSourceConnector(ctx context.Context, in *CreateSourceConnectorRequest, opts ...grpc.CallOption) (*CreateSourceConnectorResponse, error) {
 	out := new(CreateSourceConnectorResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/CreateSourceConnector", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/CreateSourceConnector", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorServiceClient) ListSourceConnector(ctx context.Context, in *ListSourceConnectorRequest, opts ...grpc.CallOption) (*ListSourceConnectorResponse, error) {
+func (c *connectorPublicServiceClient) ListSourceConnector(ctx context.Context, in *ListSourceConnectorRequest, opts ...grpc.CallOption) (*ListSourceConnectorResponse, error) {
 	out := new(ListSourceConnectorResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/ListSourceConnector", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/ListSourceConnector", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorServiceClient) GetSourceConnector(ctx context.Context, in *GetSourceConnectorRequest, opts ...grpc.CallOption) (*GetSourceConnectorResponse, error) {
+func (c *connectorPublicServiceClient) GetSourceConnector(ctx context.Context, in *GetSourceConnectorRequest, opts ...grpc.CallOption) (*GetSourceConnectorResponse, error) {
 	out := new(GetSourceConnectorResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/GetSourceConnector", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/GetSourceConnector", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorServiceClient) UpdateSourceConnector(ctx context.Context, in *UpdateSourceConnectorRequest, opts ...grpc.CallOption) (*UpdateSourceConnectorResponse, error) {
+func (c *connectorPublicServiceClient) UpdateSourceConnector(ctx context.Context, in *UpdateSourceConnectorRequest, opts ...grpc.CallOption) (*UpdateSourceConnectorResponse, error) {
 	out := new(UpdateSourceConnectorResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/UpdateSourceConnector", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/UpdateSourceConnector", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorServiceClient) DeleteSourceConnector(ctx context.Context, in *DeleteSourceConnectorRequest, opts ...grpc.CallOption) (*DeleteSourceConnectorResponse, error) {
+func (c *connectorPublicServiceClient) DeleteSourceConnector(ctx context.Context, in *DeleteSourceConnectorRequest, opts ...grpc.CallOption) (*DeleteSourceConnectorResponse, error) {
 	out := new(DeleteSourceConnectorResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/DeleteSourceConnector", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/DeleteSourceConnector", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorServiceClient) LookUpSourceConnector(ctx context.Context, in *LookUpSourceConnectorRequest, opts ...grpc.CallOption) (*LookUpSourceConnectorResponse, error) {
+func (c *connectorPublicServiceClient) LookUpSourceConnector(ctx context.Context, in *LookUpSourceConnectorRequest, opts ...grpc.CallOption) (*LookUpSourceConnectorResponse, error) {
 	out := new(LookUpSourceConnectorResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/LookUpSourceConnector", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/LookUpSourceConnector", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorServiceClient) ConnectSourceConnector(ctx context.Context, in *ConnectSourceConnectorRequest, opts ...grpc.CallOption) (*ConnectSourceConnectorResponse, error) {
+func (c *connectorPublicServiceClient) ConnectSourceConnector(ctx context.Context, in *ConnectSourceConnectorRequest, opts ...grpc.CallOption) (*ConnectSourceConnectorResponse, error) {
 	out := new(ConnectSourceConnectorResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/ConnectSourceConnector", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/ConnectSourceConnector", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorServiceClient) DisconnectSourceConnector(ctx context.Context, in *DisconnectSourceConnectorRequest, opts ...grpc.CallOption) (*DisconnectSourceConnectorResponse, error) {
+func (c *connectorPublicServiceClient) DisconnectSourceConnector(ctx context.Context, in *DisconnectSourceConnectorRequest, opts ...grpc.CallOption) (*DisconnectSourceConnectorResponse, error) {
 	out := new(DisconnectSourceConnectorResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/DisconnectSourceConnector", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/DisconnectSourceConnector", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorServiceClient) RenameSourceConnector(ctx context.Context, in *RenameSourceConnectorRequest, opts ...grpc.CallOption) (*RenameSourceConnectorResponse, error) {
+func (c *connectorPublicServiceClient) RenameSourceConnector(ctx context.Context, in *RenameSourceConnectorRequest, opts ...grpc.CallOption) (*RenameSourceConnectorResponse, error) {
 	out := new(RenameSourceConnectorResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/RenameSourceConnector", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/RenameSourceConnector", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorServiceClient) ReadSourceConnector(ctx context.Context, in *ReadSourceConnectorRequest, opts ...grpc.CallOption) (*ReadSourceConnectorResponse, error) {
+func (c *connectorPublicServiceClient) ReadSourceConnector(ctx context.Context, in *ReadSourceConnectorRequest, opts ...grpc.CallOption) (*ReadSourceConnectorResponse, error) {
 	out := new(ReadSourceConnectorResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/ReadSourceConnector", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/ReadSourceConnector", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorServiceClient) CreateDestinationConnector(ctx context.Context, in *CreateDestinationConnectorRequest, opts ...grpc.CallOption) (*CreateDestinationConnectorResponse, error) {
+func (c *connectorPublicServiceClient) CreateDestinationConnector(ctx context.Context, in *CreateDestinationConnectorRequest, opts ...grpc.CallOption) (*CreateDestinationConnectorResponse, error) {
 	out := new(CreateDestinationConnectorResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/CreateDestinationConnector", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/CreateDestinationConnector", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorServiceClient) ListDestinationConnector(ctx context.Context, in *ListDestinationConnectorRequest, opts ...grpc.CallOption) (*ListDestinationConnectorResponse, error) {
+func (c *connectorPublicServiceClient) ListDestinationConnector(ctx context.Context, in *ListDestinationConnectorRequest, opts ...grpc.CallOption) (*ListDestinationConnectorResponse, error) {
 	out := new(ListDestinationConnectorResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/ListDestinationConnector", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/ListDestinationConnector", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorServiceClient) GetDestinationConnector(ctx context.Context, in *GetDestinationConnectorRequest, opts ...grpc.CallOption) (*GetDestinationConnectorResponse, error) {
+func (c *connectorPublicServiceClient) GetDestinationConnector(ctx context.Context, in *GetDestinationConnectorRequest, opts ...grpc.CallOption) (*GetDestinationConnectorResponse, error) {
 	out := new(GetDestinationConnectorResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/GetDestinationConnector", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/GetDestinationConnector", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorServiceClient) UpdateDestinationConnector(ctx context.Context, in *UpdateDestinationConnectorRequest, opts ...grpc.CallOption) (*UpdateDestinationConnectorResponse, error) {
+func (c *connectorPublicServiceClient) UpdateDestinationConnector(ctx context.Context, in *UpdateDestinationConnectorRequest, opts ...grpc.CallOption) (*UpdateDestinationConnectorResponse, error) {
 	out := new(UpdateDestinationConnectorResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/UpdateDestinationConnector", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/UpdateDestinationConnector", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorServiceClient) DeleteDestinationConnector(ctx context.Context, in *DeleteDestinationConnectorRequest, opts ...grpc.CallOption) (*DeleteDestinationConnectorResponse, error) {
+func (c *connectorPublicServiceClient) DeleteDestinationConnector(ctx context.Context, in *DeleteDestinationConnectorRequest, opts ...grpc.CallOption) (*DeleteDestinationConnectorResponse, error) {
 	out := new(DeleteDestinationConnectorResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/DeleteDestinationConnector", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/DeleteDestinationConnector", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorServiceClient) LookUpDestinationConnector(ctx context.Context, in *LookUpDestinationConnectorRequest, opts ...grpc.CallOption) (*LookUpDestinationConnectorResponse, error) {
+func (c *connectorPublicServiceClient) LookUpDestinationConnector(ctx context.Context, in *LookUpDestinationConnectorRequest, opts ...grpc.CallOption) (*LookUpDestinationConnectorResponse, error) {
 	out := new(LookUpDestinationConnectorResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/LookUpDestinationConnector", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/LookUpDestinationConnector", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorServiceClient) ConnectDestinationConnector(ctx context.Context, in *ConnectDestinationConnectorRequest, opts ...grpc.CallOption) (*ConnectDestinationConnectorResponse, error) {
+func (c *connectorPublicServiceClient) ConnectDestinationConnector(ctx context.Context, in *ConnectDestinationConnectorRequest, opts ...grpc.CallOption) (*ConnectDestinationConnectorResponse, error) {
 	out := new(ConnectDestinationConnectorResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/ConnectDestinationConnector", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/ConnectDestinationConnector", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorServiceClient) DisconnectDestinationConnector(ctx context.Context, in *DisconnectDestinationConnectorRequest, opts ...grpc.CallOption) (*DisconnectDestinationConnectorResponse, error) {
+func (c *connectorPublicServiceClient) DisconnectDestinationConnector(ctx context.Context, in *DisconnectDestinationConnectorRequest, opts ...grpc.CallOption) (*DisconnectDestinationConnectorResponse, error) {
 	out := new(DisconnectDestinationConnectorResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/DisconnectDestinationConnector", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/DisconnectDestinationConnector", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorServiceClient) RenameDestinationConnector(ctx context.Context, in *RenameDestinationConnectorRequest, opts ...grpc.CallOption) (*RenameDestinationConnectorResponse, error) {
+func (c *connectorPublicServiceClient) RenameDestinationConnector(ctx context.Context, in *RenameDestinationConnectorRequest, opts ...grpc.CallOption) (*RenameDestinationConnectorResponse, error) {
 	out := new(RenameDestinationConnectorResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/RenameDestinationConnector", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/RenameDestinationConnector", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorServiceClient) WriteDestinationConnector(ctx context.Context, in *WriteDestinationConnectorRequest, opts ...grpc.CallOption) (*WriteDestinationConnectorResponse, error) {
+func (c *connectorPublicServiceClient) WriteDestinationConnector(ctx context.Context, in *WriteDestinationConnectorRequest, opts ...grpc.CallOption) (*WriteDestinationConnectorResponse, error) {
 	out := new(WriteDestinationConnectorResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorService/WriteDestinationConnector", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/WriteDestinationConnector", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ConnectorServiceServer is the server API for ConnectorService service.
-// All implementations should embed UnimplementedConnectorServiceServer
+// ConnectorPublicServiceServer is the server API for ConnectorPublicService service.
+// All implementations should embed UnimplementedConnectorPublicServiceServer
 // for forward compatibility
-type ConnectorServiceServer interface {
+type ConnectorPublicServiceServer interface {
 	// Liveness method receives a LivenessRequest message and returns a
 	// LivenessResponse message.
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
@@ -472,680 +472,680 @@ type ConnectorServiceServer interface {
 	WriteDestinationConnector(context.Context, *WriteDestinationConnectorRequest) (*WriteDestinationConnectorResponse, error)
 }
 
-// UnimplementedConnectorServiceServer should be embedded to have forward compatible implementations.
-type UnimplementedConnectorServiceServer struct {
+// UnimplementedConnectorPublicServiceServer should be embedded to have forward compatible implementations.
+type UnimplementedConnectorPublicServiceServer struct {
 }
 
-func (UnimplementedConnectorServiceServer) Liveness(context.Context, *LivenessRequest) (*LivenessResponse, error) {
+func (UnimplementedConnectorPublicServiceServer) Liveness(context.Context, *LivenessRequest) (*LivenessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Liveness not implemented")
 }
-func (UnimplementedConnectorServiceServer) Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error) {
+func (UnimplementedConnectorPublicServiceServer) Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Readiness not implemented")
 }
-func (UnimplementedConnectorServiceServer) ListSourceConnectorDefinition(context.Context, *ListSourceConnectorDefinitionRequest) (*ListSourceConnectorDefinitionResponse, error) {
+func (UnimplementedConnectorPublicServiceServer) ListSourceConnectorDefinition(context.Context, *ListSourceConnectorDefinitionRequest) (*ListSourceConnectorDefinitionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListSourceConnectorDefinition not implemented")
 }
-func (UnimplementedConnectorServiceServer) GetSourceConnectorDefinition(context.Context, *GetSourceConnectorDefinitionRequest) (*GetSourceConnectorDefinitionResponse, error) {
+func (UnimplementedConnectorPublicServiceServer) GetSourceConnectorDefinition(context.Context, *GetSourceConnectorDefinitionRequest) (*GetSourceConnectorDefinitionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSourceConnectorDefinition not implemented")
 }
-func (UnimplementedConnectorServiceServer) ListDestinationConnectorDefinition(context.Context, *ListDestinationConnectorDefinitionRequest) (*ListDestinationConnectorDefinitionResponse, error) {
+func (UnimplementedConnectorPublicServiceServer) ListDestinationConnectorDefinition(context.Context, *ListDestinationConnectorDefinitionRequest) (*ListDestinationConnectorDefinitionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDestinationConnectorDefinition not implemented")
 }
-func (UnimplementedConnectorServiceServer) GetDestinationConnectorDefinition(context.Context, *GetDestinationConnectorDefinitionRequest) (*GetDestinationConnectorDefinitionResponse, error) {
+func (UnimplementedConnectorPublicServiceServer) GetDestinationConnectorDefinition(context.Context, *GetDestinationConnectorDefinitionRequest) (*GetDestinationConnectorDefinitionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDestinationConnectorDefinition not implemented")
 }
-func (UnimplementedConnectorServiceServer) CreateSourceConnector(context.Context, *CreateSourceConnectorRequest) (*CreateSourceConnectorResponse, error) {
+func (UnimplementedConnectorPublicServiceServer) CreateSourceConnector(context.Context, *CreateSourceConnectorRequest) (*CreateSourceConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateSourceConnector not implemented")
 }
-func (UnimplementedConnectorServiceServer) ListSourceConnector(context.Context, *ListSourceConnectorRequest) (*ListSourceConnectorResponse, error) {
+func (UnimplementedConnectorPublicServiceServer) ListSourceConnector(context.Context, *ListSourceConnectorRequest) (*ListSourceConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListSourceConnector not implemented")
 }
-func (UnimplementedConnectorServiceServer) GetSourceConnector(context.Context, *GetSourceConnectorRequest) (*GetSourceConnectorResponse, error) {
+func (UnimplementedConnectorPublicServiceServer) GetSourceConnector(context.Context, *GetSourceConnectorRequest) (*GetSourceConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSourceConnector not implemented")
 }
-func (UnimplementedConnectorServiceServer) UpdateSourceConnector(context.Context, *UpdateSourceConnectorRequest) (*UpdateSourceConnectorResponse, error) {
+func (UnimplementedConnectorPublicServiceServer) UpdateSourceConnector(context.Context, *UpdateSourceConnectorRequest) (*UpdateSourceConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateSourceConnector not implemented")
 }
-func (UnimplementedConnectorServiceServer) DeleteSourceConnector(context.Context, *DeleteSourceConnectorRequest) (*DeleteSourceConnectorResponse, error) {
+func (UnimplementedConnectorPublicServiceServer) DeleteSourceConnector(context.Context, *DeleteSourceConnectorRequest) (*DeleteSourceConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteSourceConnector not implemented")
 }
-func (UnimplementedConnectorServiceServer) LookUpSourceConnector(context.Context, *LookUpSourceConnectorRequest) (*LookUpSourceConnectorResponse, error) {
+func (UnimplementedConnectorPublicServiceServer) LookUpSourceConnector(context.Context, *LookUpSourceConnectorRequest) (*LookUpSourceConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LookUpSourceConnector not implemented")
 }
-func (UnimplementedConnectorServiceServer) ConnectSourceConnector(context.Context, *ConnectSourceConnectorRequest) (*ConnectSourceConnectorResponse, error) {
+func (UnimplementedConnectorPublicServiceServer) ConnectSourceConnector(context.Context, *ConnectSourceConnectorRequest) (*ConnectSourceConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConnectSourceConnector not implemented")
 }
-func (UnimplementedConnectorServiceServer) DisconnectSourceConnector(context.Context, *DisconnectSourceConnectorRequest) (*DisconnectSourceConnectorResponse, error) {
+func (UnimplementedConnectorPublicServiceServer) DisconnectSourceConnector(context.Context, *DisconnectSourceConnectorRequest) (*DisconnectSourceConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DisconnectSourceConnector not implemented")
 }
-func (UnimplementedConnectorServiceServer) RenameSourceConnector(context.Context, *RenameSourceConnectorRequest) (*RenameSourceConnectorResponse, error) {
+func (UnimplementedConnectorPublicServiceServer) RenameSourceConnector(context.Context, *RenameSourceConnectorRequest) (*RenameSourceConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RenameSourceConnector not implemented")
 }
-func (UnimplementedConnectorServiceServer) ReadSourceConnector(context.Context, *ReadSourceConnectorRequest) (*ReadSourceConnectorResponse, error) {
+func (UnimplementedConnectorPublicServiceServer) ReadSourceConnector(context.Context, *ReadSourceConnectorRequest) (*ReadSourceConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReadSourceConnector not implemented")
 }
-func (UnimplementedConnectorServiceServer) CreateDestinationConnector(context.Context, *CreateDestinationConnectorRequest) (*CreateDestinationConnectorResponse, error) {
+func (UnimplementedConnectorPublicServiceServer) CreateDestinationConnector(context.Context, *CreateDestinationConnectorRequest) (*CreateDestinationConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDestinationConnector not implemented")
 }
-func (UnimplementedConnectorServiceServer) ListDestinationConnector(context.Context, *ListDestinationConnectorRequest) (*ListDestinationConnectorResponse, error) {
+func (UnimplementedConnectorPublicServiceServer) ListDestinationConnector(context.Context, *ListDestinationConnectorRequest) (*ListDestinationConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDestinationConnector not implemented")
 }
-func (UnimplementedConnectorServiceServer) GetDestinationConnector(context.Context, *GetDestinationConnectorRequest) (*GetDestinationConnectorResponse, error) {
+func (UnimplementedConnectorPublicServiceServer) GetDestinationConnector(context.Context, *GetDestinationConnectorRequest) (*GetDestinationConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDestinationConnector not implemented")
 }
-func (UnimplementedConnectorServiceServer) UpdateDestinationConnector(context.Context, *UpdateDestinationConnectorRequest) (*UpdateDestinationConnectorResponse, error) {
+func (UnimplementedConnectorPublicServiceServer) UpdateDestinationConnector(context.Context, *UpdateDestinationConnectorRequest) (*UpdateDestinationConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateDestinationConnector not implemented")
 }
-func (UnimplementedConnectorServiceServer) DeleteDestinationConnector(context.Context, *DeleteDestinationConnectorRequest) (*DeleteDestinationConnectorResponse, error) {
+func (UnimplementedConnectorPublicServiceServer) DeleteDestinationConnector(context.Context, *DeleteDestinationConnectorRequest) (*DeleteDestinationConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteDestinationConnector not implemented")
 }
-func (UnimplementedConnectorServiceServer) LookUpDestinationConnector(context.Context, *LookUpDestinationConnectorRequest) (*LookUpDestinationConnectorResponse, error) {
+func (UnimplementedConnectorPublicServiceServer) LookUpDestinationConnector(context.Context, *LookUpDestinationConnectorRequest) (*LookUpDestinationConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LookUpDestinationConnector not implemented")
 }
-func (UnimplementedConnectorServiceServer) ConnectDestinationConnector(context.Context, *ConnectDestinationConnectorRequest) (*ConnectDestinationConnectorResponse, error) {
+func (UnimplementedConnectorPublicServiceServer) ConnectDestinationConnector(context.Context, *ConnectDestinationConnectorRequest) (*ConnectDestinationConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConnectDestinationConnector not implemented")
 }
-func (UnimplementedConnectorServiceServer) DisconnectDestinationConnector(context.Context, *DisconnectDestinationConnectorRequest) (*DisconnectDestinationConnectorResponse, error) {
+func (UnimplementedConnectorPublicServiceServer) DisconnectDestinationConnector(context.Context, *DisconnectDestinationConnectorRequest) (*DisconnectDestinationConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DisconnectDestinationConnector not implemented")
 }
-func (UnimplementedConnectorServiceServer) RenameDestinationConnector(context.Context, *RenameDestinationConnectorRequest) (*RenameDestinationConnectorResponse, error) {
+func (UnimplementedConnectorPublicServiceServer) RenameDestinationConnector(context.Context, *RenameDestinationConnectorRequest) (*RenameDestinationConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RenameDestinationConnector not implemented")
 }
-func (UnimplementedConnectorServiceServer) WriteDestinationConnector(context.Context, *WriteDestinationConnectorRequest) (*WriteDestinationConnectorResponse, error) {
+func (UnimplementedConnectorPublicServiceServer) WriteDestinationConnector(context.Context, *WriteDestinationConnectorRequest) (*WriteDestinationConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method WriteDestinationConnector not implemented")
 }
 
-// UnsafeConnectorServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to ConnectorServiceServer will
+// UnsafeConnectorPublicServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ConnectorPublicServiceServer will
 // result in compilation errors.
-type UnsafeConnectorServiceServer interface {
-	mustEmbedUnimplementedConnectorServiceServer()
+type UnsafeConnectorPublicServiceServer interface {
+	mustEmbedUnimplementedConnectorPublicServiceServer()
 }
 
-func RegisterConnectorServiceServer(s grpc.ServiceRegistrar, srv ConnectorServiceServer) {
-	s.RegisterService(&ConnectorService_ServiceDesc, srv)
+func RegisterConnectorPublicServiceServer(s grpc.ServiceRegistrar, srv ConnectorPublicServiceServer) {
+	s.RegisterService(&ConnectorPublicService_ServiceDesc, srv)
 }
 
-func _ConnectorService_Liveness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConnectorPublicService_Liveness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(LivenessRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).Liveness(ctx, in)
+		return srv.(ConnectorPublicServiceServer).Liveness(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorService/Liveness",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/Liveness",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).Liveness(ctx, req.(*LivenessRequest))
+		return srv.(ConnectorPublicServiceServer).Liveness(ctx, req.(*LivenessRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorService_Readiness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConnectorPublicService_Readiness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ReadinessRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).Readiness(ctx, in)
+		return srv.(ConnectorPublicServiceServer).Readiness(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorService/Readiness",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/Readiness",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).Readiness(ctx, req.(*ReadinessRequest))
+		return srv.(ConnectorPublicServiceServer).Readiness(ctx, req.(*ReadinessRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorService_ListSourceConnectorDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConnectorPublicService_ListSourceConnectorDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListSourceConnectorDefinitionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).ListSourceConnectorDefinition(ctx, in)
+		return srv.(ConnectorPublicServiceServer).ListSourceConnectorDefinition(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorService/ListSourceConnectorDefinition",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/ListSourceConnectorDefinition",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).ListSourceConnectorDefinition(ctx, req.(*ListSourceConnectorDefinitionRequest))
+		return srv.(ConnectorPublicServiceServer).ListSourceConnectorDefinition(ctx, req.(*ListSourceConnectorDefinitionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorService_GetSourceConnectorDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConnectorPublicService_GetSourceConnectorDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetSourceConnectorDefinitionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).GetSourceConnectorDefinition(ctx, in)
+		return srv.(ConnectorPublicServiceServer).GetSourceConnectorDefinition(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorService/GetSourceConnectorDefinition",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/GetSourceConnectorDefinition",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).GetSourceConnectorDefinition(ctx, req.(*GetSourceConnectorDefinitionRequest))
+		return srv.(ConnectorPublicServiceServer).GetSourceConnectorDefinition(ctx, req.(*GetSourceConnectorDefinitionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorService_ListDestinationConnectorDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConnectorPublicService_ListDestinationConnectorDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListDestinationConnectorDefinitionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).ListDestinationConnectorDefinition(ctx, in)
+		return srv.(ConnectorPublicServiceServer).ListDestinationConnectorDefinition(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorService/ListDestinationConnectorDefinition",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/ListDestinationConnectorDefinition",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).ListDestinationConnectorDefinition(ctx, req.(*ListDestinationConnectorDefinitionRequest))
+		return srv.(ConnectorPublicServiceServer).ListDestinationConnectorDefinition(ctx, req.(*ListDestinationConnectorDefinitionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorService_GetDestinationConnectorDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConnectorPublicService_GetDestinationConnectorDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetDestinationConnectorDefinitionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).GetDestinationConnectorDefinition(ctx, in)
+		return srv.(ConnectorPublicServiceServer).GetDestinationConnectorDefinition(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorService/GetDestinationConnectorDefinition",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/GetDestinationConnectorDefinition",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).GetDestinationConnectorDefinition(ctx, req.(*GetDestinationConnectorDefinitionRequest))
+		return srv.(ConnectorPublicServiceServer).GetDestinationConnectorDefinition(ctx, req.(*GetDestinationConnectorDefinitionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorService_CreateSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConnectorPublicService_CreateSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateSourceConnectorRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).CreateSourceConnector(ctx, in)
+		return srv.(ConnectorPublicServiceServer).CreateSourceConnector(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorService/CreateSourceConnector",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/CreateSourceConnector",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).CreateSourceConnector(ctx, req.(*CreateSourceConnectorRequest))
+		return srv.(ConnectorPublicServiceServer).CreateSourceConnector(ctx, req.(*CreateSourceConnectorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorService_ListSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConnectorPublicService_ListSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListSourceConnectorRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).ListSourceConnector(ctx, in)
+		return srv.(ConnectorPublicServiceServer).ListSourceConnector(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorService/ListSourceConnector",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/ListSourceConnector",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).ListSourceConnector(ctx, req.(*ListSourceConnectorRequest))
+		return srv.(ConnectorPublicServiceServer).ListSourceConnector(ctx, req.(*ListSourceConnectorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorService_GetSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConnectorPublicService_GetSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetSourceConnectorRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).GetSourceConnector(ctx, in)
+		return srv.(ConnectorPublicServiceServer).GetSourceConnector(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorService/GetSourceConnector",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/GetSourceConnector",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).GetSourceConnector(ctx, req.(*GetSourceConnectorRequest))
+		return srv.(ConnectorPublicServiceServer).GetSourceConnector(ctx, req.(*GetSourceConnectorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorService_UpdateSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConnectorPublicService_UpdateSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateSourceConnectorRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).UpdateSourceConnector(ctx, in)
+		return srv.(ConnectorPublicServiceServer).UpdateSourceConnector(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorService/UpdateSourceConnector",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/UpdateSourceConnector",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).UpdateSourceConnector(ctx, req.(*UpdateSourceConnectorRequest))
+		return srv.(ConnectorPublicServiceServer).UpdateSourceConnector(ctx, req.(*UpdateSourceConnectorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorService_DeleteSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConnectorPublicService_DeleteSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteSourceConnectorRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).DeleteSourceConnector(ctx, in)
+		return srv.(ConnectorPublicServiceServer).DeleteSourceConnector(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorService/DeleteSourceConnector",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/DeleteSourceConnector",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).DeleteSourceConnector(ctx, req.(*DeleteSourceConnectorRequest))
+		return srv.(ConnectorPublicServiceServer).DeleteSourceConnector(ctx, req.(*DeleteSourceConnectorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorService_LookUpSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConnectorPublicService_LookUpSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(LookUpSourceConnectorRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).LookUpSourceConnector(ctx, in)
+		return srv.(ConnectorPublicServiceServer).LookUpSourceConnector(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorService/LookUpSourceConnector",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/LookUpSourceConnector",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).LookUpSourceConnector(ctx, req.(*LookUpSourceConnectorRequest))
+		return srv.(ConnectorPublicServiceServer).LookUpSourceConnector(ctx, req.(*LookUpSourceConnectorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorService_ConnectSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConnectorPublicService_ConnectSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ConnectSourceConnectorRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).ConnectSourceConnector(ctx, in)
+		return srv.(ConnectorPublicServiceServer).ConnectSourceConnector(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorService/ConnectSourceConnector",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/ConnectSourceConnector",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).ConnectSourceConnector(ctx, req.(*ConnectSourceConnectorRequest))
+		return srv.(ConnectorPublicServiceServer).ConnectSourceConnector(ctx, req.(*ConnectSourceConnectorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorService_DisconnectSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConnectorPublicService_DisconnectSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DisconnectSourceConnectorRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).DisconnectSourceConnector(ctx, in)
+		return srv.(ConnectorPublicServiceServer).DisconnectSourceConnector(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorService/DisconnectSourceConnector",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/DisconnectSourceConnector",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).DisconnectSourceConnector(ctx, req.(*DisconnectSourceConnectorRequest))
+		return srv.(ConnectorPublicServiceServer).DisconnectSourceConnector(ctx, req.(*DisconnectSourceConnectorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorService_RenameSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConnectorPublicService_RenameSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RenameSourceConnectorRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).RenameSourceConnector(ctx, in)
+		return srv.(ConnectorPublicServiceServer).RenameSourceConnector(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorService/RenameSourceConnector",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/RenameSourceConnector",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).RenameSourceConnector(ctx, req.(*RenameSourceConnectorRequest))
+		return srv.(ConnectorPublicServiceServer).RenameSourceConnector(ctx, req.(*RenameSourceConnectorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorService_ReadSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConnectorPublicService_ReadSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ReadSourceConnectorRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).ReadSourceConnector(ctx, in)
+		return srv.(ConnectorPublicServiceServer).ReadSourceConnector(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorService/ReadSourceConnector",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/ReadSourceConnector",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).ReadSourceConnector(ctx, req.(*ReadSourceConnectorRequest))
+		return srv.(ConnectorPublicServiceServer).ReadSourceConnector(ctx, req.(*ReadSourceConnectorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorService_CreateDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConnectorPublicService_CreateDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateDestinationConnectorRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).CreateDestinationConnector(ctx, in)
+		return srv.(ConnectorPublicServiceServer).CreateDestinationConnector(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorService/CreateDestinationConnector",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/CreateDestinationConnector",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).CreateDestinationConnector(ctx, req.(*CreateDestinationConnectorRequest))
+		return srv.(ConnectorPublicServiceServer).CreateDestinationConnector(ctx, req.(*CreateDestinationConnectorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorService_ListDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConnectorPublicService_ListDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListDestinationConnectorRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).ListDestinationConnector(ctx, in)
+		return srv.(ConnectorPublicServiceServer).ListDestinationConnector(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorService/ListDestinationConnector",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/ListDestinationConnector",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).ListDestinationConnector(ctx, req.(*ListDestinationConnectorRequest))
+		return srv.(ConnectorPublicServiceServer).ListDestinationConnector(ctx, req.(*ListDestinationConnectorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorService_GetDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConnectorPublicService_GetDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetDestinationConnectorRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).GetDestinationConnector(ctx, in)
+		return srv.(ConnectorPublicServiceServer).GetDestinationConnector(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorService/GetDestinationConnector",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/GetDestinationConnector",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).GetDestinationConnector(ctx, req.(*GetDestinationConnectorRequest))
+		return srv.(ConnectorPublicServiceServer).GetDestinationConnector(ctx, req.(*GetDestinationConnectorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorService_UpdateDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConnectorPublicService_UpdateDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateDestinationConnectorRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).UpdateDestinationConnector(ctx, in)
+		return srv.(ConnectorPublicServiceServer).UpdateDestinationConnector(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorService/UpdateDestinationConnector",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/UpdateDestinationConnector",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).UpdateDestinationConnector(ctx, req.(*UpdateDestinationConnectorRequest))
+		return srv.(ConnectorPublicServiceServer).UpdateDestinationConnector(ctx, req.(*UpdateDestinationConnectorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorService_DeleteDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConnectorPublicService_DeleteDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteDestinationConnectorRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).DeleteDestinationConnector(ctx, in)
+		return srv.(ConnectorPublicServiceServer).DeleteDestinationConnector(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorService/DeleteDestinationConnector",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/DeleteDestinationConnector",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).DeleteDestinationConnector(ctx, req.(*DeleteDestinationConnectorRequest))
+		return srv.(ConnectorPublicServiceServer).DeleteDestinationConnector(ctx, req.(*DeleteDestinationConnectorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorService_LookUpDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConnectorPublicService_LookUpDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(LookUpDestinationConnectorRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).LookUpDestinationConnector(ctx, in)
+		return srv.(ConnectorPublicServiceServer).LookUpDestinationConnector(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorService/LookUpDestinationConnector",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/LookUpDestinationConnector",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).LookUpDestinationConnector(ctx, req.(*LookUpDestinationConnectorRequest))
+		return srv.(ConnectorPublicServiceServer).LookUpDestinationConnector(ctx, req.(*LookUpDestinationConnectorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorService_ConnectDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConnectorPublicService_ConnectDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ConnectDestinationConnectorRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).ConnectDestinationConnector(ctx, in)
+		return srv.(ConnectorPublicServiceServer).ConnectDestinationConnector(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorService/ConnectDestinationConnector",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/ConnectDestinationConnector",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).ConnectDestinationConnector(ctx, req.(*ConnectDestinationConnectorRequest))
+		return srv.(ConnectorPublicServiceServer).ConnectDestinationConnector(ctx, req.(*ConnectDestinationConnectorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorService_DisconnectDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConnectorPublicService_DisconnectDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DisconnectDestinationConnectorRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).DisconnectDestinationConnector(ctx, in)
+		return srv.(ConnectorPublicServiceServer).DisconnectDestinationConnector(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorService/DisconnectDestinationConnector",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/DisconnectDestinationConnector",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).DisconnectDestinationConnector(ctx, req.(*DisconnectDestinationConnectorRequest))
+		return srv.(ConnectorPublicServiceServer).DisconnectDestinationConnector(ctx, req.(*DisconnectDestinationConnectorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorService_RenameDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConnectorPublicService_RenameDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RenameDestinationConnectorRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).RenameDestinationConnector(ctx, in)
+		return srv.(ConnectorPublicServiceServer).RenameDestinationConnector(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorService/RenameDestinationConnector",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/RenameDestinationConnector",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).RenameDestinationConnector(ctx, req.(*RenameDestinationConnectorRequest))
+		return srv.(ConnectorPublicServiceServer).RenameDestinationConnector(ctx, req.(*RenameDestinationConnectorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorService_WriteDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConnectorPublicService_WriteDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(WriteDestinationConnectorRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorServiceServer).WriteDestinationConnector(ctx, in)
+		return srv.(ConnectorPublicServiceServer).WriteDestinationConnector(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorService/WriteDestinationConnector",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/WriteDestinationConnector",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorServiceServer).WriteDestinationConnector(ctx, req.(*WriteDestinationConnectorRequest))
+		return srv.(ConnectorPublicServiceServer).WriteDestinationConnector(ctx, req.(*WriteDestinationConnectorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// ConnectorService_ServiceDesc is the grpc.ServiceDesc for ConnectorService service.
+// ConnectorPublicService_ServiceDesc is the grpc.ServiceDesc for ConnectorPublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var ConnectorService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "vdp.connector.v1alpha.ConnectorService",
-	HandlerType: (*ConnectorServiceServer)(nil),
+var ConnectorPublicService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "vdp.connector.v1alpha.ConnectorPublicService",
+	HandlerType: (*ConnectorPublicServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Liveness",
-			Handler:    _ConnectorService_Liveness_Handler,
+			Handler:    _ConnectorPublicService_Liveness_Handler,
 		},
 		{
 			MethodName: "Readiness",
-			Handler:    _ConnectorService_Readiness_Handler,
+			Handler:    _ConnectorPublicService_Readiness_Handler,
 		},
 		{
 			MethodName: "ListSourceConnectorDefinition",
-			Handler:    _ConnectorService_ListSourceConnectorDefinition_Handler,
+			Handler:    _ConnectorPublicService_ListSourceConnectorDefinition_Handler,
 		},
 		{
 			MethodName: "GetSourceConnectorDefinition",
-			Handler:    _ConnectorService_GetSourceConnectorDefinition_Handler,
+			Handler:    _ConnectorPublicService_GetSourceConnectorDefinition_Handler,
 		},
 		{
 			MethodName: "ListDestinationConnectorDefinition",
-			Handler:    _ConnectorService_ListDestinationConnectorDefinition_Handler,
+			Handler:    _ConnectorPublicService_ListDestinationConnectorDefinition_Handler,
 		},
 		{
 			MethodName: "GetDestinationConnectorDefinition",
-			Handler:    _ConnectorService_GetDestinationConnectorDefinition_Handler,
+			Handler:    _ConnectorPublicService_GetDestinationConnectorDefinition_Handler,
 		},
 		{
 			MethodName: "CreateSourceConnector",
-			Handler:    _ConnectorService_CreateSourceConnector_Handler,
+			Handler:    _ConnectorPublicService_CreateSourceConnector_Handler,
 		},
 		{
 			MethodName: "ListSourceConnector",
-			Handler:    _ConnectorService_ListSourceConnector_Handler,
+			Handler:    _ConnectorPublicService_ListSourceConnector_Handler,
 		},
 		{
 			MethodName: "GetSourceConnector",
-			Handler:    _ConnectorService_GetSourceConnector_Handler,
+			Handler:    _ConnectorPublicService_GetSourceConnector_Handler,
 		},
 		{
 			MethodName: "UpdateSourceConnector",
-			Handler:    _ConnectorService_UpdateSourceConnector_Handler,
+			Handler:    _ConnectorPublicService_UpdateSourceConnector_Handler,
 		},
 		{
 			MethodName: "DeleteSourceConnector",
-			Handler:    _ConnectorService_DeleteSourceConnector_Handler,
+			Handler:    _ConnectorPublicService_DeleteSourceConnector_Handler,
 		},
 		{
 			MethodName: "LookUpSourceConnector",
-			Handler:    _ConnectorService_LookUpSourceConnector_Handler,
+			Handler:    _ConnectorPublicService_LookUpSourceConnector_Handler,
 		},
 		{
 			MethodName: "ConnectSourceConnector",
-			Handler:    _ConnectorService_ConnectSourceConnector_Handler,
+			Handler:    _ConnectorPublicService_ConnectSourceConnector_Handler,
 		},
 		{
 			MethodName: "DisconnectSourceConnector",
-			Handler:    _ConnectorService_DisconnectSourceConnector_Handler,
+			Handler:    _ConnectorPublicService_DisconnectSourceConnector_Handler,
 		},
 		{
 			MethodName: "RenameSourceConnector",
-			Handler:    _ConnectorService_RenameSourceConnector_Handler,
+			Handler:    _ConnectorPublicService_RenameSourceConnector_Handler,
 		},
 		{
 			MethodName: "ReadSourceConnector",
-			Handler:    _ConnectorService_ReadSourceConnector_Handler,
+			Handler:    _ConnectorPublicService_ReadSourceConnector_Handler,
 		},
 		{
 			MethodName: "CreateDestinationConnector",
-			Handler:    _ConnectorService_CreateDestinationConnector_Handler,
+			Handler:    _ConnectorPublicService_CreateDestinationConnector_Handler,
 		},
 		{
 			MethodName: "ListDestinationConnector",
-			Handler:    _ConnectorService_ListDestinationConnector_Handler,
+			Handler:    _ConnectorPublicService_ListDestinationConnector_Handler,
 		},
 		{
 			MethodName: "GetDestinationConnector",
-			Handler:    _ConnectorService_GetDestinationConnector_Handler,
+			Handler:    _ConnectorPublicService_GetDestinationConnector_Handler,
 		},
 		{
 			MethodName: "UpdateDestinationConnector",
-			Handler:    _ConnectorService_UpdateDestinationConnector_Handler,
+			Handler:    _ConnectorPublicService_UpdateDestinationConnector_Handler,
 		},
 		{
 			MethodName: "DeleteDestinationConnector",
-			Handler:    _ConnectorService_DeleteDestinationConnector_Handler,
+			Handler:    _ConnectorPublicService_DeleteDestinationConnector_Handler,
 		},
 		{
 			MethodName: "LookUpDestinationConnector",
-			Handler:    _ConnectorService_LookUpDestinationConnector_Handler,
+			Handler:    _ConnectorPublicService_LookUpDestinationConnector_Handler,
 		},
 		{
 			MethodName: "ConnectDestinationConnector",
-			Handler:    _ConnectorService_ConnectDestinationConnector_Handler,
+			Handler:    _ConnectorPublicService_ConnectDestinationConnector_Handler,
 		},
 		{
 			MethodName: "DisconnectDestinationConnector",
-			Handler:    _ConnectorService_DisconnectDestinationConnector_Handler,
+			Handler:    _ConnectorPublicService_DisconnectDestinationConnector_Handler,
 		},
 		{
 			MethodName: "RenameDestinationConnector",
-			Handler:    _ConnectorService_RenameDestinationConnector_Handler,
+			Handler:    _ConnectorPublicService_RenameDestinationConnector_Handler,
 		},
 		{
 			MethodName: "WriteDestinationConnector",
-			Handler:    _ConnectorService_WriteDestinationConnector_Handler,
+			Handler:    _ConnectorPublicService_WriteDestinationConnector_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "vdp/connector/v1alpha/connector_service.proto",
+	Metadata: "vdp/connector/v1alpha/connector_public_service.proto",
 }

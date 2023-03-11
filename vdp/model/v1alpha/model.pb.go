@@ -1258,7 +1258,7 @@ func (*DeleteModelResponse) Descriptor() ([]byte, []int) {
 	return file_vdp_model_v1alpha_model_proto_rawDescGZIP(), []int{14}
 }
 
-// LookUpModelRequest represents a request to query a model instance by
+// LookUpModelRequest represents a request to query a model instance via
 // permalink
 type LookUpModelRequest struct {
 	state         protoimpl.MessageState
@@ -1934,7 +1934,7 @@ func (x *GetModelInstanceResponse) GetInstance() *ModelInstance {
 	return nil
 }
 
-// LookUpModelInstanceRequest represents a request to query a model instance by
+// LookUpModelInstanceRequest represents a request to query a model instance via
 // permalink
 type LookUpModelInstanceRequest struct {
 	state         protoimpl.MessageState
@@ -3740,6 +3740,366 @@ func (*CancelModelOperationResponse) Descriptor() ([]byte, []int) {
 	return file_vdp_model_v1alpha_model_proto_rawDescGZIP(), []int{51}
 }
 
+// ListModelAdminRequest represents a request to list all models from all users by admin
+type ListModelAdminRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Page size: the maximum number of resources to return. The service may
+	// return fewer than this value. If unspecified, at most 10 models will be
+	// returned. The maximum value is 100; values above 100 will be coereced to
+	// 100.
+	PageSize *int64 `protobuf:"varint,1,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
+	// Page token
+	PageToken *string `protobuf:"bytes,2,opt,name=page_token,json=pageToken,proto3,oneof" json:"page_token,omitempty"`
+	// Model view (default is VIEW_BASIC)
+	// VIEW_UNSPECIFIED/VIEW_BASIC: omit `Model.configuration`
+	// VIEW_FULL: show full information
+	View *View `protobuf:"varint,3,opt,name=view,proto3,enum=vdp.model.v1alpha.View,oneof" json:"view,omitempty"`
+}
+
+func (x *ListModelAdminRequest) Reset() {
+	*x = ListModelAdminRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_model_v1alpha_model_proto_msgTypes[52]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListModelAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListModelAdminRequest) ProtoMessage() {}
+
+func (x *ListModelAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_model_v1alpha_model_proto_msgTypes[52]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListModelAdminRequest.ProtoReflect.Descriptor instead.
+func (*ListModelAdminRequest) Descriptor() ([]byte, []int) {
+	return file_vdp_model_v1alpha_model_proto_rawDescGZIP(), []int{52}
+}
+
+func (x *ListModelAdminRequest) GetPageSize() int64 {
+	if x != nil && x.PageSize != nil {
+		return *x.PageSize
+	}
+	return 0
+}
+
+func (x *ListModelAdminRequest) GetPageToken() string {
+	if x != nil && x.PageToken != nil {
+		return *x.PageToken
+	}
+	return ""
+}
+
+func (x *ListModelAdminRequest) GetView() View {
+	if x != nil && x.View != nil {
+		return *x.View
+	}
+	return View_VIEW_UNSPECIFIED
+}
+
+// ListModelAdminResponse represents a response for a list of models
+type ListModelAdminResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// a list of Models
+	Models []*Model `protobuf:"bytes,1,rep,name=models,proto3" json:"models,omitempty"`
+	// Next page token
+	NextPageToken string `protobuf:"bytes,2,opt,name=next_page_token,json=nextPageToken,proto3" json:"next_page_token,omitempty"`
+	// Total count of models
+	TotalSize int64 `protobuf:"varint,3,opt,name=total_size,json=totalSize,proto3" json:"total_size,omitempty"`
+}
+
+func (x *ListModelAdminResponse) Reset() {
+	*x = ListModelAdminResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_model_v1alpha_model_proto_msgTypes[53]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListModelAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListModelAdminResponse) ProtoMessage() {}
+
+func (x *ListModelAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_model_v1alpha_model_proto_msgTypes[53]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListModelAdminResponse.ProtoReflect.Descriptor instead.
+func (*ListModelAdminResponse) Descriptor() ([]byte, []int) {
+	return file_vdp_model_v1alpha_model_proto_rawDescGZIP(), []int{53}
+}
+
+func (x *ListModelAdminResponse) GetModels() []*Model {
+	if x != nil {
+		return x.Models
+	}
+	return nil
+}
+
+func (x *ListModelAdminResponse) GetNextPageToken() string {
+	if x != nil {
+		return x.NextPageToken
+	}
+	return ""
+}
+
+func (x *ListModelAdminResponse) GetTotalSize() int64 {
+	if x != nil {
+		return x.TotalSize
+	}
+	return 0
+}
+
+// GetModelAdminRequest represents a request to query a model by admin
+type GetModelAdminRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Resource name of the model.
+	// For example "models/{model}"
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// Model view (default is VIEW_BASIC)
+	// VIEW_UNSPECIFIED/VIEW_BASIC: omit `Model.configuration`
+	// VIEW_FULL: show full information
+	View *View `protobuf:"varint,2,opt,name=view,proto3,enum=vdp.model.v1alpha.View,oneof" json:"view,omitempty"`
+}
+
+func (x *GetModelAdminRequest) Reset() {
+	*x = GetModelAdminRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_model_v1alpha_model_proto_msgTypes[54]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetModelAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetModelAdminRequest) ProtoMessage() {}
+
+func (x *GetModelAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_model_v1alpha_model_proto_msgTypes[54]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetModelAdminRequest.ProtoReflect.Descriptor instead.
+func (*GetModelAdminRequest) Descriptor() ([]byte, []int) {
+	return file_vdp_model_v1alpha_model_proto_rawDescGZIP(), []int{54}
+}
+
+func (x *GetModelAdminRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *GetModelAdminRequest) GetView() View {
+	if x != nil && x.View != nil {
+		return *x.View
+	}
+	return View_VIEW_UNSPECIFIED
+}
+
+// GetModelAdminResponse represents a response for a model
+type GetModelAdminResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The retrieved model
+	Model *Model `protobuf:"bytes,1,opt,name=model,proto3" json:"model,omitempty"`
+}
+
+func (x *GetModelAdminResponse) Reset() {
+	*x = GetModelAdminResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_model_v1alpha_model_proto_msgTypes[55]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetModelAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetModelAdminResponse) ProtoMessage() {}
+
+func (x *GetModelAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_model_v1alpha_model_proto_msgTypes[55]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetModelAdminResponse.ProtoReflect.Descriptor instead.
+func (*GetModelAdminResponse) Descriptor() ([]byte, []int) {
+	return file_vdp_model_v1alpha_model_proto_rawDescGZIP(), []int{55}
+}
+
+func (x *GetModelAdminResponse) GetModel() *Model {
+	if x != nil {
+		return x.Model
+	}
+	return nil
+}
+
+// LookUpModelAdminRequest represents a request to query a model instance via
+// permalink by admin
+type LookUpModelAdminRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Permalink of a model. For example:
+	// "models/{uid}"
+	Permalink string `protobuf:"bytes,1,opt,name=permalink,proto3" json:"permalink,omitempty"`
+	// Model view (default is VIEW_BASIC)
+	// VIEW_UNSPECIFIED/VIEW_BASIC: omit `Model.configuration`
+	// VIEW_FULL: show full information
+	View *View `protobuf:"varint,2,opt,name=view,proto3,enum=vdp.model.v1alpha.View,oneof" json:"view,omitempty"`
+}
+
+func (x *LookUpModelAdminRequest) Reset() {
+	*x = LookUpModelAdminRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_model_v1alpha_model_proto_msgTypes[56]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *LookUpModelAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LookUpModelAdminRequest) ProtoMessage() {}
+
+func (x *LookUpModelAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_model_v1alpha_model_proto_msgTypes[56]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LookUpModelAdminRequest.ProtoReflect.Descriptor instead.
+func (*LookUpModelAdminRequest) Descriptor() ([]byte, []int) {
+	return file_vdp_model_v1alpha_model_proto_rawDescGZIP(), []int{56}
+}
+
+func (x *LookUpModelAdminRequest) GetPermalink() string {
+	if x != nil {
+		return x.Permalink
+	}
+	return ""
+}
+
+func (x *LookUpModelAdminRequest) GetView() View {
+	if x != nil && x.View != nil {
+		return *x.View
+	}
+	return View_VIEW_UNSPECIFIED
+}
+
+// LookUpModelResponse represents a response for a model instance
+type LookUpModelAdminResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// A model resource
+	Model *Model `protobuf:"bytes,1,opt,name=model,proto3" json:"model,omitempty"`
+}
+
+func (x *LookUpModelAdminResponse) Reset() {
+	*x = LookUpModelAdminResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_model_v1alpha_model_proto_msgTypes[57]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *LookUpModelAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LookUpModelAdminResponse) ProtoMessage() {}
+
+func (x *LookUpModelAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_model_v1alpha_model_proto_msgTypes[57]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LookUpModelAdminResponse.ProtoReflect.Descriptor instead.
+func (*LookUpModelAdminResponse) Descriptor() ([]byte, []int) {
+	return file_vdp_model_v1alpha_model_proto_rawDescGZIP(), []int{57}
+}
+
+func (x *LookUpModelAdminResponse) GetModel() *Model {
+	if x != nil {
+		return x.Model
+	}
+	return nil
+}
+
 var File_vdp_model_v1alpha_model_proto protoreflect.FileDescriptor
 
 var file_vdp_model_v1alpha_model_proto_rawDesc = []byte{
@@ -4391,20 +4751,69 @@ var file_vdp_model_v1alpha_model_proto_rawDesc = []byte{
 	0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x04,
 	0x6e, 0x61, 0x6d, 0x65, 0x22, 0x1e, 0x0a, 0x1c, 0x43, 0x61, 0x6e, 0x63, 0x65, 0x6c, 0x4d, 0x6f,
 	0x64, 0x65, 0x6c, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x42, 0xcb, 0x01, 0x0a, 0x15, 0x63, 0x6f, 0x6d, 0x2e, 0x76, 0x64, 0x70,
-	0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x42, 0x0a,
-	0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x40, 0x67, 0x69,
-	0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c,
-	0x2d, 0x61, 0x69, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x67, 0x65, 0x6e, 0x2d, 0x67, 0x6f, 0x2f,
-	0x76, 0x64, 0x70, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68,
-	0x61, 0x3b, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xa2, 0x02,
-	0x03, 0x56, 0x4d, 0x58, 0xaa, 0x02, 0x11, 0x56, 0x64, 0x70, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c,
-	0x2e, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xca, 0x02, 0x11, 0x56, 0x64, 0x70, 0x5c, 0x4d,
-	0x6f, 0x64, 0x65, 0x6c, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xe2, 0x02, 0x1d, 0x56,
-	0x64, 0x70, 0x5c, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61,
-	0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x13, 0x56,
-	0x64, 0x70, 0x3a, 0x3a, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x3a, 0x3a, 0x56, 0x31, 0x61, 0x6c, 0x70,
-	0x68, 0x61, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6f, 0x6e, 0x73, 0x65, 0x22, 0xc4, 0x01, 0x0a, 0x15, 0x4c, 0x69, 0x73, 0x74, 0x4d, 0x6f, 0x64,
+	0x65, 0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x25,
+	0x0a, 0x09, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x03, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x00, 0x52, 0x08, 0x70, 0x61, 0x67, 0x65, 0x53, 0x69,
+	0x7a, 0x65, 0x88, 0x01, 0x01, 0x12, 0x27, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x74, 0x6f,
+	0x6b, 0x65, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x01,
+	0x52, 0x09, 0x70, 0x61, 0x67, 0x65, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x88, 0x01, 0x01, 0x12, 0x35,
+	0x0a, 0x04, 0x76, 0x69, 0x65, 0x77, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x17, 0x2e, 0x76,
+	0x64, 0x70, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61,
+	0x2e, 0x56, 0x69, 0x65, 0x77, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x02, 0x52, 0x04, 0x76, 0x69,
+	0x65, 0x77, 0x88, 0x01, 0x01, 0x42, 0x0c, 0x0a, 0x0a, 0x5f, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x73,
+	0x69, 0x7a, 0x65, 0x42, 0x0d, 0x0a, 0x0b, 0x5f, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x74, 0x6f, 0x6b,
+	0x65, 0x6e, 0x42, 0x07, 0x0a, 0x05, 0x5f, 0x76, 0x69, 0x65, 0x77, 0x22, 0x91, 0x01, 0x0a, 0x16,
+	0x4c, 0x69, 0x73, 0x74, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x30, 0x0a, 0x06, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73,
+	0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d, 0x6f, 0x64,
+	0x65, 0x6c, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c,
+	0x52, 0x06, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x12, 0x26, 0x0a, 0x0f, 0x6e, 0x65, 0x78, 0x74,
+	0x5f, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x0d, 0x6e, 0x65, 0x78, 0x74, 0x50, 0x61, 0x67, 0x65, 0x54, 0x6f, 0x6b, 0x65, 0x6e,
+	0x12, 0x1d, 0x0a, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x03, 0x52, 0x09, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x53, 0x69, 0x7a, 0x65, 0x22,
+	0x9d, 0x01, 0x0a, 0x14, 0x47, 0x65, 0x74, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x41, 0x64, 0x6d, 0x69,
+	0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x45, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x31, 0x92, 0x41, 0x10, 0xca, 0x3e, 0x0d, 0xfa, 0x02,
+	0x0a, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x6e, 0x61, 0x6d, 0x65, 0xe0, 0x41, 0x02, 0xfa, 0x41,
+	0x18, 0x0a, 0x16, 0x61, 0x70, 0x69, 0x2e, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2e, 0x74,
+	0x65, 0x63, 0x68, 0x2f, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12,
+	0x35, 0x0a, 0x04, 0x76, 0x69, 0x65, 0x77, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x17, 0x2e,
+	0x76, 0x64, 0x70, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68,
+	0x61, 0x2e, 0x56, 0x69, 0x65, 0x77, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x00, 0x52, 0x04, 0x76,
+	0x69, 0x65, 0x77, 0x88, 0x01, 0x01, 0x42, 0x07, 0x0a, 0x05, 0x5f, 0x76, 0x69, 0x65, 0x77, 0x22,
+	0x47, 0x0a, 0x15, 0x47, 0x65, 0x74, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2e, 0x0a, 0x05, 0x6d, 0x6f, 0x64, 0x65,
+	0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d, 0x6f,
+	0x64, 0x65, 0x6c, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x4d, 0x6f, 0x64, 0x65,
+	0x6c, 0x52, 0x05, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x22, 0x7c, 0x0a, 0x17, 0x4c, 0x6f, 0x6f, 0x6b,
+	0x55, 0x70, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x21, 0x0a, 0x09, 0x70, 0x65, 0x72, 0x6d, 0x61, 0x6c, 0x69, 0x6e, 0x6b,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x09, 0x70, 0x65, 0x72,
+	0x6d, 0x61, 0x6c, 0x69, 0x6e, 0x6b, 0x12, 0x35, 0x0a, 0x04, 0x76, 0x69, 0x65, 0x77, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x0e, 0x32, 0x17, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c,
+	0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x56, 0x69, 0x65, 0x77, 0x42, 0x03, 0xe0,
+	0x41, 0x01, 0x48, 0x00, 0x52, 0x04, 0x76, 0x69, 0x65, 0x77, 0x88, 0x01, 0x01, 0x42, 0x07, 0x0a,
+	0x05, 0x5f, 0x76, 0x69, 0x65, 0x77, 0x22, 0x4a, 0x0a, 0x18, 0x4c, 0x6f, 0x6f, 0x6b, 0x55, 0x70,
+	0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x2e, 0x0a, 0x05, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x18, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x76, 0x31,
+	0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x52, 0x05, 0x6d, 0x6f, 0x64,
+	0x65, 0x6c, 0x42, 0xcb, 0x01, 0x0a, 0x15, 0x63, 0x6f, 0x6d, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d,
+	0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x42, 0x0a, 0x4d, 0x6f,
+	0x64, 0x65, 0x6c, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x40, 0x67, 0x69, 0x74, 0x68,
+	0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2d, 0x61,
+	0x69, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x67, 0x65, 0x6e, 0x2d, 0x67, 0x6f, 0x2f, 0x76, 0x64,
+	0x70, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x3b,
+	0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xa2, 0x02, 0x03, 0x56,
+	0x4d, 0x58, 0xaa, 0x02, 0x11, 0x56, 0x64, 0x70, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x56,
+	0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xca, 0x02, 0x11, 0x56, 0x64, 0x70, 0x5c, 0x4d, 0x6f, 0x64,
+	0x65, 0x6c, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xe2, 0x02, 0x1d, 0x56, 0x64, 0x70,
+	0x5c, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x5c, 0x47,
+	0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x13, 0x56, 0x64, 0x70,
+	0x3a, 0x3a, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x3a, 0x3a, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -4420,7 +4829,7 @@ func file_vdp_model_v1alpha_model_proto_rawDescGZIP() []byte {
 }
 
 var file_vdp_model_v1alpha_model_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_vdp_model_v1alpha_model_proto_msgTypes = make([]protoimpl.MessageInfo, 52)
+var file_vdp_model_v1alpha_model_proto_msgTypes = make([]protoimpl.MessageInfo, 58)
 var file_vdp_model_v1alpha_model_proto_goTypes = []interface{}{
 	(Model_Visibility)(0),                                // 0: vdp.model.v1alpha.Model.Visibility
 	(ModelInstance_Task)(0),                              // 1: vdp.model.v1alpha.ModelInstance.Task
@@ -4477,98 +4886,104 @@ var file_vdp_model_v1alpha_model_proto_goTypes = []interface{}{
 	(*ListModelOperationResponse)(nil),                   // 52: vdp.model.v1alpha.ListModelOperationResponse
 	(*CancelModelOperationRequest)(nil),                  // 53: vdp.model.v1alpha.CancelModelOperationRequest
 	(*CancelModelOperationResponse)(nil),                 // 54: vdp.model.v1alpha.CancelModelOperationResponse
-	(*structpb.Struct)(nil),                              // 55: google.protobuf.Struct
-	(*timestamppb.Timestamp)(nil),                        // 56: google.protobuf.Timestamp
-	(View)(0),                                            // 57: vdp.model.v1alpha.View
-	(*longrunning.Operation)(nil),                        // 58: google.longrunning.Operation
-	(*fieldmaskpb.FieldMask)(nil),                        // 59: google.protobuf.FieldMask
-	(*ClassificationInput)(nil),                          // 60: vdp.model.v1alpha.ClassificationInput
-	(*DetectionInput)(nil),                               // 61: vdp.model.v1alpha.DetectionInput
-	(*KeypointInput)(nil),                                // 62: vdp.model.v1alpha.KeypointInput
-	(*OcrInput)(nil),                                     // 63: vdp.model.v1alpha.OcrInput
-	(*InstanceSegmentationInput)(nil),                    // 64: vdp.model.v1alpha.InstanceSegmentationInput
-	(*SemanticSegmentationInput)(nil),                    // 65: vdp.model.v1alpha.SemanticSegmentationInput
-	(*TextToImageInput)(nil),                             // 66: vdp.model.v1alpha.TextToImageInput
-	(*TextGenerationInput)(nil),                          // 67: vdp.model.v1alpha.TextGenerationInput
-	(*UnspecifiedInput)(nil),                             // 68: vdp.model.v1alpha.UnspecifiedInput
-	(*ClassificationInputStream)(nil),                    // 69: vdp.model.v1alpha.ClassificationInputStream
-	(*DetectionInputStream)(nil),                         // 70: vdp.model.v1alpha.DetectionInputStream
-	(*KeypointInputStream)(nil),                          // 71: vdp.model.v1alpha.KeypointInputStream
-	(*OcrInputStream)(nil),                               // 72: vdp.model.v1alpha.OcrInputStream
-	(*InstanceSegmentationInputStream)(nil),              // 73: vdp.model.v1alpha.InstanceSegmentationInputStream
-	(*SemanticSegmentationInputStream)(nil),              // 74: vdp.model.v1alpha.SemanticSegmentationInputStream
-	(*ClassificationOutput)(nil),                         // 75: vdp.model.v1alpha.ClassificationOutput
-	(*DetectionOutput)(nil),                              // 76: vdp.model.v1alpha.DetectionOutput
-	(*KeypointOutput)(nil),                               // 77: vdp.model.v1alpha.KeypointOutput
-	(*OcrOutput)(nil),                                    // 78: vdp.model.v1alpha.OcrOutput
-	(*InstanceSegmentationOutput)(nil),                   // 79: vdp.model.v1alpha.InstanceSegmentationOutput
-	(*SemanticSegmentationOutput)(nil),                   // 80: vdp.model.v1alpha.SemanticSegmentationOutput
-	(*TextToImageOutput)(nil),                            // 81: vdp.model.v1alpha.TextToImageOutput
-	(*TextGenerationOutput)(nil),                         // 82: vdp.model.v1alpha.TextGenerationOutput
-	(*UnspecifiedOutput)(nil),                            // 83: vdp.model.v1alpha.UnspecifiedOutput
+	(*ListModelAdminRequest)(nil),                        // 55: vdp.model.v1alpha.ListModelAdminRequest
+	(*ListModelAdminResponse)(nil),                       // 56: vdp.model.v1alpha.ListModelAdminResponse
+	(*GetModelAdminRequest)(nil),                         // 57: vdp.model.v1alpha.GetModelAdminRequest
+	(*GetModelAdminResponse)(nil),                        // 58: vdp.model.v1alpha.GetModelAdminResponse
+	(*LookUpModelAdminRequest)(nil),                      // 59: vdp.model.v1alpha.LookUpModelAdminRequest
+	(*LookUpModelAdminResponse)(nil),                     // 60: vdp.model.v1alpha.LookUpModelAdminResponse
+	(*structpb.Struct)(nil),                              // 61: google.protobuf.Struct
+	(*timestamppb.Timestamp)(nil),                        // 62: google.protobuf.Timestamp
+	(View)(0),                                            // 63: vdp.model.v1alpha.View
+	(*longrunning.Operation)(nil),                        // 64: google.longrunning.Operation
+	(*fieldmaskpb.FieldMask)(nil),                        // 65: google.protobuf.FieldMask
+	(*ClassificationInput)(nil),                          // 66: vdp.model.v1alpha.ClassificationInput
+	(*DetectionInput)(nil),                               // 67: vdp.model.v1alpha.DetectionInput
+	(*KeypointInput)(nil),                                // 68: vdp.model.v1alpha.KeypointInput
+	(*OcrInput)(nil),                                     // 69: vdp.model.v1alpha.OcrInput
+	(*InstanceSegmentationInput)(nil),                    // 70: vdp.model.v1alpha.InstanceSegmentationInput
+	(*SemanticSegmentationInput)(nil),                    // 71: vdp.model.v1alpha.SemanticSegmentationInput
+	(*TextToImageInput)(nil),                             // 72: vdp.model.v1alpha.TextToImageInput
+	(*TextGenerationInput)(nil),                          // 73: vdp.model.v1alpha.TextGenerationInput
+	(*UnspecifiedInput)(nil),                             // 74: vdp.model.v1alpha.UnspecifiedInput
+	(*ClassificationInputStream)(nil),                    // 75: vdp.model.v1alpha.ClassificationInputStream
+	(*DetectionInputStream)(nil),                         // 76: vdp.model.v1alpha.DetectionInputStream
+	(*KeypointInputStream)(nil),                          // 77: vdp.model.v1alpha.KeypointInputStream
+	(*OcrInputStream)(nil),                               // 78: vdp.model.v1alpha.OcrInputStream
+	(*InstanceSegmentationInputStream)(nil),              // 79: vdp.model.v1alpha.InstanceSegmentationInputStream
+	(*SemanticSegmentationInputStream)(nil),              // 80: vdp.model.v1alpha.SemanticSegmentationInputStream
+	(*ClassificationOutput)(nil),                         // 81: vdp.model.v1alpha.ClassificationOutput
+	(*DetectionOutput)(nil),                              // 82: vdp.model.v1alpha.DetectionOutput
+	(*KeypointOutput)(nil),                               // 83: vdp.model.v1alpha.KeypointOutput
+	(*OcrOutput)(nil),                                    // 84: vdp.model.v1alpha.OcrOutput
+	(*InstanceSegmentationOutput)(nil),                   // 85: vdp.model.v1alpha.InstanceSegmentationOutput
+	(*SemanticSegmentationOutput)(nil),                   // 86: vdp.model.v1alpha.SemanticSegmentationOutput
+	(*TextToImageOutput)(nil),                            // 87: vdp.model.v1alpha.TextToImageOutput
+	(*TextGenerationOutput)(nil),                         // 88: vdp.model.v1alpha.TextGenerationOutput
+	(*UnspecifiedOutput)(nil),                            // 89: vdp.model.v1alpha.UnspecifiedOutput
 }
 var file_vdp_model_v1alpha_model_proto_depIdxs = []int32{
-	55, // 0: vdp.model.v1alpha.Model.configuration:type_name -> google.protobuf.Struct
+	61, // 0: vdp.model.v1alpha.Model.configuration:type_name -> google.protobuf.Struct
 	0,  // 1: vdp.model.v1alpha.Model.visibility:type_name -> vdp.model.v1alpha.Model.Visibility
-	56, // 2: vdp.model.v1alpha.Model.create_time:type_name -> google.protobuf.Timestamp
-	56, // 3: vdp.model.v1alpha.Model.update_time:type_name -> google.protobuf.Timestamp
+	62, // 2: vdp.model.v1alpha.Model.create_time:type_name -> google.protobuf.Timestamp
+	62, // 3: vdp.model.v1alpha.Model.update_time:type_name -> google.protobuf.Timestamp
 	2,  // 4: vdp.model.v1alpha.ModelInstance.state:type_name -> vdp.model.v1alpha.ModelInstance.State
 	1,  // 5: vdp.model.v1alpha.ModelInstance.task:type_name -> vdp.model.v1alpha.ModelInstance.Task
-	55, // 6: vdp.model.v1alpha.ModelInstance.configuration:type_name -> google.protobuf.Struct
-	56, // 7: vdp.model.v1alpha.ModelInstance.create_time:type_name -> google.protobuf.Timestamp
-	56, // 8: vdp.model.v1alpha.ModelInstance.update_time:type_name -> google.protobuf.Timestamp
-	57, // 9: vdp.model.v1alpha.ListModelRequest.view:type_name -> vdp.model.v1alpha.View
+	61, // 6: vdp.model.v1alpha.ModelInstance.configuration:type_name -> google.protobuf.Struct
+	62, // 7: vdp.model.v1alpha.ModelInstance.create_time:type_name -> google.protobuf.Timestamp
+	62, // 8: vdp.model.v1alpha.ModelInstance.update_time:type_name -> google.protobuf.Timestamp
+	63, // 9: vdp.model.v1alpha.ListModelRequest.view:type_name -> vdp.model.v1alpha.View
 	3,  // 10: vdp.model.v1alpha.ListModelResponse.models:type_name -> vdp.model.v1alpha.Model
 	3,  // 11: vdp.model.v1alpha.CreateModelRequest.model:type_name -> vdp.model.v1alpha.Model
-	58, // 12: vdp.model.v1alpha.CreateModelResponse.operation:type_name -> google.longrunning.Operation
+	64, // 12: vdp.model.v1alpha.CreateModelResponse.operation:type_name -> google.longrunning.Operation
 	3,  // 13: vdp.model.v1alpha.CreateModelBinaryFileUploadRequest.model:type_name -> vdp.model.v1alpha.Model
-	58, // 14: vdp.model.v1alpha.CreateModelBinaryFileUploadResponse.operation:type_name -> google.longrunning.Operation
-	57, // 15: vdp.model.v1alpha.GetModelRequest.view:type_name -> vdp.model.v1alpha.View
+	64, // 14: vdp.model.v1alpha.CreateModelBinaryFileUploadResponse.operation:type_name -> google.longrunning.Operation
+	63, // 15: vdp.model.v1alpha.GetModelRequest.view:type_name -> vdp.model.v1alpha.View
 	3,  // 16: vdp.model.v1alpha.GetModelResponse.model:type_name -> vdp.model.v1alpha.Model
 	3,  // 17: vdp.model.v1alpha.UpdateModelRequest.model:type_name -> vdp.model.v1alpha.Model
-	59, // 18: vdp.model.v1alpha.UpdateModelRequest.update_mask:type_name -> google.protobuf.FieldMask
+	65, // 18: vdp.model.v1alpha.UpdateModelRequest.update_mask:type_name -> google.protobuf.FieldMask
 	3,  // 19: vdp.model.v1alpha.UpdateModelResponse.model:type_name -> vdp.model.v1alpha.Model
-	57, // 20: vdp.model.v1alpha.LookUpModelRequest.view:type_name -> vdp.model.v1alpha.View
+	63, // 20: vdp.model.v1alpha.LookUpModelRequest.view:type_name -> vdp.model.v1alpha.View
 	3,  // 21: vdp.model.v1alpha.LookUpModelResponse.model:type_name -> vdp.model.v1alpha.Model
 	3,  // 22: vdp.model.v1alpha.RenameModelResponse.model:type_name -> vdp.model.v1alpha.Model
 	3,  // 23: vdp.model.v1alpha.PublishModelResponse.model:type_name -> vdp.model.v1alpha.Model
 	3,  // 24: vdp.model.v1alpha.UnpublishModelResponse.model:type_name -> vdp.model.v1alpha.Model
-	57, // 25: vdp.model.v1alpha.ListModelInstanceRequest.view:type_name -> vdp.model.v1alpha.View
+	63, // 25: vdp.model.v1alpha.ListModelInstanceRequest.view:type_name -> vdp.model.v1alpha.View
 	4,  // 26: vdp.model.v1alpha.ListModelInstanceResponse.instances:type_name -> vdp.model.v1alpha.ModelInstance
-	57, // 27: vdp.model.v1alpha.GetModelInstanceRequest.view:type_name -> vdp.model.v1alpha.View
+	63, // 27: vdp.model.v1alpha.GetModelInstanceRequest.view:type_name -> vdp.model.v1alpha.View
 	4,  // 28: vdp.model.v1alpha.GetModelInstanceResponse.instance:type_name -> vdp.model.v1alpha.ModelInstance
-	57, // 29: vdp.model.v1alpha.LookUpModelInstanceRequest.view:type_name -> vdp.model.v1alpha.View
+	63, // 29: vdp.model.v1alpha.LookUpModelInstanceRequest.view:type_name -> vdp.model.v1alpha.View
 	4,  // 30: vdp.model.v1alpha.LookUpModelInstanceResponse.instance:type_name -> vdp.model.v1alpha.ModelInstance
-	58, // 31: vdp.model.v1alpha.DeployModelInstanceResponse.operation:type_name -> google.longrunning.Operation
-	58, // 32: vdp.model.v1alpha.UndeployModelInstanceResponse.operation:type_name -> google.longrunning.Operation
+	64, // 31: vdp.model.v1alpha.DeployModelInstanceResponse.operation:type_name -> google.longrunning.Operation
+	64, // 32: vdp.model.v1alpha.UndeployModelInstanceResponse.operation:type_name -> google.longrunning.Operation
 	5,  // 33: vdp.model.v1alpha.GetModelInstanceCardResponse.readme:type_name -> vdp.model.v1alpha.ModelInstanceCard
-	60, // 34: vdp.model.v1alpha.TaskInput.classification:type_name -> vdp.model.v1alpha.ClassificationInput
-	61, // 35: vdp.model.v1alpha.TaskInput.detection:type_name -> vdp.model.v1alpha.DetectionInput
-	62, // 36: vdp.model.v1alpha.TaskInput.keypoint:type_name -> vdp.model.v1alpha.KeypointInput
-	63, // 37: vdp.model.v1alpha.TaskInput.ocr:type_name -> vdp.model.v1alpha.OcrInput
-	64, // 38: vdp.model.v1alpha.TaskInput.instance_segmentation:type_name -> vdp.model.v1alpha.InstanceSegmentationInput
-	65, // 39: vdp.model.v1alpha.TaskInput.semantic_segmentation:type_name -> vdp.model.v1alpha.SemanticSegmentationInput
-	66, // 40: vdp.model.v1alpha.TaskInput.text_to_image:type_name -> vdp.model.v1alpha.TextToImageInput
-	67, // 41: vdp.model.v1alpha.TaskInput.text_generation:type_name -> vdp.model.v1alpha.TextGenerationInput
-	68, // 42: vdp.model.v1alpha.TaskInput.unspecified:type_name -> vdp.model.v1alpha.UnspecifiedInput
-	69, // 43: vdp.model.v1alpha.TaskInputStream.classification:type_name -> vdp.model.v1alpha.ClassificationInputStream
-	70, // 44: vdp.model.v1alpha.TaskInputStream.detection:type_name -> vdp.model.v1alpha.DetectionInputStream
-	71, // 45: vdp.model.v1alpha.TaskInputStream.keypoint:type_name -> vdp.model.v1alpha.KeypointInputStream
-	72, // 46: vdp.model.v1alpha.TaskInputStream.ocr:type_name -> vdp.model.v1alpha.OcrInputStream
-	73, // 47: vdp.model.v1alpha.TaskInputStream.instance_segmentation:type_name -> vdp.model.v1alpha.InstanceSegmentationInputStream
-	74, // 48: vdp.model.v1alpha.TaskInputStream.semantic_segmentation:type_name -> vdp.model.v1alpha.SemanticSegmentationInputStream
-	66, // 49: vdp.model.v1alpha.TaskInputStream.text_to_image:type_name -> vdp.model.v1alpha.TextToImageInput
-	67, // 50: vdp.model.v1alpha.TaskInputStream.text_generation:type_name -> vdp.model.v1alpha.TextGenerationInput
-	68, // 51: vdp.model.v1alpha.TaskInputStream.unspecified:type_name -> vdp.model.v1alpha.UnspecifiedInput
-	75, // 52: vdp.model.v1alpha.TaskOutput.classification:type_name -> vdp.model.v1alpha.ClassificationOutput
-	76, // 53: vdp.model.v1alpha.TaskOutput.detection:type_name -> vdp.model.v1alpha.DetectionOutput
-	77, // 54: vdp.model.v1alpha.TaskOutput.keypoint:type_name -> vdp.model.v1alpha.KeypointOutput
-	78, // 55: vdp.model.v1alpha.TaskOutput.ocr:type_name -> vdp.model.v1alpha.OcrOutput
-	79, // 56: vdp.model.v1alpha.TaskOutput.instance_segmentation:type_name -> vdp.model.v1alpha.InstanceSegmentationOutput
-	80, // 57: vdp.model.v1alpha.TaskOutput.semantic_segmentation:type_name -> vdp.model.v1alpha.SemanticSegmentationOutput
-	81, // 58: vdp.model.v1alpha.TaskOutput.text_to_image:type_name -> vdp.model.v1alpha.TextToImageOutput
-	82, // 59: vdp.model.v1alpha.TaskOutput.text_generation:type_name -> vdp.model.v1alpha.TextGenerationOutput
-	83, // 60: vdp.model.v1alpha.TaskOutput.unspecified:type_name -> vdp.model.v1alpha.UnspecifiedOutput
+	66, // 34: vdp.model.v1alpha.TaskInput.classification:type_name -> vdp.model.v1alpha.ClassificationInput
+	67, // 35: vdp.model.v1alpha.TaskInput.detection:type_name -> vdp.model.v1alpha.DetectionInput
+	68, // 36: vdp.model.v1alpha.TaskInput.keypoint:type_name -> vdp.model.v1alpha.KeypointInput
+	69, // 37: vdp.model.v1alpha.TaskInput.ocr:type_name -> vdp.model.v1alpha.OcrInput
+	70, // 38: vdp.model.v1alpha.TaskInput.instance_segmentation:type_name -> vdp.model.v1alpha.InstanceSegmentationInput
+	71, // 39: vdp.model.v1alpha.TaskInput.semantic_segmentation:type_name -> vdp.model.v1alpha.SemanticSegmentationInput
+	72, // 40: vdp.model.v1alpha.TaskInput.text_to_image:type_name -> vdp.model.v1alpha.TextToImageInput
+	73, // 41: vdp.model.v1alpha.TaskInput.text_generation:type_name -> vdp.model.v1alpha.TextGenerationInput
+	74, // 42: vdp.model.v1alpha.TaskInput.unspecified:type_name -> vdp.model.v1alpha.UnspecifiedInput
+	75, // 43: vdp.model.v1alpha.TaskInputStream.classification:type_name -> vdp.model.v1alpha.ClassificationInputStream
+	76, // 44: vdp.model.v1alpha.TaskInputStream.detection:type_name -> vdp.model.v1alpha.DetectionInputStream
+	77, // 45: vdp.model.v1alpha.TaskInputStream.keypoint:type_name -> vdp.model.v1alpha.KeypointInputStream
+	78, // 46: vdp.model.v1alpha.TaskInputStream.ocr:type_name -> vdp.model.v1alpha.OcrInputStream
+	79, // 47: vdp.model.v1alpha.TaskInputStream.instance_segmentation:type_name -> vdp.model.v1alpha.InstanceSegmentationInputStream
+	80, // 48: vdp.model.v1alpha.TaskInputStream.semantic_segmentation:type_name -> vdp.model.v1alpha.SemanticSegmentationInputStream
+	72, // 49: vdp.model.v1alpha.TaskInputStream.text_to_image:type_name -> vdp.model.v1alpha.TextToImageInput
+	73, // 50: vdp.model.v1alpha.TaskInputStream.text_generation:type_name -> vdp.model.v1alpha.TextGenerationInput
+	74, // 51: vdp.model.v1alpha.TaskInputStream.unspecified:type_name -> vdp.model.v1alpha.UnspecifiedInput
+	81, // 52: vdp.model.v1alpha.TaskOutput.classification:type_name -> vdp.model.v1alpha.ClassificationOutput
+	82, // 53: vdp.model.v1alpha.TaskOutput.detection:type_name -> vdp.model.v1alpha.DetectionOutput
+	83, // 54: vdp.model.v1alpha.TaskOutput.keypoint:type_name -> vdp.model.v1alpha.KeypointOutput
+	84, // 55: vdp.model.v1alpha.TaskOutput.ocr:type_name -> vdp.model.v1alpha.OcrOutput
+	85, // 56: vdp.model.v1alpha.TaskOutput.instance_segmentation:type_name -> vdp.model.v1alpha.InstanceSegmentationOutput
+	86, // 57: vdp.model.v1alpha.TaskOutput.semantic_segmentation:type_name -> vdp.model.v1alpha.SemanticSegmentationOutput
+	87, // 58: vdp.model.v1alpha.TaskOutput.text_to_image:type_name -> vdp.model.v1alpha.TextToImageOutput
+	88, // 59: vdp.model.v1alpha.TaskOutput.text_generation:type_name -> vdp.model.v1alpha.TextGenerationOutput
+	89, // 60: vdp.model.v1alpha.TaskOutput.unspecified:type_name -> vdp.model.v1alpha.UnspecifiedOutput
 	38, // 61: vdp.model.v1alpha.TriggerModelInstanceRequest.task_inputs:type_name -> vdp.model.v1alpha.TaskInput
 	1,  // 62: vdp.model.v1alpha.TriggerModelInstanceResponse.task:type_name -> vdp.model.v1alpha.ModelInstance.Task
 	40, // 63: vdp.model.v1alpha.TriggerModelInstanceResponse.task_outputs:type_name -> vdp.model.v1alpha.TaskOutput
@@ -4581,15 +4996,21 @@ var file_vdp_model_v1alpha_model_proto_depIdxs = []int32{
 	39, // 70: vdp.model.v1alpha.TestModelInstanceBinaryFileUploadRequest.task_input:type_name -> vdp.model.v1alpha.TaskInputStream
 	1,  // 71: vdp.model.v1alpha.TestModelInstanceBinaryFileUploadResponse.task:type_name -> vdp.model.v1alpha.ModelInstance.Task
 	40, // 72: vdp.model.v1alpha.TestModelInstanceBinaryFileUploadResponse.task_outputs:type_name -> vdp.model.v1alpha.TaskOutput
-	57, // 73: vdp.model.v1alpha.GetModelOperationRequest.view:type_name -> vdp.model.v1alpha.View
-	58, // 74: vdp.model.v1alpha.GetModelOperationResponse.operation:type_name -> google.longrunning.Operation
-	57, // 75: vdp.model.v1alpha.ListModelOperationRequest.view:type_name -> vdp.model.v1alpha.View
-	58, // 76: vdp.model.v1alpha.ListModelOperationResponse.operations:type_name -> google.longrunning.Operation
-	77, // [77:77] is the sub-list for method output_type
-	77, // [77:77] is the sub-list for method input_type
-	77, // [77:77] is the sub-list for extension type_name
-	77, // [77:77] is the sub-list for extension extendee
-	0,  // [0:77] is the sub-list for field type_name
+	63, // 73: vdp.model.v1alpha.GetModelOperationRequest.view:type_name -> vdp.model.v1alpha.View
+	64, // 74: vdp.model.v1alpha.GetModelOperationResponse.operation:type_name -> google.longrunning.Operation
+	63, // 75: vdp.model.v1alpha.ListModelOperationRequest.view:type_name -> vdp.model.v1alpha.View
+	64, // 76: vdp.model.v1alpha.ListModelOperationResponse.operations:type_name -> google.longrunning.Operation
+	63, // 77: vdp.model.v1alpha.ListModelAdminRequest.view:type_name -> vdp.model.v1alpha.View
+	3,  // 78: vdp.model.v1alpha.ListModelAdminResponse.models:type_name -> vdp.model.v1alpha.Model
+	63, // 79: vdp.model.v1alpha.GetModelAdminRequest.view:type_name -> vdp.model.v1alpha.View
+	3,  // 80: vdp.model.v1alpha.GetModelAdminResponse.model:type_name -> vdp.model.v1alpha.Model
+	63, // 81: vdp.model.v1alpha.LookUpModelAdminRequest.view:type_name -> vdp.model.v1alpha.View
+	3,  // 82: vdp.model.v1alpha.LookUpModelAdminResponse.model:type_name -> vdp.model.v1alpha.Model
+	83, // [83:83] is the sub-list for method output_type
+	83, // [83:83] is the sub-list for method input_type
+	83, // [83:83] is the sub-list for extension type_name
+	83, // [83:83] is the sub-list for extension extendee
+	0,  // [0:83] is the sub-list for field type_name
 }
 
 func init() { file_vdp_model_v1alpha_model_proto_init() }
@@ -5232,6 +5653,78 @@ func file_vdp_model_v1alpha_model_proto_init() {
 				return nil
 			}
 		}
+		file_vdp_model_v1alpha_model_proto_msgTypes[52].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListModelAdminRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_model_v1alpha_model_proto_msgTypes[53].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListModelAdminResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_model_v1alpha_model_proto_msgTypes[54].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetModelAdminRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_model_v1alpha_model_proto_msgTypes[55].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetModelAdminResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_model_v1alpha_model_proto_msgTypes[56].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*LookUpModelAdminRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_model_v1alpha_model_proto_msgTypes[57].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*LookUpModelAdminResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	file_vdp_model_v1alpha_model_proto_msgTypes[0].OneofWrappers = []interface{}{
 		(*Model_User)(nil),
@@ -5278,13 +5771,16 @@ func file_vdp_model_v1alpha_model_proto_init() {
 	}
 	file_vdp_model_v1alpha_model_proto_msgTypes[46].OneofWrappers = []interface{}{}
 	file_vdp_model_v1alpha_model_proto_msgTypes[48].OneofWrappers = []interface{}{}
+	file_vdp_model_v1alpha_model_proto_msgTypes[52].OneofWrappers = []interface{}{}
+	file_vdp_model_v1alpha_model_proto_msgTypes[54].OneofWrappers = []interface{}{}
+	file_vdp_model_v1alpha_model_proto_msgTypes[56].OneofWrappers = []interface{}{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_vdp_model_v1alpha_model_proto_rawDesc,
 			NumEnums:      3,
-			NumMessages:   52,
+			NumMessages:   58,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
