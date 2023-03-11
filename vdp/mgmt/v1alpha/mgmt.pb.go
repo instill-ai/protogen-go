@@ -320,8 +320,8 @@ func (x *User) GetCookieToken() string {
 	return ""
 }
 
-// ListUserRequest represents a request to list all users
-type ListUserRequest struct {
+// ListUsersAdminRequest represents a request to list all users by admin
+type ListUsersAdminRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -339,8 +339,8 @@ type ListUserRequest struct {
 	Filter *string `protobuf:"bytes,4,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
 }
 
-func (x *ListUserRequest) Reset() {
-	*x = ListUserRequest{}
+func (x *ListUsersAdminRequest) Reset() {
+	*x = ListUsersAdminRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -348,13 +348,13 @@ func (x *ListUserRequest) Reset() {
 	}
 }
 
-func (x *ListUserRequest) String() string {
+func (x *ListUsersAdminRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListUserRequest) ProtoMessage() {}
+func (*ListUsersAdminRequest) ProtoMessage() {}
 
-func (x *ListUserRequest) ProtoReflect() protoreflect.Message {
+func (x *ListUsersAdminRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -366,41 +366,41 @@ func (x *ListUserRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListUserRequest.ProtoReflect.Descriptor instead.
-func (*ListUserRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListUsersAdminRequest.ProtoReflect.Descriptor instead.
+func (*ListUsersAdminRequest) Descriptor() ([]byte, []int) {
 	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *ListUserRequest) GetPageSize() int64 {
+func (x *ListUsersAdminRequest) GetPageSize() int64 {
 	if x != nil && x.PageSize != nil {
 		return *x.PageSize
 	}
 	return 0
 }
 
-func (x *ListUserRequest) GetPageToken() string {
+func (x *ListUsersAdminRequest) GetPageToken() string {
 	if x != nil && x.PageToken != nil {
 		return *x.PageToken
 	}
 	return ""
 }
 
-func (x *ListUserRequest) GetView() View {
+func (x *ListUsersAdminRequest) GetView() View {
 	if x != nil && x.View != nil {
 		return *x.View
 	}
 	return View_VIEW_UNSPECIFIED
 }
 
-func (x *ListUserRequest) GetFilter() string {
+func (x *ListUsersAdminRequest) GetFilter() string {
 	if x != nil && x.Filter != nil {
 		return *x.Filter
 	}
 	return ""
 }
 
-// ListUserResponse represents a response for a list of users
-type ListUserResponse struct {
+// ListUsersAdminResponse represents a response for a list of users
+type ListUsersAdminResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -413,8 +413,8 @@ type ListUserResponse struct {
 	TotalSize int64 `protobuf:"varint,3,opt,name=total_size,json=totalSize,proto3" json:"total_size,omitempty"`
 }
 
-func (x *ListUserResponse) Reset() {
-	*x = ListUserResponse{}
+func (x *ListUsersAdminResponse) Reset() {
+	*x = ListUsersAdminResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -422,13 +422,13 @@ func (x *ListUserResponse) Reset() {
 	}
 }
 
-func (x *ListUserResponse) String() string {
+func (x *ListUsersAdminResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListUserResponse) ProtoMessage() {}
+func (*ListUsersAdminResponse) ProtoMessage() {}
 
-func (x *ListUserResponse) ProtoReflect() protoreflect.Message {
+func (x *ListUsersAdminResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -440,34 +440,34 @@ func (x *ListUserResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListUserResponse.ProtoReflect.Descriptor instead.
-func (*ListUserResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListUsersAdminResponse.ProtoReflect.Descriptor instead.
+func (*ListUsersAdminResponse) Descriptor() ([]byte, []int) {
 	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *ListUserResponse) GetUsers() []*User {
+func (x *ListUsersAdminResponse) GetUsers() []*User {
 	if x != nil {
 		return x.Users
 	}
 	return nil
 }
 
-func (x *ListUserResponse) GetNextPageToken() string {
+func (x *ListUsersAdminResponse) GetNextPageToken() string {
 	if x != nil {
 		return x.NextPageToken
 	}
 	return ""
 }
 
-func (x *ListUserResponse) GetTotalSize() int64 {
+func (x *ListUsersAdminResponse) GetTotalSize() int64 {
 	if x != nil {
 		return x.TotalSize
 	}
 	return 0
 }
 
-// CreateUserRequest represents a request to create a user
-type CreateUserRequest struct {
+// CreateUserAdminRequest represents a request to create a user by admin
+type CreateUserAdminRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -479,8 +479,8 @@ type CreateUserRequest struct {
 	User *User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 }
 
-func (x *CreateUserRequest) Reset() {
-	*x = CreateUserRequest{}
+func (x *CreateUserAdminRequest) Reset() {
+	*x = CreateUserAdminRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -488,13 +488,13 @@ func (x *CreateUserRequest) Reset() {
 	}
 }
 
-func (x *CreateUserRequest) String() string {
+func (x *CreateUserAdminRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateUserRequest) ProtoMessage() {}
+func (*CreateUserAdminRequest) ProtoMessage() {}
 
-func (x *CreateUserRequest) ProtoReflect() protoreflect.Message {
+func (x *CreateUserAdminRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -506,20 +506,20 @@ func (x *CreateUserRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateUserRequest.ProtoReflect.Descriptor instead.
-func (*CreateUserRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreateUserAdminRequest.ProtoReflect.Descriptor instead.
+func (*CreateUserAdminRequest) Descriptor() ([]byte, []int) {
 	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *CreateUserRequest) GetUser() *User {
+func (x *CreateUserAdminRequest) GetUser() *User {
 	if x != nil {
 		return x.User
 	}
 	return nil
 }
 
-// CreateUserResponse represents a response for a user response
-type CreateUserResponse struct {
+// CreateUserAdminResponse represents a response for a user response
+type CreateUserAdminResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -528,8 +528,8 @@ type CreateUserResponse struct {
 	User *User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 }
 
-func (x *CreateUserResponse) Reset() {
-	*x = CreateUserResponse{}
+func (x *CreateUserAdminResponse) Reset() {
+	*x = CreateUserAdminResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -537,13 +537,13 @@ func (x *CreateUserResponse) Reset() {
 	}
 }
 
-func (x *CreateUserResponse) String() string {
+func (x *CreateUserAdminResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateUserResponse) ProtoMessage() {}
+func (*CreateUserAdminResponse) ProtoMessage() {}
 
-func (x *CreateUserResponse) ProtoReflect() protoreflect.Message {
+func (x *CreateUserAdminResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -555,20 +555,20 @@ func (x *CreateUserResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateUserResponse.ProtoReflect.Descriptor instead.
-func (*CreateUserResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreateUserAdminResponse.ProtoReflect.Descriptor instead.
+func (*CreateUserAdminResponse) Descriptor() ([]byte, []int) {
 	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *CreateUserResponse) GetUser() *User {
+func (x *CreateUserAdminResponse) GetUser() *User {
 	if x != nil {
 		return x.User
 	}
 	return nil
 }
 
-// GetUserRequest represents a request to query a user
-type GetUserRequest struct {
+// GetUserAdminRequest represents a request to query a user by admin
+type GetUserAdminRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -580,8 +580,8 @@ type GetUserRequest struct {
 	View *View `protobuf:"varint,2,opt,name=view,proto3,enum=vdp.mgmt.v1alpha.View,oneof" json:"view,omitempty"`
 }
 
-func (x *GetUserRequest) Reset() {
-	*x = GetUserRequest{}
+func (x *GetUserAdminRequest) Reset() {
+	*x = GetUserAdminRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -589,13 +589,13 @@ func (x *GetUserRequest) Reset() {
 	}
 }
 
-func (x *GetUserRequest) String() string {
+func (x *GetUserAdminRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetUserRequest) ProtoMessage() {}
+func (*GetUserAdminRequest) ProtoMessage() {}
 
-func (x *GetUserRequest) ProtoReflect() protoreflect.Message {
+func (x *GetUserAdminRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -607,27 +607,27 @@ func (x *GetUserRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetUserRequest.ProtoReflect.Descriptor instead.
-func (*GetUserRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetUserAdminRequest.ProtoReflect.Descriptor instead.
+func (*GetUserAdminRequest) Descriptor() ([]byte, []int) {
 	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *GetUserRequest) GetName() string {
+func (x *GetUserAdminRequest) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *GetUserRequest) GetView() View {
+func (x *GetUserAdminRequest) GetView() View {
 	if x != nil && x.View != nil {
 		return *x.View
 	}
 	return View_VIEW_UNSPECIFIED
 }
 
-// GetUserResponse represents a response for a user resource
-type GetUserResponse struct {
+// GetUserAdminResponse represents a response for a user resource
+type GetUserAdminResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -636,8 +636,8 @@ type GetUserResponse struct {
 	User *User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 }
 
-func (x *GetUserResponse) Reset() {
-	*x = GetUserResponse{}
+func (x *GetUserAdminResponse) Reset() {
+	*x = GetUserAdminResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -645,13 +645,13 @@ func (x *GetUserResponse) Reset() {
 	}
 }
 
-func (x *GetUserResponse) String() string {
+func (x *GetUserAdminResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetUserResponse) ProtoMessage() {}
+func (*GetUserAdminResponse) ProtoMessage() {}
 
-func (x *GetUserResponse) ProtoReflect() protoreflect.Message {
+func (x *GetUserAdminResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -663,20 +663,20 @@ func (x *GetUserResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetUserResponse.ProtoReflect.Descriptor instead.
-func (*GetUserResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetUserAdminResponse.ProtoReflect.Descriptor instead.
+func (*GetUserAdminResponse) Descriptor() ([]byte, []int) {
 	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *GetUserResponse) GetUser() *User {
+func (x *GetUserAdminResponse) GetUser() *User {
 	if x != nil {
 		return x.User
 	}
 	return nil
 }
 
-// UpdateUserRequest represents a request to update a user
-type UpdateUserRequest struct {
+// UpdateUserAdminRequest represents a request to update a user by admin
+type UpdateUserAdminRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -690,8 +690,8 @@ type UpdateUserRequest struct {
 	UpdateMask *fieldmaskpb.FieldMask `protobuf:"bytes,2,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`
 }
 
-func (x *UpdateUserRequest) Reset() {
-	*x = UpdateUserRequest{}
+func (x *UpdateUserAdminRequest) Reset() {
+	*x = UpdateUserAdminRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -699,13 +699,13 @@ func (x *UpdateUserRequest) Reset() {
 	}
 }
 
-func (x *UpdateUserRequest) String() string {
+func (x *UpdateUserAdminRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateUserRequest) ProtoMessage() {}
+func (*UpdateUserAdminRequest) ProtoMessage() {}
 
-func (x *UpdateUserRequest) ProtoReflect() protoreflect.Message {
+func (x *UpdateUserAdminRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -717,27 +717,27 @@ func (x *UpdateUserRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateUserRequest.ProtoReflect.Descriptor instead.
-func (*UpdateUserRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use UpdateUserAdminRequest.ProtoReflect.Descriptor instead.
+func (*UpdateUserAdminRequest) Descriptor() ([]byte, []int) {
 	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *UpdateUserRequest) GetUser() *User {
+func (x *UpdateUserAdminRequest) GetUser() *User {
 	if x != nil {
 		return x.User
 	}
 	return nil
 }
 
-func (x *UpdateUserRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
+func (x *UpdateUserAdminRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
 	if x != nil {
 		return x.UpdateMask
 	}
 	return nil
 }
 
-// UpdateUserResponse represents a response for a user resource
-type UpdateUserResponse struct {
+// UpdateUserAdminResponse represents a response for a user resource
+type UpdateUserAdminResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -746,8 +746,8 @@ type UpdateUserResponse struct {
 	User *User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 }
 
-func (x *UpdateUserResponse) Reset() {
-	*x = UpdateUserResponse{}
+func (x *UpdateUserAdminResponse) Reset() {
+	*x = UpdateUserAdminResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -755,13 +755,13 @@ func (x *UpdateUserResponse) Reset() {
 	}
 }
 
-func (x *UpdateUserResponse) String() string {
+func (x *UpdateUserAdminResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateUserResponse) ProtoMessage() {}
+func (*UpdateUserAdminResponse) ProtoMessage() {}
 
-func (x *UpdateUserResponse) ProtoReflect() protoreflect.Message {
+func (x *UpdateUserAdminResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -773,20 +773,20 @@ func (x *UpdateUserResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateUserResponse.ProtoReflect.Descriptor instead.
-func (*UpdateUserResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use UpdateUserAdminResponse.ProtoReflect.Descriptor instead.
+func (*UpdateUserAdminResponse) Descriptor() ([]byte, []int) {
 	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *UpdateUserResponse) GetUser() *User {
+func (x *UpdateUserAdminResponse) GetUser() *User {
 	if x != nil {
 		return x.User
 	}
 	return nil
 }
 
-// DeleteUserRequest represents a request to delete a user
-type DeleteUserRequest struct {
+// DeleteUserAdminRequest represents a request to delete a user by admin
+type DeleteUserAdminRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -796,8 +796,8 @@ type DeleteUserRequest struct {
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 }
 
-func (x *DeleteUserRequest) Reset() {
-	*x = DeleteUserRequest{}
+func (x *DeleteUserAdminRequest) Reset() {
+	*x = DeleteUserAdminRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -805,13 +805,13 @@ func (x *DeleteUserRequest) Reset() {
 	}
 }
 
-func (x *DeleteUserRequest) String() string {
+func (x *DeleteUserAdminRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DeleteUserRequest) ProtoMessage() {}
+func (*DeleteUserAdminRequest) ProtoMessage() {}
 
-func (x *DeleteUserRequest) ProtoReflect() protoreflect.Message {
+func (x *DeleteUserAdminRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -823,27 +823,27 @@ func (x *DeleteUserRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DeleteUserRequest.ProtoReflect.Descriptor instead.
-func (*DeleteUserRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use DeleteUserAdminRequest.ProtoReflect.Descriptor instead.
+func (*DeleteUserAdminRequest) Descriptor() ([]byte, []int) {
 	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *DeleteUserRequest) GetName() string {
+func (x *DeleteUserAdminRequest) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-// DeleteUserResponse represents an empty response
-type DeleteUserResponse struct {
+// DeleteUserAdminResponse represents an empty response
+type DeleteUserAdminResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *DeleteUserResponse) Reset() {
-	*x = DeleteUserResponse{}
+func (x *DeleteUserAdminResponse) Reset() {
+	*x = DeleteUserAdminResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -851,13 +851,13 @@ func (x *DeleteUserResponse) Reset() {
 	}
 }
 
-func (x *DeleteUserResponse) String() string {
+func (x *DeleteUserAdminResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DeleteUserResponse) ProtoMessage() {}
+func (*DeleteUserAdminResponse) ProtoMessage() {}
 
-func (x *DeleteUserResponse) ProtoReflect() protoreflect.Message {
+func (x *DeleteUserAdminResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -869,13 +869,13 @@ func (x *DeleteUserResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DeleteUserResponse.ProtoReflect.Descriptor instead.
-func (*DeleteUserResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use DeleteUserAdminResponse.ProtoReflect.Descriptor instead.
+func (*DeleteUserAdminResponse) Descriptor() ([]byte, []int) {
 	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{10}
 }
 
-// LookUpUserRequest represents a request to query a user by permalink
-type LookUpUserRequest struct {
+// LookUpUserAdminRequest represents a request to query a user via permalink by admin
+type LookUpUserAdminRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -887,8 +887,8 @@ type LookUpUserRequest struct {
 	View *View `protobuf:"varint,2,opt,name=view,proto3,enum=vdp.mgmt.v1alpha.View,oneof" json:"view,omitempty"`
 }
 
-func (x *LookUpUserRequest) Reset() {
-	*x = LookUpUserRequest{}
+func (x *LookUpUserAdminRequest) Reset() {
+	*x = LookUpUserAdminRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -896,13 +896,13 @@ func (x *LookUpUserRequest) Reset() {
 	}
 }
 
-func (x *LookUpUserRequest) String() string {
+func (x *LookUpUserAdminRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*LookUpUserRequest) ProtoMessage() {}
+func (*LookUpUserAdminRequest) ProtoMessage() {}
 
-func (x *LookUpUserRequest) ProtoReflect() protoreflect.Message {
+func (x *LookUpUserAdminRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -914,27 +914,27 @@ func (x *LookUpUserRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use LookUpUserRequest.ProtoReflect.Descriptor instead.
-func (*LookUpUserRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use LookUpUserAdminRequest.ProtoReflect.Descriptor instead.
+func (*LookUpUserAdminRequest) Descriptor() ([]byte, []int) {
 	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *LookUpUserRequest) GetPermalink() string {
+func (x *LookUpUserAdminRequest) GetPermalink() string {
 	if x != nil {
 		return x.Permalink
 	}
 	return ""
 }
 
-func (x *LookUpUserRequest) GetView() View {
+func (x *LookUpUserAdminRequest) GetView() View {
 	if x != nil && x.View != nil {
 		return *x.View
 	}
 	return View_VIEW_UNSPECIFIED
 }
 
-// LookUpUserResponse represents a response for a user resource
-type LookUpUserResponse struct {
+// LookUpUserAdminResponse represents a response for a user resource by admin
+type LookUpUserAdminResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -943,8 +943,8 @@ type LookUpUserResponse struct {
 	User *User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 }
 
-func (x *LookUpUserResponse) Reset() {
-	*x = LookUpUserResponse{}
+func (x *LookUpUserAdminResponse) Reset() {
+	*x = LookUpUserAdminResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -952,13 +952,13 @@ func (x *LookUpUserResponse) Reset() {
 	}
 }
 
-func (x *LookUpUserResponse) String() string {
+func (x *LookUpUserAdminResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*LookUpUserResponse) ProtoMessage() {}
+func (*LookUpUserAdminResponse) ProtoMessage() {}
 
-func (x *LookUpUserResponse) ProtoReflect() protoreflect.Message {
+func (x *LookUpUserAdminResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -970,28 +970,28 @@ func (x *LookUpUserResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use LookUpUserResponse.ProtoReflect.Descriptor instead.
-func (*LookUpUserResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use LookUpUserAdminResponse.ProtoReflect.Descriptor instead.
+func (*LookUpUserAdminResponse) Descriptor() ([]byte, []int) {
 	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *LookUpUserResponse) GetUser() *User {
+func (x *LookUpUserAdminResponse) GetUser() *User {
 	if x != nil {
 		return x.User
 	}
 	return nil
 }
 
-// GetAuthenticatedUserRequest represents a request to
+// QueryAuthenticatedUserRequest represents a request to
 // query the authenticated user
-type GetAuthenticatedUserRequest struct {
+type QueryAuthenticatedUserRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *GetAuthenticatedUserRequest) Reset() {
-	*x = GetAuthenticatedUserRequest{}
+func (x *QueryAuthenticatedUserRequest) Reset() {
+	*x = QueryAuthenticatedUserRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -999,13 +999,13 @@ func (x *GetAuthenticatedUserRequest) Reset() {
 	}
 }
 
-func (x *GetAuthenticatedUserRequest) String() string {
+func (x *QueryAuthenticatedUserRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetAuthenticatedUserRequest) ProtoMessage() {}
+func (*QueryAuthenticatedUserRequest) ProtoMessage() {}
 
-func (x *GetAuthenticatedUserRequest) ProtoReflect() protoreflect.Message {
+func (x *QueryAuthenticatedUserRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1017,14 +1017,14 @@ func (x *GetAuthenticatedUserRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetAuthenticatedUserRequest.ProtoReflect.Descriptor instead.
-func (*GetAuthenticatedUserRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use QueryAuthenticatedUserRequest.ProtoReflect.Descriptor instead.
+func (*QueryAuthenticatedUserRequest) Descriptor() ([]byte, []int) {
 	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{13}
 }
 
-// GetAuthenticatedUserResponse represents a response for
+// QueryAuthenticatedUserResponse represents a response for
 // the authenticated user resource
-type GetAuthenticatedUserResponse struct {
+type QueryAuthenticatedUserResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -1033,8 +1033,8 @@ type GetAuthenticatedUserResponse struct {
 	User *User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 }
 
-func (x *GetAuthenticatedUserResponse) Reset() {
-	*x = GetAuthenticatedUserResponse{}
+func (x *QueryAuthenticatedUserResponse) Reset() {
+	*x = QueryAuthenticatedUserResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1042,13 +1042,13 @@ func (x *GetAuthenticatedUserResponse) Reset() {
 	}
 }
 
-func (x *GetAuthenticatedUserResponse) String() string {
+func (x *QueryAuthenticatedUserResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetAuthenticatedUserResponse) ProtoMessage() {}
+func (*QueryAuthenticatedUserResponse) ProtoMessage() {}
 
-func (x *GetAuthenticatedUserResponse) ProtoReflect() protoreflect.Message {
+func (x *QueryAuthenticatedUserResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1060,21 +1060,21 @@ func (x *GetAuthenticatedUserResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetAuthenticatedUserResponse.ProtoReflect.Descriptor instead.
-func (*GetAuthenticatedUserResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use QueryAuthenticatedUserResponse.ProtoReflect.Descriptor instead.
+func (*QueryAuthenticatedUserResponse) Descriptor() ([]byte, []int) {
 	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *GetAuthenticatedUserResponse) GetUser() *User {
+func (x *QueryAuthenticatedUserResponse) GetUser() *User {
 	if x != nil {
 		return x.User
 	}
 	return nil
 }
 
-// UpdateAuthenticatedUserRequest represents a request to
+// PatchAuthenticatedUserRequest represents a request to
 // update the authenticated user
-type UpdateAuthenticatedUserRequest struct {
+type PatchAuthenticatedUserRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -1085,8 +1085,8 @@ type UpdateAuthenticatedUserRequest struct {
 	UpdateMask *fieldmaskpb.FieldMask `protobuf:"bytes,2,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`
 }
 
-func (x *UpdateAuthenticatedUserRequest) Reset() {
-	*x = UpdateAuthenticatedUserRequest{}
+func (x *PatchAuthenticatedUserRequest) Reset() {
+	*x = PatchAuthenticatedUserRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1094,13 +1094,13 @@ func (x *UpdateAuthenticatedUserRequest) Reset() {
 	}
 }
 
-func (x *UpdateAuthenticatedUserRequest) String() string {
+func (x *PatchAuthenticatedUserRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateAuthenticatedUserRequest) ProtoMessage() {}
+func (*PatchAuthenticatedUserRequest) ProtoMessage() {}
 
-func (x *UpdateAuthenticatedUserRequest) ProtoReflect() protoreflect.Message {
+func (x *PatchAuthenticatedUserRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1112,28 +1112,28 @@ func (x *UpdateAuthenticatedUserRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateAuthenticatedUserRequest.ProtoReflect.Descriptor instead.
-func (*UpdateAuthenticatedUserRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use PatchAuthenticatedUserRequest.ProtoReflect.Descriptor instead.
+func (*PatchAuthenticatedUserRequest) Descriptor() ([]byte, []int) {
 	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{15}
 }
 
-func (x *UpdateAuthenticatedUserRequest) GetUser() *User {
+func (x *PatchAuthenticatedUserRequest) GetUser() *User {
 	if x != nil {
 		return x.User
 	}
 	return nil
 }
 
-func (x *UpdateAuthenticatedUserRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
+func (x *PatchAuthenticatedUserRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
 	if x != nil {
 		return x.UpdateMask
 	}
 	return nil
 }
 
-// UpdateAuthenticatedUserResponse represents a response for
+// PatchAuthenticatedUserResponse represents a response for
 // the authenticated user resource
-type UpdateAuthenticatedUserResponse struct {
+type PatchAuthenticatedUserResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -1142,8 +1142,8 @@ type UpdateAuthenticatedUserResponse struct {
 	User *User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 }
 
-func (x *UpdateAuthenticatedUserResponse) Reset() {
-	*x = UpdateAuthenticatedUserResponse{}
+func (x *PatchAuthenticatedUserResponse) Reset() {
+	*x = PatchAuthenticatedUserResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1151,13 +1151,13 @@ func (x *UpdateAuthenticatedUserResponse) Reset() {
 	}
 }
 
-func (x *UpdateAuthenticatedUserResponse) String() string {
+func (x *PatchAuthenticatedUserResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateAuthenticatedUserResponse) ProtoMessage() {}
+func (*PatchAuthenticatedUserResponse) ProtoMessage() {}
 
-func (x *UpdateAuthenticatedUserResponse) ProtoReflect() protoreflect.Message {
+func (x *PatchAuthenticatedUserResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1169,12 +1169,12 @@ func (x *UpdateAuthenticatedUserResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateAuthenticatedUserResponse.ProtoReflect.Descriptor instead.
-func (*UpdateAuthenticatedUserResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use PatchAuthenticatedUserResponse.ProtoReflect.Descriptor instead.
+func (*PatchAuthenticatedUserResponse) Descriptor() ([]byte, []int) {
 	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{16}
 }
 
-func (x *UpdateAuthenticatedUserResponse) GetUser() *User {
+func (x *PatchAuthenticatedUserResponse) GetUser() *User {
 	if x != nil {
 		return x.User
 	}
@@ -1348,100 +1348,104 @@ var file_vdp_mgmt_v1alpha_mgmt_proto_rawDesc = []byte{
 	0x0a, 0x0a, 0x5f, 0x6c, 0x61, 0x73, 0x74, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x42, 0x0b, 0x0a, 0x09,
 	0x5f, 0x6f, 0x72, 0x67, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x42, 0x07, 0x0a, 0x05, 0x5f, 0x72, 0x6f,
 	0x6c, 0x65, 0x42, 0x0f, 0x0a, 0x0d, 0x5f, 0x63, 0x6f, 0x6f, 0x6b, 0x69, 0x65, 0x5f, 0x74, 0x6f,
-	0x6b, 0x65, 0x6e, 0x22, 0xea, 0x01, 0x0a, 0x0f, 0x4c, 0x69, 0x73, 0x74, 0x55, 0x73, 0x65, 0x72,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x25, 0x0a, 0x09, 0x70, 0x61, 0x67, 0x65, 0x5f,
-	0x73, 0x69, 0x7a, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x48,
-	0x00, 0x52, 0x08, 0x70, 0x61, 0x67, 0x65, 0x53, 0x69, 0x7a, 0x65, 0x88, 0x01, 0x01, 0x12, 0x27,
-	0x0a, 0x0a, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x02, 0x20, 0x01,
-	0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x01, 0x52, 0x09, 0x70, 0x61, 0x67, 0x65, 0x54,
-	0x6f, 0x6b, 0x65, 0x6e, 0x88, 0x01, 0x01, 0x12, 0x34, 0x0a, 0x04, 0x76, 0x69, 0x65, 0x77, 0x18,
-	0x03, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x16, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d, 0x67, 0x6d, 0x74,
-	0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x56, 0x69, 0x65, 0x77, 0x42, 0x03, 0xe0,
-	0x41, 0x01, 0x48, 0x02, 0x52, 0x04, 0x76, 0x69, 0x65, 0x77, 0x88, 0x01, 0x01, 0x12, 0x20, 0x0a,
-	0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0,
-	0x41, 0x01, 0x48, 0x03, 0x52, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x88, 0x01, 0x01, 0x42,
-	0x0c, 0x0a, 0x0a, 0x5f, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x42, 0x0d, 0x0a,
-	0x0b, 0x5f, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x42, 0x07, 0x0a, 0x05,
-	0x5f, 0x76, 0x69, 0x65, 0x77, 0x42, 0x09, 0x0a, 0x07, 0x5f, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72,
-	0x22, 0x87, 0x01, 0x0a, 0x10, 0x4c, 0x69, 0x73, 0x74, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2c, 0x0a, 0x05, 0x75, 0x73, 0x65, 0x72, 0x73, 0x18, 0x01,
-	0x20, 0x03, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d, 0x67, 0x6d, 0x74, 0x2e,
-	0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x52, 0x05, 0x75, 0x73,
-	0x65, 0x72, 0x73, 0x12, 0x26, 0x0a, 0x0f, 0x6e, 0x65, 0x78, 0x74, 0x5f, 0x70, 0x61, 0x67, 0x65,
-	0x5f, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d, 0x6e, 0x65,
-	0x78, 0x74, 0x50, 0x61, 0x67, 0x65, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x1d, 0x0a, 0x0a, 0x74,
-	0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03, 0x52,
-	0x09, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x53, 0x69, 0x7a, 0x65, 0x22, 0x44, 0x0a, 0x11, 0x43, 0x72,
-	0x65, 0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
-	0x2f, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e,
-	0x76, 0x64, 0x70, 0x2e, 0x6d, 0x67, 0x6d, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61,
-	0x2e, 0x55, 0x73, 0x65, 0x72, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72,
-	0x22, 0x40, 0x0a, 0x12, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2a, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d, 0x67, 0x6d, 0x74, 0x2e,
-	0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x52, 0x04, 0x75, 0x73,
-	0x65, 0x72, 0x22, 0x94, 0x01, 0x0a, 0x0e, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x43, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x42, 0x2f, 0x92, 0x41, 0x0f, 0xca, 0x3e, 0x0c, 0xfa, 0x02, 0x09, 0x75, 0x73,
-	0x65, 0x72, 0x2e, 0x6e, 0x61, 0x6d, 0x65, 0xe0, 0x41, 0x02, 0xfa, 0x41, 0x17, 0x0a, 0x15, 0x61,
-	0x70, 0x69, 0x2e, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2e, 0x74, 0x65, 0x63, 0x68, 0x2f,
-	0x55, 0x73, 0x65, 0x72, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x34, 0x0a, 0x04, 0x76, 0x69,
-	0x65, 0x77, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x16, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d,
-	0x67, 0x6d, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x56, 0x69, 0x65, 0x77,
-	0x42, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x00, 0x52, 0x04, 0x76, 0x69, 0x65, 0x77, 0x88, 0x01, 0x01,
-	0x42, 0x07, 0x0a, 0x05, 0x5f, 0x76, 0x69, 0x65, 0x77, 0x22, 0x3d, 0x0a, 0x0f, 0x47, 0x65, 0x74,
-	0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2a, 0x0a, 0x04,
+	0x6b, 0x65, 0x6e, 0x22, 0xf0, 0x01, 0x0a, 0x15, 0x4c, 0x69, 0x73, 0x74, 0x55, 0x73, 0x65, 0x72,
+	0x73, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x25, 0x0a,
+	0x09, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03,
+	0x42, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x00, 0x52, 0x08, 0x70, 0x61, 0x67, 0x65, 0x53, 0x69, 0x7a,
+	0x65, 0x88, 0x01, 0x01, 0x12, 0x27, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x74, 0x6f, 0x6b,
+	0x65, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x01, 0x52,
+	0x09, 0x70, 0x61, 0x67, 0x65, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x88, 0x01, 0x01, 0x12, 0x34, 0x0a,
+	0x04, 0x76, 0x69, 0x65, 0x77, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x16, 0x2e, 0x76, 0x64,
+	0x70, 0x2e, 0x6d, 0x67, 0x6d, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x56,
+	0x69, 0x65, 0x77, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x02, 0x52, 0x04, 0x76, 0x69, 0x65, 0x77,
+	0x88, 0x01, 0x01, 0x12, 0x20, 0x0a, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x18, 0x04, 0x20,
+	0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x03, 0x52, 0x06, 0x66, 0x69, 0x6c, 0x74,
+	0x65, 0x72, 0x88, 0x01, 0x01, 0x42, 0x0c, 0x0a, 0x0a, 0x5f, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x73,
+	0x69, 0x7a, 0x65, 0x42, 0x0d, 0x0a, 0x0b, 0x5f, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x74, 0x6f, 0x6b,
+	0x65, 0x6e, 0x42, 0x07, 0x0a, 0x05, 0x5f, 0x76, 0x69, 0x65, 0x77, 0x42, 0x09, 0x0a, 0x07, 0x5f,
+	0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x22, 0x8d, 0x01, 0x0a, 0x16, 0x4c, 0x69, 0x73, 0x74, 0x55,
+	0x73, 0x65, 0x72, 0x73, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x2c, 0x0a, 0x05, 0x75, 0x73, 0x65, 0x72, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x16, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d, 0x67, 0x6d, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c,
+	0x70, 0x68, 0x61, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x52, 0x05, 0x75, 0x73, 0x65, 0x72, 0x73, 0x12,
+	0x26, 0x0a, 0x0f, 0x6e, 0x65, 0x78, 0x74, 0x5f, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x74, 0x6f, 0x6b,
+	0x65, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d, 0x6e, 0x65, 0x78, 0x74, 0x50, 0x61,
+	0x67, 0x65, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x1d, 0x0a, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c,
+	0x5f, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03, 0x52, 0x09, 0x74, 0x6f, 0x74,
+	0x61, 0x6c, 0x53, 0x69, 0x7a, 0x65, 0x22, 0x49, 0x0a, 0x16, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
+	0x55, 0x73, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x2f, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16,
+	0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d, 0x67, 0x6d, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68,
+	0x61, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x04, 0x75, 0x73, 0x65,
+	0x72, 0x22, 0x45, 0x0a, 0x17, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x41,
+	0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2a, 0x0a, 0x04,
 	0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x76, 0x64, 0x70,
 	0x2e, 0x6d, 0x67, 0x6d, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x55, 0x73,
-	0x65, 0x72, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x86, 0x01, 0x0a, 0x11, 0x55, 0x70, 0x64,
-	0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2f,
+	0x65, 0x72, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x99, 0x01, 0x0a, 0x13, 0x47, 0x65, 0x74,
+	0x55, 0x73, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x43, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x2f,
+	0x92, 0x41, 0x0f, 0xca, 0x3e, 0x0c, 0xfa, 0x02, 0x09, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x6e, 0x61,
+	0x6d, 0x65, 0xe0, 0x41, 0x02, 0xfa, 0x41, 0x17, 0x0a, 0x15, 0x61, 0x70, 0x69, 0x2e, 0x69, 0x6e,
+	0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2e, 0x74, 0x65, 0x63, 0x68, 0x2f, 0x55, 0x73, 0x65, 0x72, 0x52,
+	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x34, 0x0a, 0x04, 0x76, 0x69, 0x65, 0x77, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x0e, 0x32, 0x16, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d, 0x67, 0x6d, 0x74, 0x2e, 0x76,
+	0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x56, 0x69, 0x65, 0x77, 0x42, 0x03, 0xe0, 0x41, 0x01,
+	0x48, 0x00, 0x52, 0x04, 0x76, 0x69, 0x65, 0x77, 0x88, 0x01, 0x01, 0x42, 0x07, 0x0a, 0x05, 0x5f,
+	0x76, 0x69, 0x65, 0x77, 0x22, 0x42, 0x0a, 0x14, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x41,
+	0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2a, 0x0a, 0x04,
+	0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x76, 0x64, 0x70,
+	0x2e, 0x6d, 0x67, 0x6d, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x55, 0x73,
+	0x65, 0x72, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x8b, 0x01, 0x0a, 0x16, 0x55, 0x70, 0x64,
+	0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x2f, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x16, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d, 0x67, 0x6d, 0x74, 0x2e, 0x76, 0x31, 0x61,
+	0x6c, 0x70, 0x68, 0x61, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x04,
+	0x75, 0x73, 0x65, 0x72, 0x12, 0x40, 0x0a, 0x0b, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x5f, 0x6d,
+	0x61, 0x73, 0x6b, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67,
+	0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x46, 0x69, 0x65, 0x6c,
+	0x64, 0x4d, 0x61, 0x73, 0x6b, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x0a, 0x75, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x4d, 0x61, 0x73, 0x6b, 0x22, 0x45, 0x0a, 0x17, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x55, 0x73, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x2a, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x16, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d, 0x67, 0x6d, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70,
+	0x68, 0x61, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x5d, 0x0a,
+	0x16, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x43, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x2f, 0x92, 0x41, 0x0f, 0xca, 0x3e, 0x0c, 0xfa, 0x02, 0x09,
+	0x75, 0x73, 0x65, 0x72, 0x2e, 0x6e, 0x61, 0x6d, 0x65, 0xe0, 0x41, 0x02, 0xfa, 0x41, 0x17, 0x0a,
+	0x15, 0x61, 0x70, 0x69, 0x2e, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2e, 0x74, 0x65, 0x63,
+	0x68, 0x2f, 0x55, 0x73, 0x65, 0x72, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x19, 0x0a, 0x17,
+	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x7a, 0x0a, 0x16, 0x4c, 0x6f, 0x6f, 0x6b, 0x55,
+	0x70, 0x55, 0x73, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x21, 0x0a, 0x09, 0x70, 0x65, 0x72, 0x6d, 0x61, 0x6c, 0x69, 0x6e, 0x6b, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x09, 0x70, 0x65, 0x72, 0x6d, 0x61,
+	0x6c, 0x69, 0x6e, 0x6b, 0x12, 0x34, 0x0a, 0x04, 0x76, 0x69, 0x65, 0x77, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x0e, 0x32, 0x16, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d, 0x67, 0x6d, 0x74, 0x2e, 0x76, 0x31,
+	0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x56, 0x69, 0x65, 0x77, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x48,
+	0x00, 0x52, 0x04, 0x76, 0x69, 0x65, 0x77, 0x88, 0x01, 0x01, 0x42, 0x07, 0x0a, 0x05, 0x5f, 0x76,
+	0x69, 0x65, 0x77, 0x22, 0x45, 0x0a, 0x17, 0x4c, 0x6f, 0x6f, 0x6b, 0x55, 0x70, 0x55, 0x73, 0x65,
+	0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2a,
 	0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x76,
 	0x64, 0x70, 0x2e, 0x6d, 0x67, 0x6d, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e,
-	0x55, 0x73, 0x65, 0x72, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x12,
-	0x40, 0x0a, 0x0b, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x5f, 0x6d, 0x61, 0x73, 0x6b, 0x18, 0x02,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x4d, 0x61, 0x73, 0x6b,
-	0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x0a, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x61, 0x73,
-	0x6b, 0x22, 0x40, 0x0a, 0x12, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2a, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d, 0x67, 0x6d, 0x74,
-	0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x52, 0x04, 0x75,
-	0x73, 0x65, 0x72, 0x22, 0x58, 0x0a, 0x11, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x55, 0x73, 0x65,
-	0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x43, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x2f, 0x92, 0x41, 0x0f, 0xca, 0x3e, 0x0c, 0xfa, 0x02,
-	0x09, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x6e, 0x61, 0x6d, 0x65, 0xe0, 0x41, 0x02, 0xfa, 0x41, 0x17,
-	0x0a, 0x15, 0x61, 0x70, 0x69, 0x2e, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2e, 0x74, 0x65,
-	0x63, 0x68, 0x2f, 0x55, 0x73, 0x65, 0x72, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x14, 0x0a,
-	0x12, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x22, 0x75, 0x0a, 0x11, 0x4c, 0x6f, 0x6f, 0x6b, 0x55, 0x70, 0x55, 0x73, 0x65,
-	0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x21, 0x0a, 0x09, 0x70, 0x65, 0x72, 0x6d,
-	0x61, 0x6c, 0x69, 0x6e, 0x6b, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x02,
-	0x52, 0x09, 0x70, 0x65, 0x72, 0x6d, 0x61, 0x6c, 0x69, 0x6e, 0x6b, 0x12, 0x34, 0x0a, 0x04, 0x76,
-	0x69, 0x65, 0x77, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x16, 0x2e, 0x76, 0x64, 0x70, 0x2e,
-	0x6d, 0x67, 0x6d, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x56, 0x69, 0x65,
-	0x77, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x00, 0x52, 0x04, 0x76, 0x69, 0x65, 0x77, 0x88, 0x01,
-	0x01, 0x42, 0x07, 0x0a, 0x05, 0x5f, 0x76, 0x69, 0x65, 0x77, 0x22, 0x40, 0x0a, 0x12, 0x4c, 0x6f,
-	0x6f, 0x6b, 0x55, 0x70, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x2a, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16,
-	0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d, 0x67, 0x6d, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68,
-	0x61, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x1d, 0x0a, 0x1b,
-	0x47, 0x65, 0x74, 0x41, 0x75, 0x74, 0x68, 0x65, 0x6e, 0x74, 0x69, 0x63, 0x61, 0x74, 0x65, 0x64,
-	0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x4a, 0x0a, 0x1c, 0x47,
-	0x65, 0x74, 0x41, 0x75, 0x74, 0x68, 0x65, 0x6e, 0x74, 0x69, 0x63, 0x61, 0x74, 0x65, 0x64, 0x55,
-	0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2a, 0x0a, 0x04, 0x75,
+	0x55, 0x73, 0x65, 0x72, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x1f, 0x0a, 0x1d, 0x51, 0x75,
+	0x65, 0x72, 0x79, 0x41, 0x75, 0x74, 0x68, 0x65, 0x6e, 0x74, 0x69, 0x63, 0x61, 0x74, 0x65, 0x64,
+	0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x4c, 0x0a, 0x1e, 0x51,
+	0x75, 0x65, 0x72, 0x79, 0x41, 0x75, 0x74, 0x68, 0x65, 0x6e, 0x74, 0x69, 0x63, 0x61, 0x74, 0x65,
+	0x64, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2a, 0x0a,
+	0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x76, 0x64,
+	0x70, 0x2e, 0x6d, 0x67, 0x6d, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x55,
+	0x73, 0x65, 0x72, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x92, 0x01, 0x0a, 0x1d, 0x50, 0x61,
+	0x74, 0x63, 0x68, 0x41, 0x75, 0x74, 0x68, 0x65, 0x6e, 0x74, 0x69, 0x63, 0x61, 0x74, 0x65, 0x64,
+	0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2f, 0x0a, 0x04, 0x75,
 	0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x76, 0x64, 0x70, 0x2e,
 	0x6d, 0x67, 0x6d, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x55, 0x73, 0x65,
-	0x72, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x93, 0x01, 0x0a, 0x1e, 0x55, 0x70, 0x64, 0x61,
-	0x74, 0x65, 0x41, 0x75, 0x74, 0x68, 0x65, 0x6e, 0x74, 0x69, 0x63, 0x61, 0x74, 0x65, 0x64, 0x55,
-	0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2f, 0x0a, 0x04, 0x75, 0x73,
-	0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d,
-	0x67, 0x6d, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x55, 0x73, 0x65, 0x72,
-	0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x12, 0x40, 0x0a, 0x0b, 0x75,
-	0x70, 0x64, 0x61, 0x74, 0x65, 0x5f, 0x6d, 0x61, 0x73, 0x6b, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b,
-	0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62,
-	0x75, 0x66, 0x2e, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x4d, 0x61, 0x73, 0x6b, 0x42, 0x03, 0xe0, 0x41,
-	0x02, 0x52, 0x0a, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x61, 0x73, 0x6b, 0x22, 0x4d, 0x0a,
-	0x1f, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x75, 0x74, 0x68, 0x65, 0x6e, 0x74, 0x69, 0x63,
+	0x72, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x12, 0x40, 0x0a, 0x0b,
+	0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x5f, 0x6d, 0x61, 0x73, 0x6b, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x62, 0x75, 0x66, 0x2e, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x4d, 0x61, 0x73, 0x6b, 0x42, 0x03, 0xe0,
+	0x41, 0x02, 0x52, 0x0a, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x61, 0x73, 0x6b, 0x22, 0x4c,
+	0x0a, 0x1e, 0x50, 0x61, 0x74, 0x63, 0x68, 0x41, 0x75, 0x74, 0x68, 0x65, 0x6e, 0x74, 0x69, 0x63,
 	0x61, 0x74, 0x65, 0x64, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
 	0x12, 0x2a, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16,
 	0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d, 0x67, 0x6d, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68,
@@ -1494,49 +1498,49 @@ func file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP() []byte {
 var file_vdp_mgmt_v1alpha_mgmt_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
 var file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
 var file_vdp_mgmt_v1alpha_mgmt_proto_goTypes = []interface{}{
-	(OwnerType)(0),                          // 0: vdp.mgmt.v1alpha.OwnerType
-	(View)(0),                               // 1: vdp.mgmt.v1alpha.View
-	(*User)(nil),                            // 2: vdp.mgmt.v1alpha.User
-	(*ListUserRequest)(nil),                 // 3: vdp.mgmt.v1alpha.ListUserRequest
-	(*ListUserResponse)(nil),                // 4: vdp.mgmt.v1alpha.ListUserResponse
-	(*CreateUserRequest)(nil),               // 5: vdp.mgmt.v1alpha.CreateUserRequest
-	(*CreateUserResponse)(nil),              // 6: vdp.mgmt.v1alpha.CreateUserResponse
-	(*GetUserRequest)(nil),                  // 7: vdp.mgmt.v1alpha.GetUserRequest
-	(*GetUserResponse)(nil),                 // 8: vdp.mgmt.v1alpha.GetUserResponse
-	(*UpdateUserRequest)(nil),               // 9: vdp.mgmt.v1alpha.UpdateUserRequest
-	(*UpdateUserResponse)(nil),              // 10: vdp.mgmt.v1alpha.UpdateUserResponse
-	(*DeleteUserRequest)(nil),               // 11: vdp.mgmt.v1alpha.DeleteUserRequest
-	(*DeleteUserResponse)(nil),              // 12: vdp.mgmt.v1alpha.DeleteUserResponse
-	(*LookUpUserRequest)(nil),               // 13: vdp.mgmt.v1alpha.LookUpUserRequest
-	(*LookUpUserResponse)(nil),              // 14: vdp.mgmt.v1alpha.LookUpUserResponse
-	(*GetAuthenticatedUserRequest)(nil),     // 15: vdp.mgmt.v1alpha.GetAuthenticatedUserRequest
-	(*GetAuthenticatedUserResponse)(nil),    // 16: vdp.mgmt.v1alpha.GetAuthenticatedUserResponse
-	(*UpdateAuthenticatedUserRequest)(nil),  // 17: vdp.mgmt.v1alpha.UpdateAuthenticatedUserRequest
-	(*UpdateAuthenticatedUserResponse)(nil), // 18: vdp.mgmt.v1alpha.UpdateAuthenticatedUserResponse
-	(*ExistUsernameRequest)(nil),            // 19: vdp.mgmt.v1alpha.ExistUsernameRequest
-	(*ExistUsernameResponse)(nil),           // 20: vdp.mgmt.v1alpha.ExistUsernameResponse
-	(*timestamppb.Timestamp)(nil),           // 21: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil),           // 22: google.protobuf.FieldMask
+	(OwnerType)(0),                         // 0: vdp.mgmt.v1alpha.OwnerType
+	(View)(0),                              // 1: vdp.mgmt.v1alpha.View
+	(*User)(nil),                           // 2: vdp.mgmt.v1alpha.User
+	(*ListUsersAdminRequest)(nil),          // 3: vdp.mgmt.v1alpha.ListUsersAdminRequest
+	(*ListUsersAdminResponse)(nil),         // 4: vdp.mgmt.v1alpha.ListUsersAdminResponse
+	(*CreateUserAdminRequest)(nil),         // 5: vdp.mgmt.v1alpha.CreateUserAdminRequest
+	(*CreateUserAdminResponse)(nil),        // 6: vdp.mgmt.v1alpha.CreateUserAdminResponse
+	(*GetUserAdminRequest)(nil),            // 7: vdp.mgmt.v1alpha.GetUserAdminRequest
+	(*GetUserAdminResponse)(nil),           // 8: vdp.mgmt.v1alpha.GetUserAdminResponse
+	(*UpdateUserAdminRequest)(nil),         // 9: vdp.mgmt.v1alpha.UpdateUserAdminRequest
+	(*UpdateUserAdminResponse)(nil),        // 10: vdp.mgmt.v1alpha.UpdateUserAdminResponse
+	(*DeleteUserAdminRequest)(nil),         // 11: vdp.mgmt.v1alpha.DeleteUserAdminRequest
+	(*DeleteUserAdminResponse)(nil),        // 12: vdp.mgmt.v1alpha.DeleteUserAdminResponse
+	(*LookUpUserAdminRequest)(nil),         // 13: vdp.mgmt.v1alpha.LookUpUserAdminRequest
+	(*LookUpUserAdminResponse)(nil),        // 14: vdp.mgmt.v1alpha.LookUpUserAdminResponse
+	(*QueryAuthenticatedUserRequest)(nil),  // 15: vdp.mgmt.v1alpha.QueryAuthenticatedUserRequest
+	(*QueryAuthenticatedUserResponse)(nil), // 16: vdp.mgmt.v1alpha.QueryAuthenticatedUserResponse
+	(*PatchAuthenticatedUserRequest)(nil),  // 17: vdp.mgmt.v1alpha.PatchAuthenticatedUserRequest
+	(*PatchAuthenticatedUserResponse)(nil), // 18: vdp.mgmt.v1alpha.PatchAuthenticatedUserResponse
+	(*ExistUsernameRequest)(nil),           // 19: vdp.mgmt.v1alpha.ExistUsernameRequest
+	(*ExistUsernameResponse)(nil),          // 20: vdp.mgmt.v1alpha.ExistUsernameResponse
+	(*timestamppb.Timestamp)(nil),          // 21: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil),          // 22: google.protobuf.FieldMask
 }
 var file_vdp_mgmt_v1alpha_mgmt_proto_depIdxs = []int32{
 	0,  // 0: vdp.mgmt.v1alpha.User.type:type_name -> vdp.mgmt.v1alpha.OwnerType
 	21, // 1: vdp.mgmt.v1alpha.User.create_time:type_name -> google.protobuf.Timestamp
 	21, // 2: vdp.mgmt.v1alpha.User.update_time:type_name -> google.protobuf.Timestamp
-	1,  // 3: vdp.mgmt.v1alpha.ListUserRequest.view:type_name -> vdp.mgmt.v1alpha.View
-	2,  // 4: vdp.mgmt.v1alpha.ListUserResponse.users:type_name -> vdp.mgmt.v1alpha.User
-	2,  // 5: vdp.mgmt.v1alpha.CreateUserRequest.user:type_name -> vdp.mgmt.v1alpha.User
-	2,  // 6: vdp.mgmt.v1alpha.CreateUserResponse.user:type_name -> vdp.mgmt.v1alpha.User
-	1,  // 7: vdp.mgmt.v1alpha.GetUserRequest.view:type_name -> vdp.mgmt.v1alpha.View
-	2,  // 8: vdp.mgmt.v1alpha.GetUserResponse.user:type_name -> vdp.mgmt.v1alpha.User
-	2,  // 9: vdp.mgmt.v1alpha.UpdateUserRequest.user:type_name -> vdp.mgmt.v1alpha.User
-	22, // 10: vdp.mgmt.v1alpha.UpdateUserRequest.update_mask:type_name -> google.protobuf.FieldMask
-	2,  // 11: vdp.mgmt.v1alpha.UpdateUserResponse.user:type_name -> vdp.mgmt.v1alpha.User
-	1,  // 12: vdp.mgmt.v1alpha.LookUpUserRequest.view:type_name -> vdp.mgmt.v1alpha.View
-	2,  // 13: vdp.mgmt.v1alpha.LookUpUserResponse.user:type_name -> vdp.mgmt.v1alpha.User
-	2,  // 14: vdp.mgmt.v1alpha.GetAuthenticatedUserResponse.user:type_name -> vdp.mgmt.v1alpha.User
-	2,  // 15: vdp.mgmt.v1alpha.UpdateAuthenticatedUserRequest.user:type_name -> vdp.mgmt.v1alpha.User
-	22, // 16: vdp.mgmt.v1alpha.UpdateAuthenticatedUserRequest.update_mask:type_name -> google.protobuf.FieldMask
-	2,  // 17: vdp.mgmt.v1alpha.UpdateAuthenticatedUserResponse.user:type_name -> vdp.mgmt.v1alpha.User
+	1,  // 3: vdp.mgmt.v1alpha.ListUsersAdminRequest.view:type_name -> vdp.mgmt.v1alpha.View
+	2,  // 4: vdp.mgmt.v1alpha.ListUsersAdminResponse.users:type_name -> vdp.mgmt.v1alpha.User
+	2,  // 5: vdp.mgmt.v1alpha.CreateUserAdminRequest.user:type_name -> vdp.mgmt.v1alpha.User
+	2,  // 6: vdp.mgmt.v1alpha.CreateUserAdminResponse.user:type_name -> vdp.mgmt.v1alpha.User
+	1,  // 7: vdp.mgmt.v1alpha.GetUserAdminRequest.view:type_name -> vdp.mgmt.v1alpha.View
+	2,  // 8: vdp.mgmt.v1alpha.GetUserAdminResponse.user:type_name -> vdp.mgmt.v1alpha.User
+	2,  // 9: vdp.mgmt.v1alpha.UpdateUserAdminRequest.user:type_name -> vdp.mgmt.v1alpha.User
+	22, // 10: vdp.mgmt.v1alpha.UpdateUserAdminRequest.update_mask:type_name -> google.protobuf.FieldMask
+	2,  // 11: vdp.mgmt.v1alpha.UpdateUserAdminResponse.user:type_name -> vdp.mgmt.v1alpha.User
+	1,  // 12: vdp.mgmt.v1alpha.LookUpUserAdminRequest.view:type_name -> vdp.mgmt.v1alpha.View
+	2,  // 13: vdp.mgmt.v1alpha.LookUpUserAdminResponse.user:type_name -> vdp.mgmt.v1alpha.User
+	2,  // 14: vdp.mgmt.v1alpha.QueryAuthenticatedUserResponse.user:type_name -> vdp.mgmt.v1alpha.User
+	2,  // 15: vdp.mgmt.v1alpha.PatchAuthenticatedUserRequest.user:type_name -> vdp.mgmt.v1alpha.User
+	22, // 16: vdp.mgmt.v1alpha.PatchAuthenticatedUserRequest.update_mask:type_name -> google.protobuf.FieldMask
+	2,  // 17: vdp.mgmt.v1alpha.PatchAuthenticatedUserResponse.user:type_name -> vdp.mgmt.v1alpha.User
 	18, // [18:18] is the sub-list for method output_type
 	18, // [18:18] is the sub-list for method input_type
 	18, // [18:18] is the sub-list for extension type_name
@@ -1563,7 +1567,7 @@ func file_vdp_mgmt_v1alpha_mgmt_proto_init() {
 			}
 		}
 		file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListUserRequest); i {
+			switch v := v.(*ListUsersAdminRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1575,7 +1579,7 @@ func file_vdp_mgmt_v1alpha_mgmt_proto_init() {
 			}
 		}
 		file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListUserResponse); i {
+			switch v := v.(*ListUsersAdminResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1587,7 +1591,7 @@ func file_vdp_mgmt_v1alpha_mgmt_proto_init() {
 			}
 		}
 		file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateUserRequest); i {
+			switch v := v.(*CreateUserAdminRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1599,7 +1603,7 @@ func file_vdp_mgmt_v1alpha_mgmt_proto_init() {
 			}
 		}
 		file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateUserResponse); i {
+			switch v := v.(*CreateUserAdminResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1611,7 +1615,7 @@ func file_vdp_mgmt_v1alpha_mgmt_proto_init() {
 			}
 		}
 		file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetUserRequest); i {
+			switch v := v.(*GetUserAdminRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1623,7 +1627,7 @@ func file_vdp_mgmt_v1alpha_mgmt_proto_init() {
 			}
 		}
 		file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetUserResponse); i {
+			switch v := v.(*GetUserAdminResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1635,7 +1639,7 @@ func file_vdp_mgmt_v1alpha_mgmt_proto_init() {
 			}
 		}
 		file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateUserRequest); i {
+			switch v := v.(*UpdateUserAdminRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1647,7 +1651,7 @@ func file_vdp_mgmt_v1alpha_mgmt_proto_init() {
 			}
 		}
 		file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateUserResponse); i {
+			switch v := v.(*UpdateUserAdminResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1659,7 +1663,7 @@ func file_vdp_mgmt_v1alpha_mgmt_proto_init() {
 			}
 		}
 		file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteUserRequest); i {
+			switch v := v.(*DeleteUserAdminRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1671,7 +1675,7 @@ func file_vdp_mgmt_v1alpha_mgmt_proto_init() {
 			}
 		}
 		file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteUserResponse); i {
+			switch v := v.(*DeleteUserAdminResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1683,7 +1687,7 @@ func file_vdp_mgmt_v1alpha_mgmt_proto_init() {
 			}
 		}
 		file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*LookUpUserRequest); i {
+			switch v := v.(*LookUpUserAdminRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1695,7 +1699,7 @@ func file_vdp_mgmt_v1alpha_mgmt_proto_init() {
 			}
 		}
 		file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*LookUpUserResponse); i {
+			switch v := v.(*LookUpUserAdminResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1707,7 +1711,7 @@ func file_vdp_mgmt_v1alpha_mgmt_proto_init() {
 			}
 		}
 		file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetAuthenticatedUserRequest); i {
+			switch v := v.(*QueryAuthenticatedUserRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1719,7 +1723,7 @@ func file_vdp_mgmt_v1alpha_mgmt_proto_init() {
 			}
 		}
 		file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetAuthenticatedUserResponse); i {
+			switch v := v.(*QueryAuthenticatedUserResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1731,7 +1735,7 @@ func file_vdp_mgmt_v1alpha_mgmt_proto_init() {
 			}
 		}
 		file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateAuthenticatedUserRequest); i {
+			switch v := v.(*PatchAuthenticatedUserRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1743,7 +1747,7 @@ func file_vdp_mgmt_v1alpha_mgmt_proto_init() {
 			}
 		}
 		file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateAuthenticatedUserResponse); i {
+			switch v := v.(*PatchAuthenticatedUserResponse); i {
 			case 0:
 				return &v.state
 			case 1:

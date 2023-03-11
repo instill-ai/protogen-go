@@ -26,12 +26,12 @@ type MgmtPublicServiceClient interface {
 	// ReadinessResponse message.
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error)
-	// GetAuthenticatedUser method receives a GetAuthenticatedUserRequest message and returns
-	// a GetAuthenticatedUserResponse message.
-	GetAuthenticatedUser(ctx context.Context, in *GetAuthenticatedUserRequest, opts ...grpc.CallOption) (*GetAuthenticatedUserResponse, error)
-	// UpdateAuthenticatedUser method receives a UpdateAuthenticatedUserRequest message and returns
-	// a UpdateAuthenticatedUserResponse message.
-	UpdateAuthenticatedUser(ctx context.Context, in *UpdateAuthenticatedUserRequest, opts ...grpc.CallOption) (*UpdateAuthenticatedUserResponse, error)
+	// QueryAuthenticatedUser method receives a QueryAuthenticatedUserRequest message and returns
+	// a QueryAuthenticatedUserResponse message.
+	QueryAuthenticatedUser(ctx context.Context, in *QueryAuthenticatedUserRequest, opts ...grpc.CallOption) (*QueryAuthenticatedUserResponse, error)
+	// PatchAuthenticatedUser method receives a PatchAuthenticatedUserRequest message and returns
+	// a PatchAuthenticatedUserResponse message.
+	PatchAuthenticatedUser(ctx context.Context, in *PatchAuthenticatedUserRequest, opts ...grpc.CallOption) (*PatchAuthenticatedUserResponse, error)
 	// ExistUsername method receives a ExistUsernameRequest message and returns a
 	// ExistUsernameResponse
 	ExistUsername(ctx context.Context, in *ExistUsernameRequest, opts ...grpc.CallOption) (*ExistUsernameResponse, error)
@@ -63,18 +63,18 @@ func (c *mgmtPublicServiceClient) Readiness(ctx context.Context, in *ReadinessRe
 	return out, nil
 }
 
-func (c *mgmtPublicServiceClient) GetAuthenticatedUser(ctx context.Context, in *GetAuthenticatedUserRequest, opts ...grpc.CallOption) (*GetAuthenticatedUserResponse, error) {
-	out := new(GetAuthenticatedUserResponse)
-	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.MgmtPublicService/GetAuthenticatedUser", in, out, opts...)
+func (c *mgmtPublicServiceClient) QueryAuthenticatedUser(ctx context.Context, in *QueryAuthenticatedUserRequest, opts ...grpc.CallOption) (*QueryAuthenticatedUserResponse, error) {
+	out := new(QueryAuthenticatedUserResponse)
+	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.MgmtPublicService/QueryAuthenticatedUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *mgmtPublicServiceClient) UpdateAuthenticatedUser(ctx context.Context, in *UpdateAuthenticatedUserRequest, opts ...grpc.CallOption) (*UpdateAuthenticatedUserResponse, error) {
-	out := new(UpdateAuthenticatedUserResponse)
-	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.MgmtPublicService/UpdateAuthenticatedUser", in, out, opts...)
+func (c *mgmtPublicServiceClient) PatchAuthenticatedUser(ctx context.Context, in *PatchAuthenticatedUserRequest, opts ...grpc.CallOption) (*PatchAuthenticatedUserResponse, error) {
+	out := new(PatchAuthenticatedUserResponse)
+	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.MgmtPublicService/PatchAuthenticatedUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -102,12 +102,12 @@ type MgmtPublicServiceServer interface {
 	// ReadinessResponse message.
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error)
-	// GetAuthenticatedUser method receives a GetAuthenticatedUserRequest message and returns
-	// a GetAuthenticatedUserResponse message.
-	GetAuthenticatedUser(context.Context, *GetAuthenticatedUserRequest) (*GetAuthenticatedUserResponse, error)
-	// UpdateAuthenticatedUser method receives a UpdateAuthenticatedUserRequest message and returns
-	// a UpdateAuthenticatedUserResponse message.
-	UpdateAuthenticatedUser(context.Context, *UpdateAuthenticatedUserRequest) (*UpdateAuthenticatedUserResponse, error)
+	// QueryAuthenticatedUser method receives a QueryAuthenticatedUserRequest message and returns
+	// a QueryAuthenticatedUserResponse message.
+	QueryAuthenticatedUser(context.Context, *QueryAuthenticatedUserRequest) (*QueryAuthenticatedUserResponse, error)
+	// PatchAuthenticatedUser method receives a PatchAuthenticatedUserRequest message and returns
+	// a PatchAuthenticatedUserResponse message.
+	PatchAuthenticatedUser(context.Context, *PatchAuthenticatedUserRequest) (*PatchAuthenticatedUserResponse, error)
 	// ExistUsername method receives a ExistUsernameRequest message and returns a
 	// ExistUsernameResponse
 	ExistUsername(context.Context, *ExistUsernameRequest) (*ExistUsernameResponse, error)
@@ -123,11 +123,11 @@ func (UnimplementedMgmtPublicServiceServer) Liveness(context.Context, *LivenessR
 func (UnimplementedMgmtPublicServiceServer) Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Readiness not implemented")
 }
-func (UnimplementedMgmtPublicServiceServer) GetAuthenticatedUser(context.Context, *GetAuthenticatedUserRequest) (*GetAuthenticatedUserResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAuthenticatedUser not implemented")
+func (UnimplementedMgmtPublicServiceServer) QueryAuthenticatedUser(context.Context, *QueryAuthenticatedUserRequest) (*QueryAuthenticatedUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method QueryAuthenticatedUser not implemented")
 }
-func (UnimplementedMgmtPublicServiceServer) UpdateAuthenticatedUser(context.Context, *UpdateAuthenticatedUserRequest) (*UpdateAuthenticatedUserResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateAuthenticatedUser not implemented")
+func (UnimplementedMgmtPublicServiceServer) PatchAuthenticatedUser(context.Context, *PatchAuthenticatedUserRequest) (*PatchAuthenticatedUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PatchAuthenticatedUser not implemented")
 }
 func (UnimplementedMgmtPublicServiceServer) ExistUsername(context.Context, *ExistUsernameRequest) (*ExistUsernameResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ExistUsername not implemented")
@@ -180,38 +180,38 @@ func _MgmtPublicService_Readiness_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MgmtPublicService_GetAuthenticatedUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetAuthenticatedUserRequest)
+func _MgmtPublicService_QueryAuthenticatedUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAuthenticatedUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).GetAuthenticatedUser(ctx, in)
+		return srv.(MgmtPublicServiceServer).QueryAuthenticatedUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.mgmt.v1alpha.MgmtPublicService/GetAuthenticatedUser",
+		FullMethod: "/vdp.mgmt.v1alpha.MgmtPublicService/QueryAuthenticatedUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).GetAuthenticatedUser(ctx, req.(*GetAuthenticatedUserRequest))
+		return srv.(MgmtPublicServiceServer).QueryAuthenticatedUser(ctx, req.(*QueryAuthenticatedUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MgmtPublicService_UpdateAuthenticatedUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateAuthenticatedUserRequest)
+func _MgmtPublicService_PatchAuthenticatedUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PatchAuthenticatedUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).UpdateAuthenticatedUser(ctx, in)
+		return srv.(MgmtPublicServiceServer).PatchAuthenticatedUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.mgmt.v1alpha.MgmtPublicService/UpdateAuthenticatedUser",
+		FullMethod: "/vdp.mgmt.v1alpha.MgmtPublicService/PatchAuthenticatedUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).UpdateAuthenticatedUser(ctx, req.(*UpdateAuthenticatedUserRequest))
+		return srv.(MgmtPublicServiceServer).PatchAuthenticatedUser(ctx, req.(*PatchAuthenticatedUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -250,12 +250,12 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MgmtPublicService_Readiness_Handler,
 		},
 		{
-			MethodName: "GetAuthenticatedUser",
-			Handler:    _MgmtPublicService_GetAuthenticatedUser_Handler,
+			MethodName: "QueryAuthenticatedUser",
+			Handler:    _MgmtPublicService_QueryAuthenticatedUser_Handler,
 		},
 		{
-			MethodName: "UpdateAuthenticatedUser",
-			Handler:    _MgmtPublicService_UpdateAuthenticatedUser_Handler,
+			MethodName: "PatchAuthenticatedUser",
+			Handler:    _MgmtPublicService_PatchAuthenticatedUser_Handler,
 		},
 		{
 			MethodName: "ExistUsername",
