@@ -26,15 +26,15 @@ type ModelPublicServiceClient interface {
 	// ReadinessResponse message.
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error)
-	// ListModelDefinition method receives a ListModelDefinitionRequest message
-	// and returns a ListModelDefinitionResponse
-	ListModelDefinition(ctx context.Context, in *ListModelDefinitionRequest, opts ...grpc.CallOption) (*ListModelDefinitionResponse, error)
+	// ListModelDefinitions method receives a ListModelDefinitionsRequest message
+	// and returns a ListModelDefinitionsResponse
+	ListModelDefinitions(ctx context.Context, in *ListModelDefinitionsRequest, opts ...grpc.CallOption) (*ListModelDefinitionsResponse, error)
 	// GetModelDefinition method receives a GetModelDefinitionRequest message and
 	// returns a GetModelDefinitionResponse
 	GetModelDefinition(ctx context.Context, in *GetModelDefinitionRequest, opts ...grpc.CallOption) (*GetModelDefinitionResponse, error)
-	// ListModel method receives a ListModelRequest message and returns a
-	// ListModelResponse
-	ListModel(ctx context.Context, in *ListModelRequest, opts ...grpc.CallOption) (*ListModelResponse, error)
+	// ListModels method receives a ListModelsRequest message and returns a
+	// ListModelsResponse
+	ListModels(ctx context.Context, in *ListModelsRequest, opts ...grpc.CallOption) (*ListModelsResponse, error)
 	// CreateModel method receives a CreateModelRequest message and returns a
 	// CreateModelResponse
 	CreateModel(ctx context.Context, in *CreateModelRequest, opts ...grpc.CallOption) (*CreateModelResponse, error)
@@ -64,9 +64,9 @@ type ModelPublicServiceClient interface {
 	// UnpublishModel method receives a UnpublishModelRequest message and returns
 	// a UnpublishModelResponse
 	UnpublishModel(ctx context.Context, in *UnpublishModelRequest, opts ...grpc.CallOption) (*UnpublishModelResponse, error)
-	// ListModelInstance method receives a ListModelInstanceRequest message and
-	// returns a ListModelInstanceResponse
-	ListModelInstance(ctx context.Context, in *ListModelInstanceRequest, opts ...grpc.CallOption) (*ListModelInstanceResponse, error)
+	// ListModelInstances method receives a ListModelInstancesRequest message and
+	// returns a ListModelInstancesResponse
+	ListModelInstances(ctx context.Context, in *ListModelInstancesRequest, opts ...grpc.CallOption) (*ListModelInstancesResponse, error)
 	// GetModelInstance method receives a GetModelInstanceRequest message and
 	// returns a GetModelInstanceResponse
 	GetModelInstance(ctx context.Context, in *GetModelInstanceRequest, opts ...grpc.CallOption) (*GetModelInstanceResponse, error)
@@ -105,9 +105,9 @@ type ModelPublicServiceClient interface {
 	// GetModelOperationRequest message and returns a
 	// GetModelOperationResponse message.
 	GetModelOperation(ctx context.Context, in *GetModelOperationRequest, opts ...grpc.CallOption) (*GetModelOperationResponse, error)
-	// ListModelOperation method receives a ListModelOperationRequest message
-	// and returns a ListModelOperationResponse
-	ListModelOperation(ctx context.Context, in *ListModelOperationRequest, opts ...grpc.CallOption) (*ListModelOperationResponse, error)
+	// ListModelOperations method receives a ListModelOperationsRequest message
+	// and returns a ListModelOperationsResponse
+	ListModelOperations(ctx context.Context, in *ListModelOperationsRequest, opts ...grpc.CallOption) (*ListModelOperationsResponse, error)
 	// CancelModelOperation method receives a CancelModelOperationRequest message
 	// and returns a CancelModelOperationResponse
 	CancelModelOperation(ctx context.Context, in *CancelModelOperationRequest, opts ...grpc.CallOption) (*CancelModelOperationResponse, error)
@@ -139,9 +139,9 @@ func (c *modelPublicServiceClient) Readiness(ctx context.Context, in *ReadinessR
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) ListModelDefinition(ctx context.Context, in *ListModelDefinitionRequest, opts ...grpc.CallOption) (*ListModelDefinitionResponse, error) {
-	out := new(ListModelDefinitionResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/ListModelDefinition", in, out, opts...)
+func (c *modelPublicServiceClient) ListModelDefinitions(ctx context.Context, in *ListModelDefinitionsRequest, opts ...grpc.CallOption) (*ListModelDefinitionsResponse, error) {
+	out := new(ListModelDefinitionsResponse)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/ListModelDefinitions", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -157,9 +157,9 @@ func (c *modelPublicServiceClient) GetModelDefinition(ctx context.Context, in *G
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) ListModel(ctx context.Context, in *ListModelRequest, opts ...grpc.CallOption) (*ListModelResponse, error) {
-	out := new(ListModelResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/ListModel", in, out, opts...)
+func (c *modelPublicServiceClient) ListModels(ctx context.Context, in *ListModelsRequest, opts ...grpc.CallOption) (*ListModelsResponse, error) {
+	out := new(ListModelsResponse)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/ListModels", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -272,9 +272,9 @@ func (c *modelPublicServiceClient) UnpublishModel(ctx context.Context, in *Unpub
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) ListModelInstance(ctx context.Context, in *ListModelInstanceRequest, opts ...grpc.CallOption) (*ListModelInstanceResponse, error) {
-	out := new(ListModelInstanceResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/ListModelInstance", in, out, opts...)
+func (c *modelPublicServiceClient) ListModelInstances(ctx context.Context, in *ListModelInstancesRequest, opts ...grpc.CallOption) (*ListModelInstancesResponse, error) {
+	out := new(ListModelInstancesResponse)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/ListModelInstances", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -421,9 +421,9 @@ func (c *modelPublicServiceClient) GetModelOperation(ctx context.Context, in *Ge
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) ListModelOperation(ctx context.Context, in *ListModelOperationRequest, opts ...grpc.CallOption) (*ListModelOperationResponse, error) {
-	out := new(ListModelOperationResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/ListModelOperation", in, out, opts...)
+func (c *modelPublicServiceClient) ListModelOperations(ctx context.Context, in *ListModelOperationsRequest, opts ...grpc.CallOption) (*ListModelOperationsResponse, error) {
+	out := new(ListModelOperationsResponse)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/ListModelOperations", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -451,15 +451,15 @@ type ModelPublicServiceServer interface {
 	// ReadinessResponse message.
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error)
-	// ListModelDefinition method receives a ListModelDefinitionRequest message
-	// and returns a ListModelDefinitionResponse
-	ListModelDefinition(context.Context, *ListModelDefinitionRequest) (*ListModelDefinitionResponse, error)
+	// ListModelDefinitions method receives a ListModelDefinitionsRequest message
+	// and returns a ListModelDefinitionsResponse
+	ListModelDefinitions(context.Context, *ListModelDefinitionsRequest) (*ListModelDefinitionsResponse, error)
 	// GetModelDefinition method receives a GetModelDefinitionRequest message and
 	// returns a GetModelDefinitionResponse
 	GetModelDefinition(context.Context, *GetModelDefinitionRequest) (*GetModelDefinitionResponse, error)
-	// ListModel method receives a ListModelRequest message and returns a
-	// ListModelResponse
-	ListModel(context.Context, *ListModelRequest) (*ListModelResponse, error)
+	// ListModels method receives a ListModelsRequest message and returns a
+	// ListModelsResponse
+	ListModels(context.Context, *ListModelsRequest) (*ListModelsResponse, error)
 	// CreateModel method receives a CreateModelRequest message and returns a
 	// CreateModelResponse
 	CreateModel(context.Context, *CreateModelRequest) (*CreateModelResponse, error)
@@ -489,9 +489,9 @@ type ModelPublicServiceServer interface {
 	// UnpublishModel method receives a UnpublishModelRequest message and returns
 	// a UnpublishModelResponse
 	UnpublishModel(context.Context, *UnpublishModelRequest) (*UnpublishModelResponse, error)
-	// ListModelInstance method receives a ListModelInstanceRequest message and
-	// returns a ListModelInstanceResponse
-	ListModelInstance(context.Context, *ListModelInstanceRequest) (*ListModelInstanceResponse, error)
+	// ListModelInstances method receives a ListModelInstancesRequest message and
+	// returns a ListModelInstancesResponse
+	ListModelInstances(context.Context, *ListModelInstancesRequest) (*ListModelInstancesResponse, error)
 	// GetModelInstance method receives a GetModelInstanceRequest message and
 	// returns a GetModelInstanceResponse
 	GetModelInstance(context.Context, *GetModelInstanceRequest) (*GetModelInstanceResponse, error)
@@ -530,9 +530,9 @@ type ModelPublicServiceServer interface {
 	// GetModelOperationRequest message and returns a
 	// GetModelOperationResponse message.
 	GetModelOperation(context.Context, *GetModelOperationRequest) (*GetModelOperationResponse, error)
-	// ListModelOperation method receives a ListModelOperationRequest message
-	// and returns a ListModelOperationResponse
-	ListModelOperation(context.Context, *ListModelOperationRequest) (*ListModelOperationResponse, error)
+	// ListModelOperations method receives a ListModelOperationsRequest message
+	// and returns a ListModelOperationsResponse
+	ListModelOperations(context.Context, *ListModelOperationsRequest) (*ListModelOperationsResponse, error)
 	// CancelModelOperation method receives a CancelModelOperationRequest message
 	// and returns a CancelModelOperationResponse
 	CancelModelOperation(context.Context, *CancelModelOperationRequest) (*CancelModelOperationResponse, error)
@@ -548,14 +548,14 @@ func (UnimplementedModelPublicServiceServer) Liveness(context.Context, *Liveness
 func (UnimplementedModelPublicServiceServer) Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Readiness not implemented")
 }
-func (UnimplementedModelPublicServiceServer) ListModelDefinition(context.Context, *ListModelDefinitionRequest) (*ListModelDefinitionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListModelDefinition not implemented")
+func (UnimplementedModelPublicServiceServer) ListModelDefinitions(context.Context, *ListModelDefinitionsRequest) (*ListModelDefinitionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListModelDefinitions not implemented")
 }
 func (UnimplementedModelPublicServiceServer) GetModelDefinition(context.Context, *GetModelDefinitionRequest) (*GetModelDefinitionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetModelDefinition not implemented")
 }
-func (UnimplementedModelPublicServiceServer) ListModel(context.Context, *ListModelRequest) (*ListModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListModel not implemented")
+func (UnimplementedModelPublicServiceServer) ListModels(context.Context, *ListModelsRequest) (*ListModelsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListModels not implemented")
 }
 func (UnimplementedModelPublicServiceServer) CreateModel(context.Context, *CreateModelRequest) (*CreateModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateModel not implemented")
@@ -584,8 +584,8 @@ func (UnimplementedModelPublicServiceServer) PublishModel(context.Context, *Publ
 func (UnimplementedModelPublicServiceServer) UnpublishModel(context.Context, *UnpublishModelRequest) (*UnpublishModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UnpublishModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) ListModelInstance(context.Context, *ListModelInstanceRequest) (*ListModelInstanceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListModelInstance not implemented")
+func (UnimplementedModelPublicServiceServer) ListModelInstances(context.Context, *ListModelInstancesRequest) (*ListModelInstancesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListModelInstances not implemented")
 }
 func (UnimplementedModelPublicServiceServer) GetModelInstance(context.Context, *GetModelInstanceRequest) (*GetModelInstanceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetModelInstance not implemented")
@@ -617,8 +617,8 @@ func (UnimplementedModelPublicServiceServer) TestModelInstanceBinaryFileUpload(M
 func (UnimplementedModelPublicServiceServer) GetModelOperation(context.Context, *GetModelOperationRequest) (*GetModelOperationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetModelOperation not implemented")
 }
-func (UnimplementedModelPublicServiceServer) ListModelOperation(context.Context, *ListModelOperationRequest) (*ListModelOperationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListModelOperation not implemented")
+func (UnimplementedModelPublicServiceServer) ListModelOperations(context.Context, *ListModelOperationsRequest) (*ListModelOperationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListModelOperations not implemented")
 }
 func (UnimplementedModelPublicServiceServer) CancelModelOperation(context.Context, *CancelModelOperationRequest) (*CancelModelOperationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelModelOperation not implemented")
@@ -671,20 +671,20 @@ func _ModelPublicService_Readiness_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_ListModelDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListModelDefinitionRequest)
+func _ModelPublicService_ListModelDefinitions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListModelDefinitionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).ListModelDefinition(ctx, in)
+		return srv.(ModelPublicServiceServer).ListModelDefinitions(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelPublicService/ListModelDefinition",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/ListModelDefinitions",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).ListModelDefinition(ctx, req.(*ListModelDefinitionRequest))
+		return srv.(ModelPublicServiceServer).ListModelDefinitions(ctx, req.(*ListModelDefinitionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -707,20 +707,20 @@ func _ModelPublicService_GetModelDefinition_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_ListModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListModelRequest)
+func _ModelPublicService_ListModels_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListModelsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).ListModel(ctx, in)
+		return srv.(ModelPublicServiceServer).ListModels(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelPublicService/ListModel",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/ListModels",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).ListModel(ctx, req.(*ListModelRequest))
+		return srv.(ModelPublicServiceServer).ListModels(ctx, req.(*ListModelsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -895,20 +895,20 @@ func _ModelPublicService_UnpublishModel_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_ListModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListModelInstanceRequest)
+func _ModelPublicService_ListModelInstances_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListModelInstancesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).ListModelInstance(ctx, in)
+		return srv.(ModelPublicServiceServer).ListModelInstances(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelPublicService/ListModelInstance",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/ListModelInstances",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).ListModelInstance(ctx, req.(*ListModelInstanceRequest))
+		return srv.(ModelPublicServiceServer).ListModelInstances(ctx, req.(*ListModelInstancesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1109,20 +1109,20 @@ func _ModelPublicService_GetModelOperation_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_ListModelOperation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListModelOperationRequest)
+func _ModelPublicService_ListModelOperations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListModelOperationsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).ListModelOperation(ctx, in)
+		return srv.(ModelPublicServiceServer).ListModelOperations(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelPublicService/ListModelOperation",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/ListModelOperations",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).ListModelOperation(ctx, req.(*ListModelOperationRequest))
+		return srv.(ModelPublicServiceServer).ListModelOperations(ctx, req.(*ListModelOperationsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1161,16 +1161,16 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ModelPublicService_Readiness_Handler,
 		},
 		{
-			MethodName: "ListModelDefinition",
-			Handler:    _ModelPublicService_ListModelDefinition_Handler,
+			MethodName: "ListModelDefinitions",
+			Handler:    _ModelPublicService_ListModelDefinitions_Handler,
 		},
 		{
 			MethodName: "GetModelDefinition",
 			Handler:    _ModelPublicService_GetModelDefinition_Handler,
 		},
 		{
-			MethodName: "ListModel",
-			Handler:    _ModelPublicService_ListModel_Handler,
+			MethodName: "ListModels",
+			Handler:    _ModelPublicService_ListModels_Handler,
 		},
 		{
 			MethodName: "CreateModel",
@@ -1205,8 +1205,8 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ModelPublicService_UnpublishModel_Handler,
 		},
 		{
-			MethodName: "ListModelInstance",
-			Handler:    _ModelPublicService_ListModelInstance_Handler,
+			MethodName: "ListModelInstances",
+			Handler:    _ModelPublicService_ListModelInstances_Handler,
 		},
 		{
 			MethodName: "GetModelInstance",
@@ -1241,8 +1241,8 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ModelPublicService_GetModelOperation_Handler,
 		},
 		{
-			MethodName: "ListModelOperation",
-			Handler:    _ModelPublicService_ListModelOperation_Handler,
+			MethodName: "ListModelOperations",
+			Handler:    _ModelPublicService_ListModelOperations_Handler,
 		},
 		{
 			MethodName: "CancelModelOperation",

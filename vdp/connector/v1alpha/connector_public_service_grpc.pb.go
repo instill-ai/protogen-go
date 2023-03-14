@@ -26,18 +26,18 @@ type ConnectorPublicServiceClient interface {
 	// ReadinessResponse message.
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error)
-	// ListSourceConnectorDefinition method receives a
-	// ListSourceConnectorDefinitionRequest message and returns a
-	// ListSourceConnectorDefinitionResponse message.
-	ListSourceConnectorDefinition(ctx context.Context, in *ListSourceConnectorDefinitionRequest, opts ...grpc.CallOption) (*ListSourceConnectorDefinitionResponse, error)
+	// ListSourceConnectorDefinitions method receives a
+	// ListSourceConnectorDefinitionsRequest message and returns a
+	// ListSourceConnectorDefinitionsResponse message.
+	ListSourceConnectorDefinitions(ctx context.Context, in *ListSourceConnectorDefinitionsRequest, opts ...grpc.CallOption) (*ListSourceConnectorDefinitionsResponse, error)
 	// GetSourceConnectorDefinition method receives a
 	// GetSourceConnectorDefinitionRequest message and returns a
 	// GetGetSourceConnectorDefinitionResponse message.
 	GetSourceConnectorDefinition(ctx context.Context, in *GetSourceConnectorDefinitionRequest, opts ...grpc.CallOption) (*GetSourceConnectorDefinitionResponse, error)
-	// ListDestinationConnectorDefinition method receives a
-	// ListDestinationConnectorDefinitionRequest message and returns a
-	// ListDestinationConnectorDefinitionResponse message.
-	ListDestinationConnectorDefinition(ctx context.Context, in *ListDestinationConnectorDefinitionRequest, opts ...grpc.CallOption) (*ListDestinationConnectorDefinitionResponse, error)
+	// ListDestinationConnectorDefinitions method receives a
+	// ListDestinationConnectorDefinitionsRequest message and returns a
+	// ListDestinationConnectorDefinitionsResponse message.
+	ListDestinationConnectorDefinitions(ctx context.Context, in *ListDestinationConnectorDefinitionsRequest, opts ...grpc.CallOption) (*ListDestinationConnectorDefinitionsResponse, error)
 	// GetDestinationConnectorDefinition method receives a
 	// GetDestinationConnectorDefinitionRequest message and returns a
 	// GetGetDestinationConnectorDefinitionResponse message.
@@ -45,9 +45,9 @@ type ConnectorPublicServiceClient interface {
 	// CreateSourceConnector method receives a CreateSourceConnectorRequest
 	// message and returns a CreateSourceConnectorResponse message.
 	CreateSourceConnector(ctx context.Context, in *CreateSourceConnectorRequest, opts ...grpc.CallOption) (*CreateSourceConnectorResponse, error)
-	// ListSourceConnector method receives a ListSourceConnectorRequest message
-	// and returns a ListSourceConnectorResponse message.
-	ListSourceConnector(ctx context.Context, in *ListSourceConnectorRequest, opts ...grpc.CallOption) (*ListSourceConnectorResponse, error)
+	// ListSourceConnectors method receives a ListSourceConnectorsRequest message
+	// and returns a ListSourceConnectorsResponse message.
+	ListSourceConnectors(ctx context.Context, in *ListSourceConnectorsRequest, opts ...grpc.CallOption) (*ListSourceConnectorsResponse, error)
 	// GetSourceConnector method receives a GetSourceConnectorRequest message and
 	// returns a GetSourceConnectorResponse message.
 	GetSourceConnector(ctx context.Context, in *GetSourceConnectorRequest, opts ...grpc.CallOption) (*GetSourceConnectorResponse, error)
@@ -82,9 +82,9 @@ type ConnectorPublicServiceClient interface {
 	// CreateDestinationConnectorRequest message and returns a
 	// CreateDestinationConnectorResponse message.
 	CreateDestinationConnector(ctx context.Context, in *CreateDestinationConnectorRequest, opts ...grpc.CallOption) (*CreateDestinationConnectorResponse, error)
-	// ListDestinationConnector method receives a ListDestinationConnectorRequest
-	// message and returns a ListDestinationConnectorResponse message.
-	ListDestinationConnector(ctx context.Context, in *ListDestinationConnectorRequest, opts ...grpc.CallOption) (*ListDestinationConnectorResponse, error)
+	// ListDestinationConnectors method receives a ListDestinationConnectorsRequest
+	// message and returns a ListDestinationConnectorsResponse message.
+	ListDestinationConnectors(ctx context.Context, in *ListDestinationConnectorsRequest, opts ...grpc.CallOption) (*ListDestinationConnectorsResponse, error)
 	// GetDestinationConnector method receives a GetDestinationConnectorRequest
 	// message and returns a GetDestinationConnectorResponse message.
 	GetDestinationConnector(ctx context.Context, in *GetDestinationConnectorRequest, opts ...grpc.CallOption) (*GetDestinationConnectorResponse, error)
@@ -148,9 +148,9 @@ func (c *connectorPublicServiceClient) Readiness(ctx context.Context, in *Readin
 	return out, nil
 }
 
-func (c *connectorPublicServiceClient) ListSourceConnectorDefinition(ctx context.Context, in *ListSourceConnectorDefinitionRequest, opts ...grpc.CallOption) (*ListSourceConnectorDefinitionResponse, error) {
-	out := new(ListSourceConnectorDefinitionResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/ListSourceConnectorDefinition", in, out, opts...)
+func (c *connectorPublicServiceClient) ListSourceConnectorDefinitions(ctx context.Context, in *ListSourceConnectorDefinitionsRequest, opts ...grpc.CallOption) (*ListSourceConnectorDefinitionsResponse, error) {
+	out := new(ListSourceConnectorDefinitionsResponse)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/ListSourceConnectorDefinitions", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -166,9 +166,9 @@ func (c *connectorPublicServiceClient) GetSourceConnectorDefinition(ctx context.
 	return out, nil
 }
 
-func (c *connectorPublicServiceClient) ListDestinationConnectorDefinition(ctx context.Context, in *ListDestinationConnectorDefinitionRequest, opts ...grpc.CallOption) (*ListDestinationConnectorDefinitionResponse, error) {
-	out := new(ListDestinationConnectorDefinitionResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/ListDestinationConnectorDefinition", in, out, opts...)
+func (c *connectorPublicServiceClient) ListDestinationConnectorDefinitions(ctx context.Context, in *ListDestinationConnectorDefinitionsRequest, opts ...grpc.CallOption) (*ListDestinationConnectorDefinitionsResponse, error) {
+	out := new(ListDestinationConnectorDefinitionsResponse)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/ListDestinationConnectorDefinitions", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -193,9 +193,9 @@ func (c *connectorPublicServiceClient) CreateSourceConnector(ctx context.Context
 	return out, nil
 }
 
-func (c *connectorPublicServiceClient) ListSourceConnector(ctx context.Context, in *ListSourceConnectorRequest, opts ...grpc.CallOption) (*ListSourceConnectorResponse, error) {
-	out := new(ListSourceConnectorResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/ListSourceConnector", in, out, opts...)
+func (c *connectorPublicServiceClient) ListSourceConnectors(ctx context.Context, in *ListSourceConnectorsRequest, opts ...grpc.CallOption) (*ListSourceConnectorsResponse, error) {
+	out := new(ListSourceConnectorsResponse)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/ListSourceConnectors", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -283,9 +283,9 @@ func (c *connectorPublicServiceClient) CreateDestinationConnector(ctx context.Co
 	return out, nil
 }
 
-func (c *connectorPublicServiceClient) ListDestinationConnector(ctx context.Context, in *ListDestinationConnectorRequest, opts ...grpc.CallOption) (*ListDestinationConnectorResponse, error) {
-	out := new(ListDestinationConnectorResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/ListDestinationConnector", in, out, opts...)
+func (c *connectorPublicServiceClient) ListDestinationConnectors(ctx context.Context, in *ListDestinationConnectorsRequest, opts ...grpc.CallOption) (*ListDestinationConnectorsResponse, error) {
+	out := new(ListDestinationConnectorsResponse)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/ListDestinationConnectors", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -376,18 +376,18 @@ type ConnectorPublicServiceServer interface {
 	// ReadinessResponse message.
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error)
-	// ListSourceConnectorDefinition method receives a
-	// ListSourceConnectorDefinitionRequest message and returns a
-	// ListSourceConnectorDefinitionResponse message.
-	ListSourceConnectorDefinition(context.Context, *ListSourceConnectorDefinitionRequest) (*ListSourceConnectorDefinitionResponse, error)
+	// ListSourceConnectorDefinitions method receives a
+	// ListSourceConnectorDefinitionsRequest message and returns a
+	// ListSourceConnectorDefinitionsResponse message.
+	ListSourceConnectorDefinitions(context.Context, *ListSourceConnectorDefinitionsRequest) (*ListSourceConnectorDefinitionsResponse, error)
 	// GetSourceConnectorDefinition method receives a
 	// GetSourceConnectorDefinitionRequest message and returns a
 	// GetGetSourceConnectorDefinitionResponse message.
 	GetSourceConnectorDefinition(context.Context, *GetSourceConnectorDefinitionRequest) (*GetSourceConnectorDefinitionResponse, error)
-	// ListDestinationConnectorDefinition method receives a
-	// ListDestinationConnectorDefinitionRequest message and returns a
-	// ListDestinationConnectorDefinitionResponse message.
-	ListDestinationConnectorDefinition(context.Context, *ListDestinationConnectorDefinitionRequest) (*ListDestinationConnectorDefinitionResponse, error)
+	// ListDestinationConnectorDefinitions method receives a
+	// ListDestinationConnectorDefinitionsRequest message and returns a
+	// ListDestinationConnectorDefinitionsResponse message.
+	ListDestinationConnectorDefinitions(context.Context, *ListDestinationConnectorDefinitionsRequest) (*ListDestinationConnectorDefinitionsResponse, error)
 	// GetDestinationConnectorDefinition method receives a
 	// GetDestinationConnectorDefinitionRequest message and returns a
 	// GetGetDestinationConnectorDefinitionResponse message.
@@ -395,9 +395,9 @@ type ConnectorPublicServiceServer interface {
 	// CreateSourceConnector method receives a CreateSourceConnectorRequest
 	// message and returns a CreateSourceConnectorResponse message.
 	CreateSourceConnector(context.Context, *CreateSourceConnectorRequest) (*CreateSourceConnectorResponse, error)
-	// ListSourceConnector method receives a ListSourceConnectorRequest message
-	// and returns a ListSourceConnectorResponse message.
-	ListSourceConnector(context.Context, *ListSourceConnectorRequest) (*ListSourceConnectorResponse, error)
+	// ListSourceConnectors method receives a ListSourceConnectorsRequest message
+	// and returns a ListSourceConnectorsResponse message.
+	ListSourceConnectors(context.Context, *ListSourceConnectorsRequest) (*ListSourceConnectorsResponse, error)
 	// GetSourceConnector method receives a GetSourceConnectorRequest message and
 	// returns a GetSourceConnectorResponse message.
 	GetSourceConnector(context.Context, *GetSourceConnectorRequest) (*GetSourceConnectorResponse, error)
@@ -432,9 +432,9 @@ type ConnectorPublicServiceServer interface {
 	// CreateDestinationConnectorRequest message and returns a
 	// CreateDestinationConnectorResponse message.
 	CreateDestinationConnector(context.Context, *CreateDestinationConnectorRequest) (*CreateDestinationConnectorResponse, error)
-	// ListDestinationConnector method receives a ListDestinationConnectorRequest
-	// message and returns a ListDestinationConnectorResponse message.
-	ListDestinationConnector(context.Context, *ListDestinationConnectorRequest) (*ListDestinationConnectorResponse, error)
+	// ListDestinationConnectors method receives a ListDestinationConnectorsRequest
+	// message and returns a ListDestinationConnectorsResponse message.
+	ListDestinationConnectors(context.Context, *ListDestinationConnectorsRequest) (*ListDestinationConnectorsResponse, error)
 	// GetDestinationConnector method receives a GetDestinationConnectorRequest
 	// message and returns a GetDestinationConnectorResponse message.
 	GetDestinationConnector(context.Context, *GetDestinationConnectorRequest) (*GetDestinationConnectorResponse, error)
@@ -482,14 +482,14 @@ func (UnimplementedConnectorPublicServiceServer) Liveness(context.Context, *Live
 func (UnimplementedConnectorPublicServiceServer) Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Readiness not implemented")
 }
-func (UnimplementedConnectorPublicServiceServer) ListSourceConnectorDefinition(context.Context, *ListSourceConnectorDefinitionRequest) (*ListSourceConnectorDefinitionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListSourceConnectorDefinition not implemented")
+func (UnimplementedConnectorPublicServiceServer) ListSourceConnectorDefinitions(context.Context, *ListSourceConnectorDefinitionsRequest) (*ListSourceConnectorDefinitionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListSourceConnectorDefinitions not implemented")
 }
 func (UnimplementedConnectorPublicServiceServer) GetSourceConnectorDefinition(context.Context, *GetSourceConnectorDefinitionRequest) (*GetSourceConnectorDefinitionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSourceConnectorDefinition not implemented")
 }
-func (UnimplementedConnectorPublicServiceServer) ListDestinationConnectorDefinition(context.Context, *ListDestinationConnectorDefinitionRequest) (*ListDestinationConnectorDefinitionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListDestinationConnectorDefinition not implemented")
+func (UnimplementedConnectorPublicServiceServer) ListDestinationConnectorDefinitions(context.Context, *ListDestinationConnectorDefinitionsRequest) (*ListDestinationConnectorDefinitionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDestinationConnectorDefinitions not implemented")
 }
 func (UnimplementedConnectorPublicServiceServer) GetDestinationConnectorDefinition(context.Context, *GetDestinationConnectorDefinitionRequest) (*GetDestinationConnectorDefinitionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDestinationConnectorDefinition not implemented")
@@ -497,8 +497,8 @@ func (UnimplementedConnectorPublicServiceServer) GetDestinationConnectorDefiniti
 func (UnimplementedConnectorPublicServiceServer) CreateSourceConnector(context.Context, *CreateSourceConnectorRequest) (*CreateSourceConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateSourceConnector not implemented")
 }
-func (UnimplementedConnectorPublicServiceServer) ListSourceConnector(context.Context, *ListSourceConnectorRequest) (*ListSourceConnectorResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListSourceConnector not implemented")
+func (UnimplementedConnectorPublicServiceServer) ListSourceConnectors(context.Context, *ListSourceConnectorsRequest) (*ListSourceConnectorsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListSourceConnectors not implemented")
 }
 func (UnimplementedConnectorPublicServiceServer) GetSourceConnector(context.Context, *GetSourceConnectorRequest) (*GetSourceConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSourceConnector not implemented")
@@ -527,8 +527,8 @@ func (UnimplementedConnectorPublicServiceServer) ReadSourceConnector(context.Con
 func (UnimplementedConnectorPublicServiceServer) CreateDestinationConnector(context.Context, *CreateDestinationConnectorRequest) (*CreateDestinationConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDestinationConnector not implemented")
 }
-func (UnimplementedConnectorPublicServiceServer) ListDestinationConnector(context.Context, *ListDestinationConnectorRequest) (*ListDestinationConnectorResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListDestinationConnector not implemented")
+func (UnimplementedConnectorPublicServiceServer) ListDestinationConnectors(context.Context, *ListDestinationConnectorsRequest) (*ListDestinationConnectorsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDestinationConnectors not implemented")
 }
 func (UnimplementedConnectorPublicServiceServer) GetDestinationConnector(context.Context, *GetDestinationConnectorRequest) (*GetDestinationConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDestinationConnector not implemented")
@@ -602,20 +602,20 @@ func _ConnectorPublicService_Readiness_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorPublicService_ListSourceConnectorDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListSourceConnectorDefinitionRequest)
+func _ConnectorPublicService_ListSourceConnectorDefinitions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListSourceConnectorDefinitionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorPublicServiceServer).ListSourceConnectorDefinition(ctx, in)
+		return srv.(ConnectorPublicServiceServer).ListSourceConnectorDefinitions(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/ListSourceConnectorDefinition",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/ListSourceConnectorDefinitions",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorPublicServiceServer).ListSourceConnectorDefinition(ctx, req.(*ListSourceConnectorDefinitionRequest))
+		return srv.(ConnectorPublicServiceServer).ListSourceConnectorDefinitions(ctx, req.(*ListSourceConnectorDefinitionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -638,20 +638,20 @@ func _ConnectorPublicService_GetSourceConnectorDefinition_Handler(srv interface{
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorPublicService_ListDestinationConnectorDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListDestinationConnectorDefinitionRequest)
+func _ConnectorPublicService_ListDestinationConnectorDefinitions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListDestinationConnectorDefinitionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorPublicServiceServer).ListDestinationConnectorDefinition(ctx, in)
+		return srv.(ConnectorPublicServiceServer).ListDestinationConnectorDefinitions(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/ListDestinationConnectorDefinition",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/ListDestinationConnectorDefinitions",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorPublicServiceServer).ListDestinationConnectorDefinition(ctx, req.(*ListDestinationConnectorDefinitionRequest))
+		return srv.(ConnectorPublicServiceServer).ListDestinationConnectorDefinitions(ctx, req.(*ListDestinationConnectorDefinitionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -692,20 +692,20 @@ func _ConnectorPublicService_CreateSourceConnector_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorPublicService_ListSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListSourceConnectorRequest)
+func _ConnectorPublicService_ListSourceConnectors_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListSourceConnectorsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorPublicServiceServer).ListSourceConnector(ctx, in)
+		return srv.(ConnectorPublicServiceServer).ListSourceConnectors(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/ListSourceConnector",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/ListSourceConnectors",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorPublicServiceServer).ListSourceConnector(ctx, req.(*ListSourceConnectorRequest))
+		return srv.(ConnectorPublicServiceServer).ListSourceConnectors(ctx, req.(*ListSourceConnectorsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -872,20 +872,20 @@ func _ConnectorPublicService_CreateDestinationConnector_Handler(srv interface{},
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorPublicService_ListDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListDestinationConnectorRequest)
+func _ConnectorPublicService_ListDestinationConnectors_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListDestinationConnectorsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorPublicServiceServer).ListDestinationConnector(ctx, in)
+		return srv.(ConnectorPublicServiceServer).ListDestinationConnectors(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/ListDestinationConnector",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/ListDestinationConnectors",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorPublicServiceServer).ListDestinationConnector(ctx, req.(*ListDestinationConnectorRequest))
+		return srv.(ConnectorPublicServiceServer).ListDestinationConnectors(ctx, req.(*ListDestinationConnectorsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1050,16 +1050,16 @@ var ConnectorPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ConnectorPublicService_Readiness_Handler,
 		},
 		{
-			MethodName: "ListSourceConnectorDefinition",
-			Handler:    _ConnectorPublicService_ListSourceConnectorDefinition_Handler,
+			MethodName: "ListSourceConnectorDefinitions",
+			Handler:    _ConnectorPublicService_ListSourceConnectorDefinitions_Handler,
 		},
 		{
 			MethodName: "GetSourceConnectorDefinition",
 			Handler:    _ConnectorPublicService_GetSourceConnectorDefinition_Handler,
 		},
 		{
-			MethodName: "ListDestinationConnectorDefinition",
-			Handler:    _ConnectorPublicService_ListDestinationConnectorDefinition_Handler,
+			MethodName: "ListDestinationConnectorDefinitions",
+			Handler:    _ConnectorPublicService_ListDestinationConnectorDefinitions_Handler,
 		},
 		{
 			MethodName: "GetDestinationConnectorDefinition",
@@ -1070,8 +1070,8 @@ var ConnectorPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ConnectorPublicService_CreateSourceConnector_Handler,
 		},
 		{
-			MethodName: "ListSourceConnector",
-			Handler:    _ConnectorPublicService_ListSourceConnector_Handler,
+			MethodName: "ListSourceConnectors",
+			Handler:    _ConnectorPublicService_ListSourceConnectors_Handler,
 		},
 		{
 			MethodName: "GetSourceConnector",
@@ -1110,8 +1110,8 @@ var ConnectorPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ConnectorPublicService_CreateDestinationConnector_Handler,
 		},
 		{
-			MethodName: "ListDestinationConnector",
-			Handler:    _ConnectorPublicService_ListDestinationConnector_Handler,
+			MethodName: "ListDestinationConnectors",
+			Handler:    _ConnectorPublicService_ListDestinationConnectors_Handler,
 		},
 		{
 			MethodName: "GetDestinationConnector",

@@ -26,9 +26,9 @@ type PlanServiceClient interface {
 	// ReadinessResponse message.
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error)
-	// ListPlan method receives a ListPlanRequest message and returns a
-	// ListPlanResponse message.
-	ListPlan(ctx context.Context, in *ListPlanRequest, opts ...grpc.CallOption) (*ListPlanResponse, error)
+	// ListPlans method receives a ListPlansRequest message and returns a
+	// ListPlansResponse message.
+	ListPlans(ctx context.Context, in *ListPlansRequest, opts ...grpc.CallOption) (*ListPlansResponse, error)
 	// CreatePlan receives a CreatePlanRequest message and returns a
 	// aGetPlanResponses
 	CreatePlan(ctx context.Context, in *CreatePlanRequest, opts ...grpc.CallOption) (*CreatePlanResponse, error)
@@ -72,9 +72,9 @@ func (c *planServiceClient) Readiness(ctx context.Context, in *ReadinessRequest,
 	return out, nil
 }
 
-func (c *planServiceClient) ListPlan(ctx context.Context, in *ListPlanRequest, opts ...grpc.CallOption) (*ListPlanResponse, error) {
-	out := new(ListPlanResponse)
-	err := c.cc.Invoke(ctx, "/vdp.billing.v1alpha.PlanService/ListPlan", in, out, opts...)
+func (c *planServiceClient) ListPlans(ctx context.Context, in *ListPlansRequest, opts ...grpc.CallOption) (*ListPlansResponse, error) {
+	out := new(ListPlansResponse)
+	err := c.cc.Invoke(ctx, "/vdp.billing.v1alpha.PlanService/ListPlans", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -138,9 +138,9 @@ type PlanServiceServer interface {
 	// ReadinessResponse message.
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error)
-	// ListPlan method receives a ListPlanRequest message and returns a
-	// ListPlanResponse message.
-	ListPlan(context.Context, *ListPlanRequest) (*ListPlanResponse, error)
+	// ListPlans method receives a ListPlansRequest message and returns a
+	// ListPlansResponse message.
+	ListPlans(context.Context, *ListPlansRequest) (*ListPlansResponse, error)
 	// CreatePlan receives a CreatePlanRequest message and returns a
 	// aGetPlanResponses
 	CreatePlan(context.Context, *CreatePlanRequest) (*CreatePlanResponse, error)
@@ -168,8 +168,8 @@ func (UnimplementedPlanServiceServer) Liveness(context.Context, *LivenessRequest
 func (UnimplementedPlanServiceServer) Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Readiness not implemented")
 }
-func (UnimplementedPlanServiceServer) ListPlan(context.Context, *ListPlanRequest) (*ListPlanResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListPlan not implemented")
+func (UnimplementedPlanServiceServer) ListPlans(context.Context, *ListPlansRequest) (*ListPlansResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListPlans not implemented")
 }
 func (UnimplementedPlanServiceServer) CreatePlan(context.Context, *CreatePlanRequest) (*CreatePlanResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatePlan not implemented")
@@ -234,20 +234,20 @@ func _PlanService_Readiness_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PlanService_ListPlan_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListPlanRequest)
+func _PlanService_ListPlans_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListPlansRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PlanServiceServer).ListPlan(ctx, in)
+		return srv.(PlanServiceServer).ListPlans(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.billing.v1alpha.PlanService/ListPlan",
+		FullMethod: "/vdp.billing.v1alpha.PlanService/ListPlans",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PlanServiceServer).ListPlan(ctx, req.(*ListPlanRequest))
+		return srv.(PlanServiceServer).ListPlans(ctx, req.(*ListPlansRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -358,8 +358,8 @@ var PlanService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _PlanService_Readiness_Handler,
 		},
 		{
-			MethodName: "ListPlan",
-			Handler:    _PlanService_ListPlan_Handler,
+			MethodName: "ListPlans",
+			Handler:    _PlanService_ListPlans_Handler,
 		},
 		{
 			MethodName: "CreatePlan",

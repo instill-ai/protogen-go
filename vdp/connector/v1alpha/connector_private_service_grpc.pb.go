@@ -18,9 +18,9 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ConnectorPrivateServiceClient interface {
-	// ListSourceConnectorAdmin method receives a ListSourceConnectorAdminRequest
-	// message and returns a ListSourceConnectorAdminResponse message.
-	ListSourceConnectorAdmin(ctx context.Context, in *ListSourceConnectorAdminRequest, opts ...grpc.CallOption) (*ListSourceConnectorAdminResponse, error)
+	// ListSourceConnectorsAdmin method receives a ListSourceConnectorsAdminRequest message
+	// and returns a ListSourceConnectorsAdminResponse message.
+	ListSourceConnectorsAdmin(ctx context.Context, in *ListSourceConnectorsAdminRequest, opts ...grpc.CallOption) (*ListSourceConnectorsAdminResponse, error)
 	// GetSourceConnectorAdmin method receives a GetSourceConnectorAdminRequest
 	// message and returns a GetSourceConnectorAdminResponse message.
 	GetSourceConnectorAdmin(ctx context.Context, in *GetSourceConnectorAdminRequest, opts ...grpc.CallOption) (*GetSourceConnectorAdminResponse, error)
@@ -28,10 +28,9 @@ type ConnectorPrivateServiceClient interface {
 	// LookUpSourceConnectorAdminRequest message and returns a
 	// LookUpSourceConnectorAdminResponse
 	LookUpSourceConnectorAdmin(ctx context.Context, in *LookUpSourceConnectorAdminRequest, opts ...grpc.CallOption) (*LookUpSourceConnectorAdminResponse, error)
-	// ListDestinationConnectorAdmin method receives a
-	// ListDestinationConnectorAdminRequest message and returns a
-	// ListDestinationConnectorResponse message.
-	ListDestinationConnectorAdmin(ctx context.Context, in *ListDestinationConnectorAdminRequest, opts ...grpc.CallOption) (*ListDestinationConnectorAdminResponse, error)
+	// ListDestinationConnectorsAdmin method receives a ListDestinationConnectorsAdminRequest
+	// message and returns a ListDestinationConnectorsResponse message.
+	ListDestinationConnectorsAdmin(ctx context.Context, in *ListDestinationConnectorsAdminRequest, opts ...grpc.CallOption) (*ListDestinationConnectorsAdminResponse, error)
 	// GetDestinationConnectorAdmin method receives a
 	// GetDestinationConnectorAdminRequest message and returns a
 	// GetDestinationConnectorAdminResponse message.
@@ -50,9 +49,9 @@ func NewConnectorPrivateServiceClient(cc grpc.ClientConnInterface) ConnectorPriv
 	return &connectorPrivateServiceClient{cc}
 }
 
-func (c *connectorPrivateServiceClient) ListSourceConnectorAdmin(ctx context.Context, in *ListSourceConnectorAdminRequest, opts ...grpc.CallOption) (*ListSourceConnectorAdminResponse, error) {
-	out := new(ListSourceConnectorAdminResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPrivateService/ListSourceConnectorAdmin", in, out, opts...)
+func (c *connectorPrivateServiceClient) ListSourceConnectorsAdmin(ctx context.Context, in *ListSourceConnectorsAdminRequest, opts ...grpc.CallOption) (*ListSourceConnectorsAdminResponse, error) {
+	out := new(ListSourceConnectorsAdminResponse)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPrivateService/ListSourceConnectorsAdmin", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -77,9 +76,9 @@ func (c *connectorPrivateServiceClient) LookUpSourceConnectorAdmin(ctx context.C
 	return out, nil
 }
 
-func (c *connectorPrivateServiceClient) ListDestinationConnectorAdmin(ctx context.Context, in *ListDestinationConnectorAdminRequest, opts ...grpc.CallOption) (*ListDestinationConnectorAdminResponse, error) {
-	out := new(ListDestinationConnectorAdminResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPrivateService/ListDestinationConnectorAdmin", in, out, opts...)
+func (c *connectorPrivateServiceClient) ListDestinationConnectorsAdmin(ctx context.Context, in *ListDestinationConnectorsAdminRequest, opts ...grpc.CallOption) (*ListDestinationConnectorsAdminResponse, error) {
+	out := new(ListDestinationConnectorsAdminResponse)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPrivateService/ListDestinationConnectorsAdmin", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -108,9 +107,9 @@ func (c *connectorPrivateServiceClient) LookUpDestinationConnectorAdmin(ctx cont
 // All implementations should embed UnimplementedConnectorPrivateServiceServer
 // for forward compatibility
 type ConnectorPrivateServiceServer interface {
-	// ListSourceConnectorAdmin method receives a ListSourceConnectorAdminRequest
-	// message and returns a ListSourceConnectorAdminResponse message.
-	ListSourceConnectorAdmin(context.Context, *ListSourceConnectorAdminRequest) (*ListSourceConnectorAdminResponse, error)
+	// ListSourceConnectorsAdmin method receives a ListSourceConnectorsAdminRequest message
+	// and returns a ListSourceConnectorsAdminResponse message.
+	ListSourceConnectorsAdmin(context.Context, *ListSourceConnectorsAdminRequest) (*ListSourceConnectorsAdminResponse, error)
 	// GetSourceConnectorAdmin method receives a GetSourceConnectorAdminRequest
 	// message and returns a GetSourceConnectorAdminResponse message.
 	GetSourceConnectorAdmin(context.Context, *GetSourceConnectorAdminRequest) (*GetSourceConnectorAdminResponse, error)
@@ -118,10 +117,9 @@ type ConnectorPrivateServiceServer interface {
 	// LookUpSourceConnectorAdminRequest message and returns a
 	// LookUpSourceConnectorAdminResponse
 	LookUpSourceConnectorAdmin(context.Context, *LookUpSourceConnectorAdminRequest) (*LookUpSourceConnectorAdminResponse, error)
-	// ListDestinationConnectorAdmin method receives a
-	// ListDestinationConnectorAdminRequest message and returns a
-	// ListDestinationConnectorResponse message.
-	ListDestinationConnectorAdmin(context.Context, *ListDestinationConnectorAdminRequest) (*ListDestinationConnectorAdminResponse, error)
+	// ListDestinationConnectorsAdmin method receives a ListDestinationConnectorsAdminRequest
+	// message and returns a ListDestinationConnectorsResponse message.
+	ListDestinationConnectorsAdmin(context.Context, *ListDestinationConnectorsAdminRequest) (*ListDestinationConnectorsAdminResponse, error)
 	// GetDestinationConnectorAdmin method receives a
 	// GetDestinationConnectorAdminRequest message and returns a
 	// GetDestinationConnectorAdminResponse message.
@@ -136,8 +134,8 @@ type ConnectorPrivateServiceServer interface {
 type UnimplementedConnectorPrivateServiceServer struct {
 }
 
-func (UnimplementedConnectorPrivateServiceServer) ListSourceConnectorAdmin(context.Context, *ListSourceConnectorAdminRequest) (*ListSourceConnectorAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListSourceConnectorAdmin not implemented")
+func (UnimplementedConnectorPrivateServiceServer) ListSourceConnectorsAdmin(context.Context, *ListSourceConnectorsAdminRequest) (*ListSourceConnectorsAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListSourceConnectorsAdmin not implemented")
 }
 func (UnimplementedConnectorPrivateServiceServer) GetSourceConnectorAdmin(context.Context, *GetSourceConnectorAdminRequest) (*GetSourceConnectorAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSourceConnectorAdmin not implemented")
@@ -145,8 +143,8 @@ func (UnimplementedConnectorPrivateServiceServer) GetSourceConnectorAdmin(contex
 func (UnimplementedConnectorPrivateServiceServer) LookUpSourceConnectorAdmin(context.Context, *LookUpSourceConnectorAdminRequest) (*LookUpSourceConnectorAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LookUpSourceConnectorAdmin not implemented")
 }
-func (UnimplementedConnectorPrivateServiceServer) ListDestinationConnectorAdmin(context.Context, *ListDestinationConnectorAdminRequest) (*ListDestinationConnectorAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListDestinationConnectorAdmin not implemented")
+func (UnimplementedConnectorPrivateServiceServer) ListDestinationConnectorsAdmin(context.Context, *ListDestinationConnectorsAdminRequest) (*ListDestinationConnectorsAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDestinationConnectorsAdmin not implemented")
 }
 func (UnimplementedConnectorPrivateServiceServer) GetDestinationConnectorAdmin(context.Context, *GetDestinationConnectorAdminRequest) (*GetDestinationConnectorAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDestinationConnectorAdmin not implemented")
@@ -166,20 +164,20 @@ func RegisterConnectorPrivateServiceServer(s grpc.ServiceRegistrar, srv Connecto
 	s.RegisterService(&ConnectorPrivateService_ServiceDesc, srv)
 }
 
-func _ConnectorPrivateService_ListSourceConnectorAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListSourceConnectorAdminRequest)
+func _ConnectorPrivateService_ListSourceConnectorsAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListSourceConnectorsAdminRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorPrivateServiceServer).ListSourceConnectorAdmin(ctx, in)
+		return srv.(ConnectorPrivateServiceServer).ListSourceConnectorsAdmin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorPrivateService/ListSourceConnectorAdmin",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPrivateService/ListSourceConnectorsAdmin",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorPrivateServiceServer).ListSourceConnectorAdmin(ctx, req.(*ListSourceConnectorAdminRequest))
+		return srv.(ConnectorPrivateServiceServer).ListSourceConnectorsAdmin(ctx, req.(*ListSourceConnectorsAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -220,20 +218,20 @@ func _ConnectorPrivateService_LookUpSourceConnectorAdmin_Handler(srv interface{}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorPrivateService_ListDestinationConnectorAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListDestinationConnectorAdminRequest)
+func _ConnectorPrivateService_ListDestinationConnectorsAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListDestinationConnectorsAdminRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorPrivateServiceServer).ListDestinationConnectorAdmin(ctx, in)
+		return srv.(ConnectorPrivateServiceServer).ListDestinationConnectorsAdmin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorPrivateService/ListDestinationConnectorAdmin",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPrivateService/ListDestinationConnectorsAdmin",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorPrivateServiceServer).ListDestinationConnectorAdmin(ctx, req.(*ListDestinationConnectorAdminRequest))
+		return srv.(ConnectorPrivateServiceServer).ListDestinationConnectorsAdmin(ctx, req.(*ListDestinationConnectorsAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -282,8 +280,8 @@ var ConnectorPrivateService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*ConnectorPrivateServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "ListSourceConnectorAdmin",
-			Handler:    _ConnectorPrivateService_ListSourceConnectorAdmin_Handler,
+			MethodName: "ListSourceConnectorsAdmin",
+			Handler:    _ConnectorPrivateService_ListSourceConnectorsAdmin_Handler,
 		},
 		{
 			MethodName: "GetSourceConnectorAdmin",
@@ -294,8 +292,8 @@ var ConnectorPrivateService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ConnectorPrivateService_LookUpSourceConnectorAdmin_Handler,
 		},
 		{
-			MethodName: "ListDestinationConnectorAdmin",
-			Handler:    _ConnectorPrivateService_ListDestinationConnectorAdmin_Handler,
+			MethodName: "ListDestinationConnectorsAdmin",
+			Handler:    _ConnectorPrivateService_ListDestinationConnectorsAdmin_Handler,
 		},
 		{
 			MethodName: "GetDestinationConnectorAdmin",

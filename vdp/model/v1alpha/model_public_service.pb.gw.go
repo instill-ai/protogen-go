@@ -176,37 +176,37 @@ func local_request_ModelPublicService_Readiness_1(ctx context.Context, marshaler
 }
 
 var (
-	filter_ModelPublicService_ListModelDefinition_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_ModelPublicService_ListModelDefinitions_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_ModelPublicService_ListModelDefinition_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListModelDefinitionRequest
+func request_ModelPublicService_ListModelDefinitions_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ListModelDefinitionsRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_ListModelDefinition_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_ListModelDefinitions_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.ListModelDefinition(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.ListModelDefinitions(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_ModelPublicService_ListModelDefinition_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListModelDefinitionRequest
+func local_request_ModelPublicService_ListModelDefinitions_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ListModelDefinitionsRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_ListModelDefinition_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_ListModelDefinitions_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.ListModelDefinition(ctx, &protoReq)
+	msg, err := server.ListModelDefinitions(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -282,37 +282,37 @@ func local_request_ModelPublicService_GetModelDefinition_0(ctx context.Context, 
 }
 
 var (
-	filter_ModelPublicService_ListModel_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_ModelPublicService_ListModels_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_ModelPublicService_ListModel_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListModelRequest
+func request_ModelPublicService_ListModels_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ListModelsRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_ListModel_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_ListModels_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.ListModel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.ListModels(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_ModelPublicService_ListModel_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListModelRequest
+func local_request_ModelPublicService_ListModels_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ListModelsRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_ListModel_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_ListModels_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.ListModel(ctx, &protoReq)
+	msg, err := server.ListModels(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -892,11 +892,11 @@ func local_request_ModelPublicService_UnpublishModel_0(ctx context.Context, mars
 }
 
 var (
-	filter_ModelPublicService_ListModelInstance_0 = &utilities.DoubleArray{Encoding: map[string]int{"parent": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
+	filter_ModelPublicService_ListModelInstances_0 = &utilities.DoubleArray{Encoding: map[string]int{"parent": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
-func request_ModelPublicService_ListModelInstance_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListModelInstanceRequest
+func request_ModelPublicService_ListModelInstances_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ListModelInstancesRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -919,17 +919,17 @@ func request_ModelPublicService_ListModelInstance_0(ctx context.Context, marshal
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_ListModelInstance_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_ListModelInstances_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.ListModelInstance(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.ListModelInstances(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_ModelPublicService_ListModelInstance_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListModelInstanceRequest
+func local_request_ModelPublicService_ListModelInstances_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ListModelInstancesRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -952,11 +952,11 @@ func local_request_ModelPublicService_ListModelInstance_0(ctx context.Context, m
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_ListModelInstance_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_ListModelInstances_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.ListModelInstance(ctx, &protoReq)
+	msg, err := server.ListModelInstances(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -1584,37 +1584,37 @@ func local_request_ModelPublicService_GetModelOperation_0(ctx context.Context, m
 }
 
 var (
-	filter_ModelPublicService_ListModelOperation_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_ModelPublicService_ListModelOperations_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_ModelPublicService_ListModelOperation_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListModelOperationRequest
+func request_ModelPublicService_ListModelOperations_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ListModelOperationsRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_ListModelOperation_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_ListModelOperations_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.ListModelOperation(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.ListModelOperations(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_ModelPublicService_ListModelOperation_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListModelOperationRequest
+func local_request_ModelPublicService_ListModelOperations_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ListModelOperationsRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_ListModelOperation_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_ListModelOperations_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.ListModelOperation(ctx, &protoReq)
+	msg, err := server.ListModelOperations(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -1793,7 +1793,7 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 
 	})
 
-	mux.Handle("GET", pattern_ModelPublicService_ListModelDefinition_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_ModelPublicService_ListModelDefinitions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -1801,12 +1801,12 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/ListModelDefinition", runtime.WithHTTPPathPattern("/v1alpha/model-definitions"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/ListModelDefinitions", runtime.WithHTTPPathPattern("/v1alpha/model-definitions"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelPublicService_ListModelDefinition_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelPublicService_ListModelDefinitions_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -1814,7 +1814,7 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 			return
 		}
 
-		forward_ModelPublicService_ListModelDefinition_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_ListModelDefinitions_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1843,7 +1843,7 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 
 	})
 
-	mux.Handle("GET", pattern_ModelPublicService_ListModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_ModelPublicService_ListModels_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -1851,12 +1851,12 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/ListModel", runtime.WithHTTPPathPattern("/v1alpha/models"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/ListModels", runtime.WithHTTPPathPattern("/v1alpha/models"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelPublicService_ListModel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelPublicService_ListModels_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -1864,7 +1864,7 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 			return
 		}
 
-		forward_ModelPublicService_ListModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_ListModels_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -2075,7 +2075,7 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 
 	})
 
-	mux.Handle("GET", pattern_ModelPublicService_ListModelInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_ModelPublicService_ListModelInstances_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -2083,12 +2083,12 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/ListModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{parent=models/*}/instances"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/ListModelInstances", runtime.WithHTTPPathPattern("/v1alpha/{parent=models/*}/instances"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelPublicService_ListModelInstance_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelPublicService_ListModelInstances_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -2096,7 +2096,7 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 			return
 		}
 
-		forward_ModelPublicService_ListModelInstance_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_ListModelInstances_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -2314,7 +2314,7 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 
 	})
 
-	mux.Handle("GET", pattern_ModelPublicService_ListModelOperation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_ModelPublicService_ListModelOperations_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -2322,12 +2322,12 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/ListModelOperation", runtime.WithHTTPPathPattern("/v1alpha/operations"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/ListModelOperations", runtime.WithHTTPPathPattern("/v1alpha/operations"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelPublicService_ListModelOperation_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelPublicService_ListModelOperations_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -2335,7 +2335,7 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 			return
 		}
 
-		forward_ModelPublicService_ListModelOperation_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_ListModelOperations_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -2493,25 +2493,25 @@ func RegisterModelPublicServiceHandlerClient(ctx context.Context, mux *runtime.S
 
 	})
 
-	mux.Handle("GET", pattern_ModelPublicService_ListModelDefinition_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_ModelPublicService_ListModelDefinitions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/ListModelDefinition", runtime.WithHTTPPathPattern("/v1alpha/model-definitions"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/ListModelDefinitions", runtime.WithHTTPPathPattern("/v1alpha/model-definitions"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_ListModelDefinition_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_ListModelDefinitions_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ModelPublicService_ListModelDefinition_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_ListModelDefinitions_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -2537,25 +2537,25 @@ func RegisterModelPublicServiceHandlerClient(ctx context.Context, mux *runtime.S
 
 	})
 
-	mux.Handle("GET", pattern_ModelPublicService_ListModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_ModelPublicService_ListModels_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/ListModel", runtime.WithHTTPPathPattern("/v1alpha/models"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/ListModels", runtime.WithHTTPPathPattern("/v1alpha/models"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_ListModel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_ListModels_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ModelPublicService_ListModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_ListModels_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -2757,25 +2757,25 @@ func RegisterModelPublicServiceHandlerClient(ctx context.Context, mux *runtime.S
 
 	})
 
-	mux.Handle("GET", pattern_ModelPublicService_ListModelInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_ModelPublicService_ListModelInstances_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/ListModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{parent=models/*}/instances"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/ListModelInstances", runtime.WithHTTPPathPattern("/v1alpha/{parent=models/*}/instances"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_ListModelInstance_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_ListModelInstances_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ModelPublicService_ListModelInstance_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_ListModelInstances_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -2999,25 +2999,25 @@ func RegisterModelPublicServiceHandlerClient(ctx context.Context, mux *runtime.S
 
 	})
 
-	mux.Handle("GET", pattern_ModelPublicService_ListModelOperation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_ModelPublicService_ListModelOperations_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/ListModelOperation", runtime.WithHTTPPathPattern("/v1alpha/operations"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/ListModelOperations", runtime.WithHTTPPathPattern("/v1alpha/operations"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_ListModelOperation_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_ListModelOperations_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ModelPublicService_ListModelOperation_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_ListModelOperations_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -3055,11 +3055,11 @@ var (
 
 	pattern_ModelPublicService_Readiness_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "ready", "model"}, ""))
 
-	pattern_ModelPublicService_ListModelDefinition_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "model-definitions"}, ""))
+	pattern_ModelPublicService_ListModelDefinitions_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "model-definitions"}, ""))
 
 	pattern_ModelPublicService_GetModelDefinition_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "model-definitions", "name"}, ""))
 
-	pattern_ModelPublicService_ListModel_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "models"}, ""))
+	pattern_ModelPublicService_ListModels_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "models"}, ""))
 
 	pattern_ModelPublicService_CreateModel_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "models"}, ""))
 
@@ -3079,7 +3079,7 @@ var (
 
 	pattern_ModelPublicService_UnpublishModel_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "models", "name", "unpublish"}, ""))
 
-	pattern_ModelPublicService_ListModelInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "models", "parent", "instances"}, ""))
+	pattern_ModelPublicService_ListModelInstances_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "models", "parent", "instances"}, ""))
 
 	pattern_ModelPublicService_GetModelInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "models", "instances", "name"}, ""))
 
@@ -3101,7 +3101,7 @@ var (
 
 	pattern_ModelPublicService_GetModelOperation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "operations", "name"}, ""))
 
-	pattern_ModelPublicService_ListModelOperation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "operations"}, ""))
+	pattern_ModelPublicService_ListModelOperations_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "operations"}, ""))
 
 	pattern_ModelPublicService_CancelModelOperation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "operations", "name", "cancel"}, ""))
 )
@@ -3115,11 +3115,11 @@ var (
 
 	forward_ModelPublicService_Readiness_1 = runtime.ForwardResponseMessage
 
-	forward_ModelPublicService_ListModelDefinition_0 = runtime.ForwardResponseMessage
+	forward_ModelPublicService_ListModelDefinitions_0 = runtime.ForwardResponseMessage
 
 	forward_ModelPublicService_GetModelDefinition_0 = runtime.ForwardResponseMessage
 
-	forward_ModelPublicService_ListModel_0 = runtime.ForwardResponseMessage
+	forward_ModelPublicService_ListModels_0 = runtime.ForwardResponseMessage
 
 	forward_ModelPublicService_CreateModel_0 = runtime.ForwardResponseMessage
 
@@ -3139,7 +3139,7 @@ var (
 
 	forward_ModelPublicService_UnpublishModel_0 = runtime.ForwardResponseMessage
 
-	forward_ModelPublicService_ListModelInstance_0 = runtime.ForwardResponseMessage
+	forward_ModelPublicService_ListModelInstances_0 = runtime.ForwardResponseMessage
 
 	forward_ModelPublicService_GetModelInstance_0 = runtime.ForwardResponseMessage
 
@@ -3161,7 +3161,7 @@ var (
 
 	forward_ModelPublicService_GetModelOperation_0 = runtime.ForwardResponseMessage
 
-	forward_ModelPublicService_ListModelOperation_0 = runtime.ForwardResponseMessage
+	forward_ModelPublicService_ListModelOperations_0 = runtime.ForwardResponseMessage
 
 	forward_ModelPublicService_CancelModelOperation_0 = runtime.ForwardResponseMessage
 )
