@@ -26,11 +26,11 @@ type MgmtPublicServiceClient interface {
 	// ReadinessResponse message.
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error)
-	// QueryAuthenticatedUser method receives a QueryAuthenticatedUserRequest message and returns
-	// a QueryAuthenticatedUserResponse message.
+	// QueryAuthenticatedUser method receives a QueryAuthenticatedUserRequest
+	// message and returns a QueryAuthenticatedUserResponse message.
 	QueryAuthenticatedUser(ctx context.Context, in *QueryAuthenticatedUserRequest, opts ...grpc.CallOption) (*QueryAuthenticatedUserResponse, error)
-	// PatchAuthenticatedUser method receives a PatchAuthenticatedUserRequest message and returns
-	// a PatchAuthenticatedUserResponse message.
+	// PatchAuthenticatedUser method receives a PatchAuthenticatedUserRequest
+	// message and returns a PatchAuthenticatedUserResponse message.
 	PatchAuthenticatedUser(ctx context.Context, in *PatchAuthenticatedUserRequest, opts ...grpc.CallOption) (*PatchAuthenticatedUserResponse, error)
 	// ExistUsername method receives a ExistUsernameRequest message and returns a
 	// ExistUsernameResponse
@@ -102,11 +102,11 @@ type MgmtPublicServiceServer interface {
 	// ReadinessResponse message.
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error)
-	// QueryAuthenticatedUser method receives a QueryAuthenticatedUserRequest message and returns
-	// a QueryAuthenticatedUserResponse message.
+	// QueryAuthenticatedUser method receives a QueryAuthenticatedUserRequest
+	// message and returns a QueryAuthenticatedUserResponse message.
 	QueryAuthenticatedUser(context.Context, *QueryAuthenticatedUserRequest) (*QueryAuthenticatedUserResponse, error)
-	// PatchAuthenticatedUser method receives a PatchAuthenticatedUserRequest message and returns
-	// a PatchAuthenticatedUserResponse message.
+	// PatchAuthenticatedUser method receives a PatchAuthenticatedUserRequest
+	// message and returns a PatchAuthenticatedUserResponse message.
 	PatchAuthenticatedUser(context.Context, *PatchAuthenticatedUserRequest) (*PatchAuthenticatedUserResponse, error)
 	// ExistUsername method receives a ExistUsernameRequest message and returns a
 	// ExistUsernameResponse

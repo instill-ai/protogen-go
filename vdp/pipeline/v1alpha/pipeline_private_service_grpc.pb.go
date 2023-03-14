@@ -18,14 +18,14 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PipelinePrivateServiceClient interface {
-	// ListPipelinesAdmin method receives a ListPipelinesAdminRequest message and returns a
-	// ListPipelinesAdminResponse message.
+	// ListPipelinesAdmin method receives a ListPipelinesAdminRequest message and
+	// returns a ListPipelinesAdminResponse message.
 	ListPipelinesAdmin(ctx context.Context, in *ListPipelinesAdminRequest, opts ...grpc.CallOption) (*ListPipelinesAdminResponse, error)
-	// GetPipelineAdmin method receives a GetPipelineAdminRequest message and returns a
-	// GetPipelineAdminResponse message.
+	// GetPipelineAdmin method receives a GetPipelineAdminRequest message and
+	// returns a GetPipelineAdminResponse message.
 	GetPipelineAdmin(ctx context.Context, in *GetPipelineAdminRequest, opts ...grpc.CallOption) (*GetPipelineAdminResponse, error)
-	// LookUpPipelineAdmin method receives a LookUpPipelineAdminRequest message and returns
-	// a LookUpPipelineAdminResponse
+	// LookUpPipelineAdmin method receives a LookUpPipelineAdminRequest message
+	// and returns a LookUpPipelineAdminResponse
 	LookUpPipelineAdmin(ctx context.Context, in *LookUpPipelineAdminRequest, opts ...grpc.CallOption) (*LookUpPipelineAdminResponse, error)
 }
 
@@ -68,14 +68,14 @@ func (c *pipelinePrivateServiceClient) LookUpPipelineAdmin(ctx context.Context, 
 // All implementations should embed UnimplementedPipelinePrivateServiceServer
 // for forward compatibility
 type PipelinePrivateServiceServer interface {
-	// ListPipelinesAdmin method receives a ListPipelinesAdminRequest message and returns a
-	// ListPipelinesAdminResponse message.
+	// ListPipelinesAdmin method receives a ListPipelinesAdminRequest message and
+	// returns a ListPipelinesAdminResponse message.
 	ListPipelinesAdmin(context.Context, *ListPipelinesAdminRequest) (*ListPipelinesAdminResponse, error)
-	// GetPipelineAdmin method receives a GetPipelineAdminRequest message and returns a
-	// GetPipelineAdminResponse message.
+	// GetPipelineAdmin method receives a GetPipelineAdminRequest message and
+	// returns a GetPipelineAdminResponse message.
 	GetPipelineAdmin(context.Context, *GetPipelineAdminRequest) (*GetPipelineAdminResponse, error)
-	// LookUpPipelineAdmin method receives a LookUpPipelineAdminRequest message and returns
-	// a LookUpPipelineAdminResponse
+	// LookUpPipelineAdmin method receives a LookUpPipelineAdminRequest message
+	// and returns a LookUpPipelineAdminResponse
 	LookUpPipelineAdmin(context.Context, *LookUpPipelineAdminRequest) (*LookUpPipelineAdminResponse, error)
 }
 

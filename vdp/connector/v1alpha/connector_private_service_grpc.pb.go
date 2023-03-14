@@ -18,20 +18,23 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ConnectorPrivateServiceClient interface {
-	// ListSourceConnectorAdmin method receives a ListSourceConnectorAdminRequest message
-	// and returns a ListSourceConnectorAdminResponse message.
+	// ListSourceConnectorAdmin method receives a ListSourceConnectorAdminRequest
+	// message and returns a ListSourceConnectorAdminResponse message.
 	ListSourceConnectorAdmin(ctx context.Context, in *ListSourceConnectorAdminRequest, opts ...grpc.CallOption) (*ListSourceConnectorAdminResponse, error)
-	// GetSourceConnectorAdmin method receives a GetSourceConnectorAdminRequest message and
-	// returns a GetSourceConnectorAdminResponse message.
+	// GetSourceConnectorAdmin method receives a GetSourceConnectorAdminRequest
+	// message and returns a GetSourceConnectorAdminResponse message.
 	GetSourceConnectorAdmin(ctx context.Context, in *GetSourceConnectorAdminRequest, opts ...grpc.CallOption) (*GetSourceConnectorAdminResponse, error)
-	// LookUpSourceConnectorAdmin method receives a LookUpSourceConnectorAdminRequest
-	// message and returns a LookUpSourceConnectorAdminResponse
+	// LookUpSourceConnectorAdmin method receives a
+	// LookUpSourceConnectorAdminRequest message and returns a
+	// LookUpSourceConnectorAdminResponse
 	LookUpSourceConnectorAdmin(ctx context.Context, in *LookUpSourceConnectorAdminRequest, opts ...grpc.CallOption) (*LookUpSourceConnectorAdminResponse, error)
-	// ListDestinationConnectorAdmin method receives a ListDestinationConnectorAdminRequest
-	// message and returns a ListDestinationConnectorResponse message.
+	// ListDestinationConnectorAdmin method receives a
+	// ListDestinationConnectorAdminRequest message and returns a
+	// ListDestinationConnectorResponse message.
 	ListDestinationConnectorAdmin(ctx context.Context, in *ListDestinationConnectorAdminRequest, opts ...grpc.CallOption) (*ListDestinationConnectorAdminResponse, error)
-	// GetDestinationConnectorAdmin method receives a GetDestinationConnectorAdminRequest
-	// message and returns a GetDestinationConnectorAdminResponse message.
+	// GetDestinationConnectorAdmin method receives a
+	// GetDestinationConnectorAdminRequest message and returns a
+	// GetDestinationConnectorAdminResponse message.
 	GetDestinationConnectorAdmin(ctx context.Context, in *GetDestinationConnectorAdminRequest, opts ...grpc.CallOption) (*GetDestinationConnectorAdminResponse, error)
 	// LookUpDestinationConnectorAdmin method receives a
 	// LookUpDestinationConnectorAdminRequest message and returns a
@@ -105,20 +108,23 @@ func (c *connectorPrivateServiceClient) LookUpDestinationConnectorAdmin(ctx cont
 // All implementations should embed UnimplementedConnectorPrivateServiceServer
 // for forward compatibility
 type ConnectorPrivateServiceServer interface {
-	// ListSourceConnectorAdmin method receives a ListSourceConnectorAdminRequest message
-	// and returns a ListSourceConnectorAdminResponse message.
+	// ListSourceConnectorAdmin method receives a ListSourceConnectorAdminRequest
+	// message and returns a ListSourceConnectorAdminResponse message.
 	ListSourceConnectorAdmin(context.Context, *ListSourceConnectorAdminRequest) (*ListSourceConnectorAdminResponse, error)
-	// GetSourceConnectorAdmin method receives a GetSourceConnectorAdminRequest message and
-	// returns a GetSourceConnectorAdminResponse message.
+	// GetSourceConnectorAdmin method receives a GetSourceConnectorAdminRequest
+	// message and returns a GetSourceConnectorAdminResponse message.
 	GetSourceConnectorAdmin(context.Context, *GetSourceConnectorAdminRequest) (*GetSourceConnectorAdminResponse, error)
-	// LookUpSourceConnectorAdmin method receives a LookUpSourceConnectorAdminRequest
-	// message and returns a LookUpSourceConnectorAdminResponse
+	// LookUpSourceConnectorAdmin method receives a
+	// LookUpSourceConnectorAdminRequest message and returns a
+	// LookUpSourceConnectorAdminResponse
 	LookUpSourceConnectorAdmin(context.Context, *LookUpSourceConnectorAdminRequest) (*LookUpSourceConnectorAdminResponse, error)
-	// ListDestinationConnectorAdmin method receives a ListDestinationConnectorAdminRequest
-	// message and returns a ListDestinationConnectorResponse message.
+	// ListDestinationConnectorAdmin method receives a
+	// ListDestinationConnectorAdminRequest message and returns a
+	// ListDestinationConnectorResponse message.
 	ListDestinationConnectorAdmin(context.Context, *ListDestinationConnectorAdminRequest) (*ListDestinationConnectorAdminResponse, error)
-	// GetDestinationConnectorAdmin method receives a GetDestinationConnectorAdminRequest
-	// message and returns a GetDestinationConnectorAdminResponse message.
+	// GetDestinationConnectorAdmin method receives a
+	// GetDestinationConnectorAdminRequest message and returns a
+	// GetDestinationConnectorAdminResponse message.
 	GetDestinationConnectorAdmin(context.Context, *GetDestinationConnectorAdminRequest) (*GetDestinationConnectorAdminResponse, error)
 	// LookUpDestinationConnectorAdmin method receives a
 	// LookUpDestinationConnectorAdminRequest message and returns a

@@ -18,8 +18,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MgmtPrivateServiceClient interface {
-	// ListUsersAdmin method receives a ListUsersAdminRequest message and returns a
-	// ListUsersAdminResponse message.
+	// ListUsersAdmin method receives a ListUsersAdminRequest message and returns
+	// a ListUsersAdminResponse message.
 	ListUsersAdmin(ctx context.Context, in *ListUsersAdminRequest, opts ...grpc.CallOption) (*ListUsersAdminResponse, error)
 	// CreateUserAdmin receives a CreateUserAdminRequest message and returns a
 	// a GetUserAdminResponse
@@ -27,14 +27,14 @@ type MgmtPrivateServiceClient interface {
 	// GetUserAdmin method receives a GetUserAdminRequest message and returns
 	// a GetUserAdminResponse message.
 	GetUserAdmin(ctx context.Context, in *GetUserAdminRequest, opts ...grpc.CallOption) (*GetUserAdminResponse, error)
-	// UpdateUserAdmin method receives a UpdateUserAdminRequest message and returns
-	// a UpdateUserAdminResponse
+	// UpdateUserAdmin method receives a UpdateUserAdminRequest message and
+	// returns a UpdateUserAdminResponse
 	UpdateUserAdmin(ctx context.Context, in *UpdateUserAdminRequest, opts ...grpc.CallOption) (*UpdateUserAdminResponse, error)
-	// DeleteUserAdmin method receives a DeleteUserAdminRequest message and returns a
-	// DeleteUserAdminResponse
+	// DeleteUserAdmin method receives a DeleteUserAdminRequest message and
+	// returns a DeleteUserAdminResponse
 	DeleteUserAdmin(ctx context.Context, in *DeleteUserAdminRequest, opts ...grpc.CallOption) (*DeleteUserAdminResponse, error)
-	// LookUpUserAdmin method receives a LookUpUserAdminRequest message and returns a
-	// LookUpUserAdminResponse
+	// LookUpUserAdmin method receives a LookUpUserAdminRequest message and
+	// returns a LookUpUserAdminResponse
 	LookUpUserAdmin(ctx context.Context, in *LookUpUserAdminRequest, opts ...grpc.CallOption) (*LookUpUserAdminResponse, error)
 }
 
@@ -104,8 +104,8 @@ func (c *mgmtPrivateServiceClient) LookUpUserAdmin(ctx context.Context, in *Look
 // All implementations should embed UnimplementedMgmtPrivateServiceServer
 // for forward compatibility
 type MgmtPrivateServiceServer interface {
-	// ListUsersAdmin method receives a ListUsersAdminRequest message and returns a
-	// ListUsersAdminResponse message.
+	// ListUsersAdmin method receives a ListUsersAdminRequest message and returns
+	// a ListUsersAdminResponse message.
 	ListUsersAdmin(context.Context, *ListUsersAdminRequest) (*ListUsersAdminResponse, error)
 	// CreateUserAdmin receives a CreateUserAdminRequest message and returns a
 	// a GetUserAdminResponse
@@ -113,14 +113,14 @@ type MgmtPrivateServiceServer interface {
 	// GetUserAdmin method receives a GetUserAdminRequest message and returns
 	// a GetUserAdminResponse message.
 	GetUserAdmin(context.Context, *GetUserAdminRequest) (*GetUserAdminResponse, error)
-	// UpdateUserAdmin method receives a UpdateUserAdminRequest message and returns
-	// a UpdateUserAdminResponse
+	// UpdateUserAdmin method receives a UpdateUserAdminRequest message and
+	// returns a UpdateUserAdminResponse
 	UpdateUserAdmin(context.Context, *UpdateUserAdminRequest) (*UpdateUserAdminResponse, error)
-	// DeleteUserAdmin method receives a DeleteUserAdminRequest message and returns a
-	// DeleteUserAdminResponse
+	// DeleteUserAdmin method receives a DeleteUserAdminRequest message and
+	// returns a DeleteUserAdminResponse
 	DeleteUserAdmin(context.Context, *DeleteUserAdminRequest) (*DeleteUserAdminResponse, error)
-	// LookUpUserAdmin method receives a LookUpUserAdminRequest message and returns a
-	// LookUpUserAdminResponse
+	// LookUpUserAdmin method receives a LookUpUserAdminRequest message and
+	// returns a LookUpUserAdminResponse
 	LookUpUserAdmin(context.Context, *LookUpUserAdminRequest) (*LookUpUserAdminResponse, error)
 }
 

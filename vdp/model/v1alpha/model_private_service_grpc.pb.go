@@ -18,14 +18,14 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ModelPrivateServiceClient interface {
-	// ListModelAdmin method receives a ListModelAdminRequest message and returns a
-	// ListModelAdminResponse
+	// ListModelAdmin method receives a ListModelAdminRequest message and returns
+	// a ListModelAdminResponse
 	ListModelAdmin(ctx context.Context, in *ListModelAdminRequest, opts ...grpc.CallOption) (*ListModelAdminResponse, error)
 	// GetModelAdmin method receives a GetModelAdminRequest message and returns a
 	// GetModelAdminResponse
 	GetModelAdmin(ctx context.Context, in *GetModelAdminRequest, opts ...grpc.CallOption) (*GetModelAdminResponse, error)
-	// LookUpModelAdmin method receives a LookUpModelAdminRequest message and returns a
-	// LookUpModelAdminResponse
+	// LookUpModelAdmin method receives a LookUpModelAdminRequest message and
+	// returns a LookUpModelAdminResponse
 	LookUpModelAdmin(ctx context.Context, in *LookUpModelAdminRequest, opts ...grpc.CallOption) (*LookUpModelAdminResponse, error)
 }
 
@@ -68,14 +68,14 @@ func (c *modelPrivateServiceClient) LookUpModelAdmin(ctx context.Context, in *Lo
 // All implementations should embed UnimplementedModelPrivateServiceServer
 // for forward compatibility
 type ModelPrivateServiceServer interface {
-	// ListModelAdmin method receives a ListModelAdminRequest message and returns a
-	// ListModelAdminResponse
+	// ListModelAdmin method receives a ListModelAdminRequest message and returns
+	// a ListModelAdminResponse
 	ListModelAdmin(context.Context, *ListModelAdminRequest) (*ListModelAdminResponse, error)
 	// GetModelAdmin method receives a GetModelAdminRequest message and returns a
 	// GetModelAdminResponse
 	GetModelAdmin(context.Context, *GetModelAdminRequest) (*GetModelAdminResponse, error)
-	// LookUpModelAdmin method receives a LookUpModelAdminRequest message and returns a
-	// LookUpModelAdminResponse
+	// LookUpModelAdmin method receives a LookUpModelAdminRequest message and
+	// returns a LookUpModelAdminResponse
 	LookUpModelAdmin(context.Context, *LookUpModelAdminRequest) (*LookUpModelAdminResponse, error)
 }
 
