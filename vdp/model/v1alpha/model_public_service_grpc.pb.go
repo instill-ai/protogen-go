@@ -81,6 +81,9 @@ type ModelPublicServiceClient interface {
 	// GetModelInstanceCard method receives a GetModelInstanceCardRequest message
 	// and returns a GetModelInstanceCardResponse
 	GetModelInstanceCard(ctx context.Context, in *GetModelInstanceCardRequest, opts ...grpc.CallOption) (*GetModelInstanceCardResponse, error)
+	// WatchModelInstance method receives a WatchModelInstanceRequest message
+	// and returns a WatchModelInstanceResponse
+	WatchModelInstance(ctx context.Context, in *WatchModelInstanceRequest, opts ...grpc.CallOption) (*WatchModelInstanceResponse, error)
 	///////////////////////////////////////////////////////
 	//
 	// TriggerModelInstance method receives a TriggerModelInstanceRequest message
@@ -326,6 +329,15 @@ func (c *modelPublicServiceClient) GetModelInstanceCard(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *modelPublicServiceClient) WatchModelInstance(ctx context.Context, in *WatchModelInstanceRequest, opts ...grpc.CallOption) (*WatchModelInstanceResponse, error) {
+	out := new(WatchModelInstanceResponse)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/WatchModelInstance", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *modelPublicServiceClient) TriggerModelInstance(ctx context.Context, in *TriggerModelInstanceRequest, opts ...grpc.CallOption) (*TriggerModelInstanceResponse, error) {
 	out := new(TriggerModelInstanceResponse)
 	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/TriggerModelInstance", in, out, opts...)
@@ -506,6 +518,9 @@ type ModelPublicServiceServer interface {
 	// GetModelInstanceCard method receives a GetModelInstanceCardRequest message
 	// and returns a GetModelInstanceCardResponse
 	GetModelInstanceCard(context.Context, *GetModelInstanceCardRequest) (*GetModelInstanceCardResponse, error)
+	// WatchModelInstance method receives a WatchModelInstanceRequest message
+	// and returns a WatchModelInstanceResponse
+	WatchModelInstance(context.Context, *WatchModelInstanceRequest) (*WatchModelInstanceResponse, error)
 	///////////////////////////////////////////////////////
 	//
 	// TriggerModelInstance method receives a TriggerModelInstanceRequest message
@@ -601,6 +616,9 @@ func (UnimplementedModelPublicServiceServer) UndeployModelInstance(context.Conte
 }
 func (UnimplementedModelPublicServiceServer) GetModelInstanceCard(context.Context, *GetModelInstanceCardRequest) (*GetModelInstanceCardResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetModelInstanceCard not implemented")
+}
+func (UnimplementedModelPublicServiceServer) WatchModelInstance(context.Context, *WatchModelInstanceRequest) (*WatchModelInstanceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WatchModelInstance not implemented")
 }
 func (UnimplementedModelPublicServiceServer) TriggerModelInstance(context.Context, *TriggerModelInstanceRequest) (*TriggerModelInstanceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerModelInstance not implemented")
@@ -1003,6 +1021,24 @@ func _ModelPublicService_GetModelInstanceCard_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ModelPublicService_WatchModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WatchModelInstanceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPublicServiceServer).WatchModelInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/WatchModelInstance",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPublicServiceServer).WatchModelInstance(ctx, req.(*WatchModelInstanceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ModelPublicService_TriggerModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(TriggerModelInstanceRequest)
 	if err := dec(in); err != nil {
@@ -1227,6 +1263,10 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetModelInstanceCard",
 			Handler:    _ModelPublicService_GetModelInstanceCard_Handler,
+		},
+		{
+			MethodName: "WatchModelInstance",
+			Handler:    _ModelPublicService_WatchModelInstance_Handler,
 		},
 		{
 			MethodName: "TriggerModelInstance",
