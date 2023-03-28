@@ -28,6 +28,9 @@ type ConnectorPrivateServiceClient interface {
 	// LookUpSourceConnectorAdminRequest message and returns a
 	// LookUpSourceConnectorAdminResponse
 	LookUpSourceConnectorAdmin(ctx context.Context, in *LookUpSourceConnectorAdminRequest, opts ...grpc.CallOption) (*LookUpSourceConnectorAdminResponse, error)
+	// CheckSourceConnector method receives a CheckSourceConnectorRequest message and returns a
+	// CheckSourceConnectorResponse
+	CheckSourceConnector(ctx context.Context, in *CheckSourceConnectorRequest, opts ...grpc.CallOption) (*CheckSourceConnectorResponse, error)
 	// ListDestinationConnectorsAdmin method receives a ListDestinationConnectorsAdminRequest
 	// message and returns a ListDestinationConnectorsResponse message.
 	ListDestinationConnectorsAdmin(ctx context.Context, in *ListDestinationConnectorsAdminRequest, opts ...grpc.CallOption) (*ListDestinationConnectorsAdminResponse, error)
@@ -39,6 +42,9 @@ type ConnectorPrivateServiceClient interface {
 	// LookUpDestinationConnectorAdminRequest message and returns a
 	// LookUpDestinationConnectorAdminResponse
 	LookUpDestinationConnectorAdmin(ctx context.Context, in *LookUpDestinationConnectorAdminRequest, opts ...grpc.CallOption) (*LookUpDestinationConnectorAdminResponse, error)
+	// CheckDestinationConnector method receives a CheckDestinationConnectorRequest message and returns a
+	// CheckDestinationConnectorResponse
+	CheckDestinationConnector(ctx context.Context, in *CheckDestinationConnectorRequest, opts ...grpc.CallOption) (*CheckDestinationConnectorResponse, error)
 }
 
 type connectorPrivateServiceClient struct {
@@ -76,6 +82,15 @@ func (c *connectorPrivateServiceClient) LookUpSourceConnectorAdmin(ctx context.C
 	return out, nil
 }
 
+func (c *connectorPrivateServiceClient) CheckSourceConnector(ctx context.Context, in *CheckSourceConnectorRequest, opts ...grpc.CallOption) (*CheckSourceConnectorResponse, error) {
+	out := new(CheckSourceConnectorResponse)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPrivateService/CheckSourceConnector", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *connectorPrivateServiceClient) ListDestinationConnectorsAdmin(ctx context.Context, in *ListDestinationConnectorsAdminRequest, opts ...grpc.CallOption) (*ListDestinationConnectorsAdminResponse, error) {
 	out := new(ListDestinationConnectorsAdminResponse)
 	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPrivateService/ListDestinationConnectorsAdmin", in, out, opts...)
@@ -103,6 +118,15 @@ func (c *connectorPrivateServiceClient) LookUpDestinationConnectorAdmin(ctx cont
 	return out, nil
 }
 
+func (c *connectorPrivateServiceClient) CheckDestinationConnector(ctx context.Context, in *CheckDestinationConnectorRequest, opts ...grpc.CallOption) (*CheckDestinationConnectorResponse, error) {
+	out := new(CheckDestinationConnectorResponse)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPrivateService/CheckDestinationConnector", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ConnectorPrivateServiceServer is the server API for ConnectorPrivateService service.
 // All implementations should embed UnimplementedConnectorPrivateServiceServer
 // for forward compatibility
@@ -117,6 +141,9 @@ type ConnectorPrivateServiceServer interface {
 	// LookUpSourceConnectorAdminRequest message and returns a
 	// LookUpSourceConnectorAdminResponse
 	LookUpSourceConnectorAdmin(context.Context, *LookUpSourceConnectorAdminRequest) (*LookUpSourceConnectorAdminResponse, error)
+	// CheckSourceConnector method receives a CheckSourceConnectorRequest message and returns a
+	// CheckSourceConnectorResponse
+	CheckSourceConnector(context.Context, *CheckSourceConnectorRequest) (*CheckSourceConnectorResponse, error)
 	// ListDestinationConnectorsAdmin method receives a ListDestinationConnectorsAdminRequest
 	// message and returns a ListDestinationConnectorsResponse message.
 	ListDestinationConnectorsAdmin(context.Context, *ListDestinationConnectorsAdminRequest) (*ListDestinationConnectorsAdminResponse, error)
@@ -128,6 +155,9 @@ type ConnectorPrivateServiceServer interface {
 	// LookUpDestinationConnectorAdminRequest message and returns a
 	// LookUpDestinationConnectorAdminResponse
 	LookUpDestinationConnectorAdmin(context.Context, *LookUpDestinationConnectorAdminRequest) (*LookUpDestinationConnectorAdminResponse, error)
+	// CheckDestinationConnector method receives a CheckDestinationConnectorRequest message and returns a
+	// CheckDestinationConnectorResponse
+	CheckDestinationConnector(context.Context, *CheckDestinationConnectorRequest) (*CheckDestinationConnectorResponse, error)
 }
 
 // UnimplementedConnectorPrivateServiceServer should be embedded to have forward compatible implementations.
@@ -143,6 +173,9 @@ func (UnimplementedConnectorPrivateServiceServer) GetSourceConnectorAdmin(contex
 func (UnimplementedConnectorPrivateServiceServer) LookUpSourceConnectorAdmin(context.Context, *LookUpSourceConnectorAdminRequest) (*LookUpSourceConnectorAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LookUpSourceConnectorAdmin not implemented")
 }
+func (UnimplementedConnectorPrivateServiceServer) CheckSourceConnector(context.Context, *CheckSourceConnectorRequest) (*CheckSourceConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckSourceConnector not implemented")
+}
 func (UnimplementedConnectorPrivateServiceServer) ListDestinationConnectorsAdmin(context.Context, *ListDestinationConnectorsAdminRequest) (*ListDestinationConnectorsAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDestinationConnectorsAdmin not implemented")
 }
@@ -151,6 +184,9 @@ func (UnimplementedConnectorPrivateServiceServer) GetDestinationConnectorAdmin(c
 }
 func (UnimplementedConnectorPrivateServiceServer) LookUpDestinationConnectorAdmin(context.Context, *LookUpDestinationConnectorAdminRequest) (*LookUpDestinationConnectorAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LookUpDestinationConnectorAdmin not implemented")
+}
+func (UnimplementedConnectorPrivateServiceServer) CheckDestinationConnector(context.Context, *CheckDestinationConnectorRequest) (*CheckDestinationConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckDestinationConnector not implemented")
 }
 
 // UnsafeConnectorPrivateServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -218,6 +254,24 @@ func _ConnectorPrivateService_LookUpSourceConnectorAdmin_Handler(srv interface{}
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ConnectorPrivateService_CheckSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckSourceConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConnectorPrivateServiceServer).CheckSourceConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPrivateService/CheckSourceConnector",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConnectorPrivateServiceServer).CheckSourceConnector(ctx, req.(*CheckSourceConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ConnectorPrivateService_ListDestinationConnectorsAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListDestinationConnectorsAdminRequest)
 	if err := dec(in); err != nil {
@@ -272,6 +326,24 @@ func _ConnectorPrivateService_LookUpDestinationConnectorAdmin_Handler(srv interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ConnectorPrivateService_CheckDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckDestinationConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConnectorPrivateServiceServer).CheckDestinationConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPrivateService/CheckDestinationConnector",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConnectorPrivateServiceServer).CheckDestinationConnector(ctx, req.(*CheckDestinationConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ConnectorPrivateService_ServiceDesc is the grpc.ServiceDesc for ConnectorPrivateService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -292,6 +364,10 @@ var ConnectorPrivateService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ConnectorPrivateService_LookUpSourceConnectorAdmin_Handler,
 		},
 		{
+			MethodName: "CheckSourceConnector",
+			Handler:    _ConnectorPrivateService_CheckSourceConnector_Handler,
+		},
+		{
 			MethodName: "ListDestinationConnectorsAdmin",
 			Handler:    _ConnectorPrivateService_ListDestinationConnectorsAdmin_Handler,
 		},
@@ -302,6 +378,10 @@ var ConnectorPrivateService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "LookUpDestinationConnectorAdmin",
 			Handler:    _ConnectorPrivateService_LookUpDestinationConnectorAdmin_Handler,
+		},
+		{
+			MethodName: "CheckDestinationConnector",
+			Handler:    _ConnectorPrivateService_CheckDestinationConnector_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
