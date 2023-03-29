@@ -35,6 +35,18 @@ type MgmtPublicServiceClient interface {
 	// ExistUsername method receives a ExistUsernameRequest message and returns a
 	// ExistUsernameResponse
 	ExistUsername(ctx context.Context, in *ExistUsernameRequest, opts ...grpc.CallOption) (*ExistUsernameResponse, error)
+	// CreateToken method receives a CreateTokenRequest message and returns
+	// a CreateTokenResponse message.
+	CreateToken(ctx context.Context, in *CreateTokenRequest, opts ...grpc.CallOption) (*CreateTokenResponse, error)
+	// ListTokens method receives a ListTokensRequest message and returns a
+	// ListTokensResponse message.
+	ListTokens(ctx context.Context, in *ListTokensRequest, opts ...grpc.CallOption) (*ListTokensResponse, error)
+	// GetToken method receives a GetTokenRequest message and returns a
+	// GetTokenResponse message.
+	GetToken(ctx context.Context, in *GetTokenRequest, opts ...grpc.CallOption) (*GetTokenResponse, error)
+	// DeleteToken method receives a DeleteTokenRequest message and returns
+	// a DeleteTokenResponse message.
+	DeleteToken(ctx context.Context, in *DeleteTokenRequest, opts ...grpc.CallOption) (*DeleteTokenResponse, error)
 }
 
 type mgmtPublicServiceClient struct {
@@ -90,6 +102,42 @@ func (c *mgmtPublicServiceClient) ExistUsername(ctx context.Context, in *ExistUs
 	return out, nil
 }
 
+func (c *mgmtPublicServiceClient) CreateToken(ctx context.Context, in *CreateTokenRequest, opts ...grpc.CallOption) (*CreateTokenResponse, error) {
+	out := new(CreateTokenResponse)
+	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.MgmtPublicService/CreateToken", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mgmtPublicServiceClient) ListTokens(ctx context.Context, in *ListTokensRequest, opts ...grpc.CallOption) (*ListTokensResponse, error) {
+	out := new(ListTokensResponse)
+	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.MgmtPublicService/ListTokens", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mgmtPublicServiceClient) GetToken(ctx context.Context, in *GetTokenRequest, opts ...grpc.CallOption) (*GetTokenResponse, error) {
+	out := new(GetTokenResponse)
+	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.MgmtPublicService/GetToken", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mgmtPublicServiceClient) DeleteToken(ctx context.Context, in *DeleteTokenRequest, opts ...grpc.CallOption) (*DeleteTokenResponse, error) {
+	out := new(DeleteTokenResponse)
+	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.MgmtPublicService/DeleteToken", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MgmtPublicServiceServer is the server API for MgmtPublicService service.
 // All implementations should embed UnimplementedMgmtPublicServiceServer
 // for forward compatibility
@@ -111,6 +159,18 @@ type MgmtPublicServiceServer interface {
 	// ExistUsername method receives a ExistUsernameRequest message and returns a
 	// ExistUsernameResponse
 	ExistUsername(context.Context, *ExistUsernameRequest) (*ExistUsernameResponse, error)
+	// CreateToken method receives a CreateTokenRequest message and returns
+	// a CreateTokenResponse message.
+	CreateToken(context.Context, *CreateTokenRequest) (*CreateTokenResponse, error)
+	// ListTokens method receives a ListTokensRequest message and returns a
+	// ListTokensResponse message.
+	ListTokens(context.Context, *ListTokensRequest) (*ListTokensResponse, error)
+	// GetToken method receives a GetTokenRequest message and returns a
+	// GetTokenResponse message.
+	GetToken(context.Context, *GetTokenRequest) (*GetTokenResponse, error)
+	// DeleteToken method receives a DeleteTokenRequest message and returns
+	// a DeleteTokenResponse message.
+	DeleteToken(context.Context, *DeleteTokenRequest) (*DeleteTokenResponse, error)
 }
 
 // UnimplementedMgmtPublicServiceServer should be embedded to have forward compatible implementations.
@@ -131,6 +191,18 @@ func (UnimplementedMgmtPublicServiceServer) PatchAuthenticatedUser(context.Conte
 }
 func (UnimplementedMgmtPublicServiceServer) ExistUsername(context.Context, *ExistUsernameRequest) (*ExistUsernameResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ExistUsername not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) CreateToken(context.Context, *CreateTokenRequest) (*CreateTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateToken not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) ListTokens(context.Context, *ListTokensRequest) (*ListTokensResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTokens not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) GetToken(context.Context, *GetTokenRequest) (*GetTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetToken not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) DeleteToken(context.Context, *DeleteTokenRequest) (*DeleteTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteToken not implemented")
 }
 
 // UnsafeMgmtPublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -234,6 +306,78 @@ func _MgmtPublicService_ExistUsername_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MgmtPublicService_CreateToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).CreateToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/vdp.mgmt.v1alpha.MgmtPublicService/CreateToken",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).CreateToken(ctx, req.(*CreateTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MgmtPublicService_ListTokens_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTokensRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).ListTokens(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/vdp.mgmt.v1alpha.MgmtPublicService/ListTokens",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).ListTokens(ctx, req.(*ListTokensRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MgmtPublicService_GetToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).GetToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/vdp.mgmt.v1alpha.MgmtPublicService/GetToken",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).GetToken(ctx, req.(*GetTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MgmtPublicService_DeleteToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).DeleteToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/vdp.mgmt.v1alpha.MgmtPublicService/DeleteToken",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).DeleteToken(ctx, req.(*DeleteTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MgmtPublicService_ServiceDesc is the grpc.ServiceDesc for MgmtPublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -260,6 +404,22 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ExistUsername",
 			Handler:    _MgmtPublicService_ExistUsername_Handler,
+		},
+		{
+			MethodName: "CreateToken",
+			Handler:    _MgmtPublicService_CreateToken_Handler,
+		},
+		{
+			MethodName: "ListTokens",
+			Handler:    _MgmtPublicService_ListTokens_Handler,
+		},
+		{
+			MethodName: "GetToken",
+			Handler:    _MgmtPublicService_GetToken_Handler,
+		},
+		{
+			MethodName: "DeleteToken",
+			Handler:    _MgmtPublicService_DeleteToken_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

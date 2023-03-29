@@ -24,59 +24,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// OwnerType enumerates the owner type of any resource
-type OwnerType int32
-
-const (
-	// OwnerType: UNSPECIFIED
-	OwnerType_OWNER_TYPE_UNSPECIFIED OwnerType = 0
-	// OwnerType: USER
-	OwnerType_OWNER_TYPE_USER OwnerType = 1
-	// OwnerType: ORGANIZATION
-	OwnerType_OWNER_TYPE_ORGANIZATION OwnerType = 2
-)
-
-// Enum value maps for OwnerType.
-var (
-	OwnerType_name = map[int32]string{
-		0: "OWNER_TYPE_UNSPECIFIED",
-		1: "OWNER_TYPE_USER",
-		2: "OWNER_TYPE_ORGANIZATION",
-	}
-	OwnerType_value = map[string]int32{
-		"OWNER_TYPE_UNSPECIFIED":  0,
-		"OWNER_TYPE_USER":         1,
-		"OWNER_TYPE_ORGANIZATION": 2,
-	}
-)
-
-func (x OwnerType) Enum() *OwnerType {
-	p := new(OwnerType)
-	*p = x
-	return p
-}
-
-func (x OwnerType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (OwnerType) Descriptor() protoreflect.EnumDescriptor {
-	return file_vdp_mgmt_v1alpha_mgmt_proto_enumTypes[0].Descriptor()
-}
-
-func (OwnerType) Type() protoreflect.EnumType {
-	return &file_vdp_mgmt_v1alpha_mgmt_proto_enumTypes[0]
-}
-
-func (x OwnerType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use OwnerType.Descriptor instead.
-func (OwnerType) EnumDescriptor() ([]byte, []int) {
-	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{0}
-}
-
 // View represents a view of any resource. The resource view is implemented by
 // adding a parameter to the method request which allows the client to specify
 // which view of the resource it wants to receive in the response.
@@ -116,11 +63,11 @@ func (x View) String() string {
 }
 
 func (View) Descriptor() protoreflect.EnumDescriptor {
-	return file_vdp_mgmt_v1alpha_mgmt_proto_enumTypes[1].Descriptor()
+	return file_vdp_mgmt_v1alpha_mgmt_proto_enumTypes[0].Descriptor()
 }
 
 func (View) Type() protoreflect.EnumType {
-	return &file_vdp_mgmt_v1alpha_mgmt_proto_enumTypes[1]
+	return &file_vdp_mgmt_v1alpha_mgmt_proto_enumTypes[0]
 }
 
 func (x View) Number() protoreflect.EnumNumber {
@@ -129,7 +76,117 @@ func (x View) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use View.Descriptor instead.
 func (View) EnumDescriptor() ([]byte, []int) {
+	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{0}
+}
+
+// OwnerType enumerates the owner type of any resource
+type OwnerType int32
+
+const (
+	// OwnerType: UNSPECIFIED
+	OwnerType_OWNER_TYPE_UNSPECIFIED OwnerType = 0
+	// OwnerType: USER
+	OwnerType_OWNER_TYPE_USER OwnerType = 1
+	// OwnerType: ORGANIZATION
+	OwnerType_OWNER_TYPE_ORGANIZATION OwnerType = 2
+)
+
+// Enum value maps for OwnerType.
+var (
+	OwnerType_name = map[int32]string{
+		0: "OWNER_TYPE_UNSPECIFIED",
+		1: "OWNER_TYPE_USER",
+		2: "OWNER_TYPE_ORGANIZATION",
+	}
+	OwnerType_value = map[string]int32{
+		"OWNER_TYPE_UNSPECIFIED":  0,
+		"OWNER_TYPE_USER":         1,
+		"OWNER_TYPE_ORGANIZATION": 2,
+	}
+)
+
+func (x OwnerType) Enum() *OwnerType {
+	p := new(OwnerType)
+	*p = x
+	return p
+}
+
+func (x OwnerType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (OwnerType) Descriptor() protoreflect.EnumDescriptor {
+	return file_vdp_mgmt_v1alpha_mgmt_proto_enumTypes[1].Descriptor()
+}
+
+func (OwnerType) Type() protoreflect.EnumType {
+	return &file_vdp_mgmt_v1alpha_mgmt_proto_enumTypes[1]
+}
+
+func (x OwnerType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use OwnerType.Descriptor instead.
+func (OwnerType) EnumDescriptor() ([]byte, []int) {
 	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{1}
+}
+
+// State enumerates the state of an API token
+type ApiToken_State int32
+
+const (
+	// State: UNSPECIFIED
+	ApiToken_STATE_UNSPECIFIED ApiToken_State = 0
+	// State: INACTIVE
+	ApiToken_STATE_INACTIVE ApiToken_State = 1
+	// State: ACTIVE
+	ApiToken_STATE_ACTIVE ApiToken_State = 2
+	// State: EXPIRED
+	ApiToken_STATE_EXPIRED ApiToken_State = 3
+)
+
+// Enum value maps for ApiToken_State.
+var (
+	ApiToken_State_name = map[int32]string{
+		0: "STATE_UNSPECIFIED",
+		1: "STATE_INACTIVE",
+		2: "STATE_ACTIVE",
+		3: "STATE_EXPIRED",
+	}
+	ApiToken_State_value = map[string]int32{
+		"STATE_UNSPECIFIED": 0,
+		"STATE_INACTIVE":    1,
+		"STATE_ACTIVE":      2,
+		"STATE_EXPIRED":     3,
+	}
+)
+
+func (x ApiToken_State) Enum() *ApiToken_State {
+	p := new(ApiToken_State)
+	*p = x
+	return p
+}
+
+func (x ApiToken_State) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ApiToken_State) Descriptor() protoreflect.EnumDescriptor {
+	return file_vdp_mgmt_v1alpha_mgmt_proto_enumTypes[2].Descriptor()
+}
+
+func (ApiToken_State) Type() protoreflect.EnumType {
+	return &file_vdp_mgmt_v1alpha_mgmt_proto_enumTypes[2]
+}
+
+func (x ApiToken_State) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ApiToken_State.Descriptor instead.
+func (ApiToken_State) EnumDescriptor() ([]byte, []int) {
+	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{19, 0}
 }
 
 // User represents the content of a user
@@ -1179,7 +1236,7 @@ type ExistUsernameRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The resource name of the user to be deleted,
+	// The resource name of the user to check,
 	// for example: "users/local-user"
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 }
@@ -1269,6 +1326,653 @@ func (*ExistUsernameResponse) Descriptor() ([]byte, []int) {
 func (x *ExistUsernameResponse) GetExists() bool {
 	if x != nil {
 		return x.Exists
+	}
+	return false
+}
+
+// ApiToken represents the content of a API token
+type ApiToken struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// API token resource name. It must have the format of "tokens/*"
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// API token UUID
+	Uid string `protobuf:"bytes,2,opt,name=uid,proto3" json:"uid,omitempty"`
+	// API token resource ID (the last segment of the resource name) used to
+	// construct the resource name. This conforms to RFC-1034, which restricts to
+	// letters, numbers, and hyphen, with the first character a letter, the last a
+	// letter or a number, and a 63 character maximum.
+	// Use this field to define where it's being used.
+	Id string `protobuf:"bytes,3,opt,name=id,proto3" json:"id,omitempty"`
+	// API token creation time
+	CreateTime *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+	// API token update time
+	UpdateTime *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
+	// An opaque access token representing the API token string.
+	// To validate the token, the recipient of the token needs to call the server that issued the token.
+	AccessToken string `protobuf:"bytes,7,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
+	// API token state
+	State ApiToken_State `protobuf:"varint,8,opt,name=state,proto3,enum=vdp.mgmt.v1alpha.ApiToken_State" json:"state,omitempty"`
+	// API token type, value is fixed to "Bearer"
+	TokenType string `protobuf:"bytes,9,opt,name=token_type,json=tokenType,proto3" json:"token_type,omitempty"`
+	// The amount of time (in seconds) the API token will live. If set to -1, indicating a non-expire token
+	Lifetime int64 `protobuf:"varint,10,opt,name=lifetime,proto3" json:"lifetime,omitempty"`
+	// The amount of time (in seconds) the API token will expire. If value is -1, indicating a non-expire token
+	ExpiresIn int64 `protobuf:"varint,11,opt,name=expires_in,json=expiresIn,proto3" json:"expires_in,omitempty"`
+}
+
+func (x *ApiToken) Reset() {
+	*x = ApiToken{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[19]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ApiToken) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ApiToken) ProtoMessage() {}
+
+func (x *ApiToken) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[19]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ApiToken.ProtoReflect.Descriptor instead.
+func (*ApiToken) Descriptor() ([]byte, []int) {
+	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *ApiToken) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *ApiToken) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
+func (x *ApiToken) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *ApiToken) GetCreateTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreateTime
+	}
+	return nil
+}
+
+func (x *ApiToken) GetUpdateTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdateTime
+	}
+	return nil
+}
+
+func (x *ApiToken) GetAccessToken() string {
+	if x != nil {
+		return x.AccessToken
+	}
+	return ""
+}
+
+func (x *ApiToken) GetState() ApiToken_State {
+	if x != nil {
+		return x.State
+	}
+	return ApiToken_STATE_UNSPECIFIED
+}
+
+func (x *ApiToken) GetTokenType() string {
+	if x != nil {
+		return x.TokenType
+	}
+	return ""
+}
+
+func (x *ApiToken) GetLifetime() int64 {
+	if x != nil {
+		return x.Lifetime
+	}
+	return 0
+}
+
+func (x *ApiToken) GetExpiresIn() int64 {
+	if x != nil {
+		return x.ExpiresIn
+	}
+	return 0
+}
+
+// CreateTokenRequest represents a request to create a API token
+type CreateTokenRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// A token resource to create
+	Token *ApiToken `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+}
+
+func (x *CreateTokenRequest) Reset() {
+	*x = CreateTokenRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[20]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateTokenRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateTokenRequest) ProtoMessage() {}
+
+func (x *CreateTokenRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[20]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateTokenRequest.ProtoReflect.Descriptor instead.
+func (*CreateTokenRequest) Descriptor() ([]byte, []int) {
+	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *CreateTokenRequest) GetToken() *ApiToken {
+	if x != nil {
+		return x.Token
+	}
+	return nil
+}
+
+// CreateTokenResponse represents a response for a API token resource
+type CreateTokenResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The created API token resource
+	Token *ApiToken `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+}
+
+func (x *CreateTokenResponse) Reset() {
+	*x = CreateTokenResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[21]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateTokenResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateTokenResponse) ProtoMessage() {}
+
+func (x *CreateTokenResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[21]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateTokenResponse.ProtoReflect.Descriptor instead.
+func (*CreateTokenResponse) Descriptor() ([]byte, []int) {
+	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *CreateTokenResponse) GetToken() *ApiToken {
+	if x != nil {
+		return x.Token
+	}
+	return nil
+}
+
+// ListTokensRequest represents a request to list tokens
+type ListTokensRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The maximum number of API tokens to return. The service may return fewer
+	// than this value. If unspecified, at most 10 API tokens will be returned. The
+	// maximum value is 100; values above 100 will be coerced to 100.
+	PageSize *int64 `protobuf:"varint,1,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
+	// Page token
+	PageToken *string `protobuf:"bytes,2,opt,name=page_token,json=pageToken,proto3,oneof" json:"page_token,omitempty"`
+}
+
+func (x *ListTokensRequest) Reset() {
+	*x = ListTokensRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[22]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListTokensRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListTokensRequest) ProtoMessage() {}
+
+func (x *ListTokensRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[22]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListTokensRequest.ProtoReflect.Descriptor instead.
+func (*ListTokensRequest) Descriptor() ([]byte, []int) {
+	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *ListTokensRequest) GetPageSize() int64 {
+	if x != nil && x.PageSize != nil {
+		return *x.PageSize
+	}
+	return 0
+}
+
+func (x *ListTokensRequest) GetPageToken() string {
+	if x != nil && x.PageToken != nil {
+		return *x.PageToken
+	}
+	return ""
+}
+
+// ListTokensResponse represents a response for a list of API tokens
+type ListTokensResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// A list of API tokens resources
+	Tokens []*ApiToken `protobuf:"bytes,1,rep,name=tokens,proto3" json:"tokens,omitempty"`
+	// Next page token
+	NextPageToken string `protobuf:"bytes,2,opt,name=next_page_token,json=nextPageToken,proto3" json:"next_page_token,omitempty"`
+	// Total count of API tokens resources
+	TotalSize int64 `protobuf:"varint,3,opt,name=total_size,json=totalSize,proto3" json:"total_size,omitempty"`
+}
+
+func (x *ListTokensResponse) Reset() {
+	*x = ListTokensResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[23]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListTokensResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListTokensResponse) ProtoMessage() {}
+
+func (x *ListTokensResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[23]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListTokensResponse.ProtoReflect.Descriptor instead.
+func (*ListTokensResponse) Descriptor() ([]byte, []int) {
+	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *ListTokensResponse) GetTokens() []*ApiToken {
+	if x != nil {
+		return x.Tokens
+	}
+	return nil
+}
+
+func (x *ListTokensResponse) GetNextPageToken() string {
+	if x != nil {
+		return x.NextPageToken
+	}
+	return ""
+}
+
+func (x *ListTokensResponse) GetTotalSize() int64 {
+	if x != nil {
+		return x.TotalSize
+	}
+	return 0
+}
+
+// GetTokenRequest represents a request to query an API token
+type GetTokenRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// API tokens resource name. It must have the format of "tokens/*"
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+}
+
+func (x *GetTokenRequest) Reset() {
+	*x = GetTokenRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[24]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetTokenRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetTokenRequest) ProtoMessage() {}
+
+func (x *GetTokenRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[24]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetTokenRequest.ProtoReflect.Descriptor instead.
+func (*GetTokenRequest) Descriptor() ([]byte, []int) {
+	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *GetTokenRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+// GetTokenResponse represents a response for an API token resource
+type GetTokenResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// An API token resource
+	Token *ApiToken `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+}
+
+func (x *GetTokenResponse) Reset() {
+	*x = GetTokenResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[25]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetTokenResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetTokenResponse) ProtoMessage() {}
+
+func (x *GetTokenResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[25]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetTokenResponse.ProtoReflect.Descriptor instead.
+func (*GetTokenResponse) Descriptor() ([]byte, []int) {
+	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *GetTokenResponse) GetToken() *ApiToken {
+	if x != nil {
+		return x.Token
+	}
+	return nil
+}
+
+// DeleteTokenRequest represents a request to delete an API token resource
+type DeleteTokenRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// API token resource name. It must have the format of "tokens/*"
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+}
+
+func (x *DeleteTokenRequest) Reset() {
+	*x = DeleteTokenRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[26]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteTokenRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteTokenRequest) ProtoMessage() {}
+
+func (x *DeleteTokenRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[26]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteTokenRequest.ProtoReflect.Descriptor instead.
+func (*DeleteTokenRequest) Descriptor() ([]byte, []int) {
+	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *DeleteTokenRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+// DeleteTokenResponse represents an empty response
+type DeleteTokenResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DeleteTokenResponse) Reset() {
+	*x = DeleteTokenResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[27]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteTokenResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteTokenResponse) ProtoMessage() {}
+
+func (x *DeleteTokenResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[27]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteTokenResponse.ProtoReflect.Descriptor instead.
+func (*DeleteTokenResponse) Descriptor() ([]byte, []int) {
+	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{27}
+}
+
+// ValidateTokenRequest represents a request to validate whether
+// an API token is valid to be used for triggering pipelines
+type ValidateTokenRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The resource name of the API token to validate,
+	// for example: "tokens/test-token"
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+}
+
+func (x *ValidateTokenRequest) Reset() {
+	*x = ValidateTokenRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[28]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ValidateTokenRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ValidateTokenRequest) ProtoMessage() {}
+
+func (x *ValidateTokenRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[28]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ValidateTokenRequest.ProtoReflect.Descriptor instead.
+func (*ValidateTokenRequest) Descriptor() ([]byte, []int) {
+	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *ValidateTokenRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+// ValidateTokenResponse represents a response about whether
+// the queried token is valid
+type ValidateTokenResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// A boolean value indicating whether the token is valid
+	Valid bool `protobuf:"varint,1,opt,name=valid,proto3" json:"valid,omitempty"`
+}
+
+func (x *ValidateTokenResponse) Reset() {
+	*x = ValidateTokenResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[29]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ValidateTokenResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ValidateTokenResponse) ProtoMessage() {}
+
+func (x *ValidateTokenResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[29]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ValidateTokenResponse.ProtoReflect.Descriptor instead.
+func (*ValidateTokenResponse) Descriptor() ([]byte, []int) {
+	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *ValidateTokenResponse) GetValid() bool {
+	if x != nil {
+		return x.Valid
 	}
 	return false
 }
@@ -1444,29 +2148,118 @@ var file_vdp_mgmt_v1alpha_mgmt_proto_rawDesc = []byte{
 	0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x2f, 0x0a, 0x15, 0x45, 0x78, 0x69, 0x73, 0x74, 0x55,
 	0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
 	0x16, 0x0a, 0x06, 0x65, 0x78, 0x69, 0x73, 0x74, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52,
-	0x06, 0x65, 0x78, 0x69, 0x73, 0x74, 0x73, 0x2a, 0x59, 0x0a, 0x09, 0x4f, 0x77, 0x6e, 0x65, 0x72,
-	0x54, 0x79, 0x70, 0x65, 0x12, 0x1a, 0x0a, 0x16, 0x4f, 0x57, 0x4e, 0x45, 0x52, 0x5f, 0x54, 0x59,
-	0x50, 0x45, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00,
-	0x12, 0x13, 0x0a, 0x0f, 0x4f, 0x57, 0x4e, 0x45, 0x52, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x55,
-	0x53, 0x45, 0x52, 0x10, 0x01, 0x12, 0x1b, 0x0a, 0x17, 0x4f, 0x57, 0x4e, 0x45, 0x52, 0x5f, 0x54,
-	0x59, 0x50, 0x45, 0x5f, 0x4f, 0x52, 0x47, 0x41, 0x4e, 0x49, 0x5a, 0x41, 0x54, 0x49, 0x4f, 0x4e,
-	0x10, 0x02, 0x2a, 0x3b, 0x0a, 0x04, 0x56, 0x69, 0x65, 0x77, 0x12, 0x14, 0x0a, 0x10, 0x56, 0x49,
-	0x45, 0x57, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00,
-	0x12, 0x0e, 0x0a, 0x0a, 0x56, 0x49, 0x45, 0x57, 0x5f, 0x42, 0x41, 0x53, 0x49, 0x43, 0x10, 0x01,
-	0x12, 0x0d, 0x0a, 0x09, 0x56, 0x49, 0x45, 0x57, 0x5f, 0x46, 0x55, 0x4c, 0x4c, 0x10, 0x02, 0x42,
-	0xc3, 0x01, 0x0a, 0x14, 0x63, 0x6f, 0x6d, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d, 0x67, 0x6d, 0x74,
-	0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x42, 0x09, 0x4d, 0x67, 0x6d, 0x74, 0x50, 0x72,
-	0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x3e, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
-	0x6d, 0x2f, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2d, 0x61, 0x69, 0x2f, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x67, 0x65, 0x6e, 0x2d, 0x67, 0x6f, 0x2f, 0x76, 0x64, 0x70, 0x2f, 0x6d, 0x67, 0x6d,
-	0x74, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x3b, 0x6d, 0x67, 0x6d, 0x74, 0x76, 0x31,
-	0x61, 0x6c, 0x70, 0x68, 0x61, 0xa2, 0x02, 0x03, 0x56, 0x4d, 0x58, 0xaa, 0x02, 0x10, 0x56, 0x64,
-	0x70, 0x2e, 0x4d, 0x67, 0x6d, 0x74, 0x2e, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xca, 0x02,
-	0x10, 0x56, 0x64, 0x70, 0x5c, 0x4d, 0x67, 0x6d, 0x74, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68,
-	0x61, 0xe2, 0x02, 0x1c, 0x56, 0x64, 0x70, 0x5c, 0x4d, 0x67, 0x6d, 0x74, 0x5c, 0x56, 0x31, 0x61,
-	0x6c, 0x70, 0x68, 0x61, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61,
-	0xea, 0x02, 0x12, 0x56, 0x64, 0x70, 0x3a, 0x3a, 0x4d, 0x67, 0x6d, 0x74, 0x3a, 0x3a, 0x56, 0x31,
-	0x61, 0x6c, 0x70, 0x68, 0x61, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x06, 0x65, 0x78, 0x69, 0x73, 0x74, 0x73, 0x22, 0xb0, 0x04, 0x0a, 0x08, 0x41, 0x70, 0x69, 0x54,
+	0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x17, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x15, 0x0a,
+	0x03, 0x75, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52,
+	0x03, 0x75, 0x69, 0x64, 0x12, 0x13, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
+	0x42, 0x03, 0xe0, 0x41, 0x05, 0x52, 0x02, 0x69, 0x64, 0x12, 0x40, 0x0a, 0x0b, 0x63, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a,
+	0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
+	0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52,
+	0x0a, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x12, 0x40, 0x0a, 0x0b, 0x75,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62,
+	0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42, 0x03, 0xe0, 0x41,
+	0x03, 0x52, 0x0a, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x12, 0x26, 0x0a,
+	0x0c, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x5f, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x07, 0x20,
+	0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0b, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73,
+	0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x3b, 0x0a, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x18, 0x08,
+	0x20, 0x01, 0x28, 0x0e, 0x32, 0x20, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d, 0x67, 0x6d, 0x74, 0x2e,
+	0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x41, 0x70, 0x69, 0x54, 0x6f, 0x6b, 0x65, 0x6e,
+	0x2e, 0x53, 0x74, 0x61, 0x74, 0x65, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x05, 0x73, 0x74, 0x61,
+	0x74, 0x65, 0x12, 0x22, 0x0a, 0x0a, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x5f, 0x74, 0x79, 0x70, 0x65,
+	0x18, 0x09, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x09, 0x74, 0x6f, 0x6b,
+	0x65, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x12, 0x1f, 0x0a, 0x08, 0x6c, 0x69, 0x66, 0x65, 0x74, 0x69,
+	0x6d, 0x65, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x03, 0x42, 0x03, 0xe0, 0x41, 0x04, 0x52, 0x08, 0x6c,
+	0x69, 0x66, 0x65, 0x74, 0x69, 0x6d, 0x65, 0x12, 0x22, 0x0a, 0x0a, 0x65, 0x78, 0x70, 0x69, 0x72,
+	0x65, 0x73, 0x5f, 0x69, 0x6e, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x03, 0x42, 0x03, 0xe0, 0x41, 0x03,
+	0x52, 0x09, 0x65, 0x78, 0x70, 0x69, 0x72, 0x65, 0x73, 0x49, 0x6e, 0x22, 0x57, 0x0a, 0x05, 0x53,
+	0x74, 0x61, 0x74, 0x65, 0x12, 0x15, 0x0a, 0x11, 0x53, 0x54, 0x41, 0x54, 0x45, 0x5f, 0x55, 0x4e,
+	0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x12, 0x0a, 0x0e, 0x53,
+	0x54, 0x41, 0x54, 0x45, 0x5f, 0x49, 0x4e, 0x41, 0x43, 0x54, 0x49, 0x56, 0x45, 0x10, 0x01, 0x12,
+	0x10, 0x0a, 0x0c, 0x53, 0x54, 0x41, 0x54, 0x45, 0x5f, 0x41, 0x43, 0x54, 0x49, 0x56, 0x45, 0x10,
+	0x02, 0x12, 0x11, 0x0a, 0x0d, 0x53, 0x54, 0x41, 0x54, 0x45, 0x5f, 0x45, 0x58, 0x50, 0x49, 0x52,
+	0x45, 0x44, 0x10, 0x03, 0x3a, 0x2e, 0xea, 0x41, 0x2b, 0x0a, 0x19, 0x61, 0x70, 0x69, 0x2e, 0x69,
+	0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2e, 0x74, 0x65, 0x63, 0x68, 0x2f, 0x41, 0x70, 0x69, 0x54,
+	0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x0e, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x73, 0x2f, 0x7b, 0x74, 0x6f,
+	0x6b, 0x65, 0x6e, 0x7d, 0x4a, 0x04, 0x08, 0x06, 0x10, 0x07, 0x22, 0x4b, 0x0a, 0x12, 0x43, 0x72,
+	0x65, 0x61, 0x74, 0x65, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x35, 0x0a, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x1a, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d, 0x67, 0x6d, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70,
+	0x68, 0x61, 0x2e, 0x41, 0x70, 0x69, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x42, 0x03, 0xe0, 0x41, 0x02,
+	0x52, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x22, 0x47, 0x0a, 0x13, 0x43, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x30,
+	0x0a, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e,
+	0x76, 0x64, 0x70, 0x2e, 0x6d, 0x67, 0x6d, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61,
+	0x2e, 0x41, 0x70, 0x69, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x52, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e,
+	0x22, 0x80, 0x01, 0x0a, 0x11, 0x4c, 0x69, 0x73, 0x74, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x73, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x25, 0x0a, 0x09, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x73,
+	0x69, 0x7a, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x00,
+	0x52, 0x08, 0x70, 0x61, 0x67, 0x65, 0x53, 0x69, 0x7a, 0x65, 0x88, 0x01, 0x01, 0x12, 0x27, 0x0a,
+	0x0a, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x09, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x01, 0x52, 0x09, 0x70, 0x61, 0x67, 0x65, 0x54, 0x6f,
+	0x6b, 0x65, 0x6e, 0x88, 0x01, 0x01, 0x42, 0x0c, 0x0a, 0x0a, 0x5f, 0x70, 0x61, 0x67, 0x65, 0x5f,
+	0x73, 0x69, 0x7a, 0x65, 0x42, 0x0d, 0x0a, 0x0b, 0x5f, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x74, 0x6f,
+	0x6b, 0x65, 0x6e, 0x22, 0x8f, 0x01, 0x0a, 0x12, 0x4c, 0x69, 0x73, 0x74, 0x54, 0x6f, 0x6b, 0x65,
+	0x6e, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x32, 0x0a, 0x06, 0x74, 0x6f,
+	0x6b, 0x65, 0x6e, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x76, 0x64, 0x70,
+	0x2e, 0x6d, 0x67, 0x6d, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x41, 0x70,
+	0x69, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x52, 0x06, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x73, 0x12, 0x26,
+	0x0a, 0x0f, 0x6e, 0x65, 0x78, 0x74, 0x5f, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x74, 0x6f, 0x6b, 0x65,
+	0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d, 0x6e, 0x65, 0x78, 0x74, 0x50, 0x61, 0x67,
+	0x65, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x1d, 0x0a, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f,
+	0x73, 0x69, 0x7a, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03, 0x52, 0x09, 0x74, 0x6f, 0x74, 0x61,
+	0x6c, 0x53, 0x69, 0x7a, 0x65, 0x22, 0x5b, 0x0a, 0x0f, 0x47, 0x65, 0x74, 0x54, 0x6f, 0x6b, 0x65,
+	0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x48, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x34, 0x92, 0x41, 0x10, 0xca, 0x3e, 0x0d, 0xfa, 0x02,
+	0x0a, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x2e, 0x6e, 0x61, 0x6d, 0x65, 0xe0, 0x41, 0x02, 0xfa, 0x41,
+	0x1b, 0x0a, 0x19, 0x61, 0x70, 0x69, 0x2e, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2e, 0x74,
+	0x65, 0x63, 0x68, 0x2f, 0x41, 0x70, 0x69, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x52, 0x04, 0x6e, 0x61,
+	0x6d, 0x65, 0x22, 0x44, 0x0a, 0x10, 0x47, 0x65, 0x74, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x30, 0x0a, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d, 0x67, 0x6d, 0x74,
+	0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x41, 0x70, 0x69, 0x54, 0x6f, 0x6b, 0x65,
+	0x6e, 0x52, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x22, 0x5e, 0x0a, 0x12, 0x44, 0x65, 0x6c, 0x65,
+	0x74, 0x65, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x48,
+	0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x34, 0x92, 0x41,
+	0x10, 0xca, 0x3e, 0x0d, 0xfa, 0x02, 0x0a, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x2e, 0x6e, 0x61, 0x6d,
+	0x65, 0xe0, 0x41, 0x02, 0xfa, 0x41, 0x1b, 0x0a, 0x19, 0x61, 0x70, 0x69, 0x2e, 0x69, 0x6e, 0x73,
+	0x74, 0x69, 0x6c, 0x6c, 0x2e, 0x74, 0x65, 0x63, 0x68, 0x2f, 0x41, 0x70, 0x69, 0x54, 0x6f, 0x6b,
+	0x65, 0x6e, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x15, 0x0a, 0x13, 0x44, 0x65, 0x6c, 0x65,
+	0x74, 0x65, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
+	0x60, 0x0a, 0x14, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x54, 0x6f, 0x6b, 0x65, 0x6e,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x48, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x34, 0x92, 0x41, 0x10, 0xca, 0x3e, 0x0d, 0xfa, 0x02, 0x0a,
+	0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x2e, 0x6e, 0x61, 0x6d, 0x65, 0xe0, 0x41, 0x02, 0xfa, 0x41, 0x1b,
+	0x0a, 0x19, 0x61, 0x70, 0x69, 0x2e, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2e, 0x74, 0x65,
+	0x63, 0x68, 0x2f, 0x41, 0x70, 0x69, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x52, 0x04, 0x6e, 0x61, 0x6d,
+	0x65, 0x22, 0x2d, 0x0a, 0x15, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x54, 0x6f, 0x6b,
+	0x65, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61,
+	0x6c, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x69, 0x64,
+	0x2a, 0x3b, 0x0a, 0x04, 0x56, 0x69, 0x65, 0x77, 0x12, 0x14, 0x0a, 0x10, 0x56, 0x49, 0x45, 0x57,
+	0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x0e,
+	0x0a, 0x0a, 0x56, 0x49, 0x45, 0x57, 0x5f, 0x42, 0x41, 0x53, 0x49, 0x43, 0x10, 0x01, 0x12, 0x0d,
+	0x0a, 0x09, 0x56, 0x49, 0x45, 0x57, 0x5f, 0x46, 0x55, 0x4c, 0x4c, 0x10, 0x02, 0x2a, 0x59, 0x0a,
+	0x09, 0x4f, 0x77, 0x6e, 0x65, 0x72, 0x54, 0x79, 0x70, 0x65, 0x12, 0x1a, 0x0a, 0x16, 0x4f, 0x57,
+	0x4e, 0x45, 0x52, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49,
+	0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x13, 0x0a, 0x0f, 0x4f, 0x57, 0x4e, 0x45, 0x52, 0x5f,
+	0x54, 0x59, 0x50, 0x45, 0x5f, 0x55, 0x53, 0x45, 0x52, 0x10, 0x01, 0x12, 0x1b, 0x0a, 0x17, 0x4f,
+	0x57, 0x4e, 0x45, 0x52, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x4f, 0x52, 0x47, 0x41, 0x4e, 0x49,
+	0x5a, 0x41, 0x54, 0x49, 0x4f, 0x4e, 0x10, 0x02, 0x42, 0xc3, 0x01, 0x0a, 0x14, 0x63, 0x6f, 0x6d,
+	0x2e, 0x76, 0x64, 0x70, 0x2e, 0x6d, 0x67, 0x6d, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68,
+	0x61, 0x42, 0x09, 0x4d, 0x67, 0x6d, 0x74, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x3e,
+	0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x69, 0x6e, 0x73, 0x74, 0x69,
+	0x6c, 0x6c, 0x2d, 0x61, 0x69, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x67, 0x65, 0x6e, 0x2d, 0x67,
+	0x6f, 0x2f, 0x76, 0x64, 0x70, 0x2f, 0x6d, 0x67, 0x6d, 0x74, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70,
+	0x68, 0x61, 0x3b, 0x6d, 0x67, 0x6d, 0x74, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xa2, 0x02,
+	0x03, 0x56, 0x4d, 0x58, 0xaa, 0x02, 0x10, 0x56, 0x64, 0x70, 0x2e, 0x4d, 0x67, 0x6d, 0x74, 0x2e,
+	0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xca, 0x02, 0x10, 0x56, 0x64, 0x70, 0x5c, 0x4d, 0x67,
+	0x6d, 0x74, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xe2, 0x02, 0x1c, 0x56, 0x64, 0x70,
+	0x5c, 0x4d, 0x67, 0x6d, 0x74, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x5c, 0x47, 0x50,
+	0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x12, 0x56, 0x64, 0x70, 0x3a,
+	0x3a, 0x4d, 0x67, 0x6d, 0x74, 0x3a, 0x3a, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1481,57 +2274,76 @@ func file_vdp_mgmt_v1alpha_mgmt_proto_rawDescGZIP() []byte {
 	return file_vdp_mgmt_v1alpha_mgmt_proto_rawDescData
 }
 
-var file_vdp_mgmt_v1alpha_mgmt_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
+var file_vdp_mgmt_v1alpha_mgmt_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
+var file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes = make([]protoimpl.MessageInfo, 30)
 var file_vdp_mgmt_v1alpha_mgmt_proto_goTypes = []interface{}{
-	(OwnerType)(0),                         // 0: vdp.mgmt.v1alpha.OwnerType
-	(View)(0),                              // 1: vdp.mgmt.v1alpha.View
-	(*User)(nil),                           // 2: vdp.mgmt.v1alpha.User
-	(*ListUsersAdminRequest)(nil),          // 3: vdp.mgmt.v1alpha.ListUsersAdminRequest
-	(*ListUsersAdminResponse)(nil),         // 4: vdp.mgmt.v1alpha.ListUsersAdminResponse
-	(*CreateUserAdminRequest)(nil),         // 5: vdp.mgmt.v1alpha.CreateUserAdminRequest
-	(*CreateUserAdminResponse)(nil),        // 6: vdp.mgmt.v1alpha.CreateUserAdminResponse
-	(*GetUserAdminRequest)(nil),            // 7: vdp.mgmt.v1alpha.GetUserAdminRequest
-	(*GetUserAdminResponse)(nil),           // 8: vdp.mgmt.v1alpha.GetUserAdminResponse
-	(*UpdateUserAdminRequest)(nil),         // 9: vdp.mgmt.v1alpha.UpdateUserAdminRequest
-	(*UpdateUserAdminResponse)(nil),        // 10: vdp.mgmt.v1alpha.UpdateUserAdminResponse
-	(*DeleteUserAdminRequest)(nil),         // 11: vdp.mgmt.v1alpha.DeleteUserAdminRequest
-	(*DeleteUserAdminResponse)(nil),        // 12: vdp.mgmt.v1alpha.DeleteUserAdminResponse
-	(*LookUpUserAdminRequest)(nil),         // 13: vdp.mgmt.v1alpha.LookUpUserAdminRequest
-	(*LookUpUserAdminResponse)(nil),        // 14: vdp.mgmt.v1alpha.LookUpUserAdminResponse
-	(*QueryAuthenticatedUserRequest)(nil),  // 15: vdp.mgmt.v1alpha.QueryAuthenticatedUserRequest
-	(*QueryAuthenticatedUserResponse)(nil), // 16: vdp.mgmt.v1alpha.QueryAuthenticatedUserResponse
-	(*PatchAuthenticatedUserRequest)(nil),  // 17: vdp.mgmt.v1alpha.PatchAuthenticatedUserRequest
-	(*PatchAuthenticatedUserResponse)(nil), // 18: vdp.mgmt.v1alpha.PatchAuthenticatedUserResponse
-	(*ExistUsernameRequest)(nil),           // 19: vdp.mgmt.v1alpha.ExistUsernameRequest
-	(*ExistUsernameResponse)(nil),          // 20: vdp.mgmt.v1alpha.ExistUsernameResponse
-	(*timestamppb.Timestamp)(nil),          // 21: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil),          // 22: google.protobuf.FieldMask
+	(View)(0),                              // 0: vdp.mgmt.v1alpha.View
+	(OwnerType)(0),                         // 1: vdp.mgmt.v1alpha.OwnerType
+	(ApiToken_State)(0),                    // 2: vdp.mgmt.v1alpha.ApiToken.State
+	(*User)(nil),                           // 3: vdp.mgmt.v1alpha.User
+	(*ListUsersAdminRequest)(nil),          // 4: vdp.mgmt.v1alpha.ListUsersAdminRequest
+	(*ListUsersAdminResponse)(nil),         // 5: vdp.mgmt.v1alpha.ListUsersAdminResponse
+	(*CreateUserAdminRequest)(nil),         // 6: vdp.mgmt.v1alpha.CreateUserAdminRequest
+	(*CreateUserAdminResponse)(nil),        // 7: vdp.mgmt.v1alpha.CreateUserAdminResponse
+	(*GetUserAdminRequest)(nil),            // 8: vdp.mgmt.v1alpha.GetUserAdminRequest
+	(*GetUserAdminResponse)(nil),           // 9: vdp.mgmt.v1alpha.GetUserAdminResponse
+	(*UpdateUserAdminRequest)(nil),         // 10: vdp.mgmt.v1alpha.UpdateUserAdminRequest
+	(*UpdateUserAdminResponse)(nil),        // 11: vdp.mgmt.v1alpha.UpdateUserAdminResponse
+	(*DeleteUserAdminRequest)(nil),         // 12: vdp.mgmt.v1alpha.DeleteUserAdminRequest
+	(*DeleteUserAdminResponse)(nil),        // 13: vdp.mgmt.v1alpha.DeleteUserAdminResponse
+	(*LookUpUserAdminRequest)(nil),         // 14: vdp.mgmt.v1alpha.LookUpUserAdminRequest
+	(*LookUpUserAdminResponse)(nil),        // 15: vdp.mgmt.v1alpha.LookUpUserAdminResponse
+	(*QueryAuthenticatedUserRequest)(nil),  // 16: vdp.mgmt.v1alpha.QueryAuthenticatedUserRequest
+	(*QueryAuthenticatedUserResponse)(nil), // 17: vdp.mgmt.v1alpha.QueryAuthenticatedUserResponse
+	(*PatchAuthenticatedUserRequest)(nil),  // 18: vdp.mgmt.v1alpha.PatchAuthenticatedUserRequest
+	(*PatchAuthenticatedUserResponse)(nil), // 19: vdp.mgmt.v1alpha.PatchAuthenticatedUserResponse
+	(*ExistUsernameRequest)(nil),           // 20: vdp.mgmt.v1alpha.ExistUsernameRequest
+	(*ExistUsernameResponse)(nil),          // 21: vdp.mgmt.v1alpha.ExistUsernameResponse
+	(*ApiToken)(nil),                       // 22: vdp.mgmt.v1alpha.ApiToken
+	(*CreateTokenRequest)(nil),             // 23: vdp.mgmt.v1alpha.CreateTokenRequest
+	(*CreateTokenResponse)(nil),            // 24: vdp.mgmt.v1alpha.CreateTokenResponse
+	(*ListTokensRequest)(nil),              // 25: vdp.mgmt.v1alpha.ListTokensRequest
+	(*ListTokensResponse)(nil),             // 26: vdp.mgmt.v1alpha.ListTokensResponse
+	(*GetTokenRequest)(nil),                // 27: vdp.mgmt.v1alpha.GetTokenRequest
+	(*GetTokenResponse)(nil),               // 28: vdp.mgmt.v1alpha.GetTokenResponse
+	(*DeleteTokenRequest)(nil),             // 29: vdp.mgmt.v1alpha.DeleteTokenRequest
+	(*DeleteTokenResponse)(nil),            // 30: vdp.mgmt.v1alpha.DeleteTokenResponse
+	(*ValidateTokenRequest)(nil),           // 31: vdp.mgmt.v1alpha.ValidateTokenRequest
+	(*ValidateTokenResponse)(nil),          // 32: vdp.mgmt.v1alpha.ValidateTokenResponse
+	(*timestamppb.Timestamp)(nil),          // 33: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil),          // 34: google.protobuf.FieldMask
 }
 var file_vdp_mgmt_v1alpha_mgmt_proto_depIdxs = []int32{
-	0,  // 0: vdp.mgmt.v1alpha.User.type:type_name -> vdp.mgmt.v1alpha.OwnerType
-	21, // 1: vdp.mgmt.v1alpha.User.create_time:type_name -> google.protobuf.Timestamp
-	21, // 2: vdp.mgmt.v1alpha.User.update_time:type_name -> google.protobuf.Timestamp
-	1,  // 3: vdp.mgmt.v1alpha.ListUsersAdminRequest.view:type_name -> vdp.mgmt.v1alpha.View
-	2,  // 4: vdp.mgmt.v1alpha.ListUsersAdminResponse.users:type_name -> vdp.mgmt.v1alpha.User
-	2,  // 5: vdp.mgmt.v1alpha.CreateUserAdminRequest.user:type_name -> vdp.mgmt.v1alpha.User
-	2,  // 6: vdp.mgmt.v1alpha.CreateUserAdminResponse.user:type_name -> vdp.mgmt.v1alpha.User
-	1,  // 7: vdp.mgmt.v1alpha.GetUserAdminRequest.view:type_name -> vdp.mgmt.v1alpha.View
-	2,  // 8: vdp.mgmt.v1alpha.GetUserAdminResponse.user:type_name -> vdp.mgmt.v1alpha.User
-	2,  // 9: vdp.mgmt.v1alpha.UpdateUserAdminRequest.user:type_name -> vdp.mgmt.v1alpha.User
-	22, // 10: vdp.mgmt.v1alpha.UpdateUserAdminRequest.update_mask:type_name -> google.protobuf.FieldMask
-	2,  // 11: vdp.mgmt.v1alpha.UpdateUserAdminResponse.user:type_name -> vdp.mgmt.v1alpha.User
-	1,  // 12: vdp.mgmt.v1alpha.LookUpUserAdminRequest.view:type_name -> vdp.mgmt.v1alpha.View
-	2,  // 13: vdp.mgmt.v1alpha.LookUpUserAdminResponse.user:type_name -> vdp.mgmt.v1alpha.User
-	2,  // 14: vdp.mgmt.v1alpha.QueryAuthenticatedUserResponse.user:type_name -> vdp.mgmt.v1alpha.User
-	2,  // 15: vdp.mgmt.v1alpha.PatchAuthenticatedUserRequest.user:type_name -> vdp.mgmt.v1alpha.User
-	22, // 16: vdp.mgmt.v1alpha.PatchAuthenticatedUserRequest.update_mask:type_name -> google.protobuf.FieldMask
-	2,  // 17: vdp.mgmt.v1alpha.PatchAuthenticatedUserResponse.user:type_name -> vdp.mgmt.v1alpha.User
-	18, // [18:18] is the sub-list for method output_type
-	18, // [18:18] is the sub-list for method input_type
-	18, // [18:18] is the sub-list for extension type_name
-	18, // [18:18] is the sub-list for extension extendee
-	0,  // [0:18] is the sub-list for field type_name
+	1,  // 0: vdp.mgmt.v1alpha.User.type:type_name -> vdp.mgmt.v1alpha.OwnerType
+	33, // 1: vdp.mgmt.v1alpha.User.create_time:type_name -> google.protobuf.Timestamp
+	33, // 2: vdp.mgmt.v1alpha.User.update_time:type_name -> google.protobuf.Timestamp
+	0,  // 3: vdp.mgmt.v1alpha.ListUsersAdminRequest.view:type_name -> vdp.mgmt.v1alpha.View
+	3,  // 4: vdp.mgmt.v1alpha.ListUsersAdminResponse.users:type_name -> vdp.mgmt.v1alpha.User
+	3,  // 5: vdp.mgmt.v1alpha.CreateUserAdminRequest.user:type_name -> vdp.mgmt.v1alpha.User
+	3,  // 6: vdp.mgmt.v1alpha.CreateUserAdminResponse.user:type_name -> vdp.mgmt.v1alpha.User
+	0,  // 7: vdp.mgmt.v1alpha.GetUserAdminRequest.view:type_name -> vdp.mgmt.v1alpha.View
+	3,  // 8: vdp.mgmt.v1alpha.GetUserAdminResponse.user:type_name -> vdp.mgmt.v1alpha.User
+	3,  // 9: vdp.mgmt.v1alpha.UpdateUserAdminRequest.user:type_name -> vdp.mgmt.v1alpha.User
+	34, // 10: vdp.mgmt.v1alpha.UpdateUserAdminRequest.update_mask:type_name -> google.protobuf.FieldMask
+	3,  // 11: vdp.mgmt.v1alpha.UpdateUserAdminResponse.user:type_name -> vdp.mgmt.v1alpha.User
+	0,  // 12: vdp.mgmt.v1alpha.LookUpUserAdminRequest.view:type_name -> vdp.mgmt.v1alpha.View
+	3,  // 13: vdp.mgmt.v1alpha.LookUpUserAdminResponse.user:type_name -> vdp.mgmt.v1alpha.User
+	3,  // 14: vdp.mgmt.v1alpha.QueryAuthenticatedUserResponse.user:type_name -> vdp.mgmt.v1alpha.User
+	3,  // 15: vdp.mgmt.v1alpha.PatchAuthenticatedUserRequest.user:type_name -> vdp.mgmt.v1alpha.User
+	34, // 16: vdp.mgmt.v1alpha.PatchAuthenticatedUserRequest.update_mask:type_name -> google.protobuf.FieldMask
+	3,  // 17: vdp.mgmt.v1alpha.PatchAuthenticatedUserResponse.user:type_name -> vdp.mgmt.v1alpha.User
+	33, // 18: vdp.mgmt.v1alpha.ApiToken.create_time:type_name -> google.protobuf.Timestamp
+	33, // 19: vdp.mgmt.v1alpha.ApiToken.update_time:type_name -> google.protobuf.Timestamp
+	2,  // 20: vdp.mgmt.v1alpha.ApiToken.state:type_name -> vdp.mgmt.v1alpha.ApiToken.State
+	22, // 21: vdp.mgmt.v1alpha.CreateTokenRequest.token:type_name -> vdp.mgmt.v1alpha.ApiToken
+	22, // 22: vdp.mgmt.v1alpha.CreateTokenResponse.token:type_name -> vdp.mgmt.v1alpha.ApiToken
+	22, // 23: vdp.mgmt.v1alpha.ListTokensResponse.tokens:type_name -> vdp.mgmt.v1alpha.ApiToken
+	22, // 24: vdp.mgmt.v1alpha.GetTokenResponse.token:type_name -> vdp.mgmt.v1alpha.ApiToken
+	25, // [25:25] is the sub-list for method output_type
+	25, // [25:25] is the sub-list for method input_type
+	25, // [25:25] is the sub-list for extension type_name
+	25, // [25:25] is the sub-list for extension extendee
+	0,  // [0:25] is the sub-list for field type_name
 }
 
 func init() { file_vdp_mgmt_v1alpha_mgmt_proto_init() }
@@ -1768,18 +2580,151 @@ func file_vdp_mgmt_v1alpha_mgmt_proto_init() {
 				return nil
 			}
 		}
+		file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ApiToken); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateTokenRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateTokenResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListTokensRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListTokensResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetTokenRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetTokenResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteTokenRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteTokenResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ValidateTokenRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ValidateTokenResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[0].OneofWrappers = []interface{}{}
 	file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[1].OneofWrappers = []interface{}{}
 	file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[5].OneofWrappers = []interface{}{}
 	file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[11].OneofWrappers = []interface{}{}
+	file_vdp_mgmt_v1alpha_mgmt_proto_msgTypes[22].OneofWrappers = []interface{}{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_vdp_mgmt_v1alpha_mgmt_proto_rawDesc,
-			NumEnums:      2,
-			NumMessages:   19,
+			NumEnums:      3,
+			NumMessages:   30,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

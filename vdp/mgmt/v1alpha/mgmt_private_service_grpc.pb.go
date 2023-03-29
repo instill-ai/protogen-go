@@ -36,6 +36,9 @@ type MgmtPrivateServiceClient interface {
 	// LookUpUserAdmin method receives a LookUpUserAdminRequest message and
 	// returns a LookUpUserAdminResponse
 	LookUpUserAdmin(ctx context.Context, in *LookUpUserAdminRequest, opts ...grpc.CallOption) (*LookUpUserAdminResponse, error)
+	// ValidateToken method receives a ValidateTokenRequest message and
+	// returns a ValidateTokenResponse
+	ValidateToken(ctx context.Context, in *ValidateTokenRequest, opts ...grpc.CallOption) (*ValidateTokenResponse, error)
 }
 
 type mgmtPrivateServiceClient struct {
@@ -100,6 +103,15 @@ func (c *mgmtPrivateServiceClient) LookUpUserAdmin(ctx context.Context, in *Look
 	return out, nil
 }
 
+func (c *mgmtPrivateServiceClient) ValidateToken(ctx context.Context, in *ValidateTokenRequest, opts ...grpc.CallOption) (*ValidateTokenResponse, error) {
+	out := new(ValidateTokenResponse)
+	err := c.cc.Invoke(ctx, "/vdp.mgmt.v1alpha.MgmtPrivateService/ValidateToken", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MgmtPrivateServiceServer is the server API for MgmtPrivateService service.
 // All implementations should embed UnimplementedMgmtPrivateServiceServer
 // for forward compatibility
@@ -122,6 +134,9 @@ type MgmtPrivateServiceServer interface {
 	// LookUpUserAdmin method receives a LookUpUserAdminRequest message and
 	// returns a LookUpUserAdminResponse
 	LookUpUserAdmin(context.Context, *LookUpUserAdminRequest) (*LookUpUserAdminResponse, error)
+	// ValidateToken method receives a ValidateTokenRequest message and
+	// returns a ValidateTokenResponse
+	ValidateToken(context.Context, *ValidateTokenRequest) (*ValidateTokenResponse, error)
 }
 
 // UnimplementedMgmtPrivateServiceServer should be embedded to have forward compatible implementations.
@@ -145,6 +160,9 @@ func (UnimplementedMgmtPrivateServiceServer) DeleteUserAdmin(context.Context, *D
 }
 func (UnimplementedMgmtPrivateServiceServer) LookUpUserAdmin(context.Context, *LookUpUserAdminRequest) (*LookUpUserAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LookUpUserAdmin not implemented")
+}
+func (UnimplementedMgmtPrivateServiceServer) ValidateToken(context.Context, *ValidateTokenRequest) (*ValidateTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ValidateToken not implemented")
 }
 
 // UnsafeMgmtPrivateServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -266,6 +284,24 @@ func _MgmtPrivateService_LookUpUserAdmin_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MgmtPrivateService_ValidateToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ValidateTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPrivateServiceServer).ValidateToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/vdp.mgmt.v1alpha.MgmtPrivateService/ValidateToken",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPrivateServiceServer).ValidateToken(ctx, req.(*ValidateTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MgmtPrivateService_ServiceDesc is the grpc.ServiceDesc for MgmtPrivateService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -296,6 +332,10 @@ var MgmtPrivateService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "LookUpUserAdmin",
 			Handler:    _MgmtPrivateService_LookUpUserAdmin_Handler,
+		},
+		{
+			MethodName: "ValidateToken",
+			Handler:    _MgmtPrivateService_ValidateToken_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
