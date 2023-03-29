@@ -207,8 +207,8 @@ func local_request_ModelPrivateService_LookUpModelAdmin_0(ctx context.Context, m
 
 }
 
-func request_ModelPrivateService_CheckModelInstance_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CheckModelInstanceRequest
+func request_ModelPrivateService_CheckModel_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq CheckModelRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -228,13 +228,13 @@ func request_ModelPrivateService_CheckModelInstance_0(ctx context.Context, marsh
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
 
-	msg, err := client.CheckModelInstance(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.CheckModel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_ModelPrivateService_CheckModelInstance_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CheckModelInstanceRequest
+func local_request_ModelPrivateService_CheckModel_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq CheckModelRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -254,7 +254,7 @@ func local_request_ModelPrivateService_CheckModelInstance_0(ctx context.Context,
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
 
-	msg, err := server.CheckModelInstance(ctx, &protoReq)
+	msg, err := server.CheckModel(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -340,7 +340,7 @@ func RegisterModelPrivateServiceHandlerServer(ctx context.Context, mux *runtime.
 
 	})
 
-	mux.Handle("GET", pattern_ModelPrivateService_CheckModelInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_ModelPrivateService_CheckModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -348,12 +348,12 @@ func RegisterModelPrivateServiceHandlerServer(ctx context.Context, mux *runtime.
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPrivateService/CheckModelInstance", runtime.WithHTTPPathPattern("/v1alpha/admin/{name=models/*/instances/*}/check"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPrivateService/CheckModel", runtime.WithHTTPPathPattern("/v1alpha/admin/{name=models/*}/check"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelPrivateService_CheckModelInstance_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelPrivateService_CheckModel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -361,7 +361,7 @@ func RegisterModelPrivateServiceHandlerServer(ctx context.Context, mux *runtime.
 			return
 		}
 
-		forward_ModelPrivateService_CheckModelInstance_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPrivateService_CheckModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -472,25 +472,25 @@ func RegisterModelPrivateServiceHandlerClient(ctx context.Context, mux *runtime.
 
 	})
 
-	mux.Handle("GET", pattern_ModelPrivateService_CheckModelInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_ModelPrivateService_CheckModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPrivateService/CheckModelInstance", runtime.WithHTTPPathPattern("/v1alpha/admin/{name=models/*/instances/*}/check"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPrivateService/CheckModel", runtime.WithHTTPPathPattern("/v1alpha/admin/{name=models/*}/check"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPrivateService_CheckModelInstance_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPrivateService_CheckModel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ModelPrivateService_CheckModelInstance_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPrivateService_CheckModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -504,7 +504,7 @@ var (
 
 	pattern_ModelPrivateService_LookUpModelAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 2, 5, 3, 2, 4}, []string{"v1alpha", "admin", "models", "permalink", "lookUp"}, ""))
 
-	pattern_ModelPrivateService_CheckModelInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 2, 3, 1, 0, 4, 4, 5, 4, 2, 5}, []string{"v1alpha", "admin", "models", "instances", "name", "check"}, ""))
+	pattern_ModelPrivateService_CheckModel_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 2, 5, 3, 2, 4}, []string{"v1alpha", "admin", "models", "name", "check"}, ""))
 )
 
 var (
@@ -514,5 +514,5 @@ var (
 
 	forward_ModelPrivateService_LookUpModelAdmin_0 = runtime.ForwardResponseMessage
 
-	forward_ModelPrivateService_CheckModelInstance_0 = runtime.ForwardResponseMessage
+	forward_ModelPrivateService_CheckModel_0 = runtime.ForwardResponseMessage
 )

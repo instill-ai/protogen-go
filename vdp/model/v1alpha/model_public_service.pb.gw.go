@@ -891,218 +891,8 @@ func local_request_ModelPublicService_UnpublishModel_0(ctx context.Context, mars
 
 }
 
-var (
-	filter_ModelPublicService_ListModelInstances_0 = &utilities.DoubleArray{Encoding: map[string]int{"parent": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
-)
-
-func request_ModelPublicService_ListModelInstances_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListModelInstancesRequest
-	var metadata runtime.ServerMetadata
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["parent"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "parent")
-	}
-
-	protoReq.Parent, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "parent", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_ListModelInstances_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.ListModelInstances(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
-func local_request_ModelPublicService_ListModelInstances_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListModelInstancesRequest
-	var metadata runtime.ServerMetadata
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["parent"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "parent")
-	}
-
-	protoReq.Parent, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "parent", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_ListModelInstances_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := server.ListModelInstances(ctx, &protoReq)
-	return msg, metadata, err
-
-}
-
-var (
-	filter_ModelPublicService_GetModelInstance_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
-)
-
-func request_ModelPublicService_GetModelInstance_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetModelInstanceRequest
-	var metadata runtime.ServerMetadata
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["name"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
-	}
-
-	protoReq.Name, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_GetModelInstance_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.GetModelInstance(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
-func local_request_ModelPublicService_GetModelInstance_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetModelInstanceRequest
-	var metadata runtime.ServerMetadata
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["name"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
-	}
-
-	protoReq.Name, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_GetModelInstance_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := server.GetModelInstance(ctx, &protoReq)
-	return msg, metadata, err
-
-}
-
-var (
-	filter_ModelPublicService_LookUpModelInstance_0 = &utilities.DoubleArray{Encoding: map[string]int{"permalink": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
-)
-
-func request_ModelPublicService_LookUpModelInstance_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq LookUpModelInstanceRequest
-	var metadata runtime.ServerMetadata
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["permalink"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "permalink")
-	}
-
-	protoReq.Permalink, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "permalink", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_LookUpModelInstance_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.LookUpModelInstance(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
-func local_request_ModelPublicService_LookUpModelInstance_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq LookUpModelInstanceRequest
-	var metadata runtime.ServerMetadata
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["permalink"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "permalink")
-	}
-
-	protoReq.Permalink, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "permalink", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_LookUpModelInstance_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := server.LookUpModelInstance(ctx, &protoReq)
-	return msg, metadata, err
-
-}
-
-func request_ModelPublicService_DeployModelInstance_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeployModelInstanceRequest
+func request_ModelPublicService_DeployModel_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DeployModelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1130,13 +920,13 @@ func request_ModelPublicService_DeployModelInstance_0(ctx context.Context, marsh
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
 
-	msg, err := client.DeployModelInstance(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.DeployModel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_ModelPublicService_DeployModelInstance_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeployModelInstanceRequest
+func local_request_ModelPublicService_DeployModel_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DeployModelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1164,13 +954,13 @@ func local_request_ModelPublicService_DeployModelInstance_0(ctx context.Context,
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
 
-	msg, err := server.DeployModelInstance(ctx, &protoReq)
+	msg, err := server.DeployModel(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_ModelPublicService_UndeployModelInstance_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UndeployModelInstanceRequest
+func request_ModelPublicService_UndeployModel_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UndeployModelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1198,13 +988,13 @@ func request_ModelPublicService_UndeployModelInstance_0(ctx context.Context, mar
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
 
-	msg, err := client.UndeployModelInstance(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.UndeployModel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_ModelPublicService_UndeployModelInstance_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UndeployModelInstanceRequest
+func local_request_ModelPublicService_UndeployModel_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UndeployModelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1232,13 +1022,13 @@ func local_request_ModelPublicService_UndeployModelInstance_0(ctx context.Contex
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
 
-	msg, err := server.UndeployModelInstance(ctx, &protoReq)
+	msg, err := server.UndeployModel(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_ModelPublicService_GetModelInstanceCard_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetModelInstanceCardRequest
+func request_ModelPublicService_GetModelCard_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetModelCardRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -1258,13 +1048,13 @@ func request_ModelPublicService_GetModelInstanceCard_0(ctx context.Context, mars
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
 
-	msg, err := client.GetModelInstanceCard(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetModelCard(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_ModelPublicService_GetModelInstanceCard_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetModelInstanceCardRequest
+func local_request_ModelPublicService_GetModelCard_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetModelCardRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -1284,13 +1074,13 @@ func local_request_ModelPublicService_GetModelInstanceCard_0(ctx context.Context
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
 
-	msg, err := server.GetModelInstanceCard(ctx, &protoReq)
+	msg, err := server.GetModelCard(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_ModelPublicService_WatchModelInstance_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq WatchModelInstanceRequest
+func request_ModelPublicService_WatchModel_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq WatchModelRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -1310,13 +1100,13 @@ func request_ModelPublicService_WatchModelInstance_0(ctx context.Context, marsha
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
 
-	msg, err := client.WatchModelInstance(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.WatchModel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_ModelPublicService_WatchModelInstance_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq WatchModelInstanceRequest
+func local_request_ModelPublicService_WatchModel_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq WatchModelRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -1336,13 +1126,13 @@ func local_request_ModelPublicService_WatchModelInstance_0(ctx context.Context, 
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
 
-	msg, err := server.WatchModelInstance(ctx, &protoReq)
+	msg, err := server.WatchModel(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_ModelPublicService_TriggerModelInstance_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq TriggerModelInstanceRequest
+func request_ModelPublicService_TriggerModel_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq TriggerModelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1370,13 +1160,13 @@ func request_ModelPublicService_TriggerModelInstance_0(ctx context.Context, mars
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
 
-	msg, err := client.TriggerModelInstance(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.TriggerModel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_ModelPublicService_TriggerModelInstance_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq TriggerModelInstanceRequest
+func local_request_ModelPublicService_TriggerModel_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq TriggerModelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1404,21 +1194,21 @@ func local_request_ModelPublicService_TriggerModelInstance_0(ctx context.Context
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
 
-	msg, err := server.TriggerModelInstance(ctx, &protoReq)
+	msg, err := server.TriggerModel(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_ModelPublicService_TriggerModelInstanceBinaryFileUpload_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_ModelPublicService_TriggerModelBinaryFileUpload_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var metadata runtime.ServerMetadata
-	stream, err := client.TriggerModelInstanceBinaryFileUpload(ctx)
+	stream, err := client.TriggerModelBinaryFileUpload(ctx)
 	if err != nil {
 		grpclog.Infof("Failed to start streaming: %v", err)
 		return nil, metadata, err
 	}
 	dec := marshaler.NewDecoder(req.Body)
 	for {
-		var protoReq TriggerModelInstanceBinaryFileUploadRequest
+		var protoReq TriggerModelBinaryFileUploadRequest
 		err = dec.Decode(&protoReq)
 		if err == io.EOF {
 			break
@@ -1453,8 +1243,8 @@ func request_ModelPublicService_TriggerModelInstanceBinaryFileUpload_0(ctx conte
 
 }
 
-func request_ModelPublicService_TestModelInstance_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq TestModelInstanceRequest
+func request_ModelPublicService_TestModel_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq TestModelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1482,13 +1272,13 @@ func request_ModelPublicService_TestModelInstance_0(ctx context.Context, marshal
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
 
-	msg, err := client.TestModelInstance(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.TestModel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_ModelPublicService_TestModelInstance_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq TestModelInstanceRequest
+func local_request_ModelPublicService_TestModel_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq TestModelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1516,21 +1306,21 @@ func local_request_ModelPublicService_TestModelInstance_0(ctx context.Context, m
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
 
-	msg, err := server.TestModelInstance(ctx, &protoReq)
+	msg, err := server.TestModel(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_ModelPublicService_TestModelInstanceBinaryFileUpload_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_ModelPublicService_TestModelBinaryFileUpload_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var metadata runtime.ServerMetadata
-	stream, err := client.TestModelInstanceBinaryFileUpload(ctx)
+	stream, err := client.TestModelBinaryFileUpload(ctx)
 	if err != nil {
 		grpclog.Infof("Failed to start streaming: %v", err)
 		return nil, metadata, err
 	}
 	dec := marshaler.NewDecoder(req.Body)
 	for {
-		var protoReq TestModelInstanceBinaryFileUploadRequest
+		var protoReq TestModelBinaryFileUploadRequest
 		err = dec.Decode(&protoReq)
 		if err == io.EOF {
 			break
@@ -2127,7 +1917,7 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 
 	})
 
-	mux.Handle("GET", pattern_ModelPublicService_ListModelInstances_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_ModelPublicService_DeployModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -2135,12 +1925,12 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/ListModelInstances", runtime.WithHTTPPathPattern("/v1alpha/{parent=models/*}/instances"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/DeployModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}/deploy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelPublicService_ListModelInstances_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelPublicService_DeployModel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -2148,11 +1938,11 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 			return
 		}
 
-		forward_ModelPublicService_ListModelInstances_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_DeployModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_ModelPublicService_GetModelInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_ModelPublicService_UndeployModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -2160,12 +1950,12 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/GetModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/UndeployModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}/undeploy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelPublicService_GetModelInstance_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelPublicService_UndeployModel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -2173,11 +1963,11 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 			return
 		}
 
-		forward_ModelPublicService_GetModelInstance_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_UndeployModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_ModelPublicService_LookUpModelInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_ModelPublicService_GetModelCard_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -2185,12 +1975,12 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/LookUpModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{permalink=models/*/instances/*}/lookUp"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/GetModelCard", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/readme}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelPublicService_LookUpModelInstance_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelPublicService_GetModelCard_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -2198,11 +1988,11 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 			return
 		}
 
-		forward_ModelPublicService_LookUpModelInstance_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_GetModelCard_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_ModelPublicService_DeployModelInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_ModelPublicService_WatchModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -2210,12 +2000,12 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/DeployModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}/deploy"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/WatchModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}/watch"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelPublicService_DeployModelInstance_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelPublicService_WatchModel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -2223,11 +2013,11 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 			return
 		}
 
-		forward_ModelPublicService_DeployModelInstance_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_WatchModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_ModelPublicService_UndeployModelInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_ModelPublicService_TriggerModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -2235,12 +2025,12 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/UndeployModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}/undeploy"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/TriggerModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}/trigger"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelPublicService_UndeployModelInstance_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelPublicService_TriggerModel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -2248,93 +2038,18 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 			return
 		}
 
-		forward_ModelPublicService_UndeployModelInstance_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_TriggerModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_ModelPublicService_GetModelInstanceCard_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/GetModelInstanceCard", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*/readme}"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_ModelPublicService_GetModelInstanceCard_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_ModelPublicService_GetModelInstanceCard_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("GET", pattern_ModelPublicService_WatchModelInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/WatchModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}/watch"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_ModelPublicService_WatchModelInstance_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_ModelPublicService_WatchModelInstance_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("POST", pattern_ModelPublicService_TriggerModelInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/TriggerModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}/trigger"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_ModelPublicService_TriggerModelInstance_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_ModelPublicService_TriggerModelInstance_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("POST", pattern_ModelPublicService_TriggerModelInstanceBinaryFileUpload_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_ModelPublicService_TriggerModelBinaryFileUpload_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 		return
 	})
 
-	mux.Handle("POST", pattern_ModelPublicService_TestModelInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_ModelPublicService_TestModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -2342,12 +2057,12 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/TestModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}/test"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/TestModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}/test"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelPublicService_TestModelInstance_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelPublicService_TestModel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -2355,11 +2070,11 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 			return
 		}
 
-		forward_ModelPublicService_TestModelInstance_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_TestModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_ModelPublicService_TestModelInstanceBinaryFileUpload_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_ModelPublicService_TestModelBinaryFileUpload_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2834,245 +2549,179 @@ func RegisterModelPublicServiceHandlerClient(ctx context.Context, mux *runtime.S
 
 	})
 
-	mux.Handle("GET", pattern_ModelPublicService_ListModelInstances_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_ModelPublicService_DeployModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/ListModelInstances", runtime.WithHTTPPathPattern("/v1alpha/{parent=models/*}/instances"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/DeployModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}/deploy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_ListModelInstances_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_DeployModel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ModelPublicService_ListModelInstances_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_DeployModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_ModelPublicService_GetModelInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_ModelPublicService_UndeployModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/GetModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/UndeployModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}/undeploy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_GetModelInstance_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_UndeployModel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ModelPublicService_GetModelInstance_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_UndeployModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_ModelPublicService_LookUpModelInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_ModelPublicService_GetModelCard_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/LookUpModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{permalink=models/*/instances/*}/lookUp"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/GetModelCard", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/readme}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_LookUpModelInstance_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_GetModelCard_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ModelPublicService_LookUpModelInstance_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_GetModelCard_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_ModelPublicService_DeployModelInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_ModelPublicService_WatchModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/DeployModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}/deploy"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/WatchModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}/watch"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_DeployModelInstance_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_WatchModel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ModelPublicService_DeployModelInstance_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_WatchModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_ModelPublicService_UndeployModelInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_ModelPublicService_TriggerModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/UndeployModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}/undeploy"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/TriggerModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}/trigger"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_UndeployModelInstance_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_TriggerModel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ModelPublicService_UndeployModelInstance_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_TriggerModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_ModelPublicService_GetModelInstanceCard_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_ModelPublicService_TriggerModelBinaryFileUpload_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/GetModelInstanceCard", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*/readme}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/TriggerModelBinaryFileUpload", runtime.WithHTTPPathPattern("/vdp.model.v1alpha.ModelPublicService/TriggerModelBinaryFileUpload"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_GetModelInstanceCard_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_TriggerModelBinaryFileUpload_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ModelPublicService_GetModelInstanceCard_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_TriggerModelBinaryFileUpload_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_ModelPublicService_WatchModelInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_ModelPublicService_TestModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/WatchModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}/watch"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/TestModel", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*}/test"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_WatchModelInstance_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_TestModel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ModelPublicService_WatchModelInstance_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_TestModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_ModelPublicService_TriggerModelInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_ModelPublicService_TestModelBinaryFileUpload_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/TriggerModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}/trigger"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/TestModelBinaryFileUpload", runtime.WithHTTPPathPattern("/vdp.model.v1alpha.ModelPublicService/TestModelBinaryFileUpload"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_TriggerModelInstance_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_TestModelBinaryFileUpload_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ModelPublicService_TriggerModelInstance_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("POST", pattern_ModelPublicService_TriggerModelInstanceBinaryFileUpload_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/TriggerModelInstanceBinaryFileUpload", runtime.WithHTTPPathPattern("/vdp.model.v1alpha.ModelPublicService/TriggerModelInstanceBinaryFileUpload"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ModelPublicService_TriggerModelInstanceBinaryFileUpload_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_ModelPublicService_TriggerModelInstanceBinaryFileUpload_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("POST", pattern_ModelPublicService_TestModelInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/TestModelInstance", runtime.WithHTTPPathPattern("/v1alpha/{name=models/*/instances/*}/test"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ModelPublicService_TestModelInstance_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_ModelPublicService_TestModelInstance_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("POST", pattern_ModelPublicService_TestModelInstanceBinaryFileUpload_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.model.v1alpha.ModelPublicService/TestModelInstanceBinaryFileUpload", runtime.WithHTTPPathPattern("/vdp.model.v1alpha.ModelPublicService/TestModelInstanceBinaryFileUpload"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ModelPublicService_TestModelInstanceBinaryFileUpload_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_ModelPublicService_TestModelInstanceBinaryFileUpload_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_TestModelBinaryFileUpload_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -3178,27 +2827,21 @@ var (
 
 	pattern_ModelPublicService_UnpublishModel_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "models", "name", "unpublish"}, ""))
 
-	pattern_ModelPublicService_ListModelInstances_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "models", "parent", "instances"}, ""))
+	pattern_ModelPublicService_DeployModel_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "models", "name", "deploy"}, ""))
 
-	pattern_ModelPublicService_GetModelInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "models", "instances", "name"}, ""))
+	pattern_ModelPublicService_UndeployModel_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "models", "name", "undeploy"}, ""))
 
-	pattern_ModelPublicService_LookUpModelInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "models", "instances", "permalink", "lookUp"}, ""))
+	pattern_ModelPublicService_GetModelCard_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 4, 3, 5, 3}, []string{"v1alpha", "models", "readme", "name"}, ""))
 
-	pattern_ModelPublicService_DeployModelInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "models", "instances", "name", "deploy"}, ""))
+	pattern_ModelPublicService_WatchModel_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "models", "name", "watch"}, ""))
 
-	pattern_ModelPublicService_UndeployModelInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "models", "instances", "name", "undeploy"}, ""))
+	pattern_ModelPublicService_TriggerModel_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "models", "name", "trigger"}, ""))
 
-	pattern_ModelPublicService_GetModelInstanceCard_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 4, 5, 5, 4}, []string{"v1alpha", "models", "instances", "readme", "name"}, ""))
+	pattern_ModelPublicService_TriggerModelBinaryFileUpload_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"vdp.model.v1alpha.ModelPublicService", "TriggerModelBinaryFileUpload"}, ""))
 
-	pattern_ModelPublicService_WatchModelInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "models", "instances", "name", "watch"}, ""))
+	pattern_ModelPublicService_TestModel_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "models", "name", "test"}, ""))
 
-	pattern_ModelPublicService_TriggerModelInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "models", "instances", "name", "trigger"}, ""))
-
-	pattern_ModelPublicService_TriggerModelInstanceBinaryFileUpload_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"vdp.model.v1alpha.ModelPublicService", "TriggerModelInstanceBinaryFileUpload"}, ""))
-
-	pattern_ModelPublicService_TestModelInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "models", "instances", "name", "test"}, ""))
-
-	pattern_ModelPublicService_TestModelInstanceBinaryFileUpload_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"vdp.model.v1alpha.ModelPublicService", "TestModelInstanceBinaryFileUpload"}, ""))
+	pattern_ModelPublicService_TestModelBinaryFileUpload_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"vdp.model.v1alpha.ModelPublicService", "TestModelBinaryFileUpload"}, ""))
 
 	pattern_ModelPublicService_GetModelOperation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1alpha", "operations", "name"}, ""))
 
@@ -3240,27 +2883,21 @@ var (
 
 	forward_ModelPublicService_UnpublishModel_0 = runtime.ForwardResponseMessage
 
-	forward_ModelPublicService_ListModelInstances_0 = runtime.ForwardResponseMessage
+	forward_ModelPublicService_DeployModel_0 = runtime.ForwardResponseMessage
 
-	forward_ModelPublicService_GetModelInstance_0 = runtime.ForwardResponseMessage
+	forward_ModelPublicService_UndeployModel_0 = runtime.ForwardResponseMessage
 
-	forward_ModelPublicService_LookUpModelInstance_0 = runtime.ForwardResponseMessage
+	forward_ModelPublicService_GetModelCard_0 = runtime.ForwardResponseMessage
 
-	forward_ModelPublicService_DeployModelInstance_0 = runtime.ForwardResponseMessage
+	forward_ModelPublicService_WatchModel_0 = runtime.ForwardResponseMessage
 
-	forward_ModelPublicService_UndeployModelInstance_0 = runtime.ForwardResponseMessage
+	forward_ModelPublicService_TriggerModel_0 = runtime.ForwardResponseMessage
 
-	forward_ModelPublicService_GetModelInstanceCard_0 = runtime.ForwardResponseMessage
+	forward_ModelPublicService_TriggerModelBinaryFileUpload_0 = runtime.ForwardResponseMessage
 
-	forward_ModelPublicService_WatchModelInstance_0 = runtime.ForwardResponseMessage
+	forward_ModelPublicService_TestModel_0 = runtime.ForwardResponseMessage
 
-	forward_ModelPublicService_TriggerModelInstance_0 = runtime.ForwardResponseMessage
-
-	forward_ModelPublicService_TriggerModelInstanceBinaryFileUpload_0 = runtime.ForwardResponseMessage
-
-	forward_ModelPublicService_TestModelInstance_0 = runtime.ForwardResponseMessage
-
-	forward_ModelPublicService_TestModelInstanceBinaryFileUpload_0 = runtime.ForwardResponseMessage
+	forward_ModelPublicService_TestModelBinaryFileUpload_0 = runtime.ForwardResponseMessage
 
 	forward_ModelPublicService_GetModelOperation_0 = runtime.ForwardResponseMessage
 

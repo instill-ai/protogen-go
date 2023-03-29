@@ -64,46 +64,36 @@ type ModelPublicServiceClient interface {
 	// UnpublishModel method receives a UnpublishModelRequest message and returns
 	// a UnpublishModelResponse
 	UnpublishModel(ctx context.Context, in *UnpublishModelRequest, opts ...grpc.CallOption) (*UnpublishModelResponse, error)
-	// ListModelInstances method receives a ListModelInstancesRequest message and
-	// returns a ListModelInstancesResponse
-	ListModelInstances(ctx context.Context, in *ListModelInstancesRequest, opts ...grpc.CallOption) (*ListModelInstancesResponse, error)
-	// GetModelInstance method receives a GetModelInstanceRequest message and
-	// returns a GetModelInstanceResponse
-	GetModelInstance(ctx context.Context, in *GetModelInstanceRequest, opts ...grpc.CallOption) (*GetModelInstanceResponse, error)
-	// LookUpModelInstance method receives a LookUpModelInstanceRequest message
-	// and returns a
-	// LookUpModelInstanceResponse
-	LookUpModelInstance(ctx context.Context, in *LookUpModelInstanceRequest, opts ...grpc.CallOption) (*LookUpModelInstanceResponse, error)
-	// DeployModelInstance deploy a model instance to online state
-	DeployModelInstance(ctx context.Context, in *DeployModelInstanceRequest, opts ...grpc.CallOption) (*DeployModelInstanceResponse, error)
-	// UndeployModelInstance undeploy a model instance to offline state
-	UndeployModelInstance(ctx context.Context, in *UndeployModelInstanceRequest, opts ...grpc.CallOption) (*UndeployModelInstanceResponse, error)
-	// GetModelInstanceCard method receives a GetModelInstanceCardRequest message
-	// and returns a GetModelInstanceCardResponse
-	GetModelInstanceCard(ctx context.Context, in *GetModelInstanceCardRequest, opts ...grpc.CallOption) (*GetModelInstanceCardResponse, error)
-	// WatchModelInstance method receives a WatchModelInstanceRequest message
-	// and returns a WatchModelInstanceResponse
-	WatchModelInstance(ctx context.Context, in *WatchModelInstanceRequest, opts ...grpc.CallOption) (*WatchModelInstanceResponse, error)
+	// DeployModel deploy a model to online state
+	DeployModel(ctx context.Context, in *DeployModelRequest, opts ...grpc.CallOption) (*DeployModelResponse, error)
+	// UndeployModel undeploy a model to offline state
+	UndeployModel(ctx context.Context, in *UndeployModelRequest, opts ...grpc.CallOption) (*UndeployModelResponse, error)
+	// GetModelCard method receives a GetModelCardRequest message
+	// and returns a GetModelCardResponse
+	GetModelCard(ctx context.Context, in *GetModelCardRequest, opts ...grpc.CallOption) (*GetModelCardResponse, error)
+	// WatchModel method receives a WatchModelRequest message
+	// and returns a WatchModelResponse
+	WatchModel(ctx context.Context, in *WatchModelRequest, opts ...grpc.CallOption) (*WatchModelResponse, error)
 	///////////////////////////////////////////////////////
 	//
-	// TriggerModelInstance method receives a TriggerModelInstanceRequest message
-	// and returns a TriggerModelInstanceResponse message.
-	TriggerModelInstance(ctx context.Context, in *TriggerModelInstanceRequest, opts ...grpc.CallOption) (*TriggerModelInstanceResponse, error)
-	// TriggerModelInstanceBinaryFileUpload method receives a
-	// TriggerModelInstanceBinaryFileUploadRequest message and returns a
-	// TriggerModelInstanceBinaryFileUploadResponse message.
+	// TriggerModel method receives a TriggerModelRequest message
+	// and returns a TriggerModelResponse message.
+	TriggerModel(ctx context.Context, in *TriggerModelRequest, opts ...grpc.CallOption) (*TriggerModelResponse, error)
+	// TriggerModelBinaryFileUpload method receives a
+	// TriggerModelBinaryFileUploadRequest message and returns a
+	// TriggerModelBinaryFileUploadResponse message.
 	//
-	// Endpoint: "POST/v1alpha/{name=models/*/instances/*}/trigger-multipart"
-	TriggerModelInstanceBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TriggerModelInstanceBinaryFileUploadClient, error)
-	// TestModelInstance method receives a TestModelInstanceRequest message
-	// and returns a TestModelInstanceResponse message.
-	TestModelInstance(ctx context.Context, in *TestModelInstanceRequest, opts ...grpc.CallOption) (*TestModelInstanceResponse, error)
-	// TestModelInstanceBinaryFileUpload method receives a
-	// TestModelInstanceBinaryFileUploadRequest message and returns a
-	// TestModelInstanceBinaryFileUploadResponse message.
+	// Endpoint: "POST/v1alpha/{name=models/*}/trigger-multipart"
+	TriggerModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TriggerModelBinaryFileUploadClient, error)
+	// TestModel method receives a TestModelRequest message
+	// and returns a TestModelResponse message.
+	TestModel(ctx context.Context, in *TestModelRequest, opts ...grpc.CallOption) (*TestModelResponse, error)
+	// TestModelBinaryFileUpload method receives a
+	// TestModelBinaryFileUploadRequest message and returns a
+	// TestModelBinaryFileUploadResponse message.
 	//
-	// Endpoint: "POST/v1alpha/{name=models/*/instances/*}/test-multipart"
-	TestModelInstanceBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TestModelInstanceBinaryFileUploadClient, error)
+	// Endpoint: "POST/v1alpha/{name=models/*}/test-multipart"
+	TestModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TestModelBinaryFileUploadClient, error)
 	// GetModelOperation method receives a
 	// GetModelOperationRequest message and returns a
 	// GetModelOperationResponse message.
@@ -275,149 +265,122 @@ func (c *modelPublicServiceClient) UnpublishModel(ctx context.Context, in *Unpub
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) ListModelInstances(ctx context.Context, in *ListModelInstancesRequest, opts ...grpc.CallOption) (*ListModelInstancesResponse, error) {
-	out := new(ListModelInstancesResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/ListModelInstances", in, out, opts...)
+func (c *modelPublicServiceClient) DeployModel(ctx context.Context, in *DeployModelRequest, opts ...grpc.CallOption) (*DeployModelResponse, error) {
+	out := new(DeployModelResponse)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/DeployModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) GetModelInstance(ctx context.Context, in *GetModelInstanceRequest, opts ...grpc.CallOption) (*GetModelInstanceResponse, error) {
-	out := new(GetModelInstanceResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/GetModelInstance", in, out, opts...)
+func (c *modelPublicServiceClient) UndeployModel(ctx context.Context, in *UndeployModelRequest, opts ...grpc.CallOption) (*UndeployModelResponse, error) {
+	out := new(UndeployModelResponse)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/UndeployModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) LookUpModelInstance(ctx context.Context, in *LookUpModelInstanceRequest, opts ...grpc.CallOption) (*LookUpModelInstanceResponse, error) {
-	out := new(LookUpModelInstanceResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/LookUpModelInstance", in, out, opts...)
+func (c *modelPublicServiceClient) GetModelCard(ctx context.Context, in *GetModelCardRequest, opts ...grpc.CallOption) (*GetModelCardResponse, error) {
+	out := new(GetModelCardResponse)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/GetModelCard", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) DeployModelInstance(ctx context.Context, in *DeployModelInstanceRequest, opts ...grpc.CallOption) (*DeployModelInstanceResponse, error) {
-	out := new(DeployModelInstanceResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/DeployModelInstance", in, out, opts...)
+func (c *modelPublicServiceClient) WatchModel(ctx context.Context, in *WatchModelRequest, opts ...grpc.CallOption) (*WatchModelResponse, error) {
+	out := new(WatchModelResponse)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/WatchModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) UndeployModelInstance(ctx context.Context, in *UndeployModelInstanceRequest, opts ...grpc.CallOption) (*UndeployModelInstanceResponse, error) {
-	out := new(UndeployModelInstanceResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/UndeployModelInstance", in, out, opts...)
+func (c *modelPublicServiceClient) TriggerModel(ctx context.Context, in *TriggerModelRequest, opts ...grpc.CallOption) (*TriggerModelResponse, error) {
+	out := new(TriggerModelResponse)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/TriggerModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) GetModelInstanceCard(ctx context.Context, in *GetModelInstanceCardRequest, opts ...grpc.CallOption) (*GetModelInstanceCardResponse, error) {
-	out := new(GetModelInstanceCardResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/GetModelInstanceCard", in, out, opts...)
+func (c *modelPublicServiceClient) TriggerModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TriggerModelBinaryFileUploadClient, error) {
+	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[1], "/vdp.model.v1alpha.ModelPublicService/TriggerModelBinaryFileUpload", opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
-}
-
-func (c *modelPublicServiceClient) WatchModelInstance(ctx context.Context, in *WatchModelInstanceRequest, opts ...grpc.CallOption) (*WatchModelInstanceResponse, error) {
-	out := new(WatchModelInstanceResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/WatchModelInstance", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *modelPublicServiceClient) TriggerModelInstance(ctx context.Context, in *TriggerModelInstanceRequest, opts ...grpc.CallOption) (*TriggerModelInstanceResponse, error) {
-	out := new(TriggerModelInstanceResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/TriggerModelInstance", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *modelPublicServiceClient) TriggerModelInstanceBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TriggerModelInstanceBinaryFileUploadClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[1], "/vdp.model.v1alpha.ModelPublicService/TriggerModelInstanceBinaryFileUpload", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &modelPublicServiceTriggerModelInstanceBinaryFileUploadClient{stream}
+	x := &modelPublicServiceTriggerModelBinaryFileUploadClient{stream}
 	return x, nil
 }
 
-type ModelPublicService_TriggerModelInstanceBinaryFileUploadClient interface {
-	Send(*TriggerModelInstanceBinaryFileUploadRequest) error
-	CloseAndRecv() (*TriggerModelInstanceBinaryFileUploadResponse, error)
+type ModelPublicService_TriggerModelBinaryFileUploadClient interface {
+	Send(*TriggerModelBinaryFileUploadRequest) error
+	CloseAndRecv() (*TriggerModelBinaryFileUploadResponse, error)
 	grpc.ClientStream
 }
 
-type modelPublicServiceTriggerModelInstanceBinaryFileUploadClient struct {
+type modelPublicServiceTriggerModelBinaryFileUploadClient struct {
 	grpc.ClientStream
 }
 
-func (x *modelPublicServiceTriggerModelInstanceBinaryFileUploadClient) Send(m *TriggerModelInstanceBinaryFileUploadRequest) error {
+func (x *modelPublicServiceTriggerModelBinaryFileUploadClient) Send(m *TriggerModelBinaryFileUploadRequest) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *modelPublicServiceTriggerModelInstanceBinaryFileUploadClient) CloseAndRecv() (*TriggerModelInstanceBinaryFileUploadResponse, error) {
+func (x *modelPublicServiceTriggerModelBinaryFileUploadClient) CloseAndRecv() (*TriggerModelBinaryFileUploadResponse, error) {
 	if err := x.ClientStream.CloseSend(); err != nil {
 		return nil, err
 	}
-	m := new(TriggerModelInstanceBinaryFileUploadResponse)
+	m := new(TriggerModelBinaryFileUploadResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func (c *modelPublicServiceClient) TestModelInstance(ctx context.Context, in *TestModelInstanceRequest, opts ...grpc.CallOption) (*TestModelInstanceResponse, error) {
-	out := new(TestModelInstanceResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/TestModelInstance", in, out, opts...)
+func (c *modelPublicServiceClient) TestModel(ctx context.Context, in *TestModelRequest, opts ...grpc.CallOption) (*TestModelResponse, error) {
+	out := new(TestModelResponse)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/TestModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) TestModelInstanceBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TestModelInstanceBinaryFileUploadClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[2], "/vdp.model.v1alpha.ModelPublicService/TestModelInstanceBinaryFileUpload", opts...)
+func (c *modelPublicServiceClient) TestModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TestModelBinaryFileUploadClient, error) {
+	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[2], "/vdp.model.v1alpha.ModelPublicService/TestModelBinaryFileUpload", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &modelPublicServiceTestModelInstanceBinaryFileUploadClient{stream}
+	x := &modelPublicServiceTestModelBinaryFileUploadClient{stream}
 	return x, nil
 }
 
-type ModelPublicService_TestModelInstanceBinaryFileUploadClient interface {
-	Send(*TestModelInstanceBinaryFileUploadRequest) error
-	CloseAndRecv() (*TestModelInstanceBinaryFileUploadResponse, error)
+type ModelPublicService_TestModelBinaryFileUploadClient interface {
+	Send(*TestModelBinaryFileUploadRequest) error
+	CloseAndRecv() (*TestModelBinaryFileUploadResponse, error)
 	grpc.ClientStream
 }
 
-type modelPublicServiceTestModelInstanceBinaryFileUploadClient struct {
+type modelPublicServiceTestModelBinaryFileUploadClient struct {
 	grpc.ClientStream
 }
 
-func (x *modelPublicServiceTestModelInstanceBinaryFileUploadClient) Send(m *TestModelInstanceBinaryFileUploadRequest) error {
+func (x *modelPublicServiceTestModelBinaryFileUploadClient) Send(m *TestModelBinaryFileUploadRequest) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *modelPublicServiceTestModelInstanceBinaryFileUploadClient) CloseAndRecv() (*TestModelInstanceBinaryFileUploadResponse, error) {
+func (x *modelPublicServiceTestModelBinaryFileUploadClient) CloseAndRecv() (*TestModelBinaryFileUploadResponse, error) {
 	if err := x.ClientStream.CloseSend(); err != nil {
 		return nil, err
 	}
-	m := new(TestModelInstanceBinaryFileUploadResponse)
+	m := new(TestModelBinaryFileUploadResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -501,46 +464,36 @@ type ModelPublicServiceServer interface {
 	// UnpublishModel method receives a UnpublishModelRequest message and returns
 	// a UnpublishModelResponse
 	UnpublishModel(context.Context, *UnpublishModelRequest) (*UnpublishModelResponse, error)
-	// ListModelInstances method receives a ListModelInstancesRequest message and
-	// returns a ListModelInstancesResponse
-	ListModelInstances(context.Context, *ListModelInstancesRequest) (*ListModelInstancesResponse, error)
-	// GetModelInstance method receives a GetModelInstanceRequest message and
-	// returns a GetModelInstanceResponse
-	GetModelInstance(context.Context, *GetModelInstanceRequest) (*GetModelInstanceResponse, error)
-	// LookUpModelInstance method receives a LookUpModelInstanceRequest message
-	// and returns a
-	// LookUpModelInstanceResponse
-	LookUpModelInstance(context.Context, *LookUpModelInstanceRequest) (*LookUpModelInstanceResponse, error)
-	// DeployModelInstance deploy a model instance to online state
-	DeployModelInstance(context.Context, *DeployModelInstanceRequest) (*DeployModelInstanceResponse, error)
-	// UndeployModelInstance undeploy a model instance to offline state
-	UndeployModelInstance(context.Context, *UndeployModelInstanceRequest) (*UndeployModelInstanceResponse, error)
-	// GetModelInstanceCard method receives a GetModelInstanceCardRequest message
-	// and returns a GetModelInstanceCardResponse
-	GetModelInstanceCard(context.Context, *GetModelInstanceCardRequest) (*GetModelInstanceCardResponse, error)
-	// WatchModelInstance method receives a WatchModelInstanceRequest message
-	// and returns a WatchModelInstanceResponse
-	WatchModelInstance(context.Context, *WatchModelInstanceRequest) (*WatchModelInstanceResponse, error)
+	// DeployModel deploy a model to online state
+	DeployModel(context.Context, *DeployModelRequest) (*DeployModelResponse, error)
+	// UndeployModel undeploy a model to offline state
+	UndeployModel(context.Context, *UndeployModelRequest) (*UndeployModelResponse, error)
+	// GetModelCard method receives a GetModelCardRequest message
+	// and returns a GetModelCardResponse
+	GetModelCard(context.Context, *GetModelCardRequest) (*GetModelCardResponse, error)
+	// WatchModel method receives a WatchModelRequest message
+	// and returns a WatchModelResponse
+	WatchModel(context.Context, *WatchModelRequest) (*WatchModelResponse, error)
 	///////////////////////////////////////////////////////
 	//
-	// TriggerModelInstance method receives a TriggerModelInstanceRequest message
-	// and returns a TriggerModelInstanceResponse message.
-	TriggerModelInstance(context.Context, *TriggerModelInstanceRequest) (*TriggerModelInstanceResponse, error)
-	// TriggerModelInstanceBinaryFileUpload method receives a
-	// TriggerModelInstanceBinaryFileUploadRequest message and returns a
-	// TriggerModelInstanceBinaryFileUploadResponse message.
+	// TriggerModel method receives a TriggerModelRequest message
+	// and returns a TriggerModelResponse message.
+	TriggerModel(context.Context, *TriggerModelRequest) (*TriggerModelResponse, error)
+	// TriggerModelBinaryFileUpload method receives a
+	// TriggerModelBinaryFileUploadRequest message and returns a
+	// TriggerModelBinaryFileUploadResponse message.
 	//
-	// Endpoint: "POST/v1alpha/{name=models/*/instances/*}/trigger-multipart"
-	TriggerModelInstanceBinaryFileUpload(ModelPublicService_TriggerModelInstanceBinaryFileUploadServer) error
-	// TestModelInstance method receives a TestModelInstanceRequest message
-	// and returns a TestModelInstanceResponse message.
-	TestModelInstance(context.Context, *TestModelInstanceRequest) (*TestModelInstanceResponse, error)
-	// TestModelInstanceBinaryFileUpload method receives a
-	// TestModelInstanceBinaryFileUploadRequest message and returns a
-	// TestModelInstanceBinaryFileUploadResponse message.
+	// Endpoint: "POST/v1alpha/{name=models/*}/trigger-multipart"
+	TriggerModelBinaryFileUpload(ModelPublicService_TriggerModelBinaryFileUploadServer) error
+	// TestModel method receives a TestModelRequest message
+	// and returns a TestModelResponse message.
+	TestModel(context.Context, *TestModelRequest) (*TestModelResponse, error)
+	// TestModelBinaryFileUpload method receives a
+	// TestModelBinaryFileUploadRequest message and returns a
+	// TestModelBinaryFileUploadResponse message.
 	//
-	// Endpoint: "POST/v1alpha/{name=models/*/instances/*}/test-multipart"
-	TestModelInstanceBinaryFileUpload(ModelPublicService_TestModelInstanceBinaryFileUploadServer) error
+	// Endpoint: "POST/v1alpha/{name=models/*}/test-multipart"
+	TestModelBinaryFileUpload(ModelPublicService_TestModelBinaryFileUploadServer) error
 	// GetModelOperation method receives a
 	// GetModelOperationRequest message and returns a
 	// GetModelOperationResponse message.
@@ -599,38 +552,29 @@ func (UnimplementedModelPublicServiceServer) PublishModel(context.Context, *Publ
 func (UnimplementedModelPublicServiceServer) UnpublishModel(context.Context, *UnpublishModelRequest) (*UnpublishModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UnpublishModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) ListModelInstances(context.Context, *ListModelInstancesRequest) (*ListModelInstancesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListModelInstances not implemented")
+func (UnimplementedModelPublicServiceServer) DeployModel(context.Context, *DeployModelRequest) (*DeployModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeployModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) GetModelInstance(context.Context, *GetModelInstanceRequest) (*GetModelInstanceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetModelInstance not implemented")
+func (UnimplementedModelPublicServiceServer) UndeployModel(context.Context, *UndeployModelRequest) (*UndeployModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UndeployModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) LookUpModelInstance(context.Context, *LookUpModelInstanceRequest) (*LookUpModelInstanceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LookUpModelInstance not implemented")
+func (UnimplementedModelPublicServiceServer) GetModelCard(context.Context, *GetModelCardRequest) (*GetModelCardResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetModelCard not implemented")
 }
-func (UnimplementedModelPublicServiceServer) DeployModelInstance(context.Context, *DeployModelInstanceRequest) (*DeployModelInstanceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeployModelInstance not implemented")
+func (UnimplementedModelPublicServiceServer) WatchModel(context.Context, *WatchModelRequest) (*WatchModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WatchModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) UndeployModelInstance(context.Context, *UndeployModelInstanceRequest) (*UndeployModelInstanceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UndeployModelInstance not implemented")
+func (UnimplementedModelPublicServiceServer) TriggerModel(context.Context, *TriggerModelRequest) (*TriggerModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) GetModelInstanceCard(context.Context, *GetModelInstanceCardRequest) (*GetModelInstanceCardResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetModelInstanceCard not implemented")
+func (UnimplementedModelPublicServiceServer) TriggerModelBinaryFileUpload(ModelPublicService_TriggerModelBinaryFileUploadServer) error {
+	return status.Errorf(codes.Unimplemented, "method TriggerModelBinaryFileUpload not implemented")
 }
-func (UnimplementedModelPublicServiceServer) WatchModelInstance(context.Context, *WatchModelInstanceRequest) (*WatchModelInstanceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method WatchModelInstance not implemented")
+func (UnimplementedModelPublicServiceServer) TestModel(context.Context, *TestModelRequest) (*TestModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TestModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) TriggerModelInstance(context.Context, *TriggerModelInstanceRequest) (*TriggerModelInstanceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TriggerModelInstance not implemented")
-}
-func (UnimplementedModelPublicServiceServer) TriggerModelInstanceBinaryFileUpload(ModelPublicService_TriggerModelInstanceBinaryFileUploadServer) error {
-	return status.Errorf(codes.Unimplemented, "method TriggerModelInstanceBinaryFileUpload not implemented")
-}
-func (UnimplementedModelPublicServiceServer) TestModelInstance(context.Context, *TestModelInstanceRequest) (*TestModelInstanceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TestModelInstance not implemented")
-}
-func (UnimplementedModelPublicServiceServer) TestModelInstanceBinaryFileUpload(ModelPublicService_TestModelInstanceBinaryFileUploadServer) error {
-	return status.Errorf(codes.Unimplemented, "method TestModelInstanceBinaryFileUpload not implemented")
+func (UnimplementedModelPublicServiceServer) TestModelBinaryFileUpload(ModelPublicService_TestModelBinaryFileUploadServer) error {
+	return status.Errorf(codes.Unimplemented, "method TestModelBinaryFileUpload not implemented")
 }
 func (UnimplementedModelPublicServiceServer) GetModelOperation(context.Context, *GetModelOperationRequest) (*GetModelOperationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetModelOperation not implemented")
@@ -913,214 +857,160 @@ func _ModelPublicService_UnpublishModel_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_ListModelInstances_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListModelInstancesRequest)
+func _ModelPublicService_DeployModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeployModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).ListModelInstances(ctx, in)
+		return srv.(ModelPublicServiceServer).DeployModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelPublicService/ListModelInstances",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/DeployModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).ListModelInstances(ctx, req.(*ListModelInstancesRequest))
+		return srv.(ModelPublicServiceServer).DeployModel(ctx, req.(*DeployModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_GetModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetModelInstanceRequest)
+func _ModelPublicService_UndeployModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UndeployModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).GetModelInstance(ctx, in)
+		return srv.(ModelPublicServiceServer).UndeployModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelPublicService/GetModelInstance",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/UndeployModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).GetModelInstance(ctx, req.(*GetModelInstanceRequest))
+		return srv.(ModelPublicServiceServer).UndeployModel(ctx, req.(*UndeployModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_LookUpModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(LookUpModelInstanceRequest)
+func _ModelPublicService_GetModelCard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetModelCardRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).LookUpModelInstance(ctx, in)
+		return srv.(ModelPublicServiceServer).GetModelCard(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelPublicService/LookUpModelInstance",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/GetModelCard",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).LookUpModelInstance(ctx, req.(*LookUpModelInstanceRequest))
+		return srv.(ModelPublicServiceServer).GetModelCard(ctx, req.(*GetModelCardRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_DeployModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeployModelInstanceRequest)
+func _ModelPublicService_WatchModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WatchModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).DeployModelInstance(ctx, in)
+		return srv.(ModelPublicServiceServer).WatchModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelPublicService/DeployModelInstance",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/WatchModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).DeployModelInstance(ctx, req.(*DeployModelInstanceRequest))
+		return srv.(ModelPublicServiceServer).WatchModel(ctx, req.(*WatchModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_UndeployModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UndeployModelInstanceRequest)
+func _ModelPublicService_TriggerModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).UndeployModelInstance(ctx, in)
+		return srv.(ModelPublicServiceServer).TriggerModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelPublicService/UndeployModelInstance",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/TriggerModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).UndeployModelInstance(ctx, req.(*UndeployModelInstanceRequest))
+		return srv.(ModelPublicServiceServer).TriggerModel(ctx, req.(*TriggerModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_GetModelInstanceCard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetModelInstanceCardRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).GetModelInstanceCard(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelPublicService/GetModelInstanceCard",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).GetModelInstanceCard(ctx, req.(*GetModelInstanceCardRequest))
-	}
-	return interceptor(ctx, in, info, handler)
+func _ModelPublicService_TriggerModelBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ModelPublicServiceServer).TriggerModelBinaryFileUpload(&modelPublicServiceTriggerModelBinaryFileUploadServer{stream})
 }
 
-func _ModelPublicService_WatchModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(WatchModelInstanceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).WatchModelInstance(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelPublicService/WatchModelInstance",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).WatchModelInstance(ctx, req.(*WatchModelInstanceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ModelPublicService_TriggerModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TriggerModelInstanceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).TriggerModelInstance(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelPublicService/TriggerModelInstance",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).TriggerModelInstance(ctx, req.(*TriggerModelInstanceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ModelPublicService_TriggerModelInstanceBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(ModelPublicServiceServer).TriggerModelInstanceBinaryFileUpload(&modelPublicServiceTriggerModelInstanceBinaryFileUploadServer{stream})
-}
-
-type ModelPublicService_TriggerModelInstanceBinaryFileUploadServer interface {
-	SendAndClose(*TriggerModelInstanceBinaryFileUploadResponse) error
-	Recv() (*TriggerModelInstanceBinaryFileUploadRequest, error)
+type ModelPublicService_TriggerModelBinaryFileUploadServer interface {
+	SendAndClose(*TriggerModelBinaryFileUploadResponse) error
+	Recv() (*TriggerModelBinaryFileUploadRequest, error)
 	grpc.ServerStream
 }
 
-type modelPublicServiceTriggerModelInstanceBinaryFileUploadServer struct {
+type modelPublicServiceTriggerModelBinaryFileUploadServer struct {
 	grpc.ServerStream
 }
 
-func (x *modelPublicServiceTriggerModelInstanceBinaryFileUploadServer) SendAndClose(m *TriggerModelInstanceBinaryFileUploadResponse) error {
+func (x *modelPublicServiceTriggerModelBinaryFileUploadServer) SendAndClose(m *TriggerModelBinaryFileUploadResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *modelPublicServiceTriggerModelInstanceBinaryFileUploadServer) Recv() (*TriggerModelInstanceBinaryFileUploadRequest, error) {
-	m := new(TriggerModelInstanceBinaryFileUploadRequest)
+func (x *modelPublicServiceTriggerModelBinaryFileUploadServer) Recv() (*TriggerModelBinaryFileUploadRequest, error) {
+	m := new(TriggerModelBinaryFileUploadRequest)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func _ModelPublicService_TestModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TestModelInstanceRequest)
+func _ModelPublicService_TestModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TestModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).TestModelInstance(ctx, in)
+		return srv.(ModelPublicServiceServer).TestModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelPublicService/TestModelInstance",
+		FullMethod: "/vdp.model.v1alpha.ModelPublicService/TestModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).TestModelInstance(ctx, req.(*TestModelInstanceRequest))
+		return srv.(ModelPublicServiceServer).TestModel(ctx, req.(*TestModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_TestModelInstanceBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(ModelPublicServiceServer).TestModelInstanceBinaryFileUpload(&modelPublicServiceTestModelInstanceBinaryFileUploadServer{stream})
+func _ModelPublicService_TestModelBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ModelPublicServiceServer).TestModelBinaryFileUpload(&modelPublicServiceTestModelBinaryFileUploadServer{stream})
 }
 
-type ModelPublicService_TestModelInstanceBinaryFileUploadServer interface {
-	SendAndClose(*TestModelInstanceBinaryFileUploadResponse) error
-	Recv() (*TestModelInstanceBinaryFileUploadRequest, error)
+type ModelPublicService_TestModelBinaryFileUploadServer interface {
+	SendAndClose(*TestModelBinaryFileUploadResponse) error
+	Recv() (*TestModelBinaryFileUploadRequest, error)
 	grpc.ServerStream
 }
 
-type modelPublicServiceTestModelInstanceBinaryFileUploadServer struct {
+type modelPublicServiceTestModelBinaryFileUploadServer struct {
 	grpc.ServerStream
 }
 
-func (x *modelPublicServiceTestModelInstanceBinaryFileUploadServer) SendAndClose(m *TestModelInstanceBinaryFileUploadResponse) error {
+func (x *modelPublicServiceTestModelBinaryFileUploadServer) SendAndClose(m *TestModelBinaryFileUploadResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *modelPublicServiceTestModelInstanceBinaryFileUploadServer) Recv() (*TestModelInstanceBinaryFileUploadRequest, error) {
-	m := new(TestModelInstanceBinaryFileUploadRequest)
+func (x *modelPublicServiceTestModelBinaryFileUploadServer) Recv() (*TestModelBinaryFileUploadRequest, error) {
+	m := new(TestModelBinaryFileUploadRequest)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -1241,40 +1131,28 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ModelPublicService_UnpublishModel_Handler,
 		},
 		{
-			MethodName: "ListModelInstances",
-			Handler:    _ModelPublicService_ListModelInstances_Handler,
+			MethodName: "DeployModel",
+			Handler:    _ModelPublicService_DeployModel_Handler,
 		},
 		{
-			MethodName: "GetModelInstance",
-			Handler:    _ModelPublicService_GetModelInstance_Handler,
+			MethodName: "UndeployModel",
+			Handler:    _ModelPublicService_UndeployModel_Handler,
 		},
 		{
-			MethodName: "LookUpModelInstance",
-			Handler:    _ModelPublicService_LookUpModelInstance_Handler,
+			MethodName: "GetModelCard",
+			Handler:    _ModelPublicService_GetModelCard_Handler,
 		},
 		{
-			MethodName: "DeployModelInstance",
-			Handler:    _ModelPublicService_DeployModelInstance_Handler,
+			MethodName: "WatchModel",
+			Handler:    _ModelPublicService_WatchModel_Handler,
 		},
 		{
-			MethodName: "UndeployModelInstance",
-			Handler:    _ModelPublicService_UndeployModelInstance_Handler,
+			MethodName: "TriggerModel",
+			Handler:    _ModelPublicService_TriggerModel_Handler,
 		},
 		{
-			MethodName: "GetModelInstanceCard",
-			Handler:    _ModelPublicService_GetModelInstanceCard_Handler,
-		},
-		{
-			MethodName: "WatchModelInstance",
-			Handler:    _ModelPublicService_WatchModelInstance_Handler,
-		},
-		{
-			MethodName: "TriggerModelInstance",
-			Handler:    _ModelPublicService_TriggerModelInstance_Handler,
-		},
-		{
-			MethodName: "TestModelInstance",
-			Handler:    _ModelPublicService_TestModelInstance_Handler,
+			MethodName: "TestModel",
+			Handler:    _ModelPublicService_TestModel_Handler,
 		},
 		{
 			MethodName: "GetModelOperation",
@@ -1296,13 +1174,13 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 			ClientStreams: true,
 		},
 		{
-			StreamName:    "TriggerModelInstanceBinaryFileUpload",
-			Handler:       _ModelPublicService_TriggerModelInstanceBinaryFileUpload_Handler,
+			StreamName:    "TriggerModelBinaryFileUpload",
+			Handler:       _ModelPublicService_TriggerModelBinaryFileUpload_Handler,
 			ClientStreams: true,
 		},
 		{
-			StreamName:    "TestModelInstanceBinaryFileUpload",
-			Handler:       _ModelPublicService_TestModelInstanceBinaryFileUpload_Handler,
+			StreamName:    "TestModelBinaryFileUpload",
+			Handler:       _ModelPublicService_TestModelBinaryFileUpload_Handler,
 			ClientStreams: true,
 		},
 	},

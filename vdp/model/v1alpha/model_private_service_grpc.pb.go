@@ -27,9 +27,9 @@ type ModelPrivateServiceClient interface {
 	// LookUpModelAdmin method receives a LookUpModelAdminRequest message and
 	// returns a LookUpModelAdminResponse
 	LookUpModelAdmin(ctx context.Context, in *LookUpModelAdminRequest, opts ...grpc.CallOption) (*LookUpModelAdminResponse, error)
-	// CheckModelInstance method receives a CheckModelInstanceRequest message and returns a
-	// CheckModelInstanceResponse
-	CheckModelInstance(ctx context.Context, in *CheckModelInstanceRequest, opts ...grpc.CallOption) (*CheckModelInstanceResponse, error)
+	// CheckModel method receives a CheckModelRequest message and returns a
+	// CheckModelResponse
+	CheckModel(ctx context.Context, in *CheckModelRequest, opts ...grpc.CallOption) (*CheckModelResponse, error)
 }
 
 type modelPrivateServiceClient struct {
@@ -67,9 +67,9 @@ func (c *modelPrivateServiceClient) LookUpModelAdmin(ctx context.Context, in *Lo
 	return out, nil
 }
 
-func (c *modelPrivateServiceClient) CheckModelInstance(ctx context.Context, in *CheckModelInstanceRequest, opts ...grpc.CallOption) (*CheckModelInstanceResponse, error) {
-	out := new(CheckModelInstanceResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPrivateService/CheckModelInstance", in, out, opts...)
+func (c *modelPrivateServiceClient) CheckModel(ctx context.Context, in *CheckModelRequest, opts ...grpc.CallOption) (*CheckModelResponse, error) {
+	out := new(CheckModelResponse)
+	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPrivateService/CheckModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -89,9 +89,9 @@ type ModelPrivateServiceServer interface {
 	// LookUpModelAdmin method receives a LookUpModelAdminRequest message and
 	// returns a LookUpModelAdminResponse
 	LookUpModelAdmin(context.Context, *LookUpModelAdminRequest) (*LookUpModelAdminResponse, error)
-	// CheckModelInstance method receives a CheckModelInstanceRequest message and returns a
-	// CheckModelInstanceResponse
-	CheckModelInstance(context.Context, *CheckModelInstanceRequest) (*CheckModelInstanceResponse, error)
+	// CheckModel method receives a CheckModelRequest message and returns a
+	// CheckModelResponse
+	CheckModel(context.Context, *CheckModelRequest) (*CheckModelResponse, error)
 }
 
 // UnimplementedModelPrivateServiceServer should be embedded to have forward compatible implementations.
@@ -107,8 +107,8 @@ func (UnimplementedModelPrivateServiceServer) GetModelAdmin(context.Context, *Ge
 func (UnimplementedModelPrivateServiceServer) LookUpModelAdmin(context.Context, *LookUpModelAdminRequest) (*LookUpModelAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LookUpModelAdmin not implemented")
 }
-func (UnimplementedModelPrivateServiceServer) CheckModelInstance(context.Context, *CheckModelInstanceRequest) (*CheckModelInstanceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CheckModelInstance not implemented")
+func (UnimplementedModelPrivateServiceServer) CheckModel(context.Context, *CheckModelRequest) (*CheckModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckModel not implemented")
 }
 
 // UnsafeModelPrivateServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -176,20 +176,20 @@ func _ModelPrivateService_LookUpModelAdmin_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPrivateService_CheckModelInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CheckModelInstanceRequest)
+func _ModelPrivateService_CheckModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPrivateServiceServer).CheckModelInstance(ctx, in)
+		return srv.(ModelPrivateServiceServer).CheckModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelPrivateService/CheckModelInstance",
+		FullMethod: "/vdp.model.v1alpha.ModelPrivateService/CheckModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPrivateServiceServer).CheckModelInstance(ctx, req.(*CheckModelInstanceRequest))
+		return srv.(ModelPrivateServiceServer).CheckModel(ctx, req.(*CheckModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -214,8 +214,8 @@ var ModelPrivateService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ModelPrivateService_LookUpModelAdmin_Handler,
 		},
 		{
-			MethodName: "CheckModelInstance",
-			Handler:    _ModelPrivateService_CheckModelInstance_Handler,
+			MethodName: "CheckModel",
+			Handler:    _ModelPrivateService_CheckModel_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
