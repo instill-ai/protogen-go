@@ -1890,6 +1890,106 @@ func (x *TriggerPipelineBinaryFileUploadResponse) GetModelOutputs() []*ModelOutp
 	return nil
 }
 
+// WatchPipelineRequest represents a public request to query
+// a pipeline's current state
+type WatchPipelineRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Pipeline resource name. It must have the format of "pipelines/*"
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+}
+
+func (x *WatchPipelineRequest) Reset() {
+	*x = WatchPipelineRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[26]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *WatchPipelineRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*WatchPipelineRequest) ProtoMessage() {}
+
+func (x *WatchPipelineRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[26]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use WatchPipelineRequest.ProtoReflect.Descriptor instead.
+func (*WatchPipelineRequest) Descriptor() ([]byte, []int) {
+	return file_vdp_pipeline_v1alpha_pipeline_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *WatchPipelineRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+// WatchPipelineResponse represents a response to fetch a pipeline's
+// current state
+type WatchPipelineResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Retrieved pipeline state
+	State Pipeline_State `protobuf:"varint,1,opt,name=state,proto3,enum=vdp.pipeline.v1alpha.Pipeline_State" json:"state,omitempty"`
+}
+
+func (x *WatchPipelineResponse) Reset() {
+	*x = WatchPipelineResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[27]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *WatchPipelineResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*WatchPipelineResponse) ProtoMessage() {}
+
+func (x *WatchPipelineResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[27]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use WatchPipelineResponse.ProtoReflect.Descriptor instead.
+func (*WatchPipelineResponse) Descriptor() ([]byte, []int) {
+	return file_vdp_pipeline_v1alpha_pipeline_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *WatchPipelineResponse) GetState() Pipeline_State {
+	if x != nil {
+		return x.State
+	}
+	return Pipeline_STATE_UNSPECIFIED
+}
+
 // ListPipelinesAdminRequest represents a request to list all pipelines from all users by admin
 type ListPipelinesAdminRequest struct {
 	state         protoimpl.MessageState
@@ -1911,7 +2011,7 @@ type ListPipelinesAdminRequest struct {
 func (x *ListPipelinesAdminRequest) Reset() {
 	*x = ListPipelinesAdminRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[26]
+		mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[28]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1924,7 +2024,7 @@ func (x *ListPipelinesAdminRequest) String() string {
 func (*ListPipelinesAdminRequest) ProtoMessage() {}
 
 func (x *ListPipelinesAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[26]
+	mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[28]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1937,7 +2037,7 @@ func (x *ListPipelinesAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPipelinesAdminRequest.ProtoReflect.Descriptor instead.
 func (*ListPipelinesAdminRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1alpha_pipeline_proto_rawDescGZIP(), []int{26}
+	return file_vdp_pipeline_v1alpha_pipeline_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *ListPipelinesAdminRequest) GetPageSize() int64 {
@@ -1985,7 +2085,7 @@ type ListPipelinesAdminResponse struct {
 func (x *ListPipelinesAdminResponse) Reset() {
 	*x = ListPipelinesAdminResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[27]
+		mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[29]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1998,7 +2098,7 @@ func (x *ListPipelinesAdminResponse) String() string {
 func (*ListPipelinesAdminResponse) ProtoMessage() {}
 
 func (x *ListPipelinesAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[27]
+	mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[29]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2011,7 +2111,7 @@ func (x *ListPipelinesAdminResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPipelinesAdminResponse.ProtoReflect.Descriptor instead.
 func (*ListPipelinesAdminResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1alpha_pipeline_proto_rawDescGZIP(), []int{27}
+	return file_vdp_pipeline_v1alpha_pipeline_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *ListPipelinesAdminResponse) GetPipelines() []*Pipeline {
@@ -2050,7 +2150,7 @@ type GetPipelineAdminRequest struct {
 func (x *GetPipelineAdminRequest) Reset() {
 	*x = GetPipelineAdminRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[28]
+		mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[30]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2063,7 +2163,7 @@ func (x *GetPipelineAdminRequest) String() string {
 func (*GetPipelineAdminRequest) ProtoMessage() {}
 
 func (x *GetPipelineAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[28]
+	mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[30]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2076,7 +2176,7 @@ func (x *GetPipelineAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetPipelineAdminRequest.ProtoReflect.Descriptor instead.
 func (*GetPipelineAdminRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1alpha_pipeline_proto_rawDescGZIP(), []int{28}
+	return file_vdp_pipeline_v1alpha_pipeline_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *GetPipelineAdminRequest) GetName() string {
@@ -2106,7 +2206,7 @@ type GetPipelineAdminResponse struct {
 func (x *GetPipelineAdminResponse) Reset() {
 	*x = GetPipelineAdminResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[29]
+		mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[31]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2119,7 +2219,7 @@ func (x *GetPipelineAdminResponse) String() string {
 func (*GetPipelineAdminResponse) ProtoMessage() {}
 
 func (x *GetPipelineAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[29]
+	mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[31]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2132,7 +2232,7 @@ func (x *GetPipelineAdminResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetPipelineAdminResponse.ProtoReflect.Descriptor instead.
 func (*GetPipelineAdminResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1alpha_pipeline_proto_rawDescGZIP(), []int{29}
+	return file_vdp_pipeline_v1alpha_pipeline_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *GetPipelineAdminResponse) GetPipeline() *Pipeline {
@@ -2158,7 +2258,7 @@ type LookUpPipelineAdminRequest struct {
 func (x *LookUpPipelineAdminRequest) Reset() {
 	*x = LookUpPipelineAdminRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[30]
+		mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[32]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2171,7 +2271,7 @@ func (x *LookUpPipelineAdminRequest) String() string {
 func (*LookUpPipelineAdminRequest) ProtoMessage() {}
 
 func (x *LookUpPipelineAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[30]
+	mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[32]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2184,7 +2284,7 @@ func (x *LookUpPipelineAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LookUpPipelineAdminRequest.ProtoReflect.Descriptor instead.
 func (*LookUpPipelineAdminRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1alpha_pipeline_proto_rawDescGZIP(), []int{30}
+	return file_vdp_pipeline_v1alpha_pipeline_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *LookUpPipelineAdminRequest) GetPermalink() string {
@@ -2214,7 +2314,7 @@ type LookUpPipelineAdminResponse struct {
 func (x *LookUpPipelineAdminResponse) Reset() {
 	*x = LookUpPipelineAdminResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[31]
+		mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[33]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2227,7 +2327,7 @@ func (x *LookUpPipelineAdminResponse) String() string {
 func (*LookUpPipelineAdminResponse) ProtoMessage() {}
 
 func (x *LookUpPipelineAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[31]
+	mi := &file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[33]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2240,7 +2340,7 @@ func (x *LookUpPipelineAdminResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LookUpPipelineAdminResponse.ProtoReflect.Descriptor instead.
 func (*LookUpPipelineAdminResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1alpha_pipeline_proto_rawDescGZIP(), []int{31}
+	return file_vdp_pipeline_v1alpha_pipeline_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *LookUpPipelineAdminResponse) GetPipeline() *Pipeline {
@@ -2580,7 +2680,19 @@ var file_vdp_pipeline_v1alpha_pipeline_proto_rawDesc = []byte{
 	0x74, 0x70, 0x75, 0x74, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x21, 0x2e, 0x76, 0x64,
 	0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70,
 	0x68, 0x61, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x4f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x52, 0x0c,
-	0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x4f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x73, 0x22, 0xf8, 0x01, 0x0a,
+	0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x4f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x73, 0x22, 0x69, 0x0a, 0x14,
+	0x57, 0x61, 0x74, 0x63, 0x68, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x51, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x42, 0x3d, 0x92, 0x41, 0x19, 0xca, 0x3e, 0x16, 0xfa, 0x02, 0x13, 0x70, 0x69, 0x70,
+	0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x6e, 0x61, 0x6d, 0x65, 0x2f, 0x77, 0x61, 0x74, 0x63, 0x68,
+	0xe0, 0x41, 0x02, 0xfa, 0x41, 0x1b, 0x0a, 0x19, 0x61, 0x70, 0x69, 0x2e, 0x69, 0x6e, 0x73, 0x74,
+	0x69, 0x6c, 0x6c, 0x2e, 0x74, 0x65, 0x63, 0x68, 0x2f, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e,
+	0x65, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x53, 0x0a, 0x15, 0x57, 0x61, 0x74, 0x63, 0x68,
+	0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x3a, 0x0a, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32,
+	0x24, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76,
+	0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e,
+	0x53, 0x74, 0x61, 0x74, 0x65, 0x52, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x22, 0xf8, 0x01, 0x0a,
 	0x19, 0x4c, 0x69, 0x73, 0x74, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x73, 0x41, 0x64,
 	0x6d, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x25, 0x0a, 0x09, 0x70, 0x61,
 	0x67, 0x65, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x42, 0x03, 0xe0,
@@ -2671,7 +2783,7 @@ func file_vdp_pipeline_v1alpha_pipeline_proto_rawDescGZIP() []byte {
 }
 
 var file_vdp_pipeline_v1alpha_pipeline_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes = make([]protoimpl.MessageInfo, 32)
+var file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes = make([]protoimpl.MessageInfo, 34)
 var file_vdp_pipeline_v1alpha_pipeline_proto_goTypes = []interface{}{
 	(View)(0),                                       // 0: vdp.pipeline.v1alpha.View
 	(Pipeline_Mode)(0),                              // 1: vdp.pipeline.v1alpha.Pipeline.Mode
@@ -2702,33 +2814,35 @@ var file_vdp_pipeline_v1alpha_pipeline_proto_goTypes = []interface{}{
 	(*TriggerPipelineResponse)(nil),                 // 26: vdp.pipeline.v1alpha.TriggerPipelineResponse
 	(*TriggerPipelineBinaryFileUploadRequest)(nil),  // 27: vdp.pipeline.v1alpha.TriggerPipelineBinaryFileUploadRequest
 	(*TriggerPipelineBinaryFileUploadResponse)(nil), // 28: vdp.pipeline.v1alpha.TriggerPipelineBinaryFileUploadResponse
-	(*ListPipelinesAdminRequest)(nil),               // 29: vdp.pipeline.v1alpha.ListPipelinesAdminRequest
-	(*ListPipelinesAdminResponse)(nil),              // 30: vdp.pipeline.v1alpha.ListPipelinesAdminResponse
-	(*GetPipelineAdminRequest)(nil),                 // 31: vdp.pipeline.v1alpha.GetPipelineAdminRequest
-	(*GetPipelineAdminResponse)(nil),                // 32: vdp.pipeline.v1alpha.GetPipelineAdminResponse
-	(*LookUpPipelineAdminRequest)(nil),              // 33: vdp.pipeline.v1alpha.LookUpPipelineAdminRequest
-	(*LookUpPipelineAdminResponse)(nil),             // 34: vdp.pipeline.v1alpha.LookUpPipelineAdminResponse
-	(*timestamppb.Timestamp)(nil),                   // 35: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil),                   // 36: google.protobuf.FieldMask
-	(*v1alpha.ClassificationOutput)(nil),            // 37: vdp.model.v1alpha.ClassificationOutput
-	(*v1alpha.DetectionOutput)(nil),                 // 38: vdp.model.v1alpha.DetectionOutput
-	(*v1alpha.KeypointOutput)(nil),                  // 39: vdp.model.v1alpha.KeypointOutput
-	(*v1alpha.OcrOutput)(nil),                       // 40: vdp.model.v1alpha.OcrOutput
-	(*v1alpha.InstanceSegmentationOutput)(nil),      // 41: vdp.model.v1alpha.InstanceSegmentationOutput
-	(*v1alpha.SemanticSegmentationOutput)(nil),      // 42: vdp.model.v1alpha.SemanticSegmentationOutput
-	(*v1alpha.TextToImageOutput)(nil),               // 43: vdp.model.v1alpha.TextToImageOutput
-	(*v1alpha.TextGenerationOutput)(nil),            // 44: vdp.model.v1alpha.TextGenerationOutput
-	(*v1alpha.UnspecifiedOutput)(nil),               // 45: vdp.model.v1alpha.UnspecifiedOutput
-	(v1alpha.Model_Task)(0),                         // 46: vdp.model.v1alpha.Model.Task
-	(*v1alpha.TaskInput)(nil),                       // 47: vdp.model.v1alpha.TaskInput
-	(*v1alpha.TaskInputStream)(nil),                 // 48: vdp.model.v1alpha.TaskInputStream
+	(*WatchPipelineRequest)(nil),                    // 29: vdp.pipeline.v1alpha.WatchPipelineRequest
+	(*WatchPipelineResponse)(nil),                   // 30: vdp.pipeline.v1alpha.WatchPipelineResponse
+	(*ListPipelinesAdminRequest)(nil),               // 31: vdp.pipeline.v1alpha.ListPipelinesAdminRequest
+	(*ListPipelinesAdminResponse)(nil),              // 32: vdp.pipeline.v1alpha.ListPipelinesAdminResponse
+	(*GetPipelineAdminRequest)(nil),                 // 33: vdp.pipeline.v1alpha.GetPipelineAdminRequest
+	(*GetPipelineAdminResponse)(nil),                // 34: vdp.pipeline.v1alpha.GetPipelineAdminResponse
+	(*LookUpPipelineAdminRequest)(nil),              // 35: vdp.pipeline.v1alpha.LookUpPipelineAdminRequest
+	(*LookUpPipelineAdminResponse)(nil),             // 36: vdp.pipeline.v1alpha.LookUpPipelineAdminResponse
+	(*timestamppb.Timestamp)(nil),                   // 37: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil),                   // 38: google.protobuf.FieldMask
+	(*v1alpha.ClassificationOutput)(nil),            // 39: vdp.model.v1alpha.ClassificationOutput
+	(*v1alpha.DetectionOutput)(nil),                 // 40: vdp.model.v1alpha.DetectionOutput
+	(*v1alpha.KeypointOutput)(nil),                  // 41: vdp.model.v1alpha.KeypointOutput
+	(*v1alpha.OcrOutput)(nil),                       // 42: vdp.model.v1alpha.OcrOutput
+	(*v1alpha.InstanceSegmentationOutput)(nil),      // 43: vdp.model.v1alpha.InstanceSegmentationOutput
+	(*v1alpha.SemanticSegmentationOutput)(nil),      // 44: vdp.model.v1alpha.SemanticSegmentationOutput
+	(*v1alpha.TextToImageOutput)(nil),               // 45: vdp.model.v1alpha.TextToImageOutput
+	(*v1alpha.TextGenerationOutput)(nil),            // 46: vdp.model.v1alpha.TextGenerationOutput
+	(*v1alpha.UnspecifiedOutput)(nil),               // 47: vdp.model.v1alpha.UnspecifiedOutput
+	(v1alpha.Model_Task)(0),                         // 48: vdp.model.v1alpha.Model.Task
+	(*v1alpha.TaskInput)(nil),                       // 49: vdp.model.v1alpha.TaskInput
+	(*v1alpha.TaskInputStream)(nil),                 // 50: vdp.model.v1alpha.TaskInputStream
 }
 var file_vdp_pipeline_v1alpha_pipeline_proto_depIdxs = []int32{
 	3,  // 0: vdp.pipeline.v1alpha.Pipeline.recipe:type_name -> vdp.pipeline.v1alpha.Recipe
 	1,  // 1: vdp.pipeline.v1alpha.Pipeline.mode:type_name -> vdp.pipeline.v1alpha.Pipeline.Mode
 	2,  // 2: vdp.pipeline.v1alpha.Pipeline.state:type_name -> vdp.pipeline.v1alpha.Pipeline.State
-	35, // 3: vdp.pipeline.v1alpha.Pipeline.create_time:type_name -> google.protobuf.Timestamp
-	35, // 4: vdp.pipeline.v1alpha.Pipeline.update_time:type_name -> google.protobuf.Timestamp
+	37, // 3: vdp.pipeline.v1alpha.Pipeline.create_time:type_name -> google.protobuf.Timestamp
+	37, // 4: vdp.pipeline.v1alpha.Pipeline.update_time:type_name -> google.protobuf.Timestamp
 	4,  // 5: vdp.pipeline.v1alpha.CreatePipelineRequest.pipeline:type_name -> vdp.pipeline.v1alpha.Pipeline
 	4,  // 6: vdp.pipeline.v1alpha.CreatePipelineResponse.pipeline:type_name -> vdp.pipeline.v1alpha.Pipeline
 	0,  // 7: vdp.pipeline.v1alpha.ListPipelinesRequest.view:type_name -> vdp.pipeline.v1alpha.View
@@ -2736,39 +2850,40 @@ var file_vdp_pipeline_v1alpha_pipeline_proto_depIdxs = []int32{
 	0,  // 9: vdp.pipeline.v1alpha.GetPipelineRequest.view:type_name -> vdp.pipeline.v1alpha.View
 	4,  // 10: vdp.pipeline.v1alpha.GetPipelineResponse.pipeline:type_name -> vdp.pipeline.v1alpha.Pipeline
 	4,  // 11: vdp.pipeline.v1alpha.UpdatePipelineRequest.pipeline:type_name -> vdp.pipeline.v1alpha.Pipeline
-	36, // 12: vdp.pipeline.v1alpha.UpdatePipelineRequest.update_mask:type_name -> google.protobuf.FieldMask
+	38, // 12: vdp.pipeline.v1alpha.UpdatePipelineRequest.update_mask:type_name -> google.protobuf.FieldMask
 	4,  // 13: vdp.pipeline.v1alpha.UpdatePipelineResponse.pipeline:type_name -> vdp.pipeline.v1alpha.Pipeline
 	0,  // 14: vdp.pipeline.v1alpha.LookUpPipelineRequest.view:type_name -> vdp.pipeline.v1alpha.View
 	4,  // 15: vdp.pipeline.v1alpha.LookUpPipelineResponse.pipeline:type_name -> vdp.pipeline.v1alpha.Pipeline
 	4,  // 16: vdp.pipeline.v1alpha.ActivatePipelineResponse.pipeline:type_name -> vdp.pipeline.v1alpha.Pipeline
 	4,  // 17: vdp.pipeline.v1alpha.DeactivatePipelineResponse.pipeline:type_name -> vdp.pipeline.v1alpha.Pipeline
 	4,  // 18: vdp.pipeline.v1alpha.RenamePipelineResponse.pipeline:type_name -> vdp.pipeline.v1alpha.Pipeline
-	37, // 19: vdp.pipeline.v1alpha.TaskOutput.classification:type_name -> vdp.model.v1alpha.ClassificationOutput
-	38, // 20: vdp.pipeline.v1alpha.TaskOutput.detection:type_name -> vdp.model.v1alpha.DetectionOutput
-	39, // 21: vdp.pipeline.v1alpha.TaskOutput.keypoint:type_name -> vdp.model.v1alpha.KeypointOutput
-	40, // 22: vdp.pipeline.v1alpha.TaskOutput.ocr:type_name -> vdp.model.v1alpha.OcrOutput
-	41, // 23: vdp.pipeline.v1alpha.TaskOutput.instance_segmentation:type_name -> vdp.model.v1alpha.InstanceSegmentationOutput
-	42, // 24: vdp.pipeline.v1alpha.TaskOutput.semantic_segmentation:type_name -> vdp.model.v1alpha.SemanticSegmentationOutput
-	43, // 25: vdp.pipeline.v1alpha.TaskOutput.text_to_image:type_name -> vdp.model.v1alpha.TextToImageOutput
-	44, // 26: vdp.pipeline.v1alpha.TaskOutput.text_generation:type_name -> vdp.model.v1alpha.TextGenerationOutput
-	45, // 27: vdp.pipeline.v1alpha.TaskOutput.unspecified:type_name -> vdp.model.v1alpha.UnspecifiedOutput
-	46, // 28: vdp.pipeline.v1alpha.ModelOutput.task:type_name -> vdp.model.v1alpha.Model.Task
+	39, // 19: vdp.pipeline.v1alpha.TaskOutput.classification:type_name -> vdp.model.v1alpha.ClassificationOutput
+	40, // 20: vdp.pipeline.v1alpha.TaskOutput.detection:type_name -> vdp.model.v1alpha.DetectionOutput
+	41, // 21: vdp.pipeline.v1alpha.TaskOutput.keypoint:type_name -> vdp.model.v1alpha.KeypointOutput
+	42, // 22: vdp.pipeline.v1alpha.TaskOutput.ocr:type_name -> vdp.model.v1alpha.OcrOutput
+	43, // 23: vdp.pipeline.v1alpha.TaskOutput.instance_segmentation:type_name -> vdp.model.v1alpha.InstanceSegmentationOutput
+	44, // 24: vdp.pipeline.v1alpha.TaskOutput.semantic_segmentation:type_name -> vdp.model.v1alpha.SemanticSegmentationOutput
+	45, // 25: vdp.pipeline.v1alpha.TaskOutput.text_to_image:type_name -> vdp.model.v1alpha.TextToImageOutput
+	46, // 26: vdp.pipeline.v1alpha.TaskOutput.text_generation:type_name -> vdp.model.v1alpha.TextGenerationOutput
+	47, // 27: vdp.pipeline.v1alpha.TaskOutput.unspecified:type_name -> vdp.model.v1alpha.UnspecifiedOutput
+	48, // 28: vdp.pipeline.v1alpha.ModelOutput.task:type_name -> vdp.model.v1alpha.Model.Task
 	23, // 29: vdp.pipeline.v1alpha.ModelOutput.task_outputs:type_name -> vdp.pipeline.v1alpha.TaskOutput
-	47, // 30: vdp.pipeline.v1alpha.TriggerPipelineRequest.task_inputs:type_name -> vdp.model.v1alpha.TaskInput
+	49, // 30: vdp.pipeline.v1alpha.TriggerPipelineRequest.task_inputs:type_name -> vdp.model.v1alpha.TaskInput
 	24, // 31: vdp.pipeline.v1alpha.TriggerPipelineResponse.model_outputs:type_name -> vdp.pipeline.v1alpha.ModelOutput
-	48, // 32: vdp.pipeline.v1alpha.TriggerPipelineBinaryFileUploadRequest.task_input:type_name -> vdp.model.v1alpha.TaskInputStream
+	50, // 32: vdp.pipeline.v1alpha.TriggerPipelineBinaryFileUploadRequest.task_input:type_name -> vdp.model.v1alpha.TaskInputStream
 	24, // 33: vdp.pipeline.v1alpha.TriggerPipelineBinaryFileUploadResponse.model_outputs:type_name -> vdp.pipeline.v1alpha.ModelOutput
-	0,  // 34: vdp.pipeline.v1alpha.ListPipelinesAdminRequest.view:type_name -> vdp.pipeline.v1alpha.View
-	4,  // 35: vdp.pipeline.v1alpha.ListPipelinesAdminResponse.pipelines:type_name -> vdp.pipeline.v1alpha.Pipeline
-	0,  // 36: vdp.pipeline.v1alpha.GetPipelineAdminRequest.view:type_name -> vdp.pipeline.v1alpha.View
-	4,  // 37: vdp.pipeline.v1alpha.GetPipelineAdminResponse.pipeline:type_name -> vdp.pipeline.v1alpha.Pipeline
-	0,  // 38: vdp.pipeline.v1alpha.LookUpPipelineAdminRequest.view:type_name -> vdp.pipeline.v1alpha.View
-	4,  // 39: vdp.pipeline.v1alpha.LookUpPipelineAdminResponse.pipeline:type_name -> vdp.pipeline.v1alpha.Pipeline
-	40, // [40:40] is the sub-list for method output_type
-	40, // [40:40] is the sub-list for method input_type
-	40, // [40:40] is the sub-list for extension type_name
-	40, // [40:40] is the sub-list for extension extendee
-	0,  // [0:40] is the sub-list for field type_name
+	2,  // 34: vdp.pipeline.v1alpha.WatchPipelineResponse.state:type_name -> vdp.pipeline.v1alpha.Pipeline.State
+	0,  // 35: vdp.pipeline.v1alpha.ListPipelinesAdminRequest.view:type_name -> vdp.pipeline.v1alpha.View
+	4,  // 36: vdp.pipeline.v1alpha.ListPipelinesAdminResponse.pipelines:type_name -> vdp.pipeline.v1alpha.Pipeline
+	0,  // 37: vdp.pipeline.v1alpha.GetPipelineAdminRequest.view:type_name -> vdp.pipeline.v1alpha.View
+	4,  // 38: vdp.pipeline.v1alpha.GetPipelineAdminResponse.pipeline:type_name -> vdp.pipeline.v1alpha.Pipeline
+	0,  // 39: vdp.pipeline.v1alpha.LookUpPipelineAdminRequest.view:type_name -> vdp.pipeline.v1alpha.View
+	4,  // 40: vdp.pipeline.v1alpha.LookUpPipelineAdminResponse.pipeline:type_name -> vdp.pipeline.v1alpha.Pipeline
+	41, // [41:41] is the sub-list for method output_type
+	41, // [41:41] is the sub-list for method input_type
+	41, // [41:41] is the sub-list for extension type_name
+	41, // [41:41] is the sub-list for extension extendee
+	0,  // [0:41] is the sub-list for field type_name
 }
 
 func init() { file_vdp_pipeline_v1alpha_pipeline_proto_init() }
@@ -3090,7 +3205,7 @@ func file_vdp_pipeline_v1alpha_pipeline_proto_init() {
 			}
 		}
 		file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListPipelinesAdminRequest); i {
+			switch v := v.(*WatchPipelineRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3102,7 +3217,7 @@ func file_vdp_pipeline_v1alpha_pipeline_proto_init() {
 			}
 		}
 		file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListPipelinesAdminResponse); i {
+			switch v := v.(*WatchPipelineResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3114,7 +3229,7 @@ func file_vdp_pipeline_v1alpha_pipeline_proto_init() {
 			}
 		}
 		file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetPipelineAdminRequest); i {
+			switch v := v.(*ListPipelinesAdminRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3126,7 +3241,7 @@ func file_vdp_pipeline_v1alpha_pipeline_proto_init() {
 			}
 		}
 		file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetPipelineAdminResponse); i {
+			switch v := v.(*ListPipelinesAdminResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3138,7 +3253,7 @@ func file_vdp_pipeline_v1alpha_pipeline_proto_init() {
 			}
 		}
 		file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*LookUpPipelineAdminRequest); i {
+			switch v := v.(*GetPipelineAdminRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3150,6 +3265,30 @@ func file_vdp_pipeline_v1alpha_pipeline_proto_init() {
 			}
 		}
 		file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetPipelineAdminResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*LookUpPipelineAdminRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LookUpPipelineAdminResponse); i {
 			case 0:
 				return &v.state
@@ -3180,16 +3319,16 @@ func file_vdp_pipeline_v1alpha_pipeline_proto_init() {
 		(*TaskOutput_TextGeneration)(nil),
 		(*TaskOutput_Unspecified)(nil),
 	}
-	file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[26].OneofWrappers = []interface{}{}
 	file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[28].OneofWrappers = []interface{}{}
 	file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[30].OneofWrappers = []interface{}{}
+	file_vdp_pipeline_v1alpha_pipeline_proto_msgTypes[32].OneofWrappers = []interface{}{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_vdp_pipeline_v1alpha_pipeline_proto_rawDesc,
 			NumEnums:      3,
-			NumMessages:   32,
+			NumMessages:   34,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

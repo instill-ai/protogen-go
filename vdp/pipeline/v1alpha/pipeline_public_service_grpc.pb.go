@@ -66,6 +66,9 @@ type PipelinePublicServiceClient interface {
 	//
 	// Endpoint: "POST /v1alpha/{name=pipelines/*}/trigger-multipart"
 	TriggerPipelineBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (PipelinePublicService_TriggerPipelineBinaryFileUploadClient, error)
+	// WatchPipeline method receives a WatchPipelineRequest message
+	// and returns a WatchPipelineResponse
+	WatchPipeline(ctx context.Context, in *WatchPipelineRequest, opts ...grpc.CallOption) (*WatchPipelineResponse, error)
 }
 
 type pipelinePublicServiceClient struct {
@@ -218,6 +221,15 @@ func (x *pipelinePublicServiceTriggerPipelineBinaryFileUploadClient) CloseAndRec
 	return m, nil
 }
 
+func (c *pipelinePublicServiceClient) WatchPipeline(ctx context.Context, in *WatchPipelineRequest, opts ...grpc.CallOption) (*WatchPipelineResponse, error) {
+	out := new(WatchPipelineResponse)
+	err := c.cc.Invoke(ctx, "/vdp.pipeline.v1alpha.PipelinePublicService/WatchPipeline", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PipelinePublicServiceServer is the server API for PipelinePublicService service.
 // All implementations should embed UnimplementedPipelinePublicServiceServer
 // for forward compatibility
@@ -270,6 +282,9 @@ type PipelinePublicServiceServer interface {
 	//
 	// Endpoint: "POST /v1alpha/{name=pipelines/*}/trigger-multipart"
 	TriggerPipelineBinaryFileUpload(PipelinePublicService_TriggerPipelineBinaryFileUploadServer) error
+	// WatchPipeline method receives a WatchPipelineRequest message
+	// and returns a WatchPipelineResponse
+	WatchPipeline(context.Context, *WatchPipelineRequest) (*WatchPipelineResponse, error)
 }
 
 // UnimplementedPipelinePublicServiceServer should be embedded to have forward compatible implementations.
@@ -314,6 +329,9 @@ func (UnimplementedPipelinePublicServiceServer) TriggerPipeline(context.Context,
 }
 func (UnimplementedPipelinePublicServiceServer) TriggerPipelineBinaryFileUpload(PipelinePublicService_TriggerPipelineBinaryFileUploadServer) error {
 	return status.Errorf(codes.Unimplemented, "method TriggerPipelineBinaryFileUpload not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) WatchPipeline(context.Context, *WatchPipelineRequest) (*WatchPipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WatchPipeline not implemented")
 }
 
 // UnsafePipelinePublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -569,6 +587,24 @@ func (x *pipelinePublicServiceTriggerPipelineBinaryFileUploadServer) Recv() (*Tr
 	return m, nil
 }
 
+func _PipelinePublicService_WatchPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WatchPipelineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).WatchPipeline(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/vdp.pipeline.v1alpha.PipelinePublicService/WatchPipeline",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).WatchPipeline(ctx, req.(*WatchPipelineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PipelinePublicService_ServiceDesc is the grpc.ServiceDesc for PipelinePublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -623,6 +659,10 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TriggerPipeline",
 			Handler:    _PipelinePublicService_TriggerPipeline_Handler,
+		},
+		{
+			MethodName: "WatchPipeline",
+			Handler:    _PipelinePublicService_WatchPipeline_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
