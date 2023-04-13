@@ -98,12 +98,6 @@ type ModelPublicServiceClient interface {
 	// GetModelOperationRequest message and returns a
 	// GetModelOperationResponse message.
 	GetModelOperation(ctx context.Context, in *GetModelOperationRequest, opts ...grpc.CallOption) (*GetModelOperationResponse, error)
-	// ListModelOperations method receives a ListModelOperationsRequest message
-	// and returns a ListModelOperationsResponse
-	ListModelOperations(ctx context.Context, in *ListModelOperationsRequest, opts ...grpc.CallOption) (*ListModelOperationsResponse, error)
-	// CancelModelOperation method receives a CancelModelOperationRequest message
-	// and returns a CancelModelOperationResponse
-	CancelModelOperation(ctx context.Context, in *CancelModelOperationRequest, opts ...grpc.CallOption) (*CancelModelOperationResponse, error)
 }
 
 type modelPublicServiceClient struct {
@@ -396,24 +390,6 @@ func (c *modelPublicServiceClient) GetModelOperation(ctx context.Context, in *Ge
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) ListModelOperations(ctx context.Context, in *ListModelOperationsRequest, opts ...grpc.CallOption) (*ListModelOperationsResponse, error) {
-	out := new(ListModelOperationsResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/ListModelOperations", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *modelPublicServiceClient) CancelModelOperation(ctx context.Context, in *CancelModelOperationRequest, opts ...grpc.CallOption) (*CancelModelOperationResponse, error) {
-	out := new(CancelModelOperationResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPublicService/CancelModelOperation", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // ModelPublicServiceServer is the server API for ModelPublicService service.
 // All implementations should embed UnimplementedModelPublicServiceServer
 // for forward compatibility
@@ -498,12 +474,6 @@ type ModelPublicServiceServer interface {
 	// GetModelOperationRequest message and returns a
 	// GetModelOperationResponse message.
 	GetModelOperation(context.Context, *GetModelOperationRequest) (*GetModelOperationResponse, error)
-	// ListModelOperations method receives a ListModelOperationsRequest message
-	// and returns a ListModelOperationsResponse
-	ListModelOperations(context.Context, *ListModelOperationsRequest) (*ListModelOperationsResponse, error)
-	// CancelModelOperation method receives a CancelModelOperationRequest message
-	// and returns a CancelModelOperationResponse
-	CancelModelOperation(context.Context, *CancelModelOperationRequest) (*CancelModelOperationResponse, error)
 }
 
 // UnimplementedModelPublicServiceServer should be embedded to have forward compatible implementations.
@@ -578,12 +548,6 @@ func (UnimplementedModelPublicServiceServer) TestModelBinaryFileUpload(ModelPubl
 }
 func (UnimplementedModelPublicServiceServer) GetModelOperation(context.Context, *GetModelOperationRequest) (*GetModelOperationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetModelOperation not implemented")
-}
-func (UnimplementedModelPublicServiceServer) ListModelOperations(context.Context, *ListModelOperationsRequest) (*ListModelOperationsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListModelOperations not implemented")
-}
-func (UnimplementedModelPublicServiceServer) CancelModelOperation(context.Context, *CancelModelOperationRequest) (*CancelModelOperationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CancelModelOperation not implemented")
 }
 
 // UnsafeModelPublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -1035,42 +999,6 @@ func _ModelPublicService_GetModelOperation_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_ListModelOperations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListModelOperationsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).ListModelOperations(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelPublicService/ListModelOperations",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).ListModelOperations(ctx, req.(*ListModelOperationsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ModelPublicService_CancelModelOperation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CancelModelOperationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).CancelModelOperation(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelPublicService/CancelModelOperation",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).CancelModelOperation(ctx, req.(*CancelModelOperationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // ModelPublicService_ServiceDesc is the grpc.ServiceDesc for ModelPublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1157,14 +1085,6 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetModelOperation",
 			Handler:    _ModelPublicService_GetModelOperation_Handler,
-		},
-		{
-			MethodName: "ListModelOperations",
-			Handler:    _ModelPublicService_ListModelOperations_Handler,
-		},
-		{
-			MethodName: "CancelModelOperation",
-			Handler:    _ModelPublicService_CancelModelOperation_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
