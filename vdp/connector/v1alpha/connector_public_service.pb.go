@@ -39,7 +39,7 @@ var file_vdp_connector_v1alpha_connector_public_service_proto_rawDesc = []byte{
 	0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a,
 	0x25, 0x76, 0x64, 0x70, 0x2f, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x2f, 0x76,
 	0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2f, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0xaf, 0x2f, 0x0a, 0x16, 0x43, 0x6f, 0x6e, 0x6e, 0x65,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0xfd, 0x2d, 0x0a, 0x16, 0x43, 0x6f, 0x6e, 0x6e, 0x65,
 	0x63, 0x74, 0x6f, 0x72, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63,
 	0x65, 0x12, 0x95, 0x01, 0x0a, 0x08, 0x4c, 0x69, 0x76, 0x65, 0x6e, 0x65, 0x73, 0x73, 0x12, 0x26,
 	0x2e, 0x76, 0x64, 0x70, 0x2e, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x2e, 0x76,
@@ -406,35 +406,24 @@ var file_vdp_connector_v1alpha_connector_public_service_proto_rawDesc = []byte{
 	0x30, 0x12, 0x2e, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2f, 0x7b, 0x6e, 0x61, 0x6d,
 	0x65, 0x3d, 0x64, 0x65, 0x73, 0x74, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2d, 0x63, 0x6f,
 	0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x73, 0x2f, 0x2a, 0x7d, 0x2f, 0x77, 0x61, 0x74, 0x63,
-	0x68, 0x12, 0xaf, 0x01, 0x0a, 0x15, 0x47, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74,
-	0x6f, 0x72, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x33, 0x2e, 0x76, 0x64,
-	0x70, 0x2e, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x2e, 0x76, 0x31, 0x61, 0x6c,
-	0x70, 0x68, 0x61, 0x2e, 0x47, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72,
-	0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x34, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72,
-	0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x47, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x6e,
-	0x65, 0x63, 0x74, 0x6f, 0x72, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x2b, 0xda, 0x41, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x82,
-	0xd3, 0xe4, 0x93, 0x02, 0x1e, 0x12, 0x1c, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2f,
-	0x7b, 0x6e, 0x61, 0x6d, 0x65, 0x3d, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73,
-	0x2f, 0x2a, 0x7d, 0x1a, 0x13, 0xca, 0x41, 0x10, 0x61, 0x70, 0x69, 0x2e, 0x69, 0x6e, 0x73, 0x74,
-	0x69, 0x6c, 0x6c, 0x2e, 0x74, 0x65, 0x63, 0x68, 0x42, 0xf8, 0x01, 0x0a, 0x19, 0x63, 0x6f, 0x6d,
-	0x2e, 0x76, 0x64, 0x70, 0x2e, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x2e, 0x76,
-	0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x42, 0x1b, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f,
-	0x72, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x50, 0x72,
-	0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x48, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
-	0x6d, 0x2f, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2d, 0x61, 0x69, 0x2f, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x67, 0x65, 0x6e, 0x2d, 0x67, 0x6f, 0x2f, 0x76, 0x64, 0x70, 0x2f, 0x63, 0x6f, 0x6e,
-	0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x3b, 0x63,
-	0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xa2,
-	0x02, 0x03, 0x56, 0x43, 0x58, 0xaa, 0x02, 0x15, 0x56, 0x64, 0x70, 0x2e, 0x43, 0x6f, 0x6e, 0x6e,
-	0x65, 0x63, 0x74, 0x6f, 0x72, 0x2e, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xca, 0x02, 0x15,
-	0x56, 0x64, 0x70, 0x5c, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x5c, 0x56, 0x31,
-	0x61, 0x6c, 0x70, 0x68, 0x61, 0xe2, 0x02, 0x21, 0x56, 0x64, 0x70, 0x5c, 0x43, 0x6f, 0x6e, 0x6e,
-	0x65, 0x63, 0x74, 0x6f, 0x72, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x5c, 0x47, 0x50,
-	0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x17, 0x56, 0x64, 0x70, 0x3a,
-	0x3a, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x3a, 0x3a, 0x56, 0x31, 0x61, 0x6c,
-	0x70, 0x68, 0x61, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x68, 0x1a, 0x13, 0xca, 0x41, 0x10, 0x61, 0x70, 0x69, 0x2e, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c,
+	0x6c, 0x2e, 0x74, 0x65, 0x63, 0x68, 0x42, 0xf8, 0x01, 0x0a, 0x19, 0x63, 0x6f, 0x6d, 0x2e, 0x76,
+	0x64, 0x70, 0x2e, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x2e, 0x76, 0x31, 0x61,
+	0x6c, 0x70, 0x68, 0x61, 0x42, 0x1b, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x50,
+	0x75, 0x62, 0x6c, 0x69, 0x63, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x50, 0x72, 0x6f, 0x74,
+	0x6f, 0x50, 0x01, 0x5a, 0x48, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f,
+	0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2d, 0x61, 0x69, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x67, 0x65, 0x6e, 0x2d, 0x67, 0x6f, 0x2f, 0x76, 0x64, 0x70, 0x2f, 0x63, 0x6f, 0x6e, 0x6e, 0x65,
+	0x63, 0x74, 0x6f, 0x72, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x3b, 0x63, 0x6f, 0x6e,
+	0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xa2, 0x02, 0x03,
+	0x56, 0x43, 0x58, 0xaa, 0x02, 0x15, 0x56, 0x64, 0x70, 0x2e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63,
+	0x74, 0x6f, 0x72, 0x2e, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xca, 0x02, 0x15, 0x56, 0x64,
+	0x70, 0x5c, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x5c, 0x56, 0x31, 0x61, 0x6c,
+	0x70, 0x68, 0x61, 0xe2, 0x02, 0x21, 0x56, 0x64, 0x70, 0x5c, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63,
+	0x74, 0x6f, 0x72, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x5c, 0x47, 0x50, 0x42, 0x4d,
+	0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x17, 0x56, 0x64, 0x70, 0x3a, 0x3a, 0x43,
+	0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x3a, 0x3a, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68,
+	0x61, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var file_vdp_connector_v1alpha_connector_public_service_proto_goTypes = []interface{}{
@@ -466,36 +455,34 @@ var file_vdp_connector_v1alpha_connector_public_service_proto_goTypes = []interf
 	(*RenameDestinationConnectorRequest)(nil),           // 25: vdp.connector.v1alpha.RenameDestinationConnectorRequest
 	(*WriteDestinationConnectorRequest)(nil),            // 26: vdp.connector.v1alpha.WriteDestinationConnectorRequest
 	(*WatchDestinationConnectorRequest)(nil),            // 27: vdp.connector.v1alpha.WatchDestinationConnectorRequest
-	(*GetConnectorOperationRequest)(nil),                // 28: vdp.connector.v1alpha.GetConnectorOperationRequest
-	(*LivenessResponse)(nil),                            // 29: vdp.connector.v1alpha.LivenessResponse
-	(*ReadinessResponse)(nil),                           // 30: vdp.connector.v1alpha.ReadinessResponse
-	(*ListSourceConnectorDefinitionsResponse)(nil),      // 31: vdp.connector.v1alpha.ListSourceConnectorDefinitionsResponse
-	(*GetSourceConnectorDefinitionResponse)(nil),        // 32: vdp.connector.v1alpha.GetSourceConnectorDefinitionResponse
-	(*ListDestinationConnectorDefinitionsResponse)(nil), // 33: vdp.connector.v1alpha.ListDestinationConnectorDefinitionsResponse
-	(*GetDestinationConnectorDefinitionResponse)(nil),   // 34: vdp.connector.v1alpha.GetDestinationConnectorDefinitionResponse
-	(*CreateSourceConnectorResponse)(nil),               // 35: vdp.connector.v1alpha.CreateSourceConnectorResponse
-	(*ListSourceConnectorsResponse)(nil),                // 36: vdp.connector.v1alpha.ListSourceConnectorsResponse
-	(*GetSourceConnectorResponse)(nil),                  // 37: vdp.connector.v1alpha.GetSourceConnectorResponse
-	(*UpdateSourceConnectorResponse)(nil),               // 38: vdp.connector.v1alpha.UpdateSourceConnectorResponse
-	(*DeleteSourceConnectorResponse)(nil),               // 39: vdp.connector.v1alpha.DeleteSourceConnectorResponse
-	(*LookUpSourceConnectorResponse)(nil),               // 40: vdp.connector.v1alpha.LookUpSourceConnectorResponse
-	(*ConnectSourceConnectorResponse)(nil),              // 41: vdp.connector.v1alpha.ConnectSourceConnectorResponse
-	(*DisconnectSourceConnectorResponse)(nil),           // 42: vdp.connector.v1alpha.DisconnectSourceConnectorResponse
-	(*RenameSourceConnectorResponse)(nil),               // 43: vdp.connector.v1alpha.RenameSourceConnectorResponse
-	(*ReadSourceConnectorResponse)(nil),                 // 44: vdp.connector.v1alpha.ReadSourceConnectorResponse
-	(*WatchSourceConnectorResponse)(nil),                // 45: vdp.connector.v1alpha.WatchSourceConnectorResponse
-	(*CreateDestinationConnectorResponse)(nil),          // 46: vdp.connector.v1alpha.CreateDestinationConnectorResponse
-	(*ListDestinationConnectorsResponse)(nil),           // 47: vdp.connector.v1alpha.ListDestinationConnectorsResponse
-	(*GetDestinationConnectorResponse)(nil),             // 48: vdp.connector.v1alpha.GetDestinationConnectorResponse
-	(*UpdateDestinationConnectorResponse)(nil),          // 49: vdp.connector.v1alpha.UpdateDestinationConnectorResponse
-	(*DeleteDestinationConnectorResponse)(nil),          // 50: vdp.connector.v1alpha.DeleteDestinationConnectorResponse
-	(*LookUpDestinationConnectorResponse)(nil),          // 51: vdp.connector.v1alpha.LookUpDestinationConnectorResponse
-	(*ConnectDestinationConnectorResponse)(nil),         // 52: vdp.connector.v1alpha.ConnectDestinationConnectorResponse
-	(*DisconnectDestinationConnectorResponse)(nil),      // 53: vdp.connector.v1alpha.DisconnectDestinationConnectorResponse
-	(*RenameDestinationConnectorResponse)(nil),          // 54: vdp.connector.v1alpha.RenameDestinationConnectorResponse
-	(*WriteDestinationConnectorResponse)(nil),           // 55: vdp.connector.v1alpha.WriteDestinationConnectorResponse
-	(*WatchDestinationConnectorResponse)(nil),           // 56: vdp.connector.v1alpha.WatchDestinationConnectorResponse
-	(*GetConnectorOperationResponse)(nil),               // 57: vdp.connector.v1alpha.GetConnectorOperationResponse
+	(*LivenessResponse)(nil),                            // 28: vdp.connector.v1alpha.LivenessResponse
+	(*ReadinessResponse)(nil),                           // 29: vdp.connector.v1alpha.ReadinessResponse
+	(*ListSourceConnectorDefinitionsResponse)(nil),      // 30: vdp.connector.v1alpha.ListSourceConnectorDefinitionsResponse
+	(*GetSourceConnectorDefinitionResponse)(nil),        // 31: vdp.connector.v1alpha.GetSourceConnectorDefinitionResponse
+	(*ListDestinationConnectorDefinitionsResponse)(nil), // 32: vdp.connector.v1alpha.ListDestinationConnectorDefinitionsResponse
+	(*GetDestinationConnectorDefinitionResponse)(nil),   // 33: vdp.connector.v1alpha.GetDestinationConnectorDefinitionResponse
+	(*CreateSourceConnectorResponse)(nil),               // 34: vdp.connector.v1alpha.CreateSourceConnectorResponse
+	(*ListSourceConnectorsResponse)(nil),                // 35: vdp.connector.v1alpha.ListSourceConnectorsResponse
+	(*GetSourceConnectorResponse)(nil),                  // 36: vdp.connector.v1alpha.GetSourceConnectorResponse
+	(*UpdateSourceConnectorResponse)(nil),               // 37: vdp.connector.v1alpha.UpdateSourceConnectorResponse
+	(*DeleteSourceConnectorResponse)(nil),               // 38: vdp.connector.v1alpha.DeleteSourceConnectorResponse
+	(*LookUpSourceConnectorResponse)(nil),               // 39: vdp.connector.v1alpha.LookUpSourceConnectorResponse
+	(*ConnectSourceConnectorResponse)(nil),              // 40: vdp.connector.v1alpha.ConnectSourceConnectorResponse
+	(*DisconnectSourceConnectorResponse)(nil),           // 41: vdp.connector.v1alpha.DisconnectSourceConnectorResponse
+	(*RenameSourceConnectorResponse)(nil),               // 42: vdp.connector.v1alpha.RenameSourceConnectorResponse
+	(*ReadSourceConnectorResponse)(nil),                 // 43: vdp.connector.v1alpha.ReadSourceConnectorResponse
+	(*WatchSourceConnectorResponse)(nil),                // 44: vdp.connector.v1alpha.WatchSourceConnectorResponse
+	(*CreateDestinationConnectorResponse)(nil),          // 45: vdp.connector.v1alpha.CreateDestinationConnectorResponse
+	(*ListDestinationConnectorsResponse)(nil),           // 46: vdp.connector.v1alpha.ListDestinationConnectorsResponse
+	(*GetDestinationConnectorResponse)(nil),             // 47: vdp.connector.v1alpha.GetDestinationConnectorResponse
+	(*UpdateDestinationConnectorResponse)(nil),          // 48: vdp.connector.v1alpha.UpdateDestinationConnectorResponse
+	(*DeleteDestinationConnectorResponse)(nil),          // 49: vdp.connector.v1alpha.DeleteDestinationConnectorResponse
+	(*LookUpDestinationConnectorResponse)(nil),          // 50: vdp.connector.v1alpha.LookUpDestinationConnectorResponse
+	(*ConnectDestinationConnectorResponse)(nil),         // 51: vdp.connector.v1alpha.ConnectDestinationConnectorResponse
+	(*DisconnectDestinationConnectorResponse)(nil),      // 52: vdp.connector.v1alpha.DisconnectDestinationConnectorResponse
+	(*RenameDestinationConnectorResponse)(nil),          // 53: vdp.connector.v1alpha.RenameDestinationConnectorResponse
+	(*WriteDestinationConnectorResponse)(nil),           // 54: vdp.connector.v1alpha.WriteDestinationConnectorResponse
+	(*WatchDestinationConnectorResponse)(nil),           // 55: vdp.connector.v1alpha.WatchDestinationConnectorResponse
 }
 var file_vdp_connector_v1alpha_connector_public_service_proto_depIdxs = []int32{
 	0,  // 0: vdp.connector.v1alpha.ConnectorPublicService.Liveness:input_type -> vdp.connector.v1alpha.LivenessRequest
@@ -526,38 +513,36 @@ var file_vdp_connector_v1alpha_connector_public_service_proto_depIdxs = []int32{
 	25, // 25: vdp.connector.v1alpha.ConnectorPublicService.RenameDestinationConnector:input_type -> vdp.connector.v1alpha.RenameDestinationConnectorRequest
 	26, // 26: vdp.connector.v1alpha.ConnectorPublicService.WriteDestinationConnector:input_type -> vdp.connector.v1alpha.WriteDestinationConnectorRequest
 	27, // 27: vdp.connector.v1alpha.ConnectorPublicService.WatchDestinationConnector:input_type -> vdp.connector.v1alpha.WatchDestinationConnectorRequest
-	28, // 28: vdp.connector.v1alpha.ConnectorPublicService.GetConnectorOperation:input_type -> vdp.connector.v1alpha.GetConnectorOperationRequest
-	29, // 29: vdp.connector.v1alpha.ConnectorPublicService.Liveness:output_type -> vdp.connector.v1alpha.LivenessResponse
-	30, // 30: vdp.connector.v1alpha.ConnectorPublicService.Readiness:output_type -> vdp.connector.v1alpha.ReadinessResponse
-	31, // 31: vdp.connector.v1alpha.ConnectorPublicService.ListSourceConnectorDefinitions:output_type -> vdp.connector.v1alpha.ListSourceConnectorDefinitionsResponse
-	32, // 32: vdp.connector.v1alpha.ConnectorPublicService.GetSourceConnectorDefinition:output_type -> vdp.connector.v1alpha.GetSourceConnectorDefinitionResponse
-	33, // 33: vdp.connector.v1alpha.ConnectorPublicService.ListDestinationConnectorDefinitions:output_type -> vdp.connector.v1alpha.ListDestinationConnectorDefinitionsResponse
-	34, // 34: vdp.connector.v1alpha.ConnectorPublicService.GetDestinationConnectorDefinition:output_type -> vdp.connector.v1alpha.GetDestinationConnectorDefinitionResponse
-	35, // 35: vdp.connector.v1alpha.ConnectorPublicService.CreateSourceConnector:output_type -> vdp.connector.v1alpha.CreateSourceConnectorResponse
-	36, // 36: vdp.connector.v1alpha.ConnectorPublicService.ListSourceConnectors:output_type -> vdp.connector.v1alpha.ListSourceConnectorsResponse
-	37, // 37: vdp.connector.v1alpha.ConnectorPublicService.GetSourceConnector:output_type -> vdp.connector.v1alpha.GetSourceConnectorResponse
-	38, // 38: vdp.connector.v1alpha.ConnectorPublicService.UpdateSourceConnector:output_type -> vdp.connector.v1alpha.UpdateSourceConnectorResponse
-	39, // 39: vdp.connector.v1alpha.ConnectorPublicService.DeleteSourceConnector:output_type -> vdp.connector.v1alpha.DeleteSourceConnectorResponse
-	40, // 40: vdp.connector.v1alpha.ConnectorPublicService.LookUpSourceConnector:output_type -> vdp.connector.v1alpha.LookUpSourceConnectorResponse
-	41, // 41: vdp.connector.v1alpha.ConnectorPublicService.ConnectSourceConnector:output_type -> vdp.connector.v1alpha.ConnectSourceConnectorResponse
-	42, // 42: vdp.connector.v1alpha.ConnectorPublicService.DisconnectSourceConnector:output_type -> vdp.connector.v1alpha.DisconnectSourceConnectorResponse
-	43, // 43: vdp.connector.v1alpha.ConnectorPublicService.RenameSourceConnector:output_type -> vdp.connector.v1alpha.RenameSourceConnectorResponse
-	44, // 44: vdp.connector.v1alpha.ConnectorPublicService.ReadSourceConnector:output_type -> vdp.connector.v1alpha.ReadSourceConnectorResponse
-	45, // 45: vdp.connector.v1alpha.ConnectorPublicService.WatchSourceConnector:output_type -> vdp.connector.v1alpha.WatchSourceConnectorResponse
-	46, // 46: vdp.connector.v1alpha.ConnectorPublicService.CreateDestinationConnector:output_type -> vdp.connector.v1alpha.CreateDestinationConnectorResponse
-	47, // 47: vdp.connector.v1alpha.ConnectorPublicService.ListDestinationConnectors:output_type -> vdp.connector.v1alpha.ListDestinationConnectorsResponse
-	48, // 48: vdp.connector.v1alpha.ConnectorPublicService.GetDestinationConnector:output_type -> vdp.connector.v1alpha.GetDestinationConnectorResponse
-	49, // 49: vdp.connector.v1alpha.ConnectorPublicService.UpdateDestinationConnector:output_type -> vdp.connector.v1alpha.UpdateDestinationConnectorResponse
-	50, // 50: vdp.connector.v1alpha.ConnectorPublicService.DeleteDestinationConnector:output_type -> vdp.connector.v1alpha.DeleteDestinationConnectorResponse
-	51, // 51: vdp.connector.v1alpha.ConnectorPublicService.LookUpDestinationConnector:output_type -> vdp.connector.v1alpha.LookUpDestinationConnectorResponse
-	52, // 52: vdp.connector.v1alpha.ConnectorPublicService.ConnectDestinationConnector:output_type -> vdp.connector.v1alpha.ConnectDestinationConnectorResponse
-	53, // 53: vdp.connector.v1alpha.ConnectorPublicService.DisconnectDestinationConnector:output_type -> vdp.connector.v1alpha.DisconnectDestinationConnectorResponse
-	54, // 54: vdp.connector.v1alpha.ConnectorPublicService.RenameDestinationConnector:output_type -> vdp.connector.v1alpha.RenameDestinationConnectorResponse
-	55, // 55: vdp.connector.v1alpha.ConnectorPublicService.WriteDestinationConnector:output_type -> vdp.connector.v1alpha.WriteDestinationConnectorResponse
-	56, // 56: vdp.connector.v1alpha.ConnectorPublicService.WatchDestinationConnector:output_type -> vdp.connector.v1alpha.WatchDestinationConnectorResponse
-	57, // 57: vdp.connector.v1alpha.ConnectorPublicService.GetConnectorOperation:output_type -> vdp.connector.v1alpha.GetConnectorOperationResponse
-	29, // [29:58] is the sub-list for method output_type
-	0,  // [0:29] is the sub-list for method input_type
+	28, // 28: vdp.connector.v1alpha.ConnectorPublicService.Liveness:output_type -> vdp.connector.v1alpha.LivenessResponse
+	29, // 29: vdp.connector.v1alpha.ConnectorPublicService.Readiness:output_type -> vdp.connector.v1alpha.ReadinessResponse
+	30, // 30: vdp.connector.v1alpha.ConnectorPublicService.ListSourceConnectorDefinitions:output_type -> vdp.connector.v1alpha.ListSourceConnectorDefinitionsResponse
+	31, // 31: vdp.connector.v1alpha.ConnectorPublicService.GetSourceConnectorDefinition:output_type -> vdp.connector.v1alpha.GetSourceConnectorDefinitionResponse
+	32, // 32: vdp.connector.v1alpha.ConnectorPublicService.ListDestinationConnectorDefinitions:output_type -> vdp.connector.v1alpha.ListDestinationConnectorDefinitionsResponse
+	33, // 33: vdp.connector.v1alpha.ConnectorPublicService.GetDestinationConnectorDefinition:output_type -> vdp.connector.v1alpha.GetDestinationConnectorDefinitionResponse
+	34, // 34: vdp.connector.v1alpha.ConnectorPublicService.CreateSourceConnector:output_type -> vdp.connector.v1alpha.CreateSourceConnectorResponse
+	35, // 35: vdp.connector.v1alpha.ConnectorPublicService.ListSourceConnectors:output_type -> vdp.connector.v1alpha.ListSourceConnectorsResponse
+	36, // 36: vdp.connector.v1alpha.ConnectorPublicService.GetSourceConnector:output_type -> vdp.connector.v1alpha.GetSourceConnectorResponse
+	37, // 37: vdp.connector.v1alpha.ConnectorPublicService.UpdateSourceConnector:output_type -> vdp.connector.v1alpha.UpdateSourceConnectorResponse
+	38, // 38: vdp.connector.v1alpha.ConnectorPublicService.DeleteSourceConnector:output_type -> vdp.connector.v1alpha.DeleteSourceConnectorResponse
+	39, // 39: vdp.connector.v1alpha.ConnectorPublicService.LookUpSourceConnector:output_type -> vdp.connector.v1alpha.LookUpSourceConnectorResponse
+	40, // 40: vdp.connector.v1alpha.ConnectorPublicService.ConnectSourceConnector:output_type -> vdp.connector.v1alpha.ConnectSourceConnectorResponse
+	41, // 41: vdp.connector.v1alpha.ConnectorPublicService.DisconnectSourceConnector:output_type -> vdp.connector.v1alpha.DisconnectSourceConnectorResponse
+	42, // 42: vdp.connector.v1alpha.ConnectorPublicService.RenameSourceConnector:output_type -> vdp.connector.v1alpha.RenameSourceConnectorResponse
+	43, // 43: vdp.connector.v1alpha.ConnectorPublicService.ReadSourceConnector:output_type -> vdp.connector.v1alpha.ReadSourceConnectorResponse
+	44, // 44: vdp.connector.v1alpha.ConnectorPublicService.WatchSourceConnector:output_type -> vdp.connector.v1alpha.WatchSourceConnectorResponse
+	45, // 45: vdp.connector.v1alpha.ConnectorPublicService.CreateDestinationConnector:output_type -> vdp.connector.v1alpha.CreateDestinationConnectorResponse
+	46, // 46: vdp.connector.v1alpha.ConnectorPublicService.ListDestinationConnectors:output_type -> vdp.connector.v1alpha.ListDestinationConnectorsResponse
+	47, // 47: vdp.connector.v1alpha.ConnectorPublicService.GetDestinationConnector:output_type -> vdp.connector.v1alpha.GetDestinationConnectorResponse
+	48, // 48: vdp.connector.v1alpha.ConnectorPublicService.UpdateDestinationConnector:output_type -> vdp.connector.v1alpha.UpdateDestinationConnectorResponse
+	49, // 49: vdp.connector.v1alpha.ConnectorPublicService.DeleteDestinationConnector:output_type -> vdp.connector.v1alpha.DeleteDestinationConnectorResponse
+	50, // 50: vdp.connector.v1alpha.ConnectorPublicService.LookUpDestinationConnector:output_type -> vdp.connector.v1alpha.LookUpDestinationConnectorResponse
+	51, // 51: vdp.connector.v1alpha.ConnectorPublicService.ConnectDestinationConnector:output_type -> vdp.connector.v1alpha.ConnectDestinationConnectorResponse
+	52, // 52: vdp.connector.v1alpha.ConnectorPublicService.DisconnectDestinationConnector:output_type -> vdp.connector.v1alpha.DisconnectDestinationConnectorResponse
+	53, // 53: vdp.connector.v1alpha.ConnectorPublicService.RenameDestinationConnector:output_type -> vdp.connector.v1alpha.RenameDestinationConnectorResponse
+	54, // 54: vdp.connector.v1alpha.ConnectorPublicService.WriteDestinationConnector:output_type -> vdp.connector.v1alpha.WriteDestinationConnectorResponse
+	55, // 55: vdp.connector.v1alpha.ConnectorPublicService.WatchDestinationConnector:output_type -> vdp.connector.v1alpha.WatchDestinationConnectorResponse
+	28, // [28:56] is the sub-list for method output_type
+	0,  // [0:28] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
