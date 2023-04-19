@@ -389,12 +389,12 @@ type isModel_Owner interface {
 }
 
 type Model_User struct {
-	// The resource name of a user, e.g., "users/local-user".
+	// The resource name with UUID of a user, e.g., "users/bfb978f8-78d3-4338-aa2b-a6c699cb07c5".
 	User string `protobuf:"bytes,10,opt,name=user,proto3,oneof"`
 }
 
 type Model_Org struct {
-	// The resource name of an organization
+	// The resource name with UUID of an organization
 	Org string `protobuf:"bytes,11,opt,name=org,proto3,oneof"`
 }
 
