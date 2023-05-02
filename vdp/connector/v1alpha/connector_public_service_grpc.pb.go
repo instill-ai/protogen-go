@@ -126,6 +126,10 @@ type ConnectorPublicServiceClient interface {
 	// WatchDestinationConnector method receives a WatchDestinationConnectorRequest message
 	// and returns a WatchDestinationConnectorResponse
 	WatchDestinationConnector(ctx context.Context, in *WatchDestinationConnectorRequest, opts ...grpc.CallOption) (*WatchDestinationConnectorResponse, error)
+	// GetConnectorOperation method receives a
+	// GetConnectorOperationRequest message and returns a
+	// GetConnectorOperationResponse message.
+	GetConnectorOperation(ctx context.Context, in *GetConnectorOperationRequest, opts ...grpc.CallOption) (*GetConnectorOperationResponse, error)
 }
 
 type connectorPublicServiceClient struct {
@@ -388,6 +392,15 @@ func (c *connectorPublicServiceClient) WatchDestinationConnector(ctx context.Con
 	return out, nil
 }
 
+func (c *connectorPublicServiceClient) GetConnectorOperation(ctx context.Context, in *GetConnectorOperationRequest, opts ...grpc.CallOption) (*GetConnectorOperationResponse, error) {
+	out := new(GetConnectorOperationResponse)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/GetConnectorOperation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ConnectorPublicServiceServer is the server API for ConnectorPublicService service.
 // All implementations should embed UnimplementedConnectorPublicServiceServer
 // for forward compatibility
@@ -500,6 +513,10 @@ type ConnectorPublicServiceServer interface {
 	// WatchDestinationConnector method receives a WatchDestinationConnectorRequest message
 	// and returns a WatchDestinationConnectorResponse
 	WatchDestinationConnector(context.Context, *WatchDestinationConnectorRequest) (*WatchDestinationConnectorResponse, error)
+	// GetConnectorOperation method receives a
+	// GetConnectorOperationRequest message and returns a
+	// GetConnectorOperationResponse message.
+	GetConnectorOperation(context.Context, *GetConnectorOperationRequest) (*GetConnectorOperationResponse, error)
 }
 
 // UnimplementedConnectorPublicServiceServer should be embedded to have forward compatible implementations.
@@ -589,6 +606,9 @@ func (UnimplementedConnectorPublicServiceServer) WriteDestinationConnector(conte
 }
 func (UnimplementedConnectorPublicServiceServer) WatchDestinationConnector(context.Context, *WatchDestinationConnectorRequest) (*WatchDestinationConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method WatchDestinationConnector not implemented")
+}
+func (UnimplementedConnectorPublicServiceServer) GetConnectorOperation(context.Context, *GetConnectorOperationRequest) (*GetConnectorOperationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetConnectorOperation not implemented")
 }
 
 // UnsafeConnectorPublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -1106,6 +1126,24 @@ func _ConnectorPublicService_WatchDestinationConnector_Handler(srv interface{}, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ConnectorPublicService_GetConnectorOperation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetConnectorOperationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConnectorPublicServiceServer).GetConnectorOperation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/GetConnectorOperation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConnectorPublicServiceServer).GetConnectorOperation(ctx, req.(*GetConnectorOperationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ConnectorPublicService_ServiceDesc is the grpc.ServiceDesc for ConnectorPublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1224,6 +1262,10 @@ var ConnectorPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "WatchDestinationConnector",
 			Handler:    _ConnectorPublicService_WatchDestinationConnector_Handler,
+		},
+		{
+			MethodName: "GetConnectorOperation",
+			Handler:    _ConnectorPublicService_GetConnectorOperation_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
