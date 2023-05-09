@@ -150,14 +150,14 @@ func request_ControllerPrivateService_GetResource_0(ctx context.Context, marshal
 		_   = err
 	)
 
-	val, ok = pathParams["name"]
+	val, ok = pathParams["resource_permalink"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "resource_permalink")
 	}
 
-	protoReq.Name, err = runtime.String(val)
+	protoReq.ResourcePermalink, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "resource_permalink", err)
 	}
 
 	msg, err := client.GetResource(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -176,14 +176,14 @@ func local_request_ControllerPrivateService_GetResource_0(ctx context.Context, m
 		_   = err
 	)
 
-	val, ok = pathParams["name"]
+	val, ok = pathParams["resource_permalink"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "resource_permalink")
 	}
 
-	protoReq.Name, err = runtime.String(val)
+	protoReq.ResourcePermalink, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "resource_permalink", err)
 	}
 
 	msg, err := server.GetResource(ctx, &protoReq)
@@ -192,7 +192,7 @@ func local_request_ControllerPrivateService_GetResource_0(ctx context.Context, m
 }
 
 var (
-	filter_ControllerPrivateService_UpdateResource_0 = &utilities.DoubleArray{Encoding: map[string]int{"resource": 0, "name": 1}, Base: []int{1, 4, 5, 2, 0, 0, 0, 0}, Check: []int{0, 1, 1, 2, 4, 2, 2, 3}}
+	filter_ControllerPrivateService_UpdateResource_0 = &utilities.DoubleArray{Encoding: map[string]int{"resource": 0, "resource_permalink": 1, "resourcePermalink": 2}, Base: []int{1, 3, 1, 4, 0, 0, 0, 0}, Check: []int{0, 1, 2, 1, 3, 2, 2, 4}}
 )
 
 func request_ControllerPrivateService_UpdateResource_0(ctx context.Context, marshaler runtime.Marshaler, client ControllerPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -214,14 +214,14 @@ func request_ControllerPrivateService_UpdateResource_0(ctx context.Context, mars
 		_   = err
 	)
 
-	val, ok = pathParams["resource.name"]
+	val, ok = pathParams["resource.resource_permalink"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "resource.name")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "resource.resource_permalink")
 	}
 
-	err = runtime.PopulateFieldFromPath(&protoReq, "resource.name", val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "resource.resource_permalink", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "resource.name", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "resource.resource_permalink", err)
 	}
 
 	if err := req.ParseForm(); err != nil {
@@ -255,14 +255,14 @@ func local_request_ControllerPrivateService_UpdateResource_0(ctx context.Context
 		_   = err
 	)
 
-	val, ok = pathParams["resource.name"]
+	val, ok = pathParams["resource.resource_permalink"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "resource.name")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "resource.resource_permalink")
 	}
 
-	err = runtime.PopulateFieldFromPath(&protoReq, "resource.name", val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "resource.resource_permalink", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "resource.name", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "resource.resource_permalink", err)
 	}
 
 	if err := req.ParseForm(); err != nil {
@@ -288,14 +288,14 @@ func request_ControllerPrivateService_DeleteResource_0(ctx context.Context, mars
 		_   = err
 	)
 
-	val, ok = pathParams["name"]
+	val, ok = pathParams["resource_permalink"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "resource_permalink")
 	}
 
-	protoReq.Name, err = runtime.String(val)
+	protoReq.ResourcePermalink, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "resource_permalink", err)
 	}
 
 	msg, err := client.DeleteResource(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -314,14 +314,14 @@ func local_request_ControllerPrivateService_DeleteResource_0(ctx context.Context
 		_   = err
 	)
 
-	val, ok = pathParams["name"]
+	val, ok = pathParams["resource_permalink"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "resource_permalink")
 	}
 
-	protoReq.Name, err = runtime.String(val)
+	protoReq.ResourcePermalink, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "resource_permalink", err)
 	}
 
 	msg, err := server.DeleteResource(ctx, &protoReq)
@@ -418,7 +418,7 @@ func RegisterControllerPrivateServiceHandlerServer(ctx context.Context, mux *run
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.controller.v1alpha.ControllerPrivateService/GetResource", runtime.WithHTTPPathPattern("/v1alpha/{name=resources/*/types/*}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.controller.v1alpha.ControllerPrivateService/GetResource", runtime.WithHTTPPathPattern("/v1alpha/{resource_permalink=resources/*/types/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -443,7 +443,7 @@ func RegisterControllerPrivateServiceHandlerServer(ctx context.Context, mux *run
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.controller.v1alpha.ControllerPrivateService/UpdateResource", runtime.WithHTTPPathPattern("/v1alpha/{resource.name=resources/*/types/*}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.controller.v1alpha.ControllerPrivateService/UpdateResource", runtime.WithHTTPPathPattern("/v1alpha/{resource.resource_permalink=resources/*/types/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -468,7 +468,7 @@ func RegisterControllerPrivateServiceHandlerServer(ctx context.Context, mux *run
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.controller.v1alpha.ControllerPrivateService/DeleteResource", runtime.WithHTTPPathPattern("/v1alpha/{name=resources/*/types/*}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.controller.v1alpha.ControllerPrivateService/DeleteResource", runtime.WithHTTPPathPattern("/v1alpha/{resource_permalink=resources/*/types/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -598,7 +598,7 @@ func RegisterControllerPrivateServiceHandlerClient(ctx context.Context, mux *run
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.controller.v1alpha.ControllerPrivateService/GetResource", runtime.WithHTTPPathPattern("/v1alpha/{name=resources/*/types/*}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.controller.v1alpha.ControllerPrivateService/GetResource", runtime.WithHTTPPathPattern("/v1alpha/{resource_permalink=resources/*/types/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -620,7 +620,7 @@ func RegisterControllerPrivateServiceHandlerClient(ctx context.Context, mux *run
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.controller.v1alpha.ControllerPrivateService/UpdateResource", runtime.WithHTTPPathPattern("/v1alpha/{resource.name=resources/*/types/*}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.controller.v1alpha.ControllerPrivateService/UpdateResource", runtime.WithHTTPPathPattern("/v1alpha/{resource.resource_permalink=resources/*/types/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -642,7 +642,7 @@ func RegisterControllerPrivateServiceHandlerClient(ctx context.Context, mux *run
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.controller.v1alpha.ControllerPrivateService/DeleteResource", runtime.WithHTTPPathPattern("/v1alpha/{name=resources/*/types/*}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.controller.v1alpha.ControllerPrivateService/DeleteResource", runtime.WithHTTPPathPattern("/v1alpha/{resource_permalink=resources/*/types/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -668,11 +668,11 @@ var (
 
 	pattern_ControllerPrivateService_Readiness_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "__readiness"}, ""))
 
-	pattern_ControllerPrivateService_GetResource_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "resources", "types", "name"}, ""))
+	pattern_ControllerPrivateService_GetResource_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "resources", "types", "resource_permalink"}, ""))
 
-	pattern_ControllerPrivateService_UpdateResource_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "resources", "types", "resource.name"}, ""))
+	pattern_ControllerPrivateService_UpdateResource_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "resources", "types", "resource.resource_permalink"}, ""))
 
-	pattern_ControllerPrivateService_DeleteResource_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "resources", "types", "name"}, ""))
+	pattern_ControllerPrivateService_DeleteResource_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "resources", "types", "resource_permalink"}, ""))
 )
 
 var (

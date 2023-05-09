@@ -21,9 +21,6 @@ type ModelPrivateServiceClient interface {
 	// ListModelsAdmin method receives a ListModelsAdminRequest message and returns a
 	// ListModelsAdminResponse
 	ListModelsAdmin(ctx context.Context, in *ListModelsAdminRequest, opts ...grpc.CallOption) (*ListModelsAdminResponse, error)
-	// GetModelAdmin method receives a GetModelAdminRequest message and returns a
-	// GetModelAdminResponse
-	GetModelAdmin(ctx context.Context, in *GetModelAdminRequest, opts ...grpc.CallOption) (*GetModelAdminResponse, error)
 	// LookUpModelAdmin method receives a LookUpModelAdminRequest message and
 	// returns a LookUpModelAdminResponse
 	LookUpModelAdmin(ctx context.Context, in *LookUpModelAdminRequest, opts ...grpc.CallOption) (*LookUpModelAdminResponse, error)
@@ -43,15 +40,6 @@ func NewModelPrivateServiceClient(cc grpc.ClientConnInterface) ModelPrivateServi
 func (c *modelPrivateServiceClient) ListModelsAdmin(ctx context.Context, in *ListModelsAdminRequest, opts ...grpc.CallOption) (*ListModelsAdminResponse, error) {
 	out := new(ListModelsAdminResponse)
 	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPrivateService/ListModelsAdmin", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *modelPrivateServiceClient) GetModelAdmin(ctx context.Context, in *GetModelAdminRequest, opts ...grpc.CallOption) (*GetModelAdminResponse, error) {
-	out := new(GetModelAdminResponse)
-	err := c.cc.Invoke(ctx, "/vdp.model.v1alpha.ModelPrivateService/GetModelAdmin", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -83,9 +71,6 @@ type ModelPrivateServiceServer interface {
 	// ListModelsAdmin method receives a ListModelsAdminRequest message and returns a
 	// ListModelsAdminResponse
 	ListModelsAdmin(context.Context, *ListModelsAdminRequest) (*ListModelsAdminResponse, error)
-	// GetModelAdmin method receives a GetModelAdminRequest message and returns a
-	// GetModelAdminResponse
-	GetModelAdmin(context.Context, *GetModelAdminRequest) (*GetModelAdminResponse, error)
 	// LookUpModelAdmin method receives a LookUpModelAdminRequest message and
 	// returns a LookUpModelAdminResponse
 	LookUpModelAdmin(context.Context, *LookUpModelAdminRequest) (*LookUpModelAdminResponse, error)
@@ -100,9 +85,6 @@ type UnimplementedModelPrivateServiceServer struct {
 
 func (UnimplementedModelPrivateServiceServer) ListModelsAdmin(context.Context, *ListModelsAdminRequest) (*ListModelsAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListModelsAdmin not implemented")
-}
-func (UnimplementedModelPrivateServiceServer) GetModelAdmin(context.Context, *GetModelAdminRequest) (*GetModelAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetModelAdmin not implemented")
 }
 func (UnimplementedModelPrivateServiceServer) LookUpModelAdmin(context.Context, *LookUpModelAdminRequest) (*LookUpModelAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LookUpModelAdmin not implemented")
@@ -136,24 +118,6 @@ func _ModelPrivateService_ListModelsAdmin_Handler(srv interface{}, ctx context.C
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelPrivateServiceServer).ListModelsAdmin(ctx, req.(*ListModelsAdminRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ModelPrivateService_GetModelAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetModelAdminRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ModelPrivateServiceServer).GetModelAdmin(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/vdp.model.v1alpha.ModelPrivateService/GetModelAdmin",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPrivateServiceServer).GetModelAdmin(ctx, req.(*GetModelAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -204,10 +168,6 @@ var ModelPrivateService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListModelsAdmin",
 			Handler:    _ModelPrivateService_ListModelsAdmin_Handler,
-		},
-		{
-			MethodName: "GetModelAdmin",
-			Handler:    _ModelPrivateService_GetModelAdmin_Handler,
 		},
 		{
 			MethodName: "LookUpModelAdmin",

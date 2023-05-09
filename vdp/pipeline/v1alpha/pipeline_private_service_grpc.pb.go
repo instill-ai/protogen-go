@@ -21,9 +21,6 @@ type PipelinePrivateServiceClient interface {
 	// ListPipelinesAdmin method receives a ListPipelinesAdminRequest message and
 	// returns a ListPipelinesAdminResponse message.
 	ListPipelinesAdmin(ctx context.Context, in *ListPipelinesAdminRequest, opts ...grpc.CallOption) (*ListPipelinesAdminResponse, error)
-	// GetPipelineAdmin method receives a GetPipelineAdminRequest message and
-	// returns a GetPipelineAdminResponse message.
-	GetPipelineAdmin(ctx context.Context, in *GetPipelineAdminRequest, opts ...grpc.CallOption) (*GetPipelineAdminResponse, error)
 	// LookUpPipelineAdmin method receives a LookUpPipelineAdminRequest message
 	// and returns a LookUpPipelineAdminResponse
 	LookUpPipelineAdmin(ctx context.Context, in *LookUpPipelineAdminRequest, opts ...grpc.CallOption) (*LookUpPipelineAdminResponse, error)
@@ -46,15 +43,6 @@ func (c *pipelinePrivateServiceClient) ListPipelinesAdmin(ctx context.Context, i
 	return out, nil
 }
 
-func (c *pipelinePrivateServiceClient) GetPipelineAdmin(ctx context.Context, in *GetPipelineAdminRequest, opts ...grpc.CallOption) (*GetPipelineAdminResponse, error) {
-	out := new(GetPipelineAdminResponse)
-	err := c.cc.Invoke(ctx, "/vdp.pipeline.v1alpha.PipelinePrivateService/GetPipelineAdmin", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *pipelinePrivateServiceClient) LookUpPipelineAdmin(ctx context.Context, in *LookUpPipelineAdminRequest, opts ...grpc.CallOption) (*LookUpPipelineAdminResponse, error) {
 	out := new(LookUpPipelineAdminResponse)
 	err := c.cc.Invoke(ctx, "/vdp.pipeline.v1alpha.PipelinePrivateService/LookUpPipelineAdmin", in, out, opts...)
@@ -71,9 +59,6 @@ type PipelinePrivateServiceServer interface {
 	// ListPipelinesAdmin method receives a ListPipelinesAdminRequest message and
 	// returns a ListPipelinesAdminResponse message.
 	ListPipelinesAdmin(context.Context, *ListPipelinesAdminRequest) (*ListPipelinesAdminResponse, error)
-	// GetPipelineAdmin method receives a GetPipelineAdminRequest message and
-	// returns a GetPipelineAdminResponse message.
-	GetPipelineAdmin(context.Context, *GetPipelineAdminRequest) (*GetPipelineAdminResponse, error)
 	// LookUpPipelineAdmin method receives a LookUpPipelineAdminRequest message
 	// and returns a LookUpPipelineAdminResponse
 	LookUpPipelineAdmin(context.Context, *LookUpPipelineAdminRequest) (*LookUpPipelineAdminResponse, error)
@@ -85,9 +70,6 @@ type UnimplementedPipelinePrivateServiceServer struct {
 
 func (UnimplementedPipelinePrivateServiceServer) ListPipelinesAdmin(context.Context, *ListPipelinesAdminRequest) (*ListPipelinesAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPipelinesAdmin not implemented")
-}
-func (UnimplementedPipelinePrivateServiceServer) GetPipelineAdmin(context.Context, *GetPipelineAdminRequest) (*GetPipelineAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPipelineAdmin not implemented")
 }
 func (UnimplementedPipelinePrivateServiceServer) LookUpPipelineAdmin(context.Context, *LookUpPipelineAdminRequest) (*LookUpPipelineAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LookUpPipelineAdmin not implemented")
@@ -122,24 +104,6 @@ func _PipelinePrivateService_ListPipelinesAdmin_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePrivateService_GetPipelineAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetPipelineAdminRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePrivateServiceServer).GetPipelineAdmin(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/vdp.pipeline.v1alpha.PipelinePrivateService/GetPipelineAdmin",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePrivateServiceServer).GetPipelineAdmin(ctx, req.(*GetPipelineAdminRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _PipelinePrivateService_LookUpPipelineAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(LookUpPipelineAdminRequest)
 	if err := dec(in); err != nil {
@@ -168,10 +132,6 @@ var PipelinePrivateService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListPipelinesAdmin",
 			Handler:    _PipelinePrivateService_ListPipelinesAdmin_Handler,
-		},
-		{
-			MethodName: "GetPipelineAdmin",
-			Handler:    _PipelinePrivateService_GetPipelineAdmin_Handler,
 		},
 		{
 			MethodName: "LookUpPipelineAdmin",

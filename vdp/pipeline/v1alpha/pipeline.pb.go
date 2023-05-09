@@ -2069,6 +2069,8 @@ func (x *ListPipelinesAdminRequest) GetFilter() string {
 }
 
 // ListPipelinesAdminResponse represents a response for a list of pipelines
+// The recipe returned will be permaLinks instead of resourceName temporary,
+// this will be refactored soon
 type ListPipelinesAdminResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
