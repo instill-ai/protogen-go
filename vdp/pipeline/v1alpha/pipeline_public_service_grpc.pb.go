@@ -57,18 +57,31 @@ type PipelinePublicServiceClient interface {
 	// RenamePipeline method receives a RenamePipelineRequest message and returns
 	// a RenamePipelineResponse message.
 	RenamePipeline(ctx context.Context, in *RenamePipelineRequest, opts ...grpc.CallOption) (*RenamePipelineResponse, error)
-	// TriggerPipeline method receives a TriggerPipelineRequest message and
-	// returns a TriggerPipelineResponse.
-	TriggerPipeline(ctx context.Context, in *TriggerPipelineRequest, opts ...grpc.CallOption) (*TriggerPipelineResponse, error)
-	// TriggerPipelineBinaryFileUpload method receives a
-	// TriggerPipelineBinaryFileUploadRequest message and returns a
-	// TriggerPipelineBinaryFileUploadResponse message.
+	// TriggerSyncPipeline method receives a TriggerSyncPipelineRequest message and
+	// returns a TriggerSyncPipelineResponse.
+	TriggerSyncPipeline(ctx context.Context, in *TriggerSyncPipelineRequest, opts ...grpc.CallOption) (*TriggerSyncPipelineResponse, error)
+	// TriggerSyncPipelineBinaryFileUpload method receives a
+	// TriggerSyncPipelineBinaryFileUploadRequest message and returns a
+	// TriggerSyncPipelineBinaryFileUploadResponse message.
 	//
-	// Endpoint: "POST /v1alpha/{name=pipelines/*}/trigger-multipart"
-	TriggerPipelineBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (PipelinePublicService_TriggerPipelineBinaryFileUploadClient, error)
+	// Endpoint: "POST /v1alpha/{name=pipelines/*}/triggerSyncMultipart"
+	TriggerSyncPipelineBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (PipelinePublicService_TriggerSyncPipelineBinaryFileUploadClient, error)
+	// TriggerAsyncPipeline method receives a TriggerPipelineRequest message and
+	// returns a TriggerAsyncPipelineResponse.
+	TriggerAsyncPipeline(ctx context.Context, in *TriggerAsyncPipelineRequest, opts ...grpc.CallOption) (*TriggerAsyncPipelineResponse, error)
+	// TriggerAsyncPipelineBinaryFileUpload method receives a
+	// TriggerPipelineBinaryFileUploadRequest message and returns a
+	// TriggerAsyncPipelineResponse message.
+	//
+	// Endpoint: "POST /v1alpha/{name=pipelines/*}/triggerAsyncMultipart"
+	TriggerAsyncPipelineBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (PipelinePublicService_TriggerAsyncPipelineBinaryFileUploadClient, error)
 	// WatchPipeline method receives a WatchPipelineRequest message
 	// and returns a WatchPipelineResponse
 	WatchPipeline(ctx context.Context, in *WatchPipelineRequest, opts ...grpc.CallOption) (*WatchPipelineResponse, error)
+	// GetTriggerAsyncOperation method receives a
+	// GetTriggerAsyncOperationRequest message and returns a
+	// GetTriggerAsyncOperationResponse message.
+	GetTriggerAsyncOperation(ctx context.Context, in *GetTriggerAsyncOperationRequest, opts ...grpc.CallOption) (*GetTriggerAsyncOperationResponse, error)
 }
 
 type pipelinePublicServiceClient struct {
@@ -178,43 +191,86 @@ func (c *pipelinePublicServiceClient) RenamePipeline(ctx context.Context, in *Re
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) TriggerPipeline(ctx context.Context, in *TriggerPipelineRequest, opts ...grpc.CallOption) (*TriggerPipelineResponse, error) {
-	out := new(TriggerPipelineResponse)
-	err := c.cc.Invoke(ctx, "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerPipeline", in, out, opts...)
+func (c *pipelinePublicServiceClient) TriggerSyncPipeline(ctx context.Context, in *TriggerSyncPipelineRequest, opts ...grpc.CallOption) (*TriggerSyncPipelineResponse, error) {
+	out := new(TriggerSyncPipelineResponse)
+	err := c.cc.Invoke(ctx, "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerSyncPipeline", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) TriggerPipelineBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (PipelinePublicService_TriggerPipelineBinaryFileUploadClient, error) {
-	stream, err := c.cc.NewStream(ctx, &PipelinePublicService_ServiceDesc.Streams[0], "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerPipelineBinaryFileUpload", opts...)
+func (c *pipelinePublicServiceClient) TriggerSyncPipelineBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (PipelinePublicService_TriggerSyncPipelineBinaryFileUploadClient, error) {
+	stream, err := c.cc.NewStream(ctx, &PipelinePublicService_ServiceDesc.Streams[0], "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerSyncPipelineBinaryFileUpload", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &pipelinePublicServiceTriggerPipelineBinaryFileUploadClient{stream}
+	x := &pipelinePublicServiceTriggerSyncPipelineBinaryFileUploadClient{stream}
 	return x, nil
 }
 
-type PipelinePublicService_TriggerPipelineBinaryFileUploadClient interface {
-	Send(*TriggerPipelineBinaryFileUploadRequest) error
-	CloseAndRecv() (*TriggerPipelineBinaryFileUploadResponse, error)
+type PipelinePublicService_TriggerSyncPipelineBinaryFileUploadClient interface {
+	Send(*TriggerSyncPipelineBinaryFileUploadRequest) error
+	CloseAndRecv() (*TriggerSyncPipelineBinaryFileUploadResponse, error)
 	grpc.ClientStream
 }
 
-type pipelinePublicServiceTriggerPipelineBinaryFileUploadClient struct {
+type pipelinePublicServiceTriggerSyncPipelineBinaryFileUploadClient struct {
 	grpc.ClientStream
 }
 
-func (x *pipelinePublicServiceTriggerPipelineBinaryFileUploadClient) Send(m *TriggerPipelineBinaryFileUploadRequest) error {
+func (x *pipelinePublicServiceTriggerSyncPipelineBinaryFileUploadClient) Send(m *TriggerSyncPipelineBinaryFileUploadRequest) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *pipelinePublicServiceTriggerPipelineBinaryFileUploadClient) CloseAndRecv() (*TriggerPipelineBinaryFileUploadResponse, error) {
+func (x *pipelinePublicServiceTriggerSyncPipelineBinaryFileUploadClient) CloseAndRecv() (*TriggerSyncPipelineBinaryFileUploadResponse, error) {
 	if err := x.ClientStream.CloseSend(); err != nil {
 		return nil, err
 	}
-	m := new(TriggerPipelineBinaryFileUploadResponse)
+	m := new(TriggerSyncPipelineBinaryFileUploadResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *pipelinePublicServiceClient) TriggerAsyncPipeline(ctx context.Context, in *TriggerAsyncPipelineRequest, opts ...grpc.CallOption) (*TriggerAsyncPipelineResponse, error) {
+	out := new(TriggerAsyncPipelineResponse)
+	err := c.cc.Invoke(ctx, "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerAsyncPipeline", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) TriggerAsyncPipelineBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (PipelinePublicService_TriggerAsyncPipelineBinaryFileUploadClient, error) {
+	stream, err := c.cc.NewStream(ctx, &PipelinePublicService_ServiceDesc.Streams[1], "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerAsyncPipelineBinaryFileUpload", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &pipelinePublicServiceTriggerAsyncPipelineBinaryFileUploadClient{stream}
+	return x, nil
+}
+
+type PipelinePublicService_TriggerAsyncPipelineBinaryFileUploadClient interface {
+	Send(*TriggerAsyncPipelineBinaryFileUploadRequest) error
+	CloseAndRecv() (*TriggerAsyncPipelineBinaryFileUploadResponse, error)
+	grpc.ClientStream
+}
+
+type pipelinePublicServiceTriggerAsyncPipelineBinaryFileUploadClient struct {
+	grpc.ClientStream
+}
+
+func (x *pipelinePublicServiceTriggerAsyncPipelineBinaryFileUploadClient) Send(m *TriggerAsyncPipelineBinaryFileUploadRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *pipelinePublicServiceTriggerAsyncPipelineBinaryFileUploadClient) CloseAndRecv() (*TriggerAsyncPipelineBinaryFileUploadResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(TriggerAsyncPipelineBinaryFileUploadResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -224,6 +280,15 @@ func (x *pipelinePublicServiceTriggerPipelineBinaryFileUploadClient) CloseAndRec
 func (c *pipelinePublicServiceClient) WatchPipeline(ctx context.Context, in *WatchPipelineRequest, opts ...grpc.CallOption) (*WatchPipelineResponse, error) {
 	out := new(WatchPipelineResponse)
 	err := c.cc.Invoke(ctx, "/vdp.pipeline.v1alpha.PipelinePublicService/WatchPipeline", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) GetTriggerAsyncOperation(ctx context.Context, in *GetTriggerAsyncOperationRequest, opts ...grpc.CallOption) (*GetTriggerAsyncOperationResponse, error) {
+	out := new(GetTriggerAsyncOperationResponse)
+	err := c.cc.Invoke(ctx, "/vdp.pipeline.v1alpha.PipelinePublicService/GetTriggerAsyncOperation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -273,18 +338,31 @@ type PipelinePublicServiceServer interface {
 	// RenamePipeline method receives a RenamePipelineRequest message and returns
 	// a RenamePipelineResponse message.
 	RenamePipeline(context.Context, *RenamePipelineRequest) (*RenamePipelineResponse, error)
-	// TriggerPipeline method receives a TriggerPipelineRequest message and
-	// returns a TriggerPipelineResponse.
-	TriggerPipeline(context.Context, *TriggerPipelineRequest) (*TriggerPipelineResponse, error)
-	// TriggerPipelineBinaryFileUpload method receives a
-	// TriggerPipelineBinaryFileUploadRequest message and returns a
-	// TriggerPipelineBinaryFileUploadResponse message.
+	// TriggerSyncPipeline method receives a TriggerSyncPipelineRequest message and
+	// returns a TriggerSyncPipelineResponse.
+	TriggerSyncPipeline(context.Context, *TriggerSyncPipelineRequest) (*TriggerSyncPipelineResponse, error)
+	// TriggerSyncPipelineBinaryFileUpload method receives a
+	// TriggerSyncPipelineBinaryFileUploadRequest message and returns a
+	// TriggerSyncPipelineBinaryFileUploadResponse message.
 	//
-	// Endpoint: "POST /v1alpha/{name=pipelines/*}/trigger-multipart"
-	TriggerPipelineBinaryFileUpload(PipelinePublicService_TriggerPipelineBinaryFileUploadServer) error
+	// Endpoint: "POST /v1alpha/{name=pipelines/*}/triggerSyncMultipart"
+	TriggerSyncPipelineBinaryFileUpload(PipelinePublicService_TriggerSyncPipelineBinaryFileUploadServer) error
+	// TriggerAsyncPipeline method receives a TriggerPipelineRequest message and
+	// returns a TriggerAsyncPipelineResponse.
+	TriggerAsyncPipeline(context.Context, *TriggerAsyncPipelineRequest) (*TriggerAsyncPipelineResponse, error)
+	// TriggerAsyncPipelineBinaryFileUpload method receives a
+	// TriggerPipelineBinaryFileUploadRequest message and returns a
+	// TriggerAsyncPipelineResponse message.
+	//
+	// Endpoint: "POST /v1alpha/{name=pipelines/*}/triggerAsyncMultipart"
+	TriggerAsyncPipelineBinaryFileUpload(PipelinePublicService_TriggerAsyncPipelineBinaryFileUploadServer) error
 	// WatchPipeline method receives a WatchPipelineRequest message
 	// and returns a WatchPipelineResponse
 	WatchPipeline(context.Context, *WatchPipelineRequest) (*WatchPipelineResponse, error)
+	// GetTriggerAsyncOperation method receives a
+	// GetTriggerAsyncOperationRequest message and returns a
+	// GetTriggerAsyncOperationResponse message.
+	GetTriggerAsyncOperation(context.Context, *GetTriggerAsyncOperationRequest) (*GetTriggerAsyncOperationResponse, error)
 }
 
 // UnimplementedPipelinePublicServiceServer should be embedded to have forward compatible implementations.
@@ -324,14 +402,23 @@ func (UnimplementedPipelinePublicServiceServer) DeactivatePipeline(context.Conte
 func (UnimplementedPipelinePublicServiceServer) RenamePipeline(context.Context, *RenamePipelineRequest) (*RenamePipelineResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RenamePipeline not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) TriggerPipeline(context.Context, *TriggerPipelineRequest) (*TriggerPipelineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TriggerPipeline not implemented")
+func (UnimplementedPipelinePublicServiceServer) TriggerSyncPipeline(context.Context, *TriggerSyncPipelineRequest) (*TriggerSyncPipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerSyncPipeline not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) TriggerPipelineBinaryFileUpload(PipelinePublicService_TriggerPipelineBinaryFileUploadServer) error {
-	return status.Errorf(codes.Unimplemented, "method TriggerPipelineBinaryFileUpload not implemented")
+func (UnimplementedPipelinePublicServiceServer) TriggerSyncPipelineBinaryFileUpload(PipelinePublicService_TriggerSyncPipelineBinaryFileUploadServer) error {
+	return status.Errorf(codes.Unimplemented, "method TriggerSyncPipelineBinaryFileUpload not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) TriggerAsyncPipeline(context.Context, *TriggerAsyncPipelineRequest) (*TriggerAsyncPipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncPipeline not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) TriggerAsyncPipelineBinaryFileUpload(PipelinePublicService_TriggerAsyncPipelineBinaryFileUploadServer) error {
+	return status.Errorf(codes.Unimplemented, "method TriggerAsyncPipelineBinaryFileUpload not implemented")
 }
 func (UnimplementedPipelinePublicServiceServer) WatchPipeline(context.Context, *WatchPipelineRequest) (*WatchPipelineResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method WatchPipeline not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) GetTriggerAsyncOperation(context.Context, *GetTriggerAsyncOperationRequest) (*GetTriggerAsyncOperationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTriggerAsyncOperation not implemented")
 }
 
 // UnsafePipelinePublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -543,44 +630,88 @@ func _PipelinePublicService_RenamePipeline_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_TriggerPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TriggerPipelineRequest)
+func _PipelinePublicService_TriggerSyncPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerSyncPipelineRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).TriggerPipeline(ctx, in)
+		return srv.(PipelinePublicServiceServer).TriggerSyncPipeline(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerPipeline",
+		FullMethod: "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerSyncPipeline",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).TriggerPipeline(ctx, req.(*TriggerPipelineRequest))
+		return srv.(PipelinePublicServiceServer).TriggerSyncPipeline(ctx, req.(*TriggerSyncPipelineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_TriggerPipelineBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(PipelinePublicServiceServer).TriggerPipelineBinaryFileUpload(&pipelinePublicServiceTriggerPipelineBinaryFileUploadServer{stream})
+func _PipelinePublicService_TriggerSyncPipelineBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(PipelinePublicServiceServer).TriggerSyncPipelineBinaryFileUpload(&pipelinePublicServiceTriggerSyncPipelineBinaryFileUploadServer{stream})
 }
 
-type PipelinePublicService_TriggerPipelineBinaryFileUploadServer interface {
-	SendAndClose(*TriggerPipelineBinaryFileUploadResponse) error
-	Recv() (*TriggerPipelineBinaryFileUploadRequest, error)
+type PipelinePublicService_TriggerSyncPipelineBinaryFileUploadServer interface {
+	SendAndClose(*TriggerSyncPipelineBinaryFileUploadResponse) error
+	Recv() (*TriggerSyncPipelineBinaryFileUploadRequest, error)
 	grpc.ServerStream
 }
 
-type pipelinePublicServiceTriggerPipelineBinaryFileUploadServer struct {
+type pipelinePublicServiceTriggerSyncPipelineBinaryFileUploadServer struct {
 	grpc.ServerStream
 }
 
-func (x *pipelinePublicServiceTriggerPipelineBinaryFileUploadServer) SendAndClose(m *TriggerPipelineBinaryFileUploadResponse) error {
+func (x *pipelinePublicServiceTriggerSyncPipelineBinaryFileUploadServer) SendAndClose(m *TriggerSyncPipelineBinaryFileUploadResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *pipelinePublicServiceTriggerPipelineBinaryFileUploadServer) Recv() (*TriggerPipelineBinaryFileUploadRequest, error) {
-	m := new(TriggerPipelineBinaryFileUploadRequest)
+func (x *pipelinePublicServiceTriggerSyncPipelineBinaryFileUploadServer) Recv() (*TriggerSyncPipelineBinaryFileUploadRequest, error) {
+	m := new(TriggerSyncPipelineBinaryFileUploadRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func _PipelinePublicService_TriggerAsyncPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerAsyncPipelineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).TriggerAsyncPipeline(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerAsyncPipeline",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).TriggerAsyncPipeline(ctx, req.(*TriggerAsyncPipelineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_TriggerAsyncPipelineBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(PipelinePublicServiceServer).TriggerAsyncPipelineBinaryFileUpload(&pipelinePublicServiceTriggerAsyncPipelineBinaryFileUploadServer{stream})
+}
+
+type PipelinePublicService_TriggerAsyncPipelineBinaryFileUploadServer interface {
+	SendAndClose(*TriggerAsyncPipelineBinaryFileUploadResponse) error
+	Recv() (*TriggerAsyncPipelineBinaryFileUploadRequest, error)
+	grpc.ServerStream
+}
+
+type pipelinePublicServiceTriggerAsyncPipelineBinaryFileUploadServer struct {
+	grpc.ServerStream
+}
+
+func (x *pipelinePublicServiceTriggerAsyncPipelineBinaryFileUploadServer) SendAndClose(m *TriggerAsyncPipelineBinaryFileUploadResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *pipelinePublicServiceTriggerAsyncPipelineBinaryFileUploadServer) Recv() (*TriggerAsyncPipelineBinaryFileUploadRequest, error) {
+	m := new(TriggerAsyncPipelineBinaryFileUploadRequest)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -601,6 +732,24 @@ func _PipelinePublicService_WatchPipeline_Handler(srv interface{}, ctx context.C
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PipelinePublicServiceServer).WatchPipeline(ctx, req.(*WatchPipelineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_GetTriggerAsyncOperation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTriggerAsyncOperationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).GetTriggerAsyncOperation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/vdp.pipeline.v1alpha.PipelinePublicService/GetTriggerAsyncOperation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).GetTriggerAsyncOperation(ctx, req.(*GetTriggerAsyncOperationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -657,18 +806,31 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _PipelinePublicService_RenamePipeline_Handler,
 		},
 		{
-			MethodName: "TriggerPipeline",
-			Handler:    _PipelinePublicService_TriggerPipeline_Handler,
+			MethodName: "TriggerSyncPipeline",
+			Handler:    _PipelinePublicService_TriggerSyncPipeline_Handler,
+		},
+		{
+			MethodName: "TriggerAsyncPipeline",
+			Handler:    _PipelinePublicService_TriggerAsyncPipeline_Handler,
 		},
 		{
 			MethodName: "WatchPipeline",
 			Handler:    _PipelinePublicService_WatchPipeline_Handler,
 		},
+		{
+			MethodName: "GetTriggerAsyncOperation",
+			Handler:    _PipelinePublicService_GetTriggerAsyncOperation_Handler,
+		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "TriggerPipelineBinaryFileUpload",
-			Handler:       _PipelinePublicService_TriggerPipelineBinaryFileUpload_Handler,
+			StreamName:    "TriggerSyncPipelineBinaryFileUpload",
+			Handler:       _PipelinePublicService_TriggerSyncPipelineBinaryFileUpload_Handler,
+			ClientStreams: true,
+		},
+		{
+			StreamName:    "TriggerAsyncPipelineBinaryFileUpload",
+			Handler:       _PipelinePublicService_TriggerAsyncPipelineBinaryFileUpload_Handler,
 			ClientStreams: true,
 		},
 	},
