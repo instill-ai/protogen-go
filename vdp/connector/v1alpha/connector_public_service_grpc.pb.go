@@ -75,9 +75,9 @@ type ConnectorPublicServiceClient interface {
 	// RenameSourceConnector method receives a RenameSourceConnectorRequest
 	// message and returns a RenameSourceConnectorResponse message.
 	RenameSourceConnector(ctx context.Context, in *RenameSourceConnectorRequest, opts ...grpc.CallOption) (*RenameSourceConnectorResponse, error)
-	// ReadSourceConnector method receives a ReadSourceConnectorRequest
-	// message and returns a ReadSourceConnectorResponse message.
-	ReadSourceConnector(ctx context.Context, in *ReadSourceConnectorRequest, opts ...grpc.CallOption) (*ReadSourceConnectorResponse, error)
+	// ExecuteSourceConnector method receives a ExecuteSourceConnectorRequest
+	// message and returns a ExecuteSourceConnectorResponse message.
+	ExecuteSourceConnector(ctx context.Context, in *ExecuteSourceConnectorRequest, opts ...grpc.CallOption) (*ExecuteSourceConnectorResponse, error)
 	// WatchSourceConnector method receives a WatchSourceConnectorRequest message
 	// and returns a WatchSourceConnectorResponse
 	WatchSourceConnector(ctx context.Context, in *WatchSourceConnectorRequest, opts ...grpc.CallOption) (*WatchSourceConnectorResponse, error)
@@ -122,10 +122,10 @@ type ConnectorPublicServiceClient interface {
 	// RenameDestinationConnectorRequest message and returns a
 	// RenameDestinationConnectorResponse message.
 	RenameDestinationConnector(ctx context.Context, in *RenameDestinationConnectorRequest, opts ...grpc.CallOption) (*RenameDestinationConnectorResponse, error)
-	// WriteDestinationConnector method receives a
-	// WriteDestinationConnectorRequest message and returns a
-	// WriteDestinationConnectorResponse message.
-	WriteDestinationConnector(ctx context.Context, in *WriteDestinationConnectorRequest, opts ...grpc.CallOption) (*WriteDestinationConnectorResponse, error)
+	// ExecuteDestinationConnector method receives a
+	// ExecuteDestinationConnectorRequest message and returns a
+	// ExecuteDestinationConnectorResponse message.
+	ExecuteDestinationConnector(ctx context.Context, in *ExecuteDestinationConnectorRequest, opts ...grpc.CallOption) (*ExecuteDestinationConnectorResponse, error)
 	// WatchDestinationConnector method receives a WatchDestinationConnectorRequest message
 	// and returns a WatchDestinationConnectorResponse
 	WatchDestinationConnector(ctx context.Context, in *WatchDestinationConnectorRequest, opts ...grpc.CallOption) (*WatchDestinationConnectorResponse, error)
@@ -277,9 +277,9 @@ func (c *connectorPublicServiceClient) RenameSourceConnector(ctx context.Context
 	return out, nil
 }
 
-func (c *connectorPublicServiceClient) ReadSourceConnector(ctx context.Context, in *ReadSourceConnectorRequest, opts ...grpc.CallOption) (*ReadSourceConnectorResponse, error) {
-	out := new(ReadSourceConnectorResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/ReadSourceConnector", in, out, opts...)
+func (c *connectorPublicServiceClient) ExecuteSourceConnector(ctx context.Context, in *ExecuteSourceConnectorRequest, opts ...grpc.CallOption) (*ExecuteSourceConnectorResponse, error) {
+	out := new(ExecuteSourceConnectorResponse)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/ExecuteSourceConnector", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -385,9 +385,9 @@ func (c *connectorPublicServiceClient) RenameDestinationConnector(ctx context.Co
 	return out, nil
 }
 
-func (c *connectorPublicServiceClient) WriteDestinationConnector(ctx context.Context, in *WriteDestinationConnectorRequest, opts ...grpc.CallOption) (*WriteDestinationConnectorResponse, error) {
-	out := new(WriteDestinationConnectorResponse)
-	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/WriteDestinationConnector", in, out, opts...)
+func (c *connectorPublicServiceClient) ExecuteDestinationConnector(ctx context.Context, in *ExecuteDestinationConnectorRequest, opts ...grpc.CallOption) (*ExecuteDestinationConnectorResponse, error) {
+	out := new(ExecuteDestinationConnectorResponse)
+	err := c.cc.Invoke(ctx, "/vdp.connector.v1alpha.ConnectorPublicService/ExecuteDestinationConnector", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -473,9 +473,9 @@ type ConnectorPublicServiceServer interface {
 	// RenameSourceConnector method receives a RenameSourceConnectorRequest
 	// message and returns a RenameSourceConnectorResponse message.
 	RenameSourceConnector(context.Context, *RenameSourceConnectorRequest) (*RenameSourceConnectorResponse, error)
-	// ReadSourceConnector method receives a ReadSourceConnectorRequest
-	// message and returns a ReadSourceConnectorResponse message.
-	ReadSourceConnector(context.Context, *ReadSourceConnectorRequest) (*ReadSourceConnectorResponse, error)
+	// ExecuteSourceConnector method receives a ExecuteSourceConnectorRequest
+	// message and returns a ExecuteSourceConnectorResponse message.
+	ExecuteSourceConnector(context.Context, *ExecuteSourceConnectorRequest) (*ExecuteSourceConnectorResponse, error)
 	// WatchSourceConnector method receives a WatchSourceConnectorRequest message
 	// and returns a WatchSourceConnectorResponse
 	WatchSourceConnector(context.Context, *WatchSourceConnectorRequest) (*WatchSourceConnectorResponse, error)
@@ -520,10 +520,10 @@ type ConnectorPublicServiceServer interface {
 	// RenameDestinationConnectorRequest message and returns a
 	// RenameDestinationConnectorResponse message.
 	RenameDestinationConnector(context.Context, *RenameDestinationConnectorRequest) (*RenameDestinationConnectorResponse, error)
-	// WriteDestinationConnector method receives a
-	// WriteDestinationConnectorRequest message and returns a
-	// WriteDestinationConnectorResponse message.
-	WriteDestinationConnector(context.Context, *WriteDestinationConnectorRequest) (*WriteDestinationConnectorResponse, error)
+	// ExecuteDestinationConnector method receives a
+	// ExecuteDestinationConnectorRequest message and returns a
+	// ExecuteDestinationConnectorResponse message.
+	ExecuteDestinationConnector(context.Context, *ExecuteDestinationConnectorRequest) (*ExecuteDestinationConnectorResponse, error)
 	// WatchDestinationConnector method receives a WatchDestinationConnectorRequest message
 	// and returns a WatchDestinationConnectorResponse
 	WatchDestinationConnector(context.Context, *WatchDestinationConnectorRequest) (*WatchDestinationConnectorResponse, error)
@@ -581,8 +581,8 @@ func (UnimplementedConnectorPublicServiceServer) DisconnectSourceConnector(conte
 func (UnimplementedConnectorPublicServiceServer) RenameSourceConnector(context.Context, *RenameSourceConnectorRequest) (*RenameSourceConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RenameSourceConnector not implemented")
 }
-func (UnimplementedConnectorPublicServiceServer) ReadSourceConnector(context.Context, *ReadSourceConnectorRequest) (*ReadSourceConnectorResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ReadSourceConnector not implemented")
+func (UnimplementedConnectorPublicServiceServer) ExecuteSourceConnector(context.Context, *ExecuteSourceConnectorRequest) (*ExecuteSourceConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExecuteSourceConnector not implemented")
 }
 func (UnimplementedConnectorPublicServiceServer) WatchSourceConnector(context.Context, *WatchSourceConnectorRequest) (*WatchSourceConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method WatchSourceConnector not implemented")
@@ -617,8 +617,8 @@ func (UnimplementedConnectorPublicServiceServer) DisconnectDestinationConnector(
 func (UnimplementedConnectorPublicServiceServer) RenameDestinationConnector(context.Context, *RenameDestinationConnectorRequest) (*RenameDestinationConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RenameDestinationConnector not implemented")
 }
-func (UnimplementedConnectorPublicServiceServer) WriteDestinationConnector(context.Context, *WriteDestinationConnectorRequest) (*WriteDestinationConnectorResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method WriteDestinationConnector not implemented")
+func (UnimplementedConnectorPublicServiceServer) ExecuteDestinationConnector(context.Context, *ExecuteDestinationConnectorRequest) (*ExecuteDestinationConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExecuteDestinationConnector not implemented")
 }
 func (UnimplementedConnectorPublicServiceServer) WatchDestinationConnector(context.Context, *WatchDestinationConnectorRequest) (*WatchDestinationConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method WatchDestinationConnector not implemented")
@@ -908,20 +908,20 @@ func _ConnectorPublicService_RenameSourceConnector_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorPublicService_ReadSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReadSourceConnectorRequest)
+func _ConnectorPublicService_ExecuteSourceConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExecuteSourceConnectorRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorPublicServiceServer).ReadSourceConnector(ctx, in)
+		return srv.(ConnectorPublicServiceServer).ExecuteSourceConnector(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/ReadSourceConnector",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/ExecuteSourceConnector",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorPublicServiceServer).ReadSourceConnector(ctx, req.(*ReadSourceConnectorRequest))
+		return srv.(ConnectorPublicServiceServer).ExecuteSourceConnector(ctx, req.(*ExecuteSourceConnectorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1124,20 +1124,20 @@ func _ConnectorPublicService_RenameDestinationConnector_Handler(srv interface{},
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorPublicService_WriteDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(WriteDestinationConnectorRequest)
+func _ConnectorPublicService_ExecuteDestinationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExecuteDestinationConnectorRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorPublicServiceServer).WriteDestinationConnector(ctx, in)
+		return srv.(ConnectorPublicServiceServer).ExecuteDestinationConnector(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/WriteDestinationConnector",
+		FullMethod: "/vdp.connector.v1alpha.ConnectorPublicService/ExecuteDestinationConnector",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorPublicServiceServer).WriteDestinationConnector(ctx, req.(*WriteDestinationConnectorRequest))
+		return srv.(ConnectorPublicServiceServer).ExecuteDestinationConnector(ctx, req.(*ExecuteDestinationConnectorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1246,8 +1246,8 @@ var ConnectorPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ConnectorPublicService_RenameSourceConnector_Handler,
 		},
 		{
-			MethodName: "ReadSourceConnector",
-			Handler:    _ConnectorPublicService_ReadSourceConnector_Handler,
+			MethodName: "ExecuteSourceConnector",
+			Handler:    _ConnectorPublicService_ExecuteSourceConnector_Handler,
 		},
 		{
 			MethodName: "WatchSourceConnector",
@@ -1294,8 +1294,8 @@ var ConnectorPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ConnectorPublicService_RenameDestinationConnector_Handler,
 		},
 		{
-			MethodName: "WriteDestinationConnector",
-			Handler:    _ConnectorPublicService_WriteDestinationConnector_Handler,
+			MethodName: "ExecuteDestinationConnector",
+			Handler:    _ConnectorPublicService_ExecuteDestinationConnector_Handler,
 		},
 		{
 			MethodName: "WatchDestinationConnector",
