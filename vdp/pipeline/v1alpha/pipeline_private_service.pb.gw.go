@@ -199,7 +199,7 @@ func RegisterPipelinePrivateServiceHandlerServer(ctx context.Context, mux *runti
 // RegisterPipelinePrivateServiceHandlerFromEndpoint is same as RegisterPipelinePrivateServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterPipelinePrivateServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.Dial(endpoint, opts...)
+	conn, err := grpc.DialContext(ctx, endpoint, opts...)
 	if err != nil {
 		return err
 	}
