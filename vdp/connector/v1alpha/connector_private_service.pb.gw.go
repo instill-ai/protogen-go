@@ -32,47 +32,47 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 var (
-	filter_ConnectorPrivateService_ListSourceConnectorsAdmin_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_ConnectorPrivateService_ListConnectorsAdmin_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_ConnectorPrivateService_ListSourceConnectorsAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client ConnectorPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListSourceConnectorsAdminRequest
+func request_ConnectorPrivateService_ListConnectorsAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client ConnectorPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ListConnectorsAdminRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ConnectorPrivateService_ListSourceConnectorsAdmin_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ConnectorPrivateService_ListConnectorsAdmin_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.ListSourceConnectorsAdmin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.ListConnectorsAdmin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_ConnectorPrivateService_ListSourceConnectorsAdmin_0(ctx context.Context, marshaler runtime.Marshaler, server ConnectorPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListSourceConnectorsAdminRequest
+func local_request_ConnectorPrivateService_ListConnectorsAdmin_0(ctx context.Context, marshaler runtime.Marshaler, server ConnectorPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ListConnectorsAdminRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ConnectorPrivateService_ListSourceConnectorsAdmin_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ConnectorPrivateService_ListConnectorsAdmin_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.ListSourceConnectorsAdmin(ctx, &protoReq)
+	msg, err := server.ListConnectorsAdmin(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
 var (
-	filter_ConnectorPrivateService_LookUpSourceConnectorAdmin_0 = &utilities.DoubleArray{Encoding: map[string]int{"permalink": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
+	filter_ConnectorPrivateService_LookUpConnectorAdmin_0 = &utilities.DoubleArray{Encoding: map[string]int{"permalink": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
-func request_ConnectorPrivateService_LookUpSourceConnectorAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client ConnectorPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq LookUpSourceConnectorAdminRequest
+func request_ConnectorPrivateService_LookUpConnectorAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client ConnectorPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq LookUpConnectorAdminRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -95,17 +95,17 @@ func request_ConnectorPrivateService_LookUpSourceConnectorAdmin_0(ctx context.Co
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ConnectorPrivateService_LookUpSourceConnectorAdmin_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ConnectorPrivateService_LookUpConnectorAdmin_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.LookUpSourceConnectorAdmin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.LookUpConnectorAdmin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_ConnectorPrivateService_LookUpSourceConnectorAdmin_0(ctx context.Context, marshaler runtime.Marshaler, server ConnectorPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq LookUpSourceConnectorAdminRequest
+func local_request_ConnectorPrivateService_LookUpConnectorAdmin_0(ctx context.Context, marshaler runtime.Marshaler, server ConnectorPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq LookUpConnectorAdminRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -128,17 +128,17 @@ func local_request_ConnectorPrivateService_LookUpSourceConnectorAdmin_0(ctx cont
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ConnectorPrivateService_LookUpSourceConnectorAdmin_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ConnectorPrivateService_LookUpConnectorAdmin_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.LookUpSourceConnectorAdmin(ctx, &protoReq)
+	msg, err := server.LookUpConnectorAdmin(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_ConnectorPrivateService_CheckSourceConnector_0(ctx context.Context, marshaler runtime.Marshaler, client ConnectorPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CheckSourceConnectorRequest
+func request_ConnectorPrivateService_CheckConnector_0(ctx context.Context, marshaler runtime.Marshaler, client ConnectorPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq CheckConnectorRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -148,23 +148,23 @@ func request_ConnectorPrivateService_CheckSourceConnector_0(ctx context.Context,
 		_   = err
 	)
 
-	val, ok = pathParams["source_connector_permalink"]
+	val, ok = pathParams["connector_permalink"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "source_connector_permalink")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "connector_permalink")
 	}
 
-	protoReq.SourceConnectorPermalink, err = runtime.String(val)
+	protoReq.ConnectorPermalink, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "source_connector_permalink", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "connector_permalink", err)
 	}
 
-	msg, err := client.CheckSourceConnector(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.CheckConnector(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_ConnectorPrivateService_CheckSourceConnector_0(ctx context.Context, marshaler runtime.Marshaler, server ConnectorPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CheckSourceConnectorRequest
+func local_request_ConnectorPrivateService_CheckConnector_0(ctx context.Context, marshaler runtime.Marshaler, server ConnectorPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq CheckConnectorRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -174,175 +174,17 @@ func local_request_ConnectorPrivateService_CheckSourceConnector_0(ctx context.Co
 		_   = err
 	)
 
-	val, ok = pathParams["source_connector_permalink"]
+	val, ok = pathParams["connector_permalink"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "source_connector_permalink")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "connector_permalink")
 	}
 
-	protoReq.SourceConnectorPermalink, err = runtime.String(val)
+	protoReq.ConnectorPermalink, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "source_connector_permalink", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "connector_permalink", err)
 	}
 
-	msg, err := server.CheckSourceConnector(ctx, &protoReq)
-	return msg, metadata, err
-
-}
-
-var (
-	filter_ConnectorPrivateService_ListDestinationConnectorsAdmin_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
-
-func request_ConnectorPrivateService_ListDestinationConnectorsAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client ConnectorPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListDestinationConnectorsAdminRequest
-	var metadata runtime.ServerMetadata
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ConnectorPrivateService_ListDestinationConnectorsAdmin_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.ListDestinationConnectorsAdmin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
-func local_request_ConnectorPrivateService_ListDestinationConnectorsAdmin_0(ctx context.Context, marshaler runtime.Marshaler, server ConnectorPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListDestinationConnectorsAdminRequest
-	var metadata runtime.ServerMetadata
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ConnectorPrivateService_ListDestinationConnectorsAdmin_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := server.ListDestinationConnectorsAdmin(ctx, &protoReq)
-	return msg, metadata, err
-
-}
-
-var (
-	filter_ConnectorPrivateService_LookUpDestinationConnectorAdmin_0 = &utilities.DoubleArray{Encoding: map[string]int{"permalink": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
-)
-
-func request_ConnectorPrivateService_LookUpDestinationConnectorAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client ConnectorPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq LookUpDestinationConnectorAdminRequest
-	var metadata runtime.ServerMetadata
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["permalink"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "permalink")
-	}
-
-	protoReq.Permalink, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "permalink", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ConnectorPrivateService_LookUpDestinationConnectorAdmin_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.LookUpDestinationConnectorAdmin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
-func local_request_ConnectorPrivateService_LookUpDestinationConnectorAdmin_0(ctx context.Context, marshaler runtime.Marshaler, server ConnectorPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq LookUpDestinationConnectorAdminRequest
-	var metadata runtime.ServerMetadata
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["permalink"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "permalink")
-	}
-
-	protoReq.Permalink, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "permalink", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ConnectorPrivateService_LookUpDestinationConnectorAdmin_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := server.LookUpDestinationConnectorAdmin(ctx, &protoReq)
-	return msg, metadata, err
-
-}
-
-func request_ConnectorPrivateService_CheckDestinationConnector_0(ctx context.Context, marshaler runtime.Marshaler, client ConnectorPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CheckDestinationConnectorRequest
-	var metadata runtime.ServerMetadata
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["destination_connector_permalink"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "destination_connector_permalink")
-	}
-
-	protoReq.DestinationConnectorPermalink, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "destination_connector_permalink", err)
-	}
-
-	msg, err := client.CheckDestinationConnector(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
-func local_request_ConnectorPrivateService_CheckDestinationConnector_0(ctx context.Context, marshaler runtime.Marshaler, server ConnectorPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CheckDestinationConnectorRequest
-	var metadata runtime.ServerMetadata
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["destination_connector_permalink"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "destination_connector_permalink")
-	}
-
-	protoReq.DestinationConnectorPermalink, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "destination_connector_permalink", err)
-	}
-
-	msg, err := server.CheckDestinationConnector(ctx, &protoReq)
+	msg, err := server.CheckConnector(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -353,7 +195,7 @@ func local_request_ConnectorPrivateService_CheckDestinationConnector_0(ctx conte
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterConnectorPrivateServiceHandlerFromEndpoint instead.
 func RegisterConnectorPrivateServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ConnectorPrivateServiceServer) error {
 
-	mux.Handle("GET", pattern_ConnectorPrivateService_ListSourceConnectorsAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_ConnectorPrivateService_ListConnectorsAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -361,12 +203,12 @@ func RegisterConnectorPrivateServiceHandlerServer(ctx context.Context, mux *runt
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorPrivateService/ListSourceConnectorsAdmin", runtime.WithHTTPPathPattern("/v1alpha/admin/source-connectors"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorPrivateService/ListConnectorsAdmin", runtime.WithHTTPPathPattern("/v1alpha/admin/connectors"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ConnectorPrivateService_ListSourceConnectorsAdmin_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ConnectorPrivateService_ListConnectorsAdmin_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -374,11 +216,11 @@ func RegisterConnectorPrivateServiceHandlerServer(ctx context.Context, mux *runt
 			return
 		}
 
-		forward_ConnectorPrivateService_ListSourceConnectorsAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ConnectorPrivateService_ListConnectorsAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_ConnectorPrivateService_LookUpSourceConnectorAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_ConnectorPrivateService_LookUpConnectorAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -386,12 +228,12 @@ func RegisterConnectorPrivateServiceHandlerServer(ctx context.Context, mux *runt
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorPrivateService/LookUpSourceConnectorAdmin", runtime.WithHTTPPathPattern("/v1alpha/admin/{permalink=source-connectors/*}/lookUp"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorPrivateService/LookUpConnectorAdmin", runtime.WithHTTPPathPattern("/v1alpha/admin/{permalink=connectors/*}/lookUp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ConnectorPrivateService_LookUpSourceConnectorAdmin_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ConnectorPrivateService_LookUpConnectorAdmin_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -399,11 +241,11 @@ func RegisterConnectorPrivateServiceHandlerServer(ctx context.Context, mux *runt
 			return
 		}
 
-		forward_ConnectorPrivateService_LookUpSourceConnectorAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ConnectorPrivateService_LookUpConnectorAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_ConnectorPrivateService_CheckSourceConnector_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_ConnectorPrivateService_CheckConnector_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -411,12 +253,12 @@ func RegisterConnectorPrivateServiceHandlerServer(ctx context.Context, mux *runt
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorPrivateService/CheckSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/admin/{source_connector_permalink=source-connectors/*}/check"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorPrivateService/CheckConnector", runtime.WithHTTPPathPattern("/v1alpha/admin/{connector_permalink=connectors/*}/check"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ConnectorPrivateService_CheckSourceConnector_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ConnectorPrivateService_CheckConnector_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -424,82 +266,7 @@ func RegisterConnectorPrivateServiceHandlerServer(ctx context.Context, mux *runt
 			return
 		}
 
-		forward_ConnectorPrivateService_CheckSourceConnector_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("GET", pattern_ConnectorPrivateService_ListDestinationConnectorsAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorPrivateService/ListDestinationConnectorsAdmin", runtime.WithHTTPPathPattern("/v1alpha/admin/destination-connectors"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_ConnectorPrivateService_ListDestinationConnectorsAdmin_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_ConnectorPrivateService_ListDestinationConnectorsAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("GET", pattern_ConnectorPrivateService_LookUpDestinationConnectorAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorPrivateService/LookUpDestinationConnectorAdmin", runtime.WithHTTPPathPattern("/v1alpha/admin/{permalink=destination-connectors/*}/lookUp"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_ConnectorPrivateService_LookUpDestinationConnectorAdmin_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_ConnectorPrivateService_LookUpDestinationConnectorAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("GET", pattern_ConnectorPrivateService_CheckDestinationConnector_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorPrivateService/CheckDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/admin/{destination_connector_permalink=destination-connectors/*}/check"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_ConnectorPrivateService_CheckDestinationConnector_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_ConnectorPrivateService_CheckDestinationConnector_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ConnectorPrivateService_CheckConnector_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -544,135 +311,69 @@ func RegisterConnectorPrivateServiceHandler(ctx context.Context, mux *runtime.Se
 // "ConnectorPrivateServiceClient" to call the correct interceptors.
 func RegisterConnectorPrivateServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ConnectorPrivateServiceClient) error {
 
-	mux.Handle("GET", pattern_ConnectorPrivateService_ListSourceConnectorsAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_ConnectorPrivateService_ListConnectorsAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorPrivateService/ListSourceConnectorsAdmin", runtime.WithHTTPPathPattern("/v1alpha/admin/source-connectors"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorPrivateService/ListConnectorsAdmin", runtime.WithHTTPPathPattern("/v1alpha/admin/connectors"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ConnectorPrivateService_ListSourceConnectorsAdmin_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ConnectorPrivateService_ListConnectorsAdmin_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ConnectorPrivateService_ListSourceConnectorsAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ConnectorPrivateService_ListConnectorsAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_ConnectorPrivateService_LookUpSourceConnectorAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_ConnectorPrivateService_LookUpConnectorAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorPrivateService/LookUpSourceConnectorAdmin", runtime.WithHTTPPathPattern("/v1alpha/admin/{permalink=source-connectors/*}/lookUp"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorPrivateService/LookUpConnectorAdmin", runtime.WithHTTPPathPattern("/v1alpha/admin/{permalink=connectors/*}/lookUp"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ConnectorPrivateService_LookUpSourceConnectorAdmin_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ConnectorPrivateService_LookUpConnectorAdmin_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ConnectorPrivateService_LookUpSourceConnectorAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ConnectorPrivateService_LookUpConnectorAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_ConnectorPrivateService_CheckSourceConnector_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_ConnectorPrivateService_CheckConnector_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorPrivateService/CheckSourceConnector", runtime.WithHTTPPathPattern("/v1alpha/admin/{source_connector_permalink=source-connectors/*}/check"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorPrivateService/CheckConnector", runtime.WithHTTPPathPattern("/v1alpha/admin/{connector_permalink=connectors/*}/check"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ConnectorPrivateService_CheckSourceConnector_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ConnectorPrivateService_CheckConnector_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ConnectorPrivateService_CheckSourceConnector_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("GET", pattern_ConnectorPrivateService_ListDestinationConnectorsAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorPrivateService/ListDestinationConnectorsAdmin", runtime.WithHTTPPathPattern("/v1alpha/admin/destination-connectors"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ConnectorPrivateService_ListDestinationConnectorsAdmin_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_ConnectorPrivateService_ListDestinationConnectorsAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("GET", pattern_ConnectorPrivateService_LookUpDestinationConnectorAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorPrivateService/LookUpDestinationConnectorAdmin", runtime.WithHTTPPathPattern("/v1alpha/admin/{permalink=destination-connectors/*}/lookUp"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ConnectorPrivateService_LookUpDestinationConnectorAdmin_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_ConnectorPrivateService_LookUpDestinationConnectorAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("GET", pattern_ConnectorPrivateService_CheckDestinationConnector_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.connector.v1alpha.ConnectorPrivateService/CheckDestinationConnector", runtime.WithHTTPPathPattern("/v1alpha/admin/{destination_connector_permalink=destination-connectors/*}/check"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ConnectorPrivateService_CheckDestinationConnector_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_ConnectorPrivateService_CheckDestinationConnector_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ConnectorPrivateService_CheckConnector_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -680,29 +381,17 @@ func RegisterConnectorPrivateServiceHandlerClient(ctx context.Context, mux *runt
 }
 
 var (
-	pattern_ConnectorPrivateService_ListSourceConnectorsAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "admin", "source-connectors"}, ""))
+	pattern_ConnectorPrivateService_ListConnectorsAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "admin", "connectors"}, ""))
 
-	pattern_ConnectorPrivateService_LookUpSourceConnectorAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 2, 5, 3, 2, 4}, []string{"v1alpha", "admin", "source-connectors", "permalink", "lookUp"}, ""))
+	pattern_ConnectorPrivateService_LookUpConnectorAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 2, 5, 3, 2, 4}, []string{"v1alpha", "admin", "connectors", "permalink", "lookUp"}, ""))
 
-	pattern_ConnectorPrivateService_CheckSourceConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 2, 5, 3, 2, 4}, []string{"v1alpha", "admin", "source-connectors", "source_connector_permalink", "check"}, ""))
-
-	pattern_ConnectorPrivateService_ListDestinationConnectorsAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "admin", "destination-connectors"}, ""))
-
-	pattern_ConnectorPrivateService_LookUpDestinationConnectorAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 2, 5, 3, 2, 4}, []string{"v1alpha", "admin", "destination-connectors", "permalink", "lookUp"}, ""))
-
-	pattern_ConnectorPrivateService_CheckDestinationConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 2, 5, 3, 2, 4}, []string{"v1alpha", "admin", "destination-connectors", "destination_connector_permalink", "check"}, ""))
+	pattern_ConnectorPrivateService_CheckConnector_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 2, 5, 3, 2, 4}, []string{"v1alpha", "admin", "connectors", "connector_permalink", "check"}, ""))
 )
 
 var (
-	forward_ConnectorPrivateService_ListSourceConnectorsAdmin_0 = runtime.ForwardResponseMessage
+	forward_ConnectorPrivateService_ListConnectorsAdmin_0 = runtime.ForwardResponseMessage
 
-	forward_ConnectorPrivateService_LookUpSourceConnectorAdmin_0 = runtime.ForwardResponseMessage
+	forward_ConnectorPrivateService_LookUpConnectorAdmin_0 = runtime.ForwardResponseMessage
 
-	forward_ConnectorPrivateService_CheckSourceConnector_0 = runtime.ForwardResponseMessage
-
-	forward_ConnectorPrivateService_ListDestinationConnectorsAdmin_0 = runtime.ForwardResponseMessage
-
-	forward_ConnectorPrivateService_LookUpDestinationConnectorAdmin_0 = runtime.ForwardResponseMessage
-
-	forward_ConnectorPrivateService_CheckDestinationConnector_0 = runtime.ForwardResponseMessage
+	forward_ConnectorPrivateService_CheckConnector_0 = runtime.ForwardResponseMessage
 )
