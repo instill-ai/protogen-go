@@ -19,16 +19,16 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	MgmtPublicService_Liveness_FullMethodName                  = "/base.mgmt.v1alpha.MgmtPublicService/Liveness"
-	MgmtPublicService_Readiness_FullMethodName                 = "/base.mgmt.v1alpha.MgmtPublicService/Readiness"
-	MgmtPublicService_QueryAuthenticatedUser_FullMethodName    = "/base.mgmt.v1alpha.MgmtPublicService/QueryAuthenticatedUser"
-	MgmtPublicService_PatchAuthenticatedUser_FullMethodName    = "/base.mgmt.v1alpha.MgmtPublicService/PatchAuthenticatedUser"
-	MgmtPublicService_ExistUsername_FullMethodName             = "/base.mgmt.v1alpha.MgmtPublicService/ExistUsername"
-	MgmtPublicService_CreateToken_FullMethodName               = "/base.mgmt.v1alpha.MgmtPublicService/CreateToken"
-	MgmtPublicService_ListTokens_FullMethodName                = "/base.mgmt.v1alpha.MgmtPublicService/ListTokens"
-	MgmtPublicService_GetToken_FullMethodName                  = "/base.mgmt.v1alpha.MgmtPublicService/GetToken"
-	MgmtPublicService_DeleteToken_FullMethodName               = "/base.mgmt.v1alpha.MgmtPublicService/DeleteToken"
-	MgmtPublicService_ListPipelineTriggerRecord_FullMethodName = "/base.mgmt.v1alpha.MgmtPublicService/ListPipelineTriggerRecord"
+	MgmtPublicService_Liveness_FullMethodName                   = "/base.mgmt.v1alpha.MgmtPublicService/Liveness"
+	MgmtPublicService_Readiness_FullMethodName                  = "/base.mgmt.v1alpha.MgmtPublicService/Readiness"
+	MgmtPublicService_QueryAuthenticatedUser_FullMethodName     = "/base.mgmt.v1alpha.MgmtPublicService/QueryAuthenticatedUser"
+	MgmtPublicService_PatchAuthenticatedUser_FullMethodName     = "/base.mgmt.v1alpha.MgmtPublicService/PatchAuthenticatedUser"
+	MgmtPublicService_ExistUsername_FullMethodName              = "/base.mgmt.v1alpha.MgmtPublicService/ExistUsername"
+	MgmtPublicService_CreateToken_FullMethodName                = "/base.mgmt.v1alpha.MgmtPublicService/CreateToken"
+	MgmtPublicService_ListTokens_FullMethodName                 = "/base.mgmt.v1alpha.MgmtPublicService/ListTokens"
+	MgmtPublicService_GetToken_FullMethodName                   = "/base.mgmt.v1alpha.MgmtPublicService/GetToken"
+	MgmtPublicService_DeleteToken_FullMethodName                = "/base.mgmt.v1alpha.MgmtPublicService/DeleteToken"
+	MgmtPublicService_ListPipelineTriggerRecords_FullMethodName = "/base.mgmt.v1alpha.MgmtPublicService/ListPipelineTriggerRecords"
 )
 
 // MgmtPublicServiceClient is the client API for MgmtPublicService service.
@@ -64,9 +64,9 @@ type MgmtPublicServiceClient interface {
 	// DeleteToken method receives a DeleteTokenRequest message and returns
 	// a DeleteTokenResponse message.
 	DeleteToken(ctx context.Context, in *DeleteTokenRequest, opts ...grpc.CallOption) (*DeleteTokenResponse, error)
-	// ListPipelineTriggerRecord method receives a ListPipelineTriggerRecordRequest message and returns a
-	// ListPipelineTriggerRecordResponse message.
-	ListPipelineTriggerRecord(ctx context.Context, in *ListPipelineTriggerRecordRequest, opts ...grpc.CallOption) (*ListPipelineTriggerRecordResponse, error)
+	// ListPipelineTriggerRecords method receives a ListPipelineTriggerRecordsRequest message and returns a
+	// ListPipelineTriggerRecordsResponse message.
+	ListPipelineTriggerRecords(ctx context.Context, in *ListPipelineTriggerRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerRecordsResponse, error)
 }
 
 type mgmtPublicServiceClient struct {
@@ -158,9 +158,9 @@ func (c *mgmtPublicServiceClient) DeleteToken(ctx context.Context, in *DeleteTok
 	return out, nil
 }
 
-func (c *mgmtPublicServiceClient) ListPipelineTriggerRecord(ctx context.Context, in *ListPipelineTriggerRecordRequest, opts ...grpc.CallOption) (*ListPipelineTriggerRecordResponse, error) {
-	out := new(ListPipelineTriggerRecordResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_ListPipelineTriggerRecord_FullMethodName, in, out, opts...)
+func (c *mgmtPublicServiceClient) ListPipelineTriggerRecords(ctx context.Context, in *ListPipelineTriggerRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerRecordsResponse, error) {
+	out := new(ListPipelineTriggerRecordsResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_ListPipelineTriggerRecords_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -200,9 +200,9 @@ type MgmtPublicServiceServer interface {
 	// DeleteToken method receives a DeleteTokenRequest message and returns
 	// a DeleteTokenResponse message.
 	DeleteToken(context.Context, *DeleteTokenRequest) (*DeleteTokenResponse, error)
-	// ListPipelineTriggerRecord method receives a ListPipelineTriggerRecordRequest message and returns a
-	// ListPipelineTriggerRecordResponse message.
-	ListPipelineTriggerRecord(context.Context, *ListPipelineTriggerRecordRequest) (*ListPipelineTriggerRecordResponse, error)
+	// ListPipelineTriggerRecords method receives a ListPipelineTriggerRecordsRequest message and returns a
+	// ListPipelineTriggerRecordsResponse message.
+	ListPipelineTriggerRecords(context.Context, *ListPipelineTriggerRecordsRequest) (*ListPipelineTriggerRecordsResponse, error)
 }
 
 // UnimplementedMgmtPublicServiceServer should be embedded to have forward compatible implementations.
@@ -236,8 +236,8 @@ func (UnimplementedMgmtPublicServiceServer) GetToken(context.Context, *GetTokenR
 func (UnimplementedMgmtPublicServiceServer) DeleteToken(context.Context, *DeleteTokenRequest) (*DeleteTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteToken not implemented")
 }
-func (UnimplementedMgmtPublicServiceServer) ListPipelineTriggerRecord(context.Context, *ListPipelineTriggerRecordRequest) (*ListPipelineTriggerRecordResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineTriggerRecord not implemented")
+func (UnimplementedMgmtPublicServiceServer) ListPipelineTriggerRecords(context.Context, *ListPipelineTriggerRecordsRequest) (*ListPipelineTriggerRecordsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineTriggerRecords not implemented")
 }
 
 // UnsafeMgmtPublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -413,20 +413,20 @@ func _MgmtPublicService_DeleteToken_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MgmtPublicService_ListPipelineTriggerRecord_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListPipelineTriggerRecordRequest)
+func _MgmtPublicService_ListPipelineTriggerRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListPipelineTriggerRecordsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).ListPipelineTriggerRecord(ctx, in)
+		return srv.(MgmtPublicServiceServer).ListPipelineTriggerRecords(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: MgmtPublicService_ListPipelineTriggerRecord_FullMethodName,
+		FullMethod: MgmtPublicService_ListPipelineTriggerRecords_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).ListPipelineTriggerRecord(ctx, req.(*ListPipelineTriggerRecordRequest))
+		return srv.(MgmtPublicServiceServer).ListPipelineTriggerRecords(ctx, req.(*ListPipelineTriggerRecordsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -475,8 +475,8 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MgmtPublicService_DeleteToken_Handler,
 		},
 		{
-			MethodName: "ListPipelineTriggerRecord",
-			Handler:    _MgmtPublicService_ListPipelineTriggerRecord_Handler,
+			MethodName: "ListPipelineTriggerRecords",
+			Handler:    _MgmtPublicService_ListPipelineTriggerRecords_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
