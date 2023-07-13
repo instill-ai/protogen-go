@@ -3577,9 +3577,9 @@ func (x *LookUpModelAdminResponse) GetModel() *Model {
 	return nil
 }
 
-// CheckModelRequest represents a private request to query
+// CheckModelAdminRequest represents a private request to query
 // a model current state and longrunning progress
-type CheckModelRequest struct {
+type CheckModelAdminRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -3589,8 +3589,8 @@ type CheckModelRequest struct {
 	ModelPermalink string `protobuf:"bytes,1,opt,name=model_permalink,json=modelPermalink,proto3" json:"model_permalink,omitempty"`
 }
 
-func (x *CheckModelRequest) Reset() {
-	*x = CheckModelRequest{}
+func (x *CheckModelAdminRequest) Reset() {
+	*x = CheckModelAdminRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_model_model_v1alpha_model_proto_msgTypes[51]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3598,13 +3598,13 @@ func (x *CheckModelRequest) Reset() {
 	}
 }
 
-func (x *CheckModelRequest) String() string {
+func (x *CheckModelAdminRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CheckModelRequest) ProtoMessage() {}
+func (*CheckModelAdminRequest) ProtoMessage() {}
 
-func (x *CheckModelRequest) ProtoReflect() protoreflect.Message {
+func (x *CheckModelAdminRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_model_model_v1alpha_model_proto_msgTypes[51]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3616,21 +3616,21 @@ func (x *CheckModelRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CheckModelRequest.ProtoReflect.Descriptor instead.
-func (*CheckModelRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use CheckModelAdminRequest.ProtoReflect.Descriptor instead.
+func (*CheckModelAdminRequest) Descriptor() ([]byte, []int) {
 	return file_model_model_v1alpha_model_proto_rawDescGZIP(), []int{51}
 }
 
-func (x *CheckModelRequest) GetModelPermalink() string {
+func (x *CheckModelAdminRequest) GetModelPermalink() string {
 	if x != nil {
 		return x.ModelPermalink
 	}
 	return ""
 }
 
-// CheckModelResponse represents a response to fetch a model's
+// CheckModelAdminResponse represents a response to fetch a model's
 // current state and longrunning progress
-type CheckModelResponse struct {
+type CheckModelAdminResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -3639,8 +3639,8 @@ type CheckModelResponse struct {
 	State Model_State `protobuf:"varint,1,opt,name=state,proto3,enum=model.model.v1alpha.Model_State" json:"state,omitempty"`
 }
 
-func (x *CheckModelResponse) Reset() {
-	*x = CheckModelResponse{}
+func (x *CheckModelAdminResponse) Reset() {
+	*x = CheckModelAdminResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_model_model_v1alpha_model_proto_msgTypes[52]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3648,13 +3648,13 @@ func (x *CheckModelResponse) Reset() {
 	}
 }
 
-func (x *CheckModelResponse) String() string {
+func (x *CheckModelAdminResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CheckModelResponse) ProtoMessage() {}
+func (*CheckModelAdminResponse) ProtoMessage() {}
 
-func (x *CheckModelResponse) ProtoReflect() protoreflect.Message {
+func (x *CheckModelAdminResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_model_model_v1alpha_model_proto_msgTypes[52]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3666,16 +3666,215 @@ func (x *CheckModelResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CheckModelResponse.ProtoReflect.Descriptor instead.
-func (*CheckModelResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use CheckModelAdminResponse.ProtoReflect.Descriptor instead.
+func (*CheckModelAdminResponse) Descriptor() ([]byte, []int) {
 	return file_model_model_v1alpha_model_proto_rawDescGZIP(), []int{52}
 }
 
-func (x *CheckModelResponse) GetState() Model_State {
+func (x *CheckModelAdminResponse) GetState() Model_State {
 	if x != nil {
 		return x.State
 	}
 	return Model_STATE_UNSPECIFIED
+}
+
+// DeployModelAdminRequest represents a request to deploy a model to online state
+type DeployModelAdminRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Permalink for the model to be deployed.
+	// Format: "models/{uid}"
+	ModelPermalink string `protobuf:"bytes,1,opt,name=model_permalink,json=modelPermalink,proto3" json:"model_permalink,omitempty"`
+}
+
+func (x *DeployModelAdminRequest) Reset() {
+	*x = DeployModelAdminRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_model_model_v1alpha_model_proto_msgTypes[53]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeployModelAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeployModelAdminRequest) ProtoMessage() {}
+
+func (x *DeployModelAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_model_model_v1alpha_model_proto_msgTypes[53]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeployModelAdminRequest.ProtoReflect.Descriptor instead.
+func (*DeployModelAdminRequest) Descriptor() ([]byte, []int) {
+	return file_model_model_v1alpha_model_proto_rawDescGZIP(), []int{53}
+}
+
+func (x *DeployModelAdminRequest) GetModelPermalink() string {
+	if x != nil {
+		return x.ModelPermalink
+	}
+	return ""
+}
+
+// DeployModelAdminResponse represents a response for a deployed model
+type DeployModelAdminResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Deploy operation message
+	Operation *longrunningpb.Operation `protobuf:"bytes,1,opt,name=operation,proto3" json:"operation,omitempty"`
+}
+
+func (x *DeployModelAdminResponse) Reset() {
+	*x = DeployModelAdminResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_model_model_v1alpha_model_proto_msgTypes[54]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeployModelAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeployModelAdminResponse) ProtoMessage() {}
+
+func (x *DeployModelAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_model_model_v1alpha_model_proto_msgTypes[54]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeployModelAdminResponse.ProtoReflect.Descriptor instead.
+func (*DeployModelAdminResponse) Descriptor() ([]byte, []int) {
+	return file_model_model_v1alpha_model_proto_rawDescGZIP(), []int{54}
+}
+
+func (x *DeployModelAdminResponse) GetOperation() *longrunningpb.Operation {
+	if x != nil {
+		return x.Operation
+	}
+	return nil
+}
+
+// UndeployModelAdminRequest represents a request to undeploy a model to offline
+// state
+type UndeployModelAdminRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Permalink for the model to be undeployed.
+	// Format: "models/{uid}"
+	ModelPermalink string `protobuf:"bytes,1,opt,name=model_permalink,json=modelPermalink,proto3" json:"model_permalink,omitempty"`
+}
+
+func (x *UndeployModelAdminRequest) Reset() {
+	*x = UndeployModelAdminRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_model_model_v1alpha_model_proto_msgTypes[55]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UndeployModelAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UndeployModelAdminRequest) ProtoMessage() {}
+
+func (x *UndeployModelAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_model_model_v1alpha_model_proto_msgTypes[55]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UndeployModelAdminRequest.ProtoReflect.Descriptor instead.
+func (*UndeployModelAdminRequest) Descriptor() ([]byte, []int) {
+	return file_model_model_v1alpha_model_proto_rawDescGZIP(), []int{55}
+}
+
+func (x *UndeployModelAdminRequest) GetModelPermalink() string {
+	if x != nil {
+		return x.ModelPermalink
+	}
+	return ""
+}
+
+// UndeployModelAdminResponse represents a response for a undeployed model
+type UndeployModelAdminResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Undeploy operation message
+	Operation *longrunningpb.Operation `protobuf:"bytes,1,opt,name=operation,proto3" json:"operation,omitempty"`
+}
+
+func (x *UndeployModelAdminResponse) Reset() {
+	*x = UndeployModelAdminResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_model_model_v1alpha_model_proto_msgTypes[56]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UndeployModelAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UndeployModelAdminResponse) ProtoMessage() {}
+
+func (x *UndeployModelAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_model_model_v1alpha_model_proto_msgTypes[56]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UndeployModelAdminResponse.ProtoReflect.Descriptor instead.
+func (*UndeployModelAdminResponse) Descriptor() ([]byte, []int) {
+	return file_model_model_v1alpha_model_proto_rawDescGZIP(), []int{56}
+}
+
+func (x *UndeployModelAdminResponse) GetOperation() *longrunningpb.Operation {
+	if x != nil {
+		return x.Operation
+	}
+	return nil
 }
 
 var File_model_model_v1alpha_model_proto protoreflect.FileDescriptor
@@ -4291,30 +4490,51 @@ var file_model_model_v1alpha_model_proto_rawDesc = []byte{
 	0x65, 0x12, 0x30, 0x0a, 0x05, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
 	0x32, 0x1a, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x76,
 	0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x52, 0x05, 0x6d, 0x6f,
-	0x64, 0x65, 0x6c, 0x22, 0x41, 0x0a, 0x11, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x4d, 0x6f, 0x64, 0x65,
-	0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2c, 0x0a, 0x0f, 0x6d, 0x6f, 0x64, 0x65,
-	0x6c, 0x5f, 0x70, 0x65, 0x72, 0x6d, 0x61, 0x6c, 0x69, 0x6e, 0x6b, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x0e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x50, 0x65, 0x72,
-	0x6d, 0x61, 0x6c, 0x69, 0x6e, 0x6b, 0x22, 0x4c, 0x0a, 0x12, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x4d,
-	0x6f, 0x64, 0x65, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x36, 0x0a, 0x05,
-	0x73, 0x74, 0x61, 0x74, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x20, 0x2e, 0x6d, 0x6f,
-	0x64, 0x65, 0x6c, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68,
-	0x61, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x65, 0x52, 0x05, 0x73,
-	0x74, 0x61, 0x74, 0x65, 0x42, 0xd7, 0x01, 0x0a, 0x17, 0x63, 0x6f, 0x6d, 0x2e, 0x6d, 0x6f, 0x64,
-	0x65, 0x6c, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61,
-	0x42, 0x0a, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x42,
-	0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x69, 0x6e, 0x73, 0x74, 0x69,
-	0x6c, 0x6c, 0x2d, 0x61, 0x69, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x67, 0x65, 0x6e, 0x2d, 0x67,
-	0x6f, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2f, 0x76, 0x31,
-	0x61, 0x6c, 0x70, 0x68, 0x61, 0x3b, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x76, 0x31, 0x61, 0x6c, 0x70,
-	0x68, 0x61, 0xa2, 0x02, 0x03, 0x4d, 0x4d, 0x58, 0xaa, 0x02, 0x13, 0x4d, 0x6f, 0x64, 0x65, 0x6c,
-	0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xca, 0x02,
-	0x13, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x5c, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x5c, 0x56, 0x31, 0x61,
-	0x6c, 0x70, 0x68, 0x61, 0xe2, 0x02, 0x1f, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x5c, 0x4d, 0x6f, 0x64,
-	0x65, 0x6c, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65,
-	0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x15, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x3a, 0x3a,
-	0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x3a, 0x3a, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x62, 0x06,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x64, 0x65, 0x6c, 0x22, 0x46, 0x0a, 0x16, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x4d, 0x6f, 0x64, 0x65,
+	0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2c, 0x0a,
+	0x0f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x70, 0x65, 0x72, 0x6d, 0x61, 0x6c, 0x69, 0x6e, 0x6b,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x0e, 0x6d, 0x6f, 0x64,
+	0x65, 0x6c, 0x50, 0x65, 0x72, 0x6d, 0x61, 0x6c, 0x69, 0x6e, 0x6b, 0x22, 0x51, 0x0a, 0x17, 0x43,
+	0x68, 0x65, 0x63, 0x6b, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x36, 0x0a, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x20, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x6d, 0x6f,
+	0x64, 0x65, 0x6c, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x4d, 0x6f, 0x64, 0x65,
+	0x6c, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x65, 0x52, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x22, 0x47,
+	0x0a, 0x17, 0x44, 0x65, 0x70, 0x6c, 0x6f, 0x79, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x41, 0x64, 0x6d,
+	0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2c, 0x0a, 0x0f, 0x6d, 0x6f, 0x64,
+	0x65, 0x6c, 0x5f, 0x70, 0x65, 0x72, 0x6d, 0x61, 0x6c, 0x69, 0x6e, 0x6b, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x0e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x50, 0x65,
+	0x72, 0x6d, 0x61, 0x6c, 0x69, 0x6e, 0x6b, 0x22, 0x57, 0x0a, 0x18, 0x44, 0x65, 0x70, 0x6c, 0x6f,
+	0x79, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x3b, 0x0a, 0x09, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e,
+	0x6c, 0x6f, 0x6e, 0x67, 0x72, 0x75, 0x6e, 0x6e, 0x69, 0x6e, 0x67, 0x2e, 0x4f, 0x70, 0x65, 0x72,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x09, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x22, 0x49, 0x0a, 0x19, 0x55, 0x6e, 0x64, 0x65, 0x70, 0x6c, 0x6f, 0x79, 0x4d, 0x6f, 0x64, 0x65,
+	0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2c, 0x0a,
+	0x0f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x70, 0x65, 0x72, 0x6d, 0x61, 0x6c, 0x69, 0x6e, 0x6b,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x0e, 0x6d, 0x6f, 0x64,
+	0x65, 0x6c, 0x50, 0x65, 0x72, 0x6d, 0x61, 0x6c, 0x69, 0x6e, 0x6b, 0x22, 0x59, 0x0a, 0x1a, 0x55,
+	0x6e, 0x64, 0x65, 0x70, 0x6c, 0x6f, 0x79, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x41, 0x64, 0x6d, 0x69,
+	0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3b, 0x0a, 0x09, 0x6f, 0x70, 0x65,
+	0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x67,
+	0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x6c, 0x6f, 0x6e, 0x67, 0x72, 0x75, 0x6e, 0x6e, 0x69, 0x6e,
+	0x67, 0x2e, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x09, 0x6f, 0x70, 0x65,
+	0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0xd7, 0x01, 0x0a, 0x17, 0x63, 0x6f, 0x6d, 0x2e, 0x6d,
+	0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70,
+	0x68, 0x61, 0x42, 0x0a, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01,
+	0x5a, 0x42, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x69, 0x6e, 0x73,
+	0x74, 0x69, 0x6c, 0x6c, 0x2d, 0x61, 0x69, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x67, 0x65, 0x6e,
+	0x2d, 0x67, 0x6f, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2f,
+	0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x3b, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x76, 0x31, 0x61,
+	0x6c, 0x70, 0x68, 0x61, 0xa2, 0x02, 0x03, 0x4d, 0x4d, 0x58, 0xaa, 0x02, 0x13, 0x4d, 0x6f, 0x64,
+	0x65, 0x6c, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61,
+	0xca, 0x02, 0x13, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x5c, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x5c, 0x56,
+	0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xe2, 0x02, 0x1f, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x5c, 0x4d,
+	0x6f, 0x64, 0x65, 0x6c, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x5c, 0x47, 0x50, 0x42,
+	0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x15, 0x4d, 0x6f, 0x64, 0x65, 0x6c,
+	0x3a, 0x3a, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x3a, 0x3a, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -4330,7 +4550,7 @@ func file_model_model_v1alpha_model_proto_rawDescGZIP() []byte {
 }
 
 var file_model_model_v1alpha_model_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_model_model_v1alpha_model_proto_msgTypes = make([]protoimpl.MessageInfo, 53)
+var file_model_model_v1alpha_model_proto_msgTypes = make([]protoimpl.MessageInfo, 57)
 var file_model_model_v1alpha_model_proto_goTypes = []interface{}{
 	(Model_Visibility)(0),                        // 0: model.model.v1alpha.Model.Visibility
 	(Model_Task)(0),                              // 1: model.model.v1alpha.Model.Task
@@ -4386,98 +4606,102 @@ var file_model_model_v1alpha_model_proto_goTypes = []interface{}{
 	(*ListModelsAdminResponse)(nil),              // 51: model.model.v1alpha.ListModelsAdminResponse
 	(*LookUpModelAdminRequest)(nil),              // 52: model.model.v1alpha.LookUpModelAdminRequest
 	(*LookUpModelAdminResponse)(nil),             // 53: model.model.v1alpha.LookUpModelAdminResponse
-	(*CheckModelRequest)(nil),                    // 54: model.model.v1alpha.CheckModelRequest
-	(*CheckModelResponse)(nil),                   // 55: model.model.v1alpha.CheckModelResponse
-	(*v1alpha.HealthCheckRequest)(nil),           // 56: common.healthcheck.v1alpha.HealthCheckRequest
-	(*v1alpha.HealthCheckResponse)(nil),          // 57: common.healthcheck.v1alpha.HealthCheckResponse
-	(*structpb.Struct)(nil),                      // 58: google.protobuf.Struct
-	(*timestamppb.Timestamp)(nil),                // 59: google.protobuf.Timestamp
-	(View)(0),                                    // 60: model.model.v1alpha.View
-	(*longrunningpb.Operation)(nil),              // 61: google.longrunning.Operation
-	(*fieldmaskpb.FieldMask)(nil),                // 62: google.protobuf.FieldMask
-	(*ClassificationInput)(nil),                  // 63: model.model.v1alpha.ClassificationInput
-	(*DetectionInput)(nil),                       // 64: model.model.v1alpha.DetectionInput
-	(*KeypointInput)(nil),                        // 65: model.model.v1alpha.KeypointInput
-	(*OcrInput)(nil),                             // 66: model.model.v1alpha.OcrInput
-	(*InstanceSegmentationInput)(nil),            // 67: model.model.v1alpha.InstanceSegmentationInput
-	(*SemanticSegmentationInput)(nil),            // 68: model.model.v1alpha.SemanticSegmentationInput
-	(*TextToImageInput)(nil),                     // 69: model.model.v1alpha.TextToImageInput
-	(*TextGenerationInput)(nil),                  // 70: model.model.v1alpha.TextGenerationInput
-	(*UnspecifiedInput)(nil),                     // 71: model.model.v1alpha.UnspecifiedInput
-	(*ClassificationInputStream)(nil),            // 72: model.model.v1alpha.ClassificationInputStream
-	(*DetectionInputStream)(nil),                 // 73: model.model.v1alpha.DetectionInputStream
-	(*KeypointInputStream)(nil),                  // 74: model.model.v1alpha.KeypointInputStream
-	(*OcrInputStream)(nil),                       // 75: model.model.v1alpha.OcrInputStream
-	(*InstanceSegmentationInputStream)(nil),      // 76: model.model.v1alpha.InstanceSegmentationInputStream
-	(*SemanticSegmentationInputStream)(nil),      // 77: model.model.v1alpha.SemanticSegmentationInputStream
-	(*ClassificationOutput)(nil),                 // 78: model.model.v1alpha.ClassificationOutput
-	(*DetectionOutput)(nil),                      // 79: model.model.v1alpha.DetectionOutput
-	(*KeypointOutput)(nil),                       // 80: model.model.v1alpha.KeypointOutput
-	(*OcrOutput)(nil),                            // 81: model.model.v1alpha.OcrOutput
-	(*InstanceSegmentationOutput)(nil),           // 82: model.model.v1alpha.InstanceSegmentationOutput
-	(*SemanticSegmentationOutput)(nil),           // 83: model.model.v1alpha.SemanticSegmentationOutput
-	(*TextToImageOutput)(nil),                    // 84: model.model.v1alpha.TextToImageOutput
-	(*TextGenerationOutput)(nil),                 // 85: model.model.v1alpha.TextGenerationOutput
-	(*UnspecifiedOutput)(nil),                    // 86: model.model.v1alpha.UnspecifiedOutput
+	(*CheckModelAdminRequest)(nil),               // 54: model.model.v1alpha.CheckModelAdminRequest
+	(*CheckModelAdminResponse)(nil),              // 55: model.model.v1alpha.CheckModelAdminResponse
+	(*DeployModelAdminRequest)(nil),              // 56: model.model.v1alpha.DeployModelAdminRequest
+	(*DeployModelAdminResponse)(nil),             // 57: model.model.v1alpha.DeployModelAdminResponse
+	(*UndeployModelAdminRequest)(nil),            // 58: model.model.v1alpha.UndeployModelAdminRequest
+	(*UndeployModelAdminResponse)(nil),           // 59: model.model.v1alpha.UndeployModelAdminResponse
+	(*v1alpha.HealthCheckRequest)(nil),           // 60: common.healthcheck.v1alpha.HealthCheckRequest
+	(*v1alpha.HealthCheckResponse)(nil),          // 61: common.healthcheck.v1alpha.HealthCheckResponse
+	(*structpb.Struct)(nil),                      // 62: google.protobuf.Struct
+	(*timestamppb.Timestamp)(nil),                // 63: google.protobuf.Timestamp
+	(View)(0),                                    // 64: model.model.v1alpha.View
+	(*longrunningpb.Operation)(nil),              // 65: google.longrunning.Operation
+	(*fieldmaskpb.FieldMask)(nil),                // 66: google.protobuf.FieldMask
+	(*ClassificationInput)(nil),                  // 67: model.model.v1alpha.ClassificationInput
+	(*DetectionInput)(nil),                       // 68: model.model.v1alpha.DetectionInput
+	(*KeypointInput)(nil),                        // 69: model.model.v1alpha.KeypointInput
+	(*OcrInput)(nil),                             // 70: model.model.v1alpha.OcrInput
+	(*InstanceSegmentationInput)(nil),            // 71: model.model.v1alpha.InstanceSegmentationInput
+	(*SemanticSegmentationInput)(nil),            // 72: model.model.v1alpha.SemanticSegmentationInput
+	(*TextToImageInput)(nil),                     // 73: model.model.v1alpha.TextToImageInput
+	(*TextGenerationInput)(nil),                  // 74: model.model.v1alpha.TextGenerationInput
+	(*UnspecifiedInput)(nil),                     // 75: model.model.v1alpha.UnspecifiedInput
+	(*ClassificationInputStream)(nil),            // 76: model.model.v1alpha.ClassificationInputStream
+	(*DetectionInputStream)(nil),                 // 77: model.model.v1alpha.DetectionInputStream
+	(*KeypointInputStream)(nil),                  // 78: model.model.v1alpha.KeypointInputStream
+	(*OcrInputStream)(nil),                       // 79: model.model.v1alpha.OcrInputStream
+	(*InstanceSegmentationInputStream)(nil),      // 80: model.model.v1alpha.InstanceSegmentationInputStream
+	(*SemanticSegmentationInputStream)(nil),      // 81: model.model.v1alpha.SemanticSegmentationInputStream
+	(*ClassificationOutput)(nil),                 // 82: model.model.v1alpha.ClassificationOutput
+	(*DetectionOutput)(nil),                      // 83: model.model.v1alpha.DetectionOutput
+	(*KeypointOutput)(nil),                       // 84: model.model.v1alpha.KeypointOutput
+	(*OcrOutput)(nil),                            // 85: model.model.v1alpha.OcrOutput
+	(*InstanceSegmentationOutput)(nil),           // 86: model.model.v1alpha.InstanceSegmentationOutput
+	(*SemanticSegmentationOutput)(nil),           // 87: model.model.v1alpha.SemanticSegmentationOutput
+	(*TextToImageOutput)(nil),                    // 88: model.model.v1alpha.TextToImageOutput
+	(*TextGenerationOutput)(nil),                 // 89: model.model.v1alpha.TextGenerationOutput
+	(*UnspecifiedOutput)(nil),                    // 90: model.model.v1alpha.UnspecifiedOutput
 }
 var file_model_model_v1alpha_model_proto_depIdxs = []int32{
-	56, // 0: model.model.v1alpha.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1alpha.HealthCheckRequest
-	57, // 1: model.model.v1alpha.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1alpha.HealthCheckResponse
-	56, // 2: model.model.v1alpha.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1alpha.HealthCheckRequest
-	57, // 3: model.model.v1alpha.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1alpha.HealthCheckResponse
-	58, // 4: model.model.v1alpha.Model.configuration:type_name -> google.protobuf.Struct
+	60, // 0: model.model.v1alpha.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1alpha.HealthCheckRequest
+	61, // 1: model.model.v1alpha.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1alpha.HealthCheckResponse
+	60, // 2: model.model.v1alpha.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1alpha.HealthCheckRequest
+	61, // 3: model.model.v1alpha.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1alpha.HealthCheckResponse
+	62, // 4: model.model.v1alpha.Model.configuration:type_name -> google.protobuf.Struct
 	1,  // 5: model.model.v1alpha.Model.task:type_name -> model.model.v1alpha.Model.Task
 	2,  // 6: model.model.v1alpha.Model.state:type_name -> model.model.v1alpha.Model.State
 	0,  // 7: model.model.v1alpha.Model.visibility:type_name -> model.model.v1alpha.Model.Visibility
-	59, // 8: model.model.v1alpha.Model.create_time:type_name -> google.protobuf.Timestamp
-	59, // 9: model.model.v1alpha.Model.update_time:type_name -> google.protobuf.Timestamp
-	60, // 10: model.model.v1alpha.ListModelsRequest.view:type_name -> model.model.v1alpha.View
+	63, // 8: model.model.v1alpha.Model.create_time:type_name -> google.protobuf.Timestamp
+	63, // 9: model.model.v1alpha.Model.update_time:type_name -> google.protobuf.Timestamp
+	64, // 10: model.model.v1alpha.ListModelsRequest.view:type_name -> model.model.v1alpha.View
 	7,  // 11: model.model.v1alpha.ListModelsResponse.models:type_name -> model.model.v1alpha.Model
 	7,  // 12: model.model.v1alpha.CreateModelRequest.model:type_name -> model.model.v1alpha.Model
-	61, // 13: model.model.v1alpha.CreateModelResponse.operation:type_name -> google.longrunning.Operation
+	65, // 13: model.model.v1alpha.CreateModelResponse.operation:type_name -> google.longrunning.Operation
 	7,  // 14: model.model.v1alpha.CreateModelBinaryFileUploadRequest.model:type_name -> model.model.v1alpha.Model
-	61, // 15: model.model.v1alpha.CreateModelBinaryFileUploadResponse.operation:type_name -> google.longrunning.Operation
-	60, // 16: model.model.v1alpha.GetModelRequest.view:type_name -> model.model.v1alpha.View
+	65, // 15: model.model.v1alpha.CreateModelBinaryFileUploadResponse.operation:type_name -> google.longrunning.Operation
+	64, // 16: model.model.v1alpha.GetModelRequest.view:type_name -> model.model.v1alpha.View
 	7,  // 17: model.model.v1alpha.GetModelResponse.model:type_name -> model.model.v1alpha.Model
 	7,  // 18: model.model.v1alpha.UpdateModelRequest.model:type_name -> model.model.v1alpha.Model
-	62, // 19: model.model.v1alpha.UpdateModelRequest.update_mask:type_name -> google.protobuf.FieldMask
+	66, // 19: model.model.v1alpha.UpdateModelRequest.update_mask:type_name -> google.protobuf.FieldMask
 	7,  // 20: model.model.v1alpha.UpdateModelResponse.model:type_name -> model.model.v1alpha.Model
-	60, // 21: model.model.v1alpha.LookUpModelRequest.view:type_name -> model.model.v1alpha.View
+	64, // 21: model.model.v1alpha.LookUpModelRequest.view:type_name -> model.model.v1alpha.View
 	7,  // 22: model.model.v1alpha.LookUpModelResponse.model:type_name -> model.model.v1alpha.Model
 	7,  // 23: model.model.v1alpha.RenameModelResponse.model:type_name -> model.model.v1alpha.Model
 	7,  // 24: model.model.v1alpha.PublishModelResponse.model:type_name -> model.model.v1alpha.Model
 	7,  // 25: model.model.v1alpha.UnpublishModelResponse.model:type_name -> model.model.v1alpha.Model
-	61, // 26: model.model.v1alpha.DeployModelResponse.operation:type_name -> google.longrunning.Operation
-	61, // 27: model.model.v1alpha.UndeployModelResponse.operation:type_name -> google.longrunning.Operation
+	65, // 26: model.model.v1alpha.DeployModelResponse.operation:type_name -> google.longrunning.Operation
+	65, // 27: model.model.v1alpha.UndeployModelResponse.operation:type_name -> google.longrunning.Operation
 	8,  // 28: model.model.v1alpha.GetModelCardResponse.readme:type_name -> model.model.v1alpha.ModelCard
 	2,  // 29: model.model.v1alpha.WatchModelResponse.state:type_name -> model.model.v1alpha.Model.State
-	63, // 30: model.model.v1alpha.TaskInput.classification:type_name -> model.model.v1alpha.ClassificationInput
-	64, // 31: model.model.v1alpha.TaskInput.detection:type_name -> model.model.v1alpha.DetectionInput
-	65, // 32: model.model.v1alpha.TaskInput.keypoint:type_name -> model.model.v1alpha.KeypointInput
-	66, // 33: model.model.v1alpha.TaskInput.ocr:type_name -> model.model.v1alpha.OcrInput
-	67, // 34: model.model.v1alpha.TaskInput.instance_segmentation:type_name -> model.model.v1alpha.InstanceSegmentationInput
-	68, // 35: model.model.v1alpha.TaskInput.semantic_segmentation:type_name -> model.model.v1alpha.SemanticSegmentationInput
-	69, // 36: model.model.v1alpha.TaskInput.text_to_image:type_name -> model.model.v1alpha.TextToImageInput
-	70, // 37: model.model.v1alpha.TaskInput.text_generation:type_name -> model.model.v1alpha.TextGenerationInput
-	71, // 38: model.model.v1alpha.TaskInput.unspecified:type_name -> model.model.v1alpha.UnspecifiedInput
-	72, // 39: model.model.v1alpha.TaskInputStream.classification:type_name -> model.model.v1alpha.ClassificationInputStream
-	73, // 40: model.model.v1alpha.TaskInputStream.detection:type_name -> model.model.v1alpha.DetectionInputStream
-	74, // 41: model.model.v1alpha.TaskInputStream.keypoint:type_name -> model.model.v1alpha.KeypointInputStream
-	75, // 42: model.model.v1alpha.TaskInputStream.ocr:type_name -> model.model.v1alpha.OcrInputStream
-	76, // 43: model.model.v1alpha.TaskInputStream.instance_segmentation:type_name -> model.model.v1alpha.InstanceSegmentationInputStream
-	77, // 44: model.model.v1alpha.TaskInputStream.semantic_segmentation:type_name -> model.model.v1alpha.SemanticSegmentationInputStream
-	69, // 45: model.model.v1alpha.TaskInputStream.text_to_image:type_name -> model.model.v1alpha.TextToImageInput
-	70, // 46: model.model.v1alpha.TaskInputStream.text_generation:type_name -> model.model.v1alpha.TextGenerationInput
-	71, // 47: model.model.v1alpha.TaskInputStream.unspecified:type_name -> model.model.v1alpha.UnspecifiedInput
-	78, // 48: model.model.v1alpha.TaskOutput.classification:type_name -> model.model.v1alpha.ClassificationOutput
-	79, // 49: model.model.v1alpha.TaskOutput.detection:type_name -> model.model.v1alpha.DetectionOutput
-	80, // 50: model.model.v1alpha.TaskOutput.keypoint:type_name -> model.model.v1alpha.KeypointOutput
-	81, // 51: model.model.v1alpha.TaskOutput.ocr:type_name -> model.model.v1alpha.OcrOutput
-	82, // 52: model.model.v1alpha.TaskOutput.instance_segmentation:type_name -> model.model.v1alpha.InstanceSegmentationOutput
-	83, // 53: model.model.v1alpha.TaskOutput.semantic_segmentation:type_name -> model.model.v1alpha.SemanticSegmentationOutput
-	84, // 54: model.model.v1alpha.TaskOutput.text_to_image:type_name -> model.model.v1alpha.TextToImageOutput
-	85, // 55: model.model.v1alpha.TaskOutput.text_generation:type_name -> model.model.v1alpha.TextGenerationOutput
-	86, // 56: model.model.v1alpha.TaskOutput.unspecified:type_name -> model.model.v1alpha.UnspecifiedOutput
+	67, // 30: model.model.v1alpha.TaskInput.classification:type_name -> model.model.v1alpha.ClassificationInput
+	68, // 31: model.model.v1alpha.TaskInput.detection:type_name -> model.model.v1alpha.DetectionInput
+	69, // 32: model.model.v1alpha.TaskInput.keypoint:type_name -> model.model.v1alpha.KeypointInput
+	70, // 33: model.model.v1alpha.TaskInput.ocr:type_name -> model.model.v1alpha.OcrInput
+	71, // 34: model.model.v1alpha.TaskInput.instance_segmentation:type_name -> model.model.v1alpha.InstanceSegmentationInput
+	72, // 35: model.model.v1alpha.TaskInput.semantic_segmentation:type_name -> model.model.v1alpha.SemanticSegmentationInput
+	73, // 36: model.model.v1alpha.TaskInput.text_to_image:type_name -> model.model.v1alpha.TextToImageInput
+	74, // 37: model.model.v1alpha.TaskInput.text_generation:type_name -> model.model.v1alpha.TextGenerationInput
+	75, // 38: model.model.v1alpha.TaskInput.unspecified:type_name -> model.model.v1alpha.UnspecifiedInput
+	76, // 39: model.model.v1alpha.TaskInputStream.classification:type_name -> model.model.v1alpha.ClassificationInputStream
+	77, // 40: model.model.v1alpha.TaskInputStream.detection:type_name -> model.model.v1alpha.DetectionInputStream
+	78, // 41: model.model.v1alpha.TaskInputStream.keypoint:type_name -> model.model.v1alpha.KeypointInputStream
+	79, // 42: model.model.v1alpha.TaskInputStream.ocr:type_name -> model.model.v1alpha.OcrInputStream
+	80, // 43: model.model.v1alpha.TaskInputStream.instance_segmentation:type_name -> model.model.v1alpha.InstanceSegmentationInputStream
+	81, // 44: model.model.v1alpha.TaskInputStream.semantic_segmentation:type_name -> model.model.v1alpha.SemanticSegmentationInputStream
+	73, // 45: model.model.v1alpha.TaskInputStream.text_to_image:type_name -> model.model.v1alpha.TextToImageInput
+	74, // 46: model.model.v1alpha.TaskInputStream.text_generation:type_name -> model.model.v1alpha.TextGenerationInput
+	75, // 47: model.model.v1alpha.TaskInputStream.unspecified:type_name -> model.model.v1alpha.UnspecifiedInput
+	82, // 48: model.model.v1alpha.TaskOutput.classification:type_name -> model.model.v1alpha.ClassificationOutput
+	83, // 49: model.model.v1alpha.TaskOutput.detection:type_name -> model.model.v1alpha.DetectionOutput
+	84, // 50: model.model.v1alpha.TaskOutput.keypoint:type_name -> model.model.v1alpha.KeypointOutput
+	85, // 51: model.model.v1alpha.TaskOutput.ocr:type_name -> model.model.v1alpha.OcrOutput
+	86, // 52: model.model.v1alpha.TaskOutput.instance_segmentation:type_name -> model.model.v1alpha.InstanceSegmentationOutput
+	87, // 53: model.model.v1alpha.TaskOutput.semantic_segmentation:type_name -> model.model.v1alpha.SemanticSegmentationOutput
+	88, // 54: model.model.v1alpha.TaskOutput.text_to_image:type_name -> model.model.v1alpha.TextToImageOutput
+	89, // 55: model.model.v1alpha.TaskOutput.text_generation:type_name -> model.model.v1alpha.TextGenerationOutput
+	90, // 56: model.model.v1alpha.TaskOutput.unspecified:type_name -> model.model.v1alpha.UnspecifiedOutput
 	37, // 57: model.model.v1alpha.TriggerModelRequest.task_inputs:type_name -> model.model.v1alpha.TaskInput
 	1,  // 58: model.model.v1alpha.TriggerModelResponse.task:type_name -> model.model.v1alpha.Model.Task
 	39, // 59: model.model.v1alpha.TriggerModelResponse.task_outputs:type_name -> model.model.v1alpha.TaskOutput
@@ -4490,18 +4714,20 @@ var file_model_model_v1alpha_model_proto_depIdxs = []int32{
 	38, // 66: model.model.v1alpha.TestModelBinaryFileUploadRequest.task_input:type_name -> model.model.v1alpha.TaskInputStream
 	1,  // 67: model.model.v1alpha.TestModelBinaryFileUploadResponse.task:type_name -> model.model.v1alpha.Model.Task
 	39, // 68: model.model.v1alpha.TestModelBinaryFileUploadResponse.task_outputs:type_name -> model.model.v1alpha.TaskOutput
-	60, // 69: model.model.v1alpha.GetModelOperationRequest.view:type_name -> model.model.v1alpha.View
-	61, // 70: model.model.v1alpha.GetModelOperationResponse.operation:type_name -> google.longrunning.Operation
-	60, // 71: model.model.v1alpha.ListModelsAdminRequest.view:type_name -> model.model.v1alpha.View
+	64, // 69: model.model.v1alpha.GetModelOperationRequest.view:type_name -> model.model.v1alpha.View
+	65, // 70: model.model.v1alpha.GetModelOperationResponse.operation:type_name -> google.longrunning.Operation
+	64, // 71: model.model.v1alpha.ListModelsAdminRequest.view:type_name -> model.model.v1alpha.View
 	7,  // 72: model.model.v1alpha.ListModelsAdminResponse.models:type_name -> model.model.v1alpha.Model
-	60, // 73: model.model.v1alpha.LookUpModelAdminRequest.view:type_name -> model.model.v1alpha.View
+	64, // 73: model.model.v1alpha.LookUpModelAdminRequest.view:type_name -> model.model.v1alpha.View
 	7,  // 74: model.model.v1alpha.LookUpModelAdminResponse.model:type_name -> model.model.v1alpha.Model
-	2,  // 75: model.model.v1alpha.CheckModelResponse.state:type_name -> model.model.v1alpha.Model.State
-	76, // [76:76] is the sub-list for method output_type
-	76, // [76:76] is the sub-list for method input_type
-	76, // [76:76] is the sub-list for extension type_name
-	76, // [76:76] is the sub-list for extension extendee
-	0,  // [0:76] is the sub-list for field type_name
+	2,  // 75: model.model.v1alpha.CheckModelAdminResponse.state:type_name -> model.model.v1alpha.Model.State
+	65, // 76: model.model.v1alpha.DeployModelAdminResponse.operation:type_name -> google.longrunning.Operation
+	65, // 77: model.model.v1alpha.UndeployModelAdminResponse.operation:type_name -> google.longrunning.Operation
+	78, // [78:78] is the sub-list for method output_type
+	78, // [78:78] is the sub-list for method input_type
+	78, // [78:78] is the sub-list for extension type_name
+	78, // [78:78] is the sub-list for extension extendee
+	0,  // [0:78] is the sub-list for field type_name
 }
 
 func init() { file_model_model_v1alpha_model_proto_init() }
@@ -5133,7 +5359,7 @@ func file_model_model_v1alpha_model_proto_init() {
 			}
 		}
 		file_model_model_v1alpha_model_proto_msgTypes[51].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CheckModelRequest); i {
+			switch v := v.(*CheckModelAdminRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5145,7 +5371,55 @@ func file_model_model_v1alpha_model_proto_init() {
 			}
 		}
 		file_model_model_v1alpha_model_proto_msgTypes[52].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CheckModelResponse); i {
+			switch v := v.(*CheckModelAdminResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_model_model_v1alpha_model_proto_msgTypes[53].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeployModelAdminRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_model_model_v1alpha_model_proto_msgTypes[54].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeployModelAdminResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_model_model_v1alpha_model_proto_msgTypes[55].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UndeployModelAdminRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_model_model_v1alpha_model_proto_msgTypes[56].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UndeployModelAdminResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5208,7 +5482,7 @@ func file_model_model_v1alpha_model_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_model_model_v1alpha_model_proto_rawDesc,
 			NumEnums:      3,
-			NumMessages:   53,
+			NumMessages:   57,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

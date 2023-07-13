@@ -19,9 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ModelPrivateService_ListModelsAdmin_FullMethodName  = "/model.model.v1alpha.ModelPrivateService/ListModelsAdmin"
-	ModelPrivateService_LookUpModelAdmin_FullMethodName = "/model.model.v1alpha.ModelPrivateService/LookUpModelAdmin"
-	ModelPrivateService_CheckModel_FullMethodName       = "/model.model.v1alpha.ModelPrivateService/CheckModel"
+	ModelPrivateService_ListModelsAdmin_FullMethodName    = "/model.model.v1alpha.ModelPrivateService/ListModelsAdmin"
+	ModelPrivateService_LookUpModelAdmin_FullMethodName   = "/model.model.v1alpha.ModelPrivateService/LookUpModelAdmin"
+	ModelPrivateService_CheckModelAdmin_FullMethodName    = "/model.model.v1alpha.ModelPrivateService/CheckModelAdmin"
+	ModelPrivateService_DeployModelAdmin_FullMethodName   = "/model.model.v1alpha.ModelPrivateService/DeployModelAdmin"
+	ModelPrivateService_UndeployModelAdmin_FullMethodName = "/model.model.v1alpha.ModelPrivateService/UndeployModelAdmin"
 )
 
 // ModelPrivateServiceClient is the client API for ModelPrivateService service.
@@ -34,9 +36,13 @@ type ModelPrivateServiceClient interface {
 	// LookUpModelAdmin method receives a LookUpModelAdminRequest message and
 	// returns a LookUpModelAdminResponse
 	LookUpModelAdmin(ctx context.Context, in *LookUpModelAdminRequest, opts ...grpc.CallOption) (*LookUpModelAdminResponse, error)
-	// CheckModel method receives a CheckModelRequest message and returns a
-	// CheckModelResponse
-	CheckModel(ctx context.Context, in *CheckModelRequest, opts ...grpc.CallOption) (*CheckModelResponse, error)
+	// CheckModelAdmin method receives a CheckModelAdminRequest message and returns a
+	// CheckModelAdminResponse
+	CheckModelAdmin(ctx context.Context, in *CheckModelAdminRequest, opts ...grpc.CallOption) (*CheckModelAdminResponse, error)
+	// DeployModelAdmin deploy a model to online state
+	DeployModelAdmin(ctx context.Context, in *DeployModelAdminRequest, opts ...grpc.CallOption) (*DeployModelAdminResponse, error)
+	// UndeployModelAdmin undeploy a model to offline state
+	UndeployModelAdmin(ctx context.Context, in *UndeployModelAdminRequest, opts ...grpc.CallOption) (*UndeployModelAdminResponse, error)
 }
 
 type modelPrivateServiceClient struct {
@@ -65,9 +71,27 @@ func (c *modelPrivateServiceClient) LookUpModelAdmin(ctx context.Context, in *Lo
 	return out, nil
 }
 
-func (c *modelPrivateServiceClient) CheckModel(ctx context.Context, in *CheckModelRequest, opts ...grpc.CallOption) (*CheckModelResponse, error) {
-	out := new(CheckModelResponse)
-	err := c.cc.Invoke(ctx, ModelPrivateService_CheckModel_FullMethodName, in, out, opts...)
+func (c *modelPrivateServiceClient) CheckModelAdmin(ctx context.Context, in *CheckModelAdminRequest, opts ...grpc.CallOption) (*CheckModelAdminResponse, error) {
+	out := new(CheckModelAdminResponse)
+	err := c.cc.Invoke(ctx, ModelPrivateService_CheckModelAdmin_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *modelPrivateServiceClient) DeployModelAdmin(ctx context.Context, in *DeployModelAdminRequest, opts ...grpc.CallOption) (*DeployModelAdminResponse, error) {
+	out := new(DeployModelAdminResponse)
+	err := c.cc.Invoke(ctx, ModelPrivateService_DeployModelAdmin_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *modelPrivateServiceClient) UndeployModelAdmin(ctx context.Context, in *UndeployModelAdminRequest, opts ...grpc.CallOption) (*UndeployModelAdminResponse, error) {
+	out := new(UndeployModelAdminResponse)
+	err := c.cc.Invoke(ctx, ModelPrivateService_UndeployModelAdmin_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -84,9 +108,13 @@ type ModelPrivateServiceServer interface {
 	// LookUpModelAdmin method receives a LookUpModelAdminRequest message and
 	// returns a LookUpModelAdminResponse
 	LookUpModelAdmin(context.Context, *LookUpModelAdminRequest) (*LookUpModelAdminResponse, error)
-	// CheckModel method receives a CheckModelRequest message and returns a
-	// CheckModelResponse
-	CheckModel(context.Context, *CheckModelRequest) (*CheckModelResponse, error)
+	// CheckModelAdmin method receives a CheckModelAdminRequest message and returns a
+	// CheckModelAdminResponse
+	CheckModelAdmin(context.Context, *CheckModelAdminRequest) (*CheckModelAdminResponse, error)
+	// DeployModelAdmin deploy a model to online state
+	DeployModelAdmin(context.Context, *DeployModelAdminRequest) (*DeployModelAdminResponse, error)
+	// UndeployModelAdmin undeploy a model to offline state
+	UndeployModelAdmin(context.Context, *UndeployModelAdminRequest) (*UndeployModelAdminResponse, error)
 }
 
 // UnimplementedModelPrivateServiceServer should be embedded to have forward compatible implementations.
@@ -99,8 +127,14 @@ func (UnimplementedModelPrivateServiceServer) ListModelsAdmin(context.Context, *
 func (UnimplementedModelPrivateServiceServer) LookUpModelAdmin(context.Context, *LookUpModelAdminRequest) (*LookUpModelAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LookUpModelAdmin not implemented")
 }
-func (UnimplementedModelPrivateServiceServer) CheckModel(context.Context, *CheckModelRequest) (*CheckModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CheckModel not implemented")
+func (UnimplementedModelPrivateServiceServer) CheckModelAdmin(context.Context, *CheckModelAdminRequest) (*CheckModelAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckModelAdmin not implemented")
+}
+func (UnimplementedModelPrivateServiceServer) DeployModelAdmin(context.Context, *DeployModelAdminRequest) (*DeployModelAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeployModelAdmin not implemented")
+}
+func (UnimplementedModelPrivateServiceServer) UndeployModelAdmin(context.Context, *UndeployModelAdminRequest) (*UndeployModelAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UndeployModelAdmin not implemented")
 }
 
 // UnsafeModelPrivateServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -150,20 +184,56 @@ func _ModelPrivateService_LookUpModelAdmin_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPrivateService_CheckModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CheckModelRequest)
+func _ModelPrivateService_CheckModelAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckModelAdminRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPrivateServiceServer).CheckModel(ctx, in)
+		return srv.(ModelPrivateServiceServer).CheckModelAdmin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPrivateService_CheckModel_FullMethodName,
+		FullMethod: ModelPrivateService_CheckModelAdmin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPrivateServiceServer).CheckModel(ctx, req.(*CheckModelRequest))
+		return srv.(ModelPrivateServiceServer).CheckModelAdmin(ctx, req.(*CheckModelAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ModelPrivateService_DeployModelAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeployModelAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPrivateServiceServer).DeployModelAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPrivateService_DeployModelAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPrivateServiceServer).DeployModelAdmin(ctx, req.(*DeployModelAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ModelPrivateService_UndeployModelAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UndeployModelAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPrivateServiceServer).UndeployModelAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPrivateService_UndeployModelAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPrivateServiceServer).UndeployModelAdmin(ctx, req.(*UndeployModelAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -184,8 +254,16 @@ var ModelPrivateService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ModelPrivateService_LookUpModelAdmin_Handler,
 		},
 		{
-			MethodName: "CheckModel",
-			Handler:    _ModelPrivateService_CheckModel_Handler,
+			MethodName: "CheckModelAdmin",
+			Handler:    _ModelPrivateService_CheckModelAdmin_Handler,
+		},
+		{
+			MethodName: "DeployModelAdmin",
+			Handler:    _ModelPrivateService_DeployModelAdmin_Handler,
+		},
+		{
+			MethodName: "UndeployModelAdmin",
+			Handler:    _ModelPrivateService_UndeployModelAdmin_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
