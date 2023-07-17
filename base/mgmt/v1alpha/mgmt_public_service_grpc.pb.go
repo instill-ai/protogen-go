@@ -19,16 +19,19 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	MgmtPublicService_Liveness_FullMethodName                   = "/base.mgmt.v1alpha.MgmtPublicService/Liveness"
-	MgmtPublicService_Readiness_FullMethodName                  = "/base.mgmt.v1alpha.MgmtPublicService/Readiness"
-	MgmtPublicService_QueryAuthenticatedUser_FullMethodName     = "/base.mgmt.v1alpha.MgmtPublicService/QueryAuthenticatedUser"
-	MgmtPublicService_PatchAuthenticatedUser_FullMethodName     = "/base.mgmt.v1alpha.MgmtPublicService/PatchAuthenticatedUser"
-	MgmtPublicService_ExistUsername_FullMethodName              = "/base.mgmt.v1alpha.MgmtPublicService/ExistUsername"
-	MgmtPublicService_CreateToken_FullMethodName                = "/base.mgmt.v1alpha.MgmtPublicService/CreateToken"
-	MgmtPublicService_ListTokens_FullMethodName                 = "/base.mgmt.v1alpha.MgmtPublicService/ListTokens"
-	MgmtPublicService_GetToken_FullMethodName                   = "/base.mgmt.v1alpha.MgmtPublicService/GetToken"
-	MgmtPublicService_DeleteToken_FullMethodName                = "/base.mgmt.v1alpha.MgmtPublicService/DeleteToken"
-	MgmtPublicService_ListPipelineTriggerRecords_FullMethodName = "/base.mgmt.v1alpha.MgmtPublicService/ListPipelineTriggerRecords"
+	MgmtPublicService_Liveness_FullMethodName                         = "/base.mgmt.v1alpha.MgmtPublicService/Liveness"
+	MgmtPublicService_Readiness_FullMethodName                        = "/base.mgmt.v1alpha.MgmtPublicService/Readiness"
+	MgmtPublicService_QueryAuthenticatedUser_FullMethodName           = "/base.mgmt.v1alpha.MgmtPublicService/QueryAuthenticatedUser"
+	MgmtPublicService_PatchAuthenticatedUser_FullMethodName           = "/base.mgmt.v1alpha.MgmtPublicService/PatchAuthenticatedUser"
+	MgmtPublicService_ExistUsername_FullMethodName                    = "/base.mgmt.v1alpha.MgmtPublicService/ExistUsername"
+	MgmtPublicService_CreateToken_FullMethodName                      = "/base.mgmt.v1alpha.MgmtPublicService/CreateToken"
+	MgmtPublicService_ListTokens_FullMethodName                       = "/base.mgmt.v1alpha.MgmtPublicService/ListTokens"
+	MgmtPublicService_GetToken_FullMethodName                         = "/base.mgmt.v1alpha.MgmtPublicService/GetToken"
+	MgmtPublicService_DeleteToken_FullMethodName                      = "/base.mgmt.v1alpha.MgmtPublicService/DeleteToken"
+	MgmtPublicService_ListPipelineTriggerRecords_FullMethodName       = "/base.mgmt.v1alpha.MgmtPublicService/ListPipelineTriggerRecords"
+	MgmtPublicService_ListPipelineTriggerChartRecords_FullMethodName  = "/base.mgmt.v1alpha.MgmtPublicService/ListPipelineTriggerChartRecords"
+	MgmtPublicService_ListConnectorExecuteRecords_FullMethodName      = "/base.mgmt.v1alpha.MgmtPublicService/ListConnectorExecuteRecords"
+	MgmtPublicService_ListConnectorExecuteChartRecords_FullMethodName = "/base.mgmt.v1alpha.MgmtPublicService/ListConnectorExecuteChartRecords"
 )
 
 // MgmtPublicServiceClient is the client API for MgmtPublicService service.
@@ -67,6 +70,15 @@ type MgmtPublicServiceClient interface {
 	// ListPipelineTriggerRecords method receives a ListPipelineTriggerRecordsRequest message and returns a
 	// ListPipelineTriggerRecordsResponse message.
 	ListPipelineTriggerRecords(ctx context.Context, in *ListPipelineTriggerRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerRecordsResponse, error)
+	// ListPipelineTriggerChartRecords method receives a ListPipelineTriggerChartRecordsRequest message and returns a
+	// ListPipelineTriggerChartRecordsResponse message.
+	ListPipelineTriggerChartRecords(ctx context.Context, in *ListPipelineTriggerChartRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerChartRecordsResponse, error)
+	// ListConnectorExecuteRecords method receives a ListConnectorExecuteRecordsRequest message and returns a
+	// ListConnectorExecuteRecordsResponse message.
+	ListConnectorExecuteRecords(ctx context.Context, in *ListConnectorExecuteRecordsRequest, opts ...grpc.CallOption) (*ListConnectorExecuteRecordsResponse, error)
+	// ListConnectorExecuteChartRecords method receives a ListConnectorExecuteChartRecordsRequest message and returns a
+	// ListConnectorExecuteChartRecordsResponse message.
+	ListConnectorExecuteChartRecords(ctx context.Context, in *ListConnectorExecuteChartRecordsRequest, opts ...grpc.CallOption) (*ListConnectorExecuteChartRecordsResponse, error)
 }
 
 type mgmtPublicServiceClient struct {
@@ -167,6 +179,33 @@ func (c *mgmtPublicServiceClient) ListPipelineTriggerRecords(ctx context.Context
 	return out, nil
 }
 
+func (c *mgmtPublicServiceClient) ListPipelineTriggerChartRecords(ctx context.Context, in *ListPipelineTriggerChartRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerChartRecordsResponse, error) {
+	out := new(ListPipelineTriggerChartRecordsResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_ListPipelineTriggerChartRecords_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mgmtPublicServiceClient) ListConnectorExecuteRecords(ctx context.Context, in *ListConnectorExecuteRecordsRequest, opts ...grpc.CallOption) (*ListConnectorExecuteRecordsResponse, error) {
+	out := new(ListConnectorExecuteRecordsResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_ListConnectorExecuteRecords_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mgmtPublicServiceClient) ListConnectorExecuteChartRecords(ctx context.Context, in *ListConnectorExecuteChartRecordsRequest, opts ...grpc.CallOption) (*ListConnectorExecuteChartRecordsResponse, error) {
+	out := new(ListConnectorExecuteChartRecordsResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_ListConnectorExecuteChartRecords_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MgmtPublicServiceServer is the server API for MgmtPublicService service.
 // All implementations should embed UnimplementedMgmtPublicServiceServer
 // for forward compatibility
@@ -203,6 +242,15 @@ type MgmtPublicServiceServer interface {
 	// ListPipelineTriggerRecords method receives a ListPipelineTriggerRecordsRequest message and returns a
 	// ListPipelineTriggerRecordsResponse message.
 	ListPipelineTriggerRecords(context.Context, *ListPipelineTriggerRecordsRequest) (*ListPipelineTriggerRecordsResponse, error)
+	// ListPipelineTriggerChartRecords method receives a ListPipelineTriggerChartRecordsRequest message and returns a
+	// ListPipelineTriggerChartRecordsResponse message.
+	ListPipelineTriggerChartRecords(context.Context, *ListPipelineTriggerChartRecordsRequest) (*ListPipelineTriggerChartRecordsResponse, error)
+	// ListConnectorExecuteRecords method receives a ListConnectorExecuteRecordsRequest message and returns a
+	// ListConnectorExecuteRecordsResponse message.
+	ListConnectorExecuteRecords(context.Context, *ListConnectorExecuteRecordsRequest) (*ListConnectorExecuteRecordsResponse, error)
+	// ListConnectorExecuteChartRecords method receives a ListConnectorExecuteChartRecordsRequest message and returns a
+	// ListConnectorExecuteChartRecordsResponse message.
+	ListConnectorExecuteChartRecords(context.Context, *ListConnectorExecuteChartRecordsRequest) (*ListConnectorExecuteChartRecordsResponse, error)
 }
 
 // UnimplementedMgmtPublicServiceServer should be embedded to have forward compatible implementations.
@@ -238,6 +286,15 @@ func (UnimplementedMgmtPublicServiceServer) DeleteToken(context.Context, *Delete
 }
 func (UnimplementedMgmtPublicServiceServer) ListPipelineTriggerRecords(context.Context, *ListPipelineTriggerRecordsRequest) (*ListPipelineTriggerRecordsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineTriggerRecords not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) ListPipelineTriggerChartRecords(context.Context, *ListPipelineTriggerChartRecordsRequest) (*ListPipelineTriggerChartRecordsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineTriggerChartRecords not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) ListConnectorExecuteRecords(context.Context, *ListConnectorExecuteRecordsRequest) (*ListConnectorExecuteRecordsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListConnectorExecuteRecords not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) ListConnectorExecuteChartRecords(context.Context, *ListConnectorExecuteChartRecordsRequest) (*ListConnectorExecuteChartRecordsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListConnectorExecuteChartRecords not implemented")
 }
 
 // UnsafeMgmtPublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -431,6 +488,60 @@ func _MgmtPublicService_ListPipelineTriggerRecords_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MgmtPublicService_ListPipelineTriggerChartRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListPipelineTriggerChartRecordsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).ListPipelineTriggerChartRecords(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_ListPipelineTriggerChartRecords_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).ListPipelineTriggerChartRecords(ctx, req.(*ListPipelineTriggerChartRecordsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MgmtPublicService_ListConnectorExecuteRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListConnectorExecuteRecordsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).ListConnectorExecuteRecords(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_ListConnectorExecuteRecords_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).ListConnectorExecuteRecords(ctx, req.(*ListConnectorExecuteRecordsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MgmtPublicService_ListConnectorExecuteChartRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListConnectorExecuteChartRecordsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).ListConnectorExecuteChartRecords(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_ListConnectorExecuteChartRecords_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).ListConnectorExecuteChartRecords(ctx, req.(*ListConnectorExecuteChartRecordsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MgmtPublicService_ServiceDesc is the grpc.ServiceDesc for MgmtPublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -477,6 +588,18 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListPipelineTriggerRecords",
 			Handler:    _MgmtPublicService_ListPipelineTriggerRecords_Handler,
+		},
+		{
+			MethodName: "ListPipelineTriggerChartRecords",
+			Handler:    _MgmtPublicService_ListPipelineTriggerChartRecords_Handler,
+		},
+		{
+			MethodName: "ListConnectorExecuteRecords",
+			Handler:    _MgmtPublicService_ListConnectorExecuteRecords_Handler,
+		},
+		{
+			MethodName: "ListConnectorExecuteChartRecords",
+			Handler:    _MgmtPublicService_ListConnectorExecuteChartRecords_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
