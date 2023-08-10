@@ -19,21 +19,23 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	PipelinePublicService_Liveness_FullMethodName             = "/vdp.pipeline.v1alpha.PipelinePublicService/Liveness"
-	PipelinePublicService_Readiness_FullMethodName            = "/vdp.pipeline.v1alpha.PipelinePublicService/Readiness"
-	PipelinePublicService_CreatePipeline_FullMethodName       = "/vdp.pipeline.v1alpha.PipelinePublicService/CreatePipeline"
-	PipelinePublicService_ListPipelines_FullMethodName        = "/vdp.pipeline.v1alpha.PipelinePublicService/ListPipelines"
-	PipelinePublicService_GetPipeline_FullMethodName          = "/vdp.pipeline.v1alpha.PipelinePublicService/GetPipeline"
-	PipelinePublicService_UpdatePipeline_FullMethodName       = "/vdp.pipeline.v1alpha.PipelinePublicService/UpdatePipeline"
-	PipelinePublicService_DeletePipeline_FullMethodName       = "/vdp.pipeline.v1alpha.PipelinePublicService/DeletePipeline"
-	PipelinePublicService_LookUpPipeline_FullMethodName       = "/vdp.pipeline.v1alpha.PipelinePublicService/LookUpPipeline"
-	PipelinePublicService_ActivatePipeline_FullMethodName     = "/vdp.pipeline.v1alpha.PipelinePublicService/ActivatePipeline"
-	PipelinePublicService_DeactivatePipeline_FullMethodName   = "/vdp.pipeline.v1alpha.PipelinePublicService/DeactivatePipeline"
-	PipelinePublicService_RenamePipeline_FullMethodName       = "/vdp.pipeline.v1alpha.PipelinePublicService/RenamePipeline"
-	PipelinePublicService_TriggerPipeline_FullMethodName      = "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerPipeline"
-	PipelinePublicService_TriggerAsyncPipeline_FullMethodName = "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerAsyncPipeline"
-	PipelinePublicService_WatchPipeline_FullMethodName        = "/vdp.pipeline.v1alpha.PipelinePublicService/WatchPipeline"
-	PipelinePublicService_GetOperation_FullMethodName         = "/vdp.pipeline.v1alpha.PipelinePublicService/GetOperation"
+	PipelinePublicService_Liveness_FullMethodName                = "/vdp.pipeline.v1alpha.PipelinePublicService/Liveness"
+	PipelinePublicService_Readiness_FullMethodName               = "/vdp.pipeline.v1alpha.PipelinePublicService/Readiness"
+	PipelinePublicService_ListOperatorDefinitions_FullMethodName = "/vdp.pipeline.v1alpha.PipelinePublicService/ListOperatorDefinitions"
+	PipelinePublicService_GetOperatorDefinition_FullMethodName   = "/vdp.pipeline.v1alpha.PipelinePublicService/GetOperatorDefinition"
+	PipelinePublicService_CreatePipeline_FullMethodName          = "/vdp.pipeline.v1alpha.PipelinePublicService/CreatePipeline"
+	PipelinePublicService_ListPipelines_FullMethodName           = "/vdp.pipeline.v1alpha.PipelinePublicService/ListPipelines"
+	PipelinePublicService_GetPipeline_FullMethodName             = "/vdp.pipeline.v1alpha.PipelinePublicService/GetPipeline"
+	PipelinePublicService_UpdatePipeline_FullMethodName          = "/vdp.pipeline.v1alpha.PipelinePublicService/UpdatePipeline"
+	PipelinePublicService_DeletePipeline_FullMethodName          = "/vdp.pipeline.v1alpha.PipelinePublicService/DeletePipeline"
+	PipelinePublicService_LookUpPipeline_FullMethodName          = "/vdp.pipeline.v1alpha.PipelinePublicService/LookUpPipeline"
+	PipelinePublicService_ActivatePipeline_FullMethodName        = "/vdp.pipeline.v1alpha.PipelinePublicService/ActivatePipeline"
+	PipelinePublicService_DeactivatePipeline_FullMethodName      = "/vdp.pipeline.v1alpha.PipelinePublicService/DeactivatePipeline"
+	PipelinePublicService_RenamePipeline_FullMethodName          = "/vdp.pipeline.v1alpha.PipelinePublicService/RenamePipeline"
+	PipelinePublicService_TriggerPipeline_FullMethodName         = "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerPipeline"
+	PipelinePublicService_TriggerAsyncPipeline_FullMethodName    = "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerAsyncPipeline"
+	PipelinePublicService_WatchPipeline_FullMethodName           = "/vdp.pipeline.v1alpha.PipelinePublicService/WatchPipeline"
+	PipelinePublicService_GetOperation_FullMethodName            = "/vdp.pipeline.v1alpha.PipelinePublicService/GetOperation"
 )
 
 // PipelinePublicServiceClient is the client API for PipelinePublicService service.
@@ -48,6 +50,14 @@ type PipelinePublicServiceClient interface {
 	// ReadinessResponse message.
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error)
+	// ListOperatorDefinitions method receives a
+	// ListOperatorDefinitionsRequest message and returns a
+	// ListOperatorDefinitionsResponse message.
+	ListOperatorDefinitions(ctx context.Context, in *ListOperatorDefinitionsRequest, opts ...grpc.CallOption) (*ListOperatorDefinitionsResponse, error)
+	// GetOperatorDefinition method receives a
+	// GetOperatorDefinitionRequest message and returns a
+	// GetGetOperatorDefinitionResponse message.
+	GetOperatorDefinition(ctx context.Context, in *GetOperatorDefinitionRequest, opts ...grpc.CallOption) (*GetOperatorDefinitionResponse, error)
 	// CreatePipeline method receives a CreatePipelineRequest message and returns
 	// a CreatePipelineResponse message.
 	CreatePipeline(ctx context.Context, in *CreatePipelineRequest, opts ...grpc.CallOption) (*CreatePipelineResponse, error)
@@ -114,6 +124,24 @@ func (c *pipelinePublicServiceClient) Liveness(ctx context.Context, in *Liveness
 func (c *pipelinePublicServiceClient) Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error) {
 	out := new(ReadinessResponse)
 	err := c.cc.Invoke(ctx, PipelinePublicService_Readiness_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) ListOperatorDefinitions(ctx context.Context, in *ListOperatorDefinitionsRequest, opts ...grpc.CallOption) (*ListOperatorDefinitionsResponse, error) {
+	out := new(ListOperatorDefinitionsResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ListOperatorDefinitions_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) GetOperatorDefinition(ctx context.Context, in *GetOperatorDefinitionRequest, opts ...grpc.CallOption) (*GetOperatorDefinitionResponse, error) {
+	out := new(GetOperatorDefinitionResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_GetOperatorDefinition_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -249,6 +277,14 @@ type PipelinePublicServiceServer interface {
 	// ReadinessResponse message.
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error)
+	// ListOperatorDefinitions method receives a
+	// ListOperatorDefinitionsRequest message and returns a
+	// ListOperatorDefinitionsResponse message.
+	ListOperatorDefinitions(context.Context, *ListOperatorDefinitionsRequest) (*ListOperatorDefinitionsResponse, error)
+	// GetOperatorDefinition method receives a
+	// GetOperatorDefinitionRequest message and returns a
+	// GetGetOperatorDefinitionResponse message.
+	GetOperatorDefinition(context.Context, *GetOperatorDefinitionRequest) (*GetOperatorDefinitionResponse, error)
 	// CreatePipeline method receives a CreatePipelineRequest message and returns
 	// a CreatePipelineResponse message.
 	CreatePipeline(context.Context, *CreatePipelineRequest) (*CreatePipelineResponse, error)
@@ -304,6 +340,12 @@ func (UnimplementedPipelinePublicServiceServer) Liveness(context.Context, *Liven
 }
 func (UnimplementedPipelinePublicServiceServer) Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Readiness not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) ListOperatorDefinitions(context.Context, *ListOperatorDefinitionsRequest) (*ListOperatorDefinitionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListOperatorDefinitions not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) GetOperatorDefinition(context.Context, *GetOperatorDefinitionRequest) (*GetOperatorDefinitionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOperatorDefinition not implemented")
 }
 func (UnimplementedPipelinePublicServiceServer) CreatePipeline(context.Context, *CreatePipelineRequest) (*CreatePipelineResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatePipeline not implemented")
@@ -388,6 +430,42 @@ func _PipelinePublicService_Readiness_Handler(srv interface{}, ctx context.Conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PipelinePublicServiceServer).Readiness(ctx, req.(*ReadinessRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_ListOperatorDefinitions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListOperatorDefinitionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).ListOperatorDefinitions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_ListOperatorDefinitions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).ListOperatorDefinitions(ctx, req.(*ListOperatorDefinitionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_GetOperatorDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOperatorDefinitionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).GetOperatorDefinition(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_GetOperatorDefinition_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).GetOperatorDefinition(ctx, req.(*GetOperatorDefinitionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -640,6 +718,14 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Readiness",
 			Handler:    _PipelinePublicService_Readiness_Handler,
+		},
+		{
+			MethodName: "ListOperatorDefinitions",
+			Handler:    _PipelinePublicService_ListOperatorDefinitions_Handler,
+		},
+		{
+			MethodName: "GetOperatorDefinition",
+			Handler:    _PipelinePublicService_GetOperatorDefinition_Handler,
 		},
 		{
 			MethodName: "CreatePipeline",

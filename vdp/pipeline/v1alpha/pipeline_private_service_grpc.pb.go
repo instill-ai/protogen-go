@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	PipelinePrivateService_ListPipelinesAdmin_FullMethodName  = "/vdp.pipeline.v1alpha.PipelinePrivateService/ListPipelinesAdmin"
-	PipelinePrivateService_LookUpPipelineAdmin_FullMethodName = "/vdp.pipeline.v1alpha.PipelinePrivateService/LookUpPipelineAdmin"
+	PipelinePrivateService_ListPipelinesAdmin_FullMethodName            = "/vdp.pipeline.v1alpha.PipelinePrivateService/ListPipelinesAdmin"
+	PipelinePrivateService_LookUpPipelineAdmin_FullMethodName           = "/vdp.pipeline.v1alpha.PipelinePrivateService/LookUpPipelineAdmin"
+	PipelinePrivateService_LookUpOperatorDefinitionAdmin_FullMethodName = "/vdp.pipeline.v1alpha.PipelinePrivateService/LookUpOperatorDefinitionAdmin"
 )
 
 // PipelinePrivateServiceClient is the client API for PipelinePrivateService service.
@@ -33,6 +34,10 @@ type PipelinePrivateServiceClient interface {
 	// LookUpPipelineAdmin method receives a LookUpPipelineAdminRequest message
 	// and returns a LookUpPipelineAdminResponse
 	LookUpPipelineAdmin(ctx context.Context, in *LookUpPipelineAdminRequest, opts ...grpc.CallOption) (*LookUpPipelineAdminResponse, error)
+	// LookUpOperatorDefinitionAdmin method receives a
+	// LookUpOperatorDefinitionAdminRequest message and returns a
+	// LookUpOperatorDefinitionAdminResponse
+	LookUpOperatorDefinitionAdmin(ctx context.Context, in *LookUpOperatorDefinitionAdminRequest, opts ...grpc.CallOption) (*LookUpOperatorDefinitionAdminResponse, error)
 }
 
 type pipelinePrivateServiceClient struct {
@@ -61,6 +66,15 @@ func (c *pipelinePrivateServiceClient) LookUpPipelineAdmin(ctx context.Context, 
 	return out, nil
 }
 
+func (c *pipelinePrivateServiceClient) LookUpOperatorDefinitionAdmin(ctx context.Context, in *LookUpOperatorDefinitionAdminRequest, opts ...grpc.CallOption) (*LookUpOperatorDefinitionAdminResponse, error) {
+	out := new(LookUpOperatorDefinitionAdminResponse)
+	err := c.cc.Invoke(ctx, PipelinePrivateService_LookUpOperatorDefinitionAdmin_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PipelinePrivateServiceServer is the server API for PipelinePrivateService service.
 // All implementations should embed UnimplementedPipelinePrivateServiceServer
 // for forward compatibility
@@ -71,6 +85,10 @@ type PipelinePrivateServiceServer interface {
 	// LookUpPipelineAdmin method receives a LookUpPipelineAdminRequest message
 	// and returns a LookUpPipelineAdminResponse
 	LookUpPipelineAdmin(context.Context, *LookUpPipelineAdminRequest) (*LookUpPipelineAdminResponse, error)
+	// LookUpOperatorDefinitionAdmin method receives a
+	// LookUpOperatorDefinitionAdminRequest message and returns a
+	// LookUpOperatorDefinitionAdminResponse
+	LookUpOperatorDefinitionAdmin(context.Context, *LookUpOperatorDefinitionAdminRequest) (*LookUpOperatorDefinitionAdminResponse, error)
 }
 
 // UnimplementedPipelinePrivateServiceServer should be embedded to have forward compatible implementations.
@@ -82,6 +100,9 @@ func (UnimplementedPipelinePrivateServiceServer) ListPipelinesAdmin(context.Cont
 }
 func (UnimplementedPipelinePrivateServiceServer) LookUpPipelineAdmin(context.Context, *LookUpPipelineAdminRequest) (*LookUpPipelineAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LookUpPipelineAdmin not implemented")
+}
+func (UnimplementedPipelinePrivateServiceServer) LookUpOperatorDefinitionAdmin(context.Context, *LookUpOperatorDefinitionAdminRequest) (*LookUpOperatorDefinitionAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LookUpOperatorDefinitionAdmin not implemented")
 }
 
 // UnsafePipelinePrivateServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -131,6 +152,24 @@ func _PipelinePrivateService_LookUpPipelineAdmin_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PipelinePrivateService_LookUpOperatorDefinitionAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LookUpOperatorDefinitionAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePrivateServiceServer).LookUpOperatorDefinitionAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePrivateService_LookUpOperatorDefinitionAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePrivateServiceServer).LookUpOperatorDefinitionAdmin(ctx, req.(*LookUpOperatorDefinitionAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PipelinePrivateService_ServiceDesc is the grpc.ServiceDesc for PipelinePrivateService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -145,6 +184,10 @@ var PipelinePrivateService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "LookUpPipelineAdmin",
 			Handler:    _PipelinePrivateService_LookUpPipelineAdmin_Handler,
+		},
+		{
+			MethodName: "LookUpOperatorDefinitionAdmin",
+			Handler:    _PipelinePrivateService_LookUpOperatorDefinitionAdmin_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

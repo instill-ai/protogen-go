@@ -19,15 +19,20 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ConnectorPrivateService_ListConnectorsAdmin_FullMethodName  = "/vdp.connector.v1alpha.ConnectorPrivateService/ListConnectorsAdmin"
-	ConnectorPrivateService_LookUpConnectorAdmin_FullMethodName = "/vdp.connector.v1alpha.ConnectorPrivateService/LookUpConnectorAdmin"
-	ConnectorPrivateService_CheckConnector_FullMethodName       = "/vdp.connector.v1alpha.ConnectorPrivateService/CheckConnector"
+	ConnectorPrivateService_LookUpConnectorDefinitionAdmin_FullMethodName = "/vdp.connector.v1alpha.ConnectorPrivateService/LookUpConnectorDefinitionAdmin"
+	ConnectorPrivateService_ListConnectorsAdmin_FullMethodName            = "/vdp.connector.v1alpha.ConnectorPrivateService/ListConnectorsAdmin"
+	ConnectorPrivateService_LookUpConnectorAdmin_FullMethodName           = "/vdp.connector.v1alpha.ConnectorPrivateService/LookUpConnectorAdmin"
+	ConnectorPrivateService_CheckConnector_FullMethodName                 = "/vdp.connector.v1alpha.ConnectorPrivateService/CheckConnector"
 )
 
 // ConnectorPrivateServiceClient is the client API for ConnectorPrivateService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ConnectorPrivateServiceClient interface {
+	// LookUpConnectorDefinitionAdmin method receives a
+	// LookUpConnectorDefinitionAdminRequest message and returns a
+	// LookUpConnectorDefinitionAdminResponse
+	LookUpConnectorDefinitionAdmin(ctx context.Context, in *LookUpConnectorDefinitionAdminRequest, opts ...grpc.CallOption) (*LookUpConnectorDefinitionAdminResponse, error)
 	// ListConnectorsAdmin method receives a ListConnectorsAdminRequest
 	// message and returns a ListConnectorsResponse message.
 	ListConnectorsAdmin(ctx context.Context, in *ListConnectorsAdminRequest, opts ...grpc.CallOption) (*ListConnectorsAdminResponse, error)
@@ -46,6 +51,15 @@ type connectorPrivateServiceClient struct {
 
 func NewConnectorPrivateServiceClient(cc grpc.ClientConnInterface) ConnectorPrivateServiceClient {
 	return &connectorPrivateServiceClient{cc}
+}
+
+func (c *connectorPrivateServiceClient) LookUpConnectorDefinitionAdmin(ctx context.Context, in *LookUpConnectorDefinitionAdminRequest, opts ...grpc.CallOption) (*LookUpConnectorDefinitionAdminResponse, error) {
+	out := new(LookUpConnectorDefinitionAdminResponse)
+	err := c.cc.Invoke(ctx, ConnectorPrivateService_LookUpConnectorDefinitionAdmin_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *connectorPrivateServiceClient) ListConnectorsAdmin(ctx context.Context, in *ListConnectorsAdminRequest, opts ...grpc.CallOption) (*ListConnectorsAdminResponse, error) {
@@ -79,6 +93,10 @@ func (c *connectorPrivateServiceClient) CheckConnector(ctx context.Context, in *
 // All implementations should embed UnimplementedConnectorPrivateServiceServer
 // for forward compatibility
 type ConnectorPrivateServiceServer interface {
+	// LookUpConnectorDefinitionAdmin method receives a
+	// LookUpConnectorDefinitionAdminRequest message and returns a
+	// LookUpConnectorDefinitionAdminResponse
+	LookUpConnectorDefinitionAdmin(context.Context, *LookUpConnectorDefinitionAdminRequest) (*LookUpConnectorDefinitionAdminResponse, error)
 	// ListConnectorsAdmin method receives a ListConnectorsAdminRequest
 	// message and returns a ListConnectorsResponse message.
 	ListConnectorsAdmin(context.Context, *ListConnectorsAdminRequest) (*ListConnectorsAdminResponse, error)
@@ -95,6 +113,9 @@ type ConnectorPrivateServiceServer interface {
 type UnimplementedConnectorPrivateServiceServer struct {
 }
 
+func (UnimplementedConnectorPrivateServiceServer) LookUpConnectorDefinitionAdmin(context.Context, *LookUpConnectorDefinitionAdminRequest) (*LookUpConnectorDefinitionAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LookUpConnectorDefinitionAdmin not implemented")
+}
 func (UnimplementedConnectorPrivateServiceServer) ListConnectorsAdmin(context.Context, *ListConnectorsAdminRequest) (*ListConnectorsAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListConnectorsAdmin not implemented")
 }
@@ -114,6 +135,24 @@ type UnsafeConnectorPrivateServiceServer interface {
 
 func RegisterConnectorPrivateServiceServer(s grpc.ServiceRegistrar, srv ConnectorPrivateServiceServer) {
 	s.RegisterService(&ConnectorPrivateService_ServiceDesc, srv)
+}
+
+func _ConnectorPrivateService_LookUpConnectorDefinitionAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LookUpConnectorDefinitionAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConnectorPrivateServiceServer).LookUpConnectorDefinitionAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ConnectorPrivateService_LookUpConnectorDefinitionAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConnectorPrivateServiceServer).LookUpConnectorDefinitionAdmin(ctx, req.(*LookUpConnectorDefinitionAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _ConnectorPrivateService_ListConnectorsAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -177,6 +216,10 @@ var ConnectorPrivateService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "vdp.connector.v1alpha.ConnectorPrivateService",
 	HandlerType: (*ConnectorPrivateServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "LookUpConnectorDefinitionAdmin",
+			Handler:    _ConnectorPrivateService_LookUpConnectorDefinitionAdmin_Handler,
+		},
 		{
 			MethodName: "ListConnectorsAdmin",
 			Handler:    _ConnectorPrivateService_ListConnectorsAdmin_Handler,
