@@ -20,9 +20,9 @@ const _ = grpc.SupportPackageIsVersion7
 
 const (
 	ConnectorPrivateService_LookUpConnectorDefinitionAdmin_FullMethodName = "/vdp.connector.v1alpha.ConnectorPrivateService/LookUpConnectorDefinitionAdmin"
-	ConnectorPrivateService_ListConnectorsAdmin_FullMethodName            = "/vdp.connector.v1alpha.ConnectorPrivateService/ListConnectorsAdmin"
-	ConnectorPrivateService_LookUpConnectorAdmin_FullMethodName           = "/vdp.connector.v1alpha.ConnectorPrivateService/LookUpConnectorAdmin"
-	ConnectorPrivateService_CheckConnector_FullMethodName                 = "/vdp.connector.v1alpha.ConnectorPrivateService/CheckConnector"
+	ConnectorPrivateService_ListConnectorResourcesAdmin_FullMethodName    = "/vdp.connector.v1alpha.ConnectorPrivateService/ListConnectorResourcesAdmin"
+	ConnectorPrivateService_LookUpConnectorResourceAdmin_FullMethodName   = "/vdp.connector.v1alpha.ConnectorPrivateService/LookUpConnectorResourceAdmin"
+	ConnectorPrivateService_CheckConnectorResource_FullMethodName         = "/vdp.connector.v1alpha.ConnectorPrivateService/CheckConnectorResource"
 )
 
 // ConnectorPrivateServiceClient is the client API for ConnectorPrivateService service.
@@ -33,16 +33,16 @@ type ConnectorPrivateServiceClient interface {
 	// LookUpConnectorDefinitionAdminRequest message and returns a
 	// LookUpConnectorDefinitionAdminResponse
 	LookUpConnectorDefinitionAdmin(ctx context.Context, in *LookUpConnectorDefinitionAdminRequest, opts ...grpc.CallOption) (*LookUpConnectorDefinitionAdminResponse, error)
-	// ListConnectorsAdmin method receives a ListConnectorsAdminRequest
-	// message and returns a ListConnectorsResponse message.
-	ListConnectorsAdmin(ctx context.Context, in *ListConnectorsAdminRequest, opts ...grpc.CallOption) (*ListConnectorsAdminResponse, error)
-	// LookUpConnectorAdmin method receives a
-	// LookUpConnectorAdminRequest message and returns a
-	// LookUpConnectorAdminResponse
-	LookUpConnectorAdmin(ctx context.Context, in *LookUpConnectorAdminRequest, opts ...grpc.CallOption) (*LookUpConnectorAdminResponse, error)
-	// CheckConnector method receives a CheckConnectorRequest message and returns a
-	// CheckConnectorResponse
-	CheckConnector(ctx context.Context, in *CheckConnectorRequest, opts ...grpc.CallOption) (*CheckConnectorResponse, error)
+	// ListConnectorResourcesAdmin method receives a ListConnectorResourcesAdminRequest
+	// message and returns a ListConnectorResourcesResponse message.
+	ListConnectorResourcesAdmin(ctx context.Context, in *ListConnectorResourcesAdminRequest, opts ...grpc.CallOption) (*ListConnectorResourcesAdminResponse, error)
+	// LookUpConnectorResourceAdmin method receives a
+	// LookUpConnectorResourceAdminRequest message and returns a
+	// LookUpConnectorResourceAdminResponse
+	LookUpConnectorResourceAdmin(ctx context.Context, in *LookUpConnectorResourceAdminRequest, opts ...grpc.CallOption) (*LookUpConnectorResourceAdminResponse, error)
+	// CheckConnectorResource method receives a CheckConnectorResourceRequest message and returns a
+	// CheckConnectorResourceResponse
+	CheckConnectorResource(ctx context.Context, in *CheckConnectorResourceRequest, opts ...grpc.CallOption) (*CheckConnectorResourceResponse, error)
 }
 
 type connectorPrivateServiceClient struct {
@@ -62,27 +62,27 @@ func (c *connectorPrivateServiceClient) LookUpConnectorDefinitionAdmin(ctx conte
 	return out, nil
 }
 
-func (c *connectorPrivateServiceClient) ListConnectorsAdmin(ctx context.Context, in *ListConnectorsAdminRequest, opts ...grpc.CallOption) (*ListConnectorsAdminResponse, error) {
-	out := new(ListConnectorsAdminResponse)
-	err := c.cc.Invoke(ctx, ConnectorPrivateService_ListConnectorsAdmin_FullMethodName, in, out, opts...)
+func (c *connectorPrivateServiceClient) ListConnectorResourcesAdmin(ctx context.Context, in *ListConnectorResourcesAdminRequest, opts ...grpc.CallOption) (*ListConnectorResourcesAdminResponse, error) {
+	out := new(ListConnectorResourcesAdminResponse)
+	err := c.cc.Invoke(ctx, ConnectorPrivateService_ListConnectorResourcesAdmin_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorPrivateServiceClient) LookUpConnectorAdmin(ctx context.Context, in *LookUpConnectorAdminRequest, opts ...grpc.CallOption) (*LookUpConnectorAdminResponse, error) {
-	out := new(LookUpConnectorAdminResponse)
-	err := c.cc.Invoke(ctx, ConnectorPrivateService_LookUpConnectorAdmin_FullMethodName, in, out, opts...)
+func (c *connectorPrivateServiceClient) LookUpConnectorResourceAdmin(ctx context.Context, in *LookUpConnectorResourceAdminRequest, opts ...grpc.CallOption) (*LookUpConnectorResourceAdminResponse, error) {
+	out := new(LookUpConnectorResourceAdminResponse)
+	err := c.cc.Invoke(ctx, ConnectorPrivateService_LookUpConnectorResourceAdmin_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *connectorPrivateServiceClient) CheckConnector(ctx context.Context, in *CheckConnectorRequest, opts ...grpc.CallOption) (*CheckConnectorResponse, error) {
-	out := new(CheckConnectorResponse)
-	err := c.cc.Invoke(ctx, ConnectorPrivateService_CheckConnector_FullMethodName, in, out, opts...)
+func (c *connectorPrivateServiceClient) CheckConnectorResource(ctx context.Context, in *CheckConnectorResourceRequest, opts ...grpc.CallOption) (*CheckConnectorResourceResponse, error) {
+	out := new(CheckConnectorResourceResponse)
+	err := c.cc.Invoke(ctx, ConnectorPrivateService_CheckConnectorResource_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -97,16 +97,16 @@ type ConnectorPrivateServiceServer interface {
 	// LookUpConnectorDefinitionAdminRequest message and returns a
 	// LookUpConnectorDefinitionAdminResponse
 	LookUpConnectorDefinitionAdmin(context.Context, *LookUpConnectorDefinitionAdminRequest) (*LookUpConnectorDefinitionAdminResponse, error)
-	// ListConnectorsAdmin method receives a ListConnectorsAdminRequest
-	// message and returns a ListConnectorsResponse message.
-	ListConnectorsAdmin(context.Context, *ListConnectorsAdminRequest) (*ListConnectorsAdminResponse, error)
-	// LookUpConnectorAdmin method receives a
-	// LookUpConnectorAdminRequest message and returns a
-	// LookUpConnectorAdminResponse
-	LookUpConnectorAdmin(context.Context, *LookUpConnectorAdminRequest) (*LookUpConnectorAdminResponse, error)
-	// CheckConnector method receives a CheckConnectorRequest message and returns a
-	// CheckConnectorResponse
-	CheckConnector(context.Context, *CheckConnectorRequest) (*CheckConnectorResponse, error)
+	// ListConnectorResourcesAdmin method receives a ListConnectorResourcesAdminRequest
+	// message and returns a ListConnectorResourcesResponse message.
+	ListConnectorResourcesAdmin(context.Context, *ListConnectorResourcesAdminRequest) (*ListConnectorResourcesAdminResponse, error)
+	// LookUpConnectorResourceAdmin method receives a
+	// LookUpConnectorResourceAdminRequest message and returns a
+	// LookUpConnectorResourceAdminResponse
+	LookUpConnectorResourceAdmin(context.Context, *LookUpConnectorResourceAdminRequest) (*LookUpConnectorResourceAdminResponse, error)
+	// CheckConnectorResource method receives a CheckConnectorResourceRequest message and returns a
+	// CheckConnectorResourceResponse
+	CheckConnectorResource(context.Context, *CheckConnectorResourceRequest) (*CheckConnectorResourceResponse, error)
 }
 
 // UnimplementedConnectorPrivateServiceServer should be embedded to have forward compatible implementations.
@@ -116,14 +116,14 @@ type UnimplementedConnectorPrivateServiceServer struct {
 func (UnimplementedConnectorPrivateServiceServer) LookUpConnectorDefinitionAdmin(context.Context, *LookUpConnectorDefinitionAdminRequest) (*LookUpConnectorDefinitionAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LookUpConnectorDefinitionAdmin not implemented")
 }
-func (UnimplementedConnectorPrivateServiceServer) ListConnectorsAdmin(context.Context, *ListConnectorsAdminRequest) (*ListConnectorsAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListConnectorsAdmin not implemented")
+func (UnimplementedConnectorPrivateServiceServer) ListConnectorResourcesAdmin(context.Context, *ListConnectorResourcesAdminRequest) (*ListConnectorResourcesAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListConnectorResourcesAdmin not implemented")
 }
-func (UnimplementedConnectorPrivateServiceServer) LookUpConnectorAdmin(context.Context, *LookUpConnectorAdminRequest) (*LookUpConnectorAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LookUpConnectorAdmin not implemented")
+func (UnimplementedConnectorPrivateServiceServer) LookUpConnectorResourceAdmin(context.Context, *LookUpConnectorResourceAdminRequest) (*LookUpConnectorResourceAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LookUpConnectorResourceAdmin not implemented")
 }
-func (UnimplementedConnectorPrivateServiceServer) CheckConnector(context.Context, *CheckConnectorRequest) (*CheckConnectorResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CheckConnector not implemented")
+func (UnimplementedConnectorPrivateServiceServer) CheckConnectorResource(context.Context, *CheckConnectorResourceRequest) (*CheckConnectorResourceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckConnectorResource not implemented")
 }
 
 // UnsafeConnectorPrivateServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -155,56 +155,56 @@ func _ConnectorPrivateService_LookUpConnectorDefinitionAdmin_Handler(srv interfa
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorPrivateService_ListConnectorsAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListConnectorsAdminRequest)
+func _ConnectorPrivateService_ListConnectorResourcesAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListConnectorResourcesAdminRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorPrivateServiceServer).ListConnectorsAdmin(ctx, in)
+		return srv.(ConnectorPrivateServiceServer).ListConnectorResourcesAdmin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ConnectorPrivateService_ListConnectorsAdmin_FullMethodName,
+		FullMethod: ConnectorPrivateService_ListConnectorResourcesAdmin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorPrivateServiceServer).ListConnectorsAdmin(ctx, req.(*ListConnectorsAdminRequest))
+		return srv.(ConnectorPrivateServiceServer).ListConnectorResourcesAdmin(ctx, req.(*ListConnectorResourcesAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorPrivateService_LookUpConnectorAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(LookUpConnectorAdminRequest)
+func _ConnectorPrivateService_LookUpConnectorResourceAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LookUpConnectorResourceAdminRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorPrivateServiceServer).LookUpConnectorAdmin(ctx, in)
+		return srv.(ConnectorPrivateServiceServer).LookUpConnectorResourceAdmin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ConnectorPrivateService_LookUpConnectorAdmin_FullMethodName,
+		FullMethod: ConnectorPrivateService_LookUpConnectorResourceAdmin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorPrivateServiceServer).LookUpConnectorAdmin(ctx, req.(*LookUpConnectorAdminRequest))
+		return srv.(ConnectorPrivateServiceServer).LookUpConnectorResourceAdmin(ctx, req.(*LookUpConnectorResourceAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConnectorPrivateService_CheckConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CheckConnectorRequest)
+func _ConnectorPrivateService_CheckConnectorResource_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckConnectorResourceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConnectorPrivateServiceServer).CheckConnector(ctx, in)
+		return srv.(ConnectorPrivateServiceServer).CheckConnectorResource(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ConnectorPrivateService_CheckConnector_FullMethodName,
+		FullMethod: ConnectorPrivateService_CheckConnectorResource_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorPrivateServiceServer).CheckConnector(ctx, req.(*CheckConnectorRequest))
+		return srv.(ConnectorPrivateServiceServer).CheckConnectorResource(ctx, req.(*CheckConnectorResourceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -221,16 +221,16 @@ var ConnectorPrivateService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ConnectorPrivateService_LookUpConnectorDefinitionAdmin_Handler,
 		},
 		{
-			MethodName: "ListConnectorsAdmin",
-			Handler:    _ConnectorPrivateService_ListConnectorsAdmin_Handler,
+			MethodName: "ListConnectorResourcesAdmin",
+			Handler:    _ConnectorPrivateService_ListConnectorResourcesAdmin_Handler,
 		},
 		{
-			MethodName: "LookUpConnectorAdmin",
-			Handler:    _ConnectorPrivateService_LookUpConnectorAdmin_Handler,
+			MethodName: "LookUpConnectorResourceAdmin",
+			Handler:    _ConnectorPrivateService_LookUpConnectorResourceAdmin_Handler,
 		},
 		{
-			MethodName: "CheckConnector",
-			Handler:    _ConnectorPrivateService_CheckConnector_Handler,
+			MethodName: "CheckConnectorResource",
+			Handler:    _ConnectorPrivateService_CheckConnectorResource_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

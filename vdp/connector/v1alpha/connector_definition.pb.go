@@ -639,8 +639,8 @@ func (x *LookUpConnectorDefinitionAdminRequest) GetView() View {
 	return View_VIEW_UNSPECIFIED
 }
 
-// LookUpConnectorAdminResponse represents a response for a
-// connector
+// LookUpConnectorDefinitionAdminResponse represents a response for a
+// connector definition
 type LookUpConnectorDefinitionAdminResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
