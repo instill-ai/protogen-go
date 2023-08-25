@@ -19,32 +19,33 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	PipelinePublicService_Liveness_FullMethodName                    = "/vdp.pipeline.v1alpha.PipelinePublicService/Liveness"
-	PipelinePublicService_Readiness_FullMethodName                   = "/vdp.pipeline.v1alpha.PipelinePublicService/Readiness"
-	PipelinePublicService_ListOperatorDefinitions_FullMethodName     = "/vdp.pipeline.v1alpha.PipelinePublicService/ListOperatorDefinitions"
-	PipelinePublicService_GetOperatorDefinition_FullMethodName       = "/vdp.pipeline.v1alpha.PipelinePublicService/GetOperatorDefinition"
-	PipelinePublicService_CreatePipeline_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/CreatePipeline"
-	PipelinePublicService_ListPipelines_FullMethodName               = "/vdp.pipeline.v1alpha.PipelinePublicService/ListPipelines"
-	PipelinePublicService_GetPipeline_FullMethodName                 = "/vdp.pipeline.v1alpha.PipelinePublicService/GetPipeline"
-	PipelinePublicService_UpdatePipeline_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/UpdatePipeline"
-	PipelinePublicService_DeletePipeline_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/DeletePipeline"
-	PipelinePublicService_LookUpPipeline_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/LookUpPipeline"
-	PipelinePublicService_ValidatePipeline_FullMethodName            = "/vdp.pipeline.v1alpha.PipelinePublicService/ValidatePipeline"
-	PipelinePublicService_RenamePipeline_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/RenamePipeline"
-	PipelinePublicService_TriggerPipeline_FullMethodName             = "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerPipeline"
-	PipelinePublicService_TriggerAsyncPipeline_FullMethodName        = "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerAsyncPipeline"
-	PipelinePublicService_GetOperation_FullMethodName                = "/vdp.pipeline.v1alpha.PipelinePublicService/GetOperation"
-	PipelinePublicService_CreatePipelineRelease_FullMethodName       = "/vdp.pipeline.v1alpha.PipelinePublicService/CreatePipelineRelease"
-	PipelinePublicService_ListPipelineReleases_FullMethodName        = "/vdp.pipeline.v1alpha.PipelinePublicService/ListPipelineReleases"
-	PipelinePublicService_GetPipelineRelease_FullMethodName          = "/vdp.pipeline.v1alpha.PipelinePublicService/GetPipelineRelease"
-	PipelinePublicService_UpdatePipelineRelease_FullMethodName       = "/vdp.pipeline.v1alpha.PipelinePublicService/UpdatePipelineRelease"
-	PipelinePublicService_DeletePipelineRelease_FullMethodName       = "/vdp.pipeline.v1alpha.PipelinePublicService/DeletePipelineRelease"
-	PipelinePublicService_RestorePipelineRelease_FullMethodName      = "/vdp.pipeline.v1alpha.PipelinePublicService/RestorePipelineRelease"
-	PipelinePublicService_SetDefaultPipelineRelease_FullMethodName   = "/vdp.pipeline.v1alpha.PipelinePublicService/SetDefaultPipelineRelease"
-	PipelinePublicService_WatchPipelineRelease_FullMethodName        = "/vdp.pipeline.v1alpha.PipelinePublicService/WatchPipelineRelease"
-	PipelinePublicService_RenamePipelineRelease_FullMethodName       = "/vdp.pipeline.v1alpha.PipelinePublicService/RenamePipelineRelease"
-	PipelinePublicService_TriggerPipelineRelease_FullMethodName      = "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerPipelineRelease"
-	PipelinePublicService_TriggerAsyncPipelineRelease_FullMethodName = "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerAsyncPipelineRelease"
+	PipelinePublicService_Liveness_FullMethodName                        = "/vdp.pipeline.v1alpha.PipelinePublicService/Liveness"
+	PipelinePublicService_Readiness_FullMethodName                       = "/vdp.pipeline.v1alpha.PipelinePublicService/Readiness"
+	PipelinePublicService_ListOperatorDefinitions_FullMethodName         = "/vdp.pipeline.v1alpha.PipelinePublicService/ListOperatorDefinitions"
+	PipelinePublicService_GetOperatorDefinition_FullMethodName           = "/vdp.pipeline.v1alpha.PipelinePublicService/GetOperatorDefinition"
+	PipelinePublicService_ListPipelines_FullMethodName                   = "/vdp.pipeline.v1alpha.PipelinePublicService/ListPipelines"
+	PipelinePublicService_CreateUserPipeline_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/CreateUserPipeline"
+	PipelinePublicService_ListUserPipelines_FullMethodName               = "/vdp.pipeline.v1alpha.PipelinePublicService/ListUserPipelines"
+	PipelinePublicService_GetUserPipeline_FullMethodName                 = "/vdp.pipeline.v1alpha.PipelinePublicService/GetUserPipeline"
+	PipelinePublicService_UpdateUserPipeline_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/UpdateUserPipeline"
+	PipelinePublicService_DeleteUserPipeline_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/DeleteUserPipeline"
+	PipelinePublicService_LookUpUserPipeline_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/LookUpUserPipeline"
+	PipelinePublicService_ValidateUserPipeline_FullMethodName            = "/vdp.pipeline.v1alpha.PipelinePublicService/ValidateUserPipeline"
+	PipelinePublicService_RenameUserPipeline_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/RenameUserPipeline"
+	PipelinePublicService_TriggerUserPipeline_FullMethodName             = "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerUserPipeline"
+	PipelinePublicService_TriggerAsyncUserPipeline_FullMethodName        = "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerAsyncUserPipeline"
+	PipelinePublicService_GetOperation_FullMethodName                    = "/vdp.pipeline.v1alpha.PipelinePublicService/GetOperation"
+	PipelinePublicService_CreateUserPipelineRelease_FullMethodName       = "/vdp.pipeline.v1alpha.PipelinePublicService/CreateUserPipelineRelease"
+	PipelinePublicService_ListUserPipelineReleases_FullMethodName        = "/vdp.pipeline.v1alpha.PipelinePublicService/ListUserPipelineReleases"
+	PipelinePublicService_GetUserPipelineRelease_FullMethodName          = "/vdp.pipeline.v1alpha.PipelinePublicService/GetUserPipelineRelease"
+	PipelinePublicService_UpdateUserPipelineRelease_FullMethodName       = "/vdp.pipeline.v1alpha.PipelinePublicService/UpdateUserPipelineRelease"
+	PipelinePublicService_DeleteUserPipelineRelease_FullMethodName       = "/vdp.pipeline.v1alpha.PipelinePublicService/DeleteUserPipelineRelease"
+	PipelinePublicService_RestoreUserPipelineRelease_FullMethodName      = "/vdp.pipeline.v1alpha.PipelinePublicService/RestoreUserPipelineRelease"
+	PipelinePublicService_SetDefaultUserPipelineRelease_FullMethodName   = "/vdp.pipeline.v1alpha.PipelinePublicService/SetDefaultUserPipelineRelease"
+	PipelinePublicService_WatchUserPipelineRelease_FullMethodName        = "/vdp.pipeline.v1alpha.PipelinePublicService/WatchUserPipelineRelease"
+	PipelinePublicService_RenameUserPipelineRelease_FullMethodName       = "/vdp.pipeline.v1alpha.PipelinePublicService/RenameUserPipelineRelease"
+	PipelinePublicService_TriggerUserPipelineRelease_FullMethodName      = "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerUserPipelineRelease"
+	PipelinePublicService_TriggerAsyncUserPipelineRelease_FullMethodName = "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerAsyncUserPipelineRelease"
 )
 
 // PipelinePublicServiceClient is the client API for PipelinePublicService service.
@@ -67,72 +68,75 @@ type PipelinePublicServiceClient interface {
 	// GetOperatorDefinitionRequest message and returns a
 	// GetGetOperatorDefinitionResponse message.
 	GetOperatorDefinition(ctx context.Context, in *GetOperatorDefinitionRequest, opts ...grpc.CallOption) (*GetOperatorDefinitionResponse, error)
-	// CreatePipeline method receives a CreatePipelineRequest message and returns
-	// a CreatePipelineResponse message.
-	CreatePipeline(ctx context.Context, in *CreatePipelineRequest, opts ...grpc.CallOption) (*CreatePipelineResponse, error)
 	// ListPipelines method receives a ListPipelinesRequest message and returns a
 	// ListPipelinesResponse message.
 	ListPipelines(ctx context.Context, in *ListPipelinesRequest, opts ...grpc.CallOption) (*ListPipelinesResponse, error)
-	// GetPipeline method receives a GetPipelineRequest message and returns a
-	// GetPipelineResponse message.
-	GetPipeline(ctx context.Context, in *GetPipelineRequest, opts ...grpc.CallOption) (*GetPipelineResponse, error)
-	// UpdatePipeline method receives a UpdatePipelineRequest message and returns
-	// a UpdatePipelineResponse message.
-	UpdatePipeline(ctx context.Context, in *UpdatePipelineRequest, opts ...grpc.CallOption) (*UpdatePipelineResponse, error)
-	// DeletePipeline method receives a DeletePipelineRequest message and returns
-	// a DeletePipelineResponse message.
-	DeletePipeline(ctx context.Context, in *DeletePipelineRequest, opts ...grpc.CallOption) (*DeletePipelineResponse, error)
-	// LookUpPipeline method receives a LookUpPipelineRequest message and returns
-	// a LookUpPipelineResponse
-	LookUpPipeline(ctx context.Context, in *LookUpPipelineRequest, opts ...grpc.CallOption) (*LookUpPipelineResponse, error)
+	// CreateUserPipeline method receives a CreateUserPipelineRequest message and returns
+	// a CreateUserPipelineResponse message.
+	CreateUserPipeline(ctx context.Context, in *CreateUserPipelineRequest, opts ...grpc.CallOption) (*CreateUserPipelineResponse, error)
+	// ListUserPipelines method receives a ListUserPipelinesRequest message and returns a
+	// ListUserPipelinesResponse message.
+	ListUserPipelines(ctx context.Context, in *ListUserPipelinesRequest, opts ...grpc.CallOption) (*ListUserPipelinesResponse, error)
+	// GetUserPipeline method receives a GetUserPipelineRequest message and returns a
+	// GetUserPipelineResponse message.
+	GetUserPipeline(ctx context.Context, in *GetUserPipelineRequest, opts ...grpc.CallOption) (*GetUserPipelineResponse, error)
+	// UpdateUserPipeline method receives a UpdateUserPipelineRequest message and returns
+	// a UpdateUserPipelineResponse message.
+	UpdateUserPipeline(ctx context.Context, in *UpdateUserPipelineRequest, opts ...grpc.CallOption) (*UpdateUserPipelineResponse, error)
+	// DeleteUserPipeline method receives a DeleteUserPipelineRequest message and returns
+	// a DeleteUserPipelineResponse message.
+	DeleteUserPipeline(ctx context.Context, in *DeleteUserPipelineRequest, opts ...grpc.CallOption) (*DeleteUserPipelineResponse, error)
+	// LookUpUserPipeline method receives a LookUpUserPipelineRequest message and returns
+	// a LookUpUserPipelineResponse
+	LookUpUserPipeline(ctx context.Context, in *LookUpUserPipelineRequest, opts ...grpc.CallOption) (*LookUpUserPipelineResponse, error)
 	// Validate a pipeline.
-	ValidatePipeline(ctx context.Context, in *ValidatePipelineRequest, opts ...grpc.CallOption) (*ValidatePipelineResponse, error)
-	// RenamePipeline method receives a RenamePipelineRequest message and returns
-	// a RenamePipelineResponse message.
-	RenamePipeline(ctx context.Context, in *RenamePipelineRequest, opts ...grpc.CallOption) (*RenamePipelineResponse, error)
-	// TriggerPipeline method receives a TriggerPipelineRequest message
-	// and returns a TriggerPipelineResponse.
-	TriggerPipeline(ctx context.Context, in *TriggerPipelineRequest, opts ...grpc.CallOption) (*TriggerPipelineResponse, error)
-	// TriggerAsyncPipeline method receives a TriggerPipelineRequest message and
-	// returns a TriggerAsyncPipelineResponse.
-	TriggerAsyncPipeline(ctx context.Context, in *TriggerAsyncPipelineRequest, opts ...grpc.CallOption) (*TriggerAsyncPipelineResponse, error)
+	ValidateUserPipeline(ctx context.Context, in *ValidateUserPipelineRequest, opts ...grpc.CallOption) (*ValidateUserPipelineResponse, error)
+	// RenameUserPipeline method receives a RenameUserPipelineRequest message and returns
+	// a RenameUserPipelineResponse message.
+	RenameUserPipeline(ctx context.Context, in *RenameUserPipelineRequest, opts ...grpc.CallOption) (*RenameUserPipelineResponse, error)
+	// TriggerUserPipeline method receives a TriggerUserPipelineRequest message
+	// and returns a TriggerUserPipelineResponse.
+	TriggerUserPipeline(ctx context.Context, in *TriggerUserPipelineRequest, opts ...grpc.CallOption) (*TriggerUserPipelineResponse, error)
+	// TriggerAsyncUserPipeline method receives a TriggerAsyncUserPipelineRequest message and
+	// returns a TriggerAsyncUserPipelineResponse.
+	TriggerAsyncUserPipeline(ctx context.Context, in *TriggerAsyncUserPipelineRequest, opts ...grpc.CallOption) (*TriggerAsyncUserPipelineResponse, error)
 	// GetOperation method receives a
 	// GetOperationRequest message and returns a
 	// GetOperationResponse message.
 	GetOperation(ctx context.Context, in *GetOperationRequest, opts ...grpc.CallOption) (*GetOperationResponse, error)
-	// CreatePipelineRelease method receives a CreatePipelineReleaseRequest message and returns
-	// a CreatePipelineReleaseResponse message.
-	CreatePipelineRelease(ctx context.Context, in *CreatePipelineReleaseRequest, opts ...grpc.CallOption) (*CreatePipelineReleaseResponse, error)
-	// ListPipelineReleases method receives a ListPipelineReleasesRequest message and returns a
-	// ListPipelineReleasesResponse message.
-	ListPipelineReleases(ctx context.Context, in *ListPipelineReleasesRequest, opts ...grpc.CallOption) (*ListPipelineReleasesResponse, error)
-	// GetPipelineRelease method receives a GetPipelineReleaseRequest message and returns a
-	// GetPipelineReleaseResponse message.
-	GetPipelineRelease(ctx context.Context, in *GetPipelineReleaseRequest, opts ...grpc.CallOption) (*GetPipelineReleaseResponse, error)
-	// UpdatePipelineRelease method receives a UpdatePipelineReleaseRequest message and returns
-	// a UpdatePipelineReleaseResponse message.
-	UpdatePipelineRelease(ctx context.Context, in *UpdatePipelineReleaseRequest, opts ...grpc.CallOption) (*UpdatePipelineReleaseResponse, error)
-	// DeletePipelineRelease method receives a DeletePipelineReleaseRequest message and returns
-	// a DeletePipelineReleaseResponse message.
-	DeletePipelineRelease(ctx context.Context, in *DeletePipelineReleaseRequest, opts ...grpc.CallOption) (*DeletePipelineReleaseResponse, error)
-	// RestorePipelineRelease method receives a RestorePipelineReleaseRequest message
-	// and returns a RestorePipelineReleaseResponse
-	RestorePipelineRelease(ctx context.Context, in *RestorePipelineReleaseRequest, opts ...grpc.CallOption) (*RestorePipelineReleaseResponse, error)
-	// SetDefaultPipelineRelease method receives a SetDefaultPipelineReleaseRequest message
-	// and returns a SetDefaultPipelineReleaseResponse
-	SetDefaultPipelineRelease(ctx context.Context, in *SetDefaultPipelineReleaseRequest, opts ...grpc.CallOption) (*SetDefaultPipelineReleaseResponse, error)
-	// WatchPipelineRelease method receives a WatchPipelineReleaseRequest message
-	// and returns a WatchPipelineReleaseResponse
-	WatchPipelineRelease(ctx context.Context, in *WatchPipelineReleaseRequest, opts ...grpc.CallOption) (*WatchPipelineReleaseResponse, error)
-	// RenamePipelineRelease method receives a RenamePipelineReleaseRequest message and returns
-	// a RenamePipelineReleaseResponse message.
-	RenamePipelineRelease(ctx context.Context, in *RenamePipelineReleaseRequest, opts ...grpc.CallOption) (*RenamePipelineReleaseResponse, error)
-	// TriggerPipelineRelease method receives a TriggePipelineReleaseRequest message
+	// CreateUserPipelineRelease method receives a CreateUserPipelineReleaseRequest message and returns
+	// a CreateUserPipelineReleaseResponse message.
+	CreateUserPipelineRelease(ctx context.Context, in *CreateUserPipelineReleaseRequest, opts ...grpc.CallOption) (*CreateUserPipelineReleaseResponse, error)
+	// ListUserPipelineReleases method receives a ListUserPipelineReleasesRequest message and returns a
+	// ListUserPipelineReleasesResponse message.
+	ListUserPipelineReleases(ctx context.Context, in *ListUserPipelineReleasesRequest, opts ...grpc.CallOption) (*ListUserPipelineReleasesResponse, error)
+	// GetUserPipelineRelease method receives a GetUserPipelineReleaseRequest message and returns a
+	// GetUserPipelineReleaseResponse message.
+	GetUserPipelineRelease(ctx context.Context, in *GetUserPipelineReleaseRequest, opts ...grpc.CallOption) (*GetUserPipelineReleaseResponse, error)
+	// UpdateUserPipelineRelease method receives a UpdateUserPipelineReleaseRequest message and returns
+	// a UpdateUserPipelineReleaseResponse message.
+	UpdateUserPipelineRelease(ctx context.Context, in *UpdateUserPipelineReleaseRequest, opts ...grpc.CallOption) (*UpdateUserPipelineReleaseResponse, error)
+	// DeleteUserPipelineRelease method receives a DeleteUserPipelineReleaseRequest message and returns
+	// a DeleteUserPipelineReleaseResponse message.
+	DeleteUserPipelineRelease(ctx context.Context, in *DeleteUserPipelineReleaseRequest, opts ...grpc.CallOption) (*DeleteUserPipelineReleaseResponse, error)
+	// RestoreUserPipelineRelease method receives a RestoreUserPipelineReleaseRequest message
+	// and returns a RestoreUserPipelineReleaseResponse
+	RestoreUserPipelineRelease(ctx context.Context, in *RestoreUserPipelineReleaseRequest, opts ...grpc.CallOption) (*RestoreUserPipelineReleaseResponse, error)
+	// SetDefaultUserPipelineRelease method receives a SetDefaultUserPipelineReleaseRequest message
+	// and returns a SetDefaultUserPipelineReleaseResponse
+	SetDefaultUserPipelineRelease(ctx context.Context, in *SetDefaultUserPipelineReleaseRequest, opts ...grpc.CallOption) (*SetDefaultUserPipelineReleaseResponse, error)
+	// WatchUserPipelineRelease method receives a WatchUserPipelineReleaseRequest message
+	// and returns a WatchUserPipelineReleaseResponse
+	WatchUserPipelineRelease(ctx context.Context, in *WatchUserPipelineReleaseRequest, opts ...grpc.CallOption) (*WatchUserPipelineReleaseResponse, error)
+	// RenameUserPipelineRelease method receives a RenameUserPipelineReleaseRequest message and returns
+	// a RenameUserPipelineReleaseResponse message.
+	RenameUserPipelineRelease(ctx context.Context, in *RenameUserPipelineReleaseRequest, opts ...grpc.CallOption) (*RenameUserPipelineReleaseResponse, error)
+	// TriggerUserPipelineRelease method receives a TriggeUserPipelineReleaseRequest message
 	// and returns a TriggerPipelineReleasePipelineResponse.
-	TriggerPipelineRelease(ctx context.Context, in *TriggerPipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerPipelineReleaseResponse, error)
-	// TriggerAsyncPipelineRelease method receives a TriggerAsyncPipelineReleaseRequest message and
-	// returns a TriggerAsyncPipelineReleaseResponse.
-	TriggerAsyncPipelineRelease(ctx context.Context, in *TriggerAsyncPipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerAsyncPipelineReleaseResponse, error)
+	TriggerUserPipelineRelease(ctx context.Context, in *TriggerUserPipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerUserPipelineReleaseResponse, error)
+	// TriggerAsyncUserPipelineRelease method receives a TriggerAsyncUserPipelineReleaseRequest message and
+	// returns a TriggerAsyncUserPipelineReleaseResponse.
+	TriggerAsyncUserPipelineRelease(ctx context.Context, in *TriggerAsyncUserPipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerAsyncUserPipelineReleaseResponse, error)
 }
 
 type pipelinePublicServiceClient struct {
@@ -179,15 +183,6 @@ func (c *pipelinePublicServiceClient) GetOperatorDefinition(ctx context.Context,
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) CreatePipeline(ctx context.Context, in *CreatePipelineRequest, opts ...grpc.CallOption) (*CreatePipelineResponse, error) {
-	out := new(CreatePipelineResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_CreatePipeline_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *pipelinePublicServiceClient) ListPipelines(ctx context.Context, in *ListPipelinesRequest, opts ...grpc.CallOption) (*ListPipelinesResponse, error) {
 	out := new(ListPipelinesResponse)
 	err := c.cc.Invoke(ctx, PipelinePublicService_ListPipelines_FullMethodName, in, out, opts...)
@@ -197,72 +192,90 @@ func (c *pipelinePublicServiceClient) ListPipelines(ctx context.Context, in *Lis
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) GetPipeline(ctx context.Context, in *GetPipelineRequest, opts ...grpc.CallOption) (*GetPipelineResponse, error) {
-	out := new(GetPipelineResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_GetPipeline_FullMethodName, in, out, opts...)
+func (c *pipelinePublicServiceClient) CreateUserPipeline(ctx context.Context, in *CreateUserPipelineRequest, opts ...grpc.CallOption) (*CreateUserPipelineResponse, error) {
+	out := new(CreateUserPipelineResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_CreateUserPipeline_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) UpdatePipeline(ctx context.Context, in *UpdatePipelineRequest, opts ...grpc.CallOption) (*UpdatePipelineResponse, error) {
-	out := new(UpdatePipelineResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_UpdatePipeline_FullMethodName, in, out, opts...)
+func (c *pipelinePublicServiceClient) ListUserPipelines(ctx context.Context, in *ListUserPipelinesRequest, opts ...grpc.CallOption) (*ListUserPipelinesResponse, error) {
+	out := new(ListUserPipelinesResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ListUserPipelines_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) DeletePipeline(ctx context.Context, in *DeletePipelineRequest, opts ...grpc.CallOption) (*DeletePipelineResponse, error) {
-	out := new(DeletePipelineResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_DeletePipeline_FullMethodName, in, out, opts...)
+func (c *pipelinePublicServiceClient) GetUserPipeline(ctx context.Context, in *GetUserPipelineRequest, opts ...grpc.CallOption) (*GetUserPipelineResponse, error) {
+	out := new(GetUserPipelineResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_GetUserPipeline_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) LookUpPipeline(ctx context.Context, in *LookUpPipelineRequest, opts ...grpc.CallOption) (*LookUpPipelineResponse, error) {
-	out := new(LookUpPipelineResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_LookUpPipeline_FullMethodName, in, out, opts...)
+func (c *pipelinePublicServiceClient) UpdateUserPipeline(ctx context.Context, in *UpdateUserPipelineRequest, opts ...grpc.CallOption) (*UpdateUserPipelineResponse, error) {
+	out := new(UpdateUserPipelineResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_UpdateUserPipeline_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) ValidatePipeline(ctx context.Context, in *ValidatePipelineRequest, opts ...grpc.CallOption) (*ValidatePipelineResponse, error) {
-	out := new(ValidatePipelineResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_ValidatePipeline_FullMethodName, in, out, opts...)
+func (c *pipelinePublicServiceClient) DeleteUserPipeline(ctx context.Context, in *DeleteUserPipelineRequest, opts ...grpc.CallOption) (*DeleteUserPipelineResponse, error) {
+	out := new(DeleteUserPipelineResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_DeleteUserPipeline_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) RenamePipeline(ctx context.Context, in *RenamePipelineRequest, opts ...grpc.CallOption) (*RenamePipelineResponse, error) {
-	out := new(RenamePipelineResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_RenamePipeline_FullMethodName, in, out, opts...)
+func (c *pipelinePublicServiceClient) LookUpUserPipeline(ctx context.Context, in *LookUpUserPipelineRequest, opts ...grpc.CallOption) (*LookUpUserPipelineResponse, error) {
+	out := new(LookUpUserPipelineResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_LookUpUserPipeline_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) TriggerPipeline(ctx context.Context, in *TriggerPipelineRequest, opts ...grpc.CallOption) (*TriggerPipelineResponse, error) {
-	out := new(TriggerPipelineResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_TriggerPipeline_FullMethodName, in, out, opts...)
+func (c *pipelinePublicServiceClient) ValidateUserPipeline(ctx context.Context, in *ValidateUserPipelineRequest, opts ...grpc.CallOption) (*ValidateUserPipelineResponse, error) {
+	out := new(ValidateUserPipelineResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ValidateUserPipeline_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) TriggerAsyncPipeline(ctx context.Context, in *TriggerAsyncPipelineRequest, opts ...grpc.CallOption) (*TriggerAsyncPipelineResponse, error) {
-	out := new(TriggerAsyncPipelineResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_TriggerAsyncPipeline_FullMethodName, in, out, opts...)
+func (c *pipelinePublicServiceClient) RenameUserPipeline(ctx context.Context, in *RenameUserPipelineRequest, opts ...grpc.CallOption) (*RenameUserPipelineResponse, error) {
+	out := new(RenameUserPipelineResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_RenameUserPipeline_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) TriggerUserPipeline(ctx context.Context, in *TriggerUserPipelineRequest, opts ...grpc.CallOption) (*TriggerUserPipelineResponse, error) {
+	out := new(TriggerUserPipelineResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_TriggerUserPipeline_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) TriggerAsyncUserPipeline(ctx context.Context, in *TriggerAsyncUserPipelineRequest, opts ...grpc.CallOption) (*TriggerAsyncUserPipelineResponse, error) {
+	out := new(TriggerAsyncUserPipelineResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_TriggerAsyncUserPipeline_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -278,99 +291,99 @@ func (c *pipelinePublicServiceClient) GetOperation(ctx context.Context, in *GetO
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) CreatePipelineRelease(ctx context.Context, in *CreatePipelineReleaseRequest, opts ...grpc.CallOption) (*CreatePipelineReleaseResponse, error) {
-	out := new(CreatePipelineReleaseResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_CreatePipelineRelease_FullMethodName, in, out, opts...)
+func (c *pipelinePublicServiceClient) CreateUserPipelineRelease(ctx context.Context, in *CreateUserPipelineReleaseRequest, opts ...grpc.CallOption) (*CreateUserPipelineReleaseResponse, error) {
+	out := new(CreateUserPipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_CreateUserPipelineRelease_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) ListPipelineReleases(ctx context.Context, in *ListPipelineReleasesRequest, opts ...grpc.CallOption) (*ListPipelineReleasesResponse, error) {
-	out := new(ListPipelineReleasesResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_ListPipelineReleases_FullMethodName, in, out, opts...)
+func (c *pipelinePublicServiceClient) ListUserPipelineReleases(ctx context.Context, in *ListUserPipelineReleasesRequest, opts ...grpc.CallOption) (*ListUserPipelineReleasesResponse, error) {
+	out := new(ListUserPipelineReleasesResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ListUserPipelineReleases_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) GetPipelineRelease(ctx context.Context, in *GetPipelineReleaseRequest, opts ...grpc.CallOption) (*GetPipelineReleaseResponse, error) {
-	out := new(GetPipelineReleaseResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_GetPipelineRelease_FullMethodName, in, out, opts...)
+func (c *pipelinePublicServiceClient) GetUserPipelineRelease(ctx context.Context, in *GetUserPipelineReleaseRequest, opts ...grpc.CallOption) (*GetUserPipelineReleaseResponse, error) {
+	out := new(GetUserPipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_GetUserPipelineRelease_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) UpdatePipelineRelease(ctx context.Context, in *UpdatePipelineReleaseRequest, opts ...grpc.CallOption) (*UpdatePipelineReleaseResponse, error) {
-	out := new(UpdatePipelineReleaseResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_UpdatePipelineRelease_FullMethodName, in, out, opts...)
+func (c *pipelinePublicServiceClient) UpdateUserPipelineRelease(ctx context.Context, in *UpdateUserPipelineReleaseRequest, opts ...grpc.CallOption) (*UpdateUserPipelineReleaseResponse, error) {
+	out := new(UpdateUserPipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_UpdateUserPipelineRelease_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) DeletePipelineRelease(ctx context.Context, in *DeletePipelineReleaseRequest, opts ...grpc.CallOption) (*DeletePipelineReleaseResponse, error) {
-	out := new(DeletePipelineReleaseResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_DeletePipelineRelease_FullMethodName, in, out, opts...)
+func (c *pipelinePublicServiceClient) DeleteUserPipelineRelease(ctx context.Context, in *DeleteUserPipelineReleaseRequest, opts ...grpc.CallOption) (*DeleteUserPipelineReleaseResponse, error) {
+	out := new(DeleteUserPipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_DeleteUserPipelineRelease_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) RestorePipelineRelease(ctx context.Context, in *RestorePipelineReleaseRequest, opts ...grpc.CallOption) (*RestorePipelineReleaseResponse, error) {
-	out := new(RestorePipelineReleaseResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_RestorePipelineRelease_FullMethodName, in, out, opts...)
+func (c *pipelinePublicServiceClient) RestoreUserPipelineRelease(ctx context.Context, in *RestoreUserPipelineReleaseRequest, opts ...grpc.CallOption) (*RestoreUserPipelineReleaseResponse, error) {
+	out := new(RestoreUserPipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_RestoreUserPipelineRelease_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) SetDefaultPipelineRelease(ctx context.Context, in *SetDefaultPipelineReleaseRequest, opts ...grpc.CallOption) (*SetDefaultPipelineReleaseResponse, error) {
-	out := new(SetDefaultPipelineReleaseResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_SetDefaultPipelineRelease_FullMethodName, in, out, opts...)
+func (c *pipelinePublicServiceClient) SetDefaultUserPipelineRelease(ctx context.Context, in *SetDefaultUserPipelineReleaseRequest, opts ...grpc.CallOption) (*SetDefaultUserPipelineReleaseResponse, error) {
+	out := new(SetDefaultUserPipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_SetDefaultUserPipelineRelease_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) WatchPipelineRelease(ctx context.Context, in *WatchPipelineReleaseRequest, opts ...grpc.CallOption) (*WatchPipelineReleaseResponse, error) {
-	out := new(WatchPipelineReleaseResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_WatchPipelineRelease_FullMethodName, in, out, opts...)
+func (c *pipelinePublicServiceClient) WatchUserPipelineRelease(ctx context.Context, in *WatchUserPipelineReleaseRequest, opts ...grpc.CallOption) (*WatchUserPipelineReleaseResponse, error) {
+	out := new(WatchUserPipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_WatchUserPipelineRelease_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) RenamePipelineRelease(ctx context.Context, in *RenamePipelineReleaseRequest, opts ...grpc.CallOption) (*RenamePipelineReleaseResponse, error) {
-	out := new(RenamePipelineReleaseResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_RenamePipelineRelease_FullMethodName, in, out, opts...)
+func (c *pipelinePublicServiceClient) RenameUserPipelineRelease(ctx context.Context, in *RenameUserPipelineReleaseRequest, opts ...grpc.CallOption) (*RenameUserPipelineReleaseResponse, error) {
+	out := new(RenameUserPipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_RenameUserPipelineRelease_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) TriggerPipelineRelease(ctx context.Context, in *TriggerPipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerPipelineReleaseResponse, error) {
-	out := new(TriggerPipelineReleaseResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_TriggerPipelineRelease_FullMethodName, in, out, opts...)
+func (c *pipelinePublicServiceClient) TriggerUserPipelineRelease(ctx context.Context, in *TriggerUserPipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerUserPipelineReleaseResponse, error) {
+	out := new(TriggerUserPipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_TriggerUserPipelineRelease_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) TriggerAsyncPipelineRelease(ctx context.Context, in *TriggerAsyncPipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerAsyncPipelineReleaseResponse, error) {
-	out := new(TriggerAsyncPipelineReleaseResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_TriggerAsyncPipelineRelease_FullMethodName, in, out, opts...)
+func (c *pipelinePublicServiceClient) TriggerAsyncUserPipelineRelease(ctx context.Context, in *TriggerAsyncUserPipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerAsyncUserPipelineReleaseResponse, error) {
+	out := new(TriggerAsyncUserPipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_TriggerAsyncUserPipelineRelease_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -397,72 +410,75 @@ type PipelinePublicServiceServer interface {
 	// GetOperatorDefinitionRequest message and returns a
 	// GetGetOperatorDefinitionResponse message.
 	GetOperatorDefinition(context.Context, *GetOperatorDefinitionRequest) (*GetOperatorDefinitionResponse, error)
-	// CreatePipeline method receives a CreatePipelineRequest message and returns
-	// a CreatePipelineResponse message.
-	CreatePipeline(context.Context, *CreatePipelineRequest) (*CreatePipelineResponse, error)
 	// ListPipelines method receives a ListPipelinesRequest message and returns a
 	// ListPipelinesResponse message.
 	ListPipelines(context.Context, *ListPipelinesRequest) (*ListPipelinesResponse, error)
-	// GetPipeline method receives a GetPipelineRequest message and returns a
-	// GetPipelineResponse message.
-	GetPipeline(context.Context, *GetPipelineRequest) (*GetPipelineResponse, error)
-	// UpdatePipeline method receives a UpdatePipelineRequest message and returns
-	// a UpdatePipelineResponse message.
-	UpdatePipeline(context.Context, *UpdatePipelineRequest) (*UpdatePipelineResponse, error)
-	// DeletePipeline method receives a DeletePipelineRequest message and returns
-	// a DeletePipelineResponse message.
-	DeletePipeline(context.Context, *DeletePipelineRequest) (*DeletePipelineResponse, error)
-	// LookUpPipeline method receives a LookUpPipelineRequest message and returns
-	// a LookUpPipelineResponse
-	LookUpPipeline(context.Context, *LookUpPipelineRequest) (*LookUpPipelineResponse, error)
+	// CreateUserPipeline method receives a CreateUserPipelineRequest message and returns
+	// a CreateUserPipelineResponse message.
+	CreateUserPipeline(context.Context, *CreateUserPipelineRequest) (*CreateUserPipelineResponse, error)
+	// ListUserPipelines method receives a ListUserPipelinesRequest message and returns a
+	// ListUserPipelinesResponse message.
+	ListUserPipelines(context.Context, *ListUserPipelinesRequest) (*ListUserPipelinesResponse, error)
+	// GetUserPipeline method receives a GetUserPipelineRequest message and returns a
+	// GetUserPipelineResponse message.
+	GetUserPipeline(context.Context, *GetUserPipelineRequest) (*GetUserPipelineResponse, error)
+	// UpdateUserPipeline method receives a UpdateUserPipelineRequest message and returns
+	// a UpdateUserPipelineResponse message.
+	UpdateUserPipeline(context.Context, *UpdateUserPipelineRequest) (*UpdateUserPipelineResponse, error)
+	// DeleteUserPipeline method receives a DeleteUserPipelineRequest message and returns
+	// a DeleteUserPipelineResponse message.
+	DeleteUserPipeline(context.Context, *DeleteUserPipelineRequest) (*DeleteUserPipelineResponse, error)
+	// LookUpUserPipeline method receives a LookUpUserPipelineRequest message and returns
+	// a LookUpUserPipelineResponse
+	LookUpUserPipeline(context.Context, *LookUpUserPipelineRequest) (*LookUpUserPipelineResponse, error)
 	// Validate a pipeline.
-	ValidatePipeline(context.Context, *ValidatePipelineRequest) (*ValidatePipelineResponse, error)
-	// RenamePipeline method receives a RenamePipelineRequest message and returns
-	// a RenamePipelineResponse message.
-	RenamePipeline(context.Context, *RenamePipelineRequest) (*RenamePipelineResponse, error)
-	// TriggerPipeline method receives a TriggerPipelineRequest message
-	// and returns a TriggerPipelineResponse.
-	TriggerPipeline(context.Context, *TriggerPipelineRequest) (*TriggerPipelineResponse, error)
-	// TriggerAsyncPipeline method receives a TriggerPipelineRequest message and
-	// returns a TriggerAsyncPipelineResponse.
-	TriggerAsyncPipeline(context.Context, *TriggerAsyncPipelineRequest) (*TriggerAsyncPipelineResponse, error)
+	ValidateUserPipeline(context.Context, *ValidateUserPipelineRequest) (*ValidateUserPipelineResponse, error)
+	// RenameUserPipeline method receives a RenameUserPipelineRequest message and returns
+	// a RenameUserPipelineResponse message.
+	RenameUserPipeline(context.Context, *RenameUserPipelineRequest) (*RenameUserPipelineResponse, error)
+	// TriggerUserPipeline method receives a TriggerUserPipelineRequest message
+	// and returns a TriggerUserPipelineResponse.
+	TriggerUserPipeline(context.Context, *TriggerUserPipelineRequest) (*TriggerUserPipelineResponse, error)
+	// TriggerAsyncUserPipeline method receives a TriggerAsyncUserPipelineRequest message and
+	// returns a TriggerAsyncUserPipelineResponse.
+	TriggerAsyncUserPipeline(context.Context, *TriggerAsyncUserPipelineRequest) (*TriggerAsyncUserPipelineResponse, error)
 	// GetOperation method receives a
 	// GetOperationRequest message and returns a
 	// GetOperationResponse message.
 	GetOperation(context.Context, *GetOperationRequest) (*GetOperationResponse, error)
-	// CreatePipelineRelease method receives a CreatePipelineReleaseRequest message and returns
-	// a CreatePipelineReleaseResponse message.
-	CreatePipelineRelease(context.Context, *CreatePipelineReleaseRequest) (*CreatePipelineReleaseResponse, error)
-	// ListPipelineReleases method receives a ListPipelineReleasesRequest message and returns a
-	// ListPipelineReleasesResponse message.
-	ListPipelineReleases(context.Context, *ListPipelineReleasesRequest) (*ListPipelineReleasesResponse, error)
-	// GetPipelineRelease method receives a GetPipelineReleaseRequest message and returns a
-	// GetPipelineReleaseResponse message.
-	GetPipelineRelease(context.Context, *GetPipelineReleaseRequest) (*GetPipelineReleaseResponse, error)
-	// UpdatePipelineRelease method receives a UpdatePipelineReleaseRequest message and returns
-	// a UpdatePipelineReleaseResponse message.
-	UpdatePipelineRelease(context.Context, *UpdatePipelineReleaseRequest) (*UpdatePipelineReleaseResponse, error)
-	// DeletePipelineRelease method receives a DeletePipelineReleaseRequest message and returns
-	// a DeletePipelineReleaseResponse message.
-	DeletePipelineRelease(context.Context, *DeletePipelineReleaseRequest) (*DeletePipelineReleaseResponse, error)
-	// RestorePipelineRelease method receives a RestorePipelineReleaseRequest message
-	// and returns a RestorePipelineReleaseResponse
-	RestorePipelineRelease(context.Context, *RestorePipelineReleaseRequest) (*RestorePipelineReleaseResponse, error)
-	// SetDefaultPipelineRelease method receives a SetDefaultPipelineReleaseRequest message
-	// and returns a SetDefaultPipelineReleaseResponse
-	SetDefaultPipelineRelease(context.Context, *SetDefaultPipelineReleaseRequest) (*SetDefaultPipelineReleaseResponse, error)
-	// WatchPipelineRelease method receives a WatchPipelineReleaseRequest message
-	// and returns a WatchPipelineReleaseResponse
-	WatchPipelineRelease(context.Context, *WatchPipelineReleaseRequest) (*WatchPipelineReleaseResponse, error)
-	// RenamePipelineRelease method receives a RenamePipelineReleaseRequest message and returns
-	// a RenamePipelineReleaseResponse message.
-	RenamePipelineRelease(context.Context, *RenamePipelineReleaseRequest) (*RenamePipelineReleaseResponse, error)
-	// TriggerPipelineRelease method receives a TriggePipelineReleaseRequest message
+	// CreateUserPipelineRelease method receives a CreateUserPipelineReleaseRequest message and returns
+	// a CreateUserPipelineReleaseResponse message.
+	CreateUserPipelineRelease(context.Context, *CreateUserPipelineReleaseRequest) (*CreateUserPipelineReleaseResponse, error)
+	// ListUserPipelineReleases method receives a ListUserPipelineReleasesRequest message and returns a
+	// ListUserPipelineReleasesResponse message.
+	ListUserPipelineReleases(context.Context, *ListUserPipelineReleasesRequest) (*ListUserPipelineReleasesResponse, error)
+	// GetUserPipelineRelease method receives a GetUserPipelineReleaseRequest message and returns a
+	// GetUserPipelineReleaseResponse message.
+	GetUserPipelineRelease(context.Context, *GetUserPipelineReleaseRequest) (*GetUserPipelineReleaseResponse, error)
+	// UpdateUserPipelineRelease method receives a UpdateUserPipelineReleaseRequest message and returns
+	// a UpdateUserPipelineReleaseResponse message.
+	UpdateUserPipelineRelease(context.Context, *UpdateUserPipelineReleaseRequest) (*UpdateUserPipelineReleaseResponse, error)
+	// DeleteUserPipelineRelease method receives a DeleteUserPipelineReleaseRequest message and returns
+	// a DeleteUserPipelineReleaseResponse message.
+	DeleteUserPipelineRelease(context.Context, *DeleteUserPipelineReleaseRequest) (*DeleteUserPipelineReleaseResponse, error)
+	// RestoreUserPipelineRelease method receives a RestoreUserPipelineReleaseRequest message
+	// and returns a RestoreUserPipelineReleaseResponse
+	RestoreUserPipelineRelease(context.Context, *RestoreUserPipelineReleaseRequest) (*RestoreUserPipelineReleaseResponse, error)
+	// SetDefaultUserPipelineRelease method receives a SetDefaultUserPipelineReleaseRequest message
+	// and returns a SetDefaultUserPipelineReleaseResponse
+	SetDefaultUserPipelineRelease(context.Context, *SetDefaultUserPipelineReleaseRequest) (*SetDefaultUserPipelineReleaseResponse, error)
+	// WatchUserPipelineRelease method receives a WatchUserPipelineReleaseRequest message
+	// and returns a WatchUserPipelineReleaseResponse
+	WatchUserPipelineRelease(context.Context, *WatchUserPipelineReleaseRequest) (*WatchUserPipelineReleaseResponse, error)
+	// RenameUserPipelineRelease method receives a RenameUserPipelineReleaseRequest message and returns
+	// a RenameUserPipelineReleaseResponse message.
+	RenameUserPipelineRelease(context.Context, *RenameUserPipelineReleaseRequest) (*RenameUserPipelineReleaseResponse, error)
+	// TriggerUserPipelineRelease method receives a TriggeUserPipelineReleaseRequest message
 	// and returns a TriggerPipelineReleasePipelineResponse.
-	TriggerPipelineRelease(context.Context, *TriggerPipelineReleaseRequest) (*TriggerPipelineReleaseResponse, error)
-	// TriggerAsyncPipelineRelease method receives a TriggerAsyncPipelineReleaseRequest message and
-	// returns a TriggerAsyncPipelineReleaseResponse.
-	TriggerAsyncPipelineRelease(context.Context, *TriggerAsyncPipelineReleaseRequest) (*TriggerAsyncPipelineReleaseResponse, error)
+	TriggerUserPipelineRelease(context.Context, *TriggerUserPipelineReleaseRequest) (*TriggerUserPipelineReleaseResponse, error)
+	// TriggerAsyncUserPipelineRelease method receives a TriggerAsyncUserPipelineReleaseRequest message and
+	// returns a TriggerAsyncUserPipelineReleaseResponse.
+	TriggerAsyncUserPipelineRelease(context.Context, *TriggerAsyncUserPipelineReleaseRequest) (*TriggerAsyncUserPipelineReleaseResponse, error)
 }
 
 // UnimplementedPipelinePublicServiceServer should be embedded to have forward compatible implementations.
@@ -481,71 +497,74 @@ func (UnimplementedPipelinePublicServiceServer) ListOperatorDefinitions(context.
 func (UnimplementedPipelinePublicServiceServer) GetOperatorDefinition(context.Context, *GetOperatorDefinitionRequest) (*GetOperatorDefinitionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOperatorDefinition not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) CreatePipeline(context.Context, *CreatePipelineRequest) (*CreatePipelineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreatePipeline not implemented")
-}
 func (UnimplementedPipelinePublicServiceServer) ListPipelines(context.Context, *ListPipelinesRequest) (*ListPipelinesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPipelines not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) GetPipeline(context.Context, *GetPipelineRequest) (*GetPipelineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPipeline not implemented")
+func (UnimplementedPipelinePublicServiceServer) CreateUserPipeline(context.Context, *CreateUserPipelineRequest) (*CreateUserPipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateUserPipeline not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) UpdatePipeline(context.Context, *UpdatePipelineRequest) (*UpdatePipelineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdatePipeline not implemented")
+func (UnimplementedPipelinePublicServiceServer) ListUserPipelines(context.Context, *ListUserPipelinesRequest) (*ListUserPipelinesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListUserPipelines not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) DeletePipeline(context.Context, *DeletePipelineRequest) (*DeletePipelineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeletePipeline not implemented")
+func (UnimplementedPipelinePublicServiceServer) GetUserPipeline(context.Context, *GetUserPipelineRequest) (*GetUserPipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserPipeline not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) LookUpPipeline(context.Context, *LookUpPipelineRequest) (*LookUpPipelineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LookUpPipeline not implemented")
+func (UnimplementedPipelinePublicServiceServer) UpdateUserPipeline(context.Context, *UpdateUserPipelineRequest) (*UpdateUserPipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserPipeline not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) ValidatePipeline(context.Context, *ValidatePipelineRequest) (*ValidatePipelineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ValidatePipeline not implemented")
+func (UnimplementedPipelinePublicServiceServer) DeleteUserPipeline(context.Context, *DeleteUserPipelineRequest) (*DeleteUserPipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteUserPipeline not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) RenamePipeline(context.Context, *RenamePipelineRequest) (*RenamePipelineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RenamePipeline not implemented")
+func (UnimplementedPipelinePublicServiceServer) LookUpUserPipeline(context.Context, *LookUpUserPipelineRequest) (*LookUpUserPipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LookUpUserPipeline not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) TriggerPipeline(context.Context, *TriggerPipelineRequest) (*TriggerPipelineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TriggerPipeline not implemented")
+func (UnimplementedPipelinePublicServiceServer) ValidateUserPipeline(context.Context, *ValidateUserPipelineRequest) (*ValidateUserPipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ValidateUserPipeline not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) TriggerAsyncPipeline(context.Context, *TriggerAsyncPipelineRequest) (*TriggerAsyncPipelineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncPipeline not implemented")
+func (UnimplementedPipelinePublicServiceServer) RenameUserPipeline(context.Context, *RenameUserPipelineRequest) (*RenameUserPipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RenameUserPipeline not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) TriggerUserPipeline(context.Context, *TriggerUserPipelineRequest) (*TriggerUserPipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerUserPipeline not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) TriggerAsyncUserPipeline(context.Context, *TriggerAsyncUserPipelineRequest) (*TriggerAsyncUserPipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncUserPipeline not implemented")
 }
 func (UnimplementedPipelinePublicServiceServer) GetOperation(context.Context, *GetOperationRequest) (*GetOperationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOperation not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) CreatePipelineRelease(context.Context, *CreatePipelineReleaseRequest) (*CreatePipelineReleaseResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreatePipelineRelease not implemented")
+func (UnimplementedPipelinePublicServiceServer) CreateUserPipelineRelease(context.Context, *CreateUserPipelineReleaseRequest) (*CreateUserPipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateUserPipelineRelease not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) ListPipelineReleases(context.Context, *ListPipelineReleasesRequest) (*ListPipelineReleasesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineReleases not implemented")
+func (UnimplementedPipelinePublicServiceServer) ListUserPipelineReleases(context.Context, *ListUserPipelineReleasesRequest) (*ListUserPipelineReleasesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListUserPipelineReleases not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) GetPipelineRelease(context.Context, *GetPipelineReleaseRequest) (*GetPipelineReleaseResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPipelineRelease not implemented")
+func (UnimplementedPipelinePublicServiceServer) GetUserPipelineRelease(context.Context, *GetUserPipelineReleaseRequest) (*GetUserPipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserPipelineRelease not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) UpdatePipelineRelease(context.Context, *UpdatePipelineReleaseRequest) (*UpdatePipelineReleaseResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdatePipelineRelease not implemented")
+func (UnimplementedPipelinePublicServiceServer) UpdateUserPipelineRelease(context.Context, *UpdateUserPipelineReleaseRequest) (*UpdateUserPipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserPipelineRelease not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) DeletePipelineRelease(context.Context, *DeletePipelineReleaseRequest) (*DeletePipelineReleaseResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeletePipelineRelease not implemented")
+func (UnimplementedPipelinePublicServiceServer) DeleteUserPipelineRelease(context.Context, *DeleteUserPipelineReleaseRequest) (*DeleteUserPipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteUserPipelineRelease not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) RestorePipelineRelease(context.Context, *RestorePipelineReleaseRequest) (*RestorePipelineReleaseResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RestorePipelineRelease not implemented")
+func (UnimplementedPipelinePublicServiceServer) RestoreUserPipelineRelease(context.Context, *RestoreUserPipelineReleaseRequest) (*RestoreUserPipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RestoreUserPipelineRelease not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) SetDefaultPipelineRelease(context.Context, *SetDefaultPipelineReleaseRequest) (*SetDefaultPipelineReleaseResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetDefaultPipelineRelease not implemented")
+func (UnimplementedPipelinePublicServiceServer) SetDefaultUserPipelineRelease(context.Context, *SetDefaultUserPipelineReleaseRequest) (*SetDefaultUserPipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetDefaultUserPipelineRelease not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) WatchPipelineRelease(context.Context, *WatchPipelineReleaseRequest) (*WatchPipelineReleaseResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method WatchPipelineRelease not implemented")
+func (UnimplementedPipelinePublicServiceServer) WatchUserPipelineRelease(context.Context, *WatchUserPipelineReleaseRequest) (*WatchUserPipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WatchUserPipelineRelease not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) RenamePipelineRelease(context.Context, *RenamePipelineReleaseRequest) (*RenamePipelineReleaseResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RenamePipelineRelease not implemented")
+func (UnimplementedPipelinePublicServiceServer) RenameUserPipelineRelease(context.Context, *RenameUserPipelineReleaseRequest) (*RenameUserPipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RenameUserPipelineRelease not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) TriggerPipelineRelease(context.Context, *TriggerPipelineReleaseRequest) (*TriggerPipelineReleaseResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TriggerPipelineRelease not implemented")
+func (UnimplementedPipelinePublicServiceServer) TriggerUserPipelineRelease(context.Context, *TriggerUserPipelineReleaseRequest) (*TriggerUserPipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerUserPipelineRelease not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) TriggerAsyncPipelineRelease(context.Context, *TriggerAsyncPipelineReleaseRequest) (*TriggerAsyncPipelineReleaseResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncPipelineRelease not implemented")
+func (UnimplementedPipelinePublicServiceServer) TriggerAsyncUserPipelineRelease(context.Context, *TriggerAsyncUserPipelineReleaseRequest) (*TriggerAsyncUserPipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncUserPipelineRelease not implemented")
 }
 
 // UnsafePipelinePublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -631,24 +650,6 @@ func _PipelinePublicService_GetOperatorDefinition_Handler(srv interface{}, ctx c
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_CreatePipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreatePipelineRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).CreatePipeline(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PipelinePublicService_CreatePipeline_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).CreatePipeline(ctx, req.(*CreatePipelineRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _PipelinePublicService_ListPipelines_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListPipelinesRequest)
 	if err := dec(in); err != nil {
@@ -667,146 +668,182 @@ func _PipelinePublicService_ListPipelines_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_GetPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetPipelineRequest)
+func _PipelinePublicService_CreateUserPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateUserPipelineRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).GetPipeline(ctx, in)
+		return srv.(PipelinePublicServiceServer).CreateUserPipeline(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_GetPipeline_FullMethodName,
+		FullMethod: PipelinePublicService_CreateUserPipeline_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).GetPipeline(ctx, req.(*GetPipelineRequest))
+		return srv.(PipelinePublicServiceServer).CreateUserPipeline(ctx, req.(*CreateUserPipelineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_UpdatePipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdatePipelineRequest)
+func _PipelinePublicService_ListUserPipelines_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListUserPipelinesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).UpdatePipeline(ctx, in)
+		return srv.(PipelinePublicServiceServer).ListUserPipelines(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_UpdatePipeline_FullMethodName,
+		FullMethod: PipelinePublicService_ListUserPipelines_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).UpdatePipeline(ctx, req.(*UpdatePipelineRequest))
+		return srv.(PipelinePublicServiceServer).ListUserPipelines(ctx, req.(*ListUserPipelinesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_DeletePipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeletePipelineRequest)
+func _PipelinePublicService_GetUserPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserPipelineRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).DeletePipeline(ctx, in)
+		return srv.(PipelinePublicServiceServer).GetUserPipeline(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_DeletePipeline_FullMethodName,
+		FullMethod: PipelinePublicService_GetUserPipeline_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).DeletePipeline(ctx, req.(*DeletePipelineRequest))
+		return srv.(PipelinePublicServiceServer).GetUserPipeline(ctx, req.(*GetUserPipelineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_LookUpPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(LookUpPipelineRequest)
+func _PipelinePublicService_UpdateUserPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateUserPipelineRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).LookUpPipeline(ctx, in)
+		return srv.(PipelinePublicServiceServer).UpdateUserPipeline(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_LookUpPipeline_FullMethodName,
+		FullMethod: PipelinePublicService_UpdateUserPipeline_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).LookUpPipeline(ctx, req.(*LookUpPipelineRequest))
+		return srv.(PipelinePublicServiceServer).UpdateUserPipeline(ctx, req.(*UpdateUserPipelineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_ValidatePipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ValidatePipelineRequest)
+func _PipelinePublicService_DeleteUserPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteUserPipelineRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).ValidatePipeline(ctx, in)
+		return srv.(PipelinePublicServiceServer).DeleteUserPipeline(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_ValidatePipeline_FullMethodName,
+		FullMethod: PipelinePublicService_DeleteUserPipeline_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).ValidatePipeline(ctx, req.(*ValidatePipelineRequest))
+		return srv.(PipelinePublicServiceServer).DeleteUserPipeline(ctx, req.(*DeleteUserPipelineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_RenamePipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RenamePipelineRequest)
+func _PipelinePublicService_LookUpUserPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LookUpUserPipelineRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).RenamePipeline(ctx, in)
+		return srv.(PipelinePublicServiceServer).LookUpUserPipeline(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_RenamePipeline_FullMethodName,
+		FullMethod: PipelinePublicService_LookUpUserPipeline_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).RenamePipeline(ctx, req.(*RenamePipelineRequest))
+		return srv.(PipelinePublicServiceServer).LookUpUserPipeline(ctx, req.(*LookUpUserPipelineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_TriggerPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TriggerPipelineRequest)
+func _PipelinePublicService_ValidateUserPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ValidateUserPipelineRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).TriggerPipeline(ctx, in)
+		return srv.(PipelinePublicServiceServer).ValidateUserPipeline(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_TriggerPipeline_FullMethodName,
+		FullMethod: PipelinePublicService_ValidateUserPipeline_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).TriggerPipeline(ctx, req.(*TriggerPipelineRequest))
+		return srv.(PipelinePublicServiceServer).ValidateUserPipeline(ctx, req.(*ValidateUserPipelineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_TriggerAsyncPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TriggerAsyncPipelineRequest)
+func _PipelinePublicService_RenameUserPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RenameUserPipelineRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).TriggerAsyncPipeline(ctx, in)
+		return srv.(PipelinePublicServiceServer).RenameUserPipeline(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_TriggerAsyncPipeline_FullMethodName,
+		FullMethod: PipelinePublicService_RenameUserPipeline_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).TriggerAsyncPipeline(ctx, req.(*TriggerAsyncPipelineRequest))
+		return srv.(PipelinePublicServiceServer).RenameUserPipeline(ctx, req.(*RenameUserPipelineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_TriggerUserPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerUserPipelineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).TriggerUserPipeline(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_TriggerUserPipeline_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).TriggerUserPipeline(ctx, req.(*TriggerUserPipelineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_TriggerAsyncUserPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerAsyncUserPipelineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).TriggerAsyncUserPipeline(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_TriggerAsyncUserPipeline_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).TriggerAsyncUserPipeline(ctx, req.(*TriggerAsyncUserPipelineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -829,200 +866,200 @@ func _PipelinePublicService_GetOperation_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_CreatePipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreatePipelineReleaseRequest)
+func _PipelinePublicService_CreateUserPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateUserPipelineReleaseRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).CreatePipelineRelease(ctx, in)
+		return srv.(PipelinePublicServiceServer).CreateUserPipelineRelease(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_CreatePipelineRelease_FullMethodName,
+		FullMethod: PipelinePublicService_CreateUserPipelineRelease_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).CreatePipelineRelease(ctx, req.(*CreatePipelineReleaseRequest))
+		return srv.(PipelinePublicServiceServer).CreateUserPipelineRelease(ctx, req.(*CreateUserPipelineReleaseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_ListPipelineReleases_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListPipelineReleasesRequest)
+func _PipelinePublicService_ListUserPipelineReleases_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListUserPipelineReleasesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).ListPipelineReleases(ctx, in)
+		return srv.(PipelinePublicServiceServer).ListUserPipelineReleases(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_ListPipelineReleases_FullMethodName,
+		FullMethod: PipelinePublicService_ListUserPipelineReleases_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).ListPipelineReleases(ctx, req.(*ListPipelineReleasesRequest))
+		return srv.(PipelinePublicServiceServer).ListUserPipelineReleases(ctx, req.(*ListUserPipelineReleasesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_GetPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetPipelineReleaseRequest)
+func _PipelinePublicService_GetUserPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserPipelineReleaseRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).GetPipelineRelease(ctx, in)
+		return srv.(PipelinePublicServiceServer).GetUserPipelineRelease(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_GetPipelineRelease_FullMethodName,
+		FullMethod: PipelinePublicService_GetUserPipelineRelease_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).GetPipelineRelease(ctx, req.(*GetPipelineReleaseRequest))
+		return srv.(PipelinePublicServiceServer).GetUserPipelineRelease(ctx, req.(*GetUserPipelineReleaseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_UpdatePipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdatePipelineReleaseRequest)
+func _PipelinePublicService_UpdateUserPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateUserPipelineReleaseRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).UpdatePipelineRelease(ctx, in)
+		return srv.(PipelinePublicServiceServer).UpdateUserPipelineRelease(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_UpdatePipelineRelease_FullMethodName,
+		FullMethod: PipelinePublicService_UpdateUserPipelineRelease_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).UpdatePipelineRelease(ctx, req.(*UpdatePipelineReleaseRequest))
+		return srv.(PipelinePublicServiceServer).UpdateUserPipelineRelease(ctx, req.(*UpdateUserPipelineReleaseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_DeletePipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeletePipelineReleaseRequest)
+func _PipelinePublicService_DeleteUserPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteUserPipelineReleaseRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).DeletePipelineRelease(ctx, in)
+		return srv.(PipelinePublicServiceServer).DeleteUserPipelineRelease(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_DeletePipelineRelease_FullMethodName,
+		FullMethod: PipelinePublicService_DeleteUserPipelineRelease_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).DeletePipelineRelease(ctx, req.(*DeletePipelineReleaseRequest))
+		return srv.(PipelinePublicServiceServer).DeleteUserPipelineRelease(ctx, req.(*DeleteUserPipelineReleaseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_RestorePipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RestorePipelineReleaseRequest)
+func _PipelinePublicService_RestoreUserPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RestoreUserPipelineReleaseRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).RestorePipelineRelease(ctx, in)
+		return srv.(PipelinePublicServiceServer).RestoreUserPipelineRelease(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_RestorePipelineRelease_FullMethodName,
+		FullMethod: PipelinePublicService_RestoreUserPipelineRelease_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).RestorePipelineRelease(ctx, req.(*RestorePipelineReleaseRequest))
+		return srv.(PipelinePublicServiceServer).RestoreUserPipelineRelease(ctx, req.(*RestoreUserPipelineReleaseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_SetDefaultPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SetDefaultPipelineReleaseRequest)
+func _PipelinePublicService_SetDefaultUserPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetDefaultUserPipelineReleaseRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).SetDefaultPipelineRelease(ctx, in)
+		return srv.(PipelinePublicServiceServer).SetDefaultUserPipelineRelease(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_SetDefaultPipelineRelease_FullMethodName,
+		FullMethod: PipelinePublicService_SetDefaultUserPipelineRelease_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).SetDefaultPipelineRelease(ctx, req.(*SetDefaultPipelineReleaseRequest))
+		return srv.(PipelinePublicServiceServer).SetDefaultUserPipelineRelease(ctx, req.(*SetDefaultUserPipelineReleaseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_WatchPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(WatchPipelineReleaseRequest)
+func _PipelinePublicService_WatchUserPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WatchUserPipelineReleaseRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).WatchPipelineRelease(ctx, in)
+		return srv.(PipelinePublicServiceServer).WatchUserPipelineRelease(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_WatchPipelineRelease_FullMethodName,
+		FullMethod: PipelinePublicService_WatchUserPipelineRelease_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).WatchPipelineRelease(ctx, req.(*WatchPipelineReleaseRequest))
+		return srv.(PipelinePublicServiceServer).WatchUserPipelineRelease(ctx, req.(*WatchUserPipelineReleaseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_RenamePipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RenamePipelineReleaseRequest)
+func _PipelinePublicService_RenameUserPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RenameUserPipelineReleaseRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).RenamePipelineRelease(ctx, in)
+		return srv.(PipelinePublicServiceServer).RenameUserPipelineRelease(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_RenamePipelineRelease_FullMethodName,
+		FullMethod: PipelinePublicService_RenameUserPipelineRelease_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).RenamePipelineRelease(ctx, req.(*RenamePipelineReleaseRequest))
+		return srv.(PipelinePublicServiceServer).RenameUserPipelineRelease(ctx, req.(*RenameUserPipelineReleaseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_TriggerPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TriggerPipelineReleaseRequest)
+func _PipelinePublicService_TriggerUserPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerUserPipelineReleaseRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).TriggerPipelineRelease(ctx, in)
+		return srv.(PipelinePublicServiceServer).TriggerUserPipelineRelease(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_TriggerPipelineRelease_FullMethodName,
+		FullMethod: PipelinePublicService_TriggerUserPipelineRelease_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).TriggerPipelineRelease(ctx, req.(*TriggerPipelineReleaseRequest))
+		return srv.(PipelinePublicServiceServer).TriggerUserPipelineRelease(ctx, req.(*TriggerUserPipelineReleaseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_TriggerAsyncPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TriggerAsyncPipelineReleaseRequest)
+func _PipelinePublicService_TriggerAsyncUserPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerAsyncUserPipelineReleaseRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).TriggerAsyncPipelineRelease(ctx, in)
+		return srv.(PipelinePublicServiceServer).TriggerAsyncUserPipelineRelease(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_TriggerAsyncPipelineRelease_FullMethodName,
+		FullMethod: PipelinePublicService_TriggerAsyncUserPipelineRelease_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).TriggerAsyncPipelineRelease(ctx, req.(*TriggerAsyncPipelineReleaseRequest))
+		return srv.(PipelinePublicServiceServer).TriggerAsyncUserPipelineRelease(ctx, req.(*TriggerAsyncUserPipelineReleaseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1051,92 +1088,96 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _PipelinePublicService_GetOperatorDefinition_Handler,
 		},
 		{
-			MethodName: "CreatePipeline",
-			Handler:    _PipelinePublicService_CreatePipeline_Handler,
-		},
-		{
 			MethodName: "ListPipelines",
 			Handler:    _PipelinePublicService_ListPipelines_Handler,
 		},
 		{
-			MethodName: "GetPipeline",
-			Handler:    _PipelinePublicService_GetPipeline_Handler,
+			MethodName: "CreateUserPipeline",
+			Handler:    _PipelinePublicService_CreateUserPipeline_Handler,
 		},
 		{
-			MethodName: "UpdatePipeline",
-			Handler:    _PipelinePublicService_UpdatePipeline_Handler,
+			MethodName: "ListUserPipelines",
+			Handler:    _PipelinePublicService_ListUserPipelines_Handler,
 		},
 		{
-			MethodName: "DeletePipeline",
-			Handler:    _PipelinePublicService_DeletePipeline_Handler,
+			MethodName: "GetUserPipeline",
+			Handler:    _PipelinePublicService_GetUserPipeline_Handler,
 		},
 		{
-			MethodName: "LookUpPipeline",
-			Handler:    _PipelinePublicService_LookUpPipeline_Handler,
+			MethodName: "UpdateUserPipeline",
+			Handler:    _PipelinePublicService_UpdateUserPipeline_Handler,
 		},
 		{
-			MethodName: "ValidatePipeline",
-			Handler:    _PipelinePublicService_ValidatePipeline_Handler,
+			MethodName: "DeleteUserPipeline",
+			Handler:    _PipelinePublicService_DeleteUserPipeline_Handler,
 		},
 		{
-			MethodName: "RenamePipeline",
-			Handler:    _PipelinePublicService_RenamePipeline_Handler,
+			MethodName: "LookUpUserPipeline",
+			Handler:    _PipelinePublicService_LookUpUserPipeline_Handler,
 		},
 		{
-			MethodName: "TriggerPipeline",
-			Handler:    _PipelinePublicService_TriggerPipeline_Handler,
+			MethodName: "ValidateUserPipeline",
+			Handler:    _PipelinePublicService_ValidateUserPipeline_Handler,
 		},
 		{
-			MethodName: "TriggerAsyncPipeline",
-			Handler:    _PipelinePublicService_TriggerAsyncPipeline_Handler,
+			MethodName: "RenameUserPipeline",
+			Handler:    _PipelinePublicService_RenameUserPipeline_Handler,
+		},
+		{
+			MethodName: "TriggerUserPipeline",
+			Handler:    _PipelinePublicService_TriggerUserPipeline_Handler,
+		},
+		{
+			MethodName: "TriggerAsyncUserPipeline",
+			Handler:    _PipelinePublicService_TriggerAsyncUserPipeline_Handler,
 		},
 		{
 			MethodName: "GetOperation",
 			Handler:    _PipelinePublicService_GetOperation_Handler,
 		},
 		{
-			MethodName: "CreatePipelineRelease",
-			Handler:    _PipelinePublicService_CreatePipelineRelease_Handler,
+			MethodName: "CreateUserPipelineRelease",
+			Handler:    _PipelinePublicService_CreateUserPipelineRelease_Handler,
 		},
 		{
-			MethodName: "ListPipelineReleases",
-			Handler:    _PipelinePublicService_ListPipelineReleases_Handler,
+			MethodName: "ListUserPipelineReleases",
+			Handler:    _PipelinePublicService_ListUserPipelineReleases_Handler,
 		},
 		{
-			MethodName: "GetPipelineRelease",
-			Handler:    _PipelinePublicService_GetPipelineRelease_Handler,
+			MethodName: "GetUserPipelineRelease",
+			Handler:    _PipelinePublicService_GetUserPipelineRelease_Handler,
 		},
 		{
-			MethodName: "UpdatePipelineRelease",
-			Handler:    _PipelinePublicService_UpdatePipelineRelease_Handler,
+			MethodName: "UpdateUserPipelineRelease",
+			Handler:    _PipelinePublicService_UpdateUserPipelineRelease_Handler,
 		},
 		{
-			MethodName: "DeletePipelineRelease",
-			Handler:    _PipelinePublicService_DeletePipelineRelease_Handler,
+			MethodName: "DeleteUserPipelineRelease",
+			Handler:    _PipelinePublicService_DeleteUserPipelineRelease_Handler,
 		},
 		{
-			MethodName: "RestorePipelineRelease",
-			Handler:    _PipelinePublicService_RestorePipelineRelease_Handler,
+			MethodName: "RestoreUserPipelineRelease",
+			Handler:    _PipelinePublicService_RestoreUserPipelineRelease_Handler,
 		},
 		{
-			MethodName: "SetDefaultPipelineRelease",
-			Handler:    _PipelinePublicService_SetDefaultPipelineRelease_Handler,
+			MethodName: "SetDefaultUserPipelineRelease",
+			Handler:    _PipelinePublicService_SetDefaultUserPipelineRelease_Handler,
 		},
 		{
-			MethodName: "WatchPipelineRelease",
-			Handler:    _PipelinePublicService_WatchPipelineRelease_Handler,
+			MethodName: "WatchUserPipelineRelease",
+			Handler:    _PipelinePublicService_WatchUserPipelineRelease_Handler,
 		},
 		{
-			MethodName: "RenamePipelineRelease",
-			Handler:    _PipelinePublicService_RenamePipelineRelease_Handler,
+			MethodName: "RenameUserPipelineRelease",
+			Handler:    _PipelinePublicService_RenameUserPipelineRelease_Handler,
 		},
 		{
-			MethodName: "TriggerPipelineRelease",
-			Handler:    _PipelinePublicService_TriggerPipelineRelease_Handler,
+			MethodName: "TriggerUserPipelineRelease",
+			Handler:    _PipelinePublicService_TriggerUserPipelineRelease_Handler,
 		},
 		{
-			MethodName: "TriggerAsyncPipelineRelease",
-			Handler:    _PipelinePublicService_TriggerAsyncPipelineRelease_Handler,
+			MethodName: "TriggerAsyncUserPipelineRelease",
+			Handler:    _PipelinePublicService_TriggerAsyncUserPipelineRelease_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
