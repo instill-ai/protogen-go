@@ -19,29 +19,30 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ModelPublicService_Liveness_FullMethodName                     = "/model.model.v1alpha.ModelPublicService/Liveness"
-	ModelPublicService_Readiness_FullMethodName                    = "/model.model.v1alpha.ModelPublicService/Readiness"
-	ModelPublicService_ListModelDefinitions_FullMethodName         = "/model.model.v1alpha.ModelPublicService/ListModelDefinitions"
-	ModelPublicService_GetModelDefinition_FullMethodName           = "/model.model.v1alpha.ModelPublicService/GetModelDefinition"
-	ModelPublicService_ListModels_FullMethodName                   = "/model.model.v1alpha.ModelPublicService/ListModels"
-	ModelPublicService_CreateModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/CreateModel"
-	ModelPublicService_CreateModelBinaryFileUpload_FullMethodName  = "/model.model.v1alpha.ModelPublicService/CreateModelBinaryFileUpload"
-	ModelPublicService_GetModel_FullMethodName                     = "/model.model.v1alpha.ModelPublicService/GetModel"
-	ModelPublicService_UpdateModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/UpdateModel"
-	ModelPublicService_DeleteModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/DeleteModel"
-	ModelPublicService_LookUpModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/LookUpModel"
-	ModelPublicService_RenameModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/RenameModel"
-	ModelPublicService_PublishModel_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/PublishModel"
-	ModelPublicService_UnpublishModel_FullMethodName               = "/model.model.v1alpha.ModelPublicService/UnpublishModel"
-	ModelPublicService_DeployModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/DeployModel"
-	ModelPublicService_UndeployModel_FullMethodName                = "/model.model.v1alpha.ModelPublicService/UndeployModel"
-	ModelPublicService_GetModelCard_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/GetModelCard"
-	ModelPublicService_WatchModel_FullMethodName                   = "/model.model.v1alpha.ModelPublicService/WatchModel"
-	ModelPublicService_TriggerModel_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/TriggerModel"
-	ModelPublicService_TriggerModelBinaryFileUpload_FullMethodName = "/model.model.v1alpha.ModelPublicService/TriggerModelBinaryFileUpload"
-	ModelPublicService_TestModel_FullMethodName                    = "/model.model.v1alpha.ModelPublicService/TestModel"
-	ModelPublicService_TestModelBinaryFileUpload_FullMethodName    = "/model.model.v1alpha.ModelPublicService/TestModelBinaryFileUpload"
-	ModelPublicService_GetModelOperation_FullMethodName            = "/model.model.v1alpha.ModelPublicService/GetModelOperation"
+	ModelPublicService_Liveness_FullMethodName                         = "/model.model.v1alpha.ModelPublicService/Liveness"
+	ModelPublicService_Readiness_FullMethodName                        = "/model.model.v1alpha.ModelPublicService/Readiness"
+	ModelPublicService_ListModelDefinitions_FullMethodName             = "/model.model.v1alpha.ModelPublicService/ListModelDefinitions"
+	ModelPublicService_GetModelDefinition_FullMethodName               = "/model.model.v1alpha.ModelPublicService/GetModelDefinition"
+	ModelPublicService_ListModels_FullMethodName                       = "/model.model.v1alpha.ModelPublicService/ListModels"
+	ModelPublicService_ListUserModels_FullMethodName                   = "/model.model.v1alpha.ModelPublicService/ListUserModels"
+	ModelPublicService_CreateUserModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/CreateUserModel"
+	ModelPublicService_CreateUserModelBinaryFileUpload_FullMethodName  = "/model.model.v1alpha.ModelPublicService/CreateUserModelBinaryFileUpload"
+	ModelPublicService_GetUserModel_FullMethodName                     = "/model.model.v1alpha.ModelPublicService/GetUserModel"
+	ModelPublicService_UpdateUserModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/UpdateUserModel"
+	ModelPublicService_DeleteUserModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/DeleteUserModel"
+	ModelPublicService_LookUpUserModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/LookUpUserModel"
+	ModelPublicService_RenameUserModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/RenameUserModel"
+	ModelPublicService_PublishUserModel_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/PublishUserModel"
+	ModelPublicService_UnpublishUserModel_FullMethodName               = "/model.model.v1alpha.ModelPublicService/UnpublishUserModel"
+	ModelPublicService_DeployUserModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/DeployUserModel"
+	ModelPublicService_UndeployUserModel_FullMethodName                = "/model.model.v1alpha.ModelPublicService/UndeployUserModel"
+	ModelPublicService_GetUserModelCard_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/GetUserModelCard"
+	ModelPublicService_WatchUserModel_FullMethodName                   = "/model.model.v1alpha.ModelPublicService/WatchUserModel"
+	ModelPublicService_TriggerUserModel_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/TriggerUserModel"
+	ModelPublicService_TriggerUserModelBinaryFileUpload_FullMethodName = "/model.model.v1alpha.ModelPublicService/TriggerUserModelBinaryFileUpload"
+	ModelPublicService_TestUserModel_FullMethodName                    = "/model.model.v1alpha.ModelPublicService/TestUserModel"
+	ModelPublicService_TestUserModelBinaryFileUpload_FullMethodName    = "/model.model.v1alpha.ModelPublicService/TestUserModelBinaryFileUpload"
+	ModelPublicService_GetModelOperation_FullMethodName                = "/model.model.v1alpha.ModelPublicService/GetModelOperation"
 )
 
 // ModelPublicServiceClient is the client API for ModelPublicService service.
@@ -65,65 +66,68 @@ type ModelPublicServiceClient interface {
 	// ListModels method receives a ListModelsRequest message and returns a
 	// ListModelsResponse
 	ListModels(ctx context.Context, in *ListModelsRequest, opts ...grpc.CallOption) (*ListModelsResponse, error)
-	// CreateModel method receives a CreateModelRequest message and returns a
-	// CreateModelResponse
-	CreateModel(ctx context.Context, in *CreateModelRequest, opts ...grpc.CallOption) (*CreateModelResponse, error)
-	// CreateModelBinaryFileUpload method receives a
-	// CreateModelBinaryFileUploadRequest message and returns a
-	// CreateModelBinaryFileUploadResponse message.
+	// LisUsertModels method receives a ListUserModelsRequest message and returns a
+	// ListUserModelsResponse
+	ListUserModels(ctx context.Context, in *ListUserModelsRequest, opts ...grpc.CallOption) (*ListUserModelsResponse, error)
+	// CreateUserModel method receives a CreateUserModelRequest message and returns a
+	// CreateUserModelResponse
+	CreateUserModel(ctx context.Context, in *CreateUserModelRequest, opts ...grpc.CallOption) (*CreateUserModelResponse, error)
+	// CreateUserModelBinaryFileUpload method receives a
+	// CreateUserModelBinaryFileUploadRequest message and returns a
+	// CreateUserModelBinaryFileUploadResponse message.
 	//
-	// Endpoint: "POST /v1alpha/models:multipart"
-	CreateModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_CreateModelBinaryFileUploadClient, error)
-	// GetModel method receives a GetModelRequest message and returns a
-	// GetModelResponse
-	GetModel(ctx context.Context, in *GetModelRequest, opts ...grpc.CallOption) (*GetModelResponse, error)
-	// UpdateModel method receives a UpdateModelRequest message and returns a
-	// UpdateModelResponse
-	UpdateModel(ctx context.Context, in *UpdateModelRequest, opts ...grpc.CallOption) (*UpdateModelResponse, error)
-	// DeleteModel method receives a DeleteModelRequest message and returns a
-	// DeleteModelResponse
-	DeleteModel(ctx context.Context, in *DeleteModelRequest, opts ...grpc.CallOption) (*DeleteModelResponse, error)
-	// LookUpModel method receives a LookUpModelRequest message and returns a
-	// LookUpModelResponse
-	LookUpModel(ctx context.Context, in *LookUpModelRequest, opts ...grpc.CallOption) (*LookUpModelResponse, error)
-	// RenameModel method rename a model
-	RenameModel(ctx context.Context, in *RenameModelRequest, opts ...grpc.CallOption) (*RenameModelResponse, error)
-	// PublishModel method receives a PublishModelRequest message and returns a
-	// PublishModelResponse
-	PublishModel(ctx context.Context, in *PublishModelRequest, opts ...grpc.CallOption) (*PublishModelResponse, error)
-	// UnpublishModel method receives a UnpublishModelRequest message and returns
-	// a UnpublishModelResponse
-	UnpublishModel(ctx context.Context, in *UnpublishModelRequest, opts ...grpc.CallOption) (*UnpublishModelResponse, error)
-	// DeployModel deploy a model to online state
-	DeployModel(ctx context.Context, in *DeployModelRequest, opts ...grpc.CallOption) (*DeployModelResponse, error)
-	// UndeployModel undeploy a model to offline state
-	UndeployModel(ctx context.Context, in *UndeployModelRequest, opts ...grpc.CallOption) (*UndeployModelResponse, error)
-	// GetModelCard method receives a GetModelCardRequest message
-	// and returns a GetModelCardResponse
-	GetModelCard(ctx context.Context, in *GetModelCardRequest, opts ...grpc.CallOption) (*GetModelCardResponse, error)
-	// WatchModel method receives a WatchModelRequest message
+	// Endpoint: "POST /v1alpha/users/*/models:multipart"
+	CreateUserModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_CreateUserModelBinaryFileUploadClient, error)
+	// GetUserModel method receives a GetUserModelRequest message and returns a
+	// GetUserModelResponse
+	GetUserModel(ctx context.Context, in *GetUserModelRequest, opts ...grpc.CallOption) (*GetUserModelResponse, error)
+	// UpdateUserModel method receives a UpdateUserModelRequest message and returns a
+	// UpdateUserModelResponse
+	UpdateUserModel(ctx context.Context, in *UpdateUserModelRequest, opts ...grpc.CallOption) (*UpdateUserModelResponse, error)
+	// DeleteUserModel method receives a DeleteUserModelRequest message and returns a
+	// DeleteUserModelResponse
+	DeleteUserModel(ctx context.Context, in *DeleteUserModelRequest, opts ...grpc.CallOption) (*DeleteUserModelResponse, error)
+	// LookUpUserModel method receives a LookUpUserModelRequest message and returns a
+	// LookUpUserModelResponse
+	LookUpUserModel(ctx context.Context, in *LookUpUserModelRequest, opts ...grpc.CallOption) (*LookUpUserModelResponse, error)
+	// RenameUserModel method rename a model
+	RenameUserModel(ctx context.Context, in *RenameUserModelRequest, opts ...grpc.CallOption) (*RenameUserModelResponse, error)
+	// PublishUserModel method receives a PublisUserhModelRequest message and returns a
+	// PublishUserModelResponse
+	PublishUserModel(ctx context.Context, in *PublishUserModelRequest, opts ...grpc.CallOption) (*PublishUserModelResponse, error)
+	// UnpublishUserModel method receives a UnpublishUserModelRequest message and returns
+	// a UnpublishUserModelResponse
+	UnpublishUserModel(ctx context.Context, in *UnpublishUserModelRequest, opts ...grpc.CallOption) (*UnpublishUserModelResponse, error)
+	// DeployUserModel deploy a model to online state
+	DeployUserModel(ctx context.Context, in *DeployUserModelRequest, opts ...grpc.CallOption) (*DeployUserModelResponse, error)
+	// UndeployUserModel undeploy a model to offline state
+	UndeployUserModel(ctx context.Context, in *UndeployUserModelRequest, opts ...grpc.CallOption) (*UndeployUserModelResponse, error)
+	// GetUserModelCard method receives a GetUserModelCardRequest message
+	// and returns a GetUserModelCardResponseUser
+	GetUserModelCard(ctx context.Context, in *GetUserModelCardRequest, opts ...grpc.CallOption) (*GetUserModelCardResponse, error)
+	// WatchUserModel method receives a WatchUserModelRequest message
 	// and returns a WatchModelResponse
-	WatchModel(ctx context.Context, in *WatchModelRequest, opts ...grpc.CallOption) (*WatchModelResponse, error)
+	WatchUserModel(ctx context.Context, in *WatchUserModelRequest, opts ...grpc.CallOption) (*WatchUserModelResponse, error)
 	// /////////////////////////////////////////////////////
 	//
-	// TriggerModel method receives a TriggerModelRequest message
-	// and returns a TriggerModelResponse message.
-	TriggerModel(ctx context.Context, in *TriggerModelRequest, opts ...grpc.CallOption) (*TriggerModelResponse, error)
-	// TriggerModelBinaryFileUpload method receives a
-	// TriggerModelBinaryFileUploadRequest message and returns a
-	// TriggerModelBinaryFileUploadResponse message.
+	// TriggerUserModel method receives a TriggerUserModelRequest message
+	// and returns a TriggerUserModelResponse message.
+	TriggerUserModel(ctx context.Context, in *TriggerUserModelRequest, opts ...grpc.CallOption) (*TriggerUserModelResponse, error)
+	// TriggerUserModelBinaryFileUpload method receives a
+	// TriggerUserModelBinaryFileUploadRequest message and returns a
+	// TriggerUserModelBinaryFileUploadResponse message.
 	//
 	// Endpoint: "POST/v1alpha/{name=models/*}/trigger-multipart"
-	TriggerModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TriggerModelBinaryFileUploadClient, error)
-	// TestModel method receives a TestModelRequest message
-	// and returns a TestModelResponse message.
-	TestModel(ctx context.Context, in *TestModelRequest, opts ...grpc.CallOption) (*TestModelResponse, error)
-	// TestModelBinaryFileUpload method receives a
-	// TestModelBinaryFileUploadRequest message and returns a
-	// TestModelBinaryFileUploadResponse message.
+	TriggerUserModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TriggerUserModelBinaryFileUploadClient, error)
+	// TestUserModel method receives a TestUserModelRequest message
+	// and returns a TestUserModelResponse message.
+	TestUserModel(ctx context.Context, in *TestUserModelRequest, opts ...grpc.CallOption) (*TestUserModelResponse, error)
+	// TestUserModelBinaryFileUpload method receives a
+	// TestUserModelBinaryFileUploadRequest message and returns a
+	// TestUserModelBinaryFileUploadResponse message.
 	//
-	// Endpoint: "POST/v1alpha/{name=models/*}/test-multipart"
-	TestModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TestModelBinaryFileUploadClient, error)
+	// Endpoint: "POST/v1alpha/{name=users/*/models/*}/test-multipart"
+	TestUserModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TestUserModelBinaryFileUploadClient, error)
 	// GetModelOperation method receives a
 	// GetModelOperationRequest message and returns a
 	// GetModelOperationResponse message.
@@ -183,228 +187,237 @@ func (c *modelPublicServiceClient) ListModels(ctx context.Context, in *ListModel
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) CreateModel(ctx context.Context, in *CreateModelRequest, opts ...grpc.CallOption) (*CreateModelResponse, error) {
-	out := new(CreateModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_CreateModel_FullMethodName, in, out, opts...)
+func (c *modelPublicServiceClient) ListUserModels(ctx context.Context, in *ListUserModelsRequest, opts ...grpc.CallOption) (*ListUserModelsResponse, error) {
+	out := new(ListUserModelsResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_ListUserModels_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) CreateModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_CreateModelBinaryFileUploadClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[0], ModelPublicService_CreateModelBinaryFileUpload_FullMethodName, opts...)
+func (c *modelPublicServiceClient) CreateUserModel(ctx context.Context, in *CreateUserModelRequest, opts ...grpc.CallOption) (*CreateUserModelResponse, error) {
+	out := new(CreateUserModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_CreateUserModel_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &modelPublicServiceCreateModelBinaryFileUploadClient{stream}
+	return out, nil
+}
+
+func (c *modelPublicServiceClient) CreateUserModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_CreateUserModelBinaryFileUploadClient, error) {
+	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[0], ModelPublicService_CreateUserModelBinaryFileUpload_FullMethodName, opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &modelPublicServiceCreateUserModelBinaryFileUploadClient{stream}
 	return x, nil
 }
 
-type ModelPublicService_CreateModelBinaryFileUploadClient interface {
-	Send(*CreateModelBinaryFileUploadRequest) error
-	CloseAndRecv() (*CreateModelBinaryFileUploadResponse, error)
+type ModelPublicService_CreateUserModelBinaryFileUploadClient interface {
+	Send(*CreateUserModelBinaryFileUploadRequest) error
+	CloseAndRecv() (*CreateUserModelBinaryFileUploadResponse, error)
 	grpc.ClientStream
 }
 
-type modelPublicServiceCreateModelBinaryFileUploadClient struct {
+type modelPublicServiceCreateUserModelBinaryFileUploadClient struct {
 	grpc.ClientStream
 }
 
-func (x *modelPublicServiceCreateModelBinaryFileUploadClient) Send(m *CreateModelBinaryFileUploadRequest) error {
+func (x *modelPublicServiceCreateUserModelBinaryFileUploadClient) Send(m *CreateUserModelBinaryFileUploadRequest) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *modelPublicServiceCreateModelBinaryFileUploadClient) CloseAndRecv() (*CreateModelBinaryFileUploadResponse, error) {
+func (x *modelPublicServiceCreateUserModelBinaryFileUploadClient) CloseAndRecv() (*CreateUserModelBinaryFileUploadResponse, error) {
 	if err := x.ClientStream.CloseSend(); err != nil {
 		return nil, err
 	}
-	m := new(CreateModelBinaryFileUploadResponse)
+	m := new(CreateUserModelBinaryFileUploadResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func (c *modelPublicServiceClient) GetModel(ctx context.Context, in *GetModelRequest, opts ...grpc.CallOption) (*GetModelResponse, error) {
-	out := new(GetModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_GetModel_FullMethodName, in, out, opts...)
+func (c *modelPublicServiceClient) GetUserModel(ctx context.Context, in *GetUserModelRequest, opts ...grpc.CallOption) (*GetUserModelResponse, error) {
+	out := new(GetUserModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_GetUserModel_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) UpdateModel(ctx context.Context, in *UpdateModelRequest, opts ...grpc.CallOption) (*UpdateModelResponse, error) {
-	out := new(UpdateModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_UpdateModel_FullMethodName, in, out, opts...)
+func (c *modelPublicServiceClient) UpdateUserModel(ctx context.Context, in *UpdateUserModelRequest, opts ...grpc.CallOption) (*UpdateUserModelResponse, error) {
+	out := new(UpdateUserModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_UpdateUserModel_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) DeleteModel(ctx context.Context, in *DeleteModelRequest, opts ...grpc.CallOption) (*DeleteModelResponse, error) {
-	out := new(DeleteModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_DeleteModel_FullMethodName, in, out, opts...)
+func (c *modelPublicServiceClient) DeleteUserModel(ctx context.Context, in *DeleteUserModelRequest, opts ...grpc.CallOption) (*DeleteUserModelResponse, error) {
+	out := new(DeleteUserModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_DeleteUserModel_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) LookUpModel(ctx context.Context, in *LookUpModelRequest, opts ...grpc.CallOption) (*LookUpModelResponse, error) {
-	out := new(LookUpModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_LookUpModel_FullMethodName, in, out, opts...)
+func (c *modelPublicServiceClient) LookUpUserModel(ctx context.Context, in *LookUpUserModelRequest, opts ...grpc.CallOption) (*LookUpUserModelResponse, error) {
+	out := new(LookUpUserModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_LookUpUserModel_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) RenameModel(ctx context.Context, in *RenameModelRequest, opts ...grpc.CallOption) (*RenameModelResponse, error) {
-	out := new(RenameModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_RenameModel_FullMethodName, in, out, opts...)
+func (c *modelPublicServiceClient) RenameUserModel(ctx context.Context, in *RenameUserModelRequest, opts ...grpc.CallOption) (*RenameUserModelResponse, error) {
+	out := new(RenameUserModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_RenameUserModel_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) PublishModel(ctx context.Context, in *PublishModelRequest, opts ...grpc.CallOption) (*PublishModelResponse, error) {
-	out := new(PublishModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_PublishModel_FullMethodName, in, out, opts...)
+func (c *modelPublicServiceClient) PublishUserModel(ctx context.Context, in *PublishUserModelRequest, opts ...grpc.CallOption) (*PublishUserModelResponse, error) {
+	out := new(PublishUserModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_PublishUserModel_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) UnpublishModel(ctx context.Context, in *UnpublishModelRequest, opts ...grpc.CallOption) (*UnpublishModelResponse, error) {
-	out := new(UnpublishModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_UnpublishModel_FullMethodName, in, out, opts...)
+func (c *modelPublicServiceClient) UnpublishUserModel(ctx context.Context, in *UnpublishUserModelRequest, opts ...grpc.CallOption) (*UnpublishUserModelResponse, error) {
+	out := new(UnpublishUserModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_UnpublishUserModel_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) DeployModel(ctx context.Context, in *DeployModelRequest, opts ...grpc.CallOption) (*DeployModelResponse, error) {
-	out := new(DeployModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_DeployModel_FullMethodName, in, out, opts...)
+func (c *modelPublicServiceClient) DeployUserModel(ctx context.Context, in *DeployUserModelRequest, opts ...grpc.CallOption) (*DeployUserModelResponse, error) {
+	out := new(DeployUserModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_DeployUserModel_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) UndeployModel(ctx context.Context, in *UndeployModelRequest, opts ...grpc.CallOption) (*UndeployModelResponse, error) {
-	out := new(UndeployModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_UndeployModel_FullMethodName, in, out, opts...)
+func (c *modelPublicServiceClient) UndeployUserModel(ctx context.Context, in *UndeployUserModelRequest, opts ...grpc.CallOption) (*UndeployUserModelResponse, error) {
+	out := new(UndeployUserModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_UndeployUserModel_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) GetModelCard(ctx context.Context, in *GetModelCardRequest, opts ...grpc.CallOption) (*GetModelCardResponse, error) {
-	out := new(GetModelCardResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_GetModelCard_FullMethodName, in, out, opts...)
+func (c *modelPublicServiceClient) GetUserModelCard(ctx context.Context, in *GetUserModelCardRequest, opts ...grpc.CallOption) (*GetUserModelCardResponse, error) {
+	out := new(GetUserModelCardResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_GetUserModelCard_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) WatchModel(ctx context.Context, in *WatchModelRequest, opts ...grpc.CallOption) (*WatchModelResponse, error) {
-	out := new(WatchModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_WatchModel_FullMethodName, in, out, opts...)
+func (c *modelPublicServiceClient) WatchUserModel(ctx context.Context, in *WatchUserModelRequest, opts ...grpc.CallOption) (*WatchUserModelResponse, error) {
+	out := new(WatchUserModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_WatchUserModel_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) TriggerModel(ctx context.Context, in *TriggerModelRequest, opts ...grpc.CallOption) (*TriggerModelResponse, error) {
-	out := new(TriggerModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_TriggerModel_FullMethodName, in, out, opts...)
+func (c *modelPublicServiceClient) TriggerUserModel(ctx context.Context, in *TriggerUserModelRequest, opts ...grpc.CallOption) (*TriggerUserModelResponse, error) {
+	out := new(TriggerUserModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_TriggerUserModel_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) TriggerModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TriggerModelBinaryFileUploadClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[1], ModelPublicService_TriggerModelBinaryFileUpload_FullMethodName, opts...)
+func (c *modelPublicServiceClient) TriggerUserModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TriggerUserModelBinaryFileUploadClient, error) {
+	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[1], ModelPublicService_TriggerUserModelBinaryFileUpload_FullMethodName, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &modelPublicServiceTriggerModelBinaryFileUploadClient{stream}
+	x := &modelPublicServiceTriggerUserModelBinaryFileUploadClient{stream}
 	return x, nil
 }
 
-type ModelPublicService_TriggerModelBinaryFileUploadClient interface {
-	Send(*TriggerModelBinaryFileUploadRequest) error
-	CloseAndRecv() (*TriggerModelBinaryFileUploadResponse, error)
+type ModelPublicService_TriggerUserModelBinaryFileUploadClient interface {
+	Send(*TriggerUserModelBinaryFileUploadRequest) error
+	CloseAndRecv() (*TriggerUserModelBinaryFileUploadResponse, error)
 	grpc.ClientStream
 }
 
-type modelPublicServiceTriggerModelBinaryFileUploadClient struct {
+type modelPublicServiceTriggerUserModelBinaryFileUploadClient struct {
 	grpc.ClientStream
 }
 
-func (x *modelPublicServiceTriggerModelBinaryFileUploadClient) Send(m *TriggerModelBinaryFileUploadRequest) error {
+func (x *modelPublicServiceTriggerUserModelBinaryFileUploadClient) Send(m *TriggerUserModelBinaryFileUploadRequest) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *modelPublicServiceTriggerModelBinaryFileUploadClient) CloseAndRecv() (*TriggerModelBinaryFileUploadResponse, error) {
+func (x *modelPublicServiceTriggerUserModelBinaryFileUploadClient) CloseAndRecv() (*TriggerUserModelBinaryFileUploadResponse, error) {
 	if err := x.ClientStream.CloseSend(); err != nil {
 		return nil, err
 	}
-	m := new(TriggerModelBinaryFileUploadResponse)
+	m := new(TriggerUserModelBinaryFileUploadResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func (c *modelPublicServiceClient) TestModel(ctx context.Context, in *TestModelRequest, opts ...grpc.CallOption) (*TestModelResponse, error) {
-	out := new(TestModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_TestModel_FullMethodName, in, out, opts...)
+func (c *modelPublicServiceClient) TestUserModel(ctx context.Context, in *TestUserModelRequest, opts ...grpc.CallOption) (*TestUserModelResponse, error) {
+	out := new(TestUserModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_TestUserModel_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) TestModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TestModelBinaryFileUploadClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[2], ModelPublicService_TestModelBinaryFileUpload_FullMethodName, opts...)
+func (c *modelPublicServiceClient) TestUserModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TestUserModelBinaryFileUploadClient, error) {
+	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[2], ModelPublicService_TestUserModelBinaryFileUpload_FullMethodName, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &modelPublicServiceTestModelBinaryFileUploadClient{stream}
+	x := &modelPublicServiceTestUserModelBinaryFileUploadClient{stream}
 	return x, nil
 }
 
-type ModelPublicService_TestModelBinaryFileUploadClient interface {
-	Send(*TestModelBinaryFileUploadRequest) error
-	CloseAndRecv() (*TestModelBinaryFileUploadResponse, error)
+type ModelPublicService_TestUserModelBinaryFileUploadClient interface {
+	Send(*TestUserModelBinaryFileUploadRequest) error
+	CloseAndRecv() (*TestUserModelBinaryFileUploadResponse, error)
 	grpc.ClientStream
 }
 
-type modelPublicServiceTestModelBinaryFileUploadClient struct {
+type modelPublicServiceTestUserModelBinaryFileUploadClient struct {
 	grpc.ClientStream
 }
 
-func (x *modelPublicServiceTestModelBinaryFileUploadClient) Send(m *TestModelBinaryFileUploadRequest) error {
+func (x *modelPublicServiceTestUserModelBinaryFileUploadClient) Send(m *TestUserModelBinaryFileUploadRequest) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *modelPublicServiceTestModelBinaryFileUploadClient) CloseAndRecv() (*TestModelBinaryFileUploadResponse, error) {
+func (x *modelPublicServiceTestUserModelBinaryFileUploadClient) CloseAndRecv() (*TestUserModelBinaryFileUploadResponse, error) {
 	if err := x.ClientStream.CloseSend(); err != nil {
 		return nil, err
 	}
-	m := new(TestModelBinaryFileUploadResponse)
+	m := new(TestUserModelBinaryFileUploadResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -441,65 +454,68 @@ type ModelPublicServiceServer interface {
 	// ListModels method receives a ListModelsRequest message and returns a
 	// ListModelsResponse
 	ListModels(context.Context, *ListModelsRequest) (*ListModelsResponse, error)
-	// CreateModel method receives a CreateModelRequest message and returns a
-	// CreateModelResponse
-	CreateModel(context.Context, *CreateModelRequest) (*CreateModelResponse, error)
-	// CreateModelBinaryFileUpload method receives a
-	// CreateModelBinaryFileUploadRequest message and returns a
-	// CreateModelBinaryFileUploadResponse message.
+	// LisUsertModels method receives a ListUserModelsRequest message and returns a
+	// ListUserModelsResponse
+	ListUserModels(context.Context, *ListUserModelsRequest) (*ListUserModelsResponse, error)
+	// CreateUserModel method receives a CreateUserModelRequest message and returns a
+	// CreateUserModelResponse
+	CreateUserModel(context.Context, *CreateUserModelRequest) (*CreateUserModelResponse, error)
+	// CreateUserModelBinaryFileUpload method receives a
+	// CreateUserModelBinaryFileUploadRequest message and returns a
+	// CreateUserModelBinaryFileUploadResponse message.
 	//
-	// Endpoint: "POST /v1alpha/models:multipart"
-	CreateModelBinaryFileUpload(ModelPublicService_CreateModelBinaryFileUploadServer) error
-	// GetModel method receives a GetModelRequest message and returns a
-	// GetModelResponse
-	GetModel(context.Context, *GetModelRequest) (*GetModelResponse, error)
-	// UpdateModel method receives a UpdateModelRequest message and returns a
-	// UpdateModelResponse
-	UpdateModel(context.Context, *UpdateModelRequest) (*UpdateModelResponse, error)
-	// DeleteModel method receives a DeleteModelRequest message and returns a
-	// DeleteModelResponse
-	DeleteModel(context.Context, *DeleteModelRequest) (*DeleteModelResponse, error)
-	// LookUpModel method receives a LookUpModelRequest message and returns a
-	// LookUpModelResponse
-	LookUpModel(context.Context, *LookUpModelRequest) (*LookUpModelResponse, error)
-	// RenameModel method rename a model
-	RenameModel(context.Context, *RenameModelRequest) (*RenameModelResponse, error)
-	// PublishModel method receives a PublishModelRequest message and returns a
-	// PublishModelResponse
-	PublishModel(context.Context, *PublishModelRequest) (*PublishModelResponse, error)
-	// UnpublishModel method receives a UnpublishModelRequest message and returns
-	// a UnpublishModelResponse
-	UnpublishModel(context.Context, *UnpublishModelRequest) (*UnpublishModelResponse, error)
-	// DeployModel deploy a model to online state
-	DeployModel(context.Context, *DeployModelRequest) (*DeployModelResponse, error)
-	// UndeployModel undeploy a model to offline state
-	UndeployModel(context.Context, *UndeployModelRequest) (*UndeployModelResponse, error)
-	// GetModelCard method receives a GetModelCardRequest message
-	// and returns a GetModelCardResponse
-	GetModelCard(context.Context, *GetModelCardRequest) (*GetModelCardResponse, error)
-	// WatchModel method receives a WatchModelRequest message
+	// Endpoint: "POST /v1alpha/users/*/models:multipart"
+	CreateUserModelBinaryFileUpload(ModelPublicService_CreateUserModelBinaryFileUploadServer) error
+	// GetUserModel method receives a GetUserModelRequest message and returns a
+	// GetUserModelResponse
+	GetUserModel(context.Context, *GetUserModelRequest) (*GetUserModelResponse, error)
+	// UpdateUserModel method receives a UpdateUserModelRequest message and returns a
+	// UpdateUserModelResponse
+	UpdateUserModel(context.Context, *UpdateUserModelRequest) (*UpdateUserModelResponse, error)
+	// DeleteUserModel method receives a DeleteUserModelRequest message and returns a
+	// DeleteUserModelResponse
+	DeleteUserModel(context.Context, *DeleteUserModelRequest) (*DeleteUserModelResponse, error)
+	// LookUpUserModel method receives a LookUpUserModelRequest message and returns a
+	// LookUpUserModelResponse
+	LookUpUserModel(context.Context, *LookUpUserModelRequest) (*LookUpUserModelResponse, error)
+	// RenameUserModel method rename a model
+	RenameUserModel(context.Context, *RenameUserModelRequest) (*RenameUserModelResponse, error)
+	// PublishUserModel method receives a PublisUserhModelRequest message and returns a
+	// PublishUserModelResponse
+	PublishUserModel(context.Context, *PublishUserModelRequest) (*PublishUserModelResponse, error)
+	// UnpublishUserModel method receives a UnpublishUserModelRequest message and returns
+	// a UnpublishUserModelResponse
+	UnpublishUserModel(context.Context, *UnpublishUserModelRequest) (*UnpublishUserModelResponse, error)
+	// DeployUserModel deploy a model to online state
+	DeployUserModel(context.Context, *DeployUserModelRequest) (*DeployUserModelResponse, error)
+	// UndeployUserModel undeploy a model to offline state
+	UndeployUserModel(context.Context, *UndeployUserModelRequest) (*UndeployUserModelResponse, error)
+	// GetUserModelCard method receives a GetUserModelCardRequest message
+	// and returns a GetUserModelCardResponseUser
+	GetUserModelCard(context.Context, *GetUserModelCardRequest) (*GetUserModelCardResponse, error)
+	// WatchUserModel method receives a WatchUserModelRequest message
 	// and returns a WatchModelResponse
-	WatchModel(context.Context, *WatchModelRequest) (*WatchModelResponse, error)
+	WatchUserModel(context.Context, *WatchUserModelRequest) (*WatchUserModelResponse, error)
 	// /////////////////////////////////////////////////////
 	//
-	// TriggerModel method receives a TriggerModelRequest message
-	// and returns a TriggerModelResponse message.
-	TriggerModel(context.Context, *TriggerModelRequest) (*TriggerModelResponse, error)
-	// TriggerModelBinaryFileUpload method receives a
-	// TriggerModelBinaryFileUploadRequest message and returns a
-	// TriggerModelBinaryFileUploadResponse message.
+	// TriggerUserModel method receives a TriggerUserModelRequest message
+	// and returns a TriggerUserModelResponse message.
+	TriggerUserModel(context.Context, *TriggerUserModelRequest) (*TriggerUserModelResponse, error)
+	// TriggerUserModelBinaryFileUpload method receives a
+	// TriggerUserModelBinaryFileUploadRequest message and returns a
+	// TriggerUserModelBinaryFileUploadResponse message.
 	//
 	// Endpoint: "POST/v1alpha/{name=models/*}/trigger-multipart"
-	TriggerModelBinaryFileUpload(ModelPublicService_TriggerModelBinaryFileUploadServer) error
-	// TestModel method receives a TestModelRequest message
-	// and returns a TestModelResponse message.
-	TestModel(context.Context, *TestModelRequest) (*TestModelResponse, error)
-	// TestModelBinaryFileUpload method receives a
-	// TestModelBinaryFileUploadRequest message and returns a
-	// TestModelBinaryFileUploadResponse message.
+	TriggerUserModelBinaryFileUpload(ModelPublicService_TriggerUserModelBinaryFileUploadServer) error
+	// TestUserModel method receives a TestUserModelRequest message
+	// and returns a TestUserModelResponse message.
+	TestUserModel(context.Context, *TestUserModelRequest) (*TestUserModelResponse, error)
+	// TestUserModelBinaryFileUpload method receives a
+	// TestUserModelBinaryFileUploadRequest message and returns a
+	// TestUserModelBinaryFileUploadResponse message.
 	//
-	// Endpoint: "POST/v1alpha/{name=models/*}/test-multipart"
-	TestModelBinaryFileUpload(ModelPublicService_TestModelBinaryFileUploadServer) error
+	// Endpoint: "POST/v1alpha/{name=users/*/models/*}/test-multipart"
+	TestUserModelBinaryFileUpload(ModelPublicService_TestUserModelBinaryFileUploadServer) error
 	// GetModelOperation method receives a
 	// GetModelOperationRequest message and returns a
 	// GetModelOperationResponse message.
@@ -525,56 +541,59 @@ func (UnimplementedModelPublicServiceServer) GetModelDefinition(context.Context,
 func (UnimplementedModelPublicServiceServer) ListModels(context.Context, *ListModelsRequest) (*ListModelsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListModels not implemented")
 }
-func (UnimplementedModelPublicServiceServer) CreateModel(context.Context, *CreateModelRequest) (*CreateModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateModel not implemented")
+func (UnimplementedModelPublicServiceServer) ListUserModels(context.Context, *ListUserModelsRequest) (*ListUserModelsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListUserModels not implemented")
 }
-func (UnimplementedModelPublicServiceServer) CreateModelBinaryFileUpload(ModelPublicService_CreateModelBinaryFileUploadServer) error {
-	return status.Errorf(codes.Unimplemented, "method CreateModelBinaryFileUpload not implemented")
+func (UnimplementedModelPublicServiceServer) CreateUserModel(context.Context, *CreateUserModelRequest) (*CreateUserModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateUserModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) GetModel(context.Context, *GetModelRequest) (*GetModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetModel not implemented")
+func (UnimplementedModelPublicServiceServer) CreateUserModelBinaryFileUpload(ModelPublicService_CreateUserModelBinaryFileUploadServer) error {
+	return status.Errorf(codes.Unimplemented, "method CreateUserModelBinaryFileUpload not implemented")
 }
-func (UnimplementedModelPublicServiceServer) UpdateModel(context.Context, *UpdateModelRequest) (*UpdateModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateModel not implemented")
+func (UnimplementedModelPublicServiceServer) GetUserModel(context.Context, *GetUserModelRequest) (*GetUserModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) DeleteModel(context.Context, *DeleteModelRequest) (*DeleteModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteModel not implemented")
+func (UnimplementedModelPublicServiceServer) UpdateUserModel(context.Context, *UpdateUserModelRequest) (*UpdateUserModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) LookUpModel(context.Context, *LookUpModelRequest) (*LookUpModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LookUpModel not implemented")
+func (UnimplementedModelPublicServiceServer) DeleteUserModel(context.Context, *DeleteUserModelRequest) (*DeleteUserModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteUserModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) RenameModel(context.Context, *RenameModelRequest) (*RenameModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RenameModel not implemented")
+func (UnimplementedModelPublicServiceServer) LookUpUserModel(context.Context, *LookUpUserModelRequest) (*LookUpUserModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LookUpUserModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) PublishModel(context.Context, *PublishModelRequest) (*PublishModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PublishModel not implemented")
+func (UnimplementedModelPublicServiceServer) RenameUserModel(context.Context, *RenameUserModelRequest) (*RenameUserModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RenameUserModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) UnpublishModel(context.Context, *UnpublishModelRequest) (*UnpublishModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UnpublishModel not implemented")
+func (UnimplementedModelPublicServiceServer) PublishUserModel(context.Context, *PublishUserModelRequest) (*PublishUserModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PublishUserModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) DeployModel(context.Context, *DeployModelRequest) (*DeployModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeployModel not implemented")
+func (UnimplementedModelPublicServiceServer) UnpublishUserModel(context.Context, *UnpublishUserModelRequest) (*UnpublishUserModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnpublishUserModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) UndeployModel(context.Context, *UndeployModelRequest) (*UndeployModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UndeployModel not implemented")
+func (UnimplementedModelPublicServiceServer) DeployUserModel(context.Context, *DeployUserModelRequest) (*DeployUserModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeployUserModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) GetModelCard(context.Context, *GetModelCardRequest) (*GetModelCardResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetModelCard not implemented")
+func (UnimplementedModelPublicServiceServer) UndeployUserModel(context.Context, *UndeployUserModelRequest) (*UndeployUserModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UndeployUserModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) WatchModel(context.Context, *WatchModelRequest) (*WatchModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method WatchModel not implemented")
+func (UnimplementedModelPublicServiceServer) GetUserModelCard(context.Context, *GetUserModelCardRequest) (*GetUserModelCardResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserModelCard not implemented")
 }
-func (UnimplementedModelPublicServiceServer) TriggerModel(context.Context, *TriggerModelRequest) (*TriggerModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TriggerModel not implemented")
+func (UnimplementedModelPublicServiceServer) WatchUserModel(context.Context, *WatchUserModelRequest) (*WatchUserModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WatchUserModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) TriggerModelBinaryFileUpload(ModelPublicService_TriggerModelBinaryFileUploadServer) error {
-	return status.Errorf(codes.Unimplemented, "method TriggerModelBinaryFileUpload not implemented")
+func (UnimplementedModelPublicServiceServer) TriggerUserModel(context.Context, *TriggerUserModelRequest) (*TriggerUserModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerUserModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) TestModel(context.Context, *TestModelRequest) (*TestModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TestModel not implemented")
+func (UnimplementedModelPublicServiceServer) TriggerUserModelBinaryFileUpload(ModelPublicService_TriggerUserModelBinaryFileUploadServer) error {
+	return status.Errorf(codes.Unimplemented, "method TriggerUserModelBinaryFileUpload not implemented")
 }
-func (UnimplementedModelPublicServiceServer) TestModelBinaryFileUpload(ModelPublicService_TestModelBinaryFileUploadServer) error {
-	return status.Errorf(codes.Unimplemented, "method TestModelBinaryFileUpload not implemented")
+func (UnimplementedModelPublicServiceServer) TestUserModel(context.Context, *TestUserModelRequest) (*TestUserModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TestUserModel not implemented")
+}
+func (UnimplementedModelPublicServiceServer) TestUserModelBinaryFileUpload(ModelPublicService_TestUserModelBinaryFileUploadServer) error {
+	return status.Errorf(codes.Unimplemented, "method TestUserModelBinaryFileUpload not implemented")
 }
 func (UnimplementedModelPublicServiceServer) GetModelOperation(context.Context, *GetModelOperationRequest) (*GetModelOperationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetModelOperation not implemented")
@@ -681,330 +700,348 @@ func _ModelPublicService_ListModels_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_CreateModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateModelRequest)
+func _ModelPublicService_ListUserModels_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListUserModelsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).CreateModel(ctx, in)
+		return srv.(ModelPublicServiceServer).ListUserModels(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_CreateModel_FullMethodName,
+		FullMethod: ModelPublicService_ListUserModels_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).CreateModel(ctx, req.(*CreateModelRequest))
+		return srv.(ModelPublicServiceServer).ListUserModels(ctx, req.(*ListUserModelsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_CreateModelBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(ModelPublicServiceServer).CreateModelBinaryFileUpload(&modelPublicServiceCreateModelBinaryFileUploadServer{stream})
+func _ModelPublicService_CreateUserModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateUserModelRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPublicServiceServer).CreateUserModel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPublicService_CreateUserModel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPublicServiceServer).CreateUserModel(ctx, req.(*CreateUserModelRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
-type ModelPublicService_CreateModelBinaryFileUploadServer interface {
-	SendAndClose(*CreateModelBinaryFileUploadResponse) error
-	Recv() (*CreateModelBinaryFileUploadRequest, error)
+func _ModelPublicService_CreateUserModelBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ModelPublicServiceServer).CreateUserModelBinaryFileUpload(&modelPublicServiceCreateUserModelBinaryFileUploadServer{stream})
+}
+
+type ModelPublicService_CreateUserModelBinaryFileUploadServer interface {
+	SendAndClose(*CreateUserModelBinaryFileUploadResponse) error
+	Recv() (*CreateUserModelBinaryFileUploadRequest, error)
 	grpc.ServerStream
 }
 
-type modelPublicServiceCreateModelBinaryFileUploadServer struct {
+type modelPublicServiceCreateUserModelBinaryFileUploadServer struct {
 	grpc.ServerStream
 }
 
-func (x *modelPublicServiceCreateModelBinaryFileUploadServer) SendAndClose(m *CreateModelBinaryFileUploadResponse) error {
+func (x *modelPublicServiceCreateUserModelBinaryFileUploadServer) SendAndClose(m *CreateUserModelBinaryFileUploadResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *modelPublicServiceCreateModelBinaryFileUploadServer) Recv() (*CreateModelBinaryFileUploadRequest, error) {
-	m := new(CreateModelBinaryFileUploadRequest)
+func (x *modelPublicServiceCreateUserModelBinaryFileUploadServer) Recv() (*CreateUserModelBinaryFileUploadRequest, error) {
+	m := new(CreateUserModelBinaryFileUploadRequest)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func _ModelPublicService_GetModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetModelRequest)
+func _ModelPublicService_GetUserModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).GetModel(ctx, in)
+		return srv.(ModelPublicServiceServer).GetUserModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_GetModel_FullMethodName,
+		FullMethod: ModelPublicService_GetUserModel_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).GetModel(ctx, req.(*GetModelRequest))
+		return srv.(ModelPublicServiceServer).GetUserModel(ctx, req.(*GetUserModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_UpdateModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateModelRequest)
+func _ModelPublicService_UpdateUserModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateUserModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).UpdateModel(ctx, in)
+		return srv.(ModelPublicServiceServer).UpdateUserModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_UpdateModel_FullMethodName,
+		FullMethod: ModelPublicService_UpdateUserModel_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).UpdateModel(ctx, req.(*UpdateModelRequest))
+		return srv.(ModelPublicServiceServer).UpdateUserModel(ctx, req.(*UpdateUserModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_DeleteModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteModelRequest)
+func _ModelPublicService_DeleteUserModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteUserModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).DeleteModel(ctx, in)
+		return srv.(ModelPublicServiceServer).DeleteUserModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_DeleteModel_FullMethodName,
+		FullMethod: ModelPublicService_DeleteUserModel_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).DeleteModel(ctx, req.(*DeleteModelRequest))
+		return srv.(ModelPublicServiceServer).DeleteUserModel(ctx, req.(*DeleteUserModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_LookUpModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(LookUpModelRequest)
+func _ModelPublicService_LookUpUserModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LookUpUserModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).LookUpModel(ctx, in)
+		return srv.(ModelPublicServiceServer).LookUpUserModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_LookUpModel_FullMethodName,
+		FullMethod: ModelPublicService_LookUpUserModel_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).LookUpModel(ctx, req.(*LookUpModelRequest))
+		return srv.(ModelPublicServiceServer).LookUpUserModel(ctx, req.(*LookUpUserModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_RenameModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RenameModelRequest)
+func _ModelPublicService_RenameUserModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RenameUserModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).RenameModel(ctx, in)
+		return srv.(ModelPublicServiceServer).RenameUserModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_RenameModel_FullMethodName,
+		FullMethod: ModelPublicService_RenameUserModel_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).RenameModel(ctx, req.(*RenameModelRequest))
+		return srv.(ModelPublicServiceServer).RenameUserModel(ctx, req.(*RenameUserModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_PublishModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PublishModelRequest)
+func _ModelPublicService_PublishUserModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PublishUserModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).PublishModel(ctx, in)
+		return srv.(ModelPublicServiceServer).PublishUserModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_PublishModel_FullMethodName,
+		FullMethod: ModelPublicService_PublishUserModel_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).PublishModel(ctx, req.(*PublishModelRequest))
+		return srv.(ModelPublicServiceServer).PublishUserModel(ctx, req.(*PublishUserModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_UnpublishModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UnpublishModelRequest)
+func _ModelPublicService_UnpublishUserModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnpublishUserModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).UnpublishModel(ctx, in)
+		return srv.(ModelPublicServiceServer).UnpublishUserModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_UnpublishModel_FullMethodName,
+		FullMethod: ModelPublicService_UnpublishUserModel_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).UnpublishModel(ctx, req.(*UnpublishModelRequest))
+		return srv.(ModelPublicServiceServer).UnpublishUserModel(ctx, req.(*UnpublishUserModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_DeployModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeployModelRequest)
+func _ModelPublicService_DeployUserModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeployUserModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).DeployModel(ctx, in)
+		return srv.(ModelPublicServiceServer).DeployUserModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_DeployModel_FullMethodName,
+		FullMethod: ModelPublicService_DeployUserModel_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).DeployModel(ctx, req.(*DeployModelRequest))
+		return srv.(ModelPublicServiceServer).DeployUserModel(ctx, req.(*DeployUserModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_UndeployModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UndeployModelRequest)
+func _ModelPublicService_UndeployUserModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UndeployUserModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).UndeployModel(ctx, in)
+		return srv.(ModelPublicServiceServer).UndeployUserModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_UndeployModel_FullMethodName,
+		FullMethod: ModelPublicService_UndeployUserModel_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).UndeployModel(ctx, req.(*UndeployModelRequest))
+		return srv.(ModelPublicServiceServer).UndeployUserModel(ctx, req.(*UndeployUserModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_GetModelCard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetModelCardRequest)
+func _ModelPublicService_GetUserModelCard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserModelCardRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).GetModelCard(ctx, in)
+		return srv.(ModelPublicServiceServer).GetUserModelCard(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_GetModelCard_FullMethodName,
+		FullMethod: ModelPublicService_GetUserModelCard_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).GetModelCard(ctx, req.(*GetModelCardRequest))
+		return srv.(ModelPublicServiceServer).GetUserModelCard(ctx, req.(*GetUserModelCardRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_WatchModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(WatchModelRequest)
+func _ModelPublicService_WatchUserModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WatchUserModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).WatchModel(ctx, in)
+		return srv.(ModelPublicServiceServer).WatchUserModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_WatchModel_FullMethodName,
+		FullMethod: ModelPublicService_WatchUserModel_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).WatchModel(ctx, req.(*WatchModelRequest))
+		return srv.(ModelPublicServiceServer).WatchUserModel(ctx, req.(*WatchUserModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_TriggerModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TriggerModelRequest)
+func _ModelPublicService_TriggerUserModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerUserModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).TriggerModel(ctx, in)
+		return srv.(ModelPublicServiceServer).TriggerUserModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_TriggerModel_FullMethodName,
+		FullMethod: ModelPublicService_TriggerUserModel_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).TriggerModel(ctx, req.(*TriggerModelRequest))
+		return srv.(ModelPublicServiceServer).TriggerUserModel(ctx, req.(*TriggerUserModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_TriggerModelBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(ModelPublicServiceServer).TriggerModelBinaryFileUpload(&modelPublicServiceTriggerModelBinaryFileUploadServer{stream})
+func _ModelPublicService_TriggerUserModelBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ModelPublicServiceServer).TriggerUserModelBinaryFileUpload(&modelPublicServiceTriggerUserModelBinaryFileUploadServer{stream})
 }
 
-type ModelPublicService_TriggerModelBinaryFileUploadServer interface {
-	SendAndClose(*TriggerModelBinaryFileUploadResponse) error
-	Recv() (*TriggerModelBinaryFileUploadRequest, error)
+type ModelPublicService_TriggerUserModelBinaryFileUploadServer interface {
+	SendAndClose(*TriggerUserModelBinaryFileUploadResponse) error
+	Recv() (*TriggerUserModelBinaryFileUploadRequest, error)
 	grpc.ServerStream
 }
 
-type modelPublicServiceTriggerModelBinaryFileUploadServer struct {
+type modelPublicServiceTriggerUserModelBinaryFileUploadServer struct {
 	grpc.ServerStream
 }
 
-func (x *modelPublicServiceTriggerModelBinaryFileUploadServer) SendAndClose(m *TriggerModelBinaryFileUploadResponse) error {
+func (x *modelPublicServiceTriggerUserModelBinaryFileUploadServer) SendAndClose(m *TriggerUserModelBinaryFileUploadResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *modelPublicServiceTriggerModelBinaryFileUploadServer) Recv() (*TriggerModelBinaryFileUploadRequest, error) {
-	m := new(TriggerModelBinaryFileUploadRequest)
+func (x *modelPublicServiceTriggerUserModelBinaryFileUploadServer) Recv() (*TriggerUserModelBinaryFileUploadRequest, error) {
+	m := new(TriggerUserModelBinaryFileUploadRequest)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func _ModelPublicService_TestModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TestModelRequest)
+func _ModelPublicService_TestUserModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TestUserModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).TestModel(ctx, in)
+		return srv.(ModelPublicServiceServer).TestUserModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_TestModel_FullMethodName,
+		FullMethod: ModelPublicService_TestUserModel_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).TestModel(ctx, req.(*TestModelRequest))
+		return srv.(ModelPublicServiceServer).TestUserModel(ctx, req.(*TestUserModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_TestModelBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(ModelPublicServiceServer).TestModelBinaryFileUpload(&modelPublicServiceTestModelBinaryFileUploadServer{stream})
+func _ModelPublicService_TestUserModelBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ModelPublicServiceServer).TestUserModelBinaryFileUpload(&modelPublicServiceTestUserModelBinaryFileUploadServer{stream})
 }
 
-type ModelPublicService_TestModelBinaryFileUploadServer interface {
-	SendAndClose(*TestModelBinaryFileUploadResponse) error
-	Recv() (*TestModelBinaryFileUploadRequest, error)
+type ModelPublicService_TestUserModelBinaryFileUploadServer interface {
+	SendAndClose(*TestUserModelBinaryFileUploadResponse) error
+	Recv() (*TestUserModelBinaryFileUploadRequest, error)
 	grpc.ServerStream
 }
 
-type modelPublicServiceTestModelBinaryFileUploadServer struct {
+type modelPublicServiceTestUserModelBinaryFileUploadServer struct {
 	grpc.ServerStream
 }
 
-func (x *modelPublicServiceTestModelBinaryFileUploadServer) SendAndClose(m *TestModelBinaryFileUploadResponse) error {
+func (x *modelPublicServiceTestUserModelBinaryFileUploadServer) SendAndClose(m *TestUserModelBinaryFileUploadResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *modelPublicServiceTestModelBinaryFileUploadServer) Recv() (*TestModelBinaryFileUploadRequest, error) {
-	m := new(TestModelBinaryFileUploadRequest)
+func (x *modelPublicServiceTestUserModelBinaryFileUploadServer) Recv() (*TestUserModelBinaryFileUploadRequest, error) {
+	m := new(TestUserModelBinaryFileUploadRequest)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -1057,60 +1094,64 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ModelPublicService_ListModels_Handler,
 		},
 		{
-			MethodName: "CreateModel",
-			Handler:    _ModelPublicService_CreateModel_Handler,
+			MethodName: "ListUserModels",
+			Handler:    _ModelPublicService_ListUserModels_Handler,
 		},
 		{
-			MethodName: "GetModel",
-			Handler:    _ModelPublicService_GetModel_Handler,
+			MethodName: "CreateUserModel",
+			Handler:    _ModelPublicService_CreateUserModel_Handler,
 		},
 		{
-			MethodName: "UpdateModel",
-			Handler:    _ModelPublicService_UpdateModel_Handler,
+			MethodName: "GetUserModel",
+			Handler:    _ModelPublicService_GetUserModel_Handler,
 		},
 		{
-			MethodName: "DeleteModel",
-			Handler:    _ModelPublicService_DeleteModel_Handler,
+			MethodName: "UpdateUserModel",
+			Handler:    _ModelPublicService_UpdateUserModel_Handler,
 		},
 		{
-			MethodName: "LookUpModel",
-			Handler:    _ModelPublicService_LookUpModel_Handler,
+			MethodName: "DeleteUserModel",
+			Handler:    _ModelPublicService_DeleteUserModel_Handler,
 		},
 		{
-			MethodName: "RenameModel",
-			Handler:    _ModelPublicService_RenameModel_Handler,
+			MethodName: "LookUpUserModel",
+			Handler:    _ModelPublicService_LookUpUserModel_Handler,
 		},
 		{
-			MethodName: "PublishModel",
-			Handler:    _ModelPublicService_PublishModel_Handler,
+			MethodName: "RenameUserModel",
+			Handler:    _ModelPublicService_RenameUserModel_Handler,
 		},
 		{
-			MethodName: "UnpublishModel",
-			Handler:    _ModelPublicService_UnpublishModel_Handler,
+			MethodName: "PublishUserModel",
+			Handler:    _ModelPublicService_PublishUserModel_Handler,
 		},
 		{
-			MethodName: "DeployModel",
-			Handler:    _ModelPublicService_DeployModel_Handler,
+			MethodName: "UnpublishUserModel",
+			Handler:    _ModelPublicService_UnpublishUserModel_Handler,
 		},
 		{
-			MethodName: "UndeployModel",
-			Handler:    _ModelPublicService_UndeployModel_Handler,
+			MethodName: "DeployUserModel",
+			Handler:    _ModelPublicService_DeployUserModel_Handler,
 		},
 		{
-			MethodName: "GetModelCard",
-			Handler:    _ModelPublicService_GetModelCard_Handler,
+			MethodName: "UndeployUserModel",
+			Handler:    _ModelPublicService_UndeployUserModel_Handler,
 		},
 		{
-			MethodName: "WatchModel",
-			Handler:    _ModelPublicService_WatchModel_Handler,
+			MethodName: "GetUserModelCard",
+			Handler:    _ModelPublicService_GetUserModelCard_Handler,
 		},
 		{
-			MethodName: "TriggerModel",
-			Handler:    _ModelPublicService_TriggerModel_Handler,
+			MethodName: "WatchUserModel",
+			Handler:    _ModelPublicService_WatchUserModel_Handler,
 		},
 		{
-			MethodName: "TestModel",
-			Handler:    _ModelPublicService_TestModel_Handler,
+			MethodName: "TriggerUserModel",
+			Handler:    _ModelPublicService_TriggerUserModel_Handler,
+		},
+		{
+			MethodName: "TestUserModel",
+			Handler:    _ModelPublicService_TestUserModel_Handler,
 		},
 		{
 			MethodName: "GetModelOperation",
@@ -1119,18 +1160,18 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "CreateModelBinaryFileUpload",
-			Handler:       _ModelPublicService_CreateModelBinaryFileUpload_Handler,
+			StreamName:    "CreateUserModelBinaryFileUpload",
+			Handler:       _ModelPublicService_CreateUserModelBinaryFileUpload_Handler,
 			ClientStreams: true,
 		},
 		{
-			StreamName:    "TriggerModelBinaryFileUpload",
-			Handler:       _ModelPublicService_TriggerModelBinaryFileUpload_Handler,
+			StreamName:    "TriggerUserModelBinaryFileUpload",
+			Handler:       _ModelPublicService_TriggerUserModelBinaryFileUpload_Handler,
 			ClientStreams: true,
 		},
 		{
-			StreamName:    "TestModelBinaryFileUpload",
-			Handler:       _ModelPublicService_TestModelBinaryFileUpload_Handler,
+			StreamName:    "TestUserModelBinaryFileUpload",
+			Handler:       _ModelPublicService_TestUserModelBinaryFileUpload_Handler,
 			ClientStreams: true,
 		},
 	},
