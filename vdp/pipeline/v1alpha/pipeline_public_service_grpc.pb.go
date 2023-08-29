@@ -24,12 +24,12 @@ const (
 	PipelinePublicService_ListOperatorDefinitions_FullMethodName         = "/vdp.pipeline.v1alpha.PipelinePublicService/ListOperatorDefinitions"
 	PipelinePublicService_GetOperatorDefinition_FullMethodName           = "/vdp.pipeline.v1alpha.PipelinePublicService/GetOperatorDefinition"
 	PipelinePublicService_ListPipelines_FullMethodName                   = "/vdp.pipeline.v1alpha.PipelinePublicService/ListPipelines"
+	PipelinePublicService_LookUpPipeline_FullMethodName                  = "/vdp.pipeline.v1alpha.PipelinePublicService/LookUpPipeline"
 	PipelinePublicService_CreateUserPipeline_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/CreateUserPipeline"
 	PipelinePublicService_ListUserPipelines_FullMethodName               = "/vdp.pipeline.v1alpha.PipelinePublicService/ListUserPipelines"
 	PipelinePublicService_GetUserPipeline_FullMethodName                 = "/vdp.pipeline.v1alpha.PipelinePublicService/GetUserPipeline"
 	PipelinePublicService_UpdateUserPipeline_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/UpdateUserPipeline"
 	PipelinePublicService_DeleteUserPipeline_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/DeleteUserPipeline"
-	PipelinePublicService_LookUpUserPipeline_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/LookUpUserPipeline"
 	PipelinePublicService_ValidateUserPipeline_FullMethodName            = "/vdp.pipeline.v1alpha.PipelinePublicService/ValidateUserPipeline"
 	PipelinePublicService_RenameUserPipeline_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/RenameUserPipeline"
 	PipelinePublicService_TriggerUserPipeline_FullMethodName             = "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerUserPipeline"
@@ -71,6 +71,9 @@ type PipelinePublicServiceClient interface {
 	// ListPipelines method receives a ListPipelinesRequest message and returns a
 	// ListPipelinesResponse message.
 	ListPipelines(ctx context.Context, in *ListPipelinesRequest, opts ...grpc.CallOption) (*ListPipelinesResponse, error)
+	// LookUpPipeline method receives a LookUpPipelineRequest message and returns
+	// a LookUpPipelineResponse
+	LookUpPipeline(ctx context.Context, in *LookUpPipelineRequest, opts ...grpc.CallOption) (*LookUpPipelineResponse, error)
 	// CreateUserPipeline method receives a CreateUserPipelineRequest message and returns
 	// a CreateUserPipelineResponse message.
 	CreateUserPipeline(ctx context.Context, in *CreateUserPipelineRequest, opts ...grpc.CallOption) (*CreateUserPipelineResponse, error)
@@ -86,9 +89,6 @@ type PipelinePublicServiceClient interface {
 	// DeleteUserPipeline method receives a DeleteUserPipelineRequest message and returns
 	// a DeleteUserPipelineResponse message.
 	DeleteUserPipeline(ctx context.Context, in *DeleteUserPipelineRequest, opts ...grpc.CallOption) (*DeleteUserPipelineResponse, error)
-	// LookUpUserPipeline method receives a LookUpUserPipelineRequest message and returns
-	// a LookUpUserPipelineResponse
-	LookUpUserPipeline(ctx context.Context, in *LookUpUserPipelineRequest, opts ...grpc.CallOption) (*LookUpUserPipelineResponse, error)
 	// Validate a pipeline.
 	ValidateUserPipeline(ctx context.Context, in *ValidateUserPipelineRequest, opts ...grpc.CallOption) (*ValidateUserPipelineResponse, error)
 	// RenameUserPipeline method receives a RenameUserPipelineRequest message and returns
@@ -192,6 +192,15 @@ func (c *pipelinePublicServiceClient) ListPipelines(ctx context.Context, in *Lis
 	return out, nil
 }
 
+func (c *pipelinePublicServiceClient) LookUpPipeline(ctx context.Context, in *LookUpPipelineRequest, opts ...grpc.CallOption) (*LookUpPipelineResponse, error) {
+	out := new(LookUpPipelineResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_LookUpPipeline_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *pipelinePublicServiceClient) CreateUserPipeline(ctx context.Context, in *CreateUserPipelineRequest, opts ...grpc.CallOption) (*CreateUserPipelineResponse, error) {
 	out := new(CreateUserPipelineResponse)
 	err := c.cc.Invoke(ctx, PipelinePublicService_CreateUserPipeline_FullMethodName, in, out, opts...)
@@ -231,15 +240,6 @@ func (c *pipelinePublicServiceClient) UpdateUserPipeline(ctx context.Context, in
 func (c *pipelinePublicServiceClient) DeleteUserPipeline(ctx context.Context, in *DeleteUserPipelineRequest, opts ...grpc.CallOption) (*DeleteUserPipelineResponse, error) {
 	out := new(DeleteUserPipelineResponse)
 	err := c.cc.Invoke(ctx, PipelinePublicService_DeleteUserPipeline_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *pipelinePublicServiceClient) LookUpUserPipeline(ctx context.Context, in *LookUpUserPipelineRequest, opts ...grpc.CallOption) (*LookUpUserPipelineResponse, error) {
-	out := new(LookUpUserPipelineResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_LookUpUserPipeline_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -413,6 +413,9 @@ type PipelinePublicServiceServer interface {
 	// ListPipelines method receives a ListPipelinesRequest message and returns a
 	// ListPipelinesResponse message.
 	ListPipelines(context.Context, *ListPipelinesRequest) (*ListPipelinesResponse, error)
+	// LookUpPipeline method receives a LookUpPipelineRequest message and returns
+	// a LookUpPipelineResponse
+	LookUpPipeline(context.Context, *LookUpPipelineRequest) (*LookUpPipelineResponse, error)
 	// CreateUserPipeline method receives a CreateUserPipelineRequest message and returns
 	// a CreateUserPipelineResponse message.
 	CreateUserPipeline(context.Context, *CreateUserPipelineRequest) (*CreateUserPipelineResponse, error)
@@ -428,9 +431,6 @@ type PipelinePublicServiceServer interface {
 	// DeleteUserPipeline method receives a DeleteUserPipelineRequest message and returns
 	// a DeleteUserPipelineResponse message.
 	DeleteUserPipeline(context.Context, *DeleteUserPipelineRequest) (*DeleteUserPipelineResponse, error)
-	// LookUpUserPipeline method receives a LookUpUserPipelineRequest message and returns
-	// a LookUpUserPipelineResponse
-	LookUpUserPipeline(context.Context, *LookUpUserPipelineRequest) (*LookUpUserPipelineResponse, error)
 	// Validate a pipeline.
 	ValidateUserPipeline(context.Context, *ValidateUserPipelineRequest) (*ValidateUserPipelineResponse, error)
 	// RenameUserPipeline method receives a RenameUserPipelineRequest message and returns
@@ -500,6 +500,9 @@ func (UnimplementedPipelinePublicServiceServer) GetOperatorDefinition(context.Co
 func (UnimplementedPipelinePublicServiceServer) ListPipelines(context.Context, *ListPipelinesRequest) (*ListPipelinesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPipelines not implemented")
 }
+func (UnimplementedPipelinePublicServiceServer) LookUpPipeline(context.Context, *LookUpPipelineRequest) (*LookUpPipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LookUpPipeline not implemented")
+}
 func (UnimplementedPipelinePublicServiceServer) CreateUserPipeline(context.Context, *CreateUserPipelineRequest) (*CreateUserPipelineResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateUserPipeline not implemented")
 }
@@ -514,9 +517,6 @@ func (UnimplementedPipelinePublicServiceServer) UpdateUserPipeline(context.Conte
 }
 func (UnimplementedPipelinePublicServiceServer) DeleteUserPipeline(context.Context, *DeleteUserPipelineRequest) (*DeleteUserPipelineResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUserPipeline not implemented")
-}
-func (UnimplementedPipelinePublicServiceServer) LookUpUserPipeline(context.Context, *LookUpUserPipelineRequest) (*LookUpUserPipelineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LookUpUserPipeline not implemented")
 }
 func (UnimplementedPipelinePublicServiceServer) ValidateUserPipeline(context.Context, *ValidateUserPipelineRequest) (*ValidateUserPipelineResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ValidateUserPipeline not implemented")
@@ -668,6 +668,24 @@ func _PipelinePublicService_ListPipelines_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PipelinePublicService_LookUpPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LookUpPipelineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).LookUpPipeline(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_LookUpPipeline_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).LookUpPipeline(ctx, req.(*LookUpPipelineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PipelinePublicService_CreateUserPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateUserPipelineRequest)
 	if err := dec(in); err != nil {
@@ -754,24 +772,6 @@ func _PipelinePublicService_DeleteUserPipeline_Handler(srv interface{}, ctx cont
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PipelinePublicServiceServer).DeleteUserPipeline(ctx, req.(*DeleteUserPipelineRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PipelinePublicService_LookUpUserPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(LookUpUserPipelineRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).LookUpUserPipeline(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PipelinePublicService_LookUpUserPipeline_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).LookUpUserPipeline(ctx, req.(*LookUpUserPipelineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1092,6 +1092,10 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _PipelinePublicService_ListPipelines_Handler,
 		},
 		{
+			MethodName: "LookUpPipeline",
+			Handler:    _PipelinePublicService_LookUpPipeline_Handler,
+		},
+		{
 			MethodName: "CreateUserPipeline",
 			Handler:    _PipelinePublicService_CreateUserPipeline_Handler,
 		},
@@ -1110,10 +1114,6 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteUserPipeline",
 			Handler:    _PipelinePublicService_DeleteUserPipeline_Handler,
-		},
-		{
-			MethodName: "LookUpUserPipeline",
-			Handler:    _PipelinePublicService_LookUpUserPipeline_Handler,
 		},
 		{
 			MethodName: "ValidateUserPipeline",

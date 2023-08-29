@@ -24,12 +24,12 @@ const (
 	ConnectorPublicService_ListConnectorDefinitions_FullMethodName        = "/vdp.connector.v1alpha.ConnectorPublicService/ListConnectorDefinitions"
 	ConnectorPublicService_GetConnectorDefinition_FullMethodName          = "/vdp.connector.v1alpha.ConnectorPublicService/GetConnectorDefinition"
 	ConnectorPublicService_ListConnectorResources_FullMethodName          = "/vdp.connector.v1alpha.ConnectorPublicService/ListConnectorResources"
+	ConnectorPublicService_LookUpConnectorResource_FullMethodName         = "/vdp.connector.v1alpha.ConnectorPublicService/LookUpConnectorResource"
 	ConnectorPublicService_CreateUserConnectorResource_FullMethodName     = "/vdp.connector.v1alpha.ConnectorPublicService/CreateUserConnectorResource"
 	ConnectorPublicService_ListUserConnectorResources_FullMethodName      = "/vdp.connector.v1alpha.ConnectorPublicService/ListUserConnectorResources"
 	ConnectorPublicService_GetUserConnectorResource_FullMethodName        = "/vdp.connector.v1alpha.ConnectorPublicService/GetUserConnectorResource"
 	ConnectorPublicService_UpdateUserConnectorResource_FullMethodName     = "/vdp.connector.v1alpha.ConnectorPublicService/UpdateUserConnectorResource"
 	ConnectorPublicService_DeleteUserConnectorResource_FullMethodName     = "/vdp.connector.v1alpha.ConnectorPublicService/DeleteUserConnectorResource"
-	ConnectorPublicService_LookUpUserConnectorResource_FullMethodName     = "/vdp.connector.v1alpha.ConnectorPublicService/LookUpUserConnectorResource"
 	ConnectorPublicService_ConnectUserConnectorResource_FullMethodName    = "/vdp.connector.v1alpha.ConnectorPublicService/ConnectUserConnectorResource"
 	ConnectorPublicService_DisconnectUserConnectorResource_FullMethodName = "/vdp.connector.v1alpha.ConnectorPublicService/DisconnectUserConnectorResource"
 	ConnectorPublicService_RenameUserConnectorResource_FullMethodName     = "/vdp.connector.v1alpha.ConnectorPublicService/RenameUserConnectorResource"
@@ -62,6 +62,10 @@ type ConnectorPublicServiceClient interface {
 	// ListConnectorResourcesRequest message and returns a
 	// ListConnectorResourcesResponse message.
 	ListConnectorResources(ctx context.Context, in *ListConnectorResourcesRequest, opts ...grpc.CallOption) (*ListConnectorResourcesResponse, error)
+	// LookUpConnectorResource method receives a
+	// LookUpConnectorResourceRequest message and returns a
+	// LookUpConnectorResourceResponse
+	LookUpConnectorResource(ctx context.Context, in *LookUpConnectorResourceRequest, opts ...grpc.CallOption) (*LookUpConnectorResourceResponse, error)
 	// CreateUserConnectorResource method receives a
 	// CreateUserConnectorResourceRequest message and returns a
 	// CreateUserConnectorResourceResponse message.
@@ -81,10 +85,6 @@ type ConnectorPublicServiceClient interface {
 	// DeleteUserConnectorResourceRequest message and returns a
 	// DeleteUserConnectorResourceResponse message.
 	DeleteUserConnectorResource(ctx context.Context, in *DeleteUserConnectorResourceRequest, opts ...grpc.CallOption) (*DeleteUserConnectorResourceResponse, error)
-	// LookUpUserConnectorResource method receives a
-	// LookUpUserConnectorResourceRequest message and returns a
-	// LookUpUserConnectorResourceResponse
-	LookUpUserConnectorResource(ctx context.Context, in *LookUpUserConnectorResourceRequest, opts ...grpc.CallOption) (*LookUpUserConnectorResourceResponse, error)
 	// Connect a connector resource.
 	// The "state" of the connector resource after connecting is "CONNECTED".
 	// ConnectUserConnectorResource can be called on ConnectorResource in the
@@ -167,6 +167,15 @@ func (c *connectorPublicServiceClient) ListConnectorResources(ctx context.Contex
 	return out, nil
 }
 
+func (c *connectorPublicServiceClient) LookUpConnectorResource(ctx context.Context, in *LookUpConnectorResourceRequest, opts ...grpc.CallOption) (*LookUpConnectorResourceResponse, error) {
+	out := new(LookUpConnectorResourceResponse)
+	err := c.cc.Invoke(ctx, ConnectorPublicService_LookUpConnectorResource_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *connectorPublicServiceClient) CreateUserConnectorResource(ctx context.Context, in *CreateUserConnectorResourceRequest, opts ...grpc.CallOption) (*CreateUserConnectorResourceResponse, error) {
 	out := new(CreateUserConnectorResourceResponse)
 	err := c.cc.Invoke(ctx, ConnectorPublicService_CreateUserConnectorResource_FullMethodName, in, out, opts...)
@@ -206,15 +215,6 @@ func (c *connectorPublicServiceClient) UpdateUserConnectorResource(ctx context.C
 func (c *connectorPublicServiceClient) DeleteUserConnectorResource(ctx context.Context, in *DeleteUserConnectorResourceRequest, opts ...grpc.CallOption) (*DeleteUserConnectorResourceResponse, error) {
 	out := new(DeleteUserConnectorResourceResponse)
 	err := c.cc.Invoke(ctx, ConnectorPublicService_DeleteUserConnectorResource_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *connectorPublicServiceClient) LookUpUserConnectorResource(ctx context.Context, in *LookUpUserConnectorResourceRequest, opts ...grpc.CallOption) (*LookUpUserConnectorResourceResponse, error) {
-	out := new(LookUpUserConnectorResourceResponse)
-	err := c.cc.Invoke(ctx, ConnectorPublicService_LookUpUserConnectorResource_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -299,6 +299,10 @@ type ConnectorPublicServiceServer interface {
 	// ListConnectorResourcesRequest message and returns a
 	// ListConnectorResourcesResponse message.
 	ListConnectorResources(context.Context, *ListConnectorResourcesRequest) (*ListConnectorResourcesResponse, error)
+	// LookUpConnectorResource method receives a
+	// LookUpConnectorResourceRequest message and returns a
+	// LookUpConnectorResourceResponse
+	LookUpConnectorResource(context.Context, *LookUpConnectorResourceRequest) (*LookUpConnectorResourceResponse, error)
 	// CreateUserConnectorResource method receives a
 	// CreateUserConnectorResourceRequest message and returns a
 	// CreateUserConnectorResourceResponse message.
@@ -318,10 +322,6 @@ type ConnectorPublicServiceServer interface {
 	// DeleteUserConnectorResourceRequest message and returns a
 	// DeleteUserConnectorResourceResponse message.
 	DeleteUserConnectorResource(context.Context, *DeleteUserConnectorResourceRequest) (*DeleteUserConnectorResourceResponse, error)
-	// LookUpUserConnectorResource method receives a
-	// LookUpUserConnectorResourceRequest message and returns a
-	// LookUpUserConnectorResourceResponse
-	LookUpUserConnectorResource(context.Context, *LookUpUserConnectorResourceRequest) (*LookUpUserConnectorResourceResponse, error)
 	// Connect a connector resource.
 	// The "state" of the connector resource after connecting is "CONNECTED".
 	// ConnectUserConnectorResource can be called on ConnectorResource in the
@@ -370,6 +370,9 @@ func (UnimplementedConnectorPublicServiceServer) GetConnectorDefinition(context.
 func (UnimplementedConnectorPublicServiceServer) ListConnectorResources(context.Context, *ListConnectorResourcesRequest) (*ListConnectorResourcesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListConnectorResources not implemented")
 }
+func (UnimplementedConnectorPublicServiceServer) LookUpConnectorResource(context.Context, *LookUpConnectorResourceRequest) (*LookUpConnectorResourceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LookUpConnectorResource not implemented")
+}
 func (UnimplementedConnectorPublicServiceServer) CreateUserConnectorResource(context.Context, *CreateUserConnectorResourceRequest) (*CreateUserConnectorResourceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateUserConnectorResource not implemented")
 }
@@ -384,9 +387,6 @@ func (UnimplementedConnectorPublicServiceServer) UpdateUserConnectorResource(con
 }
 func (UnimplementedConnectorPublicServiceServer) DeleteUserConnectorResource(context.Context, *DeleteUserConnectorResourceRequest) (*DeleteUserConnectorResourceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUserConnectorResource not implemented")
-}
-func (UnimplementedConnectorPublicServiceServer) LookUpUserConnectorResource(context.Context, *LookUpUserConnectorResourceRequest) (*LookUpUserConnectorResourceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LookUpUserConnectorResource not implemented")
 }
 func (UnimplementedConnectorPublicServiceServer) ConnectUserConnectorResource(context.Context, *ConnectUserConnectorResourceRequest) (*ConnectUserConnectorResourceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConnectUserConnectorResource not implemented")
@@ -508,6 +508,24 @@ func _ConnectorPublicService_ListConnectorResources_Handler(srv interface{}, ctx
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ConnectorPublicService_LookUpConnectorResource_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LookUpConnectorResourceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConnectorPublicServiceServer).LookUpConnectorResource(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ConnectorPublicService_LookUpConnectorResource_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConnectorPublicServiceServer).LookUpConnectorResource(ctx, req.(*LookUpConnectorResourceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ConnectorPublicService_CreateUserConnectorResource_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateUserConnectorResourceRequest)
 	if err := dec(in); err != nil {
@@ -594,24 +612,6 @@ func _ConnectorPublicService_DeleteUserConnectorResource_Handler(srv interface{}
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ConnectorPublicServiceServer).DeleteUserConnectorResource(ctx, req.(*DeleteUserConnectorResourceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ConnectorPublicService_LookUpUserConnectorResource_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(LookUpUserConnectorResourceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ConnectorPublicServiceServer).LookUpUserConnectorResource(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ConnectorPublicService_LookUpUserConnectorResource_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConnectorPublicServiceServer).LookUpUserConnectorResource(ctx, req.(*LookUpUserConnectorResourceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -752,6 +752,10 @@ var ConnectorPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ConnectorPublicService_ListConnectorResources_Handler,
 		},
 		{
+			MethodName: "LookUpConnectorResource",
+			Handler:    _ConnectorPublicService_LookUpConnectorResource_Handler,
+		},
+		{
 			MethodName: "CreateUserConnectorResource",
 			Handler:    _ConnectorPublicService_CreateUserConnectorResource_Handler,
 		},
@@ -770,10 +774,6 @@ var ConnectorPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteUserConnectorResource",
 			Handler:    _ConnectorPublicService_DeleteUserConnectorResource_Handler,
-		},
-		{
-			MethodName: "LookUpUserConnectorResource",
-			Handler:    _ConnectorPublicService_LookUpUserConnectorResource_Handler,
 		},
 		{
 			MethodName: "ConnectUserConnectorResource",
