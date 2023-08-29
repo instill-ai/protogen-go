@@ -24,13 +24,13 @@ const (
 	ModelPublicService_ListModelDefinitions_FullMethodName             = "/model.model.v1alpha.ModelPublicService/ListModelDefinitions"
 	ModelPublicService_GetModelDefinition_FullMethodName               = "/model.model.v1alpha.ModelPublicService/GetModelDefinition"
 	ModelPublicService_ListModels_FullMethodName                       = "/model.model.v1alpha.ModelPublicService/ListModels"
+	ModelPublicService_LookUpModel_FullMethodName                      = "/model.model.v1alpha.ModelPublicService/LookUpModel"
 	ModelPublicService_ListUserModels_FullMethodName                   = "/model.model.v1alpha.ModelPublicService/ListUserModels"
 	ModelPublicService_CreateUserModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/CreateUserModel"
 	ModelPublicService_CreateUserModelBinaryFileUpload_FullMethodName  = "/model.model.v1alpha.ModelPublicService/CreateUserModelBinaryFileUpload"
 	ModelPublicService_GetUserModel_FullMethodName                     = "/model.model.v1alpha.ModelPublicService/GetUserModel"
 	ModelPublicService_UpdateUserModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/UpdateUserModel"
 	ModelPublicService_DeleteUserModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/DeleteUserModel"
-	ModelPublicService_LookUpUserModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/LookUpUserModel"
 	ModelPublicService_RenameUserModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/RenameUserModel"
 	ModelPublicService_PublishUserModel_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/PublishUserModel"
 	ModelPublicService_UnpublishUserModel_FullMethodName               = "/model.model.v1alpha.ModelPublicService/UnpublishUserModel"
@@ -66,6 +66,9 @@ type ModelPublicServiceClient interface {
 	// ListModels method receives a ListModelsRequest message and returns a
 	// ListModelsResponse
 	ListModels(ctx context.Context, in *ListModelsRequest, opts ...grpc.CallOption) (*ListModelsResponse, error)
+	// LookUpUodel method receives a LookUpModelRequest message and returns a
+	// LookUpModelResponse
+	LookUpModel(ctx context.Context, in *LookUpModelRequest, opts ...grpc.CallOption) (*LookUpModelResponse, error)
 	// LisUsertModels method receives a ListUserModelsRequest message and returns a
 	// ListUserModelsResponse
 	ListUserModels(ctx context.Context, in *ListUserModelsRequest, opts ...grpc.CallOption) (*ListUserModelsResponse, error)
@@ -87,9 +90,6 @@ type ModelPublicServiceClient interface {
 	// DeleteUserModel method receives a DeleteUserModelRequest message and returns a
 	// DeleteUserModelResponse
 	DeleteUserModel(ctx context.Context, in *DeleteUserModelRequest, opts ...grpc.CallOption) (*DeleteUserModelResponse, error)
-	// LookUpUserModel method receives a LookUpUserModelRequest message and returns a
-	// LookUpUserModelResponse
-	LookUpUserModel(ctx context.Context, in *LookUpUserModelRequest, opts ...grpc.CallOption) (*LookUpUserModelResponse, error)
 	// RenameUserModel method rename a model
 	RenameUserModel(ctx context.Context, in *RenameUserModelRequest, opts ...grpc.CallOption) (*RenameUserModelResponse, error)
 	// PublishUserModel method receives a PublisUserhModelRequest message and returns a
@@ -187,6 +187,15 @@ func (c *modelPublicServiceClient) ListModels(ctx context.Context, in *ListModel
 	return out, nil
 }
 
+func (c *modelPublicServiceClient) LookUpModel(ctx context.Context, in *LookUpModelRequest, opts ...grpc.CallOption) (*LookUpModelResponse, error) {
+	out := new(LookUpModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_LookUpModel_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *modelPublicServiceClient) ListUserModels(ctx context.Context, in *ListUserModelsRequest, opts ...grpc.CallOption) (*ListUserModelsResponse, error) {
 	out := new(ListUserModelsResponse)
 	err := c.cc.Invoke(ctx, ModelPublicService_ListUserModels_FullMethodName, in, out, opts...)
@@ -260,15 +269,6 @@ func (c *modelPublicServiceClient) UpdateUserModel(ctx context.Context, in *Upda
 func (c *modelPublicServiceClient) DeleteUserModel(ctx context.Context, in *DeleteUserModelRequest, opts ...grpc.CallOption) (*DeleteUserModelResponse, error) {
 	out := new(DeleteUserModelResponse)
 	err := c.cc.Invoke(ctx, ModelPublicService_DeleteUserModel_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *modelPublicServiceClient) LookUpUserModel(ctx context.Context, in *LookUpUserModelRequest, opts ...grpc.CallOption) (*LookUpUserModelResponse, error) {
-	out := new(LookUpUserModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_LookUpUserModel_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -454,6 +454,9 @@ type ModelPublicServiceServer interface {
 	// ListModels method receives a ListModelsRequest message and returns a
 	// ListModelsResponse
 	ListModels(context.Context, *ListModelsRequest) (*ListModelsResponse, error)
+	// LookUpUodel method receives a LookUpModelRequest message and returns a
+	// LookUpModelResponse
+	LookUpModel(context.Context, *LookUpModelRequest) (*LookUpModelResponse, error)
 	// LisUsertModels method receives a ListUserModelsRequest message and returns a
 	// ListUserModelsResponse
 	ListUserModels(context.Context, *ListUserModelsRequest) (*ListUserModelsResponse, error)
@@ -475,9 +478,6 @@ type ModelPublicServiceServer interface {
 	// DeleteUserModel method receives a DeleteUserModelRequest message and returns a
 	// DeleteUserModelResponse
 	DeleteUserModel(context.Context, *DeleteUserModelRequest) (*DeleteUserModelResponse, error)
-	// LookUpUserModel method receives a LookUpUserModelRequest message and returns a
-	// LookUpUserModelResponse
-	LookUpUserModel(context.Context, *LookUpUserModelRequest) (*LookUpUserModelResponse, error)
 	// RenameUserModel method rename a model
 	RenameUserModel(context.Context, *RenameUserModelRequest) (*RenameUserModelResponse, error)
 	// PublishUserModel method receives a PublisUserhModelRequest message and returns a
@@ -541,6 +541,9 @@ func (UnimplementedModelPublicServiceServer) GetModelDefinition(context.Context,
 func (UnimplementedModelPublicServiceServer) ListModels(context.Context, *ListModelsRequest) (*ListModelsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListModels not implemented")
 }
+func (UnimplementedModelPublicServiceServer) LookUpModel(context.Context, *LookUpModelRequest) (*LookUpModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LookUpModel not implemented")
+}
 func (UnimplementedModelPublicServiceServer) ListUserModels(context.Context, *ListUserModelsRequest) (*ListUserModelsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListUserModels not implemented")
 }
@@ -558,9 +561,6 @@ func (UnimplementedModelPublicServiceServer) UpdateUserModel(context.Context, *U
 }
 func (UnimplementedModelPublicServiceServer) DeleteUserModel(context.Context, *DeleteUserModelRequest) (*DeleteUserModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUserModel not implemented")
-}
-func (UnimplementedModelPublicServiceServer) LookUpUserModel(context.Context, *LookUpUserModelRequest) (*LookUpUserModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LookUpUserModel not implemented")
 }
 func (UnimplementedModelPublicServiceServer) RenameUserModel(context.Context, *RenameUserModelRequest) (*RenameUserModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RenameUserModel not implemented")
@@ -700,6 +700,24 @@ func _ModelPublicService_ListModels_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ModelPublicService_LookUpModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LookUpModelRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPublicServiceServer).LookUpModel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPublicService_LookUpModel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPublicServiceServer).LookUpModel(ctx, req.(*LookUpModelRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ModelPublicService_ListUserModels_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListUserModelsRequest)
 	if err := dec(in); err != nil {
@@ -812,24 +830,6 @@ func _ModelPublicService_DeleteUserModel_Handler(srv interface{}, ctx context.Co
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelPublicServiceServer).DeleteUserModel(ctx, req.(*DeleteUserModelRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ModelPublicService_LookUpUserModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(LookUpUserModelRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).LookUpUserModel(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ModelPublicService_LookUpUserModel_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).LookUpUserModel(ctx, req.(*LookUpUserModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1094,6 +1094,10 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ModelPublicService_ListModels_Handler,
 		},
 		{
+			MethodName: "LookUpModel",
+			Handler:    _ModelPublicService_LookUpModel_Handler,
+		},
+		{
 			MethodName: "ListUserModels",
 			Handler:    _ModelPublicService_ListUserModels_Handler,
 		},
@@ -1112,10 +1116,6 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteUserModel",
 			Handler:    _ModelPublicService_DeleteUserModel_Handler,
-		},
-		{
-			MethodName: "LookUpUserModel",
-			Handler:    _ModelPublicService_LookUpUserModel_Handler,
 		},
 		{
 			MethodName: "RenameUserModel",
