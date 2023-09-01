@@ -2344,7 +2344,7 @@ func RegisterPipelinePublicServiceHandlerServer(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1alpha.PipelinePublicService/SetDefaultUserPipelineRelease", runtime.WithHTTPPathPattern("/v1alpha/{name=users/*/pipelines/*/releases/*}/set_default"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1alpha.PipelinePublicService/SetDefaultUserPipelineRelease", runtime.WithHTTPPathPattern("/v1alpha/{name=users/*/pipelines/*/releases/*}/setDefault"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3014,7 +3014,7 @@ func RegisterPipelinePublicServiceHandlerClient(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1alpha.PipelinePublicService/SetDefaultUserPipelineRelease", runtime.WithHTTPPathPattern("/v1alpha/{name=users/*/pipelines/*/releases/*}/set_default"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1alpha.PipelinePublicService/SetDefaultUserPipelineRelease", runtime.WithHTTPPathPattern("/v1alpha/{name=users/*/pipelines/*/releases/*}/setDefault"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3168,7 +3168,7 @@ var (
 
 	pattern_PipelinePublicService_RestoreUserPipelineRelease_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4, 2, 5}, []string{"v1alpha", "users", "pipelines", "releases", "name", "restore"}, ""))
 
-	pattern_PipelinePublicService_SetDefaultUserPipelineRelease_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4, 2, 5}, []string{"v1alpha", "users", "pipelines", "releases", "name", "set_default"}, ""))
+	pattern_PipelinePublicService_SetDefaultUserPipelineRelease_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4, 2, 5}, []string{"v1alpha", "users", "pipelines", "releases", "name", "setDefault"}, ""))
 
 	pattern_PipelinePublicService_WatchUserPipelineRelease_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4, 2, 5}, []string{"v1alpha", "users", "pipelines", "releases", "name", "watch"}, ""))
 
