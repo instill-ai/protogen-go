@@ -28,6 +28,7 @@ const (
 	MgmtPublicService_ListTokens_FullMethodName                       = "/base.mgmt.v1alpha.MgmtPublicService/ListTokens"
 	MgmtPublicService_GetToken_FullMethodName                         = "/base.mgmt.v1alpha.MgmtPublicService/GetToken"
 	MgmtPublicService_DeleteToken_FullMethodName                      = "/base.mgmt.v1alpha.MgmtPublicService/DeleteToken"
+	MgmtPublicService_ValidateToken_FullMethodName                    = "/base.mgmt.v1alpha.MgmtPublicService/ValidateToken"
 	MgmtPublicService_ListPipelineTriggerRecords_FullMethodName       = "/base.mgmt.v1alpha.MgmtPublicService/ListPipelineTriggerRecords"
 	MgmtPublicService_ListPipelineTriggerTableRecords_FullMethodName  = "/base.mgmt.v1alpha.MgmtPublicService/ListPipelineTriggerTableRecords"
 	MgmtPublicService_ListPipelineTriggerChartRecords_FullMethodName  = "/base.mgmt.v1alpha.MgmtPublicService/ListPipelineTriggerChartRecords"
@@ -69,6 +70,9 @@ type MgmtPublicServiceClient interface {
 	// DeleteToken method receives a DeleteTokenRequest message and returns
 	// a DeleteTokenResponse message.
 	DeleteToken(ctx context.Context, in *DeleteTokenRequest, opts ...grpc.CallOption) (*DeleteTokenResponse, error)
+	// ValidateToken method receives a ValidateTokenRequest message and returns
+	// a ValidateTokenResponse message.
+	ValidateToken(ctx context.Context, in *ValidateTokenRequest, opts ...grpc.CallOption) (*ValidateTokenResponse, error)
 	// ListPipelineTriggerRecords method receives a ListPipelineTriggerRecordsRequest message and returns a
 	// ListPipelineTriggerRecordsResponse message.
 	ListPipelineTriggerRecords(ctx context.Context, in *ListPipelineTriggerRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerRecordsResponse, error)
@@ -178,6 +182,15 @@ func (c *mgmtPublicServiceClient) DeleteToken(ctx context.Context, in *DeleteTok
 	return out, nil
 }
 
+func (c *mgmtPublicServiceClient) ValidateToken(ctx context.Context, in *ValidateTokenRequest, opts ...grpc.CallOption) (*ValidateTokenResponse, error) {
+	out := new(ValidateTokenResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_ValidateToken_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *mgmtPublicServiceClient) ListPipelineTriggerRecords(ctx context.Context, in *ListPipelineTriggerRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerRecordsResponse, error) {
 	out := new(ListPipelineTriggerRecordsResponse)
 	err := c.cc.Invoke(ctx, MgmtPublicService_ListPipelineTriggerRecords_FullMethodName, in, out, opts...)
@@ -265,6 +278,9 @@ type MgmtPublicServiceServer interface {
 	// DeleteToken method receives a DeleteTokenRequest message and returns
 	// a DeleteTokenResponse message.
 	DeleteToken(context.Context, *DeleteTokenRequest) (*DeleteTokenResponse, error)
+	// ValidateToken method receives a ValidateTokenRequest message and returns
+	// a ValidateTokenResponse message.
+	ValidateToken(context.Context, *ValidateTokenRequest) (*ValidateTokenResponse, error)
 	// ListPipelineTriggerRecords method receives a ListPipelineTriggerRecordsRequest message and returns a
 	// ListPipelineTriggerRecordsResponse message.
 	ListPipelineTriggerRecords(context.Context, *ListPipelineTriggerRecordsRequest) (*ListPipelineTriggerRecordsResponse, error)
@@ -315,6 +331,9 @@ func (UnimplementedMgmtPublicServiceServer) GetToken(context.Context, *GetTokenR
 }
 func (UnimplementedMgmtPublicServiceServer) DeleteToken(context.Context, *DeleteTokenRequest) (*DeleteTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteToken not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) ValidateToken(context.Context, *ValidateTokenRequest) (*ValidateTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ValidateToken not implemented")
 }
 func (UnimplementedMgmtPublicServiceServer) ListPipelineTriggerRecords(context.Context, *ListPipelineTriggerRecordsRequest) (*ListPipelineTriggerRecordsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineTriggerRecords not implemented")
@@ -508,6 +527,24 @@ func _MgmtPublicService_DeleteToken_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MgmtPublicService_ValidateToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ValidateTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).ValidateToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_ValidateToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).ValidateToken(ctx, req.(*ValidateTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _MgmtPublicService_ListPipelineTriggerRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListPipelineTriggerRecordsRequest)
 	if err := dec(in); err != nil {
@@ -658,6 +695,10 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteToken",
 			Handler:    _MgmtPublicService_DeleteToken_Handler,
+		},
+		{
+			MethodName: "ValidateToken",
+			Handler:    _MgmtPublicService_ValidateToken_Handler,
 		},
 		{
 			MethodName: "ListPipelineTriggerRecords",
