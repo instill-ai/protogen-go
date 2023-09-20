@@ -2191,6 +2191,558 @@ func (x *ValidateTokenResponse) GetUserUid() string {
 	return ""
 }
 
+// Request for user login
+type AuthTokenIssuerRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Username
+	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	// Password
+	Password string `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+}
+
+func (x *AuthTokenIssuerRequest) Reset() {
+	*x = AuthTokenIssuerRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_base_mgmt_v1alpha_mgmt_proto_msgTypes[34]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AuthTokenIssuerRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AuthTokenIssuerRequest) ProtoMessage() {}
+
+func (x *AuthTokenIssuerRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_base_mgmt_v1alpha_mgmt_proto_msgTypes[34]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AuthTokenIssuerRequest.ProtoReflect.Descriptor instead.
+func (*AuthTokenIssuerRequest) Descriptor() ([]byte, []int) {
+	return file_base_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{34}
+}
+
+func (x *AuthTokenIssuerRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+func (x *AuthTokenIssuerRequest) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+// Response for user logout
+type AuthTokenIssuerResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// access_token
+	AccessToken *AuthTokenIssuerResponse_UnsignedAccessToken `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
+}
+
+func (x *AuthTokenIssuerResponse) Reset() {
+	*x = AuthTokenIssuerResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_base_mgmt_v1alpha_mgmt_proto_msgTypes[35]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AuthTokenIssuerResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AuthTokenIssuerResponse) ProtoMessage() {}
+
+func (x *AuthTokenIssuerResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_base_mgmt_v1alpha_mgmt_proto_msgTypes[35]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AuthTokenIssuerResponse.ProtoReflect.Descriptor instead.
+func (*AuthTokenIssuerResponse) Descriptor() ([]byte, []int) {
+	return file_base_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{35}
+}
+
+func (x *AuthTokenIssuerResponse) GetAccessToken() *AuthTokenIssuerResponse_UnsignedAccessToken {
+	if x != nil {
+		return x.AccessToken
+	}
+	return nil
+}
+
+// Request for user login
+type AuthLoginRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Username
+	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	// Password
+	Password string `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+}
+
+func (x *AuthLoginRequest) Reset() {
+	*x = AuthLoginRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_base_mgmt_v1alpha_mgmt_proto_msgTypes[36]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AuthLoginRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AuthLoginRequest) ProtoMessage() {}
+
+func (x *AuthLoginRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_base_mgmt_v1alpha_mgmt_proto_msgTypes[36]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AuthLoginRequest.ProtoReflect.Descriptor instead.
+func (*AuthLoginRequest) Descriptor() ([]byte, []int) {
+	return file_base_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{36}
+}
+
+func (x *AuthLoginRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+func (x *AuthLoginRequest) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+// Response for user logout
+type AuthLoginResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// access token
+	AccessToken string `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
+}
+
+func (x *AuthLoginResponse) Reset() {
+	*x = AuthLoginResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_base_mgmt_v1alpha_mgmt_proto_msgTypes[37]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AuthLoginResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AuthLoginResponse) ProtoMessage() {}
+
+func (x *AuthLoginResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_base_mgmt_v1alpha_mgmt_proto_msgTypes[37]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AuthLoginResponse.ProtoReflect.Descriptor instead.
+func (*AuthLoginResponse) Descriptor() ([]byte, []int) {
+	return file_base_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{37}
+}
+
+func (x *AuthLoginResponse) GetAccessToken() string {
+	if x != nil {
+		return x.AccessToken
+	}
+	return ""
+}
+
+// Request for user logout
+type AuthLogoutRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AuthLogoutRequest) Reset() {
+	*x = AuthLogoutRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_base_mgmt_v1alpha_mgmt_proto_msgTypes[38]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AuthLogoutRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AuthLogoutRequest) ProtoMessage() {}
+
+func (x *AuthLogoutRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_base_mgmt_v1alpha_mgmt_proto_msgTypes[38]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AuthLogoutRequest.ProtoReflect.Descriptor instead.
+func (*AuthLogoutRequest) Descriptor() ([]byte, []int) {
+	return file_base_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{38}
+}
+
+// Response for user logout
+type AuthLogoutResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AuthLogoutResponse) Reset() {
+	*x = AuthLogoutResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_base_mgmt_v1alpha_mgmt_proto_msgTypes[39]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AuthLogoutResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AuthLogoutResponse) ProtoMessage() {}
+
+func (x *AuthLogoutResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_base_mgmt_v1alpha_mgmt_proto_msgTypes[39]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AuthLogoutResponse.ProtoReflect.Descriptor instead.
+func (*AuthLogoutResponse) Descriptor() ([]byte, []int) {
+	return file_base_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{39}
+}
+
+// Request for access_token validation
+type AuthValidateAccessTokenRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AuthValidateAccessTokenRequest) Reset() {
+	*x = AuthValidateAccessTokenRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_base_mgmt_v1alpha_mgmt_proto_msgTypes[40]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AuthValidateAccessTokenRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AuthValidateAccessTokenRequest) ProtoMessage() {}
+
+func (x *AuthValidateAccessTokenRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_base_mgmt_v1alpha_mgmt_proto_msgTypes[40]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AuthValidateAccessTokenRequest.ProtoReflect.Descriptor instead.
+func (*AuthValidateAccessTokenRequest) Descriptor() ([]byte, []int) {
+	return file_base_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{40}
+}
+
+// Response for access_token validation
+type AuthValidateAccessTokenResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AuthValidateAccessTokenResponse) Reset() {
+	*x = AuthValidateAccessTokenResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_base_mgmt_v1alpha_mgmt_proto_msgTypes[41]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AuthValidateAccessTokenResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AuthValidateAccessTokenResponse) ProtoMessage() {}
+
+func (x *AuthValidateAccessTokenResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_base_mgmt_v1alpha_mgmt_proto_msgTypes[41]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AuthValidateAccessTokenResponse.ProtoReflect.Descriptor instead.
+func (*AuthValidateAccessTokenResponse) Descriptor() ([]byte, []int) {
+	return file_base_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{41}
+}
+
+// Request for changing password
+type AuthChangePasswordRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Old password
+	OldPassword string `protobuf:"bytes,1,opt,name=old_password,json=oldPassword,proto3" json:"old_password,omitempty"`
+	// New password
+	NewPassword string `protobuf:"bytes,2,opt,name=new_password,json=newPassword,proto3" json:"new_password,omitempty"`
+}
+
+func (x *AuthChangePasswordRequest) Reset() {
+	*x = AuthChangePasswordRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_base_mgmt_v1alpha_mgmt_proto_msgTypes[42]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AuthChangePasswordRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AuthChangePasswordRequest) ProtoMessage() {}
+
+func (x *AuthChangePasswordRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_base_mgmt_v1alpha_mgmt_proto_msgTypes[42]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AuthChangePasswordRequest.ProtoReflect.Descriptor instead.
+func (*AuthChangePasswordRequest) Descriptor() ([]byte, []int) {
+	return file_base_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{42}
+}
+
+func (x *AuthChangePasswordRequest) GetOldPassword() string {
+	if x != nil {
+		return x.OldPassword
+	}
+	return ""
+}
+
+func (x *AuthChangePasswordRequest) GetNewPassword() string {
+	if x != nil {
+		return x.NewPassword
+	}
+	return ""
+}
+
+// Response for changing password
+type AuthChangePasswordResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AuthChangePasswordResponse) Reset() {
+	*x = AuthChangePasswordResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_base_mgmt_v1alpha_mgmt_proto_msgTypes[43]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AuthChangePasswordResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AuthChangePasswordResponse) ProtoMessage() {}
+
+func (x *AuthChangePasswordResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_base_mgmt_v1alpha_mgmt_proto_msgTypes[43]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AuthChangePasswordResponse.ProtoReflect.Descriptor instead.
+func (*AuthChangePasswordResponse) Descriptor() ([]byte, []int) {
+	return file_base_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{43}
+}
+
+// UnsignedAccessToken
+type AuthTokenIssuerResponse_UnsignedAccessToken struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// aud
+	Aud string `protobuf:"bytes,1,opt,name=aud,proto3" json:"aud,omitempty"`
+	// iss
+	Iss string `protobuf:"bytes,2,opt,name=iss,proto3" json:"iss,omitempty"`
+	// sub
+	Sub string `protobuf:"bytes,3,opt,name=sub,proto3" json:"sub,omitempty"`
+	// jti
+	Jti string `protobuf:"bytes,4,opt,name=jti,proto3" json:"jti,omitempty"`
+	// exp
+	Exp int32 `protobuf:"varint,5,opt,name=exp,proto3" json:"exp,omitempty"`
+}
+
+func (x *AuthTokenIssuerResponse_UnsignedAccessToken) Reset() {
+	*x = AuthTokenIssuerResponse_UnsignedAccessToken{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_base_mgmt_v1alpha_mgmt_proto_msgTypes[44]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AuthTokenIssuerResponse_UnsignedAccessToken) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AuthTokenIssuerResponse_UnsignedAccessToken) ProtoMessage() {}
+
+func (x *AuthTokenIssuerResponse_UnsignedAccessToken) ProtoReflect() protoreflect.Message {
+	mi := &file_base_mgmt_v1alpha_mgmt_proto_msgTypes[44]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AuthTokenIssuerResponse_UnsignedAccessToken.ProtoReflect.Descriptor instead.
+func (*AuthTokenIssuerResponse_UnsignedAccessToken) Descriptor() ([]byte, []int) {
+	return file_base_mgmt_v1alpha_mgmt_proto_rawDescGZIP(), []int{35, 0}
+}
+
+func (x *AuthTokenIssuerResponse_UnsignedAccessToken) GetAud() string {
+	if x != nil {
+		return x.Aud
+	}
+	return ""
+}
+
+func (x *AuthTokenIssuerResponse_UnsignedAccessToken) GetIss() string {
+	if x != nil {
+		return x.Iss
+	}
+	return ""
+}
+
+func (x *AuthTokenIssuerResponse_UnsignedAccessToken) GetSub() string {
+	if x != nil {
+		return x.Sub
+	}
+	return ""
+}
+
+func (x *AuthTokenIssuerResponse_UnsignedAccessToken) GetJti() string {
+	if x != nil {
+		return x.Jti
+	}
+	return ""
+}
+
+func (x *AuthTokenIssuerResponse_UnsignedAccessToken) GetExp() int32 {
+	if x != nil {
+		return x.Exp
+	}
+	return 0
+}
+
 var File_base_mgmt_v1alpha_mgmt_proto protoreflect.FileDescriptor
 
 var file_base_mgmt_v1alpha_mgmt_proto_rawDesc = []byte{
@@ -2487,30 +3039,75 @@ var file_base_mgmt_v1alpha_mgmt_proto_rawDesc = []byte{
 	0x74, 0x22, 0x37, 0x0a, 0x15, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x54, 0x6f, 0x6b,
 	0x65, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1e, 0x0a, 0x08, 0x75, 0x73,
 	0x65, 0x72, 0x5f, 0x75, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41,
-	0x03, 0x52, 0x07, 0x75, 0x73, 0x65, 0x72, 0x55, 0x69, 0x64, 0x2a, 0x3b, 0x0a, 0x04, 0x56, 0x69,
-	0x65, 0x77, 0x12, 0x14, 0x0a, 0x10, 0x56, 0x49, 0x45, 0x57, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45,
-	0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x0e, 0x0a, 0x0a, 0x56, 0x49, 0x45, 0x57,
-	0x5f, 0x42, 0x41, 0x53, 0x49, 0x43, 0x10, 0x01, 0x12, 0x0d, 0x0a, 0x09, 0x56, 0x49, 0x45, 0x57,
-	0x5f, 0x46, 0x55, 0x4c, 0x4c, 0x10, 0x02, 0x2a, 0x59, 0x0a, 0x09, 0x4f, 0x77, 0x6e, 0x65, 0x72,
-	0x54, 0x79, 0x70, 0x65, 0x12, 0x1a, 0x0a, 0x16, 0x4f, 0x57, 0x4e, 0x45, 0x52, 0x5f, 0x54, 0x59,
-	0x50, 0x45, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00,
-	0x12, 0x13, 0x0a, 0x0f, 0x4f, 0x57, 0x4e, 0x45, 0x52, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x55,
-	0x53, 0x45, 0x52, 0x10, 0x01, 0x12, 0x1b, 0x0a, 0x17, 0x4f, 0x57, 0x4e, 0x45, 0x52, 0x5f, 0x54,
-	0x59, 0x50, 0x45, 0x5f, 0x4f, 0x52, 0x47, 0x41, 0x4e, 0x49, 0x5a, 0x41, 0x54, 0x49, 0x4f, 0x4e,
-	0x10, 0x02, 0x42, 0xc9, 0x01, 0x0a, 0x15, 0x63, 0x6f, 0x6d, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e,
-	0x6d, 0x67, 0x6d, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x42, 0x09, 0x4d, 0x67,
-	0x6d, 0x74, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x3f, 0x67, 0x69, 0x74, 0x68, 0x75,
-	0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2d, 0x61, 0x69,
-	0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x67, 0x65, 0x6e, 0x2d, 0x67, 0x6f, 0x2f, 0x62, 0x61, 0x73,
-	0x65, 0x2f, 0x6d, 0x67, 0x6d, 0x74, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x3b, 0x6d,
-	0x67, 0x6d, 0x74, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xa2, 0x02, 0x03, 0x42, 0x4d, 0x58,
-	0xaa, 0x02, 0x11, 0x42, 0x61, 0x73, 0x65, 0x2e, 0x4d, 0x67, 0x6d, 0x74, 0x2e, 0x56, 0x31, 0x61,
-	0x6c, 0x70, 0x68, 0x61, 0xca, 0x02, 0x11, 0x42, 0x61, 0x73, 0x65, 0x5c, 0x4d, 0x67, 0x6d, 0x74,
-	0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xe2, 0x02, 0x1d, 0x42, 0x61, 0x73, 0x65, 0x5c,
-	0x4d, 0x67, 0x6d, 0x74, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x5c, 0x47, 0x50, 0x42,
-	0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x13, 0x42, 0x61, 0x73, 0x65, 0x3a,
-	0x3a, 0x4d, 0x67, 0x6d, 0x74, 0x3a, 0x3a, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x62, 0x06,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x03, 0x52, 0x07, 0x75, 0x73, 0x65, 0x72, 0x55, 0x69, 0x64, 0x22, 0x5a, 0x0a, 0x16, 0x41, 0x75,
+	0x74, 0x68, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x49, 0x73, 0x73, 0x75, 0x65, 0x72, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x1f, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x08, 0x75, 0x73, 0x65,
+	0x72, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x1f, 0x0a, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72,
+	0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x08, 0x70, 0x61,
+	0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22, 0xed, 0x01, 0x0a, 0x17, 0x41, 0x75, 0x74, 0x68, 0x54,
+	0x6f, 0x6b, 0x65, 0x6e, 0x49, 0x73, 0x73, 0x75, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x61, 0x0a, 0x0c, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x5f, 0x74, 0x6f, 0x6b,
+	0x65, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x3e, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e,
+	0x6d, 0x67, 0x6d, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x41, 0x75, 0x74,
+	0x68, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x49, 0x73, 0x73, 0x75, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x55, 0x6e, 0x73, 0x69, 0x67, 0x6e, 0x65, 0x64, 0x41, 0x63, 0x63,
+	0x65, 0x73, 0x73, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x52, 0x0b, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73,
+	0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x1a, 0x6f, 0x0a, 0x13, 0x55, 0x6e, 0x73, 0x69, 0x67, 0x6e, 0x65,
+	0x64, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x10, 0x0a, 0x03,
+	0x61, 0x75, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x61, 0x75, 0x64, 0x12, 0x10,
+	0x0a, 0x03, 0x69, 0x73, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x69, 0x73, 0x73,
+	0x12, 0x10, 0x0a, 0x03, 0x73, 0x75, 0x62, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x73,
+	0x75, 0x62, 0x12, 0x10, 0x0a, 0x03, 0x6a, 0x74, 0x69, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x03, 0x6a, 0x74, 0x69, 0x12, 0x10, 0x0a, 0x03, 0x65, 0x78, 0x70, 0x18, 0x05, 0x20, 0x01, 0x28,
+	0x05, 0x52, 0x03, 0x65, 0x78, 0x70, 0x22, 0x54, 0x0a, 0x10, 0x41, 0x75, 0x74, 0x68, 0x4c, 0x6f,
+	0x67, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1f, 0x0a, 0x08, 0x75, 0x73,
+	0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41,
+	0x02, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x1f, 0x0a, 0x08, 0x70,
+	0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0,
+	0x41, 0x02, 0x52, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x36, 0x0a, 0x11,
+	0x41, 0x75, 0x74, 0x68, 0x4c, 0x6f, 0x67, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x21, 0x0a, 0x0c, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x5f, 0x74, 0x6f, 0x6b, 0x65,
+	0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x54,
+	0x6f, 0x6b, 0x65, 0x6e, 0x22, 0x13, 0x0a, 0x11, 0x41, 0x75, 0x74, 0x68, 0x4c, 0x6f, 0x67, 0x6f,
+	0x75, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x14, 0x0a, 0x12, 0x41, 0x75, 0x74,
+	0x68, 0x4c, 0x6f, 0x67, 0x6f, 0x75, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
+	0x20, 0x0a, 0x1e, 0x41, 0x75, 0x74, 0x68, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x41,
+	0x63, 0x63, 0x65, 0x73, 0x73, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x22, 0x21, 0x0a, 0x1f, 0x41, 0x75, 0x74, 0x68, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74,
+	0x65, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x61, 0x0a, 0x19, 0x41, 0x75, 0x74, 0x68, 0x43, 0x68, 0x61, 0x6e,
+	0x67, 0x65, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x21, 0x0a, 0x0c, 0x6f, 0x6c, 0x64, 0x5f, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72,
+	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x6f, 0x6c, 0x64, 0x50, 0x61, 0x73, 0x73,
+	0x77, 0x6f, 0x72, 0x64, 0x12, 0x21, 0x0a, 0x0c, 0x6e, 0x65, 0x77, 0x5f, 0x70, 0x61, 0x73, 0x73,
+	0x77, 0x6f, 0x72, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x6e, 0x65, 0x77, 0x50,
+	0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x1c, 0x0a, 0x1a, 0x41, 0x75, 0x74, 0x68, 0x43,
+	0x68, 0x61, 0x6e, 0x67, 0x65, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2a, 0x3b, 0x0a, 0x04, 0x56, 0x69, 0x65, 0x77, 0x12, 0x14, 0x0a,
+	0x10, 0x56, 0x49, 0x45, 0x57, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45,
+	0x44, 0x10, 0x00, 0x12, 0x0e, 0x0a, 0x0a, 0x56, 0x49, 0x45, 0x57, 0x5f, 0x42, 0x41, 0x53, 0x49,
+	0x43, 0x10, 0x01, 0x12, 0x0d, 0x0a, 0x09, 0x56, 0x49, 0x45, 0x57, 0x5f, 0x46, 0x55, 0x4c, 0x4c,
+	0x10, 0x02, 0x2a, 0x59, 0x0a, 0x09, 0x4f, 0x77, 0x6e, 0x65, 0x72, 0x54, 0x79, 0x70, 0x65, 0x12,
+	0x1a, 0x0a, 0x16, 0x4f, 0x57, 0x4e, 0x45, 0x52, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x55, 0x4e,
+	0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x13, 0x0a, 0x0f, 0x4f,
+	0x57, 0x4e, 0x45, 0x52, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x55, 0x53, 0x45, 0x52, 0x10, 0x01,
+	0x12, 0x1b, 0x0a, 0x17, 0x4f, 0x57, 0x4e, 0x45, 0x52, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x4f,
+	0x52, 0x47, 0x41, 0x4e, 0x49, 0x5a, 0x41, 0x54, 0x49, 0x4f, 0x4e, 0x10, 0x02, 0x42, 0xc9, 0x01,
+	0x0a, 0x15, 0x63, 0x6f, 0x6d, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x6d, 0x67, 0x6d, 0x74, 0x2e,
+	0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x42, 0x09, 0x4d, 0x67, 0x6d, 0x74, 0x50, 0x72, 0x6f,
+	0x74, 0x6f, 0x50, 0x01, 0x5a, 0x3f, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d,
+	0x2f, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2d, 0x61, 0x69, 0x2f, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x67, 0x65, 0x6e, 0x2d, 0x67, 0x6f, 0x2f, 0x62, 0x61, 0x73, 0x65, 0x2f, 0x6d, 0x67, 0x6d,
+	0x74, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x3b, 0x6d, 0x67, 0x6d, 0x74, 0x76, 0x31,
+	0x61, 0x6c, 0x70, 0x68, 0x61, 0xa2, 0x02, 0x03, 0x42, 0x4d, 0x58, 0xaa, 0x02, 0x11, 0x42, 0x61,
+	0x73, 0x65, 0x2e, 0x4d, 0x67, 0x6d, 0x74, 0x2e, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xca,
+	0x02, 0x11, 0x42, 0x61, 0x73, 0x65, 0x5c, 0x4d, 0x67, 0x6d, 0x74, 0x5c, 0x56, 0x31, 0x61, 0x6c,
+	0x70, 0x68, 0x61, 0xe2, 0x02, 0x1d, 0x42, 0x61, 0x73, 0x65, 0x5c, 0x4d, 0x67, 0x6d, 0x74, 0x5c,
+	0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64,
+	0x61, 0x74, 0x61, 0xea, 0x02, 0x13, 0x42, 0x61, 0x73, 0x65, 0x3a, 0x3a, 0x4d, 0x67, 0x6d, 0x74,
+	0x3a, 0x3a, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x33,
 }
 
 var (
@@ -2526,58 +3123,69 @@ func file_base_mgmt_v1alpha_mgmt_proto_rawDescGZIP() []byte {
 }
 
 var file_base_mgmt_v1alpha_mgmt_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_base_mgmt_v1alpha_mgmt_proto_msgTypes = make([]protoimpl.MessageInfo, 34)
+var file_base_mgmt_v1alpha_mgmt_proto_msgTypes = make([]protoimpl.MessageInfo, 45)
 var file_base_mgmt_v1alpha_mgmt_proto_goTypes = []interface{}{
-	(View)(0),                              // 0: base.mgmt.v1alpha.View
-	(OwnerType)(0),                         // 1: base.mgmt.v1alpha.OwnerType
-	(ApiToken_State)(0),                    // 2: base.mgmt.v1alpha.ApiToken.State
-	(*LivenessRequest)(nil),                // 3: base.mgmt.v1alpha.LivenessRequest
-	(*LivenessResponse)(nil),               // 4: base.mgmt.v1alpha.LivenessResponse
-	(*ReadinessRequest)(nil),               // 5: base.mgmt.v1alpha.ReadinessRequest
-	(*ReadinessResponse)(nil),              // 6: base.mgmt.v1alpha.ReadinessResponse
-	(*User)(nil),                           // 7: base.mgmt.v1alpha.User
-	(*ListUsersAdminRequest)(nil),          // 8: base.mgmt.v1alpha.ListUsersAdminRequest
-	(*ListUsersAdminResponse)(nil),         // 9: base.mgmt.v1alpha.ListUsersAdminResponse
-	(*CreateUserAdminRequest)(nil),         // 10: base.mgmt.v1alpha.CreateUserAdminRequest
-	(*CreateUserAdminResponse)(nil),        // 11: base.mgmt.v1alpha.CreateUserAdminResponse
-	(*GetUserAdminRequest)(nil),            // 12: base.mgmt.v1alpha.GetUserAdminRequest
-	(*GetUserAdminResponse)(nil),           // 13: base.mgmt.v1alpha.GetUserAdminResponse
-	(*UpdateUserAdminRequest)(nil),         // 14: base.mgmt.v1alpha.UpdateUserAdminRequest
-	(*UpdateUserAdminResponse)(nil),        // 15: base.mgmt.v1alpha.UpdateUserAdminResponse
-	(*DeleteUserAdminRequest)(nil),         // 16: base.mgmt.v1alpha.DeleteUserAdminRequest
-	(*DeleteUserAdminResponse)(nil),        // 17: base.mgmt.v1alpha.DeleteUserAdminResponse
-	(*LookUpUserAdminRequest)(nil),         // 18: base.mgmt.v1alpha.LookUpUserAdminRequest
-	(*LookUpUserAdminResponse)(nil),        // 19: base.mgmt.v1alpha.LookUpUserAdminResponse
-	(*QueryAuthenticatedUserRequest)(nil),  // 20: base.mgmt.v1alpha.QueryAuthenticatedUserRequest
-	(*QueryAuthenticatedUserResponse)(nil), // 21: base.mgmt.v1alpha.QueryAuthenticatedUserResponse
-	(*PatchAuthenticatedUserRequest)(nil),  // 22: base.mgmt.v1alpha.PatchAuthenticatedUserRequest
-	(*PatchAuthenticatedUserResponse)(nil), // 23: base.mgmt.v1alpha.PatchAuthenticatedUserResponse
-	(*ExistUsernameRequest)(nil),           // 24: base.mgmt.v1alpha.ExistUsernameRequest
-	(*ExistUsernameResponse)(nil),          // 25: base.mgmt.v1alpha.ExistUsernameResponse
-	(*ApiToken)(nil),                       // 26: base.mgmt.v1alpha.ApiToken
-	(*CreateTokenRequest)(nil),             // 27: base.mgmt.v1alpha.CreateTokenRequest
-	(*CreateTokenResponse)(nil),            // 28: base.mgmt.v1alpha.CreateTokenResponse
-	(*ListTokensRequest)(nil),              // 29: base.mgmt.v1alpha.ListTokensRequest
-	(*ListTokensResponse)(nil),             // 30: base.mgmt.v1alpha.ListTokensResponse
-	(*GetTokenRequest)(nil),                // 31: base.mgmt.v1alpha.GetTokenRequest
-	(*GetTokenResponse)(nil),               // 32: base.mgmt.v1alpha.GetTokenResponse
-	(*DeleteTokenRequest)(nil),             // 33: base.mgmt.v1alpha.DeleteTokenRequest
-	(*DeleteTokenResponse)(nil),            // 34: base.mgmt.v1alpha.DeleteTokenResponse
-	(*ValidateTokenRequest)(nil),           // 35: base.mgmt.v1alpha.ValidateTokenRequest
-	(*ValidateTokenResponse)(nil),          // 36: base.mgmt.v1alpha.ValidateTokenResponse
-	(*v1alpha.HealthCheckRequest)(nil),     // 37: common.healthcheck.v1alpha.HealthCheckRequest
-	(*v1alpha.HealthCheckResponse)(nil),    // 38: common.healthcheck.v1alpha.HealthCheckResponse
-	(*timestamppb.Timestamp)(nil),          // 39: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil),          // 40: google.protobuf.FieldMask
+	(View)(0),                                           // 0: base.mgmt.v1alpha.View
+	(OwnerType)(0),                                      // 1: base.mgmt.v1alpha.OwnerType
+	(ApiToken_State)(0),                                 // 2: base.mgmt.v1alpha.ApiToken.State
+	(*LivenessRequest)(nil),                             // 3: base.mgmt.v1alpha.LivenessRequest
+	(*LivenessResponse)(nil),                            // 4: base.mgmt.v1alpha.LivenessResponse
+	(*ReadinessRequest)(nil),                            // 5: base.mgmt.v1alpha.ReadinessRequest
+	(*ReadinessResponse)(nil),                           // 6: base.mgmt.v1alpha.ReadinessResponse
+	(*User)(nil),                                        // 7: base.mgmt.v1alpha.User
+	(*ListUsersAdminRequest)(nil),                       // 8: base.mgmt.v1alpha.ListUsersAdminRequest
+	(*ListUsersAdminResponse)(nil),                      // 9: base.mgmt.v1alpha.ListUsersAdminResponse
+	(*CreateUserAdminRequest)(nil),                      // 10: base.mgmt.v1alpha.CreateUserAdminRequest
+	(*CreateUserAdminResponse)(nil),                     // 11: base.mgmt.v1alpha.CreateUserAdminResponse
+	(*GetUserAdminRequest)(nil),                         // 12: base.mgmt.v1alpha.GetUserAdminRequest
+	(*GetUserAdminResponse)(nil),                        // 13: base.mgmt.v1alpha.GetUserAdminResponse
+	(*UpdateUserAdminRequest)(nil),                      // 14: base.mgmt.v1alpha.UpdateUserAdminRequest
+	(*UpdateUserAdminResponse)(nil),                     // 15: base.mgmt.v1alpha.UpdateUserAdminResponse
+	(*DeleteUserAdminRequest)(nil),                      // 16: base.mgmt.v1alpha.DeleteUserAdminRequest
+	(*DeleteUserAdminResponse)(nil),                     // 17: base.mgmt.v1alpha.DeleteUserAdminResponse
+	(*LookUpUserAdminRequest)(nil),                      // 18: base.mgmt.v1alpha.LookUpUserAdminRequest
+	(*LookUpUserAdminResponse)(nil),                     // 19: base.mgmt.v1alpha.LookUpUserAdminResponse
+	(*QueryAuthenticatedUserRequest)(nil),               // 20: base.mgmt.v1alpha.QueryAuthenticatedUserRequest
+	(*QueryAuthenticatedUserResponse)(nil),              // 21: base.mgmt.v1alpha.QueryAuthenticatedUserResponse
+	(*PatchAuthenticatedUserRequest)(nil),               // 22: base.mgmt.v1alpha.PatchAuthenticatedUserRequest
+	(*PatchAuthenticatedUserResponse)(nil),              // 23: base.mgmt.v1alpha.PatchAuthenticatedUserResponse
+	(*ExistUsernameRequest)(nil),                        // 24: base.mgmt.v1alpha.ExistUsernameRequest
+	(*ExistUsernameResponse)(nil),                       // 25: base.mgmt.v1alpha.ExistUsernameResponse
+	(*ApiToken)(nil),                                    // 26: base.mgmt.v1alpha.ApiToken
+	(*CreateTokenRequest)(nil),                          // 27: base.mgmt.v1alpha.CreateTokenRequest
+	(*CreateTokenResponse)(nil),                         // 28: base.mgmt.v1alpha.CreateTokenResponse
+	(*ListTokensRequest)(nil),                           // 29: base.mgmt.v1alpha.ListTokensRequest
+	(*ListTokensResponse)(nil),                          // 30: base.mgmt.v1alpha.ListTokensResponse
+	(*GetTokenRequest)(nil),                             // 31: base.mgmt.v1alpha.GetTokenRequest
+	(*GetTokenResponse)(nil),                            // 32: base.mgmt.v1alpha.GetTokenResponse
+	(*DeleteTokenRequest)(nil),                          // 33: base.mgmt.v1alpha.DeleteTokenRequest
+	(*DeleteTokenResponse)(nil),                         // 34: base.mgmt.v1alpha.DeleteTokenResponse
+	(*ValidateTokenRequest)(nil),                        // 35: base.mgmt.v1alpha.ValidateTokenRequest
+	(*ValidateTokenResponse)(nil),                       // 36: base.mgmt.v1alpha.ValidateTokenResponse
+	(*AuthTokenIssuerRequest)(nil),                      // 37: base.mgmt.v1alpha.AuthTokenIssuerRequest
+	(*AuthTokenIssuerResponse)(nil),                     // 38: base.mgmt.v1alpha.AuthTokenIssuerResponse
+	(*AuthLoginRequest)(nil),                            // 39: base.mgmt.v1alpha.AuthLoginRequest
+	(*AuthLoginResponse)(nil),                           // 40: base.mgmt.v1alpha.AuthLoginResponse
+	(*AuthLogoutRequest)(nil),                           // 41: base.mgmt.v1alpha.AuthLogoutRequest
+	(*AuthLogoutResponse)(nil),                          // 42: base.mgmt.v1alpha.AuthLogoutResponse
+	(*AuthValidateAccessTokenRequest)(nil),              // 43: base.mgmt.v1alpha.AuthValidateAccessTokenRequest
+	(*AuthValidateAccessTokenResponse)(nil),             // 44: base.mgmt.v1alpha.AuthValidateAccessTokenResponse
+	(*AuthChangePasswordRequest)(nil),                   // 45: base.mgmt.v1alpha.AuthChangePasswordRequest
+	(*AuthChangePasswordResponse)(nil),                  // 46: base.mgmt.v1alpha.AuthChangePasswordResponse
+	(*AuthTokenIssuerResponse_UnsignedAccessToken)(nil), // 47: base.mgmt.v1alpha.AuthTokenIssuerResponse.UnsignedAccessToken
+	(*v1alpha.HealthCheckRequest)(nil),                  // 48: common.healthcheck.v1alpha.HealthCheckRequest
+	(*v1alpha.HealthCheckResponse)(nil),                 // 49: common.healthcheck.v1alpha.HealthCheckResponse
+	(*timestamppb.Timestamp)(nil),                       // 50: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil),                       // 51: google.protobuf.FieldMask
 }
 var file_base_mgmt_v1alpha_mgmt_proto_depIdxs = []int32{
-	37, // 0: base.mgmt.v1alpha.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1alpha.HealthCheckRequest
-	38, // 1: base.mgmt.v1alpha.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1alpha.HealthCheckResponse
-	37, // 2: base.mgmt.v1alpha.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1alpha.HealthCheckRequest
-	38, // 3: base.mgmt.v1alpha.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1alpha.HealthCheckResponse
+	48, // 0: base.mgmt.v1alpha.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1alpha.HealthCheckRequest
+	49, // 1: base.mgmt.v1alpha.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1alpha.HealthCheckResponse
+	48, // 2: base.mgmt.v1alpha.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1alpha.HealthCheckRequest
+	49, // 3: base.mgmt.v1alpha.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1alpha.HealthCheckResponse
 	1,  // 4: base.mgmt.v1alpha.User.type:type_name -> base.mgmt.v1alpha.OwnerType
-	39, // 5: base.mgmt.v1alpha.User.create_time:type_name -> google.protobuf.Timestamp
-	39, // 6: base.mgmt.v1alpha.User.update_time:type_name -> google.protobuf.Timestamp
+	50, // 5: base.mgmt.v1alpha.User.create_time:type_name -> google.protobuf.Timestamp
+	50, // 6: base.mgmt.v1alpha.User.update_time:type_name -> google.protobuf.Timestamp
 	0,  // 7: base.mgmt.v1alpha.ListUsersAdminRequest.view:type_name -> base.mgmt.v1alpha.View
 	7,  // 8: base.mgmt.v1alpha.ListUsersAdminResponse.users:type_name -> base.mgmt.v1alpha.User
 	7,  // 9: base.mgmt.v1alpha.CreateUserAdminRequest.user:type_name -> base.mgmt.v1alpha.User
@@ -2585,27 +3193,28 @@ var file_base_mgmt_v1alpha_mgmt_proto_depIdxs = []int32{
 	0,  // 11: base.mgmt.v1alpha.GetUserAdminRequest.view:type_name -> base.mgmt.v1alpha.View
 	7,  // 12: base.mgmt.v1alpha.GetUserAdminResponse.user:type_name -> base.mgmt.v1alpha.User
 	7,  // 13: base.mgmt.v1alpha.UpdateUserAdminRequest.user:type_name -> base.mgmt.v1alpha.User
-	40, // 14: base.mgmt.v1alpha.UpdateUserAdminRequest.update_mask:type_name -> google.protobuf.FieldMask
+	51, // 14: base.mgmt.v1alpha.UpdateUserAdminRequest.update_mask:type_name -> google.protobuf.FieldMask
 	7,  // 15: base.mgmt.v1alpha.UpdateUserAdminResponse.user:type_name -> base.mgmt.v1alpha.User
 	0,  // 16: base.mgmt.v1alpha.LookUpUserAdminRequest.view:type_name -> base.mgmt.v1alpha.View
 	7,  // 17: base.mgmt.v1alpha.LookUpUserAdminResponse.user:type_name -> base.mgmt.v1alpha.User
 	7,  // 18: base.mgmt.v1alpha.QueryAuthenticatedUserResponse.user:type_name -> base.mgmt.v1alpha.User
 	7,  // 19: base.mgmt.v1alpha.PatchAuthenticatedUserRequest.user:type_name -> base.mgmt.v1alpha.User
-	40, // 20: base.mgmt.v1alpha.PatchAuthenticatedUserRequest.update_mask:type_name -> google.protobuf.FieldMask
+	51, // 20: base.mgmt.v1alpha.PatchAuthenticatedUserRequest.update_mask:type_name -> google.protobuf.FieldMask
 	7,  // 21: base.mgmt.v1alpha.PatchAuthenticatedUserResponse.user:type_name -> base.mgmt.v1alpha.User
-	39, // 22: base.mgmt.v1alpha.ApiToken.create_time:type_name -> google.protobuf.Timestamp
-	39, // 23: base.mgmt.v1alpha.ApiToken.update_time:type_name -> google.protobuf.Timestamp
+	50, // 22: base.mgmt.v1alpha.ApiToken.create_time:type_name -> google.protobuf.Timestamp
+	50, // 23: base.mgmt.v1alpha.ApiToken.update_time:type_name -> google.protobuf.Timestamp
 	2,  // 24: base.mgmt.v1alpha.ApiToken.state:type_name -> base.mgmt.v1alpha.ApiToken.State
-	39, // 25: base.mgmt.v1alpha.ApiToken.expire_time:type_name -> google.protobuf.Timestamp
+	50, // 25: base.mgmt.v1alpha.ApiToken.expire_time:type_name -> google.protobuf.Timestamp
 	26, // 26: base.mgmt.v1alpha.CreateTokenRequest.token:type_name -> base.mgmt.v1alpha.ApiToken
 	26, // 27: base.mgmt.v1alpha.CreateTokenResponse.token:type_name -> base.mgmt.v1alpha.ApiToken
 	26, // 28: base.mgmt.v1alpha.ListTokensResponse.tokens:type_name -> base.mgmt.v1alpha.ApiToken
 	26, // 29: base.mgmt.v1alpha.GetTokenResponse.token:type_name -> base.mgmt.v1alpha.ApiToken
-	30, // [30:30] is the sub-list for method output_type
-	30, // [30:30] is the sub-list for method input_type
-	30, // [30:30] is the sub-list for extension type_name
-	30, // [30:30] is the sub-list for extension extendee
-	0,  // [0:30] is the sub-list for field type_name
+	47, // 30: base.mgmt.v1alpha.AuthTokenIssuerResponse.access_token:type_name -> base.mgmt.v1alpha.AuthTokenIssuerResponse.UnsignedAccessToken
+	31, // [31:31] is the sub-list for method output_type
+	31, // [31:31] is the sub-list for method input_type
+	31, // [31:31] is the sub-list for extension type_name
+	31, // [31:31] is the sub-list for extension extendee
+	0,  // [0:31] is the sub-list for field type_name
 }
 
 func init() { file_base_mgmt_v1alpha_mgmt_proto_init() }
@@ -3022,6 +3631,138 @@ func file_base_mgmt_v1alpha_mgmt_proto_init() {
 				return nil
 			}
 		}
+		file_base_mgmt_v1alpha_mgmt_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AuthTokenIssuerRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_base_mgmt_v1alpha_mgmt_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AuthTokenIssuerResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_base_mgmt_v1alpha_mgmt_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AuthLoginRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_base_mgmt_v1alpha_mgmt_proto_msgTypes[37].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AuthLoginResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_base_mgmt_v1alpha_mgmt_proto_msgTypes[38].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AuthLogoutRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_base_mgmt_v1alpha_mgmt_proto_msgTypes[39].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AuthLogoutResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_base_mgmt_v1alpha_mgmt_proto_msgTypes[40].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AuthValidateAccessTokenRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_base_mgmt_v1alpha_mgmt_proto_msgTypes[41].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AuthValidateAccessTokenResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_base_mgmt_v1alpha_mgmt_proto_msgTypes[42].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AuthChangePasswordRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_base_mgmt_v1alpha_mgmt_proto_msgTypes[43].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AuthChangePasswordResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_base_mgmt_v1alpha_mgmt_proto_msgTypes[44].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AuthTokenIssuerResponse_UnsignedAccessToken); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	file_base_mgmt_v1alpha_mgmt_proto_msgTypes[0].OneofWrappers = []interface{}{}
 	file_base_mgmt_v1alpha_mgmt_proto_msgTypes[2].OneofWrappers = []interface{}{}
@@ -3040,7 +3781,7 @@ func file_base_mgmt_v1alpha_mgmt_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_base_mgmt_v1alpha_mgmt_proto_rawDesc,
 			NumEnums:      3,
-			NumMessages:   34,
+			NumMessages:   45,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

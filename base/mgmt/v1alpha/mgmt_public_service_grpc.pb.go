@@ -35,6 +35,11 @@ const (
 	MgmtPublicService_ListConnectorExecuteRecords_FullMethodName      = "/base.mgmt.v1alpha.MgmtPublicService/ListConnectorExecuteRecords"
 	MgmtPublicService_ListConnectorExecuteTableRecords_FullMethodName = "/base.mgmt.v1alpha.MgmtPublicService/ListConnectorExecuteTableRecords"
 	MgmtPublicService_ListConnectorExecuteChartRecords_FullMethodName = "/base.mgmt.v1alpha.MgmtPublicService/ListConnectorExecuteChartRecords"
+	MgmtPublicService_AuthTokenIssuer_FullMethodName                  = "/base.mgmt.v1alpha.MgmtPublicService/AuthTokenIssuer"
+	MgmtPublicService_AuthLogin_FullMethodName                        = "/base.mgmt.v1alpha.MgmtPublicService/AuthLogin"
+	MgmtPublicService_AuthLogout_FullMethodName                       = "/base.mgmt.v1alpha.MgmtPublicService/AuthLogout"
+	MgmtPublicService_AuthChangePassword_FullMethodName               = "/base.mgmt.v1alpha.MgmtPublicService/AuthChangePassword"
+	MgmtPublicService_AuthValidateAccessToken_FullMethodName          = "/base.mgmt.v1alpha.MgmtPublicService/AuthValidateAccessToken"
 )
 
 // MgmtPublicServiceClient is the client API for MgmtPublicService service.
@@ -91,6 +96,16 @@ type MgmtPublicServiceClient interface {
 	// ListConnectorExecuteChartRecords method receives a ListConnectorExecuteChartRecordsRequest message and returns a
 	// ListConnectorExecuteChartRecordsResponse message.
 	ListConnectorExecuteChartRecords(ctx context.Context, in *ListConnectorExecuteChartRecordsRequest, opts ...grpc.CallOption) (*ListConnectorExecuteChartRecordsResponse, error)
+	// AuthTokenIssuer endpoint
+	AuthTokenIssuer(ctx context.Context, in *AuthTokenIssuerRequest, opts ...grpc.CallOption) (*AuthTokenIssuerResponse, error)
+	// Auth Login endpoint
+	AuthLogin(ctx context.Context, in *AuthLoginRequest, opts ...grpc.CallOption) (*AuthLoginResponse, error)
+	// Auth Logout endpoint
+	AuthLogout(ctx context.Context, in *AuthLogoutRequest, opts ...grpc.CallOption) (*AuthLogoutResponse, error)
+	// Auth Change password endpoint
+	AuthChangePassword(ctx context.Context, in *AuthChangePasswordRequest, opts ...grpc.CallOption) (*AuthChangePasswordResponse, error)
+	// Auth AccessToken validation endpoint
+	AuthValidateAccessToken(ctx context.Context, in *AuthValidateAccessTokenRequest, opts ...grpc.CallOption) (*AuthValidateAccessTokenResponse, error)
 }
 
 type mgmtPublicServiceClient struct {
@@ -245,6 +260,51 @@ func (c *mgmtPublicServiceClient) ListConnectorExecuteChartRecords(ctx context.C
 	return out, nil
 }
 
+func (c *mgmtPublicServiceClient) AuthTokenIssuer(ctx context.Context, in *AuthTokenIssuerRequest, opts ...grpc.CallOption) (*AuthTokenIssuerResponse, error) {
+	out := new(AuthTokenIssuerResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_AuthTokenIssuer_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mgmtPublicServiceClient) AuthLogin(ctx context.Context, in *AuthLoginRequest, opts ...grpc.CallOption) (*AuthLoginResponse, error) {
+	out := new(AuthLoginResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_AuthLogin_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mgmtPublicServiceClient) AuthLogout(ctx context.Context, in *AuthLogoutRequest, opts ...grpc.CallOption) (*AuthLogoutResponse, error) {
+	out := new(AuthLogoutResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_AuthLogout_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mgmtPublicServiceClient) AuthChangePassword(ctx context.Context, in *AuthChangePasswordRequest, opts ...grpc.CallOption) (*AuthChangePasswordResponse, error) {
+	out := new(AuthChangePasswordResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_AuthChangePassword_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mgmtPublicServiceClient) AuthValidateAccessToken(ctx context.Context, in *AuthValidateAccessTokenRequest, opts ...grpc.CallOption) (*AuthValidateAccessTokenResponse, error) {
+	out := new(AuthValidateAccessTokenResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_AuthValidateAccessToken_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MgmtPublicServiceServer is the server API for MgmtPublicService service.
 // All implementations should embed UnimplementedMgmtPublicServiceServer
 // for forward compatibility
@@ -299,6 +359,16 @@ type MgmtPublicServiceServer interface {
 	// ListConnectorExecuteChartRecords method receives a ListConnectorExecuteChartRecordsRequest message and returns a
 	// ListConnectorExecuteChartRecordsResponse message.
 	ListConnectorExecuteChartRecords(context.Context, *ListConnectorExecuteChartRecordsRequest) (*ListConnectorExecuteChartRecordsResponse, error)
+	// AuthTokenIssuer endpoint
+	AuthTokenIssuer(context.Context, *AuthTokenIssuerRequest) (*AuthTokenIssuerResponse, error)
+	// Auth Login endpoint
+	AuthLogin(context.Context, *AuthLoginRequest) (*AuthLoginResponse, error)
+	// Auth Logout endpoint
+	AuthLogout(context.Context, *AuthLogoutRequest) (*AuthLogoutResponse, error)
+	// Auth Change password endpoint
+	AuthChangePassword(context.Context, *AuthChangePasswordRequest) (*AuthChangePasswordResponse, error)
+	// Auth AccessToken validation endpoint
+	AuthValidateAccessToken(context.Context, *AuthValidateAccessTokenRequest) (*AuthValidateAccessTokenResponse, error)
 }
 
 // UnimplementedMgmtPublicServiceServer should be embedded to have forward compatible implementations.
@@ -352,6 +422,21 @@ func (UnimplementedMgmtPublicServiceServer) ListConnectorExecuteTableRecords(con
 }
 func (UnimplementedMgmtPublicServiceServer) ListConnectorExecuteChartRecords(context.Context, *ListConnectorExecuteChartRecordsRequest) (*ListConnectorExecuteChartRecordsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListConnectorExecuteChartRecords not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) AuthTokenIssuer(context.Context, *AuthTokenIssuerRequest) (*AuthTokenIssuerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AuthTokenIssuer not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) AuthLogin(context.Context, *AuthLoginRequest) (*AuthLoginResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AuthLogin not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) AuthLogout(context.Context, *AuthLogoutRequest) (*AuthLogoutResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AuthLogout not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) AuthChangePassword(context.Context, *AuthChangePasswordRequest) (*AuthChangePasswordResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AuthChangePassword not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) AuthValidateAccessToken(context.Context, *AuthValidateAccessTokenRequest) (*AuthValidateAccessTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AuthValidateAccessToken not implemented")
 }
 
 // UnsafeMgmtPublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -653,6 +738,96 @@ func _MgmtPublicService_ListConnectorExecuteChartRecords_Handler(srv interface{}
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MgmtPublicService_AuthTokenIssuer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthTokenIssuerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).AuthTokenIssuer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_AuthTokenIssuer_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).AuthTokenIssuer(ctx, req.(*AuthTokenIssuerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MgmtPublicService_AuthLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthLoginRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).AuthLogin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_AuthLogin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).AuthLogin(ctx, req.(*AuthLoginRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MgmtPublicService_AuthLogout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthLogoutRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).AuthLogout(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_AuthLogout_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).AuthLogout(ctx, req.(*AuthLogoutRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MgmtPublicService_AuthChangePassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthChangePasswordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).AuthChangePassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_AuthChangePassword_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).AuthChangePassword(ctx, req.(*AuthChangePasswordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MgmtPublicService_AuthValidateAccessToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthValidateAccessTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).AuthValidateAccessToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_AuthValidateAccessToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).AuthValidateAccessToken(ctx, req.(*AuthValidateAccessTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MgmtPublicService_ServiceDesc is the grpc.ServiceDesc for MgmtPublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -723,6 +898,26 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListConnectorExecuteChartRecords",
 			Handler:    _MgmtPublicService_ListConnectorExecuteChartRecords_Handler,
+		},
+		{
+			MethodName: "AuthTokenIssuer",
+			Handler:    _MgmtPublicService_AuthTokenIssuer_Handler,
+		},
+		{
+			MethodName: "AuthLogin",
+			Handler:    _MgmtPublicService_AuthLogin_Handler,
+		},
+		{
+			MethodName: "AuthLogout",
+			Handler:    _MgmtPublicService_AuthLogout_Handler,
+		},
+		{
+			MethodName: "AuthChangePassword",
+			Handler:    _MgmtPublicService_AuthChangePassword_Handler,
+		},
+		{
+			MethodName: "AuthValidateAccessToken",
+			Handler:    _MgmtPublicService_AuthValidateAccessToken_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
