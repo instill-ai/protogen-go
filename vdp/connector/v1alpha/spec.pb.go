@@ -31,7 +31,7 @@ type Spec struct {
 
 	// Spec resource specification
 	ResourceSpecification *structpb.Struct `protobuf:"bytes,2,opt,name=resource_specification,json=resourceSpecification,proto3" json:"resource_specification,omitempty"`
-	// Spec connector specification
+	// Spec component specification
 	ComponentSpecification *structpb.Struct `protobuf:"bytes,3,opt,name=component_specification,json=componentSpecification,proto3" json:"component_specification,omitempty"`
 	// Spec openapi specification
 	OpenapiSpecifications *structpb.Struct `protobuf:"bytes,4,opt,name=openapi_specifications,json=openapiSpecifications,proto3" json:"openapi_specifications,omitempty"`
