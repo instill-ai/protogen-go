@@ -1,6 +1,6 @@
 module github.com/instill-ai/protogen-go
 
-go 1.18
+go 1.21
 
 retract v0.3.0-alpha
 
