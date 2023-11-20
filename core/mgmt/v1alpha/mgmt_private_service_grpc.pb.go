@@ -22,8 +22,6 @@ const (
 	MgmtPrivateService_ListUsersAdmin_FullMethodName  = "/core.mgmt.v1alpha.MgmtPrivateService/ListUsersAdmin"
 	MgmtPrivateService_CreateUserAdmin_FullMethodName = "/core.mgmt.v1alpha.MgmtPrivateService/CreateUserAdmin"
 	MgmtPrivateService_GetUserAdmin_FullMethodName    = "/core.mgmt.v1alpha.MgmtPrivateService/GetUserAdmin"
-	MgmtPrivateService_UpdateUserAdmin_FullMethodName = "/core.mgmt.v1alpha.MgmtPrivateService/UpdateUserAdmin"
-	MgmtPrivateService_DeleteUserAdmin_FullMethodName = "/core.mgmt.v1alpha.MgmtPrivateService/DeleteUserAdmin"
 	MgmtPrivateService_LookUpUserAdmin_FullMethodName = "/core.mgmt.v1alpha.MgmtPrivateService/LookUpUserAdmin"
 )
 
@@ -40,12 +38,6 @@ type MgmtPrivateServiceClient interface {
 	// GetUserAdmin method receives a GetUserAdminRequest message and returns
 	// a GetUserAdminResponse message.
 	GetUserAdmin(ctx context.Context, in *GetUserAdminRequest, opts ...grpc.CallOption) (*GetUserAdminResponse, error)
-	// UpdateUserAdmin method receives a UpdateUserAdminRequest message and
-	// returns a UpdateUserAdminResponse
-	UpdateUserAdmin(ctx context.Context, in *UpdateUserAdminRequest, opts ...grpc.CallOption) (*UpdateUserAdminResponse, error)
-	// DeleteUserAdmin method receives a DeleteUserAdminRequest message and
-	// returns a DeleteUserAdminResponse
-	DeleteUserAdmin(ctx context.Context, in *DeleteUserAdminRequest, opts ...grpc.CallOption) (*DeleteUserAdminResponse, error)
 	// LookUpUserAdmin method receives a LookUpUserAdminRequest message and
 	// returns a LookUpUserAdminResponse
 	LookUpUserAdmin(ctx context.Context, in *LookUpUserAdminRequest, opts ...grpc.CallOption) (*LookUpUserAdminResponse, error)
@@ -86,24 +78,6 @@ func (c *mgmtPrivateServiceClient) GetUserAdmin(ctx context.Context, in *GetUser
 	return out, nil
 }
 
-func (c *mgmtPrivateServiceClient) UpdateUserAdmin(ctx context.Context, in *UpdateUserAdminRequest, opts ...grpc.CallOption) (*UpdateUserAdminResponse, error) {
-	out := new(UpdateUserAdminResponse)
-	err := c.cc.Invoke(ctx, MgmtPrivateService_UpdateUserAdmin_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mgmtPrivateServiceClient) DeleteUserAdmin(ctx context.Context, in *DeleteUserAdminRequest, opts ...grpc.CallOption) (*DeleteUserAdminResponse, error) {
-	out := new(DeleteUserAdminResponse)
-	err := c.cc.Invoke(ctx, MgmtPrivateService_DeleteUserAdmin_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *mgmtPrivateServiceClient) LookUpUserAdmin(ctx context.Context, in *LookUpUserAdminRequest, opts ...grpc.CallOption) (*LookUpUserAdminResponse, error) {
 	out := new(LookUpUserAdminResponse)
 	err := c.cc.Invoke(ctx, MgmtPrivateService_LookUpUserAdmin_FullMethodName, in, out, opts...)
@@ -126,12 +100,6 @@ type MgmtPrivateServiceServer interface {
 	// GetUserAdmin method receives a GetUserAdminRequest message and returns
 	// a GetUserAdminResponse message.
 	GetUserAdmin(context.Context, *GetUserAdminRequest) (*GetUserAdminResponse, error)
-	// UpdateUserAdmin method receives a UpdateUserAdminRequest message and
-	// returns a UpdateUserAdminResponse
-	UpdateUserAdmin(context.Context, *UpdateUserAdminRequest) (*UpdateUserAdminResponse, error)
-	// DeleteUserAdmin method receives a DeleteUserAdminRequest message and
-	// returns a DeleteUserAdminResponse
-	DeleteUserAdmin(context.Context, *DeleteUserAdminRequest) (*DeleteUserAdminResponse, error)
 	// LookUpUserAdmin method receives a LookUpUserAdminRequest message and
 	// returns a LookUpUserAdminResponse
 	LookUpUserAdmin(context.Context, *LookUpUserAdminRequest) (*LookUpUserAdminResponse, error)
@@ -149,12 +117,6 @@ func (UnimplementedMgmtPrivateServiceServer) CreateUserAdmin(context.Context, *C
 }
 func (UnimplementedMgmtPrivateServiceServer) GetUserAdmin(context.Context, *GetUserAdminRequest) (*GetUserAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserAdmin not implemented")
-}
-func (UnimplementedMgmtPrivateServiceServer) UpdateUserAdmin(context.Context, *UpdateUserAdminRequest) (*UpdateUserAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserAdmin not implemented")
-}
-func (UnimplementedMgmtPrivateServiceServer) DeleteUserAdmin(context.Context, *DeleteUserAdminRequest) (*DeleteUserAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteUserAdmin not implemented")
 }
 func (UnimplementedMgmtPrivateServiceServer) LookUpUserAdmin(context.Context, *LookUpUserAdminRequest) (*LookUpUserAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LookUpUserAdmin not implemented")
@@ -225,42 +187,6 @@ func _MgmtPrivateService_GetUserAdmin_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MgmtPrivateService_UpdateUserAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateUserAdminRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPrivateServiceServer).UpdateUserAdmin(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPrivateService_UpdateUserAdmin_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPrivateServiceServer).UpdateUserAdmin(ctx, req.(*UpdateUserAdminRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MgmtPrivateService_DeleteUserAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteUserAdminRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPrivateServiceServer).DeleteUserAdmin(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPrivateService_DeleteUserAdmin_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPrivateServiceServer).DeleteUserAdmin(ctx, req.(*DeleteUserAdminRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _MgmtPrivateService_LookUpUserAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(LookUpUserAdminRequest)
 	if err := dec(in); err != nil {
@@ -297,14 +223,6 @@ var MgmtPrivateService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetUserAdmin",
 			Handler:    _MgmtPrivateService_GetUserAdmin_Handler,
-		},
-		{
-			MethodName: "UpdateUserAdmin",
-			Handler:    _MgmtPrivateService_UpdateUserAdmin_Handler,
-		},
-		{
-			MethodName: "DeleteUserAdmin",
-			Handler:    _MgmtPrivateService_DeleteUserAdmin_Handler,
 		},
 		{
 			MethodName: "LookUpUserAdmin",
