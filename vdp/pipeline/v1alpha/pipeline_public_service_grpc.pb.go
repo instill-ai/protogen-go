@@ -46,6 +46,21 @@ const (
 	PipelinePublicService_RenameUserPipelineRelease_FullMethodName       = "/vdp.pipeline.v1alpha.PipelinePublicService/RenameUserPipelineRelease"
 	PipelinePublicService_TriggerUserPipelineRelease_FullMethodName      = "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerUserPipelineRelease"
 	PipelinePublicService_TriggerAsyncUserPipelineRelease_FullMethodName = "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerAsyncUserPipelineRelease"
+	PipelinePublicService_ListConnectorDefinitions_FullMethodName        = "/vdp.pipeline.v1alpha.PipelinePublicService/ListConnectorDefinitions"
+	PipelinePublicService_GetConnectorDefinition_FullMethodName          = "/vdp.pipeline.v1alpha.PipelinePublicService/GetConnectorDefinition"
+	PipelinePublicService_ListConnectors_FullMethodName                  = "/vdp.pipeline.v1alpha.PipelinePublicService/ListConnectors"
+	PipelinePublicService_LookUpConnector_FullMethodName                 = "/vdp.pipeline.v1alpha.PipelinePublicService/LookUpConnector"
+	PipelinePublicService_CreateUserConnector_FullMethodName             = "/vdp.pipeline.v1alpha.PipelinePublicService/CreateUserConnector"
+	PipelinePublicService_ListUserConnectors_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/ListUserConnectors"
+	PipelinePublicService_GetUserConnector_FullMethodName                = "/vdp.pipeline.v1alpha.PipelinePublicService/GetUserConnector"
+	PipelinePublicService_UpdateUserConnector_FullMethodName             = "/vdp.pipeline.v1alpha.PipelinePublicService/UpdateUserConnector"
+	PipelinePublicService_DeleteUserConnector_FullMethodName             = "/vdp.pipeline.v1alpha.PipelinePublicService/DeleteUserConnector"
+	PipelinePublicService_ConnectUserConnector_FullMethodName            = "/vdp.pipeline.v1alpha.PipelinePublicService/ConnectUserConnector"
+	PipelinePublicService_DisconnectUserConnector_FullMethodName         = "/vdp.pipeline.v1alpha.PipelinePublicService/DisconnectUserConnector"
+	PipelinePublicService_RenameUserConnector_FullMethodName             = "/vdp.pipeline.v1alpha.PipelinePublicService/RenameUserConnector"
+	PipelinePublicService_ExecuteUserConnector_FullMethodName            = "/vdp.pipeline.v1alpha.PipelinePublicService/ExecuteUserConnector"
+	PipelinePublicService_WatchUserConnector_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/WatchUserConnector"
+	PipelinePublicService_TestUserConnector_FullMethodName               = "/vdp.pipeline.v1alpha.PipelinePublicService/TestUserConnector"
 )
 
 // PipelinePublicServiceClient is the client API for PipelinePublicService service.
@@ -137,6 +152,68 @@ type PipelinePublicServiceClient interface {
 	// TriggerAsyncUserPipelineRelease method receives a TriggerAsyncUserPipelineReleaseRequest message and
 	// returns a TriggerAsyncUserPipelineReleaseResponse.
 	TriggerAsyncUserPipelineRelease(ctx context.Context, in *TriggerAsyncUserPipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerAsyncUserPipelineReleaseResponse, error)
+	// ListConnectorDefinitions method receives a
+	// ListConnectorDefinitionsRequest message and returns a
+	// ListConnectorDefinitionsResponse message.
+	ListConnectorDefinitions(ctx context.Context, in *ListConnectorDefinitionsRequest, opts ...grpc.CallOption) (*ListConnectorDefinitionsResponse, error)
+	// GetConnectorDefinition method receives a
+	// GetConnectorDefinitionRequest message and returns a
+	// GetGetConnectorDefinitionResponse message.
+	GetConnectorDefinition(ctx context.Context, in *GetConnectorDefinitionRequest, opts ...grpc.CallOption) (*GetConnectorDefinitionResponse, error)
+	// ListConnectors method receives a
+	// ListConnectorsRequest message and returns a
+	// ListConnectorsResponse message.
+	ListConnectors(ctx context.Context, in *ListConnectorsRequest, opts ...grpc.CallOption) (*ListConnectorsResponse, error)
+	// LookUpConnector method receives a
+	// LookUpConnectorRequest message and returns a
+	// LookUpConnectorResponse
+	LookUpConnector(ctx context.Context, in *LookUpConnectorRequest, opts ...grpc.CallOption) (*LookUpConnectorResponse, error)
+	// CreateUserConnector method receives a
+	// CreateUserConnectorRequest message and returns a
+	// CreateUserConnectorResponse message.
+	CreateUserConnector(ctx context.Context, in *CreateUserConnectorRequest, opts ...grpc.CallOption) (*CreateUserConnectorResponse, error)
+	// ListUserConnectors method receives a
+	// ListUserConnectorsRequest message and returns a
+	// ListUserConnectorsResponse message.
+	ListUserConnectors(ctx context.Context, in *ListUserConnectorsRequest, opts ...grpc.CallOption) (*ListUserConnectorsResponse, error)
+	// GetUserConnector method receives a GetUserConnectorRequest
+	// message and returns a GetUserConnectorResponse message.
+	GetUserConnector(ctx context.Context, in *GetUserConnectorRequest, opts ...grpc.CallOption) (*GetUserConnectorResponse, error)
+	// UpdateUserConnector method receives a
+	// UpdateUserConnectorRequest message and returns a
+	// UpdateUserConnectorResponse message.
+	UpdateUserConnector(ctx context.Context, in *UpdateUserConnectorRequest, opts ...grpc.CallOption) (*UpdateUserConnectorResponse, error)
+	// DeleteUserConnector method receives a
+	// DeleteUserConnectorRequest message and returns a
+	// DeleteUserConnectorResponse message.
+	DeleteUserConnector(ctx context.Context, in *DeleteUserConnectorRequest, opts ...grpc.CallOption) (*DeleteUserConnectorResponse, error)
+	// Connect a connector.
+	// The "state" of the connector after connecting is "CONNECTED".
+	// ConnectUserConnector can be called on Connector in the
+	// state `DISCONNECTED`; Connector in a different state (including
+	// `CONNECTED`) returns an error.
+	ConnectUserConnector(ctx context.Context, in *ConnectUserConnectorRequest, opts ...grpc.CallOption) (*ConnectUserConnectorResponse, error)
+	// Disconnect a connector.
+	// The "state" of the connector after disconnecting is "DISCONNECTED".
+	// DisconnectUserConnector can be called on Connector in the
+	// state `CONNECTED`; Connector in a different state (including
+	// `DISCONNECTED`) returns an error.
+	DisconnectUserConnector(ctx context.Context, in *DisconnectUserConnectorRequest, opts ...grpc.CallOption) (*DisconnectUserConnectorResponse, error)
+	// RenameUserConnector method receives a
+	// RenameUserConnectorRequest message and returns a
+	// RenameUserConnectorResponse message.
+	RenameUserConnector(ctx context.Context, in *RenameUserConnectorRequest, opts ...grpc.CallOption) (*RenameUserConnectorResponse, error)
+	// ExecuteUserConnector method receives a
+	// ExecuteUserConnectorRequest message and returns a
+	// ExecuteUserConnectorResponse message.
+	ExecuteUserConnector(ctx context.Context, in *ExecuteUserConnectorRequest, opts ...grpc.CallOption) (*ExecuteUserConnectorResponse, error)
+	// WatchUserConnector method receives a
+	// WatchUserConnectorRequest message and returns a
+	// WatchUserConnectorResponse
+	WatchUserConnector(ctx context.Context, in *WatchUserConnectorRequest, opts ...grpc.CallOption) (*WatchUserConnectorResponse, error)
+	// TestUserConnector method receives a TestUserConnectorRequest
+	// message and returns a TestUserConnectorResponse
+	TestUserConnector(ctx context.Context, in *TestUserConnectorRequest, opts ...grpc.CallOption) (*TestUserConnectorResponse, error)
 }
 
 type pipelinePublicServiceClient struct {
@@ -390,6 +467,141 @@ func (c *pipelinePublicServiceClient) TriggerAsyncUserPipelineRelease(ctx contex
 	return out, nil
 }
 
+func (c *pipelinePublicServiceClient) ListConnectorDefinitions(ctx context.Context, in *ListConnectorDefinitionsRequest, opts ...grpc.CallOption) (*ListConnectorDefinitionsResponse, error) {
+	out := new(ListConnectorDefinitionsResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ListConnectorDefinitions_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) GetConnectorDefinition(ctx context.Context, in *GetConnectorDefinitionRequest, opts ...grpc.CallOption) (*GetConnectorDefinitionResponse, error) {
+	out := new(GetConnectorDefinitionResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_GetConnectorDefinition_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) ListConnectors(ctx context.Context, in *ListConnectorsRequest, opts ...grpc.CallOption) (*ListConnectorsResponse, error) {
+	out := new(ListConnectorsResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ListConnectors_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) LookUpConnector(ctx context.Context, in *LookUpConnectorRequest, opts ...grpc.CallOption) (*LookUpConnectorResponse, error) {
+	out := new(LookUpConnectorResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_LookUpConnector_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) CreateUserConnector(ctx context.Context, in *CreateUserConnectorRequest, opts ...grpc.CallOption) (*CreateUserConnectorResponse, error) {
+	out := new(CreateUserConnectorResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_CreateUserConnector_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) ListUserConnectors(ctx context.Context, in *ListUserConnectorsRequest, opts ...grpc.CallOption) (*ListUserConnectorsResponse, error) {
+	out := new(ListUserConnectorsResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ListUserConnectors_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) GetUserConnector(ctx context.Context, in *GetUserConnectorRequest, opts ...grpc.CallOption) (*GetUserConnectorResponse, error) {
+	out := new(GetUserConnectorResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_GetUserConnector_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) UpdateUserConnector(ctx context.Context, in *UpdateUserConnectorRequest, opts ...grpc.CallOption) (*UpdateUserConnectorResponse, error) {
+	out := new(UpdateUserConnectorResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_UpdateUserConnector_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) DeleteUserConnector(ctx context.Context, in *DeleteUserConnectorRequest, opts ...grpc.CallOption) (*DeleteUserConnectorResponse, error) {
+	out := new(DeleteUserConnectorResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_DeleteUserConnector_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) ConnectUserConnector(ctx context.Context, in *ConnectUserConnectorRequest, opts ...grpc.CallOption) (*ConnectUserConnectorResponse, error) {
+	out := new(ConnectUserConnectorResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ConnectUserConnector_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) DisconnectUserConnector(ctx context.Context, in *DisconnectUserConnectorRequest, opts ...grpc.CallOption) (*DisconnectUserConnectorResponse, error) {
+	out := new(DisconnectUserConnectorResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_DisconnectUserConnector_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) RenameUserConnector(ctx context.Context, in *RenameUserConnectorRequest, opts ...grpc.CallOption) (*RenameUserConnectorResponse, error) {
+	out := new(RenameUserConnectorResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_RenameUserConnector_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) ExecuteUserConnector(ctx context.Context, in *ExecuteUserConnectorRequest, opts ...grpc.CallOption) (*ExecuteUserConnectorResponse, error) {
+	out := new(ExecuteUserConnectorResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ExecuteUserConnector_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) WatchUserConnector(ctx context.Context, in *WatchUserConnectorRequest, opts ...grpc.CallOption) (*WatchUserConnectorResponse, error) {
+	out := new(WatchUserConnectorResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_WatchUserConnector_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) TestUserConnector(ctx context.Context, in *TestUserConnectorRequest, opts ...grpc.CallOption) (*TestUserConnectorResponse, error) {
+	out := new(TestUserConnectorResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_TestUserConnector_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PipelinePublicServiceServer is the server API for PipelinePublicService service.
 // All implementations should embed UnimplementedPipelinePublicServiceServer
 // for forward compatibility
@@ -479,6 +691,68 @@ type PipelinePublicServiceServer interface {
 	// TriggerAsyncUserPipelineRelease method receives a TriggerAsyncUserPipelineReleaseRequest message and
 	// returns a TriggerAsyncUserPipelineReleaseResponse.
 	TriggerAsyncUserPipelineRelease(context.Context, *TriggerAsyncUserPipelineReleaseRequest) (*TriggerAsyncUserPipelineReleaseResponse, error)
+	// ListConnectorDefinitions method receives a
+	// ListConnectorDefinitionsRequest message and returns a
+	// ListConnectorDefinitionsResponse message.
+	ListConnectorDefinitions(context.Context, *ListConnectorDefinitionsRequest) (*ListConnectorDefinitionsResponse, error)
+	// GetConnectorDefinition method receives a
+	// GetConnectorDefinitionRequest message and returns a
+	// GetGetConnectorDefinitionResponse message.
+	GetConnectorDefinition(context.Context, *GetConnectorDefinitionRequest) (*GetConnectorDefinitionResponse, error)
+	// ListConnectors method receives a
+	// ListConnectorsRequest message and returns a
+	// ListConnectorsResponse message.
+	ListConnectors(context.Context, *ListConnectorsRequest) (*ListConnectorsResponse, error)
+	// LookUpConnector method receives a
+	// LookUpConnectorRequest message and returns a
+	// LookUpConnectorResponse
+	LookUpConnector(context.Context, *LookUpConnectorRequest) (*LookUpConnectorResponse, error)
+	// CreateUserConnector method receives a
+	// CreateUserConnectorRequest message and returns a
+	// CreateUserConnectorResponse message.
+	CreateUserConnector(context.Context, *CreateUserConnectorRequest) (*CreateUserConnectorResponse, error)
+	// ListUserConnectors method receives a
+	// ListUserConnectorsRequest message and returns a
+	// ListUserConnectorsResponse message.
+	ListUserConnectors(context.Context, *ListUserConnectorsRequest) (*ListUserConnectorsResponse, error)
+	// GetUserConnector method receives a GetUserConnectorRequest
+	// message and returns a GetUserConnectorResponse message.
+	GetUserConnector(context.Context, *GetUserConnectorRequest) (*GetUserConnectorResponse, error)
+	// UpdateUserConnector method receives a
+	// UpdateUserConnectorRequest message and returns a
+	// UpdateUserConnectorResponse message.
+	UpdateUserConnector(context.Context, *UpdateUserConnectorRequest) (*UpdateUserConnectorResponse, error)
+	// DeleteUserConnector method receives a
+	// DeleteUserConnectorRequest message and returns a
+	// DeleteUserConnectorResponse message.
+	DeleteUserConnector(context.Context, *DeleteUserConnectorRequest) (*DeleteUserConnectorResponse, error)
+	// Connect a connector.
+	// The "state" of the connector after connecting is "CONNECTED".
+	// ConnectUserConnector can be called on Connector in the
+	// state `DISCONNECTED`; Connector in a different state (including
+	// `CONNECTED`) returns an error.
+	ConnectUserConnector(context.Context, *ConnectUserConnectorRequest) (*ConnectUserConnectorResponse, error)
+	// Disconnect a connector.
+	// The "state" of the connector after disconnecting is "DISCONNECTED".
+	// DisconnectUserConnector can be called on Connector in the
+	// state `CONNECTED`; Connector in a different state (including
+	// `DISCONNECTED`) returns an error.
+	DisconnectUserConnector(context.Context, *DisconnectUserConnectorRequest) (*DisconnectUserConnectorResponse, error)
+	// RenameUserConnector method receives a
+	// RenameUserConnectorRequest message and returns a
+	// RenameUserConnectorResponse message.
+	RenameUserConnector(context.Context, *RenameUserConnectorRequest) (*RenameUserConnectorResponse, error)
+	// ExecuteUserConnector method receives a
+	// ExecuteUserConnectorRequest message and returns a
+	// ExecuteUserConnectorResponse message.
+	ExecuteUserConnector(context.Context, *ExecuteUserConnectorRequest) (*ExecuteUserConnectorResponse, error)
+	// WatchUserConnector method receives a
+	// WatchUserConnectorRequest message and returns a
+	// WatchUserConnectorResponse
+	WatchUserConnector(context.Context, *WatchUserConnectorRequest) (*WatchUserConnectorResponse, error)
+	// TestUserConnector method receives a TestUserConnectorRequest
+	// message and returns a TestUserConnectorResponse
+	TestUserConnector(context.Context, *TestUserConnectorRequest) (*TestUserConnectorResponse, error)
 }
 
 // UnimplementedPipelinePublicServiceServer should be embedded to have forward compatible implementations.
@@ -565,6 +839,51 @@ func (UnimplementedPipelinePublicServiceServer) TriggerUserPipelineRelease(conte
 }
 func (UnimplementedPipelinePublicServiceServer) TriggerAsyncUserPipelineRelease(context.Context, *TriggerAsyncUserPipelineReleaseRequest) (*TriggerAsyncUserPipelineReleaseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncUserPipelineRelease not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) ListConnectorDefinitions(context.Context, *ListConnectorDefinitionsRequest) (*ListConnectorDefinitionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListConnectorDefinitions not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) GetConnectorDefinition(context.Context, *GetConnectorDefinitionRequest) (*GetConnectorDefinitionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetConnectorDefinition not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) ListConnectors(context.Context, *ListConnectorsRequest) (*ListConnectorsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListConnectors not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) LookUpConnector(context.Context, *LookUpConnectorRequest) (*LookUpConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LookUpConnector not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) CreateUserConnector(context.Context, *CreateUserConnectorRequest) (*CreateUserConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateUserConnector not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) ListUserConnectors(context.Context, *ListUserConnectorsRequest) (*ListUserConnectorsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListUserConnectors not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) GetUserConnector(context.Context, *GetUserConnectorRequest) (*GetUserConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserConnector not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) UpdateUserConnector(context.Context, *UpdateUserConnectorRequest) (*UpdateUserConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserConnector not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) DeleteUserConnector(context.Context, *DeleteUserConnectorRequest) (*DeleteUserConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteUserConnector not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) ConnectUserConnector(context.Context, *ConnectUserConnectorRequest) (*ConnectUserConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConnectUserConnector not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) DisconnectUserConnector(context.Context, *DisconnectUserConnectorRequest) (*DisconnectUserConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DisconnectUserConnector not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) RenameUserConnector(context.Context, *RenameUserConnectorRequest) (*RenameUserConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RenameUserConnector not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) ExecuteUserConnector(context.Context, *ExecuteUserConnectorRequest) (*ExecuteUserConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExecuteUserConnector not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) WatchUserConnector(context.Context, *WatchUserConnectorRequest) (*WatchUserConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WatchUserConnector not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) TestUserConnector(context.Context, *TestUserConnectorRequest) (*TestUserConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TestUserConnector not implemented")
 }
 
 // UnsafePipelinePublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -1064,6 +1383,276 @@ func _PipelinePublicService_TriggerAsyncUserPipelineRelease_Handler(srv interfac
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PipelinePublicService_ListConnectorDefinitions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListConnectorDefinitionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).ListConnectorDefinitions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_ListConnectorDefinitions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).ListConnectorDefinitions(ctx, req.(*ListConnectorDefinitionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_GetConnectorDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetConnectorDefinitionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).GetConnectorDefinition(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_GetConnectorDefinition_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).GetConnectorDefinition(ctx, req.(*GetConnectorDefinitionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_ListConnectors_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListConnectorsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).ListConnectors(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_ListConnectors_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).ListConnectors(ctx, req.(*ListConnectorsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_LookUpConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LookUpConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).LookUpConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_LookUpConnector_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).LookUpConnector(ctx, req.(*LookUpConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_CreateUserConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateUserConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).CreateUserConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_CreateUserConnector_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).CreateUserConnector(ctx, req.(*CreateUserConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_ListUserConnectors_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListUserConnectorsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).ListUserConnectors(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_ListUserConnectors_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).ListUserConnectors(ctx, req.(*ListUserConnectorsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_GetUserConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).GetUserConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_GetUserConnector_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).GetUserConnector(ctx, req.(*GetUserConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_UpdateUserConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateUserConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).UpdateUserConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_UpdateUserConnector_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).UpdateUserConnector(ctx, req.(*UpdateUserConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_DeleteUserConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteUserConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).DeleteUserConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_DeleteUserConnector_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).DeleteUserConnector(ctx, req.(*DeleteUserConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_ConnectUserConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ConnectUserConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).ConnectUserConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_ConnectUserConnector_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).ConnectUserConnector(ctx, req.(*ConnectUserConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_DisconnectUserConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DisconnectUserConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).DisconnectUserConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_DisconnectUserConnector_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).DisconnectUserConnector(ctx, req.(*DisconnectUserConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_RenameUserConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RenameUserConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).RenameUserConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_RenameUserConnector_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).RenameUserConnector(ctx, req.(*RenameUserConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_ExecuteUserConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExecuteUserConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).ExecuteUserConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_ExecuteUserConnector_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).ExecuteUserConnector(ctx, req.(*ExecuteUserConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_WatchUserConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WatchUserConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).WatchUserConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_WatchUserConnector_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).WatchUserConnector(ctx, req.(*WatchUserConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_TestUserConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TestUserConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).TestUserConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_TestUserConnector_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).TestUserConnector(ctx, req.(*TestUserConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PipelinePublicService_ServiceDesc is the grpc.ServiceDesc for PipelinePublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1178,6 +1767,66 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TriggerAsyncUserPipelineRelease",
 			Handler:    _PipelinePublicService_TriggerAsyncUserPipelineRelease_Handler,
+		},
+		{
+			MethodName: "ListConnectorDefinitions",
+			Handler:    _PipelinePublicService_ListConnectorDefinitions_Handler,
+		},
+		{
+			MethodName: "GetConnectorDefinition",
+			Handler:    _PipelinePublicService_GetConnectorDefinition_Handler,
+		},
+		{
+			MethodName: "ListConnectors",
+			Handler:    _PipelinePublicService_ListConnectors_Handler,
+		},
+		{
+			MethodName: "LookUpConnector",
+			Handler:    _PipelinePublicService_LookUpConnector_Handler,
+		},
+		{
+			MethodName: "CreateUserConnector",
+			Handler:    _PipelinePublicService_CreateUserConnector_Handler,
+		},
+		{
+			MethodName: "ListUserConnectors",
+			Handler:    _PipelinePublicService_ListUserConnectors_Handler,
+		},
+		{
+			MethodName: "GetUserConnector",
+			Handler:    _PipelinePublicService_GetUserConnector_Handler,
+		},
+		{
+			MethodName: "UpdateUserConnector",
+			Handler:    _PipelinePublicService_UpdateUserConnector_Handler,
+		},
+		{
+			MethodName: "DeleteUserConnector",
+			Handler:    _PipelinePublicService_DeleteUserConnector_Handler,
+		},
+		{
+			MethodName: "ConnectUserConnector",
+			Handler:    _PipelinePublicService_ConnectUserConnector_Handler,
+		},
+		{
+			MethodName: "DisconnectUserConnector",
+			Handler:    _PipelinePublicService_DisconnectUserConnector_Handler,
+		},
+		{
+			MethodName: "RenameUserConnector",
+			Handler:    _PipelinePublicService_RenameUserConnector_Handler,
+		},
+		{
+			MethodName: "ExecuteUserConnector",
+			Handler:    _PipelinePublicService_ExecuteUserConnector_Handler,
+		},
+		{
+			MethodName: "WatchUserConnector",
+			Handler:    _PipelinePublicService_WatchUserConnector_Handler,
+		},
+		{
+			MethodName: "TestUserConnector",
+			Handler:    _PipelinePublicService_TestUserConnector_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -19,10 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	PipelinePrivateService_ListPipelinesAdmin_FullMethodName            = "/vdp.pipeline.v1alpha.PipelinePrivateService/ListPipelinesAdmin"
-	PipelinePrivateService_LookUpPipelineAdmin_FullMethodName           = "/vdp.pipeline.v1alpha.PipelinePrivateService/LookUpPipelineAdmin"
-	PipelinePrivateService_LookUpOperatorDefinitionAdmin_FullMethodName = "/vdp.pipeline.v1alpha.PipelinePrivateService/LookUpOperatorDefinitionAdmin"
-	PipelinePrivateService_ListPipelineReleasesAdmin_FullMethodName     = "/vdp.pipeline.v1alpha.PipelinePrivateService/ListPipelineReleasesAdmin"
+	PipelinePrivateService_ListPipelinesAdmin_FullMethodName             = "/vdp.pipeline.v1alpha.PipelinePrivateService/ListPipelinesAdmin"
+	PipelinePrivateService_LookUpPipelineAdmin_FullMethodName            = "/vdp.pipeline.v1alpha.PipelinePrivateService/LookUpPipelineAdmin"
+	PipelinePrivateService_LookUpOperatorDefinitionAdmin_FullMethodName  = "/vdp.pipeline.v1alpha.PipelinePrivateService/LookUpOperatorDefinitionAdmin"
+	PipelinePrivateService_ListPipelineReleasesAdmin_FullMethodName      = "/vdp.pipeline.v1alpha.PipelinePrivateService/ListPipelineReleasesAdmin"
+	PipelinePrivateService_LookUpConnectorDefinitionAdmin_FullMethodName = "/vdp.pipeline.v1alpha.PipelinePrivateService/LookUpConnectorDefinitionAdmin"
+	PipelinePrivateService_ListConnectorsAdmin_FullMethodName            = "/vdp.pipeline.v1alpha.PipelinePrivateService/ListConnectorsAdmin"
+	PipelinePrivateService_LookUpConnectorAdmin_FullMethodName           = "/vdp.pipeline.v1alpha.PipelinePrivateService/LookUpConnectorAdmin"
+	PipelinePrivateService_CheckConnector_FullMethodName                 = "/vdp.pipeline.v1alpha.PipelinePrivateService/CheckConnector"
 )
 
 // PipelinePrivateServiceClient is the client API for PipelinePrivateService service.
@@ -42,6 +46,20 @@ type PipelinePrivateServiceClient interface {
 	// ListPipelineReleasesAdmin method receives a ListPipelineReleasesAdminRequest message and
 	// returns a ListPipelineReleasesAdminResponse message.
 	ListPipelineReleasesAdmin(ctx context.Context, in *ListPipelineReleasesAdminRequest, opts ...grpc.CallOption) (*ListPipelineReleasesAdminResponse, error)
+	// LookUpConnectorDefinitionAdmin method receives a
+	// LookUpConnectorDefinitionAdminRequest message and returns a
+	// LookUpConnectorDefinitionAdminResponse
+	LookUpConnectorDefinitionAdmin(ctx context.Context, in *LookUpConnectorDefinitionAdminRequest, opts ...grpc.CallOption) (*LookUpConnectorDefinitionAdminResponse, error)
+	// ListConnectorsAdmin method receives a ListConnectorsAdminRequest
+	// message and returns a ListConnectorsResponse message.
+	ListConnectorsAdmin(ctx context.Context, in *ListConnectorsAdminRequest, opts ...grpc.CallOption) (*ListConnectorsAdminResponse, error)
+	// LookUpConnectorAdmin method receives a
+	// LookUpConnectorAdminRequest message and returns a
+	// LookUpConnectorAdminResponse
+	LookUpConnectorAdmin(ctx context.Context, in *LookUpConnectorAdminRequest, opts ...grpc.CallOption) (*LookUpConnectorAdminResponse, error)
+	// CheckConnector method receives a CheckConnectorRequest message and returns a
+	// CheckConnectorResponse
+	CheckConnector(ctx context.Context, in *CheckConnectorRequest, opts ...grpc.CallOption) (*CheckConnectorResponse, error)
 }
 
 type pipelinePrivateServiceClient struct {
@@ -88,6 +106,42 @@ func (c *pipelinePrivateServiceClient) ListPipelineReleasesAdmin(ctx context.Con
 	return out, nil
 }
 
+func (c *pipelinePrivateServiceClient) LookUpConnectorDefinitionAdmin(ctx context.Context, in *LookUpConnectorDefinitionAdminRequest, opts ...grpc.CallOption) (*LookUpConnectorDefinitionAdminResponse, error) {
+	out := new(LookUpConnectorDefinitionAdminResponse)
+	err := c.cc.Invoke(ctx, PipelinePrivateService_LookUpConnectorDefinitionAdmin_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePrivateServiceClient) ListConnectorsAdmin(ctx context.Context, in *ListConnectorsAdminRequest, opts ...grpc.CallOption) (*ListConnectorsAdminResponse, error) {
+	out := new(ListConnectorsAdminResponse)
+	err := c.cc.Invoke(ctx, PipelinePrivateService_ListConnectorsAdmin_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePrivateServiceClient) LookUpConnectorAdmin(ctx context.Context, in *LookUpConnectorAdminRequest, opts ...grpc.CallOption) (*LookUpConnectorAdminResponse, error) {
+	out := new(LookUpConnectorAdminResponse)
+	err := c.cc.Invoke(ctx, PipelinePrivateService_LookUpConnectorAdmin_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePrivateServiceClient) CheckConnector(ctx context.Context, in *CheckConnectorRequest, opts ...grpc.CallOption) (*CheckConnectorResponse, error) {
+	out := new(CheckConnectorResponse)
+	err := c.cc.Invoke(ctx, PipelinePrivateService_CheckConnector_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PipelinePrivateServiceServer is the server API for PipelinePrivateService service.
 // All implementations should embed UnimplementedPipelinePrivateServiceServer
 // for forward compatibility
@@ -105,6 +159,20 @@ type PipelinePrivateServiceServer interface {
 	// ListPipelineReleasesAdmin method receives a ListPipelineReleasesAdminRequest message and
 	// returns a ListPipelineReleasesAdminResponse message.
 	ListPipelineReleasesAdmin(context.Context, *ListPipelineReleasesAdminRequest) (*ListPipelineReleasesAdminResponse, error)
+	// LookUpConnectorDefinitionAdmin method receives a
+	// LookUpConnectorDefinitionAdminRequest message and returns a
+	// LookUpConnectorDefinitionAdminResponse
+	LookUpConnectorDefinitionAdmin(context.Context, *LookUpConnectorDefinitionAdminRequest) (*LookUpConnectorDefinitionAdminResponse, error)
+	// ListConnectorsAdmin method receives a ListConnectorsAdminRequest
+	// message and returns a ListConnectorsResponse message.
+	ListConnectorsAdmin(context.Context, *ListConnectorsAdminRequest) (*ListConnectorsAdminResponse, error)
+	// LookUpConnectorAdmin method receives a
+	// LookUpConnectorAdminRequest message and returns a
+	// LookUpConnectorAdminResponse
+	LookUpConnectorAdmin(context.Context, *LookUpConnectorAdminRequest) (*LookUpConnectorAdminResponse, error)
+	// CheckConnector method receives a CheckConnectorRequest message and returns a
+	// CheckConnectorResponse
+	CheckConnector(context.Context, *CheckConnectorRequest) (*CheckConnectorResponse, error)
 }
 
 // UnimplementedPipelinePrivateServiceServer should be embedded to have forward compatible implementations.
@@ -122,6 +190,18 @@ func (UnimplementedPipelinePrivateServiceServer) LookUpOperatorDefinitionAdmin(c
 }
 func (UnimplementedPipelinePrivateServiceServer) ListPipelineReleasesAdmin(context.Context, *ListPipelineReleasesAdminRequest) (*ListPipelineReleasesAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineReleasesAdmin not implemented")
+}
+func (UnimplementedPipelinePrivateServiceServer) LookUpConnectorDefinitionAdmin(context.Context, *LookUpConnectorDefinitionAdminRequest) (*LookUpConnectorDefinitionAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LookUpConnectorDefinitionAdmin not implemented")
+}
+func (UnimplementedPipelinePrivateServiceServer) ListConnectorsAdmin(context.Context, *ListConnectorsAdminRequest) (*ListConnectorsAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListConnectorsAdmin not implemented")
+}
+func (UnimplementedPipelinePrivateServiceServer) LookUpConnectorAdmin(context.Context, *LookUpConnectorAdminRequest) (*LookUpConnectorAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LookUpConnectorAdmin not implemented")
+}
+func (UnimplementedPipelinePrivateServiceServer) CheckConnector(context.Context, *CheckConnectorRequest) (*CheckConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckConnector not implemented")
 }
 
 // UnsafePipelinePrivateServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -207,6 +287,78 @@ func _PipelinePrivateService_ListPipelineReleasesAdmin_Handler(srv interface{}, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PipelinePrivateService_LookUpConnectorDefinitionAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LookUpConnectorDefinitionAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePrivateServiceServer).LookUpConnectorDefinitionAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePrivateService_LookUpConnectorDefinitionAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePrivateServiceServer).LookUpConnectorDefinitionAdmin(ctx, req.(*LookUpConnectorDefinitionAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePrivateService_ListConnectorsAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListConnectorsAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePrivateServiceServer).ListConnectorsAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePrivateService_ListConnectorsAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePrivateServiceServer).ListConnectorsAdmin(ctx, req.(*ListConnectorsAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePrivateService_LookUpConnectorAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LookUpConnectorAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePrivateServiceServer).LookUpConnectorAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePrivateService_LookUpConnectorAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePrivateServiceServer).LookUpConnectorAdmin(ctx, req.(*LookUpConnectorAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePrivateService_CheckConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePrivateServiceServer).CheckConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePrivateService_CheckConnector_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePrivateServiceServer).CheckConnector(ctx, req.(*CheckConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PipelinePrivateService_ServiceDesc is the grpc.ServiceDesc for PipelinePrivateService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -229,6 +381,22 @@ var PipelinePrivateService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListPipelineReleasesAdmin",
 			Handler:    _PipelinePrivateService_ListPipelineReleasesAdmin_Handler,
+		},
+		{
+			MethodName: "LookUpConnectorDefinitionAdmin",
+			Handler:    _PipelinePrivateService_LookUpConnectorDefinitionAdmin_Handler,
+		},
+		{
+			MethodName: "ListConnectorsAdmin",
+			Handler:    _PipelinePrivateService_ListConnectorsAdmin_Handler,
+		},
+		{
+			MethodName: "LookUpConnectorAdmin",
+			Handler:    _PipelinePrivateService_LookUpConnectorAdmin_Handler,
+		},
+		{
+			MethodName: "CheckConnector",
+			Handler:    _PipelinePrivateService_CheckConnector_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
