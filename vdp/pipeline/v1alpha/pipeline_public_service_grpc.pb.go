@@ -19,48 +19,77 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	PipelinePublicService_Liveness_FullMethodName                        = "/vdp.pipeline.v1alpha.PipelinePublicService/Liveness"
-	PipelinePublicService_Readiness_FullMethodName                       = "/vdp.pipeline.v1alpha.PipelinePublicService/Readiness"
-	PipelinePublicService_ListOperatorDefinitions_FullMethodName         = "/vdp.pipeline.v1alpha.PipelinePublicService/ListOperatorDefinitions"
-	PipelinePublicService_GetOperatorDefinition_FullMethodName           = "/vdp.pipeline.v1alpha.PipelinePublicService/GetOperatorDefinition"
-	PipelinePublicService_ListPipelines_FullMethodName                   = "/vdp.pipeline.v1alpha.PipelinePublicService/ListPipelines"
-	PipelinePublicService_LookUpPipeline_FullMethodName                  = "/vdp.pipeline.v1alpha.PipelinePublicService/LookUpPipeline"
-	PipelinePublicService_CreateUserPipeline_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/CreateUserPipeline"
-	PipelinePublicService_ListUserPipelines_FullMethodName               = "/vdp.pipeline.v1alpha.PipelinePublicService/ListUserPipelines"
-	PipelinePublicService_GetUserPipeline_FullMethodName                 = "/vdp.pipeline.v1alpha.PipelinePublicService/GetUserPipeline"
-	PipelinePublicService_UpdateUserPipeline_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/UpdateUserPipeline"
-	PipelinePublicService_DeleteUserPipeline_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/DeleteUserPipeline"
-	PipelinePublicService_ValidateUserPipeline_FullMethodName            = "/vdp.pipeline.v1alpha.PipelinePublicService/ValidateUserPipeline"
-	PipelinePublicService_RenameUserPipeline_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/RenameUserPipeline"
-	PipelinePublicService_TriggerUserPipeline_FullMethodName             = "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerUserPipeline"
-	PipelinePublicService_TriggerAsyncUserPipeline_FullMethodName        = "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerAsyncUserPipeline"
-	PipelinePublicService_GetOperation_FullMethodName                    = "/vdp.pipeline.v1alpha.PipelinePublicService/GetOperation"
-	PipelinePublicService_CreateUserPipelineRelease_FullMethodName       = "/vdp.pipeline.v1alpha.PipelinePublicService/CreateUserPipelineRelease"
-	PipelinePublicService_ListUserPipelineReleases_FullMethodName        = "/vdp.pipeline.v1alpha.PipelinePublicService/ListUserPipelineReleases"
-	PipelinePublicService_GetUserPipelineRelease_FullMethodName          = "/vdp.pipeline.v1alpha.PipelinePublicService/GetUserPipelineRelease"
-	PipelinePublicService_UpdateUserPipelineRelease_FullMethodName       = "/vdp.pipeline.v1alpha.PipelinePublicService/UpdateUserPipelineRelease"
-	PipelinePublicService_DeleteUserPipelineRelease_FullMethodName       = "/vdp.pipeline.v1alpha.PipelinePublicService/DeleteUserPipelineRelease"
-	PipelinePublicService_RestoreUserPipelineRelease_FullMethodName      = "/vdp.pipeline.v1alpha.PipelinePublicService/RestoreUserPipelineRelease"
-	PipelinePublicService_SetDefaultUserPipelineRelease_FullMethodName   = "/vdp.pipeline.v1alpha.PipelinePublicService/SetDefaultUserPipelineRelease"
-	PipelinePublicService_WatchUserPipelineRelease_FullMethodName        = "/vdp.pipeline.v1alpha.PipelinePublicService/WatchUserPipelineRelease"
-	PipelinePublicService_RenameUserPipelineRelease_FullMethodName       = "/vdp.pipeline.v1alpha.PipelinePublicService/RenameUserPipelineRelease"
-	PipelinePublicService_TriggerUserPipelineRelease_FullMethodName      = "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerUserPipelineRelease"
-	PipelinePublicService_TriggerAsyncUserPipelineRelease_FullMethodName = "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerAsyncUserPipelineRelease"
-	PipelinePublicService_ListConnectorDefinitions_FullMethodName        = "/vdp.pipeline.v1alpha.PipelinePublicService/ListConnectorDefinitions"
-	PipelinePublicService_GetConnectorDefinition_FullMethodName          = "/vdp.pipeline.v1alpha.PipelinePublicService/GetConnectorDefinition"
-	PipelinePublicService_ListConnectors_FullMethodName                  = "/vdp.pipeline.v1alpha.PipelinePublicService/ListConnectors"
-	PipelinePublicService_LookUpConnector_FullMethodName                 = "/vdp.pipeline.v1alpha.PipelinePublicService/LookUpConnector"
-	PipelinePublicService_CreateUserConnector_FullMethodName             = "/vdp.pipeline.v1alpha.PipelinePublicService/CreateUserConnector"
-	PipelinePublicService_ListUserConnectors_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/ListUserConnectors"
-	PipelinePublicService_GetUserConnector_FullMethodName                = "/vdp.pipeline.v1alpha.PipelinePublicService/GetUserConnector"
-	PipelinePublicService_UpdateUserConnector_FullMethodName             = "/vdp.pipeline.v1alpha.PipelinePublicService/UpdateUserConnector"
-	PipelinePublicService_DeleteUserConnector_FullMethodName             = "/vdp.pipeline.v1alpha.PipelinePublicService/DeleteUserConnector"
-	PipelinePublicService_ConnectUserConnector_FullMethodName            = "/vdp.pipeline.v1alpha.PipelinePublicService/ConnectUserConnector"
-	PipelinePublicService_DisconnectUserConnector_FullMethodName         = "/vdp.pipeline.v1alpha.PipelinePublicService/DisconnectUserConnector"
-	PipelinePublicService_RenameUserConnector_FullMethodName             = "/vdp.pipeline.v1alpha.PipelinePublicService/RenameUserConnector"
-	PipelinePublicService_ExecuteUserConnector_FullMethodName            = "/vdp.pipeline.v1alpha.PipelinePublicService/ExecuteUserConnector"
-	PipelinePublicService_WatchUserConnector_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/WatchUserConnector"
-	PipelinePublicService_TestUserConnector_FullMethodName               = "/vdp.pipeline.v1alpha.PipelinePublicService/TestUserConnector"
+	PipelinePublicService_Liveness_FullMethodName                                = "/vdp.pipeline.v1alpha.PipelinePublicService/Liveness"
+	PipelinePublicService_Readiness_FullMethodName                               = "/vdp.pipeline.v1alpha.PipelinePublicService/Readiness"
+	PipelinePublicService_ListPipelines_FullMethodName                           = "/vdp.pipeline.v1alpha.PipelinePublicService/ListPipelines"
+	PipelinePublicService_LookUpPipeline_FullMethodName                          = "/vdp.pipeline.v1alpha.PipelinePublicService/LookUpPipeline"
+	PipelinePublicService_CreateUserPipeline_FullMethodName                      = "/vdp.pipeline.v1alpha.PipelinePublicService/CreateUserPipeline"
+	PipelinePublicService_ListUserPipelines_FullMethodName                       = "/vdp.pipeline.v1alpha.PipelinePublicService/ListUserPipelines"
+	PipelinePublicService_GetUserPipeline_FullMethodName                         = "/vdp.pipeline.v1alpha.PipelinePublicService/GetUserPipeline"
+	PipelinePublicService_UpdateUserPipeline_FullMethodName                      = "/vdp.pipeline.v1alpha.PipelinePublicService/UpdateUserPipeline"
+	PipelinePublicService_DeleteUserPipeline_FullMethodName                      = "/vdp.pipeline.v1alpha.PipelinePublicService/DeleteUserPipeline"
+	PipelinePublicService_ValidateUserPipeline_FullMethodName                    = "/vdp.pipeline.v1alpha.PipelinePublicService/ValidateUserPipeline"
+	PipelinePublicService_RenameUserPipeline_FullMethodName                      = "/vdp.pipeline.v1alpha.PipelinePublicService/RenameUserPipeline"
+	PipelinePublicService_TriggerUserPipeline_FullMethodName                     = "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerUserPipeline"
+	PipelinePublicService_TriggerAsyncUserPipeline_FullMethodName                = "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerAsyncUserPipeline"
+	PipelinePublicService_CreateUserPipelineRelease_FullMethodName               = "/vdp.pipeline.v1alpha.PipelinePublicService/CreateUserPipelineRelease"
+	PipelinePublicService_ListUserPipelineReleases_FullMethodName                = "/vdp.pipeline.v1alpha.PipelinePublicService/ListUserPipelineReleases"
+	PipelinePublicService_GetUserPipelineRelease_FullMethodName                  = "/vdp.pipeline.v1alpha.PipelinePublicService/GetUserPipelineRelease"
+	PipelinePublicService_UpdateUserPipelineRelease_FullMethodName               = "/vdp.pipeline.v1alpha.PipelinePublicService/UpdateUserPipelineRelease"
+	PipelinePublicService_DeleteUserPipelineRelease_FullMethodName               = "/vdp.pipeline.v1alpha.PipelinePublicService/DeleteUserPipelineRelease"
+	PipelinePublicService_RestoreUserPipelineRelease_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/RestoreUserPipelineRelease"
+	PipelinePublicService_WatchUserPipelineRelease_FullMethodName                = "/vdp.pipeline.v1alpha.PipelinePublicService/WatchUserPipelineRelease"
+	PipelinePublicService_RenameUserPipelineRelease_FullMethodName               = "/vdp.pipeline.v1alpha.PipelinePublicService/RenameUserPipelineRelease"
+	PipelinePublicService_TriggerUserPipelineRelease_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerUserPipelineRelease"
+	PipelinePublicService_TriggerAsyncUserPipelineRelease_FullMethodName         = "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerAsyncUserPipelineRelease"
+	PipelinePublicService_CreateOrganizationPipeline_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/CreateOrganizationPipeline"
+	PipelinePublicService_ListOrganizationPipelines_FullMethodName               = "/vdp.pipeline.v1alpha.PipelinePublicService/ListOrganizationPipelines"
+	PipelinePublicService_GetOrganizationPipeline_FullMethodName                 = "/vdp.pipeline.v1alpha.PipelinePublicService/GetOrganizationPipeline"
+	PipelinePublicService_UpdateOrganizationPipeline_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/UpdateOrganizationPipeline"
+	PipelinePublicService_DeleteOrganizationPipeline_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/DeleteOrganizationPipeline"
+	PipelinePublicService_ValidateOrganizationPipeline_FullMethodName            = "/vdp.pipeline.v1alpha.PipelinePublicService/ValidateOrganizationPipeline"
+	PipelinePublicService_RenameOrganizationPipeline_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/RenameOrganizationPipeline"
+	PipelinePublicService_TriggerOrganizationPipeline_FullMethodName             = "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerOrganizationPipeline"
+	PipelinePublicService_TriggerAsyncOrganizationPipeline_FullMethodName        = "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerAsyncOrganizationPipeline"
+	PipelinePublicService_CreateOrganizationPipelineRelease_FullMethodName       = "/vdp.pipeline.v1alpha.PipelinePublicService/CreateOrganizationPipelineRelease"
+	PipelinePublicService_ListOrganizationPipelineReleases_FullMethodName        = "/vdp.pipeline.v1alpha.PipelinePublicService/ListOrganizationPipelineReleases"
+	PipelinePublicService_GetOrganizationPipelineRelease_FullMethodName          = "/vdp.pipeline.v1alpha.PipelinePublicService/GetOrganizationPipelineRelease"
+	PipelinePublicService_UpdateOrganizationPipelineRelease_FullMethodName       = "/vdp.pipeline.v1alpha.PipelinePublicService/UpdateOrganizationPipelineRelease"
+	PipelinePublicService_DeleteOrganizationPipelineRelease_FullMethodName       = "/vdp.pipeline.v1alpha.PipelinePublicService/DeleteOrganizationPipelineRelease"
+	PipelinePublicService_RestoreOrganizationPipelineRelease_FullMethodName      = "/vdp.pipeline.v1alpha.PipelinePublicService/RestoreOrganizationPipelineRelease"
+	PipelinePublicService_WatchOrganizationPipelineRelease_FullMethodName        = "/vdp.pipeline.v1alpha.PipelinePublicService/WatchOrganizationPipelineRelease"
+	PipelinePublicService_RenameOrganizationPipelineRelease_FullMethodName       = "/vdp.pipeline.v1alpha.PipelinePublicService/RenameOrganizationPipelineRelease"
+	PipelinePublicService_TriggerOrganizationPipelineRelease_FullMethodName      = "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerOrganizationPipelineRelease"
+	PipelinePublicService_TriggerAsyncOrganizationPipelineRelease_FullMethodName = "/vdp.pipeline.v1alpha.PipelinePublicService/TriggerAsyncOrganizationPipelineRelease"
+	PipelinePublicService_GetOperation_FullMethodName                            = "/vdp.pipeline.v1alpha.PipelinePublicService/GetOperation"
+	PipelinePublicService_ListConnectorDefinitions_FullMethodName                = "/vdp.pipeline.v1alpha.PipelinePublicService/ListConnectorDefinitions"
+	PipelinePublicService_GetConnectorDefinition_FullMethodName                  = "/vdp.pipeline.v1alpha.PipelinePublicService/GetConnectorDefinition"
+	PipelinePublicService_ListOperatorDefinitions_FullMethodName                 = "/vdp.pipeline.v1alpha.PipelinePublicService/ListOperatorDefinitions"
+	PipelinePublicService_GetOperatorDefinition_FullMethodName                   = "/vdp.pipeline.v1alpha.PipelinePublicService/GetOperatorDefinition"
+	PipelinePublicService_ListConnectors_FullMethodName                          = "/vdp.pipeline.v1alpha.PipelinePublicService/ListConnectors"
+	PipelinePublicService_LookUpConnector_FullMethodName                         = "/vdp.pipeline.v1alpha.PipelinePublicService/LookUpConnector"
+	PipelinePublicService_CreateUserConnector_FullMethodName                     = "/vdp.pipeline.v1alpha.PipelinePublicService/CreateUserConnector"
+	PipelinePublicService_ListUserConnectors_FullMethodName                      = "/vdp.pipeline.v1alpha.PipelinePublicService/ListUserConnectors"
+	PipelinePublicService_GetUserConnector_FullMethodName                        = "/vdp.pipeline.v1alpha.PipelinePublicService/GetUserConnector"
+	PipelinePublicService_UpdateUserConnector_FullMethodName                     = "/vdp.pipeline.v1alpha.PipelinePublicService/UpdateUserConnector"
+	PipelinePublicService_DeleteUserConnector_FullMethodName                     = "/vdp.pipeline.v1alpha.PipelinePublicService/DeleteUserConnector"
+	PipelinePublicService_ConnectUserConnector_FullMethodName                    = "/vdp.pipeline.v1alpha.PipelinePublicService/ConnectUserConnector"
+	PipelinePublicService_DisconnectUserConnector_FullMethodName                 = "/vdp.pipeline.v1alpha.PipelinePublicService/DisconnectUserConnector"
+	PipelinePublicService_RenameUserConnector_FullMethodName                     = "/vdp.pipeline.v1alpha.PipelinePublicService/RenameUserConnector"
+	PipelinePublicService_ExecuteUserConnector_FullMethodName                    = "/vdp.pipeline.v1alpha.PipelinePublicService/ExecuteUserConnector"
+	PipelinePublicService_WatchUserConnector_FullMethodName                      = "/vdp.pipeline.v1alpha.PipelinePublicService/WatchUserConnector"
+	PipelinePublicService_TestUserConnector_FullMethodName                       = "/vdp.pipeline.v1alpha.PipelinePublicService/TestUserConnector"
+	PipelinePublicService_CreateOrganizationConnector_FullMethodName             = "/vdp.pipeline.v1alpha.PipelinePublicService/CreateOrganizationConnector"
+	PipelinePublicService_ListOrganizationConnectors_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/ListOrganizationConnectors"
+	PipelinePublicService_GetOrganizationConnector_FullMethodName                = "/vdp.pipeline.v1alpha.PipelinePublicService/GetOrganizationConnector"
+	PipelinePublicService_UpdateOrganizationConnector_FullMethodName             = "/vdp.pipeline.v1alpha.PipelinePublicService/UpdateOrganizationConnector"
+	PipelinePublicService_DeleteOrganizationConnector_FullMethodName             = "/vdp.pipeline.v1alpha.PipelinePublicService/DeleteOrganizationConnector"
+	PipelinePublicService_ConnectOrganizationConnector_FullMethodName            = "/vdp.pipeline.v1alpha.PipelinePublicService/ConnectOrganizationConnector"
+	PipelinePublicService_DisconnectOrganizationConnector_FullMethodName         = "/vdp.pipeline.v1alpha.PipelinePublicService/DisconnectOrganizationConnector"
+	PipelinePublicService_RenameOrganizationConnector_FullMethodName             = "/vdp.pipeline.v1alpha.PipelinePublicService/RenameOrganizationConnector"
+	PipelinePublicService_ExecuteOrganizationConnector_FullMethodName            = "/vdp.pipeline.v1alpha.PipelinePublicService/ExecuteOrganizationConnector"
+	PipelinePublicService_WatchOrganizationConnector_FullMethodName              = "/vdp.pipeline.v1alpha.PipelinePublicService/WatchOrganizationConnector"
+	PipelinePublicService_TestOrganizationConnector_FullMethodName               = "/vdp.pipeline.v1alpha.PipelinePublicService/TestOrganizationConnector"
 )
 
 // PipelinePublicServiceClient is the client API for PipelinePublicService service.
@@ -75,14 +104,6 @@ type PipelinePublicServiceClient interface {
 	// ReadinessResponse message.
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error)
-	// ListOperatorDefinitions method receives a
-	// ListOperatorDefinitionsRequest message and returns a
-	// ListOperatorDefinitionsResponse message.
-	ListOperatorDefinitions(ctx context.Context, in *ListOperatorDefinitionsRequest, opts ...grpc.CallOption) (*ListOperatorDefinitionsResponse, error)
-	// GetOperatorDefinition method receives a
-	// GetOperatorDefinitionRequest message and returns a
-	// GetGetOperatorDefinitionResponse message.
-	GetOperatorDefinition(ctx context.Context, in *GetOperatorDefinitionRequest, opts ...grpc.CallOption) (*GetOperatorDefinitionResponse, error)
 	// ListPipelines method receives a ListPipelinesRequest message and returns a
 	// ListPipelinesResponse message.
 	ListPipelines(ctx context.Context, in *ListPipelinesRequest, opts ...grpc.CallOption) (*ListPipelinesResponse, error)
@@ -115,10 +136,6 @@ type PipelinePublicServiceClient interface {
 	// TriggerAsyncUserPipeline method receives a TriggerAsyncUserPipelineRequest message and
 	// returns a TriggerAsyncUserPipelineResponse.
 	TriggerAsyncUserPipeline(ctx context.Context, in *TriggerAsyncUserPipelineRequest, opts ...grpc.CallOption) (*TriggerAsyncUserPipelineResponse, error)
-	// GetOperation method receives a
-	// GetOperationRequest message and returns a
-	// GetOperationResponse message.
-	GetOperation(ctx context.Context, in *GetOperationRequest, opts ...grpc.CallOption) (*GetOperationResponse, error)
 	// CreateUserPipelineRelease method receives a CreateUserPipelineReleaseRequest message and returns
 	// a CreateUserPipelineReleaseResponse message.
 	CreateUserPipelineRelease(ctx context.Context, in *CreateUserPipelineReleaseRequest, opts ...grpc.CallOption) (*CreateUserPipelineReleaseResponse, error)
@@ -137,9 +154,6 @@ type PipelinePublicServiceClient interface {
 	// RestoreUserPipelineRelease method receives a RestoreUserPipelineReleaseRequest message
 	// and returns a RestoreUserPipelineReleaseResponse
 	RestoreUserPipelineRelease(ctx context.Context, in *RestoreUserPipelineReleaseRequest, opts ...grpc.CallOption) (*RestoreUserPipelineReleaseResponse, error)
-	// SetDefaultUserPipelineRelease method receives a SetDefaultUserPipelineReleaseRequest message
-	// and returns a SetDefaultUserPipelineReleaseResponse
-	SetDefaultUserPipelineRelease(ctx context.Context, in *SetDefaultUserPipelineReleaseRequest, opts ...grpc.CallOption) (*SetDefaultUserPipelineReleaseResponse, error)
 	// WatchUserPipelineRelease method receives a WatchUserPipelineReleaseRequest message
 	// and returns a WatchUserPipelineReleaseResponse
 	WatchUserPipelineRelease(ctx context.Context, in *WatchUserPipelineReleaseRequest, opts ...grpc.CallOption) (*WatchUserPipelineReleaseResponse, error)
@@ -152,6 +166,66 @@ type PipelinePublicServiceClient interface {
 	// TriggerAsyncUserPipelineRelease method receives a TriggerAsyncUserPipelineReleaseRequest message and
 	// returns a TriggerAsyncUserPipelineReleaseResponse.
 	TriggerAsyncUserPipelineRelease(ctx context.Context, in *TriggerAsyncUserPipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerAsyncUserPipelineReleaseResponse, error)
+	// CreateOrganizationPipeline method receives a CreateOrganizationPipelineRequest message and returns
+	// a CreateOrganizationPipelineResponse message.
+	CreateOrganizationPipeline(ctx context.Context, in *CreateOrganizationPipelineRequest, opts ...grpc.CallOption) (*CreateOrganizationPipelineResponse, error)
+	// ListOrganizationPipelines method receives a ListOrganizationPipelinesRequest message and returns a
+	// ListOrganizationPipelinesResponse message.
+	ListOrganizationPipelines(ctx context.Context, in *ListOrganizationPipelinesRequest, opts ...grpc.CallOption) (*ListOrganizationPipelinesResponse, error)
+	// GetOrganizationPipeline method receives a GetOrganizationPipelineRequest message and returns a
+	// GetOrganizationPipelineResponse message.
+	GetOrganizationPipeline(ctx context.Context, in *GetOrganizationPipelineRequest, opts ...grpc.CallOption) (*GetOrganizationPipelineResponse, error)
+	// UpdateOrganizationPipeline method receives a UpdateOrganizationPipelineRequest message and returns
+	// a UpdateOrganizationPipelineResponse message.
+	UpdateOrganizationPipeline(ctx context.Context, in *UpdateOrganizationPipelineRequest, opts ...grpc.CallOption) (*UpdateOrganizationPipelineResponse, error)
+	// DeleteOrganizationPipeline method receives a DeleteOrganizationPipelineRequest message and returns
+	// a DeleteOrganizationPipelineResponse message.
+	DeleteOrganizationPipeline(ctx context.Context, in *DeleteOrganizationPipelineRequest, opts ...grpc.CallOption) (*DeleteOrganizationPipelineResponse, error)
+	// Validate a pipeline.
+	ValidateOrganizationPipeline(ctx context.Context, in *ValidateOrganizationPipelineRequest, opts ...grpc.CallOption) (*ValidateOrganizationPipelineResponse, error)
+	// RenameOrganizationPipeline method receives a RenameOrganizationPipelineRequest message and returns
+	// a RenameOrganizationPipelineResponse message.
+	RenameOrganizationPipeline(ctx context.Context, in *RenameOrganizationPipelineRequest, opts ...grpc.CallOption) (*RenameOrganizationPipelineResponse, error)
+	// TriggerOrganizationPipeline method receives a TriggerOrganizationPipelineRequest message
+	// and returns a TriggerOrganizationPipelineResponse.
+	TriggerOrganizationPipeline(ctx context.Context, in *TriggerOrganizationPipelineRequest, opts ...grpc.CallOption) (*TriggerOrganizationPipelineResponse, error)
+	// TriggerAsyncOrganizationPipeline method receives a TriggerAsyncOrganizationPipelineRequest message and
+	// returns a TriggerAsyncOrganizationPipelineResponse.
+	TriggerAsyncOrganizationPipeline(ctx context.Context, in *TriggerAsyncOrganizationPipelineRequest, opts ...grpc.CallOption) (*TriggerAsyncOrganizationPipelineResponse, error)
+	// CreateOrganizationPipelineRelease method receives a CreateOrganizationPipelineReleaseRequest message and returns
+	// a CreateOrganizationPipelineReleaseResponse message.
+	CreateOrganizationPipelineRelease(ctx context.Context, in *CreateOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*CreateOrganizationPipelineReleaseResponse, error)
+	// ListOrganizationPipelineReleases method receives a ListOrganizationPipelineReleasesRequest message and returns a
+	// ListOrganizationPipelineReleasesResponse message.
+	ListOrganizationPipelineReleases(ctx context.Context, in *ListOrganizationPipelineReleasesRequest, opts ...grpc.CallOption) (*ListOrganizationPipelineReleasesResponse, error)
+	// GetOrganizationPipelineRelease method receives a GetOrganizationPipelineReleaseRequest message and returns a
+	// GetOrganizationPipelineReleaseResponse message.
+	GetOrganizationPipelineRelease(ctx context.Context, in *GetOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*GetOrganizationPipelineReleaseResponse, error)
+	// UpdateOrganizationPipelineRelease method receives a UpdateOrganizationPipelineReleaseRequest message and returns
+	// a UpdateOrganizationPipelineReleaseResponse message.
+	UpdateOrganizationPipelineRelease(ctx context.Context, in *UpdateOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*UpdateOrganizationPipelineReleaseResponse, error)
+	// DeleteOrganizationPipelineRelease method receives a DeleteOrganizationPipelineReleaseRequest message and returns
+	// a DeleteOrganizationPipelineReleaseResponse message.
+	DeleteOrganizationPipelineRelease(ctx context.Context, in *DeleteOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*DeleteOrganizationPipelineReleaseResponse, error)
+	// RestoreOrganizationPipelineRelease method receives a RestoreOrganizationPipelineReleaseRequest message
+	// and returns a RestoreOrganizationPipelineReleaseResponse
+	RestoreOrganizationPipelineRelease(ctx context.Context, in *RestoreOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*RestoreOrganizationPipelineReleaseResponse, error)
+	// WatchOrganizationPipelineRelease method receives a WatchOrganizationPipelineReleaseRequest message
+	// and returns a WatchOrganizationPipelineReleaseResponse
+	WatchOrganizationPipelineRelease(ctx context.Context, in *WatchOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*WatchOrganizationPipelineReleaseResponse, error)
+	// RenameOrganizationPipelineRelease method receives a RenameOrganizationPipelineReleaseRequest message and returns
+	// a RenameOrganizationPipelineReleaseResponse message.
+	RenameOrganizationPipelineRelease(ctx context.Context, in *RenameOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*RenameOrganizationPipelineReleaseResponse, error)
+	// TriggerOrganizationPipelineRelease method receives a TriggeOrganizationPipelineReleaseRequest message
+	// and returns a TriggerPipelineReleasePipelineResponse.
+	TriggerOrganizationPipelineRelease(ctx context.Context, in *TriggerOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerOrganizationPipelineReleaseResponse, error)
+	// TriggerAsyncOrganizationPipelineRelease method receives a TriggerAsyncOrganizationPipelineReleaseRequest message and
+	// returns a TriggerAsyncOrganizationPipelineReleaseResponse.
+	TriggerAsyncOrganizationPipelineRelease(ctx context.Context, in *TriggerAsyncOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerAsyncOrganizationPipelineReleaseResponse, error)
+	// GetOperation method receives a
+	// GetOperationRequest message and returns a
+	// GetOperationResponse message.
+	GetOperation(ctx context.Context, in *GetOperationRequest, opts ...grpc.CallOption) (*GetOperationResponse, error)
 	// ListConnectorDefinitions method receives a
 	// ListConnectorDefinitionsRequest message and returns a
 	// ListConnectorDefinitionsResponse message.
@@ -160,6 +234,14 @@ type PipelinePublicServiceClient interface {
 	// GetConnectorDefinitionRequest message and returns a
 	// GetGetConnectorDefinitionResponse message.
 	GetConnectorDefinition(ctx context.Context, in *GetConnectorDefinitionRequest, opts ...grpc.CallOption) (*GetConnectorDefinitionResponse, error)
+	// ListOperatorDefinitions method receives a
+	// ListOperatorDefinitionsRequest message and returns a
+	// ListOperatorDefinitionsResponse message.
+	ListOperatorDefinitions(ctx context.Context, in *ListOperatorDefinitionsRequest, opts ...grpc.CallOption) (*ListOperatorDefinitionsResponse, error)
+	// GetOperatorDefinition method receives a
+	// GetOperatorDefinitionRequest message and returns a
+	// GetGetOperatorDefinitionResponse message.
+	GetOperatorDefinition(ctx context.Context, in *GetOperatorDefinitionRequest, opts ...grpc.CallOption) (*GetOperatorDefinitionResponse, error)
 	// ListConnectors method receives a
 	// ListConnectorsRequest message and returns a
 	// ListConnectorsResponse message.
@@ -214,6 +296,52 @@ type PipelinePublicServiceClient interface {
 	// TestUserConnector method receives a TestUserConnectorRequest
 	// message and returns a TestUserConnectorResponse
 	TestUserConnector(ctx context.Context, in *TestUserConnectorRequest, opts ...grpc.CallOption) (*TestUserConnectorResponse, error)
+	// CreateOrganizationConnector method receives a
+	// CreateOrganizationConnectorRequest message and returns a
+	// CreateOrganizationConnectorResponse message.
+	CreateOrganizationConnector(ctx context.Context, in *CreateOrganizationConnectorRequest, opts ...grpc.CallOption) (*CreateOrganizationConnectorResponse, error)
+	// ListOrganizationConnectors method receives a
+	// ListOrganizationConnectorsRequest message and returns a
+	// ListOrganizationConnectorsResponse message.
+	ListOrganizationConnectors(ctx context.Context, in *ListOrganizationConnectorsRequest, opts ...grpc.CallOption) (*ListOrganizationConnectorsResponse, error)
+	// GetOrganizationConnector method receives a GetOrganizationConnectorRequest
+	// message and returns a GetOrganizationConnectorResponse message.
+	GetOrganizationConnector(ctx context.Context, in *GetOrganizationConnectorRequest, opts ...grpc.CallOption) (*GetOrganizationConnectorResponse, error)
+	// UpdateOrganizationConnector method receives a
+	// UpdateOrganizationConnectorRequest message and returns a
+	// UpdateOrganizationConnectorResponse message.
+	UpdateOrganizationConnector(ctx context.Context, in *UpdateOrganizationConnectorRequest, opts ...grpc.CallOption) (*UpdateOrganizationConnectorResponse, error)
+	// DeleteOrganizationConnector method receives a
+	// DeleteOrganizationConnectorRequest message and returns a
+	// DeleteOrganizationConnectorResponse message.
+	DeleteOrganizationConnector(ctx context.Context, in *DeleteOrganizationConnectorRequest, opts ...grpc.CallOption) (*DeleteOrganizationConnectorResponse, error)
+	// Connect a connector.
+	// The "state" of the connector after connecting is "CONNECTED".
+	// ConnectOrganizationConnector can be called on Connector in the
+	// state `DISCONNECTED`; Connector in a different state (including
+	// `CONNECTED`) returns an error.
+	ConnectOrganizationConnector(ctx context.Context, in *ConnectOrganizationConnectorRequest, opts ...grpc.CallOption) (*ConnectOrganizationConnectorResponse, error)
+	// Disconnect a connector.
+	// The "state" of the connector after disconnecting is "DISCONNECTED".
+	// DisconnectOrganizationConnector can be called on Connector in the
+	// state `CONNECTED`; Connector in a different state (including
+	// `DISCONNECTED`) returns an error.
+	DisconnectOrganizationConnector(ctx context.Context, in *DisconnectOrganizationConnectorRequest, opts ...grpc.CallOption) (*DisconnectOrganizationConnectorResponse, error)
+	// RenameOrganizationConnector method receives a
+	// RenameOrganizationConnectorRequest message and returns a
+	// RenameOrganizationConnectorResponse message.
+	RenameOrganizationConnector(ctx context.Context, in *RenameOrganizationConnectorRequest, opts ...grpc.CallOption) (*RenameOrganizationConnectorResponse, error)
+	// ExecuteOrganizationConnector method receives a
+	// ExecuteOrganizationConnectorRequest message and returns a
+	// ExecuteOrganizationConnectorResponse message.
+	ExecuteOrganizationConnector(ctx context.Context, in *ExecuteOrganizationConnectorRequest, opts ...grpc.CallOption) (*ExecuteOrganizationConnectorResponse, error)
+	// WatchOrganizationConnector method receives a
+	// WatchOrganizationConnectorRequest message and returns a
+	// WatchOrganizationConnectorResponse
+	WatchOrganizationConnector(ctx context.Context, in *WatchOrganizationConnectorRequest, opts ...grpc.CallOption) (*WatchOrganizationConnectorResponse, error)
+	// TestOrganizationConnector method receives a TestOrganizationConnectorRequest
+	// message and returns a TestOrganizationConnectorResponse
+	TestOrganizationConnector(ctx context.Context, in *TestOrganizationConnectorRequest, opts ...grpc.CallOption) (*TestOrganizationConnectorResponse, error)
 }
 
 type pipelinePublicServiceClient struct {
@@ -236,24 +364,6 @@ func (c *pipelinePublicServiceClient) Liveness(ctx context.Context, in *Liveness
 func (c *pipelinePublicServiceClient) Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error) {
 	out := new(ReadinessResponse)
 	err := c.cc.Invoke(ctx, PipelinePublicService_Readiness_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *pipelinePublicServiceClient) ListOperatorDefinitions(ctx context.Context, in *ListOperatorDefinitionsRequest, opts ...grpc.CallOption) (*ListOperatorDefinitionsResponse, error) {
-	out := new(ListOperatorDefinitionsResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_ListOperatorDefinitions_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *pipelinePublicServiceClient) GetOperatorDefinition(ctx context.Context, in *GetOperatorDefinitionRequest, opts ...grpc.CallOption) (*GetOperatorDefinitionResponse, error) {
-	out := new(GetOperatorDefinitionResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_GetOperatorDefinition_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -359,15 +469,6 @@ func (c *pipelinePublicServiceClient) TriggerAsyncUserPipeline(ctx context.Conte
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) GetOperation(ctx context.Context, in *GetOperationRequest, opts ...grpc.CallOption) (*GetOperationResponse, error) {
-	out := new(GetOperationResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_GetOperation_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *pipelinePublicServiceClient) CreateUserPipelineRelease(ctx context.Context, in *CreateUserPipelineReleaseRequest, opts ...grpc.CallOption) (*CreateUserPipelineReleaseResponse, error) {
 	out := new(CreateUserPipelineReleaseResponse)
 	err := c.cc.Invoke(ctx, PipelinePublicService_CreateUserPipelineRelease_FullMethodName, in, out, opts...)
@@ -422,15 +523,6 @@ func (c *pipelinePublicServiceClient) RestoreUserPipelineRelease(ctx context.Con
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) SetDefaultUserPipelineRelease(ctx context.Context, in *SetDefaultUserPipelineReleaseRequest, opts ...grpc.CallOption) (*SetDefaultUserPipelineReleaseResponse, error) {
-	out := new(SetDefaultUserPipelineReleaseResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_SetDefaultUserPipelineRelease_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *pipelinePublicServiceClient) WatchUserPipelineRelease(ctx context.Context, in *WatchUserPipelineReleaseRequest, opts ...grpc.CallOption) (*WatchUserPipelineReleaseResponse, error) {
 	out := new(WatchUserPipelineReleaseResponse)
 	err := c.cc.Invoke(ctx, PipelinePublicService_WatchUserPipelineRelease_FullMethodName, in, out, opts...)
@@ -467,6 +559,186 @@ func (c *pipelinePublicServiceClient) TriggerAsyncUserPipelineRelease(ctx contex
 	return out, nil
 }
 
+func (c *pipelinePublicServiceClient) CreateOrganizationPipeline(ctx context.Context, in *CreateOrganizationPipelineRequest, opts ...grpc.CallOption) (*CreateOrganizationPipelineResponse, error) {
+	out := new(CreateOrganizationPipelineResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_CreateOrganizationPipeline_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) ListOrganizationPipelines(ctx context.Context, in *ListOrganizationPipelinesRequest, opts ...grpc.CallOption) (*ListOrganizationPipelinesResponse, error) {
+	out := new(ListOrganizationPipelinesResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ListOrganizationPipelines_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) GetOrganizationPipeline(ctx context.Context, in *GetOrganizationPipelineRequest, opts ...grpc.CallOption) (*GetOrganizationPipelineResponse, error) {
+	out := new(GetOrganizationPipelineResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_GetOrganizationPipeline_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) UpdateOrganizationPipeline(ctx context.Context, in *UpdateOrganizationPipelineRequest, opts ...grpc.CallOption) (*UpdateOrganizationPipelineResponse, error) {
+	out := new(UpdateOrganizationPipelineResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_UpdateOrganizationPipeline_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) DeleteOrganizationPipeline(ctx context.Context, in *DeleteOrganizationPipelineRequest, opts ...grpc.CallOption) (*DeleteOrganizationPipelineResponse, error) {
+	out := new(DeleteOrganizationPipelineResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_DeleteOrganizationPipeline_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) ValidateOrganizationPipeline(ctx context.Context, in *ValidateOrganizationPipelineRequest, opts ...grpc.CallOption) (*ValidateOrganizationPipelineResponse, error) {
+	out := new(ValidateOrganizationPipelineResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ValidateOrganizationPipeline_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) RenameOrganizationPipeline(ctx context.Context, in *RenameOrganizationPipelineRequest, opts ...grpc.CallOption) (*RenameOrganizationPipelineResponse, error) {
+	out := new(RenameOrganizationPipelineResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_RenameOrganizationPipeline_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) TriggerOrganizationPipeline(ctx context.Context, in *TriggerOrganizationPipelineRequest, opts ...grpc.CallOption) (*TriggerOrganizationPipelineResponse, error) {
+	out := new(TriggerOrganizationPipelineResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_TriggerOrganizationPipeline_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) TriggerAsyncOrganizationPipeline(ctx context.Context, in *TriggerAsyncOrganizationPipelineRequest, opts ...grpc.CallOption) (*TriggerAsyncOrganizationPipelineResponse, error) {
+	out := new(TriggerAsyncOrganizationPipelineResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_TriggerAsyncOrganizationPipeline_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) CreateOrganizationPipelineRelease(ctx context.Context, in *CreateOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*CreateOrganizationPipelineReleaseResponse, error) {
+	out := new(CreateOrganizationPipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_CreateOrganizationPipelineRelease_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) ListOrganizationPipelineReleases(ctx context.Context, in *ListOrganizationPipelineReleasesRequest, opts ...grpc.CallOption) (*ListOrganizationPipelineReleasesResponse, error) {
+	out := new(ListOrganizationPipelineReleasesResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ListOrganizationPipelineReleases_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) GetOrganizationPipelineRelease(ctx context.Context, in *GetOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*GetOrganizationPipelineReleaseResponse, error) {
+	out := new(GetOrganizationPipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_GetOrganizationPipelineRelease_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) UpdateOrganizationPipelineRelease(ctx context.Context, in *UpdateOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*UpdateOrganizationPipelineReleaseResponse, error) {
+	out := new(UpdateOrganizationPipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_UpdateOrganizationPipelineRelease_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) DeleteOrganizationPipelineRelease(ctx context.Context, in *DeleteOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*DeleteOrganizationPipelineReleaseResponse, error) {
+	out := new(DeleteOrganizationPipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_DeleteOrganizationPipelineRelease_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) RestoreOrganizationPipelineRelease(ctx context.Context, in *RestoreOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*RestoreOrganizationPipelineReleaseResponse, error) {
+	out := new(RestoreOrganizationPipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_RestoreOrganizationPipelineRelease_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) WatchOrganizationPipelineRelease(ctx context.Context, in *WatchOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*WatchOrganizationPipelineReleaseResponse, error) {
+	out := new(WatchOrganizationPipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_WatchOrganizationPipelineRelease_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) RenameOrganizationPipelineRelease(ctx context.Context, in *RenameOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*RenameOrganizationPipelineReleaseResponse, error) {
+	out := new(RenameOrganizationPipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_RenameOrganizationPipelineRelease_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) TriggerOrganizationPipelineRelease(ctx context.Context, in *TriggerOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerOrganizationPipelineReleaseResponse, error) {
+	out := new(TriggerOrganizationPipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_TriggerOrganizationPipelineRelease_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) TriggerAsyncOrganizationPipelineRelease(ctx context.Context, in *TriggerAsyncOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerAsyncOrganizationPipelineReleaseResponse, error) {
+	out := new(TriggerAsyncOrganizationPipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_TriggerAsyncOrganizationPipelineRelease_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) GetOperation(ctx context.Context, in *GetOperationRequest, opts ...grpc.CallOption) (*GetOperationResponse, error) {
+	out := new(GetOperationResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_GetOperation_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *pipelinePublicServiceClient) ListConnectorDefinitions(ctx context.Context, in *ListConnectorDefinitionsRequest, opts ...grpc.CallOption) (*ListConnectorDefinitionsResponse, error) {
 	out := new(ListConnectorDefinitionsResponse)
 	err := c.cc.Invoke(ctx, PipelinePublicService_ListConnectorDefinitions_FullMethodName, in, out, opts...)
@@ -479,6 +751,24 @@ func (c *pipelinePublicServiceClient) ListConnectorDefinitions(ctx context.Conte
 func (c *pipelinePublicServiceClient) GetConnectorDefinition(ctx context.Context, in *GetConnectorDefinitionRequest, opts ...grpc.CallOption) (*GetConnectorDefinitionResponse, error) {
 	out := new(GetConnectorDefinitionResponse)
 	err := c.cc.Invoke(ctx, PipelinePublicService_GetConnectorDefinition_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) ListOperatorDefinitions(ctx context.Context, in *ListOperatorDefinitionsRequest, opts ...grpc.CallOption) (*ListOperatorDefinitionsResponse, error) {
+	out := new(ListOperatorDefinitionsResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ListOperatorDefinitions_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) GetOperatorDefinition(ctx context.Context, in *GetOperatorDefinitionRequest, opts ...grpc.CallOption) (*GetOperatorDefinitionResponse, error) {
+	out := new(GetOperatorDefinitionResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_GetOperatorDefinition_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -602,6 +892,105 @@ func (c *pipelinePublicServiceClient) TestUserConnector(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *pipelinePublicServiceClient) CreateOrganizationConnector(ctx context.Context, in *CreateOrganizationConnectorRequest, opts ...grpc.CallOption) (*CreateOrganizationConnectorResponse, error) {
+	out := new(CreateOrganizationConnectorResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_CreateOrganizationConnector_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) ListOrganizationConnectors(ctx context.Context, in *ListOrganizationConnectorsRequest, opts ...grpc.CallOption) (*ListOrganizationConnectorsResponse, error) {
+	out := new(ListOrganizationConnectorsResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ListOrganizationConnectors_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) GetOrganizationConnector(ctx context.Context, in *GetOrganizationConnectorRequest, opts ...grpc.CallOption) (*GetOrganizationConnectorResponse, error) {
+	out := new(GetOrganizationConnectorResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_GetOrganizationConnector_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) UpdateOrganizationConnector(ctx context.Context, in *UpdateOrganizationConnectorRequest, opts ...grpc.CallOption) (*UpdateOrganizationConnectorResponse, error) {
+	out := new(UpdateOrganizationConnectorResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_UpdateOrganizationConnector_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) DeleteOrganizationConnector(ctx context.Context, in *DeleteOrganizationConnectorRequest, opts ...grpc.CallOption) (*DeleteOrganizationConnectorResponse, error) {
+	out := new(DeleteOrganizationConnectorResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_DeleteOrganizationConnector_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) ConnectOrganizationConnector(ctx context.Context, in *ConnectOrganizationConnectorRequest, opts ...grpc.CallOption) (*ConnectOrganizationConnectorResponse, error) {
+	out := new(ConnectOrganizationConnectorResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ConnectOrganizationConnector_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) DisconnectOrganizationConnector(ctx context.Context, in *DisconnectOrganizationConnectorRequest, opts ...grpc.CallOption) (*DisconnectOrganizationConnectorResponse, error) {
+	out := new(DisconnectOrganizationConnectorResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_DisconnectOrganizationConnector_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) RenameOrganizationConnector(ctx context.Context, in *RenameOrganizationConnectorRequest, opts ...grpc.CallOption) (*RenameOrganizationConnectorResponse, error) {
+	out := new(RenameOrganizationConnectorResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_RenameOrganizationConnector_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) ExecuteOrganizationConnector(ctx context.Context, in *ExecuteOrganizationConnectorRequest, opts ...grpc.CallOption) (*ExecuteOrganizationConnectorResponse, error) {
+	out := new(ExecuteOrganizationConnectorResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ExecuteOrganizationConnector_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) WatchOrganizationConnector(ctx context.Context, in *WatchOrganizationConnectorRequest, opts ...grpc.CallOption) (*WatchOrganizationConnectorResponse, error) {
+	out := new(WatchOrganizationConnectorResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_WatchOrganizationConnector_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) TestOrganizationConnector(ctx context.Context, in *TestOrganizationConnectorRequest, opts ...grpc.CallOption) (*TestOrganizationConnectorResponse, error) {
+	out := new(TestOrganizationConnectorResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_TestOrganizationConnector_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PipelinePublicServiceServer is the server API for PipelinePublicService service.
 // All implementations should embed UnimplementedPipelinePublicServiceServer
 // for forward compatibility
@@ -614,14 +1003,6 @@ type PipelinePublicServiceServer interface {
 	// ReadinessResponse message.
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error)
-	// ListOperatorDefinitions method receives a
-	// ListOperatorDefinitionsRequest message and returns a
-	// ListOperatorDefinitionsResponse message.
-	ListOperatorDefinitions(context.Context, *ListOperatorDefinitionsRequest) (*ListOperatorDefinitionsResponse, error)
-	// GetOperatorDefinition method receives a
-	// GetOperatorDefinitionRequest message and returns a
-	// GetGetOperatorDefinitionResponse message.
-	GetOperatorDefinition(context.Context, *GetOperatorDefinitionRequest) (*GetOperatorDefinitionResponse, error)
 	// ListPipelines method receives a ListPipelinesRequest message and returns a
 	// ListPipelinesResponse message.
 	ListPipelines(context.Context, *ListPipelinesRequest) (*ListPipelinesResponse, error)
@@ -654,10 +1035,6 @@ type PipelinePublicServiceServer interface {
 	// TriggerAsyncUserPipeline method receives a TriggerAsyncUserPipelineRequest message and
 	// returns a TriggerAsyncUserPipelineResponse.
 	TriggerAsyncUserPipeline(context.Context, *TriggerAsyncUserPipelineRequest) (*TriggerAsyncUserPipelineResponse, error)
-	// GetOperation method receives a
-	// GetOperationRequest message and returns a
-	// GetOperationResponse message.
-	GetOperation(context.Context, *GetOperationRequest) (*GetOperationResponse, error)
 	// CreateUserPipelineRelease method receives a CreateUserPipelineReleaseRequest message and returns
 	// a CreateUserPipelineReleaseResponse message.
 	CreateUserPipelineRelease(context.Context, *CreateUserPipelineReleaseRequest) (*CreateUserPipelineReleaseResponse, error)
@@ -676,9 +1053,6 @@ type PipelinePublicServiceServer interface {
 	// RestoreUserPipelineRelease method receives a RestoreUserPipelineReleaseRequest message
 	// and returns a RestoreUserPipelineReleaseResponse
 	RestoreUserPipelineRelease(context.Context, *RestoreUserPipelineReleaseRequest) (*RestoreUserPipelineReleaseResponse, error)
-	// SetDefaultUserPipelineRelease method receives a SetDefaultUserPipelineReleaseRequest message
-	// and returns a SetDefaultUserPipelineReleaseResponse
-	SetDefaultUserPipelineRelease(context.Context, *SetDefaultUserPipelineReleaseRequest) (*SetDefaultUserPipelineReleaseResponse, error)
 	// WatchUserPipelineRelease method receives a WatchUserPipelineReleaseRequest message
 	// and returns a WatchUserPipelineReleaseResponse
 	WatchUserPipelineRelease(context.Context, *WatchUserPipelineReleaseRequest) (*WatchUserPipelineReleaseResponse, error)
@@ -691,6 +1065,66 @@ type PipelinePublicServiceServer interface {
 	// TriggerAsyncUserPipelineRelease method receives a TriggerAsyncUserPipelineReleaseRequest message and
 	// returns a TriggerAsyncUserPipelineReleaseResponse.
 	TriggerAsyncUserPipelineRelease(context.Context, *TriggerAsyncUserPipelineReleaseRequest) (*TriggerAsyncUserPipelineReleaseResponse, error)
+	// CreateOrganizationPipeline method receives a CreateOrganizationPipelineRequest message and returns
+	// a CreateOrganizationPipelineResponse message.
+	CreateOrganizationPipeline(context.Context, *CreateOrganizationPipelineRequest) (*CreateOrganizationPipelineResponse, error)
+	// ListOrganizationPipelines method receives a ListOrganizationPipelinesRequest message and returns a
+	// ListOrganizationPipelinesResponse message.
+	ListOrganizationPipelines(context.Context, *ListOrganizationPipelinesRequest) (*ListOrganizationPipelinesResponse, error)
+	// GetOrganizationPipeline method receives a GetOrganizationPipelineRequest message and returns a
+	// GetOrganizationPipelineResponse message.
+	GetOrganizationPipeline(context.Context, *GetOrganizationPipelineRequest) (*GetOrganizationPipelineResponse, error)
+	// UpdateOrganizationPipeline method receives a UpdateOrganizationPipelineRequest message and returns
+	// a UpdateOrganizationPipelineResponse message.
+	UpdateOrganizationPipeline(context.Context, *UpdateOrganizationPipelineRequest) (*UpdateOrganizationPipelineResponse, error)
+	// DeleteOrganizationPipeline method receives a DeleteOrganizationPipelineRequest message and returns
+	// a DeleteOrganizationPipelineResponse message.
+	DeleteOrganizationPipeline(context.Context, *DeleteOrganizationPipelineRequest) (*DeleteOrganizationPipelineResponse, error)
+	// Validate a pipeline.
+	ValidateOrganizationPipeline(context.Context, *ValidateOrganizationPipelineRequest) (*ValidateOrganizationPipelineResponse, error)
+	// RenameOrganizationPipeline method receives a RenameOrganizationPipelineRequest message and returns
+	// a RenameOrganizationPipelineResponse message.
+	RenameOrganizationPipeline(context.Context, *RenameOrganizationPipelineRequest) (*RenameOrganizationPipelineResponse, error)
+	// TriggerOrganizationPipeline method receives a TriggerOrganizationPipelineRequest message
+	// and returns a TriggerOrganizationPipelineResponse.
+	TriggerOrganizationPipeline(context.Context, *TriggerOrganizationPipelineRequest) (*TriggerOrganizationPipelineResponse, error)
+	// TriggerAsyncOrganizationPipeline method receives a TriggerAsyncOrganizationPipelineRequest message and
+	// returns a TriggerAsyncOrganizationPipelineResponse.
+	TriggerAsyncOrganizationPipeline(context.Context, *TriggerAsyncOrganizationPipelineRequest) (*TriggerAsyncOrganizationPipelineResponse, error)
+	// CreateOrganizationPipelineRelease method receives a CreateOrganizationPipelineReleaseRequest message and returns
+	// a CreateOrganizationPipelineReleaseResponse message.
+	CreateOrganizationPipelineRelease(context.Context, *CreateOrganizationPipelineReleaseRequest) (*CreateOrganizationPipelineReleaseResponse, error)
+	// ListOrganizationPipelineReleases method receives a ListOrganizationPipelineReleasesRequest message and returns a
+	// ListOrganizationPipelineReleasesResponse message.
+	ListOrganizationPipelineReleases(context.Context, *ListOrganizationPipelineReleasesRequest) (*ListOrganizationPipelineReleasesResponse, error)
+	// GetOrganizationPipelineRelease method receives a GetOrganizationPipelineReleaseRequest message and returns a
+	// GetOrganizationPipelineReleaseResponse message.
+	GetOrganizationPipelineRelease(context.Context, *GetOrganizationPipelineReleaseRequest) (*GetOrganizationPipelineReleaseResponse, error)
+	// UpdateOrganizationPipelineRelease method receives a UpdateOrganizationPipelineReleaseRequest message and returns
+	// a UpdateOrganizationPipelineReleaseResponse message.
+	UpdateOrganizationPipelineRelease(context.Context, *UpdateOrganizationPipelineReleaseRequest) (*UpdateOrganizationPipelineReleaseResponse, error)
+	// DeleteOrganizationPipelineRelease method receives a DeleteOrganizationPipelineReleaseRequest message and returns
+	// a DeleteOrganizationPipelineReleaseResponse message.
+	DeleteOrganizationPipelineRelease(context.Context, *DeleteOrganizationPipelineReleaseRequest) (*DeleteOrganizationPipelineReleaseResponse, error)
+	// RestoreOrganizationPipelineRelease method receives a RestoreOrganizationPipelineReleaseRequest message
+	// and returns a RestoreOrganizationPipelineReleaseResponse
+	RestoreOrganizationPipelineRelease(context.Context, *RestoreOrganizationPipelineReleaseRequest) (*RestoreOrganizationPipelineReleaseResponse, error)
+	// WatchOrganizationPipelineRelease method receives a WatchOrganizationPipelineReleaseRequest message
+	// and returns a WatchOrganizationPipelineReleaseResponse
+	WatchOrganizationPipelineRelease(context.Context, *WatchOrganizationPipelineReleaseRequest) (*WatchOrganizationPipelineReleaseResponse, error)
+	// RenameOrganizationPipelineRelease method receives a RenameOrganizationPipelineReleaseRequest message and returns
+	// a RenameOrganizationPipelineReleaseResponse message.
+	RenameOrganizationPipelineRelease(context.Context, *RenameOrganizationPipelineReleaseRequest) (*RenameOrganizationPipelineReleaseResponse, error)
+	// TriggerOrganizationPipelineRelease method receives a TriggeOrganizationPipelineReleaseRequest message
+	// and returns a TriggerPipelineReleasePipelineResponse.
+	TriggerOrganizationPipelineRelease(context.Context, *TriggerOrganizationPipelineReleaseRequest) (*TriggerOrganizationPipelineReleaseResponse, error)
+	// TriggerAsyncOrganizationPipelineRelease method receives a TriggerAsyncOrganizationPipelineReleaseRequest message and
+	// returns a TriggerAsyncOrganizationPipelineReleaseResponse.
+	TriggerAsyncOrganizationPipelineRelease(context.Context, *TriggerAsyncOrganizationPipelineReleaseRequest) (*TriggerAsyncOrganizationPipelineReleaseResponse, error)
+	// GetOperation method receives a
+	// GetOperationRequest message and returns a
+	// GetOperationResponse message.
+	GetOperation(context.Context, *GetOperationRequest) (*GetOperationResponse, error)
 	// ListConnectorDefinitions method receives a
 	// ListConnectorDefinitionsRequest message and returns a
 	// ListConnectorDefinitionsResponse message.
@@ -699,6 +1133,14 @@ type PipelinePublicServiceServer interface {
 	// GetConnectorDefinitionRequest message and returns a
 	// GetGetConnectorDefinitionResponse message.
 	GetConnectorDefinition(context.Context, *GetConnectorDefinitionRequest) (*GetConnectorDefinitionResponse, error)
+	// ListOperatorDefinitions method receives a
+	// ListOperatorDefinitionsRequest message and returns a
+	// ListOperatorDefinitionsResponse message.
+	ListOperatorDefinitions(context.Context, *ListOperatorDefinitionsRequest) (*ListOperatorDefinitionsResponse, error)
+	// GetOperatorDefinition method receives a
+	// GetOperatorDefinitionRequest message and returns a
+	// GetGetOperatorDefinitionResponse message.
+	GetOperatorDefinition(context.Context, *GetOperatorDefinitionRequest) (*GetOperatorDefinitionResponse, error)
 	// ListConnectors method receives a
 	// ListConnectorsRequest message and returns a
 	// ListConnectorsResponse message.
@@ -753,6 +1195,52 @@ type PipelinePublicServiceServer interface {
 	// TestUserConnector method receives a TestUserConnectorRequest
 	// message and returns a TestUserConnectorResponse
 	TestUserConnector(context.Context, *TestUserConnectorRequest) (*TestUserConnectorResponse, error)
+	// CreateOrganizationConnector method receives a
+	// CreateOrganizationConnectorRequest message and returns a
+	// CreateOrganizationConnectorResponse message.
+	CreateOrganizationConnector(context.Context, *CreateOrganizationConnectorRequest) (*CreateOrganizationConnectorResponse, error)
+	// ListOrganizationConnectors method receives a
+	// ListOrganizationConnectorsRequest message and returns a
+	// ListOrganizationConnectorsResponse message.
+	ListOrganizationConnectors(context.Context, *ListOrganizationConnectorsRequest) (*ListOrganizationConnectorsResponse, error)
+	// GetOrganizationConnector method receives a GetOrganizationConnectorRequest
+	// message and returns a GetOrganizationConnectorResponse message.
+	GetOrganizationConnector(context.Context, *GetOrganizationConnectorRequest) (*GetOrganizationConnectorResponse, error)
+	// UpdateOrganizationConnector method receives a
+	// UpdateOrganizationConnectorRequest message and returns a
+	// UpdateOrganizationConnectorResponse message.
+	UpdateOrganizationConnector(context.Context, *UpdateOrganizationConnectorRequest) (*UpdateOrganizationConnectorResponse, error)
+	// DeleteOrganizationConnector method receives a
+	// DeleteOrganizationConnectorRequest message and returns a
+	// DeleteOrganizationConnectorResponse message.
+	DeleteOrganizationConnector(context.Context, *DeleteOrganizationConnectorRequest) (*DeleteOrganizationConnectorResponse, error)
+	// Connect a connector.
+	// The "state" of the connector after connecting is "CONNECTED".
+	// ConnectOrganizationConnector can be called on Connector in the
+	// state `DISCONNECTED`; Connector in a different state (including
+	// `CONNECTED`) returns an error.
+	ConnectOrganizationConnector(context.Context, *ConnectOrganizationConnectorRequest) (*ConnectOrganizationConnectorResponse, error)
+	// Disconnect a connector.
+	// The "state" of the connector after disconnecting is "DISCONNECTED".
+	// DisconnectOrganizationConnector can be called on Connector in the
+	// state `CONNECTED`; Connector in a different state (including
+	// `DISCONNECTED`) returns an error.
+	DisconnectOrganizationConnector(context.Context, *DisconnectOrganizationConnectorRequest) (*DisconnectOrganizationConnectorResponse, error)
+	// RenameOrganizationConnector method receives a
+	// RenameOrganizationConnectorRequest message and returns a
+	// RenameOrganizationConnectorResponse message.
+	RenameOrganizationConnector(context.Context, *RenameOrganizationConnectorRequest) (*RenameOrganizationConnectorResponse, error)
+	// ExecuteOrganizationConnector method receives a
+	// ExecuteOrganizationConnectorRequest message and returns a
+	// ExecuteOrganizationConnectorResponse message.
+	ExecuteOrganizationConnector(context.Context, *ExecuteOrganizationConnectorRequest) (*ExecuteOrganizationConnectorResponse, error)
+	// WatchOrganizationConnector method receives a
+	// WatchOrganizationConnectorRequest message and returns a
+	// WatchOrganizationConnectorResponse
+	WatchOrganizationConnector(context.Context, *WatchOrganizationConnectorRequest) (*WatchOrganizationConnectorResponse, error)
+	// TestOrganizationConnector method receives a TestOrganizationConnectorRequest
+	// message and returns a TestOrganizationConnectorResponse
+	TestOrganizationConnector(context.Context, *TestOrganizationConnectorRequest) (*TestOrganizationConnectorResponse, error)
 }
 
 // UnimplementedPipelinePublicServiceServer should be embedded to have forward compatible implementations.
@@ -764,12 +1252,6 @@ func (UnimplementedPipelinePublicServiceServer) Liveness(context.Context, *Liven
 }
 func (UnimplementedPipelinePublicServiceServer) Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Readiness not implemented")
-}
-func (UnimplementedPipelinePublicServiceServer) ListOperatorDefinitions(context.Context, *ListOperatorDefinitionsRequest) (*ListOperatorDefinitionsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListOperatorDefinitions not implemented")
-}
-func (UnimplementedPipelinePublicServiceServer) GetOperatorDefinition(context.Context, *GetOperatorDefinitionRequest) (*GetOperatorDefinitionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetOperatorDefinition not implemented")
 }
 func (UnimplementedPipelinePublicServiceServer) ListPipelines(context.Context, *ListPipelinesRequest) (*ListPipelinesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPipelines not implemented")
@@ -804,9 +1286,6 @@ func (UnimplementedPipelinePublicServiceServer) TriggerUserPipeline(context.Cont
 func (UnimplementedPipelinePublicServiceServer) TriggerAsyncUserPipeline(context.Context, *TriggerAsyncUserPipelineRequest) (*TriggerAsyncUserPipelineResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncUserPipeline not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) GetOperation(context.Context, *GetOperationRequest) (*GetOperationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetOperation not implemented")
-}
 func (UnimplementedPipelinePublicServiceServer) CreateUserPipelineRelease(context.Context, *CreateUserPipelineReleaseRequest) (*CreateUserPipelineReleaseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateUserPipelineRelease not implemented")
 }
@@ -825,9 +1304,6 @@ func (UnimplementedPipelinePublicServiceServer) DeleteUserPipelineRelease(contex
 func (UnimplementedPipelinePublicServiceServer) RestoreUserPipelineRelease(context.Context, *RestoreUserPipelineReleaseRequest) (*RestoreUserPipelineReleaseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RestoreUserPipelineRelease not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) SetDefaultUserPipelineRelease(context.Context, *SetDefaultUserPipelineReleaseRequest) (*SetDefaultUserPipelineReleaseResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetDefaultUserPipelineRelease not implemented")
-}
 func (UnimplementedPipelinePublicServiceServer) WatchUserPipelineRelease(context.Context, *WatchUserPipelineReleaseRequest) (*WatchUserPipelineReleaseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method WatchUserPipelineRelease not implemented")
 }
@@ -840,11 +1316,77 @@ func (UnimplementedPipelinePublicServiceServer) TriggerUserPipelineRelease(conte
 func (UnimplementedPipelinePublicServiceServer) TriggerAsyncUserPipelineRelease(context.Context, *TriggerAsyncUserPipelineReleaseRequest) (*TriggerAsyncUserPipelineReleaseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncUserPipelineRelease not implemented")
 }
+func (UnimplementedPipelinePublicServiceServer) CreateOrganizationPipeline(context.Context, *CreateOrganizationPipelineRequest) (*CreateOrganizationPipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateOrganizationPipeline not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) ListOrganizationPipelines(context.Context, *ListOrganizationPipelinesRequest) (*ListOrganizationPipelinesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizationPipelines not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) GetOrganizationPipeline(context.Context, *GetOrganizationPipelineRequest) (*GetOrganizationPipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationPipeline not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) UpdateOrganizationPipeline(context.Context, *UpdateOrganizationPipelineRequest) (*UpdateOrganizationPipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrganizationPipeline not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) DeleteOrganizationPipeline(context.Context, *DeleteOrganizationPipelineRequest) (*DeleteOrganizationPipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganizationPipeline not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) ValidateOrganizationPipeline(context.Context, *ValidateOrganizationPipelineRequest) (*ValidateOrganizationPipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ValidateOrganizationPipeline not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) RenameOrganizationPipeline(context.Context, *RenameOrganizationPipelineRequest) (*RenameOrganizationPipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RenameOrganizationPipeline not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) TriggerOrganizationPipeline(context.Context, *TriggerOrganizationPipelineRequest) (*TriggerOrganizationPipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerOrganizationPipeline not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) TriggerAsyncOrganizationPipeline(context.Context, *TriggerAsyncOrganizationPipelineRequest) (*TriggerAsyncOrganizationPipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncOrganizationPipeline not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) CreateOrganizationPipelineRelease(context.Context, *CreateOrganizationPipelineReleaseRequest) (*CreateOrganizationPipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateOrganizationPipelineRelease not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) ListOrganizationPipelineReleases(context.Context, *ListOrganizationPipelineReleasesRequest) (*ListOrganizationPipelineReleasesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizationPipelineReleases not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) GetOrganizationPipelineRelease(context.Context, *GetOrganizationPipelineReleaseRequest) (*GetOrganizationPipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationPipelineRelease not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) UpdateOrganizationPipelineRelease(context.Context, *UpdateOrganizationPipelineReleaseRequest) (*UpdateOrganizationPipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrganizationPipelineRelease not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) DeleteOrganizationPipelineRelease(context.Context, *DeleteOrganizationPipelineReleaseRequest) (*DeleteOrganizationPipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganizationPipelineRelease not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) RestoreOrganizationPipelineRelease(context.Context, *RestoreOrganizationPipelineReleaseRequest) (*RestoreOrganizationPipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RestoreOrganizationPipelineRelease not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) WatchOrganizationPipelineRelease(context.Context, *WatchOrganizationPipelineReleaseRequest) (*WatchOrganizationPipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WatchOrganizationPipelineRelease not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) RenameOrganizationPipelineRelease(context.Context, *RenameOrganizationPipelineReleaseRequest) (*RenameOrganizationPipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RenameOrganizationPipelineRelease not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) TriggerOrganizationPipelineRelease(context.Context, *TriggerOrganizationPipelineReleaseRequest) (*TriggerOrganizationPipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerOrganizationPipelineRelease not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) TriggerAsyncOrganizationPipelineRelease(context.Context, *TriggerAsyncOrganizationPipelineReleaseRequest) (*TriggerAsyncOrganizationPipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncOrganizationPipelineRelease not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) GetOperation(context.Context, *GetOperationRequest) (*GetOperationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOperation not implemented")
+}
 func (UnimplementedPipelinePublicServiceServer) ListConnectorDefinitions(context.Context, *ListConnectorDefinitionsRequest) (*ListConnectorDefinitionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListConnectorDefinitions not implemented")
 }
 func (UnimplementedPipelinePublicServiceServer) GetConnectorDefinition(context.Context, *GetConnectorDefinitionRequest) (*GetConnectorDefinitionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetConnectorDefinition not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) ListOperatorDefinitions(context.Context, *ListOperatorDefinitionsRequest) (*ListOperatorDefinitionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListOperatorDefinitions not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) GetOperatorDefinition(context.Context, *GetOperatorDefinitionRequest) (*GetOperatorDefinitionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOperatorDefinition not implemented")
 }
 func (UnimplementedPipelinePublicServiceServer) ListConnectors(context.Context, *ListConnectorsRequest) (*ListConnectorsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListConnectors not implemented")
@@ -884,6 +1426,39 @@ func (UnimplementedPipelinePublicServiceServer) WatchUserConnector(context.Conte
 }
 func (UnimplementedPipelinePublicServiceServer) TestUserConnector(context.Context, *TestUserConnectorRequest) (*TestUserConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TestUserConnector not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) CreateOrganizationConnector(context.Context, *CreateOrganizationConnectorRequest) (*CreateOrganizationConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateOrganizationConnector not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) ListOrganizationConnectors(context.Context, *ListOrganizationConnectorsRequest) (*ListOrganizationConnectorsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizationConnectors not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) GetOrganizationConnector(context.Context, *GetOrganizationConnectorRequest) (*GetOrganizationConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationConnector not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) UpdateOrganizationConnector(context.Context, *UpdateOrganizationConnectorRequest) (*UpdateOrganizationConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrganizationConnector not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) DeleteOrganizationConnector(context.Context, *DeleteOrganizationConnectorRequest) (*DeleteOrganizationConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganizationConnector not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) ConnectOrganizationConnector(context.Context, *ConnectOrganizationConnectorRequest) (*ConnectOrganizationConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConnectOrganizationConnector not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) DisconnectOrganizationConnector(context.Context, *DisconnectOrganizationConnectorRequest) (*DisconnectOrganizationConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DisconnectOrganizationConnector not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) RenameOrganizationConnector(context.Context, *RenameOrganizationConnectorRequest) (*RenameOrganizationConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RenameOrganizationConnector not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) ExecuteOrganizationConnector(context.Context, *ExecuteOrganizationConnectorRequest) (*ExecuteOrganizationConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExecuteOrganizationConnector not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) WatchOrganizationConnector(context.Context, *WatchOrganizationConnectorRequest) (*WatchOrganizationConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WatchOrganizationConnector not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) TestOrganizationConnector(context.Context, *TestOrganizationConnectorRequest) (*TestOrganizationConnectorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TestOrganizationConnector not implemented")
 }
 
 // UnsafePipelinePublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -929,42 +1504,6 @@ func _PipelinePublicService_Readiness_Handler(srv interface{}, ctx context.Conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PipelinePublicServiceServer).Readiness(ctx, req.(*ReadinessRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PipelinePublicService_ListOperatorDefinitions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListOperatorDefinitionsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).ListOperatorDefinitions(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PipelinePublicService_ListOperatorDefinitions_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).ListOperatorDefinitions(ctx, req.(*ListOperatorDefinitionsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PipelinePublicService_GetOperatorDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetOperatorDefinitionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).GetOperatorDefinition(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PipelinePublicService_GetOperatorDefinition_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).GetOperatorDefinition(ctx, req.(*GetOperatorDefinitionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1167,24 +1706,6 @@ func _PipelinePublicService_TriggerAsyncUserPipeline_Handler(srv interface{}, ct
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_GetOperation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetOperationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).GetOperation(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PipelinePublicService_GetOperation_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).GetOperation(ctx, req.(*GetOperationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _PipelinePublicService_CreateUserPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateUserPipelineReleaseRequest)
 	if err := dec(in); err != nil {
@@ -1293,24 +1814,6 @@ func _PipelinePublicService_RestoreUserPipelineRelease_Handler(srv interface{}, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_SetDefaultUserPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SetDefaultUserPipelineReleaseRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).SetDefaultUserPipelineRelease(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PipelinePublicService_SetDefaultUserPipelineRelease_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).SetDefaultUserPipelineRelease(ctx, req.(*SetDefaultUserPipelineReleaseRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _PipelinePublicService_WatchUserPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(WatchUserPipelineReleaseRequest)
 	if err := dec(in); err != nil {
@@ -1383,6 +1886,366 @@ func _PipelinePublicService_TriggerAsyncUserPipelineRelease_Handler(srv interfac
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PipelinePublicService_CreateOrganizationPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateOrganizationPipelineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).CreateOrganizationPipeline(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_CreateOrganizationPipeline_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).CreateOrganizationPipeline(ctx, req.(*CreateOrganizationPipelineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_ListOrganizationPipelines_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListOrganizationPipelinesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).ListOrganizationPipelines(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_ListOrganizationPipelines_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).ListOrganizationPipelines(ctx, req.(*ListOrganizationPipelinesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_GetOrganizationPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrganizationPipelineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).GetOrganizationPipeline(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_GetOrganizationPipeline_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).GetOrganizationPipeline(ctx, req.(*GetOrganizationPipelineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_UpdateOrganizationPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateOrganizationPipelineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).UpdateOrganizationPipeline(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_UpdateOrganizationPipeline_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).UpdateOrganizationPipeline(ctx, req.(*UpdateOrganizationPipelineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_DeleteOrganizationPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteOrganizationPipelineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).DeleteOrganizationPipeline(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_DeleteOrganizationPipeline_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).DeleteOrganizationPipeline(ctx, req.(*DeleteOrganizationPipelineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_ValidateOrganizationPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ValidateOrganizationPipelineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).ValidateOrganizationPipeline(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_ValidateOrganizationPipeline_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).ValidateOrganizationPipeline(ctx, req.(*ValidateOrganizationPipelineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_RenameOrganizationPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RenameOrganizationPipelineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).RenameOrganizationPipeline(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_RenameOrganizationPipeline_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).RenameOrganizationPipeline(ctx, req.(*RenameOrganizationPipelineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_TriggerOrganizationPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerOrganizationPipelineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).TriggerOrganizationPipeline(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_TriggerOrganizationPipeline_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).TriggerOrganizationPipeline(ctx, req.(*TriggerOrganizationPipelineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_TriggerAsyncOrganizationPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerAsyncOrganizationPipelineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).TriggerAsyncOrganizationPipeline(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_TriggerAsyncOrganizationPipeline_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).TriggerAsyncOrganizationPipeline(ctx, req.(*TriggerAsyncOrganizationPipelineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_CreateOrganizationPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateOrganizationPipelineReleaseRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).CreateOrganizationPipelineRelease(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_CreateOrganizationPipelineRelease_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).CreateOrganizationPipelineRelease(ctx, req.(*CreateOrganizationPipelineReleaseRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_ListOrganizationPipelineReleases_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListOrganizationPipelineReleasesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).ListOrganizationPipelineReleases(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_ListOrganizationPipelineReleases_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).ListOrganizationPipelineReleases(ctx, req.(*ListOrganizationPipelineReleasesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_GetOrganizationPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrganizationPipelineReleaseRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).GetOrganizationPipelineRelease(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_GetOrganizationPipelineRelease_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).GetOrganizationPipelineRelease(ctx, req.(*GetOrganizationPipelineReleaseRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_UpdateOrganizationPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateOrganizationPipelineReleaseRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).UpdateOrganizationPipelineRelease(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_UpdateOrganizationPipelineRelease_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).UpdateOrganizationPipelineRelease(ctx, req.(*UpdateOrganizationPipelineReleaseRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_DeleteOrganizationPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteOrganizationPipelineReleaseRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).DeleteOrganizationPipelineRelease(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_DeleteOrganizationPipelineRelease_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).DeleteOrganizationPipelineRelease(ctx, req.(*DeleteOrganizationPipelineReleaseRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_RestoreOrganizationPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RestoreOrganizationPipelineReleaseRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).RestoreOrganizationPipelineRelease(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_RestoreOrganizationPipelineRelease_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).RestoreOrganizationPipelineRelease(ctx, req.(*RestoreOrganizationPipelineReleaseRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_WatchOrganizationPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WatchOrganizationPipelineReleaseRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).WatchOrganizationPipelineRelease(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_WatchOrganizationPipelineRelease_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).WatchOrganizationPipelineRelease(ctx, req.(*WatchOrganizationPipelineReleaseRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_RenameOrganizationPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RenameOrganizationPipelineReleaseRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).RenameOrganizationPipelineRelease(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_RenameOrganizationPipelineRelease_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).RenameOrganizationPipelineRelease(ctx, req.(*RenameOrganizationPipelineReleaseRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_TriggerOrganizationPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerOrganizationPipelineReleaseRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).TriggerOrganizationPipelineRelease(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_TriggerOrganizationPipelineRelease_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).TriggerOrganizationPipelineRelease(ctx, req.(*TriggerOrganizationPipelineReleaseRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_TriggerAsyncOrganizationPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerAsyncOrganizationPipelineReleaseRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).TriggerAsyncOrganizationPipelineRelease(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_TriggerAsyncOrganizationPipelineRelease_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).TriggerAsyncOrganizationPipelineRelease(ctx, req.(*TriggerAsyncOrganizationPipelineReleaseRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_GetOperation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOperationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).GetOperation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_GetOperation_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).GetOperation(ctx, req.(*GetOperationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PipelinePublicService_ListConnectorDefinitions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListConnectorDefinitionsRequest)
 	if err := dec(in); err != nil {
@@ -1415,6 +2278,42 @@ func _PipelinePublicService_GetConnectorDefinition_Handler(srv interface{}, ctx 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PipelinePublicServiceServer).GetConnectorDefinition(ctx, req.(*GetConnectorDefinitionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_ListOperatorDefinitions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListOperatorDefinitionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).ListOperatorDefinitions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_ListOperatorDefinitions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).ListOperatorDefinitions(ctx, req.(*ListOperatorDefinitionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_GetOperatorDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOperatorDefinitionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).GetOperatorDefinition(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_GetOperatorDefinition_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).GetOperatorDefinition(ctx, req.(*GetOperatorDefinitionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1653,6 +2552,204 @@ func _PipelinePublicService_TestUserConnector_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PipelinePublicService_CreateOrganizationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateOrganizationConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).CreateOrganizationConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_CreateOrganizationConnector_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).CreateOrganizationConnector(ctx, req.(*CreateOrganizationConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_ListOrganizationConnectors_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListOrganizationConnectorsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).ListOrganizationConnectors(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_ListOrganizationConnectors_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).ListOrganizationConnectors(ctx, req.(*ListOrganizationConnectorsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_GetOrganizationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrganizationConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).GetOrganizationConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_GetOrganizationConnector_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).GetOrganizationConnector(ctx, req.(*GetOrganizationConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_UpdateOrganizationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateOrganizationConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).UpdateOrganizationConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_UpdateOrganizationConnector_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).UpdateOrganizationConnector(ctx, req.(*UpdateOrganizationConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_DeleteOrganizationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteOrganizationConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).DeleteOrganizationConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_DeleteOrganizationConnector_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).DeleteOrganizationConnector(ctx, req.(*DeleteOrganizationConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_ConnectOrganizationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ConnectOrganizationConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).ConnectOrganizationConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_ConnectOrganizationConnector_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).ConnectOrganizationConnector(ctx, req.(*ConnectOrganizationConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_DisconnectOrganizationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DisconnectOrganizationConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).DisconnectOrganizationConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_DisconnectOrganizationConnector_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).DisconnectOrganizationConnector(ctx, req.(*DisconnectOrganizationConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_RenameOrganizationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RenameOrganizationConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).RenameOrganizationConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_RenameOrganizationConnector_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).RenameOrganizationConnector(ctx, req.(*RenameOrganizationConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_ExecuteOrganizationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExecuteOrganizationConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).ExecuteOrganizationConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_ExecuteOrganizationConnector_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).ExecuteOrganizationConnector(ctx, req.(*ExecuteOrganizationConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_WatchOrganizationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WatchOrganizationConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).WatchOrganizationConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_WatchOrganizationConnector_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).WatchOrganizationConnector(ctx, req.(*WatchOrganizationConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_TestOrganizationConnector_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TestOrganizationConnectorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).TestOrganizationConnector(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_TestOrganizationConnector_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).TestOrganizationConnector(ctx, req.(*TestOrganizationConnectorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PipelinePublicService_ServiceDesc is the grpc.ServiceDesc for PipelinePublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1667,14 +2764,6 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Readiness",
 			Handler:    _PipelinePublicService_Readiness_Handler,
-		},
-		{
-			MethodName: "ListOperatorDefinitions",
-			Handler:    _PipelinePublicService_ListOperatorDefinitions_Handler,
-		},
-		{
-			MethodName: "GetOperatorDefinition",
-			Handler:    _PipelinePublicService_GetOperatorDefinition_Handler,
 		},
 		{
 			MethodName: "ListPipelines",
@@ -1721,10 +2810,6 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _PipelinePublicService_TriggerAsyncUserPipeline_Handler,
 		},
 		{
-			MethodName: "GetOperation",
-			Handler:    _PipelinePublicService_GetOperation_Handler,
-		},
-		{
 			MethodName: "CreateUserPipelineRelease",
 			Handler:    _PipelinePublicService_CreateUserPipelineRelease_Handler,
 		},
@@ -1749,10 +2834,6 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _PipelinePublicService_RestoreUserPipelineRelease_Handler,
 		},
 		{
-			MethodName: "SetDefaultUserPipelineRelease",
-			Handler:    _PipelinePublicService_SetDefaultUserPipelineRelease_Handler,
-		},
-		{
 			MethodName: "WatchUserPipelineRelease",
 			Handler:    _PipelinePublicService_WatchUserPipelineRelease_Handler,
 		},
@@ -1769,12 +2850,100 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _PipelinePublicService_TriggerAsyncUserPipelineRelease_Handler,
 		},
 		{
+			MethodName: "CreateOrganizationPipeline",
+			Handler:    _PipelinePublicService_CreateOrganizationPipeline_Handler,
+		},
+		{
+			MethodName: "ListOrganizationPipelines",
+			Handler:    _PipelinePublicService_ListOrganizationPipelines_Handler,
+		},
+		{
+			MethodName: "GetOrganizationPipeline",
+			Handler:    _PipelinePublicService_GetOrganizationPipeline_Handler,
+		},
+		{
+			MethodName: "UpdateOrganizationPipeline",
+			Handler:    _PipelinePublicService_UpdateOrganizationPipeline_Handler,
+		},
+		{
+			MethodName: "DeleteOrganizationPipeline",
+			Handler:    _PipelinePublicService_DeleteOrganizationPipeline_Handler,
+		},
+		{
+			MethodName: "ValidateOrganizationPipeline",
+			Handler:    _PipelinePublicService_ValidateOrganizationPipeline_Handler,
+		},
+		{
+			MethodName: "RenameOrganizationPipeline",
+			Handler:    _PipelinePublicService_RenameOrganizationPipeline_Handler,
+		},
+		{
+			MethodName: "TriggerOrganizationPipeline",
+			Handler:    _PipelinePublicService_TriggerOrganizationPipeline_Handler,
+		},
+		{
+			MethodName: "TriggerAsyncOrganizationPipeline",
+			Handler:    _PipelinePublicService_TriggerAsyncOrganizationPipeline_Handler,
+		},
+		{
+			MethodName: "CreateOrganizationPipelineRelease",
+			Handler:    _PipelinePublicService_CreateOrganizationPipelineRelease_Handler,
+		},
+		{
+			MethodName: "ListOrganizationPipelineReleases",
+			Handler:    _PipelinePublicService_ListOrganizationPipelineReleases_Handler,
+		},
+		{
+			MethodName: "GetOrganizationPipelineRelease",
+			Handler:    _PipelinePublicService_GetOrganizationPipelineRelease_Handler,
+		},
+		{
+			MethodName: "UpdateOrganizationPipelineRelease",
+			Handler:    _PipelinePublicService_UpdateOrganizationPipelineRelease_Handler,
+		},
+		{
+			MethodName: "DeleteOrganizationPipelineRelease",
+			Handler:    _PipelinePublicService_DeleteOrganizationPipelineRelease_Handler,
+		},
+		{
+			MethodName: "RestoreOrganizationPipelineRelease",
+			Handler:    _PipelinePublicService_RestoreOrganizationPipelineRelease_Handler,
+		},
+		{
+			MethodName: "WatchOrganizationPipelineRelease",
+			Handler:    _PipelinePublicService_WatchOrganizationPipelineRelease_Handler,
+		},
+		{
+			MethodName: "RenameOrganizationPipelineRelease",
+			Handler:    _PipelinePublicService_RenameOrganizationPipelineRelease_Handler,
+		},
+		{
+			MethodName: "TriggerOrganizationPipelineRelease",
+			Handler:    _PipelinePublicService_TriggerOrganizationPipelineRelease_Handler,
+		},
+		{
+			MethodName: "TriggerAsyncOrganizationPipelineRelease",
+			Handler:    _PipelinePublicService_TriggerAsyncOrganizationPipelineRelease_Handler,
+		},
+		{
+			MethodName: "GetOperation",
+			Handler:    _PipelinePublicService_GetOperation_Handler,
+		},
+		{
 			MethodName: "ListConnectorDefinitions",
 			Handler:    _PipelinePublicService_ListConnectorDefinitions_Handler,
 		},
 		{
 			MethodName: "GetConnectorDefinition",
 			Handler:    _PipelinePublicService_GetConnectorDefinition_Handler,
+		},
+		{
+			MethodName: "ListOperatorDefinitions",
+			Handler:    _PipelinePublicService_ListOperatorDefinitions_Handler,
+		},
+		{
+			MethodName: "GetOperatorDefinition",
+			Handler:    _PipelinePublicService_GetOperatorDefinition_Handler,
 		},
 		{
 			MethodName: "ListConnectors",
@@ -1827,6 +2996,50 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TestUserConnector",
 			Handler:    _PipelinePublicService_TestUserConnector_Handler,
+		},
+		{
+			MethodName: "CreateOrganizationConnector",
+			Handler:    _PipelinePublicService_CreateOrganizationConnector_Handler,
+		},
+		{
+			MethodName: "ListOrganizationConnectors",
+			Handler:    _PipelinePublicService_ListOrganizationConnectors_Handler,
+		},
+		{
+			MethodName: "GetOrganizationConnector",
+			Handler:    _PipelinePublicService_GetOrganizationConnector_Handler,
+		},
+		{
+			MethodName: "UpdateOrganizationConnector",
+			Handler:    _PipelinePublicService_UpdateOrganizationConnector_Handler,
+		},
+		{
+			MethodName: "DeleteOrganizationConnector",
+			Handler:    _PipelinePublicService_DeleteOrganizationConnector_Handler,
+		},
+		{
+			MethodName: "ConnectOrganizationConnector",
+			Handler:    _PipelinePublicService_ConnectOrganizationConnector_Handler,
+		},
+		{
+			MethodName: "DisconnectOrganizationConnector",
+			Handler:    _PipelinePublicService_DisconnectOrganizationConnector_Handler,
+		},
+		{
+			MethodName: "RenameOrganizationConnector",
+			Handler:    _PipelinePublicService_RenameOrganizationConnector_Handler,
+		},
+		{
+			MethodName: "ExecuteOrganizationConnector",
+			Handler:    _PipelinePublicService_ExecuteOrganizationConnector_Handler,
+		},
+		{
+			MethodName: "WatchOrganizationConnector",
+			Handler:    _PipelinePublicService_WatchOrganizationConnector_Handler,
+		},
+		{
+			MethodName: "TestOrganizationConnector",
+			Handler:    _PipelinePublicService_TestOrganizationConnector_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

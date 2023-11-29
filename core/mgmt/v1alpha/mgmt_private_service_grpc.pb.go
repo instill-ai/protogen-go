@@ -19,10 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	MgmtPrivateService_ListUsersAdmin_FullMethodName  = "/core.mgmt.v1alpha.MgmtPrivateService/ListUsersAdmin"
-	MgmtPrivateService_CreateUserAdmin_FullMethodName = "/core.mgmt.v1alpha.MgmtPrivateService/CreateUserAdmin"
-	MgmtPrivateService_GetUserAdmin_FullMethodName    = "/core.mgmt.v1alpha.MgmtPrivateService/GetUserAdmin"
-	MgmtPrivateService_LookUpUserAdmin_FullMethodName = "/core.mgmt.v1alpha.MgmtPrivateService/LookUpUserAdmin"
+	MgmtPrivateService_ListUsersAdmin_FullMethodName          = "/core.mgmt.v1alpha.MgmtPrivateService/ListUsersAdmin"
+	MgmtPrivateService_GetUserAdmin_FullMethodName            = "/core.mgmt.v1alpha.MgmtPrivateService/GetUserAdmin"
+	MgmtPrivateService_LookUpUserAdmin_FullMethodName         = "/core.mgmt.v1alpha.MgmtPrivateService/LookUpUserAdmin"
+	MgmtPrivateService_ListOrganizationsAdmin_FullMethodName  = "/core.mgmt.v1alpha.MgmtPrivateService/ListOrganizationsAdmin"
+	MgmtPrivateService_GetOrganizationAdmin_FullMethodName    = "/core.mgmt.v1alpha.MgmtPrivateService/GetOrganizationAdmin"
+	MgmtPrivateService_LookUpOrganizationAdmin_FullMethodName = "/core.mgmt.v1alpha.MgmtPrivateService/LookUpOrganizationAdmin"
 )
 
 // MgmtPrivateServiceClient is the client API for MgmtPrivateService service.
@@ -32,15 +34,21 @@ type MgmtPrivateServiceClient interface {
 	// ListUsersAdmin method receives a ListUsersAdminRequest message and returns
 	// a ListUsersAdminResponse message.
 	ListUsersAdmin(ctx context.Context, in *ListUsersAdminRequest, opts ...grpc.CallOption) (*ListUsersAdminResponse, error)
-	// CreateUserAdmin receives a CreateUserAdminRequest message and returns a
-	// a GetUserAdminResponse
-	CreateUserAdmin(ctx context.Context, in *CreateUserAdminRequest, opts ...grpc.CallOption) (*CreateUserAdminResponse, error)
 	// GetUserAdmin method receives a GetUserAdminRequest message and returns
 	// a GetUserAdminResponse message.
 	GetUserAdmin(ctx context.Context, in *GetUserAdminRequest, opts ...grpc.CallOption) (*GetUserAdminResponse, error)
 	// LookUpUserAdmin method receives a LookUpUserAdminRequest message and
 	// returns a LookUpUserAdminResponse
 	LookUpUserAdmin(ctx context.Context, in *LookUpUserAdminRequest, opts ...grpc.CallOption) (*LookUpUserAdminResponse, error)
+	// ListOrganizationsAdmin method receives a ListOrganizationsAdminRequest message and returns
+	// a ListOrganizationsAdminResponse message.
+	ListOrganizationsAdmin(ctx context.Context, in *ListOrganizationsAdminRequest, opts ...grpc.CallOption) (*ListOrganizationsAdminResponse, error)
+	// GetOrganizationAdmin method receives a GetOrganizationAdminRequest message and returns
+	// a GetOrganizationAdminResponse message.
+	GetOrganizationAdmin(ctx context.Context, in *GetOrganizationAdminRequest, opts ...grpc.CallOption) (*GetOrganizationAdminResponse, error)
+	// LookUpOrganizationAdmin method receives a LookUpOrganizationAdminRequest message and
+	// returns a LookUpOrganizationAdminResponse
+	LookUpOrganizationAdmin(ctx context.Context, in *LookUpOrganizationAdminRequest, opts ...grpc.CallOption) (*LookUpOrganizationAdminResponse, error)
 }
 
 type mgmtPrivateServiceClient struct {
@@ -54,15 +62,6 @@ func NewMgmtPrivateServiceClient(cc grpc.ClientConnInterface) MgmtPrivateService
 func (c *mgmtPrivateServiceClient) ListUsersAdmin(ctx context.Context, in *ListUsersAdminRequest, opts ...grpc.CallOption) (*ListUsersAdminResponse, error) {
 	out := new(ListUsersAdminResponse)
 	err := c.cc.Invoke(ctx, MgmtPrivateService_ListUsersAdmin_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mgmtPrivateServiceClient) CreateUserAdmin(ctx context.Context, in *CreateUserAdminRequest, opts ...grpc.CallOption) (*CreateUserAdminResponse, error) {
-	out := new(CreateUserAdminResponse)
-	err := c.cc.Invoke(ctx, MgmtPrivateService_CreateUserAdmin_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -87,6 +86,33 @@ func (c *mgmtPrivateServiceClient) LookUpUserAdmin(ctx context.Context, in *Look
 	return out, nil
 }
 
+func (c *mgmtPrivateServiceClient) ListOrganizationsAdmin(ctx context.Context, in *ListOrganizationsAdminRequest, opts ...grpc.CallOption) (*ListOrganizationsAdminResponse, error) {
+	out := new(ListOrganizationsAdminResponse)
+	err := c.cc.Invoke(ctx, MgmtPrivateService_ListOrganizationsAdmin_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mgmtPrivateServiceClient) GetOrganizationAdmin(ctx context.Context, in *GetOrganizationAdminRequest, opts ...grpc.CallOption) (*GetOrganizationAdminResponse, error) {
+	out := new(GetOrganizationAdminResponse)
+	err := c.cc.Invoke(ctx, MgmtPrivateService_GetOrganizationAdmin_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mgmtPrivateServiceClient) LookUpOrganizationAdmin(ctx context.Context, in *LookUpOrganizationAdminRequest, opts ...grpc.CallOption) (*LookUpOrganizationAdminResponse, error) {
+	out := new(LookUpOrganizationAdminResponse)
+	err := c.cc.Invoke(ctx, MgmtPrivateService_LookUpOrganizationAdmin_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MgmtPrivateServiceServer is the server API for MgmtPrivateService service.
 // All implementations should embed UnimplementedMgmtPrivateServiceServer
 // for forward compatibility
@@ -94,15 +120,21 @@ type MgmtPrivateServiceServer interface {
 	// ListUsersAdmin method receives a ListUsersAdminRequest message and returns
 	// a ListUsersAdminResponse message.
 	ListUsersAdmin(context.Context, *ListUsersAdminRequest) (*ListUsersAdminResponse, error)
-	// CreateUserAdmin receives a CreateUserAdminRequest message and returns a
-	// a GetUserAdminResponse
-	CreateUserAdmin(context.Context, *CreateUserAdminRequest) (*CreateUserAdminResponse, error)
 	// GetUserAdmin method receives a GetUserAdminRequest message and returns
 	// a GetUserAdminResponse message.
 	GetUserAdmin(context.Context, *GetUserAdminRequest) (*GetUserAdminResponse, error)
 	// LookUpUserAdmin method receives a LookUpUserAdminRequest message and
 	// returns a LookUpUserAdminResponse
 	LookUpUserAdmin(context.Context, *LookUpUserAdminRequest) (*LookUpUserAdminResponse, error)
+	// ListOrganizationsAdmin method receives a ListOrganizationsAdminRequest message and returns
+	// a ListOrganizationsAdminResponse message.
+	ListOrganizationsAdmin(context.Context, *ListOrganizationsAdminRequest) (*ListOrganizationsAdminResponse, error)
+	// GetOrganizationAdmin method receives a GetOrganizationAdminRequest message and returns
+	// a GetOrganizationAdminResponse message.
+	GetOrganizationAdmin(context.Context, *GetOrganizationAdminRequest) (*GetOrganizationAdminResponse, error)
+	// LookUpOrganizationAdmin method receives a LookUpOrganizationAdminRequest message and
+	// returns a LookUpOrganizationAdminResponse
+	LookUpOrganizationAdmin(context.Context, *LookUpOrganizationAdminRequest) (*LookUpOrganizationAdminResponse, error)
 }
 
 // UnimplementedMgmtPrivateServiceServer should be embedded to have forward compatible implementations.
@@ -112,14 +144,20 @@ type UnimplementedMgmtPrivateServiceServer struct {
 func (UnimplementedMgmtPrivateServiceServer) ListUsersAdmin(context.Context, *ListUsersAdminRequest) (*ListUsersAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListUsersAdmin not implemented")
 }
-func (UnimplementedMgmtPrivateServiceServer) CreateUserAdmin(context.Context, *CreateUserAdminRequest) (*CreateUserAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateUserAdmin not implemented")
-}
 func (UnimplementedMgmtPrivateServiceServer) GetUserAdmin(context.Context, *GetUserAdminRequest) (*GetUserAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserAdmin not implemented")
 }
 func (UnimplementedMgmtPrivateServiceServer) LookUpUserAdmin(context.Context, *LookUpUserAdminRequest) (*LookUpUserAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LookUpUserAdmin not implemented")
+}
+func (UnimplementedMgmtPrivateServiceServer) ListOrganizationsAdmin(context.Context, *ListOrganizationsAdminRequest) (*ListOrganizationsAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizationsAdmin not implemented")
+}
+func (UnimplementedMgmtPrivateServiceServer) GetOrganizationAdmin(context.Context, *GetOrganizationAdminRequest) (*GetOrganizationAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationAdmin not implemented")
+}
+func (UnimplementedMgmtPrivateServiceServer) LookUpOrganizationAdmin(context.Context, *LookUpOrganizationAdminRequest) (*LookUpOrganizationAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LookUpOrganizationAdmin not implemented")
 }
 
 // UnsafeMgmtPrivateServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -147,24 +185,6 @@ func _MgmtPrivateService_ListUsersAdmin_Handler(srv interface{}, ctx context.Con
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MgmtPrivateServiceServer).ListUsersAdmin(ctx, req.(*ListUsersAdminRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MgmtPrivateService_CreateUserAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateUserAdminRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPrivateServiceServer).CreateUserAdmin(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPrivateService_CreateUserAdmin_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPrivateServiceServer).CreateUserAdmin(ctx, req.(*CreateUserAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -205,6 +225,60 @@ func _MgmtPrivateService_LookUpUserAdmin_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MgmtPrivateService_ListOrganizationsAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListOrganizationsAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPrivateServiceServer).ListOrganizationsAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPrivateService_ListOrganizationsAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPrivateServiceServer).ListOrganizationsAdmin(ctx, req.(*ListOrganizationsAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MgmtPrivateService_GetOrganizationAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrganizationAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPrivateServiceServer).GetOrganizationAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPrivateService_GetOrganizationAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPrivateServiceServer).GetOrganizationAdmin(ctx, req.(*GetOrganizationAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MgmtPrivateService_LookUpOrganizationAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LookUpOrganizationAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPrivateServiceServer).LookUpOrganizationAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPrivateService_LookUpOrganizationAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPrivateServiceServer).LookUpOrganizationAdmin(ctx, req.(*LookUpOrganizationAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MgmtPrivateService_ServiceDesc is the grpc.ServiceDesc for MgmtPrivateService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -217,16 +291,24 @@ var MgmtPrivateService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MgmtPrivateService_ListUsersAdmin_Handler,
 		},
 		{
-			MethodName: "CreateUserAdmin",
-			Handler:    _MgmtPrivateService_CreateUserAdmin_Handler,
-		},
-		{
 			MethodName: "GetUserAdmin",
 			Handler:    _MgmtPrivateService_GetUserAdmin_Handler,
 		},
 		{
 			MethodName: "LookUpUserAdmin",
 			Handler:    _MgmtPrivateService_LookUpUserAdmin_Handler,
+		},
+		{
+			MethodName: "ListOrganizationsAdmin",
+			Handler:    _MgmtPrivateService_ListOrganizationsAdmin_Handler,
+		},
+		{
+			MethodName: "GetOrganizationAdmin",
+			Handler:    _MgmtPrivateService_GetOrganizationAdmin_Handler,
+		},
+		{
+			MethodName: "LookUpOrganizationAdmin",
+			Handler:    _MgmtPrivateService_LookUpOrganizationAdmin_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
