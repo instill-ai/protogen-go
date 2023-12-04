@@ -21,10 +21,10 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	MgmtPublicService_Liveness_FullMethodName                         = "/core.mgmt.v1alpha.MgmtPublicService/Liveness"
 	MgmtPublicService_Readiness_FullMethodName                        = "/core.mgmt.v1alpha.MgmtPublicService/Readiness"
+	MgmtPublicService_CheckNamespace_FullMethodName                   = "/core.mgmt.v1alpha.MgmtPublicService/CheckNamespace"
 	MgmtPublicService_ListUsers_FullMethodName                        = "/core.mgmt.v1alpha.MgmtPublicService/ListUsers"
 	MgmtPublicService_GetUser_FullMethodName                          = "/core.mgmt.v1alpha.MgmtPublicService/GetUser"
 	MgmtPublicService_PatchAuthenticatedUser_FullMethodName           = "/core.mgmt.v1alpha.MgmtPublicService/PatchAuthenticatedUser"
-	MgmtPublicService_ExistUsername_FullMethodName                    = "/core.mgmt.v1alpha.MgmtPublicService/ExistUsername"
 	MgmtPublicService_ListUserMemberships_FullMethodName              = "/core.mgmt.v1alpha.MgmtPublicService/ListUserMemberships"
 	MgmtPublicService_GetUserMembership_FullMethodName                = "/core.mgmt.v1alpha.MgmtPublicService/GetUserMembership"
 	MgmtPublicService_UpdateUserMembership_FullMethodName             = "/core.mgmt.v1alpha.MgmtPublicService/UpdateUserMembership"
@@ -68,6 +68,8 @@ type MgmtPublicServiceClient interface {
 	// ReadinessResponse message.
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error)
+	// Check namespace
+	CheckNamespace(ctx context.Context, in *CheckNamespaceRequest, opts ...grpc.CallOption) (*CheckNamespaceResponse, error)
 	// ListUsers method receives a ListUsersRequest message and returns a
 	// ListUsersResponse message.
 	ListUsers(ctx context.Context, in *ListUsersRequest, opts ...grpc.CallOption) (*ListUsersResponse, error)
@@ -77,9 +79,6 @@ type MgmtPublicServiceClient interface {
 	// PatchAuthenticatedUser method receives a PatchAuthenticatedUserRequest
 	// message and returns a PatchAuthenticatedUserResponse message.
 	PatchAuthenticatedUser(ctx context.Context, in *PatchAuthenticatedUserRequest, opts ...grpc.CallOption) (*PatchAuthenticatedUserResponse, error)
-	// ExistUsername method receives a ExistUsernameRequest message and returns a
-	// ExistUsernameResponse
-	ExistUsername(ctx context.Context, in *ExistUsernameRequest, opts ...grpc.CallOption) (*ExistUsernameResponse, error)
 	// ListUserMemberships method receives a ListUserMembershipsRequest message and returns a
 	// ListUserMembershipsResponse message.
 	ListUserMemberships(ctx context.Context, in *ListUserMembershipsRequest, opts ...grpc.CallOption) (*ListUserMembershipsResponse, error)
@@ -196,6 +195,15 @@ func (c *mgmtPublicServiceClient) Readiness(ctx context.Context, in *ReadinessRe
 	return out, nil
 }
 
+func (c *mgmtPublicServiceClient) CheckNamespace(ctx context.Context, in *CheckNamespaceRequest, opts ...grpc.CallOption) (*CheckNamespaceResponse, error) {
+	out := new(CheckNamespaceResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_CheckNamespace_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *mgmtPublicServiceClient) ListUsers(ctx context.Context, in *ListUsersRequest, opts ...grpc.CallOption) (*ListUsersResponse, error) {
 	out := new(ListUsersResponse)
 	err := c.cc.Invoke(ctx, MgmtPublicService_ListUsers_FullMethodName, in, out, opts...)
@@ -217,15 +225,6 @@ func (c *mgmtPublicServiceClient) GetUser(ctx context.Context, in *GetUserReques
 func (c *mgmtPublicServiceClient) PatchAuthenticatedUser(ctx context.Context, in *PatchAuthenticatedUserRequest, opts ...grpc.CallOption) (*PatchAuthenticatedUserResponse, error) {
 	out := new(PatchAuthenticatedUserResponse)
 	err := c.cc.Invoke(ctx, MgmtPublicService_PatchAuthenticatedUser_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mgmtPublicServiceClient) ExistUsername(ctx context.Context, in *ExistUsernameRequest, opts ...grpc.CallOption) (*ExistUsernameResponse, error) {
-	out := new(ExistUsernameResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_ExistUsername_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -505,6 +504,8 @@ type MgmtPublicServiceServer interface {
 	// ReadinessResponse message.
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error)
+	// Check namespace
+	CheckNamespace(context.Context, *CheckNamespaceRequest) (*CheckNamespaceResponse, error)
 	// ListUsers method receives a ListUsersRequest message and returns a
 	// ListUsersResponse message.
 	ListUsers(context.Context, *ListUsersRequest) (*ListUsersResponse, error)
@@ -514,9 +515,6 @@ type MgmtPublicServiceServer interface {
 	// PatchAuthenticatedUser method receives a PatchAuthenticatedUserRequest
 	// message and returns a PatchAuthenticatedUserResponse message.
 	PatchAuthenticatedUser(context.Context, *PatchAuthenticatedUserRequest) (*PatchAuthenticatedUserResponse, error)
-	// ExistUsername method receives a ExistUsernameRequest message and returns a
-	// ExistUsernameResponse
-	ExistUsername(context.Context, *ExistUsernameRequest) (*ExistUsernameResponse, error)
 	// ListUserMemberships method receives a ListUserMembershipsRequest message and returns a
 	// ListUserMembershipsResponse message.
 	ListUserMemberships(context.Context, *ListUserMembershipsRequest) (*ListUserMembershipsResponse, error)
@@ -617,6 +615,9 @@ func (UnimplementedMgmtPublicServiceServer) Liveness(context.Context, *LivenessR
 func (UnimplementedMgmtPublicServiceServer) Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Readiness not implemented")
 }
+func (UnimplementedMgmtPublicServiceServer) CheckNamespace(context.Context, *CheckNamespaceRequest) (*CheckNamespaceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckNamespace not implemented")
+}
 func (UnimplementedMgmtPublicServiceServer) ListUsers(context.Context, *ListUsersRequest) (*ListUsersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListUsers not implemented")
 }
@@ -625,9 +626,6 @@ func (UnimplementedMgmtPublicServiceServer) GetUser(context.Context, *GetUserReq
 }
 func (UnimplementedMgmtPublicServiceServer) PatchAuthenticatedUser(context.Context, *PatchAuthenticatedUserRequest) (*PatchAuthenticatedUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PatchAuthenticatedUser not implemented")
-}
-func (UnimplementedMgmtPublicServiceServer) ExistUsername(context.Context, *ExistUsernameRequest) (*ExistUsernameResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ExistUsername not implemented")
 }
 func (UnimplementedMgmtPublicServiceServer) ListUserMemberships(context.Context, *ListUserMembershipsRequest) (*ListUserMembershipsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListUserMemberships not implemented")
@@ -764,6 +762,24 @@ func _MgmtPublicService_Readiness_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MgmtPublicService_CheckNamespace_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckNamespaceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).CheckNamespace(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_CheckNamespace_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).CheckNamespace(ctx, req.(*CheckNamespaceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _MgmtPublicService_ListUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListUsersRequest)
 	if err := dec(in); err != nil {
@@ -814,24 +830,6 @@ func _MgmtPublicService_PatchAuthenticatedUser_Handler(srv interface{}, ctx cont
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MgmtPublicServiceServer).PatchAuthenticatedUser(ctx, req.(*PatchAuthenticatedUserRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MgmtPublicService_ExistUsername_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ExistUsernameRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).ExistUsername(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_ExistUsername_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).ExistUsername(ctx, req.(*ExistUsernameRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1374,6 +1372,10 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MgmtPublicService_Readiness_Handler,
 		},
 		{
+			MethodName: "CheckNamespace",
+			Handler:    _MgmtPublicService_CheckNamespace_Handler,
+		},
+		{
 			MethodName: "ListUsers",
 			Handler:    _MgmtPublicService_ListUsers_Handler,
 		},
@@ -1384,10 +1386,6 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PatchAuthenticatedUser",
 			Handler:    _MgmtPublicService_PatchAuthenticatedUser_Handler,
-		},
-		{
-			MethodName: "ExistUsername",
-			Handler:    _MgmtPublicService_ExistUsername_Handler,
 		},
 		{
 			MethodName: "ListUserMemberships",
