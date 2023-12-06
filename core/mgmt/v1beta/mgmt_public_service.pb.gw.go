@@ -1855,7 +1855,7 @@ func RegisterMgmtPublicServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/CheckNamespace", runtime.WithHTTPPathPattern("/v1alpha/check-namespace"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/CheckNamespace", runtime.WithHTTPPathPattern("/v1beta/check-namespace"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2807,7 +2807,7 @@ func RegisterMgmtPublicServiceHandlerClient(ctx context.Context, mux *runtime.Se
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/CheckNamespace", runtime.WithHTTPPathPattern("/v1alpha/check-namespace"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/CheckNamespace", runtime.WithHTTPPathPattern("/v1beta/check-namespace"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3539,7 +3539,7 @@ var (
 
 	pattern_MgmtPublicService_Readiness_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "ready", "mgmt"}, ""))
 
-	pattern_MgmtPublicService_CheckNamespace_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "check-namespace"}, ""))
+	pattern_MgmtPublicService_CheckNamespace_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "check-namespace"}, ""))
 
 	pattern_MgmtPublicService_ListUsers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "users"}, ""))
 
