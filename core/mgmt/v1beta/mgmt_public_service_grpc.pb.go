@@ -38,6 +38,8 @@ const (
 	MgmtPublicService_GetOrganizationMembership_FullMethodName        = "/core.mgmt.v1beta.MgmtPublicService/GetOrganizationMembership"
 	MgmtPublicService_UpdateOrganizationMembership_FullMethodName     = "/core.mgmt.v1beta.MgmtPublicService/UpdateOrganizationMembership"
 	MgmtPublicService_DeleteOrganizationMembership_FullMethodName     = "/core.mgmt.v1beta.MgmtPublicService/DeleteOrganizationMembership"
+	MgmtPublicService_GetUserSubscription_FullMethodName              = "/core.mgmt.v1beta.MgmtPublicService/GetUserSubscription"
+	MgmtPublicService_GetOrganizationSubscription_FullMethodName      = "/core.mgmt.v1beta.MgmtPublicService/GetOrganizationSubscription"
 	MgmtPublicService_CreateToken_FullMethodName                      = "/core.mgmt.v1beta.MgmtPublicService/CreateToken"
 	MgmtPublicService_ListTokens_FullMethodName                       = "/core.mgmt.v1beta.MgmtPublicService/ListTokens"
 	MgmtPublicService_GetToken_FullMethodName                         = "/core.mgmt.v1beta.MgmtPublicService/GetToken"
@@ -118,6 +120,10 @@ type MgmtPublicServiceClient interface {
 	// DeleteOrganizationMembership method receives a DeleteOrganizationMembershipRequest message and returns
 	// a DeleteOrganizationMembershipResponse message.
 	DeleteOrganizationMembership(ctx context.Context, in *DeleteOrganizationMembershipRequest, opts ...grpc.CallOption) (*DeleteOrganizationMembershipResponse, error)
+	// GetUserSubscription
+	GetUserSubscription(ctx context.Context, in *GetUserSubscriptionRequest, opts ...grpc.CallOption) (*GetUserSubscriptionResponse, error)
+	// GetOrganizationSubscription
+	GetOrganizationSubscription(ctx context.Context, in *GetOrganizationSubscriptionRequest, opts ...grpc.CallOption) (*GetOrganizationSubscriptionResponse, error)
 	// CreateToken method receives a CreateTokenRequest message and returns
 	// a CreateTokenResponse message.
 	CreateToken(ctx context.Context, in *CreateTokenRequest, opts ...grpc.CallOption) (*CreateTokenResponse, error)
@@ -348,6 +354,24 @@ func (c *mgmtPublicServiceClient) DeleteOrganizationMembership(ctx context.Conte
 	return out, nil
 }
 
+func (c *mgmtPublicServiceClient) GetUserSubscription(ctx context.Context, in *GetUserSubscriptionRequest, opts ...grpc.CallOption) (*GetUserSubscriptionResponse, error) {
+	out := new(GetUserSubscriptionResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_GetUserSubscription_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mgmtPublicServiceClient) GetOrganizationSubscription(ctx context.Context, in *GetOrganizationSubscriptionRequest, opts ...grpc.CallOption) (*GetOrganizationSubscriptionResponse, error) {
+	out := new(GetOrganizationSubscriptionResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_GetOrganizationSubscription_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *mgmtPublicServiceClient) CreateToken(ctx context.Context, in *CreateTokenRequest, opts ...grpc.CallOption) (*CreateTokenResponse, error) {
 	out := new(CreateTokenResponse)
 	err := c.cc.Invoke(ctx, MgmtPublicService_CreateToken_FullMethodName, in, out, opts...)
@@ -554,6 +578,10 @@ type MgmtPublicServiceServer interface {
 	// DeleteOrganizationMembership method receives a DeleteOrganizationMembershipRequest message and returns
 	// a DeleteOrganizationMembershipResponse message.
 	DeleteOrganizationMembership(context.Context, *DeleteOrganizationMembershipRequest) (*DeleteOrganizationMembershipResponse, error)
+	// GetUserSubscription
+	GetUserSubscription(context.Context, *GetUserSubscriptionRequest) (*GetUserSubscriptionResponse, error)
+	// GetOrganizationSubscription
+	GetOrganizationSubscription(context.Context, *GetOrganizationSubscriptionRequest) (*GetOrganizationSubscriptionResponse, error)
 	// CreateToken method receives a CreateTokenRequest message and returns
 	// a CreateTokenResponse message.
 	CreateToken(context.Context, *CreateTokenRequest) (*CreateTokenResponse, error)
@@ -665,6 +693,12 @@ func (UnimplementedMgmtPublicServiceServer) UpdateOrganizationMembership(context
 }
 func (UnimplementedMgmtPublicServiceServer) DeleteOrganizationMembership(context.Context, *DeleteOrganizationMembershipRequest) (*DeleteOrganizationMembershipResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganizationMembership not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) GetUserSubscription(context.Context, *GetUserSubscriptionRequest) (*GetUserSubscriptionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserSubscription not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) GetOrganizationSubscription(context.Context, *GetOrganizationSubscriptionRequest) (*GetOrganizationSubscriptionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationSubscription not implemented")
 }
 func (UnimplementedMgmtPublicServiceServer) CreateToken(context.Context, *CreateTokenRequest) (*CreateTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateToken not implemented")
@@ -1068,6 +1102,42 @@ func _MgmtPublicService_DeleteOrganizationMembership_Handler(srv interface{}, ct
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MgmtPublicService_GetUserSubscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserSubscriptionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).GetUserSubscription(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_GetUserSubscription_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).GetUserSubscription(ctx, req.(*GetUserSubscriptionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MgmtPublicService_GetOrganizationSubscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrganizationSubscriptionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).GetOrganizationSubscription(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_GetOrganizationSubscription_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).GetOrganizationSubscription(ctx, req.(*GetOrganizationSubscriptionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _MgmtPublicService_CreateToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateTokenRequest)
 	if err := dec(in); err != nil {
@@ -1438,6 +1508,14 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteOrganizationMembership",
 			Handler:    _MgmtPublicService_DeleteOrganizationMembership_Handler,
+		},
+		{
+			MethodName: "GetUserSubscription",
+			Handler:    _MgmtPublicService_GetUserSubscription_Handler,
+		},
+		{
+			MethodName: "GetOrganizationSubscription",
+			Handler:    _MgmtPublicService_GetOrganizationSubscription_Handler,
 		},
 		{
 			MethodName: "CreateToken",
