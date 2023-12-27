@@ -76,15 +76,15 @@ func (OperatorDefinition_View) EnumDescriptor() ([]byte, []int) {
 	return file_vdp_pipeline_v1beta_operator_definition_proto_rawDescGZIP(), []int{1, 0}
 }
 
-// View enumerates the definition views
+// OperatorSpec represents a specification data model.
 type OperatorSpec struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Spec operator specification
+	// Component specification.
 	ComponentSpecification *structpb.Struct `protobuf:"bytes,1,opt,name=component_specification,json=componentSpecification,proto3" json:"component_specification,omitempty"`
-	// Spec openapi specification
+	// OpenAPI specification.
 	OpenapiSpecifications *structpb.Struct `protobuf:"bytes,2,opt,name=openapi_specifications,json=openapiSpecifications,proto3" json:"openapi_specifications,omitempty"`
 }
 
@@ -150,7 +150,7 @@ type OperatorDefinition struct {
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Operator definition UUID.
 	Uid string `protobuf:"bytes,2,opt,name=uid,proto3" json:"uid,omitempty"`
-	// Operator definition resource ID (used in the name as the last segment).
+	// Operator definition resource ID (used in `name` as the last segment).
 	// This conforms to RFC-1034, which restricts to letters, numbers, and
 	// hyphen, with the first character a letter, the last a letter or a number,
 	// and a 63 character maximum.
@@ -284,8 +284,8 @@ func (x *OperatorDefinition) GetIconUrl() string {
 	return ""
 }
 
-// ListOperatorDefinitionsRequest represents a request to list
-// OperatorDefinitions
+// ListOperatorDefinitionsRequest represents a request to list operator
+// definitions.
 type ListOperatorDefinitionsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -296,11 +296,13 @@ type ListOperatorDefinitionsRequest struct {
 	// OperatorDefinitions will be returned. The maximum value is 100;
 	// values above 100 will be coerced to 100.
 	PageSize *int32 `protobuf:"varint,1,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
-	// Page token
+	// Page token.
 	PageToken *string `protobuf:"bytes,2,opt,name=page_token,json=pageToken,proto3,oneof" json:"page_token,omitempty"`
-	// Definition view (default is DEFINITION_VIEW_BASIC)
+	// View allows clients to specify the desired resource view in the response.
 	View *OperatorDefinition_View `protobuf:"varint,3,opt,name=view,proto3,enum=vdp.pipeline.v1beta.OperatorDefinition_View,oneof" json:"view,omitempty"`
-	// Filter expression to list operator definitions
+	// Filter can hold an [AIP-160](https://google.aip.dev/160)-compliant filter
+	// expression.
+	// - Example: `create_time>timestamp("2000-06-19T23:31:08.657Z")`.
 	Filter *string `protobuf:"bytes,4,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
 }
 
@@ -364,18 +366,17 @@ func (x *ListOperatorDefinitionsRequest) GetFilter() string {
 	return ""
 }
 
-// ListOperatorDefinitionsResponse represents a response for a list
-// of OperatorDefinitions
+// ListOperatorDefinitionsResponse contains a list of operator definitions.
 type ListOperatorDefinitionsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// A list of Operator resources
+	// A list of operator definition resources.
 	OperatorDefinitions []*OperatorDefinition `protobuf:"bytes,1,rep,name=operator_definitions,json=operatorDefinitions,proto3" json:"operator_definitions,omitempty"`
-	// Next page token
+	// Next page token.
 	NextPageToken string `protobuf:"bytes,2,opt,name=next_page_token,json=nextPageToken,proto3" json:"next_page_token,omitempty"`
-	// Total count of Operator resources
+	// Total number of operator definitions.
 	TotalSize int32 `protobuf:"varint,3,opt,name=total_size,json=totalSize,proto3" json:"total_size,omitempty"`
 }
 
@@ -432,18 +433,17 @@ func (x *ListOperatorDefinitionsResponse) GetTotalSize() int32 {
 	return 0
 }
 
-// GetOperatorDefinitionRequest represents a request to query a
-// Operator resource
+// GetOperatorDefinitionRequest represents a request to fetch the details of a
+// operator definition.
 type GetOperatorDefinitionRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Operator resource name. It must have the format of
-	// "operator-definitions/*"
+	// The resource name of the operator definition, which allows its access by ID.
+	// - Format: `operator-definitions/{id}`.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Operator resource view (default is
-	// DEFINITION_VIEW_BASIC)
+	// View allows clients to specify the desired resource view in the response.
 	View *OperatorDefinition_View `protobuf:"varint,2,opt,name=view,proto3,enum=vdp.pipeline.v1beta.OperatorDefinition_View,oneof" json:"view,omitempty"`
 }
 
@@ -493,14 +493,13 @@ func (x *GetOperatorDefinitionRequest) GetView() OperatorDefinition_View {
 	return OperatorDefinition_VIEW_UNSPECIFIED
 }
 
-// GetOperatorDefinitionResponse represents a
-// Operator response
+// GetOperatorDefinitionResponse contains the requested operator definition.
 type GetOperatorDefinitionResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// A Operator resource
+	// The operator definition resource.
 	OperatorDefinition *OperatorDefinition `protobuf:"bytes,1,opt,name=operator_definition,json=operatorDefinition,proto3" json:"operator_definition,omitempty"`
 }
 

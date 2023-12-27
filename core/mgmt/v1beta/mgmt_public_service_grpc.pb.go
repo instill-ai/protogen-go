@@ -62,116 +62,164 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MgmtPublicServiceClient interface {
-	// Liveness method receives a LivenessRequest message and returns a
-	// LivenessResponse message.
-	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
+	// Check if the MGMT server is alive
+	//
+	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md.
 	Liveness(ctx context.Context, in *LivenessRequest, opts ...grpc.CallOption) (*LivenessResponse, error)
-	// Readiness method receives a ReadinessRequest message and returns a
-	// ReadinessResponse message.
+	// Check if the pipeline server is ready
+	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error)
-	// Check namespace
+	// Check if a namespace is in use
+	//
+	// Returns the availability of a namespace or, alternatively, the type of
+	// resource that is using it.
 	CheckNamespace(ctx context.Context, in *CheckNamespaceRequest, opts ...grpc.CallOption) (*CheckNamespaceResponse, error)
-	// ListUsers method receives a ListUsersRequest message and returns a
-	// ListUsersResponse message.
+	// List users
+	//
+	// Returns a paginated list of users.
 	ListUsers(ctx context.Context, in *ListUsersRequest, opts ...grpc.CallOption) (*ListUsersResponse, error)
-	// GetUser method receives a GetUser message and returns a
-	// GetUser message.
+	// Get a user
+	//
+	// Returns the details of a user by their ID.
 	GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserResponse, error)
-	// PatchAuthenticatedUser method receives a PatchAuthenticatedUserRequest
-	// message and returns a PatchAuthenticatedUserResponse message.
+	// Update a user
+	//
+	// Accesses and updates a user by ID. The authenticated user must match the
+	// target in order to modify it.
+	//
+	// In REST requests, only the supplied user fields will be taken into account
+	// when updating the resource.
 	PatchAuthenticatedUser(ctx context.Context, in *PatchAuthenticatedUserRequest, opts ...grpc.CallOption) (*PatchAuthenticatedUserResponse, error)
-	// ListUserMemberships method receives a ListUserMembershipsRequest message and returns a
-	// ListUserMembershipsResponse message.
+	// List user memberships
+	//
+	// Returns the memberships of a user.
 	ListUserMemberships(ctx context.Context, in *ListUserMembershipsRequest, opts ...grpc.CallOption) (*ListUserMembershipsResponse, error)
-	// GetUserMembership method receives a GetUserMembershipRequest message and returns a
-	// GetUserMembershipResponse message.
+	// Get a user membership
+	//
+	// Returns the details of the relationship between a user and an
+	// organization. The authenticated must match the membership parent.
 	GetUserMembership(ctx context.Context, in *GetUserMembershipRequest, opts ...grpc.CallOption) (*GetUserMembershipResponse, error)
-	// UpdateUserMembership method receives a UpdateUserMembershipRequest message and returns
-	// a UpdateUserMembershipResponse message.
+	// Update a user membership
+	//
+	// Accesses and updates a user membership by parent and membership IDs.
 	UpdateUserMembership(ctx context.Context, in *UpdateUserMembershipRequest, opts ...grpc.CallOption) (*UpdateUserMembershipResponse, error)
-	// DeleteUserMembership method receives a DeleteUserMembershipRequest message and returns
-	// a DeleteUserMembershipResponse message.
+	// Delete a user membership
+	//
+	// Accesses and deletes a user membership by parent and membership IDs.
 	DeleteUserMembership(ctx context.Context, in *DeleteUserMembershipRequest, opts ...grpc.CallOption) (*DeleteUserMembershipResponse, error)
-	// ListOrganizations method receives a ListOrganizationsRequest message and returns
-	// a ListOrganizationsResponse message.
+	// List organizations
+	//
+	// Returns a paginated list of organizations.
 	ListOrganizations(ctx context.Context, in *ListOrganizationsRequest, opts ...grpc.CallOption) (*ListOrganizationsResponse, error)
-	// CreateOrganization receives a CreateOrganizationRequest message and returns a
-	// a GetOrganizationResponse
+	// Create an organization
+	//
+	// Creates an organization.
 	CreateOrganization(ctx context.Context, in *CreateOrganizationRequest, opts ...grpc.CallOption) (*CreateOrganizationResponse, error)
-	// GetOrganization method receives a GetOrganizationRequest message and returns
-	// a GetOrganizationResponse message.
+	// Get an organization
+	//
+	// Returns the organization details by its ID.
 	GetOrganization(ctx context.Context, in *GetOrganizationRequest, opts ...grpc.CallOption) (*GetOrganizationResponse, error)
-	// UpdateOrganization method receives a UpdateOrganizationRequest message and
-	// returns a UpdateOrganizationResponse
+	// Update an organization
+	//
+	// Accesses and updates an organization by ID.
+	//
+	// In REST requests, only the supplied organization fields will be taken into
+	// account when updating the resource.
 	UpdateOrganization(ctx context.Context, in *UpdateOrganizationRequest, opts ...grpc.CallOption) (*UpdateOrganizationResponse, error)
-	// DeleteOrganization method receives a DeleteOrganizationRequest message and
-	// returns a DeleteOrganizationResponse
+	// Delete an organization
+	//
+	// Accesses and deletes an organization by ID.
 	DeleteOrganization(ctx context.Context, in *DeleteOrganizationRequest, opts ...grpc.CallOption) (*DeleteOrganizationResponse, error)
-	// ListOrganizationMemberships method receives a ListOrganizationMembershipsRequest message and returns a
-	// ListOrganizationMembershipsResponse message.
+	// List organization memberships
+	//
+	// Returns a paginated list of the user memberships in an organization.
 	ListOrganizationMemberships(ctx context.Context, in *ListOrganizationMembershipsRequest, opts ...grpc.CallOption) (*ListOrganizationMembershipsResponse, error)
-	// GetOrganizationMembership method receives a GetOrganizationMembershipRequest message and returns a
-	// GetOrganizationMembershipResponse message.
+	// Get a an organization membership
+	//
+	// Returns the details of a user membership within an organization.
 	GetOrganizationMembership(ctx context.Context, in *GetOrganizationMembershipRequest, opts ...grpc.CallOption) (*GetOrganizationMembershipResponse, error)
-	// UpdateOrganizationMembership method receives a UpdateOrganizationMembershipRequest message and returns
-	// a UpdateOrganizationMembershipResponse message.
+	// Uppdate an organization membership
+	//
+	// Updates a user membership within an organization.
 	UpdateOrganizationMembership(ctx context.Context, in *UpdateOrganizationMembershipRequest, opts ...grpc.CallOption) (*UpdateOrganizationMembershipResponse, error)
-	// DeleteOrganizationMembership method receives a DeleteOrganizationMembershipRequest message and returns
-	// a DeleteOrganizationMembershipResponse message.
+	// Delete an organization membership
+	//
+	// Deletes a user membership within an organization.
 	DeleteOrganizationMembership(ctx context.Context, in *DeleteOrganizationMembershipRequest, opts ...grpc.CallOption) (*DeleteOrganizationMembershipResponse, error)
-	// GetUserSubscription
+	// Get a user subscription
+	//
+	// Returns the subscription details of a user.
 	GetUserSubscription(ctx context.Context, in *GetUserSubscriptionRequest, opts ...grpc.CallOption) (*GetUserSubscriptionResponse, error)
-	// GetOrganizationSubscription
+	// Get an organization subscription
+	//
+	// Returns the subscription details of an organization.
 	GetOrganizationSubscription(ctx context.Context, in *GetOrganizationSubscriptionRequest, opts ...grpc.CallOption) (*GetOrganizationSubscriptionResponse, error)
-	// CreateToken method receives a CreateTokenRequest message and returns
-	// a CreateTokenResponse message.
+	// Create an API token
+	//
+	// Creates an API token for the authenticated user.
 	CreateToken(ctx context.Context, in *CreateTokenRequest, opts ...grpc.CallOption) (*CreateTokenResponse, error)
-	// ListTokens method receives a ListTokensRequest message and returns a
-	// ListTokensResponse message.
+	// List API tokens
+	//
+	// Returns a paginated list of the API tokens of the authenticated user.
 	ListTokens(ctx context.Context, in *ListTokensRequest, opts ...grpc.CallOption) (*ListTokensResponse, error)
-	// GetToken method receives a GetTokenRequest message and returns a
-	// GetTokenResponse message.
+	// Get an API token
+	//
+	// Returns the details of an API token.
 	GetToken(ctx context.Context, in *GetTokenRequest, opts ...grpc.CallOption) (*GetTokenResponse, error)
-	// DeleteToken method receives a DeleteTokenRequest message and returns
-	// a DeleteTokenResponse message.
+	// Delete an API token
+	//
+	// Deletes an API token.
 	DeleteToken(ctx context.Context, in *DeleteTokenRequest, opts ...grpc.CallOption) (*DeleteTokenResponse, error)
-	// ValidateToken method receives a ValidateTokenRequest message and returns
-	// a ValidateTokenResponse message.
+	// Validate an API token.
+	//
+	// Validates an API token.
 	ValidateToken(ctx context.Context, in *ValidateTokenRequest, opts ...grpc.CallOption) (*ValidateTokenResponse, error)
-	// ListPipelineTriggerRecords method receives a
-	// ListPipelineTriggerRecordsRequest message and returns a
-	// ListPipelineTriggerRecordsResponse message.
+	// List pipeline triggers
+	//
+	// Returns a paginated list of pipeline executions.
 	ListPipelineTriggerRecords(ctx context.Context, in *ListPipelineTriggerRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerRecordsResponse, error)
-	// ListPipelineTriggerTableRecords method receives a
-	// ListPipelineTriggerTableRecordsRequest message and returns a
-	// ListPipelineTriggerTableRecordsResponse message.
+	// List pipeline trigger metrics
+	//
+	// Returns a paginated list of pipeline executions aggregated by pipeline ID.
 	ListPipelineTriggerTableRecords(ctx context.Context, in *ListPipelineTriggerTableRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerTableRecordsResponse, error)
-	// ListPipelineTriggerChartRecords method receives a
-	// ListPipelineTriggerChartRecordsRequest message and returns a
-	// ListPipelineTriggerChartRecordsResponse message.
+	// List pipeline trigger computation time charts
+	//
+	// Returns a paginated list with pipeline trigger execution times, aggregated
+	// by pipeline and time frames.
 	ListPipelineTriggerChartRecords(ctx context.Context, in *ListPipelineTriggerChartRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerChartRecordsResponse, error)
-	// ListConnectorExecuteRecords method receives a
-	// ListConnectorExecuteRecordsRequest message and returns a
-	// ListConnectorExecuteRecordsResponse message.
+	// List connector executions
+	//
+	// Returns a paginated list of connector executions.
 	ListConnectorExecuteRecords(ctx context.Context, in *ListConnectorExecuteRecordsRequest, opts ...grpc.CallOption) (*ListConnectorExecuteRecordsResponse, error)
-	// ListConnectorExecuteTableRecords method receives a
-	// ListConnectorExecuteTableRecordsRequest message and returns a
-	// ListConnectorExecuteTableRecordsResponse message.
+	// List connector execution metrics
+	//
+	// Returns a paginated list of connector executions aggregated by connector.
 	ListConnectorExecuteTableRecords(ctx context.Context, in *ListConnectorExecuteTableRecordsRequest, opts ...grpc.CallOption) (*ListConnectorExecuteTableRecordsResponse, error)
-	// ListConnectorExecuteChartRecords method receives a
-	// ListConnectorExecuteChartRecordsRequest message and returns a
-	// ListConnectorExecuteChartRecordsResponse message.
+	// List connector execution computation time charts
+	//
+	// Returns a paginated list with connector execution times, aggregated by
+	// connector and time frames.
 	ListConnectorExecuteChartRecords(ctx context.Context, in *ListConnectorExecuteChartRecordsRequest, opts ...grpc.CallOption) (*ListConnectorExecuteChartRecordsResponse, error)
-	// AuthTokenIssuer endpoint
+	// Get Auth token issuer
+	//
+	// Returns the auth token issuer details. This operation requires admin permissions.
 	AuthTokenIssuer(ctx context.Context, in *AuthTokenIssuerRequest, opts ...grpc.CallOption) (*AuthTokenIssuerResponse, error)
-	// Auth Login endpoint
+	// Log in a user
+	//
+	// Authenticates a user and returns an access token.
 	AuthLogin(ctx context.Context, in *AuthLoginRequest, opts ...grpc.CallOption) (*AuthLoginResponse, error)
-	// Auth Logout endpoint
+	// Log out a user
+	//
+	// Logs out an authenticated user.
 	AuthLogout(ctx context.Context, in *AuthLogoutRequest, opts ...grpc.CallOption) (*AuthLogoutResponse, error)
-	// Auth Change password endpoint
+	// Change password
+	//
+	// Updates the password of a user.
 	AuthChangePassword(ctx context.Context, in *AuthChangePasswordRequest, opts ...grpc.CallOption) (*AuthChangePasswordResponse, error)
-	// Auth AccessToken validation endpoint
+	// Validate an access token
+	//
+	// Checks the validity of an access token.
 	AuthValidateAccessToken(ctx context.Context, in *AuthValidateAccessTokenRequest, opts ...grpc.CallOption) (*AuthValidateAccessTokenResponse, error)
 }
 
@@ -520,116 +568,164 @@ func (c *mgmtPublicServiceClient) AuthValidateAccessToken(ctx context.Context, i
 // All implementations should embed UnimplementedMgmtPublicServiceServer
 // for forward compatibility
 type MgmtPublicServiceServer interface {
-	// Liveness method receives a LivenessRequest message and returns a
-	// LivenessResponse message.
-	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
+	// Check if the MGMT server is alive
+	//
+	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md.
 	Liveness(context.Context, *LivenessRequest) (*LivenessResponse, error)
-	// Readiness method receives a ReadinessRequest message and returns a
-	// ReadinessResponse message.
+	// Check if the pipeline server is ready
+	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error)
-	// Check namespace
+	// Check if a namespace is in use
+	//
+	// Returns the availability of a namespace or, alternatively, the type of
+	// resource that is using it.
 	CheckNamespace(context.Context, *CheckNamespaceRequest) (*CheckNamespaceResponse, error)
-	// ListUsers method receives a ListUsersRequest message and returns a
-	// ListUsersResponse message.
+	// List users
+	//
+	// Returns a paginated list of users.
 	ListUsers(context.Context, *ListUsersRequest) (*ListUsersResponse, error)
-	// GetUser method receives a GetUser message and returns a
-	// GetUser message.
+	// Get a user
+	//
+	// Returns the details of a user by their ID.
 	GetUser(context.Context, *GetUserRequest) (*GetUserResponse, error)
-	// PatchAuthenticatedUser method receives a PatchAuthenticatedUserRequest
-	// message and returns a PatchAuthenticatedUserResponse message.
+	// Update a user
+	//
+	// Accesses and updates a user by ID. The authenticated user must match the
+	// target in order to modify it.
+	//
+	// In REST requests, only the supplied user fields will be taken into account
+	// when updating the resource.
 	PatchAuthenticatedUser(context.Context, *PatchAuthenticatedUserRequest) (*PatchAuthenticatedUserResponse, error)
-	// ListUserMemberships method receives a ListUserMembershipsRequest message and returns a
-	// ListUserMembershipsResponse message.
+	// List user memberships
+	//
+	// Returns the memberships of a user.
 	ListUserMemberships(context.Context, *ListUserMembershipsRequest) (*ListUserMembershipsResponse, error)
-	// GetUserMembership method receives a GetUserMembershipRequest message and returns a
-	// GetUserMembershipResponse message.
+	// Get a user membership
+	//
+	// Returns the details of the relationship between a user and an
+	// organization. The authenticated must match the membership parent.
 	GetUserMembership(context.Context, *GetUserMembershipRequest) (*GetUserMembershipResponse, error)
-	// UpdateUserMembership method receives a UpdateUserMembershipRequest message and returns
-	// a UpdateUserMembershipResponse message.
+	// Update a user membership
+	//
+	// Accesses and updates a user membership by parent and membership IDs.
 	UpdateUserMembership(context.Context, *UpdateUserMembershipRequest) (*UpdateUserMembershipResponse, error)
-	// DeleteUserMembership method receives a DeleteUserMembershipRequest message and returns
-	// a DeleteUserMembershipResponse message.
+	// Delete a user membership
+	//
+	// Accesses and deletes a user membership by parent and membership IDs.
 	DeleteUserMembership(context.Context, *DeleteUserMembershipRequest) (*DeleteUserMembershipResponse, error)
-	// ListOrganizations method receives a ListOrganizationsRequest message and returns
-	// a ListOrganizationsResponse message.
+	// List organizations
+	//
+	// Returns a paginated list of organizations.
 	ListOrganizations(context.Context, *ListOrganizationsRequest) (*ListOrganizationsResponse, error)
-	// CreateOrganization receives a CreateOrganizationRequest message and returns a
-	// a GetOrganizationResponse
+	// Create an organization
+	//
+	// Creates an organization.
 	CreateOrganization(context.Context, *CreateOrganizationRequest) (*CreateOrganizationResponse, error)
-	// GetOrganization method receives a GetOrganizationRequest message and returns
-	// a GetOrganizationResponse message.
+	// Get an organization
+	//
+	// Returns the organization details by its ID.
 	GetOrganization(context.Context, *GetOrganizationRequest) (*GetOrganizationResponse, error)
-	// UpdateOrganization method receives a UpdateOrganizationRequest message and
-	// returns a UpdateOrganizationResponse
+	// Update an organization
+	//
+	// Accesses and updates an organization by ID.
+	//
+	// In REST requests, only the supplied organization fields will be taken into
+	// account when updating the resource.
 	UpdateOrganization(context.Context, *UpdateOrganizationRequest) (*UpdateOrganizationResponse, error)
-	// DeleteOrganization method receives a DeleteOrganizationRequest message and
-	// returns a DeleteOrganizationResponse
+	// Delete an organization
+	//
+	// Accesses and deletes an organization by ID.
 	DeleteOrganization(context.Context, *DeleteOrganizationRequest) (*DeleteOrganizationResponse, error)
-	// ListOrganizationMemberships method receives a ListOrganizationMembershipsRequest message and returns a
-	// ListOrganizationMembershipsResponse message.
+	// List organization memberships
+	//
+	// Returns a paginated list of the user memberships in an organization.
 	ListOrganizationMemberships(context.Context, *ListOrganizationMembershipsRequest) (*ListOrganizationMembershipsResponse, error)
-	// GetOrganizationMembership method receives a GetOrganizationMembershipRequest message and returns a
-	// GetOrganizationMembershipResponse message.
+	// Get a an organization membership
+	//
+	// Returns the details of a user membership within an organization.
 	GetOrganizationMembership(context.Context, *GetOrganizationMembershipRequest) (*GetOrganizationMembershipResponse, error)
-	// UpdateOrganizationMembership method receives a UpdateOrganizationMembershipRequest message and returns
-	// a UpdateOrganizationMembershipResponse message.
+	// Uppdate an organization membership
+	//
+	// Updates a user membership within an organization.
 	UpdateOrganizationMembership(context.Context, *UpdateOrganizationMembershipRequest) (*UpdateOrganizationMembershipResponse, error)
-	// DeleteOrganizationMembership method receives a DeleteOrganizationMembershipRequest message and returns
-	// a DeleteOrganizationMembershipResponse message.
+	// Delete an organization membership
+	//
+	// Deletes a user membership within an organization.
 	DeleteOrganizationMembership(context.Context, *DeleteOrganizationMembershipRequest) (*DeleteOrganizationMembershipResponse, error)
-	// GetUserSubscription
+	// Get a user subscription
+	//
+	// Returns the subscription details of a user.
 	GetUserSubscription(context.Context, *GetUserSubscriptionRequest) (*GetUserSubscriptionResponse, error)
-	// GetOrganizationSubscription
+	// Get an organization subscription
+	//
+	// Returns the subscription details of an organization.
 	GetOrganizationSubscription(context.Context, *GetOrganizationSubscriptionRequest) (*GetOrganizationSubscriptionResponse, error)
-	// CreateToken method receives a CreateTokenRequest message and returns
-	// a CreateTokenResponse message.
+	// Create an API token
+	//
+	// Creates an API token for the authenticated user.
 	CreateToken(context.Context, *CreateTokenRequest) (*CreateTokenResponse, error)
-	// ListTokens method receives a ListTokensRequest message and returns a
-	// ListTokensResponse message.
+	// List API tokens
+	//
+	// Returns a paginated list of the API tokens of the authenticated user.
 	ListTokens(context.Context, *ListTokensRequest) (*ListTokensResponse, error)
-	// GetToken method receives a GetTokenRequest message and returns a
-	// GetTokenResponse message.
+	// Get an API token
+	//
+	// Returns the details of an API token.
 	GetToken(context.Context, *GetTokenRequest) (*GetTokenResponse, error)
-	// DeleteToken method receives a DeleteTokenRequest message and returns
-	// a DeleteTokenResponse message.
+	// Delete an API token
+	//
+	// Deletes an API token.
 	DeleteToken(context.Context, *DeleteTokenRequest) (*DeleteTokenResponse, error)
-	// ValidateToken method receives a ValidateTokenRequest message and returns
-	// a ValidateTokenResponse message.
+	// Validate an API token.
+	//
+	// Validates an API token.
 	ValidateToken(context.Context, *ValidateTokenRequest) (*ValidateTokenResponse, error)
-	// ListPipelineTriggerRecords method receives a
-	// ListPipelineTriggerRecordsRequest message and returns a
-	// ListPipelineTriggerRecordsResponse message.
+	// List pipeline triggers
+	//
+	// Returns a paginated list of pipeline executions.
 	ListPipelineTriggerRecords(context.Context, *ListPipelineTriggerRecordsRequest) (*ListPipelineTriggerRecordsResponse, error)
-	// ListPipelineTriggerTableRecords method receives a
-	// ListPipelineTriggerTableRecordsRequest message and returns a
-	// ListPipelineTriggerTableRecordsResponse message.
+	// List pipeline trigger metrics
+	//
+	// Returns a paginated list of pipeline executions aggregated by pipeline ID.
 	ListPipelineTriggerTableRecords(context.Context, *ListPipelineTriggerTableRecordsRequest) (*ListPipelineTriggerTableRecordsResponse, error)
-	// ListPipelineTriggerChartRecords method receives a
-	// ListPipelineTriggerChartRecordsRequest message and returns a
-	// ListPipelineTriggerChartRecordsResponse message.
+	// List pipeline trigger computation time charts
+	//
+	// Returns a paginated list with pipeline trigger execution times, aggregated
+	// by pipeline and time frames.
 	ListPipelineTriggerChartRecords(context.Context, *ListPipelineTriggerChartRecordsRequest) (*ListPipelineTriggerChartRecordsResponse, error)
-	// ListConnectorExecuteRecords method receives a
-	// ListConnectorExecuteRecordsRequest message and returns a
-	// ListConnectorExecuteRecordsResponse message.
+	// List connector executions
+	//
+	// Returns a paginated list of connector executions.
 	ListConnectorExecuteRecords(context.Context, *ListConnectorExecuteRecordsRequest) (*ListConnectorExecuteRecordsResponse, error)
-	// ListConnectorExecuteTableRecords method receives a
-	// ListConnectorExecuteTableRecordsRequest message and returns a
-	// ListConnectorExecuteTableRecordsResponse message.
+	// List connector execution metrics
+	//
+	// Returns a paginated list of connector executions aggregated by connector.
 	ListConnectorExecuteTableRecords(context.Context, *ListConnectorExecuteTableRecordsRequest) (*ListConnectorExecuteTableRecordsResponse, error)
-	// ListConnectorExecuteChartRecords method receives a
-	// ListConnectorExecuteChartRecordsRequest message and returns a
-	// ListConnectorExecuteChartRecordsResponse message.
+	// List connector execution computation time charts
+	//
+	// Returns a paginated list with connector execution times, aggregated by
+	// connector and time frames.
 	ListConnectorExecuteChartRecords(context.Context, *ListConnectorExecuteChartRecordsRequest) (*ListConnectorExecuteChartRecordsResponse, error)
-	// AuthTokenIssuer endpoint
+	// Get Auth token issuer
+	//
+	// Returns the auth token issuer details. This operation requires admin permissions.
 	AuthTokenIssuer(context.Context, *AuthTokenIssuerRequest) (*AuthTokenIssuerResponse, error)
-	// Auth Login endpoint
+	// Log in a user
+	//
+	// Authenticates a user and returns an access token.
 	AuthLogin(context.Context, *AuthLoginRequest) (*AuthLoginResponse, error)
-	// Auth Logout endpoint
+	// Log out a user
+	//
+	// Logs out an authenticated user.
 	AuthLogout(context.Context, *AuthLogoutRequest) (*AuthLogoutResponse, error)
-	// Auth Change password endpoint
+	// Change password
+	//
+	// Updates the password of a user.
 	AuthChangePassword(context.Context, *AuthChangePasswordRequest) (*AuthChangePasswordResponse, error)
-	// Auth AccessToken validation endpoint
+	// Validate an access token
+	//
+	// Checks the validity of an access token.
 	AuthValidateAccessToken(context.Context, *AuthValidateAccessTokenRequest) (*AuthValidateAccessTokenResponse, error)
 }
 

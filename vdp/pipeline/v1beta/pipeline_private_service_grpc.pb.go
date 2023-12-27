@@ -33,41 +33,41 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PipelinePrivateServiceClient interface {
-	// List pipelines (admin only).
+	// List pipelines (admin only)
 	//
 	// This is a *private* method that allows admin users and internal clients to
 	// list *all* pipeline resources.
 	ListPipelinesAdmin(ctx context.Context, in *ListPipelinesAdminRequest, opts ...grpc.CallOption) (*ListPipelinesAdminResponse, error)
-	// Get a pipeline by UID (admin only).
+	// Get a pipeline by UID (admin only)
 	//
 	// This is a *private* method that allows admin users to access any pipeline
 	// resource by its UID.
 	LookUpPipelineAdmin(ctx context.Context, in *LookUpPipelineAdminRequest, opts ...grpc.CallOption) (*LookUpPipelineAdminResponse, error)
-	// Get an operator definition by UID (admin only).
+	// Get an operator definition by UID (admin only)
 	//
 	// This is a *private* method that allows admin users to access an operator
 	// definition by its UID.
 	LookUpOperatorDefinitionAdmin(ctx context.Context, in *LookUpOperatorDefinitionAdminRequest, opts ...grpc.CallOption) (*LookUpOperatorDefinitionAdminResponse, error)
-	// List pipeline releases (admin only).
+	// List pipeline releases (admin only)
 	//
 	// This is a *private* method that allows admin users to list *all* pipeline
 	// releases.
 	ListPipelineReleasesAdmin(ctx context.Context, in *ListPipelineReleasesAdminRequest, opts ...grpc.CallOption) (*ListPipelineReleasesAdminResponse, error)
-	// Get a connector definition by UID (admin only).
+	// Get a connector definition by UID (admin only)
 	//
 	// This is a *private* method that allows admin users to access a connector
 	// definition by its UID.
 	LookUpConnectorDefinitionAdmin(ctx context.Context, in *LookUpConnectorDefinitionAdminRequest, opts ...grpc.CallOption) (*LookUpConnectorDefinitionAdminResponse, error)
-	// List connectors (admin only).
+	// List connectors (admin only)
 	//
 	// This is a *private* method that allows admin users to list *all* connectors.
 	ListConnectorsAdmin(ctx context.Context, in *ListConnectorsAdminRequest, opts ...grpc.CallOption) (*ListConnectorsAdminResponse, error)
-	// Get a connector by UID (admin only).
+	// Get a connector by UID (admin only)
 	//
 	// This is a *private* method that allows admin users to access a connector
 	// by its UID.
 	LookUpConnectorAdmin(ctx context.Context, in *LookUpConnectorAdminRequest, opts ...grpc.CallOption) (*LookUpConnectorAdminResponse, error)
-	// Get a connector current state (admin only).
+	// Get a connector current state (admin only)
 	//
 	// This is a *private* method that allows admin users to access the state of
 	// a connector by its UID.
@@ -158,41 +158,41 @@ func (c *pipelinePrivateServiceClient) CheckConnector(ctx context.Context, in *C
 // All implementations should embed UnimplementedPipelinePrivateServiceServer
 // for forward compatibility
 type PipelinePrivateServiceServer interface {
-	// List pipelines (admin only).
+	// List pipelines (admin only)
 	//
 	// This is a *private* method that allows admin users and internal clients to
 	// list *all* pipeline resources.
 	ListPipelinesAdmin(context.Context, *ListPipelinesAdminRequest) (*ListPipelinesAdminResponse, error)
-	// Get a pipeline by UID (admin only).
+	// Get a pipeline by UID (admin only)
 	//
 	// This is a *private* method that allows admin users to access any pipeline
 	// resource by its UID.
 	LookUpPipelineAdmin(context.Context, *LookUpPipelineAdminRequest) (*LookUpPipelineAdminResponse, error)
-	// Get an operator definition by UID (admin only).
+	// Get an operator definition by UID (admin only)
 	//
 	// This is a *private* method that allows admin users to access an operator
 	// definition by its UID.
 	LookUpOperatorDefinitionAdmin(context.Context, *LookUpOperatorDefinitionAdminRequest) (*LookUpOperatorDefinitionAdminResponse, error)
-	// List pipeline releases (admin only).
+	// List pipeline releases (admin only)
 	//
 	// This is a *private* method that allows admin users to list *all* pipeline
 	// releases.
 	ListPipelineReleasesAdmin(context.Context, *ListPipelineReleasesAdminRequest) (*ListPipelineReleasesAdminResponse, error)
-	// Get a connector definition by UID (admin only).
+	// Get a connector definition by UID (admin only)
 	//
 	// This is a *private* method that allows admin users to access a connector
 	// definition by its UID.
 	LookUpConnectorDefinitionAdmin(context.Context, *LookUpConnectorDefinitionAdminRequest) (*LookUpConnectorDefinitionAdminResponse, error)
-	// List connectors (admin only).
+	// List connectors (admin only)
 	//
 	// This is a *private* method that allows admin users to list *all* connectors.
 	ListConnectorsAdmin(context.Context, *ListConnectorsAdminRequest) (*ListConnectorsAdminResponse, error)
-	// Get a connector by UID (admin only).
+	// Get a connector by UID (admin only)
 	//
 	// This is a *private* method that allows admin users to access a connector
 	// by its UID.
 	LookUpConnectorAdmin(context.Context, *LookUpConnectorAdminRequest) (*LookUpConnectorAdminResponse, error)
-	// Get a connector current state (admin only).
+	// Get a connector current state (admin only)
 	//
 	// This is a *private* method that allows admin users to access the state of
 	// a connector by its UID.

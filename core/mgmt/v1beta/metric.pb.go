@@ -22,15 +22,15 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Mode enumerates the pipeline modes
+// Mode describes the execution mode of the pipeline (sync or async).
 type Mode int32
 
 const (
-	// Mode: UNSPECIFIED
+	// Unspecified.
 	Mode_MODE_UNSPECIFIED Mode = 0
-	// Mode: SYNC
+	// Synchronous (result is returned in the response).
 	Mode_MODE_SYNC Mode = 1
-	// Mode: ASYNC
+	// Asynchronous (response only contains acknowledgement).
 	Mode_MODE_ASYNC Mode = 2
 )
 
@@ -75,15 +75,15 @@ func (Mode) EnumDescriptor() ([]byte, []int) {
 	return file_core_mgmt_v1beta_metric_proto_rawDescGZIP(), []int{0}
 }
 
-// Status enumerates the final status of a pipeline trigger
+// Status describes the output of an execution.
 type Status int32
 
 const (
-	// Status: UNSPECIFIED
+	// Unspecified.
 	Status_STATUS_UNSPECIFIED Status = 0
-	// Status: COMPLETED
+	// Successfully completed.
 	Status_STATUS_COMPLETED Status = 1
-	// Status: ERRORED
+	// Finished with error.
 	Status_STATUS_ERRORED Status = 2
 )
 
@@ -128,29 +128,29 @@ func (Status) EnumDescriptor() ([]byte, []int) {
 	return file_core_mgmt_v1beta_metric_proto_rawDescGZIP(), []int{1}
 }
 
-// PipelineTriggerRecord represents a record for pipeline trigger
+// PipelineTriggerRecord represents a pipeline execution event.
 type PipelineTriggerRecord struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Timestamp for the pipeline trigger time
+	// The moment when the pipeline was triggered.
 	TriggerTime *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=trigger_time,json=triggerTime,proto3" json:"trigger_time,omitempty"`
-	// UID for each pipeline trigger
+	// UUID of the trigger.
 	PipelineTriggerId string `protobuf:"bytes,2,opt,name=pipeline_trigger_id,json=pipelineTriggerId,proto3" json:"pipeline_trigger_id,omitempty"`
-	// ID for the triggered pipeline
+	// Pipeline ID.
 	PipelineId string `protobuf:"bytes,3,opt,name=pipeline_id,json=pipelineId,proto3" json:"pipeline_id,omitempty"`
-	// UID for the triggered pipeline
+	// Pipeline UUID.
 	PipelineUid string `protobuf:"bytes,4,opt,name=pipeline_uid,json=pipelineUid,proto3" json:"pipeline_uid,omitempty"`
-	// Trigger mode
+	// Trigger mode.
 	TriggerMode Mode `protobuf:"varint,5,opt,name=trigger_mode,json=triggerMode,proto3,enum=core.mgmt.v1beta.Mode" json:"trigger_mode,omitempty"`
-	// Total compute time duration for this pipeline trigger
+	// Total execution duration.
 	ComputeTimeDuration float32 `protobuf:"fixed32,6,opt,name=compute_time_duration,json=computeTimeDuration,proto3" json:"compute_time_duration,omitempty"`
-	// Final status for pipeline trigger
+	// Final status.
 	Status Status `protobuf:"varint,7,opt,name=status,proto3,enum=core.mgmt.v1beta.Status" json:"status,omitempty"`
-	// Version for the triggered pipeline if it is a release pipeline, else emtpy
+	// If a release of the pipeline was triggered, pipeline version.
 	PipelineReleaseId string `protobuf:"bytes,8,opt,name=pipeline_release_id,json=pipelineReleaseId,proto3" json:"pipeline_release_id,omitempty"`
-	// UID for the triggered pipeline if it is a release pipeline, else emtpy
+	// If a release of the pipeline was triggered, release UUID.
 	PipelineReleaseUid string `protobuf:"bytes,9,opt,name=pipeline_release_uid,json=pipelineReleaseUid,proto3" json:"pipeline_release_uid,omitempty"`
 }
 
@@ -249,24 +249,24 @@ func (x *PipelineTriggerRecord) GetPipelineReleaseUid() string {
 	return ""
 }
 
-// PipelineTriggerTableRecord represents a aggregated table record for pipeline
-// trigger
+// PipelineTriggerTableRecord contains pipeline trigger metrics, aggregated by
+// pipeline ID.
 type PipelineTriggerTableRecord struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// ID for the triggered pipeline
+	// Pipeline ID.
 	PipelineId string `protobuf:"bytes,1,opt,name=pipeline_id,json=pipelineId,proto3" json:"pipeline_id,omitempty"`
-	// UID for the triggered pipeline
+	// Pipeline UUID.
 	PipelineUid string `protobuf:"bytes,2,opt,name=pipeline_uid,json=pipelineUid,proto3" json:"pipeline_uid,omitempty"`
-	// Trigger count with STATUS_COMPLETED
+	// Number of triggers with `STATUS_COMPLETED`.
 	TriggerCountCompleted int32 `protobuf:"varint,3,opt,name=trigger_count_completed,json=triggerCountCompleted,proto3" json:"trigger_count_completed,omitempty"`
-	// Trigger count with STATUS_ERRORED
+	// Number of triggers with `STATUS_ERRORED`.
 	TriggerCountErrored int32 `protobuf:"varint,4,opt,name=trigger_count_errored,json=triggerCountErrored,proto3" json:"trigger_count_errored,omitempty"`
-	// Version for the triggered pipeline if it is a release pipeline, else emtpy
+	// Version for the triggered pipeline if it is a release pipeline.
 	PipelineReleaseId string `protobuf:"bytes,5,opt,name=pipeline_release_id,json=pipelineReleaseId,proto3" json:"pipeline_release_id,omitempty"`
-	// UID for the triggered pipeline if it is a release pipeline, else emtpy
+	// Release UUID for the triggered pipeline if it is a release pipeline.
 	PipelineReleaseUid string `protobuf:"bytes,6,opt,name=pipeline_release_uid,json=pipelineReleaseUid,proto3" json:"pipeline_release_uid,omitempty"`
 }
 
@@ -344,30 +344,30 @@ func (x *PipelineTriggerTableRecord) GetPipelineReleaseUid() string {
 	return ""
 }
 
-// PipelineTriggerChartRecord represents a aggregated chart record for pipeline
-// trigger
+// PipelineTriggerChartRecord contains pipeline trigger metrics, aggregated by
+// pipeline ID and time frame.
 type PipelineTriggerChartRecord struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// ID for the triggered pipeline
+	// Pipeline ID.
 	PipelineId string `protobuf:"bytes,1,opt,name=pipeline_id,json=pipelineId,proto3" json:"pipeline_id,omitempty"`
-	// UID for the triggered pipeline
+	// Pipeline UUID.
 	PipelineUid string `protobuf:"bytes,2,opt,name=pipeline_uid,json=pipelineUid,proto3" json:"pipeline_uid,omitempty"`
-	// Trigger mode
+	// Trigger mode.
 	TriggerMode Mode `protobuf:"varint,3,opt,name=trigger_mode,json=triggerMode,proto3,enum=core.mgmt.v1beta.Mode" json:"trigger_mode,omitempty"`
-	// Status of pipeline trigger
+	// Final status.
 	Status Status `protobuf:"varint,4,opt,name=status,proto3,enum=core.mgmt.v1beta.Status" json:"status,omitempty"`
-	// Time buckets
+	// Time buckets.
 	TimeBuckets []*timestamppb.Timestamp `protobuf:"bytes,5,rep,name=time_buckets,json=timeBuckets,proto3" json:"time_buckets,omitempty"`
-	// Aggregated trigger count in each time bucket
+	// Aggregated trigger count in each time bucket.
 	TriggerCounts []int32 `protobuf:"varint,6,rep,packed,name=trigger_counts,json=triggerCounts,proto3" json:"trigger_counts,omitempty"`
-	// Total compute time duration in each time bucket
+	// Total computation time duration in each time bucket.
 	ComputeTimeDuration []float32 `protobuf:"fixed32,7,rep,packed,name=compute_time_duration,json=computeTimeDuration,proto3" json:"compute_time_duration,omitempty"`
-	// Version for the triggered pipeline if it is a release pipeline, else emtpy
+	// Version for the triggered pipeline if it is a release pipeline.
 	PipelineReleaseId string `protobuf:"bytes,8,opt,name=pipeline_release_id,json=pipelineReleaseId,proto3" json:"pipeline_release_id,omitempty"`
-	// UID for the triggered pipeline if it is a release pipeline, else emtpy
+	// Release UUID for the triggered pipeline if it is a release pipeline.
 	PipelineReleaseUid string `protobuf:"bytes,9,opt,name=pipeline_release_uid,json=pipelineReleaseUid,proto3" json:"pipeline_release_uid,omitempty"`
 }
 
@@ -466,21 +466,22 @@ func (x *PipelineTriggerChartRecord) GetPipelineReleaseUid() string {
 	return ""
 }
 
-// ListPipelineTriggerRecordsRequest represents a request to list
-// pipeline trigger record
+// ListPipelineTriggerRecordsRequest represents a request to list the triggers
+// of a pipeline.
 type ListPipelineTriggerRecordsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The maximum number of pipeline trigger record to return. The service may
-	// return fewer than this value. If unspecified, at most 100 record will be
-	// returned. The maximum value is 1000; values above 1000 will be coerced to
-	// 1000.
+	// The maximum number of triggers to return. If this parameter is unspecified,
+	// at most 100 pipelines will be returned. The cap value for this parameter is
+	// 1000 (i.e. any value above that will be coerced to 100).
 	PageSize *int32 `protobuf:"varint,1,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
-	// Page token
+	// Page token.
 	PageToken *string `protobuf:"bytes,2,opt,name=page_token,json=pageToken,proto3,oneof" json:"page_token,omitempty"`
-	// Filter expression to list record
+	// Filter can hold an [AIP-160](https://google.aip.dev/160)-compliant filter
+	// expression.
+	// - Example: `create_time>timestamp("2000-06-19T23:31:08.657Z")`.
 	Filter *string `protobuf:"bytes,3,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
 }
 
@@ -537,18 +538,17 @@ func (x *ListPipelineTriggerRecordsRequest) GetFilter() string {
 	return ""
 }
 
-// ListPipelineTriggerRecordsResponse represents a response for a list
-// of pipeline trigger record
+// ListPipelineTriggerRecordsResponse contains a list of pipeline triggers.
 type ListPipelineTriggerRecordsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// A list of pipeline trigger records
+	// A list of pipeline triggers.
 	PipelineTriggerRecords []*PipelineTriggerRecord `protobuf:"bytes,1,rep,name=pipeline_trigger_records,json=pipelineTriggerRecords,proto3" json:"pipeline_trigger_records,omitempty"`
-	// Next page token
+	// Next page token.
 	NextPageToken string `protobuf:"bytes,2,opt,name=next_page_token,json=nextPageToken,proto3" json:"next_page_token,omitempty"`
-	// Total count of pipeline trigger records
+	// Total number of pipeline triggers.
 	TotalSize int32 `protobuf:"varint,3,opt,name=total_size,json=totalSize,proto3" json:"total_size,omitempty"`
 }
 
@@ -605,21 +605,22 @@ func (x *ListPipelineTriggerRecordsResponse) GetTotalSize() int32 {
 	return 0
 }
 
-// ListPipelineTriggerTableRecordsRequest represents a request to list
-// pipeline trigger table record
+// ListPipelineTriggerTableRecordsRequest represents a request to list the
+// pipeline triggers metrics, aggregated by pipeline ID.
 type ListPipelineTriggerTableRecordsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The maximum number of pipeline trigger record to return. The service may
-	// return fewer than this value. If unspecified, at most 100 record will be
-	// returned. The maximum value is 1000; values above 1000 will be coerced to
-	// 1000.
+	// The maximum number of results to return. If this parameter is unspecified,
+	// at most 100 pipelines will be returned. The cap value for this parameter
+	// is 1000 (i.e. any value above that will be coerced to 1000).
 	PageSize *int32 `protobuf:"varint,1,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
-	// Page token
+	// Page token.
 	PageToken *string `protobuf:"bytes,2,opt,name=page_token,json=pageToken,proto3,oneof" json:"page_token,omitempty"`
-	// Filter expression to list record
+	// Filter can hold an [AIP-160](https://google.aip.dev/160)-compliant filter
+	// expression.
+	// - Example: `create_time>timestamp("2000-06-19T23:31:08.657Z")`.
 	Filter *string `protobuf:"bytes,3,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
 }
 
@@ -676,18 +677,17 @@ func (x *ListPipelineTriggerTableRecordsRequest) GetFilter() string {
 	return ""
 }
 
-// ListPipelineTriggerTableRecordsResponse represents a response for a list
-// of pipeline trigger table record
+// ListPipelineTriggerTableRecordsResponse contains the pipeline metrics.
 type ListPipelineTriggerTableRecordsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// A list of pipeline trigger table records
+	// A list of pipeline trigger tables.
 	PipelineTriggerTableRecords []*PipelineTriggerTableRecord `protobuf:"bytes,1,rep,name=pipeline_trigger_table_records,json=pipelineTriggerTableRecords,proto3" json:"pipeline_trigger_table_records,omitempty"`
-	// Next page token
+	// Next page token.
 	NextPageToken string `protobuf:"bytes,2,opt,name=next_page_token,json=nextPageToken,proto3" json:"next_page_token,omitempty"`
-	// Total count of pipeline trigger records
+	// Total number of pipeline trigger records
 	TotalSize int32 `protobuf:"varint,3,opt,name=total_size,json=totalSize,proto3" json:"total_size,omitempty"`
 }
 
@@ -744,16 +744,18 @@ func (x *ListPipelineTriggerTableRecordsResponse) GetTotalSize() int32 {
 	return 0
 }
 
-// ListPipelineTriggerChartRecordsRequest represents a request to list
-// pipeline trigger chart record
+// ListPipelineTriggerChartRecordsRequest represents a request to list pipeline
+// trigger metrics, aggregated by pipeline ID and time frame.
 type ListPipelineTriggerChartRecordsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Aggregation window in nanoseconds
+	// Aggregation window in nanoseconds.
 	AggregationWindow int32 `protobuf:"varint,1,opt,name=aggregation_window,json=aggregationWindow,proto3" json:"aggregation_window,omitempty"`
-	// Filter expression to list chart record
+	// Filter can hold an [AIP-160](https://google.aip.dev/160)-compliant filter
+	// expression.
+	// - Example: `create_time>timestamp("2000-06-19T23:31:08.657Z")`.
 	Filter *string `protobuf:"bytes,2,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
 }
 
@@ -803,14 +805,14 @@ func (x *ListPipelineTriggerChartRecordsRequest) GetFilter() string {
 	return ""
 }
 
-// ListPipelineTriggerChartRecordsResponse represents a response for a list
-// of pipeline trigger chart record
+// ListPipelineTriggerChartRecordsResponse contains a list of pipeline trigger
+// chart records.
 type ListPipelineTriggerChartRecordsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// A list of pipeline trigger records
+	// A list of pipeline trigger records.
 	PipelineTriggerChartRecords []*PipelineTriggerChartRecord `protobuf:"bytes,1,rep,name=pipeline_trigger_chart_records,json=pipelineTriggerChartRecords,proto3" json:"pipeline_trigger_chart_records,omitempty"`
 }
 
@@ -853,31 +855,31 @@ func (x *ListPipelineTriggerChartRecordsResponse) GetPipelineTriggerChartRecords
 	return nil
 }
 
-// ConnectorExecuteRecord represents a record for connector execution
+// ConnectorExecuteRecord represents a connector execution event.
 type ConnectorExecuteRecord struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Timestamp for the connector execution time
+	// The moment when the connector was executed.
 	ExecuteTime *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=execute_time,json=executeTime,proto3" json:"execute_time,omitempty"`
-	// UID for connector execution
+	// UUID of the execution.
 	ConnectorExecuteId string `protobuf:"bytes,2,opt,name=connector_execute_id,json=connectorExecuteId,proto3" json:"connector_execute_id,omitempty"`
-	// ID for the executed connector
+	// Connector ID.
 	ConnectorId string `protobuf:"bytes,3,opt,name=connector_id,json=connectorId,proto3" json:"connector_id,omitempty"`
-	// UID for the executed connector
+	// Connector UUID.
 	ConnectorUid string `protobuf:"bytes,4,opt,name=connector_uid,json=connectorUid,proto3" json:"connector_uid,omitempty"`
-	// UID for the executed connector definition
+	// Connector definition UUID.
 	ConnectorDefinitionUid string `protobuf:"bytes,5,opt,name=connector_definition_uid,json=connectorDefinitionUid,proto3" json:"connector_definition_uid,omitempty"`
-	// ID for the pipeline this connector belong to
+	// Pipeline ID.
 	PipelineId string `protobuf:"bytes,6,opt,name=pipeline_id,json=pipelineId,proto3" json:"pipeline_id,omitempty"`
-	// UID for the pipeline this connector belong to
+	// Pipeline UUID.
 	PipelineUid string `protobuf:"bytes,7,opt,name=pipeline_uid,json=pipelineUid,proto3" json:"pipeline_uid,omitempty"`
-	// UID for the trigger id of the pipeline this connector belong to
+	// UUID of the pipeline trigger.
 	PipelineTriggerId string `protobuf:"bytes,8,opt,name=pipeline_trigger_id,json=pipelineTriggerId,proto3" json:"pipeline_trigger_id,omitempty"`
-	// Total compute time duration for this execution
+	// Total execution time.
 	ComputeTimeDuration float32 `protobuf:"fixed32,9,opt,name=compute_time_duration,json=computeTimeDuration,proto3" json:"compute_time_duration,omitempty"`
-	// Final status for the connector execution
+	// Final status for the connector execution.
 	Status Status `protobuf:"varint,10,opt,name=status,proto3,enum=core.mgmt.v1beta.Status" json:"status,omitempty"`
 }
 
@@ -983,20 +985,19 @@ func (x *ConnectorExecuteRecord) GetStatus() Status {
 	return Status_STATUS_UNSPECIFIED
 }
 
-// ConnectorExecuteTableRecord represents a aggregated table record for
-// connector execute
+// ConnectorExecuteTableRecord contains connector execution metrics, a aggregated by connector ID.
 type ConnectorExecuteTableRecord struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// ID for the executed connector
+	// Connector ID.
 	ConnectorId string `protobuf:"bytes,1,opt,name=connector_id,json=connectorId,proto3" json:"connector_id,omitempty"`
-	// UID for the executed connector
+	// Connector UUID.
 	ConnectorUid string `protobuf:"bytes,2,opt,name=connector_uid,json=connectorUid,proto3" json:"connector_uid,omitempty"`
-	// Execute count with STATUS_COMPLETED
+	// Number of executions with `STATUS_COMPLETED`.
 	ExecuteCountCompleted int32 `protobuf:"varint,3,opt,name=execute_count_completed,json=executeCountCompleted,proto3" json:"execute_count_completed,omitempty"`
-	// Execute count with STATUS_ERRORED
+	// Number of executions with `STATUS_ERRORED`.
 	ExecuteCountErrored int32 `protobuf:"varint,4,opt,name=execute_count_errored,json=executeCountErrored,proto3" json:"execute_count_errored,omitempty"`
 }
 
@@ -1060,24 +1061,24 @@ func (x *ConnectorExecuteTableRecord) GetExecuteCountErrored() int32 {
 	return 0
 }
 
-// ConnectorExecuteChartRecord represents a aggregated chart record for
-// connector execute
+// ConnectorExecuteChartRecord contains connector execution metrics,
+// agggregated by connector ID and time frame.
 type ConnectorExecuteChartRecord struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// ID for the executed connector
+	// Connector ID.
 	ConnectorId string `protobuf:"bytes,1,opt,name=connector_id,json=connectorId,proto3" json:"connector_id,omitempty"`
-	// UID for the executed connector
+	// Connector UUID.
 	ConnectorUid string `protobuf:"bytes,2,opt,name=connector_uid,json=connectorUid,proto3" json:"connector_uid,omitempty"`
-	// Status of connector execution
+	// Final status.
 	Status Status `protobuf:"varint,3,opt,name=status,proto3,enum=core.mgmt.v1beta.Status" json:"status,omitempty"`
-	// Time buckets
+	// Time buckets.
 	TimeBuckets []*timestamppb.Timestamp `protobuf:"bytes,4,rep,name=time_buckets,json=timeBuckets,proto3" json:"time_buckets,omitempty"`
-	// Aggregated execute count in each time bucket
+	// Aggregated execution count in each time bucket.
 	ExecuteCounts []int32 `protobuf:"varint,5,rep,packed,name=execute_counts,json=executeCounts,proto3" json:"execute_counts,omitempty"`
-	// Total compute time duration in each time bucket
+	// Total computation time duration in each time bucket.
 	ComputeTimeDuration []float32 `protobuf:"fixed32,6,rep,packed,name=compute_time_duration,json=computeTimeDuration,proto3" json:"compute_time_duration,omitempty"`
 }
 
@@ -1155,21 +1156,23 @@ func (x *ConnectorExecuteChartRecord) GetComputeTimeDuration() []float32 {
 	return nil
 }
 
-// ListConnectorExecuteRecordsRequest represents a request to list
-// connector execute record
+// ListConnectorExecuteRecordsRequest represents a request to list connector
+// executions.
 type ListConnectorExecuteRecordsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The maximum number of connector execution record to return. The service may
-	// return fewer than this value. If unspecified, at most 100 record will be
-	// returned. The maximum value is 1000; values above 1000 will be coerced to
-	// 1000.
+	// The maximum number of executions to return. If this parameter is
+	// unspecified, at most 100 pipelines will be returned. The cap value for
+	// this parameter is 1000 (i.e. any value above that will be coerced to
+	// 1000).
 	PageSize *int32 `protobuf:"varint,1,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
-	// Page token
+	// Page token.
 	PageToken *string `protobuf:"bytes,2,opt,name=page_token,json=pageToken,proto3,oneof" json:"page_token,omitempty"`
-	// Filter expression to list record
+	// Filter can hold an [AIP-160](https://google.aip.dev/160)-compliant filter
+	// expression.
+	// - Example: `create_time>timestamp("2000-06-19T23:31:08.657Z")`.
 	Filter *string `protobuf:"bytes,3,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
 }
 
@@ -1235,7 +1238,7 @@ type ListConnectorExecuteRecordsResponse struct {
 
 	// A list of connector execute records
 	ConnectorExecuteRecords []*ConnectorExecuteRecord `protobuf:"bytes,1,rep,name=connector_execute_records,json=connectorExecuteRecords,proto3" json:"connector_execute_records,omitempty"`
-	// Next page token
+	// Next page token.
 	NextPageToken string `protobuf:"bytes,2,opt,name=next_page_token,json=nextPageToken,proto3" json:"next_page_token,omitempty"`
 	// Total count of connector execute records
 	TotalSize int32 `protobuf:"varint,3,opt,name=total_size,json=totalSize,proto3" json:"total_size,omitempty"`
@@ -1294,21 +1297,22 @@ func (x *ListConnectorExecuteRecordsResponse) GetTotalSize() int32 {
 	return 0
 }
 
-// ListConnectorExecuteTableRecordsRequest represents a request to list
-// connector execute table record
+// ListConnectorExecuteTableRecordsRequest represents a request to list the
+// connector execution metrics, aggregated by connector.
 type ListConnectorExecuteTableRecordsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The maximum number of connector execution table record to return. The
-	// service may return fewer than this value. If unspecified, at most 100
-	// record will be returned. The maximum value is 1000; values above 1000 will
-	// be coerced to 1000.
+	// The maximum number of results to return. If this parameter is unspecified,
+	// at most 100 pipelines will be returned. The cap value for this parameter
+	// is 1000 (i.e. any value above that will be coerced to 1000).
 	PageSize *int32 `protobuf:"varint,1,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
-	// Page token
+	// Page token.
 	PageToken *string `protobuf:"bytes,2,opt,name=page_token,json=pageToken,proto3,oneof" json:"page_token,omitempty"`
-	// Filter expression to list record
+	// Filter can hold an [AIP-160](https://google.aip.dev/160)-compliant filter
+	// expression.
+	// - Example: `create_time>timestamp("2000-06-19T23:31:08.657Z")`.
 	Filter *string `protobuf:"bytes,3,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
 }
 
@@ -1365,18 +1369,17 @@ func (x *ListConnectorExecuteTableRecordsRequest) GetFilter() string {
 	return ""
 }
 
-// ListConnectorExecuteTableRecordsResponse represents a response for a list
-// of connector execute table record
+// ListConnectorExecuteTableRecordsResponse contains the connector metrics.
 type ListConnectorExecuteTableRecordsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// A list of connector execute records
+	// A list of connector execution records.
 	ConnectorExecuteTableRecords []*ConnectorExecuteTableRecord `protobuf:"bytes,1,rep,name=connector_execute_table_records,json=connectorExecuteTableRecords,proto3" json:"connector_execute_table_records,omitempty"`
-	// Next page token
+	// Next page token.
 	NextPageToken string `protobuf:"bytes,2,opt,name=next_page_token,json=nextPageToken,proto3" json:"next_page_token,omitempty"`
-	// Total count of connector execute records
+	// Total number of connector execution records.
 	TotalSize int32 `protobuf:"varint,3,opt,name=total_size,json=totalSize,proto3" json:"total_size,omitempty"`
 }
 
@@ -1434,15 +1437,17 @@ func (x *ListConnectorExecuteTableRecordsResponse) GetTotalSize() int32 {
 }
 
 // ListConnectorExecuteChartRecordsRequest represents a request to list
-// connector execute chart record
+// connector execution metrics, aggregated by connector and time frame.
 type ListConnectorExecuteChartRecordsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Aggregation window in nanoseconds
+	// Aggregation window in nanoseconds.
 	AggregationWindow int32 `protobuf:"varint,1,opt,name=aggregation_window,json=aggregationWindow,proto3" json:"aggregation_window,omitempty"`
-	// Filter expression to list chart record
+	// Filter can hold an [AIP-160](https://google.aip.dev/160)-compliant filter
+	// expression.
+	// - Example: `create_time>timestamp("2000-06-19T23:31:08.657Z")`.
 	Filter *string `protobuf:"bytes,2,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
 }
 
@@ -1492,14 +1497,14 @@ func (x *ListConnectorExecuteChartRecordsRequest) GetFilter() string {
 	return ""
 }
 
-// ListConnectorExecuteChartRecordsResponse represents a response for a list
-// of connector execute chart record
+// ListConnectorExecuteChartRecordsResponse contains a list of connector
+// execution chart records.
 type ListConnectorExecuteChartRecordsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// A list of connector execute records
+	// A list of connector execution records.
 	ConnectorExecuteChartRecords []*ConnectorExecuteChartRecord `protobuf:"bytes,1,rep,name=connector_execute_chart_records,json=connectorExecuteChartRecords,proto3" json:"connector_execute_chart_records,omitempty"`
 }
 

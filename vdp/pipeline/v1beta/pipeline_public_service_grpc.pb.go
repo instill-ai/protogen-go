@@ -96,251 +96,465 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PipelinePublicServiceClient interface {
-	// Liveness method receives a LivenessRequest message and returns a
-	// LivenessResponse message.
-	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
+	// Check if the pipeline server is alive
+	//
+	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md.
 	Liveness(ctx context.Context, in *LivenessRequest, opts ...grpc.CallOption) (*LivenessResponse, error)
-	// Readiness method receives a ReadinessRequest message and returns a
-	// ReadinessResponse message.
+	// Check if the pipeline server is ready
+	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error)
-	// ListPipelines method receives a ListPipelinesRequest message and returns a
-	// ListPipelinesResponse message.
+	// List accessible pipelines
+	//
+	// Returns a paginated list of pipelines that are visible to the requester.
 	ListPipelines(ctx context.Context, in *ListPipelinesRequest, opts ...grpc.CallOption) (*ListPipelinesResponse, error)
-	// LookUpPipeline method receives a LookUpPipelineRequest message and returns
-	// a LookUpPipelineResponse
+	// Get a pipeline by UID
+	//
+	// Returns the details of a pipeline by a permalink defined by the resource
+	// UID.
 	LookUpPipeline(ctx context.Context, in *LookUpPipelineRequest, opts ...grpc.CallOption) (*LookUpPipelineResponse, error)
-	// CreateUserPipeline method receives a CreateUserPipelineRequest message and returns
-	// a CreateUserPipelineResponse message.
+	// Create a new user pipeline
+	//
+	// Creates a new pipeline under the parenthood of a user. Users can only
+	// create a pipeline as the parent of that resource (i.e. the authenticated
+	// user must match the `parent` path parameter).
 	CreateUserPipeline(ctx context.Context, in *CreateUserPipelineRequest, opts ...grpc.CallOption) (*CreateUserPipelineResponse, error)
-	// ListUserPipelines method receives a ListUserPipelinesRequest message and returns a
-	// ListUserPipelinesResponse message.
+	// List user pipelines
+	//
+	// Returns a paginated list of pipelines that belong to the specified user.
+	// The parent user may be different from the authenticated user, in which
+	// case the results will contain the pipelines that are visible to the
+	// latter.
 	ListUserPipelines(ctx context.Context, in *ListUserPipelinesRequest, opts ...grpc.CallOption) (*ListUserPipelinesResponse, error)
-	// GetUserPipeline method receives a GetUserPipelineRequest message and returns a
-	// GetUserPipelineResponse message.
+	// Get a pipeline owned by a user
+	//
+	// Returns the details of a user-owned pipeline by its resource name, which is defined
+	// by the parent user and the ID of the pipeline.
 	GetUserPipeline(ctx context.Context, in *GetUserPipelineRequest, opts ...grpc.CallOption) (*GetUserPipelineResponse, error)
-	// UpdateUserPipeline method receives a UpdateUserPipelineRequest message and returns
-	// a UpdateUserPipelineResponse message.
+	// Update a pipeline owned by a user
+	//
+	// Udpates a pipeline, accessing it by its resource name, which is defined by
+	// the parent user and the ID of the pipeline. The authenticated user must be
+	// the parent of the pipeline in order to modify it.
+	//
+	// In REST requests, only the supplied pipeline fields will be taken into
+	// account when updating the resource.
 	UpdateUserPipeline(ctx context.Context, in *UpdateUserPipelineRequest, opts ...grpc.CallOption) (*UpdateUserPipelineResponse, error)
-	// DeleteUserPipeline method receives a DeleteUserPipelineRequest message and returns
-	// a DeleteUserPipelineResponse message.
+	// Delete a pipeline owned by a user
+	//
+	// Deletes a pipeline, accesing it by its resource name, which is defined by
+	// the parent user and the ID of the pipeline. The authenticated user must be
+	// the parent of the pipeline in order to delete it.
 	DeleteUserPipeline(ctx context.Context, in *DeleteUserPipelineRequest, opts ...grpc.CallOption) (*DeleteUserPipelineResponse, error)
-	// Validate a pipeline.
+	// Validate a pipeline a pipeline owned by a user
+	//
+	// Validates a pipeline by its resource name, which is defined by the parent
+	// user and the ID of the pipeline.
+	//
+	// Validation checks the recipe of the pipeline and the status of its components.
 	ValidateUserPipeline(ctx context.Context, in *ValidateUserPipelineRequest, opts ...grpc.CallOption) (*ValidateUserPipelineResponse, error)
-	// RenameUserPipeline method receives a RenameUserPipelineRequest message and returns
-	// a RenameUserPipelineResponse message.
+	// Rename a pipeline owned by a user
+	//
+	// Updates the ID of a pipeline. Since this is an output-only field, a custom
+	// method is required to modify it.
+	//
+	// The pipeline name will be updated accordingly, as it is  composed by the
+	// parent user and ID of the pipeline (e.g.
+	// `users/luigi/pipelines/pizza-recipe-generator`).
+	//
+	// The authenticated user must be the parent of the pipeline in order to
+	// perform this action.
 	RenameUserPipeline(ctx context.Context, in *RenameUserPipelineRequest, opts ...grpc.CallOption) (*RenameUserPipelineResponse, error)
-	// TriggerUserPipeline method receives a TriggerUserPipelineRequest message
-	// and returns a TriggerUserPipelineResponse.
+	// Trigger a pipeline owned by a user
+	//
+	// Triggers the execution of a pipeline synchronously, i.e., the result is
+	// sent back to the user right after the data is processed. This method is
+	// intended for real-time inference when low latency is of concern.
+	//
+	// The pipeline is identified by its resource name, formed by the parent user
+	// and ID of the pipeline.
+	//
+	// For more information, see [Trigger
+	// Pipeline](https://www.instill.tech/docs/latest/core/concepts/pipeline#trigger-pipeline).
 	TriggerUserPipeline(ctx context.Context, in *TriggerUserPipelineRequest, opts ...grpc.CallOption) (*TriggerUserPipelineResponse, error)
-	// TriggerAsyncUserPipeline method receives a TriggerAsyncUserPipelineRequest message and
-	// returns a TriggerAsyncUserPipelineResponse.
+	// Trigger a pipeline owned by a user asynchronously
+	//
+	// Triggers the execution of a pipeline asynchronously, i.e., the result
+	// contains the necessary information to access the result and status of the
+	// operation. This method is intended for cases that require long-running
+	// workloads.
+	//
+	// The pipeline is identified by its resource name, formed by the parent user
+	// and ID of the pipeline.
+	//
+	// For more information, see [Trigger
+	// Pipeline](https://www.instill.tech/docs/latest/core/concepts/pipeline#trigger-pipeline).
 	TriggerAsyncUserPipeline(ctx context.Context, in *TriggerAsyncUserPipelineRequest, opts ...grpc.CallOption) (*TriggerAsyncUserPipelineResponse, error)
-	// CreateUserPipelineRelease method receives a CreateUserPipelineReleaseRequest message and returns
-	// a CreateUserPipelineReleaseResponse message.
+	// Release a version of a pipeline owned by a user
+	//
+	// Commits the version of a pipeline, identified by its resource name, which
+	// is formed by the parent user and ID of the pipeline.
+	//
+	// The authenticated user must be the parent of the pipeline in order to
+	// perform this action.
 	CreateUserPipelineRelease(ctx context.Context, in *CreateUserPipelineReleaseRequest, opts ...grpc.CallOption) (*CreateUserPipelineReleaseResponse, error)
-	// ListUserPipelineReleases method receives a ListUserPipelineReleasesRequest message and returns a
-	// ListUserPipelineReleasesResponse message.
+	// List the releases in a pipeline owned by a user
+	//
+	// Lists the commited versions of a pipeline, identified by its resource
+	// name, which is formed by the parent user and ID of the pipeline.
 	ListUserPipelineReleases(ctx context.Context, in *ListUserPipelineReleasesRequest, opts ...grpc.CallOption) (*ListUserPipelineReleasesResponse, error)
-	// GetUserPipelineRelease method receives a GetUserPipelineReleaseRequest message and returns a
-	// GetUserPipelineReleaseResponse message.
+	// Get a release in a pipeline owned by a user
+	//
+	// Gets the details of a pipeline release, where the pipeline is identified
+	// by its resource name, formed by its parent user and ID.
 	GetUserPipelineRelease(ctx context.Context, in *GetUserPipelineReleaseRequest, opts ...grpc.CallOption) (*GetUserPipelineReleaseResponse, error)
-	// UpdateUserPipelineRelease method receives a UpdateUserPipelineReleaseRequest message and returns
-	// a UpdateUserPipelineReleaseResponse message.
+	// Update a release in a pipeline owned by a user
+	//
+	// Updates the details of a pipeline release, where the pipeline is
+	// identified by its resource name, formed by its parent user and ID.
+	//
+	// The authenticated user must be the parent of the pipeline in order to
+	// perform this action.
 	UpdateUserPipelineRelease(ctx context.Context, in *UpdateUserPipelineReleaseRequest, opts ...grpc.CallOption) (*UpdateUserPipelineReleaseResponse, error)
-	// DeleteUserPipelineRelease method receives a DeleteUserPipelineReleaseRequest message and returns
-	// a DeleteUserPipelineReleaseResponse message.
+	// Delete a release in a pipeline owned by a user
+	//
+	// Deletes a pipeline release, where the pipeline is identified by its
+	// resource name, formed by its parent user and ID.
+	//
+	// The authenticated user must be the parent of the pipeline in order to
+	// perform this action.
 	DeleteUserPipelineRelease(ctx context.Context, in *DeleteUserPipelineReleaseRequest, opts ...grpc.CallOption) (*DeleteUserPipelineReleaseResponse, error)
-	// RestoreUserPipelineRelease method receives a RestoreUserPipelineReleaseRequest message
-	// and returns a RestoreUserPipelineReleaseResponse
+	// Set the version of a pipeline owned by a user to a pinned release
+	//
+	// Sets the pipeline configuration to a pinned version defined by a release.
+	//
+	// The pipeline is identified by its resource name, formed by its parent user
+	// and ID.
+	//
+	// The authenticated user must be the parent of the pipeline in order to
+	// perform this action.
 	RestoreUserPipelineRelease(ctx context.Context, in *RestoreUserPipelineReleaseRequest, opts ...grpc.CallOption) (*RestoreUserPipelineReleaseResponse, error)
-	// WatchUserPipelineRelease method receives a WatchUserPipelineReleaseRequest message
-	// and returns a WatchUserPipelineReleaseResponse
+	// Get the state of a release in a pipeline owned by a user
+	//
+	// Gets the state of a pipeline release, where the pipeline is identified by
+	// its resource name, formed by the parent user and ID of the pipeline.
 	WatchUserPipelineRelease(ctx context.Context, in *WatchUserPipelineReleaseRequest, opts ...grpc.CallOption) (*WatchUserPipelineReleaseResponse, error)
-	// RenameUserPipelineRelease method receives a RenameUserPipelineReleaseRequest message and returns
-	// a RenameUserPipelineReleaseResponse message.
+	// Rename a release in a pipeline owned by a user
+	//
+	// Updates the ID of a pipeline release, where the pipeline is identified by
+	// its resource name, formed by the parent user and ID. Since this is an
+	// output-only field, a custom method is required to modify it.
+	//
+	// The pipeline release name will be updated accordingly, as it is  composed
+	// by the pipeline name and the ID of the release (e.g.
+	// `users/luigi/pipelines/pizza-recipe-generator/releases/v0.2.1`).
+	//
+	// The authenticated user must be the parent of the pipeline in order to
+	// perform this action.
 	RenameUserPipelineRelease(ctx context.Context, in *RenameUserPipelineReleaseRequest, opts ...grpc.CallOption) (*RenameUserPipelineReleaseResponse, error)
-	// TriggerUserPipelineRelease method receives a TriggeUserPipelineReleaseRequest message
-	// and returns a TriggerPipelineReleasePipelineResponse.
+	// Trigger a version of a pipeline owned by a user
+	//
+	// Triggers the synchronous execution of of a pipeline. While the trigger
+	// endpoint (where the release version isn't specified) triggers the pipeline
+	// at its latest release, this method allows the client to specified any
+	// committed release.
+	//
+	// The pipeline is identified by its resource name, formed by its parent user
+	// and ID.
 	TriggerUserPipelineRelease(ctx context.Context, in *TriggerUserPipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerUserPipelineReleaseResponse, error)
-	// TriggerAsyncUserPipelineRelease method receives a TriggerAsyncUserPipelineReleaseRequest message and
-	// returns a TriggerAsyncUserPipelineReleaseResponse.
+	// Trigger a version of a pipeline owned by a user asynchronously
+	//
+	// Triggers the asynchronous execution of of a pipeline. While the trigger
+	// endpoint (where the release version isn't specified) triggers the pipeline
+	// at its latest release, this method allows the client to specified any
+	// committed release.
+	//
+	// The pipeline is identified by its resource name, formed by its parent user
+	// and ID.
 	TriggerAsyncUserPipelineRelease(ctx context.Context, in *TriggerAsyncUserPipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerAsyncUserPipelineReleaseResponse, error)
-	// CreateOrganizationPipeline method receives a CreateOrganizationPipelineRequest message and returns
-	// a CreateOrganizationPipelineResponse message.
+	// Create a new organization pipeline
+	//
+	// Creates a new pipeline under the parenthood of an organization.
 	CreateOrganizationPipeline(ctx context.Context, in *CreateOrganizationPipelineRequest, opts ...grpc.CallOption) (*CreateOrganizationPipelineResponse, error)
-	// ListOrganizationPipelines method receives a ListOrganizationPipelinesRequest message and returns a
-	// ListOrganizationPipelinesResponse message.
+	// List organization pipelines
+	//
+	// Returns a paginated list of pipelines that belong to the specified
+	// organization.
 	ListOrganizationPipelines(ctx context.Context, in *ListOrganizationPipelinesRequest, opts ...grpc.CallOption) (*ListOrganizationPipelinesResponse, error)
-	// GetOrganizationPipeline method receives a GetOrganizationPipelineRequest message and returns a
-	// GetOrganizationPipelineResponse message.
+	// Get a pipeline owned by an organization
+	//
+	// Returns the details of an organization-owned pipeline by its resource name,
+	// which is defined by the parent organization and the ID of the pipeline.
 	GetOrganizationPipeline(ctx context.Context, in *GetOrganizationPipelineRequest, opts ...grpc.CallOption) (*GetOrganizationPipelineResponse, error)
-	// UpdateOrganizationPipeline method receives a UpdateOrganizationPipelineRequest message and returns
-	// a UpdateOrganizationPipelineResponse message.
+	// Update a pipeline owned by an organization
+	//
+	// # Udpates a pipeline, accessing it by its resource name, which is defined by
+	//
+	// In REST requests, only the supplied pipeline fields will be taken into
+	// account when updating the resource.
 	UpdateOrganizationPipeline(ctx context.Context, in *UpdateOrganizationPipelineRequest, opts ...grpc.CallOption) (*UpdateOrganizationPipelineResponse, error)
-	// DeleteOrganizationPipeline method receives a DeleteOrganizationPipelineRequest message and returns
-	// a DeleteOrganizationPipelineResponse message.
+	// Delete a pipeline owned by an organization
+	//
+	// Deletes a pipeline, accesing it by its resource name, which is defined by
+	// the parent organization and the ID of the pipeline.
 	DeleteOrganizationPipeline(ctx context.Context, in *DeleteOrganizationPipelineRequest, opts ...grpc.CallOption) (*DeleteOrganizationPipelineResponse, error)
-	// Validate a pipeline.
+	// Validate a pipeline a pipeline owned by an organization
+	//
+	// Validates a pipeline by its resource name, which is defined by the parent
+	// organization and the ID of the pipeline.
+	//
+	// Validation checks the recipe of the pipeline and the status of its
+	// components.
 	ValidateOrganizationPipeline(ctx context.Context, in *ValidateOrganizationPipelineRequest, opts ...grpc.CallOption) (*ValidateOrganizationPipelineResponse, error)
-	// RenameOrganizationPipeline method receives a RenameOrganizationPipelineRequest message and returns
-	// a RenameOrganizationPipelineResponse message.
+	// Rename a pipeline owned by an organization
+	//
+	// Updates the ID of a pipeline. Since this is an output-only field, a custom
+	// method is required to modify it.
+	//
+	// The pipeline name will be updated accordingly, as it is  composed by the
+	// parent organization and ID of the pipeline (e.g.
+	// `organizations/luigi/pipelines/pizza-recipe-generator`).
 	RenameOrganizationPipeline(ctx context.Context, in *RenameOrganizationPipelineRequest, opts ...grpc.CallOption) (*RenameOrganizationPipelineResponse, error)
-	// TriggerOrganizationPipeline method receives a TriggerOrganizationPipelineRequest message
-	// and returns a TriggerOrganizationPipelineResponse.
+	// Trigger a pipeline owned by an organization
+	//
+	// Triggers the execution of a pipeline synchronously, i.e., the result is sent
+	// back to the organization right after the data is processed. This method is
+	// intended for real-time inference when low latency is of concern.
+	//
+	// The pipeline is identified by its resource name, formed by the parent
+	// organization and ID of the pipeline.
+	//
+	// For more information, see [Trigger
+	// Pipeline](https://www.instill.tech/docs/latest/core/concepts/pipeline#trigger-pipeline).
 	TriggerOrganizationPipeline(ctx context.Context, in *TriggerOrganizationPipelineRequest, opts ...grpc.CallOption) (*TriggerOrganizationPipelineResponse, error)
-	// TriggerAsyncOrganizationPipeline method receives a TriggerAsyncOrganizationPipelineRequest message and
-	// returns a TriggerAsyncOrganizationPipelineResponse.
+	// Trigger a pipeline owned by an organization asynchronously
+	//
+	// Triggers the execution of a pipeline asynchronously, i.e., the result
+	// contains the necessary information to access the result and status of the
+	// operation. This method is intended for cases that require long-running
+	// workloads.
+	//
+	// The pipeline is identified by its resource name, formed by the parent
+	// organization and ID of the pipeline.
+	//
+	// For more information, see [Trigger
+	// Pipeline](https://www.instill.tech/docs/latest/core/concepts/pipeline#trigger-pipeline).
 	TriggerAsyncOrganizationPipeline(ctx context.Context, in *TriggerAsyncOrganizationPipelineRequest, opts ...grpc.CallOption) (*TriggerAsyncOrganizationPipelineResponse, error)
-	// CreateOrganizationPipelineRelease method receives a CreateOrganizationPipelineReleaseRequest message and returns
-	// a CreateOrganizationPipelineReleaseResponse message.
+	// Release a version of a pipeline owned by an organization
+	//
+	// Commits the version of a pipeline, identified by its resource name, which is
+	// formed by the parent organization and ID of the pipeline.
 	CreateOrganizationPipelineRelease(ctx context.Context, in *CreateOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*CreateOrganizationPipelineReleaseResponse, error)
-	// ListOrganizationPipelineReleases method receives a ListOrganizationPipelineReleasesRequest message and returns a
-	// ListOrganizationPipelineReleasesResponse message.
+	// List the releases in a pipeline owned by an organization
+	//
+	// Lists the commited versions of a pipeline, identified by its resource name,
+	// which is formed by the parent organization and ID of the pipeline.
 	ListOrganizationPipelineReleases(ctx context.Context, in *ListOrganizationPipelineReleasesRequest, opts ...grpc.CallOption) (*ListOrganizationPipelineReleasesResponse, error)
-	// GetOrganizationPipelineRelease method receives a GetOrganizationPipelineReleaseRequest message and returns a
-	// GetOrganizationPipelineReleaseResponse message.
+	// Get a release in a pipeline owned by an organization
+	//
+	// Gets the details of a pipeline release, where the pipeline is identified by
+	// its resource name, formed by its parent organization and ID.
 	GetOrganizationPipelineRelease(ctx context.Context, in *GetOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*GetOrganizationPipelineReleaseResponse, error)
-	// UpdateOrganizationPipelineRelease method receives a UpdateOrganizationPipelineReleaseRequest message and returns
-	// a UpdateOrganizationPipelineReleaseResponse message.
+	// Update a release in a pipeline owned by an organization
+	//
+	// Updates the details of a pipeline release, where the pipeline is identified
+	// by its resource name, formed by its parent organization and ID.
 	UpdateOrganizationPipelineRelease(ctx context.Context, in *UpdateOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*UpdateOrganizationPipelineReleaseResponse, error)
-	// DeleteOrganizationPipelineRelease method receives a DeleteOrganizationPipelineReleaseRequest message and returns
-	// a DeleteOrganizationPipelineReleaseResponse message.
+	// Delete a release in a pipeline owned by an organization
+	//
+	// Deletes a pipeline release, where the pipeline is identified by its resource
+	// name, formed by its parent organization and ID.
 	DeleteOrganizationPipelineRelease(ctx context.Context, in *DeleteOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*DeleteOrganizationPipelineReleaseResponse, error)
-	// RestoreOrganizationPipelineRelease method receives a RestoreOrganizationPipelineReleaseRequest message
-	// and returns a RestoreOrganizationPipelineReleaseResponse
+	// Set the version of a pipeline owned by an organization to a pinned release
+	//
+	// Sets the pipeline configuration to a pinned version defined by a release.
+	//
+	// The pipeline is identified by its resource name, formed by its parent
+	// organization and ID.
 	RestoreOrganizationPipelineRelease(ctx context.Context, in *RestoreOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*RestoreOrganizationPipelineReleaseResponse, error)
-	// WatchOrganizationPipelineRelease method receives a WatchOrganizationPipelineReleaseRequest message
-	// and returns a WatchOrganizationPipelineReleaseResponse
+	// Get the state of a release in a pipeline owned by an organization
+	//
+	// Gets the state of a pipeline release, where the pipeline is identified by
+	// its resource name, formed by the parent organization and ID of the pipeline.
 	WatchOrganizationPipelineRelease(ctx context.Context, in *WatchOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*WatchOrganizationPipelineReleaseResponse, error)
-	// RenameOrganizationPipelineRelease method receives a RenameOrganizationPipelineReleaseRequest message and returns
-	// a RenameOrganizationPipelineReleaseResponse message.
+	// Rename a release in a pipeline owned by an organization
+	//
+	// Updates the ID of a pipeline release, where the pipeline is identified by
+	// its resource name, formed by the parent organization and ID. Since this is
+	// an output-only field, a custom method is required to modify it.
+	//
+	// The pipeline release name will be updated accordingly, as it is  composed by
+	// the pipeline name and the ID of the release (e.g.
+	// `organizations/luigi/pipelines/pizza-recipe-generator/releases/v0.2.1`).
 	RenameOrganizationPipelineRelease(ctx context.Context, in *RenameOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*RenameOrganizationPipelineReleaseResponse, error)
-	// TriggerOrganizationPipelineRelease method receives a TriggeOrganizationPipelineReleaseRequest message
-	// and returns a TriggerPipelineReleasePipelineResponse.
+	// Trigger a version of a pipeline owned by an organization
+	//
+	// Triggers the synchronous execution of of a pipeline. While the trigger
+	// endpoint (where the release version isn't specified) triggers the pipeline
+	// at its latest release, this method allows the client to specified any
+	// committed release.
+	//
+	// The pipeline is identified by its resource name, formed by its parent
+	// organization and ID.
 	TriggerOrganizationPipelineRelease(ctx context.Context, in *TriggerOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerOrganizationPipelineReleaseResponse, error)
-	// TriggerAsyncOrganizationPipelineRelease method receives a TriggerAsyncOrganizationPipelineReleaseRequest message and
-	// returns a TriggerAsyncOrganizationPipelineReleaseResponse.
+	// Trigger a version of a pipeline owned by an organization asynchronously
+	//
+	// Triggers the asynchronous execution of of a pipeline. While the trigger
+	// endpoint (where the release version isn't specified) triggers the pipeline
+	// at its latest release, this method allows the client to specified any
+	// committed release.
+	//
+	// The pipeline is identified by its resource name, formed by its parent
+	// organization and ID.
 	TriggerAsyncOrganizationPipelineRelease(ctx context.Context, in *TriggerAsyncOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerAsyncOrganizationPipelineReleaseResponse, error)
-	// GetOperation method receives a
-	// GetOperationRequest message and returns a
-	// GetOperationResponse message.
+	// Get the details of a long-running operation
+	//
+	// This method allows requesters to request the status and outcome of
+	// long-running operations such as asynchronous pipeline triggers.
 	GetOperation(ctx context.Context, in *GetOperationRequest, opts ...grpc.CallOption) (*GetOperationResponse, error)
-	// ListConnectorDefinitions method receives a
-	// ListConnectorDefinitionsRequest message and returns a
-	// ListConnectorDefinitionsResponse message.
+	// List connector definitions
+	//
+	// Returns a paginated list of connector definitions.
 	ListConnectorDefinitions(ctx context.Context, in *ListConnectorDefinitionsRequest, opts ...grpc.CallOption) (*ListConnectorDefinitionsResponse, error)
-	// GetConnectorDefinition method receives a
-	// GetConnectorDefinitionRequest message and returns a
-	// GetGetConnectorDefinitionResponse message.
+	// Get connector definition
+	//
+	// Returns the details of a connector definition.
 	GetConnectorDefinition(ctx context.Context, in *GetConnectorDefinitionRequest, opts ...grpc.CallOption) (*GetConnectorDefinitionResponse, error)
-	// ListOperatorDefinitions method receives a
-	// ListOperatorDefinitionsRequest message and returns a
-	// ListOperatorDefinitionsResponse message.
+	// List operator definitions
+	//
+	// Returns a paginated list of operator definitions.
 	ListOperatorDefinitions(ctx context.Context, in *ListOperatorDefinitionsRequest, opts ...grpc.CallOption) (*ListOperatorDefinitionsResponse, error)
-	// GetOperatorDefinition method receives a
-	// GetOperatorDefinitionRequest message and returns a
-	// GetGetOperatorDefinitionResponse message.
+	// Get operator definition
+	//
+	// Returns the details of an operator definition.
 	GetOperatorDefinition(ctx context.Context, in *GetOperatorDefinitionRequest, opts ...grpc.CallOption) (*GetOperatorDefinitionResponse, error)
-	// ListConnectors method receives a
-	// ListConnectorsRequest message and returns a
-	// ListConnectorsResponse message.
+	// List connectors
+	//
+	// Returns all the connectors that are visible to the authenticated user.
 	ListConnectors(ctx context.Context, in *ListConnectorsRequest, opts ...grpc.CallOption) (*ListConnectorsResponse, error)
-	// LookUpConnector method receives a
-	// LookUpConnectorRequest message and returns a
-	// LookUpConnectorResponse
+	// Get a connector by UID
+	//
+	// Returns the details of a connector by UID.
 	LookUpConnector(ctx context.Context, in *LookUpConnectorRequest, opts ...grpc.CallOption) (*LookUpConnectorResponse, error)
-	// CreateUserConnector method receives a
-	// CreateUserConnectorRequest message and returns a
-	// CreateUserConnectorResponse message.
+	// Create a new user connector
+	//
+	// Creates a new connector under the parenthood of a user. Users can only
+	// create a connector parents of that resource (i.e. the authenticated user
+	// must match the `parent` path parameter).
 	CreateUserConnector(ctx context.Context, in *CreateUserConnectorRequest, opts ...grpc.CallOption) (*CreateUserConnectorResponse, error)
-	// ListUserConnectors method receives a
-	// ListUserConnectorsRequest message and returns a
-	// ListUserConnectorsResponse message.
+	// List user connectors
+	//
+	// Returns a paginated list of connectors that belong to the specified user.
 	ListUserConnectors(ctx context.Context, in *ListUserConnectorsRequest, opts ...grpc.CallOption) (*ListUserConnectorsResponse, error)
-	// GetUserConnector method receives a GetUserConnectorRequest
-	// message and returns a GetUserConnectorResponse message.
+	// Get a connector owned by a user.
+	//
+	// Returns the details of a user-owned connector.
 	GetUserConnector(ctx context.Context, in *GetUserConnectorRequest, opts ...grpc.CallOption) (*GetUserConnectorResponse, error)
-	// UpdateUserConnector method receives a
-	// UpdateUserConnectorRequest message and returns a
-	// UpdateUserConnectorResponse message.
+	// Update a connector owned by a user.
+	//
+	// Updates a user-owned connector. The authebnticated user must be the parent
+	// of the connector.
+	//
+	// In REST requests, only the supplied connector fields will be taken into
+	// account when updating the resource.
 	UpdateUserConnector(ctx context.Context, in *UpdateUserConnectorRequest, opts ...grpc.CallOption) (*UpdateUserConnectorResponse, error)
-	// DeleteUserConnector method receives a
-	// DeleteUserConnectorRequest message and returns a
-	// DeleteUserConnectorResponse message.
+	// Delete a connector owned by a user
+	//
+	// Deletes a connector. The authenticated user must be the parent of the
+	// connector in order to delete it.
 	DeleteUserConnector(ctx context.Context, in *DeleteUserConnectorRequest, opts ...grpc.CallOption) (*DeleteUserConnectorResponse, error)
-	// Connect a connector.
-	// The "state" of the connector after connecting is "CONNECTED".
-	// ConnectUserConnector can be called on Connector in the
-	// state `DISCONNECTED`; Connector in a different state (including
-	// `CONNECTED`) returns an error.
+	// Connect a connector owned by a user
+	//
+	// Transitions the state of a connector from `DISCONNECTED` to `CONNECTED`. If
+	// the state of the connector is different when the request is made, an error
+	// is returned.
 	ConnectUserConnector(ctx context.Context, in *ConnectUserConnectorRequest, opts ...grpc.CallOption) (*ConnectUserConnectorResponse, error)
-	// Disconnect a connector.
-	// The "state" of the connector after disconnecting is "DISCONNECTED".
-	// DisconnectUserConnector can be called on Connector in the
-	// state `CONNECTED`; Connector in a different state (including
-	// `DISCONNECTED`) returns an error.
+	// Disconnect a connector owned by a user
+	//
+	// Transitions the state of a connector from `CONNECTED` to `DISCONNECTED`. If
+	// the state of the connector is different when the request is made, an error
+	// is returned.
 	DisconnectUserConnector(ctx context.Context, in *DisconnectUserConnectorRequest, opts ...grpc.CallOption) (*DisconnectUserConnectorResponse, error)
-	// RenameUserConnector method receives a
-	// RenameUserConnectorRequest message and returns a
-	// RenameUserConnectorResponse message.
+	// Rename a connector owned by a user
+	//
+	// Updates the ID of a connector. Since this is an output-only field, a custom
+	// method is required to modify it.
+	//
+	// The connector name will be updated accordingly, as it is  composed by the
+	// parent user and ID of the connector (e.g.
+	// `users/indiana-jones/connector/whip`).
+	//
+	// The authenticated user must be the parent of the connector in order to
+	// perform this action.
 	RenameUserConnector(ctx context.Context, in *RenameUserConnectorRequest, opts ...grpc.CallOption) (*RenameUserConnectorResponse, error)
-	// ExecuteUserConnector method receives a
-	// ExecuteUserConnectorRequest message and returns a
-	// ExecuteUserConnectorResponse message.
+	// Execute a connector owned by a user
+	//
+	// Executes a task in a user-owned connector.
 	ExecuteUserConnector(ctx context.Context, in *ExecuteUserConnectorRequest, opts ...grpc.CallOption) (*ExecuteUserConnectorResponse, error)
-	// WatchUserConnector method receives a
-	// WatchUserConnectorRequest message and returns a
-	// WatchUserConnectorResponse
+	// Get the state of a connector owned by a user
+	//
+	// Gets the state of a user-owned connector.
 	WatchUserConnector(ctx context.Context, in *WatchUserConnectorRequest, opts ...grpc.CallOption) (*WatchUserConnectorResponse, error)
-	// TestUserConnector method receives a TestUserConnectorRequest
-	// message and returns a TestUserConnectorResponse
+	// Test a connector owned by a user
+	//
+	// Tests the connection on a user-owned connector.
 	TestUserConnector(ctx context.Context, in *TestUserConnectorRequest, opts ...grpc.CallOption) (*TestUserConnectorResponse, error)
-	// CreateOrganizationConnector method receives a
-	// CreateOrganizationConnectorRequest message and returns a
-	// CreateOrganizationConnectorResponse message.
+	// Create a new organization connector
+	//
+	// Creates a new connector under the parenthood of an organization.
 	CreateOrganizationConnector(ctx context.Context, in *CreateOrganizationConnectorRequest, opts ...grpc.CallOption) (*CreateOrganizationConnectorResponse, error)
-	// ListOrganizationConnectors method receives a
-	// ListOrganizationConnectorsRequest message and returns a
-	// ListOrganizationConnectorsResponse message.
+	// List organization connectors
+	//
+	// Returns a paginated list of connectors that belong to the specified
+	// organization.
 	ListOrganizationConnectors(ctx context.Context, in *ListOrganizationConnectorsRequest, opts ...grpc.CallOption) (*ListOrganizationConnectorsResponse, error)
-	// GetOrganizationConnector method receives a GetOrganizationConnectorRequest
-	// message and returns a GetOrganizationConnectorResponse message.
+	// Get a connector owned by an organization.
+	//
+	// Returns the details of an organization-owned connector.
 	GetOrganizationConnector(ctx context.Context, in *GetOrganizationConnectorRequest, opts ...grpc.CallOption) (*GetOrganizationConnectorResponse, error)
-	// UpdateOrganizationConnector method receives a
-	// UpdateOrganizationConnectorRequest message and returns a
-	// UpdateOrganizationConnectorResponse message.
+	// Update a connector owned by an organization.
+	//
+	// Updates an organization-owned connector.
+	//
+	// In REST requests, only the supplied connector fields will be taken into
+	// account when updating the resource.
 	UpdateOrganizationConnector(ctx context.Context, in *UpdateOrganizationConnectorRequest, opts ...grpc.CallOption) (*UpdateOrganizationConnectorResponse, error)
-	// DeleteOrganizationConnector method receives a
-	// DeleteOrganizationConnectorRequest message and returns a
-	// DeleteOrganizationConnectorResponse message.
+	// Delete a connector owned by an organization
+	//
+	// Deletes a connector.
 	DeleteOrganizationConnector(ctx context.Context, in *DeleteOrganizationConnectorRequest, opts ...grpc.CallOption) (*DeleteOrganizationConnectorResponse, error)
-	// Connect a connector.
-	// The "state" of the connector after connecting is "CONNECTED".
-	// ConnectOrganizationConnector can be called on Connector in the
-	// state `DISCONNECTED`; Connector in a different state (including
-	// `CONNECTED`) returns an error.
+	// Connect a connector owned by an organization
+	//
+	// Transitions the state of a connector from `DISCONNECTED` to `CONNECTED`. If
+	// the state of the connector is different when the request is made, an error
+	// is returned.
 	ConnectOrganizationConnector(ctx context.Context, in *ConnectOrganizationConnectorRequest, opts ...grpc.CallOption) (*ConnectOrganizationConnectorResponse, error)
-	// Disconnect a connector.
-	// The "state" of the connector after disconnecting is "DISCONNECTED".
-	// DisconnectOrganizationConnector can be called on Connector in the
-	// state `CONNECTED`; Connector in a different state (including
-	// `DISCONNECTED`) returns an error.
+	// Disconnect a connector owned by an organization
+	//
+	// Transitions the state of a connector from `CONNECTED` to `DISCONNECTED`. If
+	// the state of the connector is different when the request is made, an error
+	// is returned.
 	DisconnectOrganizationConnector(ctx context.Context, in *DisconnectOrganizationConnectorRequest, opts ...grpc.CallOption) (*DisconnectOrganizationConnectorResponse, error)
-	// RenameOrganizationConnector method receives a
-	// RenameOrganizationConnectorRequest message and returns a
-	// RenameOrganizationConnectorResponse message.
+	// Rename a connector owned by an organization
+	//
+	// Updates the ID of a connector. Since this is an output-only field, a custom
+	// method is required to modify it.
+	//
+	// The connector name will be updated accordingly, as it is  composed by the
+	// parent organization and ID of the connector (e.g.
+	// `organizations/indiana-jones/connector/whip`).
 	RenameOrganizationConnector(ctx context.Context, in *RenameOrganizationConnectorRequest, opts ...grpc.CallOption) (*RenameOrganizationConnectorResponse, error)
-	// ExecuteOrganizationConnector method receives a
-	// ExecuteOrganizationConnectorRequest message and returns a
-	// ExecuteOrganizationConnectorResponse message.
+	// Execute a connector owned by an organization
+	//
+	// Executes a task in an organization-owned connector.
 	ExecuteOrganizationConnector(ctx context.Context, in *ExecuteOrganizationConnectorRequest, opts ...grpc.CallOption) (*ExecuteOrganizationConnectorResponse, error)
-	// WatchOrganizationConnector method receives a
-	// WatchOrganizationConnectorRequest message and returns a
-	// WatchOrganizationConnectorResponse
+	// Get the state of a connector owned by an organization
+	//
+	// Gets the state of an organization-owned connector.
 	WatchOrganizationConnector(ctx context.Context, in *WatchOrganizationConnectorRequest, opts ...grpc.CallOption) (*WatchOrganizationConnectorResponse, error)
-	// TestOrganizationConnector method receives a TestOrganizationConnectorRequest
-	// message and returns a TestOrganizationConnectorResponse
+	// Test a connector owned by an organization
+	//
+	// Tests the connection on an organization-owned connector.
 	TestOrganizationConnector(ctx context.Context, in *TestOrganizationConnectorRequest, opts ...grpc.CallOption) (*TestOrganizationConnectorResponse, error)
 }
 
@@ -995,251 +1209,465 @@ func (c *pipelinePublicServiceClient) TestOrganizationConnector(ctx context.Cont
 // All implementations should embed UnimplementedPipelinePublicServiceServer
 // for forward compatibility
 type PipelinePublicServiceServer interface {
-	// Liveness method receives a LivenessRequest message and returns a
-	// LivenessResponse message.
-	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
+	// Check if the pipeline server is alive
+	//
+	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md.
 	Liveness(context.Context, *LivenessRequest) (*LivenessResponse, error)
-	// Readiness method receives a ReadinessRequest message and returns a
-	// ReadinessResponse message.
+	// Check if the pipeline server is ready
+	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error)
-	// ListPipelines method receives a ListPipelinesRequest message and returns a
-	// ListPipelinesResponse message.
+	// List accessible pipelines
+	//
+	// Returns a paginated list of pipelines that are visible to the requester.
 	ListPipelines(context.Context, *ListPipelinesRequest) (*ListPipelinesResponse, error)
-	// LookUpPipeline method receives a LookUpPipelineRequest message and returns
-	// a LookUpPipelineResponse
+	// Get a pipeline by UID
+	//
+	// Returns the details of a pipeline by a permalink defined by the resource
+	// UID.
 	LookUpPipeline(context.Context, *LookUpPipelineRequest) (*LookUpPipelineResponse, error)
-	// CreateUserPipeline method receives a CreateUserPipelineRequest message and returns
-	// a CreateUserPipelineResponse message.
+	// Create a new user pipeline
+	//
+	// Creates a new pipeline under the parenthood of a user. Users can only
+	// create a pipeline as the parent of that resource (i.e. the authenticated
+	// user must match the `parent` path parameter).
 	CreateUserPipeline(context.Context, *CreateUserPipelineRequest) (*CreateUserPipelineResponse, error)
-	// ListUserPipelines method receives a ListUserPipelinesRequest message and returns a
-	// ListUserPipelinesResponse message.
+	// List user pipelines
+	//
+	// Returns a paginated list of pipelines that belong to the specified user.
+	// The parent user may be different from the authenticated user, in which
+	// case the results will contain the pipelines that are visible to the
+	// latter.
 	ListUserPipelines(context.Context, *ListUserPipelinesRequest) (*ListUserPipelinesResponse, error)
-	// GetUserPipeline method receives a GetUserPipelineRequest message and returns a
-	// GetUserPipelineResponse message.
+	// Get a pipeline owned by a user
+	//
+	// Returns the details of a user-owned pipeline by its resource name, which is defined
+	// by the parent user and the ID of the pipeline.
 	GetUserPipeline(context.Context, *GetUserPipelineRequest) (*GetUserPipelineResponse, error)
-	// UpdateUserPipeline method receives a UpdateUserPipelineRequest message and returns
-	// a UpdateUserPipelineResponse message.
+	// Update a pipeline owned by a user
+	//
+	// Udpates a pipeline, accessing it by its resource name, which is defined by
+	// the parent user and the ID of the pipeline. The authenticated user must be
+	// the parent of the pipeline in order to modify it.
+	//
+	// In REST requests, only the supplied pipeline fields will be taken into
+	// account when updating the resource.
 	UpdateUserPipeline(context.Context, *UpdateUserPipelineRequest) (*UpdateUserPipelineResponse, error)
-	// DeleteUserPipeline method receives a DeleteUserPipelineRequest message and returns
-	// a DeleteUserPipelineResponse message.
+	// Delete a pipeline owned by a user
+	//
+	// Deletes a pipeline, accesing it by its resource name, which is defined by
+	// the parent user and the ID of the pipeline. The authenticated user must be
+	// the parent of the pipeline in order to delete it.
 	DeleteUserPipeline(context.Context, *DeleteUserPipelineRequest) (*DeleteUserPipelineResponse, error)
-	// Validate a pipeline.
+	// Validate a pipeline a pipeline owned by a user
+	//
+	// Validates a pipeline by its resource name, which is defined by the parent
+	// user and the ID of the pipeline.
+	//
+	// Validation checks the recipe of the pipeline and the status of its components.
 	ValidateUserPipeline(context.Context, *ValidateUserPipelineRequest) (*ValidateUserPipelineResponse, error)
-	// RenameUserPipeline method receives a RenameUserPipelineRequest message and returns
-	// a RenameUserPipelineResponse message.
+	// Rename a pipeline owned by a user
+	//
+	// Updates the ID of a pipeline. Since this is an output-only field, a custom
+	// method is required to modify it.
+	//
+	// The pipeline name will be updated accordingly, as it is  composed by the
+	// parent user and ID of the pipeline (e.g.
+	// `users/luigi/pipelines/pizza-recipe-generator`).
+	//
+	// The authenticated user must be the parent of the pipeline in order to
+	// perform this action.
 	RenameUserPipeline(context.Context, *RenameUserPipelineRequest) (*RenameUserPipelineResponse, error)
-	// TriggerUserPipeline method receives a TriggerUserPipelineRequest message
-	// and returns a TriggerUserPipelineResponse.
+	// Trigger a pipeline owned by a user
+	//
+	// Triggers the execution of a pipeline synchronously, i.e., the result is
+	// sent back to the user right after the data is processed. This method is
+	// intended for real-time inference when low latency is of concern.
+	//
+	// The pipeline is identified by its resource name, formed by the parent user
+	// and ID of the pipeline.
+	//
+	// For more information, see [Trigger
+	// Pipeline](https://www.instill.tech/docs/latest/core/concepts/pipeline#trigger-pipeline).
 	TriggerUserPipeline(context.Context, *TriggerUserPipelineRequest) (*TriggerUserPipelineResponse, error)
-	// TriggerAsyncUserPipeline method receives a TriggerAsyncUserPipelineRequest message and
-	// returns a TriggerAsyncUserPipelineResponse.
+	// Trigger a pipeline owned by a user asynchronously
+	//
+	// Triggers the execution of a pipeline asynchronously, i.e., the result
+	// contains the necessary information to access the result and status of the
+	// operation. This method is intended for cases that require long-running
+	// workloads.
+	//
+	// The pipeline is identified by its resource name, formed by the parent user
+	// and ID of the pipeline.
+	//
+	// For more information, see [Trigger
+	// Pipeline](https://www.instill.tech/docs/latest/core/concepts/pipeline#trigger-pipeline).
 	TriggerAsyncUserPipeline(context.Context, *TriggerAsyncUserPipelineRequest) (*TriggerAsyncUserPipelineResponse, error)
-	// CreateUserPipelineRelease method receives a CreateUserPipelineReleaseRequest message and returns
-	// a CreateUserPipelineReleaseResponse message.
+	// Release a version of a pipeline owned by a user
+	//
+	// Commits the version of a pipeline, identified by its resource name, which
+	// is formed by the parent user and ID of the pipeline.
+	//
+	// The authenticated user must be the parent of the pipeline in order to
+	// perform this action.
 	CreateUserPipelineRelease(context.Context, *CreateUserPipelineReleaseRequest) (*CreateUserPipelineReleaseResponse, error)
-	// ListUserPipelineReleases method receives a ListUserPipelineReleasesRequest message and returns a
-	// ListUserPipelineReleasesResponse message.
+	// List the releases in a pipeline owned by a user
+	//
+	// Lists the commited versions of a pipeline, identified by its resource
+	// name, which is formed by the parent user and ID of the pipeline.
 	ListUserPipelineReleases(context.Context, *ListUserPipelineReleasesRequest) (*ListUserPipelineReleasesResponse, error)
-	// GetUserPipelineRelease method receives a GetUserPipelineReleaseRequest message and returns a
-	// GetUserPipelineReleaseResponse message.
+	// Get a release in a pipeline owned by a user
+	//
+	// Gets the details of a pipeline release, where the pipeline is identified
+	// by its resource name, formed by its parent user and ID.
 	GetUserPipelineRelease(context.Context, *GetUserPipelineReleaseRequest) (*GetUserPipelineReleaseResponse, error)
-	// UpdateUserPipelineRelease method receives a UpdateUserPipelineReleaseRequest message and returns
-	// a UpdateUserPipelineReleaseResponse message.
+	// Update a release in a pipeline owned by a user
+	//
+	// Updates the details of a pipeline release, where the pipeline is
+	// identified by its resource name, formed by its parent user and ID.
+	//
+	// The authenticated user must be the parent of the pipeline in order to
+	// perform this action.
 	UpdateUserPipelineRelease(context.Context, *UpdateUserPipelineReleaseRequest) (*UpdateUserPipelineReleaseResponse, error)
-	// DeleteUserPipelineRelease method receives a DeleteUserPipelineReleaseRequest message and returns
-	// a DeleteUserPipelineReleaseResponse message.
+	// Delete a release in a pipeline owned by a user
+	//
+	// Deletes a pipeline release, where the pipeline is identified by its
+	// resource name, formed by its parent user and ID.
+	//
+	// The authenticated user must be the parent of the pipeline in order to
+	// perform this action.
 	DeleteUserPipelineRelease(context.Context, *DeleteUserPipelineReleaseRequest) (*DeleteUserPipelineReleaseResponse, error)
-	// RestoreUserPipelineRelease method receives a RestoreUserPipelineReleaseRequest message
-	// and returns a RestoreUserPipelineReleaseResponse
+	// Set the version of a pipeline owned by a user to a pinned release
+	//
+	// Sets the pipeline configuration to a pinned version defined by a release.
+	//
+	// The pipeline is identified by its resource name, formed by its parent user
+	// and ID.
+	//
+	// The authenticated user must be the parent of the pipeline in order to
+	// perform this action.
 	RestoreUserPipelineRelease(context.Context, *RestoreUserPipelineReleaseRequest) (*RestoreUserPipelineReleaseResponse, error)
-	// WatchUserPipelineRelease method receives a WatchUserPipelineReleaseRequest message
-	// and returns a WatchUserPipelineReleaseResponse
+	// Get the state of a release in a pipeline owned by a user
+	//
+	// Gets the state of a pipeline release, where the pipeline is identified by
+	// its resource name, formed by the parent user and ID of the pipeline.
 	WatchUserPipelineRelease(context.Context, *WatchUserPipelineReleaseRequest) (*WatchUserPipelineReleaseResponse, error)
-	// RenameUserPipelineRelease method receives a RenameUserPipelineReleaseRequest message and returns
-	// a RenameUserPipelineReleaseResponse message.
+	// Rename a release in a pipeline owned by a user
+	//
+	// Updates the ID of a pipeline release, where the pipeline is identified by
+	// its resource name, formed by the parent user and ID. Since this is an
+	// output-only field, a custom method is required to modify it.
+	//
+	// The pipeline release name will be updated accordingly, as it is  composed
+	// by the pipeline name and the ID of the release (e.g.
+	// `users/luigi/pipelines/pizza-recipe-generator/releases/v0.2.1`).
+	//
+	// The authenticated user must be the parent of the pipeline in order to
+	// perform this action.
 	RenameUserPipelineRelease(context.Context, *RenameUserPipelineReleaseRequest) (*RenameUserPipelineReleaseResponse, error)
-	// TriggerUserPipelineRelease method receives a TriggeUserPipelineReleaseRequest message
-	// and returns a TriggerPipelineReleasePipelineResponse.
+	// Trigger a version of a pipeline owned by a user
+	//
+	// Triggers the synchronous execution of of a pipeline. While the trigger
+	// endpoint (where the release version isn't specified) triggers the pipeline
+	// at its latest release, this method allows the client to specified any
+	// committed release.
+	//
+	// The pipeline is identified by its resource name, formed by its parent user
+	// and ID.
 	TriggerUserPipelineRelease(context.Context, *TriggerUserPipelineReleaseRequest) (*TriggerUserPipelineReleaseResponse, error)
-	// TriggerAsyncUserPipelineRelease method receives a TriggerAsyncUserPipelineReleaseRequest message and
-	// returns a TriggerAsyncUserPipelineReleaseResponse.
+	// Trigger a version of a pipeline owned by a user asynchronously
+	//
+	// Triggers the asynchronous execution of of a pipeline. While the trigger
+	// endpoint (where the release version isn't specified) triggers the pipeline
+	// at its latest release, this method allows the client to specified any
+	// committed release.
+	//
+	// The pipeline is identified by its resource name, formed by its parent user
+	// and ID.
 	TriggerAsyncUserPipelineRelease(context.Context, *TriggerAsyncUserPipelineReleaseRequest) (*TriggerAsyncUserPipelineReleaseResponse, error)
-	// CreateOrganizationPipeline method receives a CreateOrganizationPipelineRequest message and returns
-	// a CreateOrganizationPipelineResponse message.
+	// Create a new organization pipeline
+	//
+	// Creates a new pipeline under the parenthood of an organization.
 	CreateOrganizationPipeline(context.Context, *CreateOrganizationPipelineRequest) (*CreateOrganizationPipelineResponse, error)
-	// ListOrganizationPipelines method receives a ListOrganizationPipelinesRequest message and returns a
-	// ListOrganizationPipelinesResponse message.
+	// List organization pipelines
+	//
+	// Returns a paginated list of pipelines that belong to the specified
+	// organization.
 	ListOrganizationPipelines(context.Context, *ListOrganizationPipelinesRequest) (*ListOrganizationPipelinesResponse, error)
-	// GetOrganizationPipeline method receives a GetOrganizationPipelineRequest message and returns a
-	// GetOrganizationPipelineResponse message.
+	// Get a pipeline owned by an organization
+	//
+	// Returns the details of an organization-owned pipeline by its resource name,
+	// which is defined by the parent organization and the ID of the pipeline.
 	GetOrganizationPipeline(context.Context, *GetOrganizationPipelineRequest) (*GetOrganizationPipelineResponse, error)
-	// UpdateOrganizationPipeline method receives a UpdateOrganizationPipelineRequest message and returns
-	// a UpdateOrganizationPipelineResponse message.
+	// Update a pipeline owned by an organization
+	//
+	// # Udpates a pipeline, accessing it by its resource name, which is defined by
+	//
+	// In REST requests, only the supplied pipeline fields will be taken into
+	// account when updating the resource.
 	UpdateOrganizationPipeline(context.Context, *UpdateOrganizationPipelineRequest) (*UpdateOrganizationPipelineResponse, error)
-	// DeleteOrganizationPipeline method receives a DeleteOrganizationPipelineRequest message and returns
-	// a DeleteOrganizationPipelineResponse message.
+	// Delete a pipeline owned by an organization
+	//
+	// Deletes a pipeline, accesing it by its resource name, which is defined by
+	// the parent organization and the ID of the pipeline.
 	DeleteOrganizationPipeline(context.Context, *DeleteOrganizationPipelineRequest) (*DeleteOrganizationPipelineResponse, error)
-	// Validate a pipeline.
+	// Validate a pipeline a pipeline owned by an organization
+	//
+	// Validates a pipeline by its resource name, which is defined by the parent
+	// organization and the ID of the pipeline.
+	//
+	// Validation checks the recipe of the pipeline and the status of its
+	// components.
 	ValidateOrganizationPipeline(context.Context, *ValidateOrganizationPipelineRequest) (*ValidateOrganizationPipelineResponse, error)
-	// RenameOrganizationPipeline method receives a RenameOrganizationPipelineRequest message and returns
-	// a RenameOrganizationPipelineResponse message.
+	// Rename a pipeline owned by an organization
+	//
+	// Updates the ID of a pipeline. Since this is an output-only field, a custom
+	// method is required to modify it.
+	//
+	// The pipeline name will be updated accordingly, as it is  composed by the
+	// parent organization and ID of the pipeline (e.g.
+	// `organizations/luigi/pipelines/pizza-recipe-generator`).
 	RenameOrganizationPipeline(context.Context, *RenameOrganizationPipelineRequest) (*RenameOrganizationPipelineResponse, error)
-	// TriggerOrganizationPipeline method receives a TriggerOrganizationPipelineRequest message
-	// and returns a TriggerOrganizationPipelineResponse.
+	// Trigger a pipeline owned by an organization
+	//
+	// Triggers the execution of a pipeline synchronously, i.e., the result is sent
+	// back to the organization right after the data is processed. This method is
+	// intended for real-time inference when low latency is of concern.
+	//
+	// The pipeline is identified by its resource name, formed by the parent
+	// organization and ID of the pipeline.
+	//
+	// For more information, see [Trigger
+	// Pipeline](https://www.instill.tech/docs/latest/core/concepts/pipeline#trigger-pipeline).
 	TriggerOrganizationPipeline(context.Context, *TriggerOrganizationPipelineRequest) (*TriggerOrganizationPipelineResponse, error)
-	// TriggerAsyncOrganizationPipeline method receives a TriggerAsyncOrganizationPipelineRequest message and
-	// returns a TriggerAsyncOrganizationPipelineResponse.
+	// Trigger a pipeline owned by an organization asynchronously
+	//
+	// Triggers the execution of a pipeline asynchronously, i.e., the result
+	// contains the necessary information to access the result and status of the
+	// operation. This method is intended for cases that require long-running
+	// workloads.
+	//
+	// The pipeline is identified by its resource name, formed by the parent
+	// organization and ID of the pipeline.
+	//
+	// For more information, see [Trigger
+	// Pipeline](https://www.instill.tech/docs/latest/core/concepts/pipeline#trigger-pipeline).
 	TriggerAsyncOrganizationPipeline(context.Context, *TriggerAsyncOrganizationPipelineRequest) (*TriggerAsyncOrganizationPipelineResponse, error)
-	// CreateOrganizationPipelineRelease method receives a CreateOrganizationPipelineReleaseRequest message and returns
-	// a CreateOrganizationPipelineReleaseResponse message.
+	// Release a version of a pipeline owned by an organization
+	//
+	// Commits the version of a pipeline, identified by its resource name, which is
+	// formed by the parent organization and ID of the pipeline.
 	CreateOrganizationPipelineRelease(context.Context, *CreateOrganizationPipelineReleaseRequest) (*CreateOrganizationPipelineReleaseResponse, error)
-	// ListOrganizationPipelineReleases method receives a ListOrganizationPipelineReleasesRequest message and returns a
-	// ListOrganizationPipelineReleasesResponse message.
+	// List the releases in a pipeline owned by an organization
+	//
+	// Lists the commited versions of a pipeline, identified by its resource name,
+	// which is formed by the parent organization and ID of the pipeline.
 	ListOrganizationPipelineReleases(context.Context, *ListOrganizationPipelineReleasesRequest) (*ListOrganizationPipelineReleasesResponse, error)
-	// GetOrganizationPipelineRelease method receives a GetOrganizationPipelineReleaseRequest message and returns a
-	// GetOrganizationPipelineReleaseResponse message.
+	// Get a release in a pipeline owned by an organization
+	//
+	// Gets the details of a pipeline release, where the pipeline is identified by
+	// its resource name, formed by its parent organization and ID.
 	GetOrganizationPipelineRelease(context.Context, *GetOrganizationPipelineReleaseRequest) (*GetOrganizationPipelineReleaseResponse, error)
-	// UpdateOrganizationPipelineRelease method receives a UpdateOrganizationPipelineReleaseRequest message and returns
-	// a UpdateOrganizationPipelineReleaseResponse message.
+	// Update a release in a pipeline owned by an organization
+	//
+	// Updates the details of a pipeline release, where the pipeline is identified
+	// by its resource name, formed by its parent organization and ID.
 	UpdateOrganizationPipelineRelease(context.Context, *UpdateOrganizationPipelineReleaseRequest) (*UpdateOrganizationPipelineReleaseResponse, error)
-	// DeleteOrganizationPipelineRelease method receives a DeleteOrganizationPipelineReleaseRequest message and returns
-	// a DeleteOrganizationPipelineReleaseResponse message.
+	// Delete a release in a pipeline owned by an organization
+	//
+	// Deletes a pipeline release, where the pipeline is identified by its resource
+	// name, formed by its parent organization and ID.
 	DeleteOrganizationPipelineRelease(context.Context, *DeleteOrganizationPipelineReleaseRequest) (*DeleteOrganizationPipelineReleaseResponse, error)
-	// RestoreOrganizationPipelineRelease method receives a RestoreOrganizationPipelineReleaseRequest message
-	// and returns a RestoreOrganizationPipelineReleaseResponse
+	// Set the version of a pipeline owned by an organization to a pinned release
+	//
+	// Sets the pipeline configuration to a pinned version defined by a release.
+	//
+	// The pipeline is identified by its resource name, formed by its parent
+	// organization and ID.
 	RestoreOrganizationPipelineRelease(context.Context, *RestoreOrganizationPipelineReleaseRequest) (*RestoreOrganizationPipelineReleaseResponse, error)
-	// WatchOrganizationPipelineRelease method receives a WatchOrganizationPipelineReleaseRequest message
-	// and returns a WatchOrganizationPipelineReleaseResponse
+	// Get the state of a release in a pipeline owned by an organization
+	//
+	// Gets the state of a pipeline release, where the pipeline is identified by
+	// its resource name, formed by the parent organization and ID of the pipeline.
 	WatchOrganizationPipelineRelease(context.Context, *WatchOrganizationPipelineReleaseRequest) (*WatchOrganizationPipelineReleaseResponse, error)
-	// RenameOrganizationPipelineRelease method receives a RenameOrganizationPipelineReleaseRequest message and returns
-	// a RenameOrganizationPipelineReleaseResponse message.
+	// Rename a release in a pipeline owned by an organization
+	//
+	// Updates the ID of a pipeline release, where the pipeline is identified by
+	// its resource name, formed by the parent organization and ID. Since this is
+	// an output-only field, a custom method is required to modify it.
+	//
+	// The pipeline release name will be updated accordingly, as it is  composed by
+	// the pipeline name and the ID of the release (e.g.
+	// `organizations/luigi/pipelines/pizza-recipe-generator/releases/v0.2.1`).
 	RenameOrganizationPipelineRelease(context.Context, *RenameOrganizationPipelineReleaseRequest) (*RenameOrganizationPipelineReleaseResponse, error)
-	// TriggerOrganizationPipelineRelease method receives a TriggeOrganizationPipelineReleaseRequest message
-	// and returns a TriggerPipelineReleasePipelineResponse.
+	// Trigger a version of a pipeline owned by an organization
+	//
+	// Triggers the synchronous execution of of a pipeline. While the trigger
+	// endpoint (where the release version isn't specified) triggers the pipeline
+	// at its latest release, this method allows the client to specified any
+	// committed release.
+	//
+	// The pipeline is identified by its resource name, formed by its parent
+	// organization and ID.
 	TriggerOrganizationPipelineRelease(context.Context, *TriggerOrganizationPipelineReleaseRequest) (*TriggerOrganizationPipelineReleaseResponse, error)
-	// TriggerAsyncOrganizationPipelineRelease method receives a TriggerAsyncOrganizationPipelineReleaseRequest message and
-	// returns a TriggerAsyncOrganizationPipelineReleaseResponse.
+	// Trigger a version of a pipeline owned by an organization asynchronously
+	//
+	// Triggers the asynchronous execution of of a pipeline. While the trigger
+	// endpoint (where the release version isn't specified) triggers the pipeline
+	// at its latest release, this method allows the client to specified any
+	// committed release.
+	//
+	// The pipeline is identified by its resource name, formed by its parent
+	// organization and ID.
 	TriggerAsyncOrganizationPipelineRelease(context.Context, *TriggerAsyncOrganizationPipelineReleaseRequest) (*TriggerAsyncOrganizationPipelineReleaseResponse, error)
-	// GetOperation method receives a
-	// GetOperationRequest message and returns a
-	// GetOperationResponse message.
+	// Get the details of a long-running operation
+	//
+	// This method allows requesters to request the status and outcome of
+	// long-running operations such as asynchronous pipeline triggers.
 	GetOperation(context.Context, *GetOperationRequest) (*GetOperationResponse, error)
-	// ListConnectorDefinitions method receives a
-	// ListConnectorDefinitionsRequest message and returns a
-	// ListConnectorDefinitionsResponse message.
+	// List connector definitions
+	//
+	// Returns a paginated list of connector definitions.
 	ListConnectorDefinitions(context.Context, *ListConnectorDefinitionsRequest) (*ListConnectorDefinitionsResponse, error)
-	// GetConnectorDefinition method receives a
-	// GetConnectorDefinitionRequest message and returns a
-	// GetGetConnectorDefinitionResponse message.
+	// Get connector definition
+	//
+	// Returns the details of a connector definition.
 	GetConnectorDefinition(context.Context, *GetConnectorDefinitionRequest) (*GetConnectorDefinitionResponse, error)
-	// ListOperatorDefinitions method receives a
-	// ListOperatorDefinitionsRequest message and returns a
-	// ListOperatorDefinitionsResponse message.
+	// List operator definitions
+	//
+	// Returns a paginated list of operator definitions.
 	ListOperatorDefinitions(context.Context, *ListOperatorDefinitionsRequest) (*ListOperatorDefinitionsResponse, error)
-	// GetOperatorDefinition method receives a
-	// GetOperatorDefinitionRequest message and returns a
-	// GetGetOperatorDefinitionResponse message.
+	// Get operator definition
+	//
+	// Returns the details of an operator definition.
 	GetOperatorDefinition(context.Context, *GetOperatorDefinitionRequest) (*GetOperatorDefinitionResponse, error)
-	// ListConnectors method receives a
-	// ListConnectorsRequest message and returns a
-	// ListConnectorsResponse message.
+	// List connectors
+	//
+	// Returns all the connectors that are visible to the authenticated user.
 	ListConnectors(context.Context, *ListConnectorsRequest) (*ListConnectorsResponse, error)
-	// LookUpConnector method receives a
-	// LookUpConnectorRequest message and returns a
-	// LookUpConnectorResponse
+	// Get a connector by UID
+	//
+	// Returns the details of a connector by UID.
 	LookUpConnector(context.Context, *LookUpConnectorRequest) (*LookUpConnectorResponse, error)
-	// CreateUserConnector method receives a
-	// CreateUserConnectorRequest message and returns a
-	// CreateUserConnectorResponse message.
+	// Create a new user connector
+	//
+	// Creates a new connector under the parenthood of a user. Users can only
+	// create a connector parents of that resource (i.e. the authenticated user
+	// must match the `parent` path parameter).
 	CreateUserConnector(context.Context, *CreateUserConnectorRequest) (*CreateUserConnectorResponse, error)
-	// ListUserConnectors method receives a
-	// ListUserConnectorsRequest message and returns a
-	// ListUserConnectorsResponse message.
+	// List user connectors
+	//
+	// Returns a paginated list of connectors that belong to the specified user.
 	ListUserConnectors(context.Context, *ListUserConnectorsRequest) (*ListUserConnectorsResponse, error)
-	// GetUserConnector method receives a GetUserConnectorRequest
-	// message and returns a GetUserConnectorResponse message.
+	// Get a connector owned by a user.
+	//
+	// Returns the details of a user-owned connector.
 	GetUserConnector(context.Context, *GetUserConnectorRequest) (*GetUserConnectorResponse, error)
-	// UpdateUserConnector method receives a
-	// UpdateUserConnectorRequest message and returns a
-	// UpdateUserConnectorResponse message.
+	// Update a connector owned by a user.
+	//
+	// Updates a user-owned connector. The authebnticated user must be the parent
+	// of the connector.
+	//
+	// In REST requests, only the supplied connector fields will be taken into
+	// account when updating the resource.
 	UpdateUserConnector(context.Context, *UpdateUserConnectorRequest) (*UpdateUserConnectorResponse, error)
-	// DeleteUserConnector method receives a
-	// DeleteUserConnectorRequest message and returns a
-	// DeleteUserConnectorResponse message.
+	// Delete a connector owned by a user
+	//
+	// Deletes a connector. The authenticated user must be the parent of the
+	// connector in order to delete it.
 	DeleteUserConnector(context.Context, *DeleteUserConnectorRequest) (*DeleteUserConnectorResponse, error)
-	// Connect a connector.
-	// The "state" of the connector after connecting is "CONNECTED".
-	// ConnectUserConnector can be called on Connector in the
-	// state `DISCONNECTED`; Connector in a different state (including
-	// `CONNECTED`) returns an error.
+	// Connect a connector owned by a user
+	//
+	// Transitions the state of a connector from `DISCONNECTED` to `CONNECTED`. If
+	// the state of the connector is different when the request is made, an error
+	// is returned.
 	ConnectUserConnector(context.Context, *ConnectUserConnectorRequest) (*ConnectUserConnectorResponse, error)
-	// Disconnect a connector.
-	// The "state" of the connector after disconnecting is "DISCONNECTED".
-	// DisconnectUserConnector can be called on Connector in the
-	// state `CONNECTED`; Connector in a different state (including
-	// `DISCONNECTED`) returns an error.
+	// Disconnect a connector owned by a user
+	//
+	// Transitions the state of a connector from `CONNECTED` to `DISCONNECTED`. If
+	// the state of the connector is different when the request is made, an error
+	// is returned.
 	DisconnectUserConnector(context.Context, *DisconnectUserConnectorRequest) (*DisconnectUserConnectorResponse, error)
-	// RenameUserConnector method receives a
-	// RenameUserConnectorRequest message and returns a
-	// RenameUserConnectorResponse message.
+	// Rename a connector owned by a user
+	//
+	// Updates the ID of a connector. Since this is an output-only field, a custom
+	// method is required to modify it.
+	//
+	// The connector name will be updated accordingly, as it is  composed by the
+	// parent user and ID of the connector (e.g.
+	// `users/indiana-jones/connector/whip`).
+	//
+	// The authenticated user must be the parent of the connector in order to
+	// perform this action.
 	RenameUserConnector(context.Context, *RenameUserConnectorRequest) (*RenameUserConnectorResponse, error)
-	// ExecuteUserConnector method receives a
-	// ExecuteUserConnectorRequest message and returns a
-	// ExecuteUserConnectorResponse message.
+	// Execute a connector owned by a user
+	//
+	// Executes a task in a user-owned connector.
 	ExecuteUserConnector(context.Context, *ExecuteUserConnectorRequest) (*ExecuteUserConnectorResponse, error)
-	// WatchUserConnector method receives a
-	// WatchUserConnectorRequest message and returns a
-	// WatchUserConnectorResponse
+	// Get the state of a connector owned by a user
+	//
+	// Gets the state of a user-owned connector.
 	WatchUserConnector(context.Context, *WatchUserConnectorRequest) (*WatchUserConnectorResponse, error)
-	// TestUserConnector method receives a TestUserConnectorRequest
-	// message and returns a TestUserConnectorResponse
+	// Test a connector owned by a user
+	//
+	// Tests the connection on a user-owned connector.
 	TestUserConnector(context.Context, *TestUserConnectorRequest) (*TestUserConnectorResponse, error)
-	// CreateOrganizationConnector method receives a
-	// CreateOrganizationConnectorRequest message and returns a
-	// CreateOrganizationConnectorResponse message.
+	// Create a new organization connector
+	//
+	// Creates a new connector under the parenthood of an organization.
 	CreateOrganizationConnector(context.Context, *CreateOrganizationConnectorRequest) (*CreateOrganizationConnectorResponse, error)
-	// ListOrganizationConnectors method receives a
-	// ListOrganizationConnectorsRequest message and returns a
-	// ListOrganizationConnectorsResponse message.
+	// List organization connectors
+	//
+	// Returns a paginated list of connectors that belong to the specified
+	// organization.
 	ListOrganizationConnectors(context.Context, *ListOrganizationConnectorsRequest) (*ListOrganizationConnectorsResponse, error)
-	// GetOrganizationConnector method receives a GetOrganizationConnectorRequest
-	// message and returns a GetOrganizationConnectorResponse message.
+	// Get a connector owned by an organization.
+	//
+	// Returns the details of an organization-owned connector.
 	GetOrganizationConnector(context.Context, *GetOrganizationConnectorRequest) (*GetOrganizationConnectorResponse, error)
-	// UpdateOrganizationConnector method receives a
-	// UpdateOrganizationConnectorRequest message and returns a
-	// UpdateOrganizationConnectorResponse message.
+	// Update a connector owned by an organization.
+	//
+	// Updates an organization-owned connector.
+	//
+	// In REST requests, only the supplied connector fields will be taken into
+	// account when updating the resource.
 	UpdateOrganizationConnector(context.Context, *UpdateOrganizationConnectorRequest) (*UpdateOrganizationConnectorResponse, error)
-	// DeleteOrganizationConnector method receives a
-	// DeleteOrganizationConnectorRequest message and returns a
-	// DeleteOrganizationConnectorResponse message.
+	// Delete a connector owned by an organization
+	//
+	// Deletes a connector.
 	DeleteOrganizationConnector(context.Context, *DeleteOrganizationConnectorRequest) (*DeleteOrganizationConnectorResponse, error)
-	// Connect a connector.
-	// The "state" of the connector after connecting is "CONNECTED".
-	// ConnectOrganizationConnector can be called on Connector in the
-	// state `DISCONNECTED`; Connector in a different state (including
-	// `CONNECTED`) returns an error.
+	// Connect a connector owned by an organization
+	//
+	// Transitions the state of a connector from `DISCONNECTED` to `CONNECTED`. If
+	// the state of the connector is different when the request is made, an error
+	// is returned.
 	ConnectOrganizationConnector(context.Context, *ConnectOrganizationConnectorRequest) (*ConnectOrganizationConnectorResponse, error)
-	// Disconnect a connector.
-	// The "state" of the connector after disconnecting is "DISCONNECTED".
-	// DisconnectOrganizationConnector can be called on Connector in the
-	// state `CONNECTED`; Connector in a different state (including
-	// `DISCONNECTED`) returns an error.
+	// Disconnect a connector owned by an organization
+	//
+	// Transitions the state of a connector from `CONNECTED` to `DISCONNECTED`. If
+	// the state of the connector is different when the request is made, an error
+	// is returned.
 	DisconnectOrganizationConnector(context.Context, *DisconnectOrganizationConnectorRequest) (*DisconnectOrganizationConnectorResponse, error)
-	// RenameOrganizationConnector method receives a
-	// RenameOrganizationConnectorRequest message and returns a
-	// RenameOrganizationConnectorResponse message.
+	// Rename a connector owned by an organization
+	//
+	// Updates the ID of a connector. Since this is an output-only field, a custom
+	// method is required to modify it.
+	//
+	// The connector name will be updated accordingly, as it is  composed by the
+	// parent organization and ID of the connector (e.g.
+	// `organizations/indiana-jones/connector/whip`).
 	RenameOrganizationConnector(context.Context, *RenameOrganizationConnectorRequest) (*RenameOrganizationConnectorResponse, error)
-	// ExecuteOrganizationConnector method receives a
-	// ExecuteOrganizationConnectorRequest message and returns a
-	// ExecuteOrganizationConnectorResponse message.
+	// Execute a connector owned by an organization
+	//
+	// Executes a task in an organization-owned connector.
 	ExecuteOrganizationConnector(context.Context, *ExecuteOrganizationConnectorRequest) (*ExecuteOrganizationConnectorResponse, error)
-	// WatchOrganizationConnector method receives a
-	// WatchOrganizationConnectorRequest message and returns a
-	// WatchOrganizationConnectorResponse
+	// Get the state of a connector owned by an organization
+	//
+	// Gets the state of an organization-owned connector.
 	WatchOrganizationConnector(context.Context, *WatchOrganizationConnectorRequest) (*WatchOrganizationConnectorResponse, error)
-	// TestOrganizationConnector method receives a TestOrganizationConnectorRequest
-	// message and returns a TestOrganizationConnectorResponse
+	// Test a connector owned by an organization
+	//
+	// Tests the connection on an organization-owned connector.
 	TestOrganizationConnector(context.Context, *TestOrganizationConnectorRequest) (*TestOrganizationConnectorResponse, error)
 }
 

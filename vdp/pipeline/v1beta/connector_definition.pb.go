@@ -23,7 +23,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// ConnectorType holds the different connector types based on their tasks.
+// ConnectorType defines the connector type based on its task features.
 type ConnectorType int32
 
 const (
@@ -145,18 +145,17 @@ func (ConnectorDefinition_View) EnumDescriptor() ([]byte, []int) {
 	return file_vdp_pipeline_v1beta_connector_definition_proto_rawDescGZIP(), []int{1, 0}
 }
 
-// //////////////////////////////////
-// Spec represents a spec data model
+// ConnectorSpec represents a specification data model.
 type ConnectorSpec struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Spec resource specification
+	// Resource specification.
 	ResourceSpecification *structpb.Struct `protobuf:"bytes,2,opt,name=resource_specification,json=resourceSpecification,proto3" json:"resource_specification,omitempty"`
-	// Spec component specification
+	// Component specification.
 	ComponentSpecification *structpb.Struct `protobuf:"bytes,3,opt,name=component_specification,json=componentSpecification,proto3" json:"component_specification,omitempty"`
-	// Spec openapi specification
+	// OpenAPI specification.
 	OpenapiSpecifications *structpb.Struct `protobuf:"bytes,4,opt,name=openapi_specifications,json=openapiSpecifications,proto3" json:"openapi_specifications,omitempty"`
 }
 
@@ -231,7 +230,7 @@ type ConnectorDefinition struct {
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Connector definition UUID.
 	Uid string `protobuf:"bytes,2,opt,name=uid,proto3" json:"uid,omitempty"`
-	// Connector definition resource ID (used in the name as the last segment). This
+	// Connector definition resource ID (used in `name` as the last segment). This
 	// conforms to RFC-1034, which restricts to letters, numbers, and hyphen,
 	// with the first character a letter, the last a letter or a number, and a 63
 	// character maximum.
@@ -393,23 +392,24 @@ func (x *ConnectorDefinition) GetVendorAttributes() *structpb.Struct {
 	return nil
 }
 
-// ListConnectorDefinitionsRequest represents a request to list
-// ConnectorDefinitions
+// ListConnectorDefinitionsRequest represents a request to list connector
+// definitions.
 type ListConnectorDefinitionsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The maximum number of ConnectorDefinitions to return. The
-	// service may return fewer than this value. If unspecified, at most 10
-	// ConnectorDefinitions will be returned. The maximum value is 100;
-	// values above 100 will be coerced to 100.
+	// The maximum number of connector definitions to return. If this parameter
+	// is unspecified, at most 10 pipelines will be returned. The cap value for
+	// this parameter is 100 (i.e. any value above that will be coerced to 100).
 	PageSize *int32 `protobuf:"varint,1,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
-	// Page token
+	// Page token.
 	PageToken *string `protobuf:"bytes,2,opt,name=page_token,json=pageToken,proto3,oneof" json:"page_token,omitempty"`
-	// Definition view (default is DEFINITION_VIEW_BASIC)
+	// View allows clients to specify the desired resource view in the response.
 	View *ConnectorDefinition_View `protobuf:"varint,3,opt,name=view,proto3,enum=vdp.pipeline.v1beta.ConnectorDefinition_View,oneof" json:"view,omitempty"`
-	// Filter expression to list connector definitions
+	// Filter can hold an [AIP-160](https://google.aip.dev/160)-compliant filter
+	// expression.
+	// - Example: `create_time>timestamp("2000-06-19T23:31:08.657Z")`.
 	Filter *string `protobuf:"bytes,4,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
 }
 
@@ -473,18 +473,17 @@ func (x *ListConnectorDefinitionsRequest) GetFilter() string {
 	return ""
 }
 
-// ListConnectorDefinitionsResponse represents a response for a list
-// of ConnectorDefinitions
+// ListConnectorDefinitionsResponse contains a list of connector definitions.
 type ListConnectorDefinitionsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// A list of ConnectorDefinition resources
+	// A list of connector definition resources.
 	ConnectorDefinitions []*ConnectorDefinition `protobuf:"bytes,1,rep,name=connector_definitions,json=connectorDefinitions,proto3" json:"connector_definitions,omitempty"`
-	// Next page token
+	// Next page token.
 	NextPageToken string `protobuf:"bytes,2,opt,name=next_page_token,json=nextPageToken,proto3" json:"next_page_token,omitempty"`
-	// Total count of ConnectorDefinition resources
+	// Total number of connector definitions.
 	TotalSize int32 `protobuf:"varint,3,opt,name=total_size,json=totalSize,proto3" json:"total_size,omitempty"`
 }
 
@@ -541,18 +540,17 @@ func (x *ListConnectorDefinitionsResponse) GetTotalSize() int32 {
 	return 0
 }
 
-// GetConnectorDefinitionRequest represents a request to query a
-// ConnectorDefinition resource
+// GetConnectorDefinitionRequest represents a request to fetch the details of a
+// connector definition.
 type GetConnectorDefinitionRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// ConnectorDefinition resource name. It must have the format of
-	// "connector-definitions/*"
+	// The resource name of the connector definition, which allows its access by ID.
+	// - Format: `connector-definitions/{id}`.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// ConnectorDefinition resource view (default is
-	// DEFINITION_VIEW_BASIC)
+	// View allows clients to specify the desired resource view in the response.
 	View *ConnectorDefinition_View `protobuf:"varint,2,opt,name=view,proto3,enum=vdp.pipeline.v1beta.ConnectorDefinition_View,oneof" json:"view,omitempty"`
 }
 
@@ -602,14 +600,13 @@ func (x *GetConnectorDefinitionRequest) GetView() ConnectorDefinition_View {
 	return ConnectorDefinition_VIEW_UNSPECIFIED
 }
 
-// GetConnectorDefinitionResponse represents a
-// ConnectorDefinition response
+// GetConnectorDefinitionResponse contains the requested connector definition.
 type GetConnectorDefinitionResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// A ConnectorDefinition resource
+	// The connector definition resource.
 	ConnectorDefinition *ConnectorDefinition `protobuf:"bytes,1,opt,name=connector_definition,json=connectorDefinition,proto3" json:"connector_definition,omitempty"`
 }
 

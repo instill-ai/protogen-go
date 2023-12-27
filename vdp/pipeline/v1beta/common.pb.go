@@ -20,15 +20,15 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Role
+// Role describes the permissions a user has over a resource.
 type Role int32
 
 const (
-	// ROLE: UNSPECIFIED
+	// Unspecified, equivalent to VIEWER.
 	Role_ROLE_UNSPECIFIED Role = 0
-	// Role: Viewer
+	// Viewers can see the resource properties.
 	Role_ROLE_VIEWER Role = 1
-	// Role: Executor
+	// Executors can execute the resource (e.g. trigger a pipeline).
 	Role_ROLE_EXECUTOR Role = 2
 )
 
@@ -73,15 +73,24 @@ func (Role) EnumDescriptor() ([]byte, []int) {
 	return file_vdp_pipeline_v1beta_common_proto_rawDescGZIP(), []int{0}
 }
 
-// Sharing
+// Sharing contains the information to share a resource with other users.
+//
+// For more information, see [Share Pipelines](https://www.instill.tech/docs/latest/vdp/share).
 type Sharing struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// users
+	// Defines sharing rules for a set of user resource names.
+	//
+	// Each key in this object should contain a pattern that can be matched
+	// against user names.
+	//
+	// Each value is a user sharing configuration.
+	//
+	// **NOTE**: For now, the only accepted key is `*/*`.
 	Users map[string]*Sharing_User `protobuf:"bytes,1,rep,name=users,proto3" json:"users,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	// shared code
+	// Defines the configuration to share a resource via link.
 	ShareCode *Sharing_ShareCode `protobuf:"bytes,2,opt,name=share_code,json=shareCode,proto3" json:"share_code,omitempty"`
 }
 
@@ -131,15 +140,15 @@ func (x *Sharing) GetShareCode() *Sharing_ShareCode {
 	return nil
 }
 
-// Permission
+// Permission defines how a resource can be used.
 type Permission struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// can_edit
+	// Defines whether the resource can be modified.
 	CanEdit bool `protobuf:"varint,1,opt,name=can_edit,json=canEdit,proto3" json:"can_edit,omitempty"`
-	// can_trigger
+	// Defines whether the resource can be executed.
 	CanTrigger bool `protobuf:"varint,2,opt,name=can_trigger,json=canTrigger,proto3" json:"can_trigger,omitempty"`
 }
 
@@ -189,15 +198,15 @@ func (x *Permission) GetCanTrigger() bool {
 	return false
 }
 
-// User
+// Describes the sharing configuration with a given user.
 type Sharing_User struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// enabled
+	// Defines whether the sharing option with this user is enabled.
 	Enabled bool `protobuf:"varint,1,opt,name=enabled,proto3" json:"enabled,omitempty"`
-	// role
+	// Defines the role the user will have over the resource.
 	Role Role `protobuf:"varint,4,opt,name=role,proto3,enum=vdp.pipeline.v1beta.Role" json:"role,omitempty"`
 }
 
@@ -247,19 +256,22 @@ func (x *Sharing_User) GetRole() Role {
 	return Role_ROLE_UNSPECIFIED
 }
 
-// Share Code
+// ShareCode describes a sharing configuration through a link.
 type Sharing_ShareCode struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// user
+	// Defines which users will be able to access the resource through the
+	// code. This is a pattern that will be checked against user names.
+	//
+	// For now, the only accepted value is `*/*`.
 	User string `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
-	// user
+	// The public URL that allows users to access the resource.
 	Code string `protobuf:"bytes,2,opt,name=code,proto3" json:"code,omitempty"`
-	// enabled
+	// Defines whether the sharing option via link is enabled.
 	Enabled bool `protobuf:"varint,3,opt,name=enabled,proto3" json:"enabled,omitempty"`
-	// role
+	// Defines the role users will have over the resource.
 	Role Role `protobuf:"varint,4,opt,name=role,proto3,enum=vdp.pipeline.v1beta.Role" json:"role,omitempty"`
 }
 
