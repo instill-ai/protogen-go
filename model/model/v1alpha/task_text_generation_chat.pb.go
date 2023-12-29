@@ -33,7 +33,7 @@ type TextGenerationChatInput struct {
 	// The prompt images
 	PromptImages []*PromptImage `protobuf:"bytes,2,rep,name=prompt_images,json=promptImages,proto3" json:"prompt_images,omitempty"`
 	// The chat history
-	ChatHistory []*Content `protobuf:"bytes,3,rep,name=chat_history,json=chatHistory,proto3" json:"chat_history,omitempty"`
+	ChatHistory []*Message `protobuf:"bytes,3,rep,name=chat_history,json=chatHistory,proto3" json:"chat_history,omitempty"`
 	// The system message
 	SystemMessage *string `protobuf:"bytes,4,opt,name=system_message,json=systemMessage,proto3,oneof" json:"system_message,omitempty"`
 	// The maximum number of tokens for model to generate
@@ -94,7 +94,7 @@ func (x *TextGenerationChatInput) GetPromptImages() []*PromptImage {
 	return nil
 }
 
-func (x *TextGenerationChatInput) GetChatHistory() []*Content {
+func (x *TextGenerationChatInput) GetChatHistory() []*Message {
 	if x != nil {
 		return x.ChatHistory
 	}
@@ -216,8 +216,8 @@ var file_model_model_v1alpha_task_text_generation_chat_proto_rawDesc = []byte{
 	0x41, 0x01, 0x52, 0x0c, 0x70, 0x72, 0x6f, 0x6d, 0x70, 0x74, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x73,
 	0x12, 0x44, 0x0a, 0x0c, 0x63, 0x68, 0x61, 0x74, 0x5f, 0x68, 0x69, 0x73, 0x74, 0x6f, 0x72, 0x79,
 	0x18, 0x03, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x6d,
-	0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x43, 0x6f, 0x6e,
-	0x74, 0x65, 0x6e, 0x74, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x0b, 0x63, 0x68, 0x61, 0x74, 0x48,
+	0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x4d, 0x65, 0x73,
+	0x73, 0x61, 0x67, 0x65, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x0b, 0x63, 0x68, 0x61, 0x74, 0x48,
 	0x69, 0x73, 0x74, 0x6f, 0x72, 0x79, 0x12, 0x2f, 0x0a, 0x0e, 0x73, 0x79, 0x73, 0x74, 0x65, 0x6d,
 	0x5f, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03,
 	0xe0, 0x41, 0x01, 0x48, 0x00, 0x52, 0x0d, 0x73, 0x79, 0x73, 0x74, 0x65, 0x6d, 0x4d, 0x65, 0x73,
@@ -278,12 +278,12 @@ var file_model_model_v1alpha_task_text_generation_chat_proto_goTypes = []interfa
 	(*TextGenerationChatInput)(nil),  // 0: model.model.v1alpha.TextGenerationChatInput
 	(*TextGenerationChatOutput)(nil), // 1: model.model.v1alpha.TextGenerationChatOutput
 	(*PromptImage)(nil),              // 2: model.model.v1alpha.PromptImage
-	(*Content)(nil),                  // 3: model.model.v1alpha.Content
+	(*Message)(nil),                  // 3: model.model.v1alpha.Message
 	(*structpb.Struct)(nil),          // 4: google.protobuf.Struct
 }
 var file_model_model_v1alpha_task_text_generation_chat_proto_depIdxs = []int32{
 	2, // 0: model.model.v1alpha.TextGenerationChatInput.prompt_images:type_name -> model.model.v1alpha.PromptImage
-	3, // 1: model.model.v1alpha.TextGenerationChatInput.chat_history:type_name -> model.model.v1alpha.Content
+	3, // 1: model.model.v1alpha.TextGenerationChatInput.chat_history:type_name -> model.model.v1alpha.Message
 	4, // 2: model.model.v1alpha.TextGenerationChatInput.extra_params:type_name -> google.protobuf.Struct
 	3, // [3:3] is the sub-list for method output_type
 	3, // [3:3] is the sub-list for method input_type
