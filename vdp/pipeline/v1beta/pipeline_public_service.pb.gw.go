@@ -5126,7 +5126,7 @@ func RegisterPipelinePublicServiceHandlerServer(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/UpdateUserPipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{release.name=usersr/*/pipelines/*/releases/*}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/UpdateUserPipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{release.name=users/*/pipelines/*/releases/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5601,7 +5601,7 @@ func RegisterPipelinePublicServiceHandlerServer(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/UpdateOrganizationPipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{release.name=organizationsr/*/pipelines/*/releases/*}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/UpdateOrganizationPipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{release.name=organizations/*/pipelines/*/releases/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6914,7 +6914,7 @@ func RegisterPipelinePublicServiceHandlerClient(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/UpdateUserPipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{release.name=usersr/*/pipelines/*/releases/*}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/UpdateUserPipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{release.name=users/*/pipelines/*/releases/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7332,7 +7332,7 @@ func RegisterPipelinePublicServiceHandlerClient(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/UpdateOrganizationPipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{release.name=organizationsr/*/pipelines/*/releases/*}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/UpdateOrganizationPipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{release.name=organizations/*/pipelines/*/releases/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -8156,7 +8156,7 @@ var (
 
 	pattern_PipelinePublicService_GetUserPipelineRelease_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4}, []string{"v1beta", "users", "pipelines", "releases", "name"}, ""))
 
-	pattern_PipelinePublicService_UpdateUserPipelineRelease_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4}, []string{"v1beta", "usersr", "pipelines", "releases", "release.name"}, ""))
+	pattern_PipelinePublicService_UpdateUserPipelineRelease_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4}, []string{"v1beta", "users", "pipelines", "releases", "release.name"}, ""))
 
 	pattern_PipelinePublicService_DeleteUserPipelineRelease_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4}, []string{"v1beta", "users", "pipelines", "releases", "name"}, ""))
 
@@ -8194,7 +8194,7 @@ var (
 
 	pattern_PipelinePublicService_GetOrganizationPipelineRelease_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4}, []string{"v1beta", "organizations", "pipelines", "releases", "name"}, ""))
 
-	pattern_PipelinePublicService_UpdateOrganizationPipelineRelease_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4}, []string{"v1beta", "organizationsr", "pipelines", "releases", "release.name"}, ""))
+	pattern_PipelinePublicService_UpdateOrganizationPipelineRelease_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4}, []string{"v1beta", "organizations", "pipelines", "releases", "release.name"}, ""))
 
 	pattern_PipelinePublicService_DeleteOrganizationPipelineRelease_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4}, []string{"v1beta", "organizations", "pipelines", "releases", "name"}, ""))
 
