@@ -19,6 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
+	MgmtPublicService_DeleteOrganizationMembership_FullMethodName     = "/core.mgmt.v1beta.MgmtPublicService/DeleteOrganizationMembership"
 	MgmtPublicService_Liveness_FullMethodName                         = "/core.mgmt.v1beta.MgmtPublicService/Liveness"
 	MgmtPublicService_Readiness_FullMethodName                        = "/core.mgmt.v1beta.MgmtPublicService/Readiness"
 	MgmtPublicService_CheckNamespace_FullMethodName                   = "/core.mgmt.v1beta.MgmtPublicService/CheckNamespace"
@@ -37,7 +38,6 @@ const (
 	MgmtPublicService_ListOrganizationMemberships_FullMethodName      = "/core.mgmt.v1beta.MgmtPublicService/ListOrganizationMemberships"
 	MgmtPublicService_GetOrganizationMembership_FullMethodName        = "/core.mgmt.v1beta.MgmtPublicService/GetOrganizationMembership"
 	MgmtPublicService_UpdateOrganizationMembership_FullMethodName     = "/core.mgmt.v1beta.MgmtPublicService/UpdateOrganizationMembership"
-	MgmtPublicService_DeleteOrganizationMembership_FullMethodName     = "/core.mgmt.v1beta.MgmtPublicService/DeleteOrganizationMembership"
 	MgmtPublicService_GetUserSubscription_FullMethodName              = "/core.mgmt.v1beta.MgmtPublicService/GetUserSubscription"
 	MgmtPublicService_GetOrganizationSubscription_FullMethodName      = "/core.mgmt.v1beta.MgmtPublicService/GetOrganizationSubscription"
 	MgmtPublicService_CreateToken_FullMethodName                      = "/core.mgmt.v1beta.MgmtPublicService/CreateToken"
@@ -62,6 +62,10 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MgmtPublicServiceClient interface {
+	// Delete an organization membership
+	//
+	// Deletes a user membership within an organization.
+	DeleteOrganizationMembership(ctx context.Context, in *DeleteOrganizationMembershipRequest, opts ...grpc.CallOption) (*DeleteOrganizationMembershipResponse, error)
 	// Check if the MGMT server is alive
 	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md.
@@ -143,10 +147,6 @@ type MgmtPublicServiceClient interface {
 	//
 	// Updates a user membership within an organization.
 	UpdateOrganizationMembership(ctx context.Context, in *UpdateOrganizationMembershipRequest, opts ...grpc.CallOption) (*UpdateOrganizationMembershipResponse, error)
-	// Delete an organization membership
-	//
-	// Deletes a user membership within an organization.
-	DeleteOrganizationMembership(ctx context.Context, in *DeleteOrganizationMembershipRequest, opts ...grpc.CallOption) (*DeleteOrganizationMembershipResponse, error)
 	// Get a user subscription
 	//
 	// Returns the subscription details of a user.
@@ -229,6 +229,15 @@ type mgmtPublicServiceClient struct {
 
 func NewMgmtPublicServiceClient(cc grpc.ClientConnInterface) MgmtPublicServiceClient {
 	return &mgmtPublicServiceClient{cc}
+}
+
+func (c *mgmtPublicServiceClient) DeleteOrganizationMembership(ctx context.Context, in *DeleteOrganizationMembershipRequest, opts ...grpc.CallOption) (*DeleteOrganizationMembershipResponse, error) {
+	out := new(DeleteOrganizationMembershipResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_DeleteOrganizationMembership_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *mgmtPublicServiceClient) Liveness(ctx context.Context, in *LivenessRequest, opts ...grpc.CallOption) (*LivenessResponse, error) {
@@ -387,15 +396,6 @@ func (c *mgmtPublicServiceClient) GetOrganizationMembership(ctx context.Context,
 func (c *mgmtPublicServiceClient) UpdateOrganizationMembership(ctx context.Context, in *UpdateOrganizationMembershipRequest, opts ...grpc.CallOption) (*UpdateOrganizationMembershipResponse, error) {
 	out := new(UpdateOrganizationMembershipResponse)
 	err := c.cc.Invoke(ctx, MgmtPublicService_UpdateOrganizationMembership_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mgmtPublicServiceClient) DeleteOrganizationMembership(ctx context.Context, in *DeleteOrganizationMembershipRequest, opts ...grpc.CallOption) (*DeleteOrganizationMembershipResponse, error) {
-	out := new(DeleteOrganizationMembershipResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_DeleteOrganizationMembership_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -568,6 +568,10 @@ func (c *mgmtPublicServiceClient) AuthValidateAccessToken(ctx context.Context, i
 // All implementations should embed UnimplementedMgmtPublicServiceServer
 // for forward compatibility
 type MgmtPublicServiceServer interface {
+	// Delete an organization membership
+	//
+	// Deletes a user membership within an organization.
+	DeleteOrganizationMembership(context.Context, *DeleteOrganizationMembershipRequest) (*DeleteOrganizationMembershipResponse, error)
 	// Check if the MGMT server is alive
 	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md.
@@ -649,10 +653,6 @@ type MgmtPublicServiceServer interface {
 	//
 	// Updates a user membership within an organization.
 	UpdateOrganizationMembership(context.Context, *UpdateOrganizationMembershipRequest) (*UpdateOrganizationMembershipResponse, error)
-	// Delete an organization membership
-	//
-	// Deletes a user membership within an organization.
-	DeleteOrganizationMembership(context.Context, *DeleteOrganizationMembershipRequest) (*DeleteOrganizationMembershipResponse, error)
 	// Get a user subscription
 	//
 	// Returns the subscription details of a user.
@@ -733,6 +733,9 @@ type MgmtPublicServiceServer interface {
 type UnimplementedMgmtPublicServiceServer struct {
 }
 
+func (UnimplementedMgmtPublicServiceServer) DeleteOrganizationMembership(context.Context, *DeleteOrganizationMembershipRequest) (*DeleteOrganizationMembershipResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganizationMembership not implemented")
+}
 func (UnimplementedMgmtPublicServiceServer) Liveness(context.Context, *LivenessRequest) (*LivenessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Liveness not implemented")
 }
@@ -786,9 +789,6 @@ func (UnimplementedMgmtPublicServiceServer) GetOrganizationMembership(context.Co
 }
 func (UnimplementedMgmtPublicServiceServer) UpdateOrganizationMembership(context.Context, *UpdateOrganizationMembershipRequest) (*UpdateOrganizationMembershipResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrganizationMembership not implemented")
-}
-func (UnimplementedMgmtPublicServiceServer) DeleteOrganizationMembership(context.Context, *DeleteOrganizationMembershipRequest) (*DeleteOrganizationMembershipResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganizationMembership not implemented")
 }
 func (UnimplementedMgmtPublicServiceServer) GetUserSubscription(context.Context, *GetUserSubscriptionRequest) (*GetUserSubscriptionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserSubscription not implemented")
@@ -854,6 +854,24 @@ type UnsafeMgmtPublicServiceServer interface {
 
 func RegisterMgmtPublicServiceServer(s grpc.ServiceRegistrar, srv MgmtPublicServiceServer) {
 	s.RegisterService(&MgmtPublicService_ServiceDesc, srv)
+}
+
+func _MgmtPublicService_DeleteOrganizationMembership_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteOrganizationMembershipRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).DeleteOrganizationMembership(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_DeleteOrganizationMembership_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).DeleteOrganizationMembership(ctx, req.(*DeleteOrganizationMembershipRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _MgmtPublicService_Liveness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -1176,24 +1194,6 @@ func _MgmtPublicService_UpdateOrganizationMembership_Handler(srv interface{}, ct
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MgmtPublicServiceServer).UpdateOrganizationMembership(ctx, req.(*UpdateOrganizationMembershipRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MgmtPublicService_DeleteOrganizationMembership_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteOrganizationMembershipRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).DeleteOrganizationMembership(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_DeleteOrganizationMembership_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).DeleteOrganizationMembership(ctx, req.(*DeleteOrganizationMembershipRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1530,6 +1530,10 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*MgmtPublicServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "DeleteOrganizationMembership",
+			Handler:    _MgmtPublicService_DeleteOrganizationMembership_Handler,
+		},
+		{
 			MethodName: "Liveness",
 			Handler:    _MgmtPublicService_Liveness_Handler,
 		},
@@ -1600,10 +1604,6 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateOrganizationMembership",
 			Handler:    _MgmtPublicService_UpdateOrganizationMembership_Handler,
-		},
-		{
-			MethodName: "DeleteOrganizationMembership",
-			Handler:    _MgmtPublicService_DeleteOrganizationMembership_Handler,
 		},
 		{
 			MethodName: "GetUserSubscription",
