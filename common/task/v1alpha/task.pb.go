@@ -20,37 +20,37 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Task enumerates the AI task type
+// Task enumerates the AI task that a model is designed to solve.
 type Task int32
 
 const (
-	// Task: UNSPECIFIED
+	// Unspecified.
 	Task_TASK_UNSPECIFIED Task = 0
-	// Task: CLASSIFICATION
+	// Image Classification - classify images into predefined categories.
 	Task_TASK_CLASSIFICATION Task = 1
-	// Task: DETECTION
+	// Object Detection - detect and localize multiple objects in images.
 	Task_TASK_DETECTION Task = 2
-	// Task: KEYPOINT
+	// Keypoint Detection - detect and localize multiple keypoints of objects in images.
 	Task_TASK_KEYPOINT Task = 3
-	// Task: OCR
+	// OCR (Optical Character Recognition) - detect and recognize text in images.
 	Task_TASK_OCR Task = 4
-	// Task: INSTANCE SEGMENTATION
+	// Instance Segmentation - detect, localize and delineate multiple objects in images.
 	Task_TASK_INSTANCE_SEGMENTATION Task = 5
-	// Task: SEMANTIC SEGMENTATION
+	// Semantic Segmentation - classify image pixels into predefined categories.
 	Task_TASK_SEMANTIC_SEGMENTATION Task = 6
-	// Task: TEXT TO IMAGE
+	// Text to Image - generate images from input text prompts.
 	Task_TASK_TEXT_TO_IMAGE Task = 7
-	// Task: TEXT GENERATION
+	// Text Generation - generate texts from input text prompts.
 	Task_TASK_TEXT_GENERATION Task = 8
-	// Task: TEXT GENERATION CHAT
+	// Conversational Text Generation - generate text as responses to a dialog input.
 	Task_TASK_TEXT_GENERATION_CHAT Task = 9
-	// Task: VISUAL QUESTION ANSWERING
+	// Visual Question Answering - generate text as a response to a visual prompt.
 	Task_TASK_VISUAL_QUESTION_ANSWERING Task = 10
-	// Task: IMAGE TO IMAGE
+	// Image to Image - generate an image from another image.
 	Task_TASK_IMAGE_TO_IMAGE Task = 11
-	// Task: TEXT EMBEDDINGS
+	// Text Embeddings - generate an embedding (a representation as coordinates) from a text input.
 	Task_TASK_TEXT_EMBEDDINGS Task = 12
-	// Task: SPEECH RECOGNITION
+	// Speech Recognition - transcribe the words in an audio input.
 	Task_TASK_SPEECH_RECOGNITION Task = 13
 )
 

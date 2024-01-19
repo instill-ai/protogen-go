@@ -21,19 +21,20 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// InstanceSegmentationObject corresponding to a instance segmentation object
+// InstanceSegmentationObject is an object in an image, localized and
+// delineated.
 type InstanceSegmentationObject struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Instance RLE segmentation mask
+	// RLE segmentation mask.
 	Rle string `protobuf:"bytes,1,opt,name=rle,proto3" json:"rle,omitempty"`
-	// Instance category
+	// Category.
 	Category string `protobuf:"bytes,2,opt,name=category,proto3" json:"category,omitempty"`
-	// Instance score
+	// Score.
 	Score float32 `protobuf:"fixed32,3,opt,name=score,proto3" json:"score,omitempty"`
-	// Instance bounding box
+	// Bounding box.
 	BoundingBox *BoundingBox `protobuf:"bytes,4,opt,name=bounding_box,json=boundingBox,proto3" json:"bounding_box,omitempty"`
 }
 
@@ -97,13 +98,14 @@ func (x *InstanceSegmentationObject) GetBoundingBox() *BoundingBox {
 	return nil
 }
 
-// InstanceSegmentationInput represents the input of instance segmentation task
+// InstanceSegmentationInput represents the input of an instance segmentation
+// task.
 type InstanceSegmentationInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Input type
+	// Content of the input.
 	//
 	// Types that are assignable to Type:
 	//
@@ -170,12 +172,12 @@ type isInstanceSegmentationInput_Type interface {
 }
 
 type InstanceSegmentationInput_ImageUrl struct {
-	// Image type URL
+	// Image URL.
 	ImageUrl string `protobuf:"bytes,1,opt,name=image_url,json=imageUrl,proto3,oneof"`
 }
 
 type InstanceSegmentationInput_ImageBase64 struct {
-	// Image type base64
+	// Base64-encoded image.
 	ImageBase64 string `protobuf:"bytes,2,opt,name=image_base64,json=imageBase64,proto3,oneof"`
 }
 
@@ -183,16 +185,16 @@ func (*InstanceSegmentationInput_ImageUrl) isInstanceSegmentationInput_Type() {}
 
 func (*InstanceSegmentationInput_ImageBase64) isInstanceSegmentationInput_Type() {}
 
-// InstanceSegmentationInputStream represents the input of instance segmentation
-// task when using stream method
+// InstanceSegmentationInputStream represents the input of an instance
+// segmentation task when the input is streamed as binary files.
 type InstanceSegmentationInputStream struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The list of file length for each uploaded binary file
+	// File length for each uploaded binary file.
 	FileLengths []uint32 `protobuf:"varint,1,rep,packed,name=file_lengths,json=fileLengths,proto3" json:"file_lengths,omitempty"`
-	// Content of images in bytes
+	// Byte representation of the images.
 	Content []byte `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
 }
 
@@ -242,14 +244,14 @@ func (x *InstanceSegmentationInputStream) GetContent() []byte {
 	return nil
 }
 
-// InstanceSegmentationOutput represents the output of instance segmentation
-// task
+// InstanceSegmentationOutput contains the result of an instance segmentation
+// task.
 type InstanceSegmentationOutput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// A list of instance segmentation objects
+	// A list of instance segmentation objects.
 	Objects []*InstanceSegmentationObject `protobuf:"bytes,1,rep,name=objects,proto3" json:"objects,omitempty"`
 }
 

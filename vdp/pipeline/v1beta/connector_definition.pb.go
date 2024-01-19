@@ -225,8 +225,8 @@ type ConnectorDefinition struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The name of the connector definition.
-	// - Format: `connector-definitions/*`.
+	// The name of the connector definition, defined by its ID.
+	// - Format: `connector-definitions/{id}
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Connector definition UUID.
 	Uid string `protobuf:"bytes,2,opt,name=uid,proto3" json:"uid,omitempty"`

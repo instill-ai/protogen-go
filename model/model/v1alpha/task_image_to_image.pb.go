@@ -22,30 +22,30 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// ImageToImageInput represents the input of image to image task
+// ImageToImageInput represents the input of an image-to-image task.
 type ImageToImageInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The Prompt Image, only for multimodal input
+	// The Prompt Image, only for multimodal input.
 	//
 	// Types that are assignable to Type:
 	//
 	//	*ImageToImageInput_PromptImageUrl
 	//	*ImageToImageInput_PromptImageBase64
 	Type isImageToImageInput_Type `protobuf_oneof:"type"`
-	// The prompt text
+	// Input text.
 	Prompt *string `protobuf:"bytes,3,opt,name=prompt,proto3,oneof" json:"prompt,omitempty"`
-	// The steps, default is 5
+	// Steps, defaults to 5.
 	Steps *int32 `protobuf:"varint,4,opt,name=steps,proto3,oneof" json:"steps,omitempty"`
-	// The guidance scale, default is 7.5
+	// Guidance scale, defaults to 7.5
 	CfgScale *float32 `protobuf:"fixed32,5,opt,name=cfg_scale,json=cfgScale,proto3,oneof" json:"cfg_scale,omitempty"`
-	// The seed, default is 0
+	// Seed, defaults to 0.
 	Seed *int32 `protobuf:"varint,6,opt,name=seed,proto3,oneof" json:"seed,omitempty"`
-	// The number of generated samples, default is 1
+	// Number of generated samples, defaults to 1.
 	Samples *int32 `protobuf:"varint,7,opt,name=samples,proto3,oneof" json:"samples,omitempty"`
-	// The extra parameters
+	// Extra parameters.
 	ExtraParams *structpb.Struct `protobuf:"bytes,9,opt,name=extra_params,json=extraParams,proto3" json:"extra_params,omitempty"`
 }
 
@@ -149,12 +149,12 @@ type isImageToImageInput_Type interface {
 }
 
 type ImageToImageInput_PromptImageUrl struct {
-	// Image type URL
+	// Image URL.
 	PromptImageUrl string `protobuf:"bytes,1,opt,name=prompt_image_url,json=promptImageUrl,proto3,oneof"`
 }
 
 type ImageToImageInput_PromptImageBase64 struct {
-	// Image type base64
+	// Base64-encoded image.
 	PromptImageBase64 string `protobuf:"bytes,2,opt,name=prompt_image_base64,json=promptImageBase64,proto3,oneof"`
 }
 
@@ -162,13 +162,13 @@ func (*ImageToImageInput_PromptImageUrl) isImageToImageInput_Type() {}
 
 func (*ImageToImageInput_PromptImageBase64) isImageToImageInput_Type() {}
 
-// ImageToImageOutput represents the output of image to image task
+// ImageToImageOutput contains the result of an image-to-image task.
 type ImageToImageOutput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// List of generated images
+	// A list of generated images.
 	Images []string `protobuf:"bytes,1,rep,name=images,proto3" json:"images,omitempty"`
 }
 

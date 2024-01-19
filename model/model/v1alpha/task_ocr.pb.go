@@ -21,17 +21,18 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// OcrObject represents a predicted ocr object
+// OcrObject is a text object within an image. OCR stands for Optical Character
+// Recognition.
 type OcrObject struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// OCR text
+	// Text.
 	Text string `protobuf:"bytes,1,opt,name=text,proto3" json:"text,omitempty"`
-	// OCR text score
+	// Score.
 	Score float32 `protobuf:"fixed32,2,opt,name=score,proto3" json:"score,omitempty"`
-	// OCR bounding box
+	// Bounding box.
 	BoundingBox *BoundingBox `protobuf:"bytes,3,opt,name=bounding_box,json=boundingBox,proto3" json:"bounding_box,omitempty"`
 }
 
@@ -88,13 +89,13 @@ func (x *OcrObject) GetBoundingBox() *BoundingBox {
 	return nil
 }
 
-// OcrInput represents the input of ocr task
+// OcrInput represents the input of an OCR task.
 type OcrInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Input type
+	// Content of the input.
 	//
 	// Types that are assignable to Type:
 	//
@@ -161,12 +162,12 @@ type isOcrInput_Type interface {
 }
 
 type OcrInput_ImageUrl struct {
-	// Image type URL
+	// Image URL.
 	ImageUrl string `protobuf:"bytes,1,opt,name=image_url,json=imageUrl,proto3,oneof"`
 }
 
 type OcrInput_ImageBase64 struct {
-	// Image type base64
+	// Base64-encoded image.
 	ImageBase64 string `protobuf:"bytes,2,opt,name=image_base64,json=imageBase64,proto3,oneof"`
 }
 
@@ -174,15 +175,16 @@ func (*OcrInput_ImageUrl) isOcrInput_Type() {}
 
 func (*OcrInput_ImageBase64) isOcrInput_Type() {}
 
-// OcrInputStream represents the input of ocr task when using stream method
+// OcrInputStream represents the input of an OCR task when the input is
+// streamed as binary files.
 type OcrInputStream struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The list of file length for each uploaded binary file
+	// File length for each uploaded binary file.
 	FileLengths []uint32 `protobuf:"varint,1,rep,packed,name=file_lengths,json=fileLengths,proto3" json:"file_lengths,omitempty"`
-	// Content of images in bytes
+	// Byte representation of the images.
 	Content []byte `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
 }
 
@@ -232,13 +234,13 @@ func (x *OcrInputStream) GetContent() []byte {
 	return nil
 }
 
-// OcrOutput represents the output of ocr task
+// OcrOutput contains the result of an OCR task.
 type OcrOutput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// A list of OCR objects
+	// A list of text objects.
 	Objects []*OcrObject `protobuf:"bytes,1,rep,name=objects,proto3" json:"objects,omitempty"`
 }
 

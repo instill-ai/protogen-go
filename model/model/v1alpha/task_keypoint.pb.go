@@ -21,17 +21,17 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Keypoint structure which include coordinate and keypoint visibility
+// Keypoint contains the coordinates and visibility of a keypoint in an object.
 type Keypoint struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// x coordinate
+	// X coordinate.
 	X float32 `protobuf:"fixed32,1,opt,name=x,proto3" json:"x,omitempty"`
-	// y coordinate
+	// Y coordinate.
 	Y float32 `protobuf:"fixed32,2,opt,name=y,proto3" json:"y,omitempty"`
-	// visibility
+	// Visibility.
 	V float32 `protobuf:"fixed32,3,opt,name=v,proto3" json:"v,omitempty"`
 }
 
@@ -88,17 +88,18 @@ func (x *Keypoint) GetV() float32 {
 	return 0
 }
 
-// KeypointObject corresponding to a person object
+// KeypointObject is a detected object with its keypoints, e.g. a detected
+// human shape with its legs, arms, core, etc.
 type KeypointObject struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Keypoints
+	// Keypoints.
 	Keypoints []*Keypoint `protobuf:"bytes,1,rep,name=keypoints,proto3" json:"keypoints,omitempty"`
-	// Keypoint score
+	// Score.
 	Score float32 `protobuf:"fixed32,2,opt,name=score,proto3" json:"score,omitempty"`
-	// Bounding box object
+	// Bounding box.
 	BoundingBox *BoundingBox `protobuf:"bytes,3,opt,name=bounding_box,json=boundingBox,proto3" json:"bounding_box,omitempty"`
 }
 
@@ -155,13 +156,13 @@ func (x *KeypointObject) GetBoundingBox() *BoundingBox {
 	return nil
 }
 
-// KeypointInput represents the input of keypoint detection task
+// KeypointInput represents the input of a keypoint detection task.
 type KeypointInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Input type
+	// Content of the input.
 	//
 	// Types that are assignable to Type:
 	//
@@ -228,12 +229,12 @@ type isKeypointInput_Type interface {
 }
 
 type KeypointInput_ImageUrl struct {
-	// Image type URL
+	// Image URL.
 	ImageUrl string `protobuf:"bytes,1,opt,name=image_url,json=imageUrl,proto3,oneof"`
 }
 
 type KeypointInput_ImageBase64 struct {
-	// Image type base64
+	// Base64-encoded image.
 	ImageBase64 string `protobuf:"bytes,2,opt,name=image_base64,json=imageBase64,proto3,oneof"`
 }
 
@@ -241,16 +242,16 @@ func (*KeypointInput_ImageUrl) isKeypointInput_Type() {}
 
 func (*KeypointInput_ImageBase64) isKeypointInput_Type() {}
 
-// KeypointInputStream represents the input of keypoint detection task when
-// using stream method
+// KeypointInputStream represents the input of a keypoint detection task when
+// the input is streamed as binary files.
 type KeypointInputStream struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The list of file length for each uploaded binary file
+	// File length for each uploaded binary file.
 	FileLengths []uint32 `protobuf:"varint,1,rep,packed,name=file_lengths,json=fileLengths,proto3" json:"file_lengths,omitempty"`
-	// Content of images in bytes
+	// Byte representation of the images.
 	Content []byte `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
 }
 
@@ -300,13 +301,13 @@ func (x *KeypointInputStream) GetContent() []byte {
 	return nil
 }
 
-// KeypointOutput represents the output of keypoint detection task
+// KeypointOutput represents the result of a keypoint detection task.
 type KeypointOutput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// A list of keypoint objects
+	// A list of keypoint objects.
 	Objects []*KeypointObject `protobuf:"bytes,1,rep,name=objects,proto3" json:"objects,omitempty"`
 }
 

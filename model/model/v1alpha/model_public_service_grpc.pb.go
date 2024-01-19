@@ -49,88 +49,133 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ModelPublicServiceClient interface {
-	// Liveness method receives a LivenessRequest message and returns a
-	// LivenessResponse message.
-	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
+	// Check if the model server is alive
+	//
+	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md.
 	Liveness(ctx context.Context, in *LivenessRequest, opts ...grpc.CallOption) (*LivenessResponse, error)
-	// Readiness method receives a ReadinessRequest message and returns a
-	// ReadinessResponse message.
+	// Check if the model server is ready
+	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error)
-	// ListModelDefinitions method receives a ListModelDefinitionsRequest message
-	// and returns a ListModelDefinitionsResponse
+	// List model definitions
+	//
+	// Returns a paginated list of model definitions.
 	ListModelDefinitions(ctx context.Context, in *ListModelDefinitionsRequest, opts ...grpc.CallOption) (*ListModelDefinitionsResponse, error)
-	// GetModelDefinition method receives a GetModelDefinitionRequest message and
-	// returns a GetModelDefinitionResponse
+	// Get a model definition
+	//
+	// Returns the details of a model definition.
 	GetModelDefinition(ctx context.Context, in *GetModelDefinitionRequest, opts ...grpc.CallOption) (*GetModelDefinitionResponse, error)
-	// ListModels method receives a ListModelsRequest message and returns a
-	// ListModelsResponse
+	// List models
+	//
+	// Returns a paginated list of models.
 	ListModels(ctx context.Context, in *ListModelsRequest, opts ...grpc.CallOption) (*ListModelsResponse, error)
-	// LookUpUodel method receives a LookUpModelRequest message and returns a
-	// LookUpModelResponse
+	// Get a model by UID
+	//
+	// Returns the details of a model by a permalink defined by the resource UID.
 	LookUpModel(ctx context.Context, in *LookUpModelRequest, opts ...grpc.CallOption) (*LookUpModelResponse, error)
-	// LisUsertModels method receives a ListUserModelsRequest message and returns a
-	// ListUserModelsResponse
+	// List user models
+	//
+	// Returns a paginated list of models that belong to the specified user. The
+	// parent user may be different from the authenticated user, in which case
+	// the results will contain the models that are visible to the latter.
 	ListUserModels(ctx context.Context, in *ListUserModelsRequest, opts ...grpc.CallOption) (*ListUserModelsResponse, error)
-	// CreateUserModel method receives a CreateUserModelRequest message and returns a
-	// CreateUserModelResponse
+	// Create a new model
+	//
+	// Creates a new model under the parenthood of a user. This is an
+	// asynchronous endpoint, i.e., the server will not wait for the model to be
+	// created in order to respond. Instead, it will return a response with the
+	// necessary information to access the result and status of the creation
+	// operation.
 	CreateUserModel(ctx context.Context, in *CreateUserModelRequest, opts ...grpc.CallOption) (*CreateUserModelResponse, error)
-	// CreateUserModelBinaryFileUpload method receives a
-	// CreateUserModelBinaryFileUploadRequest message and returns a
-	// CreateUserModelBinaryFileUploadResponse message.
+	// Upload model binary
 	//
-	// Endpoint: "POST /v1alpha/users/*/models:multipart"
+	// Creates a new model by upploading its binary content.
 	CreateUserModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_CreateUserModelBinaryFileUploadClient, error)
-	// GetUserModel method receives a GetUserModelRequest message and returns a
-	// GetUserModelResponse
+	// Get a model
+	//
+	// Returns the detail of a model, accessing it by the model ID and its parent user.
 	GetUserModel(ctx context.Context, in *GetUserModelRequest, opts ...grpc.CallOption) (*GetUserModelResponse, error)
-	// UpdateUserModel method receives a UpdateUserModelRequest message and returns a
-	// UpdateUserModelResponse
+	// Update a model
+	//
+	// Updates a model, accessing it by its resource name, which is defined by
+	// the parent user and the ID of the model.
+	//
+	// In REST requests, only the supplied model fields will be taken into
+	// account when updating the resource.
 	UpdateUserModel(ctx context.Context, in *UpdateUserModelRequest, opts ...grpc.CallOption) (*UpdateUserModelResponse, error)
-	// DeleteUserModel method receives a DeleteUserModelRequest message and returns a
-	// DeleteUserModelResponse
+	// Delete a model
+	//
+	// Deletes a model, accesing it by its resource name, which is defined by the
+	// parent user and the ID of the model.
 	DeleteUserModel(ctx context.Context, in *DeleteUserModelRequest, opts ...grpc.CallOption) (*DeleteUserModelResponse, error)
-	// RenameUserModel method rename a model
+	// Rename a model
+	//
+	// Renames a model, accesing it by its resource name, which is defined by the
+	// parent user and the ID of the model.
 	RenameUserModel(ctx context.Context, in *RenameUserModelRequest, opts ...grpc.CallOption) (*RenameUserModelResponse, error)
-	// PublishUserModel method receives a PublisUserhModelRequest message and returns a
-	// PublishUserModelResponse
+	// Publish a model
+	//
+	// Updates the visibility in a model to PUBLIC. The model is accessed by its
+	// resource name, defined by the model ID and its parent user.
 	PublishUserModel(ctx context.Context, in *PublishUserModelRequest, opts ...grpc.CallOption) (*PublishUserModelResponse, error)
-	// UnpublishUserModel method receives a UnpublishUserModelRequest message and returns
-	// a UnpublishUserModelResponse
+	// Unpublish a model
+	//
+	// Updates the visibility in a model to PRIVATE. The model is accessed by its
+	// resource name, defined by the model ID and its parent user.
 	UnpublishUserModel(ctx context.Context, in *UnpublishUserModelRequest, opts ...grpc.CallOption) (*UnpublishUserModelResponse, error)
-	// DeployUserModel deploy a model to online state
+	// Deploy a model
+	//
+	// Transitions the model into an ONLINE state. The model is accessed by its
+	// resource name, defined by the model ID and its parent user.
+	//
+	// While this operation is being performed, the state of the model will
+	// transition to UNSPECIFIED. As completing the deployment might take time,
+	// the server will not wait to complete the operation to return a response.
+	// The state of the model can be used to track the completion of the
+	// operation. This can be done by using the `watch` operation on the model.
 	DeployUserModel(ctx context.Context, in *DeployUserModelRequest, opts ...grpc.CallOption) (*DeployUserModelResponse, error)
-	// UndeployUserModel undeploy a model to offline state
+	// Undeploy a model
+	//
+	// Transitions the model into an OFFLINE state. The model is accessed by its
+	// resource name, defined by the model ID and its parent user.
+	//
+	// While this operation is being performed, the state of the model will
+	// transition to UNSPECIFIED. As completing the teardown might take time,
+	// the server will not wait to complete the operation to return a response.
+	// The state of the model can be used to track the completion of the
+	// operation. This can be done by using the `watch` operation on the model.
 	UndeployUserModel(ctx context.Context, in *UndeployUserModelRequest, opts ...grpc.CallOption) (*UndeployUserModelResponse, error)
-	// GetUserModelCard method receives a GetUserModelCardRequest message
-	// and returns a GetUserModelCardResponseUser
+	// Get a model card
+	//
+	// Returns the README file that accompanies a model, describing it and
+	// enhancing it with metadata. The model is accessed by its resource name.
 	GetUserModelCard(ctx context.Context, in *GetUserModelCardRequest, opts ...grpc.CallOption) (*GetUserModelCardResponse, error)
-	// WatchUserModel method receives a WatchUserModelRequest message
-	// and returns a WatchModelResponse
+	// Watch the state of a model
+	//
+	// Returns the state of a model. The deploy / undeploy actions take some
+	// time, during which a model will be in an UNSPECIFIED state. This endpoint
+	// allows clients to track the state and progress of the model.
 	WatchUserModel(ctx context.Context, in *WatchUserModelRequest, opts ...grpc.CallOption) (*WatchUserModelResponse, error)
-	// /////////////////////////////////////////////////////
+	// Trigger model inference
 	//
-	// TriggerUserModel method receives a TriggerUserModelRequest message
-	// and returns a TriggerUserModelResponse message.
+	// Triggers a deployed model to infer the result of a set of task or
+	// questions.
 	TriggerUserModel(ctx context.Context, in *TriggerUserModelRequest, opts ...grpc.CallOption) (*TriggerUserModelResponse, error)
-	// TriggerUserModelBinaryFileUpload method receives a
-	// TriggerUserModelBinaryFileUploadRequest message and returns a
-	// TriggerUserModelBinaryFileUploadResponse message.
+	// Trigger model inference with a binary input
 	//
-	// Endpoint: "POST/v1alpha/{name=models/*}/trigger-multipart"
+	// Triggers a deployed model to infer the result of a task or question,
+	// submitted as a binary file.
 	TriggerUserModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TriggerUserModelBinaryFileUploadClient, error)
-	// TestUserModel method receives a TestUserModelRequest message
-	// and returns a TestUserModelResponse message.
+	// Deprecated: Do not use.
+	// Test model inference
 	TestUserModel(ctx context.Context, in *TestUserModelRequest, opts ...grpc.CallOption) (*TestUserModelResponse, error)
-	// TestUserModelBinaryFileUpload method receives a
-	// TestUserModelBinaryFileUploadRequest message and returns a
-	// TestUserModelBinaryFileUploadResponse message.
-	//
-	// Endpoint: "POST/v1alpha/{name=users/*/models/*}/test-multipart"
+	// Deprecated: Do not use.
+	// Test model inference with binary inputs
 	TestUserModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TestUserModelBinaryFileUploadClient, error)
-	// GetModelOperation method receives a
-	// GetModelOperationRequest message and returns a
-	// GetModelOperationResponse message.
+	// Get the details of a long-running operation
+	//
+	// This method allows requesters to request the status and outcome of
+	// long-running operations in a model, such as deployment.
 	GetModelOperation(ctx context.Context, in *GetModelOperationRequest, opts ...grpc.CallOption) (*GetModelOperationResponse, error)
 }
 
@@ -381,6 +426,7 @@ func (x *modelPublicServiceTriggerUserModelBinaryFileUploadClient) CloseAndRecv(
 	return m, nil
 }
 
+// Deprecated: Do not use.
 func (c *modelPublicServiceClient) TestUserModel(ctx context.Context, in *TestUserModelRequest, opts ...grpc.CallOption) (*TestUserModelResponse, error) {
 	out := new(TestUserModelResponse)
 	err := c.cc.Invoke(ctx, ModelPublicService_TestUserModel_FullMethodName, in, out, opts...)
@@ -390,6 +436,7 @@ func (c *modelPublicServiceClient) TestUserModel(ctx context.Context, in *TestUs
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *modelPublicServiceClient) TestUserModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TestUserModelBinaryFileUploadClient, error) {
 	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[2], ModelPublicService_TestUserModelBinaryFileUpload_FullMethodName, opts...)
 	if err != nil {
@@ -437,88 +484,133 @@ func (c *modelPublicServiceClient) GetModelOperation(ctx context.Context, in *Ge
 // All implementations should embed UnimplementedModelPublicServiceServer
 // for forward compatibility
 type ModelPublicServiceServer interface {
-	// Liveness method receives a LivenessRequest message and returns a
-	// LivenessResponse message.
-	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
+	// Check if the model server is alive
+	//
+	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md.
 	Liveness(context.Context, *LivenessRequest) (*LivenessResponse, error)
-	// Readiness method receives a ReadinessRequest message and returns a
-	// ReadinessResponse message.
+	// Check if the model server is ready
+	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error)
-	// ListModelDefinitions method receives a ListModelDefinitionsRequest message
-	// and returns a ListModelDefinitionsResponse
+	// List model definitions
+	//
+	// Returns a paginated list of model definitions.
 	ListModelDefinitions(context.Context, *ListModelDefinitionsRequest) (*ListModelDefinitionsResponse, error)
-	// GetModelDefinition method receives a GetModelDefinitionRequest message and
-	// returns a GetModelDefinitionResponse
+	// Get a model definition
+	//
+	// Returns the details of a model definition.
 	GetModelDefinition(context.Context, *GetModelDefinitionRequest) (*GetModelDefinitionResponse, error)
-	// ListModels method receives a ListModelsRequest message and returns a
-	// ListModelsResponse
+	// List models
+	//
+	// Returns a paginated list of models.
 	ListModels(context.Context, *ListModelsRequest) (*ListModelsResponse, error)
-	// LookUpUodel method receives a LookUpModelRequest message and returns a
-	// LookUpModelResponse
+	// Get a model by UID
+	//
+	// Returns the details of a model by a permalink defined by the resource UID.
 	LookUpModel(context.Context, *LookUpModelRequest) (*LookUpModelResponse, error)
-	// LisUsertModels method receives a ListUserModelsRequest message and returns a
-	// ListUserModelsResponse
+	// List user models
+	//
+	// Returns a paginated list of models that belong to the specified user. The
+	// parent user may be different from the authenticated user, in which case
+	// the results will contain the models that are visible to the latter.
 	ListUserModels(context.Context, *ListUserModelsRequest) (*ListUserModelsResponse, error)
-	// CreateUserModel method receives a CreateUserModelRequest message and returns a
-	// CreateUserModelResponse
+	// Create a new model
+	//
+	// Creates a new model under the parenthood of a user. This is an
+	// asynchronous endpoint, i.e., the server will not wait for the model to be
+	// created in order to respond. Instead, it will return a response with the
+	// necessary information to access the result and status of the creation
+	// operation.
 	CreateUserModel(context.Context, *CreateUserModelRequest) (*CreateUserModelResponse, error)
-	// CreateUserModelBinaryFileUpload method receives a
-	// CreateUserModelBinaryFileUploadRequest message and returns a
-	// CreateUserModelBinaryFileUploadResponse message.
+	// Upload model binary
 	//
-	// Endpoint: "POST /v1alpha/users/*/models:multipart"
+	// Creates a new model by upploading its binary content.
 	CreateUserModelBinaryFileUpload(ModelPublicService_CreateUserModelBinaryFileUploadServer) error
-	// GetUserModel method receives a GetUserModelRequest message and returns a
-	// GetUserModelResponse
+	// Get a model
+	//
+	// Returns the detail of a model, accessing it by the model ID and its parent user.
 	GetUserModel(context.Context, *GetUserModelRequest) (*GetUserModelResponse, error)
-	// UpdateUserModel method receives a UpdateUserModelRequest message and returns a
-	// UpdateUserModelResponse
+	// Update a model
+	//
+	// Updates a model, accessing it by its resource name, which is defined by
+	// the parent user and the ID of the model.
+	//
+	// In REST requests, only the supplied model fields will be taken into
+	// account when updating the resource.
 	UpdateUserModel(context.Context, *UpdateUserModelRequest) (*UpdateUserModelResponse, error)
-	// DeleteUserModel method receives a DeleteUserModelRequest message and returns a
-	// DeleteUserModelResponse
+	// Delete a model
+	//
+	// Deletes a model, accesing it by its resource name, which is defined by the
+	// parent user and the ID of the model.
 	DeleteUserModel(context.Context, *DeleteUserModelRequest) (*DeleteUserModelResponse, error)
-	// RenameUserModel method rename a model
+	// Rename a model
+	//
+	// Renames a model, accesing it by its resource name, which is defined by the
+	// parent user and the ID of the model.
 	RenameUserModel(context.Context, *RenameUserModelRequest) (*RenameUserModelResponse, error)
-	// PublishUserModel method receives a PublisUserhModelRequest message and returns a
-	// PublishUserModelResponse
+	// Publish a model
+	//
+	// Updates the visibility in a model to PUBLIC. The model is accessed by its
+	// resource name, defined by the model ID and its parent user.
 	PublishUserModel(context.Context, *PublishUserModelRequest) (*PublishUserModelResponse, error)
-	// UnpublishUserModel method receives a UnpublishUserModelRequest message and returns
-	// a UnpublishUserModelResponse
+	// Unpublish a model
+	//
+	// Updates the visibility in a model to PRIVATE. The model is accessed by its
+	// resource name, defined by the model ID and its parent user.
 	UnpublishUserModel(context.Context, *UnpublishUserModelRequest) (*UnpublishUserModelResponse, error)
-	// DeployUserModel deploy a model to online state
+	// Deploy a model
+	//
+	// Transitions the model into an ONLINE state. The model is accessed by its
+	// resource name, defined by the model ID and its parent user.
+	//
+	// While this operation is being performed, the state of the model will
+	// transition to UNSPECIFIED. As completing the deployment might take time,
+	// the server will not wait to complete the operation to return a response.
+	// The state of the model can be used to track the completion of the
+	// operation. This can be done by using the `watch` operation on the model.
 	DeployUserModel(context.Context, *DeployUserModelRequest) (*DeployUserModelResponse, error)
-	// UndeployUserModel undeploy a model to offline state
+	// Undeploy a model
+	//
+	// Transitions the model into an OFFLINE state. The model is accessed by its
+	// resource name, defined by the model ID and its parent user.
+	//
+	// While this operation is being performed, the state of the model will
+	// transition to UNSPECIFIED. As completing the teardown might take time,
+	// the server will not wait to complete the operation to return a response.
+	// The state of the model can be used to track the completion of the
+	// operation. This can be done by using the `watch` operation on the model.
 	UndeployUserModel(context.Context, *UndeployUserModelRequest) (*UndeployUserModelResponse, error)
-	// GetUserModelCard method receives a GetUserModelCardRequest message
-	// and returns a GetUserModelCardResponseUser
+	// Get a model card
+	//
+	// Returns the README file that accompanies a model, describing it and
+	// enhancing it with metadata. The model is accessed by its resource name.
 	GetUserModelCard(context.Context, *GetUserModelCardRequest) (*GetUserModelCardResponse, error)
-	// WatchUserModel method receives a WatchUserModelRequest message
-	// and returns a WatchModelResponse
+	// Watch the state of a model
+	//
+	// Returns the state of a model. The deploy / undeploy actions take some
+	// time, during which a model will be in an UNSPECIFIED state. This endpoint
+	// allows clients to track the state and progress of the model.
 	WatchUserModel(context.Context, *WatchUserModelRequest) (*WatchUserModelResponse, error)
-	// /////////////////////////////////////////////////////
+	// Trigger model inference
 	//
-	// TriggerUserModel method receives a TriggerUserModelRequest message
-	// and returns a TriggerUserModelResponse message.
+	// Triggers a deployed model to infer the result of a set of task or
+	// questions.
 	TriggerUserModel(context.Context, *TriggerUserModelRequest) (*TriggerUserModelResponse, error)
-	// TriggerUserModelBinaryFileUpload method receives a
-	// TriggerUserModelBinaryFileUploadRequest message and returns a
-	// TriggerUserModelBinaryFileUploadResponse message.
+	// Trigger model inference with a binary input
 	//
-	// Endpoint: "POST/v1alpha/{name=models/*}/trigger-multipart"
+	// Triggers a deployed model to infer the result of a task or question,
+	// submitted as a binary file.
 	TriggerUserModelBinaryFileUpload(ModelPublicService_TriggerUserModelBinaryFileUploadServer) error
-	// TestUserModel method receives a TestUserModelRequest message
-	// and returns a TestUserModelResponse message.
+	// Deprecated: Do not use.
+	// Test model inference
 	TestUserModel(context.Context, *TestUserModelRequest) (*TestUserModelResponse, error)
-	// TestUserModelBinaryFileUpload method receives a
-	// TestUserModelBinaryFileUploadRequest message and returns a
-	// TestUserModelBinaryFileUploadResponse message.
-	//
-	// Endpoint: "POST/v1alpha/{name=users/*/models/*}/test-multipart"
+	// Deprecated: Do not use.
+	// Test model inference with binary inputs
 	TestUserModelBinaryFileUpload(ModelPublicService_TestUserModelBinaryFileUploadServer) error
-	// GetModelOperation method receives a
-	// GetModelOperationRequest message and returns a
-	// GetModelOperationResponse message.
+	// Get the details of a long-running operation
+	//
+	// This method allows requesters to request the status and outcome of
+	// long-running operations in a model, such as deployment.
 	GetModelOperation(context.Context, *GetModelOperationRequest) (*GetModelOperationResponse, error)
 }
 

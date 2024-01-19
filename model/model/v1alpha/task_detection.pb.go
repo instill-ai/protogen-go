@@ -21,17 +21,17 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// DetectionObject represents a predicted object
+// DetectionObject represents an identified object in an image.
 type DetectionObject struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Detection object category
+	// Category.
 	Category string `protobuf:"bytes,1,opt,name=category,proto3" json:"category,omitempty"`
-	// Detection object score
+	// Score.
 	Score float32 `protobuf:"fixed32,2,opt,name=score,proto3" json:"score,omitempty"`
-	// Detection bounding box
+	// Bounding box.
 	BoundingBox *BoundingBox `protobuf:"bytes,3,opt,name=bounding_box,json=boundingBox,proto3" json:"bounding_box,omitempty"`
 }
 
@@ -88,13 +88,13 @@ func (x *DetectionObject) GetBoundingBox() *BoundingBox {
 	return nil
 }
 
-// DetectionInput represents the input of detection task
+// DetectionInput represents the input of an object detection task.
 type DetectionInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Input type
+	// Content of the input.
 	//
 	// Types that are assignable to Type:
 	//
@@ -161,12 +161,12 @@ type isDetectionInput_Type interface {
 }
 
 type DetectionInput_ImageUrl struct {
-	// Image type URL
+	// Image URL.
 	ImageUrl string `protobuf:"bytes,1,opt,name=image_url,json=imageUrl,proto3,oneof"`
 }
 
 type DetectionInput_ImageBase64 struct {
-	// Image type base64
+	// Base64-encoded image.
 	ImageBase64 string `protobuf:"bytes,2,opt,name=image_base64,json=imageBase64,proto3,oneof"`
 }
 
@@ -174,16 +174,16 @@ func (*DetectionInput_ImageUrl) isDetectionInput_Type() {}
 
 func (*DetectionInput_ImageBase64) isDetectionInput_Type() {}
 
-// DetectionInputStream represents the input of detection task when using stream
-// method
+// DetectionInputStream represents the input of an object detection task when
+// the input is streamed as binary files.
 type DetectionInputStream struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The list of file length for each uploaded binary file
+	// File length for each uploaded binary file.
 	FileLengths []uint32 `protobuf:"varint,1,rep,packed,name=file_lengths,json=fileLengths,proto3" json:"file_lengths,omitempty"`
-	// Content of images in bytes
+	// Byte representation of the images.
 	Content []byte `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
 }
 
@@ -233,13 +233,13 @@ func (x *DetectionInputStream) GetContent() []byte {
 	return nil
 }
 
-// DetectionOutput represents the output of detection task
+// DetectionOutput contains the result of an object detection task.
 type DetectionOutput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// A list of detection objects
+	// A list of detected objects.
 	Objects []*DetectionObject `protobuf:"bytes,1,rep,name=objects,proto3" json:"objects,omitempty"`
 }
 

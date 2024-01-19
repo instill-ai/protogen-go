@@ -21,13 +21,13 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// ClassificationInput represents the input of classification task
+// ClassificationInput is the input of an image classification task.
 type ClassificationInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Input type
+	// Content of the input.
 	//
 	// Types that are assignable to Type:
 	//
@@ -94,12 +94,12 @@ type isClassificationInput_Type interface {
 }
 
 type ClassificationInput_ImageUrl struct {
-	// Image type URL
+	// Image URL.
 	ImageUrl string `protobuf:"bytes,1,opt,name=image_url,json=imageUrl,proto3,oneof"`
 }
 
 type ClassificationInput_ImageBase64 struct {
-	// Image type base64
+	// Base64-encoded image.
 	ImageBase64 string `protobuf:"bytes,2,opt,name=image_base64,json=imageBase64,proto3,oneof"`
 }
 
@@ -107,16 +107,16 @@ func (*ClassificationInput_ImageUrl) isClassificationInput_Type() {}
 
 func (*ClassificationInput_ImageBase64) isClassificationInput_Type() {}
 
-// ClassificationInputStream represents the input of classification task when
-// using stream method
+// ClassificationInputStream represents the input of an image classification
+// task when the input is streamed as a binary files.
 type ClassificationInputStream struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The list of file length for each uploaded binary file
+	// File length for each uploaded binary file.
 	FileLengths []uint32 `protobuf:"varint,1,rep,packed,name=file_lengths,json=fileLengths,proto3" json:"file_lengths,omitempty"`
-	// Content of images in bytes
+	// Byte representation of the images.
 	Content []byte `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
 }
 
@@ -166,15 +166,15 @@ func (x *ClassificationInputStream) GetContent() []byte {
 	return nil
 }
 
-// ClassificationOutput represents the output of classification task
+// ClassificationOutput contains the result of an image classification task.
 type ClassificationOutput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Classification category
+	// Category.
 	Category string `protobuf:"bytes,1,opt,name=category,proto3" json:"category,omitempty"`
-	// Classification score
+	// Score.
 	Score float32 `protobuf:"fixed32,2,opt,name=score,proto3" json:"score,omitempty"`
 }
 

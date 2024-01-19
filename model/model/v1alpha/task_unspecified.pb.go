@@ -22,13 +22,13 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// UnspecifiedInput represents the input of unspecified task
+// UnspecifiedInput represents the input of an unspecified task.
 type UnspecifiedInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// A list of unspecified task inputs
+	// A list of values for the task.
 	RawInputs []*structpb.Struct `protobuf:"bytes,1,rep,name=raw_inputs,json=rawInputs,proto3" json:"raw_inputs,omitempty"`
 }
 
@@ -71,13 +71,13 @@ func (x *UnspecifiedInput) GetRawInputs() []*structpb.Struct {
 	return nil
 }
 
-// UnspecifiedOutput represents the output of unspecified task
+// UnspecifiedOutput contains the result of an unspecified task.
 type UnspecifiedOutput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// A list of unspecified task outputs
+	// The task outputs.
 	RawOutputs []*structpb.Struct `protobuf:"bytes,1,rep,name=raw_outputs,json=rawOutputs,proto3" json:"raw_outputs,omitempty"`
 }
 

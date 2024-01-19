@@ -21,15 +21,16 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// SemanticSegmentationStuff corresponding to a semantic segmentation stuff
+// SemanticSegmentationStuff is an object detected within an image and
+// classified into a predefined category.
 type SemanticSegmentationStuff struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// RLE segmentation mask
+	// RLE segmentation mask.
 	Rle string `protobuf:"bytes,1,opt,name=rle,proto3" json:"rle,omitempty"`
-	// Stuff category
+	// Category.
 	Category string `protobuf:"bytes,2,opt,name=category,proto3" json:"category,omitempty"`
 }
 
@@ -79,13 +80,14 @@ func (x *SemanticSegmentationStuff) GetCategory() string {
 	return ""
 }
 
-// SemanticSegmentationInput represents the input of semantic segmentation task
+// SemanticSegmentationInput represents the input of a semantic segmentation
+// task.
 type SemanticSegmentationInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Input type
+	// Content of the input.
 	//
 	// Types that are assignable to Type:
 	//
@@ -152,12 +154,12 @@ type isSemanticSegmentationInput_Type interface {
 }
 
 type SemanticSegmentationInput_ImageUrl struct {
-	// Image type URL
+	// Image URL.
 	ImageUrl string `protobuf:"bytes,1,opt,name=image_url,json=imageUrl,proto3,oneof"`
 }
 
 type SemanticSegmentationInput_ImageBase64 struct {
-	// Image type base64
+	// Base64-encoded image.
 	ImageBase64 string `protobuf:"bytes,2,opt,name=image_base64,json=imageBase64,proto3,oneof"`
 }
 
@@ -165,16 +167,16 @@ func (*SemanticSegmentationInput_ImageUrl) isSemanticSegmentationInput_Type() {}
 
 func (*SemanticSegmentationInput_ImageBase64) isSemanticSegmentationInput_Type() {}
 
-// SemanticSegmentationInputStream represents the input of semantic segmentation
-// task when using stream method
+// SemanticSegmentationInputStream represents the input of a semantic
+// segmentation task when the input is streamed as a binary files.
 type SemanticSegmentationInputStream struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The list of file length for each uploaded binary file
+	// File length for each uploaded binary file.
 	FileLengths []uint32 `protobuf:"varint,1,rep,packed,name=file_lengths,json=fileLengths,proto3" json:"file_lengths,omitempty"`
-	// Content of images in bytes
+	// Byte representation of the images.
 	Content []byte `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
 }
 
@@ -224,14 +226,14 @@ func (x *SemanticSegmentationInputStream) GetContent() []byte {
 	return nil
 }
 
-// SemanticSegmentationOutput represents the output of semantic segmentation
-// task
+// SemanticSegmentationOutput represents the output of a semantic segmentation
+// task.
 type SemanticSegmentationOutput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// A list of semantic segmentation stuffs
+	// A list of detected objects classified into categories.
 	Stuffs []*SemanticSegmentationStuff `protobuf:"bytes,1,rep,name=stuffs,proto3" json:"stuffs,omitempty"`
 }
 
