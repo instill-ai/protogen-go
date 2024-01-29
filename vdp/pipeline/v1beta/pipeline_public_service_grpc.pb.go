@@ -92,6 +92,7 @@ const (
 	PipelinePublicService_ExecuteOrganizationConnector_FullMethodName            = "/vdp.pipeline.v1beta.PipelinePublicService/ExecuteOrganizationConnector"
 	PipelinePublicService_WatchOrganizationConnector_FullMethodName              = "/vdp.pipeline.v1beta.PipelinePublicService/WatchOrganizationConnector"
 	PipelinePublicService_TestOrganizationConnector_FullMethodName               = "/vdp.pipeline.v1beta.PipelinePublicService/TestOrganizationConnector"
+	PipelinePublicService_CheckName_FullMethodName                               = "/vdp.pipeline.v1beta.PipelinePublicService/CheckName"
 )
 
 // PipelinePublicServiceClient is the client API for PipelinePublicService service.
@@ -566,6 +567,14 @@ type PipelinePublicServiceClient interface {
 	//
 	// Tests the connection on an organization-owned connector.
 	TestOrganizationConnector(ctx context.Context, in *TestOrganizationConnectorRequest, opts ...grpc.CallOption) (*TestOrganizationConnectorResponse, error)
+	// Check the availibity of a resource name
+	//
+	// Check the availibity of a resource name. The name should be in the formats:
+	//   - users/<user_id>/pipelines/<pipeline_id>
+	//   - users/<user_id>/connectors/<connector_id>
+	//   - organizations/<org_id>/pipelines/<pipeline_id>
+	//   - organizations/<org_id>/connectors/<connector_id>
+	CheckName(ctx context.Context, in *CheckNameRequest, opts ...grpc.CallOption) (*CheckNameResponse, error)
 }
 
 type pipelinePublicServiceClient struct {
@@ -1233,6 +1242,15 @@ func (c *pipelinePublicServiceClient) TestOrganizationConnector(ctx context.Cont
 	return out, nil
 }
 
+func (c *pipelinePublicServiceClient) CheckName(ctx context.Context, in *CheckNameRequest, opts ...grpc.CallOption) (*CheckNameResponse, error) {
+	out := new(CheckNameResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_CheckName_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PipelinePublicServiceServer is the server API for PipelinePublicService service.
 // All implementations should embed UnimplementedPipelinePublicServiceServer
 // for forward compatibility
@@ -1705,6 +1723,14 @@ type PipelinePublicServiceServer interface {
 	//
 	// Tests the connection on an organization-owned connector.
 	TestOrganizationConnector(context.Context, *TestOrganizationConnectorRequest) (*TestOrganizationConnectorResponse, error)
+	// Check the availibity of a resource name
+	//
+	// Check the availibity of a resource name. The name should be in the formats:
+	//   - users/<user_id>/pipelines/<pipeline_id>
+	//   - users/<user_id>/connectors/<connector_id>
+	//   - organizations/<org_id>/pipelines/<pipeline_id>
+	//   - organizations/<org_id>/connectors/<connector_id>
+	CheckName(context.Context, *CheckNameRequest) (*CheckNameResponse, error)
 }
 
 // UnimplementedPipelinePublicServiceServer should be embedded to have forward compatible implementations.
@@ -1929,6 +1955,9 @@ func (UnimplementedPipelinePublicServiceServer) WatchOrganizationConnector(conte
 }
 func (UnimplementedPipelinePublicServiceServer) TestOrganizationConnector(context.Context, *TestOrganizationConnectorRequest) (*TestOrganizationConnectorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TestOrganizationConnector not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) CheckName(context.Context, *CheckNameRequest) (*CheckNameResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckName not implemented")
 }
 
 // UnsafePipelinePublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -3256,6 +3285,24 @@ func _PipelinePublicService_TestOrganizationConnector_Handler(srv interface{}, c
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PipelinePublicService_CheckName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckNameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).CheckName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_CheckName_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).CheckName(ctx, req.(*CheckNameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PipelinePublicService_ServiceDesc is the grpc.ServiceDesc for PipelinePublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -3554,6 +3601,10 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TestOrganizationConnector",
 			Handler:    _PipelinePublicService_TestOrganizationConnector_Handler,
+		},
+		{
+			MethodName: "CheckName",
+			Handler:    _PipelinePublicService_CheckName_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
