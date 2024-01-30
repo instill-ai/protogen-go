@@ -74,7 +74,7 @@ func (Role) EnumDescriptor() ([]byte, []int) {
 	return file_vdp_pipeline_v1beta_common_proto_rawDescGZIP(), []int{0}
 }
 
-// Availability of Name
+// Name defines the availability of a resource name.
 type CheckNameResponse_Name int32
 
 const (
@@ -259,11 +259,12 @@ type CheckNameRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The name of the resource to be checked, should be in the formats:
-	//   - users/<user_id>/pipelines/<pipeline_id>
-	//   - users/<user_id>/connectors/<connector_id>
-	//   - organizations/<org_id>/pipelines/<pipeline_id>
-	//   - organizations/<org_id>/connectors/<connector_id>
+	// The name of the resource to be checked. For the moment, only pipeline and
+	// connector names can be checked. The following formats are accepted:
+	// - `users/{user.id}/pipelines/{pipeline.id}`
+	// - `users/{user.id}/connectors/{connector.id}`
+	// - `organizations/{organization.id}/pipelines/{pipeline.id}`
+	// - `organizations/{organization.id}/connectors/{connector.id}`
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 }
 
@@ -306,14 +307,13 @@ func (x *CheckNameRequest) GetName() string {
 	return ""
 }
 
-// CheckNameResponse contains the availability of a name
-// of resource that's using it.
+// CheckNameResponse contains the availability of a resource name.
 type CheckNameResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Availability
+	// The availability of the requested name.
 	Availability CheckNameResponse_Name `protobuf:"varint,1,opt,name=availability,proto3,enum=vdp.pipeline.v1beta.CheckNameResponse_Name" json:"availability,omitempty"`
 }
 

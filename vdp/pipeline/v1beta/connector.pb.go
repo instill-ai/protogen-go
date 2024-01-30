@@ -1984,7 +1984,7 @@ func (x *CreateOrganizationConnectorResponse) GetConnector() *Connector {
 }
 
 // ListOrganizationConnectorsRequest represents a request to list the
-// connectors of a organization.
+// connectors of an organization.
 type ListOrganizationConnectorsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2994,7 +2994,7 @@ func (x *TestOrganizationConnectorResponse) GetState() Connector_State {
 }
 
 // WatchOrganizationConnectorRequest represents a request to fetch the state of
-// a organization-owned connector.
+// an organization-owned connector.
 type WatchOrganizationConnectorRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

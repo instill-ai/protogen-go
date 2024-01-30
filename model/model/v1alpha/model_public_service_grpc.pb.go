@@ -187,7 +187,7 @@ type ModelPublicServiceClient interface {
 	ListOrganizationModels(ctx context.Context, in *ListOrganizationModelsRequest, opts ...grpc.CallOption) (*ListOrganizationModelsResponse, error)
 	// Create a new model
 	//
-	// Creates a new model under the parenthood of a organization. This is an
+	// Creates a new model under the parenthood of an organization. This is an
 	// asynchronous endpoint, i.e., the server will not wait for the model to be
 	// created in order to respond. Instead, it will return a response with the
 	// necessary information to access the result and status of the creation
@@ -849,7 +849,7 @@ type ModelPublicServiceServer interface {
 	ListOrganizationModels(context.Context, *ListOrganizationModelsRequest) (*ListOrganizationModelsResponse, error)
 	// Create a new model
 	//
-	// Creates a new model under the parenthood of a organization. This is an
+	// Creates a new model under the parenthood of an organization. This is an
 	// asynchronous endpoint, i.e., the server will not wait for the model to be
 	// created in order to respond. Instead, it will return a response with the
 	// necessary information to access the result and status of the creation

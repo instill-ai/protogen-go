@@ -2286,7 +2286,8 @@ func (x *RenameUserPipelineResponse) GetPipeline() *Pipeline {
 	return nil
 }
 
-// CloneUserPipelineRequest represents a request to clone a pipeline owned by a user.
+// CloneUserPipelineRequest represents a request to clone a pipeline owned by a
+// user.
 type CloneUserPipelineRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2296,8 +2297,10 @@ type CloneUserPipelineRequest struct {
 	// and ID.
 	// - Format: `users/{user.id}/pipelines/{pipeline.id}`.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// The target pipeline
-	// - Format: `users/{user.id}/pipelines/{pipeline.id}` or `organizations/{org.id}/pipelines/{pipeline.id}`
+	// The target pipeline name. It can be under a user or an organization
+	// namespace, so the following formats are accepted:
+	// - `users/{user.id}/pipelines/{pipeline.id}`
+	// - `organizations/{organization.id}/pipelines/{pipeline.id}`
 	Target string `protobuf:"bytes,2,opt,name=target,proto3" json:"target,omitempty"`
 }
 
@@ -3871,7 +3874,7 @@ func (x *CreateOrganizationPipelineResponse) GetPipeline() *Pipeline {
 }
 
 // ListOrganizationPipelinesRequest represents a request to list the pipelines
-// of a organization.
+// of an organization.
 type ListOrganizationPipelinesRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -4572,18 +4575,21 @@ func (x *RenameOrganizationPipelineResponse) GetPipeline() *Pipeline {
 	return nil
 }
 
-// CloneOrganizationPipelineRequest represents a request to clone a pipeline owned by a organization.
+// CloneOrganizationPipelineRequest represents a request to clone a pipeline
+// owned by an organization.
 type CloneOrganizationPipelineRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The resource name of the pipeline, which allows its access by parent user
-	// and ID.
-	// - Format: `organizations/{org.id}/pipelines/{pipeline.id}`.
+	// The resource name of the pipeline, which allows its access by parent
+	// organization and ID.
+	// - Format: `organizations/{organization.id}/pipelines/{pipeline.id}`.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// The target pipeline
-	// - Format: `users/{user.id}/pipelines/{pipeline.id}` or `organizations/{org.id}/pipelines/{pipeline.id}`
+	// The target pipeline name. It can be under a user or an organization
+	// namespace, so the following formats are accepted:
+	// - `users/{user.id}/pipelines/{pipeline.id}`
+	// - `organizations/{organization.id}/pipelines/{pipeline.id}`
 	Target string `protobuf:"bytes,2,opt,name=target,proto3" json:"target,omitempty"`
 }
 
@@ -5721,7 +5727,7 @@ func (x *RenameOrganizationPipelineReleaseResponse) GetRelease() *PipelineReleas
 }
 
 // WatchOrganizationPipelineReleaseRequest represents a request to query the
-// state of a organization-owned pipeline release.
+// state of an organization-owned pipeline release.
 type WatchOrganizationPipelineReleaseRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

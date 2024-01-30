@@ -170,7 +170,8 @@ type PipelinePublicServiceClient interface {
 	RenameUserPipeline(ctx context.Context, in *RenameUserPipelineRequest, opts ...grpc.CallOption) (*RenameUserPipelineResponse, error)
 	// Clone a pipeline owned by a user
 	//
-	// Clone a pipeline owned by a user, the target pipeline can be under a user or organization namespace.
+	// Clones a pipeline owned by a user. The new pipeline may have a different
+	// parent, and this can be either a user or an organization.
 	CloneUserPipeline(ctx context.Context, in *CloneUserPipelineRequest, opts ...grpc.CallOption) (*CloneUserPipelineResponse, error)
 	// Trigger a pipeline owned by a user
 	//
@@ -324,7 +325,8 @@ type PipelinePublicServiceClient interface {
 	RenameOrganizationPipeline(ctx context.Context, in *RenameOrganizationPipelineRequest, opts ...grpc.CallOption) (*RenameOrganizationPipelineResponse, error)
 	// Clone a pipeline owned by an organization
 	//
-	// Clone a pipeline owned by an organization, the target pipeline can be under a user or organization namespace.
+	// Clones a pipeline owned by an organization. The new pipeline may have a
+	// different parent, and this can be either a user or an organization.
 	CloneOrganizationPipeline(ctx context.Context, in *CloneOrganizationPipelineRequest, opts ...grpc.CallOption) (*CloneOrganizationPipelineResponse, error)
 	// Trigger a pipeline owned by an organization
 	//
@@ -569,11 +571,8 @@ type PipelinePublicServiceClient interface {
 	TestOrganizationConnector(ctx context.Context, in *TestOrganizationConnectorRequest, opts ...grpc.CallOption) (*TestOrganizationConnectorResponse, error)
 	// Check the availibity of a resource name
 	//
-	// Check the availibity of a resource name. The name should be in the formats:
-	//   - users/<user_id>/pipelines/<pipeline_id>
-	//   - users/<user_id>/connectors/<connector_id>
-	//   - organizations/<org_id>/pipelines/<pipeline_id>
-	//   - organizations/<org_id>/connectors/<connector_id>
+	// Check whether a resource name is already in use. Currently this endpoint
+	// only supports pipeline and connector resource names.
 	CheckName(ctx context.Context, in *CheckNameRequest, opts ...grpc.CallOption) (*CheckNameResponse, error)
 }
 
@@ -1326,7 +1325,8 @@ type PipelinePublicServiceServer interface {
 	RenameUserPipeline(context.Context, *RenameUserPipelineRequest) (*RenameUserPipelineResponse, error)
 	// Clone a pipeline owned by a user
 	//
-	// Clone a pipeline owned by a user, the target pipeline can be under a user or organization namespace.
+	// Clones a pipeline owned by a user. The new pipeline may have a different
+	// parent, and this can be either a user or an organization.
 	CloneUserPipeline(context.Context, *CloneUserPipelineRequest) (*CloneUserPipelineResponse, error)
 	// Trigger a pipeline owned by a user
 	//
@@ -1480,7 +1480,8 @@ type PipelinePublicServiceServer interface {
 	RenameOrganizationPipeline(context.Context, *RenameOrganizationPipelineRequest) (*RenameOrganizationPipelineResponse, error)
 	// Clone a pipeline owned by an organization
 	//
-	// Clone a pipeline owned by an organization, the target pipeline can be under a user or organization namespace.
+	// Clones a pipeline owned by an organization. The new pipeline may have a
+	// different parent, and this can be either a user or an organization.
 	CloneOrganizationPipeline(context.Context, *CloneOrganizationPipelineRequest) (*CloneOrganizationPipelineResponse, error)
 	// Trigger a pipeline owned by an organization
 	//
@@ -1725,11 +1726,8 @@ type PipelinePublicServiceServer interface {
 	TestOrganizationConnector(context.Context, *TestOrganizationConnectorRequest) (*TestOrganizationConnectorResponse, error)
 	// Check the availibity of a resource name
 	//
-	// Check the availibity of a resource name. The name should be in the formats:
-	//   - users/<user_id>/pipelines/<pipeline_id>
-	//   - users/<user_id>/connectors/<connector_id>
-	//   - organizations/<org_id>/pipelines/<pipeline_id>
-	//   - organizations/<org_id>/connectors/<connector_id>
+	// Check whether a resource name is already in use. Currently this endpoint
+	// only supports pipeline and connector resource names.
 	CheckName(context.Context, *CheckNameRequest) (*CheckNameResponse, error)
 }
 
