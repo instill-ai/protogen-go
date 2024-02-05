@@ -23,9 +23,10 @@ const (
 	MgmtPublicService_Liveness_FullMethodName                         = "/core.mgmt.v1beta.MgmtPublicService/Liveness"
 	MgmtPublicService_Readiness_FullMethodName                        = "/core.mgmt.v1beta.MgmtPublicService/Readiness"
 	MgmtPublicService_CheckNamespace_FullMethodName                   = "/core.mgmt.v1beta.MgmtPublicService/CheckNamespace"
+	MgmtPublicService_GetAuthenticatedUser_FullMethodName             = "/core.mgmt.v1beta.MgmtPublicService/GetAuthenticatedUser"
+	MgmtPublicService_PatchAuthenticatedUser_FullMethodName           = "/core.mgmt.v1beta.MgmtPublicService/PatchAuthenticatedUser"
 	MgmtPublicService_ListUsers_FullMethodName                        = "/core.mgmt.v1beta.MgmtPublicService/ListUsers"
 	MgmtPublicService_GetUser_FullMethodName                          = "/core.mgmt.v1beta.MgmtPublicService/GetUser"
-	MgmtPublicService_PatchAuthenticatedUser_FullMethodName           = "/core.mgmt.v1beta.MgmtPublicService/PatchAuthenticatedUser"
 	MgmtPublicService_ListUserMemberships_FullMethodName              = "/core.mgmt.v1beta.MgmtPublicService/ListUserMemberships"
 	MgmtPublicService_GetUserMembership_FullMethodName                = "/core.mgmt.v1beta.MgmtPublicService/GetUserMembership"
 	MgmtPublicService_UpdateUserMembership_FullMethodName             = "/core.mgmt.v1beta.MgmtPublicService/UpdateUserMembership"
@@ -79,6 +80,17 @@ type MgmtPublicServiceClient interface {
 	// Returns the availability of a namespace or, alternatively, the type of
 	// resource that is using it.
 	CheckNamespace(ctx context.Context, in *CheckNamespaceRequest, opts ...grpc.CallOption) (*CheckNamespaceResponse, error)
+	// Get the authenticated user
+	//
+	// Returns the details of the authenticated user.
+	GetAuthenticatedUser(ctx context.Context, in *GetAuthenticatedUserRequest, opts ...grpc.CallOption) (*GetAuthenticatedUserResponse, error)
+	// Update the authenticated user
+	//
+	// Updates the information of the authenticated user.
+	//
+	// In REST requests, only the supplied user fields will be taken into account
+	// when updating the resource.
+	PatchAuthenticatedUser(ctx context.Context, in *PatchAuthenticatedUserRequest, opts ...grpc.CallOption) (*PatchAuthenticatedUserResponse, error)
 	// List users
 	//
 	// Returns a paginated list of users.
@@ -87,14 +99,6 @@ type MgmtPublicServiceClient interface {
 	//
 	// Returns the details of a user by their ID.
 	GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserResponse, error)
-	// Update a user
-	//
-	// Accesses and updates a user by ID. The authenticated user must match the
-	// target in order to modify it.
-	//
-	// In REST requests, only the supplied user fields will be taken into account
-	// when updating the resource.
-	PatchAuthenticatedUser(ctx context.Context, in *PatchAuthenticatedUserRequest, opts ...grpc.CallOption) (*PatchAuthenticatedUserResponse, error)
 	// List user memberships
 	//
 	// Returns the memberships of a user.
@@ -267,6 +271,24 @@ func (c *mgmtPublicServiceClient) CheckNamespace(ctx context.Context, in *CheckN
 	return out, nil
 }
 
+func (c *mgmtPublicServiceClient) GetAuthenticatedUser(ctx context.Context, in *GetAuthenticatedUserRequest, opts ...grpc.CallOption) (*GetAuthenticatedUserResponse, error) {
+	out := new(GetAuthenticatedUserResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_GetAuthenticatedUser_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mgmtPublicServiceClient) PatchAuthenticatedUser(ctx context.Context, in *PatchAuthenticatedUserRequest, opts ...grpc.CallOption) (*PatchAuthenticatedUserResponse, error) {
+	out := new(PatchAuthenticatedUserResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_PatchAuthenticatedUser_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *mgmtPublicServiceClient) ListUsers(ctx context.Context, in *ListUsersRequest, opts ...grpc.CallOption) (*ListUsersResponse, error) {
 	out := new(ListUsersResponse)
 	err := c.cc.Invoke(ctx, MgmtPublicService_ListUsers_FullMethodName, in, out, opts...)
@@ -279,15 +301,6 @@ func (c *mgmtPublicServiceClient) ListUsers(ctx context.Context, in *ListUsersRe
 func (c *mgmtPublicServiceClient) GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserResponse, error) {
 	out := new(GetUserResponse)
 	err := c.cc.Invoke(ctx, MgmtPublicService_GetUser_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mgmtPublicServiceClient) PatchAuthenticatedUser(ctx context.Context, in *PatchAuthenticatedUserRequest, opts ...grpc.CallOption) (*PatchAuthenticatedUserResponse, error) {
-	out := new(PatchAuthenticatedUserResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_PatchAuthenticatedUser_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -585,6 +598,17 @@ type MgmtPublicServiceServer interface {
 	// Returns the availability of a namespace or, alternatively, the type of
 	// resource that is using it.
 	CheckNamespace(context.Context, *CheckNamespaceRequest) (*CheckNamespaceResponse, error)
+	// Get the authenticated user
+	//
+	// Returns the details of the authenticated user.
+	GetAuthenticatedUser(context.Context, *GetAuthenticatedUserRequest) (*GetAuthenticatedUserResponse, error)
+	// Update the authenticated user
+	//
+	// Updates the information of the authenticated user.
+	//
+	// In REST requests, only the supplied user fields will be taken into account
+	// when updating the resource.
+	PatchAuthenticatedUser(context.Context, *PatchAuthenticatedUserRequest) (*PatchAuthenticatedUserResponse, error)
 	// List users
 	//
 	// Returns a paginated list of users.
@@ -593,14 +617,6 @@ type MgmtPublicServiceServer interface {
 	//
 	// Returns the details of a user by their ID.
 	GetUser(context.Context, *GetUserRequest) (*GetUserResponse, error)
-	// Update a user
-	//
-	// Accesses and updates a user by ID. The authenticated user must match the
-	// target in order to modify it.
-	//
-	// In REST requests, only the supplied user fields will be taken into account
-	// when updating the resource.
-	PatchAuthenticatedUser(context.Context, *PatchAuthenticatedUserRequest) (*PatchAuthenticatedUserResponse, error)
 	// List user memberships
 	//
 	// Returns the memberships of a user.
@@ -745,14 +761,17 @@ func (UnimplementedMgmtPublicServiceServer) Readiness(context.Context, *Readines
 func (UnimplementedMgmtPublicServiceServer) CheckNamespace(context.Context, *CheckNamespaceRequest) (*CheckNamespaceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckNamespace not implemented")
 }
+func (UnimplementedMgmtPublicServiceServer) GetAuthenticatedUser(context.Context, *GetAuthenticatedUserRequest) (*GetAuthenticatedUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAuthenticatedUser not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) PatchAuthenticatedUser(context.Context, *PatchAuthenticatedUserRequest) (*PatchAuthenticatedUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PatchAuthenticatedUser not implemented")
+}
 func (UnimplementedMgmtPublicServiceServer) ListUsers(context.Context, *ListUsersRequest) (*ListUsersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListUsers not implemented")
 }
 func (UnimplementedMgmtPublicServiceServer) GetUser(context.Context, *GetUserRequest) (*GetUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUser not implemented")
-}
-func (UnimplementedMgmtPublicServiceServer) PatchAuthenticatedUser(context.Context, *PatchAuthenticatedUserRequest) (*PatchAuthenticatedUserResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PatchAuthenticatedUser not implemented")
 }
 func (UnimplementedMgmtPublicServiceServer) ListUserMemberships(context.Context, *ListUserMembershipsRequest) (*ListUserMembershipsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListUserMemberships not implemented")
@@ -928,6 +947,42 @@ func _MgmtPublicService_CheckNamespace_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MgmtPublicService_GetAuthenticatedUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAuthenticatedUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).GetAuthenticatedUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_GetAuthenticatedUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).GetAuthenticatedUser(ctx, req.(*GetAuthenticatedUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MgmtPublicService_PatchAuthenticatedUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PatchAuthenticatedUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).PatchAuthenticatedUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_PatchAuthenticatedUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).PatchAuthenticatedUser(ctx, req.(*PatchAuthenticatedUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _MgmtPublicService_ListUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListUsersRequest)
 	if err := dec(in); err != nil {
@@ -960,24 +1015,6 @@ func _MgmtPublicService_GetUser_Handler(srv interface{}, ctx context.Context, de
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MgmtPublicServiceServer).GetUser(ctx, req.(*GetUserRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MgmtPublicService_PatchAuthenticatedUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PatchAuthenticatedUserRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).PatchAuthenticatedUser(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_PatchAuthenticatedUser_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).PatchAuthenticatedUser(ctx, req.(*PatchAuthenticatedUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1546,16 +1583,20 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MgmtPublicService_CheckNamespace_Handler,
 		},
 		{
+			MethodName: "GetAuthenticatedUser",
+			Handler:    _MgmtPublicService_GetAuthenticatedUser_Handler,
+		},
+		{
+			MethodName: "PatchAuthenticatedUser",
+			Handler:    _MgmtPublicService_PatchAuthenticatedUser_Handler,
+		},
+		{
 			MethodName: "ListUsers",
 			Handler:    _MgmtPublicService_ListUsers_Handler,
 		},
 		{
 			MethodName: "GetUser",
 			Handler:    _MgmtPublicService_GetUser_Handler,
-		},
-		{
-			MethodName: "PatchAuthenticatedUser",
-			Handler:    _MgmtPublicService_PatchAuthenticatedUser_Handler,
 		},
 		{
 			MethodName: "ListUserMemberships",
