@@ -1211,54 +1211,20 @@ func local_request_MgmtPublicService_UpdateOrganizationMembership_0(ctx context.
 
 }
 
-func request_MgmtPublicService_GetUserSubscription_0(ctx context.Context, marshaler runtime.Marshaler, client MgmtPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetUserSubscriptionRequest
+func request_MgmtPublicService_GetAuthenticatedUserSubscription_0(ctx context.Context, marshaler runtime.Marshaler, client MgmtPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetAuthenticatedUserSubscriptionRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["parent"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "parent")
-	}
-
-	protoReq.Parent, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "parent", err)
-	}
-
-	msg, err := client.GetUserSubscription(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetAuthenticatedUserSubscription(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_MgmtPublicService_GetUserSubscription_0(ctx context.Context, marshaler runtime.Marshaler, server MgmtPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetUserSubscriptionRequest
+func local_request_MgmtPublicService_GetAuthenticatedUserSubscription_0(ctx context.Context, marshaler runtime.Marshaler, server MgmtPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetAuthenticatedUserSubscriptionRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["parent"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "parent")
-	}
-
-	protoReq.Parent, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "parent", err)
-	}
-
-	msg, err := server.GetUserSubscription(ctx, &protoReq)
+	msg, err := server.GetAuthenticatedUserSubscription(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -2419,7 +2385,7 @@ func RegisterMgmtPublicServiceHandlerServer(ctx context.Context, mux *runtime.Se
 
 	})
 
-	mux.Handle("GET", pattern_MgmtPublicService_GetUserSubscription_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MgmtPublicService_GetAuthenticatedUserSubscription_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -2427,12 +2393,12 @@ func RegisterMgmtPublicServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/GetUserSubscription", runtime.WithHTTPPathPattern("/v1beta/{parent=users/*}/subscription"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/GetAuthenticatedUserSubscription", runtime.WithHTTPPathPattern("/v1beta/user/subscription"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MgmtPublicService_GetUserSubscription_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MgmtPublicService_GetAuthenticatedUserSubscription_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -2440,7 +2406,7 @@ func RegisterMgmtPublicServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			return
 		}
 
-		forward_MgmtPublicService_GetUserSubscription_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtPublicService_GetAuthenticatedUserSubscription_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -3394,25 +3360,25 @@ func RegisterMgmtPublicServiceHandlerClient(ctx context.Context, mux *runtime.Se
 
 	})
 
-	mux.Handle("GET", pattern_MgmtPublicService_GetUserSubscription_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MgmtPublicService_GetAuthenticatedUserSubscription_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/GetUserSubscription", runtime.WithHTTPPathPattern("/v1beta/{parent=users/*}/subscription"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/GetAuthenticatedUserSubscription", runtime.WithHTTPPathPattern("/v1beta/user/subscription"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MgmtPublicService_GetUserSubscription_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MgmtPublicService_GetAuthenticatedUserSubscription_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MgmtPublicService_GetUserSubscription_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MgmtPublicService_GetAuthenticatedUserSubscription_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -3838,7 +3804,7 @@ var (
 
 	pattern_MgmtPublicService_UpdateOrganizationMembership_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1beta", "organizations", "memberships", "membership.name"}, ""))
 
-	pattern_MgmtPublicService_GetUserSubscription_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1beta", "users", "parent", "subscription"}, ""))
+	pattern_MgmtPublicService_GetAuthenticatedUserSubscription_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "user", "subscription"}, ""))
 
 	pattern_MgmtPublicService_GetOrganizationSubscription_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1beta", "organizations", "parent", "subscription"}, ""))
 
@@ -3920,7 +3886,7 @@ var (
 
 	forward_MgmtPublicService_UpdateOrganizationMembership_0 = runtime.ForwardResponseMessage
 
-	forward_MgmtPublicService_GetUserSubscription_0 = runtime.ForwardResponseMessage
+	forward_MgmtPublicService_GetAuthenticatedUserSubscription_0 = runtime.ForwardResponseMessage
 
 	forward_MgmtPublicService_GetOrganizationSubscription_0 = runtime.ForwardResponseMessage
 

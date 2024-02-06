@@ -39,7 +39,7 @@ const (
 	MgmtPublicService_ListOrganizationMemberships_FullMethodName      = "/core.mgmt.v1beta.MgmtPublicService/ListOrganizationMemberships"
 	MgmtPublicService_GetOrganizationMembership_FullMethodName        = "/core.mgmt.v1beta.MgmtPublicService/GetOrganizationMembership"
 	MgmtPublicService_UpdateOrganizationMembership_FullMethodName     = "/core.mgmt.v1beta.MgmtPublicService/UpdateOrganizationMembership"
-	MgmtPublicService_GetUserSubscription_FullMethodName              = "/core.mgmt.v1beta.MgmtPublicService/GetUserSubscription"
+	MgmtPublicService_GetAuthenticatedUserSubscription_FullMethodName = "/core.mgmt.v1beta.MgmtPublicService/GetAuthenticatedUserSubscription"
 	MgmtPublicService_GetOrganizationSubscription_FullMethodName      = "/core.mgmt.v1beta.MgmtPublicService/GetOrganizationSubscription"
 	MgmtPublicService_CreateToken_FullMethodName                      = "/core.mgmt.v1beta.MgmtPublicService/CreateToken"
 	MgmtPublicService_ListTokens_FullMethodName                       = "/core.mgmt.v1beta.MgmtPublicService/ListTokens"
@@ -151,10 +151,10 @@ type MgmtPublicServiceClient interface {
 	//
 	// Updates a user membership within an organization.
 	UpdateOrganizationMembership(ctx context.Context, in *UpdateOrganizationMembershipRequest, opts ...grpc.CallOption) (*UpdateOrganizationMembershipResponse, error)
-	// Get a user subscription
+	// Get the subscription of the authenticated user
 	//
-	// Returns the subscription details of a user.
-	GetUserSubscription(ctx context.Context, in *GetUserSubscriptionRequest, opts ...grpc.CallOption) (*GetUserSubscriptionResponse, error)
+	// Returns the subscription details of the authenticated user.
+	GetAuthenticatedUserSubscription(ctx context.Context, in *GetAuthenticatedUserSubscriptionRequest, opts ...grpc.CallOption) (*GetAuthenticatedUserSubscriptionResponse, error)
 	// Get an organization subscription
 	//
 	// Returns the subscription details of an organization.
@@ -415,9 +415,9 @@ func (c *mgmtPublicServiceClient) UpdateOrganizationMembership(ctx context.Conte
 	return out, nil
 }
 
-func (c *mgmtPublicServiceClient) GetUserSubscription(ctx context.Context, in *GetUserSubscriptionRequest, opts ...grpc.CallOption) (*GetUserSubscriptionResponse, error) {
-	out := new(GetUserSubscriptionResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_GetUserSubscription_FullMethodName, in, out, opts...)
+func (c *mgmtPublicServiceClient) GetAuthenticatedUserSubscription(ctx context.Context, in *GetAuthenticatedUserSubscriptionRequest, opts ...grpc.CallOption) (*GetAuthenticatedUserSubscriptionResponse, error) {
+	out := new(GetAuthenticatedUserSubscriptionResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_GetAuthenticatedUserSubscription_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -669,10 +669,10 @@ type MgmtPublicServiceServer interface {
 	//
 	// Updates a user membership within an organization.
 	UpdateOrganizationMembership(context.Context, *UpdateOrganizationMembershipRequest) (*UpdateOrganizationMembershipResponse, error)
-	// Get a user subscription
+	// Get the subscription of the authenticated user
 	//
-	// Returns the subscription details of a user.
-	GetUserSubscription(context.Context, *GetUserSubscriptionRequest) (*GetUserSubscriptionResponse, error)
+	// Returns the subscription details of the authenticated user.
+	GetAuthenticatedUserSubscription(context.Context, *GetAuthenticatedUserSubscriptionRequest) (*GetAuthenticatedUserSubscriptionResponse, error)
 	// Get an organization subscription
 	//
 	// Returns the subscription details of an organization.
@@ -809,8 +809,8 @@ func (UnimplementedMgmtPublicServiceServer) GetOrganizationMembership(context.Co
 func (UnimplementedMgmtPublicServiceServer) UpdateOrganizationMembership(context.Context, *UpdateOrganizationMembershipRequest) (*UpdateOrganizationMembershipResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrganizationMembership not implemented")
 }
-func (UnimplementedMgmtPublicServiceServer) GetUserSubscription(context.Context, *GetUserSubscriptionRequest) (*GetUserSubscriptionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetUserSubscription not implemented")
+func (UnimplementedMgmtPublicServiceServer) GetAuthenticatedUserSubscription(context.Context, *GetAuthenticatedUserSubscriptionRequest) (*GetAuthenticatedUserSubscriptionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAuthenticatedUserSubscription not implemented")
 }
 func (UnimplementedMgmtPublicServiceServer) GetOrganizationSubscription(context.Context, *GetOrganizationSubscriptionRequest) (*GetOrganizationSubscriptionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationSubscription not implemented")
@@ -1235,20 +1235,20 @@ func _MgmtPublicService_UpdateOrganizationMembership_Handler(srv interface{}, ct
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MgmtPublicService_GetUserSubscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUserSubscriptionRequest)
+func _MgmtPublicService_GetAuthenticatedUserSubscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAuthenticatedUserSubscriptionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).GetUserSubscription(ctx, in)
+		return srv.(MgmtPublicServiceServer).GetAuthenticatedUserSubscription(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: MgmtPublicService_GetUserSubscription_FullMethodName,
+		FullMethod: MgmtPublicService_GetAuthenticatedUserSubscription_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).GetUserSubscription(ctx, req.(*GetUserSubscriptionRequest))
+		return srv.(MgmtPublicServiceServer).GetAuthenticatedUserSubscription(ctx, req.(*GetAuthenticatedUserSubscriptionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1647,8 +1647,8 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MgmtPublicService_UpdateOrganizationMembership_Handler,
 		},
 		{
-			MethodName: "GetUserSubscription",
-			Handler:    _MgmtPublicService_GetUserSubscription_Handler,
+			MethodName: "GetAuthenticatedUserSubscription",
+			Handler:    _MgmtPublicService_GetAuthenticatedUserSubscription_Handler,
 		},
 		{
 			MethodName: "GetOrganizationSubscription",
