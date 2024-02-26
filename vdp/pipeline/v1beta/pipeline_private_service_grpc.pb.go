@@ -19,14 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	PipelinePrivateService_ListPipelinesAdmin_FullMethodName             = "/vdp.pipeline.v1beta.PipelinePrivateService/ListPipelinesAdmin"
-	PipelinePrivateService_LookUpPipelineAdmin_FullMethodName            = "/vdp.pipeline.v1beta.PipelinePrivateService/LookUpPipelineAdmin"
-	PipelinePrivateService_LookUpOperatorDefinitionAdmin_FullMethodName  = "/vdp.pipeline.v1beta.PipelinePrivateService/LookUpOperatorDefinitionAdmin"
-	PipelinePrivateService_ListPipelineReleasesAdmin_FullMethodName      = "/vdp.pipeline.v1beta.PipelinePrivateService/ListPipelineReleasesAdmin"
-	PipelinePrivateService_LookUpConnectorDefinitionAdmin_FullMethodName = "/vdp.pipeline.v1beta.PipelinePrivateService/LookUpConnectorDefinitionAdmin"
-	PipelinePrivateService_ListConnectorsAdmin_FullMethodName            = "/vdp.pipeline.v1beta.PipelinePrivateService/ListConnectorsAdmin"
-	PipelinePrivateService_LookUpConnectorAdmin_FullMethodName           = "/vdp.pipeline.v1beta.PipelinePrivateService/LookUpConnectorAdmin"
-	PipelinePrivateService_CheckConnector_FullMethodName                 = "/vdp.pipeline.v1beta.PipelinePrivateService/CheckConnector"
+	PipelinePrivateService_ListPipelinesAdmin_FullMethodName        = "/vdp.pipeline.v1beta.PipelinePrivateService/ListPipelinesAdmin"
+	PipelinePrivateService_LookUpPipelineAdmin_FullMethodName       = "/vdp.pipeline.v1beta.PipelinePrivateService/LookUpPipelineAdmin"
+	PipelinePrivateService_ListPipelineReleasesAdmin_FullMethodName = "/vdp.pipeline.v1beta.PipelinePrivateService/ListPipelineReleasesAdmin"
+	PipelinePrivateService_ListConnectorsAdmin_FullMethodName       = "/vdp.pipeline.v1beta.PipelinePrivateService/ListConnectorsAdmin"
+	PipelinePrivateService_LookUpConnectorAdmin_FullMethodName      = "/vdp.pipeline.v1beta.PipelinePrivateService/LookUpConnectorAdmin"
+	PipelinePrivateService_CheckConnector_FullMethodName            = "/vdp.pipeline.v1beta.PipelinePrivateService/CheckConnector"
 )
 
 // PipelinePrivateServiceClient is the client API for PipelinePrivateService service.
@@ -43,21 +41,11 @@ type PipelinePrivateServiceClient interface {
 	// This is a *private* method that allows admin users to access any pipeline
 	// resource by its UID.
 	LookUpPipelineAdmin(ctx context.Context, in *LookUpPipelineAdminRequest, opts ...grpc.CallOption) (*LookUpPipelineAdminResponse, error)
-	// Get an operator definition by UID (admin only)
-	//
-	// This is a *private* method that allows admin users to access an operator
-	// definition by its UID.
-	LookUpOperatorDefinitionAdmin(ctx context.Context, in *LookUpOperatorDefinitionAdminRequest, opts ...grpc.CallOption) (*LookUpOperatorDefinitionAdminResponse, error)
 	// List pipeline releases (admin only)
 	//
 	// This is a *private* method that allows admin users to list *all* pipeline
 	// releases.
 	ListPipelineReleasesAdmin(ctx context.Context, in *ListPipelineReleasesAdminRequest, opts ...grpc.CallOption) (*ListPipelineReleasesAdminResponse, error)
-	// Get a connector definition by UID (admin only)
-	//
-	// This is a *private* method that allows admin users to access a connector
-	// definition by its UID.
-	LookUpConnectorDefinitionAdmin(ctx context.Context, in *LookUpConnectorDefinitionAdminRequest, opts ...grpc.CallOption) (*LookUpConnectorDefinitionAdminResponse, error)
 	// List connectors (admin only)
 	//
 	// This is a *private* method that allows admin users to list *all* connectors.
@@ -100,27 +88,9 @@ func (c *pipelinePrivateServiceClient) LookUpPipelineAdmin(ctx context.Context, 
 	return out, nil
 }
 
-func (c *pipelinePrivateServiceClient) LookUpOperatorDefinitionAdmin(ctx context.Context, in *LookUpOperatorDefinitionAdminRequest, opts ...grpc.CallOption) (*LookUpOperatorDefinitionAdminResponse, error) {
-	out := new(LookUpOperatorDefinitionAdminResponse)
-	err := c.cc.Invoke(ctx, PipelinePrivateService_LookUpOperatorDefinitionAdmin_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *pipelinePrivateServiceClient) ListPipelineReleasesAdmin(ctx context.Context, in *ListPipelineReleasesAdminRequest, opts ...grpc.CallOption) (*ListPipelineReleasesAdminResponse, error) {
 	out := new(ListPipelineReleasesAdminResponse)
 	err := c.cc.Invoke(ctx, PipelinePrivateService_ListPipelineReleasesAdmin_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *pipelinePrivateServiceClient) LookUpConnectorDefinitionAdmin(ctx context.Context, in *LookUpConnectorDefinitionAdminRequest, opts ...grpc.CallOption) (*LookUpConnectorDefinitionAdminResponse, error) {
-	out := new(LookUpConnectorDefinitionAdminResponse)
-	err := c.cc.Invoke(ctx, PipelinePrivateService_LookUpConnectorDefinitionAdmin_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -168,21 +138,11 @@ type PipelinePrivateServiceServer interface {
 	// This is a *private* method that allows admin users to access any pipeline
 	// resource by its UID.
 	LookUpPipelineAdmin(context.Context, *LookUpPipelineAdminRequest) (*LookUpPipelineAdminResponse, error)
-	// Get an operator definition by UID (admin only)
-	//
-	// This is a *private* method that allows admin users to access an operator
-	// definition by its UID.
-	LookUpOperatorDefinitionAdmin(context.Context, *LookUpOperatorDefinitionAdminRequest) (*LookUpOperatorDefinitionAdminResponse, error)
 	// List pipeline releases (admin only)
 	//
 	// This is a *private* method that allows admin users to list *all* pipeline
 	// releases.
 	ListPipelineReleasesAdmin(context.Context, *ListPipelineReleasesAdminRequest) (*ListPipelineReleasesAdminResponse, error)
-	// Get a connector definition by UID (admin only)
-	//
-	// This is a *private* method that allows admin users to access a connector
-	// definition by its UID.
-	LookUpConnectorDefinitionAdmin(context.Context, *LookUpConnectorDefinitionAdminRequest) (*LookUpConnectorDefinitionAdminResponse, error)
 	// List connectors (admin only)
 	//
 	// This is a *private* method that allows admin users to list *all* connectors.
@@ -209,14 +169,8 @@ func (UnimplementedPipelinePrivateServiceServer) ListPipelinesAdmin(context.Cont
 func (UnimplementedPipelinePrivateServiceServer) LookUpPipelineAdmin(context.Context, *LookUpPipelineAdminRequest) (*LookUpPipelineAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LookUpPipelineAdmin not implemented")
 }
-func (UnimplementedPipelinePrivateServiceServer) LookUpOperatorDefinitionAdmin(context.Context, *LookUpOperatorDefinitionAdminRequest) (*LookUpOperatorDefinitionAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LookUpOperatorDefinitionAdmin not implemented")
-}
 func (UnimplementedPipelinePrivateServiceServer) ListPipelineReleasesAdmin(context.Context, *ListPipelineReleasesAdminRequest) (*ListPipelineReleasesAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineReleasesAdmin not implemented")
-}
-func (UnimplementedPipelinePrivateServiceServer) LookUpConnectorDefinitionAdmin(context.Context, *LookUpConnectorDefinitionAdminRequest) (*LookUpConnectorDefinitionAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LookUpConnectorDefinitionAdmin not implemented")
 }
 func (UnimplementedPipelinePrivateServiceServer) ListConnectorsAdmin(context.Context, *ListConnectorsAdminRequest) (*ListConnectorsAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListConnectorsAdmin not implemented")
@@ -275,24 +229,6 @@ func _PipelinePrivateService_LookUpPipelineAdmin_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePrivateService_LookUpOperatorDefinitionAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(LookUpOperatorDefinitionAdminRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePrivateServiceServer).LookUpOperatorDefinitionAdmin(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PipelinePrivateService_LookUpOperatorDefinitionAdmin_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePrivateServiceServer).LookUpOperatorDefinitionAdmin(ctx, req.(*LookUpOperatorDefinitionAdminRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _PipelinePrivateService_ListPipelineReleasesAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListPipelineReleasesAdminRequest)
 	if err := dec(in); err != nil {
@@ -307,24 +243,6 @@ func _PipelinePrivateService_ListPipelineReleasesAdmin_Handler(srv interface{}, 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PipelinePrivateServiceServer).ListPipelineReleasesAdmin(ctx, req.(*ListPipelineReleasesAdminRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PipelinePrivateService_LookUpConnectorDefinitionAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(LookUpConnectorDefinitionAdminRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePrivateServiceServer).LookUpConnectorDefinitionAdmin(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PipelinePrivateService_LookUpConnectorDefinitionAdmin_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePrivateServiceServer).LookUpConnectorDefinitionAdmin(ctx, req.(*LookUpConnectorDefinitionAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -399,16 +317,8 @@ var PipelinePrivateService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _PipelinePrivateService_LookUpPipelineAdmin_Handler,
 		},
 		{
-			MethodName: "LookUpOperatorDefinitionAdmin",
-			Handler:    _PipelinePrivateService_LookUpOperatorDefinitionAdmin_Handler,
-		},
-		{
 			MethodName: "ListPipelineReleasesAdmin",
 			Handler:    _PipelinePrivateService_ListPipelineReleasesAdmin_Handler,
-		},
-		{
-			MethodName: "LookUpConnectorDefinitionAdmin",
-			Handler:    _PipelinePrivateService_LookUpConnectorDefinitionAdmin_Handler,
 		},
 		{
 			MethodName: "ListConnectorsAdmin",

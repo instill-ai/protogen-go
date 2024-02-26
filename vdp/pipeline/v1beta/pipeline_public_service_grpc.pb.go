@@ -67,6 +67,7 @@ const (
 	PipelinePublicService_ListConnectorDefinitions_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/ListConnectorDefinitions"
 	PipelinePublicService_GetConnectorDefinition_FullMethodName                  = "/vdp.pipeline.v1beta.PipelinePublicService/GetConnectorDefinition"
 	PipelinePublicService_ListOperatorDefinitions_FullMethodName                 = "/vdp.pipeline.v1beta.PipelinePublicService/ListOperatorDefinitions"
+	PipelinePublicService_ListComponentDefinitions_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/ListComponentDefinitions"
 	PipelinePublicService_GetOperatorDefinition_FullMethodName                   = "/vdp.pipeline.v1beta.PipelinePublicService/GetOperatorDefinition"
 	PipelinePublicService_ListConnectors_FullMethodName                          = "/vdp.pipeline.v1beta.PipelinePublicService/ListConnectors"
 	PipelinePublicService_LookUpConnector_FullMethodName                         = "/vdp.pipeline.v1beta.PipelinePublicService/LookUpConnector"
@@ -437,6 +438,12 @@ type PipelinePublicServiceClient interface {
 	//
 	// Returns a paginated list of operator definitions.
 	ListOperatorDefinitions(ctx context.Context, in *ListOperatorDefinitionsRequest, opts ...grpc.CallOption) (*ListOperatorDefinitionsResponse, error)
+	// List component definitions
+	//
+	// Returns a paginated list of component definitions, regardless their type.
+	// This offers a single source of truth, with pagination and filter
+	// capabilities, for the components that might be used in a VDP pipeline.
+	ListComponentDefinitions(ctx context.Context, in *ListComponentDefinitionsRequest, opts ...grpc.CallOption) (*ListComponentDefinitionsResponse, error)
 	// Get operator definition
 	//
 	// Returns the details of an operator definition.
@@ -1010,6 +1017,15 @@ func (c *pipelinePublicServiceClient) GetConnectorDefinition(ctx context.Context
 func (c *pipelinePublicServiceClient) ListOperatorDefinitions(ctx context.Context, in *ListOperatorDefinitionsRequest, opts ...grpc.CallOption) (*ListOperatorDefinitionsResponse, error) {
 	out := new(ListOperatorDefinitionsResponse)
 	err := c.cc.Invoke(ctx, PipelinePublicService_ListOperatorDefinitions_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) ListComponentDefinitions(ctx context.Context, in *ListComponentDefinitionsRequest, opts ...grpc.CallOption) (*ListComponentDefinitionsResponse, error) {
+	out := new(ListComponentDefinitionsResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ListComponentDefinitions_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1592,6 +1608,12 @@ type PipelinePublicServiceServer interface {
 	//
 	// Returns a paginated list of operator definitions.
 	ListOperatorDefinitions(context.Context, *ListOperatorDefinitionsRequest) (*ListOperatorDefinitionsResponse, error)
+	// List component definitions
+	//
+	// Returns a paginated list of component definitions, regardless their type.
+	// This offers a single source of truth, with pagination and filter
+	// capabilities, for the components that might be used in a VDP pipeline.
+	ListComponentDefinitions(context.Context, *ListComponentDefinitionsRequest) (*ListComponentDefinitionsResponse, error)
 	// Get operator definition
 	//
 	// Returns the details of an operator definition.
@@ -1878,6 +1900,9 @@ func (UnimplementedPipelinePublicServiceServer) GetConnectorDefinition(context.C
 }
 func (UnimplementedPipelinePublicServiceServer) ListOperatorDefinitions(context.Context, *ListOperatorDefinitionsRequest) (*ListOperatorDefinitionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListOperatorDefinitions not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) ListComponentDefinitions(context.Context, *ListComponentDefinitionsRequest) (*ListComponentDefinitionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListComponentDefinitions not implemented")
 }
 func (UnimplementedPipelinePublicServiceServer) GetOperatorDefinition(context.Context, *GetOperatorDefinitionRequest) (*GetOperatorDefinitionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOperatorDefinition not implemented")
@@ -2833,6 +2858,24 @@ func _PipelinePublicService_ListOperatorDefinitions_Handler(srv interface{}, ctx
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PipelinePublicService_ListComponentDefinitions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListComponentDefinitionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).ListComponentDefinitions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_ListComponentDefinitions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).ListComponentDefinitions(ctx, req.(*ListComponentDefinitionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PipelinePublicService_GetOperatorDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetOperatorDefinitionRequest)
 	if err := dec(in); err != nil {
@@ -3499,6 +3542,10 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListOperatorDefinitions",
 			Handler:    _PipelinePublicService_ListOperatorDefinitions_Handler,
+		},
+		{
+			MethodName: "ListComponentDefinitions",
+			Handler:    _PipelinePublicService_ListComponentDefinitions_Handler,
 		},
 		{
 			MethodName: "GetOperatorDefinition",
