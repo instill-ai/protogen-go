@@ -193,9 +193,10 @@ func (Connector_Visibility) EnumDescriptor() ([]byte, []int) {
 	return file_vdp_pipeline_v1beta_connector_proto_rawDescGZIP(), []int{0, 2}
 }
 
-// A Connector is a type of pipeline component that queries, processes or sends
-// the ingested unstructured data to a service or app. Users need to configure
-// their connectors (e.g. by providing an API token to a remote service).
+// A connector allows users to query, process or send data to a service or app.
+// Users can create and configure connectors that may later be referenced in
+// their pipelines via a connector component in order to process their ingested
+// unstructured data.
 //
 // For more information, see
 // [Component](https://www.instill.tech/docs/latest/core/concepts/pipeline#pipeline-component)
