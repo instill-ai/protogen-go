@@ -27,30 +27,24 @@ const (
 	ModelPublicService_LookUpModel_FullMethodName                              = "/model.model.v1alpha.ModelPublicService/LookUpModel"
 	ModelPublicService_ListUserModels_FullMethodName                           = "/model.model.v1alpha.ModelPublicService/ListUserModels"
 	ModelPublicService_CreateUserModel_FullMethodName                          = "/model.model.v1alpha.ModelPublicService/CreateUserModel"
-	ModelPublicService_CreateUserModelBinaryFileUpload_FullMethodName          = "/model.model.v1alpha.ModelPublicService/CreateUserModelBinaryFileUpload"
 	ModelPublicService_GetUserModel_FullMethodName                             = "/model.model.v1alpha.ModelPublicService/GetUserModel"
 	ModelPublicService_UpdateUserModel_FullMethodName                          = "/model.model.v1alpha.ModelPublicService/UpdateUserModel"
 	ModelPublicService_DeleteUserModel_FullMethodName                          = "/model.model.v1alpha.ModelPublicService/DeleteUserModel"
 	ModelPublicService_RenameUserModel_FullMethodName                          = "/model.model.v1alpha.ModelPublicService/RenameUserModel"
 	ModelPublicService_PublishUserModel_FullMethodName                         = "/model.model.v1alpha.ModelPublicService/PublishUserModel"
 	ModelPublicService_UnpublishUserModel_FullMethodName                       = "/model.model.v1alpha.ModelPublicService/UnpublishUserModel"
-	ModelPublicService_DeployUserModel_FullMethodName                          = "/model.model.v1alpha.ModelPublicService/DeployUserModel"
-	ModelPublicService_UndeployUserModel_FullMethodName                        = "/model.model.v1alpha.ModelPublicService/UndeployUserModel"
 	ModelPublicService_GetUserModelCard_FullMethodName                         = "/model.model.v1alpha.ModelPublicService/GetUserModelCard"
 	ModelPublicService_WatchUserModel_FullMethodName                           = "/model.model.v1alpha.ModelPublicService/WatchUserModel"
 	ModelPublicService_TriggerUserModel_FullMethodName                         = "/model.model.v1alpha.ModelPublicService/TriggerUserModel"
 	ModelPublicService_TriggerUserModelBinaryFileUpload_FullMethodName         = "/model.model.v1alpha.ModelPublicService/TriggerUserModelBinaryFileUpload"
 	ModelPublicService_ListOrganizationModels_FullMethodName                   = "/model.model.v1alpha.ModelPublicService/ListOrganizationModels"
 	ModelPublicService_CreateOrganizationModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/CreateOrganizationModel"
-	ModelPublicService_CreateOrganizationModelBinaryFileUpload_FullMethodName  = "/model.model.v1alpha.ModelPublicService/CreateOrganizationModelBinaryFileUpload"
 	ModelPublicService_GetOrganizationModel_FullMethodName                     = "/model.model.v1alpha.ModelPublicService/GetOrganizationModel"
 	ModelPublicService_UpdateOrganizationModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/UpdateOrganizationModel"
 	ModelPublicService_DeleteOrganizationModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/DeleteOrganizationModel"
 	ModelPublicService_RenameOrganizationModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/RenameOrganizationModel"
 	ModelPublicService_PublishOrganizationModel_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/PublishOrganizationModel"
 	ModelPublicService_UnpublishOrganizationModel_FullMethodName               = "/model.model.v1alpha.ModelPublicService/UnpublishOrganizationModel"
-	ModelPublicService_DeployOrganizationModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/DeployOrganizationModel"
-	ModelPublicService_UndeployOrganizationModel_FullMethodName                = "/model.model.v1alpha.ModelPublicService/UndeployOrganizationModel"
 	ModelPublicService_GetOrganizationModelCard_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/GetOrganizationModelCard"
 	ModelPublicService_WatchOrganizationModel_FullMethodName                   = "/model.model.v1alpha.ModelPublicService/WatchOrganizationModel"
 	ModelPublicService_TriggerOrganizationModel_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/TriggerOrganizationModel"
@@ -100,10 +94,6 @@ type ModelPublicServiceClient interface {
 	// necessary information to access the result and status of the creation
 	// operation.
 	CreateUserModel(ctx context.Context, in *CreateUserModelRequest, opts ...grpc.CallOption) (*CreateUserModelResponse, error)
-	// Upload model binary
-	//
-	// Creates a new model by upploading its binary content.
-	CreateUserModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_CreateUserModelBinaryFileUploadClient, error)
 	// Get a model
 	//
 	// Returns the detail of a model, accessing it by the model ID and its parent user.
@@ -136,28 +126,6 @@ type ModelPublicServiceClient interface {
 	// Updates the visibility in a model to PRIVATE. The model is accessed by its
 	// resource name, defined by the model ID and its parent user.
 	UnpublishUserModel(ctx context.Context, in *UnpublishUserModelRequest, opts ...grpc.CallOption) (*UnpublishUserModelResponse, error)
-	// Deploy a model
-	//
-	// Transitions the model into an ONLINE state. The model is accessed by its
-	// resource name, defined by the model ID and its parent user.
-	//
-	// While this operation is being performed, the state of the model will
-	// transition to UNSPECIFIED. As completing the deployment might take time,
-	// the server will not wait to complete the operation to return a response.
-	// The state of the model can be used to track the completion of the
-	// operation. This can be done by using the `watch` operation on the model.
-	DeployUserModel(ctx context.Context, in *DeployUserModelRequest, opts ...grpc.CallOption) (*DeployUserModelResponse, error)
-	// Undeploy a model
-	//
-	// Transitions the model into an OFFLINE state. The model is accessed by its
-	// resource name, defined by the model ID and its parent user.
-	//
-	// While this operation is being performed, the state of the model will
-	// transition to UNSPECIFIED. As completing the teardown might take time,
-	// the server will not wait to complete the operation to return a response.
-	// The state of the model can be used to track the completion of the
-	// operation. This can be done by using the `watch` operation on the model.
-	UndeployUserModel(ctx context.Context, in *UndeployUserModelRequest, opts ...grpc.CallOption) (*UndeployUserModelResponse, error)
 	// Get a model card
 	//
 	// Returns the README file that accompanies a model, describing it and
@@ -193,10 +161,6 @@ type ModelPublicServiceClient interface {
 	// necessary information to access the result and status of the creation
 	// operation.
 	CreateOrganizationModel(ctx context.Context, in *CreateOrganizationModelRequest, opts ...grpc.CallOption) (*CreateOrganizationModelResponse, error)
-	// Upload model binary
-	//
-	// Creates a new model by upploading its binary content.
-	CreateOrganizationModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_CreateOrganizationModelBinaryFileUploadClient, error)
 	// Get a model
 	//
 	// Returns the detail of a model, accessing it by the model ID and its parent organization.
@@ -229,28 +193,6 @@ type ModelPublicServiceClient interface {
 	// Updates the visibility in a model to PRIVATE. The model is accessed by its
 	// resource name, defined by the model ID and its parent organization.
 	UnpublishOrganizationModel(ctx context.Context, in *UnpublishOrganizationModelRequest, opts ...grpc.CallOption) (*UnpublishOrganizationModelResponse, error)
-	// Deploy a model
-	//
-	// Transitions the model into an ONLINE state. The model is accessed by its
-	// resource name, defined by the model ID and its parent organization.
-	//
-	// While this operation is being performed, the state of the model will
-	// transition to UNSPECIFIED. As completing the deployment might take time,
-	// the server will not wait to complete the operation to return a response.
-	// The state of the model can be used to track the completion of the
-	// operation. This can be done by using the `watch` operation on the model.
-	DeployOrganizationModel(ctx context.Context, in *DeployOrganizationModelRequest, opts ...grpc.CallOption) (*DeployOrganizationModelResponse, error)
-	// Undeploy a model
-	//
-	// Transitions the model into an OFFLINE state. The model is accessed by its
-	// resource name, defined by the model ID and its parent organization.
-	//
-	// While this operation is being performed, the state of the model will
-	// transition to UNSPECIFIED. As completing the teardown might take time,
-	// the server will not wait to complete the operation to return a response.
-	// The state of the model can be used to track the completion of the
-	// operation. This can be done by using the `watch` operation on the model.
-	UndeployOrganizationModel(ctx context.Context, in *UndeployOrganizationModelRequest, opts ...grpc.CallOption) (*UndeployOrganizationModelResponse, error)
 	// Get a model card
 	//
 	// Returns the README file that accompanies a model, describing it and
@@ -359,40 +301,6 @@ func (c *modelPublicServiceClient) CreateUserModel(ctx context.Context, in *Crea
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) CreateUserModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_CreateUserModelBinaryFileUploadClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[0], ModelPublicService_CreateUserModelBinaryFileUpload_FullMethodName, opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &modelPublicServiceCreateUserModelBinaryFileUploadClient{stream}
-	return x, nil
-}
-
-type ModelPublicService_CreateUserModelBinaryFileUploadClient interface {
-	Send(*CreateUserModelBinaryFileUploadRequest) error
-	CloseAndRecv() (*CreateUserModelBinaryFileUploadResponse, error)
-	grpc.ClientStream
-}
-
-type modelPublicServiceCreateUserModelBinaryFileUploadClient struct {
-	grpc.ClientStream
-}
-
-func (x *modelPublicServiceCreateUserModelBinaryFileUploadClient) Send(m *CreateUserModelBinaryFileUploadRequest) error {
-	return x.ClientStream.SendMsg(m)
-}
-
-func (x *modelPublicServiceCreateUserModelBinaryFileUploadClient) CloseAndRecv() (*CreateUserModelBinaryFileUploadResponse, error) {
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	m := new(CreateUserModelBinaryFileUploadResponse)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
 func (c *modelPublicServiceClient) GetUserModel(ctx context.Context, in *GetUserModelRequest, opts ...grpc.CallOption) (*GetUserModelResponse, error) {
 	out := new(GetUserModelResponse)
 	err := c.cc.Invoke(ctx, ModelPublicService_GetUserModel_FullMethodName, in, out, opts...)
@@ -447,24 +355,6 @@ func (c *modelPublicServiceClient) UnpublishUserModel(ctx context.Context, in *U
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) DeployUserModel(ctx context.Context, in *DeployUserModelRequest, opts ...grpc.CallOption) (*DeployUserModelResponse, error) {
-	out := new(DeployUserModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_DeployUserModel_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *modelPublicServiceClient) UndeployUserModel(ctx context.Context, in *UndeployUserModelRequest, opts ...grpc.CallOption) (*UndeployUserModelResponse, error) {
-	out := new(UndeployUserModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_UndeployUserModel_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *modelPublicServiceClient) GetUserModelCard(ctx context.Context, in *GetUserModelCardRequest, opts ...grpc.CallOption) (*GetUserModelCardResponse, error) {
 	out := new(GetUserModelCardResponse)
 	err := c.cc.Invoke(ctx, ModelPublicService_GetUserModelCard_FullMethodName, in, out, opts...)
@@ -493,7 +383,7 @@ func (c *modelPublicServiceClient) TriggerUserModel(ctx context.Context, in *Tri
 }
 
 func (c *modelPublicServiceClient) TriggerUserModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TriggerUserModelBinaryFileUploadClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[1], ModelPublicService_TriggerUserModelBinaryFileUpload_FullMethodName, opts...)
+	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[0], ModelPublicService_TriggerUserModelBinaryFileUpload_FullMethodName, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -542,40 +432,6 @@ func (c *modelPublicServiceClient) CreateOrganizationModel(ctx context.Context, 
 		return nil, err
 	}
 	return out, nil
-}
-
-func (c *modelPublicServiceClient) CreateOrganizationModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_CreateOrganizationModelBinaryFileUploadClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[2], ModelPublicService_CreateOrganizationModelBinaryFileUpload_FullMethodName, opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &modelPublicServiceCreateOrganizationModelBinaryFileUploadClient{stream}
-	return x, nil
-}
-
-type ModelPublicService_CreateOrganizationModelBinaryFileUploadClient interface {
-	Send(*CreateOrganizationModelBinaryFileUploadRequest) error
-	CloseAndRecv() (*CreateOrganizationModelBinaryFileUploadResponse, error)
-	grpc.ClientStream
-}
-
-type modelPublicServiceCreateOrganizationModelBinaryFileUploadClient struct {
-	grpc.ClientStream
-}
-
-func (x *modelPublicServiceCreateOrganizationModelBinaryFileUploadClient) Send(m *CreateOrganizationModelBinaryFileUploadRequest) error {
-	return x.ClientStream.SendMsg(m)
-}
-
-func (x *modelPublicServiceCreateOrganizationModelBinaryFileUploadClient) CloseAndRecv() (*CreateOrganizationModelBinaryFileUploadResponse, error) {
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	m := new(CreateOrganizationModelBinaryFileUploadResponse)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
 }
 
 func (c *modelPublicServiceClient) GetOrganizationModel(ctx context.Context, in *GetOrganizationModelRequest, opts ...grpc.CallOption) (*GetOrganizationModelResponse, error) {
@@ -632,24 +488,6 @@ func (c *modelPublicServiceClient) UnpublishOrganizationModel(ctx context.Contex
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) DeployOrganizationModel(ctx context.Context, in *DeployOrganizationModelRequest, opts ...grpc.CallOption) (*DeployOrganizationModelResponse, error) {
-	out := new(DeployOrganizationModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_DeployOrganizationModel_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *modelPublicServiceClient) UndeployOrganizationModel(ctx context.Context, in *UndeployOrganizationModelRequest, opts ...grpc.CallOption) (*UndeployOrganizationModelResponse, error) {
-	out := new(UndeployOrganizationModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_UndeployOrganizationModel_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *modelPublicServiceClient) GetOrganizationModelCard(ctx context.Context, in *GetOrganizationModelCardRequest, opts ...grpc.CallOption) (*GetOrganizationModelCardResponse, error) {
 	out := new(GetOrganizationModelCardResponse)
 	err := c.cc.Invoke(ctx, ModelPublicService_GetOrganizationModelCard_FullMethodName, in, out, opts...)
@@ -678,7 +516,7 @@ func (c *modelPublicServiceClient) TriggerOrganizationModel(ctx context.Context,
 }
 
 func (c *modelPublicServiceClient) TriggerOrganizationModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TriggerOrganizationModelBinaryFileUploadClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[3], ModelPublicService_TriggerOrganizationModelBinaryFileUpload_FullMethodName, opts...)
+	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[1], ModelPublicService_TriggerOrganizationModelBinaryFileUpload_FullMethodName, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -762,10 +600,6 @@ type ModelPublicServiceServer interface {
 	// necessary information to access the result and status of the creation
 	// operation.
 	CreateUserModel(context.Context, *CreateUserModelRequest) (*CreateUserModelResponse, error)
-	// Upload model binary
-	//
-	// Creates a new model by upploading its binary content.
-	CreateUserModelBinaryFileUpload(ModelPublicService_CreateUserModelBinaryFileUploadServer) error
 	// Get a model
 	//
 	// Returns the detail of a model, accessing it by the model ID and its parent user.
@@ -798,28 +632,6 @@ type ModelPublicServiceServer interface {
 	// Updates the visibility in a model to PRIVATE. The model is accessed by its
 	// resource name, defined by the model ID and its parent user.
 	UnpublishUserModel(context.Context, *UnpublishUserModelRequest) (*UnpublishUserModelResponse, error)
-	// Deploy a model
-	//
-	// Transitions the model into an ONLINE state. The model is accessed by its
-	// resource name, defined by the model ID and its parent user.
-	//
-	// While this operation is being performed, the state of the model will
-	// transition to UNSPECIFIED. As completing the deployment might take time,
-	// the server will not wait to complete the operation to return a response.
-	// The state of the model can be used to track the completion of the
-	// operation. This can be done by using the `watch` operation on the model.
-	DeployUserModel(context.Context, *DeployUserModelRequest) (*DeployUserModelResponse, error)
-	// Undeploy a model
-	//
-	// Transitions the model into an OFFLINE state. The model is accessed by its
-	// resource name, defined by the model ID and its parent user.
-	//
-	// While this operation is being performed, the state of the model will
-	// transition to UNSPECIFIED. As completing the teardown might take time,
-	// the server will not wait to complete the operation to return a response.
-	// The state of the model can be used to track the completion of the
-	// operation. This can be done by using the `watch` operation on the model.
-	UndeployUserModel(context.Context, *UndeployUserModelRequest) (*UndeployUserModelResponse, error)
 	// Get a model card
 	//
 	// Returns the README file that accompanies a model, describing it and
@@ -855,10 +667,6 @@ type ModelPublicServiceServer interface {
 	// necessary information to access the result and status of the creation
 	// operation.
 	CreateOrganizationModel(context.Context, *CreateOrganizationModelRequest) (*CreateOrganizationModelResponse, error)
-	// Upload model binary
-	//
-	// Creates a new model by upploading its binary content.
-	CreateOrganizationModelBinaryFileUpload(ModelPublicService_CreateOrganizationModelBinaryFileUploadServer) error
 	// Get a model
 	//
 	// Returns the detail of a model, accessing it by the model ID and its parent organization.
@@ -891,28 +699,6 @@ type ModelPublicServiceServer interface {
 	// Updates the visibility in a model to PRIVATE. The model is accessed by its
 	// resource name, defined by the model ID and its parent organization.
 	UnpublishOrganizationModel(context.Context, *UnpublishOrganizationModelRequest) (*UnpublishOrganizationModelResponse, error)
-	// Deploy a model
-	//
-	// Transitions the model into an ONLINE state. The model is accessed by its
-	// resource name, defined by the model ID and its parent organization.
-	//
-	// While this operation is being performed, the state of the model will
-	// transition to UNSPECIFIED. As completing the deployment might take time,
-	// the server will not wait to complete the operation to return a response.
-	// The state of the model can be used to track the completion of the
-	// operation. This can be done by using the `watch` operation on the model.
-	DeployOrganizationModel(context.Context, *DeployOrganizationModelRequest) (*DeployOrganizationModelResponse, error)
-	// Undeploy a model
-	//
-	// Transitions the model into an OFFLINE state. The model is accessed by its
-	// resource name, defined by the model ID and its parent organization.
-	//
-	// While this operation is being performed, the state of the model will
-	// transition to UNSPECIFIED. As completing the teardown might take time,
-	// the server will not wait to complete the operation to return a response.
-	// The state of the model can be used to track the completion of the
-	// operation. This can be done by using the `watch` operation on the model.
-	UndeployOrganizationModel(context.Context, *UndeployOrganizationModelRequest) (*UndeployOrganizationModelResponse, error)
 	// Get a model card
 	//
 	// Returns the README file that accompanies a model, describing it and
@@ -969,9 +755,6 @@ func (UnimplementedModelPublicServiceServer) ListUserModels(context.Context, *Li
 func (UnimplementedModelPublicServiceServer) CreateUserModel(context.Context, *CreateUserModelRequest) (*CreateUserModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateUserModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) CreateUserModelBinaryFileUpload(ModelPublicService_CreateUserModelBinaryFileUploadServer) error {
-	return status.Errorf(codes.Unimplemented, "method CreateUserModelBinaryFileUpload not implemented")
-}
 func (UnimplementedModelPublicServiceServer) GetUserModel(context.Context, *GetUserModelRequest) (*GetUserModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserModel not implemented")
 }
@@ -989,12 +772,6 @@ func (UnimplementedModelPublicServiceServer) PublishUserModel(context.Context, *
 }
 func (UnimplementedModelPublicServiceServer) UnpublishUserModel(context.Context, *UnpublishUserModelRequest) (*UnpublishUserModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UnpublishUserModel not implemented")
-}
-func (UnimplementedModelPublicServiceServer) DeployUserModel(context.Context, *DeployUserModelRequest) (*DeployUserModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeployUserModel not implemented")
-}
-func (UnimplementedModelPublicServiceServer) UndeployUserModel(context.Context, *UndeployUserModelRequest) (*UndeployUserModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UndeployUserModel not implemented")
 }
 func (UnimplementedModelPublicServiceServer) GetUserModelCard(context.Context, *GetUserModelCardRequest) (*GetUserModelCardResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserModelCard not implemented")
@@ -1014,9 +791,6 @@ func (UnimplementedModelPublicServiceServer) ListOrganizationModels(context.Cont
 func (UnimplementedModelPublicServiceServer) CreateOrganizationModel(context.Context, *CreateOrganizationModelRequest) (*CreateOrganizationModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOrganizationModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) CreateOrganizationModelBinaryFileUpload(ModelPublicService_CreateOrganizationModelBinaryFileUploadServer) error {
-	return status.Errorf(codes.Unimplemented, "method CreateOrganizationModelBinaryFileUpload not implemented")
-}
 func (UnimplementedModelPublicServiceServer) GetOrganizationModel(context.Context, *GetOrganizationModelRequest) (*GetOrganizationModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationModel not implemented")
 }
@@ -1034,12 +808,6 @@ func (UnimplementedModelPublicServiceServer) PublishOrganizationModel(context.Co
 }
 func (UnimplementedModelPublicServiceServer) UnpublishOrganizationModel(context.Context, *UnpublishOrganizationModelRequest) (*UnpublishOrganizationModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UnpublishOrganizationModel not implemented")
-}
-func (UnimplementedModelPublicServiceServer) DeployOrganizationModel(context.Context, *DeployOrganizationModelRequest) (*DeployOrganizationModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeployOrganizationModel not implemented")
-}
-func (UnimplementedModelPublicServiceServer) UndeployOrganizationModel(context.Context, *UndeployOrganizationModelRequest) (*UndeployOrganizationModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UndeployOrganizationModel not implemented")
 }
 func (UnimplementedModelPublicServiceServer) GetOrganizationModelCard(context.Context, *GetOrganizationModelCardRequest) (*GetOrganizationModelCardResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationModelCard not implemented")
@@ -1212,32 +980,6 @@ func _ModelPublicService_CreateUserModel_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_CreateUserModelBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(ModelPublicServiceServer).CreateUserModelBinaryFileUpload(&modelPublicServiceCreateUserModelBinaryFileUploadServer{stream})
-}
-
-type ModelPublicService_CreateUserModelBinaryFileUploadServer interface {
-	SendAndClose(*CreateUserModelBinaryFileUploadResponse) error
-	Recv() (*CreateUserModelBinaryFileUploadRequest, error)
-	grpc.ServerStream
-}
-
-type modelPublicServiceCreateUserModelBinaryFileUploadServer struct {
-	grpc.ServerStream
-}
-
-func (x *modelPublicServiceCreateUserModelBinaryFileUploadServer) SendAndClose(m *CreateUserModelBinaryFileUploadResponse) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func (x *modelPublicServiceCreateUserModelBinaryFileUploadServer) Recv() (*CreateUserModelBinaryFileUploadRequest, error) {
-	m := new(CreateUserModelBinaryFileUploadRequest)
-	if err := x.ServerStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
 func _ModelPublicService_GetUserModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetUserModelRequest)
 	if err := dec(in); err != nil {
@@ -1342,42 +1084,6 @@ func _ModelPublicService_UnpublishUserModel_Handler(srv interface{}, ctx context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelPublicServiceServer).UnpublishUserModel(ctx, req.(*UnpublishUserModelRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ModelPublicService_DeployUserModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeployUserModelRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).DeployUserModel(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ModelPublicService_DeployUserModel_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).DeployUserModel(ctx, req.(*DeployUserModelRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ModelPublicService_UndeployUserModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UndeployUserModelRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).UndeployUserModel(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ModelPublicService_UndeployUserModel_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).UndeployUserModel(ctx, req.(*UndeployUserModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1498,32 +1204,6 @@ func _ModelPublicService_CreateOrganizationModel_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_CreateOrganizationModelBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(ModelPublicServiceServer).CreateOrganizationModelBinaryFileUpload(&modelPublicServiceCreateOrganizationModelBinaryFileUploadServer{stream})
-}
-
-type ModelPublicService_CreateOrganizationModelBinaryFileUploadServer interface {
-	SendAndClose(*CreateOrganizationModelBinaryFileUploadResponse) error
-	Recv() (*CreateOrganizationModelBinaryFileUploadRequest, error)
-	grpc.ServerStream
-}
-
-type modelPublicServiceCreateOrganizationModelBinaryFileUploadServer struct {
-	grpc.ServerStream
-}
-
-func (x *modelPublicServiceCreateOrganizationModelBinaryFileUploadServer) SendAndClose(m *CreateOrganizationModelBinaryFileUploadResponse) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func (x *modelPublicServiceCreateOrganizationModelBinaryFileUploadServer) Recv() (*CreateOrganizationModelBinaryFileUploadRequest, error) {
-	m := new(CreateOrganizationModelBinaryFileUploadRequest)
-	if err := x.ServerStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
 func _ModelPublicService_GetOrganizationModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetOrganizationModelRequest)
 	if err := dec(in); err != nil {
@@ -1628,42 +1308,6 @@ func _ModelPublicService_UnpublishOrganizationModel_Handler(srv interface{}, ctx
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelPublicServiceServer).UnpublishOrganizationModel(ctx, req.(*UnpublishOrganizationModelRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ModelPublicService_DeployOrganizationModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeployOrganizationModelRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).DeployOrganizationModel(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ModelPublicService_DeployOrganizationModel_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).DeployOrganizationModel(ctx, req.(*DeployOrganizationModelRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ModelPublicService_UndeployOrganizationModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UndeployOrganizationModelRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).UndeployOrganizationModel(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ModelPublicService_UndeployOrganizationModel_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).UndeployOrganizationModel(ctx, req.(*UndeployOrganizationModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1830,14 +1474,6 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ModelPublicService_UnpublishUserModel_Handler,
 		},
 		{
-			MethodName: "DeployUserModel",
-			Handler:    _ModelPublicService_DeployUserModel_Handler,
-		},
-		{
-			MethodName: "UndeployUserModel",
-			Handler:    _ModelPublicService_UndeployUserModel_Handler,
-		},
-		{
 			MethodName: "GetUserModelCard",
 			Handler:    _ModelPublicService_GetUserModelCard_Handler,
 		},
@@ -1882,14 +1518,6 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ModelPublicService_UnpublishOrganizationModel_Handler,
 		},
 		{
-			MethodName: "DeployOrganizationModel",
-			Handler:    _ModelPublicService_DeployOrganizationModel_Handler,
-		},
-		{
-			MethodName: "UndeployOrganizationModel",
-			Handler:    _ModelPublicService_UndeployOrganizationModel_Handler,
-		},
-		{
 			MethodName: "GetOrganizationModelCard",
 			Handler:    _ModelPublicService_GetOrganizationModelCard_Handler,
 		},
@@ -1908,18 +1536,8 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "CreateUserModelBinaryFileUpload",
-			Handler:       _ModelPublicService_CreateUserModelBinaryFileUpload_Handler,
-			ClientStreams: true,
-		},
-		{
 			StreamName:    "TriggerUserModelBinaryFileUpload",
 			Handler:       _ModelPublicService_TriggerUserModelBinaryFileUpload_Handler,
-			ClientStreams: true,
-		},
-		{
-			StreamName:    "CreateOrganizationModelBinaryFileUpload",
-			Handler:       _ModelPublicService_CreateOrganizationModelBinaryFileUpload_Handler,
 			ClientStreams: true,
 		},
 		{
