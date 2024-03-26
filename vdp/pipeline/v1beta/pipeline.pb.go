@@ -1506,7 +1506,7 @@ type PipelineRelease struct {
 	unknownFields protoimpl.UnknownFields
 
 	// The name of the release, defined by its parent and ID.
-	// - Format: `{parent_type}/{parent.id}/pipelines/{pipeline.id}/releases/{release.id}
+	// - Format: `{parent_type}/{parent.id}/pipelines/{pipeline.id}/releases/{release.id}`.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Release UUID.
 	Uid string `protobuf:"bytes,2,opt,name=uid,proto3" json:"uid,omitempty"`
