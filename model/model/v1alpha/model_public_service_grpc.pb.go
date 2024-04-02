@@ -36,6 +36,7 @@ const (
 	ModelPublicService_GetUserModelCard_FullMethodName                         = "/model.model.v1alpha.ModelPublicService/GetUserModelCard"
 	ModelPublicService_WatchUserModel_FullMethodName                           = "/model.model.v1alpha.ModelPublicService/WatchUserModel"
 	ModelPublicService_TriggerUserModel_FullMethodName                         = "/model.model.v1alpha.ModelPublicService/TriggerUserModel"
+	ModelPublicService_TriggerAsyncUserModel_FullMethodName                    = "/model.model.v1alpha.ModelPublicService/TriggerAsyncUserModel"
 	ModelPublicService_TriggerUserModelBinaryFileUpload_FullMethodName         = "/model.model.v1alpha.ModelPublicService/TriggerUserModelBinaryFileUpload"
 	ModelPublicService_ListOrganizationModels_FullMethodName                   = "/model.model.v1alpha.ModelPublicService/ListOrganizationModels"
 	ModelPublicService_CreateOrganizationModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/CreateOrganizationModel"
@@ -48,6 +49,7 @@ const (
 	ModelPublicService_GetOrganizationModelCard_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/GetOrganizationModelCard"
 	ModelPublicService_WatchOrganizationModel_FullMethodName                   = "/model.model.v1alpha.ModelPublicService/WatchOrganizationModel"
 	ModelPublicService_TriggerOrganizationModel_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/TriggerOrganizationModel"
+	ModelPublicService_TriggerAsyncOrganizationModel_FullMethodName            = "/model.model.v1alpha.ModelPublicService/TriggerAsyncOrganizationModel"
 	ModelPublicService_TriggerOrganizationModelBinaryFileUpload_FullMethodName = "/model.model.v1alpha.ModelPublicService/TriggerOrganizationModelBinaryFileUpload"
 	ModelPublicService_GetModelOperation_FullMethodName                        = "/model.model.v1alpha.ModelPublicService/GetModelOperation"
 )
@@ -142,6 +144,11 @@ type ModelPublicServiceClient interface {
 	// Triggers a deployed model to infer the result of a set of task or
 	// questions.
 	TriggerUserModel(ctx context.Context, in *TriggerUserModelRequest, opts ...grpc.CallOption) (*TriggerUserModelResponse, error)
+	// Trigger model inference asynchronously
+	//
+	// Triggers a deployed model to infer the result of a set of task or
+	// questions.
+	TriggerAsyncUserModel(ctx context.Context, in *TriggerAsyncUserModelRequest, opts ...grpc.CallOption) (*TriggerAsyncUserModelResponse, error)
 	// Trigger model inference with a binary input
 	//
 	// Triggers a deployed model to infer the result of a task or question,
@@ -209,6 +216,11 @@ type ModelPublicServiceClient interface {
 	// Triggers a deployed model to infer the result of a set of task or
 	// questions.
 	TriggerOrganizationModel(ctx context.Context, in *TriggerOrganizationModelRequest, opts ...grpc.CallOption) (*TriggerOrganizationModelResponse, error)
+	// Trigger model inference asynchronously
+	//
+	// Triggers a deployed model to infer the result of a set of task or
+	// questions.
+	TriggerAsyncOrganizationModel(ctx context.Context, in *TriggerAsyncOrganizationModelRequest, opts ...grpc.CallOption) (*TriggerAsyncOrganizationModelResponse, error)
 	// Trigger model inference with a binary input
 	//
 	// Triggers a deployed model to infer the result of a task or question,
@@ -382,6 +394,15 @@ func (c *modelPublicServiceClient) TriggerUserModel(ctx context.Context, in *Tri
 	return out, nil
 }
 
+func (c *modelPublicServiceClient) TriggerAsyncUserModel(ctx context.Context, in *TriggerAsyncUserModelRequest, opts ...grpc.CallOption) (*TriggerAsyncUserModelResponse, error) {
+	out := new(TriggerAsyncUserModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_TriggerAsyncUserModel_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *modelPublicServiceClient) TriggerUserModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TriggerUserModelBinaryFileUploadClient, error) {
 	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[0], ModelPublicService_TriggerUserModelBinaryFileUpload_FullMethodName, opts...)
 	if err != nil {
@@ -509,6 +530,15 @@ func (c *modelPublicServiceClient) WatchOrganizationModel(ctx context.Context, i
 func (c *modelPublicServiceClient) TriggerOrganizationModel(ctx context.Context, in *TriggerOrganizationModelRequest, opts ...grpc.CallOption) (*TriggerOrganizationModelResponse, error) {
 	out := new(TriggerOrganizationModelResponse)
 	err := c.cc.Invoke(ctx, ModelPublicService_TriggerOrganizationModel_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *modelPublicServiceClient) TriggerAsyncOrganizationModel(ctx context.Context, in *TriggerAsyncOrganizationModelRequest, opts ...grpc.CallOption) (*TriggerAsyncOrganizationModelResponse, error) {
+	out := new(TriggerAsyncOrganizationModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_TriggerAsyncOrganizationModel_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -648,6 +678,11 @@ type ModelPublicServiceServer interface {
 	// Triggers a deployed model to infer the result of a set of task or
 	// questions.
 	TriggerUserModel(context.Context, *TriggerUserModelRequest) (*TriggerUserModelResponse, error)
+	// Trigger model inference asynchronously
+	//
+	// Triggers a deployed model to infer the result of a set of task or
+	// questions.
+	TriggerAsyncUserModel(context.Context, *TriggerAsyncUserModelRequest) (*TriggerAsyncUserModelResponse, error)
 	// Trigger model inference with a binary input
 	//
 	// Triggers a deployed model to infer the result of a task or question,
@@ -715,6 +750,11 @@ type ModelPublicServiceServer interface {
 	// Triggers a deployed model to infer the result of a set of task or
 	// questions.
 	TriggerOrganizationModel(context.Context, *TriggerOrganizationModelRequest) (*TriggerOrganizationModelResponse, error)
+	// Trigger model inference asynchronously
+	//
+	// Triggers a deployed model to infer the result of a set of task or
+	// questions.
+	TriggerAsyncOrganizationModel(context.Context, *TriggerAsyncOrganizationModelRequest) (*TriggerAsyncOrganizationModelResponse, error)
 	// Trigger model inference with a binary input
 	//
 	// Triggers a deployed model to infer the result of a task or question,
@@ -782,6 +822,9 @@ func (UnimplementedModelPublicServiceServer) WatchUserModel(context.Context, *Wa
 func (UnimplementedModelPublicServiceServer) TriggerUserModel(context.Context, *TriggerUserModelRequest) (*TriggerUserModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerUserModel not implemented")
 }
+func (UnimplementedModelPublicServiceServer) TriggerAsyncUserModel(context.Context, *TriggerAsyncUserModelRequest) (*TriggerAsyncUserModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncUserModel not implemented")
+}
 func (UnimplementedModelPublicServiceServer) TriggerUserModelBinaryFileUpload(ModelPublicService_TriggerUserModelBinaryFileUploadServer) error {
 	return status.Errorf(codes.Unimplemented, "method TriggerUserModelBinaryFileUpload not implemented")
 }
@@ -817,6 +860,9 @@ func (UnimplementedModelPublicServiceServer) WatchOrganizationModel(context.Cont
 }
 func (UnimplementedModelPublicServiceServer) TriggerOrganizationModel(context.Context, *TriggerOrganizationModelRequest) (*TriggerOrganizationModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerOrganizationModel not implemented")
+}
+func (UnimplementedModelPublicServiceServer) TriggerAsyncOrganizationModel(context.Context, *TriggerAsyncOrganizationModelRequest) (*TriggerAsyncOrganizationModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncOrganizationModel not implemented")
 }
 func (UnimplementedModelPublicServiceServer) TriggerOrganizationModelBinaryFileUpload(ModelPublicService_TriggerOrganizationModelBinaryFileUploadServer) error {
 	return status.Errorf(codes.Unimplemented, "method TriggerOrganizationModelBinaryFileUpload not implemented")
@@ -1142,6 +1188,24 @@ func _ModelPublicService_TriggerUserModel_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ModelPublicService_TriggerAsyncUserModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerAsyncUserModelRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPublicServiceServer).TriggerAsyncUserModel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPublicService_TriggerAsyncUserModel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPublicServiceServer).TriggerAsyncUserModel(ctx, req.(*TriggerAsyncUserModelRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ModelPublicService_TriggerUserModelBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
 	return srv.(ModelPublicServiceServer).TriggerUserModelBinaryFileUpload(&modelPublicServiceTriggerUserModelBinaryFileUploadServer{stream})
 }
@@ -1366,6 +1430,24 @@ func _ModelPublicService_TriggerOrganizationModel_Handler(srv interface{}, ctx c
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ModelPublicService_TriggerAsyncOrganizationModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerAsyncOrganizationModelRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPublicServiceServer).TriggerAsyncOrganizationModel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPublicService_TriggerAsyncOrganizationModel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPublicServiceServer).TriggerAsyncOrganizationModel(ctx, req.(*TriggerAsyncOrganizationModelRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ModelPublicService_TriggerOrganizationModelBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
 	return srv.(ModelPublicServiceServer).TriggerOrganizationModelBinaryFileUpload(&modelPublicServiceTriggerOrganizationModelBinaryFileUploadServer{stream})
 }
@@ -1486,6 +1568,10 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ModelPublicService_TriggerUserModel_Handler,
 		},
 		{
+			MethodName: "TriggerAsyncUserModel",
+			Handler:    _ModelPublicService_TriggerAsyncUserModel_Handler,
+		},
+		{
 			MethodName: "ListOrganizationModels",
 			Handler:    _ModelPublicService_ListOrganizationModels_Handler,
 		},
@@ -1528,6 +1614,10 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TriggerOrganizationModel",
 			Handler:    _ModelPublicService_TriggerOrganizationModel_Handler,
+		},
+		{
+			MethodName: "TriggerAsyncOrganizationModel",
+			Handler:    _ModelPublicService_TriggerAsyncOrganizationModel_Handler,
 		},
 		{
 			MethodName: "GetModelOperation",
