@@ -35,6 +35,7 @@ const (
 	ModelPublicService_UnpublishUserModel_FullMethodName                       = "/model.model.v1alpha.ModelPublicService/UnpublishUserModel"
 	ModelPublicService_GetUserModelCard_FullMethodName                         = "/model.model.v1alpha.ModelPublicService/GetUserModelCard"
 	ModelPublicService_WatchUserModel_FullMethodName                           = "/model.model.v1alpha.ModelPublicService/WatchUserModel"
+	ModelPublicService_ListUserModelVersions_FullMethodName                    = "/model.model.v1alpha.ModelPublicService/ListUserModelVersions"
 	ModelPublicService_TriggerUserModel_FullMethodName                         = "/model.model.v1alpha.ModelPublicService/TriggerUserModel"
 	ModelPublicService_TriggerAsyncUserModel_FullMethodName                    = "/model.model.v1alpha.ModelPublicService/TriggerAsyncUserModel"
 	ModelPublicService_TriggerUserModelBinaryFileUpload_FullMethodName         = "/model.model.v1alpha.ModelPublicService/TriggerUserModelBinaryFileUpload"
@@ -48,6 +49,7 @@ const (
 	ModelPublicService_UnpublishOrganizationModel_FullMethodName               = "/model.model.v1alpha.ModelPublicService/UnpublishOrganizationModel"
 	ModelPublicService_GetOrganizationModelCard_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/GetOrganizationModelCard"
 	ModelPublicService_WatchOrganizationModel_FullMethodName                   = "/model.model.v1alpha.ModelPublicService/WatchOrganizationModel"
+	ModelPublicService_ListOrganizationModelVersions_FullMethodName            = "/model.model.v1alpha.ModelPublicService/ListOrganizationModelVersions"
 	ModelPublicService_TriggerOrganizationModel_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/TriggerOrganizationModel"
 	ModelPublicService_TriggerAsyncOrganizationModel_FullMethodName            = "/model.model.v1alpha.ModelPublicService/TriggerAsyncOrganizationModel"
 	ModelPublicService_TriggerOrganizationModelBinaryFileUpload_FullMethodName = "/model.model.v1alpha.ModelPublicService/TriggerOrganizationModelBinaryFileUpload"
@@ -139,6 +141,11 @@ type ModelPublicServiceClient interface {
 	// time, during which a model will be in an UNSPECIFIED state. This endpoint
 	// allows clients to track the state and progress of the model.
 	WatchUserModel(ctx context.Context, in *WatchUserModelRequest, opts ...grpc.CallOption) (*WatchUserModelResponse, error)
+	// List user model versions
+	//
+	// Returns a paginated list of version of a model namespace that belong to the specified user.
+	// Contains model version and digest.
+	ListUserModelVersions(ctx context.Context, in *ListUserModelVersionsRequest, opts ...grpc.CallOption) (*ListUserModelVersionsResponse, error)
 	// Trigger model inference
 	//
 	// Triggers a deployed model to infer the result of a set of task or
@@ -211,6 +218,11 @@ type ModelPublicServiceClient interface {
 	// time, during which a model will be in an UNSPECIFIED state. This endpoint
 	// allows clients to track the state and progress of the model.
 	WatchOrganizationModel(ctx context.Context, in *WatchOrganizationModelRequest, opts ...grpc.CallOption) (*WatchOrganizationModelResponse, error)
+	// List organization model versions
+	//
+	// Returns a paginated list of version of a model namespace that belong to the specified organization.
+	// Contains model version and digest.
+	ListOrganizationModelVersions(ctx context.Context, in *ListOrganizationModelVersionsRequest, opts ...grpc.CallOption) (*ListOrganizationModelVersionsResponse, error)
 	// Trigger model inference
 	//
 	// Triggers a deployed model to infer the result of a set of task or
@@ -385,6 +397,15 @@ func (c *modelPublicServiceClient) WatchUserModel(ctx context.Context, in *Watch
 	return out, nil
 }
 
+func (c *modelPublicServiceClient) ListUserModelVersions(ctx context.Context, in *ListUserModelVersionsRequest, opts ...grpc.CallOption) (*ListUserModelVersionsResponse, error) {
+	out := new(ListUserModelVersionsResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_ListUserModelVersions_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *modelPublicServiceClient) TriggerUserModel(ctx context.Context, in *TriggerUserModelRequest, opts ...grpc.CallOption) (*TriggerUserModelResponse, error) {
 	out := new(TriggerUserModelResponse)
 	err := c.cc.Invoke(ctx, ModelPublicService_TriggerUserModel_FullMethodName, in, out, opts...)
@@ -521,6 +542,15 @@ func (c *modelPublicServiceClient) GetOrganizationModelCard(ctx context.Context,
 func (c *modelPublicServiceClient) WatchOrganizationModel(ctx context.Context, in *WatchOrganizationModelRequest, opts ...grpc.CallOption) (*WatchOrganizationModelResponse, error) {
 	out := new(WatchOrganizationModelResponse)
 	err := c.cc.Invoke(ctx, ModelPublicService_WatchOrganizationModel_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *modelPublicServiceClient) ListOrganizationModelVersions(ctx context.Context, in *ListOrganizationModelVersionsRequest, opts ...grpc.CallOption) (*ListOrganizationModelVersionsResponse, error) {
+	out := new(ListOrganizationModelVersionsResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_ListOrganizationModelVersions_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -673,6 +703,11 @@ type ModelPublicServiceServer interface {
 	// time, during which a model will be in an UNSPECIFIED state. This endpoint
 	// allows clients to track the state and progress of the model.
 	WatchUserModel(context.Context, *WatchUserModelRequest) (*WatchUserModelResponse, error)
+	// List user model versions
+	//
+	// Returns a paginated list of version of a model namespace that belong to the specified user.
+	// Contains model version and digest.
+	ListUserModelVersions(context.Context, *ListUserModelVersionsRequest) (*ListUserModelVersionsResponse, error)
 	// Trigger model inference
 	//
 	// Triggers a deployed model to infer the result of a set of task or
@@ -745,6 +780,11 @@ type ModelPublicServiceServer interface {
 	// time, during which a model will be in an UNSPECIFIED state. This endpoint
 	// allows clients to track the state and progress of the model.
 	WatchOrganizationModel(context.Context, *WatchOrganizationModelRequest) (*WatchOrganizationModelResponse, error)
+	// List organization model versions
+	//
+	// Returns a paginated list of version of a model namespace that belong to the specified organization.
+	// Contains model version and digest.
+	ListOrganizationModelVersions(context.Context, *ListOrganizationModelVersionsRequest) (*ListOrganizationModelVersionsResponse, error)
 	// Trigger model inference
 	//
 	// Triggers a deployed model to infer the result of a set of task or
@@ -819,6 +859,9 @@ func (UnimplementedModelPublicServiceServer) GetUserModelCard(context.Context, *
 func (UnimplementedModelPublicServiceServer) WatchUserModel(context.Context, *WatchUserModelRequest) (*WatchUserModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method WatchUserModel not implemented")
 }
+func (UnimplementedModelPublicServiceServer) ListUserModelVersions(context.Context, *ListUserModelVersionsRequest) (*ListUserModelVersionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListUserModelVersions not implemented")
+}
 func (UnimplementedModelPublicServiceServer) TriggerUserModel(context.Context, *TriggerUserModelRequest) (*TriggerUserModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerUserModel not implemented")
 }
@@ -857,6 +900,9 @@ func (UnimplementedModelPublicServiceServer) GetOrganizationModelCard(context.Co
 }
 func (UnimplementedModelPublicServiceServer) WatchOrganizationModel(context.Context, *WatchOrganizationModelRequest) (*WatchOrganizationModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method WatchOrganizationModel not implemented")
+}
+func (UnimplementedModelPublicServiceServer) ListOrganizationModelVersions(context.Context, *ListOrganizationModelVersionsRequest) (*ListOrganizationModelVersionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizationModelVersions not implemented")
 }
 func (UnimplementedModelPublicServiceServer) TriggerOrganizationModel(context.Context, *TriggerOrganizationModelRequest) (*TriggerOrganizationModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerOrganizationModel not implemented")
@@ -1170,6 +1216,24 @@ func _ModelPublicService_WatchUserModel_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ModelPublicService_ListUserModelVersions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListUserModelVersionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPublicServiceServer).ListUserModelVersions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPublicService_ListUserModelVersions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPublicServiceServer).ListUserModelVersions(ctx, req.(*ListUserModelVersionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ModelPublicService_TriggerUserModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(TriggerUserModelRequest)
 	if err := dec(in); err != nil {
@@ -1412,6 +1476,24 @@ func _ModelPublicService_WatchOrganizationModel_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ModelPublicService_ListOrganizationModelVersions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListOrganizationModelVersionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPublicServiceServer).ListOrganizationModelVersions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPublicService_ListOrganizationModelVersions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPublicServiceServer).ListOrganizationModelVersions(ctx, req.(*ListOrganizationModelVersionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ModelPublicService_TriggerOrganizationModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(TriggerOrganizationModelRequest)
 	if err := dec(in); err != nil {
@@ -1564,6 +1646,10 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ModelPublicService_WatchUserModel_Handler,
 		},
 		{
+			MethodName: "ListUserModelVersions",
+			Handler:    _ModelPublicService_ListUserModelVersions_Handler,
+		},
+		{
 			MethodName: "TriggerUserModel",
 			Handler:    _ModelPublicService_TriggerUserModel_Handler,
 		},
@@ -1610,6 +1696,10 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "WatchOrganizationModel",
 			Handler:    _ModelPublicService_WatchOrganizationModel_Handler,
+		},
+		{
+			MethodName: "ListOrganizationModelVersions",
+			Handler:    _ModelPublicService_ListOrganizationModelVersions_Handler,
 		},
 		{
 			MethodName: "TriggerOrganizationModel",
