@@ -39,7 +39,6 @@ const (
 	PipelinePublicService_UpdateUserPipelineRelease_FullMethodName               = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateUserPipelineRelease"
 	PipelinePublicService_DeleteUserPipelineRelease_FullMethodName               = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteUserPipelineRelease"
 	PipelinePublicService_RestoreUserPipelineRelease_FullMethodName              = "/vdp.pipeline.v1beta.PipelinePublicService/RestoreUserPipelineRelease"
-	PipelinePublicService_WatchUserPipelineRelease_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/WatchUserPipelineRelease"
 	PipelinePublicService_RenameUserPipelineRelease_FullMethodName               = "/vdp.pipeline.v1beta.PipelinePublicService/RenameUserPipelineRelease"
 	PipelinePublicService_TriggerUserPipelineRelease_FullMethodName              = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerUserPipelineRelease"
 	PipelinePublicService_TriggerAsyncUserPipelineRelease_FullMethodName         = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerAsyncUserPipelineRelease"
@@ -59,7 +58,6 @@ const (
 	PipelinePublicService_UpdateOrganizationPipelineRelease_FullMethodName       = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateOrganizationPipelineRelease"
 	PipelinePublicService_DeleteOrganizationPipelineRelease_FullMethodName       = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteOrganizationPipelineRelease"
 	PipelinePublicService_RestoreOrganizationPipelineRelease_FullMethodName      = "/vdp.pipeline.v1beta.PipelinePublicService/RestoreOrganizationPipelineRelease"
-	PipelinePublicService_WatchOrganizationPipelineRelease_FullMethodName        = "/vdp.pipeline.v1beta.PipelinePublicService/WatchOrganizationPipelineRelease"
 	PipelinePublicService_RenameOrganizationPipelineRelease_FullMethodName       = "/vdp.pipeline.v1beta.PipelinePublicService/RenameOrganizationPipelineRelease"
 	PipelinePublicService_TriggerOrganizationPipelineRelease_FullMethodName      = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerOrganizationPipelineRelease"
 	PipelinePublicService_TriggerAsyncOrganizationPipelineRelease_FullMethodName = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerAsyncOrganizationPipelineRelease"
@@ -219,11 +217,6 @@ type PipelinePublicServiceClient interface {
 	// The authenticated user must be the parent of the pipeline in order to
 	// perform this action.
 	RestoreUserPipelineRelease(ctx context.Context, in *RestoreUserPipelineReleaseRequest, opts ...grpc.CallOption) (*RestoreUserPipelineReleaseResponse, error)
-	// Get the state of a release in a pipeline owned by a user
-	//
-	// Gets the state of a pipeline release, where the pipeline is identified by
-	// its resource name, formed by the parent user and ID of the pipeline.
-	WatchUserPipelineRelease(ctx context.Context, in *WatchUserPipelineReleaseRequest, opts ...grpc.CallOption) (*WatchUserPipelineReleaseResponse, error)
 	// Rename a release in a pipeline owned by a user
 	//
 	// Updates the ID of a pipeline release, where the pipeline is identified by
@@ -362,11 +355,6 @@ type PipelinePublicServiceClient interface {
 	// The pipeline is identified by its resource name, formed by its parent
 	// organization and ID.
 	RestoreOrganizationPipelineRelease(ctx context.Context, in *RestoreOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*RestoreOrganizationPipelineReleaseResponse, error)
-	// Get the state of a release in a pipeline owned by an organization
-	//
-	// Gets the state of a pipeline release, where the pipeline is identified by
-	// its resource name, formed by the parent organization and ID of the pipeline.
-	WatchOrganizationPipelineRelease(ctx context.Context, in *WatchOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*WatchOrganizationPipelineReleaseResponse, error)
 	// Rename a release in a pipeline owned by an organization
 	//
 	// Updates the ID of a pipeline release, where the pipeline is identified by
@@ -619,15 +607,6 @@ func (c *pipelinePublicServiceClient) RestoreUserPipelineRelease(ctx context.Con
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) WatchUserPipelineRelease(ctx context.Context, in *WatchUserPipelineReleaseRequest, opts ...grpc.CallOption) (*WatchUserPipelineReleaseResponse, error) {
-	out := new(WatchUserPipelineReleaseResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_WatchUserPipelineRelease_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *pipelinePublicServiceClient) RenameUserPipelineRelease(ctx context.Context, in *RenameUserPipelineReleaseRequest, opts ...grpc.CallOption) (*RenameUserPipelineReleaseResponse, error) {
 	out := new(RenameUserPipelineReleaseResponse)
 	err := c.cc.Invoke(ctx, PipelinePublicService_RenameUserPipelineRelease_FullMethodName, in, out, opts...)
@@ -793,15 +772,6 @@ func (c *pipelinePublicServiceClient) DeleteOrganizationPipelineRelease(ctx cont
 func (c *pipelinePublicServiceClient) RestoreOrganizationPipelineRelease(ctx context.Context, in *RestoreOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*RestoreOrganizationPipelineReleaseResponse, error) {
 	out := new(RestoreOrganizationPipelineReleaseResponse)
 	err := c.cc.Invoke(ctx, PipelinePublicService_RestoreOrganizationPipelineRelease_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *pipelinePublicServiceClient) WatchOrganizationPipelineRelease(ctx context.Context, in *WatchOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*WatchOrganizationPipelineReleaseResponse, error) {
-	out := new(WatchOrganizationPipelineReleaseResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_WatchOrganizationPipelineRelease_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1045,11 +1015,6 @@ type PipelinePublicServiceServer interface {
 	// The authenticated user must be the parent of the pipeline in order to
 	// perform this action.
 	RestoreUserPipelineRelease(context.Context, *RestoreUserPipelineReleaseRequest) (*RestoreUserPipelineReleaseResponse, error)
-	// Get the state of a release in a pipeline owned by a user
-	//
-	// Gets the state of a pipeline release, where the pipeline is identified by
-	// its resource name, formed by the parent user and ID of the pipeline.
-	WatchUserPipelineRelease(context.Context, *WatchUserPipelineReleaseRequest) (*WatchUserPipelineReleaseResponse, error)
 	// Rename a release in a pipeline owned by a user
 	//
 	// Updates the ID of a pipeline release, where the pipeline is identified by
@@ -1188,11 +1153,6 @@ type PipelinePublicServiceServer interface {
 	// The pipeline is identified by its resource name, formed by its parent
 	// organization and ID.
 	RestoreOrganizationPipelineRelease(context.Context, *RestoreOrganizationPipelineReleaseRequest) (*RestoreOrganizationPipelineReleaseResponse, error)
-	// Get the state of a release in a pipeline owned by an organization
-	//
-	// Gets the state of a pipeline release, where the pipeline is identified by
-	// its resource name, formed by the parent organization and ID of the pipeline.
-	WatchOrganizationPipelineRelease(context.Context, *WatchOrganizationPipelineReleaseRequest) (*WatchOrganizationPipelineReleaseResponse, error)
 	// Rename a release in a pipeline owned by an organization
 	//
 	// Updates the ID of a pipeline release, where the pipeline is identified by
@@ -1321,9 +1281,6 @@ func (UnimplementedPipelinePublicServiceServer) DeleteUserPipelineRelease(contex
 func (UnimplementedPipelinePublicServiceServer) RestoreUserPipelineRelease(context.Context, *RestoreUserPipelineReleaseRequest) (*RestoreUserPipelineReleaseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RestoreUserPipelineRelease not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) WatchUserPipelineRelease(context.Context, *WatchUserPipelineReleaseRequest) (*WatchUserPipelineReleaseResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method WatchUserPipelineRelease not implemented")
-}
 func (UnimplementedPipelinePublicServiceServer) RenameUserPipelineRelease(context.Context, *RenameUserPipelineReleaseRequest) (*RenameUserPipelineReleaseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RenameUserPipelineRelease not implemented")
 }
@@ -1380,9 +1337,6 @@ func (UnimplementedPipelinePublicServiceServer) DeleteOrganizationPipelineReleas
 }
 func (UnimplementedPipelinePublicServiceServer) RestoreOrganizationPipelineRelease(context.Context, *RestoreOrganizationPipelineReleaseRequest) (*RestoreOrganizationPipelineReleaseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RestoreOrganizationPipelineRelease not implemented")
-}
-func (UnimplementedPipelinePublicServiceServer) WatchOrganizationPipelineRelease(context.Context, *WatchOrganizationPipelineReleaseRequest) (*WatchOrganizationPipelineReleaseResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method WatchOrganizationPipelineRelease not implemented")
 }
 func (UnimplementedPipelinePublicServiceServer) RenameOrganizationPipelineRelease(context.Context, *RenameOrganizationPipelineReleaseRequest) (*RenameOrganizationPipelineReleaseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RenameOrganizationPipelineRelease not implemented")
@@ -1786,24 +1740,6 @@ func _PipelinePublicService_RestoreUserPipelineRelease_Handler(srv interface{}, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_WatchUserPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(WatchUserPipelineReleaseRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).WatchUserPipelineRelease(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PipelinePublicService_WatchUserPipelineRelease_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).WatchUserPipelineRelease(ctx, req.(*WatchUserPipelineReleaseRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _PipelinePublicService_RenameUserPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RenameUserPipelineReleaseRequest)
 	if err := dec(in); err != nil {
@@ -2146,24 +2082,6 @@ func _PipelinePublicService_RestoreOrganizationPipelineRelease_Handler(srv inter
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_WatchOrganizationPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(WatchOrganizationPipelineReleaseRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).WatchOrganizationPipelineRelease(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PipelinePublicService_WatchOrganizationPipelineRelease_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).WatchOrganizationPipelineRelease(ctx, req.(*WatchOrganizationPipelineReleaseRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _PipelinePublicService_RenameOrganizationPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RenameOrganizationPipelineReleaseRequest)
 	if err := dec(in); err != nil {
@@ -2432,10 +2350,6 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _PipelinePublicService_RestoreUserPipelineRelease_Handler,
 		},
 		{
-			MethodName: "WatchUserPipelineRelease",
-			Handler:    _PipelinePublicService_WatchUserPipelineRelease_Handler,
-		},
-		{
 			MethodName: "RenameUserPipelineRelease",
 			Handler:    _PipelinePublicService_RenameUserPipelineRelease_Handler,
 		},
@@ -2510,10 +2424,6 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RestoreOrganizationPipelineRelease",
 			Handler:    _PipelinePublicService_RestoreOrganizationPipelineRelease_Handler,
-		},
-		{
-			MethodName: "WatchOrganizationPipelineRelease",
-			Handler:    _PipelinePublicService_WatchOrganizationPipelineRelease_Handler,
 		},
 		{
 			MethodName: "RenameOrganizationPipelineRelease",
