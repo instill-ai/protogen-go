@@ -68,6 +68,16 @@ const (
 	PipelinePublicService_ListComponentDefinitions_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/ListComponentDefinitions"
 	PipelinePublicService_GetOperatorDefinition_FullMethodName                   = "/vdp.pipeline.v1beta.PipelinePublicService/GetOperatorDefinition"
 	PipelinePublicService_CheckName_FullMethodName                               = "/vdp.pipeline.v1beta.PipelinePublicService/CheckName"
+	PipelinePublicService_CreateUserSecret_FullMethodName                        = "/vdp.pipeline.v1beta.PipelinePublicService/CreateUserSecret"
+	PipelinePublicService_ListUserSecrets_FullMethodName                         = "/vdp.pipeline.v1beta.PipelinePublicService/ListUserSecrets"
+	PipelinePublicService_GetUserSecret_FullMethodName                           = "/vdp.pipeline.v1beta.PipelinePublicService/GetUserSecret"
+	PipelinePublicService_UpdateUserSecret_FullMethodName                        = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateUserSecret"
+	PipelinePublicService_DeleteUserSecret_FullMethodName                        = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteUserSecret"
+	PipelinePublicService_CreateOrganizationSecret_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/CreateOrganizationSecret"
+	PipelinePublicService_ListOrganizationSecrets_FullMethodName                 = "/vdp.pipeline.v1beta.PipelinePublicService/ListOrganizationSecrets"
+	PipelinePublicService_GetOrganizationSecret_FullMethodName                   = "/vdp.pipeline.v1beta.PipelinePublicService/GetOrganizationSecret"
+	PipelinePublicService_UpdateOrganizationSecret_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateOrganizationSecret"
+	PipelinePublicService_DeleteOrganizationSecret_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteOrganizationSecret"
 )
 
 // PipelinePublicServiceClient is the client API for PipelinePublicService service.
@@ -417,6 +427,58 @@ type PipelinePublicServiceClient interface {
 	// Check whether a resource name is already in use. Currently this endpoint
 	// only supports pipeline and connector resource names.
 	CheckName(ctx context.Context, in *CheckNameRequest, opts ...grpc.CallOption) (*CheckNameResponse, error)
+	// Create a new user secret
+	//
+	// Creates a new secret under the parenthood of an user.
+	CreateUserSecret(ctx context.Context, in *CreateUserSecretRequest, opts ...grpc.CallOption) (*CreateUserSecretResponse, error)
+	// List user secrets
+	//
+	// Returns a paginated list of secrets that belong to the specified
+	// user.
+	ListUserSecrets(ctx context.Context, in *ListUserSecretsRequest, opts ...grpc.CallOption) (*ListUserSecretsResponse, error)
+	// Get a secret owned by an user
+	//
+	// Returns the details of an user-owned secret by its resource name,
+	// which is defined by the parent user and the ID of the secret.
+	GetUserSecret(ctx context.Context, in *GetUserSecretRequest, opts ...grpc.CallOption) (*GetUserSecretResponse, error)
+	// Update a secret owned by an user
+	//
+	// # Udpates a secret, accessing it by its resource name, which is defined by
+	//
+	// In REST requests, only the supplied secret fields will be taken into
+	// account when updating the resource.
+	UpdateUserSecret(ctx context.Context, in *UpdateUserSecretRequest, opts ...grpc.CallOption) (*UpdateUserSecretResponse, error)
+	// Delete a secret owned by an user
+	//
+	// Deletes a secret, accesing it by its resource name, which is defined by
+	// the parent user and the ID of the secret.
+	DeleteUserSecret(ctx context.Context, in *DeleteUserSecretRequest, opts ...grpc.CallOption) (*DeleteUserSecretResponse, error)
+	// Create a new organization secret
+	//
+	// Creates a new secret under the parenthood of an organization.
+	CreateOrganizationSecret(ctx context.Context, in *CreateOrganizationSecretRequest, opts ...grpc.CallOption) (*CreateOrganizationSecretResponse, error)
+	// List organization secrets
+	//
+	// Returns a paginated list of secrets that belong to the specified
+	// organization.
+	ListOrganizationSecrets(ctx context.Context, in *ListOrganizationSecretsRequest, opts ...grpc.CallOption) (*ListOrganizationSecretsResponse, error)
+	// Get a secret owned by an organization
+	//
+	// Returns the details of an organization-owned secret by its resource name,
+	// which is defined by the parent organization and the ID of the secret.
+	GetOrganizationSecret(ctx context.Context, in *GetOrganizationSecretRequest, opts ...grpc.CallOption) (*GetOrganizationSecretResponse, error)
+	// Update a secret owned by an organization
+	//
+	// # Udpates a secret, accessing it by its resource name, which is defined by
+	//
+	// In REST requests, only the supplied secret fields will be taken into
+	// account when updating the resource.
+	UpdateOrganizationSecret(ctx context.Context, in *UpdateOrganizationSecretRequest, opts ...grpc.CallOption) (*UpdateOrganizationSecretResponse, error)
+	// Delete a secret owned by an organization
+	//
+	// Deletes a secret, accesing it by its resource name, which is defined by
+	// the parent organization and the ID of the secret.
+	DeleteOrganizationSecret(ctx context.Context, in *DeleteOrganizationSecretRequest, opts ...grpc.CallOption) (*DeleteOrganizationSecretResponse, error)
 }
 
 type pipelinePublicServiceClient struct {
@@ -868,6 +930,96 @@ func (c *pipelinePublicServiceClient) CheckName(ctx context.Context, in *CheckNa
 	return out, nil
 }
 
+func (c *pipelinePublicServiceClient) CreateUserSecret(ctx context.Context, in *CreateUserSecretRequest, opts ...grpc.CallOption) (*CreateUserSecretResponse, error) {
+	out := new(CreateUserSecretResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_CreateUserSecret_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) ListUserSecrets(ctx context.Context, in *ListUserSecretsRequest, opts ...grpc.CallOption) (*ListUserSecretsResponse, error) {
+	out := new(ListUserSecretsResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ListUserSecrets_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) GetUserSecret(ctx context.Context, in *GetUserSecretRequest, opts ...grpc.CallOption) (*GetUserSecretResponse, error) {
+	out := new(GetUserSecretResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_GetUserSecret_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) UpdateUserSecret(ctx context.Context, in *UpdateUserSecretRequest, opts ...grpc.CallOption) (*UpdateUserSecretResponse, error) {
+	out := new(UpdateUserSecretResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_UpdateUserSecret_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) DeleteUserSecret(ctx context.Context, in *DeleteUserSecretRequest, opts ...grpc.CallOption) (*DeleteUserSecretResponse, error) {
+	out := new(DeleteUserSecretResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_DeleteUserSecret_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) CreateOrganizationSecret(ctx context.Context, in *CreateOrganizationSecretRequest, opts ...grpc.CallOption) (*CreateOrganizationSecretResponse, error) {
+	out := new(CreateOrganizationSecretResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_CreateOrganizationSecret_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) ListOrganizationSecrets(ctx context.Context, in *ListOrganizationSecretsRequest, opts ...grpc.CallOption) (*ListOrganizationSecretsResponse, error) {
+	out := new(ListOrganizationSecretsResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ListOrganizationSecrets_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) GetOrganizationSecret(ctx context.Context, in *GetOrganizationSecretRequest, opts ...grpc.CallOption) (*GetOrganizationSecretResponse, error) {
+	out := new(GetOrganizationSecretResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_GetOrganizationSecret_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) UpdateOrganizationSecret(ctx context.Context, in *UpdateOrganizationSecretRequest, opts ...grpc.CallOption) (*UpdateOrganizationSecretResponse, error) {
+	out := new(UpdateOrganizationSecretResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_UpdateOrganizationSecret_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) DeleteOrganizationSecret(ctx context.Context, in *DeleteOrganizationSecretRequest, opts ...grpc.CallOption) (*DeleteOrganizationSecretResponse, error) {
+	out := new(DeleteOrganizationSecretResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_DeleteOrganizationSecret_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PipelinePublicServiceServer is the server API for PipelinePublicService service.
 // All implementations should embed UnimplementedPipelinePublicServiceServer
 // for forward compatibility
@@ -1215,6 +1367,58 @@ type PipelinePublicServiceServer interface {
 	// Check whether a resource name is already in use. Currently this endpoint
 	// only supports pipeline and connector resource names.
 	CheckName(context.Context, *CheckNameRequest) (*CheckNameResponse, error)
+	// Create a new user secret
+	//
+	// Creates a new secret under the parenthood of an user.
+	CreateUserSecret(context.Context, *CreateUserSecretRequest) (*CreateUserSecretResponse, error)
+	// List user secrets
+	//
+	// Returns a paginated list of secrets that belong to the specified
+	// user.
+	ListUserSecrets(context.Context, *ListUserSecretsRequest) (*ListUserSecretsResponse, error)
+	// Get a secret owned by an user
+	//
+	// Returns the details of an user-owned secret by its resource name,
+	// which is defined by the parent user and the ID of the secret.
+	GetUserSecret(context.Context, *GetUserSecretRequest) (*GetUserSecretResponse, error)
+	// Update a secret owned by an user
+	//
+	// # Udpates a secret, accessing it by its resource name, which is defined by
+	//
+	// In REST requests, only the supplied secret fields will be taken into
+	// account when updating the resource.
+	UpdateUserSecret(context.Context, *UpdateUserSecretRequest) (*UpdateUserSecretResponse, error)
+	// Delete a secret owned by an user
+	//
+	// Deletes a secret, accesing it by its resource name, which is defined by
+	// the parent user and the ID of the secret.
+	DeleteUserSecret(context.Context, *DeleteUserSecretRequest) (*DeleteUserSecretResponse, error)
+	// Create a new organization secret
+	//
+	// Creates a new secret under the parenthood of an organization.
+	CreateOrganizationSecret(context.Context, *CreateOrganizationSecretRequest) (*CreateOrganizationSecretResponse, error)
+	// List organization secrets
+	//
+	// Returns a paginated list of secrets that belong to the specified
+	// organization.
+	ListOrganizationSecrets(context.Context, *ListOrganizationSecretsRequest) (*ListOrganizationSecretsResponse, error)
+	// Get a secret owned by an organization
+	//
+	// Returns the details of an organization-owned secret by its resource name,
+	// which is defined by the parent organization and the ID of the secret.
+	GetOrganizationSecret(context.Context, *GetOrganizationSecretRequest) (*GetOrganizationSecretResponse, error)
+	// Update a secret owned by an organization
+	//
+	// # Udpates a secret, accessing it by its resource name, which is defined by
+	//
+	// In REST requests, only the supplied secret fields will be taken into
+	// account when updating the resource.
+	UpdateOrganizationSecret(context.Context, *UpdateOrganizationSecretRequest) (*UpdateOrganizationSecretResponse, error)
+	// Delete a secret owned by an organization
+	//
+	// Deletes a secret, accesing it by its resource name, which is defined by
+	// the parent organization and the ID of the secret.
+	DeleteOrganizationSecret(context.Context, *DeleteOrganizationSecretRequest) (*DeleteOrganizationSecretResponse, error)
 }
 
 // UnimplementedPipelinePublicServiceServer should be embedded to have forward compatible implementations.
@@ -1367,6 +1571,36 @@ func (UnimplementedPipelinePublicServiceServer) GetOperatorDefinition(context.Co
 }
 func (UnimplementedPipelinePublicServiceServer) CheckName(context.Context, *CheckNameRequest) (*CheckNameResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckName not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) CreateUserSecret(context.Context, *CreateUserSecretRequest) (*CreateUserSecretResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateUserSecret not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) ListUserSecrets(context.Context, *ListUserSecretsRequest) (*ListUserSecretsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListUserSecrets not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) GetUserSecret(context.Context, *GetUserSecretRequest) (*GetUserSecretResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserSecret not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) UpdateUserSecret(context.Context, *UpdateUserSecretRequest) (*UpdateUserSecretResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserSecret not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) DeleteUserSecret(context.Context, *DeleteUserSecretRequest) (*DeleteUserSecretResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteUserSecret not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) CreateOrganizationSecret(context.Context, *CreateOrganizationSecretRequest) (*CreateOrganizationSecretResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateOrganizationSecret not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) ListOrganizationSecrets(context.Context, *ListOrganizationSecretsRequest) (*ListOrganizationSecretsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizationSecrets not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) GetOrganizationSecret(context.Context, *GetOrganizationSecretRequest) (*GetOrganizationSecretResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationSecret not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) UpdateOrganizationSecret(context.Context, *UpdateOrganizationSecretRequest) (*UpdateOrganizationSecretResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrganizationSecret not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) DeleteOrganizationSecret(context.Context, *DeleteOrganizationSecretRequest) (*DeleteOrganizationSecretResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganizationSecret not implemented")
 }
 
 // UnsafePipelinePublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -2262,6 +2496,186 @@ func _PipelinePublicService_CheckName_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PipelinePublicService_CreateUserSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateUserSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).CreateUserSecret(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_CreateUserSecret_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).CreateUserSecret(ctx, req.(*CreateUserSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_ListUserSecrets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListUserSecretsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).ListUserSecrets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_ListUserSecrets_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).ListUserSecrets(ctx, req.(*ListUserSecretsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_GetUserSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).GetUserSecret(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_GetUserSecret_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).GetUserSecret(ctx, req.(*GetUserSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_UpdateUserSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateUserSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).UpdateUserSecret(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_UpdateUserSecret_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).UpdateUserSecret(ctx, req.(*UpdateUserSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_DeleteUserSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteUserSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).DeleteUserSecret(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_DeleteUserSecret_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).DeleteUserSecret(ctx, req.(*DeleteUserSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_CreateOrganizationSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateOrganizationSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).CreateOrganizationSecret(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_CreateOrganizationSecret_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).CreateOrganizationSecret(ctx, req.(*CreateOrganizationSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_ListOrganizationSecrets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListOrganizationSecretsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).ListOrganizationSecrets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_ListOrganizationSecrets_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).ListOrganizationSecrets(ctx, req.(*ListOrganizationSecretsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_GetOrganizationSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrganizationSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).GetOrganizationSecret(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_GetOrganizationSecret_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).GetOrganizationSecret(ctx, req.(*GetOrganizationSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_UpdateOrganizationSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateOrganizationSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).UpdateOrganizationSecret(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_UpdateOrganizationSecret_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).UpdateOrganizationSecret(ctx, req.(*UpdateOrganizationSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_DeleteOrganizationSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteOrganizationSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).DeleteOrganizationSecret(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_DeleteOrganizationSecret_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).DeleteOrganizationSecret(ctx, req.(*DeleteOrganizationSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PipelinePublicService_ServiceDesc is the grpc.ServiceDesc for PipelinePublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2464,6 +2878,46 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CheckName",
 			Handler:    _PipelinePublicService_CheckName_Handler,
+		},
+		{
+			MethodName: "CreateUserSecret",
+			Handler:    _PipelinePublicService_CreateUserSecret_Handler,
+		},
+		{
+			MethodName: "ListUserSecrets",
+			Handler:    _PipelinePublicService_ListUserSecrets_Handler,
+		},
+		{
+			MethodName: "GetUserSecret",
+			Handler:    _PipelinePublicService_GetUserSecret_Handler,
+		},
+		{
+			MethodName: "UpdateUserSecret",
+			Handler:    _PipelinePublicService_UpdateUserSecret_Handler,
+		},
+		{
+			MethodName: "DeleteUserSecret",
+			Handler:    _PipelinePublicService_DeleteUserSecret_Handler,
+		},
+		{
+			MethodName: "CreateOrganizationSecret",
+			Handler:    _PipelinePublicService_CreateOrganizationSecret_Handler,
+		},
+		{
+			MethodName: "ListOrganizationSecrets",
+			Handler:    _PipelinePublicService_ListOrganizationSecrets_Handler,
+		},
+		{
+			MethodName: "GetOrganizationSecret",
+			Handler:    _PipelinePublicService_GetOrganizationSecret_Handler,
+		},
+		{
+			MethodName: "UpdateOrganizationSecret",
+			Handler:    _PipelinePublicService_UpdateOrganizationSecret_Handler,
+		},
+		{
+			MethodName: "DeleteOrganizationSecret",
+			Handler:    _PipelinePublicService_DeleteOrganizationSecret_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
