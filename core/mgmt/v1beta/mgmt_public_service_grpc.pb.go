@@ -46,6 +46,7 @@ const (
 	MgmtPublicService_GetToken_FullMethodName                         = "/core.mgmt.v1beta.MgmtPublicService/GetToken"
 	MgmtPublicService_DeleteToken_FullMethodName                      = "/core.mgmt.v1beta.MgmtPublicService/DeleteToken"
 	MgmtPublicService_ValidateToken_FullMethodName                    = "/core.mgmt.v1beta.MgmtPublicService/ValidateToken"
+	MgmtPublicService_GetRemainingCredit_FullMethodName               = "/core.mgmt.v1beta.MgmtPublicService/GetRemainingCredit"
 	MgmtPublicService_ListPipelineTriggerRecords_FullMethodName       = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerRecords"
 	MgmtPublicService_ListPipelineTriggerTableRecords_FullMethodName  = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerTableRecords"
 	MgmtPublicService_ListPipelineTriggerChartRecords_FullMethodName  = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerChartRecords"
@@ -179,6 +180,16 @@ type MgmtPublicServiceClient interface {
 	//
 	// Validates an API token.
 	ValidateToken(ctx context.Context, in *ValidateTokenRequest, opts ...grpc.CallOption) (*ValidateTokenResponse, error)
+	// Get the remaining Instill Credit
+	//
+	// On Instill Cloud, users can use Instill Credit to execute pre-configured
+	// AI connectors. This simplifies the pipeline setup, removing the need to
+	// subscribe to third-party AI services. This endpoint returns the remaining
+	// Instill Credit of a given user or organization. The requested credit owner
+	// must be either the authenticated user or an organization they belong to.
+	//
+	// On Instill Core, this endpoint will return a 404 Not Found status.
+	GetRemainingCredit(ctx context.Context, in *GetRemainingCreditRequest, opts ...grpc.CallOption) (*GetRemainingCreditResponse, error)
 	// List pipeline triggers
 	//
 	// Returns a paginated list of pipeline executions.
@@ -478,6 +489,15 @@ func (c *mgmtPublicServiceClient) ValidateToken(ctx context.Context, in *Validat
 	return out, nil
 }
 
+func (c *mgmtPublicServiceClient) GetRemainingCredit(ctx context.Context, in *GetRemainingCreditRequest, opts ...grpc.CallOption) (*GetRemainingCreditResponse, error) {
+	out := new(GetRemainingCreditResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_GetRemainingCredit_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *mgmtPublicServiceClient) ListPipelineTriggerRecords(ctx context.Context, in *ListPipelineTriggerRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerRecordsResponse, error) {
 	out := new(ListPipelineTriggerRecordsResponse)
 	err := c.cc.Invoke(ctx, MgmtPublicService_ListPipelineTriggerRecords_FullMethodName, in, out, opts...)
@@ -697,6 +717,16 @@ type MgmtPublicServiceServer interface {
 	//
 	// Validates an API token.
 	ValidateToken(context.Context, *ValidateTokenRequest) (*ValidateTokenResponse, error)
+	// Get the remaining Instill Credit
+	//
+	// On Instill Cloud, users can use Instill Credit to execute pre-configured
+	// AI connectors. This simplifies the pipeline setup, removing the need to
+	// subscribe to third-party AI services. This endpoint returns the remaining
+	// Instill Credit of a given user or organization. The requested credit owner
+	// must be either the authenticated user or an organization they belong to.
+	//
+	// On Instill Core, this endpoint will return a 404 Not Found status.
+	GetRemainingCredit(context.Context, *GetRemainingCreditRequest) (*GetRemainingCreditResponse, error)
 	// List pipeline triggers
 	//
 	// Returns a paginated list of pipeline executions.
@@ -829,6 +859,9 @@ func (UnimplementedMgmtPublicServiceServer) DeleteToken(context.Context, *Delete
 }
 func (UnimplementedMgmtPublicServiceServer) ValidateToken(context.Context, *ValidateTokenRequest) (*ValidateTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ValidateToken not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) GetRemainingCredit(context.Context, *GetRemainingCreditRequest) (*GetRemainingCreditResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRemainingCredit not implemented")
 }
 func (UnimplementedMgmtPublicServiceServer) ListPipelineTriggerRecords(context.Context, *ListPipelineTriggerRecordsRequest) (*ListPipelineTriggerRecordsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineTriggerRecords not implemented")
@@ -1361,6 +1394,24 @@ func _MgmtPublicService_ValidateToken_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MgmtPublicService_GetRemainingCredit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRemainingCreditRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).GetRemainingCredit(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_GetRemainingCredit_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).GetRemainingCredit(ctx, req.(*GetRemainingCreditRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _MgmtPublicService_ListPipelineTriggerRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListPipelineTriggerRecordsRequest)
 	if err := dec(in); err != nil {
@@ -1673,6 +1724,10 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ValidateToken",
 			Handler:    _MgmtPublicService_ValidateToken_Handler,
+		},
+		{
+			MethodName: "GetRemainingCredit",
+			Handler:    _MgmtPublicService_GetRemainingCredit_Handler,
 		},
 		{
 			MethodName: "ListPipelineTriggerRecords",

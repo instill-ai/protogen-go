@@ -27,6 +27,7 @@ const (
 	MgmtPrivateService_LookUpOrganizationAdmin_FullMethodName          = "/core.mgmt.v1beta.MgmtPrivateService/LookUpOrganizationAdmin"
 	MgmtPrivateService_GetUserSubscriptionAdmin_FullMethodName         = "/core.mgmt.v1beta.MgmtPrivateService/GetUserSubscriptionAdmin"
 	MgmtPrivateService_GetOrganizationSubscriptionAdmin_FullMethodName = "/core.mgmt.v1beta.MgmtPrivateService/GetOrganizationSubscriptionAdmin"
+	MgmtPrivateService_SubtractCredit_FullMethodName                   = "/core.mgmt.v1beta.MgmtPrivateService/SubtractCredit"
 )
 
 // MgmtPrivateServiceClient is the client API for MgmtPrivateService service.
@@ -55,6 +56,17 @@ type MgmtPrivateServiceClient interface {
 	GetUserSubscriptionAdmin(ctx context.Context, in *GetUserSubscriptionAdminRequest, opts ...grpc.CallOption) (*GetUserSubscriptionAdminResponse, error)
 	// GetOrganizationSubscriptionAdmin
 	GetOrganizationSubscriptionAdmin(ctx context.Context, in *GetOrganizationSubscriptionAdminRequest, opts ...grpc.CallOption) (*GetOrganizationSubscriptionAdminResponse, error)
+	// Subtract Instill Credit from a user or organization account.
+	//
+	// This endpoint subtracts the specified amount of Instill Credit from an
+	// account. This is intended for processes on Instill Cloud that consume
+	// credit, such as the execution of pre-configured connectors.
+	// Note that if the remaining credit in the account is less than the
+	// requested amount, it will be subtracted anyways, leaving the account
+	// credit at zero. A ResourceExhausted error will be returned in this case.
+	//
+	// On Instill Core, this endpoint will return a 404 Not Found status.
+	SubtractCredit(ctx context.Context, in *SubtractCreditRequest, opts ...grpc.CallOption) (*SubtractCreditResponse, error)
 }
 
 type mgmtPrivateServiceClient struct {
@@ -137,6 +149,15 @@ func (c *mgmtPrivateServiceClient) GetOrganizationSubscriptionAdmin(ctx context.
 	return out, nil
 }
 
+func (c *mgmtPrivateServiceClient) SubtractCredit(ctx context.Context, in *SubtractCreditRequest, opts ...grpc.CallOption) (*SubtractCreditResponse, error) {
+	out := new(SubtractCreditResponse)
+	err := c.cc.Invoke(ctx, MgmtPrivateService_SubtractCredit_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MgmtPrivateServiceServer is the server API for MgmtPrivateService service.
 // All implementations should embed UnimplementedMgmtPrivateServiceServer
 // for forward compatibility
@@ -163,6 +184,17 @@ type MgmtPrivateServiceServer interface {
 	GetUserSubscriptionAdmin(context.Context, *GetUserSubscriptionAdminRequest) (*GetUserSubscriptionAdminResponse, error)
 	// GetOrganizationSubscriptionAdmin
 	GetOrganizationSubscriptionAdmin(context.Context, *GetOrganizationSubscriptionAdminRequest) (*GetOrganizationSubscriptionAdminResponse, error)
+	// Subtract Instill Credit from a user or organization account.
+	//
+	// This endpoint subtracts the specified amount of Instill Credit from an
+	// account. This is intended for processes on Instill Cloud that consume
+	// credit, such as the execution of pre-configured connectors.
+	// Note that if the remaining credit in the account is less than the
+	// requested amount, it will be subtracted anyways, leaving the account
+	// credit at zero. A ResourceExhausted error will be returned in this case.
+	//
+	// On Instill Core, this endpoint will return a 404 Not Found status.
+	SubtractCredit(context.Context, *SubtractCreditRequest) (*SubtractCreditResponse, error)
 }
 
 // UnimplementedMgmtPrivateServiceServer should be embedded to have forward compatible implementations.
@@ -192,6 +224,9 @@ func (UnimplementedMgmtPrivateServiceServer) GetUserSubscriptionAdmin(context.Co
 }
 func (UnimplementedMgmtPrivateServiceServer) GetOrganizationSubscriptionAdmin(context.Context, *GetOrganizationSubscriptionAdminRequest) (*GetOrganizationSubscriptionAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationSubscriptionAdmin not implemented")
+}
+func (UnimplementedMgmtPrivateServiceServer) SubtractCredit(context.Context, *SubtractCreditRequest) (*SubtractCreditResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SubtractCredit not implemented")
 }
 
 // UnsafeMgmtPrivateServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -349,6 +384,24 @@ func _MgmtPrivateService_GetOrganizationSubscriptionAdmin_Handler(srv interface{
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MgmtPrivateService_SubtractCredit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SubtractCreditRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPrivateServiceServer).SubtractCredit(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPrivateService_SubtractCredit_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPrivateServiceServer).SubtractCredit(ctx, req.(*SubtractCreditRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MgmtPrivateService_ServiceDesc is the grpc.ServiceDesc for MgmtPrivateService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -387,6 +440,10 @@ var MgmtPrivateService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetOrganizationSubscriptionAdmin",
 			Handler:    _MgmtPrivateService_GetOrganizationSubscriptionAdmin_Handler,
+		},
+		{
+			MethodName: "SubtractCredit",
+			Handler:    _MgmtPrivateService_SubtractCredit_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
