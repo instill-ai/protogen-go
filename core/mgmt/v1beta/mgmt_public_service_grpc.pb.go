@@ -50,9 +50,6 @@ const (
 	MgmtPublicService_ListPipelineTriggerRecords_FullMethodName       = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerRecords"
 	MgmtPublicService_ListPipelineTriggerTableRecords_FullMethodName  = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerTableRecords"
 	MgmtPublicService_ListPipelineTriggerChartRecords_FullMethodName  = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerChartRecords"
-	MgmtPublicService_ListConnectorExecuteRecords_FullMethodName      = "/core.mgmt.v1beta.MgmtPublicService/ListConnectorExecuteRecords"
-	MgmtPublicService_ListConnectorExecuteTableRecords_FullMethodName = "/core.mgmt.v1beta.MgmtPublicService/ListConnectorExecuteTableRecords"
-	MgmtPublicService_ListConnectorExecuteChartRecords_FullMethodName = "/core.mgmt.v1beta.MgmtPublicService/ListConnectorExecuteChartRecords"
 	MgmtPublicService_AuthTokenIssuer_FullMethodName                  = "/core.mgmt.v1beta.MgmtPublicService/AuthTokenIssuer"
 	MgmtPublicService_AuthLogin_FullMethodName                        = "/core.mgmt.v1beta.MgmtPublicService/AuthLogin"
 	MgmtPublicService_AuthLogout_FullMethodName                       = "/core.mgmt.v1beta.MgmtPublicService/AuthLogout"
@@ -203,19 +200,6 @@ type MgmtPublicServiceClient interface {
 	// Returns a paginated list with pipeline trigger execution times, aggregated
 	// by pipeline and time frames.
 	ListPipelineTriggerChartRecords(ctx context.Context, in *ListPipelineTriggerChartRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerChartRecordsResponse, error)
-	// List connector executions
-	//
-	// Returns a paginated list of connector executions.
-	ListConnectorExecuteRecords(ctx context.Context, in *ListConnectorExecuteRecordsRequest, opts ...grpc.CallOption) (*ListConnectorExecuteRecordsResponse, error)
-	// List connector execution metrics
-	//
-	// Returns a paginated list of connector executions aggregated by connector.
-	ListConnectorExecuteTableRecords(ctx context.Context, in *ListConnectorExecuteTableRecordsRequest, opts ...grpc.CallOption) (*ListConnectorExecuteTableRecordsResponse, error)
-	// List connector execution computation time charts
-	//
-	// Returns a paginated list with connector execution times, aggregated by
-	// connector and time frames.
-	ListConnectorExecuteChartRecords(ctx context.Context, in *ListConnectorExecuteChartRecordsRequest, opts ...grpc.CallOption) (*ListConnectorExecuteChartRecordsResponse, error)
 	// Get Auth token issuer
 	//
 	// Returns the auth token issuer details. This operation requires admin permissions.
@@ -525,33 +509,6 @@ func (c *mgmtPublicServiceClient) ListPipelineTriggerChartRecords(ctx context.Co
 	return out, nil
 }
 
-func (c *mgmtPublicServiceClient) ListConnectorExecuteRecords(ctx context.Context, in *ListConnectorExecuteRecordsRequest, opts ...grpc.CallOption) (*ListConnectorExecuteRecordsResponse, error) {
-	out := new(ListConnectorExecuteRecordsResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_ListConnectorExecuteRecords_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mgmtPublicServiceClient) ListConnectorExecuteTableRecords(ctx context.Context, in *ListConnectorExecuteTableRecordsRequest, opts ...grpc.CallOption) (*ListConnectorExecuteTableRecordsResponse, error) {
-	out := new(ListConnectorExecuteTableRecordsResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_ListConnectorExecuteTableRecords_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mgmtPublicServiceClient) ListConnectorExecuteChartRecords(ctx context.Context, in *ListConnectorExecuteChartRecordsRequest, opts ...grpc.CallOption) (*ListConnectorExecuteChartRecordsResponse, error) {
-	out := new(ListConnectorExecuteChartRecordsResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_ListConnectorExecuteChartRecords_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *mgmtPublicServiceClient) AuthTokenIssuer(ctx context.Context, in *AuthTokenIssuerRequest, opts ...grpc.CallOption) (*AuthTokenIssuerResponse, error) {
 	out := new(AuthTokenIssuerResponse)
 	err := c.cc.Invoke(ctx, MgmtPublicService_AuthTokenIssuer_FullMethodName, in, out, opts...)
@@ -740,19 +697,6 @@ type MgmtPublicServiceServer interface {
 	// Returns a paginated list with pipeline trigger execution times, aggregated
 	// by pipeline and time frames.
 	ListPipelineTriggerChartRecords(context.Context, *ListPipelineTriggerChartRecordsRequest) (*ListPipelineTriggerChartRecordsResponse, error)
-	// List connector executions
-	//
-	// Returns a paginated list of connector executions.
-	ListConnectorExecuteRecords(context.Context, *ListConnectorExecuteRecordsRequest) (*ListConnectorExecuteRecordsResponse, error)
-	// List connector execution metrics
-	//
-	// Returns a paginated list of connector executions aggregated by connector.
-	ListConnectorExecuteTableRecords(context.Context, *ListConnectorExecuteTableRecordsRequest) (*ListConnectorExecuteTableRecordsResponse, error)
-	// List connector execution computation time charts
-	//
-	// Returns a paginated list with connector execution times, aggregated by
-	// connector and time frames.
-	ListConnectorExecuteChartRecords(context.Context, *ListConnectorExecuteChartRecordsRequest) (*ListConnectorExecuteChartRecordsResponse, error)
 	// Get Auth token issuer
 	//
 	// Returns the auth token issuer details. This operation requires admin permissions.
@@ -871,15 +815,6 @@ func (UnimplementedMgmtPublicServiceServer) ListPipelineTriggerTableRecords(cont
 }
 func (UnimplementedMgmtPublicServiceServer) ListPipelineTriggerChartRecords(context.Context, *ListPipelineTriggerChartRecordsRequest) (*ListPipelineTriggerChartRecordsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineTriggerChartRecords not implemented")
-}
-func (UnimplementedMgmtPublicServiceServer) ListConnectorExecuteRecords(context.Context, *ListConnectorExecuteRecordsRequest) (*ListConnectorExecuteRecordsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListConnectorExecuteRecords not implemented")
-}
-func (UnimplementedMgmtPublicServiceServer) ListConnectorExecuteTableRecords(context.Context, *ListConnectorExecuteTableRecordsRequest) (*ListConnectorExecuteTableRecordsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListConnectorExecuteTableRecords not implemented")
-}
-func (UnimplementedMgmtPublicServiceServer) ListConnectorExecuteChartRecords(context.Context, *ListConnectorExecuteChartRecordsRequest) (*ListConnectorExecuteChartRecordsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListConnectorExecuteChartRecords not implemented")
 }
 func (UnimplementedMgmtPublicServiceServer) AuthTokenIssuer(context.Context, *AuthTokenIssuerRequest) (*AuthTokenIssuerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AuthTokenIssuer not implemented")
@@ -1466,60 +1401,6 @@ func _MgmtPublicService_ListPipelineTriggerChartRecords_Handler(srv interface{},
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MgmtPublicService_ListConnectorExecuteRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListConnectorExecuteRecordsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).ListConnectorExecuteRecords(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_ListConnectorExecuteRecords_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).ListConnectorExecuteRecords(ctx, req.(*ListConnectorExecuteRecordsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MgmtPublicService_ListConnectorExecuteTableRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListConnectorExecuteTableRecordsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).ListConnectorExecuteTableRecords(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_ListConnectorExecuteTableRecords_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).ListConnectorExecuteTableRecords(ctx, req.(*ListConnectorExecuteTableRecordsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MgmtPublicService_ListConnectorExecuteChartRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListConnectorExecuteChartRecordsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).ListConnectorExecuteChartRecords(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_ListConnectorExecuteChartRecords_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).ListConnectorExecuteChartRecords(ctx, req.(*ListConnectorExecuteChartRecordsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _MgmtPublicService_AuthTokenIssuer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AuthTokenIssuerRequest)
 	if err := dec(in); err != nil {
@@ -1740,18 +1621,6 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListPipelineTriggerChartRecords",
 			Handler:    _MgmtPublicService_ListPipelineTriggerChartRecords_Handler,
-		},
-		{
-			MethodName: "ListConnectorExecuteRecords",
-			Handler:    _MgmtPublicService_ListConnectorExecuteRecords_Handler,
-		},
-		{
-			MethodName: "ListConnectorExecuteTableRecords",
-			Handler:    _MgmtPublicService_ListConnectorExecuteTableRecords_Handler,
-		},
-		{
-			MethodName: "ListConnectorExecuteChartRecords",
-			Handler:    _MgmtPublicService_ListConnectorExecuteChartRecords_Handler,
 		},
 		{
 			MethodName: "AuthTokenIssuer",
