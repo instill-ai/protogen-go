@@ -65,7 +65,7 @@ type MgmtPrivateServiceClient interface {
 	// requested amount, it will be subtracted anyways, leaving the account
 	// credit at zero. A ResourceExhausted error will be returned in this case.
 	//
-	// On Instill Core, this endpoint will return a 404 Not Found status.
+	// On Instill Core, this endpoint will return an Unimplemented status.
 	SubtractCredit(ctx context.Context, in *SubtractCreditRequest, opts ...grpc.CallOption) (*SubtractCreditResponse, error)
 }
 
@@ -193,7 +193,7 @@ type MgmtPrivateServiceServer interface {
 	// requested amount, it will be subtracted anyways, leaving the account
 	// credit at zero. A ResourceExhausted error will be returned in this case.
 	//
-	// On Instill Core, this endpoint will return a 404 Not Found status.
+	// On Instill Core, this endpoint will return an Unimplemented status.
 	SubtractCredit(context.Context, *SubtractCreditRequest) (*SubtractCreditResponse, error)
 }
 
