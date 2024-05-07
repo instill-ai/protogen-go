@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.4-alpha](https://github.com/instill-ai/protogen-go/compare/v0.3.3-alpha...v0.3.4-alpha) (2024-05-07)
+
+
+### Bug Fixes
+
+* rollback protobufs to 1.30 to prevent plugin break ([#57](https://github.com/instill-ai/protogen-go/issues/57)) ([6be99d9](https://github.com/instill-ai/protogen-go/commit/6be99d973473c7bd56bc9c6ce1bc07ff37803086))
+
 ## [0.3.3-alpha](https://github.com/instill-ai/protogen-go/compare/v0.3.2-alpha...v0.3.3-alpha) (2022-09-14)
 
 
