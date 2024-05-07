@@ -19,26 +19,25 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	MgmtPublicService_DeleteOrganizationMembership_FullMethodName     = "/core.mgmt.v1beta.MgmtPublicService/DeleteOrganizationMembership"
 	MgmtPublicService_Liveness_FullMethodName                         = "/core.mgmt.v1beta.MgmtPublicService/Liveness"
 	MgmtPublicService_Readiness_FullMethodName                        = "/core.mgmt.v1beta.MgmtPublicService/Readiness"
-	MgmtPublicService_CheckNamespace_FullMethodName                   = "/core.mgmt.v1beta.MgmtPublicService/CheckNamespace"
 	MgmtPublicService_GetAuthenticatedUser_FullMethodName             = "/core.mgmt.v1beta.MgmtPublicService/GetAuthenticatedUser"
 	MgmtPublicService_PatchAuthenticatedUser_FullMethodName           = "/core.mgmt.v1beta.MgmtPublicService/PatchAuthenticatedUser"
 	MgmtPublicService_ListUsers_FullMethodName                        = "/core.mgmt.v1beta.MgmtPublicService/ListUsers"
 	MgmtPublicService_GetUser_FullMethodName                          = "/core.mgmt.v1beta.MgmtPublicService/GetUser"
+	MgmtPublicService_CreateOrganization_FullMethodName               = "/core.mgmt.v1beta.MgmtPublicService/CreateOrganization"
+	MgmtPublicService_ListOrganizations_FullMethodName                = "/core.mgmt.v1beta.MgmtPublicService/ListOrganizations"
+	MgmtPublicService_GetOrganization_FullMethodName                  = "/core.mgmt.v1beta.MgmtPublicService/GetOrganization"
+	MgmtPublicService_UpdateOrganization_FullMethodName               = "/core.mgmt.v1beta.MgmtPublicService/UpdateOrganization"
+	MgmtPublicService_DeleteOrganization_FullMethodName               = "/core.mgmt.v1beta.MgmtPublicService/DeleteOrganization"
 	MgmtPublicService_ListUserMemberships_FullMethodName              = "/core.mgmt.v1beta.MgmtPublicService/ListUserMemberships"
 	MgmtPublicService_GetUserMembership_FullMethodName                = "/core.mgmt.v1beta.MgmtPublicService/GetUserMembership"
 	MgmtPublicService_UpdateUserMembership_FullMethodName             = "/core.mgmt.v1beta.MgmtPublicService/UpdateUserMembership"
 	MgmtPublicService_DeleteUserMembership_FullMethodName             = "/core.mgmt.v1beta.MgmtPublicService/DeleteUserMembership"
-	MgmtPublicService_ListOrganizations_FullMethodName                = "/core.mgmt.v1beta.MgmtPublicService/ListOrganizations"
-	MgmtPublicService_CreateOrganization_FullMethodName               = "/core.mgmt.v1beta.MgmtPublicService/CreateOrganization"
-	MgmtPublicService_GetOrganization_FullMethodName                  = "/core.mgmt.v1beta.MgmtPublicService/GetOrganization"
-	MgmtPublicService_UpdateOrganization_FullMethodName               = "/core.mgmt.v1beta.MgmtPublicService/UpdateOrganization"
-	MgmtPublicService_DeleteOrganization_FullMethodName               = "/core.mgmt.v1beta.MgmtPublicService/DeleteOrganization"
 	MgmtPublicService_ListOrganizationMemberships_FullMethodName      = "/core.mgmt.v1beta.MgmtPublicService/ListOrganizationMemberships"
 	MgmtPublicService_GetOrganizationMembership_FullMethodName        = "/core.mgmt.v1beta.MgmtPublicService/GetOrganizationMembership"
 	MgmtPublicService_UpdateOrganizationMembership_FullMethodName     = "/core.mgmt.v1beta.MgmtPublicService/UpdateOrganizationMembership"
+	MgmtPublicService_DeleteOrganizationMembership_FullMethodName     = "/core.mgmt.v1beta.MgmtPublicService/DeleteOrganizationMembership"
 	MgmtPublicService_GetAuthenticatedUserSubscription_FullMethodName = "/core.mgmt.v1beta.MgmtPublicService/GetAuthenticatedUserSubscription"
 	MgmtPublicService_GetOrganizationSubscription_FullMethodName      = "/core.mgmt.v1beta.MgmtPublicService/GetOrganizationSubscription"
 	MgmtPublicService_CreateToken_FullMethodName                      = "/core.mgmt.v1beta.MgmtPublicService/CreateToken"
@@ -47,6 +46,7 @@ const (
 	MgmtPublicService_DeleteToken_FullMethodName                      = "/core.mgmt.v1beta.MgmtPublicService/DeleteToken"
 	MgmtPublicService_ValidateToken_FullMethodName                    = "/core.mgmt.v1beta.MgmtPublicService/ValidateToken"
 	MgmtPublicService_GetRemainingCredit_FullMethodName               = "/core.mgmt.v1beta.MgmtPublicService/GetRemainingCredit"
+	MgmtPublicService_CheckNamespace_FullMethodName                   = "/core.mgmt.v1beta.MgmtPublicService/CheckNamespace"
 	MgmtPublicService_ListPipelineTriggerRecords_FullMethodName       = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerRecords"
 	MgmtPublicService_ListPipelineTriggerTableRecords_FullMethodName  = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerTableRecords"
 	MgmtPublicService_ListPipelineTriggerChartRecords_FullMethodName  = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerChartRecords"
@@ -61,10 +61,6 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MgmtPublicServiceClient interface {
-	// Delete an organization membership
-	//
-	// Deletes a user membership within an organization.
-	DeleteOrganizationMembership(ctx context.Context, in *DeleteOrganizationMembershipRequest, opts ...grpc.CallOption) (*DeleteOrganizationMembershipResponse, error)
 	// Check if the MGMT server is alive
 	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md.
@@ -73,11 +69,6 @@ type MgmtPublicServiceClient interface {
 	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error)
-	// Check if a namespace is in use
-	//
-	// Returns the availability of a namespace or, alternatively, the type of
-	// resource that is using it.
-	CheckNamespace(ctx context.Context, in *CheckNamespaceRequest, opts ...grpc.CallOption) (*CheckNamespaceResponse, error)
 	// Get the authenticated user
 	//
 	// Returns the details of the authenticated user.
@@ -97,6 +88,29 @@ type MgmtPublicServiceClient interface {
 	//
 	// Returns the details of a user by their ID.
 	GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserResponse, error)
+	// Create an organization
+	//
+	// Creates an organization.
+	CreateOrganization(ctx context.Context, in *CreateOrganizationRequest, opts ...grpc.CallOption) (*CreateOrganizationResponse, error)
+	// List organizations
+	//
+	// Returns a paginated list of organizations.
+	ListOrganizations(ctx context.Context, in *ListOrganizationsRequest, opts ...grpc.CallOption) (*ListOrganizationsResponse, error)
+	// Get an organization
+	//
+	// Returns the organization details by its ID.
+	GetOrganization(ctx context.Context, in *GetOrganizationRequest, opts ...grpc.CallOption) (*GetOrganizationResponse, error)
+	// Update an organization
+	//
+	// Accesses and updates an organization by ID.
+	//
+	// In REST requests, only the supplied organization fields will be taken into
+	// account when updating the resource.
+	UpdateOrganization(ctx context.Context, in *UpdateOrganizationRequest, opts ...grpc.CallOption) (*UpdateOrganizationResponse, error)
+	// Delete an organization
+	//
+	// Accesses and deletes an organization by ID.
+	DeleteOrganization(ctx context.Context, in *DeleteOrganizationRequest, opts ...grpc.CallOption) (*DeleteOrganizationResponse, error)
 	// List user memberships
 	//
 	// Returns the memberships of a user.
@@ -114,29 +128,6 @@ type MgmtPublicServiceClient interface {
 	//
 	// Accesses and deletes a user membership by parent and membership IDs.
 	DeleteUserMembership(ctx context.Context, in *DeleteUserMembershipRequest, opts ...grpc.CallOption) (*DeleteUserMembershipResponse, error)
-	// List organizations
-	//
-	// Returns a paginated list of organizations.
-	ListOrganizations(ctx context.Context, in *ListOrganizationsRequest, opts ...grpc.CallOption) (*ListOrganizationsResponse, error)
-	// Create an organization
-	//
-	// Creates an organization.
-	CreateOrganization(ctx context.Context, in *CreateOrganizationRequest, opts ...grpc.CallOption) (*CreateOrganizationResponse, error)
-	// Get an organization
-	//
-	// Returns the organization details by its ID.
-	GetOrganization(ctx context.Context, in *GetOrganizationRequest, opts ...grpc.CallOption) (*GetOrganizationResponse, error)
-	// Update an organization
-	//
-	// Accesses and updates an organization by ID.
-	//
-	// In REST requests, only the supplied organization fields will be taken into
-	// account when updating the resource.
-	UpdateOrganization(ctx context.Context, in *UpdateOrganizationRequest, opts ...grpc.CallOption) (*UpdateOrganizationResponse, error)
-	// Delete an organization
-	//
-	// Accesses and deletes an organization by ID.
-	DeleteOrganization(ctx context.Context, in *DeleteOrganizationRequest, opts ...grpc.CallOption) (*DeleteOrganizationResponse, error)
 	// List organization memberships
 	//
 	// Returns a paginated list of the user memberships in an organization.
@@ -149,6 +140,10 @@ type MgmtPublicServiceClient interface {
 	//
 	// Updates a user membership within an organization.
 	UpdateOrganizationMembership(ctx context.Context, in *UpdateOrganizationMembershipRequest, opts ...grpc.CallOption) (*UpdateOrganizationMembershipResponse, error)
+	// Delete an organization membership
+	//
+	// Deletes a user membership within an organization.
+	DeleteOrganizationMembership(ctx context.Context, in *DeleteOrganizationMembershipRequest, opts ...grpc.CallOption) (*DeleteOrganizationMembershipResponse, error)
 	// Get the subscription of the authenticated user
 	//
 	// Returns the subscription details of the authenticated user.
@@ -187,6 +182,11 @@ type MgmtPublicServiceClient interface {
 	//
 	// On Instill Core, this endpoint will return a 404 Not Found status.
 	GetRemainingCredit(ctx context.Context, in *GetRemainingCreditRequest, opts ...grpc.CallOption) (*GetRemainingCreditResponse, error)
+	// Check if a namespace is in use
+	//
+	// Returns the availability of a namespace or, alternatively, the type of
+	// resource that is using it.
+	CheckNamespace(ctx context.Context, in *CheckNamespaceRequest, opts ...grpc.CallOption) (*CheckNamespaceResponse, error)
 	// List pipeline triggers
 	//
 	// Returns a paginated list of pipeline executions.
@@ -230,15 +230,6 @@ func NewMgmtPublicServiceClient(cc grpc.ClientConnInterface) MgmtPublicServiceCl
 	return &mgmtPublicServiceClient{cc}
 }
 
-func (c *mgmtPublicServiceClient) DeleteOrganizationMembership(ctx context.Context, in *DeleteOrganizationMembershipRequest, opts ...grpc.CallOption) (*DeleteOrganizationMembershipResponse, error) {
-	out := new(DeleteOrganizationMembershipResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_DeleteOrganizationMembership_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *mgmtPublicServiceClient) Liveness(ctx context.Context, in *LivenessRequest, opts ...grpc.CallOption) (*LivenessResponse, error) {
 	out := new(LivenessResponse)
 	err := c.cc.Invoke(ctx, MgmtPublicService_Liveness_FullMethodName, in, out, opts...)
@@ -251,15 +242,6 @@ func (c *mgmtPublicServiceClient) Liveness(ctx context.Context, in *LivenessRequ
 func (c *mgmtPublicServiceClient) Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error) {
 	out := new(ReadinessResponse)
 	err := c.cc.Invoke(ctx, MgmtPublicService_Readiness_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mgmtPublicServiceClient) CheckNamespace(ctx context.Context, in *CheckNamespaceRequest, opts ...grpc.CallOption) (*CheckNamespaceResponse, error) {
-	out := new(CheckNamespaceResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_CheckNamespace_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -302,6 +284,51 @@ func (c *mgmtPublicServiceClient) GetUser(ctx context.Context, in *GetUserReques
 	return out, nil
 }
 
+func (c *mgmtPublicServiceClient) CreateOrganization(ctx context.Context, in *CreateOrganizationRequest, opts ...grpc.CallOption) (*CreateOrganizationResponse, error) {
+	out := new(CreateOrganizationResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_CreateOrganization_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mgmtPublicServiceClient) ListOrganizations(ctx context.Context, in *ListOrganizationsRequest, opts ...grpc.CallOption) (*ListOrganizationsResponse, error) {
+	out := new(ListOrganizationsResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_ListOrganizations_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mgmtPublicServiceClient) GetOrganization(ctx context.Context, in *GetOrganizationRequest, opts ...grpc.CallOption) (*GetOrganizationResponse, error) {
+	out := new(GetOrganizationResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_GetOrganization_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mgmtPublicServiceClient) UpdateOrganization(ctx context.Context, in *UpdateOrganizationRequest, opts ...grpc.CallOption) (*UpdateOrganizationResponse, error) {
+	out := new(UpdateOrganizationResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_UpdateOrganization_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mgmtPublicServiceClient) DeleteOrganization(ctx context.Context, in *DeleteOrganizationRequest, opts ...grpc.CallOption) (*DeleteOrganizationResponse, error) {
+	out := new(DeleteOrganizationResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_DeleteOrganization_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *mgmtPublicServiceClient) ListUserMemberships(ctx context.Context, in *ListUserMembershipsRequest, opts ...grpc.CallOption) (*ListUserMembershipsResponse, error) {
 	out := new(ListUserMembershipsResponse)
 	err := c.cc.Invoke(ctx, MgmtPublicService_ListUserMemberships_FullMethodName, in, out, opts...)
@@ -338,51 +365,6 @@ func (c *mgmtPublicServiceClient) DeleteUserMembership(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *mgmtPublicServiceClient) ListOrganizations(ctx context.Context, in *ListOrganizationsRequest, opts ...grpc.CallOption) (*ListOrganizationsResponse, error) {
-	out := new(ListOrganizationsResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_ListOrganizations_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mgmtPublicServiceClient) CreateOrganization(ctx context.Context, in *CreateOrganizationRequest, opts ...grpc.CallOption) (*CreateOrganizationResponse, error) {
-	out := new(CreateOrganizationResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_CreateOrganization_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mgmtPublicServiceClient) GetOrganization(ctx context.Context, in *GetOrganizationRequest, opts ...grpc.CallOption) (*GetOrganizationResponse, error) {
-	out := new(GetOrganizationResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_GetOrganization_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mgmtPublicServiceClient) UpdateOrganization(ctx context.Context, in *UpdateOrganizationRequest, opts ...grpc.CallOption) (*UpdateOrganizationResponse, error) {
-	out := new(UpdateOrganizationResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_UpdateOrganization_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mgmtPublicServiceClient) DeleteOrganization(ctx context.Context, in *DeleteOrganizationRequest, opts ...grpc.CallOption) (*DeleteOrganizationResponse, error) {
-	out := new(DeleteOrganizationResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_DeleteOrganization_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *mgmtPublicServiceClient) ListOrganizationMemberships(ctx context.Context, in *ListOrganizationMembershipsRequest, opts ...grpc.CallOption) (*ListOrganizationMembershipsResponse, error) {
 	out := new(ListOrganizationMembershipsResponse)
 	err := c.cc.Invoke(ctx, MgmtPublicService_ListOrganizationMemberships_FullMethodName, in, out, opts...)
@@ -404,6 +386,15 @@ func (c *mgmtPublicServiceClient) GetOrganizationMembership(ctx context.Context,
 func (c *mgmtPublicServiceClient) UpdateOrganizationMembership(ctx context.Context, in *UpdateOrganizationMembershipRequest, opts ...grpc.CallOption) (*UpdateOrganizationMembershipResponse, error) {
 	out := new(UpdateOrganizationMembershipResponse)
 	err := c.cc.Invoke(ctx, MgmtPublicService_UpdateOrganizationMembership_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mgmtPublicServiceClient) DeleteOrganizationMembership(ctx context.Context, in *DeleteOrganizationMembershipRequest, opts ...grpc.CallOption) (*DeleteOrganizationMembershipResponse, error) {
+	out := new(DeleteOrganizationMembershipResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_DeleteOrganizationMembership_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -476,6 +467,15 @@ func (c *mgmtPublicServiceClient) ValidateToken(ctx context.Context, in *Validat
 func (c *mgmtPublicServiceClient) GetRemainingCredit(ctx context.Context, in *GetRemainingCreditRequest, opts ...grpc.CallOption) (*GetRemainingCreditResponse, error) {
 	out := new(GetRemainingCreditResponse)
 	err := c.cc.Invoke(ctx, MgmtPublicService_GetRemainingCredit_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mgmtPublicServiceClient) CheckNamespace(ctx context.Context, in *CheckNamespaceRequest, opts ...grpc.CallOption) (*CheckNamespaceResponse, error) {
+	out := new(CheckNamespaceResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_CheckNamespace_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -558,10 +558,6 @@ func (c *mgmtPublicServiceClient) AuthValidateAccessToken(ctx context.Context, i
 // All implementations should embed UnimplementedMgmtPublicServiceServer
 // for forward compatibility
 type MgmtPublicServiceServer interface {
-	// Delete an organization membership
-	//
-	// Deletes a user membership within an organization.
-	DeleteOrganizationMembership(context.Context, *DeleteOrganizationMembershipRequest) (*DeleteOrganizationMembershipResponse, error)
 	// Check if the MGMT server is alive
 	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md.
@@ -570,11 +566,6 @@ type MgmtPublicServiceServer interface {
 	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error)
-	// Check if a namespace is in use
-	//
-	// Returns the availability of a namespace or, alternatively, the type of
-	// resource that is using it.
-	CheckNamespace(context.Context, *CheckNamespaceRequest) (*CheckNamespaceResponse, error)
 	// Get the authenticated user
 	//
 	// Returns the details of the authenticated user.
@@ -594,6 +585,29 @@ type MgmtPublicServiceServer interface {
 	//
 	// Returns the details of a user by their ID.
 	GetUser(context.Context, *GetUserRequest) (*GetUserResponse, error)
+	// Create an organization
+	//
+	// Creates an organization.
+	CreateOrganization(context.Context, *CreateOrganizationRequest) (*CreateOrganizationResponse, error)
+	// List organizations
+	//
+	// Returns a paginated list of organizations.
+	ListOrganizations(context.Context, *ListOrganizationsRequest) (*ListOrganizationsResponse, error)
+	// Get an organization
+	//
+	// Returns the organization details by its ID.
+	GetOrganization(context.Context, *GetOrganizationRequest) (*GetOrganizationResponse, error)
+	// Update an organization
+	//
+	// Accesses and updates an organization by ID.
+	//
+	// In REST requests, only the supplied organization fields will be taken into
+	// account when updating the resource.
+	UpdateOrganization(context.Context, *UpdateOrganizationRequest) (*UpdateOrganizationResponse, error)
+	// Delete an organization
+	//
+	// Accesses and deletes an organization by ID.
+	DeleteOrganization(context.Context, *DeleteOrganizationRequest) (*DeleteOrganizationResponse, error)
 	// List user memberships
 	//
 	// Returns the memberships of a user.
@@ -611,29 +625,6 @@ type MgmtPublicServiceServer interface {
 	//
 	// Accesses and deletes a user membership by parent and membership IDs.
 	DeleteUserMembership(context.Context, *DeleteUserMembershipRequest) (*DeleteUserMembershipResponse, error)
-	// List organizations
-	//
-	// Returns a paginated list of organizations.
-	ListOrganizations(context.Context, *ListOrganizationsRequest) (*ListOrganizationsResponse, error)
-	// Create an organization
-	//
-	// Creates an organization.
-	CreateOrganization(context.Context, *CreateOrganizationRequest) (*CreateOrganizationResponse, error)
-	// Get an organization
-	//
-	// Returns the organization details by its ID.
-	GetOrganization(context.Context, *GetOrganizationRequest) (*GetOrganizationResponse, error)
-	// Update an organization
-	//
-	// Accesses and updates an organization by ID.
-	//
-	// In REST requests, only the supplied organization fields will be taken into
-	// account when updating the resource.
-	UpdateOrganization(context.Context, *UpdateOrganizationRequest) (*UpdateOrganizationResponse, error)
-	// Delete an organization
-	//
-	// Accesses and deletes an organization by ID.
-	DeleteOrganization(context.Context, *DeleteOrganizationRequest) (*DeleteOrganizationResponse, error)
 	// List organization memberships
 	//
 	// Returns a paginated list of the user memberships in an organization.
@@ -646,6 +637,10 @@ type MgmtPublicServiceServer interface {
 	//
 	// Updates a user membership within an organization.
 	UpdateOrganizationMembership(context.Context, *UpdateOrganizationMembershipRequest) (*UpdateOrganizationMembershipResponse, error)
+	// Delete an organization membership
+	//
+	// Deletes a user membership within an organization.
+	DeleteOrganizationMembership(context.Context, *DeleteOrganizationMembershipRequest) (*DeleteOrganizationMembershipResponse, error)
 	// Get the subscription of the authenticated user
 	//
 	// Returns the subscription details of the authenticated user.
@@ -684,6 +679,11 @@ type MgmtPublicServiceServer interface {
 	//
 	// On Instill Core, this endpoint will return a 404 Not Found status.
 	GetRemainingCredit(context.Context, *GetRemainingCreditRequest) (*GetRemainingCreditResponse, error)
+	// Check if a namespace is in use
+	//
+	// Returns the availability of a namespace or, alternatively, the type of
+	// resource that is using it.
+	CheckNamespace(context.Context, *CheckNamespaceRequest) (*CheckNamespaceResponse, error)
 	// List pipeline triggers
 	//
 	// Returns a paginated list of pipeline executions.
@@ -723,17 +723,11 @@ type MgmtPublicServiceServer interface {
 type UnimplementedMgmtPublicServiceServer struct {
 }
 
-func (UnimplementedMgmtPublicServiceServer) DeleteOrganizationMembership(context.Context, *DeleteOrganizationMembershipRequest) (*DeleteOrganizationMembershipResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganizationMembership not implemented")
-}
 func (UnimplementedMgmtPublicServiceServer) Liveness(context.Context, *LivenessRequest) (*LivenessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Liveness not implemented")
 }
 func (UnimplementedMgmtPublicServiceServer) Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Readiness not implemented")
-}
-func (UnimplementedMgmtPublicServiceServer) CheckNamespace(context.Context, *CheckNamespaceRequest) (*CheckNamespaceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CheckNamespace not implemented")
 }
 func (UnimplementedMgmtPublicServiceServer) GetAuthenticatedUser(context.Context, *GetAuthenticatedUserRequest) (*GetAuthenticatedUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAuthenticatedUser not implemented")
@@ -747,6 +741,21 @@ func (UnimplementedMgmtPublicServiceServer) ListUsers(context.Context, *ListUser
 func (UnimplementedMgmtPublicServiceServer) GetUser(context.Context, *GetUserRequest) (*GetUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUser not implemented")
 }
+func (UnimplementedMgmtPublicServiceServer) CreateOrganization(context.Context, *CreateOrganizationRequest) (*CreateOrganizationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateOrganization not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) ListOrganizations(context.Context, *ListOrganizationsRequest) (*ListOrganizationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizations not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) GetOrganization(context.Context, *GetOrganizationRequest) (*GetOrganizationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrganization not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) UpdateOrganization(context.Context, *UpdateOrganizationRequest) (*UpdateOrganizationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrganization not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) DeleteOrganization(context.Context, *DeleteOrganizationRequest) (*DeleteOrganizationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganization not implemented")
+}
 func (UnimplementedMgmtPublicServiceServer) ListUserMemberships(context.Context, *ListUserMembershipsRequest) (*ListUserMembershipsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListUserMemberships not implemented")
 }
@@ -759,21 +768,6 @@ func (UnimplementedMgmtPublicServiceServer) UpdateUserMembership(context.Context
 func (UnimplementedMgmtPublicServiceServer) DeleteUserMembership(context.Context, *DeleteUserMembershipRequest) (*DeleteUserMembershipResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUserMembership not implemented")
 }
-func (UnimplementedMgmtPublicServiceServer) ListOrganizations(context.Context, *ListOrganizationsRequest) (*ListOrganizationsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizations not implemented")
-}
-func (UnimplementedMgmtPublicServiceServer) CreateOrganization(context.Context, *CreateOrganizationRequest) (*CreateOrganizationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateOrganization not implemented")
-}
-func (UnimplementedMgmtPublicServiceServer) GetOrganization(context.Context, *GetOrganizationRequest) (*GetOrganizationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetOrganization not implemented")
-}
-func (UnimplementedMgmtPublicServiceServer) UpdateOrganization(context.Context, *UpdateOrganizationRequest) (*UpdateOrganizationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrganization not implemented")
-}
-func (UnimplementedMgmtPublicServiceServer) DeleteOrganization(context.Context, *DeleteOrganizationRequest) (*DeleteOrganizationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganization not implemented")
-}
 func (UnimplementedMgmtPublicServiceServer) ListOrganizationMemberships(context.Context, *ListOrganizationMembershipsRequest) (*ListOrganizationMembershipsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizationMemberships not implemented")
 }
@@ -782,6 +776,9 @@ func (UnimplementedMgmtPublicServiceServer) GetOrganizationMembership(context.Co
 }
 func (UnimplementedMgmtPublicServiceServer) UpdateOrganizationMembership(context.Context, *UpdateOrganizationMembershipRequest) (*UpdateOrganizationMembershipResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrganizationMembership not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) DeleteOrganizationMembership(context.Context, *DeleteOrganizationMembershipRequest) (*DeleteOrganizationMembershipResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganizationMembership not implemented")
 }
 func (UnimplementedMgmtPublicServiceServer) GetAuthenticatedUserSubscription(context.Context, *GetAuthenticatedUserSubscriptionRequest) (*GetAuthenticatedUserSubscriptionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAuthenticatedUserSubscription not implemented")
@@ -806,6 +803,9 @@ func (UnimplementedMgmtPublicServiceServer) ValidateToken(context.Context, *Vali
 }
 func (UnimplementedMgmtPublicServiceServer) GetRemainingCredit(context.Context, *GetRemainingCreditRequest) (*GetRemainingCreditResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRemainingCredit not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) CheckNamespace(context.Context, *CheckNamespaceRequest) (*CheckNamespaceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckNamespace not implemented")
 }
 func (UnimplementedMgmtPublicServiceServer) ListPipelineTriggerRecords(context.Context, *ListPipelineTriggerRecordsRequest) (*ListPipelineTriggerRecordsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineTriggerRecords not implemented")
@@ -843,24 +843,6 @@ func RegisterMgmtPublicServiceServer(s grpc.ServiceRegistrar, srv MgmtPublicServ
 	s.RegisterService(&MgmtPublicService_ServiceDesc, srv)
 }
 
-func _MgmtPublicService_DeleteOrganizationMembership_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteOrganizationMembershipRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).DeleteOrganizationMembership(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_DeleteOrganizationMembership_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).DeleteOrganizationMembership(ctx, req.(*DeleteOrganizationMembershipRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _MgmtPublicService_Liveness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(LivenessRequest)
 	if err := dec(in); err != nil {
@@ -893,24 +875,6 @@ func _MgmtPublicService_Readiness_Handler(srv interface{}, ctx context.Context, 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MgmtPublicServiceServer).Readiness(ctx, req.(*ReadinessRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MgmtPublicService_CheckNamespace_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CheckNamespaceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).CheckNamespace(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_CheckNamespace_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).CheckNamespace(ctx, req.(*CheckNamespaceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -987,6 +951,96 @@ func _MgmtPublicService_GetUser_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MgmtPublicService_CreateOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateOrganizationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).CreateOrganization(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_CreateOrganization_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).CreateOrganization(ctx, req.(*CreateOrganizationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MgmtPublicService_ListOrganizations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListOrganizationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).ListOrganizations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_ListOrganizations_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).ListOrganizations(ctx, req.(*ListOrganizationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MgmtPublicService_GetOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrganizationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).GetOrganization(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_GetOrganization_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).GetOrganization(ctx, req.(*GetOrganizationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MgmtPublicService_UpdateOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateOrganizationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).UpdateOrganization(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_UpdateOrganization_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).UpdateOrganization(ctx, req.(*UpdateOrganizationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MgmtPublicService_DeleteOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteOrganizationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).DeleteOrganization(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_DeleteOrganization_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).DeleteOrganization(ctx, req.(*DeleteOrganizationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _MgmtPublicService_ListUserMemberships_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListUserMembershipsRequest)
 	if err := dec(in); err != nil {
@@ -1059,96 +1113,6 @@ func _MgmtPublicService_DeleteUserMembership_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MgmtPublicService_ListOrganizations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListOrganizationsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).ListOrganizations(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_ListOrganizations_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).ListOrganizations(ctx, req.(*ListOrganizationsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MgmtPublicService_CreateOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateOrganizationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).CreateOrganization(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_CreateOrganization_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).CreateOrganization(ctx, req.(*CreateOrganizationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MgmtPublicService_GetOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetOrganizationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).GetOrganization(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_GetOrganization_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).GetOrganization(ctx, req.(*GetOrganizationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MgmtPublicService_UpdateOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateOrganizationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).UpdateOrganization(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_UpdateOrganization_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).UpdateOrganization(ctx, req.(*UpdateOrganizationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MgmtPublicService_DeleteOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteOrganizationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).DeleteOrganization(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_DeleteOrganization_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).DeleteOrganization(ctx, req.(*DeleteOrganizationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _MgmtPublicService_ListOrganizationMemberships_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListOrganizationMembershipsRequest)
 	if err := dec(in); err != nil {
@@ -1199,6 +1163,24 @@ func _MgmtPublicService_UpdateOrganizationMembership_Handler(srv interface{}, ct
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MgmtPublicServiceServer).UpdateOrganizationMembership(ctx, req.(*UpdateOrganizationMembershipRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MgmtPublicService_DeleteOrganizationMembership_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteOrganizationMembershipRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).DeleteOrganizationMembership(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_DeleteOrganizationMembership_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).DeleteOrganizationMembership(ctx, req.(*DeleteOrganizationMembershipRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1343,6 +1325,24 @@ func _MgmtPublicService_GetRemainingCredit_Handler(srv interface{}, ctx context.
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MgmtPublicServiceServer).GetRemainingCredit(ctx, req.(*GetRemainingCreditRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MgmtPublicService_CheckNamespace_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckNamespaceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).CheckNamespace(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_CheckNamespace_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).CheckNamespace(ctx, req.(*CheckNamespaceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1499,20 +1499,12 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*MgmtPublicServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "DeleteOrganizationMembership",
-			Handler:    _MgmtPublicService_DeleteOrganizationMembership_Handler,
-		},
-		{
 			MethodName: "Liveness",
 			Handler:    _MgmtPublicService_Liveness_Handler,
 		},
 		{
 			MethodName: "Readiness",
 			Handler:    _MgmtPublicService_Readiness_Handler,
-		},
-		{
-			MethodName: "CheckNamespace",
-			Handler:    _MgmtPublicService_CheckNamespace_Handler,
 		},
 		{
 			MethodName: "GetAuthenticatedUser",
@@ -1531,6 +1523,26 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MgmtPublicService_GetUser_Handler,
 		},
 		{
+			MethodName: "CreateOrganization",
+			Handler:    _MgmtPublicService_CreateOrganization_Handler,
+		},
+		{
+			MethodName: "ListOrganizations",
+			Handler:    _MgmtPublicService_ListOrganizations_Handler,
+		},
+		{
+			MethodName: "GetOrganization",
+			Handler:    _MgmtPublicService_GetOrganization_Handler,
+		},
+		{
+			MethodName: "UpdateOrganization",
+			Handler:    _MgmtPublicService_UpdateOrganization_Handler,
+		},
+		{
+			MethodName: "DeleteOrganization",
+			Handler:    _MgmtPublicService_DeleteOrganization_Handler,
+		},
+		{
 			MethodName: "ListUserMemberships",
 			Handler:    _MgmtPublicService_ListUserMemberships_Handler,
 		},
@@ -1547,26 +1559,6 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MgmtPublicService_DeleteUserMembership_Handler,
 		},
 		{
-			MethodName: "ListOrganizations",
-			Handler:    _MgmtPublicService_ListOrganizations_Handler,
-		},
-		{
-			MethodName: "CreateOrganization",
-			Handler:    _MgmtPublicService_CreateOrganization_Handler,
-		},
-		{
-			MethodName: "GetOrganization",
-			Handler:    _MgmtPublicService_GetOrganization_Handler,
-		},
-		{
-			MethodName: "UpdateOrganization",
-			Handler:    _MgmtPublicService_UpdateOrganization_Handler,
-		},
-		{
-			MethodName: "DeleteOrganization",
-			Handler:    _MgmtPublicService_DeleteOrganization_Handler,
-		},
-		{
 			MethodName: "ListOrganizationMemberships",
 			Handler:    _MgmtPublicService_ListOrganizationMemberships_Handler,
 		},
@@ -1577,6 +1569,10 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateOrganizationMembership",
 			Handler:    _MgmtPublicService_UpdateOrganizationMembership_Handler,
+		},
+		{
+			MethodName: "DeleteOrganizationMembership",
+			Handler:    _MgmtPublicService_DeleteOrganizationMembership_Handler,
 		},
 		{
 			MethodName: "GetAuthenticatedUserSubscription",
@@ -1609,6 +1605,10 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetRemainingCredit",
 			Handler:    _MgmtPublicService_GetRemainingCredit_Handler,
+		},
+		{
+			MethodName: "CheckNamespace",
+			Handler:    _MgmtPublicService_CheckNamespace_Handler,
 		},
 		{
 			MethodName: "ListPipelineTriggerRecords",
