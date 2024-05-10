@@ -22,6 +22,7 @@ const (
 	ModelPublicService_Liveness_FullMethodName                                 = "/model.model.v1alpha.ModelPublicService/Liveness"
 	ModelPublicService_Readiness_FullMethodName                                = "/model.model.v1alpha.ModelPublicService/Readiness"
 	ModelPublicService_ListModelDefinitions_FullMethodName                     = "/model.model.v1alpha.ModelPublicService/ListModelDefinitions"
+	ModelPublicService_ListAvailableRegions_FullMethodName                     = "/model.model.v1alpha.ModelPublicService/ListAvailableRegions"
 	ModelPublicService_GetModelDefinition_FullMethodName                       = "/model.model.v1alpha.ModelPublicService/GetModelDefinition"
 	ModelPublicService_ListModels_FullMethodName                               = "/model.model.v1alpha.ModelPublicService/ListModels"
 	ModelPublicService_LookUpModel_FullMethodName                              = "/model.model.v1alpha.ModelPublicService/LookUpModel"
@@ -72,6 +73,10 @@ type ModelPublicServiceClient interface {
 	//
 	// Returns a paginated list of model definitions.
 	ListModelDefinitions(ctx context.Context, in *ListModelDefinitionsRequest, opts ...grpc.CallOption) (*ListModelDefinitionsResponse, error)
+	// List available regions
+	//
+	// Returns a paginated list of available regions.
+	ListAvailableRegions(ctx context.Context, in *ListAvailableRegionsRequest, opts ...grpc.CallOption) (*ListAvailableRegionsResponse, error)
 	// Get a model definition
 	//
 	// Returns the details of a model definition.
@@ -274,6 +279,15 @@ func (c *modelPublicServiceClient) Readiness(ctx context.Context, in *ReadinessR
 func (c *modelPublicServiceClient) ListModelDefinitions(ctx context.Context, in *ListModelDefinitionsRequest, opts ...grpc.CallOption) (*ListModelDefinitionsResponse, error) {
 	out := new(ListModelDefinitionsResponse)
 	err := c.cc.Invoke(ctx, ModelPublicService_ListModelDefinitions_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *modelPublicServiceClient) ListAvailableRegions(ctx context.Context, in *ListAvailableRegionsRequest, opts ...grpc.CallOption) (*ListAvailableRegionsResponse, error) {
+	out := new(ListAvailableRegionsResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_ListAvailableRegions_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -634,6 +648,10 @@ type ModelPublicServiceServer interface {
 	//
 	// Returns a paginated list of model definitions.
 	ListModelDefinitions(context.Context, *ListModelDefinitionsRequest) (*ListModelDefinitionsResponse, error)
+	// List available regions
+	//
+	// Returns a paginated list of available regions.
+	ListAvailableRegions(context.Context, *ListAvailableRegionsRequest) (*ListAvailableRegionsResponse, error)
 	// Get a model definition
 	//
 	// Returns the details of a model definition.
@@ -820,6 +838,9 @@ func (UnimplementedModelPublicServiceServer) Readiness(context.Context, *Readine
 func (UnimplementedModelPublicServiceServer) ListModelDefinitions(context.Context, *ListModelDefinitionsRequest) (*ListModelDefinitionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListModelDefinitions not implemented")
 }
+func (UnimplementedModelPublicServiceServer) ListAvailableRegions(context.Context, *ListAvailableRegionsRequest) (*ListAvailableRegionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAvailableRegions not implemented")
+}
 func (UnimplementedModelPublicServiceServer) GetModelDefinition(context.Context, *GetModelDefinitionRequest) (*GetModelDefinitionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetModelDefinition not implemented")
 }
@@ -978,6 +999,24 @@ func _ModelPublicService_ListModelDefinitions_Handler(srv interface{}, ctx conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelPublicServiceServer).ListModelDefinitions(ctx, req.(*ListModelDefinitionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ModelPublicService_ListAvailableRegions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAvailableRegionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPublicServiceServer).ListAvailableRegions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPublicService_ListAvailableRegions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPublicServiceServer).ListAvailableRegions(ctx, req.(*ListAvailableRegionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1592,6 +1631,10 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListModelDefinitions",
 			Handler:    _ModelPublicService_ListModelDefinitions_Handler,
+		},
+		{
+			MethodName: "ListAvailableRegions",
+			Handler:    _ModelPublicService_ListAvailableRegions_Handler,
 		},
 		{
 			MethodName: "GetModelDefinition",
