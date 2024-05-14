@@ -27,7 +27,7 @@ const (
 	MgmtPrivateService_LookUpOrganizationAdmin_FullMethodName          = "/core.mgmt.v1beta.MgmtPrivateService/LookUpOrganizationAdmin"
 	MgmtPrivateService_GetUserSubscriptionAdmin_FullMethodName         = "/core.mgmt.v1beta.MgmtPrivateService/GetUserSubscriptionAdmin"
 	MgmtPrivateService_GetOrganizationSubscriptionAdmin_FullMethodName = "/core.mgmt.v1beta.MgmtPrivateService/GetOrganizationSubscriptionAdmin"
-	MgmtPrivateService_SubtractCreditAdmin_FullMethodName              = "/core.mgmt.v1beta.MgmtPrivateService/SubtractCreditAdmin"
+	MgmtPrivateService_SubtractCredit_FullMethodName                   = "/core.mgmt.v1beta.MgmtPrivateService/SubtractCredit"
 	MgmtPrivateService_GetRemainingCreditAdmin_FullMethodName          = "/core.mgmt.v1beta.MgmtPrivateService/GetRemainingCreditAdmin"
 )
 
@@ -67,7 +67,7 @@ type MgmtPrivateServiceClient interface {
 	// credit at zero. A ResourceExhausted error will be returned in this case.
 	//
 	// On Instill Core, this endpoint will return an Unimplemented status.
-	SubtractCreditAdmin(ctx context.Context, in *SubtractCreditAdminRequest, opts ...grpc.CallOption) (*SubtractCreditAdminResponse, error)
+	SubtractCredit(ctx context.Context, in *SubtractCreditRequest, opts ...grpc.CallOption) (*SubtractCreditResponse, error)
 	// Get the remaining Instill Credit by owner UID
 	//
 	// This endpoint fetches the remaining unexpired credit of a user or
@@ -157,9 +157,9 @@ func (c *mgmtPrivateServiceClient) GetOrganizationSubscriptionAdmin(ctx context.
 	return out, nil
 }
 
-func (c *mgmtPrivateServiceClient) SubtractCreditAdmin(ctx context.Context, in *SubtractCreditAdminRequest, opts ...grpc.CallOption) (*SubtractCreditAdminResponse, error) {
-	out := new(SubtractCreditAdminResponse)
-	err := c.cc.Invoke(ctx, MgmtPrivateService_SubtractCreditAdmin_FullMethodName, in, out, opts...)
+func (c *mgmtPrivateServiceClient) SubtractCredit(ctx context.Context, in *SubtractCreditRequest, opts ...grpc.CallOption) (*SubtractCreditResponse, error) {
+	out := new(SubtractCreditResponse)
+	err := c.cc.Invoke(ctx, MgmtPrivateService_SubtractCredit_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -211,7 +211,7 @@ type MgmtPrivateServiceServer interface {
 	// credit at zero. A ResourceExhausted error will be returned in this case.
 	//
 	// On Instill Core, this endpoint will return an Unimplemented status.
-	SubtractCreditAdmin(context.Context, *SubtractCreditAdminRequest) (*SubtractCreditAdminResponse, error)
+	SubtractCredit(context.Context, *SubtractCreditRequest) (*SubtractCreditResponse, error)
 	// Get the remaining Instill Credit by owner UID
 	//
 	// This endpoint fetches the remaining unexpired credit of a user or
@@ -249,8 +249,8 @@ func (UnimplementedMgmtPrivateServiceServer) GetUserSubscriptionAdmin(context.Co
 func (UnimplementedMgmtPrivateServiceServer) GetOrganizationSubscriptionAdmin(context.Context, *GetOrganizationSubscriptionAdminRequest) (*GetOrganizationSubscriptionAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationSubscriptionAdmin not implemented")
 }
-func (UnimplementedMgmtPrivateServiceServer) SubtractCreditAdmin(context.Context, *SubtractCreditAdminRequest) (*SubtractCreditAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SubtractCreditAdmin not implemented")
+func (UnimplementedMgmtPrivateServiceServer) SubtractCredit(context.Context, *SubtractCreditRequest) (*SubtractCreditResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SubtractCredit not implemented")
 }
 func (UnimplementedMgmtPrivateServiceServer) GetRemainingCreditAdmin(context.Context, *GetRemainingCreditAdminRequest) (*GetRemainingCreditAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRemainingCreditAdmin not implemented")
@@ -411,20 +411,20 @@ func _MgmtPrivateService_GetOrganizationSubscriptionAdmin_Handler(srv interface{
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MgmtPrivateService_SubtractCreditAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SubtractCreditAdminRequest)
+func _MgmtPrivateService_SubtractCredit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SubtractCreditRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MgmtPrivateServiceServer).SubtractCreditAdmin(ctx, in)
+		return srv.(MgmtPrivateServiceServer).SubtractCredit(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: MgmtPrivateService_SubtractCreditAdmin_FullMethodName,
+		FullMethod: MgmtPrivateService_SubtractCredit_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPrivateServiceServer).SubtractCreditAdmin(ctx, req.(*SubtractCreditAdminRequest))
+		return srv.(MgmtPrivateServiceServer).SubtractCredit(ctx, req.(*SubtractCreditRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -487,8 +487,8 @@ var MgmtPrivateService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MgmtPrivateService_GetOrganizationSubscriptionAdmin_Handler,
 		},
 		{
-			MethodName: "SubtractCreditAdmin",
-			Handler:    _MgmtPrivateService_SubtractCreditAdmin_Handler,
+			MethodName: "SubtractCredit",
+			Handler:    _MgmtPrivateService_SubtractCredit_Handler,
 		},
 		{
 			MethodName: "GetRemainingCreditAdmin",
