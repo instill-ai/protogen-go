@@ -4002,7 +4002,7 @@ func RegisterPipelinePublicServiceHandlerServer(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/GetHubStats", runtime.WithHTTPPathPattern("/v1beta/hub_stats"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/GetHubStats", runtime.WithHTTPPathPattern("/v1beta/hub-stats"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5557,7 +5557,7 @@ func RegisterPipelinePublicServiceHandlerClient(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/GetHubStats", runtime.WithHTTPPathPattern("/v1beta/hub_stats"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/GetHubStats", runtime.WithHTTPPathPattern("/v1beta/hub-stats"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6837,7 +6837,7 @@ var (
 
 	pattern_PipelinePublicService_Readiness_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "__readiness"}, ""))
 
-	pattern_PipelinePublicService_GetHubStats_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "hub_stats"}, ""))
+	pattern_PipelinePublicService_GetHubStats_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "hub-stats"}, ""))
 
 	pattern_PipelinePublicService_ListPipelines_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "pipelines"}, ""))
 
