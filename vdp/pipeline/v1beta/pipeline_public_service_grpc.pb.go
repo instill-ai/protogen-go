@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	PipelinePublicService_Liveness_FullMethodName                                = "/vdp.pipeline.v1beta.PipelinePublicService/Liveness"
 	PipelinePublicService_Readiness_FullMethodName                               = "/vdp.pipeline.v1beta.PipelinePublicService/Readiness"
+	PipelinePublicService_GetHubStats_FullMethodName                             = "/vdp.pipeline.v1beta.PipelinePublicService/GetHubStats"
 	PipelinePublicService_ListPipelines_FullMethodName                           = "/vdp.pipeline.v1beta.PipelinePublicService/ListPipelines"
 	PipelinePublicService_LookUpPipeline_FullMethodName                          = "/vdp.pipeline.v1beta.PipelinePublicService/LookUpPipeline"
 	PipelinePublicService_CreateUserPipeline_FullMethodName                      = "/vdp.pipeline.v1beta.PipelinePublicService/CreateUserPipeline"
@@ -92,6 +93,10 @@ type PipelinePublicServiceClient interface {
 	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error)
+	// Get hub status
+	//
+	// Return the stats of the hub
+	GetHubStats(ctx context.Context, in *GetHubStatsRequest, opts ...grpc.CallOption) (*GetHubStatsResponse, error)
 	// List accessible pipelines
 	//
 	// Returns a paginated list of pipelines that are visible to the requester.
@@ -501,6 +506,15 @@ func (c *pipelinePublicServiceClient) Liveness(ctx context.Context, in *Liveness
 func (c *pipelinePublicServiceClient) Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error) {
 	out := new(ReadinessResponse)
 	err := c.cc.Invoke(ctx, PipelinePublicService_Readiness_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) GetHubStats(ctx context.Context, in *GetHubStatsRequest, opts ...grpc.CallOption) (*GetHubStatsResponse, error) {
+	out := new(GetHubStatsResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_GetHubStats_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1032,6 +1046,10 @@ type PipelinePublicServiceServer interface {
 	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error)
+	// Get hub status
+	//
+	// Return the stats of the hub
+	GetHubStats(context.Context, *GetHubStatsRequest) (*GetHubStatsResponse, error)
 	// List accessible pipelines
 	//
 	// Returns a paginated list of pipelines that are visible to the requester.
@@ -1431,6 +1449,9 @@ func (UnimplementedPipelinePublicServiceServer) Liveness(context.Context, *Liven
 func (UnimplementedPipelinePublicServiceServer) Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Readiness not implemented")
 }
+func (UnimplementedPipelinePublicServiceServer) GetHubStats(context.Context, *GetHubStatsRequest) (*GetHubStatsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetHubStats not implemented")
+}
 func (UnimplementedPipelinePublicServiceServer) ListPipelines(context.Context, *ListPipelinesRequest) (*ListPipelinesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPipelines not implemented")
 }
@@ -1646,6 +1667,24 @@ func _PipelinePublicService_Readiness_Handler(srv interface{}, ctx context.Conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PipelinePublicServiceServer).Readiness(ctx, req.(*ReadinessRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_GetHubStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetHubStatsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).GetHubStats(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_GetHubStats_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).GetHubStats(ctx, req.(*GetHubStatsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2690,6 +2729,10 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Readiness",
 			Handler:    _PipelinePublicService_Readiness_Handler,
+		},
+		{
+			MethodName: "GetHubStats",
+			Handler:    _PipelinePublicService_GetHubStats_Handler,
 		},
 		{
 			MethodName: "ListPipelines",
