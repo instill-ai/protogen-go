@@ -1683,8 +1683,8 @@ type ListPipelinesRequest struct {
 	ShowDeleted *bool `protobuf:"varint,5,opt,name=show_deleted,json=showDeleted,proto3,oneof" json:"show_deleted,omitempty"`
 	// Limit results to pipelines with the specified visibility.
 	Visibility *Pipeline_Visibility `protobuf:"varint,6,opt,name=visibility,proto3,enum=vdp.pipeline.v1beta.Pipeline_Visibility,oneof" json:"visibility,omitempty"`
-	// Order by field, with options for ordering by `id` or `create_time`.
-	// Format: `order_by=id ASC` or `order_by=create_time DESC`.
+	// Order by field, with options for ordering by `id`, `create_time` or `update_time`.
+	// Format: `order_by=id` or `order_by=create_time desc`, default is `asc`.
 	OrderBy *string `protobuf:"bytes,7,opt,name=order_by,json=orderBy,proto3,oneof" json:"order_by,omitempty"`
 }
 
@@ -2081,8 +2081,8 @@ type ListUserPipelinesRequest struct {
 	ShowDeleted *bool `protobuf:"varint,6,opt,name=show_deleted,json=showDeleted,proto3,oneof" json:"show_deleted,omitempty"`
 	// Limit results to pipelines with the specified visibility.
 	Visibility *Pipeline_Visibility `protobuf:"varint,7,opt,name=visibility,proto3,enum=vdp.pipeline.v1beta.Pipeline_Visibility,oneof" json:"visibility,omitempty"`
-	// Order by field, with options for ordering by `id` or `create_time`.
-	// Format: `order_by=id ASC` or `order_by=create_time DESC`.
+	// Order by field, with options for ordering by `id`, `create_time` or `update_time`.
+	// Format: `order_by=id` or `order_by=create_time desc`, default is `asc`.
 	OrderBy *string `protobuf:"bytes,8,opt,name=order_by,json=orderBy,proto3,oneof" json:"order_by,omitempty"`
 }
 
@@ -4314,8 +4314,8 @@ type ListOrganizationPipelinesRequest struct {
 	ShowDeleted *bool `protobuf:"varint,6,opt,name=show_deleted,json=showDeleted,proto3,oneof" json:"show_deleted,omitempty"`
 	// Limit results to pipelines with the specified visibility.
 	Visibility *Pipeline_Visibility `protobuf:"varint,7,opt,name=visibility,proto3,enum=vdp.pipeline.v1beta.Pipeline_Visibility,oneof" json:"visibility,omitempty"`
-	// Order by field, with options for ordering by `id` or `create_time`.
-	// Format: `order_by=id ASC` or `order_by=create_time DESC`.
+	// Order by field, with options for ordering by `id`, `create_time` or `update_time`.
+	// Format: `order_by=id` or `order_by=create_time desc`, default is `asc`.
 	OrderBy *string `protobuf:"bytes,8,opt,name=order_by,json=orderBy,proto3,oneof" json:"order_by,omitempty"`
 }
 
