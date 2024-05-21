@@ -33,6 +33,7 @@ const (
 	PipelinePublicService_RenameUserPipeline_FullMethodName                      = "/vdp.pipeline.v1beta.PipelinePublicService/RenameUserPipeline"
 	PipelinePublicService_CloneUserPipeline_FullMethodName                       = "/vdp.pipeline.v1beta.PipelinePublicService/CloneUserPipeline"
 	PipelinePublicService_TriggerUserPipeline_FullMethodName                     = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerUserPipeline"
+	PipelinePublicService_TriggerUserPipelineWithStream_FullMethodName           = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerUserPipelineWithStream"
 	PipelinePublicService_TriggerAsyncUserPipeline_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerAsyncUserPipeline"
 	PipelinePublicService_CreateUserPipelineRelease_FullMethodName               = "/vdp.pipeline.v1beta.PipelinePublicService/CreateUserPipelineRelease"
 	PipelinePublicService_ListUserPipelineReleases_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/ListUserPipelineReleases"
@@ -175,6 +176,15 @@ type PipelinePublicServiceClient interface {
 	// For more information, see [Trigger
 	// Pipeline](https://www.instill.tech/docs/latest/core/concepts/pipeline#trigger-pipeline).
 	TriggerUserPipeline(ctx context.Context, in *TriggerUserPipelineRequest, opts ...grpc.CallOption) (*TriggerUserPipelineResponse, error)
+	// Trigger a pipeline owned by a user and stream back the response
+	//
+	// Triggers the execution of a pipeline asynchronously and streams back the response.
+	// This method is intended for real-time inference when low latency is of concern
+	// and the response needs to be processed incrementally.
+	//
+	// The pipeline is identified by its resource name, formed by the parent user
+	// and ID of the pipeline.
+	TriggerUserPipelineWithStream(ctx context.Context, in *TriggerUserPipelineWithStreamRequest, opts ...grpc.CallOption) (PipelinePublicService_TriggerUserPipelineWithStreamClient, error)
 	// Trigger a pipeline owned by a user asynchronously
 	//
 	// Triggers the execution of a pipeline asynchronously, i.e., the result
@@ -618,6 +628,38 @@ func (c *pipelinePublicServiceClient) TriggerUserPipeline(ctx context.Context, i
 		return nil, err
 	}
 	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) TriggerUserPipelineWithStream(ctx context.Context, in *TriggerUserPipelineWithStreamRequest, opts ...grpc.CallOption) (PipelinePublicService_TriggerUserPipelineWithStreamClient, error) {
+	stream, err := c.cc.NewStream(ctx, &PipelinePublicService_ServiceDesc.Streams[0], PipelinePublicService_TriggerUserPipelineWithStream_FullMethodName, opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &pipelinePublicServiceTriggerUserPipelineWithStreamClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type PipelinePublicService_TriggerUserPipelineWithStreamClient interface {
+	Recv() (*TriggerUserPipelineWithStreamResponse, error)
+	grpc.ClientStream
+}
+
+type pipelinePublicServiceTriggerUserPipelineWithStreamClient struct {
+	grpc.ClientStream
+}
+
+func (x *pipelinePublicServiceTriggerUserPipelineWithStreamClient) Recv() (*TriggerUserPipelineWithStreamResponse, error) {
+	m := new(TriggerUserPipelineWithStreamResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 func (c *pipelinePublicServiceClient) TriggerAsyncUserPipeline(ctx context.Context, in *TriggerAsyncUserPipelineRequest, opts ...grpc.CallOption) (*TriggerAsyncUserPipelineResponse, error) {
@@ -1128,6 +1170,15 @@ type PipelinePublicServiceServer interface {
 	// For more information, see [Trigger
 	// Pipeline](https://www.instill.tech/docs/latest/core/concepts/pipeline#trigger-pipeline).
 	TriggerUserPipeline(context.Context, *TriggerUserPipelineRequest) (*TriggerUserPipelineResponse, error)
+	// Trigger a pipeline owned by a user and stream back the response
+	//
+	// Triggers the execution of a pipeline asynchronously and streams back the response.
+	// This method is intended for real-time inference when low latency is of concern
+	// and the response needs to be processed incrementally.
+	//
+	// The pipeline is identified by its resource name, formed by the parent user
+	// and ID of the pipeline.
+	TriggerUserPipelineWithStream(*TriggerUserPipelineWithStreamRequest, PipelinePublicService_TriggerUserPipelineWithStreamServer) error
 	// Trigger a pipeline owned by a user asynchronously
 	//
 	// Triggers the execution of a pipeline asynchronously, i.e., the result
@@ -1484,6 +1535,9 @@ func (UnimplementedPipelinePublicServiceServer) CloneUserPipeline(context.Contex
 }
 func (UnimplementedPipelinePublicServiceServer) TriggerUserPipeline(context.Context, *TriggerUserPipelineRequest) (*TriggerUserPipelineResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerUserPipeline not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) TriggerUserPipelineWithStream(*TriggerUserPipelineWithStreamRequest, PipelinePublicService_TriggerUserPipelineWithStreamServer) error {
+	return status.Errorf(codes.Unimplemented, "method TriggerUserPipelineWithStream not implemented")
 }
 func (UnimplementedPipelinePublicServiceServer) TriggerAsyncUserPipeline(context.Context, *TriggerAsyncUserPipelineRequest) (*TriggerAsyncUserPipelineResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncUserPipeline not implemented")
@@ -1885,6 +1939,27 @@ func _PipelinePublicService_TriggerUserPipeline_Handler(srv interface{}, ctx con
 		return srv.(PipelinePublicServiceServer).TriggerUserPipeline(ctx, req.(*TriggerUserPipelineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_TriggerUserPipelineWithStream_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(TriggerUserPipelineWithStreamRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(PipelinePublicServiceServer).TriggerUserPipelineWithStream(m, &pipelinePublicServiceTriggerUserPipelineWithStreamServer{stream})
+}
+
+type PipelinePublicService_TriggerUserPipelineWithStreamServer interface {
+	Send(*TriggerUserPipelineWithStreamResponse) error
+	grpc.ServerStream
+}
+
+type pipelinePublicServiceTriggerUserPipelineWithStreamServer struct {
+	grpc.ServerStream
+}
+
+func (x *pipelinePublicServiceTriggerUserPipelineWithStreamServer) Send(m *TriggerUserPipelineWithStreamResponse) error {
+	return x.ServerStream.SendMsg(m)
 }
 
 func _PipelinePublicService_TriggerAsyncUserPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -2963,6 +3038,12 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _PipelinePublicService_DeleteOrganizationSecret_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "TriggerUserPipelineWithStream",
+			Handler:       _PipelinePublicService_TriggerUserPipelineWithStream_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "vdp/pipeline/v1beta/pipeline_public_service.proto",
 }
