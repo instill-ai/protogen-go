@@ -139,7 +139,7 @@ func (x Pipeline_View) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Pipeline_View.Descriptor instead.
 func (Pipeline_View) EnumDescriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{13, 0}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{4, 0}
 }
 
 // Visibility defines who can access the pipeline.
@@ -192,7 +192,7 @@ func (x Pipeline_Visibility) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Pipeline_Visibility.Descriptor instead.
 func (Pipeline_Visibility) EnumDescriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{13, 1}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{4, 1}
 }
 
 // Status holds the the component execution outcome.
@@ -249,7 +249,7 @@ func (x Trace_Status) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Trace_Status.Descriptor instead.
 func (Trace_Status) EnumDescriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{15, 0}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{6, 0}
 }
 
 // LivenessRequest represents a request to check a service liveness status
@@ -448,831 +448,6 @@ func (x *ReadinessResponse) GetHealthCheckResponse() *v1beta.HealthCheckResponse
 	return nil
 }
 
-// ConnectorComponent
-// Configures a connector component. Requires the creation of a connector resource first.
-type ConnectorComponent struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// Definition name.
-	DefinitionName string `protobuf:"bytes,1,opt,name=definition_name,json=definitionName,proto3" json:"definition_name,omitempty"`
-	// Connector definition.
-	Definition *ConnectorDefinition `protobuf:"bytes,2,opt,name=definition,proto3" json:"definition,omitempty"`
-	// Task.
-	Task string `protobuf:"bytes,5,opt,name=task,proto3" json:"task,omitempty"`
-	// Input configuration of the component. JSON schema described in the connector definition.
-	Input *structpb.Struct `protobuf:"bytes,6,opt,name=input,proto3" json:"input,omitempty"`
-	// Condition statement determining whether the component is executed or not.
-	Condition string `protobuf:"bytes,7,opt,name=condition,proto3" json:"condition,omitempty"`
-	// Connection configuration of the component. JSON schema described in the connector definition.
-	Connection *structpb.Struct `protobuf:"bytes,8,opt,name=connection,proto3" json:"connection,omitempty"`
-}
-
-func (x *ConnectorComponent) Reset() {
-	*x = ConnectorComponent{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[4]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *ConnectorComponent) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ConnectorComponent) ProtoMessage() {}
-
-func (x *ConnectorComponent) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[4]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ConnectorComponent.ProtoReflect.Descriptor instead.
-func (*ConnectorComponent) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *ConnectorComponent) GetDefinitionName() string {
-	if x != nil {
-		return x.DefinitionName
-	}
-	return ""
-}
-
-func (x *ConnectorComponent) GetDefinition() *ConnectorDefinition {
-	if x != nil {
-		return x.Definition
-	}
-	return nil
-}
-
-func (x *ConnectorComponent) GetTask() string {
-	if x != nil {
-		return x.Task
-	}
-	return ""
-}
-
-func (x *ConnectorComponent) GetInput() *structpb.Struct {
-	if x != nil {
-		return x.Input
-	}
-	return nil
-}
-
-func (x *ConnectorComponent) GetCondition() string {
-	if x != nil {
-		return x.Condition
-	}
-	return ""
-}
-
-func (x *ConnectorComponent) GetConnection() *structpb.Struct {
-	if x != nil {
-		return x.Connection
-	}
-	return nil
-}
-
-// OperatorComponent
-// Configures an operator component.
-type OperatorComponent struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// Definition name.
-	DefinitionName string `protobuf:"bytes,1,opt,name=definition_name,json=definitionName,proto3" json:"definition_name,omitempty"`
-	// Operator definition.
-	Definition *OperatorDefinition `protobuf:"bytes,2,opt,name=definition,proto3" json:"definition,omitempty"`
-	// Task.
-	Task string `protobuf:"bytes,3,opt,name=task,proto3" json:"task,omitempty"`
-	// Input configuration of the component. JSON schema described in the operator definition.
-	Input *structpb.Struct `protobuf:"bytes,4,opt,name=input,proto3" json:"input,omitempty"`
-	// Condition statement determining whether the component is executed or not.
-	Condition string `protobuf:"bytes,5,opt,name=condition,proto3" json:"condition,omitempty"`
-}
-
-func (x *OperatorComponent) Reset() {
-	*x = OperatorComponent{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[5]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *OperatorComponent) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*OperatorComponent) ProtoMessage() {}
-
-func (x *OperatorComponent) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[5]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use OperatorComponent.ProtoReflect.Descriptor instead.
-func (*OperatorComponent) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *OperatorComponent) GetDefinitionName() string {
-	if x != nil {
-		return x.DefinitionName
-	}
-	return ""
-}
-
-func (x *OperatorComponent) GetDefinition() *OperatorDefinition {
-	if x != nil {
-		return x.Definition
-	}
-	return nil
-}
-
-func (x *OperatorComponent) GetTask() string {
-	if x != nil {
-		return x.Task
-	}
-	return ""
-}
-
-func (x *OperatorComponent) GetInput() *structpb.Struct {
-	if x != nil {
-		return x.Input
-	}
-	return nil
-}
-
-func (x *OperatorComponent) GetCondition() string {
-	if x != nil {
-		return x.Condition
-	}
-	return ""
-}
-
-// IteratorComponent
-// Configures an iterator component. An iterator takes an array and executes an
-// operation (defined by a set of nested components) on each of its elements.
-// It can be regarded as triggering a sub-pipeline using the elements of an
-// array as input.
-type IteratorComponent struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// Input: The iterator will iterate over the elements of the input (must be an array).
-	Input string `protobuf:"bytes,1,opt,name=input,proto3" json:"input,omitempty"`
-	// Output elements: Configure the output arrays of the iterator.
-	// The key is the output element variable name, and the value is the data reference of the template.
-	// Example:
-	//
-	//	output_elements: {
-	//	  "key1": "${element.output.a}",
-	//	  "key2": "${element.output.b}",
-	//	}
-	//
-	// This will create the results:
-	//
-	//	output: {
-	//	  "key1": [ ${element1.output.a},  ${element2.output.a} ... ],
-	//	  "key2": [ ${element1.output.b},  ${element2.output.b} ... ],
-	//	}
-	OutputElements map[string]string `protobuf:"bytes,2,rep,name=output_elements,json=outputElements,proto3" json:"output_elements,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	// Component: These components will be executed for each input element.
-	Component map[string]*NestedComponent `protobuf:"bytes,3,rep,name=component,proto3" json:"component,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	// Condition statement determining whether the component is executed or not.
-	Condition string `protobuf:"bytes,4,opt,name=condition,proto3" json:"condition,omitempty"`
-	// DataSpecification returns the JSON schema for the iterator input and output.
-	DataSpecification *DataSpecification `protobuf:"bytes,5,opt,name=data_specification,json=dataSpecification,proto3" json:"data_specification,omitempty"`
-}
-
-func (x *IteratorComponent) Reset() {
-	*x = IteratorComponent{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[6]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *IteratorComponent) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*IteratorComponent) ProtoMessage() {}
-
-func (x *IteratorComponent) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[6]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use IteratorComponent.ProtoReflect.Descriptor instead.
-func (*IteratorComponent) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *IteratorComponent) GetInput() string {
-	if x != nil {
-		return x.Input
-	}
-	return ""
-}
-
-func (x *IteratorComponent) GetOutputElements() map[string]string {
-	if x != nil {
-		return x.OutputElements
-	}
-	return nil
-}
-
-func (x *IteratorComponent) GetComponent() map[string]*NestedComponent {
-	if x != nil {
-		return x.Component
-	}
-	return nil
-}
-
-func (x *IteratorComponent) GetCondition() string {
-	if x != nil {
-		return x.Condition
-	}
-	return ""
-}
-
-func (x *IteratorComponent) GetDataSpecification() *DataSpecification {
-	if x != nil {
-		return x.DataSpecification
-	}
-	return nil
-}
-
-// Component
-// Fundamental building block in pipelines.
-//
-// For more information, see [Pipeline
-// Component](https://www.instill.tech/docs/latest/core/concepts/pipeline#pipeline-component)
-type Component struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// Metadata of the component.
-	Metadata *structpb.Struct `protobuf:"bytes,10,opt,name=metadata,proto3" json:"metadata,omitempty"`
-	// The component configuration.
-	//
-	// Types that are assignable to Component:
-	//
-	//	*Component_ConnectorComponent
-	//	*Component_OperatorComponent
-	//	*Component_IteratorComponent
-	Component isComponent_Component `protobuf_oneof:"component"`
-}
-
-func (x *Component) Reset() {
-	*x = Component{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[7]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *Component) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Component) ProtoMessage() {}
-
-func (x *Component) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[7]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Component.ProtoReflect.Descriptor instead.
-func (*Component) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *Component) GetMetadata() *structpb.Struct {
-	if x != nil {
-		return x.Metadata
-	}
-	return nil
-}
-
-func (m *Component) GetComponent() isComponent_Component {
-	if m != nil {
-		return m.Component
-	}
-	return nil
-}
-
-func (x *Component) GetConnectorComponent() *ConnectorComponent {
-	if x, ok := x.GetComponent().(*Component_ConnectorComponent); ok {
-		return x.ConnectorComponent
-	}
-	return nil
-}
-
-func (x *Component) GetOperatorComponent() *OperatorComponent {
-	if x, ok := x.GetComponent().(*Component_OperatorComponent); ok {
-		return x.OperatorComponent
-	}
-	return nil
-}
-
-func (x *Component) GetIteratorComponent() *IteratorComponent {
-	if x, ok := x.GetComponent().(*Component_IteratorComponent); ok {
-		return x.IteratorComponent
-	}
-	return nil
-}
-
-type isComponent_Component interface {
-	isComponent_Component()
-}
-
-type Component_ConnectorComponent struct {
-	// ConnectorComponent
-	ConnectorComponent *ConnectorComponent `protobuf:"bytes,13,opt,name=connector_component,json=connectorComponent,proto3,oneof"`
-}
-
-type Component_OperatorComponent struct {
-	// OperatorComponent
-	OperatorComponent *OperatorComponent `protobuf:"bytes,14,opt,name=operator_component,json=operatorComponent,proto3,oneof"`
-}
-
-type Component_IteratorComponent struct {
-	// IteratorComponent
-	IteratorComponent *IteratorComponent `protobuf:"bytes,15,opt,name=iterator_component,json=iteratorComponent,proto3,oneof"`
-}
-
-func (*Component_ConnectorComponent) isComponent_Component() {}
-
-func (*Component_OperatorComponent) isComponent_Component() {}
-
-func (*Component_IteratorComponent) isComponent_Component() {}
-
-// NestedComponent
-// Fundamental building block in iterator component.
-type NestedComponent struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// Metadata of the component.
-	Metadata *structpb.Struct `protobuf:"bytes,2,opt,name=metadata,proto3" json:"metadata,omitempty"`
-	// The component configuration.
-	//
-	// Types that are assignable to Component:
-	//
-	//	*NestedComponent_ConnectorComponent
-	//	*NestedComponent_OperatorComponent
-	Component isNestedComponent_Component `protobuf_oneof:"component"`
-}
-
-func (x *NestedComponent) Reset() {
-	*x = NestedComponent{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[8]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *NestedComponent) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*NestedComponent) ProtoMessage() {}
-
-func (x *NestedComponent) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[8]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use NestedComponent.ProtoReflect.Descriptor instead.
-func (*NestedComponent) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *NestedComponent) GetMetadata() *structpb.Struct {
-	if x != nil {
-		return x.Metadata
-	}
-	return nil
-}
-
-func (m *NestedComponent) GetComponent() isNestedComponent_Component {
-	if m != nil {
-		return m.Component
-	}
-	return nil
-}
-
-func (x *NestedComponent) GetConnectorComponent() *ConnectorComponent {
-	if x, ok := x.GetComponent().(*NestedComponent_ConnectorComponent); ok {
-		return x.ConnectorComponent
-	}
-	return nil
-}
-
-func (x *NestedComponent) GetOperatorComponent() *OperatorComponent {
-	if x, ok := x.GetComponent().(*NestedComponent_OperatorComponent); ok {
-		return x.OperatorComponent
-	}
-	return nil
-}
-
-type isNestedComponent_Component interface {
-	isNestedComponent_Component()
-}
-
-type NestedComponent_ConnectorComponent struct {
-	// ConnectorConfiguration
-	ConnectorComponent *ConnectorComponent `protobuf:"bytes,3,opt,name=connector_component,json=connectorComponent,proto3,oneof"`
-}
-
-type NestedComponent_OperatorComponent struct {
-	// OperatorConfiguration
-	OperatorComponent *OperatorComponent `protobuf:"bytes,4,opt,name=operator_component,json=operatorComponent,proto3,oneof"`
-}
-
-func (*NestedComponent_ConnectorComponent) isNestedComponent_Component() {}
-
-func (*NestedComponent_OperatorComponent) isNestedComponent_Component() {}
-
-// On
-type On struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-}
-
-func (x *On) Reset() {
-	*x = On{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[9]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *On) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*On) ProtoMessage() {}
-
-func (x *On) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[9]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use On.ProtoReflect.Descriptor instead.
-func (*On) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{9}
-}
-
-// Recipe describes the components of a Pipeline and how they are connected.
-type Recipe struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// Recipe schema version.
-	Version string `protobuf:"bytes,1,opt,name=version,proto3" json:"version,omitempty"`
-	// The component trigger method.
-	On *On `protobuf:"bytes,3,opt,name=on,proto3" json:"on,omitempty"`
-	// Secret.
-	Secret map[string]string `protobuf:"bytes,4,rep,name=secret,proto3" json:"secret,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	// Variable.
-	Variable map[string]*Variable `protobuf:"bytes,5,rep,name=variable,proto3" json:"variable,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	// Output.
-	Output map[string]*Output `protobuf:"bytes,6,rep,name=output,proto3" json:"output,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	// Component.
-	Component map[string]*Component `protobuf:"bytes,7,rep,name=component,proto3" json:"component,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-}
-
-func (x *Recipe) Reset() {
-	*x = Recipe{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[10]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *Recipe) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Recipe) ProtoMessage() {}
-
-func (x *Recipe) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[10]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Recipe.ProtoReflect.Descriptor instead.
-func (*Recipe) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *Recipe) GetVersion() string {
-	if x != nil {
-		return x.Version
-	}
-	return ""
-}
-
-func (x *Recipe) GetOn() *On {
-	if x != nil {
-		return x.On
-	}
-	return nil
-}
-
-func (x *Recipe) GetSecret() map[string]string {
-	if x != nil {
-		return x.Secret
-	}
-	return nil
-}
-
-func (x *Recipe) GetVariable() map[string]*Variable {
-	if x != nil {
-		return x.Variable
-	}
-	return nil
-}
-
-func (x *Recipe) GetOutput() map[string]*Output {
-	if x != nil {
-		return x.Output
-	}
-	return nil
-}
-
-func (x *Recipe) GetComponent() map[string]*Component {
-	if x != nil {
-		return x.Component
-	}
-	return nil
-}
-
-// Variable describes the variable schema of a pipeline.
-// It is based on the standard JSON schema format, with additional xAttribute attributes.
-type Variable struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// Type.
-	Type string `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
-	// Title.
-	Title string `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	// Description.
-	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	// Default value.
-	Default string `protobuf:"bytes,4,opt,name=default,proto3" json:"default,omitempty"`
-	// Instill format.
-	InstillFormat string `protobuf:"bytes,5,opt,name=instill_format,json=instillFormat,proto3" json:"instill_format,omitempty"`
-	// UI order.
-	InstillUiOrder int32 `protobuf:"varint,6,opt,name=instill_ui_order,json=instillUiOrder,proto3" json:"instill_ui_order,omitempty"`
-	// UI Multiline.
-	InstillUiMultiline bool `protobuf:"varint,7,opt,name=instill_ui_multiline,json=instillUiMultiline,proto3" json:"instill_ui_multiline,omitempty"`
-}
-
-func (x *Variable) Reset() {
-	*x = Variable{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[11]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *Variable) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Variable) ProtoMessage() {}
-
-func (x *Variable) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[11]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Variable.ProtoReflect.Descriptor instead.
-func (*Variable) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{11}
-}
-
-func (x *Variable) GetType() string {
-	if x != nil {
-		return x.Type
-	}
-	return ""
-}
-
-func (x *Variable) GetTitle() string {
-	if x != nil {
-		return x.Title
-	}
-	return ""
-}
-
-func (x *Variable) GetDescription() string {
-	if x != nil {
-		return x.Description
-	}
-	return ""
-}
-
-func (x *Variable) GetDefault() string {
-	if x != nil {
-		return x.Default
-	}
-	return ""
-}
-
-func (x *Variable) GetInstillFormat() string {
-	if x != nil {
-		return x.InstillFormat
-	}
-	return ""
-}
-
-func (x *Variable) GetInstillUiOrder() int32 {
-	if x != nil {
-		return x.InstillUiOrder
-	}
-	return 0
-}
-
-func (x *Variable) GetInstillUiMultiline() bool {
-	if x != nil {
-		return x.InstillUiMultiline
-	}
-	return false
-}
-
-// Output describe the output schema of a pipeline.
-type Output struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// Title.
-	Title string `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
-	// Description.
-	Description string `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
-	// Value.
-	Value string `protobuf:"bytes,3,opt,name=value,proto3" json:"value,omitempty"`
-	// Short description.
-	InstillShortDescription string `protobuf:"bytes,5,opt,name=instill_short_description,json=instillShortDescription,proto3" json:"instill_short_description,omitempty"`
-	// UI order.
-	InstillUiOrder int32 `protobuf:"varint,6,opt,name=instill_ui_order,json=instillUiOrder,proto3" json:"instill_ui_order,omitempty"`
-	// UI Multiline.
-	InstillUiMultiline bool `protobuf:"varint,7,opt,name=instill_ui_multiline,json=instillUiMultiline,proto3" json:"instill_ui_multiline,omitempty"`
-}
-
-func (x *Output) Reset() {
-	*x = Output{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[12]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *Output) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Output) ProtoMessage() {}
-
-func (x *Output) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[12]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Output.ProtoReflect.Descriptor instead.
-func (*Output) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{12}
-}
-
-func (x *Output) GetTitle() string {
-	if x != nil {
-		return x.Title
-	}
-	return ""
-}
-
-func (x *Output) GetDescription() string {
-	if x != nil {
-		return x.Description
-	}
-	return ""
-}
-
-func (x *Output) GetValue() string {
-	if x != nil {
-		return x.Value
-	}
-	return ""
-}
-
-func (x *Output) GetInstillShortDescription() string {
-	if x != nil {
-		return x.InstillShortDescription
-	}
-	return ""
-}
-
-func (x *Output) GetInstillUiOrder() int32 {
-	if x != nil {
-		return x.InstillUiOrder
-	}
-	return 0
-}
-
-func (x *Output) GetInstillUiMultiline() bool {
-	if x != nil {
-		return x.InstillUiMultiline
-	}
-	return false
-}
-
 // A Pipeline is an end-to-end workflow that automates a sequence of components
 // to process data.
 //
@@ -1297,7 +472,7 @@ type Pipeline struct {
 	// Pipeline description.
 	Description *string `protobuf:"bytes,4,opt,name=description,proto3,oneof" json:"description,omitempty"`
 	// Recipe describes the components of a Pipeline and how they are connected.
-	Recipe *Recipe `protobuf:"bytes,5,opt,name=recipe,proto3" json:"recipe,omitempty"`
+	Recipe *structpb.Struct `protobuf:"bytes,5,opt,name=recipe,proto3" json:"recipe,omitempty"`
 	// Pipeline creation time.
 	CreateTime *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
 	// Pipeline update time.
@@ -1329,7 +504,7 @@ type Pipeline struct {
 func (x *Pipeline) Reset() {
 	*x = Pipeline{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[13]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1342,7 +517,7 @@ func (x *Pipeline) String() string {
 func (*Pipeline) ProtoMessage() {}
 
 func (x *Pipeline) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[13]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1355,7 +530,7 @@ func (x *Pipeline) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Pipeline.ProtoReflect.Descriptor instead.
 func (*Pipeline) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{13}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *Pipeline) GetName() string {
@@ -1386,7 +561,7 @@ func (x *Pipeline) GetDescription() string {
 	return ""
 }
 
-func (x *Pipeline) GetRecipe() *Recipe {
+func (x *Pipeline) GetRecipe() *structpb.Struct {
 	if x != nil {
 		return x.Recipe
 	}
@@ -1498,7 +673,7 @@ type TriggerMetadata struct {
 func (x *TriggerMetadata) Reset() {
 	*x = TriggerMetadata{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[14]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1511,7 +686,7 @@ func (x *TriggerMetadata) String() string {
 func (*TriggerMetadata) ProtoMessage() {}
 
 func (x *TriggerMetadata) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[14]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1524,7 +699,7 @@ func (x *TriggerMetadata) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TriggerMetadata.ProtoReflect.Descriptor instead.
 func (*TriggerMetadata) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{14}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *TriggerMetadata) GetTraces() map[string]*Trace {
@@ -1555,7 +730,7 @@ type Trace struct {
 func (x *Trace) Reset() {
 	*x = Trace{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[15]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1568,7 +743,7 @@ func (x *Trace) String() string {
 func (*Trace) ProtoMessage() {}
 
 func (x *Trace) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[15]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1581,7 +756,7 @@ func (x *Trace) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Trace.ProtoReflect.Descriptor instead.
 func (*Trace) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{15}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *Trace) GetStatuses() []Trace_Status {
@@ -1629,7 +804,7 @@ type GetHubStatsRequest struct {
 func (x *GetHubStatsRequest) Reset() {
 	*x = GetHubStatsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[16]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1642,7 +817,7 @@ func (x *GetHubStatsRequest) String() string {
 func (*GetHubStatsRequest) ProtoMessage() {}
 
 func (x *GetHubStatsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[16]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1655,7 +830,7 @@ func (x *GetHubStatsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetHubStatsRequest.ProtoReflect.Descriptor instead.
 func (*GetHubStatsRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{16}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{7}
 }
 
 // GetHubStatsResponse represents a response to get hub stats.
@@ -1673,7 +848,7 @@ type GetHubStatsResponse struct {
 func (x *GetHubStatsResponse) Reset() {
 	*x = GetHubStatsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[17]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1686,7 +861,7 @@ func (x *GetHubStatsResponse) String() string {
 func (*GetHubStatsResponse) ProtoMessage() {}
 
 func (x *GetHubStatsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[17]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1699,7 +874,7 @@ func (x *GetHubStatsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetHubStatsResponse.ProtoReflect.Descriptor instead.
 func (*GetHubStatsResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{17}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *GetHubStatsResponse) GetNumberOfPublicPipelines() int32 {
@@ -1734,7 +909,7 @@ type PipelineRelease struct {
 	// Release description.
 	Description *string `protobuf:"bytes,4,opt,name=description,proto3,oneof" json:"description,omitempty"`
 	// Recipe of the versioned pipeline.
-	Recipe *Recipe `protobuf:"bytes,5,opt,name=recipe,proto3" json:"recipe,omitempty"`
+	Recipe *structpb.Struct `protobuf:"bytes,5,opt,name=recipe,proto3" json:"recipe,omitempty"`
 	// Pipeline creation time.
 	CreateTime *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
 	// Pipeline update time.
@@ -1755,7 +930,7 @@ type PipelineRelease struct {
 func (x *PipelineRelease) Reset() {
 	*x = PipelineRelease{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[18]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1768,7 +943,7 @@ func (x *PipelineRelease) String() string {
 func (*PipelineRelease) ProtoMessage() {}
 
 func (x *PipelineRelease) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[18]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1781,7 +956,7 @@ func (x *PipelineRelease) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PipelineRelease.ProtoReflect.Descriptor instead.
 func (*PipelineRelease) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{18}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *PipelineRelease) GetName() string {
@@ -1812,7 +987,7 @@ func (x *PipelineRelease) GetDescription() string {
 	return ""
 }
 
-func (x *PipelineRelease) GetRecipe() *Recipe {
+func (x *PipelineRelease) GetRecipe() *structpb.Struct {
 	if x != nil {
 		return x.Recipe
 	}
@@ -1900,7 +1075,7 @@ type ListPipelinesRequest struct {
 func (x *ListPipelinesRequest) Reset() {
 	*x = ListPipelinesRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[19]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1913,7 +1088,7 @@ func (x *ListPipelinesRequest) String() string {
 func (*ListPipelinesRequest) ProtoMessage() {}
 
 func (x *ListPipelinesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[19]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1926,7 +1101,7 @@ func (x *ListPipelinesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPipelinesRequest.ProtoReflect.Descriptor instead.
 func (*ListPipelinesRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{19}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *ListPipelinesRequest) GetPageSize() int32 {
@@ -1995,7 +1170,7 @@ type ListPipelinesResponse struct {
 func (x *ListPipelinesResponse) Reset() {
 	*x = ListPipelinesResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[20]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2008,7 +1183,7 @@ func (x *ListPipelinesResponse) String() string {
 func (*ListPipelinesResponse) ProtoMessage() {}
 
 func (x *ListPipelinesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[20]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2021,7 +1196,7 @@ func (x *ListPipelinesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPipelinesResponse.ProtoReflect.Descriptor instead.
 func (*ListPipelinesResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{20}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *ListPipelinesResponse) GetPipelines() []*Pipeline {
@@ -2061,7 +1236,7 @@ type LookUpPipelineRequest struct {
 func (x *LookUpPipelineRequest) Reset() {
 	*x = LookUpPipelineRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[21]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2074,7 +1249,7 @@ func (x *LookUpPipelineRequest) String() string {
 func (*LookUpPipelineRequest) ProtoMessage() {}
 
 func (x *LookUpPipelineRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[21]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2087,7 +1262,7 @@ func (x *LookUpPipelineRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LookUpPipelineRequest.ProtoReflect.Descriptor instead.
 func (*LookUpPipelineRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{21}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *LookUpPipelineRequest) GetPermalink() string {
@@ -2117,7 +1292,7 @@ type LookUpPipelineResponse struct {
 func (x *LookUpPipelineResponse) Reset() {
 	*x = LookUpPipelineResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[22]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2130,7 +1305,7 @@ func (x *LookUpPipelineResponse) String() string {
 func (*LookUpPipelineResponse) ProtoMessage() {}
 
 func (x *LookUpPipelineResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[22]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2143,7 +1318,7 @@ func (x *LookUpPipelineResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LookUpPipelineResponse.ProtoReflect.Descriptor instead.
 func (*LookUpPipelineResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{22}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *LookUpPipelineResponse) GetPipeline() *Pipeline {
@@ -2170,7 +1345,7 @@ type CreateUserPipelineRequest struct {
 func (x *CreateUserPipelineRequest) Reset() {
 	*x = CreateUserPipelineRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[23]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2183,7 +1358,7 @@ func (x *CreateUserPipelineRequest) String() string {
 func (*CreateUserPipelineRequest) ProtoMessage() {}
 
 func (x *CreateUserPipelineRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[23]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2196,7 +1371,7 @@ func (x *CreateUserPipelineRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateUserPipelineRequest.ProtoReflect.Descriptor instead.
 func (*CreateUserPipelineRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{23}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *CreateUserPipelineRequest) GetPipeline() *Pipeline {
@@ -2226,7 +1401,7 @@ type CreateUserPipelineResponse struct {
 func (x *CreateUserPipelineResponse) Reset() {
 	*x = CreateUserPipelineResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[24]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2239,7 +1414,7 @@ func (x *CreateUserPipelineResponse) String() string {
 func (*CreateUserPipelineResponse) ProtoMessage() {}
 
 func (x *CreateUserPipelineResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[24]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2252,7 +1427,7 @@ func (x *CreateUserPipelineResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateUserPipelineResponse.ProtoReflect.Descriptor instead.
 func (*CreateUserPipelineResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{24}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *CreateUserPipelineResponse) GetPipeline() *Pipeline {
@@ -2298,7 +1473,7 @@ type ListUserPipelinesRequest struct {
 func (x *ListUserPipelinesRequest) Reset() {
 	*x = ListUserPipelinesRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[25]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2311,7 +1486,7 @@ func (x *ListUserPipelinesRequest) String() string {
 func (*ListUserPipelinesRequest) ProtoMessage() {}
 
 func (x *ListUserPipelinesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[25]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2324,7 +1499,7 @@ func (x *ListUserPipelinesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListUserPipelinesRequest.ProtoReflect.Descriptor instead.
 func (*ListUserPipelinesRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{25}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *ListUserPipelinesRequest) GetPageSize() int32 {
@@ -2400,7 +1575,7 @@ type ListUserPipelinesResponse struct {
 func (x *ListUserPipelinesResponse) Reset() {
 	*x = ListUserPipelinesResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[26]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2413,7 +1588,7 @@ func (x *ListUserPipelinesResponse) String() string {
 func (*ListUserPipelinesResponse) ProtoMessage() {}
 
 func (x *ListUserPipelinesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[26]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2426,7 +1601,7 @@ func (x *ListUserPipelinesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListUserPipelinesResponse.ProtoReflect.Descriptor instead.
 func (*ListUserPipelinesResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{26}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *ListUserPipelinesResponse) GetPipelines() []*Pipeline {
@@ -2468,7 +1643,7 @@ type GetUserPipelineRequest struct {
 func (x *GetUserPipelineRequest) Reset() {
 	*x = GetUserPipelineRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[27]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2481,7 +1656,7 @@ func (x *GetUserPipelineRequest) String() string {
 func (*GetUserPipelineRequest) ProtoMessage() {}
 
 func (x *GetUserPipelineRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[27]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2494,7 +1669,7 @@ func (x *GetUserPipelineRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserPipelineRequest.ProtoReflect.Descriptor instead.
 func (*GetUserPipelineRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{27}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *GetUserPipelineRequest) GetName() string {
@@ -2524,7 +1699,7 @@ type GetUserPipelineResponse struct {
 func (x *GetUserPipelineResponse) Reset() {
 	*x = GetUserPipelineResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[28]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2537,7 +1712,7 @@ func (x *GetUserPipelineResponse) String() string {
 func (*GetUserPipelineResponse) ProtoMessage() {}
 
 func (x *GetUserPipelineResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[28]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2550,7 +1725,7 @@ func (x *GetUserPipelineResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserPipelineResponse.ProtoReflect.Descriptor instead.
 func (*GetUserPipelineResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{28}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *GetUserPipelineResponse) GetPipeline() *Pipeline {
@@ -2579,7 +1754,7 @@ type UpdateUserPipelineRequest struct {
 func (x *UpdateUserPipelineRequest) Reset() {
 	*x = UpdateUserPipelineRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[29]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2592,7 +1767,7 @@ func (x *UpdateUserPipelineRequest) String() string {
 func (*UpdateUserPipelineRequest) ProtoMessage() {}
 
 func (x *UpdateUserPipelineRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[29]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2605,7 +1780,7 @@ func (x *UpdateUserPipelineRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateUserPipelineRequest.ProtoReflect.Descriptor instead.
 func (*UpdateUserPipelineRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{29}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *UpdateUserPipelineRequest) GetPipeline() *Pipeline {
@@ -2635,7 +1810,7 @@ type UpdateUserPipelineResponse struct {
 func (x *UpdateUserPipelineResponse) Reset() {
 	*x = UpdateUserPipelineResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[30]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2648,7 +1823,7 @@ func (x *UpdateUserPipelineResponse) String() string {
 func (*UpdateUserPipelineResponse) ProtoMessage() {}
 
 func (x *UpdateUserPipelineResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[30]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2661,7 +1836,7 @@ func (x *UpdateUserPipelineResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateUserPipelineResponse.ProtoReflect.Descriptor instead.
 func (*UpdateUserPipelineResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{30}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *UpdateUserPipelineResponse) GetPipeline() *Pipeline {
@@ -2687,7 +1862,7 @@ type DeleteUserPipelineRequest struct {
 func (x *DeleteUserPipelineRequest) Reset() {
 	*x = DeleteUserPipelineRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[31]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2700,7 +1875,7 @@ func (x *DeleteUserPipelineRequest) String() string {
 func (*DeleteUserPipelineRequest) ProtoMessage() {}
 
 func (x *DeleteUserPipelineRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[31]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2713,7 +1888,7 @@ func (x *DeleteUserPipelineRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteUserPipelineRequest.ProtoReflect.Descriptor instead.
 func (*DeleteUserPipelineRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{31}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *DeleteUserPipelineRequest) GetName() string {
@@ -2733,7 +1908,7 @@ type DeleteUserPipelineResponse struct {
 func (x *DeleteUserPipelineResponse) Reset() {
 	*x = DeleteUserPipelineResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[32]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2746,7 +1921,7 @@ func (x *DeleteUserPipelineResponse) String() string {
 func (*DeleteUserPipelineResponse) ProtoMessage() {}
 
 func (x *DeleteUserPipelineResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[32]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2759,7 +1934,7 @@ func (x *DeleteUserPipelineResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteUserPipelineResponse.ProtoReflect.Descriptor instead.
 func (*DeleteUserPipelineResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{32}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{23}
 }
 
 // ValidateUserPipelineRequest represents a request to validate a pipeline
@@ -2778,7 +1953,7 @@ type ValidateUserPipelineRequest struct {
 func (x *ValidateUserPipelineRequest) Reset() {
 	*x = ValidateUserPipelineRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[33]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2791,7 +1966,7 @@ func (x *ValidateUserPipelineRequest) String() string {
 func (*ValidateUserPipelineRequest) ProtoMessage() {}
 
 func (x *ValidateUserPipelineRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[33]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2804,7 +1979,7 @@ func (x *ValidateUserPipelineRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ValidateUserPipelineRequest.ProtoReflect.Descriptor instead.
 func (*ValidateUserPipelineRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{33}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *ValidateUserPipelineRequest) GetName() string {
@@ -2827,7 +2002,7 @@ type ValidateUserPipelineResponse struct {
 func (x *ValidateUserPipelineResponse) Reset() {
 	*x = ValidateUserPipelineResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[34]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[25]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2840,7 +2015,7 @@ func (x *ValidateUserPipelineResponse) String() string {
 func (*ValidateUserPipelineResponse) ProtoMessage() {}
 
 func (x *ValidateUserPipelineResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[34]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[25]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2853,7 +2028,7 @@ func (x *ValidateUserPipelineResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ValidateUserPipelineResponse.ProtoReflect.Descriptor instead.
 func (*ValidateUserPipelineResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{34}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *ValidateUserPipelineResponse) GetPipeline() *Pipeline {
@@ -2882,7 +2057,7 @@ type RenameUserPipelineRequest struct {
 func (x *RenameUserPipelineRequest) Reset() {
 	*x = RenameUserPipelineRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[35]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[26]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2895,7 +2070,7 @@ func (x *RenameUserPipelineRequest) String() string {
 func (*RenameUserPipelineRequest) ProtoMessage() {}
 
 func (x *RenameUserPipelineRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[35]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[26]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2908,7 +2083,7 @@ func (x *RenameUserPipelineRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RenameUserPipelineRequest.ProtoReflect.Descriptor instead.
 func (*RenameUserPipelineRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{35}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *RenameUserPipelineRequest) GetName() string {
@@ -2938,7 +2113,7 @@ type RenameUserPipelineResponse struct {
 func (x *RenameUserPipelineResponse) Reset() {
 	*x = RenameUserPipelineResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[36]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[27]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2951,7 +2126,7 @@ func (x *RenameUserPipelineResponse) String() string {
 func (*RenameUserPipelineResponse) ProtoMessage() {}
 
 func (x *RenameUserPipelineResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[36]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[27]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2964,7 +2139,7 @@ func (x *RenameUserPipelineResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RenameUserPipelineResponse.ProtoReflect.Descriptor instead.
 func (*RenameUserPipelineResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{36}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *RenameUserPipelineResponse) GetPipeline() *Pipeline {
@@ -2995,7 +2170,7 @@ type CloneUserPipelineRequest struct {
 func (x *CloneUserPipelineRequest) Reset() {
 	*x = CloneUserPipelineRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[37]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[28]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3008,7 +2183,7 @@ func (x *CloneUserPipelineRequest) String() string {
 func (*CloneUserPipelineRequest) ProtoMessage() {}
 
 func (x *CloneUserPipelineRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[37]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[28]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3021,7 +2196,7 @@ func (x *CloneUserPipelineRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CloneUserPipelineRequest.ProtoReflect.Descriptor instead.
 func (*CloneUserPipelineRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{37}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *CloneUserPipelineRequest) GetName() string {
@@ -3051,7 +2226,7 @@ type CloneUserPipelineResponse struct {
 func (x *CloneUserPipelineResponse) Reset() {
 	*x = CloneUserPipelineResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[38]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[29]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3064,7 +2239,7 @@ func (x *CloneUserPipelineResponse) String() string {
 func (*CloneUserPipelineResponse) ProtoMessage() {}
 
 func (x *CloneUserPipelineResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[38]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[29]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3077,7 +2252,7 @@ func (x *CloneUserPipelineResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CloneUserPipelineResponse.ProtoReflect.Descriptor instead.
 func (*CloneUserPipelineResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{38}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *CloneUserPipelineResponse) GetPipeline() *Pipeline {
@@ -3105,7 +2280,7 @@ type TriggerUserPipelineRequest struct {
 func (x *TriggerUserPipelineRequest) Reset() {
 	*x = TriggerUserPipelineRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[39]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[30]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3118,7 +2293,7 @@ func (x *TriggerUserPipelineRequest) String() string {
 func (*TriggerUserPipelineRequest) ProtoMessage() {}
 
 func (x *TriggerUserPipelineRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[39]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[30]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3131,7 +2306,7 @@ func (x *TriggerUserPipelineRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TriggerUserPipelineRequest.ProtoReflect.Descriptor instead.
 func (*TriggerUserPipelineRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{39}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *TriggerUserPipelineRequest) GetName() string {
@@ -3164,7 +2339,7 @@ type TriggerUserPipelineResponse struct {
 func (x *TriggerUserPipelineResponse) Reset() {
 	*x = TriggerUserPipelineResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[40]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[31]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3177,7 +2352,7 @@ func (x *TriggerUserPipelineResponse) String() string {
 func (*TriggerUserPipelineResponse) ProtoMessage() {}
 
 func (x *TriggerUserPipelineResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[40]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[31]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3190,7 +2365,7 @@ func (x *TriggerUserPipelineResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TriggerUserPipelineResponse.ProtoReflect.Descriptor instead.
 func (*TriggerUserPipelineResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{40}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *TriggerUserPipelineResponse) GetOutputs() []*structpb.Struct {
@@ -3222,7 +2397,7 @@ type TriggerData struct {
 func (x *TriggerData) Reset() {
 	*x = TriggerData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[41]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[32]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3235,7 +2410,7 @@ func (x *TriggerData) String() string {
 func (*TriggerData) ProtoMessage() {}
 
 func (x *TriggerData) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[41]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[32]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3248,7 +2423,7 @@ func (x *TriggerData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TriggerData.ProtoReflect.Descriptor instead.
 func (*TriggerData) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{41}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *TriggerData) GetVariable() *structpb.Struct {
@@ -3283,7 +2458,7 @@ type TriggerAsyncUserPipelineRequest struct {
 func (x *TriggerAsyncUserPipelineRequest) Reset() {
 	*x = TriggerAsyncUserPipelineRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[42]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[33]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3296,7 +2471,7 @@ func (x *TriggerAsyncUserPipelineRequest) String() string {
 func (*TriggerAsyncUserPipelineRequest) ProtoMessage() {}
 
 func (x *TriggerAsyncUserPipelineRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[42]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[33]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3309,7 +2484,7 @@ func (x *TriggerAsyncUserPipelineRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TriggerAsyncUserPipelineRequest.ProtoReflect.Descriptor instead.
 func (*TriggerAsyncUserPipelineRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{42}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *TriggerAsyncUserPipelineRequest) GetName() string {
@@ -3340,7 +2515,7 @@ type TriggerAsyncUserPipelineResponse struct {
 func (x *TriggerAsyncUserPipelineResponse) Reset() {
 	*x = TriggerAsyncUserPipelineResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[43]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[34]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3353,7 +2528,7 @@ func (x *TriggerAsyncUserPipelineResponse) String() string {
 func (*TriggerAsyncUserPipelineResponse) ProtoMessage() {}
 
 func (x *TriggerAsyncUserPipelineResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[43]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[34]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3366,7 +2541,7 @@ func (x *TriggerAsyncUserPipelineResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TriggerAsyncUserPipelineResponse.ProtoReflect.Descriptor instead.
 func (*TriggerAsyncUserPipelineResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{43}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *TriggerAsyncUserPipelineResponse) GetOperation() *longrunningpb.Operation {
@@ -3393,7 +2568,7 @@ type CreateUserPipelineReleaseRequest struct {
 func (x *CreateUserPipelineReleaseRequest) Reset() {
 	*x = CreateUserPipelineReleaseRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[44]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[35]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3406,7 +2581,7 @@ func (x *CreateUserPipelineReleaseRequest) String() string {
 func (*CreateUserPipelineReleaseRequest) ProtoMessage() {}
 
 func (x *CreateUserPipelineReleaseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[44]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[35]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3419,7 +2594,7 @@ func (x *CreateUserPipelineReleaseRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateUserPipelineReleaseRequest.ProtoReflect.Descriptor instead.
 func (*CreateUserPipelineReleaseRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{44}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *CreateUserPipelineReleaseRequest) GetRelease() *PipelineRelease {
@@ -3449,7 +2624,7 @@ type CreateUserPipelineReleaseResponse struct {
 func (x *CreateUserPipelineReleaseResponse) Reset() {
 	*x = CreateUserPipelineReleaseResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[45]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[36]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3462,7 +2637,7 @@ func (x *CreateUserPipelineReleaseResponse) String() string {
 func (*CreateUserPipelineReleaseResponse) ProtoMessage() {}
 
 func (x *CreateUserPipelineReleaseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[45]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[36]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3475,7 +2650,7 @@ func (x *CreateUserPipelineReleaseResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use CreateUserPipelineReleaseResponse.ProtoReflect.Descriptor instead.
 func (*CreateUserPipelineReleaseResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{45}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *CreateUserPipelineReleaseResponse) GetRelease() *PipelineRelease {
@@ -3514,7 +2689,7 @@ type ListUserPipelineReleasesRequest struct {
 func (x *ListUserPipelineReleasesRequest) Reset() {
 	*x = ListUserPipelineReleasesRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[46]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[37]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3527,7 +2702,7 @@ func (x *ListUserPipelineReleasesRequest) String() string {
 func (*ListUserPipelineReleasesRequest) ProtoMessage() {}
 
 func (x *ListUserPipelineReleasesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[46]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[37]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3540,7 +2715,7 @@ func (x *ListUserPipelineReleasesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListUserPipelineReleasesRequest.ProtoReflect.Descriptor instead.
 func (*ListUserPipelineReleasesRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{46}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *ListUserPipelineReleasesRequest) GetPageSize() int32 {
@@ -3602,7 +2777,7 @@ type ListUserPipelineReleasesResponse struct {
 func (x *ListUserPipelineReleasesResponse) Reset() {
 	*x = ListUserPipelineReleasesResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[47]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[38]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3615,7 +2790,7 @@ func (x *ListUserPipelineReleasesResponse) String() string {
 func (*ListUserPipelineReleasesResponse) ProtoMessage() {}
 
 func (x *ListUserPipelineReleasesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[47]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[38]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3628,7 +2803,7 @@ func (x *ListUserPipelineReleasesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListUserPipelineReleasesResponse.ProtoReflect.Descriptor instead.
 func (*ListUserPipelineReleasesResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{47}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *ListUserPipelineReleasesResponse) GetReleases() []*PipelineRelease {
@@ -3670,7 +2845,7 @@ type GetUserPipelineReleaseRequest struct {
 func (x *GetUserPipelineReleaseRequest) Reset() {
 	*x = GetUserPipelineReleaseRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[48]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[39]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3683,7 +2858,7 @@ func (x *GetUserPipelineReleaseRequest) String() string {
 func (*GetUserPipelineReleaseRequest) ProtoMessage() {}
 
 func (x *GetUserPipelineReleaseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[48]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[39]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3696,7 +2871,7 @@ func (x *GetUserPipelineReleaseRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserPipelineReleaseRequest.ProtoReflect.Descriptor instead.
 func (*GetUserPipelineReleaseRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{48}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *GetUserPipelineReleaseRequest) GetName() string {
@@ -3726,7 +2901,7 @@ type GetUserPipelineReleaseResponse struct {
 func (x *GetUserPipelineReleaseResponse) Reset() {
 	*x = GetUserPipelineReleaseResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[49]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[40]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3739,7 +2914,7 @@ func (x *GetUserPipelineReleaseResponse) String() string {
 func (*GetUserPipelineReleaseResponse) ProtoMessage() {}
 
 func (x *GetUserPipelineReleaseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[49]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[40]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3752,7 +2927,7 @@ func (x *GetUserPipelineReleaseResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserPipelineReleaseResponse.ProtoReflect.Descriptor instead.
 func (*GetUserPipelineReleaseResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{49}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *GetUserPipelineReleaseResponse) GetRelease() *PipelineRelease {
@@ -3782,7 +2957,7 @@ type UpdateUserPipelineReleaseRequest struct {
 func (x *UpdateUserPipelineReleaseRequest) Reset() {
 	*x = UpdateUserPipelineReleaseRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[50]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[41]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3795,7 +2970,7 @@ func (x *UpdateUserPipelineReleaseRequest) String() string {
 func (*UpdateUserPipelineReleaseRequest) ProtoMessage() {}
 
 func (x *UpdateUserPipelineReleaseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[50]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[41]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3808,7 +2983,7 @@ func (x *UpdateUserPipelineReleaseRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateUserPipelineReleaseRequest.ProtoReflect.Descriptor instead.
 func (*UpdateUserPipelineReleaseRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{50}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *UpdateUserPipelineReleaseRequest) GetRelease() *PipelineRelease {
@@ -3838,7 +3013,7 @@ type UpdateUserPipelineReleaseResponse struct {
 func (x *UpdateUserPipelineReleaseResponse) Reset() {
 	*x = UpdateUserPipelineReleaseResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[51]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[42]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3851,7 +3026,7 @@ func (x *UpdateUserPipelineReleaseResponse) String() string {
 func (*UpdateUserPipelineReleaseResponse) ProtoMessage() {}
 
 func (x *UpdateUserPipelineReleaseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[51]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[42]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3864,7 +3039,7 @@ func (x *UpdateUserPipelineReleaseResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use UpdateUserPipelineReleaseResponse.ProtoReflect.Descriptor instead.
 func (*UpdateUserPipelineReleaseResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{51}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *UpdateUserPipelineReleaseResponse) GetRelease() *PipelineRelease {
@@ -3890,7 +3065,7 @@ type DeleteUserPipelineReleaseRequest struct {
 func (x *DeleteUserPipelineReleaseRequest) Reset() {
 	*x = DeleteUserPipelineReleaseRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[52]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[43]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3903,7 +3078,7 @@ func (x *DeleteUserPipelineReleaseRequest) String() string {
 func (*DeleteUserPipelineReleaseRequest) ProtoMessage() {}
 
 func (x *DeleteUserPipelineReleaseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[52]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[43]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3916,7 +3091,7 @@ func (x *DeleteUserPipelineReleaseRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteUserPipelineReleaseRequest.ProtoReflect.Descriptor instead.
 func (*DeleteUserPipelineReleaseRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{52}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *DeleteUserPipelineReleaseRequest) GetName() string {
@@ -3936,7 +3111,7 @@ type DeleteUserPipelineReleaseResponse struct {
 func (x *DeleteUserPipelineReleaseResponse) Reset() {
 	*x = DeleteUserPipelineReleaseResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[53]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[44]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3949,7 +3124,7 @@ func (x *DeleteUserPipelineReleaseResponse) String() string {
 func (*DeleteUserPipelineReleaseResponse) ProtoMessage() {}
 
 func (x *DeleteUserPipelineReleaseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[53]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[44]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3962,7 +3137,7 @@ func (x *DeleteUserPipelineReleaseResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use DeleteUserPipelineReleaseResponse.ProtoReflect.Descriptor instead.
 func (*DeleteUserPipelineReleaseResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{53}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{44}
 }
 
 // RestoreUserPipelineReleaseRequest represents a request to set the version of
@@ -3981,7 +3156,7 @@ type RestoreUserPipelineReleaseRequest struct {
 func (x *RestoreUserPipelineReleaseRequest) Reset() {
 	*x = RestoreUserPipelineReleaseRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[54]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[45]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3994,7 +3169,7 @@ func (x *RestoreUserPipelineReleaseRequest) String() string {
 func (*RestoreUserPipelineReleaseRequest) ProtoMessage() {}
 
 func (x *RestoreUserPipelineReleaseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[54]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[45]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4007,7 +3182,7 @@ func (x *RestoreUserPipelineReleaseRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use RestoreUserPipelineReleaseRequest.ProtoReflect.Descriptor instead.
 func (*RestoreUserPipelineReleaseRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{54}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *RestoreUserPipelineReleaseRequest) GetName() string {
@@ -4030,7 +3205,7 @@ type RestoreUserPipelineReleaseResponse struct {
 func (x *RestoreUserPipelineReleaseResponse) Reset() {
 	*x = RestoreUserPipelineReleaseResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[55]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[46]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4043,7 +3218,7 @@ func (x *RestoreUserPipelineReleaseResponse) String() string {
 func (*RestoreUserPipelineReleaseResponse) ProtoMessage() {}
 
 func (x *RestoreUserPipelineReleaseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[55]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[46]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4056,7 +3231,7 @@ func (x *RestoreUserPipelineReleaseResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use RestoreUserPipelineReleaseResponse.ProtoReflect.Descriptor instead.
 func (*RestoreUserPipelineReleaseResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{55}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *RestoreUserPipelineReleaseResponse) GetRelease() *PipelineRelease {
@@ -4085,7 +3260,7 @@ type RenameUserPipelineReleaseRequest struct {
 func (x *RenameUserPipelineReleaseRequest) Reset() {
 	*x = RenameUserPipelineReleaseRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[56]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[47]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4098,7 +3273,7 @@ func (x *RenameUserPipelineReleaseRequest) String() string {
 func (*RenameUserPipelineReleaseRequest) ProtoMessage() {}
 
 func (x *RenameUserPipelineReleaseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[56]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[47]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4111,7 +3286,7 @@ func (x *RenameUserPipelineReleaseRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RenameUserPipelineReleaseRequest.ProtoReflect.Descriptor instead.
 func (*RenameUserPipelineReleaseRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{56}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *RenameUserPipelineReleaseRequest) GetName() string {
@@ -4141,7 +3316,7 @@ type RenameUserPipelineReleaseResponse struct {
 func (x *RenameUserPipelineReleaseResponse) Reset() {
 	*x = RenameUserPipelineReleaseResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[57]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[48]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4154,7 +3329,7 @@ func (x *RenameUserPipelineReleaseResponse) String() string {
 func (*RenameUserPipelineReleaseResponse) ProtoMessage() {}
 
 func (x *RenameUserPipelineReleaseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[57]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[48]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4167,7 +3342,7 @@ func (x *RenameUserPipelineReleaseResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use RenameUserPipelineReleaseResponse.ProtoReflect.Descriptor instead.
 func (*RenameUserPipelineReleaseResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{57}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *RenameUserPipelineReleaseResponse) GetRelease() *PipelineRelease {
@@ -4195,7 +3370,7 @@ type TriggerUserPipelineReleaseRequest struct {
 func (x *TriggerUserPipelineReleaseRequest) Reset() {
 	*x = TriggerUserPipelineReleaseRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[58]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[49]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4208,7 +3383,7 @@ func (x *TriggerUserPipelineReleaseRequest) String() string {
 func (*TriggerUserPipelineReleaseRequest) ProtoMessage() {}
 
 func (x *TriggerUserPipelineReleaseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[58]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[49]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4221,7 +3396,7 @@ func (x *TriggerUserPipelineReleaseRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use TriggerUserPipelineReleaseRequest.ProtoReflect.Descriptor instead.
 func (*TriggerUserPipelineReleaseRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{58}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *TriggerUserPipelineReleaseRequest) GetName() string {
@@ -4254,7 +3429,7 @@ type TriggerUserPipelineReleaseResponse struct {
 func (x *TriggerUserPipelineReleaseResponse) Reset() {
 	*x = TriggerUserPipelineReleaseResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[59]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[50]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4267,7 +3442,7 @@ func (x *TriggerUserPipelineReleaseResponse) String() string {
 func (*TriggerUserPipelineReleaseResponse) ProtoMessage() {}
 
 func (x *TriggerUserPipelineReleaseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[59]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[50]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4280,7 +3455,7 @@ func (x *TriggerUserPipelineReleaseResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use TriggerUserPipelineReleaseResponse.ProtoReflect.Descriptor instead.
 func (*TriggerUserPipelineReleaseResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{59}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *TriggerUserPipelineReleaseResponse) GetOutputs() []*structpb.Struct {
@@ -4315,7 +3490,7 @@ type TriggerAsyncUserPipelineReleaseRequest struct {
 func (x *TriggerAsyncUserPipelineReleaseRequest) Reset() {
 	*x = TriggerAsyncUserPipelineReleaseRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[60]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[51]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4328,7 +3503,7 @@ func (x *TriggerAsyncUserPipelineReleaseRequest) String() string {
 func (*TriggerAsyncUserPipelineReleaseRequest) ProtoMessage() {}
 
 func (x *TriggerAsyncUserPipelineReleaseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[60]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[51]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4341,7 +3516,7 @@ func (x *TriggerAsyncUserPipelineReleaseRequest) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use TriggerAsyncUserPipelineReleaseRequest.ProtoReflect.Descriptor instead.
 func (*TriggerAsyncUserPipelineReleaseRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{60}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *TriggerAsyncUserPipelineReleaseRequest) GetName() string {
@@ -4372,7 +3547,7 @@ type TriggerAsyncUserPipelineReleaseResponse struct {
 func (x *TriggerAsyncUserPipelineReleaseResponse) Reset() {
 	*x = TriggerAsyncUserPipelineReleaseResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[61]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[52]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4385,7 +3560,7 @@ func (x *TriggerAsyncUserPipelineReleaseResponse) String() string {
 func (*TriggerAsyncUserPipelineReleaseResponse) ProtoMessage() {}
 
 func (x *TriggerAsyncUserPipelineReleaseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[61]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[52]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4398,7 +3573,7 @@ func (x *TriggerAsyncUserPipelineReleaseResponse) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use TriggerAsyncUserPipelineReleaseResponse.ProtoReflect.Descriptor instead.
 func (*TriggerAsyncUserPipelineReleaseResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{61}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *TriggerAsyncUserPipelineReleaseResponse) GetOperation() *longrunningpb.Operation {
@@ -4425,7 +3600,7 @@ type CreateOrganizationPipelineRequest struct {
 func (x *CreateOrganizationPipelineRequest) Reset() {
 	*x = CreateOrganizationPipelineRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[62]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[53]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4438,7 +3613,7 @@ func (x *CreateOrganizationPipelineRequest) String() string {
 func (*CreateOrganizationPipelineRequest) ProtoMessage() {}
 
 func (x *CreateOrganizationPipelineRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[62]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[53]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4451,7 +3626,7 @@ func (x *CreateOrganizationPipelineRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use CreateOrganizationPipelineRequest.ProtoReflect.Descriptor instead.
 func (*CreateOrganizationPipelineRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{62}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *CreateOrganizationPipelineRequest) GetPipeline() *Pipeline {
@@ -4481,7 +3656,7 @@ type CreateOrganizationPipelineResponse struct {
 func (x *CreateOrganizationPipelineResponse) Reset() {
 	*x = CreateOrganizationPipelineResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[63]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[54]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4494,7 +3669,7 @@ func (x *CreateOrganizationPipelineResponse) String() string {
 func (*CreateOrganizationPipelineResponse) ProtoMessage() {}
 
 func (x *CreateOrganizationPipelineResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[63]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[54]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4507,7 +3682,7 @@ func (x *CreateOrganizationPipelineResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use CreateOrganizationPipelineResponse.ProtoReflect.Descriptor instead.
 func (*CreateOrganizationPipelineResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{63}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *CreateOrganizationPipelineResponse) GetPipeline() *Pipeline {
@@ -4553,7 +3728,7 @@ type ListOrganizationPipelinesRequest struct {
 func (x *ListOrganizationPipelinesRequest) Reset() {
 	*x = ListOrganizationPipelinesRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[64]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[55]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4566,7 +3741,7 @@ func (x *ListOrganizationPipelinesRequest) String() string {
 func (*ListOrganizationPipelinesRequest) ProtoMessage() {}
 
 func (x *ListOrganizationPipelinesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[64]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[55]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4579,7 +3754,7 @@ func (x *ListOrganizationPipelinesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListOrganizationPipelinesRequest.ProtoReflect.Descriptor instead.
 func (*ListOrganizationPipelinesRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{64}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *ListOrganizationPipelinesRequest) GetPageSize() int32 {
@@ -4655,7 +3830,7 @@ type ListOrganizationPipelinesResponse struct {
 func (x *ListOrganizationPipelinesResponse) Reset() {
 	*x = ListOrganizationPipelinesResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[65]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[56]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4668,7 +3843,7 @@ func (x *ListOrganizationPipelinesResponse) String() string {
 func (*ListOrganizationPipelinesResponse) ProtoMessage() {}
 
 func (x *ListOrganizationPipelinesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[65]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[56]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4681,7 +3856,7 @@ func (x *ListOrganizationPipelinesResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use ListOrganizationPipelinesResponse.ProtoReflect.Descriptor instead.
 func (*ListOrganizationPipelinesResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{65}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *ListOrganizationPipelinesResponse) GetPipelines() []*Pipeline {
@@ -4723,7 +3898,7 @@ type GetOrganizationPipelineRequest struct {
 func (x *GetOrganizationPipelineRequest) Reset() {
 	*x = GetOrganizationPipelineRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[66]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[57]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4736,7 +3911,7 @@ func (x *GetOrganizationPipelineRequest) String() string {
 func (*GetOrganizationPipelineRequest) ProtoMessage() {}
 
 func (x *GetOrganizationPipelineRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[66]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[57]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4749,7 +3924,7 @@ func (x *GetOrganizationPipelineRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetOrganizationPipelineRequest.ProtoReflect.Descriptor instead.
 func (*GetOrganizationPipelineRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{66}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *GetOrganizationPipelineRequest) GetName() string {
@@ -4779,7 +3954,7 @@ type GetOrganizationPipelineResponse struct {
 func (x *GetOrganizationPipelineResponse) Reset() {
 	*x = GetOrganizationPipelineResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[67]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[58]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4792,7 +3967,7 @@ func (x *GetOrganizationPipelineResponse) String() string {
 func (*GetOrganizationPipelineResponse) ProtoMessage() {}
 
 func (x *GetOrganizationPipelineResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[67]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[58]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4805,7 +3980,7 @@ func (x *GetOrganizationPipelineResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetOrganizationPipelineResponse.ProtoReflect.Descriptor instead.
 func (*GetOrganizationPipelineResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{67}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *GetOrganizationPipelineResponse) GetPipeline() *Pipeline {
@@ -4834,7 +4009,7 @@ type UpdateOrganizationPipelineRequest struct {
 func (x *UpdateOrganizationPipelineRequest) Reset() {
 	*x = UpdateOrganizationPipelineRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[68]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[59]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4847,7 +4022,7 @@ func (x *UpdateOrganizationPipelineRequest) String() string {
 func (*UpdateOrganizationPipelineRequest) ProtoMessage() {}
 
 func (x *UpdateOrganizationPipelineRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[68]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[59]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4860,7 +4035,7 @@ func (x *UpdateOrganizationPipelineRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use UpdateOrganizationPipelineRequest.ProtoReflect.Descriptor instead.
 func (*UpdateOrganizationPipelineRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{68}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{59}
 }
 
 func (x *UpdateOrganizationPipelineRequest) GetPipeline() *Pipeline {
@@ -4890,7 +4065,7 @@ type UpdateOrganizationPipelineResponse struct {
 func (x *UpdateOrganizationPipelineResponse) Reset() {
 	*x = UpdateOrganizationPipelineResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[69]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[60]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4903,7 +4078,7 @@ func (x *UpdateOrganizationPipelineResponse) String() string {
 func (*UpdateOrganizationPipelineResponse) ProtoMessage() {}
 
 func (x *UpdateOrganizationPipelineResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[69]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[60]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4916,7 +4091,7 @@ func (x *UpdateOrganizationPipelineResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use UpdateOrganizationPipelineResponse.ProtoReflect.Descriptor instead.
 func (*UpdateOrganizationPipelineResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{69}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{60}
 }
 
 func (x *UpdateOrganizationPipelineResponse) GetPipeline() *Pipeline {
@@ -4942,7 +4117,7 @@ type DeleteOrganizationPipelineRequest struct {
 func (x *DeleteOrganizationPipelineRequest) Reset() {
 	*x = DeleteOrganizationPipelineRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[70]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[61]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4955,7 +4130,7 @@ func (x *DeleteOrganizationPipelineRequest) String() string {
 func (*DeleteOrganizationPipelineRequest) ProtoMessage() {}
 
 func (x *DeleteOrganizationPipelineRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[70]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[61]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4968,7 +4143,7 @@ func (x *DeleteOrganizationPipelineRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use DeleteOrganizationPipelineRequest.ProtoReflect.Descriptor instead.
 func (*DeleteOrganizationPipelineRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{70}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{61}
 }
 
 func (x *DeleteOrganizationPipelineRequest) GetName() string {
@@ -4988,7 +4163,7 @@ type DeleteOrganizationPipelineResponse struct {
 func (x *DeleteOrganizationPipelineResponse) Reset() {
 	*x = DeleteOrganizationPipelineResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[71]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[62]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5001,7 +4176,7 @@ func (x *DeleteOrganizationPipelineResponse) String() string {
 func (*DeleteOrganizationPipelineResponse) ProtoMessage() {}
 
 func (x *DeleteOrganizationPipelineResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[71]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[62]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5014,7 +4189,7 @@ func (x *DeleteOrganizationPipelineResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use DeleteOrganizationPipelineResponse.ProtoReflect.Descriptor instead.
 func (*DeleteOrganizationPipelineResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{71}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{62}
 }
 
 // ValidateOrganizationPipelineRequest represents a request to validate a
@@ -5033,7 +4208,7 @@ type ValidateOrganizationPipelineRequest struct {
 func (x *ValidateOrganizationPipelineRequest) Reset() {
 	*x = ValidateOrganizationPipelineRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[72]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[63]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5046,7 +4221,7 @@ func (x *ValidateOrganizationPipelineRequest) String() string {
 func (*ValidateOrganizationPipelineRequest) ProtoMessage() {}
 
 func (x *ValidateOrganizationPipelineRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[72]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[63]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5059,7 +4234,7 @@ func (x *ValidateOrganizationPipelineRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use ValidateOrganizationPipelineRequest.ProtoReflect.Descriptor instead.
 func (*ValidateOrganizationPipelineRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{72}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{63}
 }
 
 func (x *ValidateOrganizationPipelineRequest) GetName() string {
@@ -5082,7 +4257,7 @@ type ValidateOrganizationPipelineResponse struct {
 func (x *ValidateOrganizationPipelineResponse) Reset() {
 	*x = ValidateOrganizationPipelineResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[73]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[64]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5095,7 +4270,7 @@ func (x *ValidateOrganizationPipelineResponse) String() string {
 func (*ValidateOrganizationPipelineResponse) ProtoMessage() {}
 
 func (x *ValidateOrganizationPipelineResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[73]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[64]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5108,7 +4283,7 @@ func (x *ValidateOrganizationPipelineResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use ValidateOrganizationPipelineResponse.ProtoReflect.Descriptor instead.
 func (*ValidateOrganizationPipelineResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{73}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{64}
 }
 
 func (x *ValidateOrganizationPipelineResponse) GetPipeline() *Pipeline {
@@ -5137,7 +4312,7 @@ type RenameOrganizationPipelineRequest struct {
 func (x *RenameOrganizationPipelineRequest) Reset() {
 	*x = RenameOrganizationPipelineRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[74]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[65]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5150,7 +4325,7 @@ func (x *RenameOrganizationPipelineRequest) String() string {
 func (*RenameOrganizationPipelineRequest) ProtoMessage() {}
 
 func (x *RenameOrganizationPipelineRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[74]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[65]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5163,7 +4338,7 @@ func (x *RenameOrganizationPipelineRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use RenameOrganizationPipelineRequest.ProtoReflect.Descriptor instead.
 func (*RenameOrganizationPipelineRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{74}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{65}
 }
 
 func (x *RenameOrganizationPipelineRequest) GetName() string {
@@ -5193,7 +4368,7 @@ type RenameOrganizationPipelineResponse struct {
 func (x *RenameOrganizationPipelineResponse) Reset() {
 	*x = RenameOrganizationPipelineResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[75]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[66]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5206,7 +4381,7 @@ func (x *RenameOrganizationPipelineResponse) String() string {
 func (*RenameOrganizationPipelineResponse) ProtoMessage() {}
 
 func (x *RenameOrganizationPipelineResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[75]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[66]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5219,7 +4394,7 @@ func (x *RenameOrganizationPipelineResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use RenameOrganizationPipelineResponse.ProtoReflect.Descriptor instead.
 func (*RenameOrganizationPipelineResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{75}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{66}
 }
 
 func (x *RenameOrganizationPipelineResponse) GetPipeline() *Pipeline {
@@ -5250,7 +4425,7 @@ type CloneOrganizationPipelineRequest struct {
 func (x *CloneOrganizationPipelineRequest) Reset() {
 	*x = CloneOrganizationPipelineRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[76]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[67]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5263,7 +4438,7 @@ func (x *CloneOrganizationPipelineRequest) String() string {
 func (*CloneOrganizationPipelineRequest) ProtoMessage() {}
 
 func (x *CloneOrganizationPipelineRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[76]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[67]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5276,7 +4451,7 @@ func (x *CloneOrganizationPipelineRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CloneOrganizationPipelineRequest.ProtoReflect.Descriptor instead.
 func (*CloneOrganizationPipelineRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{76}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{67}
 }
 
 func (x *CloneOrganizationPipelineRequest) GetName() string {
@@ -5306,7 +4481,7 @@ type CloneOrganizationPipelineResponse struct {
 func (x *CloneOrganizationPipelineResponse) Reset() {
 	*x = CloneOrganizationPipelineResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[77]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[68]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5319,7 +4494,7 @@ func (x *CloneOrganizationPipelineResponse) String() string {
 func (*CloneOrganizationPipelineResponse) ProtoMessage() {}
 
 func (x *CloneOrganizationPipelineResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[77]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[68]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5332,7 +4507,7 @@ func (x *CloneOrganizationPipelineResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use CloneOrganizationPipelineResponse.ProtoReflect.Descriptor instead.
 func (*CloneOrganizationPipelineResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{77}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{68}
 }
 
 func (x *CloneOrganizationPipelineResponse) GetPipeline() *Pipeline {
@@ -5360,7 +4535,7 @@ type TriggerOrganizationPipelineRequest struct {
 func (x *TriggerOrganizationPipelineRequest) Reset() {
 	*x = TriggerOrganizationPipelineRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[78]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[69]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5373,7 +4548,7 @@ func (x *TriggerOrganizationPipelineRequest) String() string {
 func (*TriggerOrganizationPipelineRequest) ProtoMessage() {}
 
 func (x *TriggerOrganizationPipelineRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[78]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[69]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5386,7 +4561,7 @@ func (x *TriggerOrganizationPipelineRequest) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use TriggerOrganizationPipelineRequest.ProtoReflect.Descriptor instead.
 func (*TriggerOrganizationPipelineRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{78}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{69}
 }
 
 func (x *TriggerOrganizationPipelineRequest) GetName() string {
@@ -5419,7 +4594,7 @@ type TriggerOrganizationPipelineResponse struct {
 func (x *TriggerOrganizationPipelineResponse) Reset() {
 	*x = TriggerOrganizationPipelineResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[79]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[70]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5432,7 +4607,7 @@ func (x *TriggerOrganizationPipelineResponse) String() string {
 func (*TriggerOrganizationPipelineResponse) ProtoMessage() {}
 
 func (x *TriggerOrganizationPipelineResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[79]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[70]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5445,7 +4620,7 @@ func (x *TriggerOrganizationPipelineResponse) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use TriggerOrganizationPipelineResponse.ProtoReflect.Descriptor instead.
 func (*TriggerOrganizationPipelineResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{79}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{70}
 }
 
 func (x *TriggerOrganizationPipelineResponse) GetOutputs() []*structpb.Struct {
@@ -5480,7 +4655,7 @@ type TriggerAsyncOrganizationPipelineRequest struct {
 func (x *TriggerAsyncOrganizationPipelineRequest) Reset() {
 	*x = TriggerAsyncOrganizationPipelineRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[80]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[71]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5493,7 +4668,7 @@ func (x *TriggerAsyncOrganizationPipelineRequest) String() string {
 func (*TriggerAsyncOrganizationPipelineRequest) ProtoMessage() {}
 
 func (x *TriggerAsyncOrganizationPipelineRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[80]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[71]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5506,7 +4681,7 @@ func (x *TriggerAsyncOrganizationPipelineRequest) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use TriggerAsyncOrganizationPipelineRequest.ProtoReflect.Descriptor instead.
 func (*TriggerAsyncOrganizationPipelineRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{80}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{71}
 }
 
 func (x *TriggerAsyncOrganizationPipelineRequest) GetName() string {
@@ -5537,7 +4712,7 @@ type TriggerAsyncOrganizationPipelineResponse struct {
 func (x *TriggerAsyncOrganizationPipelineResponse) Reset() {
 	*x = TriggerAsyncOrganizationPipelineResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[81]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[72]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5550,7 +4725,7 @@ func (x *TriggerAsyncOrganizationPipelineResponse) String() string {
 func (*TriggerAsyncOrganizationPipelineResponse) ProtoMessage() {}
 
 func (x *TriggerAsyncOrganizationPipelineResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[81]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[72]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5563,7 +4738,7 @@ func (x *TriggerAsyncOrganizationPipelineResponse) ProtoReflect() protoreflect.M
 
 // Deprecated: Use TriggerAsyncOrganizationPipelineResponse.ProtoReflect.Descriptor instead.
 func (*TriggerAsyncOrganizationPipelineResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{81}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{72}
 }
 
 func (x *TriggerAsyncOrganizationPipelineResponse) GetOperation() *longrunningpb.Operation {
@@ -5590,7 +4765,7 @@ type CreateOrganizationPipelineReleaseRequest struct {
 func (x *CreateOrganizationPipelineReleaseRequest) Reset() {
 	*x = CreateOrganizationPipelineReleaseRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[82]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[73]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5603,7 +4778,7 @@ func (x *CreateOrganizationPipelineReleaseRequest) String() string {
 func (*CreateOrganizationPipelineReleaseRequest) ProtoMessage() {}
 
 func (x *CreateOrganizationPipelineReleaseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[82]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[73]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5616,7 +4791,7 @@ func (x *CreateOrganizationPipelineReleaseRequest) ProtoReflect() protoreflect.M
 
 // Deprecated: Use CreateOrganizationPipelineReleaseRequest.ProtoReflect.Descriptor instead.
 func (*CreateOrganizationPipelineReleaseRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{82}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{73}
 }
 
 func (x *CreateOrganizationPipelineReleaseRequest) GetRelease() *PipelineRelease {
@@ -5646,7 +4821,7 @@ type CreateOrganizationPipelineReleaseResponse struct {
 func (x *CreateOrganizationPipelineReleaseResponse) Reset() {
 	*x = CreateOrganizationPipelineReleaseResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[83]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[74]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5659,7 +4834,7 @@ func (x *CreateOrganizationPipelineReleaseResponse) String() string {
 func (*CreateOrganizationPipelineReleaseResponse) ProtoMessage() {}
 
 func (x *CreateOrganizationPipelineReleaseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[83]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[74]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5672,7 +4847,7 @@ func (x *CreateOrganizationPipelineReleaseResponse) ProtoReflect() protoreflect.
 
 // Deprecated: Use CreateOrganizationPipelineReleaseResponse.ProtoReflect.Descriptor instead.
 func (*CreateOrganizationPipelineReleaseResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{83}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{74}
 }
 
 func (x *CreateOrganizationPipelineReleaseResponse) GetRelease() *PipelineRelease {
@@ -5711,7 +4886,7 @@ type ListOrganizationPipelineReleasesRequest struct {
 func (x *ListOrganizationPipelineReleasesRequest) Reset() {
 	*x = ListOrganizationPipelineReleasesRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[84]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[75]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5724,7 +4899,7 @@ func (x *ListOrganizationPipelineReleasesRequest) String() string {
 func (*ListOrganizationPipelineReleasesRequest) ProtoMessage() {}
 
 func (x *ListOrganizationPipelineReleasesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[84]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[75]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5737,7 +4912,7 @@ func (x *ListOrganizationPipelineReleasesRequest) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use ListOrganizationPipelineReleasesRequest.ProtoReflect.Descriptor instead.
 func (*ListOrganizationPipelineReleasesRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{84}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{75}
 }
 
 func (x *ListOrganizationPipelineReleasesRequest) GetPageSize() int32 {
@@ -5799,7 +4974,7 @@ type ListOrganizationPipelineReleasesResponse struct {
 func (x *ListOrganizationPipelineReleasesResponse) Reset() {
 	*x = ListOrganizationPipelineReleasesResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[85]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[76]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5812,7 +4987,7 @@ func (x *ListOrganizationPipelineReleasesResponse) String() string {
 func (*ListOrganizationPipelineReleasesResponse) ProtoMessage() {}
 
 func (x *ListOrganizationPipelineReleasesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[85]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[76]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5825,7 +5000,7 @@ func (x *ListOrganizationPipelineReleasesResponse) ProtoReflect() protoreflect.M
 
 // Deprecated: Use ListOrganizationPipelineReleasesResponse.ProtoReflect.Descriptor instead.
 func (*ListOrganizationPipelineReleasesResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{85}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{76}
 }
 
 func (x *ListOrganizationPipelineReleasesResponse) GetReleases() []*PipelineRelease {
@@ -5868,7 +5043,7 @@ type GetOrganizationPipelineReleaseRequest struct {
 func (x *GetOrganizationPipelineReleaseRequest) Reset() {
 	*x = GetOrganizationPipelineReleaseRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[86]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[77]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5881,7 +5056,7 @@ func (x *GetOrganizationPipelineReleaseRequest) String() string {
 func (*GetOrganizationPipelineReleaseRequest) ProtoMessage() {}
 
 func (x *GetOrganizationPipelineReleaseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[86]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[77]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5894,7 +5069,7 @@ func (x *GetOrganizationPipelineReleaseRequest) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use GetOrganizationPipelineReleaseRequest.ProtoReflect.Descriptor instead.
 func (*GetOrganizationPipelineReleaseRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{86}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{77}
 }
 
 func (x *GetOrganizationPipelineReleaseRequest) GetName() string {
@@ -5924,7 +5099,7 @@ type GetOrganizationPipelineReleaseResponse struct {
 func (x *GetOrganizationPipelineReleaseResponse) Reset() {
 	*x = GetOrganizationPipelineReleaseResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[87]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[78]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5937,7 +5112,7 @@ func (x *GetOrganizationPipelineReleaseResponse) String() string {
 func (*GetOrganizationPipelineReleaseResponse) ProtoMessage() {}
 
 func (x *GetOrganizationPipelineReleaseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[87]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[78]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5950,7 +5125,7 @@ func (x *GetOrganizationPipelineReleaseResponse) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use GetOrganizationPipelineReleaseResponse.ProtoReflect.Descriptor instead.
 func (*GetOrganizationPipelineReleaseResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{87}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{78}
 }
 
 func (x *GetOrganizationPipelineReleaseResponse) GetRelease() *PipelineRelease {
@@ -5980,7 +5155,7 @@ type UpdateOrganizationPipelineReleaseRequest struct {
 func (x *UpdateOrganizationPipelineReleaseRequest) Reset() {
 	*x = UpdateOrganizationPipelineReleaseRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[88]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[79]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5993,7 +5168,7 @@ func (x *UpdateOrganizationPipelineReleaseRequest) String() string {
 func (*UpdateOrganizationPipelineReleaseRequest) ProtoMessage() {}
 
 func (x *UpdateOrganizationPipelineReleaseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[88]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[79]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6006,7 +5181,7 @@ func (x *UpdateOrganizationPipelineReleaseRequest) ProtoReflect() protoreflect.M
 
 // Deprecated: Use UpdateOrganizationPipelineReleaseRequest.ProtoReflect.Descriptor instead.
 func (*UpdateOrganizationPipelineReleaseRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{88}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{79}
 }
 
 func (x *UpdateOrganizationPipelineReleaseRequest) GetRelease() *PipelineRelease {
@@ -6037,7 +5212,7 @@ type UpdateOrganizationPipelineReleaseResponse struct {
 func (x *UpdateOrganizationPipelineReleaseResponse) Reset() {
 	*x = UpdateOrganizationPipelineReleaseResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[89]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[80]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6050,7 +5225,7 @@ func (x *UpdateOrganizationPipelineReleaseResponse) String() string {
 func (*UpdateOrganizationPipelineReleaseResponse) ProtoMessage() {}
 
 func (x *UpdateOrganizationPipelineReleaseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[89]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[80]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6063,7 +5238,7 @@ func (x *UpdateOrganizationPipelineReleaseResponse) ProtoReflect() protoreflect.
 
 // Deprecated: Use UpdateOrganizationPipelineReleaseResponse.ProtoReflect.Descriptor instead.
 func (*UpdateOrganizationPipelineReleaseResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{89}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{80}
 }
 
 func (x *UpdateOrganizationPipelineReleaseResponse) GetRelease() *PipelineRelease {
@@ -6090,7 +5265,7 @@ type DeleteOrganizationPipelineReleaseRequest struct {
 func (x *DeleteOrganizationPipelineReleaseRequest) Reset() {
 	*x = DeleteOrganizationPipelineReleaseRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[90]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[81]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6103,7 +5278,7 @@ func (x *DeleteOrganizationPipelineReleaseRequest) String() string {
 func (*DeleteOrganizationPipelineReleaseRequest) ProtoMessage() {}
 
 func (x *DeleteOrganizationPipelineReleaseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[90]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[81]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6116,7 +5291,7 @@ func (x *DeleteOrganizationPipelineReleaseRequest) ProtoReflect() protoreflect.M
 
 // Deprecated: Use DeleteOrganizationPipelineReleaseRequest.ProtoReflect.Descriptor instead.
 func (*DeleteOrganizationPipelineReleaseRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{90}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{81}
 }
 
 func (x *DeleteOrganizationPipelineReleaseRequest) GetName() string {
@@ -6136,7 +5311,7 @@ type DeleteOrganizationPipelineReleaseResponse struct {
 func (x *DeleteOrganizationPipelineReleaseResponse) Reset() {
 	*x = DeleteOrganizationPipelineReleaseResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[91]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[82]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6149,7 +5324,7 @@ func (x *DeleteOrganizationPipelineReleaseResponse) String() string {
 func (*DeleteOrganizationPipelineReleaseResponse) ProtoMessage() {}
 
 func (x *DeleteOrganizationPipelineReleaseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[91]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[82]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6162,7 +5337,7 @@ func (x *DeleteOrganizationPipelineReleaseResponse) ProtoReflect() protoreflect.
 
 // Deprecated: Use DeleteOrganizationPipelineReleaseResponse.ProtoReflect.Descriptor instead.
 func (*DeleteOrganizationPipelineReleaseResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{91}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{82}
 }
 
 // RestoreOrganizationPipelineReleaseRequest represents a request to set the
@@ -6182,7 +5357,7 @@ type RestoreOrganizationPipelineReleaseRequest struct {
 func (x *RestoreOrganizationPipelineReleaseRequest) Reset() {
 	*x = RestoreOrganizationPipelineReleaseRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[92]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[83]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6195,7 +5370,7 @@ func (x *RestoreOrganizationPipelineReleaseRequest) String() string {
 func (*RestoreOrganizationPipelineReleaseRequest) ProtoMessage() {}
 
 func (x *RestoreOrganizationPipelineReleaseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[92]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[83]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6208,7 +5383,7 @@ func (x *RestoreOrganizationPipelineReleaseRequest) ProtoReflect() protoreflect.
 
 // Deprecated: Use RestoreOrganizationPipelineReleaseRequest.ProtoReflect.Descriptor instead.
 func (*RestoreOrganizationPipelineReleaseRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{92}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{83}
 }
 
 func (x *RestoreOrganizationPipelineReleaseRequest) GetName() string {
@@ -6232,7 +5407,7 @@ type RestoreOrganizationPipelineReleaseResponse struct {
 func (x *RestoreOrganizationPipelineReleaseResponse) Reset() {
 	*x = RestoreOrganizationPipelineReleaseResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[93]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[84]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6245,7 +5420,7 @@ func (x *RestoreOrganizationPipelineReleaseResponse) String() string {
 func (*RestoreOrganizationPipelineReleaseResponse) ProtoMessage() {}
 
 func (x *RestoreOrganizationPipelineReleaseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[93]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[84]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6258,7 +5433,7 @@ func (x *RestoreOrganizationPipelineReleaseResponse) ProtoReflect() protoreflect
 
 // Deprecated: Use RestoreOrganizationPipelineReleaseResponse.ProtoReflect.Descriptor instead.
 func (*RestoreOrganizationPipelineReleaseResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{93}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{84}
 }
 
 func (x *RestoreOrganizationPipelineReleaseResponse) GetRelease() *PipelineRelease {
@@ -6288,7 +5463,7 @@ type RenameOrganizationPipelineReleaseRequest struct {
 func (x *RenameOrganizationPipelineReleaseRequest) Reset() {
 	*x = RenameOrganizationPipelineReleaseRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[94]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[85]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6301,7 +5476,7 @@ func (x *RenameOrganizationPipelineReleaseRequest) String() string {
 func (*RenameOrganizationPipelineReleaseRequest) ProtoMessage() {}
 
 func (x *RenameOrganizationPipelineReleaseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[94]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[85]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6314,7 +5489,7 @@ func (x *RenameOrganizationPipelineReleaseRequest) ProtoReflect() protoreflect.M
 
 // Deprecated: Use RenameOrganizationPipelineReleaseRequest.ProtoReflect.Descriptor instead.
 func (*RenameOrganizationPipelineReleaseRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{94}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{85}
 }
 
 func (x *RenameOrganizationPipelineReleaseRequest) GetName() string {
@@ -6344,7 +5519,7 @@ type RenameOrganizationPipelineReleaseResponse struct {
 func (x *RenameOrganizationPipelineReleaseResponse) Reset() {
 	*x = RenameOrganizationPipelineReleaseResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[95]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[86]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6357,7 +5532,7 @@ func (x *RenameOrganizationPipelineReleaseResponse) String() string {
 func (*RenameOrganizationPipelineReleaseResponse) ProtoMessage() {}
 
 func (x *RenameOrganizationPipelineReleaseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[95]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[86]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6370,7 +5545,7 @@ func (x *RenameOrganizationPipelineReleaseResponse) ProtoReflect() protoreflect.
 
 // Deprecated: Use RenameOrganizationPipelineReleaseResponse.ProtoReflect.Descriptor instead.
 func (*RenameOrganizationPipelineReleaseResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{95}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{86}
 }
 
 func (x *RenameOrganizationPipelineReleaseResponse) GetRelease() *PipelineRelease {
@@ -6399,7 +5574,7 @@ type TriggerOrganizationPipelineReleaseRequest struct {
 func (x *TriggerOrganizationPipelineReleaseRequest) Reset() {
 	*x = TriggerOrganizationPipelineReleaseRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[96]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[87]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6412,7 +5587,7 @@ func (x *TriggerOrganizationPipelineReleaseRequest) String() string {
 func (*TriggerOrganizationPipelineReleaseRequest) ProtoMessage() {}
 
 func (x *TriggerOrganizationPipelineReleaseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[96]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[87]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6425,7 +5600,7 @@ func (x *TriggerOrganizationPipelineReleaseRequest) ProtoReflect() protoreflect.
 
 // Deprecated: Use TriggerOrganizationPipelineReleaseRequest.ProtoReflect.Descriptor instead.
 func (*TriggerOrganizationPipelineReleaseRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{96}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{87}
 }
 
 func (x *TriggerOrganizationPipelineReleaseRequest) GetName() string {
@@ -6458,7 +5633,7 @@ type TriggerOrganizationPipelineReleaseResponse struct {
 func (x *TriggerOrganizationPipelineReleaseResponse) Reset() {
 	*x = TriggerOrganizationPipelineReleaseResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[97]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[88]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6471,7 +5646,7 @@ func (x *TriggerOrganizationPipelineReleaseResponse) String() string {
 func (*TriggerOrganizationPipelineReleaseResponse) ProtoMessage() {}
 
 func (x *TriggerOrganizationPipelineReleaseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[97]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[88]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6484,7 +5659,7 @@ func (x *TriggerOrganizationPipelineReleaseResponse) ProtoReflect() protoreflect
 
 // Deprecated: Use TriggerOrganizationPipelineReleaseResponse.ProtoReflect.Descriptor instead.
 func (*TriggerOrganizationPipelineReleaseResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{97}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{88}
 }
 
 func (x *TriggerOrganizationPipelineReleaseResponse) GetOutputs() []*structpb.Struct {
@@ -6520,7 +5695,7 @@ type TriggerAsyncOrganizationPipelineReleaseRequest struct {
 func (x *TriggerAsyncOrganizationPipelineReleaseRequest) Reset() {
 	*x = TriggerAsyncOrganizationPipelineReleaseRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[98]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[89]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6533,7 +5708,7 @@ func (x *TriggerAsyncOrganizationPipelineReleaseRequest) String() string {
 func (*TriggerAsyncOrganizationPipelineReleaseRequest) ProtoMessage() {}
 
 func (x *TriggerAsyncOrganizationPipelineReleaseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[98]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[89]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6546,7 +5721,7 @@ func (x *TriggerAsyncOrganizationPipelineReleaseRequest) ProtoReflect() protoref
 
 // Deprecated: Use TriggerAsyncOrganizationPipelineReleaseRequest.ProtoReflect.Descriptor instead.
 func (*TriggerAsyncOrganizationPipelineReleaseRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{98}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{89}
 }
 
 func (x *TriggerAsyncOrganizationPipelineReleaseRequest) GetName() string {
@@ -6577,7 +5752,7 @@ type TriggerAsyncOrganizationPipelineReleaseResponse struct {
 func (x *TriggerAsyncOrganizationPipelineReleaseResponse) Reset() {
 	*x = TriggerAsyncOrganizationPipelineReleaseResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[99]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[90]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6590,7 +5765,7 @@ func (x *TriggerAsyncOrganizationPipelineReleaseResponse) String() string {
 func (*TriggerAsyncOrganizationPipelineReleaseResponse) ProtoMessage() {}
 
 func (x *TriggerAsyncOrganizationPipelineReleaseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[99]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[90]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6603,7 +5778,7 @@ func (x *TriggerAsyncOrganizationPipelineReleaseResponse) ProtoReflect() protore
 
 // Deprecated: Use TriggerAsyncOrganizationPipelineReleaseResponse.ProtoReflect.Descriptor instead.
 func (*TriggerAsyncOrganizationPipelineReleaseResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{99}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{90}
 }
 
 func (x *TriggerAsyncOrganizationPipelineReleaseResponse) GetOperation() *longrunningpb.Operation {
@@ -6627,7 +5802,7 @@ type GetOperationRequest struct {
 func (x *GetOperationRequest) Reset() {
 	*x = GetOperationRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[100]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[91]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6640,7 +5815,7 @@ func (x *GetOperationRequest) String() string {
 func (*GetOperationRequest) ProtoMessage() {}
 
 func (x *GetOperationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[100]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[91]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6653,7 +5828,7 @@ func (x *GetOperationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetOperationRequest.ProtoReflect.Descriptor instead.
 func (*GetOperationRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{100}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{91}
 }
 
 func (x *GetOperationRequest) GetName() string {
@@ -6676,7 +5851,7 @@ type GetOperationResponse struct {
 func (x *GetOperationResponse) Reset() {
 	*x = GetOperationResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[101]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[92]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6689,7 +5864,7 @@ func (x *GetOperationResponse) String() string {
 func (*GetOperationResponse) ProtoMessage() {}
 
 func (x *GetOperationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[101]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[92]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6702,7 +5877,7 @@ func (x *GetOperationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetOperationResponse.ProtoReflect.Descriptor instead.
 func (*GetOperationResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{101}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{92}
 }
 
 func (x *GetOperationResponse) GetOperation() *longrunningpb.Operation {
@@ -6740,7 +5915,7 @@ type ListPipelinesAdminRequest struct {
 func (x *ListPipelinesAdminRequest) Reset() {
 	*x = ListPipelinesAdminRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[102]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[93]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6753,7 +5928,7 @@ func (x *ListPipelinesAdminRequest) String() string {
 func (*ListPipelinesAdminRequest) ProtoMessage() {}
 
 func (x *ListPipelinesAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[102]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[93]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6766,7 +5941,7 @@ func (x *ListPipelinesAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPipelinesAdminRequest.ProtoReflect.Descriptor instead.
 func (*ListPipelinesAdminRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{102}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{93}
 }
 
 func (x *ListPipelinesAdminRequest) GetPageSize() int32 {
@@ -6824,7 +5999,7 @@ type ListPipelinesAdminResponse struct {
 func (x *ListPipelinesAdminResponse) Reset() {
 	*x = ListPipelinesAdminResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[103]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[94]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6837,7 +6012,7 @@ func (x *ListPipelinesAdminResponse) String() string {
 func (*ListPipelinesAdminResponse) ProtoMessage() {}
 
 func (x *ListPipelinesAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[103]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[94]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6850,7 +6025,7 @@ func (x *ListPipelinesAdminResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPipelinesAdminResponse.ProtoReflect.Descriptor instead.
 func (*ListPipelinesAdminResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{103}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{94}
 }
 
 func (x *ListPipelinesAdminResponse) GetPipelines() []*Pipeline {
@@ -6900,7 +6075,7 @@ type ListPipelineReleasesAdminRequest struct {
 func (x *ListPipelineReleasesAdminRequest) Reset() {
 	*x = ListPipelineReleasesAdminRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[104]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[95]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6913,7 +6088,7 @@ func (x *ListPipelineReleasesAdminRequest) String() string {
 func (*ListPipelineReleasesAdminRequest) ProtoMessage() {}
 
 func (x *ListPipelineReleasesAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[104]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[95]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6926,7 +6101,7 @@ func (x *ListPipelineReleasesAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPipelineReleasesAdminRequest.ProtoReflect.Descriptor instead.
 func (*ListPipelineReleasesAdminRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{104}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{95}
 }
 
 func (x *ListPipelineReleasesAdminRequest) GetPageSize() int32 {
@@ -6984,7 +6159,7 @@ type ListPipelineReleasesAdminResponse struct {
 func (x *ListPipelineReleasesAdminResponse) Reset() {
 	*x = ListPipelineReleasesAdminResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[105]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[96]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6997,7 +6172,7 @@ func (x *ListPipelineReleasesAdminResponse) String() string {
 func (*ListPipelineReleasesAdminResponse) ProtoMessage() {}
 
 func (x *ListPipelineReleasesAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[105]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[96]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7010,7 +6185,7 @@ func (x *ListPipelineReleasesAdminResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use ListPipelineReleasesAdminResponse.ProtoReflect.Descriptor instead.
 func (*ListPipelineReleasesAdminResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{105}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{96}
 }
 
 func (x *ListPipelineReleasesAdminResponse) GetReleases() []*PipelineRelease {
@@ -7051,7 +6226,7 @@ type LookUpPipelineAdminRequest struct {
 func (x *LookUpPipelineAdminRequest) Reset() {
 	*x = LookUpPipelineAdminRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[106]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[97]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -7064,7 +6239,7 @@ func (x *LookUpPipelineAdminRequest) String() string {
 func (*LookUpPipelineAdminRequest) ProtoMessage() {}
 
 func (x *LookUpPipelineAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[106]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[97]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7077,7 +6252,7 @@ func (x *LookUpPipelineAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LookUpPipelineAdminRequest.ProtoReflect.Descriptor instead.
 func (*LookUpPipelineAdminRequest) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{106}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{97}
 }
 
 func (x *LookUpPipelineAdminRequest) GetPermalink() string {
@@ -7107,7 +6282,7 @@ type LookUpPipelineAdminResponse struct {
 func (x *LookUpPipelineAdminResponse) Reset() {
 	*x = LookUpPipelineAdminResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[107]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[98]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -7120,7 +6295,7 @@ func (x *LookUpPipelineAdminResponse) String() string {
 func (*LookUpPipelineAdminResponse) ProtoMessage() {}
 
 func (x *LookUpPipelineAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[107]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[98]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7133,7 +6308,7 @@ func (x *LookUpPipelineAdminResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LookUpPipelineAdminResponse.ProtoReflect.Descriptor instead.
 func (*LookUpPipelineAdminResponse) Descriptor() ([]byte, []int) {
-	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{107}
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{98}
 }
 
 func (x *LookUpPipelineAdminResponse) GetPipeline() *Pipeline {
@@ -7208,335 +6383,145 @@ var file_vdp_pipeline_v1beta_pipeline_proto_rawDesc = []byte{
 	0x61, 0x6c, 0x74, 0x68, 0x63, 0x68, 0x65, 0x63, 0x6b, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61,
 	0x2e, 0x48, 0x65, 0x61, 0x6c, 0x74, 0x68, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x70,
 	0x6f, 0x6e, 0x73, 0x65, 0x52, 0x13, 0x68, 0x65, 0x61, 0x6c, 0x74, 0x68, 0x43, 0x68, 0x65, 0x63,
-	0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xcb, 0x02, 0x0a, 0x12, 0x43, 0x6f,
-	0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x43, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74,
-	0x12, 0x2c, 0x0a, 0x0f, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x6e,
-	0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x0e,
-	0x64, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x4d,
-	0x0a, 0x0a, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01,
-	0x28, 0x0b, 0x32, 0x28, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e,
-	0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74,
-	0x6f, 0x72, 0x44, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x03, 0xe0, 0x41,
-	0x03, 0x52, 0x0a, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x17, 0x0a,
-	0x04, 0x74, 0x61, 0x73, 0x6b, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x01,
-	0x52, 0x04, 0x74, 0x61, 0x73, 0x6b, 0x12, 0x32, 0x0a, 0x05, 0x69, 0x6e, 0x70, 0x75, 0x74, 0x18,
-	0x06, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x42, 0x03,
-	0xe0, 0x41, 0x01, 0x52, 0x05, 0x69, 0x6e, 0x70, 0x75, 0x74, 0x12, 0x21, 0x0a, 0x09, 0x63, 0x6f,
-	0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0,
-	0x41, 0x01, 0x52, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x3c, 0x0a,
-	0x0a, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x08, 0x20, 0x01, 0x28,
-	0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52,
-	0x0a, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x4a, 0x04, 0x08, 0x03, 0x10,
-	0x04, 0x4a, 0x04, 0x08, 0x04, 0x10, 0x05, 0x22, 0xff, 0x01, 0x0a, 0x11, 0x4f, 0x70, 0x65, 0x72,
-	0x61, 0x74, 0x6f, 0x72, 0x43, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x12, 0x2c, 0x0a,
-	0x0f, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x6e, 0x61, 0x6d, 0x65,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x0e, 0x64, 0x65, 0x66,
-	0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x4c, 0x0a, 0x0a, 0x64,
-	0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32,
-	0x27, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76,
-	0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x44, 0x65,
-	0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0a, 0x64,
-	0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x17, 0x0a, 0x04, 0x74, 0x61, 0x73,
-	0x6b, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x04, 0x74, 0x61,
-	0x73, 0x6b, 0x12, 0x32, 0x0a, 0x05, 0x69, 0x6e, 0x70, 0x75, 0x74, 0x18, 0x04, 0x20, 0x01, 0x28,
-	0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52,
-	0x05, 0x69, 0x6e, 0x70, 0x75, 0x74, 0x12, 0x21, 0x0a, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74,
-	0x69, 0x6f, 0x6e, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x09,
-	0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x98, 0x04, 0x0a, 0x11, 0x49, 0x74,
-	0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x43, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x12,
-	0x19, 0x0a, 0x05, 0x69, 0x6e, 0x70, 0x75, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03,
-	0xe0, 0x41, 0x01, 0x52, 0x05, 0x69, 0x6e, 0x70, 0x75, 0x74, 0x12, 0x68, 0x0a, 0x0f, 0x6f, 0x75,
-	0x74, 0x70, 0x75, 0x74, 0x5f, 0x65, 0x6c, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x18, 0x02, 0x20,
-	0x03, 0x28, 0x0b, 0x32, 0x3a, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69,
-	0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x49, 0x74, 0x65, 0x72, 0x61, 0x74,
-	0x6f, 0x72, 0x43, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x2e, 0x4f, 0x75, 0x74, 0x70,
-	0x75, 0x74, 0x45, 0x6c, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x42,
-	0x03, 0xe0, 0x41, 0x01, 0x52, 0x0e, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x45, 0x6c, 0x65, 0x6d,
-	0x65, 0x6e, 0x74, 0x73, 0x12, 0x58, 0x0a, 0x09, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e,
-	0x74, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x35, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69,
-	0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x49, 0x74,
-	0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x43, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x2e,
-	0x43, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x42, 0x03,
-	0xe0, 0x41, 0x01, 0x52, 0x09, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x12, 0x21,
-	0x0a, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x04, 0x20, 0x01, 0x28,
-	0x09, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f,
-	0x6e, 0x12, 0x5a, 0x0a, 0x12, 0x64, 0x61, 0x74, 0x61, 0x5f, 0x73, 0x70, 0x65, 0x63, 0x69, 0x66,
-	0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x26, 0x2e,
-	0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62,
-	0x65, 0x74, 0x61, 0x2e, 0x44, 0x61, 0x74, 0x61, 0x53, 0x70, 0x65, 0x63, 0x69, 0x66, 0x69, 0x63,
-	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x11, 0x64, 0x61, 0x74, 0x61,
-	0x53, 0x70, 0x65, 0x63, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x1a, 0x41, 0x0a,
-	0x13, 0x4f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x45, 0x6c, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x45,
-	0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01,
-	0x1a, 0x62, 0x0a, 0x0e, 0x43, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x45, 0x6e, 0x74,
-	0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x03, 0x6b, 0x65, 0x79, 0x12, 0x3a, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x24, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69,
-	0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x4e, 0x65, 0x73, 0x74, 0x65, 0x64,
-	0x43, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65,
-	0x3a, 0x02, 0x38, 0x01, 0x22, 0xf2, 0x02, 0x0a, 0x09, 0x43, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65,
-	0x6e, 0x74, 0x12, 0x38, 0x0a, 0x08, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x18, 0x0a,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x42, 0x03, 0xe0,
-	0x41, 0x01, 0x52, 0x08, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x12, 0x5a, 0x0a, 0x13,
-	0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x5f, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e,
-	0x65, 0x6e, 0x74, 0x18, 0x0d, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e, 0x76, 0x64, 0x70, 0x2e,
-	0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e,
-	0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x43, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65,
-	0x6e, 0x74, 0x48, 0x00, 0x52, 0x12, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x43,
-	0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x12, 0x57, 0x0a, 0x12, 0x6f, 0x70, 0x65, 0x72,
-	0x61, 0x74, 0x6f, 0x72, 0x5f, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x18, 0x0e,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x26, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c,
-	0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x4f, 0x70, 0x65, 0x72, 0x61,
-	0x74, 0x6f, 0x72, 0x43, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x48, 0x00, 0x52, 0x11,
-	0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x43, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e,
-	0x74, 0x12, 0x57, 0x0a, 0x12, 0x69, 0x74, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x5f, 0x63, 0x6f,
-	0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x18, 0x0f, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x26, 0x2e,
-	0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62,
-	0x65, 0x74, 0x61, 0x2e, 0x49, 0x74, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x43, 0x6f, 0x6d, 0x70,
-	0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x48, 0x00, 0x52, 0x11, 0x69, 0x74, 0x65, 0x72, 0x61, 0x74, 0x6f,
-	0x72, 0x43, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x42, 0x0b, 0x0a, 0x09, 0x63, 0x6f,
-	0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x4a, 0x04, 0x08, 0x01, 0x10, 0x0a, 0x4a, 0x04, 0x08,
-	0x0b, 0x10, 0x0c, 0x4a, 0x04, 0x08, 0x0c, 0x10, 0x0d, 0x22, 0x93, 0x02, 0x0a, 0x0f, 0x4e, 0x65,
-	0x73, 0x74, 0x65, 0x64, 0x43, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x12, 0x38, 0x0a,
-	0x08, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32,
-	0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
-	0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x08, 0x6d,
-	0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x12, 0x5a, 0x0a, 0x13, 0x63, 0x6f, 0x6e, 0x6e, 0x65,
-	0x63, 0x74, 0x6f, 0x72, 0x5f, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x18, 0x03,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c,
-	0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x43, 0x6f, 0x6e, 0x6e, 0x65,
-	0x63, 0x74, 0x6f, 0x72, 0x43, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x48, 0x00, 0x52,
-	0x12, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x43, 0x6f, 0x6d, 0x70, 0x6f, 0x6e,
-	0x65, 0x6e, 0x74, 0x12, 0x57, 0x0a, 0x12, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x5f,
-	0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32,
-	0x26, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76,
-	0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x43, 0x6f,
-	0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x48, 0x00, 0x52, 0x11, 0x6f, 0x70, 0x65, 0x72, 0x61,
-	0x74, 0x6f, 0x72, 0x43, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x42, 0x0b, 0x0a, 0x09,
-	0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x4a, 0x04, 0x08, 0x01, 0x10, 0x02, 0x22,
-	0x04, 0x0a, 0x02, 0x4f, 0x6e, 0x22, 0xb1, 0x05, 0x0a, 0x06, 0x52, 0x65, 0x63, 0x69, 0x70, 0x65,
-	0x12, 0x18, 0x0a, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x27, 0x0a, 0x02, 0x6f, 0x6e,
-	0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70,
-	0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x4f, 0x6e, 0x52,
-	0x02, 0x6f, 0x6e, 0x12, 0x3f, 0x0a, 0x06, 0x73, 0x65, 0x63, 0x72, 0x65, 0x74, 0x18, 0x04, 0x20,
-	0x03, 0x28, 0x0b, 0x32, 0x27, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69,
-	0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x52, 0x65, 0x63, 0x69, 0x70, 0x65,
-	0x2e, 0x53, 0x65, 0x63, 0x72, 0x65, 0x74, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x52, 0x06, 0x73, 0x65,
-	0x63, 0x72, 0x65, 0x74, 0x12, 0x45, 0x0a, 0x08, 0x76, 0x61, 0x72, 0x69, 0x61, 0x62, 0x6c, 0x65,
-	0x18, 0x05, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x29, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70,
-	0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x52, 0x65, 0x63,
-	0x69, 0x70, 0x65, 0x2e, 0x56, 0x61, 0x72, 0x69, 0x61, 0x62, 0x6c, 0x65, 0x45, 0x6e, 0x74, 0x72,
-	0x79, 0x52, 0x08, 0x76, 0x61, 0x72, 0x69, 0x61, 0x62, 0x6c, 0x65, 0x12, 0x3f, 0x0a, 0x06, 0x6f,
-	0x75, 0x74, 0x70, 0x75, 0x74, 0x18, 0x06, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x27, 0x2e, 0x76, 0x64,
-	0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74,
-	0x61, 0x2e, 0x52, 0x65, 0x63, 0x69, 0x70, 0x65, 0x2e, 0x4f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x45,
-	0x6e, 0x74, 0x72, 0x79, 0x52, 0x06, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x12, 0x48, 0x0a, 0x09,
-	0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x18, 0x07, 0x20, 0x03, 0x28, 0x0b, 0x32,
-	0x2a, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76,
-	0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x52, 0x65, 0x63, 0x69, 0x70, 0x65, 0x2e, 0x43, 0x6f, 0x6d,
-	0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x52, 0x09, 0x63, 0x6f, 0x6d,
-	0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x1a, 0x39, 0x0a, 0x0b, 0x53, 0x65, 0x63, 0x72, 0x65, 0x74,
-	0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65,
-	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38,
-	0x01, 0x1a, 0x5a, 0x0a, 0x0d, 0x56, 0x61, 0x72, 0x69, 0x61, 0x62, 0x6c, 0x65, 0x45, 0x6e, 0x74,
-	0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x03, 0x6b, 0x65, 0x79, 0x12, 0x33, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69,
-	0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x56, 0x61, 0x72, 0x69, 0x61, 0x62,
-	0x6c, 0x65, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x1a, 0x56, 0x0a,
-	0x0b, 0x4f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03,
-	0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x31,
-	0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e,
-	0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62,
-	0x65, 0x74, 0x61, 0x2e, 0x4f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75,
-	0x65, 0x3a, 0x02, 0x38, 0x01, 0x1a, 0x5c, 0x0a, 0x0e, 0x43, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65,
-	0x6e, 0x74, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x34, 0x0a, 0x05, 0x76, 0x61, 0x6c,
-	0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1e, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70,
-	0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x43,
-	0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a,
-	0x02, 0x38, 0x01, 0x4a, 0x04, 0x08, 0x02, 0x10, 0x03, 0x22, 0x96, 0x02, 0x0a, 0x08, 0x56, 0x61,
-	0x72, 0x69, 0x61, 0x62, 0x6c, 0x65, 0x12, 0x17, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12,
-	0x19, 0x0a, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03,
-	0xe0, 0x41, 0x01, 0x52, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x12, 0x25, 0x0a, 0x0b, 0x64, 0x65,
-	0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x42,
-	0x03, 0xe0, 0x41, 0x01, 0x52, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f,
-	0x6e, 0x12, 0x1d, 0x0a, 0x07, 0x64, 0x65, 0x66, 0x61, 0x75, 0x6c, 0x74, 0x18, 0x04, 0x20, 0x01,
-	0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x07, 0x64, 0x65, 0x66, 0x61, 0x75, 0x6c, 0x74,
-	0x12, 0x2a, 0x0a, 0x0e, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x5f, 0x66, 0x6f, 0x72, 0x6d,
-	0x61, 0x74, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x0d, 0x69,
-	0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x46, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x12, 0x2d, 0x0a, 0x10,
-	0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x5f, 0x75, 0x69, 0x5f, 0x6f, 0x72, 0x64, 0x65, 0x72,
-	0x18, 0x06, 0x20, 0x01, 0x28, 0x05, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x0e, 0x69, 0x6e, 0x73,
-	0x74, 0x69, 0x6c, 0x6c, 0x55, 0x69, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x35, 0x0a, 0x14, 0x69,
-	0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x5f, 0x75, 0x69, 0x5f, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x6c,
-	0x69, 0x6e, 0x65, 0x18, 0x07, 0x20, 0x01, 0x28, 0x08, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x12,
-	0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x55, 0x69, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x6c, 0x69,
-	0x6e, 0x65, 0x22, 0x8c, 0x02, 0x0a, 0x06, 0x4f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x12, 0x19, 0x0a,
-	0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41,
-	0x01, 0x52, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x12, 0x25, 0x0a, 0x0b, 0x64, 0x65, 0x73, 0x63,
-	0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0,
-	0x41, 0x01, 0x52, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x12,
-	0x19, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03,
-	0xe0, 0x41, 0x02, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x12, 0x3f, 0x0a, 0x19, 0x69, 0x6e,
-	0x73, 0x74, 0x69, 0x6c, 0x6c, 0x5f, 0x73, 0x68, 0x6f, 0x72, 0x74, 0x5f, 0x64, 0x65, 0x73, 0x63,
-	0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0,
-	0x41, 0x01, 0x52, 0x17, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x53, 0x68, 0x6f, 0x72, 0x74,
-	0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x2d, 0x0a, 0x10, 0x69,
-	0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x5f, 0x75, 0x69, 0x5f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x18,
-	0x06, 0x20, 0x01, 0x28, 0x05, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x0e, 0x69, 0x6e, 0x73, 0x74,
-	0x69, 0x6c, 0x6c, 0x55, 0x69, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x35, 0x0a, 0x14, 0x69, 0x6e,
-	0x73, 0x74, 0x69, 0x6c, 0x6c, 0x5f, 0x75, 0x69, 0x5f, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x6c, 0x69,
-	0x6e, 0x65, 0x18, 0x07, 0x20, 0x01, 0x28, 0x08, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x12, 0x69,
-	0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x55, 0x69, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x6c, 0x69, 0x6e,
-	0x65, 0x22, 0xfc, 0x09, 0x0a, 0x08, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x12, 0x2d,
-	0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x19, 0x92, 0x41,
-	0x13, 0xca, 0x3e, 0x10, 0xfa, 0x02, 0x0d, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x5f,
-	0x6e, 0x61, 0x6d, 0x65, 0xe0, 0x41, 0x03, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x15, 0x0a,
-	0x03, 0x75, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52,
-	0x03, 0x75, 0x69, 0x64, 0x12, 0x13, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
-	0x42, 0x03, 0xe0, 0x41, 0x05, 0x52, 0x02, 0x69, 0x64, 0x12, 0x2a, 0x0a, 0x0b, 0x64, 0x65, 0x73,
-	0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03,
-	0xe0, 0x41, 0x01, 0x48, 0x00, 0x52, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69,
-	0x6f, 0x6e, 0x88, 0x01, 0x01, 0x12, 0x38, 0x0a, 0x06, 0x72, 0x65, 0x63, 0x69, 0x70, 0x65, 0x18,
-	0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65,
-	0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x52, 0x65, 0x63, 0x69,
-	0x70, 0x65, 0x42, 0x03, 0xe0, 0x41, 0x05, 0x52, 0x06, 0x72, 0x65, 0x63, 0x69, 0x70, 0x65, 0x12,
-	0x40, 0x0a, 0x0b, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x0a,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70,
-	0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0a, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x54, 0x69, 0x6d,
-	0x65, 0x12, 0x40, 0x0a, 0x0b, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x5f, 0x74, 0x69, 0x6d, 0x65,
-	0x18, 0x0b, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61,
-	0x6d, 0x70, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0a, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x54,
-	0x69, 0x6d, 0x65, 0x12, 0x40, 0x0a, 0x0b, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x5f, 0x74, 0x69,
-	0x6d, 0x65, 0x18, 0x0e, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
+	0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xf8, 0x09, 0x0a, 0x08, 0x50, 0x69,
+	0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x12, 0x2d, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x42, 0x19, 0x92, 0x41, 0x13, 0xca, 0x3e, 0x10, 0xfa, 0x02, 0x0d, 0x70,
+	0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0xe0, 0x41, 0x03, 0x52,
+	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x15, 0x0a, 0x03, 0x75, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x03, 0x75, 0x69, 0x64, 0x12, 0x13, 0x0a, 0x02,
+	0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x05, 0x52, 0x02, 0x69,
+	0x64, 0x12, 0x2a, 0x0a, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e,
+	0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x00, 0x52, 0x0b, 0x64,
+	0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x88, 0x01, 0x01, 0x12, 0x34, 0x0a,
+	0x06, 0x72, 0x65, 0x63, 0x69, 0x70, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e,
+	0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e,
+	0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x42, 0x03, 0xe0, 0x41, 0x05, 0x52, 0x06, 0x72, 0x65, 0x63,
+	0x69, 0x70, 0x65, 0x12, 0x40, 0x0a, 0x0b, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x5f, 0x74, 0x69,
+	0x6d, 0x65, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
 	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73,
-	0x74, 0x61, 0x6d, 0x70, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0a, 0x64, 0x65, 0x6c, 0x65, 0x74,
-	0x65, 0x54, 0x69, 0x6d, 0x65, 0x12, 0x36, 0x0a, 0x07, 0x73, 0x68, 0x61, 0x72, 0x69, 0x6e, 0x67,
-	0x18, 0x0f, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70,
-	0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x53, 0x68, 0x61,
-	0x72, 0x69, 0x6e, 0x67, 0x52, 0x07, 0x73, 0x68, 0x61, 0x72, 0x69, 0x6e, 0x67, 0x12, 0x33, 0x0a,
-	0x08, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x18, 0x10, 0x20, 0x01, 0x28, 0x0b, 0x32,
-	0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
-	0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x52, 0x08, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61,
-	0x74, 0x61, 0x12, 0x22, 0x0a, 0x0a, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x5f, 0x6e, 0x61, 0x6d, 0x65,
-	0x18, 0x11, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x09, 0x6f, 0x77, 0x6e,
-	0x65, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x45, 0x0a, 0x08, 0x72, 0x65, 0x6c, 0x65, 0x61, 0x73,
-	0x65, 0x73, 0x18, 0x13, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x24, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70,
+	0x74, 0x61, 0x6d, 0x70, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0a, 0x63, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x54, 0x69, 0x6d, 0x65, 0x12, 0x40, 0x0a, 0x0b, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x5f,
+	0x74, 0x69, 0x6d, 0x65, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f,
+	0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d,
+	0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0a, 0x75, 0x70, 0x64,
+	0x61, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x12, 0x40, 0x0a, 0x0b, 0x64, 0x65, 0x6c, 0x65, 0x74,
+	0x65, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x0e, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67,
+	0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54,
+	0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0a, 0x64,
+	0x65, 0x6c, 0x65, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x12, 0x36, 0x0a, 0x07, 0x73, 0x68, 0x61,
+	0x72, 0x69, 0x6e, 0x67, 0x18, 0x0f, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x76, 0x64, 0x70,
+	0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61,
+	0x2e, 0x53, 0x68, 0x61, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x07, 0x73, 0x68, 0x61, 0x72, 0x69, 0x6e,
+	0x67, 0x12, 0x33, 0x0a, 0x08, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x18, 0x10, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x52, 0x08, 0x6d, 0x65,
+	0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x12, 0x22, 0x0a, 0x0a, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x5f,
+	0x6e, 0x61, 0x6d, 0x65, 0x18, 0x11, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52,
+	0x09, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x45, 0x0a, 0x08, 0x72, 0x65,
+	0x6c, 0x65, 0x61, 0x73, 0x65, 0x73, 0x18, 0x13, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x24, 0x2e, 0x76,
+	0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65,
+	0x74, 0x61, 0x2e, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x52, 0x65, 0x6c, 0x65, 0x61,
+	0x73, 0x65, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x08, 0x72, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65,
+	0x73, 0x12, 0x1b, 0x0a, 0x06, 0x72, 0x65, 0x61, 0x64, 0x6d, 0x65, 0x18, 0x14, 0x20, 0x01, 0x28,
+	0x09, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x06, 0x72, 0x65, 0x61, 0x64, 0x6d, 0x65, 0x12, 0x44,
+	0x0a, 0x0a, 0x70, 0x65, 0x72, 0x6d, 0x69, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x15, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e,
+	0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x50, 0x65, 0x72, 0x6d, 0x69, 0x73, 0x73,
+	0x69, 0x6f, 0x6e, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0a, 0x70, 0x65, 0x72, 0x6d, 0x69, 0x73,
+	0x73, 0x69, 0x6f, 0x6e, 0x12, 0x4d, 0x0a, 0x0a, 0x76, 0x69, 0x73, 0x69, 0x62, 0x69, 0x6c, 0x69,
+	0x74, 0x79, 0x18, 0x16, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x28, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70,
 	0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x50,
-	0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x52, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x42, 0x03,
-	0xe0, 0x41, 0x03, 0x52, 0x08, 0x72, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x73, 0x12, 0x1b, 0x0a,
-	0x06, 0x72, 0x65, 0x61, 0x64, 0x6d, 0x65, 0x18, 0x14, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0,
-	0x41, 0x01, 0x52, 0x06, 0x72, 0x65, 0x61, 0x64, 0x6d, 0x65, 0x12, 0x44, 0x0a, 0x0a, 0x70, 0x65,
-	0x72, 0x6d, 0x69, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x15, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1f,
-	0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31,
-	0x62, 0x65, 0x74, 0x61, 0x2e, 0x50, 0x65, 0x72, 0x6d, 0x69, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x42,
-	0x03, 0xe0, 0x41, 0x03, 0x52, 0x0a, 0x70, 0x65, 0x72, 0x6d, 0x69, 0x73, 0x73, 0x69, 0x6f, 0x6e,
-	0x12, 0x4d, 0x0a, 0x0a, 0x76, 0x69, 0x73, 0x69, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x79, 0x18, 0x16,
-	0x20, 0x01, 0x28, 0x0e, 0x32, 0x28, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c,
-	0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x50, 0x69, 0x70, 0x65, 0x6c,
-	0x69, 0x6e, 0x65, 0x2e, 0x56, 0x69, 0x73, 0x69, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x79, 0x42, 0x03,
-	0xe0, 0x41, 0x03, 0x52, 0x0a, 0x76, 0x69, 0x73, 0x69, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x79, 0x12,
-	0x3a, 0x0a, 0x05, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x18, 0x17, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17,
-	0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x6d, 0x67, 0x6d, 0x74, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74,
-	0x61, 0x2e, 0x4f, 0x77, 0x6e, 0x65, 0x72, 0x42, 0x06, 0xe0, 0x41, 0x01, 0xe0, 0x41, 0x03, 0x48,
-	0x01, 0x52, 0x05, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x88, 0x01, 0x01, 0x12, 0x5a, 0x0a, 0x12, 0x64,
-	0x61, 0x74, 0x61, 0x5f, 0x73, 0x70, 0x65, 0x63, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f,
-	0x6e, 0x18, 0x18, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x26, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69,
-	0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x44, 0x61,
-	0x74, 0x61, 0x53, 0x70, 0x65, 0x63, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42,
-	0x03, 0xe0, 0x41, 0x03, 0x52, 0x11, 0x64, 0x61, 0x74, 0x61, 0x53, 0x70, 0x65, 0x63, 0x69, 0x66,
-	0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x17, 0x0a, 0x04, 0x74, 0x61, 0x67, 0x73, 0x18,
-	0x19, 0x20, 0x03, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x04, 0x74, 0x61, 0x67, 0x73,
-	0x22, 0x4c, 0x0a, 0x04, 0x56, 0x69, 0x65, 0x77, 0x12, 0x14, 0x0a, 0x10, 0x56, 0x49, 0x45, 0x57,
-	0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x0e,
-	0x0a, 0x0a, 0x56, 0x49, 0x45, 0x57, 0x5f, 0x42, 0x41, 0x53, 0x49, 0x43, 0x10, 0x01, 0x12, 0x0d,
-	0x0a, 0x09, 0x56, 0x49, 0x45, 0x57, 0x5f, 0x46, 0x55, 0x4c, 0x4c, 0x10, 0x02, 0x12, 0x0f, 0x0a,
-	0x0b, 0x56, 0x49, 0x45, 0x57, 0x5f, 0x52, 0x45, 0x43, 0x49, 0x50, 0x45, 0x10, 0x03, 0x22, 0x57,
-	0x0a, 0x0a, 0x56, 0x69, 0x73, 0x69, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x79, 0x12, 0x1a, 0x0a, 0x16,
-	0x56, 0x49, 0x53, 0x49, 0x42, 0x49, 0x4c, 0x49, 0x54, 0x59, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45,
-	0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x16, 0x0a, 0x12, 0x56, 0x49, 0x53, 0x49,
-	0x42, 0x49, 0x4c, 0x49, 0x54, 0x59, 0x5f, 0x50, 0x52, 0x49, 0x56, 0x41, 0x54, 0x45, 0x10, 0x01,
-	0x12, 0x15, 0x0a, 0x11, 0x56, 0x49, 0x53, 0x49, 0x42, 0x49, 0x4c, 0x49, 0x54, 0x59, 0x5f, 0x50,
-	0x55, 0x42, 0x4c, 0x49, 0x43, 0x10, 0x02, 0x3a, 0x61, 0xea, 0x41, 0x5e, 0x0a, 0x19, 0x61, 0x70,
-	0x69, 0x2e, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2e, 0x74, 0x65, 0x63, 0x68, 0x2f, 0x50,
-	0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x12, 0x27, 0x75, 0x73, 0x65, 0x72, 0x73, 0x2f, 0x7b,
-	0x75, 0x73, 0x65, 0x72, 0x2e, 0x69, 0x64, 0x7d, 0x2f, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e,
-	0x65, 0x73, 0x2f, 0x7b, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x69, 0x64, 0x7d,
-	0x12, 0x18, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x73, 0x2f, 0x7b, 0x70, 0x69, 0x70,
-	0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x75, 0x69, 0x64, 0x7d, 0x42, 0x0e, 0x0a, 0x0c, 0x5f, 0x64,
-	0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x08, 0x0a, 0x06, 0x5f, 0x6f,
-	0x77, 0x6e, 0x65, 0x72, 0x4a, 0x04, 0x08, 0x0d, 0x10, 0x0e, 0x4a, 0x04, 0x08, 0x12, 0x10, 0x13,
-	0x22, 0xb2, 0x01, 0x0a, 0x0f, 0x54, 0x72, 0x69, 0x67, 0x67, 0x65, 0x72, 0x4d, 0x65, 0x74, 0x61,
-	0x64, 0x61, 0x74, 0x61, 0x12, 0x48, 0x0a, 0x06, 0x74, 0x72, 0x61, 0x63, 0x65, 0x73, 0x18, 0x01,
-	0x20, 0x03, 0x28, 0x0b, 0x32, 0x30, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c,
-	0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x54, 0x72, 0x69, 0x67, 0x67,
-	0x65, 0x72, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x54, 0x72, 0x61, 0x63, 0x65,
-	0x73, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x52, 0x06, 0x74, 0x72, 0x61, 0x63, 0x65, 0x73, 0x1a, 0x55,
-	0x0a, 0x0b, 0x54, 0x72, 0x61, 0x63, 0x65, 0x73, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a,
-	0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12,
-	0x30, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a,
-	0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31,
-	0x62, 0x65, 0x74, 0x61, 0x2e, 0x54, 0x72, 0x61, 0x63, 0x65, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75,
-	0x65, 0x3a, 0x02, 0x38, 0x01, 0x22, 0xee, 0x02, 0x0a, 0x05, 0x54, 0x72, 0x61, 0x63, 0x65, 0x12,
-	0x3d, 0x0a, 0x08, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28,
-	0x0e, 0x32, 0x21, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65,
-	0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x54, 0x72, 0x61, 0x63, 0x65, 0x2e, 0x53, 0x74,
-	0x61, 0x74, 0x75, 0x73, 0x52, 0x08, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x65, 0x73, 0x12, 0x2f,
-	0x0a, 0x06, 0x69, 0x6e, 0x70, 0x75, 0x74, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x17,
-	0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
-	0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x52, 0x06, 0x69, 0x6e, 0x70, 0x75, 0x74, 0x73, 0x12,
-	0x31, 0x0a, 0x07, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x73, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b,
-	0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62,
-	0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x52, 0x07, 0x6f, 0x75, 0x74, 0x70, 0x75,
-	0x74, 0x73, 0x12, 0x2d, 0x0a, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x18, 0x04, 0x20, 0x01, 0x28,
-	0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x52, 0x05, 0x65, 0x72, 0x72, 0x6f,
-	0x72, 0x12, 0x35, 0x0a, 0x17, 0x63, 0x6f, 0x6d, 0x70, 0x75, 0x74, 0x65, 0x5f, 0x74, 0x69, 0x6d,
-	0x65, 0x5f, 0x69, 0x6e, 0x5f, 0x73, 0x65, 0x63, 0x6f, 0x6e, 0x64, 0x73, 0x18, 0x05, 0x20, 0x01,
-	0x28, 0x02, 0x52, 0x14, 0x63, 0x6f, 0x6d, 0x70, 0x75, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x49,
-	0x6e, 0x53, 0x65, 0x63, 0x6f, 0x6e, 0x64, 0x73, 0x22, 0x5c, 0x0a, 0x06, 0x53, 0x74, 0x61, 0x74,
-	0x75, 0x73, 0x12, 0x16, 0x0a, 0x12, 0x53, 0x54, 0x41, 0x54, 0x55, 0x53, 0x5f, 0x55, 0x4e, 0x53,
-	0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x14, 0x0a, 0x10, 0x53, 0x54,
-	0x41, 0x54, 0x55, 0x53, 0x5f, 0x43, 0x4f, 0x4d, 0x50, 0x4c, 0x45, 0x54, 0x45, 0x44, 0x10, 0x01,
-	0x12, 0x12, 0x0a, 0x0e, 0x53, 0x54, 0x41, 0x54, 0x55, 0x53, 0x5f, 0x53, 0x4b, 0x49, 0x50, 0x50,
-	0x45, 0x44, 0x10, 0x02, 0x12, 0x10, 0x0a, 0x0c, 0x53, 0x54, 0x41, 0x54, 0x55, 0x53, 0x5f, 0x45,
-	0x52, 0x52, 0x4f, 0x52, 0x10, 0x03, 0x22, 0x14, 0x0a, 0x12, 0x47, 0x65, 0x74, 0x48, 0x75, 0x62,
-	0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x93, 0x01, 0x0a,
-	0x13, 0x47, 0x65, 0x74, 0x48, 0x75, 0x62, 0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3b, 0x0a, 0x1a, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x5f, 0x6f,
-	0x66, 0x5f, 0x70, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x5f, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e,
-	0x65, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x17, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72,
-	0x4f, 0x66, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65,
-	0x73, 0x12, 0x3f, 0x0a, 0x1c, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x5f, 0x6f, 0x66, 0x5f, 0x66,
-	0x65, 0x61, 0x74, 0x75, 0x72, 0x65, 0x64, 0x5f, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65,
-	0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x19, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x4f,
-	0x66, 0x46, 0x65, 0x61, 0x74, 0x75, 0x72, 0x65, 0x64, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e,
-	0x65, 0x73, 0x22, 0xdd, 0x05, 0x0a, 0x0f, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x52,
-	0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x12, 0x35, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x09, 0x42, 0x21, 0x92, 0x41, 0x1b, 0xca, 0x3e, 0x18, 0xfa, 0x02, 0x15, 0x70,
-	0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x5f, 0x72, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x5f,
-	0x6e, 0x61, 0x6d, 0x65, 0xe0, 0x41, 0x03, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x15, 0x0a,
-	0x03, 0x75, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52,
-	0x03, 0x75, 0x69, 0x64, 0x12, 0x13, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
-	0x42, 0x03, 0xe0, 0x41, 0x05, 0x52, 0x02, 0x69, 0x64, 0x12, 0x2a, 0x0a, 0x0b, 0x64, 0x65, 0x73,
-	0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03,
-	0xe0, 0x41, 0x01, 0x48, 0x00, 0x52, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69,
-	0x6f, 0x6e, 0x88, 0x01, 0x01, 0x12, 0x38, 0x0a, 0x06, 0x72, 0x65, 0x63, 0x69, 0x70, 0x65, 0x18,
-	0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65,
-	0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x52, 0x65, 0x63, 0x69,
-	0x70, 0x65, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x06, 0x72, 0x65, 0x63, 0x69, 0x70, 0x65, 0x12,
+	0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x56, 0x69, 0x73, 0x69, 0x62, 0x69, 0x6c, 0x69,
+	0x74, 0x79, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0a, 0x76, 0x69, 0x73, 0x69, 0x62, 0x69, 0x6c,
+	0x69, 0x74, 0x79, 0x12, 0x3a, 0x0a, 0x05, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x18, 0x17, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x17, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x6d, 0x67, 0x6d, 0x74, 0x2e, 0x76,
+	0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x4f, 0x77, 0x6e, 0x65, 0x72, 0x42, 0x06, 0xe0, 0x41, 0x01,
+	0xe0, 0x41, 0x03, 0x48, 0x01, 0x52, 0x05, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x88, 0x01, 0x01, 0x12,
+	0x5a, 0x0a, 0x12, 0x64, 0x61, 0x74, 0x61, 0x5f, 0x73, 0x70, 0x65, 0x63, 0x69, 0x66, 0x69, 0x63,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x18, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x26, 0x2e, 0x76, 0x64,
+	0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74,
+	0x61, 0x2e, 0x44, 0x61, 0x74, 0x61, 0x53, 0x70, 0x65, 0x63, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x11, 0x64, 0x61, 0x74, 0x61, 0x53, 0x70,
+	0x65, 0x63, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x17, 0x0a, 0x04, 0x74,
+	0x61, 0x67, 0x73, 0x18, 0x19, 0x20, 0x03, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x04,
+	0x74, 0x61, 0x67, 0x73, 0x22, 0x4c, 0x0a, 0x04, 0x56, 0x69, 0x65, 0x77, 0x12, 0x14, 0x0a, 0x10,
+	0x56, 0x49, 0x45, 0x57, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44,
+	0x10, 0x00, 0x12, 0x0e, 0x0a, 0x0a, 0x56, 0x49, 0x45, 0x57, 0x5f, 0x42, 0x41, 0x53, 0x49, 0x43,
+	0x10, 0x01, 0x12, 0x0d, 0x0a, 0x09, 0x56, 0x49, 0x45, 0x57, 0x5f, 0x46, 0x55, 0x4c, 0x4c, 0x10,
+	0x02, 0x12, 0x0f, 0x0a, 0x0b, 0x56, 0x49, 0x45, 0x57, 0x5f, 0x52, 0x45, 0x43, 0x49, 0x50, 0x45,
+	0x10, 0x03, 0x22, 0x57, 0x0a, 0x0a, 0x56, 0x69, 0x73, 0x69, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x79,
+	0x12, 0x1a, 0x0a, 0x16, 0x56, 0x49, 0x53, 0x49, 0x42, 0x49, 0x4c, 0x49, 0x54, 0x59, 0x5f, 0x55,
+	0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x16, 0x0a, 0x12,
+	0x56, 0x49, 0x53, 0x49, 0x42, 0x49, 0x4c, 0x49, 0x54, 0x59, 0x5f, 0x50, 0x52, 0x49, 0x56, 0x41,
+	0x54, 0x45, 0x10, 0x01, 0x12, 0x15, 0x0a, 0x11, 0x56, 0x49, 0x53, 0x49, 0x42, 0x49, 0x4c, 0x49,
+	0x54, 0x59, 0x5f, 0x50, 0x55, 0x42, 0x4c, 0x49, 0x43, 0x10, 0x02, 0x3a, 0x61, 0xea, 0x41, 0x5e,
+	0x0a, 0x19, 0x61, 0x70, 0x69, 0x2e, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2e, 0x74, 0x65,
+	0x63, 0x68, 0x2f, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x12, 0x27, 0x75, 0x73, 0x65,
+	0x72, 0x73, 0x2f, 0x7b, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x69, 0x64, 0x7d, 0x2f, 0x70, 0x69, 0x70,
+	0x65, 0x6c, 0x69, 0x6e, 0x65, 0x73, 0x2f, 0x7b, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65,
+	0x2e, 0x69, 0x64, 0x7d, 0x12, 0x18, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x73, 0x2f,
+	0x7b, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x75, 0x69, 0x64, 0x7d, 0x42, 0x0e,
+	0x0a, 0x0c, 0x5f, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x08,
+	0x0a, 0x06, 0x5f, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x4a, 0x04, 0x08, 0x0d, 0x10, 0x0e, 0x4a, 0x04,
+	0x08, 0x12, 0x10, 0x13, 0x22, 0xb2, 0x01, 0x0a, 0x0f, 0x54, 0x72, 0x69, 0x67, 0x67, 0x65, 0x72,
+	0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x12, 0x48, 0x0a, 0x06, 0x74, 0x72, 0x61, 0x63,
+	0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x30, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70,
+	0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x54,
+	0x72, 0x69, 0x67, 0x67, 0x65, 0x72, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x54,
+	0x72, 0x61, 0x63, 0x65, 0x73, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x52, 0x06, 0x74, 0x72, 0x61, 0x63,
+	0x65, 0x73, 0x1a, 0x55, 0x0a, 0x0b, 0x54, 0x72, 0x61, 0x63, 0x65, 0x73, 0x45, 0x6e, 0x74, 0x72,
+	0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03,
+	0x6b, 0x65, 0x79, 0x12, 0x30, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e,
+	0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x54, 0x72, 0x61, 0x63, 0x65, 0x52, 0x05,
+	0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x22, 0xee, 0x02, 0x0a, 0x05, 0x54, 0x72,
+	0x61, 0x63, 0x65, 0x12, 0x3d, 0x0a, 0x08, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x65, 0x73, 0x18,
+	0x01, 0x20, 0x03, 0x28, 0x0e, 0x32, 0x21, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65,
+	0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x54, 0x72, 0x61, 0x63,
+	0x65, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x08, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73,
+	0x65, 0x73, 0x12, 0x2f, 0x0a, 0x06, 0x69, 0x6e, 0x70, 0x75, 0x74, 0x73, 0x18, 0x02, 0x20, 0x03,
+	0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x52, 0x06, 0x69, 0x6e, 0x70,
+	0x75, 0x74, 0x73, 0x12, 0x31, 0x0a, 0x07, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x73, 0x18, 0x03,
+	0x20, 0x03, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x52, 0x07, 0x6f,
+	0x75, 0x74, 0x70, 0x75, 0x74, 0x73, 0x12, 0x2d, 0x0a, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x18,
+	0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x52, 0x05,
+	0x65, 0x72, 0x72, 0x6f, 0x72, 0x12, 0x35, 0x0a, 0x17, 0x63, 0x6f, 0x6d, 0x70, 0x75, 0x74, 0x65,
+	0x5f, 0x74, 0x69, 0x6d, 0x65, 0x5f, 0x69, 0x6e, 0x5f, 0x73, 0x65, 0x63, 0x6f, 0x6e, 0x64, 0x73,
+	0x18, 0x05, 0x20, 0x01, 0x28, 0x02, 0x52, 0x14, 0x63, 0x6f, 0x6d, 0x70, 0x75, 0x74, 0x65, 0x54,
+	0x69, 0x6d, 0x65, 0x49, 0x6e, 0x53, 0x65, 0x63, 0x6f, 0x6e, 0x64, 0x73, 0x22, 0x5c, 0x0a, 0x06,
+	0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x16, 0x0a, 0x12, 0x53, 0x54, 0x41, 0x54, 0x55, 0x53,
+	0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x14,
+	0x0a, 0x10, 0x53, 0x54, 0x41, 0x54, 0x55, 0x53, 0x5f, 0x43, 0x4f, 0x4d, 0x50, 0x4c, 0x45, 0x54,
+	0x45, 0x44, 0x10, 0x01, 0x12, 0x12, 0x0a, 0x0e, 0x53, 0x54, 0x41, 0x54, 0x55, 0x53, 0x5f, 0x53,
+	0x4b, 0x49, 0x50, 0x50, 0x45, 0x44, 0x10, 0x02, 0x12, 0x10, 0x0a, 0x0c, 0x53, 0x54, 0x41, 0x54,
+	0x55, 0x53, 0x5f, 0x45, 0x52, 0x52, 0x4f, 0x52, 0x10, 0x03, 0x22, 0x14, 0x0a, 0x12, 0x47, 0x65,
+	0x74, 0x48, 0x75, 0x62, 0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x22, 0x93, 0x01, 0x0a, 0x13, 0x47, 0x65, 0x74, 0x48, 0x75, 0x62, 0x53, 0x74, 0x61, 0x74, 0x73,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3b, 0x0a, 0x1a, 0x6e, 0x75, 0x6d, 0x62,
+	0x65, 0x72, 0x5f, 0x6f, 0x66, 0x5f, 0x70, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x5f, 0x70, 0x69, 0x70,
+	0x65, 0x6c, 0x69, 0x6e, 0x65, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x17, 0x6e, 0x75,
+	0x6d, 0x62, 0x65, 0x72, 0x4f, 0x66, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x50, 0x69, 0x70, 0x65,
+	0x6c, 0x69, 0x6e, 0x65, 0x73, 0x12, 0x3f, 0x0a, 0x1c, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x5f,
+	0x6f, 0x66, 0x5f, 0x66, 0x65, 0x61, 0x74, 0x75, 0x72, 0x65, 0x64, 0x5f, 0x70, 0x69, 0x70, 0x65,
+	0x6c, 0x69, 0x6e, 0x65, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x19, 0x6e, 0x75, 0x6d,
+	0x62, 0x65, 0x72, 0x4f, 0x66, 0x46, 0x65, 0x61, 0x74, 0x75, 0x72, 0x65, 0x64, 0x50, 0x69, 0x70,
+	0x65, 0x6c, 0x69, 0x6e, 0x65, 0x73, 0x22, 0xd9, 0x05, 0x0a, 0x0f, 0x50, 0x69, 0x70, 0x65, 0x6c,
+	0x69, 0x6e, 0x65, 0x52, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x12, 0x35, 0x0a, 0x04, 0x6e, 0x61,
+	0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x21, 0x92, 0x41, 0x1b, 0xca, 0x3e, 0x18,
+	0xfa, 0x02, 0x15, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x5f, 0x72, 0x65, 0x6c, 0x65,
+	0x61, 0x73, 0x65, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0xe0, 0x41, 0x03, 0x52, 0x04, 0x6e, 0x61, 0x6d,
+	0x65, 0x12, 0x15, 0x0a, 0x03, 0x75, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03,
+	0xe0, 0x41, 0x03, 0x52, 0x03, 0x75, 0x69, 0x64, 0x12, 0x13, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x05, 0x52, 0x02, 0x69, 0x64, 0x12, 0x2a, 0x0a,
+	0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x04, 0x20, 0x01,
+	0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x00, 0x52, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72,
+	0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x88, 0x01, 0x01, 0x12, 0x34, 0x0a, 0x06, 0x72, 0x65, 0x63,
+	0x69, 0x70, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67,
+	0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75,
+	0x63, 0x74, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x06, 0x72, 0x65, 0x63, 0x69, 0x70, 0x65, 0x12,
 	0x40, 0x0a, 0x0b, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x06,
 	0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72,
 	0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70,
@@ -8497,7 +7482,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP() []byte {
 }
 
 var file_vdp_pipeline_v1beta_pipeline_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
-var file_vdp_pipeline_v1beta_pipeline_proto_msgTypes = make([]protoimpl.MessageInfo, 116)
+var file_vdp_pipeline_v1beta_pipeline_proto_msgTypes = make([]protoimpl.MessageInfo, 101)
 var file_vdp_pipeline_v1beta_pipeline_proto_goTypes = []interface{}{
 	(State)(0),                                              // 0: vdp.pipeline.v1beta.State
 	(Pipeline_View)(0),                                      // 1: vdp.pipeline.v1beta.Pipeline.View
@@ -8507,270 +7492,229 @@ var file_vdp_pipeline_v1beta_pipeline_proto_goTypes = []interface{}{
 	(*LivenessResponse)(nil),                                // 5: vdp.pipeline.v1beta.LivenessResponse
 	(*ReadinessRequest)(nil),                                // 6: vdp.pipeline.v1beta.ReadinessRequest
 	(*ReadinessResponse)(nil),                               // 7: vdp.pipeline.v1beta.ReadinessResponse
-	(*ConnectorComponent)(nil),                              // 8: vdp.pipeline.v1beta.ConnectorComponent
-	(*OperatorComponent)(nil),                               // 9: vdp.pipeline.v1beta.OperatorComponent
-	(*IteratorComponent)(nil),                               // 10: vdp.pipeline.v1beta.IteratorComponent
-	(*Component)(nil),                                       // 11: vdp.pipeline.v1beta.Component
-	(*NestedComponent)(nil),                                 // 12: vdp.pipeline.v1beta.NestedComponent
-	(*On)(nil),                                              // 13: vdp.pipeline.v1beta.On
-	(*Recipe)(nil),                                          // 14: vdp.pipeline.v1beta.Recipe
-	(*Variable)(nil),                                        // 15: vdp.pipeline.v1beta.Variable
-	(*Output)(nil),                                          // 16: vdp.pipeline.v1beta.Output
-	(*Pipeline)(nil),                                        // 17: vdp.pipeline.v1beta.Pipeline
-	(*TriggerMetadata)(nil),                                 // 18: vdp.pipeline.v1beta.TriggerMetadata
-	(*Trace)(nil),                                           // 19: vdp.pipeline.v1beta.Trace
-	(*GetHubStatsRequest)(nil),                              // 20: vdp.pipeline.v1beta.GetHubStatsRequest
-	(*GetHubStatsResponse)(nil),                             // 21: vdp.pipeline.v1beta.GetHubStatsResponse
-	(*PipelineRelease)(nil),                                 // 22: vdp.pipeline.v1beta.PipelineRelease
-	(*ListPipelinesRequest)(nil),                            // 23: vdp.pipeline.v1beta.ListPipelinesRequest
-	(*ListPipelinesResponse)(nil),                           // 24: vdp.pipeline.v1beta.ListPipelinesResponse
-	(*LookUpPipelineRequest)(nil),                           // 25: vdp.pipeline.v1beta.LookUpPipelineRequest
-	(*LookUpPipelineResponse)(nil),                          // 26: vdp.pipeline.v1beta.LookUpPipelineResponse
-	(*CreateUserPipelineRequest)(nil),                       // 27: vdp.pipeline.v1beta.CreateUserPipelineRequest
-	(*CreateUserPipelineResponse)(nil),                      // 28: vdp.pipeline.v1beta.CreateUserPipelineResponse
-	(*ListUserPipelinesRequest)(nil),                        // 29: vdp.pipeline.v1beta.ListUserPipelinesRequest
-	(*ListUserPipelinesResponse)(nil),                       // 30: vdp.pipeline.v1beta.ListUserPipelinesResponse
-	(*GetUserPipelineRequest)(nil),                          // 31: vdp.pipeline.v1beta.GetUserPipelineRequest
-	(*GetUserPipelineResponse)(nil),                         // 32: vdp.pipeline.v1beta.GetUserPipelineResponse
-	(*UpdateUserPipelineRequest)(nil),                       // 33: vdp.pipeline.v1beta.UpdateUserPipelineRequest
-	(*UpdateUserPipelineResponse)(nil),                      // 34: vdp.pipeline.v1beta.UpdateUserPipelineResponse
-	(*DeleteUserPipelineRequest)(nil),                       // 35: vdp.pipeline.v1beta.DeleteUserPipelineRequest
-	(*DeleteUserPipelineResponse)(nil),                      // 36: vdp.pipeline.v1beta.DeleteUserPipelineResponse
-	(*ValidateUserPipelineRequest)(nil),                     // 37: vdp.pipeline.v1beta.ValidateUserPipelineRequest
-	(*ValidateUserPipelineResponse)(nil),                    // 38: vdp.pipeline.v1beta.ValidateUserPipelineResponse
-	(*RenameUserPipelineRequest)(nil),                       // 39: vdp.pipeline.v1beta.RenameUserPipelineRequest
-	(*RenameUserPipelineResponse)(nil),                      // 40: vdp.pipeline.v1beta.RenameUserPipelineResponse
-	(*CloneUserPipelineRequest)(nil),                        // 41: vdp.pipeline.v1beta.CloneUserPipelineRequest
-	(*CloneUserPipelineResponse)(nil),                       // 42: vdp.pipeline.v1beta.CloneUserPipelineResponse
-	(*TriggerUserPipelineRequest)(nil),                      // 43: vdp.pipeline.v1beta.TriggerUserPipelineRequest
-	(*TriggerUserPipelineResponse)(nil),                     // 44: vdp.pipeline.v1beta.TriggerUserPipelineResponse
-	(*TriggerData)(nil),                                     // 45: vdp.pipeline.v1beta.TriggerData
-	(*TriggerAsyncUserPipelineRequest)(nil),                 // 46: vdp.pipeline.v1beta.TriggerAsyncUserPipelineRequest
-	(*TriggerAsyncUserPipelineResponse)(nil),                // 47: vdp.pipeline.v1beta.TriggerAsyncUserPipelineResponse
-	(*CreateUserPipelineReleaseRequest)(nil),                // 48: vdp.pipeline.v1beta.CreateUserPipelineReleaseRequest
-	(*CreateUserPipelineReleaseResponse)(nil),               // 49: vdp.pipeline.v1beta.CreateUserPipelineReleaseResponse
-	(*ListUserPipelineReleasesRequest)(nil),                 // 50: vdp.pipeline.v1beta.ListUserPipelineReleasesRequest
-	(*ListUserPipelineReleasesResponse)(nil),                // 51: vdp.pipeline.v1beta.ListUserPipelineReleasesResponse
-	(*GetUserPipelineReleaseRequest)(nil),                   // 52: vdp.pipeline.v1beta.GetUserPipelineReleaseRequest
-	(*GetUserPipelineReleaseResponse)(nil),                  // 53: vdp.pipeline.v1beta.GetUserPipelineReleaseResponse
-	(*UpdateUserPipelineReleaseRequest)(nil),                // 54: vdp.pipeline.v1beta.UpdateUserPipelineReleaseRequest
-	(*UpdateUserPipelineReleaseResponse)(nil),               // 55: vdp.pipeline.v1beta.UpdateUserPipelineReleaseResponse
-	(*DeleteUserPipelineReleaseRequest)(nil),                // 56: vdp.pipeline.v1beta.DeleteUserPipelineReleaseRequest
-	(*DeleteUserPipelineReleaseResponse)(nil),               // 57: vdp.pipeline.v1beta.DeleteUserPipelineReleaseResponse
-	(*RestoreUserPipelineReleaseRequest)(nil),               // 58: vdp.pipeline.v1beta.RestoreUserPipelineReleaseRequest
-	(*RestoreUserPipelineReleaseResponse)(nil),              // 59: vdp.pipeline.v1beta.RestoreUserPipelineReleaseResponse
-	(*RenameUserPipelineReleaseRequest)(nil),                // 60: vdp.pipeline.v1beta.RenameUserPipelineReleaseRequest
-	(*RenameUserPipelineReleaseResponse)(nil),               // 61: vdp.pipeline.v1beta.RenameUserPipelineReleaseResponse
-	(*TriggerUserPipelineReleaseRequest)(nil),               // 62: vdp.pipeline.v1beta.TriggerUserPipelineReleaseRequest
-	(*TriggerUserPipelineReleaseResponse)(nil),              // 63: vdp.pipeline.v1beta.TriggerUserPipelineReleaseResponse
-	(*TriggerAsyncUserPipelineReleaseRequest)(nil),          // 64: vdp.pipeline.v1beta.TriggerAsyncUserPipelineReleaseRequest
-	(*TriggerAsyncUserPipelineReleaseResponse)(nil),         // 65: vdp.pipeline.v1beta.TriggerAsyncUserPipelineReleaseResponse
-	(*CreateOrganizationPipelineRequest)(nil),               // 66: vdp.pipeline.v1beta.CreateOrganizationPipelineRequest
-	(*CreateOrganizationPipelineResponse)(nil),              // 67: vdp.pipeline.v1beta.CreateOrganizationPipelineResponse
-	(*ListOrganizationPipelinesRequest)(nil),                // 68: vdp.pipeline.v1beta.ListOrganizationPipelinesRequest
-	(*ListOrganizationPipelinesResponse)(nil),               // 69: vdp.pipeline.v1beta.ListOrganizationPipelinesResponse
-	(*GetOrganizationPipelineRequest)(nil),                  // 70: vdp.pipeline.v1beta.GetOrganizationPipelineRequest
-	(*GetOrganizationPipelineResponse)(nil),                 // 71: vdp.pipeline.v1beta.GetOrganizationPipelineResponse
-	(*UpdateOrganizationPipelineRequest)(nil),               // 72: vdp.pipeline.v1beta.UpdateOrganizationPipelineRequest
-	(*UpdateOrganizationPipelineResponse)(nil),              // 73: vdp.pipeline.v1beta.UpdateOrganizationPipelineResponse
-	(*DeleteOrganizationPipelineRequest)(nil),               // 74: vdp.pipeline.v1beta.DeleteOrganizationPipelineRequest
-	(*DeleteOrganizationPipelineResponse)(nil),              // 75: vdp.pipeline.v1beta.DeleteOrganizationPipelineResponse
-	(*ValidateOrganizationPipelineRequest)(nil),             // 76: vdp.pipeline.v1beta.ValidateOrganizationPipelineRequest
-	(*ValidateOrganizationPipelineResponse)(nil),            // 77: vdp.pipeline.v1beta.ValidateOrganizationPipelineResponse
-	(*RenameOrganizationPipelineRequest)(nil),               // 78: vdp.pipeline.v1beta.RenameOrganizationPipelineRequest
-	(*RenameOrganizationPipelineResponse)(nil),              // 79: vdp.pipeline.v1beta.RenameOrganizationPipelineResponse
-	(*CloneOrganizationPipelineRequest)(nil),                // 80: vdp.pipeline.v1beta.CloneOrganizationPipelineRequest
-	(*CloneOrganizationPipelineResponse)(nil),               // 81: vdp.pipeline.v1beta.CloneOrganizationPipelineResponse
-	(*TriggerOrganizationPipelineRequest)(nil),              // 82: vdp.pipeline.v1beta.TriggerOrganizationPipelineRequest
-	(*TriggerOrganizationPipelineResponse)(nil),             // 83: vdp.pipeline.v1beta.TriggerOrganizationPipelineResponse
-	(*TriggerAsyncOrganizationPipelineRequest)(nil),         // 84: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineRequest
-	(*TriggerAsyncOrganizationPipelineResponse)(nil),        // 85: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineResponse
-	(*CreateOrganizationPipelineReleaseRequest)(nil),        // 86: vdp.pipeline.v1beta.CreateOrganizationPipelineReleaseRequest
-	(*CreateOrganizationPipelineReleaseResponse)(nil),       // 87: vdp.pipeline.v1beta.CreateOrganizationPipelineReleaseResponse
-	(*ListOrganizationPipelineReleasesRequest)(nil),         // 88: vdp.pipeline.v1beta.ListOrganizationPipelineReleasesRequest
-	(*ListOrganizationPipelineReleasesResponse)(nil),        // 89: vdp.pipeline.v1beta.ListOrganizationPipelineReleasesResponse
-	(*GetOrganizationPipelineReleaseRequest)(nil),           // 90: vdp.pipeline.v1beta.GetOrganizationPipelineReleaseRequest
-	(*GetOrganizationPipelineReleaseResponse)(nil),          // 91: vdp.pipeline.v1beta.GetOrganizationPipelineReleaseResponse
-	(*UpdateOrganizationPipelineReleaseRequest)(nil),        // 92: vdp.pipeline.v1beta.UpdateOrganizationPipelineReleaseRequest
-	(*UpdateOrganizationPipelineReleaseResponse)(nil),       // 93: vdp.pipeline.v1beta.UpdateOrganizationPipelineReleaseResponse
-	(*DeleteOrganizationPipelineReleaseRequest)(nil),        // 94: vdp.pipeline.v1beta.DeleteOrganizationPipelineReleaseRequest
-	(*DeleteOrganizationPipelineReleaseResponse)(nil),       // 95: vdp.pipeline.v1beta.DeleteOrganizationPipelineReleaseResponse
-	(*RestoreOrganizationPipelineReleaseRequest)(nil),       // 96: vdp.pipeline.v1beta.RestoreOrganizationPipelineReleaseRequest
-	(*RestoreOrganizationPipelineReleaseResponse)(nil),      // 97: vdp.pipeline.v1beta.RestoreOrganizationPipelineReleaseResponse
-	(*RenameOrganizationPipelineReleaseRequest)(nil),        // 98: vdp.pipeline.v1beta.RenameOrganizationPipelineReleaseRequest
-	(*RenameOrganizationPipelineReleaseResponse)(nil),       // 99: vdp.pipeline.v1beta.RenameOrganizationPipelineReleaseResponse
-	(*TriggerOrganizationPipelineReleaseRequest)(nil),       // 100: vdp.pipeline.v1beta.TriggerOrganizationPipelineReleaseRequest
-	(*TriggerOrganizationPipelineReleaseResponse)(nil),      // 101: vdp.pipeline.v1beta.TriggerOrganizationPipelineReleaseResponse
-	(*TriggerAsyncOrganizationPipelineReleaseRequest)(nil),  // 102: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseRequest
-	(*TriggerAsyncOrganizationPipelineReleaseResponse)(nil), // 103: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseResponse
-	(*GetOperationRequest)(nil),                             // 104: vdp.pipeline.v1beta.GetOperationRequest
-	(*GetOperationResponse)(nil),                            // 105: vdp.pipeline.v1beta.GetOperationResponse
-	(*ListPipelinesAdminRequest)(nil),                       // 106: vdp.pipeline.v1beta.ListPipelinesAdminRequest
-	(*ListPipelinesAdminResponse)(nil),                      // 107: vdp.pipeline.v1beta.ListPipelinesAdminResponse
-	(*ListPipelineReleasesAdminRequest)(nil),                // 108: vdp.pipeline.v1beta.ListPipelineReleasesAdminRequest
-	(*ListPipelineReleasesAdminResponse)(nil),               // 109: vdp.pipeline.v1beta.ListPipelineReleasesAdminResponse
-	(*LookUpPipelineAdminRequest)(nil),                      // 110: vdp.pipeline.v1beta.LookUpPipelineAdminRequest
-	(*LookUpPipelineAdminResponse)(nil),                     // 111: vdp.pipeline.v1beta.LookUpPipelineAdminResponse
-	nil,                                                     // 112: vdp.pipeline.v1beta.IteratorComponent.OutputElementsEntry
-	nil,                                                     // 113: vdp.pipeline.v1beta.IteratorComponent.ComponentEntry
-	nil,                                                     // 114: vdp.pipeline.v1beta.Recipe.SecretEntry
-	nil,                                                     // 115: vdp.pipeline.v1beta.Recipe.VariableEntry
-	nil,                                                     // 116: vdp.pipeline.v1beta.Recipe.OutputEntry
-	nil,                                                     // 117: vdp.pipeline.v1beta.Recipe.ComponentEntry
-	nil,                                                     // 118: vdp.pipeline.v1beta.TriggerMetadata.TracesEntry
-	nil,                                                     // 119: vdp.pipeline.v1beta.TriggerData.SecretEntry
-	(*v1beta.HealthCheckRequest)(nil),                       // 120: common.healthcheck.v1beta.HealthCheckRequest
-	(*v1beta.HealthCheckResponse)(nil),                      // 121: common.healthcheck.v1beta.HealthCheckResponse
-	(*ConnectorDefinition)(nil),                             // 122: vdp.pipeline.v1beta.ConnectorDefinition
-	(*structpb.Struct)(nil),                                 // 123: google.protobuf.Struct
-	(*OperatorDefinition)(nil),                              // 124: vdp.pipeline.v1beta.OperatorDefinition
-	(*DataSpecification)(nil),                               // 125: vdp.pipeline.v1beta.DataSpecification
-	(*timestamppb.Timestamp)(nil),                           // 126: google.protobuf.Timestamp
-	(*Sharing)(nil),                                         // 127: vdp.pipeline.v1beta.Sharing
-	(*Permission)(nil),                                      // 128: vdp.pipeline.v1beta.Permission
-	(*v1beta1.Owner)(nil),                                   // 129: core.mgmt.v1beta.Owner
-	(*fieldmaskpb.FieldMask)(nil),                           // 130: google.protobuf.FieldMask
-	(*longrunningpb.Operation)(nil),                         // 131: google.longrunning.Operation
+	(*Pipeline)(nil),                                        // 8: vdp.pipeline.v1beta.Pipeline
+	(*TriggerMetadata)(nil),                                 // 9: vdp.pipeline.v1beta.TriggerMetadata
+	(*Trace)(nil),                                           // 10: vdp.pipeline.v1beta.Trace
+	(*GetHubStatsRequest)(nil),                              // 11: vdp.pipeline.v1beta.GetHubStatsRequest
+	(*GetHubStatsResponse)(nil),                             // 12: vdp.pipeline.v1beta.GetHubStatsResponse
+	(*PipelineRelease)(nil),                                 // 13: vdp.pipeline.v1beta.PipelineRelease
+	(*ListPipelinesRequest)(nil),                            // 14: vdp.pipeline.v1beta.ListPipelinesRequest
+	(*ListPipelinesResponse)(nil),                           // 15: vdp.pipeline.v1beta.ListPipelinesResponse
+	(*LookUpPipelineRequest)(nil),                           // 16: vdp.pipeline.v1beta.LookUpPipelineRequest
+	(*LookUpPipelineResponse)(nil),                          // 17: vdp.pipeline.v1beta.LookUpPipelineResponse
+	(*CreateUserPipelineRequest)(nil),                       // 18: vdp.pipeline.v1beta.CreateUserPipelineRequest
+	(*CreateUserPipelineResponse)(nil),                      // 19: vdp.pipeline.v1beta.CreateUserPipelineResponse
+	(*ListUserPipelinesRequest)(nil),                        // 20: vdp.pipeline.v1beta.ListUserPipelinesRequest
+	(*ListUserPipelinesResponse)(nil),                       // 21: vdp.pipeline.v1beta.ListUserPipelinesResponse
+	(*GetUserPipelineRequest)(nil),                          // 22: vdp.pipeline.v1beta.GetUserPipelineRequest
+	(*GetUserPipelineResponse)(nil),                         // 23: vdp.pipeline.v1beta.GetUserPipelineResponse
+	(*UpdateUserPipelineRequest)(nil),                       // 24: vdp.pipeline.v1beta.UpdateUserPipelineRequest
+	(*UpdateUserPipelineResponse)(nil),                      // 25: vdp.pipeline.v1beta.UpdateUserPipelineResponse
+	(*DeleteUserPipelineRequest)(nil),                       // 26: vdp.pipeline.v1beta.DeleteUserPipelineRequest
+	(*DeleteUserPipelineResponse)(nil),                      // 27: vdp.pipeline.v1beta.DeleteUserPipelineResponse
+	(*ValidateUserPipelineRequest)(nil),                     // 28: vdp.pipeline.v1beta.ValidateUserPipelineRequest
+	(*ValidateUserPipelineResponse)(nil),                    // 29: vdp.pipeline.v1beta.ValidateUserPipelineResponse
+	(*RenameUserPipelineRequest)(nil),                       // 30: vdp.pipeline.v1beta.RenameUserPipelineRequest
+	(*RenameUserPipelineResponse)(nil),                      // 31: vdp.pipeline.v1beta.RenameUserPipelineResponse
+	(*CloneUserPipelineRequest)(nil),                        // 32: vdp.pipeline.v1beta.CloneUserPipelineRequest
+	(*CloneUserPipelineResponse)(nil),                       // 33: vdp.pipeline.v1beta.CloneUserPipelineResponse
+	(*TriggerUserPipelineRequest)(nil),                      // 34: vdp.pipeline.v1beta.TriggerUserPipelineRequest
+	(*TriggerUserPipelineResponse)(nil),                     // 35: vdp.pipeline.v1beta.TriggerUserPipelineResponse
+	(*TriggerData)(nil),                                     // 36: vdp.pipeline.v1beta.TriggerData
+	(*TriggerAsyncUserPipelineRequest)(nil),                 // 37: vdp.pipeline.v1beta.TriggerAsyncUserPipelineRequest
+	(*TriggerAsyncUserPipelineResponse)(nil),                // 38: vdp.pipeline.v1beta.TriggerAsyncUserPipelineResponse
+	(*CreateUserPipelineReleaseRequest)(nil),                // 39: vdp.pipeline.v1beta.CreateUserPipelineReleaseRequest
+	(*CreateUserPipelineReleaseResponse)(nil),               // 40: vdp.pipeline.v1beta.CreateUserPipelineReleaseResponse
+	(*ListUserPipelineReleasesRequest)(nil),                 // 41: vdp.pipeline.v1beta.ListUserPipelineReleasesRequest
+	(*ListUserPipelineReleasesResponse)(nil),                // 42: vdp.pipeline.v1beta.ListUserPipelineReleasesResponse
+	(*GetUserPipelineReleaseRequest)(nil),                   // 43: vdp.pipeline.v1beta.GetUserPipelineReleaseRequest
+	(*GetUserPipelineReleaseResponse)(nil),                  // 44: vdp.pipeline.v1beta.GetUserPipelineReleaseResponse
+	(*UpdateUserPipelineReleaseRequest)(nil),                // 45: vdp.pipeline.v1beta.UpdateUserPipelineReleaseRequest
+	(*UpdateUserPipelineReleaseResponse)(nil),               // 46: vdp.pipeline.v1beta.UpdateUserPipelineReleaseResponse
+	(*DeleteUserPipelineReleaseRequest)(nil),                // 47: vdp.pipeline.v1beta.DeleteUserPipelineReleaseRequest
+	(*DeleteUserPipelineReleaseResponse)(nil),               // 48: vdp.pipeline.v1beta.DeleteUserPipelineReleaseResponse
+	(*RestoreUserPipelineReleaseRequest)(nil),               // 49: vdp.pipeline.v1beta.RestoreUserPipelineReleaseRequest
+	(*RestoreUserPipelineReleaseResponse)(nil),              // 50: vdp.pipeline.v1beta.RestoreUserPipelineReleaseResponse
+	(*RenameUserPipelineReleaseRequest)(nil),                // 51: vdp.pipeline.v1beta.RenameUserPipelineReleaseRequest
+	(*RenameUserPipelineReleaseResponse)(nil),               // 52: vdp.pipeline.v1beta.RenameUserPipelineReleaseResponse
+	(*TriggerUserPipelineReleaseRequest)(nil),               // 53: vdp.pipeline.v1beta.TriggerUserPipelineReleaseRequest
+	(*TriggerUserPipelineReleaseResponse)(nil),              // 54: vdp.pipeline.v1beta.TriggerUserPipelineReleaseResponse
+	(*TriggerAsyncUserPipelineReleaseRequest)(nil),          // 55: vdp.pipeline.v1beta.TriggerAsyncUserPipelineReleaseRequest
+	(*TriggerAsyncUserPipelineReleaseResponse)(nil),         // 56: vdp.pipeline.v1beta.TriggerAsyncUserPipelineReleaseResponse
+	(*CreateOrganizationPipelineRequest)(nil),               // 57: vdp.pipeline.v1beta.CreateOrganizationPipelineRequest
+	(*CreateOrganizationPipelineResponse)(nil),              // 58: vdp.pipeline.v1beta.CreateOrganizationPipelineResponse
+	(*ListOrganizationPipelinesRequest)(nil),                // 59: vdp.pipeline.v1beta.ListOrganizationPipelinesRequest
+	(*ListOrganizationPipelinesResponse)(nil),               // 60: vdp.pipeline.v1beta.ListOrganizationPipelinesResponse
+	(*GetOrganizationPipelineRequest)(nil),                  // 61: vdp.pipeline.v1beta.GetOrganizationPipelineRequest
+	(*GetOrganizationPipelineResponse)(nil),                 // 62: vdp.pipeline.v1beta.GetOrganizationPipelineResponse
+	(*UpdateOrganizationPipelineRequest)(nil),               // 63: vdp.pipeline.v1beta.UpdateOrganizationPipelineRequest
+	(*UpdateOrganizationPipelineResponse)(nil),              // 64: vdp.pipeline.v1beta.UpdateOrganizationPipelineResponse
+	(*DeleteOrganizationPipelineRequest)(nil),               // 65: vdp.pipeline.v1beta.DeleteOrganizationPipelineRequest
+	(*DeleteOrganizationPipelineResponse)(nil),              // 66: vdp.pipeline.v1beta.DeleteOrganizationPipelineResponse
+	(*ValidateOrganizationPipelineRequest)(nil),             // 67: vdp.pipeline.v1beta.ValidateOrganizationPipelineRequest
+	(*ValidateOrganizationPipelineResponse)(nil),            // 68: vdp.pipeline.v1beta.ValidateOrganizationPipelineResponse
+	(*RenameOrganizationPipelineRequest)(nil),               // 69: vdp.pipeline.v1beta.RenameOrganizationPipelineRequest
+	(*RenameOrganizationPipelineResponse)(nil),              // 70: vdp.pipeline.v1beta.RenameOrganizationPipelineResponse
+	(*CloneOrganizationPipelineRequest)(nil),                // 71: vdp.pipeline.v1beta.CloneOrganizationPipelineRequest
+	(*CloneOrganizationPipelineResponse)(nil),               // 72: vdp.pipeline.v1beta.CloneOrganizationPipelineResponse
+	(*TriggerOrganizationPipelineRequest)(nil),              // 73: vdp.pipeline.v1beta.TriggerOrganizationPipelineRequest
+	(*TriggerOrganizationPipelineResponse)(nil),             // 74: vdp.pipeline.v1beta.TriggerOrganizationPipelineResponse
+	(*TriggerAsyncOrganizationPipelineRequest)(nil),         // 75: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineRequest
+	(*TriggerAsyncOrganizationPipelineResponse)(nil),        // 76: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineResponse
+	(*CreateOrganizationPipelineReleaseRequest)(nil),        // 77: vdp.pipeline.v1beta.CreateOrganizationPipelineReleaseRequest
+	(*CreateOrganizationPipelineReleaseResponse)(nil),       // 78: vdp.pipeline.v1beta.CreateOrganizationPipelineReleaseResponse
+	(*ListOrganizationPipelineReleasesRequest)(nil),         // 79: vdp.pipeline.v1beta.ListOrganizationPipelineReleasesRequest
+	(*ListOrganizationPipelineReleasesResponse)(nil),        // 80: vdp.pipeline.v1beta.ListOrganizationPipelineReleasesResponse
+	(*GetOrganizationPipelineReleaseRequest)(nil),           // 81: vdp.pipeline.v1beta.GetOrganizationPipelineReleaseRequest
+	(*GetOrganizationPipelineReleaseResponse)(nil),          // 82: vdp.pipeline.v1beta.GetOrganizationPipelineReleaseResponse
+	(*UpdateOrganizationPipelineReleaseRequest)(nil),        // 83: vdp.pipeline.v1beta.UpdateOrganizationPipelineReleaseRequest
+	(*UpdateOrganizationPipelineReleaseResponse)(nil),       // 84: vdp.pipeline.v1beta.UpdateOrganizationPipelineReleaseResponse
+	(*DeleteOrganizationPipelineReleaseRequest)(nil),        // 85: vdp.pipeline.v1beta.DeleteOrganizationPipelineReleaseRequest
+	(*DeleteOrganizationPipelineReleaseResponse)(nil),       // 86: vdp.pipeline.v1beta.DeleteOrganizationPipelineReleaseResponse
+	(*RestoreOrganizationPipelineReleaseRequest)(nil),       // 87: vdp.pipeline.v1beta.RestoreOrganizationPipelineReleaseRequest
+	(*RestoreOrganizationPipelineReleaseResponse)(nil),      // 88: vdp.pipeline.v1beta.RestoreOrganizationPipelineReleaseResponse
+	(*RenameOrganizationPipelineReleaseRequest)(nil),        // 89: vdp.pipeline.v1beta.RenameOrganizationPipelineReleaseRequest
+	(*RenameOrganizationPipelineReleaseResponse)(nil),       // 90: vdp.pipeline.v1beta.RenameOrganizationPipelineReleaseResponse
+	(*TriggerOrganizationPipelineReleaseRequest)(nil),       // 91: vdp.pipeline.v1beta.TriggerOrganizationPipelineReleaseRequest
+	(*TriggerOrganizationPipelineReleaseResponse)(nil),      // 92: vdp.pipeline.v1beta.TriggerOrganizationPipelineReleaseResponse
+	(*TriggerAsyncOrganizationPipelineReleaseRequest)(nil),  // 93: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseRequest
+	(*TriggerAsyncOrganizationPipelineReleaseResponse)(nil), // 94: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseResponse
+	(*GetOperationRequest)(nil),                             // 95: vdp.pipeline.v1beta.GetOperationRequest
+	(*GetOperationResponse)(nil),                            // 96: vdp.pipeline.v1beta.GetOperationResponse
+	(*ListPipelinesAdminRequest)(nil),                       // 97: vdp.pipeline.v1beta.ListPipelinesAdminRequest
+	(*ListPipelinesAdminResponse)(nil),                      // 98: vdp.pipeline.v1beta.ListPipelinesAdminResponse
+	(*ListPipelineReleasesAdminRequest)(nil),                // 99: vdp.pipeline.v1beta.ListPipelineReleasesAdminRequest
+	(*ListPipelineReleasesAdminResponse)(nil),               // 100: vdp.pipeline.v1beta.ListPipelineReleasesAdminResponse
+	(*LookUpPipelineAdminRequest)(nil),                      // 101: vdp.pipeline.v1beta.LookUpPipelineAdminRequest
+	(*LookUpPipelineAdminResponse)(nil),                     // 102: vdp.pipeline.v1beta.LookUpPipelineAdminResponse
+	nil,                                                     // 103: vdp.pipeline.v1beta.TriggerMetadata.TracesEntry
+	nil,                                                     // 104: vdp.pipeline.v1beta.TriggerData.SecretEntry
+	(*v1beta.HealthCheckRequest)(nil),                       // 105: common.healthcheck.v1beta.HealthCheckRequest
+	(*v1beta.HealthCheckResponse)(nil),                      // 106: common.healthcheck.v1beta.HealthCheckResponse
+	(*structpb.Struct)(nil),                                 // 107: google.protobuf.Struct
+	(*timestamppb.Timestamp)(nil),                           // 108: google.protobuf.Timestamp
+	(*Sharing)(nil),                                         // 109: vdp.pipeline.v1beta.Sharing
+	(*Permission)(nil),                                      // 110: vdp.pipeline.v1beta.Permission
+	(*v1beta1.Owner)(nil),                                   // 111: core.mgmt.v1beta.Owner
+	(*DataSpecification)(nil),                               // 112: vdp.pipeline.v1beta.DataSpecification
+	(*fieldmaskpb.FieldMask)(nil),                           // 113: google.protobuf.FieldMask
+	(*longrunningpb.Operation)(nil),                         // 114: google.longrunning.Operation
 }
 var file_vdp_pipeline_v1beta_pipeline_proto_depIdxs = []int32{
-	120, // 0: vdp.pipeline.v1beta.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	121, // 1: vdp.pipeline.v1beta.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
-	120, // 2: vdp.pipeline.v1beta.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	121, // 3: vdp.pipeline.v1beta.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
-	122, // 4: vdp.pipeline.v1beta.ConnectorComponent.definition:type_name -> vdp.pipeline.v1beta.ConnectorDefinition
-	123, // 5: vdp.pipeline.v1beta.ConnectorComponent.input:type_name -> google.protobuf.Struct
-	123, // 6: vdp.pipeline.v1beta.ConnectorComponent.connection:type_name -> google.protobuf.Struct
-	124, // 7: vdp.pipeline.v1beta.OperatorComponent.definition:type_name -> vdp.pipeline.v1beta.OperatorDefinition
-	123, // 8: vdp.pipeline.v1beta.OperatorComponent.input:type_name -> google.protobuf.Struct
-	112, // 9: vdp.pipeline.v1beta.IteratorComponent.output_elements:type_name -> vdp.pipeline.v1beta.IteratorComponent.OutputElementsEntry
-	113, // 10: vdp.pipeline.v1beta.IteratorComponent.component:type_name -> vdp.pipeline.v1beta.IteratorComponent.ComponentEntry
-	125, // 11: vdp.pipeline.v1beta.IteratorComponent.data_specification:type_name -> vdp.pipeline.v1beta.DataSpecification
-	123, // 12: vdp.pipeline.v1beta.Component.metadata:type_name -> google.protobuf.Struct
-	8,   // 13: vdp.pipeline.v1beta.Component.connector_component:type_name -> vdp.pipeline.v1beta.ConnectorComponent
-	9,   // 14: vdp.pipeline.v1beta.Component.operator_component:type_name -> vdp.pipeline.v1beta.OperatorComponent
-	10,  // 15: vdp.pipeline.v1beta.Component.iterator_component:type_name -> vdp.pipeline.v1beta.IteratorComponent
-	123, // 16: vdp.pipeline.v1beta.NestedComponent.metadata:type_name -> google.protobuf.Struct
-	8,   // 17: vdp.pipeline.v1beta.NestedComponent.connector_component:type_name -> vdp.pipeline.v1beta.ConnectorComponent
-	9,   // 18: vdp.pipeline.v1beta.NestedComponent.operator_component:type_name -> vdp.pipeline.v1beta.OperatorComponent
-	13,  // 19: vdp.pipeline.v1beta.Recipe.on:type_name -> vdp.pipeline.v1beta.On
-	114, // 20: vdp.pipeline.v1beta.Recipe.secret:type_name -> vdp.pipeline.v1beta.Recipe.SecretEntry
-	115, // 21: vdp.pipeline.v1beta.Recipe.variable:type_name -> vdp.pipeline.v1beta.Recipe.VariableEntry
-	116, // 22: vdp.pipeline.v1beta.Recipe.output:type_name -> vdp.pipeline.v1beta.Recipe.OutputEntry
-	117, // 23: vdp.pipeline.v1beta.Recipe.component:type_name -> vdp.pipeline.v1beta.Recipe.ComponentEntry
-	14,  // 24: vdp.pipeline.v1beta.Pipeline.recipe:type_name -> vdp.pipeline.v1beta.Recipe
-	126, // 25: vdp.pipeline.v1beta.Pipeline.create_time:type_name -> google.protobuf.Timestamp
-	126, // 26: vdp.pipeline.v1beta.Pipeline.update_time:type_name -> google.protobuf.Timestamp
-	126, // 27: vdp.pipeline.v1beta.Pipeline.delete_time:type_name -> google.protobuf.Timestamp
-	127, // 28: vdp.pipeline.v1beta.Pipeline.sharing:type_name -> vdp.pipeline.v1beta.Sharing
-	123, // 29: vdp.pipeline.v1beta.Pipeline.metadata:type_name -> google.protobuf.Struct
-	22,  // 30: vdp.pipeline.v1beta.Pipeline.releases:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	128, // 31: vdp.pipeline.v1beta.Pipeline.permission:type_name -> vdp.pipeline.v1beta.Permission
-	2,   // 32: vdp.pipeline.v1beta.Pipeline.visibility:type_name -> vdp.pipeline.v1beta.Pipeline.Visibility
-	129, // 33: vdp.pipeline.v1beta.Pipeline.owner:type_name -> core.mgmt.v1beta.Owner
-	125, // 34: vdp.pipeline.v1beta.Pipeline.data_specification:type_name -> vdp.pipeline.v1beta.DataSpecification
-	118, // 35: vdp.pipeline.v1beta.TriggerMetadata.traces:type_name -> vdp.pipeline.v1beta.TriggerMetadata.TracesEntry
-	3,   // 36: vdp.pipeline.v1beta.Trace.statuses:type_name -> vdp.pipeline.v1beta.Trace.Status
-	123, // 37: vdp.pipeline.v1beta.Trace.inputs:type_name -> google.protobuf.Struct
-	123, // 38: vdp.pipeline.v1beta.Trace.outputs:type_name -> google.protobuf.Struct
-	123, // 39: vdp.pipeline.v1beta.Trace.error:type_name -> google.protobuf.Struct
-	14,  // 40: vdp.pipeline.v1beta.PipelineRelease.recipe:type_name -> vdp.pipeline.v1beta.Recipe
-	126, // 41: vdp.pipeline.v1beta.PipelineRelease.create_time:type_name -> google.protobuf.Timestamp
-	126, // 42: vdp.pipeline.v1beta.PipelineRelease.update_time:type_name -> google.protobuf.Timestamp
-	126, // 43: vdp.pipeline.v1beta.PipelineRelease.delete_time:type_name -> google.protobuf.Timestamp
-	123, // 44: vdp.pipeline.v1beta.PipelineRelease.metadata:type_name -> google.protobuf.Struct
-	125, // 45: vdp.pipeline.v1beta.PipelineRelease.data_specification:type_name -> vdp.pipeline.v1beta.DataSpecification
-	1,   // 46: vdp.pipeline.v1beta.ListPipelinesRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	2,   // 47: vdp.pipeline.v1beta.ListPipelinesRequest.visibility:type_name -> vdp.pipeline.v1beta.Pipeline.Visibility
-	17,  // 48: vdp.pipeline.v1beta.ListPipelinesResponse.pipelines:type_name -> vdp.pipeline.v1beta.Pipeline
-	1,   // 49: vdp.pipeline.v1beta.LookUpPipelineRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	17,  // 50: vdp.pipeline.v1beta.LookUpPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	17,  // 51: vdp.pipeline.v1beta.CreateUserPipelineRequest.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	17,  // 52: vdp.pipeline.v1beta.CreateUserPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	1,   // 53: vdp.pipeline.v1beta.ListUserPipelinesRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	2,   // 54: vdp.pipeline.v1beta.ListUserPipelinesRequest.visibility:type_name -> vdp.pipeline.v1beta.Pipeline.Visibility
-	17,  // 55: vdp.pipeline.v1beta.ListUserPipelinesResponse.pipelines:type_name -> vdp.pipeline.v1beta.Pipeline
-	1,   // 56: vdp.pipeline.v1beta.GetUserPipelineRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	17,  // 57: vdp.pipeline.v1beta.GetUserPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	17,  // 58: vdp.pipeline.v1beta.UpdateUserPipelineRequest.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	130, // 59: vdp.pipeline.v1beta.UpdateUserPipelineRequest.update_mask:type_name -> google.protobuf.FieldMask
-	17,  // 60: vdp.pipeline.v1beta.UpdateUserPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	17,  // 61: vdp.pipeline.v1beta.ValidateUserPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	17,  // 62: vdp.pipeline.v1beta.RenameUserPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	17,  // 63: vdp.pipeline.v1beta.CloneUserPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	45,  // 64: vdp.pipeline.v1beta.TriggerUserPipelineRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
-	123, // 65: vdp.pipeline.v1beta.TriggerUserPipelineResponse.outputs:type_name -> google.protobuf.Struct
-	18,  // 66: vdp.pipeline.v1beta.TriggerUserPipelineResponse.metadata:type_name -> vdp.pipeline.v1beta.TriggerMetadata
-	123, // 67: vdp.pipeline.v1beta.TriggerData.variable:type_name -> google.protobuf.Struct
-	119, // 68: vdp.pipeline.v1beta.TriggerData.secret:type_name -> vdp.pipeline.v1beta.TriggerData.SecretEntry
-	45,  // 69: vdp.pipeline.v1beta.TriggerAsyncUserPipelineRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
-	131, // 70: vdp.pipeline.v1beta.TriggerAsyncUserPipelineResponse.operation:type_name -> google.longrunning.Operation
-	22,  // 71: vdp.pipeline.v1beta.CreateUserPipelineReleaseRequest.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	22,  // 72: vdp.pipeline.v1beta.CreateUserPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	1,   // 73: vdp.pipeline.v1beta.ListUserPipelineReleasesRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	22,  // 74: vdp.pipeline.v1beta.ListUserPipelineReleasesResponse.releases:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	1,   // 75: vdp.pipeline.v1beta.GetUserPipelineReleaseRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	22,  // 76: vdp.pipeline.v1beta.GetUserPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	22,  // 77: vdp.pipeline.v1beta.UpdateUserPipelineReleaseRequest.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	130, // 78: vdp.pipeline.v1beta.UpdateUserPipelineReleaseRequest.update_mask:type_name -> google.protobuf.FieldMask
-	22,  // 79: vdp.pipeline.v1beta.UpdateUserPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	22,  // 80: vdp.pipeline.v1beta.RestoreUserPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	22,  // 81: vdp.pipeline.v1beta.RenameUserPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	45,  // 82: vdp.pipeline.v1beta.TriggerUserPipelineReleaseRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
-	123, // 83: vdp.pipeline.v1beta.TriggerUserPipelineReleaseResponse.outputs:type_name -> google.protobuf.Struct
-	18,  // 84: vdp.pipeline.v1beta.TriggerUserPipelineReleaseResponse.metadata:type_name -> vdp.pipeline.v1beta.TriggerMetadata
-	45,  // 85: vdp.pipeline.v1beta.TriggerAsyncUserPipelineReleaseRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
-	131, // 86: vdp.pipeline.v1beta.TriggerAsyncUserPipelineReleaseResponse.operation:type_name -> google.longrunning.Operation
-	17,  // 87: vdp.pipeline.v1beta.CreateOrganizationPipelineRequest.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	17,  // 88: vdp.pipeline.v1beta.CreateOrganizationPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	1,   // 89: vdp.pipeline.v1beta.ListOrganizationPipelinesRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	2,   // 90: vdp.pipeline.v1beta.ListOrganizationPipelinesRequest.visibility:type_name -> vdp.pipeline.v1beta.Pipeline.Visibility
-	17,  // 91: vdp.pipeline.v1beta.ListOrganizationPipelinesResponse.pipelines:type_name -> vdp.pipeline.v1beta.Pipeline
-	1,   // 92: vdp.pipeline.v1beta.GetOrganizationPipelineRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	17,  // 93: vdp.pipeline.v1beta.GetOrganizationPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	17,  // 94: vdp.pipeline.v1beta.UpdateOrganizationPipelineRequest.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	130, // 95: vdp.pipeline.v1beta.UpdateOrganizationPipelineRequest.update_mask:type_name -> google.protobuf.FieldMask
-	17,  // 96: vdp.pipeline.v1beta.UpdateOrganizationPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	17,  // 97: vdp.pipeline.v1beta.ValidateOrganizationPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	17,  // 98: vdp.pipeline.v1beta.RenameOrganizationPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	17,  // 99: vdp.pipeline.v1beta.CloneOrganizationPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	45,  // 100: vdp.pipeline.v1beta.TriggerOrganizationPipelineRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
-	123, // 101: vdp.pipeline.v1beta.TriggerOrganizationPipelineResponse.outputs:type_name -> google.protobuf.Struct
-	18,  // 102: vdp.pipeline.v1beta.TriggerOrganizationPipelineResponse.metadata:type_name -> vdp.pipeline.v1beta.TriggerMetadata
-	45,  // 103: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
-	131, // 104: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineResponse.operation:type_name -> google.longrunning.Operation
-	22,  // 105: vdp.pipeline.v1beta.CreateOrganizationPipelineReleaseRequest.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	22,  // 106: vdp.pipeline.v1beta.CreateOrganizationPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	1,   // 107: vdp.pipeline.v1beta.ListOrganizationPipelineReleasesRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	22,  // 108: vdp.pipeline.v1beta.ListOrganizationPipelineReleasesResponse.releases:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	1,   // 109: vdp.pipeline.v1beta.GetOrganizationPipelineReleaseRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	22,  // 110: vdp.pipeline.v1beta.GetOrganizationPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	22,  // 111: vdp.pipeline.v1beta.UpdateOrganizationPipelineReleaseRequest.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	130, // 112: vdp.pipeline.v1beta.UpdateOrganizationPipelineReleaseRequest.update_mask:type_name -> google.protobuf.FieldMask
-	22,  // 113: vdp.pipeline.v1beta.UpdateOrganizationPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	22,  // 114: vdp.pipeline.v1beta.RestoreOrganizationPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	22,  // 115: vdp.pipeline.v1beta.RenameOrganizationPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	45,  // 116: vdp.pipeline.v1beta.TriggerOrganizationPipelineReleaseRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
-	123, // 117: vdp.pipeline.v1beta.TriggerOrganizationPipelineReleaseResponse.outputs:type_name -> google.protobuf.Struct
-	18,  // 118: vdp.pipeline.v1beta.TriggerOrganizationPipelineReleaseResponse.metadata:type_name -> vdp.pipeline.v1beta.TriggerMetadata
-	45,  // 119: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
-	131, // 120: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseResponse.operation:type_name -> google.longrunning.Operation
-	131, // 121: vdp.pipeline.v1beta.GetOperationResponse.operation:type_name -> google.longrunning.Operation
-	1,   // 122: vdp.pipeline.v1beta.ListPipelinesAdminRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	17,  // 123: vdp.pipeline.v1beta.ListPipelinesAdminResponse.pipelines:type_name -> vdp.pipeline.v1beta.Pipeline
-	1,   // 124: vdp.pipeline.v1beta.ListPipelineReleasesAdminRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	22,  // 125: vdp.pipeline.v1beta.ListPipelineReleasesAdminResponse.releases:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	1,   // 126: vdp.pipeline.v1beta.LookUpPipelineAdminRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	17,  // 127: vdp.pipeline.v1beta.LookUpPipelineAdminResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	12,  // 128: vdp.pipeline.v1beta.IteratorComponent.ComponentEntry.value:type_name -> vdp.pipeline.v1beta.NestedComponent
-	15,  // 129: vdp.pipeline.v1beta.Recipe.VariableEntry.value:type_name -> vdp.pipeline.v1beta.Variable
-	16,  // 130: vdp.pipeline.v1beta.Recipe.OutputEntry.value:type_name -> vdp.pipeline.v1beta.Output
-	11,  // 131: vdp.pipeline.v1beta.Recipe.ComponentEntry.value:type_name -> vdp.pipeline.v1beta.Component
-	19,  // 132: vdp.pipeline.v1beta.TriggerMetadata.TracesEntry.value:type_name -> vdp.pipeline.v1beta.Trace
-	133, // [133:133] is the sub-list for method output_type
-	133, // [133:133] is the sub-list for method input_type
-	133, // [133:133] is the sub-list for extension type_name
-	133, // [133:133] is the sub-list for extension extendee
-	0,   // [0:133] is the sub-list for field type_name
+	105, // 0: vdp.pipeline.v1beta.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	106, // 1: vdp.pipeline.v1beta.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	105, // 2: vdp.pipeline.v1beta.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	106, // 3: vdp.pipeline.v1beta.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	107, // 4: vdp.pipeline.v1beta.Pipeline.recipe:type_name -> google.protobuf.Struct
+	108, // 5: vdp.pipeline.v1beta.Pipeline.create_time:type_name -> google.protobuf.Timestamp
+	108, // 6: vdp.pipeline.v1beta.Pipeline.update_time:type_name -> google.protobuf.Timestamp
+	108, // 7: vdp.pipeline.v1beta.Pipeline.delete_time:type_name -> google.protobuf.Timestamp
+	109, // 8: vdp.pipeline.v1beta.Pipeline.sharing:type_name -> vdp.pipeline.v1beta.Sharing
+	107, // 9: vdp.pipeline.v1beta.Pipeline.metadata:type_name -> google.protobuf.Struct
+	13,  // 10: vdp.pipeline.v1beta.Pipeline.releases:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	110, // 11: vdp.pipeline.v1beta.Pipeline.permission:type_name -> vdp.pipeline.v1beta.Permission
+	2,   // 12: vdp.pipeline.v1beta.Pipeline.visibility:type_name -> vdp.pipeline.v1beta.Pipeline.Visibility
+	111, // 13: vdp.pipeline.v1beta.Pipeline.owner:type_name -> core.mgmt.v1beta.Owner
+	112, // 14: vdp.pipeline.v1beta.Pipeline.data_specification:type_name -> vdp.pipeline.v1beta.DataSpecification
+	103, // 15: vdp.pipeline.v1beta.TriggerMetadata.traces:type_name -> vdp.pipeline.v1beta.TriggerMetadata.TracesEntry
+	3,   // 16: vdp.pipeline.v1beta.Trace.statuses:type_name -> vdp.pipeline.v1beta.Trace.Status
+	107, // 17: vdp.pipeline.v1beta.Trace.inputs:type_name -> google.protobuf.Struct
+	107, // 18: vdp.pipeline.v1beta.Trace.outputs:type_name -> google.protobuf.Struct
+	107, // 19: vdp.pipeline.v1beta.Trace.error:type_name -> google.protobuf.Struct
+	107, // 20: vdp.pipeline.v1beta.PipelineRelease.recipe:type_name -> google.protobuf.Struct
+	108, // 21: vdp.pipeline.v1beta.PipelineRelease.create_time:type_name -> google.protobuf.Timestamp
+	108, // 22: vdp.pipeline.v1beta.PipelineRelease.update_time:type_name -> google.protobuf.Timestamp
+	108, // 23: vdp.pipeline.v1beta.PipelineRelease.delete_time:type_name -> google.protobuf.Timestamp
+	107, // 24: vdp.pipeline.v1beta.PipelineRelease.metadata:type_name -> google.protobuf.Struct
+	112, // 25: vdp.pipeline.v1beta.PipelineRelease.data_specification:type_name -> vdp.pipeline.v1beta.DataSpecification
+	1,   // 26: vdp.pipeline.v1beta.ListPipelinesRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	2,   // 27: vdp.pipeline.v1beta.ListPipelinesRequest.visibility:type_name -> vdp.pipeline.v1beta.Pipeline.Visibility
+	8,   // 28: vdp.pipeline.v1beta.ListPipelinesResponse.pipelines:type_name -> vdp.pipeline.v1beta.Pipeline
+	1,   // 29: vdp.pipeline.v1beta.LookUpPipelineRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	8,   // 30: vdp.pipeline.v1beta.LookUpPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	8,   // 31: vdp.pipeline.v1beta.CreateUserPipelineRequest.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	8,   // 32: vdp.pipeline.v1beta.CreateUserPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	1,   // 33: vdp.pipeline.v1beta.ListUserPipelinesRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	2,   // 34: vdp.pipeline.v1beta.ListUserPipelinesRequest.visibility:type_name -> vdp.pipeline.v1beta.Pipeline.Visibility
+	8,   // 35: vdp.pipeline.v1beta.ListUserPipelinesResponse.pipelines:type_name -> vdp.pipeline.v1beta.Pipeline
+	1,   // 36: vdp.pipeline.v1beta.GetUserPipelineRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	8,   // 37: vdp.pipeline.v1beta.GetUserPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	8,   // 38: vdp.pipeline.v1beta.UpdateUserPipelineRequest.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	113, // 39: vdp.pipeline.v1beta.UpdateUserPipelineRequest.update_mask:type_name -> google.protobuf.FieldMask
+	8,   // 40: vdp.pipeline.v1beta.UpdateUserPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	8,   // 41: vdp.pipeline.v1beta.ValidateUserPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	8,   // 42: vdp.pipeline.v1beta.RenameUserPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	8,   // 43: vdp.pipeline.v1beta.CloneUserPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	36,  // 44: vdp.pipeline.v1beta.TriggerUserPipelineRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
+	107, // 45: vdp.pipeline.v1beta.TriggerUserPipelineResponse.outputs:type_name -> google.protobuf.Struct
+	9,   // 46: vdp.pipeline.v1beta.TriggerUserPipelineResponse.metadata:type_name -> vdp.pipeline.v1beta.TriggerMetadata
+	107, // 47: vdp.pipeline.v1beta.TriggerData.variable:type_name -> google.protobuf.Struct
+	104, // 48: vdp.pipeline.v1beta.TriggerData.secret:type_name -> vdp.pipeline.v1beta.TriggerData.SecretEntry
+	36,  // 49: vdp.pipeline.v1beta.TriggerAsyncUserPipelineRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
+	114, // 50: vdp.pipeline.v1beta.TriggerAsyncUserPipelineResponse.operation:type_name -> google.longrunning.Operation
+	13,  // 51: vdp.pipeline.v1beta.CreateUserPipelineReleaseRequest.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	13,  // 52: vdp.pipeline.v1beta.CreateUserPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	1,   // 53: vdp.pipeline.v1beta.ListUserPipelineReleasesRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	13,  // 54: vdp.pipeline.v1beta.ListUserPipelineReleasesResponse.releases:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	1,   // 55: vdp.pipeline.v1beta.GetUserPipelineReleaseRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	13,  // 56: vdp.pipeline.v1beta.GetUserPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	13,  // 57: vdp.pipeline.v1beta.UpdateUserPipelineReleaseRequest.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	113, // 58: vdp.pipeline.v1beta.UpdateUserPipelineReleaseRequest.update_mask:type_name -> google.protobuf.FieldMask
+	13,  // 59: vdp.pipeline.v1beta.UpdateUserPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	13,  // 60: vdp.pipeline.v1beta.RestoreUserPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	13,  // 61: vdp.pipeline.v1beta.RenameUserPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	36,  // 62: vdp.pipeline.v1beta.TriggerUserPipelineReleaseRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
+	107, // 63: vdp.pipeline.v1beta.TriggerUserPipelineReleaseResponse.outputs:type_name -> google.protobuf.Struct
+	9,   // 64: vdp.pipeline.v1beta.TriggerUserPipelineReleaseResponse.metadata:type_name -> vdp.pipeline.v1beta.TriggerMetadata
+	36,  // 65: vdp.pipeline.v1beta.TriggerAsyncUserPipelineReleaseRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
+	114, // 66: vdp.pipeline.v1beta.TriggerAsyncUserPipelineReleaseResponse.operation:type_name -> google.longrunning.Operation
+	8,   // 67: vdp.pipeline.v1beta.CreateOrganizationPipelineRequest.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	8,   // 68: vdp.pipeline.v1beta.CreateOrganizationPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	1,   // 69: vdp.pipeline.v1beta.ListOrganizationPipelinesRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	2,   // 70: vdp.pipeline.v1beta.ListOrganizationPipelinesRequest.visibility:type_name -> vdp.pipeline.v1beta.Pipeline.Visibility
+	8,   // 71: vdp.pipeline.v1beta.ListOrganizationPipelinesResponse.pipelines:type_name -> vdp.pipeline.v1beta.Pipeline
+	1,   // 72: vdp.pipeline.v1beta.GetOrganizationPipelineRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	8,   // 73: vdp.pipeline.v1beta.GetOrganizationPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	8,   // 74: vdp.pipeline.v1beta.UpdateOrganizationPipelineRequest.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	113, // 75: vdp.pipeline.v1beta.UpdateOrganizationPipelineRequest.update_mask:type_name -> google.protobuf.FieldMask
+	8,   // 76: vdp.pipeline.v1beta.UpdateOrganizationPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	8,   // 77: vdp.pipeline.v1beta.ValidateOrganizationPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	8,   // 78: vdp.pipeline.v1beta.RenameOrganizationPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	8,   // 79: vdp.pipeline.v1beta.CloneOrganizationPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	36,  // 80: vdp.pipeline.v1beta.TriggerOrganizationPipelineRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
+	107, // 81: vdp.pipeline.v1beta.TriggerOrganizationPipelineResponse.outputs:type_name -> google.protobuf.Struct
+	9,   // 82: vdp.pipeline.v1beta.TriggerOrganizationPipelineResponse.metadata:type_name -> vdp.pipeline.v1beta.TriggerMetadata
+	36,  // 83: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
+	114, // 84: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineResponse.operation:type_name -> google.longrunning.Operation
+	13,  // 85: vdp.pipeline.v1beta.CreateOrganizationPipelineReleaseRequest.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	13,  // 86: vdp.pipeline.v1beta.CreateOrganizationPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	1,   // 87: vdp.pipeline.v1beta.ListOrganizationPipelineReleasesRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	13,  // 88: vdp.pipeline.v1beta.ListOrganizationPipelineReleasesResponse.releases:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	1,   // 89: vdp.pipeline.v1beta.GetOrganizationPipelineReleaseRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	13,  // 90: vdp.pipeline.v1beta.GetOrganizationPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	13,  // 91: vdp.pipeline.v1beta.UpdateOrganizationPipelineReleaseRequest.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	113, // 92: vdp.pipeline.v1beta.UpdateOrganizationPipelineReleaseRequest.update_mask:type_name -> google.protobuf.FieldMask
+	13,  // 93: vdp.pipeline.v1beta.UpdateOrganizationPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	13,  // 94: vdp.pipeline.v1beta.RestoreOrganizationPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	13,  // 95: vdp.pipeline.v1beta.RenameOrganizationPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	36,  // 96: vdp.pipeline.v1beta.TriggerOrganizationPipelineReleaseRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
+	107, // 97: vdp.pipeline.v1beta.TriggerOrganizationPipelineReleaseResponse.outputs:type_name -> google.protobuf.Struct
+	9,   // 98: vdp.pipeline.v1beta.TriggerOrganizationPipelineReleaseResponse.metadata:type_name -> vdp.pipeline.v1beta.TriggerMetadata
+	36,  // 99: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
+	114, // 100: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseResponse.operation:type_name -> google.longrunning.Operation
+	114, // 101: vdp.pipeline.v1beta.GetOperationResponse.operation:type_name -> google.longrunning.Operation
+	1,   // 102: vdp.pipeline.v1beta.ListPipelinesAdminRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	8,   // 103: vdp.pipeline.v1beta.ListPipelinesAdminResponse.pipelines:type_name -> vdp.pipeline.v1beta.Pipeline
+	1,   // 104: vdp.pipeline.v1beta.ListPipelineReleasesAdminRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	13,  // 105: vdp.pipeline.v1beta.ListPipelineReleasesAdminResponse.releases:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	1,   // 106: vdp.pipeline.v1beta.LookUpPipelineAdminRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	8,   // 107: vdp.pipeline.v1beta.LookUpPipelineAdminResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	10,  // 108: vdp.pipeline.v1beta.TriggerMetadata.TracesEntry.value:type_name -> vdp.pipeline.v1beta.Trace
+	109, // [109:109] is the sub-list for method output_type
+	109, // [109:109] is the sub-list for method input_type
+	109, // [109:109] is the sub-list for extension type_name
+	109, // [109:109] is the sub-list for extension extendee
+	0,   // [0:109] is the sub-list for field type_name
 }
 
 func init() { file_vdp_pipeline_v1beta_pipeline_proto_init() }
@@ -8830,114 +7774,6 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 			}
 		}
 		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ConnectorComponent); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*OperatorComponent); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*IteratorComponent); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Component); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*NestedComponent); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*On); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Recipe); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Variable); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Output); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Pipeline); i {
 			case 0:
 				return &v.state
@@ -8949,7 +7785,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TriggerMetadata); i {
 			case 0:
 				return &v.state
@@ -8961,7 +7797,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Trace); i {
 			case 0:
 				return &v.state
@@ -8973,7 +7809,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetHubStatsRequest); i {
 			case 0:
 				return &v.state
@@ -8985,7 +7821,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetHubStatsResponse); i {
 			case 0:
 				return &v.state
@@ -8997,7 +7833,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PipelineRelease); i {
 			case 0:
 				return &v.state
@@ -9009,7 +7845,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListPipelinesRequest); i {
 			case 0:
 				return &v.state
@@ -9021,7 +7857,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListPipelinesResponse); i {
 			case 0:
 				return &v.state
@@ -9033,7 +7869,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LookUpPipelineRequest); i {
 			case 0:
 				return &v.state
@@ -9045,7 +7881,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LookUpPipelineResponse); i {
 			case 0:
 				return &v.state
@@ -9057,7 +7893,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CreateUserPipelineRequest); i {
 			case 0:
 				return &v.state
@@ -9069,7 +7905,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CreateUserPipelineResponse); i {
 			case 0:
 				return &v.state
@@ -9081,7 +7917,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListUserPipelinesRequest); i {
 			case 0:
 				return &v.state
@@ -9093,7 +7929,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListUserPipelinesResponse); i {
 			case 0:
 				return &v.state
@@ -9105,7 +7941,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetUserPipelineRequest); i {
 			case 0:
 				return &v.state
@@ -9117,7 +7953,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetUserPipelineResponse); i {
 			case 0:
 				return &v.state
@@ -9129,7 +7965,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UpdateUserPipelineRequest); i {
 			case 0:
 				return &v.state
@@ -9141,7 +7977,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UpdateUserPipelineResponse); i {
 			case 0:
 				return &v.state
@@ -9153,7 +7989,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteUserPipelineRequest); i {
 			case 0:
 				return &v.state
@@ -9165,7 +8001,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteUserPipelineResponse); i {
 			case 0:
 				return &v.state
@@ -9177,7 +8013,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ValidateUserPipelineRequest); i {
 			case 0:
 				return &v.state
@@ -9189,7 +8025,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ValidateUserPipelineResponse); i {
 			case 0:
 				return &v.state
@@ -9201,7 +8037,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RenameUserPipelineRequest); i {
 			case 0:
 				return &v.state
@@ -9213,7 +8049,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RenameUserPipelineResponse); i {
 			case 0:
 				return &v.state
@@ -9225,7 +8061,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[37].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CloneUserPipelineRequest); i {
 			case 0:
 				return &v.state
@@ -9237,7 +8073,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[38].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CloneUserPipelineResponse); i {
 			case 0:
 				return &v.state
@@ -9249,7 +8085,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[39].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TriggerUserPipelineRequest); i {
 			case 0:
 				return &v.state
@@ -9261,7 +8097,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[40].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TriggerUserPipelineResponse); i {
 			case 0:
 				return &v.state
@@ -9273,7 +8109,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[41].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TriggerData); i {
 			case 0:
 				return &v.state
@@ -9285,7 +8121,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[42].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TriggerAsyncUserPipelineRequest); i {
 			case 0:
 				return &v.state
@@ -9297,7 +8133,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[43].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TriggerAsyncUserPipelineResponse); i {
 			case 0:
 				return &v.state
@@ -9309,7 +8145,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[44].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CreateUserPipelineReleaseRequest); i {
 			case 0:
 				return &v.state
@@ -9321,7 +8157,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[45].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CreateUserPipelineReleaseResponse); i {
 			case 0:
 				return &v.state
@@ -9333,7 +8169,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[46].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[37].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListUserPipelineReleasesRequest); i {
 			case 0:
 				return &v.state
@@ -9345,7 +8181,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[47].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[38].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListUserPipelineReleasesResponse); i {
 			case 0:
 				return &v.state
@@ -9357,7 +8193,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[48].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[39].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetUserPipelineReleaseRequest); i {
 			case 0:
 				return &v.state
@@ -9369,7 +8205,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[49].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[40].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetUserPipelineReleaseResponse); i {
 			case 0:
 				return &v.state
@@ -9381,7 +8217,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[50].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[41].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UpdateUserPipelineReleaseRequest); i {
 			case 0:
 				return &v.state
@@ -9393,7 +8229,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[51].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[42].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UpdateUserPipelineReleaseResponse); i {
 			case 0:
 				return &v.state
@@ -9405,7 +8241,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[52].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[43].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteUserPipelineReleaseRequest); i {
 			case 0:
 				return &v.state
@@ -9417,7 +8253,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[53].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[44].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteUserPipelineReleaseResponse); i {
 			case 0:
 				return &v.state
@@ -9429,7 +8265,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[54].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[45].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RestoreUserPipelineReleaseRequest); i {
 			case 0:
 				return &v.state
@@ -9441,7 +8277,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[55].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[46].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RestoreUserPipelineReleaseResponse); i {
 			case 0:
 				return &v.state
@@ -9453,7 +8289,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[56].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[47].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RenameUserPipelineReleaseRequest); i {
 			case 0:
 				return &v.state
@@ -9465,7 +8301,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[57].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[48].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RenameUserPipelineReleaseResponse); i {
 			case 0:
 				return &v.state
@@ -9477,7 +8313,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[58].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[49].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TriggerUserPipelineReleaseRequest); i {
 			case 0:
 				return &v.state
@@ -9489,7 +8325,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[59].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[50].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TriggerUserPipelineReleaseResponse); i {
 			case 0:
 				return &v.state
@@ -9501,7 +8337,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[60].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[51].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TriggerAsyncUserPipelineReleaseRequest); i {
 			case 0:
 				return &v.state
@@ -9513,7 +8349,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[61].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[52].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TriggerAsyncUserPipelineReleaseResponse); i {
 			case 0:
 				return &v.state
@@ -9525,7 +8361,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[62].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[53].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CreateOrganizationPipelineRequest); i {
 			case 0:
 				return &v.state
@@ -9537,7 +8373,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[63].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[54].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CreateOrganizationPipelineResponse); i {
 			case 0:
 				return &v.state
@@ -9549,7 +8385,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[64].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[55].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListOrganizationPipelinesRequest); i {
 			case 0:
 				return &v.state
@@ -9561,7 +8397,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[65].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[56].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListOrganizationPipelinesResponse); i {
 			case 0:
 				return &v.state
@@ -9573,7 +8409,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[66].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[57].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetOrganizationPipelineRequest); i {
 			case 0:
 				return &v.state
@@ -9585,7 +8421,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[67].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[58].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetOrganizationPipelineResponse); i {
 			case 0:
 				return &v.state
@@ -9597,7 +8433,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[68].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[59].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UpdateOrganizationPipelineRequest); i {
 			case 0:
 				return &v.state
@@ -9609,7 +8445,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[69].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[60].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UpdateOrganizationPipelineResponse); i {
 			case 0:
 				return &v.state
@@ -9621,7 +8457,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[70].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[61].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteOrganizationPipelineRequest); i {
 			case 0:
 				return &v.state
@@ -9633,7 +8469,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[71].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[62].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteOrganizationPipelineResponse); i {
 			case 0:
 				return &v.state
@@ -9645,7 +8481,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[72].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[63].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ValidateOrganizationPipelineRequest); i {
 			case 0:
 				return &v.state
@@ -9657,7 +8493,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[73].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[64].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ValidateOrganizationPipelineResponse); i {
 			case 0:
 				return &v.state
@@ -9669,7 +8505,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[74].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[65].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RenameOrganizationPipelineRequest); i {
 			case 0:
 				return &v.state
@@ -9681,7 +8517,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[75].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[66].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RenameOrganizationPipelineResponse); i {
 			case 0:
 				return &v.state
@@ -9693,7 +8529,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[76].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[67].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CloneOrganizationPipelineRequest); i {
 			case 0:
 				return &v.state
@@ -9705,7 +8541,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[77].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[68].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CloneOrganizationPipelineResponse); i {
 			case 0:
 				return &v.state
@@ -9717,7 +8553,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[78].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[69].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TriggerOrganizationPipelineRequest); i {
 			case 0:
 				return &v.state
@@ -9729,7 +8565,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[79].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[70].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TriggerOrganizationPipelineResponse); i {
 			case 0:
 				return &v.state
@@ -9741,7 +8577,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[80].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[71].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TriggerAsyncOrganizationPipelineRequest); i {
 			case 0:
 				return &v.state
@@ -9753,7 +8589,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[81].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[72].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TriggerAsyncOrganizationPipelineResponse); i {
 			case 0:
 				return &v.state
@@ -9765,7 +8601,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[82].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[73].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CreateOrganizationPipelineReleaseRequest); i {
 			case 0:
 				return &v.state
@@ -9777,7 +8613,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[83].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[74].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CreateOrganizationPipelineReleaseResponse); i {
 			case 0:
 				return &v.state
@@ -9789,7 +8625,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[84].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[75].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListOrganizationPipelineReleasesRequest); i {
 			case 0:
 				return &v.state
@@ -9801,7 +8637,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[85].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[76].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListOrganizationPipelineReleasesResponse); i {
 			case 0:
 				return &v.state
@@ -9813,7 +8649,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[86].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[77].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetOrganizationPipelineReleaseRequest); i {
 			case 0:
 				return &v.state
@@ -9825,7 +8661,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[87].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[78].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetOrganizationPipelineReleaseResponse); i {
 			case 0:
 				return &v.state
@@ -9837,7 +8673,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[88].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[79].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UpdateOrganizationPipelineReleaseRequest); i {
 			case 0:
 				return &v.state
@@ -9849,7 +8685,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[89].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[80].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UpdateOrganizationPipelineReleaseResponse); i {
 			case 0:
 				return &v.state
@@ -9861,7 +8697,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[90].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[81].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteOrganizationPipelineReleaseRequest); i {
 			case 0:
 				return &v.state
@@ -9873,7 +8709,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[91].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[82].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteOrganizationPipelineReleaseResponse); i {
 			case 0:
 				return &v.state
@@ -9885,7 +8721,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[92].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[83].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RestoreOrganizationPipelineReleaseRequest); i {
 			case 0:
 				return &v.state
@@ -9897,7 +8733,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[93].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[84].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RestoreOrganizationPipelineReleaseResponse); i {
 			case 0:
 				return &v.state
@@ -9909,7 +8745,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[94].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[85].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RenameOrganizationPipelineReleaseRequest); i {
 			case 0:
 				return &v.state
@@ -9921,7 +8757,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[95].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[86].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RenameOrganizationPipelineReleaseResponse); i {
 			case 0:
 				return &v.state
@@ -9933,7 +8769,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[96].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[87].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TriggerOrganizationPipelineReleaseRequest); i {
 			case 0:
 				return &v.state
@@ -9945,7 +8781,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[97].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[88].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TriggerOrganizationPipelineReleaseResponse); i {
 			case 0:
 				return &v.state
@@ -9957,7 +8793,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[98].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[89].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TriggerAsyncOrganizationPipelineReleaseRequest); i {
 			case 0:
 				return &v.state
@@ -9969,7 +8805,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[99].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[90].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TriggerAsyncOrganizationPipelineReleaseResponse); i {
 			case 0:
 				return &v.state
@@ -9981,7 +8817,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[100].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[91].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetOperationRequest); i {
 			case 0:
 				return &v.state
@@ -9993,7 +8829,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[101].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[92].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetOperationResponse); i {
 			case 0:
 				return &v.state
@@ -10005,7 +8841,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[102].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[93].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListPipelinesAdminRequest); i {
 			case 0:
 				return &v.state
@@ -10017,7 +8853,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[103].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[94].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListPipelinesAdminResponse); i {
 			case 0:
 				return &v.state
@@ -10029,7 +8865,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[104].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[95].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListPipelineReleasesAdminRequest); i {
 			case 0:
 				return &v.state
@@ -10041,7 +8877,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[105].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[96].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListPipelineReleasesAdminResponse); i {
 			case 0:
 				return &v.state
@@ -10053,7 +8889,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[106].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[97].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LookUpPipelineAdminRequest); i {
 			case 0:
 				return &v.state
@@ -10065,7 +8901,7 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 				return nil
 			}
 		}
-		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[107].Exporter = func(v interface{}, i int) interface{} {
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[98].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LookUpPipelineAdminResponse); i {
 			case 0:
 				return &v.state
@@ -10080,37 +8916,28 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 	}
 	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[0].OneofWrappers = []interface{}{}
 	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[2].OneofWrappers = []interface{}{}
-	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[7].OneofWrappers = []interface{}{
-		(*Component_ConnectorComponent)(nil),
-		(*Component_OperatorComponent)(nil),
-		(*Component_IteratorComponent)(nil),
-	}
-	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[8].OneofWrappers = []interface{}{
-		(*NestedComponent_ConnectorComponent)(nil),
-		(*NestedComponent_OperatorComponent)(nil),
-	}
-	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[13].OneofWrappers = []interface{}{}
+	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[4].OneofWrappers = []interface{}{}
+	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[9].OneofWrappers = []interface{}{}
+	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[10].OneofWrappers = []interface{}{}
+	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[12].OneofWrappers = []interface{}{}
+	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[16].OneofWrappers = []interface{}{}
 	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[18].OneofWrappers = []interface{}{}
-	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[19].OneofWrappers = []interface{}{}
-	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[21].OneofWrappers = []interface{}{}
-	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[25].OneofWrappers = []interface{}{}
-	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[27].OneofWrappers = []interface{}{}
-	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[46].OneofWrappers = []interface{}{}
-	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[48].OneofWrappers = []interface{}{}
-	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[64].OneofWrappers = []interface{}{}
-	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[66].OneofWrappers = []interface{}{}
-	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[84].OneofWrappers = []interface{}{}
-	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[86].OneofWrappers = []interface{}{}
-	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[102].OneofWrappers = []interface{}{}
-	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[104].OneofWrappers = []interface{}{}
-	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[106].OneofWrappers = []interface{}{}
+	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[37].OneofWrappers = []interface{}{}
+	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[39].OneofWrappers = []interface{}{}
+	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[55].OneofWrappers = []interface{}{}
+	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[57].OneofWrappers = []interface{}{}
+	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[75].OneofWrappers = []interface{}{}
+	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[77].OneofWrappers = []interface{}{}
+	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[93].OneofWrappers = []interface{}{}
+	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[95].OneofWrappers = []interface{}{}
+	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[97].OneofWrappers = []interface{}{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_vdp_pipeline_v1beta_pipeline_proto_rawDesc,
 			NumEnums:      4,
-			NumMessages:   116,
+			NumMessages:   101,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
