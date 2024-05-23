@@ -39,6 +39,8 @@ const (
 	ModelPublicService_ListUserModelVersions_FullMethodName                    = "/model.model.v1alpha.ModelPublicService/ListUserModelVersions"
 	ModelPublicService_TriggerUserModel_FullMethodName                         = "/model.model.v1alpha.ModelPublicService/TriggerUserModel"
 	ModelPublicService_TriggerAsyncUserModel_FullMethodName                    = "/model.model.v1alpha.ModelPublicService/TriggerAsyncUserModel"
+	ModelPublicService_TriggerUserLatestModel_FullMethodName                   = "/model.model.v1alpha.ModelPublicService/TriggerUserLatestModel"
+	ModelPublicService_TriggerAsyncUserLatestModel_FullMethodName              = "/model.model.v1alpha.ModelPublicService/TriggerAsyncUserLatestModel"
 	ModelPublicService_TriggerUserModelBinaryFileUpload_FullMethodName         = "/model.model.v1alpha.ModelPublicService/TriggerUserModelBinaryFileUpload"
 	ModelPublicService_ListOrganizationModels_FullMethodName                   = "/model.model.v1alpha.ModelPublicService/ListOrganizationModels"
 	ModelPublicService_CreateOrganizationModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/CreateOrganizationModel"
@@ -53,6 +55,8 @@ const (
 	ModelPublicService_ListOrganizationModelVersions_FullMethodName            = "/model.model.v1alpha.ModelPublicService/ListOrganizationModelVersions"
 	ModelPublicService_TriggerOrganizationModel_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/TriggerOrganizationModel"
 	ModelPublicService_TriggerAsyncOrganizationModel_FullMethodName            = "/model.model.v1alpha.ModelPublicService/TriggerAsyncOrganizationModel"
+	ModelPublicService_TriggerOrganizationLatestModel_FullMethodName           = "/model.model.v1alpha.ModelPublicService/TriggerOrganizationLatestModel"
+	ModelPublicService_TriggerAsyncOrganizationLatestModel_FullMethodName      = "/model.model.v1alpha.ModelPublicService/TriggerAsyncOrganizationLatestModel"
 	ModelPublicService_TriggerOrganizationModelBinaryFileUpload_FullMethodName = "/model.model.v1alpha.ModelPublicService/TriggerOrganizationModelBinaryFileUpload"
 	ModelPublicService_GetModelOperation_FullMethodName                        = "/model.model.v1alpha.ModelPublicService/GetModelOperation"
 )
@@ -161,6 +165,16 @@ type ModelPublicServiceClient interface {
 	// Triggers a deployed model to infer the result of a set of task or
 	// questions.
 	TriggerAsyncUserModel(ctx context.Context, in *TriggerAsyncUserModelRequest, opts ...grpc.CallOption) (*TriggerAsyncUserModelResponse, error)
+	// Trigger model inference
+	//
+	// Triggers the latest deployed model version to infer the result of a set of task or
+	// questions.
+	TriggerUserLatestModel(ctx context.Context, in *TriggerUserLatestModelRequest, opts ...grpc.CallOption) (*TriggerUserLatestModelResponse, error)
+	// Trigger model inference asynchronously
+	//
+	// Triggers the latest deployed model version to infer the result of a set of task or
+	// questions.
+	TriggerAsyncUserLatestModel(ctx context.Context, in *TriggerAsyncUserLatestModelRequest, opts ...grpc.CallOption) (*TriggerAsyncUserLatestModelResponse, error)
 	// Trigger model inference with a binary input
 	//
 	// Triggers a deployed model to infer the result of a task or question,
@@ -238,6 +252,16 @@ type ModelPublicServiceClient interface {
 	// Triggers a deployed model to infer the result of a set of task or
 	// questions.
 	TriggerAsyncOrganizationModel(ctx context.Context, in *TriggerAsyncOrganizationModelRequest, opts ...grpc.CallOption) (*TriggerAsyncOrganizationModelResponse, error)
+	// Trigger model inference
+	//
+	// Triggers the latest deployed model version to infer the result of a set of task or
+	// questions.
+	TriggerOrganizationLatestModel(ctx context.Context, in *TriggerOrganizationLatestModelRequest, opts ...grpc.CallOption) (*TriggerOrganizationLatestModelResponse, error)
+	// Trigger model inference asynchronously
+	//
+	// Triggers the latest deployed model version to infer the result of a set of task or
+	// questions.
+	TriggerAsyncOrganizationLatestModel(ctx context.Context, in *TriggerAsyncOrganizationLatestModelRequest, opts ...grpc.CallOption) (*TriggerAsyncOrganizationLatestModelResponse, error)
 	// Trigger model inference with a binary input
 	//
 	// Triggers a deployed model to infer the result of a task or question,
@@ -438,6 +462,24 @@ func (c *modelPublicServiceClient) TriggerAsyncUserModel(ctx context.Context, in
 	return out, nil
 }
 
+func (c *modelPublicServiceClient) TriggerUserLatestModel(ctx context.Context, in *TriggerUserLatestModelRequest, opts ...grpc.CallOption) (*TriggerUserLatestModelResponse, error) {
+	out := new(TriggerUserLatestModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_TriggerUserLatestModel_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *modelPublicServiceClient) TriggerAsyncUserLatestModel(ctx context.Context, in *TriggerAsyncUserLatestModelRequest, opts ...grpc.CallOption) (*TriggerAsyncUserLatestModelResponse, error) {
+	out := new(TriggerAsyncUserLatestModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_TriggerAsyncUserLatestModel_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *modelPublicServiceClient) TriggerUserModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TriggerUserModelBinaryFileUploadClient, error) {
 	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[0], ModelPublicService_TriggerUserModelBinaryFileUpload_FullMethodName, opts...)
 	if err != nil {
@@ -583,6 +625,24 @@ func (c *modelPublicServiceClient) TriggerOrganizationModel(ctx context.Context,
 func (c *modelPublicServiceClient) TriggerAsyncOrganizationModel(ctx context.Context, in *TriggerAsyncOrganizationModelRequest, opts ...grpc.CallOption) (*TriggerAsyncOrganizationModelResponse, error) {
 	out := new(TriggerAsyncOrganizationModelResponse)
 	err := c.cc.Invoke(ctx, ModelPublicService_TriggerAsyncOrganizationModel_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *modelPublicServiceClient) TriggerOrganizationLatestModel(ctx context.Context, in *TriggerOrganizationLatestModelRequest, opts ...grpc.CallOption) (*TriggerOrganizationLatestModelResponse, error) {
+	out := new(TriggerOrganizationLatestModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_TriggerOrganizationLatestModel_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *modelPublicServiceClient) TriggerAsyncOrganizationLatestModel(ctx context.Context, in *TriggerAsyncOrganizationLatestModelRequest, opts ...grpc.CallOption) (*TriggerAsyncOrganizationLatestModelResponse, error) {
+	out := new(TriggerAsyncOrganizationLatestModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_TriggerAsyncOrganizationLatestModel_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -736,6 +796,16 @@ type ModelPublicServiceServer interface {
 	// Triggers a deployed model to infer the result of a set of task or
 	// questions.
 	TriggerAsyncUserModel(context.Context, *TriggerAsyncUserModelRequest) (*TriggerAsyncUserModelResponse, error)
+	// Trigger model inference
+	//
+	// Triggers the latest deployed model version to infer the result of a set of task or
+	// questions.
+	TriggerUserLatestModel(context.Context, *TriggerUserLatestModelRequest) (*TriggerUserLatestModelResponse, error)
+	// Trigger model inference asynchronously
+	//
+	// Triggers the latest deployed model version to infer the result of a set of task or
+	// questions.
+	TriggerAsyncUserLatestModel(context.Context, *TriggerAsyncUserLatestModelRequest) (*TriggerAsyncUserLatestModelResponse, error)
 	// Trigger model inference with a binary input
 	//
 	// Triggers a deployed model to infer the result of a task or question,
@@ -813,6 +883,16 @@ type ModelPublicServiceServer interface {
 	// Triggers a deployed model to infer the result of a set of task or
 	// questions.
 	TriggerAsyncOrganizationModel(context.Context, *TriggerAsyncOrganizationModelRequest) (*TriggerAsyncOrganizationModelResponse, error)
+	// Trigger model inference
+	//
+	// Triggers the latest deployed model version to infer the result of a set of task or
+	// questions.
+	TriggerOrganizationLatestModel(context.Context, *TriggerOrganizationLatestModelRequest) (*TriggerOrganizationLatestModelResponse, error)
+	// Trigger model inference asynchronously
+	//
+	// Triggers the latest deployed model version to infer the result of a set of task or
+	// questions.
+	TriggerAsyncOrganizationLatestModel(context.Context, *TriggerAsyncOrganizationLatestModelRequest) (*TriggerAsyncOrganizationLatestModelResponse, error)
 	// Trigger model inference with a binary input
 	//
 	// Triggers a deployed model to infer the result of a task or question,
@@ -889,6 +969,12 @@ func (UnimplementedModelPublicServiceServer) TriggerUserModel(context.Context, *
 func (UnimplementedModelPublicServiceServer) TriggerAsyncUserModel(context.Context, *TriggerAsyncUserModelRequest) (*TriggerAsyncUserModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncUserModel not implemented")
 }
+func (UnimplementedModelPublicServiceServer) TriggerUserLatestModel(context.Context, *TriggerUserLatestModelRequest) (*TriggerUserLatestModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerUserLatestModel not implemented")
+}
+func (UnimplementedModelPublicServiceServer) TriggerAsyncUserLatestModel(context.Context, *TriggerAsyncUserLatestModelRequest) (*TriggerAsyncUserLatestModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncUserLatestModel not implemented")
+}
 func (UnimplementedModelPublicServiceServer) TriggerUserModelBinaryFileUpload(ModelPublicService_TriggerUserModelBinaryFileUploadServer) error {
 	return status.Errorf(codes.Unimplemented, "method TriggerUserModelBinaryFileUpload not implemented")
 }
@@ -930,6 +1016,12 @@ func (UnimplementedModelPublicServiceServer) TriggerOrganizationModel(context.Co
 }
 func (UnimplementedModelPublicServiceServer) TriggerAsyncOrganizationModel(context.Context, *TriggerAsyncOrganizationModelRequest) (*TriggerAsyncOrganizationModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncOrganizationModel not implemented")
+}
+func (UnimplementedModelPublicServiceServer) TriggerOrganizationLatestModel(context.Context, *TriggerOrganizationLatestModelRequest) (*TriggerOrganizationLatestModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerOrganizationLatestModel not implemented")
+}
+func (UnimplementedModelPublicServiceServer) TriggerAsyncOrganizationLatestModel(context.Context, *TriggerAsyncOrganizationLatestModelRequest) (*TriggerAsyncOrganizationLatestModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncOrganizationLatestModel not implemented")
 }
 func (UnimplementedModelPublicServiceServer) TriggerOrganizationModelBinaryFileUpload(ModelPublicService_TriggerOrganizationModelBinaryFileUploadServer) error {
 	return status.Errorf(codes.Unimplemented, "method TriggerOrganizationModelBinaryFileUpload not implemented")
@@ -1309,6 +1401,42 @@ func _ModelPublicService_TriggerAsyncUserModel_Handler(srv interface{}, ctx cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ModelPublicService_TriggerUserLatestModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerUserLatestModelRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPublicServiceServer).TriggerUserLatestModel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPublicService_TriggerUserLatestModel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPublicServiceServer).TriggerUserLatestModel(ctx, req.(*TriggerUserLatestModelRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ModelPublicService_TriggerAsyncUserLatestModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerAsyncUserLatestModelRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPublicServiceServer).TriggerAsyncUserLatestModel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPublicService_TriggerAsyncUserLatestModel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPublicServiceServer).TriggerAsyncUserLatestModel(ctx, req.(*TriggerAsyncUserLatestModelRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ModelPublicService_TriggerUserModelBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
 	return srv.(ModelPublicServiceServer).TriggerUserModelBinaryFileUpload(&modelPublicServiceTriggerUserModelBinaryFileUploadServer{stream})
 }
@@ -1569,6 +1697,42 @@ func _ModelPublicService_TriggerAsyncOrganizationModel_Handler(srv interface{}, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ModelPublicService_TriggerOrganizationLatestModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerOrganizationLatestModelRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPublicServiceServer).TriggerOrganizationLatestModel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPublicService_TriggerOrganizationLatestModel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPublicServiceServer).TriggerOrganizationLatestModel(ctx, req.(*TriggerOrganizationLatestModelRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ModelPublicService_TriggerAsyncOrganizationLatestModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerAsyncOrganizationLatestModelRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPublicServiceServer).TriggerAsyncOrganizationLatestModel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPublicService_TriggerAsyncOrganizationLatestModel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPublicServiceServer).TriggerAsyncOrganizationLatestModel(ctx, req.(*TriggerAsyncOrganizationLatestModelRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ModelPublicService_TriggerOrganizationModelBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
 	return srv.(ModelPublicServiceServer).TriggerOrganizationModelBinaryFileUpload(&modelPublicServiceTriggerOrganizationModelBinaryFileUploadServer{stream})
 }
@@ -1701,6 +1865,14 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ModelPublicService_TriggerAsyncUserModel_Handler,
 		},
 		{
+			MethodName: "TriggerUserLatestModel",
+			Handler:    _ModelPublicService_TriggerUserLatestModel_Handler,
+		},
+		{
+			MethodName: "TriggerAsyncUserLatestModel",
+			Handler:    _ModelPublicService_TriggerAsyncUserLatestModel_Handler,
+		},
+		{
 			MethodName: "ListOrganizationModels",
 			Handler:    _ModelPublicService_ListOrganizationModels_Handler,
 		},
@@ -1751,6 +1923,14 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TriggerAsyncOrganizationModel",
 			Handler:    _ModelPublicService_TriggerAsyncOrganizationModel_Handler,
+		},
+		{
+			MethodName: "TriggerOrganizationLatestModel",
+			Handler:    _ModelPublicService_TriggerOrganizationLatestModel_Handler,
+		},
+		{
+			MethodName: "TriggerAsyncOrganizationLatestModel",
+			Handler:    _ModelPublicService_TriggerAsyncOrganizationLatestModel_Handler,
 		},
 		{
 			MethodName: "GetModelOperation",
