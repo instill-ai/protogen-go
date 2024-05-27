@@ -19,8 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ArtifactPublicService_Liveness_FullMethodName  = "/artifact.artifact.v1alpha.ArtifactPublicService/Liveness"
-	ArtifactPublicService_Readiness_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPublicService/Readiness"
+	ArtifactPublicService_Liveness_FullMethodName            = "/artifact.artifact.v1alpha.ArtifactPublicService/Liveness"
+	ArtifactPublicService_Readiness_FullMethodName           = "/artifact.artifact.v1alpha.ArtifactPublicService/Readiness"
+	ArtifactPublicService_CreateKnowledgeBase_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPublicService/CreateKnowledgeBase"
+	ArtifactPublicService_GetKnowledgeBases_FullMethodName   = "/artifact.artifact.v1alpha.ArtifactPublicService/GetKnowledgeBases"
+	ArtifactPublicService_UpdateKnowledgeBase_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateKnowledgeBase"
+	ArtifactPublicService_DeleteKnowledgeBase_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteKnowledgeBase"
 )
 
 // ArtifactPublicServiceClient is the client API for ArtifactPublicService service.
@@ -35,6 +39,14 @@ type ArtifactPublicServiceClient interface {
 	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error)
+	// Create a knowledge base
+	CreateKnowledgeBase(ctx context.Context, in *CreateKnowledgeBaseRequest, opts ...grpc.CallOption) (*CreateKnowledgeBaseResponse, error)
+	// Get all knowledge bases info
+	GetKnowledgeBases(ctx context.Context, in *GetKnowledgeBasesRequest, opts ...grpc.CallOption) (*GetKnowledgeBasesResponse, error)
+	// Update a knowledge base info
+	UpdateKnowledgeBase(ctx context.Context, in *UpdateKnowledgeBaseRequest, opts ...grpc.CallOption) (*UpdateKnowledgeBaseResponse, error)
+	// Delete a knowledge base
+	DeleteKnowledgeBase(ctx context.Context, in *DeleteKnowledgeBaseRequest, opts ...grpc.CallOption) (*DeleteKnowledgeBaseResponse, error)
 }
 
 type artifactPublicServiceClient struct {
@@ -63,6 +75,42 @@ func (c *artifactPublicServiceClient) Readiness(ctx context.Context, in *Readine
 	return out, nil
 }
 
+func (c *artifactPublicServiceClient) CreateKnowledgeBase(ctx context.Context, in *CreateKnowledgeBaseRequest, opts ...grpc.CallOption) (*CreateKnowledgeBaseResponse, error) {
+	out := new(CreateKnowledgeBaseResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_CreateKnowledgeBase_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPublicServiceClient) GetKnowledgeBases(ctx context.Context, in *GetKnowledgeBasesRequest, opts ...grpc.CallOption) (*GetKnowledgeBasesResponse, error) {
+	out := new(GetKnowledgeBasesResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_GetKnowledgeBases_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPublicServiceClient) UpdateKnowledgeBase(ctx context.Context, in *UpdateKnowledgeBaseRequest, opts ...grpc.CallOption) (*UpdateKnowledgeBaseResponse, error) {
+	out := new(UpdateKnowledgeBaseResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_UpdateKnowledgeBase_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPublicServiceClient) DeleteKnowledgeBase(ctx context.Context, in *DeleteKnowledgeBaseRequest, opts ...grpc.CallOption) (*DeleteKnowledgeBaseResponse, error) {
+	out := new(DeleteKnowledgeBaseResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_DeleteKnowledgeBase_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ArtifactPublicServiceServer is the server API for ArtifactPublicService service.
 // All implementations should embed UnimplementedArtifactPublicServiceServer
 // for forward compatibility
@@ -75,6 +123,14 @@ type ArtifactPublicServiceServer interface {
 	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error)
+	// Create a knowledge base
+	CreateKnowledgeBase(context.Context, *CreateKnowledgeBaseRequest) (*CreateKnowledgeBaseResponse, error)
+	// Get all knowledge bases info
+	GetKnowledgeBases(context.Context, *GetKnowledgeBasesRequest) (*GetKnowledgeBasesResponse, error)
+	// Update a knowledge base info
+	UpdateKnowledgeBase(context.Context, *UpdateKnowledgeBaseRequest) (*UpdateKnowledgeBaseResponse, error)
+	// Delete a knowledge base
+	DeleteKnowledgeBase(context.Context, *DeleteKnowledgeBaseRequest) (*DeleteKnowledgeBaseResponse, error)
 }
 
 // UnimplementedArtifactPublicServiceServer should be embedded to have forward compatible implementations.
@@ -86,6 +142,18 @@ func (UnimplementedArtifactPublicServiceServer) Liveness(context.Context, *Liven
 }
 func (UnimplementedArtifactPublicServiceServer) Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Readiness not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) CreateKnowledgeBase(context.Context, *CreateKnowledgeBaseRequest) (*CreateKnowledgeBaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateKnowledgeBase not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) GetKnowledgeBases(context.Context, *GetKnowledgeBasesRequest) (*GetKnowledgeBasesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetKnowledgeBases not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) UpdateKnowledgeBase(context.Context, *UpdateKnowledgeBaseRequest) (*UpdateKnowledgeBaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateKnowledgeBase not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) DeleteKnowledgeBase(context.Context, *DeleteKnowledgeBaseRequest) (*DeleteKnowledgeBaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteKnowledgeBase not implemented")
 }
 
 // UnsafeArtifactPublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -135,6 +203,78 @@ func _ArtifactPublicService_Readiness_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArtifactPublicService_CreateKnowledgeBase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateKnowledgeBaseRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).CreateKnowledgeBase(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_CreateKnowledgeBase_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).CreateKnowledgeBase(ctx, req.(*CreateKnowledgeBaseRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPublicService_GetKnowledgeBases_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetKnowledgeBasesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).GetKnowledgeBases(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_GetKnowledgeBases_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).GetKnowledgeBases(ctx, req.(*GetKnowledgeBasesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPublicService_UpdateKnowledgeBase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateKnowledgeBaseRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).UpdateKnowledgeBase(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_UpdateKnowledgeBase_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).UpdateKnowledgeBase(ctx, req.(*UpdateKnowledgeBaseRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPublicService_DeleteKnowledgeBase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteKnowledgeBaseRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).DeleteKnowledgeBase(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_DeleteKnowledgeBase_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).DeleteKnowledgeBase(ctx, req.(*DeleteKnowledgeBaseRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ArtifactPublicService_ServiceDesc is the grpc.ServiceDesc for ArtifactPublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -149,6 +289,22 @@ var ArtifactPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Readiness",
 			Handler:    _ArtifactPublicService_Readiness_Handler,
+		},
+		{
+			MethodName: "CreateKnowledgeBase",
+			Handler:    _ArtifactPublicService_CreateKnowledgeBase_Handler,
+		},
+		{
+			MethodName: "GetKnowledgeBases",
+			Handler:    _ArtifactPublicService_GetKnowledgeBases_Handler,
+		},
+		{
+			MethodName: "UpdateKnowledgeBase",
+			Handler:    _ArtifactPublicService_UpdateKnowledgeBase_Handler,
+		},
+		{
+			MethodName: "DeleteKnowledgeBase",
+			Handler:    _ArtifactPublicService_DeleteKnowledgeBase_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

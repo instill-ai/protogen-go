@@ -543,6 +543,572 @@ func (x *CreateRepositoryTagResponse) GetTag() *RepositoryTag {
 	return nil
 }
 
+// KnowledgeBase represents a knowledge base.
+type KnowledgeBase struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The knowledge base identifier.
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// The knowledge base name.
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// The knowledge base description.
+	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	// The knowledge base tags.
+	Tags []string `protobuf:"bytes,4,rep,name=tags,proto3" json:"tags,omitempty"`
+}
+
+func (x *KnowledgeBase) Reset() {
+	*x = KnowledgeBase{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *KnowledgeBase) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*KnowledgeBase) ProtoMessage() {}
+
+func (x *KnowledgeBase) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use KnowledgeBase.ProtoReflect.Descriptor instead.
+func (*KnowledgeBase) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *KnowledgeBase) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *KnowledgeBase) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *KnowledgeBase) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *KnowledgeBase) GetTags() []string {
+	if x != nil {
+		return x.Tags
+	}
+	return nil
+}
+
+// CreateKnowledgeBaseRequest represents a request to create a knowledge base.
+type CreateKnowledgeBaseRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The knowledge base name.
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// The knowledge base description.
+	Description string `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
+	// The knowledge base tags.
+	Tags []string `protobuf:"bytes,3,rep,name=tags,proto3" json:"tags,omitempty"`
+}
+
+func (x *CreateKnowledgeBaseRequest) Reset() {
+	*x = CreateKnowledgeBaseRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateKnowledgeBaseRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateKnowledgeBaseRequest) ProtoMessage() {}
+
+func (x *CreateKnowledgeBaseRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateKnowledgeBaseRequest.ProtoReflect.Descriptor instead.
+func (*CreateKnowledgeBaseRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *CreateKnowledgeBaseRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *CreateKnowledgeBaseRequest) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *CreateKnowledgeBaseRequest) GetTags() []string {
+	if x != nil {
+		return x.Tags
+	}
+	return nil
+}
+
+// CreateKnowledgeBaseResponse represents a response for creating a knowledge base.
+type CreateKnowledgeBaseResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The created knowledge base.
+	Body *KnowledgeBase `protobuf:"bytes,1,opt,name=body,proto3" json:"body,omitempty"`
+	// The error message.
+	ErrorMsg string `protobuf:"bytes,2,opt,name=error_msg,json=errorMsg,proto3" json:"error_msg,omitempty"`
+	// The status code.
+	StatusCode int32 `protobuf:"varint,3,opt,name=status_code,json=statusCode,proto3" json:"status_code,omitempty"`
+}
+
+func (x *CreateKnowledgeBaseResponse) Reset() {
+	*x = CreateKnowledgeBaseResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateKnowledgeBaseResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateKnowledgeBaseResponse) ProtoMessage() {}
+
+func (x *CreateKnowledgeBaseResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateKnowledgeBaseResponse.ProtoReflect.Descriptor instead.
+func (*CreateKnowledgeBaseResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *CreateKnowledgeBaseResponse) GetBody() *KnowledgeBase {
+	if x != nil {
+		return x.Body
+	}
+	return nil
+}
+
+func (x *CreateKnowledgeBaseResponse) GetErrorMsg() string {
+	if x != nil {
+		return x.ErrorMsg
+	}
+	return ""
+}
+
+func (x *CreateKnowledgeBaseResponse) GetStatusCode() int32 {
+	if x != nil {
+		return x.StatusCode
+	}
+	return 0
+}
+
+// GetKnowledgeBasesRequest represents a request to get all knowledge bases.
+type GetKnowledgeBasesRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *GetKnowledgeBasesRequest) Reset() {
+	*x = GetKnowledgeBasesRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetKnowledgeBasesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetKnowledgeBasesRequest) ProtoMessage() {}
+
+func (x *GetKnowledgeBasesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetKnowledgeBasesRequest.ProtoReflect.Descriptor instead.
+func (*GetKnowledgeBasesRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{12}
+}
+
+// GetKnowledgeBasesResponse represents a response for getting all knowledge bases.
+type GetKnowledgeBasesResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The knowledge bases.
+	Knowledgebases []*KnowledgeBase `protobuf:"bytes,1,rep,name=knowledgebases,proto3" json:"knowledgebases,omitempty"`
+	// The error message.
+	ErrorMsg string `protobuf:"bytes,2,opt,name=error_msg,json=errorMsg,proto3" json:"error_msg,omitempty"`
+	// The status code.
+	StatusCode int32 `protobuf:"varint,3,opt,name=status_code,json=statusCode,proto3" json:"status_code,omitempty"`
+}
+
+func (x *GetKnowledgeBasesResponse) Reset() {
+	*x = GetKnowledgeBasesResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetKnowledgeBasesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetKnowledgeBasesResponse) ProtoMessage() {}
+
+func (x *GetKnowledgeBasesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetKnowledgeBasesResponse.ProtoReflect.Descriptor instead.
+func (*GetKnowledgeBasesResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *GetKnowledgeBasesResponse) GetKnowledgebases() []*KnowledgeBase {
+	if x != nil {
+		return x.Knowledgebases
+	}
+	return nil
+}
+
+func (x *GetKnowledgeBasesResponse) GetErrorMsg() string {
+	if x != nil {
+		return x.ErrorMsg
+	}
+	return ""
+}
+
+func (x *GetKnowledgeBasesResponse) GetStatusCode() int32 {
+	if x != nil {
+		return x.StatusCode
+	}
+	return 0
+}
+
+// UpdateKnowledgeBaseRequest represents a request to update a knowledge base.
+type UpdateKnowledgeBaseRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The knowledge base identifier.
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// The knowledge base name.
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// The knowledge base description.
+	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	// The knowledge base tags.
+	Tags []string `protobuf:"bytes,4,rep,name=tags,proto3" json:"tags,omitempty"`
+}
+
+func (x *UpdateKnowledgeBaseRequest) Reset() {
+	*x = UpdateKnowledgeBaseRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateKnowledgeBaseRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateKnowledgeBaseRequest) ProtoMessage() {}
+
+func (x *UpdateKnowledgeBaseRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateKnowledgeBaseRequest.ProtoReflect.Descriptor instead.
+func (*UpdateKnowledgeBaseRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *UpdateKnowledgeBaseRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *UpdateKnowledgeBaseRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *UpdateKnowledgeBaseRequest) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *UpdateKnowledgeBaseRequest) GetTags() []string {
+	if x != nil {
+		return x.Tags
+	}
+	return nil
+}
+
+// UpdateKnowledgeBaseResponse represents a response for updating a knowledge base.
+type UpdateKnowledgeBaseResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The updated knowledge base.
+	Body *KnowledgeBase `protobuf:"bytes,1,opt,name=body,proto3" json:"body,omitempty"`
+	// The error message.
+	ErrorMsg string `protobuf:"bytes,2,opt,name=error_msg,json=errorMsg,proto3" json:"error_msg,omitempty"`
+	// The status code.
+	StatusCode int32 `protobuf:"varint,3,opt,name=status_code,json=statusCode,proto3" json:"status_code,omitempty"`
+}
+
+func (x *UpdateKnowledgeBaseResponse) Reset() {
+	*x = UpdateKnowledgeBaseResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateKnowledgeBaseResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateKnowledgeBaseResponse) ProtoMessage() {}
+
+func (x *UpdateKnowledgeBaseResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateKnowledgeBaseResponse.ProtoReflect.Descriptor instead.
+func (*UpdateKnowledgeBaseResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *UpdateKnowledgeBaseResponse) GetBody() *KnowledgeBase {
+	if x != nil {
+		return x.Body
+	}
+	return nil
+}
+
+func (x *UpdateKnowledgeBaseResponse) GetErrorMsg() string {
+	if x != nil {
+		return x.ErrorMsg
+	}
+	return ""
+}
+
+func (x *UpdateKnowledgeBaseResponse) GetStatusCode() int32 {
+	if x != nil {
+		return x.StatusCode
+	}
+	return 0
+}
+
+// DeleteKnowledgeBaseRequest represents a request to delete a knowledge base.
+type DeleteKnowledgeBaseRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The knowledge base identifier.
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *DeleteKnowledgeBaseRequest) Reset() {
+	*x = DeleteKnowledgeBaseRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteKnowledgeBaseRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteKnowledgeBaseRequest) ProtoMessage() {}
+
+func (x *DeleteKnowledgeBaseRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteKnowledgeBaseRequest.ProtoReflect.Descriptor instead.
+func (*DeleteKnowledgeBaseRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *DeleteKnowledgeBaseRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+// DeleteKnowledgeBaseResponse represents a response for deleting a knowledge base.
+type DeleteKnowledgeBaseResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The error message.
+	ErrorMsg string `protobuf:"bytes,1,opt,name=error_msg,json=errorMsg,proto3" json:"error_msg,omitempty"`
+	// The status code.
+	StatusCode int32 `protobuf:"varint,2,opt,name=status_code,json=statusCode,proto3" json:"status_code,omitempty"`
+}
+
+func (x *DeleteKnowledgeBaseResponse) Reset() {
+	*x = DeleteKnowledgeBaseResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[17]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteKnowledgeBaseResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteKnowledgeBaseResponse) ProtoMessage() {}
+
+func (x *DeleteKnowledgeBaseResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[17]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteKnowledgeBaseResponse.ProtoReflect.Descriptor instead.
+func (*DeleteKnowledgeBaseResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *DeleteKnowledgeBaseResponse) GetErrorMsg() string {
+	if x != nil {
+		return x.ErrorMsg
+	}
+	return ""
+}
+
+func (x *DeleteKnowledgeBaseResponse) GetStatusCode() int32 {
+	if x != nil {
+		return x.StatusCode
+	}
+	return 0
+}
+
 var File_artifact_artifact_v1alpha_artifact_proto protoreflect.FileDescriptor
 
 var file_artifact_artifact_v1alpha_artifact_proto_rawDesc = []byte{
@@ -636,24 +1202,85 @@ var file_artifact_artifact_v1alpha_artifact_proto_rawDesc = []byte{
 	0x12, 0x3a, 0x0a, 0x03, 0x74, 0x61, 0x67, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x28, 0x2e,
 	0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63,
 	0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x52, 0x65, 0x70, 0x6f, 0x73, 0x69,
-	0x74, 0x6f, 0x72, 0x79, 0x54, 0x61, 0x67, 0x52, 0x03, 0x74, 0x61, 0x67, 0x42, 0x81, 0x02, 0x0a,
-	0x1d, 0x63, 0x6f, 0x6d, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x61, 0x72,
-	0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x42, 0x0d,
-	0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a,
-	0x4b, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x69, 0x6e, 0x73, 0x74,
-	0x69, 0x6c, 0x6c, 0x2d, 0x61, 0x69, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x67, 0x65, 0x6e, 0x2d,
-	0x67, 0x6f, 0x2f, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2f, 0x61, 0x72, 0x74, 0x69,
-	0x66, 0x61, 0x63, 0x74, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x3b, 0x61, 0x72, 0x74,
-	0x69, 0x66, 0x61, 0x63, 0x74, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xa2, 0x02, 0x03, 0x41,
-	0x41, 0x58, 0xaa, 0x02, 0x19, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x41, 0x72,
-	0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xca, 0x02,
-	0x19, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x5c, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61,
-	0x63, 0x74, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xe2, 0x02, 0x25, 0x41, 0x72, 0x74,
-	0x69, 0x66, 0x61, 0x63, 0x74, 0x5c, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x5c, 0x56,
-	0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61,
-	0x74, 0x61, 0xea, 0x02, 0x1b, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x3a, 0x3a, 0x41,
-	0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x3a, 0x3a, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61,
-	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x74, 0x6f, 0x72, 0x79, 0x54, 0x61, 0x67, 0x52, 0x03, 0x74, 0x61, 0x67, 0x22, 0x69, 0x0a, 0x0d,
+	0x4b, 0x6e, 0x6f, 0x77, 0x6c, 0x65, 0x64, 0x67, 0x65, 0x42, 0x61, 0x73, 0x65, 0x12, 0x0e, 0x0a,
+	0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a,
+	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d,
+	0x65, 0x12, 0x20, 0x0a, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e,
+	0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74,
+	0x69, 0x6f, 0x6e, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x61, 0x67, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28,
+	0x09, 0x52, 0x04, 0x74, 0x61, 0x67, 0x73, 0x22, 0x66, 0x0a, 0x1a, 0x43, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x4b, 0x6e, 0x6f, 0x77, 0x6c, 0x65, 0x64, 0x67, 0x65, 0x42, 0x61, 0x73, 0x65, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x20, 0x0a, 0x0b, 0x64, 0x65, 0x73,
+	0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b,
+	0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x12, 0x0a, 0x04, 0x74,
+	0x61, 0x67, 0x73, 0x18, 0x03, 0x20, 0x03, 0x28, 0x09, 0x52, 0x04, 0x74, 0x61, 0x67, 0x73, 0x22,
+	0x99, 0x01, 0x0a, 0x1b, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4b, 0x6e, 0x6f, 0x77, 0x6c, 0x65,
+	0x64, 0x67, 0x65, 0x42, 0x61, 0x73, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x3c, 0x0a, 0x04, 0x62, 0x6f, 0x64, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x28, 0x2e,
+	0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63,
+	0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x4b, 0x6e, 0x6f, 0x77, 0x6c, 0x65,
+	0x64, 0x67, 0x65, 0x42, 0x61, 0x73, 0x65, 0x52, 0x04, 0x62, 0x6f, 0x64, 0x79, 0x12, 0x1b, 0x0a,
+	0x09, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x5f, 0x6d, 0x73, 0x67, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x08, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x4d, 0x73, 0x67, 0x12, 0x1f, 0x0a, 0x0b, 0x73, 0x74,
+	0x61, 0x74, 0x75, 0x73, 0x5f, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52,
+	0x0a, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x43, 0x6f, 0x64, 0x65, 0x22, 0x1a, 0x0a, 0x18, 0x47,
+	0x65, 0x74, 0x4b, 0x6e, 0x6f, 0x77, 0x6c, 0x65, 0x64, 0x67, 0x65, 0x42, 0x61, 0x73, 0x65, 0x73,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0xab, 0x01, 0x0a, 0x19, 0x47, 0x65, 0x74, 0x4b,
+	0x6e, 0x6f, 0x77, 0x6c, 0x65, 0x64, 0x67, 0x65, 0x42, 0x61, 0x73, 0x65, 0x73, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x50, 0x0a, 0x0e, 0x6b, 0x6e, 0x6f, 0x77, 0x6c, 0x65, 0x64,
+	0x67, 0x65, 0x62, 0x61, 0x73, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x28, 0x2e,
+	0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63,
+	0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x4b, 0x6e, 0x6f, 0x77, 0x6c, 0x65,
+	0x64, 0x67, 0x65, 0x42, 0x61, 0x73, 0x65, 0x52, 0x0e, 0x6b, 0x6e, 0x6f, 0x77, 0x6c, 0x65, 0x64,
+	0x67, 0x65, 0x62, 0x61, 0x73, 0x65, 0x73, 0x12, 0x1b, 0x0a, 0x09, 0x65, 0x72, 0x72, 0x6f, 0x72,
+	0x5f, 0x6d, 0x73, 0x67, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x65, 0x72, 0x72, 0x6f,
+	0x72, 0x4d, 0x73, 0x67, 0x12, 0x1f, 0x0a, 0x0b, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x5f, 0x63,
+	0x6f, 0x64, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0a, 0x73, 0x74, 0x61, 0x74, 0x75,
+	0x73, 0x43, 0x6f, 0x64, 0x65, 0x22, 0x76, 0x0a, 0x1a, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4b,
+	0x6e, 0x6f, 0x77, 0x6c, 0x65, 0x64, 0x67, 0x65, 0x42, 0x61, 0x73, 0x65, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x02, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x20, 0x0a, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72,
+	0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x64, 0x65,
+	0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x61, 0x67,
+	0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x09, 0x52, 0x04, 0x74, 0x61, 0x67, 0x73, 0x22, 0x99, 0x01,
+	0x0a, 0x1b, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4b, 0x6e, 0x6f, 0x77, 0x6c, 0x65, 0x64, 0x67,
+	0x65, 0x42, 0x61, 0x73, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3c, 0x0a,
+	0x04, 0x62, 0x6f, 0x64, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x28, 0x2e, 0x61, 0x72,
+	0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e,
+	0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x4b, 0x6e, 0x6f, 0x77, 0x6c, 0x65, 0x64, 0x67,
+	0x65, 0x42, 0x61, 0x73, 0x65, 0x52, 0x04, 0x62, 0x6f, 0x64, 0x79, 0x12, 0x1b, 0x0a, 0x09, 0x65,
+	0x72, 0x72, 0x6f, 0x72, 0x5f, 0x6d, 0x73, 0x67, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08,
+	0x65, 0x72, 0x72, 0x6f, 0x72, 0x4d, 0x73, 0x67, 0x12, 0x1f, 0x0a, 0x0b, 0x73, 0x74, 0x61, 0x74,
+	0x75, 0x73, 0x5f, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0a, 0x73,
+	0x74, 0x61, 0x74, 0x75, 0x73, 0x43, 0x6f, 0x64, 0x65, 0x22, 0x2c, 0x0a, 0x1a, 0x44, 0x65, 0x6c,
+	0x65, 0x74, 0x65, 0x4b, 0x6e, 0x6f, 0x77, 0x6c, 0x65, 0x64, 0x67, 0x65, 0x42, 0x61, 0x73, 0x65,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x5b, 0x0a, 0x1b, 0x44, 0x65, 0x6c, 0x65, 0x74,
+	0x65, 0x4b, 0x6e, 0x6f, 0x77, 0x6c, 0x65, 0x64, 0x67, 0x65, 0x42, 0x61, 0x73, 0x65, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x5f,
+	0x6d, 0x73, 0x67, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x65, 0x72, 0x72, 0x6f, 0x72,
+	0x4d, 0x73, 0x67, 0x12, 0x1f, 0x0a, 0x0b, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x5f, 0x63, 0x6f,
+	0x64, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0a, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73,
+	0x43, 0x6f, 0x64, 0x65, 0x42, 0x81, 0x02, 0x0a, 0x1d, 0x63, 0x6f, 0x6d, 0x2e, 0x61, 0x72, 0x74,
+	0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x76,
+	0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x42, 0x0d, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74,
+	0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x4b, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e,
+	0x63, 0x6f, 0x6d, 0x2f, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2d, 0x61, 0x69, 0x2f, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x67, 0x65, 0x6e, 0x2d, 0x67, 0x6f, 0x2f, 0x61, 0x72, 0x74, 0x69, 0x66,
+	0x61, 0x63, 0x74, 0x2f, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2f, 0x76, 0x31, 0x61,
+	0x6c, 0x70, 0x68, 0x61, 0x3b, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x76, 0x31, 0x61,
+	0x6c, 0x70, 0x68, 0x61, 0xa2, 0x02, 0x03, 0x41, 0x41, 0x58, 0xaa, 0x02, 0x19, 0x41, 0x72, 0x74,
+	0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x56,
+	0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xca, 0x02, 0x19, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63,
+	0x74, 0x5c, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70,
+	0x68, 0x61, 0xe2, 0x02, 0x25, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x5c, 0x41, 0x72,
+	0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x5c, 0x47,
+	0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x1b, 0x41, 0x72, 0x74,
+	0x69, 0x66, 0x61, 0x63, 0x74, 0x3a, 0x3a, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x3a,
+	0x3a, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -668,7 +1295,7 @@ func file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP() []byte {
 	return file_artifact_artifact_v1alpha_artifact_proto_rawDescData
 }
 
-var file_artifact_artifact_v1alpha_artifact_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_artifact_artifact_v1alpha_artifact_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
 var file_artifact_artifact_v1alpha_artifact_proto_goTypes = []interface{}{
 	(*LivenessRequest)(nil),             // 0: artifact.artifact.v1alpha.LivenessRequest
 	(*LivenessResponse)(nil),            // 1: artifact.artifact.v1alpha.LivenessResponse
@@ -679,24 +1306,36 @@ var file_artifact_artifact_v1alpha_artifact_proto_goTypes = []interface{}{
 	(*ListRepositoryTagsResponse)(nil),  // 6: artifact.artifact.v1alpha.ListRepositoryTagsResponse
 	(*CreateRepositoryTagRequest)(nil),  // 7: artifact.artifact.v1alpha.CreateRepositoryTagRequest
 	(*CreateRepositoryTagResponse)(nil), // 8: artifact.artifact.v1alpha.CreateRepositoryTagResponse
-	(*v1beta.HealthCheckRequest)(nil),   // 9: common.healthcheck.v1beta.HealthCheckRequest
-	(*v1beta.HealthCheckResponse)(nil),  // 10: common.healthcheck.v1beta.HealthCheckResponse
-	(*timestamppb.Timestamp)(nil),       // 11: google.protobuf.Timestamp
+	(*KnowledgeBase)(nil),               // 9: artifact.artifact.v1alpha.KnowledgeBase
+	(*CreateKnowledgeBaseRequest)(nil),  // 10: artifact.artifact.v1alpha.CreateKnowledgeBaseRequest
+	(*CreateKnowledgeBaseResponse)(nil), // 11: artifact.artifact.v1alpha.CreateKnowledgeBaseResponse
+	(*GetKnowledgeBasesRequest)(nil),    // 12: artifact.artifact.v1alpha.GetKnowledgeBasesRequest
+	(*GetKnowledgeBasesResponse)(nil),   // 13: artifact.artifact.v1alpha.GetKnowledgeBasesResponse
+	(*UpdateKnowledgeBaseRequest)(nil),  // 14: artifact.artifact.v1alpha.UpdateKnowledgeBaseRequest
+	(*UpdateKnowledgeBaseResponse)(nil), // 15: artifact.artifact.v1alpha.UpdateKnowledgeBaseResponse
+	(*DeleteKnowledgeBaseRequest)(nil),  // 16: artifact.artifact.v1alpha.DeleteKnowledgeBaseRequest
+	(*DeleteKnowledgeBaseResponse)(nil), // 17: artifact.artifact.v1alpha.DeleteKnowledgeBaseResponse
+	(*v1beta.HealthCheckRequest)(nil),   // 18: common.healthcheck.v1beta.HealthCheckRequest
+	(*v1beta.HealthCheckResponse)(nil),  // 19: common.healthcheck.v1beta.HealthCheckResponse
+	(*timestamppb.Timestamp)(nil),       // 20: google.protobuf.Timestamp
 }
 var file_artifact_artifact_v1alpha_artifact_proto_depIdxs = []int32{
-	9,  // 0: artifact.artifact.v1alpha.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	10, // 1: artifact.artifact.v1alpha.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
-	9,  // 2: artifact.artifact.v1alpha.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	10, // 3: artifact.artifact.v1alpha.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
-	11, // 4: artifact.artifact.v1alpha.RepositoryTag.update_time:type_name -> google.protobuf.Timestamp
+	18, // 0: artifact.artifact.v1alpha.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	19, // 1: artifact.artifact.v1alpha.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	18, // 2: artifact.artifact.v1alpha.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	19, // 3: artifact.artifact.v1alpha.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	20, // 4: artifact.artifact.v1alpha.RepositoryTag.update_time:type_name -> google.protobuf.Timestamp
 	4,  // 5: artifact.artifact.v1alpha.ListRepositoryTagsResponse.tags:type_name -> artifact.artifact.v1alpha.RepositoryTag
 	4,  // 6: artifact.artifact.v1alpha.CreateRepositoryTagRequest.tag:type_name -> artifact.artifact.v1alpha.RepositoryTag
 	4,  // 7: artifact.artifact.v1alpha.CreateRepositoryTagResponse.tag:type_name -> artifact.artifact.v1alpha.RepositoryTag
-	8,  // [8:8] is the sub-list for method output_type
-	8,  // [8:8] is the sub-list for method input_type
-	8,  // [8:8] is the sub-list for extension type_name
-	8,  // [8:8] is the sub-list for extension extendee
-	0,  // [0:8] is the sub-list for field type_name
+	9,  // 8: artifact.artifact.v1alpha.CreateKnowledgeBaseResponse.body:type_name -> artifact.artifact.v1alpha.KnowledgeBase
+	9,  // 9: artifact.artifact.v1alpha.GetKnowledgeBasesResponse.knowledgebases:type_name -> artifact.artifact.v1alpha.KnowledgeBase
+	9,  // 10: artifact.artifact.v1alpha.UpdateKnowledgeBaseResponse.body:type_name -> artifact.artifact.v1alpha.KnowledgeBase
+	11, // [11:11] is the sub-list for method output_type
+	11, // [11:11] is the sub-list for method input_type
+	11, // [11:11] is the sub-list for extension type_name
+	11, // [11:11] is the sub-list for extension extendee
+	0,  // [0:11] is the sub-list for field type_name
 }
 
 func init() { file_artifact_artifact_v1alpha_artifact_proto_init() }
@@ -813,6 +1452,114 @@ func file_artifact_artifact_v1alpha_artifact_proto_init() {
 				return nil
 			}
 		}
+		file_artifact_artifact_v1alpha_artifact_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*KnowledgeBase); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_artifact_artifact_v1alpha_artifact_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateKnowledgeBaseRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_artifact_artifact_v1alpha_artifact_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateKnowledgeBaseResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_artifact_artifact_v1alpha_artifact_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetKnowledgeBasesRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_artifact_artifact_v1alpha_artifact_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetKnowledgeBasesResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_artifact_artifact_v1alpha_artifact_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateKnowledgeBaseRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_artifact_artifact_v1alpha_artifact_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateKnowledgeBaseResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_artifact_artifact_v1alpha_artifact_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteKnowledgeBaseRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_artifact_artifact_v1alpha_artifact_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteKnowledgeBaseResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	file_artifact_artifact_v1alpha_artifact_proto_msgTypes[0].OneofWrappers = []interface{}{}
 	file_artifact_artifact_v1alpha_artifact_proto_msgTypes[2].OneofWrappers = []interface{}{}
@@ -823,7 +1570,7 @@ func file_artifact_artifact_v1alpha_artifact_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_artifact_artifact_v1alpha_artifact_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   18,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
