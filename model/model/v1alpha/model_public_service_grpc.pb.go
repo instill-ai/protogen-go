@@ -36,6 +36,7 @@ const (
 	ModelPublicService_UnpublishUserModel_FullMethodName                       = "/model.model.v1alpha.ModelPublicService/UnpublishUserModel"
 	ModelPublicService_GetUserModelCard_FullMethodName                         = "/model.model.v1alpha.ModelPublicService/GetUserModelCard"
 	ModelPublicService_WatchUserModel_FullMethodName                           = "/model.model.v1alpha.ModelPublicService/WatchUserModel"
+	ModelPublicService_WatchUserLatestModel_FullMethodName                     = "/model.model.v1alpha.ModelPublicService/WatchUserLatestModel"
 	ModelPublicService_ListUserModelVersions_FullMethodName                    = "/model.model.v1alpha.ModelPublicService/ListUserModelVersions"
 	ModelPublicService_TriggerUserModel_FullMethodName                         = "/model.model.v1alpha.ModelPublicService/TriggerUserModel"
 	ModelPublicService_TriggerAsyncUserModel_FullMethodName                    = "/model.model.v1alpha.ModelPublicService/TriggerAsyncUserModel"
@@ -52,6 +53,7 @@ const (
 	ModelPublicService_UnpublishOrganizationModel_FullMethodName               = "/model.model.v1alpha.ModelPublicService/UnpublishOrganizationModel"
 	ModelPublicService_GetOrganizationModelCard_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/GetOrganizationModelCard"
 	ModelPublicService_WatchOrganizationModel_FullMethodName                   = "/model.model.v1alpha.ModelPublicService/WatchOrganizationModel"
+	ModelPublicService_WatchOrganizationLatestModel_FullMethodName             = "/model.model.v1alpha.ModelPublicService/WatchOrganizationLatestModel"
 	ModelPublicService_ListOrganizationModelVersions_FullMethodName            = "/model.model.v1alpha.ModelPublicService/ListOrganizationModelVersions"
 	ModelPublicService_TriggerOrganizationModel_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/TriggerOrganizationModel"
 	ModelPublicService_TriggerAsyncOrganizationModel_FullMethodName            = "/model.model.v1alpha.ModelPublicService/TriggerAsyncOrganizationModel"
@@ -144,12 +146,18 @@ type ModelPublicServiceClient interface {
 	// Returns the README file that accompanies a model, describing it and
 	// enhancing it with metadata. The model is accessed by its resource name.
 	GetUserModelCard(ctx context.Context, in *GetUserModelCardRequest, opts ...grpc.CallOption) (*GetUserModelCardResponse, error)
-	// Watch the state of a model
+	// Watch the state of a model version
 	//
 	// Returns the state of a model. The deploy / undeploy actions take some
 	// time, during which a model will be in an UNSPECIFIED state. This endpoint
 	// allows clients to track the state and progress of the model.
 	WatchUserModel(ctx context.Context, in *WatchUserModelRequest, opts ...grpc.CallOption) (*WatchUserModelResponse, error)
+	// Watch the state of the latest model version
+	//
+	// Returns the state of the latest model version. The deploy / undeploy actions take some
+	// time, during which a model will be in an UNSPECIFIED state. This endpoint
+	// allows clients to track the state and progress of the model.
+	WatchUserLatestModel(ctx context.Context, in *WatchUserLatestModelRequest, opts ...grpc.CallOption) (*WatchUserLatestModelResponse, error)
 	// List user model versions
 	//
 	// Returns a paginated list of version of a model namespace that belong to the specified user.
@@ -231,12 +239,18 @@ type ModelPublicServiceClient interface {
 	// Returns the README file that accompanies a model, describing it and
 	// enhancing it with metadata. The model is accessed by its resource name.
 	GetOrganizationModelCard(ctx context.Context, in *GetOrganizationModelCardRequest, opts ...grpc.CallOption) (*GetOrganizationModelCardResponse, error)
-	// Watch the state of a model
+	// Watch the state of a model version
 	//
 	// Returns the state of a model. The deploy / undeploy actions take some
 	// time, during which a model will be in an UNSPECIFIED state. This endpoint
 	// allows clients to track the state and progress of the model.
 	WatchOrganizationModel(ctx context.Context, in *WatchOrganizationModelRequest, opts ...grpc.CallOption) (*WatchOrganizationModelResponse, error)
+	// Watch the state of the latest model version
+	//
+	// Returns the state of the latest model version. The deploy / undeploy actions take some
+	// time, during which a model will be in an UNSPECIFIED state. This endpoint
+	// allows clients to track the state and progress of the model.
+	WatchOrganizationLatestModel(ctx context.Context, in *WatchOrganizationLatestModelRequest, opts ...grpc.CallOption) (*WatchOrganizationLatestModelResponse, error)
 	// List organization model versions
 	//
 	// Returns a paginated list of version of a model namespace that belong to the specified organization.
@@ -435,6 +449,15 @@ func (c *modelPublicServiceClient) WatchUserModel(ctx context.Context, in *Watch
 	return out, nil
 }
 
+func (c *modelPublicServiceClient) WatchUserLatestModel(ctx context.Context, in *WatchUserLatestModelRequest, opts ...grpc.CallOption) (*WatchUserLatestModelResponse, error) {
+	out := new(WatchUserLatestModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_WatchUserLatestModel_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *modelPublicServiceClient) ListUserModelVersions(ctx context.Context, in *ListUserModelVersionsRequest, opts ...grpc.CallOption) (*ListUserModelVersionsResponse, error) {
 	out := new(ListUserModelVersionsResponse)
 	err := c.cc.Invoke(ctx, ModelPublicService_ListUserModelVersions_FullMethodName, in, out, opts...)
@@ -598,6 +621,15 @@ func (c *modelPublicServiceClient) GetOrganizationModelCard(ctx context.Context,
 func (c *modelPublicServiceClient) WatchOrganizationModel(ctx context.Context, in *WatchOrganizationModelRequest, opts ...grpc.CallOption) (*WatchOrganizationModelResponse, error) {
 	out := new(WatchOrganizationModelResponse)
 	err := c.cc.Invoke(ctx, ModelPublicService_WatchOrganizationModel_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *modelPublicServiceClient) WatchOrganizationLatestModel(ctx context.Context, in *WatchOrganizationLatestModelRequest, opts ...grpc.CallOption) (*WatchOrganizationLatestModelResponse, error) {
+	out := new(WatchOrganizationLatestModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_WatchOrganizationLatestModel_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -775,12 +807,18 @@ type ModelPublicServiceServer interface {
 	// Returns the README file that accompanies a model, describing it and
 	// enhancing it with metadata. The model is accessed by its resource name.
 	GetUserModelCard(context.Context, *GetUserModelCardRequest) (*GetUserModelCardResponse, error)
-	// Watch the state of a model
+	// Watch the state of a model version
 	//
 	// Returns the state of a model. The deploy / undeploy actions take some
 	// time, during which a model will be in an UNSPECIFIED state. This endpoint
 	// allows clients to track the state and progress of the model.
 	WatchUserModel(context.Context, *WatchUserModelRequest) (*WatchUserModelResponse, error)
+	// Watch the state of the latest model version
+	//
+	// Returns the state of the latest model version. The deploy / undeploy actions take some
+	// time, during which a model will be in an UNSPECIFIED state. This endpoint
+	// allows clients to track the state and progress of the model.
+	WatchUserLatestModel(context.Context, *WatchUserLatestModelRequest) (*WatchUserLatestModelResponse, error)
 	// List user model versions
 	//
 	// Returns a paginated list of version of a model namespace that belong to the specified user.
@@ -862,12 +900,18 @@ type ModelPublicServiceServer interface {
 	// Returns the README file that accompanies a model, describing it and
 	// enhancing it with metadata. The model is accessed by its resource name.
 	GetOrganizationModelCard(context.Context, *GetOrganizationModelCardRequest) (*GetOrganizationModelCardResponse, error)
-	// Watch the state of a model
+	// Watch the state of a model version
 	//
 	// Returns the state of a model. The deploy / undeploy actions take some
 	// time, during which a model will be in an UNSPECIFIED state. This endpoint
 	// allows clients to track the state and progress of the model.
 	WatchOrganizationModel(context.Context, *WatchOrganizationModelRequest) (*WatchOrganizationModelResponse, error)
+	// Watch the state of the latest model version
+	//
+	// Returns the state of the latest model version. The deploy / undeploy actions take some
+	// time, during which a model will be in an UNSPECIFIED state. This endpoint
+	// allows clients to track the state and progress of the model.
+	WatchOrganizationLatestModel(context.Context, *WatchOrganizationLatestModelRequest) (*WatchOrganizationLatestModelResponse, error)
 	// List organization model versions
 	//
 	// Returns a paginated list of version of a model namespace that belong to the specified organization.
@@ -960,6 +1004,9 @@ func (UnimplementedModelPublicServiceServer) GetUserModelCard(context.Context, *
 func (UnimplementedModelPublicServiceServer) WatchUserModel(context.Context, *WatchUserModelRequest) (*WatchUserModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method WatchUserModel not implemented")
 }
+func (UnimplementedModelPublicServiceServer) WatchUserLatestModel(context.Context, *WatchUserLatestModelRequest) (*WatchUserLatestModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WatchUserLatestModel not implemented")
+}
 func (UnimplementedModelPublicServiceServer) ListUserModelVersions(context.Context, *ListUserModelVersionsRequest) (*ListUserModelVersionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListUserModelVersions not implemented")
 }
@@ -1007,6 +1054,9 @@ func (UnimplementedModelPublicServiceServer) GetOrganizationModelCard(context.Co
 }
 func (UnimplementedModelPublicServiceServer) WatchOrganizationModel(context.Context, *WatchOrganizationModelRequest) (*WatchOrganizationModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method WatchOrganizationModel not implemented")
+}
+func (UnimplementedModelPublicServiceServer) WatchOrganizationLatestModel(context.Context, *WatchOrganizationLatestModelRequest) (*WatchOrganizationLatestModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WatchOrganizationLatestModel not implemented")
 }
 func (UnimplementedModelPublicServiceServer) ListOrganizationModelVersions(context.Context, *ListOrganizationModelVersionsRequest) (*ListOrganizationModelVersionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizationModelVersions not implemented")
@@ -1347,6 +1397,24 @@ func _ModelPublicService_WatchUserModel_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ModelPublicService_WatchUserLatestModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WatchUserLatestModelRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPublicServiceServer).WatchUserLatestModel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPublicService_WatchUserLatestModel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPublicServiceServer).WatchUserLatestModel(ctx, req.(*WatchUserLatestModelRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ModelPublicService_ListUserModelVersions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListUserModelVersionsRequest)
 	if err := dec(in); err != nil {
@@ -1643,6 +1711,24 @@ func _ModelPublicService_WatchOrganizationModel_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ModelPublicService_WatchOrganizationLatestModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WatchOrganizationLatestModelRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPublicServiceServer).WatchOrganizationLatestModel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPublicService_WatchOrganizationLatestModel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPublicServiceServer).WatchOrganizationLatestModel(ctx, req.(*WatchOrganizationLatestModelRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ModelPublicService_ListOrganizationModelVersions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListOrganizationModelVersionsRequest)
 	if err := dec(in); err != nil {
@@ -1853,6 +1939,10 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ModelPublicService_WatchUserModel_Handler,
 		},
 		{
+			MethodName: "WatchUserLatestModel",
+			Handler:    _ModelPublicService_WatchUserLatestModel_Handler,
+		},
+		{
 			MethodName: "ListUserModelVersions",
 			Handler:    _ModelPublicService_ListUserModelVersions_Handler,
 		},
@@ -1911,6 +2001,10 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "WatchOrganizationModel",
 			Handler:    _ModelPublicService_WatchOrganizationModel_Handler,
+		},
+		{
+			MethodName: "WatchOrganizationLatestModel",
+			Handler:    _ModelPublicService_WatchOrganizationLatestModel_Handler,
 		},
 		{
 			MethodName: "ListOrganizationModelVersions",
