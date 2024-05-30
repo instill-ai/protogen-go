@@ -22,7 +22,7 @@ const (
 	ArtifactPublicService_Liveness_FullMethodName            = "/artifact.artifact.v1alpha.ArtifactPublicService/Liveness"
 	ArtifactPublicService_Readiness_FullMethodName           = "/artifact.artifact.v1alpha.ArtifactPublicService/Readiness"
 	ArtifactPublicService_CreateKnowledgeBase_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPublicService/CreateKnowledgeBase"
-	ArtifactPublicService_GetKnowledgeBases_FullMethodName   = "/artifact.artifact.v1alpha.ArtifactPublicService/GetKnowledgeBases"
+	ArtifactPublicService_ListKnowledgeBases_FullMethodName  = "/artifact.artifact.v1alpha.ArtifactPublicService/ListKnowledgeBases"
 	ArtifactPublicService_UpdateKnowledgeBase_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateKnowledgeBase"
 	ArtifactPublicService_DeleteKnowledgeBase_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteKnowledgeBase"
 )
@@ -42,7 +42,7 @@ type ArtifactPublicServiceClient interface {
 	// Create a knowledge base
 	CreateKnowledgeBase(ctx context.Context, in *CreateKnowledgeBaseRequest, opts ...grpc.CallOption) (*CreateKnowledgeBaseResponse, error)
 	// Get all knowledge bases info
-	GetKnowledgeBases(ctx context.Context, in *GetKnowledgeBasesRequest, opts ...grpc.CallOption) (*GetKnowledgeBasesResponse, error)
+	ListKnowledgeBases(ctx context.Context, in *ListKnowledgeBasesRequest, opts ...grpc.CallOption) (*ListKnowledgeBasesResponse, error)
 	// Update a knowledge base info
 	UpdateKnowledgeBase(ctx context.Context, in *UpdateKnowledgeBaseRequest, opts ...grpc.CallOption) (*UpdateKnowledgeBaseResponse, error)
 	// Delete a knowledge base
@@ -84,9 +84,9 @@ func (c *artifactPublicServiceClient) CreateKnowledgeBase(ctx context.Context, i
 	return out, nil
 }
 
-func (c *artifactPublicServiceClient) GetKnowledgeBases(ctx context.Context, in *GetKnowledgeBasesRequest, opts ...grpc.CallOption) (*GetKnowledgeBasesResponse, error) {
-	out := new(GetKnowledgeBasesResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_GetKnowledgeBases_FullMethodName, in, out, opts...)
+func (c *artifactPublicServiceClient) ListKnowledgeBases(ctx context.Context, in *ListKnowledgeBasesRequest, opts ...grpc.CallOption) (*ListKnowledgeBasesResponse, error) {
+	out := new(ListKnowledgeBasesResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_ListKnowledgeBases_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -126,7 +126,7 @@ type ArtifactPublicServiceServer interface {
 	// Create a knowledge base
 	CreateKnowledgeBase(context.Context, *CreateKnowledgeBaseRequest) (*CreateKnowledgeBaseResponse, error)
 	// Get all knowledge bases info
-	GetKnowledgeBases(context.Context, *GetKnowledgeBasesRequest) (*GetKnowledgeBasesResponse, error)
+	ListKnowledgeBases(context.Context, *ListKnowledgeBasesRequest) (*ListKnowledgeBasesResponse, error)
 	// Update a knowledge base info
 	UpdateKnowledgeBase(context.Context, *UpdateKnowledgeBaseRequest) (*UpdateKnowledgeBaseResponse, error)
 	// Delete a knowledge base
@@ -146,8 +146,8 @@ func (UnimplementedArtifactPublicServiceServer) Readiness(context.Context, *Read
 func (UnimplementedArtifactPublicServiceServer) CreateKnowledgeBase(context.Context, *CreateKnowledgeBaseRequest) (*CreateKnowledgeBaseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateKnowledgeBase not implemented")
 }
-func (UnimplementedArtifactPublicServiceServer) GetKnowledgeBases(context.Context, *GetKnowledgeBasesRequest) (*GetKnowledgeBasesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetKnowledgeBases not implemented")
+func (UnimplementedArtifactPublicServiceServer) ListKnowledgeBases(context.Context, *ListKnowledgeBasesRequest) (*ListKnowledgeBasesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListKnowledgeBases not implemented")
 }
 func (UnimplementedArtifactPublicServiceServer) UpdateKnowledgeBase(context.Context, *UpdateKnowledgeBaseRequest) (*UpdateKnowledgeBaseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateKnowledgeBase not implemented")
@@ -221,20 +221,20 @@ func _ArtifactPublicService_CreateKnowledgeBase_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPublicService_GetKnowledgeBases_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetKnowledgeBasesRequest)
+func _ArtifactPublicService_ListKnowledgeBases_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListKnowledgeBasesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).GetKnowledgeBases(ctx, in)
+		return srv.(ArtifactPublicServiceServer).ListKnowledgeBases(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPublicService_GetKnowledgeBases_FullMethodName,
+		FullMethod: ArtifactPublicService_ListKnowledgeBases_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).GetKnowledgeBases(ctx, req.(*GetKnowledgeBasesRequest))
+		return srv.(ArtifactPublicServiceServer).ListKnowledgeBases(ctx, req.(*ListKnowledgeBasesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -295,8 +295,8 @@ var ArtifactPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ArtifactPublicService_CreateKnowledgeBase_Handler,
 		},
 		{
-			MethodName: "GetKnowledgeBases",
-			Handler:    _ArtifactPublicService_GetKnowledgeBases_Handler,
+			MethodName: "ListKnowledgeBases",
+			Handler:    _ArtifactPublicService_ListKnowledgeBases_Handler,
 		},
 		{
 			MethodName: "UpdateKnowledgeBase",
