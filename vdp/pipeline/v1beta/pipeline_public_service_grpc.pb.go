@@ -415,14 +415,17 @@ type PipelinePublicServiceClient interface {
 	// This method allows requesters to request the status and outcome of
 	// long-running operations such as asynchronous pipeline triggers.
 	GetOperation(ctx context.Context, in *GetOperationRequest, opts ...grpc.CallOption) (*GetOperationResponse, error)
+	// Deprecated: Do not use.
 	// List connector definitions
 	//
 	// Returns a paginated list of connector definitions.
 	ListConnectorDefinitions(ctx context.Context, in *ListConnectorDefinitionsRequest, opts ...grpc.CallOption) (*ListConnectorDefinitionsResponse, error)
+	// Deprecated: Do not use.
 	// Get connector definition
 	//
 	// Returns the details of a connector definition.
 	GetConnectorDefinition(ctx context.Context, in *GetConnectorDefinitionRequest, opts ...grpc.CallOption) (*GetConnectorDefinitionResponse, error)
+	// Deprecated: Do not use.
 	// List operator definitions
 	//
 	// Returns a paginated list of operator definitions.
@@ -433,6 +436,7 @@ type PipelinePublicServiceClient interface {
 	// This offers a single source of truth, with pagination and filter
 	// capabilities, for the components that might be used in a VDP pipeline.
 	ListComponentDefinitions(ctx context.Context, in *ListComponentDefinitionsRequest, opts ...grpc.CallOption) (*ListComponentDefinitionsResponse, error)
+	// Deprecated: Do not use.
 	// Get operator definition
 	//
 	// Returns the details of an operator definition.
@@ -932,6 +936,7 @@ func (c *pipelinePublicServiceClient) GetOperation(ctx context.Context, in *GetO
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *pipelinePublicServiceClient) ListConnectorDefinitions(ctx context.Context, in *ListConnectorDefinitionsRequest, opts ...grpc.CallOption) (*ListConnectorDefinitionsResponse, error) {
 	out := new(ListConnectorDefinitionsResponse)
 	err := c.cc.Invoke(ctx, PipelinePublicService_ListConnectorDefinitions_FullMethodName, in, out, opts...)
@@ -941,6 +946,7 @@ func (c *pipelinePublicServiceClient) ListConnectorDefinitions(ctx context.Conte
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *pipelinePublicServiceClient) GetConnectorDefinition(ctx context.Context, in *GetConnectorDefinitionRequest, opts ...grpc.CallOption) (*GetConnectorDefinitionResponse, error) {
 	out := new(GetConnectorDefinitionResponse)
 	err := c.cc.Invoke(ctx, PipelinePublicService_GetConnectorDefinition_FullMethodName, in, out, opts...)
@@ -950,6 +956,7 @@ func (c *pipelinePublicServiceClient) GetConnectorDefinition(ctx context.Context
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *pipelinePublicServiceClient) ListOperatorDefinitions(ctx context.Context, in *ListOperatorDefinitionsRequest, opts ...grpc.CallOption) (*ListOperatorDefinitionsResponse, error) {
 	out := new(ListOperatorDefinitionsResponse)
 	err := c.cc.Invoke(ctx, PipelinePublicService_ListOperatorDefinitions_FullMethodName, in, out, opts...)
@@ -968,6 +975,7 @@ func (c *pipelinePublicServiceClient) ListComponentDefinitions(ctx context.Conte
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *pipelinePublicServiceClient) GetOperatorDefinition(ctx context.Context, in *GetOperatorDefinitionRequest, opts ...grpc.CallOption) (*GetOperatorDefinitionResponse, error) {
 	out := new(GetOperatorDefinitionResponse)
 	err := c.cc.Invoke(ctx, PipelinePublicService_GetOperatorDefinition_FullMethodName, in, out, opts...)
@@ -1409,14 +1417,17 @@ type PipelinePublicServiceServer interface {
 	// This method allows requesters to request the status and outcome of
 	// long-running operations such as asynchronous pipeline triggers.
 	GetOperation(context.Context, *GetOperationRequest) (*GetOperationResponse, error)
+	// Deprecated: Do not use.
 	// List connector definitions
 	//
 	// Returns a paginated list of connector definitions.
 	ListConnectorDefinitions(context.Context, *ListConnectorDefinitionsRequest) (*ListConnectorDefinitionsResponse, error)
+	// Deprecated: Do not use.
 	// Get connector definition
 	//
 	// Returns the details of a connector definition.
 	GetConnectorDefinition(context.Context, *GetConnectorDefinitionRequest) (*GetConnectorDefinitionResponse, error)
+	// Deprecated: Do not use.
 	// List operator definitions
 	//
 	// Returns a paginated list of operator definitions.
@@ -1427,6 +1438,7 @@ type PipelinePublicServiceServer interface {
 	// This offers a single source of truth, with pagination and filter
 	// capabilities, for the components that might be used in a VDP pipeline.
 	ListComponentDefinitions(context.Context, *ListComponentDefinitionsRequest) (*ListComponentDefinitionsResponse, error)
+	// Deprecated: Do not use.
 	// Get operator definition
 	//
 	// Returns the details of an operator definition.
