@@ -19,12 +19,16 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ArtifactPublicService_Liveness_FullMethodName            = "/artifact.artifact.v1alpha.ArtifactPublicService/Liveness"
-	ArtifactPublicService_Readiness_FullMethodName           = "/artifact.artifact.v1alpha.ArtifactPublicService/Readiness"
-	ArtifactPublicService_CreateKnowledgeBase_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPublicService/CreateKnowledgeBase"
-	ArtifactPublicService_ListKnowledgeBases_FullMethodName  = "/artifact.artifact.v1alpha.ArtifactPublicService/ListKnowledgeBases"
-	ArtifactPublicService_UpdateKnowledgeBase_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateKnowledgeBase"
-	ArtifactPublicService_DeleteKnowledgeBase_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteKnowledgeBase"
+	ArtifactPublicService_Liveness_FullMethodName                  = "/artifact.artifact.v1alpha.ArtifactPublicService/Liveness"
+	ArtifactPublicService_Readiness_FullMethodName                 = "/artifact.artifact.v1alpha.ArtifactPublicService/Readiness"
+	ArtifactPublicService_CreateKnowledgeBase_FullMethodName       = "/artifact.artifact.v1alpha.ArtifactPublicService/CreateKnowledgeBase"
+	ArtifactPublicService_ListKnowledgeBases_FullMethodName        = "/artifact.artifact.v1alpha.ArtifactPublicService/ListKnowledgeBases"
+	ArtifactPublicService_UpdateKnowledgeBase_FullMethodName       = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateKnowledgeBase"
+	ArtifactPublicService_DeleteKnowledgeBase_FullMethodName       = "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteKnowledgeBase"
+	ArtifactPublicService_UploadKnowledgeBaseFile_FullMethodName   = "/artifact.artifact.v1alpha.ArtifactPublicService/UploadKnowledgeBaseFile"
+	ArtifactPublicService_DeleteKnowledgeBaseFile_FullMethodName   = "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteKnowledgeBaseFile"
+	ArtifactPublicService_ProcessKnowledgeBaseFiles_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPublicService/ProcessKnowledgeBaseFiles"
+	ArtifactPublicService_ListKnowledgeBaseFiles_FullMethodName    = "/artifact.artifact.v1alpha.ArtifactPublicService/ListKnowledgeBaseFiles"
 )
 
 // ArtifactPublicServiceClient is the client API for ArtifactPublicService service.
@@ -47,6 +51,14 @@ type ArtifactPublicServiceClient interface {
 	UpdateKnowledgeBase(ctx context.Context, in *UpdateKnowledgeBaseRequest, opts ...grpc.CallOption) (*UpdateKnowledgeBaseResponse, error)
 	// Delete a knowledge base
 	DeleteKnowledgeBase(ctx context.Context, in *DeleteKnowledgeBaseRequest, opts ...grpc.CallOption) (*DeleteKnowledgeBaseResponse, error)
+	// Create a file
+	UploadKnowledgeBaseFile(ctx context.Context, in *UploadKnowledgeBaseFileRequest, opts ...grpc.CallOption) (*UploadKnowledgeBaseFileResponse, error)
+	// Delete a file
+	DeleteKnowledgeBaseFile(ctx context.Context, in *DeleteKnowledgeBaseFileRequest, opts ...grpc.CallOption) (*DeleteKnowledgeBaseFileResponse, error)
+	// process file
+	ProcessKnowledgeBaseFiles(ctx context.Context, in *ProcessKnowledgeBaseFilesRequest, opts ...grpc.CallOption) (*ProcessKnowledgeBaseFilesResponse, error)
+	// list files
+	ListKnowledgeBaseFiles(ctx context.Context, in *ListKnowledgeBaseFilesRequest, opts ...grpc.CallOption) (*ListKnowledgeBaseFilesResponse, error)
 }
 
 type artifactPublicServiceClient struct {
@@ -111,6 +123,42 @@ func (c *artifactPublicServiceClient) DeleteKnowledgeBase(ctx context.Context, i
 	return out, nil
 }
 
+func (c *artifactPublicServiceClient) UploadKnowledgeBaseFile(ctx context.Context, in *UploadKnowledgeBaseFileRequest, opts ...grpc.CallOption) (*UploadKnowledgeBaseFileResponse, error) {
+	out := new(UploadKnowledgeBaseFileResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_UploadKnowledgeBaseFile_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPublicServiceClient) DeleteKnowledgeBaseFile(ctx context.Context, in *DeleteKnowledgeBaseFileRequest, opts ...grpc.CallOption) (*DeleteKnowledgeBaseFileResponse, error) {
+	out := new(DeleteKnowledgeBaseFileResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_DeleteKnowledgeBaseFile_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPublicServiceClient) ProcessKnowledgeBaseFiles(ctx context.Context, in *ProcessKnowledgeBaseFilesRequest, opts ...grpc.CallOption) (*ProcessKnowledgeBaseFilesResponse, error) {
+	out := new(ProcessKnowledgeBaseFilesResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_ProcessKnowledgeBaseFiles_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPublicServiceClient) ListKnowledgeBaseFiles(ctx context.Context, in *ListKnowledgeBaseFilesRequest, opts ...grpc.CallOption) (*ListKnowledgeBaseFilesResponse, error) {
+	out := new(ListKnowledgeBaseFilesResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_ListKnowledgeBaseFiles_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ArtifactPublicServiceServer is the server API for ArtifactPublicService service.
 // All implementations should embed UnimplementedArtifactPublicServiceServer
 // for forward compatibility
@@ -131,6 +179,14 @@ type ArtifactPublicServiceServer interface {
 	UpdateKnowledgeBase(context.Context, *UpdateKnowledgeBaseRequest) (*UpdateKnowledgeBaseResponse, error)
 	// Delete a knowledge base
 	DeleteKnowledgeBase(context.Context, *DeleteKnowledgeBaseRequest) (*DeleteKnowledgeBaseResponse, error)
+	// Create a file
+	UploadKnowledgeBaseFile(context.Context, *UploadKnowledgeBaseFileRequest) (*UploadKnowledgeBaseFileResponse, error)
+	// Delete a file
+	DeleteKnowledgeBaseFile(context.Context, *DeleteKnowledgeBaseFileRequest) (*DeleteKnowledgeBaseFileResponse, error)
+	// process file
+	ProcessKnowledgeBaseFiles(context.Context, *ProcessKnowledgeBaseFilesRequest) (*ProcessKnowledgeBaseFilesResponse, error)
+	// list files
+	ListKnowledgeBaseFiles(context.Context, *ListKnowledgeBaseFilesRequest) (*ListKnowledgeBaseFilesResponse, error)
 }
 
 // UnimplementedArtifactPublicServiceServer should be embedded to have forward compatible implementations.
@@ -154,6 +210,18 @@ func (UnimplementedArtifactPublicServiceServer) UpdateKnowledgeBase(context.Cont
 }
 func (UnimplementedArtifactPublicServiceServer) DeleteKnowledgeBase(context.Context, *DeleteKnowledgeBaseRequest) (*DeleteKnowledgeBaseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteKnowledgeBase not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) UploadKnowledgeBaseFile(context.Context, *UploadKnowledgeBaseFileRequest) (*UploadKnowledgeBaseFileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadKnowledgeBaseFile not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) DeleteKnowledgeBaseFile(context.Context, *DeleteKnowledgeBaseFileRequest) (*DeleteKnowledgeBaseFileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteKnowledgeBaseFile not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) ProcessKnowledgeBaseFiles(context.Context, *ProcessKnowledgeBaseFilesRequest) (*ProcessKnowledgeBaseFilesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProcessKnowledgeBaseFiles not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) ListKnowledgeBaseFiles(context.Context, *ListKnowledgeBaseFilesRequest) (*ListKnowledgeBaseFilesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListKnowledgeBaseFiles not implemented")
 }
 
 // UnsafeArtifactPublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -275,6 +343,78 @@ func _ArtifactPublicService_DeleteKnowledgeBase_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArtifactPublicService_UploadKnowledgeBaseFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadKnowledgeBaseFileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).UploadKnowledgeBaseFile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_UploadKnowledgeBaseFile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).UploadKnowledgeBaseFile(ctx, req.(*UploadKnowledgeBaseFileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPublicService_DeleteKnowledgeBaseFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteKnowledgeBaseFileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).DeleteKnowledgeBaseFile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_DeleteKnowledgeBaseFile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).DeleteKnowledgeBaseFile(ctx, req.(*DeleteKnowledgeBaseFileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPublicService_ProcessKnowledgeBaseFiles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProcessKnowledgeBaseFilesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).ProcessKnowledgeBaseFiles(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_ProcessKnowledgeBaseFiles_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).ProcessKnowledgeBaseFiles(ctx, req.(*ProcessKnowledgeBaseFilesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPublicService_ListKnowledgeBaseFiles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListKnowledgeBaseFilesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).ListKnowledgeBaseFiles(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_ListKnowledgeBaseFiles_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).ListKnowledgeBaseFiles(ctx, req.(*ListKnowledgeBaseFilesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ArtifactPublicService_ServiceDesc is the grpc.ServiceDesc for ArtifactPublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -305,6 +445,22 @@ var ArtifactPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteKnowledgeBase",
 			Handler:    _ArtifactPublicService_DeleteKnowledgeBase_Handler,
+		},
+		{
+			MethodName: "UploadKnowledgeBaseFile",
+			Handler:    _ArtifactPublicService_UploadKnowledgeBaseFile_Handler,
+		},
+		{
+			MethodName: "DeleteKnowledgeBaseFile",
+			Handler:    _ArtifactPublicService_DeleteKnowledgeBaseFile_Handler,
+		},
+		{
+			MethodName: "ProcessKnowledgeBaseFiles",
+			Handler:    _ArtifactPublicService_ProcessKnowledgeBaseFiles_Handler,
+		},
+		{
+			MethodName: "ListKnowledgeBaseFiles",
+			Handler:    _ArtifactPublicService_ListKnowledgeBaseFiles_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

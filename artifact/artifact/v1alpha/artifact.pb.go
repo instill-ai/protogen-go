@@ -23,6 +23,144 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// file embedding process status
+type FileProcessStatus int32
+
+const (
+	// UNSPECIFIED
+	FileProcessStatus_FILE_PROCESS_STATUS_UNSPECIFIED FileProcessStatus = 0
+	// NOTSTARTED
+	FileProcessStatus_FILE_PROCESS_STATUS_NOTSTARTED FileProcessStatus = 1
+	// waiting
+	FileProcessStatus_FILE_PROCESS_STATUS_WAITING FileProcessStatus = 2
+	// embedding process is running
+	FileProcessStatus_FILE_PROCESS_STATUS_CONVERTING FileProcessStatus = 3
+	// embedding process is done
+	FileProcessStatus_FILE_PROCESS_STATUS_CHUNKING FileProcessStatus = 4
+	// embedding process is failed
+	FileProcessStatus_FILE_PROCESS_STATUS_EMBEDDING FileProcessStatus = 5
+	// COMPLETED
+	FileProcessStatus_FILE_PROCESS_STATUS_COMPLETED FileProcessStatus = 6
+)
+
+// Enum value maps for FileProcessStatus.
+var (
+	FileProcessStatus_name = map[int32]string{
+		0: "FILE_PROCESS_STATUS_UNSPECIFIED",
+		1: "FILE_PROCESS_STATUS_NOTSTARTED",
+		2: "FILE_PROCESS_STATUS_WAITING",
+		3: "FILE_PROCESS_STATUS_CONVERTING",
+		4: "FILE_PROCESS_STATUS_CHUNKING",
+		5: "FILE_PROCESS_STATUS_EMBEDDING",
+		6: "FILE_PROCESS_STATUS_COMPLETED",
+	}
+	FileProcessStatus_value = map[string]int32{
+		"FILE_PROCESS_STATUS_UNSPECIFIED": 0,
+		"FILE_PROCESS_STATUS_NOTSTARTED":  1,
+		"FILE_PROCESS_STATUS_WAITING":     2,
+		"FILE_PROCESS_STATUS_CONVERTING":  3,
+		"FILE_PROCESS_STATUS_CHUNKING":    4,
+		"FILE_PROCESS_STATUS_EMBEDDING":   5,
+		"FILE_PROCESS_STATUS_COMPLETED":   6,
+	}
+)
+
+func (x FileProcessStatus) Enum() *FileProcessStatus {
+	p := new(FileProcessStatus)
+	*p = x
+	return p
+}
+
+func (x FileProcessStatus) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (FileProcessStatus) Descriptor() protoreflect.EnumDescriptor {
+	return file_artifact_artifact_v1alpha_artifact_proto_enumTypes[0].Descriptor()
+}
+
+func (FileProcessStatus) Type() protoreflect.EnumType {
+	return &file_artifact_artifact_v1alpha_artifact_proto_enumTypes[0]
+}
+
+func (x FileProcessStatus) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use FileProcessStatus.Descriptor instead.
+func (FileProcessStatus) EnumDescriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{0}
+}
+
+// file type
+type FileType int32
+
+const (
+	// upsecifid
+	FileType_FILE_TYPE_UNSPECIFIED FileType = 0
+	// text
+	FileType_FILE_TYPE_TEXT FileType = 1
+	// PDF
+	FileType_FILE_TYPE_PDF FileType = 2
+	// MARKDOWN
+	FileType_FILE_TYPE_MARKDOWN FileType = 3
+	// PNG
+	FileType_FILE_TYPE_PNG FileType = 4
+	// JPEG
+	FileType_FILE_TYPE_JPEG FileType = 5
+	// JPG
+	FileType_FILE_TYPE_JPG FileType = 6
+)
+
+// Enum value maps for FileType.
+var (
+	FileType_name = map[int32]string{
+		0: "FILE_TYPE_UNSPECIFIED",
+		1: "FILE_TYPE_TEXT",
+		2: "FILE_TYPE_PDF",
+		3: "FILE_TYPE_MARKDOWN",
+		4: "FILE_TYPE_PNG",
+		5: "FILE_TYPE_JPEG",
+		6: "FILE_TYPE_JPG",
+	}
+	FileType_value = map[string]int32{
+		"FILE_TYPE_UNSPECIFIED": 0,
+		"FILE_TYPE_TEXT":        1,
+		"FILE_TYPE_PDF":         2,
+		"FILE_TYPE_MARKDOWN":    3,
+		"FILE_TYPE_PNG":         4,
+		"FILE_TYPE_JPEG":        5,
+		"FILE_TYPE_JPG":         6,
+	}
+)
+
+func (x FileType) Enum() *FileType {
+	p := new(FileType)
+	*p = x
+	return p
+}
+
+func (x FileType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (FileType) Descriptor() protoreflect.EnumDescriptor {
+	return file_artifact_artifact_v1alpha_artifact_proto_enumTypes[1].Descriptor()
+}
+
+func (FileType) Type() protoreflect.EnumType {
+	return &file_artifact_artifact_v1alpha_artifact_proto_enumTypes[1]
+}
+
+func (x FileType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use FileType.Descriptor instead.
+func (FileType) EnumDescriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{1}
+}
+
 // LivenessRequest represents a request to check a service liveness status
 type LivenessRequest struct {
 	state         protoimpl.MessageState
@@ -1204,6 +1342,695 @@ func (x *DeleteKnowledgeBaseResponse) GetStatusCode() int32 {
 	return 0
 }
 
+// file mata data
+type File struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// file uid
+	FileUid string `protobuf:"bytes,1,opt,name=file_uid,json=fileUid,proto3" json:"file_uid,omitempty"`
+	// file name
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// file type
+	Type FileType `protobuf:"varint,3,opt,name=type,proto3,enum=artifact.artifact.v1alpha.FileType" json:"type,omitempty"`
+	// file process status
+	ProcessStatus FileProcessStatus `protobuf:"varint,4,opt,name=process_status,json=processStatus,proto3,enum=artifact.artifact.v1alpha.FileProcessStatus" json:"process_status,omitempty"`
+	// file process message
+	ProcessOutcome string `protobuf:"bytes,5,opt,name=process_outcome,json=processOutcome,proto3" json:"process_outcome,omitempty"`
+	// retrievable(this is reserved for future use)
+	Retrievable bool `protobuf:"varint,6,opt,name=retrievable,proto3" json:"retrievable,omitempty"`
+	// contect(this is reserved for future use)
+	Content string `protobuf:"bytes,7,opt,name=content,proto3" json:"content,omitempty"`
+	// owner uid
+	OwnerUid string `protobuf:"bytes,8,opt,name=owner_uid,json=ownerUid,proto3" json:"owner_uid,omitempty"`
+	// cretor uid from authn token
+	CreatorUid string `protobuf:"bytes,9,opt,name=creator_uid,json=creatorUid,proto3" json:"creator_uid,omitempty"`
+	// knowledge base uid
+	KbUid string `protobuf:"bytes,10,opt,name=kb_uid,json=kbUid,proto3" json:"kb_uid,omitempty"`
+	// create time
+	CreateTime *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+	// update time
+	UpdateTime *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
+	// delete time
+	DeleteTime *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=delete_time,json=deleteTime,proto3" json:"delete_time,omitempty"`
+}
+
+func (x *File) Reset() {
+	*x = File{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[19]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *File) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*File) ProtoMessage() {}
+
+func (x *File) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[19]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use File.ProtoReflect.Descriptor instead.
+func (*File) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *File) GetFileUid() string {
+	if x != nil {
+		return x.FileUid
+	}
+	return ""
+}
+
+func (x *File) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *File) GetType() FileType {
+	if x != nil {
+		return x.Type
+	}
+	return FileType_FILE_TYPE_UNSPECIFIED
+}
+
+func (x *File) GetProcessStatus() FileProcessStatus {
+	if x != nil {
+		return x.ProcessStatus
+	}
+	return FileProcessStatus_FILE_PROCESS_STATUS_UNSPECIFIED
+}
+
+func (x *File) GetProcessOutcome() string {
+	if x != nil {
+		return x.ProcessOutcome
+	}
+	return ""
+}
+
+func (x *File) GetRetrievable() bool {
+	if x != nil {
+		return x.Retrievable
+	}
+	return false
+}
+
+func (x *File) GetContent() string {
+	if x != nil {
+		return x.Content
+	}
+	return ""
+}
+
+func (x *File) GetOwnerUid() string {
+	if x != nil {
+		return x.OwnerUid
+	}
+	return ""
+}
+
+func (x *File) GetCreatorUid() string {
+	if x != nil {
+		return x.CreatorUid
+	}
+	return ""
+}
+
+func (x *File) GetKbUid() string {
+	if x != nil {
+		return x.KbUid
+	}
+	return ""
+}
+
+func (x *File) GetCreateTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreateTime
+	}
+	return nil
+}
+
+func (x *File) GetUpdateTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdateTime
+	}
+	return nil
+}
+
+func (x *File) GetDeleteTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.DeleteTime
+	}
+	return nil
+}
+
+// upload file request
+type UploadKnowledgeBaseFileRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// owenr uid
+	OwnerUid string `protobuf:"bytes,1,opt,name=owner_uid,json=ownerUid,proto3" json:"owner_uid,omitempty"`
+	// knowledge base uid
+	KbUid string `protobuf:"bytes,2,opt,name=kb_uid,json=kbUid,proto3" json:"kb_uid,omitempty"`
+	// file
+	File *File `protobuf:"bytes,3,opt,name=file,proto3" json:"file,omitempty"`
+}
+
+func (x *UploadKnowledgeBaseFileRequest) Reset() {
+	*x = UploadKnowledgeBaseFileRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[20]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UploadKnowledgeBaseFileRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UploadKnowledgeBaseFileRequest) ProtoMessage() {}
+
+func (x *UploadKnowledgeBaseFileRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[20]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UploadKnowledgeBaseFileRequest.ProtoReflect.Descriptor instead.
+func (*UploadKnowledgeBaseFileRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *UploadKnowledgeBaseFileRequest) GetOwnerUid() string {
+	if x != nil {
+		return x.OwnerUid
+	}
+	return ""
+}
+
+func (x *UploadKnowledgeBaseFileRequest) GetKbUid() string {
+	if x != nil {
+		return x.KbUid
+	}
+	return ""
+}
+
+func (x *UploadKnowledgeBaseFileRequest) GetFile() *File {
+	if x != nil {
+		return x.File
+	}
+	return nil
+}
+
+// upload file response
+type UploadKnowledgeBaseFileResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// file
+	File *File `protobuf:"bytes,1,opt,name=file,proto3" json:"file,omitempty"`
+}
+
+func (x *UploadKnowledgeBaseFileResponse) Reset() {
+	*x = UploadKnowledgeBaseFileResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[21]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UploadKnowledgeBaseFileResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UploadKnowledgeBaseFileResponse) ProtoMessage() {}
+
+func (x *UploadKnowledgeBaseFileResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[21]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UploadKnowledgeBaseFileResponse.ProtoReflect.Descriptor instead.
+func (*UploadKnowledgeBaseFileResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *UploadKnowledgeBaseFileResponse) GetFile() *File {
+	if x != nil {
+		return x.File
+	}
+	return nil
+}
+
+// delete file request
+type DeleteKnowledgeBaseFileRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The file uid.
+	FileUid string `protobuf:"bytes,1,opt,name=file_uid,json=fileUid,proto3" json:"file_uid,omitempty"`
+}
+
+func (x *DeleteKnowledgeBaseFileRequest) Reset() {
+	*x = DeleteKnowledgeBaseFileRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[22]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteKnowledgeBaseFileRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteKnowledgeBaseFileRequest) ProtoMessage() {}
+
+func (x *DeleteKnowledgeBaseFileRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[22]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteKnowledgeBaseFileRequest.ProtoReflect.Descriptor instead.
+func (*DeleteKnowledgeBaseFileRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *DeleteKnowledgeBaseFileRequest) GetFileUid() string {
+	if x != nil {
+		return x.FileUid
+	}
+	return ""
+}
+
+// delete file response
+type DeleteKnowledgeBaseFileResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The file uid.
+	FileUid string `protobuf:"bytes,1,opt,name=file_uid,json=fileUid,proto3" json:"file_uid,omitempty"`
+}
+
+func (x *DeleteKnowledgeBaseFileResponse) Reset() {
+	*x = DeleteKnowledgeBaseFileResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[23]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteKnowledgeBaseFileResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteKnowledgeBaseFileResponse) ProtoMessage() {}
+
+func (x *DeleteKnowledgeBaseFileResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[23]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteKnowledgeBaseFileResponse.ProtoReflect.Descriptor instead.
+func (*DeleteKnowledgeBaseFileResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *DeleteKnowledgeBaseFileResponse) GetFileUid() string {
+	if x != nil {
+		return x.FileUid
+	}
+	return ""
+}
+
+// Process KnowledgeBase File Request
+type ProcessKnowledgeBaseFilesRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The file uid.
+	FileUids []string `protobuf:"bytes,1,rep,name=file_uids,json=fileUids,proto3" json:"file_uids,omitempty"`
+}
+
+func (x *ProcessKnowledgeBaseFilesRequest) Reset() {
+	*x = ProcessKnowledgeBaseFilesRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[24]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ProcessKnowledgeBaseFilesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProcessKnowledgeBaseFilesRequest) ProtoMessage() {}
+
+func (x *ProcessKnowledgeBaseFilesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[24]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProcessKnowledgeBaseFilesRequest.ProtoReflect.Descriptor instead.
+func (*ProcessKnowledgeBaseFilesRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *ProcessKnowledgeBaseFilesRequest) GetFileUids() []string {
+	if x != nil {
+		return x.FileUids
+	}
+	return nil
+}
+
+// Process KnowledgeBase File Response
+type ProcessKnowledgeBaseFilesResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The file uid.
+	Files []*File `protobuf:"bytes,1,rep,name=files,proto3" json:"files,omitempty"`
+}
+
+func (x *ProcessKnowledgeBaseFilesResponse) Reset() {
+	*x = ProcessKnowledgeBaseFilesResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[25]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ProcessKnowledgeBaseFilesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProcessKnowledgeBaseFilesResponse) ProtoMessage() {}
+
+func (x *ProcessKnowledgeBaseFilesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[25]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProcessKnowledgeBaseFilesResponse.ProtoReflect.Descriptor instead.
+func (*ProcessKnowledgeBaseFilesResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *ProcessKnowledgeBaseFilesResponse) GetFiles() []*File {
+	if x != nil {
+		return x.Files
+	}
+	return nil
+}
+
+// list file filter
+// todo: support more parameters
+type ListKnowledgeBaseFilesFilter struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The file uids.
+	FileUids []string `protobuf:"bytes,2,rep,name=file_uids,json=fileUids,proto3" json:"file_uids,omitempty"`
+}
+
+func (x *ListKnowledgeBaseFilesFilter) Reset() {
+	*x = ListKnowledgeBaseFilesFilter{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[26]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListKnowledgeBaseFilesFilter) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListKnowledgeBaseFilesFilter) ProtoMessage() {}
+
+func (x *ListKnowledgeBaseFilesFilter) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[26]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListKnowledgeBaseFilesFilter.ProtoReflect.Descriptor instead.
+func (*ListKnowledgeBaseFilesFilter) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *ListKnowledgeBaseFilesFilter) GetFileUids() []string {
+	if x != nil {
+		return x.FileUids
+	}
+	return nil
+}
+
+// list files request
+type ListKnowledgeBaseFilesRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The owner uid.
+	OwnerUid string `protobuf:"bytes,1,opt,name=owner_uid,json=ownerUid,proto3" json:"owner_uid,omitempty"`
+	// The knowledge base uid.
+	KbUid string `protobuf:"bytes,2,opt,name=kb_uid,json=kbUid,proto3" json:"kb_uid,omitempty"`
+	// The page size (default:10; max 100).
+	PageSize int32 `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	// The next page token(default from first file's token).
+	PageToken string `protobuf:"bytes,4,opt,name=page_token,json=pageToken,proto3" json:"page_token,omitempty"`
+	// The filter.
+	Filter *ListKnowledgeBaseFilesFilter `protobuf:"bytes,5,opt,name=filter,proto3" json:"filter,omitempty"`
+}
+
+func (x *ListKnowledgeBaseFilesRequest) Reset() {
+	*x = ListKnowledgeBaseFilesRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[27]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListKnowledgeBaseFilesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListKnowledgeBaseFilesRequest) ProtoMessage() {}
+
+func (x *ListKnowledgeBaseFilesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[27]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListKnowledgeBaseFilesRequest.ProtoReflect.Descriptor instead.
+func (*ListKnowledgeBaseFilesRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *ListKnowledgeBaseFilesRequest) GetOwnerUid() string {
+	if x != nil {
+		return x.OwnerUid
+	}
+	return ""
+}
+
+func (x *ListKnowledgeBaseFilesRequest) GetKbUid() string {
+	if x != nil {
+		return x.KbUid
+	}
+	return ""
+}
+
+func (x *ListKnowledgeBaseFilesRequest) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+func (x *ListKnowledgeBaseFilesRequest) GetPageToken() string {
+	if x != nil {
+		return x.PageToken
+	}
+	return ""
+}
+
+func (x *ListKnowledgeBaseFilesRequest) GetFilter() *ListKnowledgeBaseFilesFilter {
+	if x != nil {
+		return x.Filter
+	}
+	return nil
+}
+
+// list files response
+type ListKnowledgeBaseFilesResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The list of files.
+	Files []*File `protobuf:"bytes,1,rep,name=files,proto3" json:"files,omitempty"`
+	// The total number of files.
+	TotalSize int32 `protobuf:"varint,2,opt,name=total_size,json=totalSize,proto3" json:"total_size,omitempty"`
+	// The requested page size.
+	PageSize int32 `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	// next page token
+	NextPageToken string `protobuf:"bytes,4,opt,name=next_page_token,json=nextPageToken,proto3" json:"next_page_token,omitempty"`
+	// The filter.
+	Filter *ListKnowledgeBaseFilesFilter `protobuf:"bytes,5,opt,name=filter,proto3" json:"filter,omitempty"`
+}
+
+func (x *ListKnowledgeBaseFilesResponse) Reset() {
+	*x = ListKnowledgeBaseFilesResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[28]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListKnowledgeBaseFilesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListKnowledgeBaseFilesResponse) ProtoMessage() {}
+
+func (x *ListKnowledgeBaseFilesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[28]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListKnowledgeBaseFilesResponse.ProtoReflect.Descriptor instead.
+func (*ListKnowledgeBaseFilesResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *ListKnowledgeBaseFilesResponse) GetFiles() []*File {
+	if x != nil {
+		return x.Files
+	}
+	return nil
+}
+
+func (x *ListKnowledgeBaseFilesResponse) GetTotalSize() int32 {
+	if x != nil {
+		return x.TotalSize
+	}
+	return 0
+}
+
+func (x *ListKnowledgeBaseFilesResponse) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+func (x *ListKnowledgeBaseFilesResponse) GetNextPageToken() string {
+	if x != nil {
+		return x.NextPageToken
+	}
+	return ""
+}
+
+func (x *ListKnowledgeBaseFilesResponse) GetFilter() *ListKnowledgeBaseFilesFilter {
+	if x != nil {
+		return x.Filter
+	}
+	return nil
+}
+
 var File_artifact_artifact_v1alpha_artifact_proto protoreflect.FileDescriptor
 
 var file_artifact_artifact_v1alpha_artifact_proto_rawDesc = []byte{
@@ -1374,23 +2201,159 @@ var file_artifact_artifact_v1alpha_artifact_proto_rawDesc = []byte{
 	0x6d, 0x73, 0x67, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x65, 0x72, 0x72, 0x6f, 0x72,
 	0x4d, 0x73, 0x67, 0x12, 0x1f, 0x0a, 0x0b, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x5f, 0x63, 0x6f,
 	0x64, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0a, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73,
-	0x43, 0x6f, 0x64, 0x65, 0x42, 0x81, 0x02, 0x0a, 0x1d, 0x63, 0x6f, 0x6d, 0x2e, 0x61, 0x72, 0x74,
+	0x43, 0x6f, 0x64, 0x65, 0x22, 0xf5, 0x04, 0x0a, 0x04, 0x46, 0x69, 0x6c, 0x65, 0x12, 0x1e, 0x0a,
+	0x08, 0x66, 0x69, 0x6c, 0x65, 0x5f, 0x75, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42,
+	0x03, 0xe0, 0x41, 0x03, 0x52, 0x07, 0x66, 0x69, 0x6c, 0x65, 0x55, 0x69, 0x64, 0x12, 0x17, 0x0a,
+	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x02,
+	0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x3c, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x0e, 0x32, 0x23, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e,
+	0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61,
+	0x2e, 0x46, 0x69, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x04,
+	0x74, 0x79, 0x70, 0x65, 0x12, 0x58, 0x0a, 0x0e, 0x70, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x5f,
+	0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x2c, 0x2e, 0x61,
+	0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74,
+	0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x46, 0x69, 0x6c, 0x65, 0x50, 0x72, 0x6f,
+	0x63, 0x65, 0x73, 0x73, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52,
+	0x0d, 0x70, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x2c,
+	0x0a, 0x0f, 0x70, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x5f, 0x6f, 0x75, 0x74, 0x63, 0x6f, 0x6d,
+	0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0e, 0x70, 0x72,
+	0x6f, 0x63, 0x65, 0x73, 0x73, 0x4f, 0x75, 0x74, 0x63, 0x6f, 0x6d, 0x65, 0x12, 0x25, 0x0a, 0x0b,
+	0x72, 0x65, 0x74, 0x72, 0x69, 0x65, 0x76, 0x61, 0x62, 0x6c, 0x65, 0x18, 0x06, 0x20, 0x01, 0x28,
+	0x08, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0b, 0x72, 0x65, 0x74, 0x72, 0x69, 0x65, 0x76, 0x61,
+	0x62, 0x6c, 0x65, 0x12, 0x1d, 0x0a, 0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x18, 0x07,
+	0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65,
+	0x6e, 0x74, 0x12, 0x20, 0x0a, 0x09, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x5f, 0x75, 0x69, 0x64, 0x18,
+	0x08, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x08, 0x6f, 0x77, 0x6e, 0x65,
+	0x72, 0x55, 0x69, 0x64, 0x12, 0x24, 0x0a, 0x0b, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x5f,
+	0x75, 0x69, 0x64, 0x18, 0x09, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0a,
+	0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x55, 0x69, 0x64, 0x12, 0x1a, 0x0a, 0x06, 0x6b, 0x62,
+	0x5f, 0x75, 0x69, 0x64, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52,
+	0x05, 0x6b, 0x62, 0x55, 0x69, 0x64, 0x12, 0x40, 0x0a, 0x0b, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65,
+	0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f,
+	0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69,
+	0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0a, 0x63, 0x72,
+	0x65, 0x61, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x12, 0x40, 0x0a, 0x0b, 0x75, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x0c, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e,
+	0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e,
+	0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0a,
+	0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x12, 0x40, 0x0a, 0x0b, 0x64, 0x65,
+	0x6c, 0x65, 0x74, 0x65, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x0d, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
+	0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42, 0x03, 0xe0, 0x41, 0x03,
+	0x52, 0x0a, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x22, 0x93, 0x01, 0x0a,
+	0x1e, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x4b, 0x6e, 0x6f, 0x77, 0x6c, 0x65, 0x64, 0x67, 0x65,
+	0x42, 0x61, 0x73, 0x65, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
+	0x20, 0x0a, 0x09, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x5f, 0x75, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x08, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x55, 0x69,
+	0x64, 0x12, 0x1a, 0x0a, 0x06, 0x6b, 0x62, 0x5f, 0x75, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x05, 0x6b, 0x62, 0x55, 0x69, 0x64, 0x12, 0x33, 0x0a,
+	0x04, 0x66, 0x69, 0x6c, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x61, 0x72,
+	0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e,
+	0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x04, 0x66, 0x69,
+	0x6c, 0x65, 0x22, 0x56, 0x0a, 0x1f, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x4b, 0x6e, 0x6f, 0x77,
+	0x6c, 0x65, 0x64, 0x67, 0x65, 0x42, 0x61, 0x73, 0x65, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x33, 0x0a, 0x04, 0x66, 0x69, 0x6c, 0x65, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x61,
+	0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e,
+	0x46, 0x69, 0x6c, 0x65, 0x52, 0x04, 0x66, 0x69, 0x6c, 0x65, 0x22, 0x40, 0x0a, 0x1e, 0x44, 0x65,
+	0x6c, 0x65, 0x74, 0x65, 0x4b, 0x6e, 0x6f, 0x77, 0x6c, 0x65, 0x64, 0x67, 0x65, 0x42, 0x61, 0x73,
+	0x65, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1e, 0x0a, 0x08,
+	0x66, 0x69, 0x6c, 0x65, 0x5f, 0x75, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03,
+	0xe0, 0x41, 0x02, 0x52, 0x07, 0x66, 0x69, 0x6c, 0x65, 0x55, 0x69, 0x64, 0x22, 0x3c, 0x0a, 0x1f,
+	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4b, 0x6e, 0x6f, 0x77, 0x6c, 0x65, 0x64, 0x67, 0x65, 0x42,
+	0x61, 0x73, 0x65, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x19, 0x0a, 0x08, 0x66, 0x69, 0x6c, 0x65, 0x5f, 0x75, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x07, 0x66, 0x69, 0x6c, 0x65, 0x55, 0x69, 0x64, 0x22, 0x44, 0x0a, 0x20, 0x50, 0x72,
+	0x6f, 0x63, 0x65, 0x73, 0x73, 0x4b, 0x6e, 0x6f, 0x77, 0x6c, 0x65, 0x64, 0x67, 0x65, 0x42, 0x61,
+	0x73, 0x65, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x20,
+	0x0a, 0x09, 0x66, 0x69, 0x6c, 0x65, 0x5f, 0x75, 0x69, 0x64, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28,
+	0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x08, 0x66, 0x69, 0x6c, 0x65, 0x55, 0x69, 0x64, 0x73,
+	0x22, 0x5a, 0x0a, 0x21, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x4b, 0x6e, 0x6f, 0x77, 0x6c,
+	0x65, 0x64, 0x67, 0x65, 0x42, 0x61, 0x73, 0x65, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x35, 0x0a, 0x05, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x18, 0x01,
+	0x20, 0x03, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e,
+	0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61,
+	0x2e, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x05, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x22, 0x40, 0x0a, 0x1c,
+	0x4c, 0x69, 0x73, 0x74, 0x4b, 0x6e, 0x6f, 0x77, 0x6c, 0x65, 0x64, 0x67, 0x65, 0x42, 0x61, 0x73,
+	0x65, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x12, 0x20, 0x0a, 0x09,
+	0x66, 0x69, 0x6c, 0x65, 0x5f, 0x75, 0x69, 0x64, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x09, 0x42,
+	0x03, 0xe0, 0x41, 0x01, 0x52, 0x08, 0x66, 0x69, 0x6c, 0x65, 0x55, 0x69, 0x64, 0x73, 0x22, 0xef,
+	0x01, 0x0a, 0x1d, 0x4c, 0x69, 0x73, 0x74, 0x4b, 0x6e, 0x6f, 0x77, 0x6c, 0x65, 0x64, 0x67, 0x65,
+	0x42, 0x61, 0x73, 0x65, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x1b, 0x0a, 0x09, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x5f, 0x75, 0x69, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x08, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x55, 0x69, 0x64, 0x12, 0x15, 0x0a,
+	0x06, 0x6b, 0x62, 0x5f, 0x75, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6b,
+	0x62, 0x55, 0x69, 0x64, 0x12, 0x20, 0x0a, 0x09, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x73, 0x69, 0x7a,
+	0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x08, 0x70, 0x61,
+	0x67, 0x65, 0x53, 0x69, 0x7a, 0x65, 0x12, 0x22, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x74,
+	0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52,
+	0x09, 0x70, 0x61, 0x67, 0x65, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x54, 0x0a, 0x06, 0x66, 0x69,
+	0x6c, 0x74, 0x65, 0x72, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x37, 0x2e, 0x61, 0x72, 0x74,
 	0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x76,
-	0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x42, 0x0d, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74,
-	0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x4b, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e,
-	0x63, 0x6f, 0x6d, 0x2f, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2d, 0x61, 0x69, 0x2f, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x67, 0x65, 0x6e, 0x2d, 0x67, 0x6f, 0x2f, 0x61, 0x72, 0x74, 0x69, 0x66,
-	0x61, 0x63, 0x74, 0x2f, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2f, 0x76, 0x31, 0x61,
-	0x6c, 0x70, 0x68, 0x61, 0x3b, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x76, 0x31, 0x61,
-	0x6c, 0x70, 0x68, 0x61, 0xa2, 0x02, 0x03, 0x41, 0x41, 0x58, 0xaa, 0x02, 0x19, 0x41, 0x72, 0x74,
-	0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x56,
-	0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xca, 0x02, 0x19, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63,
-	0x74, 0x5c, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70,
-	0x68, 0x61, 0xe2, 0x02, 0x25, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x5c, 0x41, 0x72,
-	0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x5c, 0x47,
-	0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x1b, 0x41, 0x72, 0x74,
-	0x69, 0x66, 0x61, 0x63, 0x74, 0x3a, 0x3a, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x3a,
-	0x3a, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4b, 0x6e, 0x6f, 0x77, 0x6c,
+	0x65, 0x64, 0x67, 0x65, 0x42, 0x61, 0x73, 0x65, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x46, 0x69, 0x6c,
+	0x74, 0x65, 0x72, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72,
+	0x22, 0x8c, 0x02, 0x0a, 0x1e, 0x4c, 0x69, 0x73, 0x74, 0x4b, 0x6e, 0x6f, 0x77, 0x6c, 0x65, 0x64,
+	0x67, 0x65, 0x42, 0x61, 0x73, 0x65, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x35, 0x0a, 0x05, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03,
+	0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x61, 0x72,
+	0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x46,
+	0x69, 0x6c, 0x65, 0x52, 0x05, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x12, 0x1d, 0x0a, 0x0a, 0x74, 0x6f,
+	0x74, 0x61, 0x6c, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x09,
+	0x74, 0x6f, 0x74, 0x61, 0x6c, 0x53, 0x69, 0x7a, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x70, 0x61, 0x67,
+	0x65, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x08, 0x70, 0x61,
+	0x67, 0x65, 0x53, 0x69, 0x7a, 0x65, 0x12, 0x26, 0x0a, 0x0f, 0x6e, 0x65, 0x78, 0x74, 0x5f, 0x70,
+	0x61, 0x67, 0x65, 0x5f, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x0d, 0x6e, 0x65, 0x78, 0x74, 0x50, 0x61, 0x67, 0x65, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x4f,
+	0x0a, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x37,
+	0x2e, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61,
+	0x63, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4b,
+	0x6e, 0x6f, 0x77, 0x6c, 0x65, 0x64, 0x67, 0x65, 0x42, 0x61, 0x73, 0x65, 0x46, 0x69, 0x6c, 0x65,
+	0x73, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x2a,
+	0x89, 0x02, 0x0a, 0x11, 0x46, 0x69, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x53,
+	0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x23, 0x0a, 0x1f, 0x46, 0x49, 0x4c, 0x45, 0x5f, 0x50, 0x52,
+	0x4f, 0x43, 0x45, 0x53, 0x53, 0x5f, 0x53, 0x54, 0x41, 0x54, 0x55, 0x53, 0x5f, 0x55, 0x4e, 0x53,
+	0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x22, 0x0a, 0x1e, 0x46, 0x49,
+	0x4c, 0x45, 0x5f, 0x50, 0x52, 0x4f, 0x43, 0x45, 0x53, 0x53, 0x5f, 0x53, 0x54, 0x41, 0x54, 0x55,
+	0x53, 0x5f, 0x4e, 0x4f, 0x54, 0x53, 0x54, 0x41, 0x52, 0x54, 0x45, 0x44, 0x10, 0x01, 0x12, 0x1f,
+	0x0a, 0x1b, 0x46, 0x49, 0x4c, 0x45, 0x5f, 0x50, 0x52, 0x4f, 0x43, 0x45, 0x53, 0x53, 0x5f, 0x53,
+	0x54, 0x41, 0x54, 0x55, 0x53, 0x5f, 0x57, 0x41, 0x49, 0x54, 0x49, 0x4e, 0x47, 0x10, 0x02, 0x12,
+	0x22, 0x0a, 0x1e, 0x46, 0x49, 0x4c, 0x45, 0x5f, 0x50, 0x52, 0x4f, 0x43, 0x45, 0x53, 0x53, 0x5f,
+	0x53, 0x54, 0x41, 0x54, 0x55, 0x53, 0x5f, 0x43, 0x4f, 0x4e, 0x56, 0x45, 0x52, 0x54, 0x49, 0x4e,
+	0x47, 0x10, 0x03, 0x12, 0x20, 0x0a, 0x1c, 0x46, 0x49, 0x4c, 0x45, 0x5f, 0x50, 0x52, 0x4f, 0x43,
+	0x45, 0x53, 0x53, 0x5f, 0x53, 0x54, 0x41, 0x54, 0x55, 0x53, 0x5f, 0x43, 0x48, 0x55, 0x4e, 0x4b,
+	0x49, 0x4e, 0x47, 0x10, 0x04, 0x12, 0x21, 0x0a, 0x1d, 0x46, 0x49, 0x4c, 0x45, 0x5f, 0x50, 0x52,
+	0x4f, 0x43, 0x45, 0x53, 0x53, 0x5f, 0x53, 0x54, 0x41, 0x54, 0x55, 0x53, 0x5f, 0x45, 0x4d, 0x42,
+	0x45, 0x44, 0x44, 0x49, 0x4e, 0x47, 0x10, 0x05, 0x12, 0x21, 0x0a, 0x1d, 0x46, 0x49, 0x4c, 0x45,
+	0x5f, 0x50, 0x52, 0x4f, 0x43, 0x45, 0x53, 0x53, 0x5f, 0x53, 0x54, 0x41, 0x54, 0x55, 0x53, 0x5f,
+	0x43, 0x4f, 0x4d, 0x50, 0x4c, 0x45, 0x54, 0x45, 0x44, 0x10, 0x06, 0x2a, 0x9e, 0x01, 0x0a, 0x08,
+	0x46, 0x69, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65, 0x12, 0x19, 0x0a, 0x15, 0x46, 0x49, 0x4c, 0x45,
+	0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45,
+	0x44, 0x10, 0x00, 0x12, 0x12, 0x0a, 0x0e, 0x46, 0x49, 0x4c, 0x45, 0x5f, 0x54, 0x59, 0x50, 0x45,
+	0x5f, 0x54, 0x45, 0x58, 0x54, 0x10, 0x01, 0x12, 0x11, 0x0a, 0x0d, 0x46, 0x49, 0x4c, 0x45, 0x5f,
+	0x54, 0x59, 0x50, 0x45, 0x5f, 0x50, 0x44, 0x46, 0x10, 0x02, 0x12, 0x16, 0x0a, 0x12, 0x46, 0x49,
+	0x4c, 0x45, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x4d, 0x41, 0x52, 0x4b, 0x44, 0x4f, 0x57, 0x4e,
+	0x10, 0x03, 0x12, 0x11, 0x0a, 0x0d, 0x46, 0x49, 0x4c, 0x45, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f,
+	0x50, 0x4e, 0x47, 0x10, 0x04, 0x12, 0x12, 0x0a, 0x0e, 0x46, 0x49, 0x4c, 0x45, 0x5f, 0x54, 0x59,
+	0x50, 0x45, 0x5f, 0x4a, 0x50, 0x45, 0x47, 0x10, 0x05, 0x12, 0x11, 0x0a, 0x0d, 0x46, 0x49, 0x4c,
+	0x45, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x4a, 0x50, 0x47, 0x10, 0x06, 0x42, 0x81, 0x02, 0x0a,
+	0x1d, 0x63, 0x6f, 0x6d, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x61, 0x72,
+	0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x42, 0x0d,
+	0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a,
+	0x4b, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x69, 0x6e, 0x73, 0x74,
+	0x69, 0x6c, 0x6c, 0x2d, 0x61, 0x69, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x67, 0x65, 0x6e, 0x2d,
+	0x67, 0x6f, 0x2f, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2f, 0x61, 0x72, 0x74, 0x69,
+	0x66, 0x61, 0x63, 0x74, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x3b, 0x61, 0x72, 0x74,
+	0x69, 0x66, 0x61, 0x63, 0x74, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xa2, 0x02, 0x03, 0x41,
+	0x41, 0x58, 0xaa, 0x02, 0x19, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x41, 0x72,
+	0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xca, 0x02,
+	0x19, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x5c, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61,
+	0x63, 0x74, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xe2, 0x02, 0x25, 0x41, 0x72, 0x74,
+	0x69, 0x66, 0x61, 0x63, 0x74, 0x5c, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x5c, 0x56,
+	0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61,
+	0x74, 0x61, 0xea, 0x02, 0x1b, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x3a, 0x3a, 0x41,
+	0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x3a, 0x3a, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1405,49 +2368,73 @@ func file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP() []byte {
 	return file_artifact_artifact_v1alpha_artifact_proto_rawDescData
 }
 
-var file_artifact_artifact_v1alpha_artifact_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
+var file_artifact_artifact_v1alpha_artifact_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_artifact_artifact_v1alpha_artifact_proto_msgTypes = make([]protoimpl.MessageInfo, 29)
 var file_artifact_artifact_v1alpha_artifact_proto_goTypes = []interface{}{
-	(*LivenessRequest)(nil),             // 0: artifact.artifact.v1alpha.LivenessRequest
-	(*LivenessResponse)(nil),            // 1: artifact.artifact.v1alpha.LivenessResponse
-	(*ReadinessRequest)(nil),            // 2: artifact.artifact.v1alpha.ReadinessRequest
-	(*ReadinessResponse)(nil),           // 3: artifact.artifact.v1alpha.ReadinessResponse
-	(*RepositoryTag)(nil),               // 4: artifact.artifact.v1alpha.RepositoryTag
-	(*ListRepositoryTagsRequest)(nil),   // 5: artifact.artifact.v1alpha.ListRepositoryTagsRequest
-	(*ListRepositoryTagsResponse)(nil),  // 6: artifact.artifact.v1alpha.ListRepositoryTagsResponse
-	(*CreateRepositoryTagRequest)(nil),  // 7: artifact.artifact.v1alpha.CreateRepositoryTagRequest
-	(*CreateRepositoryTagResponse)(nil), // 8: artifact.artifact.v1alpha.CreateRepositoryTagResponse
-	(*KnowledgeBase)(nil),               // 9: artifact.artifact.v1alpha.KnowledgeBase
-	(*KnowledgeBasesList)(nil),          // 10: artifact.artifact.v1alpha.KnowledgeBasesList
-	(*CreateKnowledgeBaseRequest)(nil),  // 11: artifact.artifact.v1alpha.CreateKnowledgeBaseRequest
-	(*CreateKnowledgeBaseResponse)(nil), // 12: artifact.artifact.v1alpha.CreateKnowledgeBaseResponse
-	(*ListKnowledgeBasesRequest)(nil),   // 13: artifact.artifact.v1alpha.ListKnowledgeBasesRequest
-	(*ListKnowledgeBasesResponse)(nil),  // 14: artifact.artifact.v1alpha.ListKnowledgeBasesResponse
-	(*UpdateKnowledgeBaseRequest)(nil),  // 15: artifact.artifact.v1alpha.UpdateKnowledgeBaseRequest
-	(*UpdateKnowledgeBaseResponse)(nil), // 16: artifact.artifact.v1alpha.UpdateKnowledgeBaseResponse
-	(*DeleteKnowledgeBaseRequest)(nil),  // 17: artifact.artifact.v1alpha.DeleteKnowledgeBaseRequest
-	(*DeleteKnowledgeBaseResponse)(nil), // 18: artifact.artifact.v1alpha.DeleteKnowledgeBaseResponse
-	(*v1beta.HealthCheckRequest)(nil),   // 19: common.healthcheck.v1beta.HealthCheckRequest
-	(*v1beta.HealthCheckResponse)(nil),  // 20: common.healthcheck.v1beta.HealthCheckResponse
-	(*timestamppb.Timestamp)(nil),       // 21: google.protobuf.Timestamp
+	(FileProcessStatus)(0),                    // 0: artifact.artifact.v1alpha.FileProcessStatus
+	(FileType)(0),                             // 1: artifact.artifact.v1alpha.FileType
+	(*LivenessRequest)(nil),                   // 2: artifact.artifact.v1alpha.LivenessRequest
+	(*LivenessResponse)(nil),                  // 3: artifact.artifact.v1alpha.LivenessResponse
+	(*ReadinessRequest)(nil),                  // 4: artifact.artifact.v1alpha.ReadinessRequest
+	(*ReadinessResponse)(nil),                 // 5: artifact.artifact.v1alpha.ReadinessResponse
+	(*RepositoryTag)(nil),                     // 6: artifact.artifact.v1alpha.RepositoryTag
+	(*ListRepositoryTagsRequest)(nil),         // 7: artifact.artifact.v1alpha.ListRepositoryTagsRequest
+	(*ListRepositoryTagsResponse)(nil),        // 8: artifact.artifact.v1alpha.ListRepositoryTagsResponse
+	(*CreateRepositoryTagRequest)(nil),        // 9: artifact.artifact.v1alpha.CreateRepositoryTagRequest
+	(*CreateRepositoryTagResponse)(nil),       // 10: artifact.artifact.v1alpha.CreateRepositoryTagResponse
+	(*KnowledgeBase)(nil),                     // 11: artifact.artifact.v1alpha.KnowledgeBase
+	(*KnowledgeBasesList)(nil),                // 12: artifact.artifact.v1alpha.KnowledgeBasesList
+	(*CreateKnowledgeBaseRequest)(nil),        // 13: artifact.artifact.v1alpha.CreateKnowledgeBaseRequest
+	(*CreateKnowledgeBaseResponse)(nil),       // 14: artifact.artifact.v1alpha.CreateKnowledgeBaseResponse
+	(*ListKnowledgeBasesRequest)(nil),         // 15: artifact.artifact.v1alpha.ListKnowledgeBasesRequest
+	(*ListKnowledgeBasesResponse)(nil),        // 16: artifact.artifact.v1alpha.ListKnowledgeBasesResponse
+	(*UpdateKnowledgeBaseRequest)(nil),        // 17: artifact.artifact.v1alpha.UpdateKnowledgeBaseRequest
+	(*UpdateKnowledgeBaseResponse)(nil),       // 18: artifact.artifact.v1alpha.UpdateKnowledgeBaseResponse
+	(*DeleteKnowledgeBaseRequest)(nil),        // 19: artifact.artifact.v1alpha.DeleteKnowledgeBaseRequest
+	(*DeleteKnowledgeBaseResponse)(nil),       // 20: artifact.artifact.v1alpha.DeleteKnowledgeBaseResponse
+	(*File)(nil),                              // 21: artifact.artifact.v1alpha.File
+	(*UploadKnowledgeBaseFileRequest)(nil),    // 22: artifact.artifact.v1alpha.UploadKnowledgeBaseFileRequest
+	(*UploadKnowledgeBaseFileResponse)(nil),   // 23: artifact.artifact.v1alpha.UploadKnowledgeBaseFileResponse
+	(*DeleteKnowledgeBaseFileRequest)(nil),    // 24: artifact.artifact.v1alpha.DeleteKnowledgeBaseFileRequest
+	(*DeleteKnowledgeBaseFileResponse)(nil),   // 25: artifact.artifact.v1alpha.DeleteKnowledgeBaseFileResponse
+	(*ProcessKnowledgeBaseFilesRequest)(nil),  // 26: artifact.artifact.v1alpha.ProcessKnowledgeBaseFilesRequest
+	(*ProcessKnowledgeBaseFilesResponse)(nil), // 27: artifact.artifact.v1alpha.ProcessKnowledgeBaseFilesResponse
+	(*ListKnowledgeBaseFilesFilter)(nil),      // 28: artifact.artifact.v1alpha.ListKnowledgeBaseFilesFilter
+	(*ListKnowledgeBaseFilesRequest)(nil),     // 29: artifact.artifact.v1alpha.ListKnowledgeBaseFilesRequest
+	(*ListKnowledgeBaseFilesResponse)(nil),    // 30: artifact.artifact.v1alpha.ListKnowledgeBaseFilesResponse
+	(*v1beta.HealthCheckRequest)(nil),         // 31: common.healthcheck.v1beta.HealthCheckRequest
+	(*v1beta.HealthCheckResponse)(nil),        // 32: common.healthcheck.v1beta.HealthCheckResponse
+	(*timestamppb.Timestamp)(nil),             // 33: google.protobuf.Timestamp
 }
 var file_artifact_artifact_v1alpha_artifact_proto_depIdxs = []int32{
-	19, // 0: artifact.artifact.v1alpha.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	20, // 1: artifact.artifact.v1alpha.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
-	19, // 2: artifact.artifact.v1alpha.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	20, // 3: artifact.artifact.v1alpha.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
-	21, // 4: artifact.artifact.v1alpha.RepositoryTag.update_time:type_name -> google.protobuf.Timestamp
-	4,  // 5: artifact.artifact.v1alpha.ListRepositoryTagsResponse.tags:type_name -> artifact.artifact.v1alpha.RepositoryTag
-	4,  // 6: artifact.artifact.v1alpha.CreateRepositoryTagRequest.tag:type_name -> artifact.artifact.v1alpha.RepositoryTag
-	4,  // 7: artifact.artifact.v1alpha.CreateRepositoryTagResponse.tag:type_name -> artifact.artifact.v1alpha.RepositoryTag
-	9,  // 8: artifact.artifact.v1alpha.KnowledgeBasesList.knowledge_bases:type_name -> artifact.artifact.v1alpha.KnowledgeBase
-	9,  // 9: artifact.artifact.v1alpha.CreateKnowledgeBaseResponse.body:type_name -> artifact.artifact.v1alpha.KnowledgeBase
-	10, // 10: artifact.artifact.v1alpha.ListKnowledgeBasesResponse.body:type_name -> artifact.artifact.v1alpha.KnowledgeBasesList
-	9,  // 11: artifact.artifact.v1alpha.UpdateKnowledgeBaseResponse.body:type_name -> artifact.artifact.v1alpha.KnowledgeBase
-	12, // [12:12] is the sub-list for method output_type
-	12, // [12:12] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	31, // 0: artifact.artifact.v1alpha.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	32, // 1: artifact.artifact.v1alpha.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	31, // 2: artifact.artifact.v1alpha.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	32, // 3: artifact.artifact.v1alpha.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	33, // 4: artifact.artifact.v1alpha.RepositoryTag.update_time:type_name -> google.protobuf.Timestamp
+	6,  // 5: artifact.artifact.v1alpha.ListRepositoryTagsResponse.tags:type_name -> artifact.artifact.v1alpha.RepositoryTag
+	6,  // 6: artifact.artifact.v1alpha.CreateRepositoryTagRequest.tag:type_name -> artifact.artifact.v1alpha.RepositoryTag
+	6,  // 7: artifact.artifact.v1alpha.CreateRepositoryTagResponse.tag:type_name -> artifact.artifact.v1alpha.RepositoryTag
+	11, // 8: artifact.artifact.v1alpha.KnowledgeBasesList.knowledge_bases:type_name -> artifact.artifact.v1alpha.KnowledgeBase
+	11, // 9: artifact.artifact.v1alpha.CreateKnowledgeBaseResponse.body:type_name -> artifact.artifact.v1alpha.KnowledgeBase
+	12, // 10: artifact.artifact.v1alpha.ListKnowledgeBasesResponse.body:type_name -> artifact.artifact.v1alpha.KnowledgeBasesList
+	11, // 11: artifact.artifact.v1alpha.UpdateKnowledgeBaseResponse.body:type_name -> artifact.artifact.v1alpha.KnowledgeBase
+	1,  // 12: artifact.artifact.v1alpha.File.type:type_name -> artifact.artifact.v1alpha.FileType
+	0,  // 13: artifact.artifact.v1alpha.File.process_status:type_name -> artifact.artifact.v1alpha.FileProcessStatus
+	33, // 14: artifact.artifact.v1alpha.File.create_time:type_name -> google.protobuf.Timestamp
+	33, // 15: artifact.artifact.v1alpha.File.update_time:type_name -> google.protobuf.Timestamp
+	33, // 16: artifact.artifact.v1alpha.File.delete_time:type_name -> google.protobuf.Timestamp
+	21, // 17: artifact.artifact.v1alpha.UploadKnowledgeBaseFileRequest.file:type_name -> artifact.artifact.v1alpha.File
+	21, // 18: artifact.artifact.v1alpha.UploadKnowledgeBaseFileResponse.file:type_name -> artifact.artifact.v1alpha.File
+	21, // 19: artifact.artifact.v1alpha.ProcessKnowledgeBaseFilesResponse.files:type_name -> artifact.artifact.v1alpha.File
+	28, // 20: artifact.artifact.v1alpha.ListKnowledgeBaseFilesRequest.filter:type_name -> artifact.artifact.v1alpha.ListKnowledgeBaseFilesFilter
+	21, // 21: artifact.artifact.v1alpha.ListKnowledgeBaseFilesResponse.files:type_name -> artifact.artifact.v1alpha.File
+	28, // 22: artifact.artifact.v1alpha.ListKnowledgeBaseFilesResponse.filter:type_name -> artifact.artifact.v1alpha.ListKnowledgeBaseFilesFilter
+	23, // [23:23] is the sub-list for method output_type
+	23, // [23:23] is the sub-list for method input_type
+	23, // [23:23] is the sub-list for extension type_name
+	23, // [23:23] is the sub-list for extension extendee
+	0,  // [0:23] is the sub-list for field type_name
 }
 
 func init() { file_artifact_artifact_v1alpha_artifact_proto_init() }
@@ -1684,6 +2671,126 @@ func file_artifact_artifact_v1alpha_artifact_proto_init() {
 				return nil
 			}
 		}
+		file_artifact_artifact_v1alpha_artifact_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*File); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_artifact_artifact_v1alpha_artifact_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UploadKnowledgeBaseFileRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_artifact_artifact_v1alpha_artifact_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UploadKnowledgeBaseFileResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_artifact_artifact_v1alpha_artifact_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteKnowledgeBaseFileRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_artifact_artifact_v1alpha_artifact_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteKnowledgeBaseFileResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_artifact_artifact_v1alpha_artifact_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ProcessKnowledgeBaseFilesRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_artifact_artifact_v1alpha_artifact_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ProcessKnowledgeBaseFilesResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_artifact_artifact_v1alpha_artifact_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListKnowledgeBaseFilesFilter); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_artifact_artifact_v1alpha_artifact_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListKnowledgeBaseFilesRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_artifact_artifact_v1alpha_artifact_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListKnowledgeBaseFilesResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	file_artifact_artifact_v1alpha_artifact_proto_msgTypes[0].OneofWrappers = []interface{}{}
 	file_artifact_artifact_v1alpha_artifact_proto_msgTypes[2].OneofWrappers = []interface{}{}
@@ -1693,13 +2800,14 @@ func file_artifact_artifact_v1alpha_artifact_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_artifact_artifact_v1alpha_artifact_proto_rawDesc,
-			NumEnums:      0,
-			NumMessages:   19,
+			NumEnums:      2,
+			NumMessages:   29,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_artifact_artifact_v1alpha_artifact_proto_goTypes,
 		DependencyIndexes: file_artifact_artifact_v1alpha_artifact_proto_depIdxs,
+		EnumInfos:         file_artifact_artifact_v1alpha_artifact_proto_enumTypes,
 		MessageInfos:      file_artifact_artifact_v1alpha_artifact_proto_msgTypes,
 	}.Build()
 	File_artifact_artifact_v1alpha_artifact_proto = out.File
