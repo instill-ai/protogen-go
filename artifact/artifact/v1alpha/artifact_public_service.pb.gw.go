@@ -400,24 +400,24 @@ func request_ArtifactPublicService_UploadKnowledgeBaseFile_0(ctx context.Context
 		_   = err
 	)
 
-	val, ok = pathParams["owner_uid"]
+	val, ok = pathParams["owner_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "owner_uid")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "owner_id")
 	}
 
-	protoReq.OwnerUid, err = runtime.String(val)
+	protoReq.OwnerId, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "owner_uid", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "owner_id", err)
 	}
 
-	val, ok = pathParams["kb_uid"]
+	val, ok = pathParams["kb_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "kb_uid")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "kb_id")
 	}
 
-	protoReq.KbUid, err = runtime.String(val)
+	protoReq.KbId, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "kb_uid", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "kb_id", err)
 	}
 
 	msg, err := client.UploadKnowledgeBaseFile(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -444,24 +444,24 @@ func local_request_ArtifactPublicService_UploadKnowledgeBaseFile_0(ctx context.C
 		_   = err
 	)
 
-	val, ok = pathParams["owner_uid"]
+	val, ok = pathParams["owner_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "owner_uid")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "owner_id")
 	}
 
-	protoReq.OwnerUid, err = runtime.String(val)
+	protoReq.OwnerId, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "owner_uid", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "owner_id", err)
 	}
 
-	val, ok = pathParams["kb_uid"]
+	val, ok = pathParams["kb_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "kb_uid")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "kb_id")
 	}
 
-	protoReq.KbUid, err = runtime.String(val)
+	protoReq.KbId, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "kb_uid", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "kb_id", err)
 	}
 
 	msg, err := server.UploadKnowledgeBaseFile(ctx, &protoReq)
@@ -540,7 +540,7 @@ func local_request_ArtifactPublicService_ProcessKnowledgeBaseFiles_0(ctx context
 }
 
 var (
-	filter_ArtifactPublicService_ListKnowledgeBaseFiles_0 = &utilities.DoubleArray{Encoding: map[string]int{"owner_uid": 0, "ownerUid": 1, "kb_uid": 2, "kbUid": 3}, Base: []int{1, 1, 2, 3, 4, 0, 0, 0, 0}, Check: []int{0, 1, 1, 1, 1, 2, 3, 4, 5}}
+	filter_ArtifactPublicService_ListKnowledgeBaseFiles_0 = &utilities.DoubleArray{Encoding: map[string]int{"owner_id": 0, "ownerId": 1, "kb_id": 2, "kbId": 3}, Base: []int{1, 1, 2, 3, 4, 0, 0, 0, 0}, Check: []int{0, 1, 1, 1, 1, 2, 3, 4, 5}}
 )
 
 func request_ArtifactPublicService_ListKnowledgeBaseFiles_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -554,24 +554,24 @@ func request_ArtifactPublicService_ListKnowledgeBaseFiles_0(ctx context.Context,
 		_   = err
 	)
 
-	val, ok = pathParams["owner_uid"]
+	val, ok = pathParams["owner_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "owner_uid")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "owner_id")
 	}
 
-	protoReq.OwnerUid, err = runtime.String(val)
+	protoReq.OwnerId, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "owner_uid", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "owner_id", err)
 	}
 
-	val, ok = pathParams["kb_uid"]
+	val, ok = pathParams["kb_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "kb_uid")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "kb_id")
 	}
 
-	protoReq.KbUid, err = runtime.String(val)
+	protoReq.KbId, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "kb_uid", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "kb_id", err)
 	}
 
 	if err := req.ParseForm(); err != nil {
@@ -597,24 +597,24 @@ func local_request_ArtifactPublicService_ListKnowledgeBaseFiles_0(ctx context.Co
 		_   = err
 	)
 
-	val, ok = pathParams["owner_uid"]
+	val, ok = pathParams["owner_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "owner_uid")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "owner_id")
 	}
 
-	protoReq.OwnerUid, err = runtime.String(val)
+	protoReq.OwnerId, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "owner_uid", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "owner_id", err)
 	}
 
-	val, ok = pathParams["kb_uid"]
+	val, ok = pathParams["kb_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "kb_uid")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "kb_id")
 	}
 
-	protoReq.KbUid, err = runtime.String(val)
+	protoReq.KbId, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "kb_uid", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "kb_id", err)
 	}
 
 	if err := req.ParseForm(); err != nil {
@@ -843,7 +843,7 @@ func RegisterArtifactPublicServiceHandlerServer(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/UploadKnowledgeBaseFile", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_uid}/knowledge-bases/{kb_uid}/files"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/UploadKnowledgeBaseFile", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_id}/knowledge-bases/{kb_id}/files"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -918,7 +918,7 @@ func RegisterArtifactPublicServiceHandlerServer(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListKnowledgeBaseFiles", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_uid}/knowledge-bases/{kb_uid}/files"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListKnowledgeBaseFiles", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_id}/knowledge-bases/{kb_id}/files"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1158,7 +1158,7 @@ func RegisterArtifactPublicServiceHandlerClient(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/UploadKnowledgeBaseFile", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_uid}/knowledge-bases/{kb_uid}/files"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/UploadKnowledgeBaseFile", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_id}/knowledge-bases/{kb_id}/files"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1224,7 +1224,7 @@ func RegisterArtifactPublicServiceHandlerClient(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListKnowledgeBaseFiles", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_uid}/knowledge-bases/{kb_uid}/files"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListKnowledgeBaseFiles", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_id}/knowledge-bases/{kb_id}/files"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1260,13 +1260,13 @@ var (
 
 	pattern_ArtifactPublicService_DeleteKnowledgeBase_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1alpha", "knowledge-base", "id"}, ""))
 
-	pattern_ArtifactPublicService_UploadKnowledgeBaseFile_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "owners", "owner_uid", "knowledge-bases", "kb_uid", "files"}, ""))
+	pattern_ArtifactPublicService_UploadKnowledgeBaseFile_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "owners", "owner_id", "knowledge-bases", "kb_id", "files"}, ""))
 
 	pattern_ArtifactPublicService_DeleteKnowledgeBaseFile_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "knowledge-bases", "files"}, ""))
 
 	pattern_ArtifactPublicService_ProcessKnowledgeBaseFiles_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"v1alpha", "knowledge-bases", "files", "processAsync"}, ""))
 
-	pattern_ArtifactPublicService_ListKnowledgeBaseFiles_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "owners", "owner_uid", "knowledge-bases", "kb_uid", "files"}, ""))
+	pattern_ArtifactPublicService_ListKnowledgeBaseFiles_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "owners", "owner_id", "knowledge-bases", "kb_id", "files"}, ""))
 )
 
 var (
