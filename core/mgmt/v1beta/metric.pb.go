@@ -855,6 +855,214 @@ func (x *ListPipelineTriggerChartRecordsResponse) GetPipelineTriggerChartRecords
 	return nil
 }
 
+// CreditConsumptionChartRecord contains credit consumption metrics, aggregated
+// by owner and time frame.
+type CreditConsumptionChartRecord struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Credit owner ID, e.g. `users/chef-wombat`.
+	CreditOwner string `protobuf:"bytes,1,opt,name=credit_owner,json=creditOwner,proto3" json:"credit_owner,omitempty"`
+	// Time buckets.
+	TimeBuckets []*timestamppb.Timestamp `protobuf:"bytes,2,rep,name=time_buckets,json=timeBuckets,proto3" json:"time_buckets,omitempty"`
+	// Total credit consumed in each time bucket.
+	Amount []float32 `protobuf:"fixed32,3,rep,packed,name=amount,proto3" json:"amount,omitempty"`
+}
+
+func (x *CreditConsumptionChartRecord) Reset() {
+	*x = CreditConsumptionChartRecord{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreditConsumptionChartRecord) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreditConsumptionChartRecord) ProtoMessage() {}
+
+func (x *CreditConsumptionChartRecord) ProtoReflect() protoreflect.Message {
+	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreditConsumptionChartRecord.ProtoReflect.Descriptor instead.
+func (*CreditConsumptionChartRecord) Descriptor() ([]byte, []int) {
+	return file_core_mgmt_v1beta_metric_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *CreditConsumptionChartRecord) GetCreditOwner() string {
+	if x != nil {
+		return x.CreditOwner
+	}
+	return ""
+}
+
+func (x *CreditConsumptionChartRecord) GetTimeBuckets() []*timestamppb.Timestamp {
+	if x != nil {
+		return x.TimeBuckets
+	}
+	return nil
+}
+
+func (x *CreditConsumptionChartRecord) GetAmount() []float32 {
+	if x != nil {
+		return x.Amount
+	}
+	return nil
+}
+
+// ListCreditConsumptionChartRecordsRequest represents a request to list pipeline
+// trigger metrics, aggregated by pipeline ID and time frame.
+type ListCreditConsumptionChartRecordsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The user or organization to which the credit belongs.
+	// Format: `{[users|organizations]}/{id}`.
+	Owner string `protobuf:"bytes,1,opt,name=owner,proto3" json:"owner,omitempty"`
+	// Aggregation window. The value is a positive duration string, i.e. a
+	// sequence of decimal numbers, each with optional fraction and a unit
+	// suffix, such as "300ms", "1.5h" or "2h45m".
+	// The minimum (and default) window is 1h.
+	AggregationWindow *string `protobuf:"bytes,2,opt,name=aggregation_window,json=aggregationWindow,proto3,oneof" json:"aggregation_window,omitempty"`
+	// Beginning of the time range from which the records will be fetched.
+	Start *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=start,proto3,oneof" json:"start,omitempty"`
+	// End of the time range from which the records will be fetched.
+	Stop *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=stop,proto3,oneof" json:"stop,omitempty"`
+}
+
+func (x *ListCreditConsumptionChartRecordsRequest) Reset() {
+	*x = ListCreditConsumptionChartRecordsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListCreditConsumptionChartRecordsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListCreditConsumptionChartRecordsRequest) ProtoMessage() {}
+
+func (x *ListCreditConsumptionChartRecordsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListCreditConsumptionChartRecordsRequest.ProtoReflect.Descriptor instead.
+func (*ListCreditConsumptionChartRecordsRequest) Descriptor() ([]byte, []int) {
+	return file_core_mgmt_v1beta_metric_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *ListCreditConsumptionChartRecordsRequest) GetOwner() string {
+	if x != nil {
+		return x.Owner
+	}
+	return ""
+}
+
+func (x *ListCreditConsumptionChartRecordsRequest) GetAggregationWindow() string {
+	if x != nil && x.AggregationWindow != nil {
+		return *x.AggregationWindow
+	}
+	return ""
+}
+
+func (x *ListCreditConsumptionChartRecordsRequest) GetStart() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Start
+	}
+	return nil
+}
+
+func (x *ListCreditConsumptionChartRecordsRequest) GetStop() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Stop
+	}
+	return nil
+}
+
+// ListCreditConsumptionChartRecordsResponse contains a list of pipeline trigger
+// chart records.
+type ListCreditConsumptionChartRecordsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// A list of pipeline trigger records.
+	CreditConsumptionChartRecords []*CreditConsumptionChartRecord `protobuf:"bytes,1,rep,name=credit_consumption_chart_records,json=creditConsumptionChartRecords,proto3" json:"credit_consumption_chart_records,omitempty"`
+	// Sum of the total credit consumed within the time range.
+	TotalAmount float32 `protobuf:"fixed32,2,opt,name=total_amount,json=totalAmount,proto3" json:"total_amount,omitempty"`
+}
+
+func (x *ListCreditConsumptionChartRecordsResponse) Reset() {
+	*x = ListCreditConsumptionChartRecordsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListCreditConsumptionChartRecordsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListCreditConsumptionChartRecordsResponse) ProtoMessage() {}
+
+func (x *ListCreditConsumptionChartRecordsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListCreditConsumptionChartRecordsResponse.ProtoReflect.Descriptor instead.
+func (*ListCreditConsumptionChartRecordsResponse) Descriptor() ([]byte, []int) {
+	return file_core_mgmt_v1beta_metric_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *ListCreditConsumptionChartRecordsResponse) GetCreditConsumptionChartRecords() []*CreditConsumptionChartRecord {
+	if x != nil {
+		return x.CreditConsumptionChartRecords
+	}
+	return nil
+}
+
+func (x *ListCreditConsumptionChartRecordsResponse) GetTotalAmount() float32 {
+	if x != nil {
+		return x.TotalAmount
+	}
+	return 0
+}
+
 var File_core_mgmt_v1beta_metric_proto protoreflect.FileDescriptor
 
 var file_core_mgmt_v1beta_metric_proto_rawDesc = []byte{
@@ -1016,7 +1224,48 @@ var file_core_mgmt_v1beta_metric_proto_rawDesc = []byte{
 	0x2e, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x54, 0x72, 0x69, 0x67, 0x67, 0x65, 0x72,
 	0x43, 0x68, 0x61, 0x72, 0x74, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x52, 0x1b, 0x70, 0x69, 0x70,
 	0x65, 0x6c, 0x69, 0x6e, 0x65, 0x54, 0x72, 0x69, 0x67, 0x67, 0x65, 0x72, 0x43, 0x68, 0x61, 0x72,
-	0x74, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x2a, 0x3b, 0x0a, 0x04, 0x4d, 0x6f, 0x64, 0x65,
+	0x74, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x22, 0xa2, 0x01, 0x0a, 0x1c, 0x43, 0x72, 0x65,
+	0x64, 0x69, 0x74, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6d, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x68,
+	0x61, 0x72, 0x74, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x12, 0x21, 0x0a, 0x0c, 0x63, 0x72, 0x65,
+	0x64, 0x69, 0x74, 0x5f, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x0b, 0x63, 0x72, 0x65, 0x64, 0x69, 0x74, 0x4f, 0x77, 0x6e, 0x65, 0x72, 0x12, 0x42, 0x0a, 0x0c,
+	0x74, 0x69, 0x6d, 0x65, 0x5f, 0x62, 0x75, 0x63, 0x6b, 0x65, 0x74, 0x73, 0x18, 0x02, 0x20, 0x03,
+	0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42, 0x03,
+	0xe0, 0x41, 0x03, 0x52, 0x0b, 0x74, 0x69, 0x6d, 0x65, 0x42, 0x75, 0x63, 0x6b, 0x65, 0x74, 0x73,
+	0x12, 0x1b, 0x0a, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x03, 0x20, 0x03, 0x28, 0x02,
+	0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x22, 0x9e, 0x02,
+	0x0a, 0x28, 0x4c, 0x69, 0x73, 0x74, 0x43, 0x72, 0x65, 0x64, 0x69, 0x74, 0x43, 0x6f, 0x6e, 0x73,
+	0x75, 0x6d, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x68, 0x61, 0x72, 0x74, 0x52, 0x65, 0x63, 0x6f,
+	0x72, 0x64, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x19, 0x0a, 0x05, 0x6f, 0x77,
+	0x6e, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x05,
+	0x6f, 0x77, 0x6e, 0x65, 0x72, 0x12, 0x37, 0x0a, 0x12, 0x61, 0x67, 0x67, 0x72, 0x65, 0x67, 0x61,
+	0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x77, 0x69, 0x6e, 0x64, 0x6f, 0x77, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x09, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x00, 0x52, 0x11, 0x61, 0x67, 0x67, 0x72, 0x65, 0x67,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x57, 0x69, 0x6e, 0x64, 0x6f, 0x77, 0x88, 0x01, 0x01, 0x12, 0x3a,
+	0x0a, 0x05, 0x73, 0x74, 0x61, 0x72, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e,
+	0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e,
+	0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x01,
+	0x52, 0x05, 0x73, 0x74, 0x61, 0x72, 0x74, 0x88, 0x01, 0x01, 0x12, 0x38, 0x0a, 0x04, 0x73, 0x74,
+	0x6f, 0x70, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
+	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73,
+	0x74, 0x61, 0x6d, 0x70, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x02, 0x52, 0x04, 0x73, 0x74, 0x6f,
+	0x70, 0x88, 0x01, 0x01, 0x42, 0x15, 0x0a, 0x13, 0x5f, 0x61, 0x67, 0x67, 0x72, 0x65, 0x67, 0x61,
+	0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x77, 0x69, 0x6e, 0x64, 0x6f, 0x77, 0x42, 0x08, 0x0a, 0x06, 0x5f,
+	0x73, 0x74, 0x61, 0x72, 0x74, 0x42, 0x07, 0x0a, 0x05, 0x5f, 0x73, 0x74, 0x6f, 0x70, 0x22, 0xc7,
+	0x01, 0x0a, 0x29, 0x4c, 0x69, 0x73, 0x74, 0x43, 0x72, 0x65, 0x64, 0x69, 0x74, 0x43, 0x6f, 0x6e,
+	0x73, 0x75, 0x6d, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x68, 0x61, 0x72, 0x74, 0x52, 0x65, 0x63,
+	0x6f, 0x72, 0x64, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x77, 0x0a, 0x20,
+	0x63, 0x72, 0x65, 0x64, 0x69, 0x74, 0x5f, 0x63, 0x6f, 0x6e, 0x73, 0x75, 0x6d, 0x70, 0x74, 0x69,
+	0x6f, 0x6e, 0x5f, 0x63, 0x68, 0x61, 0x72, 0x74, 0x5f, 0x72, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73,
+	0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x2e, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x6d, 0x67,
+	0x6d, 0x74, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x43, 0x72, 0x65, 0x64, 0x69, 0x74,
+	0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6d, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x68, 0x61, 0x72, 0x74,
+	0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x52, 0x1d, 0x63, 0x72, 0x65, 0x64, 0x69, 0x74, 0x43, 0x6f,
+	0x6e, 0x73, 0x75, 0x6d, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x68, 0x61, 0x72, 0x74, 0x52, 0x65,
+	0x63, 0x6f, 0x72, 0x64, 0x73, 0x12, 0x21, 0x0a, 0x0c, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x61,
+	0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x02, 0x52, 0x0b, 0x74, 0x6f, 0x74,
+	0x61, 0x6c, 0x41, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x2a, 0x3b, 0x0a, 0x04, 0x4d, 0x6f, 0x64, 0x65,
 	0x12, 0x14, 0x0a, 0x10, 0x4d, 0x4f, 0x44, 0x45, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49,
 	0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x0d, 0x0a, 0x09, 0x4d, 0x4f, 0x44, 0x45, 0x5f, 0x53,
 	0x59, 0x4e, 0x43, 0x10, 0x01, 0x12, 0x0e, 0x0a, 0x0a, 0x4d, 0x4f, 0x44, 0x45, 0x5f, 0x41, 0x53,
@@ -1053,36 +1302,43 @@ func file_core_mgmt_v1beta_metric_proto_rawDescGZIP() []byte {
 }
 
 var file_core_mgmt_v1beta_metric_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_core_mgmt_v1beta_metric_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_core_mgmt_v1beta_metric_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_core_mgmt_v1beta_metric_proto_goTypes = []interface{}{
-	(Mode)(0),                                       // 0: core.mgmt.v1beta.Mode
-	(Status)(0),                                     // 1: core.mgmt.v1beta.Status
-	(*PipelineTriggerRecord)(nil),                   // 2: core.mgmt.v1beta.PipelineTriggerRecord
-	(*PipelineTriggerTableRecord)(nil),              // 3: core.mgmt.v1beta.PipelineTriggerTableRecord
-	(*PipelineTriggerChartRecord)(nil),              // 4: core.mgmt.v1beta.PipelineTriggerChartRecord
-	(*ListPipelineTriggerRecordsRequest)(nil),       // 5: core.mgmt.v1beta.ListPipelineTriggerRecordsRequest
-	(*ListPipelineTriggerRecordsResponse)(nil),      // 6: core.mgmt.v1beta.ListPipelineTriggerRecordsResponse
-	(*ListPipelineTriggerTableRecordsRequest)(nil),  // 7: core.mgmt.v1beta.ListPipelineTriggerTableRecordsRequest
-	(*ListPipelineTriggerTableRecordsResponse)(nil), // 8: core.mgmt.v1beta.ListPipelineTriggerTableRecordsResponse
-	(*ListPipelineTriggerChartRecordsRequest)(nil),  // 9: core.mgmt.v1beta.ListPipelineTriggerChartRecordsRequest
-	(*ListPipelineTriggerChartRecordsResponse)(nil), // 10: core.mgmt.v1beta.ListPipelineTriggerChartRecordsResponse
-	(*timestamppb.Timestamp)(nil),                   // 11: google.protobuf.Timestamp
+	(Mode)(0),                                         // 0: core.mgmt.v1beta.Mode
+	(Status)(0),                                       // 1: core.mgmt.v1beta.Status
+	(*PipelineTriggerRecord)(nil),                     // 2: core.mgmt.v1beta.PipelineTriggerRecord
+	(*PipelineTriggerTableRecord)(nil),                // 3: core.mgmt.v1beta.PipelineTriggerTableRecord
+	(*PipelineTriggerChartRecord)(nil),                // 4: core.mgmt.v1beta.PipelineTriggerChartRecord
+	(*ListPipelineTriggerRecordsRequest)(nil),         // 5: core.mgmt.v1beta.ListPipelineTriggerRecordsRequest
+	(*ListPipelineTriggerRecordsResponse)(nil),        // 6: core.mgmt.v1beta.ListPipelineTriggerRecordsResponse
+	(*ListPipelineTriggerTableRecordsRequest)(nil),    // 7: core.mgmt.v1beta.ListPipelineTriggerTableRecordsRequest
+	(*ListPipelineTriggerTableRecordsResponse)(nil),   // 8: core.mgmt.v1beta.ListPipelineTriggerTableRecordsResponse
+	(*ListPipelineTriggerChartRecordsRequest)(nil),    // 9: core.mgmt.v1beta.ListPipelineTriggerChartRecordsRequest
+	(*ListPipelineTriggerChartRecordsResponse)(nil),   // 10: core.mgmt.v1beta.ListPipelineTriggerChartRecordsResponse
+	(*CreditConsumptionChartRecord)(nil),              // 11: core.mgmt.v1beta.CreditConsumptionChartRecord
+	(*ListCreditConsumptionChartRecordsRequest)(nil),  // 12: core.mgmt.v1beta.ListCreditConsumptionChartRecordsRequest
+	(*ListCreditConsumptionChartRecordsResponse)(nil), // 13: core.mgmt.v1beta.ListCreditConsumptionChartRecordsResponse
+	(*timestamppb.Timestamp)(nil),                     // 14: google.protobuf.Timestamp
 }
 var file_core_mgmt_v1beta_metric_proto_depIdxs = []int32{
-	11, // 0: core.mgmt.v1beta.PipelineTriggerRecord.trigger_time:type_name -> google.protobuf.Timestamp
+	14, // 0: core.mgmt.v1beta.PipelineTriggerRecord.trigger_time:type_name -> google.protobuf.Timestamp
 	0,  // 1: core.mgmt.v1beta.PipelineTriggerRecord.trigger_mode:type_name -> core.mgmt.v1beta.Mode
 	1,  // 2: core.mgmt.v1beta.PipelineTriggerRecord.status:type_name -> core.mgmt.v1beta.Status
 	0,  // 3: core.mgmt.v1beta.PipelineTriggerChartRecord.trigger_mode:type_name -> core.mgmt.v1beta.Mode
 	1,  // 4: core.mgmt.v1beta.PipelineTriggerChartRecord.status:type_name -> core.mgmt.v1beta.Status
-	11, // 5: core.mgmt.v1beta.PipelineTriggerChartRecord.time_buckets:type_name -> google.protobuf.Timestamp
+	14, // 5: core.mgmt.v1beta.PipelineTriggerChartRecord.time_buckets:type_name -> google.protobuf.Timestamp
 	2,  // 6: core.mgmt.v1beta.ListPipelineTriggerRecordsResponse.pipeline_trigger_records:type_name -> core.mgmt.v1beta.PipelineTriggerRecord
 	3,  // 7: core.mgmt.v1beta.ListPipelineTriggerTableRecordsResponse.pipeline_trigger_table_records:type_name -> core.mgmt.v1beta.PipelineTriggerTableRecord
 	4,  // 8: core.mgmt.v1beta.ListPipelineTriggerChartRecordsResponse.pipeline_trigger_chart_records:type_name -> core.mgmt.v1beta.PipelineTriggerChartRecord
-	9,  // [9:9] is the sub-list for method output_type
-	9,  // [9:9] is the sub-list for method input_type
-	9,  // [9:9] is the sub-list for extension type_name
-	9,  // [9:9] is the sub-list for extension extendee
-	0,  // [0:9] is the sub-list for field type_name
+	14, // 9: core.mgmt.v1beta.CreditConsumptionChartRecord.time_buckets:type_name -> google.protobuf.Timestamp
+	14, // 10: core.mgmt.v1beta.ListCreditConsumptionChartRecordsRequest.start:type_name -> google.protobuf.Timestamp
+	14, // 11: core.mgmt.v1beta.ListCreditConsumptionChartRecordsRequest.stop:type_name -> google.protobuf.Timestamp
+	11, // 12: core.mgmt.v1beta.ListCreditConsumptionChartRecordsResponse.credit_consumption_chart_records:type_name -> core.mgmt.v1beta.CreditConsumptionChartRecord
+	13, // [13:13] is the sub-list for method output_type
+	13, // [13:13] is the sub-list for method input_type
+	13, // [13:13] is the sub-list for extension type_name
+	13, // [13:13] is the sub-list for extension extendee
+	0,  // [0:13] is the sub-list for field type_name
 }
 
 func init() { file_core_mgmt_v1beta_metric_proto_init() }
@@ -1199,17 +1455,54 @@ func file_core_mgmt_v1beta_metric_proto_init() {
 				return nil
 			}
 		}
+		file_core_mgmt_v1beta_metric_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreditConsumptionChartRecord); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_core_mgmt_v1beta_metric_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListCreditConsumptionChartRecordsRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_core_mgmt_v1beta_metric_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListCreditConsumptionChartRecordsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	file_core_mgmt_v1beta_metric_proto_msgTypes[3].OneofWrappers = []interface{}{}
 	file_core_mgmt_v1beta_metric_proto_msgTypes[5].OneofWrappers = []interface{}{}
 	file_core_mgmt_v1beta_metric_proto_msgTypes[7].OneofWrappers = []interface{}{}
+	file_core_mgmt_v1beta_metric_proto_msgTypes[10].OneofWrappers = []interface{}{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_core_mgmt_v1beta_metric_proto_rawDesc,
 			NumEnums:      2,
-			NumMessages:   9,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

@@ -19,42 +19,43 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	MgmtPublicService_Liveness_FullMethodName                         = "/core.mgmt.v1beta.MgmtPublicService/Liveness"
-	MgmtPublicService_Readiness_FullMethodName                        = "/core.mgmt.v1beta.MgmtPublicService/Readiness"
-	MgmtPublicService_GetAuthenticatedUser_FullMethodName             = "/core.mgmt.v1beta.MgmtPublicService/GetAuthenticatedUser"
-	MgmtPublicService_PatchAuthenticatedUser_FullMethodName           = "/core.mgmt.v1beta.MgmtPublicService/PatchAuthenticatedUser"
-	MgmtPublicService_ListUsers_FullMethodName                        = "/core.mgmt.v1beta.MgmtPublicService/ListUsers"
-	MgmtPublicService_GetUser_FullMethodName                          = "/core.mgmt.v1beta.MgmtPublicService/GetUser"
-	MgmtPublicService_CreateOrganization_FullMethodName               = "/core.mgmt.v1beta.MgmtPublicService/CreateOrganization"
-	MgmtPublicService_ListOrganizations_FullMethodName                = "/core.mgmt.v1beta.MgmtPublicService/ListOrganizations"
-	MgmtPublicService_GetOrganization_FullMethodName                  = "/core.mgmt.v1beta.MgmtPublicService/GetOrganization"
-	MgmtPublicService_UpdateOrganization_FullMethodName               = "/core.mgmt.v1beta.MgmtPublicService/UpdateOrganization"
-	MgmtPublicService_DeleteOrganization_FullMethodName               = "/core.mgmt.v1beta.MgmtPublicService/DeleteOrganization"
-	MgmtPublicService_ListUserMemberships_FullMethodName              = "/core.mgmt.v1beta.MgmtPublicService/ListUserMemberships"
-	MgmtPublicService_GetUserMembership_FullMethodName                = "/core.mgmt.v1beta.MgmtPublicService/GetUserMembership"
-	MgmtPublicService_UpdateUserMembership_FullMethodName             = "/core.mgmt.v1beta.MgmtPublicService/UpdateUserMembership"
-	MgmtPublicService_DeleteUserMembership_FullMethodName             = "/core.mgmt.v1beta.MgmtPublicService/DeleteUserMembership"
-	MgmtPublicService_ListOrganizationMemberships_FullMethodName      = "/core.mgmt.v1beta.MgmtPublicService/ListOrganizationMemberships"
-	MgmtPublicService_GetOrganizationMembership_FullMethodName        = "/core.mgmt.v1beta.MgmtPublicService/GetOrganizationMembership"
-	MgmtPublicService_UpdateOrganizationMembership_FullMethodName     = "/core.mgmt.v1beta.MgmtPublicService/UpdateOrganizationMembership"
-	MgmtPublicService_DeleteOrganizationMembership_FullMethodName     = "/core.mgmt.v1beta.MgmtPublicService/DeleteOrganizationMembership"
-	MgmtPublicService_GetAuthenticatedUserSubscription_FullMethodName = "/core.mgmt.v1beta.MgmtPublicService/GetAuthenticatedUserSubscription"
-	MgmtPublicService_GetOrganizationSubscription_FullMethodName      = "/core.mgmt.v1beta.MgmtPublicService/GetOrganizationSubscription"
-	MgmtPublicService_CreateToken_FullMethodName                      = "/core.mgmt.v1beta.MgmtPublicService/CreateToken"
-	MgmtPublicService_ListTokens_FullMethodName                       = "/core.mgmt.v1beta.MgmtPublicService/ListTokens"
-	MgmtPublicService_GetToken_FullMethodName                         = "/core.mgmt.v1beta.MgmtPublicService/GetToken"
-	MgmtPublicService_DeleteToken_FullMethodName                      = "/core.mgmt.v1beta.MgmtPublicService/DeleteToken"
-	MgmtPublicService_ValidateToken_FullMethodName                    = "/core.mgmt.v1beta.MgmtPublicService/ValidateToken"
-	MgmtPublicService_GetRemainingCredit_FullMethodName               = "/core.mgmt.v1beta.MgmtPublicService/GetRemainingCredit"
-	MgmtPublicService_CheckNamespace_FullMethodName                   = "/core.mgmt.v1beta.MgmtPublicService/CheckNamespace"
-	MgmtPublicService_ListPipelineTriggerRecords_FullMethodName       = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerRecords"
-	MgmtPublicService_ListPipelineTriggerTableRecords_FullMethodName  = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerTableRecords"
-	MgmtPublicService_ListPipelineTriggerChartRecords_FullMethodName  = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerChartRecords"
-	MgmtPublicService_AuthTokenIssuer_FullMethodName                  = "/core.mgmt.v1beta.MgmtPublicService/AuthTokenIssuer"
-	MgmtPublicService_AuthLogin_FullMethodName                        = "/core.mgmt.v1beta.MgmtPublicService/AuthLogin"
-	MgmtPublicService_AuthLogout_FullMethodName                       = "/core.mgmt.v1beta.MgmtPublicService/AuthLogout"
-	MgmtPublicService_AuthChangePassword_FullMethodName               = "/core.mgmt.v1beta.MgmtPublicService/AuthChangePassword"
-	MgmtPublicService_AuthValidateAccessToken_FullMethodName          = "/core.mgmt.v1beta.MgmtPublicService/AuthValidateAccessToken"
+	MgmtPublicService_Liveness_FullMethodName                          = "/core.mgmt.v1beta.MgmtPublicService/Liveness"
+	MgmtPublicService_Readiness_FullMethodName                         = "/core.mgmt.v1beta.MgmtPublicService/Readiness"
+	MgmtPublicService_GetAuthenticatedUser_FullMethodName              = "/core.mgmt.v1beta.MgmtPublicService/GetAuthenticatedUser"
+	MgmtPublicService_PatchAuthenticatedUser_FullMethodName            = "/core.mgmt.v1beta.MgmtPublicService/PatchAuthenticatedUser"
+	MgmtPublicService_ListUsers_FullMethodName                         = "/core.mgmt.v1beta.MgmtPublicService/ListUsers"
+	MgmtPublicService_GetUser_FullMethodName                           = "/core.mgmt.v1beta.MgmtPublicService/GetUser"
+	MgmtPublicService_CreateOrganization_FullMethodName                = "/core.mgmt.v1beta.MgmtPublicService/CreateOrganization"
+	MgmtPublicService_ListOrganizations_FullMethodName                 = "/core.mgmt.v1beta.MgmtPublicService/ListOrganizations"
+	MgmtPublicService_GetOrganization_FullMethodName                   = "/core.mgmt.v1beta.MgmtPublicService/GetOrganization"
+	MgmtPublicService_UpdateOrganization_FullMethodName                = "/core.mgmt.v1beta.MgmtPublicService/UpdateOrganization"
+	MgmtPublicService_DeleteOrganization_FullMethodName                = "/core.mgmt.v1beta.MgmtPublicService/DeleteOrganization"
+	MgmtPublicService_ListUserMemberships_FullMethodName               = "/core.mgmt.v1beta.MgmtPublicService/ListUserMemberships"
+	MgmtPublicService_GetUserMembership_FullMethodName                 = "/core.mgmt.v1beta.MgmtPublicService/GetUserMembership"
+	MgmtPublicService_UpdateUserMembership_FullMethodName              = "/core.mgmt.v1beta.MgmtPublicService/UpdateUserMembership"
+	MgmtPublicService_DeleteUserMembership_FullMethodName              = "/core.mgmt.v1beta.MgmtPublicService/DeleteUserMembership"
+	MgmtPublicService_ListOrganizationMemberships_FullMethodName       = "/core.mgmt.v1beta.MgmtPublicService/ListOrganizationMemberships"
+	MgmtPublicService_GetOrganizationMembership_FullMethodName         = "/core.mgmt.v1beta.MgmtPublicService/GetOrganizationMembership"
+	MgmtPublicService_UpdateOrganizationMembership_FullMethodName      = "/core.mgmt.v1beta.MgmtPublicService/UpdateOrganizationMembership"
+	MgmtPublicService_DeleteOrganizationMembership_FullMethodName      = "/core.mgmt.v1beta.MgmtPublicService/DeleteOrganizationMembership"
+	MgmtPublicService_GetAuthenticatedUserSubscription_FullMethodName  = "/core.mgmt.v1beta.MgmtPublicService/GetAuthenticatedUserSubscription"
+	MgmtPublicService_GetOrganizationSubscription_FullMethodName       = "/core.mgmt.v1beta.MgmtPublicService/GetOrganizationSubscription"
+	MgmtPublicService_CreateToken_FullMethodName                       = "/core.mgmt.v1beta.MgmtPublicService/CreateToken"
+	MgmtPublicService_ListTokens_FullMethodName                        = "/core.mgmt.v1beta.MgmtPublicService/ListTokens"
+	MgmtPublicService_GetToken_FullMethodName                          = "/core.mgmt.v1beta.MgmtPublicService/GetToken"
+	MgmtPublicService_DeleteToken_FullMethodName                       = "/core.mgmt.v1beta.MgmtPublicService/DeleteToken"
+	MgmtPublicService_ValidateToken_FullMethodName                     = "/core.mgmt.v1beta.MgmtPublicService/ValidateToken"
+	MgmtPublicService_GetRemainingCredit_FullMethodName                = "/core.mgmt.v1beta.MgmtPublicService/GetRemainingCredit"
+	MgmtPublicService_CheckNamespace_FullMethodName                    = "/core.mgmt.v1beta.MgmtPublicService/CheckNamespace"
+	MgmtPublicService_ListPipelineTriggerRecords_FullMethodName        = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerRecords"
+	MgmtPublicService_ListPipelineTriggerTableRecords_FullMethodName   = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerTableRecords"
+	MgmtPublicService_ListPipelineTriggerChartRecords_FullMethodName   = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerChartRecords"
+	MgmtPublicService_ListCreditConsumptionChartRecords_FullMethodName = "/core.mgmt.v1beta.MgmtPublicService/ListCreditConsumptionChartRecords"
+	MgmtPublicService_AuthTokenIssuer_FullMethodName                   = "/core.mgmt.v1beta.MgmtPublicService/AuthTokenIssuer"
+	MgmtPublicService_AuthLogin_FullMethodName                         = "/core.mgmt.v1beta.MgmtPublicService/AuthLogin"
+	MgmtPublicService_AuthLogout_FullMethodName                        = "/core.mgmt.v1beta.MgmtPublicService/AuthLogout"
+	MgmtPublicService_AuthChangePassword_FullMethodName                = "/core.mgmt.v1beta.MgmtPublicService/AuthChangePassword"
+	MgmtPublicService_AuthValidateAccessToken_FullMethodName           = "/core.mgmt.v1beta.MgmtPublicService/AuthValidateAccessToken"
 )
 
 // MgmtPublicServiceClient is the client API for MgmtPublicService service.
@@ -200,6 +201,12 @@ type MgmtPublicServiceClient interface {
 	// Returns a paginated list with pipeline trigger execution times, aggregated
 	// by pipeline and time frames.
 	ListPipelineTriggerChartRecords(ctx context.Context, in *ListPipelineTriggerChartRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerChartRecordsResponse, error)
+	// List Instill Credit consumption time charts
+	//
+	// Returns a timeline of Instill Credit consumption for a given owner. The
+	// timeline consists of a list of time frames that contain the aggregated
+	// credit consumption.
+	ListCreditConsumptionChartRecords(ctx context.Context, in *ListCreditConsumptionChartRecordsRequest, opts ...grpc.CallOption) (*ListCreditConsumptionChartRecordsResponse, error)
 	// Get Auth token issuer
 	//
 	// Returns the auth token issuer details. This operation requires admin permissions.
@@ -509,6 +516,15 @@ func (c *mgmtPublicServiceClient) ListPipelineTriggerChartRecords(ctx context.Co
 	return out, nil
 }
 
+func (c *mgmtPublicServiceClient) ListCreditConsumptionChartRecords(ctx context.Context, in *ListCreditConsumptionChartRecordsRequest, opts ...grpc.CallOption) (*ListCreditConsumptionChartRecordsResponse, error) {
+	out := new(ListCreditConsumptionChartRecordsResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_ListCreditConsumptionChartRecords_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *mgmtPublicServiceClient) AuthTokenIssuer(ctx context.Context, in *AuthTokenIssuerRequest, opts ...grpc.CallOption) (*AuthTokenIssuerResponse, error) {
 	out := new(AuthTokenIssuerResponse)
 	err := c.cc.Invoke(ctx, MgmtPublicService_AuthTokenIssuer_FullMethodName, in, out, opts...)
@@ -697,6 +713,12 @@ type MgmtPublicServiceServer interface {
 	// Returns a paginated list with pipeline trigger execution times, aggregated
 	// by pipeline and time frames.
 	ListPipelineTriggerChartRecords(context.Context, *ListPipelineTriggerChartRecordsRequest) (*ListPipelineTriggerChartRecordsResponse, error)
+	// List Instill Credit consumption time charts
+	//
+	// Returns a timeline of Instill Credit consumption for a given owner. The
+	// timeline consists of a list of time frames that contain the aggregated
+	// credit consumption.
+	ListCreditConsumptionChartRecords(context.Context, *ListCreditConsumptionChartRecordsRequest) (*ListCreditConsumptionChartRecordsResponse, error)
 	// Get Auth token issuer
 	//
 	// Returns the auth token issuer details. This operation requires admin permissions.
@@ -815,6 +837,9 @@ func (UnimplementedMgmtPublicServiceServer) ListPipelineTriggerTableRecords(cont
 }
 func (UnimplementedMgmtPublicServiceServer) ListPipelineTriggerChartRecords(context.Context, *ListPipelineTriggerChartRecordsRequest) (*ListPipelineTriggerChartRecordsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineTriggerChartRecords not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) ListCreditConsumptionChartRecords(context.Context, *ListCreditConsumptionChartRecordsRequest) (*ListCreditConsumptionChartRecordsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListCreditConsumptionChartRecords not implemented")
 }
 func (UnimplementedMgmtPublicServiceServer) AuthTokenIssuer(context.Context, *AuthTokenIssuerRequest) (*AuthTokenIssuerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AuthTokenIssuer not implemented")
@@ -1401,6 +1426,24 @@ func _MgmtPublicService_ListPipelineTriggerChartRecords_Handler(srv interface{},
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MgmtPublicService_ListCreditConsumptionChartRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListCreditConsumptionChartRecordsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).ListCreditConsumptionChartRecords(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_ListCreditConsumptionChartRecords_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).ListCreditConsumptionChartRecords(ctx, req.(*ListCreditConsumptionChartRecordsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _MgmtPublicService_AuthTokenIssuer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AuthTokenIssuerRequest)
 	if err := dec(in); err != nil {
@@ -1621,6 +1664,10 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListPipelineTriggerChartRecords",
 			Handler:    _MgmtPublicService_ListPipelineTriggerChartRecords_Handler,
+		},
+		{
+			MethodName: "ListCreditConsumptionChartRecords",
+			Handler:    _MgmtPublicService_ListCreditConsumptionChartRecords_Handler,
 		},
 		{
 			MethodName: "AuthTokenIssuer",
