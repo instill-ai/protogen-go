@@ -175,11 +175,9 @@ type MgmtPublicServiceClient interface {
 	ValidateToken(ctx context.Context, in *ValidateTokenRequest, opts ...grpc.CallOption) (*ValidateTokenResponse, error)
 	// Get the remaining Instill Credit
 	//
-	// On Instill Cloud, users can use Instill Credit to execute pre-configured
-	// AI connectors. This simplifies the pipeline setup, removing the need to
-	// subscribe to third-party AI services. This endpoint returns the remaining
-	// Instill Credit of a given user or organization. The requested credit owner
-	// must be either the authenticated user or an organization they belong to.
+	// This endpoint returns the remaining [Instill Credit](https://www.instill.tech/docs/vdp/credit) of a given user or
+	// organization. The requested credit owner must be either the authenticated
+	// user or an organization they belong to.
 	//
 	// On Instill Core, this endpoint will return a 404 Not Found status.
 	GetRemainingCredit(ctx context.Context, in *GetRemainingCreditRequest, opts ...grpc.CallOption) (*GetRemainingCreditResponse, error)
@@ -687,11 +685,9 @@ type MgmtPublicServiceServer interface {
 	ValidateToken(context.Context, *ValidateTokenRequest) (*ValidateTokenResponse, error)
 	// Get the remaining Instill Credit
 	//
-	// On Instill Cloud, users can use Instill Credit to execute pre-configured
-	// AI connectors. This simplifies the pipeline setup, removing the need to
-	// subscribe to third-party AI services. This endpoint returns the remaining
-	// Instill Credit of a given user or organization. The requested credit owner
-	// must be either the authenticated user or an organization they belong to.
+	// This endpoint returns the remaining [Instill Credit](https://www.instill.tech/docs/vdp/credit) of a given user or
+	// organization. The requested credit owner must be either the authenticated
+	// user or an organization they belong to.
 	//
 	// On Instill Core, this endpoint will return a 404 Not Found status.
 	GetRemainingCredit(context.Context, *GetRemainingCreditRequest) (*GetRemainingCreditResponse, error)
