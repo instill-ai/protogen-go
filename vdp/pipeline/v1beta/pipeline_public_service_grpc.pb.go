@@ -52,6 +52,7 @@ const (
 	PipelinePublicService_ValidateOrganizationPipeline_FullMethodName            = "/vdp.pipeline.v1beta.PipelinePublicService/ValidateOrganizationPipeline"
 	PipelinePublicService_RenameOrganizationPipeline_FullMethodName              = "/vdp.pipeline.v1beta.PipelinePublicService/RenameOrganizationPipeline"
 	PipelinePublicService_CloneOrganizationPipeline_FullMethodName               = "/vdp.pipeline.v1beta.PipelinePublicService/CloneOrganizationPipeline"
+	PipelinePublicService_TriggerOrganizationPipelineStream_FullMethodName       = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerOrganizationPipelineStream"
 	PipelinePublicService_TriggerOrganizationPipeline_FullMethodName             = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerOrganizationPipeline"
 	PipelinePublicService_TriggerAsyncOrganizationPipeline_FullMethodName        = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerAsyncOrganizationPipeline"
 	PipelinePublicService_CreateOrganizationPipelineRelease_FullMethodName       = "/vdp.pipeline.v1beta.PipelinePublicService/CreateOrganizationPipelineRelease"
@@ -323,6 +324,18 @@ type PipelinePublicServiceClient interface {
 	// Clones a pipeline owned by an organization. The new pipeline may have a
 	// different parent, and this can be either a user or an organization.
 	CloneOrganizationPipeline(ctx context.Context, in *CloneOrganizationPipelineRequest, opts ...grpc.CallOption) (*CloneOrganizationPipelineResponse, error)
+	// Trigger a pipeline owned by an organization
+	//
+	// Triggers the execution of a pipeline synchronously, i.e., the result is sent
+	// back to the organization right after the data is processed. This method is
+	// intended for real-time inference when low latency is of concern.
+	//
+	// The pipeline is identified by its resource name, formed by the parent
+	// organization and ID of the pipeline.
+	//
+	// For more information, see [Trigger
+	// Pipeline](https://www.instill.tech/docs/latest/core/concepts/pipeline#trigger-pipeline).
+	TriggerOrganizationPipelineStream(ctx context.Context, in *TriggerOrganizationPipelineStreamRequest, opts ...grpc.CallOption) (PipelinePublicService_TriggerOrganizationPipelineStreamClient, error)
 	// Trigger a pipeline owned by an organization
 	//
 	// Triggers the execution of a pipeline synchronously, i.e., the result is sent
@@ -826,6 +839,38 @@ func (c *pipelinePublicServiceClient) CloneOrganizationPipeline(ctx context.Cont
 		return nil, err
 	}
 	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) TriggerOrganizationPipelineStream(ctx context.Context, in *TriggerOrganizationPipelineStreamRequest, opts ...grpc.CallOption) (PipelinePublicService_TriggerOrganizationPipelineStreamClient, error) {
+	stream, err := c.cc.NewStream(ctx, &PipelinePublicService_ServiceDesc.Streams[1], PipelinePublicService_TriggerOrganizationPipelineStream_FullMethodName, opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &pipelinePublicServiceTriggerOrganizationPipelineStreamClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type PipelinePublicService_TriggerOrganizationPipelineStreamClient interface {
+	Recv() (*TriggerOrganizationPipelineStreamResponse, error)
+	grpc.ClientStream
+}
+
+type pipelinePublicServiceTriggerOrganizationPipelineStreamClient struct {
+	grpc.ClientStream
+}
+
+func (x *pipelinePublicServiceTriggerOrganizationPipelineStreamClient) Recv() (*TriggerOrganizationPipelineStreamResponse, error) {
+	m := new(TriggerOrganizationPipelineStreamResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 func (c *pipelinePublicServiceClient) TriggerOrganizationPipeline(ctx context.Context, in *TriggerOrganizationPipelineRequest, opts ...grpc.CallOption) (*TriggerOrganizationPipelineResponse, error) {
@@ -1336,6 +1381,18 @@ type PipelinePublicServiceServer interface {
 	//
 	// For more information, see [Trigger
 	// Pipeline](https://www.instill.tech/docs/latest/core/concepts/pipeline#trigger-pipeline).
+	TriggerOrganizationPipelineStream(*TriggerOrganizationPipelineStreamRequest, PipelinePublicService_TriggerOrganizationPipelineStreamServer) error
+	// Trigger a pipeline owned by an organization
+	//
+	// Triggers the execution of a pipeline synchronously, i.e., the result is sent
+	// back to the organization right after the data is processed. This method is
+	// intended for real-time inference when low latency is of concern.
+	//
+	// The pipeline is identified by its resource name, formed by the parent
+	// organization and ID of the pipeline.
+	//
+	// For more information, see [Trigger
+	// Pipeline](https://www.instill.tech/docs/latest/core/concepts/pipeline#trigger-pipeline).
 	TriggerOrganizationPipeline(context.Context, *TriggerOrganizationPipelineRequest) (*TriggerOrganizationPipelineResponse, error)
 	// Trigger a pipeline owned by an organization asynchronously
 	//
@@ -1604,6 +1661,9 @@ func (UnimplementedPipelinePublicServiceServer) RenameOrganizationPipeline(conte
 }
 func (UnimplementedPipelinePublicServiceServer) CloneOrganizationPipeline(context.Context, *CloneOrganizationPipelineRequest) (*CloneOrganizationPipelineResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CloneOrganizationPipeline not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) TriggerOrganizationPipelineStream(*TriggerOrganizationPipelineStreamRequest, PipelinePublicService_TriggerOrganizationPipelineStreamServer) error {
+	return status.Errorf(codes.Unimplemented, "method TriggerOrganizationPipelineStream not implemented")
 }
 func (UnimplementedPipelinePublicServiceServer) TriggerOrganizationPipeline(context.Context, *TriggerOrganizationPipelineRequest) (*TriggerOrganizationPipelineResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerOrganizationPipeline not implemented")
@@ -2296,6 +2356,27 @@ func _PipelinePublicService_CloneOrganizationPipeline_Handler(srv interface{}, c
 		return srv.(PipelinePublicServiceServer).CloneOrganizationPipeline(ctx, req.(*CloneOrganizationPipelineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_TriggerOrganizationPipelineStream_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(TriggerOrganizationPipelineStreamRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(PipelinePublicServiceServer).TriggerOrganizationPipelineStream(m, &pipelinePublicServiceTriggerOrganizationPipelineStreamServer{stream})
+}
+
+type PipelinePublicService_TriggerOrganizationPipelineStreamServer interface {
+	Send(*TriggerOrganizationPipelineStreamResponse) error
+	grpc.ServerStream
+}
+
+type pipelinePublicServiceTriggerOrganizationPipelineStreamServer struct {
+	grpc.ServerStream
+}
+
+func (x *pipelinePublicServiceTriggerOrganizationPipelineStreamServer) Send(m *TriggerOrganizationPipelineStreamResponse) error {
+	return x.ServerStream.SendMsg(m)
 }
 
 func _PipelinePublicService_TriggerOrganizationPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -3054,6 +3135,11 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "TriggerUserPipelineWithStream",
 			Handler:       _PipelinePublicService_TriggerUserPipelineWithStream_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "TriggerOrganizationPipelineStream",
+			Handler:       _PipelinePublicService_TriggerOrganizationPipelineStream_Handler,
 			ServerStreams: true,
 		},
 	},
