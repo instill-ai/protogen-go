@@ -150,15 +150,15 @@ type ModelPublicServiceClient interface {
 	GetUserModelCard(ctx context.Context, in *GetUserModelCardRequest, opts ...grpc.CallOption) (*GetUserModelCardResponse, error)
 	// Watch the state of a model version
 	//
-	// Returns the state of a model. The deploy / undeploy actions take some
-	// time, during which a model will be in an UNSPECIFIED state. This endpoint
-	// allows clients to track the state and progress of the model.
+	// Returns the state of a model. The model resource allocation and scaling actions take some
+	// time, during which a model will be in various state. This endpoint
+	// allows clients to track the state.
 	WatchUserModel(ctx context.Context, in *WatchUserModelRequest, opts ...grpc.CallOption) (*WatchUserModelResponse, error)
 	// Watch the state of the latest model version
 	//
-	// Returns the state of the latest model version. The deploy / undeploy actions take some
-	// time, during which a model will be in an UNSPECIFIED state. This endpoint
-	// allows clients to track the state and progress of the model.
+	// Returns the state of the latest model version. The model resource allocation and scaling actions
+	// take some time, during which a model will be in various state. This endpoint
+	// allows clients to track the state.
 	WatchUserLatestModel(ctx context.Context, in *WatchUserLatestModelRequest, opts ...grpc.CallOption) (*WatchUserLatestModelResponse, error)
 	// List user model versions
 	//
@@ -243,15 +243,15 @@ type ModelPublicServiceClient interface {
 	GetOrganizationModelCard(ctx context.Context, in *GetOrganizationModelCardRequest, opts ...grpc.CallOption) (*GetOrganizationModelCardResponse, error)
 	// Watch the state of a model version
 	//
-	// Returns the state of a model. The deploy / undeploy actions take some
-	// time, during which a model will be in an UNSPECIFIED state. This endpoint
-	// allows clients to track the state and progress of the model.
+	// Returns the state of a model.  The model resource allocation and scaling actions
+	// take some time, during which a model will be in various state. This endpoint
+	// allows clients to track the state.
 	WatchOrganizationModel(ctx context.Context, in *WatchOrganizationModelRequest, opts ...grpc.CallOption) (*WatchOrganizationModelResponse, error)
 	// Watch the state of the latest model version
 	//
-	// Returns the state of the latest model version. The deploy / undeploy actions take some
-	// time, during which a model will be in an UNSPECIFIED state. This endpoint
-	// allows clients to track the state and progress of the model.
+	// Returns the state of the latest model version.  The model resource allocation and scaling actions
+	// take some time, during which a model will be in various state. This endpoint
+	// allows clients to track the state.
 	WatchOrganizationLatestModel(ctx context.Context, in *WatchOrganizationLatestModelRequest, opts ...grpc.CallOption) (*WatchOrganizationLatestModelResponse, error)
 	// List organization model versions
 	//
@@ -839,15 +839,15 @@ type ModelPublicServiceServer interface {
 	GetUserModelCard(context.Context, *GetUserModelCardRequest) (*GetUserModelCardResponse, error)
 	// Watch the state of a model version
 	//
-	// Returns the state of a model. The deploy / undeploy actions take some
-	// time, during which a model will be in an UNSPECIFIED state. This endpoint
-	// allows clients to track the state and progress of the model.
+	// Returns the state of a model. The model resource allocation and scaling actions take some
+	// time, during which a model will be in various state. This endpoint
+	// allows clients to track the state.
 	WatchUserModel(context.Context, *WatchUserModelRequest) (*WatchUserModelResponse, error)
 	// Watch the state of the latest model version
 	//
-	// Returns the state of the latest model version. The deploy / undeploy actions take some
-	// time, during which a model will be in an UNSPECIFIED state. This endpoint
-	// allows clients to track the state and progress of the model.
+	// Returns the state of the latest model version. The model resource allocation and scaling actions
+	// take some time, during which a model will be in various state. This endpoint
+	// allows clients to track the state.
 	WatchUserLatestModel(context.Context, *WatchUserLatestModelRequest) (*WatchUserLatestModelResponse, error)
 	// List user model versions
 	//
@@ -932,15 +932,15 @@ type ModelPublicServiceServer interface {
 	GetOrganizationModelCard(context.Context, *GetOrganizationModelCardRequest) (*GetOrganizationModelCardResponse, error)
 	// Watch the state of a model version
 	//
-	// Returns the state of a model. The deploy / undeploy actions take some
-	// time, during which a model will be in an UNSPECIFIED state. This endpoint
-	// allows clients to track the state and progress of the model.
+	// Returns the state of a model.  The model resource allocation and scaling actions
+	// take some time, during which a model will be in various state. This endpoint
+	// allows clients to track the state.
 	WatchOrganizationModel(context.Context, *WatchOrganizationModelRequest) (*WatchOrganizationModelResponse, error)
 	// Watch the state of the latest model version
 	//
-	// Returns the state of the latest model version. The deploy / undeploy actions take some
-	// time, during which a model will be in an UNSPECIFIED state. This endpoint
-	// allows clients to track the state and progress of the model.
+	// Returns the state of the latest model version.  The model resource allocation and scaling actions
+	// take some time, during which a model will be in various state. This endpoint
+	// allows clients to track the state.
 	WatchOrganizationLatestModel(context.Context, *WatchOrganizationLatestModelRequest) (*WatchOrganizationLatestModelResponse, error)
 	// List organization model versions
 	//
