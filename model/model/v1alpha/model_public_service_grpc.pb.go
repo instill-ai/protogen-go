@@ -38,6 +38,7 @@ const (
 	ModelPublicService_WatchUserModel_FullMethodName                           = "/model.model.v1alpha.ModelPublicService/WatchUserModel"
 	ModelPublicService_WatchUserLatestModel_FullMethodName                     = "/model.model.v1alpha.ModelPublicService/WatchUserLatestModel"
 	ModelPublicService_ListUserModelVersions_FullMethodName                    = "/model.model.v1alpha.ModelPublicService/ListUserModelVersions"
+	ModelPublicService_DeleteUserModelVersion_FullMethodName                   = "/model.model.v1alpha.ModelPublicService/DeleteUserModelVersion"
 	ModelPublicService_TriggerUserModel_FullMethodName                         = "/model.model.v1alpha.ModelPublicService/TriggerUserModel"
 	ModelPublicService_TriggerAsyncUserModel_FullMethodName                    = "/model.model.v1alpha.ModelPublicService/TriggerAsyncUserModel"
 	ModelPublicService_TriggerUserLatestModel_FullMethodName                   = "/model.model.v1alpha.ModelPublicService/TriggerUserLatestModel"
@@ -55,6 +56,7 @@ const (
 	ModelPublicService_WatchOrganizationModel_FullMethodName                   = "/model.model.v1alpha.ModelPublicService/WatchOrganizationModel"
 	ModelPublicService_WatchOrganizationLatestModel_FullMethodName             = "/model.model.v1alpha.ModelPublicService/WatchOrganizationLatestModel"
 	ModelPublicService_ListOrganizationModelVersions_FullMethodName            = "/model.model.v1alpha.ModelPublicService/ListOrganizationModelVersions"
+	ModelPublicService_DeleteOrganizationModelVersion_FullMethodName           = "/model.model.v1alpha.ModelPublicService/DeleteOrganizationModelVersion"
 	ModelPublicService_TriggerOrganizationModel_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/TriggerOrganizationModel"
 	ModelPublicService_TriggerAsyncOrganizationModel_FullMethodName            = "/model.model.v1alpha.ModelPublicService/TriggerAsyncOrganizationModel"
 	ModelPublicService_TriggerOrganizationLatestModel_FullMethodName           = "/model.model.v1alpha.ModelPublicService/TriggerOrganizationLatestModel"
@@ -165,6 +167,11 @@ type ModelPublicServiceClient interface {
 	// Returns a paginated list of version of a model namespace that belong to the specified user.
 	// Contains model version and digest.
 	ListUserModelVersions(ctx context.Context, in *ListUserModelVersionsRequest, opts ...grpc.CallOption) (*ListUserModelVersionsResponse, error)
+	// Delete a model version
+	//
+	// Deletes a model version, accesing it by its resource name, which is defined by the
+	// parent user and the ID of the model, and version.
+	DeleteUserModelVersion(ctx context.Context, in *DeleteUserModelVersionRequest, opts ...grpc.CallOption) (*DeleteUserModelVersionResponse, error)
 	// Trigger model inference
 	//
 	// Triggers a deployed model to infer the result of a set of task or
@@ -258,6 +265,11 @@ type ModelPublicServiceClient interface {
 	// Returns a paginated list of version of a model namespace that belong to the specified organization.
 	// Contains model version and digest.
 	ListOrganizationModelVersions(ctx context.Context, in *ListOrganizationModelVersionsRequest, opts ...grpc.CallOption) (*ListOrganizationModelVersionsResponse, error)
+	// Delete a model version
+	//
+	// Deletes a model version, accesing it by its resource name, which is defined by the
+	// parent organization and the ID of the model, and version.
+	DeleteOrganizationModelVersion(ctx context.Context, in *DeleteOrganizationModelVersionRequest, opts ...grpc.CallOption) (*DeleteOrganizationModelVersionResponse, error)
 	// Trigger model inference
 	//
 	// Triggers a deployed model to infer the result of a set of task or
@@ -479,6 +491,15 @@ func (c *modelPublicServiceClient) ListUserModelVersions(ctx context.Context, in
 	return out, nil
 }
 
+func (c *modelPublicServiceClient) DeleteUserModelVersion(ctx context.Context, in *DeleteUserModelVersionRequest, opts ...grpc.CallOption) (*DeleteUserModelVersionResponse, error) {
+	out := new(DeleteUserModelVersionResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_DeleteUserModelVersion_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *modelPublicServiceClient) TriggerUserModel(ctx context.Context, in *TriggerUserModelRequest, opts ...grpc.CallOption) (*TriggerUserModelResponse, error) {
 	out := new(TriggerUserModelResponse)
 	err := c.cc.Invoke(ctx, ModelPublicService_TriggerUserModel_FullMethodName, in, out, opts...)
@@ -651,6 +672,15 @@ func (c *modelPublicServiceClient) WatchOrganizationLatestModel(ctx context.Cont
 func (c *modelPublicServiceClient) ListOrganizationModelVersions(ctx context.Context, in *ListOrganizationModelVersionsRequest, opts ...grpc.CallOption) (*ListOrganizationModelVersionsResponse, error) {
 	out := new(ListOrganizationModelVersionsResponse)
 	err := c.cc.Invoke(ctx, ModelPublicService_ListOrganizationModelVersions_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *modelPublicServiceClient) DeleteOrganizationModelVersion(ctx context.Context, in *DeleteOrganizationModelVersionRequest, opts ...grpc.CallOption) (*DeleteOrganizationModelVersionResponse, error) {
+	out := new(DeleteOrganizationModelVersionResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_DeleteOrganizationModelVersion_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -854,6 +884,11 @@ type ModelPublicServiceServer interface {
 	// Returns a paginated list of version of a model namespace that belong to the specified user.
 	// Contains model version and digest.
 	ListUserModelVersions(context.Context, *ListUserModelVersionsRequest) (*ListUserModelVersionsResponse, error)
+	// Delete a model version
+	//
+	// Deletes a model version, accesing it by its resource name, which is defined by the
+	// parent user and the ID of the model, and version.
+	DeleteUserModelVersion(context.Context, *DeleteUserModelVersionRequest) (*DeleteUserModelVersionResponse, error)
 	// Trigger model inference
 	//
 	// Triggers a deployed model to infer the result of a set of task or
@@ -947,6 +982,11 @@ type ModelPublicServiceServer interface {
 	// Returns a paginated list of version of a model namespace that belong to the specified organization.
 	// Contains model version and digest.
 	ListOrganizationModelVersions(context.Context, *ListOrganizationModelVersionsRequest) (*ListOrganizationModelVersionsResponse, error)
+	// Delete a model version
+	//
+	// Deletes a model version, accesing it by its resource name, which is defined by the
+	// parent organization and the ID of the model, and version.
+	DeleteOrganizationModelVersion(context.Context, *DeleteOrganizationModelVersionRequest) (*DeleteOrganizationModelVersionResponse, error)
 	// Trigger model inference
 	//
 	// Triggers a deployed model to infer the result of a set of task or
@@ -1050,6 +1090,9 @@ func (UnimplementedModelPublicServiceServer) WatchUserLatestModel(context.Contex
 func (UnimplementedModelPublicServiceServer) ListUserModelVersions(context.Context, *ListUserModelVersionsRequest) (*ListUserModelVersionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListUserModelVersions not implemented")
 }
+func (UnimplementedModelPublicServiceServer) DeleteUserModelVersion(context.Context, *DeleteUserModelVersionRequest) (*DeleteUserModelVersionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteUserModelVersion not implemented")
+}
 func (UnimplementedModelPublicServiceServer) TriggerUserModel(context.Context, *TriggerUserModelRequest) (*TriggerUserModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerUserModel not implemented")
 }
@@ -1100,6 +1143,9 @@ func (UnimplementedModelPublicServiceServer) WatchOrganizationLatestModel(contex
 }
 func (UnimplementedModelPublicServiceServer) ListOrganizationModelVersions(context.Context, *ListOrganizationModelVersionsRequest) (*ListOrganizationModelVersionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizationModelVersions not implemented")
+}
+func (UnimplementedModelPublicServiceServer) DeleteOrganizationModelVersion(context.Context, *DeleteOrganizationModelVersionRequest) (*DeleteOrganizationModelVersionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganizationModelVersion not implemented")
 }
 func (UnimplementedModelPublicServiceServer) TriggerOrganizationModel(context.Context, *TriggerOrganizationModelRequest) (*TriggerOrganizationModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerOrganizationModel not implemented")
@@ -1479,6 +1525,24 @@ func _ModelPublicService_ListUserModelVersions_Handler(srv interface{}, ctx cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ModelPublicService_DeleteUserModelVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteUserModelVersionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPublicServiceServer).DeleteUserModelVersion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPublicService_DeleteUserModelVersion_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPublicServiceServer).DeleteUserModelVersion(ctx, req.(*DeleteUserModelVersionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ModelPublicService_TriggerUserModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(TriggerUserModelRequest)
 	if err := dec(in); err != nil {
@@ -1793,6 +1857,24 @@ func _ModelPublicService_ListOrganizationModelVersions_Handler(srv interface{}, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ModelPublicService_DeleteOrganizationModelVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteOrganizationModelVersionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPublicServiceServer).DeleteOrganizationModelVersion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPublicService_DeleteOrganizationModelVersion_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPublicServiceServer).DeleteOrganizationModelVersion(ctx, req.(*DeleteOrganizationModelVersionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ModelPublicService_TriggerOrganizationModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(TriggerOrganizationModelRequest)
 	if err := dec(in); err != nil {
@@ -2029,6 +2111,10 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ModelPublicService_ListUserModelVersions_Handler,
 		},
 		{
+			MethodName: "DeleteUserModelVersion",
+			Handler:    _ModelPublicService_DeleteUserModelVersion_Handler,
+		},
+		{
 			MethodName: "TriggerUserModel",
 			Handler:    _ModelPublicService_TriggerUserModel_Handler,
 		},
@@ -2091,6 +2177,10 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListOrganizationModelVersions",
 			Handler:    _ModelPublicService_ListOrganizationModelVersions_Handler,
+		},
+		{
+			MethodName: "DeleteOrganizationModelVersion",
+			Handler:    _ModelPublicService_DeleteOrganizationModelVersion_Handler,
 		},
 		{
 			MethodName: "TriggerOrganizationModel",

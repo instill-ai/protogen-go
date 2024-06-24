@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	ArtifactPrivateService_ListRepositoryTags_FullMethodName  = "/artifact.artifact.v1alpha.ArtifactPrivateService/ListRepositoryTags"
 	ArtifactPrivateService_CreateRepositoryTag_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPrivateService/CreateRepositoryTag"
+	ArtifactPrivateService_DeleteRepositoryTag_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPrivateService/DeleteRepositoryTag"
 )
 
 // ArtifactPrivateServiceClient is the client API for ArtifactPrivateService service.
@@ -40,6 +41,8 @@ type ArtifactPrivateServiceClient interface {
 	// succeeded. The distribution registry won't hold data such as the push time
 	// or the tag digest, so `artifact-backend` will hold this information locally.
 	CreateRepositoryTag(ctx context.Context, in *CreateRepositoryTagRequest, opts ...grpc.CallOption) (*CreateRepositoryTagResponse, error)
+	// Delete a repository tag.
+	DeleteRepositoryTag(ctx context.Context, in *DeleteRepositoryTagRequest, opts ...grpc.CallOption) (*DeleteRepositoryTagResponse, error)
 }
 
 type artifactPrivateServiceClient struct {
@@ -68,6 +71,15 @@ func (c *artifactPrivateServiceClient) CreateRepositoryTag(ctx context.Context, 
 	return out, nil
 }
 
+func (c *artifactPrivateServiceClient) DeleteRepositoryTag(ctx context.Context, in *DeleteRepositoryTagRequest, opts ...grpc.CallOption) (*DeleteRepositoryTagResponse, error) {
+	out := new(DeleteRepositoryTagResponse)
+	err := c.cc.Invoke(ctx, ArtifactPrivateService_DeleteRepositoryTag_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ArtifactPrivateServiceServer is the server API for ArtifactPrivateService service.
 // All implementations should embed UnimplementedArtifactPrivateServiceServer
 // for forward compatibility
@@ -85,6 +97,8 @@ type ArtifactPrivateServiceServer interface {
 	// succeeded. The distribution registry won't hold data such as the push time
 	// or the tag digest, so `artifact-backend` will hold this information locally.
 	CreateRepositoryTag(context.Context, *CreateRepositoryTagRequest) (*CreateRepositoryTagResponse, error)
+	// Delete a repository tag.
+	DeleteRepositoryTag(context.Context, *DeleteRepositoryTagRequest) (*DeleteRepositoryTagResponse, error)
 }
 
 // UnimplementedArtifactPrivateServiceServer should be embedded to have forward compatible implementations.
@@ -96,6 +110,9 @@ func (UnimplementedArtifactPrivateServiceServer) ListRepositoryTags(context.Cont
 }
 func (UnimplementedArtifactPrivateServiceServer) CreateRepositoryTag(context.Context, *CreateRepositoryTagRequest) (*CreateRepositoryTagResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateRepositoryTag not implemented")
+}
+func (UnimplementedArtifactPrivateServiceServer) DeleteRepositoryTag(context.Context, *DeleteRepositoryTagRequest) (*DeleteRepositoryTagResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteRepositoryTag not implemented")
 }
 
 // UnsafeArtifactPrivateServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -145,6 +162,24 @@ func _ArtifactPrivateService_CreateRepositoryTag_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArtifactPrivateService_DeleteRepositoryTag_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteRepositoryTagRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPrivateServiceServer).DeleteRepositoryTag(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPrivateService_DeleteRepositoryTag_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPrivateServiceServer).DeleteRepositoryTag(ctx, req.(*DeleteRepositoryTagRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ArtifactPrivateService_ServiceDesc is the grpc.ServiceDesc for ArtifactPrivateService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -159,6 +194,10 @@ var ArtifactPrivateService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateRepositoryTag",
 			Handler:    _ArtifactPrivateService_CreateRepositoryTag_Handler,
+		},
+		{
+			MethodName: "DeleteRepositoryTag",
+			Handler:    _ArtifactPrivateService_DeleteRepositoryTag_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
