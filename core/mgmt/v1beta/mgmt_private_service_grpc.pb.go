@@ -29,6 +29,7 @@ const (
 	MgmtPrivateService_GetOrganizationSubscriptionAdmin_FullMethodName = "/core.mgmt.v1beta.MgmtPrivateService/GetOrganizationSubscriptionAdmin"
 	MgmtPrivateService_SubtractCreditAdmin_FullMethodName              = "/core.mgmt.v1beta.MgmtPrivateService/SubtractCreditAdmin"
 	MgmtPrivateService_GetRemainingCreditAdmin_FullMethodName          = "/core.mgmt.v1beta.MgmtPrivateService/GetRemainingCreditAdmin"
+	MgmtPrivateService_CheckNamespaceAdmin_FullMethodName              = "/core.mgmt.v1beta.MgmtPrivateService/CheckNamespaceAdmin"
 )
 
 // MgmtPrivateServiceClient is the client API for MgmtPrivateService service.
@@ -75,6 +76,11 @@ type MgmtPrivateServiceClient interface {
 	//
 	// On Instill Core, this endpoint will return a 404 Not Found status.
 	GetRemainingCreditAdmin(ctx context.Context, in *GetRemainingCreditAdminRequest, opts ...grpc.CallOption) (*GetRemainingCreditAdminResponse, error)
+	// Check if a namespace is in use
+	//
+	// Returns the availability of a namespace or, alternatively, the type of
+	// resource that is using it.
+	CheckNamespaceAdmin(ctx context.Context, in *CheckNamespaceAdminRequest, opts ...grpc.CallOption) (*CheckNamespaceAdminResponse, error)
 }
 
 type mgmtPrivateServiceClient struct {
@@ -175,6 +181,15 @@ func (c *mgmtPrivateServiceClient) GetRemainingCreditAdmin(ctx context.Context, 
 	return out, nil
 }
 
+func (c *mgmtPrivateServiceClient) CheckNamespaceAdmin(ctx context.Context, in *CheckNamespaceAdminRequest, opts ...grpc.CallOption) (*CheckNamespaceAdminResponse, error) {
+	out := new(CheckNamespaceAdminResponse)
+	err := c.cc.Invoke(ctx, MgmtPrivateService_CheckNamespaceAdmin_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MgmtPrivateServiceServer is the server API for MgmtPrivateService service.
 // All implementations should embed UnimplementedMgmtPrivateServiceServer
 // for forward compatibility
@@ -219,6 +234,11 @@ type MgmtPrivateServiceServer interface {
 	//
 	// On Instill Core, this endpoint will return a 404 Not Found status.
 	GetRemainingCreditAdmin(context.Context, *GetRemainingCreditAdminRequest) (*GetRemainingCreditAdminResponse, error)
+	// Check if a namespace is in use
+	//
+	// Returns the availability of a namespace or, alternatively, the type of
+	// resource that is using it.
+	CheckNamespaceAdmin(context.Context, *CheckNamespaceAdminRequest) (*CheckNamespaceAdminResponse, error)
 }
 
 // UnimplementedMgmtPrivateServiceServer should be embedded to have forward compatible implementations.
@@ -254,6 +274,9 @@ func (UnimplementedMgmtPrivateServiceServer) SubtractCreditAdmin(context.Context
 }
 func (UnimplementedMgmtPrivateServiceServer) GetRemainingCreditAdmin(context.Context, *GetRemainingCreditAdminRequest) (*GetRemainingCreditAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRemainingCreditAdmin not implemented")
+}
+func (UnimplementedMgmtPrivateServiceServer) CheckNamespaceAdmin(context.Context, *CheckNamespaceAdminRequest) (*CheckNamespaceAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckNamespaceAdmin not implemented")
 }
 
 // UnsafeMgmtPrivateServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -447,6 +470,24 @@ func _MgmtPrivateService_GetRemainingCreditAdmin_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MgmtPrivateService_CheckNamespaceAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckNamespaceAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPrivateServiceServer).CheckNamespaceAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPrivateService_CheckNamespaceAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPrivateServiceServer).CheckNamespaceAdmin(ctx, req.(*CheckNamespaceAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MgmtPrivateService_ServiceDesc is the grpc.ServiceDesc for MgmtPrivateService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -493,6 +534,10 @@ var MgmtPrivateService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetRemainingCreditAdmin",
 			Handler:    _MgmtPrivateService_GetRemainingCreditAdmin_Handler,
+		},
+		{
+			MethodName: "CheckNamespaceAdmin",
+			Handler:    _MgmtPrivateService_CheckNamespaceAdmin_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
