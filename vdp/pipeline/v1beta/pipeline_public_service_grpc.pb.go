@@ -32,6 +32,7 @@ const (
 	PipelinePublicService_ValidateUserPipeline_FullMethodName                    = "/vdp.pipeline.v1beta.PipelinePublicService/ValidateUserPipeline"
 	PipelinePublicService_RenameUserPipeline_FullMethodName                      = "/vdp.pipeline.v1beta.PipelinePublicService/RenameUserPipeline"
 	PipelinePublicService_CloneUserPipeline_FullMethodName                       = "/vdp.pipeline.v1beta.PipelinePublicService/CloneUserPipeline"
+	PipelinePublicService_CloneUserPipelineRelease_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/CloneUserPipelineRelease"
 	PipelinePublicService_TriggerUserPipeline_FullMethodName                     = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerUserPipeline"
 	PipelinePublicService_TriggerUserPipelineWithStream_FullMethodName           = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerUserPipelineWithStream"
 	PipelinePublicService_TriggerAsyncUserPipeline_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerAsyncUserPipeline"
@@ -52,6 +53,7 @@ const (
 	PipelinePublicService_ValidateOrganizationPipeline_FullMethodName            = "/vdp.pipeline.v1beta.PipelinePublicService/ValidateOrganizationPipeline"
 	PipelinePublicService_RenameOrganizationPipeline_FullMethodName              = "/vdp.pipeline.v1beta.PipelinePublicService/RenameOrganizationPipeline"
 	PipelinePublicService_CloneOrganizationPipeline_FullMethodName               = "/vdp.pipeline.v1beta.PipelinePublicService/CloneOrganizationPipeline"
+	PipelinePublicService_CloneOrganizationPipelineRelease_FullMethodName        = "/vdp.pipeline.v1beta.PipelinePublicService/CloneOrganizationPipelineRelease"
 	PipelinePublicService_TriggerOrganizationPipelineStream_FullMethodName       = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerOrganizationPipelineStream"
 	PipelinePublicService_TriggerOrganizationPipeline_FullMethodName             = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerOrganizationPipeline"
 	PipelinePublicService_TriggerAsyncOrganizationPipeline_FullMethodName        = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerAsyncOrganizationPipeline"
@@ -165,6 +167,11 @@ type PipelinePublicServiceClient interface {
 	// Clones a pipeline owned by a user. The new pipeline may have a different
 	// parent, and this can be either a user or an organization.
 	CloneUserPipeline(ctx context.Context, in *CloneUserPipelineRequest, opts ...grpc.CallOption) (*CloneUserPipelineResponse, error)
+	// Clone a pipeline release owned by a user
+	//
+	// Clones a pipeline release owned by a user. The new pipeline may have a different
+	// parent, and this can be either a user or an organization.
+	CloneUserPipelineRelease(ctx context.Context, in *CloneUserPipelineReleaseRequest, opts ...grpc.CallOption) (*CloneUserPipelineReleaseResponse, error)
 	// Trigger a pipeline owned by a user
 	//
 	// Triggers the execution of a pipeline synchronously, i.e., the result is
@@ -324,6 +331,11 @@ type PipelinePublicServiceClient interface {
 	// Clones a pipeline owned by an organization. The new pipeline may have a
 	// different parent, and this can be either a user or an organization.
 	CloneOrganizationPipeline(ctx context.Context, in *CloneOrganizationPipelineRequest, opts ...grpc.CallOption) (*CloneOrganizationPipelineResponse, error)
+	// Clone a pipeline release owned by an organization
+	//
+	// Clones a pipeline release owned by an organization. The new pipeline may
+	// have a different parent, and this can be either a user or an organization.
+	CloneOrganizationPipelineRelease(ctx context.Context, in *CloneOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*CloneOrganizationPipelineReleaseResponse, error)
 	// Trigger a pipeline owned by an organization
 	//
 	// Triggers the execution of a pipeline synchronously, i.e., the result is sent
@@ -638,6 +650,15 @@ func (c *pipelinePublicServiceClient) CloneUserPipeline(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *pipelinePublicServiceClient) CloneUserPipelineRelease(ctx context.Context, in *CloneUserPipelineReleaseRequest, opts ...grpc.CallOption) (*CloneUserPipelineReleaseResponse, error) {
+	out := new(CloneUserPipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_CloneUserPipelineRelease_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *pipelinePublicServiceClient) TriggerUserPipeline(ctx context.Context, in *TriggerUserPipelineRequest, opts ...grpc.CallOption) (*TriggerUserPipelineResponse, error) {
 	out := new(TriggerUserPipelineResponse)
 	err := c.cc.Invoke(ctx, PipelinePublicService_TriggerUserPipeline_FullMethodName, in, out, opts...)
@@ -835,6 +856,15 @@ func (c *pipelinePublicServiceClient) RenameOrganizationPipeline(ctx context.Con
 func (c *pipelinePublicServiceClient) CloneOrganizationPipeline(ctx context.Context, in *CloneOrganizationPipelineRequest, opts ...grpc.CallOption) (*CloneOrganizationPipelineResponse, error) {
 	out := new(CloneOrganizationPipelineResponse)
 	err := c.cc.Invoke(ctx, PipelinePublicService_CloneOrganizationPipeline_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) CloneOrganizationPipelineRelease(ctx context.Context, in *CloneOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*CloneOrganizationPipelineReleaseResponse, error) {
+	out := new(CloneOrganizationPipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_CloneOrganizationPipelineRelease_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1211,6 +1241,11 @@ type PipelinePublicServiceServer interface {
 	// Clones a pipeline owned by a user. The new pipeline may have a different
 	// parent, and this can be either a user or an organization.
 	CloneUserPipeline(context.Context, *CloneUserPipelineRequest) (*CloneUserPipelineResponse, error)
+	// Clone a pipeline release owned by a user
+	//
+	// Clones a pipeline release owned by a user. The new pipeline may have a different
+	// parent, and this can be either a user or an organization.
+	CloneUserPipelineRelease(context.Context, *CloneUserPipelineReleaseRequest) (*CloneUserPipelineReleaseResponse, error)
 	// Trigger a pipeline owned by a user
 	//
 	// Triggers the execution of a pipeline synchronously, i.e., the result is
@@ -1370,6 +1405,11 @@ type PipelinePublicServiceServer interface {
 	// Clones a pipeline owned by an organization. The new pipeline may have a
 	// different parent, and this can be either a user or an organization.
 	CloneOrganizationPipeline(context.Context, *CloneOrganizationPipelineRequest) (*CloneOrganizationPipelineResponse, error)
+	// Clone a pipeline release owned by an organization
+	//
+	// Clones a pipeline release owned by an organization. The new pipeline may
+	// have a different parent, and this can be either a user or an organization.
+	CloneOrganizationPipelineRelease(context.Context, *CloneOrganizationPipelineReleaseRequest) (*CloneOrganizationPipelineReleaseResponse, error)
 	// Trigger a pipeline owned by an organization
 	//
 	// Triggers the execution of a pipeline synchronously, i.e., the result is sent
@@ -1602,6 +1642,9 @@ func (UnimplementedPipelinePublicServiceServer) RenameUserPipeline(context.Conte
 func (UnimplementedPipelinePublicServiceServer) CloneUserPipeline(context.Context, *CloneUserPipelineRequest) (*CloneUserPipelineResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CloneUserPipeline not implemented")
 }
+func (UnimplementedPipelinePublicServiceServer) CloneUserPipelineRelease(context.Context, *CloneUserPipelineReleaseRequest) (*CloneUserPipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CloneUserPipelineRelease not implemented")
+}
 func (UnimplementedPipelinePublicServiceServer) TriggerUserPipeline(context.Context, *TriggerUserPipelineRequest) (*TriggerUserPipelineResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerUserPipeline not implemented")
 }
@@ -1661,6 +1704,9 @@ func (UnimplementedPipelinePublicServiceServer) RenameOrganizationPipeline(conte
 }
 func (UnimplementedPipelinePublicServiceServer) CloneOrganizationPipeline(context.Context, *CloneOrganizationPipelineRequest) (*CloneOrganizationPipelineResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CloneOrganizationPipeline not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) CloneOrganizationPipelineRelease(context.Context, *CloneOrganizationPipelineReleaseRequest) (*CloneOrganizationPipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CloneOrganizationPipelineRelease not implemented")
 }
 func (UnimplementedPipelinePublicServiceServer) TriggerOrganizationPipelineStream(*TriggerOrganizationPipelineStreamRequest, PipelinePublicService_TriggerOrganizationPipelineStreamServer) error {
 	return status.Errorf(codes.Unimplemented, "method TriggerOrganizationPipelineStream not implemented")
@@ -1991,6 +2037,24 @@ func _PipelinePublicService_CloneUserPipeline_Handler(srv interface{}, ctx conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PipelinePublicServiceServer).CloneUserPipeline(ctx, req.(*CloneUserPipelineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_CloneUserPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CloneUserPipelineReleaseRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).CloneUserPipelineRelease(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_CloneUserPipelineRelease_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).CloneUserPipelineRelease(ctx, req.(*CloneUserPipelineReleaseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2354,6 +2418,24 @@ func _PipelinePublicService_CloneOrganizationPipeline_Handler(srv interface{}, c
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PipelinePublicServiceServer).CloneOrganizationPipeline(ctx, req.(*CloneOrganizationPipelineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_CloneOrganizationPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CloneOrganizationPipelineReleaseRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).CloneOrganizationPipelineRelease(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_CloneOrganizationPipelineRelease_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).CloneOrganizationPipelineRelease(ctx, req.(*CloneOrganizationPipelineReleaseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2943,6 +3025,10 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _PipelinePublicService_CloneUserPipeline_Handler,
 		},
 		{
+			MethodName: "CloneUserPipelineRelease",
+			Handler:    _PipelinePublicService_CloneUserPipelineRelease_Handler,
+		},
+		{
 			MethodName: "TriggerUserPipeline",
 			Handler:    _PipelinePublicService_TriggerUserPipeline_Handler,
 		},
@@ -3017,6 +3103,10 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CloneOrganizationPipeline",
 			Handler:    _PipelinePublicService_CloneOrganizationPipeline_Handler,
+		},
+		{
+			MethodName: "CloneOrganizationPipelineRelease",
+			Handler:    _PipelinePublicService_CloneOrganizationPipelineRelease_Handler,
 		},
 		{
 			MethodName: "TriggerOrganizationPipeline",
