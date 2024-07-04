@@ -34,6 +34,8 @@ const (
 	PipelinePublicService_CloneUserPipeline_FullMethodName                       = "/vdp.pipeline.v1beta.PipelinePublicService/CloneUserPipeline"
 	PipelinePublicService_CloneUserPipelineRelease_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/CloneUserPipelineRelease"
 	PipelinePublicService_TriggerUserPipeline_FullMethodName                     = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerUserPipeline"
+	PipelinePublicService_SendUserPipelineEvent_FullMethodName                   = "/vdp.pipeline.v1beta.PipelinePublicService/SendUserPipelineEvent"
+	PipelinePublicService_SendOrganizationPipelineEvent_FullMethodName           = "/vdp.pipeline.v1beta.PipelinePublicService/SendOrganizationPipelineEvent"
 	PipelinePublicService_TriggerUserPipelineWithStream_FullMethodName           = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerUserPipelineWithStream"
 	PipelinePublicService_TriggerAsyncUserPipeline_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerAsyncUserPipeline"
 	PipelinePublicService_CreateUserPipelineRelease_FullMethodName               = "/vdp.pipeline.v1beta.PipelinePublicService/CreateUserPipelineRelease"
@@ -184,6 +186,10 @@ type PipelinePublicServiceClient interface {
 	// For more information, see [Trigger
 	// Pipeline](https://www.instill.tech/docs/latest/core/concepts/pipeline#trigger-pipeline).
 	TriggerUserPipeline(ctx context.Context, in *TriggerUserPipelineRequest, opts ...grpc.CallOption) (*TriggerUserPipelineResponse, error)
+	// SendUserPipelineEvent
+	SendUserPipelineEvent(ctx context.Context, in *SendUserPipelineEventRequest, opts ...grpc.CallOption) (*SendUserPipelineEventResponse, error)
+	// SendOrganizationPipelineEvent
+	SendOrganizationPipelineEvent(ctx context.Context, in *SendOrganizationPipelineEventRequest, opts ...grpc.CallOption) (*SendOrganizationPipelineEventResponse, error)
 	// Trigger a pipeline owned by a user and stream back the response
 	//
 	// Triggers the execution of a pipeline asynchronously and streams back the response.
@@ -662,6 +668,24 @@ func (c *pipelinePublicServiceClient) CloneUserPipelineRelease(ctx context.Conte
 func (c *pipelinePublicServiceClient) TriggerUserPipeline(ctx context.Context, in *TriggerUserPipelineRequest, opts ...grpc.CallOption) (*TriggerUserPipelineResponse, error) {
 	out := new(TriggerUserPipelineResponse)
 	err := c.cc.Invoke(ctx, PipelinePublicService_TriggerUserPipeline_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) SendUserPipelineEvent(ctx context.Context, in *SendUserPipelineEventRequest, opts ...grpc.CallOption) (*SendUserPipelineEventResponse, error) {
+	out := new(SendUserPipelineEventResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_SendUserPipelineEvent_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) SendOrganizationPipelineEvent(ctx context.Context, in *SendOrganizationPipelineEventRequest, opts ...grpc.CallOption) (*SendOrganizationPipelineEventResponse, error) {
+	out := new(SendOrganizationPipelineEventResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_SendOrganizationPipelineEvent_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1258,6 +1282,10 @@ type PipelinePublicServiceServer interface {
 	// For more information, see [Trigger
 	// Pipeline](https://www.instill.tech/docs/latest/core/concepts/pipeline#trigger-pipeline).
 	TriggerUserPipeline(context.Context, *TriggerUserPipelineRequest) (*TriggerUserPipelineResponse, error)
+	// SendUserPipelineEvent
+	SendUserPipelineEvent(context.Context, *SendUserPipelineEventRequest) (*SendUserPipelineEventResponse, error)
+	// SendOrganizationPipelineEvent
+	SendOrganizationPipelineEvent(context.Context, *SendOrganizationPipelineEventRequest) (*SendOrganizationPipelineEventResponse, error)
 	// Trigger a pipeline owned by a user and stream back the response
 	//
 	// Triggers the execution of a pipeline asynchronously and streams back the response.
@@ -1647,6 +1675,12 @@ func (UnimplementedPipelinePublicServiceServer) CloneUserPipelineRelease(context
 }
 func (UnimplementedPipelinePublicServiceServer) TriggerUserPipeline(context.Context, *TriggerUserPipelineRequest) (*TriggerUserPipelineResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerUserPipeline not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) SendUserPipelineEvent(context.Context, *SendUserPipelineEventRequest) (*SendUserPipelineEventResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendUserPipelineEvent not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) SendOrganizationPipelineEvent(context.Context, *SendOrganizationPipelineEventRequest) (*SendOrganizationPipelineEventResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendOrganizationPipelineEvent not implemented")
 }
 func (UnimplementedPipelinePublicServiceServer) TriggerUserPipelineWithStream(*TriggerUserPipelineWithStreamRequest, PipelinePublicService_TriggerUserPipelineWithStreamServer) error {
 	return status.Errorf(codes.Unimplemented, "method TriggerUserPipelineWithStream not implemented")
@@ -2073,6 +2107,42 @@ func _PipelinePublicService_TriggerUserPipeline_Handler(srv interface{}, ctx con
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PipelinePublicServiceServer).TriggerUserPipeline(ctx, req.(*TriggerUserPipelineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_SendUserPipelineEvent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendUserPipelineEventRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).SendUserPipelineEvent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_SendUserPipelineEvent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).SendUserPipelineEvent(ctx, req.(*SendUserPipelineEventRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_SendOrganizationPipelineEvent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendOrganizationPipelineEventRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).SendOrganizationPipelineEvent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_SendOrganizationPipelineEvent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).SendOrganizationPipelineEvent(ctx, req.(*SendOrganizationPipelineEventRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3031,6 +3101,14 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TriggerUserPipeline",
 			Handler:    _PipelinePublicService_TriggerUserPipeline_Handler,
+		},
+		{
+			MethodName: "SendUserPipelineEvent",
+			Handler:    _PipelinePublicService_SendUserPipelineEvent_Handler,
+		},
+		{
+			MethodName: "SendOrganizationPipelineEvent",
+			Handler:    _PipelinePublicService_SendOrganizationPipelineEvent_Handler,
 		},
 		{
 			MethodName: "TriggerAsyncUserPipeline",
