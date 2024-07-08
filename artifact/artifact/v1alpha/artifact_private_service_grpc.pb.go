@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion7
 
 const (
 	ArtifactPrivateService_ListRepositoryTags_FullMethodName  = "/artifact.artifact.v1alpha.ArtifactPrivateService/ListRepositoryTags"
+	ArtifactPrivateService_GetRepositoryTag_FullMethodName    = "/artifact.artifact.v1alpha.ArtifactPrivateService/GetRepositoryTag"
 	ArtifactPrivateService_CreateRepositoryTag_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPrivateService/CreateRepositoryTag"
 	ArtifactPrivateService_DeleteRepositoryTag_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPrivateService/DeleteRepositoryTag"
 )
@@ -32,6 +33,8 @@ type ArtifactPrivateServiceClient interface {
 	//
 	// Returns a portion of the versions that the specified repository holds.
 	ListRepositoryTags(ctx context.Context, in *ListRepositoryTagsRequest, opts ...grpc.CallOption) (*ListRepositoryTagsResponse, error)
+	// Get details of repository tag.
+	GetRepositoryTag(ctx context.Context, in *GetRepositoryTagRequest, opts ...grpc.CallOption) (*GetRepositoryTagResponse, error)
 	// Create a new repository tag.
 	//
 	// Adds a tag to a given repository. Note that this operation is only
@@ -56,6 +59,15 @@ func NewArtifactPrivateServiceClient(cc grpc.ClientConnInterface) ArtifactPrivat
 func (c *artifactPrivateServiceClient) ListRepositoryTags(ctx context.Context, in *ListRepositoryTagsRequest, opts ...grpc.CallOption) (*ListRepositoryTagsResponse, error) {
 	out := new(ListRepositoryTagsResponse)
 	err := c.cc.Invoke(ctx, ArtifactPrivateService_ListRepositoryTags_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPrivateServiceClient) GetRepositoryTag(ctx context.Context, in *GetRepositoryTagRequest, opts ...grpc.CallOption) (*GetRepositoryTagResponse, error) {
+	out := new(GetRepositoryTagResponse)
+	err := c.cc.Invoke(ctx, ArtifactPrivateService_GetRepositoryTag_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -88,6 +100,8 @@ type ArtifactPrivateServiceServer interface {
 	//
 	// Returns a portion of the versions that the specified repository holds.
 	ListRepositoryTags(context.Context, *ListRepositoryTagsRequest) (*ListRepositoryTagsResponse, error)
+	// Get details of repository tag.
+	GetRepositoryTag(context.Context, *GetRepositoryTagRequest) (*GetRepositoryTagResponse, error)
 	// Create a new repository tag.
 	//
 	// Adds a tag to a given repository. Note that this operation is only
@@ -107,6 +121,9 @@ type UnimplementedArtifactPrivateServiceServer struct {
 
 func (UnimplementedArtifactPrivateServiceServer) ListRepositoryTags(context.Context, *ListRepositoryTagsRequest) (*ListRepositoryTagsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListRepositoryTags not implemented")
+}
+func (UnimplementedArtifactPrivateServiceServer) GetRepositoryTag(context.Context, *GetRepositoryTagRequest) (*GetRepositoryTagResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRepositoryTag not implemented")
 }
 func (UnimplementedArtifactPrivateServiceServer) CreateRepositoryTag(context.Context, *CreateRepositoryTagRequest) (*CreateRepositoryTagResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateRepositoryTag not implemented")
@@ -140,6 +157,24 @@ func _ArtifactPrivateService_ListRepositoryTags_Handler(srv interface{}, ctx con
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ArtifactPrivateServiceServer).ListRepositoryTags(ctx, req.(*ListRepositoryTagsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPrivateService_GetRepositoryTag_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRepositoryTagRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPrivateServiceServer).GetRepositoryTag(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPrivateService_GetRepositoryTag_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPrivateServiceServer).GetRepositoryTag(ctx, req.(*GetRepositoryTagRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -190,6 +225,10 @@ var ArtifactPrivateService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListRepositoryTags",
 			Handler:    _ArtifactPrivateService_ListRepositoryTags_Handler,
+		},
+		{
+			MethodName: "GetRepositoryTag",
+			Handler:    _ArtifactPrivateService_GetRepositoryTag_Handler,
 		},
 		{
 			MethodName: "CreateRepositoryTag",
