@@ -29,6 +29,9 @@ const (
 	ArtifactPublicService_DeleteKnowledgeBaseFile_FullMethodName   = "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteKnowledgeBaseFile"
 	ArtifactPublicService_ProcessKnowledgeBaseFiles_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPublicService/ProcessKnowledgeBaseFiles"
 	ArtifactPublicService_ListKnowledgeBaseFiles_FullMethodName    = "/artifact.artifact.v1alpha.ArtifactPublicService/ListKnowledgeBaseFiles"
+	ArtifactPublicService_ListChunks_FullMethodName                = "/artifact.artifact.v1alpha.ArtifactPublicService/ListChunks"
+	ArtifactPublicService_GetSourceFile_FullMethodName             = "/artifact.artifact.v1alpha.ArtifactPublicService/GetSourceFile"
+	ArtifactPublicService_UpdateChunk_FullMethodName               = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateChunk"
 )
 
 // ArtifactPublicServiceClient is the client API for ArtifactPublicService service.
@@ -59,6 +62,12 @@ type ArtifactPublicServiceClient interface {
 	ProcessKnowledgeBaseFiles(ctx context.Context, in *ProcessKnowledgeBaseFilesRequest, opts ...grpc.CallOption) (*ProcessKnowledgeBaseFilesResponse, error)
 	// list files
 	ListKnowledgeBaseFiles(ctx context.Context, in *ListKnowledgeBaseFilesRequest, opts ...grpc.CallOption) (*ListKnowledgeBaseFilesResponse, error)
+	// List chunks
+	ListChunks(ctx context.Context, in *ListChunksRequest, opts ...grpc.CallOption) (*ListChunksResponse, error)
+	// Get source file
+	GetSourceFile(ctx context.Context, in *GetSourceFileRequest, opts ...grpc.CallOption) (*GetSourceFileResponse, error)
+	// Update chunk
+	UpdateChunk(ctx context.Context, in *UpdateChunkRequest, opts ...grpc.CallOption) (*UpdateChunkResponse, error)
 }
 
 type artifactPublicServiceClient struct {
@@ -159,6 +168,33 @@ func (c *artifactPublicServiceClient) ListKnowledgeBaseFiles(ctx context.Context
 	return out, nil
 }
 
+func (c *artifactPublicServiceClient) ListChunks(ctx context.Context, in *ListChunksRequest, opts ...grpc.CallOption) (*ListChunksResponse, error) {
+	out := new(ListChunksResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_ListChunks_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPublicServiceClient) GetSourceFile(ctx context.Context, in *GetSourceFileRequest, opts ...grpc.CallOption) (*GetSourceFileResponse, error) {
+	out := new(GetSourceFileResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_GetSourceFile_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPublicServiceClient) UpdateChunk(ctx context.Context, in *UpdateChunkRequest, opts ...grpc.CallOption) (*UpdateChunkResponse, error) {
+	out := new(UpdateChunkResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_UpdateChunk_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ArtifactPublicServiceServer is the server API for ArtifactPublicService service.
 // All implementations should embed UnimplementedArtifactPublicServiceServer
 // for forward compatibility
@@ -187,6 +223,12 @@ type ArtifactPublicServiceServer interface {
 	ProcessKnowledgeBaseFiles(context.Context, *ProcessKnowledgeBaseFilesRequest) (*ProcessKnowledgeBaseFilesResponse, error)
 	// list files
 	ListKnowledgeBaseFiles(context.Context, *ListKnowledgeBaseFilesRequest) (*ListKnowledgeBaseFilesResponse, error)
+	// List chunks
+	ListChunks(context.Context, *ListChunksRequest) (*ListChunksResponse, error)
+	// Get source file
+	GetSourceFile(context.Context, *GetSourceFileRequest) (*GetSourceFileResponse, error)
+	// Update chunk
+	UpdateChunk(context.Context, *UpdateChunkRequest) (*UpdateChunkResponse, error)
 }
 
 // UnimplementedArtifactPublicServiceServer should be embedded to have forward compatible implementations.
@@ -222,6 +264,15 @@ func (UnimplementedArtifactPublicServiceServer) ProcessKnowledgeBaseFiles(contex
 }
 func (UnimplementedArtifactPublicServiceServer) ListKnowledgeBaseFiles(context.Context, *ListKnowledgeBaseFilesRequest) (*ListKnowledgeBaseFilesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListKnowledgeBaseFiles not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) ListChunks(context.Context, *ListChunksRequest) (*ListChunksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListChunks not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) GetSourceFile(context.Context, *GetSourceFileRequest) (*GetSourceFileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSourceFile not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) UpdateChunk(context.Context, *UpdateChunkRequest) (*UpdateChunkResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateChunk not implemented")
 }
 
 // UnsafeArtifactPublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -415,6 +466,60 @@ func _ArtifactPublicService_ListKnowledgeBaseFiles_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArtifactPublicService_ListChunks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListChunksRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).ListChunks(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_ListChunks_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).ListChunks(ctx, req.(*ListChunksRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPublicService_GetSourceFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSourceFileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).GetSourceFile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_GetSourceFile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).GetSourceFile(ctx, req.(*GetSourceFileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPublicService_UpdateChunk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateChunkRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).UpdateChunk(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_UpdateChunk_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).UpdateChunk(ctx, req.(*UpdateChunkRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ArtifactPublicService_ServiceDesc is the grpc.ServiceDesc for ArtifactPublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -461,6 +566,18 @@ var ArtifactPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListKnowledgeBaseFiles",
 			Handler:    _ArtifactPublicService_ListKnowledgeBaseFiles_Handler,
+		},
+		{
+			MethodName: "ListChunks",
+			Handler:    _ArtifactPublicService_ListChunks_Handler,
+		},
+		{
+			MethodName: "GetSourceFile",
+			Handler:    _ArtifactPublicService_GetSourceFile_Handler,
+		},
+		{
+			MethodName: "UpdateChunk",
+			Handler:    _ArtifactPublicService_UpdateChunk_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
