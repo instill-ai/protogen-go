@@ -953,6 +953,94 @@ func local_request_ArtifactPublicService_UpdateChunk_0(ctx context.Context, mars
 
 }
 
+func request_ArtifactPublicService_SimilarityChunksSearch_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq SimilarityChunksSearchRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["owner_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "owner_id")
+	}
+
+	protoReq.OwnerId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "owner_id", err)
+	}
+
+	val, ok = pathParams["kb_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "kb_id")
+	}
+
+	protoReq.KbId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "kb_id", err)
+	}
+
+	msg, err := client.SimilarityChunksSearch(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_ArtifactPublicService_SimilarityChunksSearch_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq SimilarityChunksSearchRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["owner_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "owner_id")
+	}
+
+	protoReq.OwnerId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "owner_id", err)
+	}
+
+	val, ok = pathParams["kb_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "kb_id")
+	}
+
+	protoReq.KbId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "kb_id", err)
+	}
+
+	msg, err := server.SimilarityChunksSearch(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
 // RegisterArtifactPublicServiceHandlerServer registers the http handlers for service ArtifactPublicService to "mux".
 // UnaryRPC     :call ArtifactPublicServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -1334,6 +1422,31 @@ func RegisterArtifactPublicServiceHandlerServer(ctx context.Context, mux *runtim
 
 	})
 
+	mux.Handle("POST", pattern_ArtifactPublicService_SimilarityChunksSearch_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/SimilarityChunksSearch", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_id}/knowledge-bases/{kb_id}/chunks/similarity"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ArtifactPublicService_SimilarityChunksSearch_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_ArtifactPublicService_SimilarityChunksSearch_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	return nil
 }
 
@@ -1705,6 +1818,28 @@ func RegisterArtifactPublicServiceHandlerClient(ctx context.Context, mux *runtim
 
 	})
 
+	mux.Handle("POST", pattern_ArtifactPublicService_SimilarityChunksSearch_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/SimilarityChunksSearch", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_id}/knowledge-bases/{kb_id}/chunks/similarity"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ArtifactPublicService_SimilarityChunksSearch_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_ArtifactPublicService_SimilarityChunksSearch_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	return nil
 }
 
@@ -1738,6 +1873,8 @@ var (
 	pattern_ArtifactPublicService_GetSourceFile_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6, 2, 7}, []string{"v1alpha", "owners", "owner_id", "knowledge-bases", "kb_id", "files", "file_uid", "source"}, ""))
 
 	pattern_ArtifactPublicService_UpdateChunk_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1alpha", "chunks", "chunk_uid"}, ""))
+
+	pattern_ArtifactPublicService_SimilarityChunksSearch_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 2, 6}, []string{"v1alpha", "owners", "owner_id", "knowledge-bases", "kb_id", "chunks", "similarity"}, ""))
 )
 
 var (
@@ -1770,4 +1907,6 @@ var (
 	forward_ArtifactPublicService_GetSourceFile_0 = runtime.ForwardResponseMessage
 
 	forward_ArtifactPublicService_UpdateChunk_0 = runtime.ForwardResponseMessage
+
+	forward_ArtifactPublicService_SimilarityChunksSearch_0 = runtime.ForwardResponseMessage
 )

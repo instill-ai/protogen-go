@@ -32,6 +32,7 @@ const (
 	ArtifactPublicService_ListChunks_FullMethodName                = "/artifact.artifact.v1alpha.ArtifactPublicService/ListChunks"
 	ArtifactPublicService_GetSourceFile_FullMethodName             = "/artifact.artifact.v1alpha.ArtifactPublicService/GetSourceFile"
 	ArtifactPublicService_UpdateChunk_FullMethodName               = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateChunk"
+	ArtifactPublicService_SimilarityChunksSearch_FullMethodName    = "/artifact.artifact.v1alpha.ArtifactPublicService/SimilarityChunksSearch"
 )
 
 // ArtifactPublicServiceClient is the client API for ArtifactPublicService service.
@@ -68,6 +69,8 @@ type ArtifactPublicServiceClient interface {
 	GetSourceFile(ctx context.Context, in *GetSourceFileRequest, opts ...grpc.CallOption) (*GetSourceFileResponse, error)
 	// Update chunk
 	UpdateChunk(ctx context.Context, in *UpdateChunkRequest, opts ...grpc.CallOption) (*UpdateChunkResponse, error)
+	// Similarity chunks search
+	SimilarityChunksSearch(ctx context.Context, in *SimilarityChunksSearchRequest, opts ...grpc.CallOption) (*SimilarityChunksSearchResponse, error)
 }
 
 type artifactPublicServiceClient struct {
@@ -195,6 +198,15 @@ func (c *artifactPublicServiceClient) UpdateChunk(ctx context.Context, in *Updat
 	return out, nil
 }
 
+func (c *artifactPublicServiceClient) SimilarityChunksSearch(ctx context.Context, in *SimilarityChunksSearchRequest, opts ...grpc.CallOption) (*SimilarityChunksSearchResponse, error) {
+	out := new(SimilarityChunksSearchResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_SimilarityChunksSearch_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ArtifactPublicServiceServer is the server API for ArtifactPublicService service.
 // All implementations should embed UnimplementedArtifactPublicServiceServer
 // for forward compatibility
@@ -229,6 +241,8 @@ type ArtifactPublicServiceServer interface {
 	GetSourceFile(context.Context, *GetSourceFileRequest) (*GetSourceFileResponse, error)
 	// Update chunk
 	UpdateChunk(context.Context, *UpdateChunkRequest) (*UpdateChunkResponse, error)
+	// Similarity chunks search
+	SimilarityChunksSearch(context.Context, *SimilarityChunksSearchRequest) (*SimilarityChunksSearchResponse, error)
 }
 
 // UnimplementedArtifactPublicServiceServer should be embedded to have forward compatible implementations.
@@ -273,6 +287,9 @@ func (UnimplementedArtifactPublicServiceServer) GetSourceFile(context.Context, *
 }
 func (UnimplementedArtifactPublicServiceServer) UpdateChunk(context.Context, *UpdateChunkRequest) (*UpdateChunkResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateChunk not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) SimilarityChunksSearch(context.Context, *SimilarityChunksSearchRequest) (*SimilarityChunksSearchResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SimilarityChunksSearch not implemented")
 }
 
 // UnsafeArtifactPublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -520,6 +537,24 @@ func _ArtifactPublicService_UpdateChunk_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArtifactPublicService_SimilarityChunksSearch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SimilarityChunksSearchRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).SimilarityChunksSearch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_SimilarityChunksSearch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).SimilarityChunksSearch(ctx, req.(*SimilarityChunksSearchRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ArtifactPublicService_ServiceDesc is the grpc.ServiceDesc for ArtifactPublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -578,6 +613,10 @@ var ArtifactPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateChunk",
 			Handler:    _ArtifactPublicService_UpdateChunk_Handler,
+		},
+		{
+			MethodName: "SimilarityChunksSearch",
+			Handler:    _ArtifactPublicService_SimilarityChunksSearch_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
