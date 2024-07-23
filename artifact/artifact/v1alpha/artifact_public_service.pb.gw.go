@@ -1155,7 +1155,7 @@ func RegisterArtifactPublicServiceHandlerServer(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/CreateKnowledgeBase", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_id}/knowledge-bases"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/CreateKnowledgeBase", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{owner_id}/knowledge-bases"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1180,7 +1180,7 @@ func RegisterArtifactPublicServiceHandlerServer(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListKnowledgeBases", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_id}/knowledge-bases"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListKnowledgeBases", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{owner_id}/knowledge-bases"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1205,7 +1205,7 @@ func RegisterArtifactPublicServiceHandlerServer(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateKnowledgeBase", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_id}/knowledge-bases/{kb_id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateKnowledgeBase", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{owner_id}/knowledge-bases/{kb_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1230,7 +1230,7 @@ func RegisterArtifactPublicServiceHandlerServer(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteKnowledgeBase", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_id}/knowledge-bases/{kb_id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteKnowledgeBase", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{owner_id}/knowledge-bases/{kb_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1255,7 +1255,7 @@ func RegisterArtifactPublicServiceHandlerServer(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/UploadKnowledgeBaseFile", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_id}/knowledge-bases/{kb_id}/files"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/UploadKnowledgeBaseFile", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{owner_id}/knowledge-bases/{kb_id}/files"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1330,7 +1330,7 @@ func RegisterArtifactPublicServiceHandlerServer(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListKnowledgeBaseFiles", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_id}/knowledge-bases/{kb_id}/files"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListKnowledgeBaseFiles", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{owner_id}/knowledge-bases/{kb_id}/files"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1355,7 +1355,7 @@ func RegisterArtifactPublicServiceHandlerServer(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListChunks", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_id}/knowledge-bases/{kb_id}/chunks"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListChunks", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{owner_id}/knowledge-bases/{kb_id}/chunks"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1380,7 +1380,7 @@ func RegisterArtifactPublicServiceHandlerServer(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/GetSourceFile", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_id}/knowledge-bases/{kb_id}/files/{file_uid}/source"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/GetSourceFile", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{owner_id}/knowledge-bases/{kb_id}/files/{file_uid}/source"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1430,7 +1430,7 @@ func RegisterArtifactPublicServiceHandlerServer(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/SimilarityChunksSearch", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_id}/knowledge-bases/{kb_id}/chunks/similarity"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/SimilarityChunksSearch", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{owner_id}/knowledge-bases/{kb_id}/chunks/similarity"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1582,7 +1582,7 @@ func RegisterArtifactPublicServiceHandlerClient(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/CreateKnowledgeBase", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_id}/knowledge-bases"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/CreateKnowledgeBase", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{owner_id}/knowledge-bases"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1604,7 +1604,7 @@ func RegisterArtifactPublicServiceHandlerClient(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListKnowledgeBases", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_id}/knowledge-bases"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListKnowledgeBases", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{owner_id}/knowledge-bases"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1626,7 +1626,7 @@ func RegisterArtifactPublicServiceHandlerClient(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateKnowledgeBase", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_id}/knowledge-bases/{kb_id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateKnowledgeBase", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{owner_id}/knowledge-bases/{kb_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1648,7 +1648,7 @@ func RegisterArtifactPublicServiceHandlerClient(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteKnowledgeBase", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_id}/knowledge-bases/{kb_id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteKnowledgeBase", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{owner_id}/knowledge-bases/{kb_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1670,7 +1670,7 @@ func RegisterArtifactPublicServiceHandlerClient(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/UploadKnowledgeBaseFile", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_id}/knowledge-bases/{kb_id}/files"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/UploadKnowledgeBaseFile", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{owner_id}/knowledge-bases/{kb_id}/files"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1736,7 +1736,7 @@ func RegisterArtifactPublicServiceHandlerClient(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListKnowledgeBaseFiles", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_id}/knowledge-bases/{kb_id}/files"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListKnowledgeBaseFiles", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{owner_id}/knowledge-bases/{kb_id}/files"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1758,7 +1758,7 @@ func RegisterArtifactPublicServiceHandlerClient(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListChunks", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_id}/knowledge-bases/{kb_id}/chunks"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListChunks", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{owner_id}/knowledge-bases/{kb_id}/chunks"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1780,7 +1780,7 @@ func RegisterArtifactPublicServiceHandlerClient(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/GetSourceFile", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_id}/knowledge-bases/{kb_id}/files/{file_uid}/source"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/GetSourceFile", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{owner_id}/knowledge-bases/{kb_id}/files/{file_uid}/source"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1824,7 +1824,7 @@ func RegisterArtifactPublicServiceHandlerClient(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/SimilarityChunksSearch", runtime.WithHTTPPathPattern("/v1alpha/owners/{owner_id}/knowledge-bases/{kb_id}/chunks/similarity"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/SimilarityChunksSearch", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{owner_id}/knowledge-bases/{kb_id}/chunks/similarity"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1852,29 +1852,29 @@ var (
 
 	pattern_ArtifactPublicService_Readiness_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "ready", "artifact"}, ""))
 
-	pattern_ArtifactPublicService_CreateKnowledgeBase_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1alpha", "owners", "owner_id", "knowledge-bases"}, ""))
+	pattern_ArtifactPublicService_CreateKnowledgeBase_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "owner_id", "knowledge-bases"}, ""))
 
-	pattern_ArtifactPublicService_ListKnowledgeBases_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1alpha", "owners", "owner_id", "knowledge-bases"}, ""))
+	pattern_ArtifactPublicService_ListKnowledgeBases_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "owner_id", "knowledge-bases"}, ""))
 
-	pattern_ArtifactPublicService_UpdateKnowledgeBase_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1alpha", "owners", "owner_id", "knowledge-bases", "kb_id"}, ""))
+	pattern_ArtifactPublicService_UpdateKnowledgeBase_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1alpha", "namespaces", "owner_id", "knowledge-bases", "kb_id"}, ""))
 
-	pattern_ArtifactPublicService_DeleteKnowledgeBase_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1alpha", "owners", "owner_id", "knowledge-bases", "kb_id"}, ""))
+	pattern_ArtifactPublicService_DeleteKnowledgeBase_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1alpha", "namespaces", "owner_id", "knowledge-bases", "kb_id"}, ""))
 
-	pattern_ArtifactPublicService_UploadKnowledgeBaseFile_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "owners", "owner_id", "knowledge-bases", "kb_id", "files"}, ""))
+	pattern_ArtifactPublicService_UploadKnowledgeBaseFile_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "owner_id", "knowledge-bases", "kb_id", "files"}, ""))
 
 	pattern_ArtifactPublicService_DeleteKnowledgeBaseFile_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "knowledge-bases", "files"}, ""))
 
 	pattern_ArtifactPublicService_ProcessKnowledgeBaseFiles_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"v1alpha", "knowledge-bases", "files", "processAsync"}, ""))
 
-	pattern_ArtifactPublicService_ListKnowledgeBaseFiles_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "owners", "owner_id", "knowledge-bases", "kb_id", "files"}, ""))
+	pattern_ArtifactPublicService_ListKnowledgeBaseFiles_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "owner_id", "knowledge-bases", "kb_id", "files"}, ""))
 
-	pattern_ArtifactPublicService_ListChunks_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "owners", "owner_id", "knowledge-bases", "kb_id", "chunks"}, ""))
+	pattern_ArtifactPublicService_ListChunks_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "owner_id", "knowledge-bases", "kb_id", "chunks"}, ""))
 
-	pattern_ArtifactPublicService_GetSourceFile_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6, 2, 7}, []string{"v1alpha", "owners", "owner_id", "knowledge-bases", "kb_id", "files", "file_uid", "source"}, ""))
+	pattern_ArtifactPublicService_GetSourceFile_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6, 2, 7}, []string{"v1alpha", "namespaces", "owner_id", "knowledge-bases", "kb_id", "files", "file_uid", "source"}, ""))
 
 	pattern_ArtifactPublicService_UpdateChunk_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1alpha", "chunks", "chunk_uid"}, ""))
 
-	pattern_ArtifactPublicService_SimilarityChunksSearch_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 2, 6}, []string{"v1alpha", "owners", "owner_id", "knowledge-bases", "kb_id", "chunks", "similarity"}, ""))
+	pattern_ArtifactPublicService_SimilarityChunksSearch_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 2, 6}, []string{"v1alpha", "namespaces", "owner_id", "knowledge-bases", "kb_id", "chunks", "similarity"}, ""))
 )
 
 var (
