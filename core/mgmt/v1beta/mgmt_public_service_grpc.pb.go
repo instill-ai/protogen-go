@@ -202,8 +202,9 @@ type MgmtPublicServiceClient interface {
 	// List Instill Credit consumption time charts
 	//
 	// Returns a timeline of Instill Credit consumption for a given owner. The
-	// timeline consists of a list of time frames that contain the aggregated
-	// credit consumption.
+	// response will contain one set of records (datapoints) per consumption
+	// source (e.g. "pipeline", "model"). Each datapoint represents the amount
+	// consumed in a time bucket.
 	ListCreditConsumptionChartRecords(ctx context.Context, in *ListCreditConsumptionChartRecordsRequest, opts ...grpc.CallOption) (*ListCreditConsumptionChartRecordsResponse, error)
 	// Get Auth token issuer
 	//
@@ -712,8 +713,9 @@ type MgmtPublicServiceServer interface {
 	// List Instill Credit consumption time charts
 	//
 	// Returns a timeline of Instill Credit consumption for a given owner. The
-	// timeline consists of a list of time frames that contain the aggregated
-	// credit consumption.
+	// response will contain one set of records (datapoints) per consumption
+	// source (e.g. "pipeline", "model"). Each datapoint represents the amount
+	// consumed in a time bucket.
 	ListCreditConsumptionChartRecords(context.Context, *ListCreditConsumptionChartRecordsRequest) (*ListCreditConsumptionChartRecordsResponse, error)
 	// Get Auth token issuer
 	//
