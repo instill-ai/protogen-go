@@ -40,7 +40,7 @@ var file_model_model_v1alpha_model_public_service_proto_rawDesc = []byte{
 	0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x2e, 0x70,
 	0x72, 0x6f, 0x74, 0x6f, 0x63, 0x2d, 0x67, 0x65, 0x6e, 0x2d, 0x6f, 0x70, 0x65, 0x6e, 0x61, 0x70,
 	0x69, 0x76, 0x32, 0x2f, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2f, 0x61, 0x6e, 0x6e, 0x6f,
-	0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x94, 0x73,
+	0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0xcf, 0x74,
 	0x0a, 0x12, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x53, 0x65, 0x72,
 	0x76, 0x69, 0x63, 0x65, 0x12, 0x9d, 0x01, 0x0a, 0x08, 0x4c, 0x69, 0x76, 0x65, 0x6e, 0x65, 0x73,
 	0x73, 0x12, 0x24, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e,
@@ -960,24 +960,35 @@ var file_model_model_v1alpha_model_public_service_proto_rawDesc = []byte{
 	0x12, 0x32, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2f, 0x7b, 0x6e, 0x61, 0x6d, 0x65,
 	0x3d, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2f, 0x2a,
 	0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2f, 0x2a, 0x7d, 0x2f, 0x6f, 0x70, 0x65, 0x72, 0x61,
-	0x74, 0x69, 0x6f, 0x6e, 0x88, 0x02, 0x01, 0x1a, 0x1b, 0x92, 0x41, 0x18, 0x12, 0x16, 0x50, 0x75,
-	0x62, 0x6c, 0x69, 0x63, 0x20, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x20, 0x65, 0x6e, 0x64, 0x70, 0x6f,
-	0x69, 0x6e, 0x74, 0x73, 0x42, 0xe4, 0x01, 0x0a, 0x17, 0x63, 0x6f, 0x6d, 0x2e, 0x6d, 0x6f, 0x64,
-	0x65, 0x6c, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61,
-	0x42, 0x17, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x53, 0x65, 0x72,
-	0x76, 0x69, 0x63, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x42, 0x67, 0x69, 0x74,
-	0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2d,
-	0x61, 0x69, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x67, 0x65, 0x6e, 0x2d, 0x67, 0x6f, 0x2f, 0x6d,
-	0x6f, 0x64, 0x65, 0x6c, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70,
-	0x68, 0x61, 0x3b, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xa2,
-	0x02, 0x03, 0x4d, 0x4d, 0x58, 0xaa, 0x02, 0x13, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x4d, 0x6f,
-	0x64, 0x65, 0x6c, 0x2e, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xca, 0x02, 0x13, 0x4d, 0x6f,
-	0x64, 0x65, 0x6c, 0x5c, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68,
-	0x61, 0xe2, 0x02, 0x1f, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x5c, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x5c,
-	0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64,
-	0x61, 0x74, 0x61, 0xea, 0x02, 0x15, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x3a, 0x3a, 0x4d, 0x6f, 0x64,
-	0x65, 0x6c, 0x3a, 0x3a, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x74, 0x69, 0x6f, 0x6e, 0x88, 0x02, 0x01, 0x12, 0xb8, 0x01, 0x0a, 0x11, 0x4c, 0x69, 0x73, 0x74,
+	0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x54, 0x72, 0x69, 0x67, 0x67, 0x65, 0x72, 0x73, 0x12, 0x29, 0x2e,
+	0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x76, 0x31, 0x61, 0x6c,
+	0x70, 0x68, 0x61, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x52, 0x75, 0x6e,
+	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2a, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c,
+	0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x4c,
+	0x69, 0x73, 0x74, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x52, 0x75, 0x6e, 0x73, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x4c, 0x92, 0x41, 0x09, 0x0a, 0x07, 0x54, 0x72, 0x69, 0x67, 0x67,
+	0x65, 0x72, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x3a, 0x12, 0x38, 0x2f, 0x76, 0x31, 0x62, 0x65, 0x74,
+	0x61, 0x2f, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x73, 0x2f, 0x7b, 0x6e, 0x61,
+	0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x5f, 0x69, 0x64, 0x7d, 0x2f, 0x6d, 0x6f, 0x64, 0x65,
+	0x6c, 0x73, 0x2f, 0x7b, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x69, 0x64, 0x7d, 0x2f, 0x72, 0x75,
+	0x6e, 0x73, 0x1a, 0x1b, 0x92, 0x41, 0x18, 0x12, 0x16, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x20,
+	0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x20, 0x65, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x73, 0x42,
+	0xe4, 0x01, 0x0a, 0x17, 0x63, 0x6f, 0x6d, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x6d, 0x6f,
+	0x64, 0x65, 0x6c, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x42, 0x17, 0x4d, 0x6f, 0x64,
+	0x65, 0x6c, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x50,
+	0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x42, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63,
+	0x6f, 0x6d, 0x2f, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2d, 0x61, 0x69, 0x2f, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x67, 0x65, 0x6e, 0x2d, 0x67, 0x6f, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2f,
+	0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x3b, 0x6d, 0x6f,
+	0x64, 0x65, 0x6c, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xa2, 0x02, 0x03, 0x4d, 0x4d, 0x58,
+	0xaa, 0x02, 0x13, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x56,
+	0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xca, 0x02, 0x13, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x5c, 0x4d,
+	0x6f, 0x64, 0x65, 0x6c, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xe2, 0x02, 0x1f, 0x4d,
+	0x6f, 0x64, 0x65, 0x6c, 0x5c, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70,
+	0x68, 0x61, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02,
+	0x15, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x3a, 0x3a, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x3a, 0x3a, 0x56,
+	0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var file_model_model_v1alpha_model_public_service_proto_goTypes = []interface{}{
@@ -1038,63 +1049,65 @@ var file_model_model_v1alpha_model_public_service_proto_goTypes = []interface{}{
 	(*TriggerOrganizationModelBinaryFileUploadRequest)(nil),     // 54: model.model.v1alpha.TriggerOrganizationModelBinaryFileUploadRequest
 	(*GetUserLatestModelOperationRequest)(nil),                  // 55: model.model.v1alpha.GetUserLatestModelOperationRequest
 	(*GetOrganizationLatestModelOperationRequest)(nil),          // 56: model.model.v1alpha.GetOrganizationLatestModelOperationRequest
-	(*LivenessResponse)(nil),                                    // 57: model.model.v1alpha.LivenessResponse
-	(*ReadinessResponse)(nil),                                   // 58: model.model.v1alpha.ReadinessResponse
-	(*ListModelDefinitionsResponse)(nil),                        // 59: model.model.v1alpha.ListModelDefinitionsResponse
-	(*ListAvailableRegionsResponse)(nil),                        // 60: model.model.v1alpha.ListAvailableRegionsResponse
-	(*GetModelDefinitionResponse)(nil),                          // 61: model.model.v1alpha.GetModelDefinitionResponse
-	(*ListModelsResponse)(nil),                                  // 62: model.model.v1alpha.ListModelsResponse
-	(*LookUpModelResponse)(nil),                                 // 63: model.model.v1alpha.LookUpModelResponse
-	(*ListNamespaceModelsResponse)(nil),                         // 64: model.model.v1alpha.ListNamespaceModelsResponse
-	(*CreateNamespaceModelResponse)(nil),                        // 65: model.model.v1alpha.CreateNamespaceModelResponse
-	(*GetNamespaceModelResponse)(nil),                           // 66: model.model.v1alpha.GetNamespaceModelResponse
-	(*UpdateNamespaceModelResponse)(nil),                        // 67: model.model.v1alpha.UpdateNamespaceModelResponse
-	(*DeleteNamespaceModelResponse)(nil),                        // 68: model.model.v1alpha.DeleteNamespaceModelResponse
-	(*RenameNamespaceModelResponse)(nil),                        // 69: model.model.v1alpha.RenameNamespaceModelResponse
-	(*WatchNamespaceModelResponse)(nil),                         // 70: model.model.v1alpha.WatchNamespaceModelResponse
-	(*WatchNamespaceLatestModelResponse)(nil),                   // 71: model.model.v1alpha.WatchNamespaceLatestModelResponse
-	(*ListNamespaceModelVersionsResponse)(nil),                  // 72: model.model.v1alpha.ListNamespaceModelVersionsResponse
-	(*DeleteNamespaceModelVersionResponse)(nil),                 // 73: model.model.v1alpha.DeleteNamespaceModelVersionResponse
-	(*TriggerNamespaceModelResponse)(nil),                       // 74: model.model.v1alpha.TriggerNamespaceModelResponse
-	(*TriggerAsyncNamespaceModelResponse)(nil),                  // 75: model.model.v1alpha.TriggerAsyncNamespaceModelResponse
-	(*TriggerNamespaceLatestModelResponse)(nil),                 // 76: model.model.v1alpha.TriggerNamespaceLatestModelResponse
-	(*TriggerAsyncNamespaceLatestModelResponse)(nil),            // 77: model.model.v1alpha.TriggerAsyncNamespaceLatestModelResponse
-	(*TriggerNamespaceModelBinaryFileUploadResponse)(nil),       // 78: model.model.v1alpha.TriggerNamespaceModelBinaryFileUploadResponse
-	(*TriggerNamespaceLatestModelBinaryFileUploadResponse)(nil), // 79: model.model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadResponse
-	(*GetNamespaceLatestModelOperationResponse)(nil),            // 80: model.model.v1alpha.GetNamespaceLatestModelOperationResponse
-	(*GetModelOperationResponse)(nil),                           // 81: model.model.v1alpha.GetModelOperationResponse
-	(*ListUserModelsResponse)(nil),                              // 82: model.model.v1alpha.ListUserModelsResponse
-	(*CreateUserModelResponse)(nil),                             // 83: model.model.v1alpha.CreateUserModelResponse
-	(*GetUserModelResponse)(nil),                                // 84: model.model.v1alpha.GetUserModelResponse
-	(*UpdateUserModelResponse)(nil),                             // 85: model.model.v1alpha.UpdateUserModelResponse
-	(*DeleteUserModelResponse)(nil),                             // 86: model.model.v1alpha.DeleteUserModelResponse
-	(*RenameUserModelResponse)(nil),                             // 87: model.model.v1alpha.RenameUserModelResponse
-	(*WatchUserModelResponse)(nil),                              // 88: model.model.v1alpha.WatchUserModelResponse
-	(*WatchUserLatestModelResponse)(nil),                        // 89: model.model.v1alpha.WatchUserLatestModelResponse
-	(*ListUserModelVersionsResponse)(nil),                       // 90: model.model.v1alpha.ListUserModelVersionsResponse
-	(*DeleteUserModelVersionResponse)(nil),                      // 91: model.model.v1alpha.DeleteUserModelVersionResponse
-	(*TriggerUserModelResponse)(nil),                            // 92: model.model.v1alpha.TriggerUserModelResponse
-	(*TriggerAsyncUserModelResponse)(nil),                       // 93: model.model.v1alpha.TriggerAsyncUserModelResponse
-	(*TriggerUserLatestModelResponse)(nil),                      // 94: model.model.v1alpha.TriggerUserLatestModelResponse
-	(*TriggerAsyncUserLatestModelResponse)(nil),                 // 95: model.model.v1alpha.TriggerAsyncUserLatestModelResponse
-	(*TriggerUserModelBinaryFileUploadResponse)(nil),            // 96: model.model.v1alpha.TriggerUserModelBinaryFileUploadResponse
-	(*ListOrganizationModelsResponse)(nil),                      // 97: model.model.v1alpha.ListOrganizationModelsResponse
-	(*CreateOrganizationModelResponse)(nil),                     // 98: model.model.v1alpha.CreateOrganizationModelResponse
-	(*GetOrganizationModelResponse)(nil),                        // 99: model.model.v1alpha.GetOrganizationModelResponse
-	(*UpdateOrganizationModelResponse)(nil),                     // 100: model.model.v1alpha.UpdateOrganizationModelResponse
-	(*DeleteOrganizationModelResponse)(nil),                     // 101: model.model.v1alpha.DeleteOrganizationModelResponse
-	(*RenameOrganizationModelResponse)(nil),                     // 102: model.model.v1alpha.RenameOrganizationModelResponse
-	(*WatchOrganizationModelResponse)(nil),                      // 103: model.model.v1alpha.WatchOrganizationModelResponse
-	(*WatchOrganizationLatestModelResponse)(nil),                // 104: model.model.v1alpha.WatchOrganizationLatestModelResponse
-	(*ListOrganizationModelVersionsResponse)(nil),               // 105: model.model.v1alpha.ListOrganizationModelVersionsResponse
-	(*DeleteOrganizationModelVersionResponse)(nil),              // 106: model.model.v1alpha.DeleteOrganizationModelVersionResponse
-	(*TriggerOrganizationModelResponse)(nil),                    // 107: model.model.v1alpha.TriggerOrganizationModelResponse
-	(*TriggerAsyncOrganizationModelResponse)(nil),               // 108: model.model.v1alpha.TriggerAsyncOrganizationModelResponse
-	(*TriggerOrganizationLatestModelResponse)(nil),              // 109: model.model.v1alpha.TriggerOrganizationLatestModelResponse
-	(*TriggerAsyncOrganizationLatestModelResponse)(nil),         // 110: model.model.v1alpha.TriggerAsyncOrganizationLatestModelResponse
-	(*TriggerOrganizationModelBinaryFileUploadResponse)(nil),    // 111: model.model.v1alpha.TriggerOrganizationModelBinaryFileUploadResponse
-	(*GetUserLatestModelOperationResponse)(nil),                 // 112: model.model.v1alpha.GetUserLatestModelOperationResponse
-	(*GetOrganizationLatestModelOperationResponse)(nil),         // 113: model.model.v1alpha.GetOrganizationLatestModelOperationResponse
+	(*ListModelRunsRequest)(nil),                                // 57: model.model.v1alpha.ListModelRunsRequest
+	(*LivenessResponse)(nil),                                    // 58: model.model.v1alpha.LivenessResponse
+	(*ReadinessResponse)(nil),                                   // 59: model.model.v1alpha.ReadinessResponse
+	(*ListModelDefinitionsResponse)(nil),                        // 60: model.model.v1alpha.ListModelDefinitionsResponse
+	(*ListAvailableRegionsResponse)(nil),                        // 61: model.model.v1alpha.ListAvailableRegionsResponse
+	(*GetModelDefinitionResponse)(nil),                          // 62: model.model.v1alpha.GetModelDefinitionResponse
+	(*ListModelsResponse)(nil),                                  // 63: model.model.v1alpha.ListModelsResponse
+	(*LookUpModelResponse)(nil),                                 // 64: model.model.v1alpha.LookUpModelResponse
+	(*ListNamespaceModelsResponse)(nil),                         // 65: model.model.v1alpha.ListNamespaceModelsResponse
+	(*CreateNamespaceModelResponse)(nil),                        // 66: model.model.v1alpha.CreateNamespaceModelResponse
+	(*GetNamespaceModelResponse)(nil),                           // 67: model.model.v1alpha.GetNamespaceModelResponse
+	(*UpdateNamespaceModelResponse)(nil),                        // 68: model.model.v1alpha.UpdateNamespaceModelResponse
+	(*DeleteNamespaceModelResponse)(nil),                        // 69: model.model.v1alpha.DeleteNamespaceModelResponse
+	(*RenameNamespaceModelResponse)(nil),                        // 70: model.model.v1alpha.RenameNamespaceModelResponse
+	(*WatchNamespaceModelResponse)(nil),                         // 71: model.model.v1alpha.WatchNamespaceModelResponse
+	(*WatchNamespaceLatestModelResponse)(nil),                   // 72: model.model.v1alpha.WatchNamespaceLatestModelResponse
+	(*ListNamespaceModelVersionsResponse)(nil),                  // 73: model.model.v1alpha.ListNamespaceModelVersionsResponse
+	(*DeleteNamespaceModelVersionResponse)(nil),                 // 74: model.model.v1alpha.DeleteNamespaceModelVersionResponse
+	(*TriggerNamespaceModelResponse)(nil),                       // 75: model.model.v1alpha.TriggerNamespaceModelResponse
+	(*TriggerAsyncNamespaceModelResponse)(nil),                  // 76: model.model.v1alpha.TriggerAsyncNamespaceModelResponse
+	(*TriggerNamespaceLatestModelResponse)(nil),                 // 77: model.model.v1alpha.TriggerNamespaceLatestModelResponse
+	(*TriggerAsyncNamespaceLatestModelResponse)(nil),            // 78: model.model.v1alpha.TriggerAsyncNamespaceLatestModelResponse
+	(*TriggerNamespaceModelBinaryFileUploadResponse)(nil),       // 79: model.model.v1alpha.TriggerNamespaceModelBinaryFileUploadResponse
+	(*TriggerNamespaceLatestModelBinaryFileUploadResponse)(nil), // 80: model.model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadResponse
+	(*GetNamespaceLatestModelOperationResponse)(nil),            // 81: model.model.v1alpha.GetNamespaceLatestModelOperationResponse
+	(*GetModelOperationResponse)(nil),                           // 82: model.model.v1alpha.GetModelOperationResponse
+	(*ListUserModelsResponse)(nil),                              // 83: model.model.v1alpha.ListUserModelsResponse
+	(*CreateUserModelResponse)(nil),                             // 84: model.model.v1alpha.CreateUserModelResponse
+	(*GetUserModelResponse)(nil),                                // 85: model.model.v1alpha.GetUserModelResponse
+	(*UpdateUserModelResponse)(nil),                             // 86: model.model.v1alpha.UpdateUserModelResponse
+	(*DeleteUserModelResponse)(nil),                             // 87: model.model.v1alpha.DeleteUserModelResponse
+	(*RenameUserModelResponse)(nil),                             // 88: model.model.v1alpha.RenameUserModelResponse
+	(*WatchUserModelResponse)(nil),                              // 89: model.model.v1alpha.WatchUserModelResponse
+	(*WatchUserLatestModelResponse)(nil),                        // 90: model.model.v1alpha.WatchUserLatestModelResponse
+	(*ListUserModelVersionsResponse)(nil),                       // 91: model.model.v1alpha.ListUserModelVersionsResponse
+	(*DeleteUserModelVersionResponse)(nil),                      // 92: model.model.v1alpha.DeleteUserModelVersionResponse
+	(*TriggerUserModelResponse)(nil),                            // 93: model.model.v1alpha.TriggerUserModelResponse
+	(*TriggerAsyncUserModelResponse)(nil),                       // 94: model.model.v1alpha.TriggerAsyncUserModelResponse
+	(*TriggerUserLatestModelResponse)(nil),                      // 95: model.model.v1alpha.TriggerUserLatestModelResponse
+	(*TriggerAsyncUserLatestModelResponse)(nil),                 // 96: model.model.v1alpha.TriggerAsyncUserLatestModelResponse
+	(*TriggerUserModelBinaryFileUploadResponse)(nil),            // 97: model.model.v1alpha.TriggerUserModelBinaryFileUploadResponse
+	(*ListOrganizationModelsResponse)(nil),                      // 98: model.model.v1alpha.ListOrganizationModelsResponse
+	(*CreateOrganizationModelResponse)(nil),                     // 99: model.model.v1alpha.CreateOrganizationModelResponse
+	(*GetOrganizationModelResponse)(nil),                        // 100: model.model.v1alpha.GetOrganizationModelResponse
+	(*UpdateOrganizationModelResponse)(nil),                     // 101: model.model.v1alpha.UpdateOrganizationModelResponse
+	(*DeleteOrganizationModelResponse)(nil),                     // 102: model.model.v1alpha.DeleteOrganizationModelResponse
+	(*RenameOrganizationModelResponse)(nil),                     // 103: model.model.v1alpha.RenameOrganizationModelResponse
+	(*WatchOrganizationModelResponse)(nil),                      // 104: model.model.v1alpha.WatchOrganizationModelResponse
+	(*WatchOrganizationLatestModelResponse)(nil),                // 105: model.model.v1alpha.WatchOrganizationLatestModelResponse
+	(*ListOrganizationModelVersionsResponse)(nil),               // 106: model.model.v1alpha.ListOrganizationModelVersionsResponse
+	(*DeleteOrganizationModelVersionResponse)(nil),              // 107: model.model.v1alpha.DeleteOrganizationModelVersionResponse
+	(*TriggerOrganizationModelResponse)(nil),                    // 108: model.model.v1alpha.TriggerOrganizationModelResponse
+	(*TriggerAsyncOrganizationModelResponse)(nil),               // 109: model.model.v1alpha.TriggerAsyncOrganizationModelResponse
+	(*TriggerOrganizationLatestModelResponse)(nil),              // 110: model.model.v1alpha.TriggerOrganizationLatestModelResponse
+	(*TriggerAsyncOrganizationLatestModelResponse)(nil),         // 111: model.model.v1alpha.TriggerAsyncOrganizationLatestModelResponse
+	(*TriggerOrganizationModelBinaryFileUploadResponse)(nil),    // 112: model.model.v1alpha.TriggerOrganizationModelBinaryFileUploadResponse
+	(*GetUserLatestModelOperationResponse)(nil),                 // 113: model.model.v1alpha.GetUserLatestModelOperationResponse
+	(*GetOrganizationLatestModelOperationResponse)(nil),         // 114: model.model.v1alpha.GetOrganizationLatestModelOperationResponse
+	(*ListModelRunsResponse)(nil),                               // 115: model.model.v1alpha.ListModelRunsResponse
 }
 var file_model_model_v1alpha_model_public_service_proto_depIdxs = []int32{
 	0,   // 0: model.model.v1alpha.ModelPublicService.Liveness:input_type -> model.model.v1alpha.LivenessRequest
@@ -1154,65 +1167,67 @@ var file_model_model_v1alpha_model_public_service_proto_depIdxs = []int32{
 	54,  // 54: model.model.v1alpha.ModelPublicService.TriggerOrganizationModelBinaryFileUpload:input_type -> model.model.v1alpha.TriggerOrganizationModelBinaryFileUploadRequest
 	55,  // 55: model.model.v1alpha.ModelPublicService.GetUserLatestModelOperation:input_type -> model.model.v1alpha.GetUserLatestModelOperationRequest
 	56,  // 56: model.model.v1alpha.ModelPublicService.GetOrganizationLatestModelOperation:input_type -> model.model.v1alpha.GetOrganizationLatestModelOperationRequest
-	57,  // 57: model.model.v1alpha.ModelPublicService.Liveness:output_type -> model.model.v1alpha.LivenessResponse
-	58,  // 58: model.model.v1alpha.ModelPublicService.Readiness:output_type -> model.model.v1alpha.ReadinessResponse
-	59,  // 59: model.model.v1alpha.ModelPublicService.ListModelDefinitions:output_type -> model.model.v1alpha.ListModelDefinitionsResponse
-	60,  // 60: model.model.v1alpha.ModelPublicService.ListAvailableRegions:output_type -> model.model.v1alpha.ListAvailableRegionsResponse
-	61,  // 61: model.model.v1alpha.ModelPublicService.GetModelDefinition:output_type -> model.model.v1alpha.GetModelDefinitionResponse
-	62,  // 62: model.model.v1alpha.ModelPublicService.ListModels:output_type -> model.model.v1alpha.ListModelsResponse
-	63,  // 63: model.model.v1alpha.ModelPublicService.LookUpModel:output_type -> model.model.v1alpha.LookUpModelResponse
-	64,  // 64: model.model.v1alpha.ModelPublicService.ListNamespaceModels:output_type -> model.model.v1alpha.ListNamespaceModelsResponse
-	65,  // 65: model.model.v1alpha.ModelPublicService.CreateNamespaceModel:output_type -> model.model.v1alpha.CreateNamespaceModelResponse
-	66,  // 66: model.model.v1alpha.ModelPublicService.GetNamespaceModel:output_type -> model.model.v1alpha.GetNamespaceModelResponse
-	67,  // 67: model.model.v1alpha.ModelPublicService.UpdateNamespaceModel:output_type -> model.model.v1alpha.UpdateNamespaceModelResponse
-	68,  // 68: model.model.v1alpha.ModelPublicService.DeleteNamespaceModel:output_type -> model.model.v1alpha.DeleteNamespaceModelResponse
-	69,  // 69: model.model.v1alpha.ModelPublicService.RenameNamespaceModel:output_type -> model.model.v1alpha.RenameNamespaceModelResponse
-	70,  // 70: model.model.v1alpha.ModelPublicService.WatchNamespaceModel:output_type -> model.model.v1alpha.WatchNamespaceModelResponse
-	71,  // 71: model.model.v1alpha.ModelPublicService.WatchNamespaceLatestModel:output_type -> model.model.v1alpha.WatchNamespaceLatestModelResponse
-	72,  // 72: model.model.v1alpha.ModelPublicService.ListNamespaceModelVersions:output_type -> model.model.v1alpha.ListNamespaceModelVersionsResponse
-	73,  // 73: model.model.v1alpha.ModelPublicService.DeleteNamespaceModelVersion:output_type -> model.model.v1alpha.DeleteNamespaceModelVersionResponse
-	74,  // 74: model.model.v1alpha.ModelPublicService.TriggerNamespaceModel:output_type -> model.model.v1alpha.TriggerNamespaceModelResponse
-	75,  // 75: model.model.v1alpha.ModelPublicService.TriggerAsyncNamespaceModel:output_type -> model.model.v1alpha.TriggerAsyncNamespaceModelResponse
-	76,  // 76: model.model.v1alpha.ModelPublicService.TriggerNamespaceLatestModel:output_type -> model.model.v1alpha.TriggerNamespaceLatestModelResponse
-	77,  // 77: model.model.v1alpha.ModelPublicService.TriggerAsyncNamespaceLatestModel:output_type -> model.model.v1alpha.TriggerAsyncNamespaceLatestModelResponse
-	78,  // 78: model.model.v1alpha.ModelPublicService.TriggerNamespaceModelBinaryFileUpload:output_type -> model.model.v1alpha.TriggerNamespaceModelBinaryFileUploadResponse
-	79,  // 79: model.model.v1alpha.ModelPublicService.TriggerNamespaceLatestModelBinaryFileUpload:output_type -> model.model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadResponse
-	80,  // 80: model.model.v1alpha.ModelPublicService.GetNamespaceLatestModelOperation:output_type -> model.model.v1alpha.GetNamespaceLatestModelOperationResponse
-	81,  // 81: model.model.v1alpha.ModelPublicService.GetModelOperation:output_type -> model.model.v1alpha.GetModelOperationResponse
-	82,  // 82: model.model.v1alpha.ModelPublicService.ListUserModels:output_type -> model.model.v1alpha.ListUserModelsResponse
-	83,  // 83: model.model.v1alpha.ModelPublicService.CreateUserModel:output_type -> model.model.v1alpha.CreateUserModelResponse
-	84,  // 84: model.model.v1alpha.ModelPublicService.GetUserModel:output_type -> model.model.v1alpha.GetUserModelResponse
-	85,  // 85: model.model.v1alpha.ModelPublicService.UpdateUserModel:output_type -> model.model.v1alpha.UpdateUserModelResponse
-	86,  // 86: model.model.v1alpha.ModelPublicService.DeleteUserModel:output_type -> model.model.v1alpha.DeleteUserModelResponse
-	87,  // 87: model.model.v1alpha.ModelPublicService.RenameUserModel:output_type -> model.model.v1alpha.RenameUserModelResponse
-	88,  // 88: model.model.v1alpha.ModelPublicService.WatchUserModel:output_type -> model.model.v1alpha.WatchUserModelResponse
-	89,  // 89: model.model.v1alpha.ModelPublicService.WatchUserLatestModel:output_type -> model.model.v1alpha.WatchUserLatestModelResponse
-	90,  // 90: model.model.v1alpha.ModelPublicService.ListUserModelVersions:output_type -> model.model.v1alpha.ListUserModelVersionsResponse
-	91,  // 91: model.model.v1alpha.ModelPublicService.DeleteUserModelVersion:output_type -> model.model.v1alpha.DeleteUserModelVersionResponse
-	92,  // 92: model.model.v1alpha.ModelPublicService.TriggerUserModel:output_type -> model.model.v1alpha.TriggerUserModelResponse
-	93,  // 93: model.model.v1alpha.ModelPublicService.TriggerAsyncUserModel:output_type -> model.model.v1alpha.TriggerAsyncUserModelResponse
-	94,  // 94: model.model.v1alpha.ModelPublicService.TriggerUserLatestModel:output_type -> model.model.v1alpha.TriggerUserLatestModelResponse
-	95,  // 95: model.model.v1alpha.ModelPublicService.TriggerAsyncUserLatestModel:output_type -> model.model.v1alpha.TriggerAsyncUserLatestModelResponse
-	96,  // 96: model.model.v1alpha.ModelPublicService.TriggerUserModelBinaryFileUpload:output_type -> model.model.v1alpha.TriggerUserModelBinaryFileUploadResponse
-	97,  // 97: model.model.v1alpha.ModelPublicService.ListOrganizationModels:output_type -> model.model.v1alpha.ListOrganizationModelsResponse
-	98,  // 98: model.model.v1alpha.ModelPublicService.CreateOrganizationModel:output_type -> model.model.v1alpha.CreateOrganizationModelResponse
-	99,  // 99: model.model.v1alpha.ModelPublicService.GetOrganizationModel:output_type -> model.model.v1alpha.GetOrganizationModelResponse
-	100, // 100: model.model.v1alpha.ModelPublicService.UpdateOrganizationModel:output_type -> model.model.v1alpha.UpdateOrganizationModelResponse
-	101, // 101: model.model.v1alpha.ModelPublicService.DeleteOrganizationModel:output_type -> model.model.v1alpha.DeleteOrganizationModelResponse
-	102, // 102: model.model.v1alpha.ModelPublicService.RenameOrganizationModel:output_type -> model.model.v1alpha.RenameOrganizationModelResponse
-	103, // 103: model.model.v1alpha.ModelPublicService.WatchOrganizationModel:output_type -> model.model.v1alpha.WatchOrganizationModelResponse
-	104, // 104: model.model.v1alpha.ModelPublicService.WatchOrganizationLatestModel:output_type -> model.model.v1alpha.WatchOrganizationLatestModelResponse
-	105, // 105: model.model.v1alpha.ModelPublicService.ListOrganizationModelVersions:output_type -> model.model.v1alpha.ListOrganizationModelVersionsResponse
-	106, // 106: model.model.v1alpha.ModelPublicService.DeleteOrganizationModelVersion:output_type -> model.model.v1alpha.DeleteOrganizationModelVersionResponse
-	107, // 107: model.model.v1alpha.ModelPublicService.TriggerOrganizationModel:output_type -> model.model.v1alpha.TriggerOrganizationModelResponse
-	108, // 108: model.model.v1alpha.ModelPublicService.TriggerAsyncOrganizationModel:output_type -> model.model.v1alpha.TriggerAsyncOrganizationModelResponse
-	109, // 109: model.model.v1alpha.ModelPublicService.TriggerOrganizationLatestModel:output_type -> model.model.v1alpha.TriggerOrganizationLatestModelResponse
-	110, // 110: model.model.v1alpha.ModelPublicService.TriggerAsyncOrganizationLatestModel:output_type -> model.model.v1alpha.TriggerAsyncOrganizationLatestModelResponse
-	111, // 111: model.model.v1alpha.ModelPublicService.TriggerOrganizationModelBinaryFileUpload:output_type -> model.model.v1alpha.TriggerOrganizationModelBinaryFileUploadResponse
-	112, // 112: model.model.v1alpha.ModelPublicService.GetUserLatestModelOperation:output_type -> model.model.v1alpha.GetUserLatestModelOperationResponse
-	113, // 113: model.model.v1alpha.ModelPublicService.GetOrganizationLatestModelOperation:output_type -> model.model.v1alpha.GetOrganizationLatestModelOperationResponse
-	57,  // [57:114] is the sub-list for method output_type
-	0,   // [0:57] is the sub-list for method input_type
+	57,  // 57: model.model.v1alpha.ModelPublicService.ListModelTriggers:input_type -> model.model.v1alpha.ListModelRunsRequest
+	58,  // 58: model.model.v1alpha.ModelPublicService.Liveness:output_type -> model.model.v1alpha.LivenessResponse
+	59,  // 59: model.model.v1alpha.ModelPublicService.Readiness:output_type -> model.model.v1alpha.ReadinessResponse
+	60,  // 60: model.model.v1alpha.ModelPublicService.ListModelDefinitions:output_type -> model.model.v1alpha.ListModelDefinitionsResponse
+	61,  // 61: model.model.v1alpha.ModelPublicService.ListAvailableRegions:output_type -> model.model.v1alpha.ListAvailableRegionsResponse
+	62,  // 62: model.model.v1alpha.ModelPublicService.GetModelDefinition:output_type -> model.model.v1alpha.GetModelDefinitionResponse
+	63,  // 63: model.model.v1alpha.ModelPublicService.ListModels:output_type -> model.model.v1alpha.ListModelsResponse
+	64,  // 64: model.model.v1alpha.ModelPublicService.LookUpModel:output_type -> model.model.v1alpha.LookUpModelResponse
+	65,  // 65: model.model.v1alpha.ModelPublicService.ListNamespaceModels:output_type -> model.model.v1alpha.ListNamespaceModelsResponse
+	66,  // 66: model.model.v1alpha.ModelPublicService.CreateNamespaceModel:output_type -> model.model.v1alpha.CreateNamespaceModelResponse
+	67,  // 67: model.model.v1alpha.ModelPublicService.GetNamespaceModel:output_type -> model.model.v1alpha.GetNamespaceModelResponse
+	68,  // 68: model.model.v1alpha.ModelPublicService.UpdateNamespaceModel:output_type -> model.model.v1alpha.UpdateNamespaceModelResponse
+	69,  // 69: model.model.v1alpha.ModelPublicService.DeleteNamespaceModel:output_type -> model.model.v1alpha.DeleteNamespaceModelResponse
+	70,  // 70: model.model.v1alpha.ModelPublicService.RenameNamespaceModel:output_type -> model.model.v1alpha.RenameNamespaceModelResponse
+	71,  // 71: model.model.v1alpha.ModelPublicService.WatchNamespaceModel:output_type -> model.model.v1alpha.WatchNamespaceModelResponse
+	72,  // 72: model.model.v1alpha.ModelPublicService.WatchNamespaceLatestModel:output_type -> model.model.v1alpha.WatchNamespaceLatestModelResponse
+	73,  // 73: model.model.v1alpha.ModelPublicService.ListNamespaceModelVersions:output_type -> model.model.v1alpha.ListNamespaceModelVersionsResponse
+	74,  // 74: model.model.v1alpha.ModelPublicService.DeleteNamespaceModelVersion:output_type -> model.model.v1alpha.DeleteNamespaceModelVersionResponse
+	75,  // 75: model.model.v1alpha.ModelPublicService.TriggerNamespaceModel:output_type -> model.model.v1alpha.TriggerNamespaceModelResponse
+	76,  // 76: model.model.v1alpha.ModelPublicService.TriggerAsyncNamespaceModel:output_type -> model.model.v1alpha.TriggerAsyncNamespaceModelResponse
+	77,  // 77: model.model.v1alpha.ModelPublicService.TriggerNamespaceLatestModel:output_type -> model.model.v1alpha.TriggerNamespaceLatestModelResponse
+	78,  // 78: model.model.v1alpha.ModelPublicService.TriggerAsyncNamespaceLatestModel:output_type -> model.model.v1alpha.TriggerAsyncNamespaceLatestModelResponse
+	79,  // 79: model.model.v1alpha.ModelPublicService.TriggerNamespaceModelBinaryFileUpload:output_type -> model.model.v1alpha.TriggerNamespaceModelBinaryFileUploadResponse
+	80,  // 80: model.model.v1alpha.ModelPublicService.TriggerNamespaceLatestModelBinaryFileUpload:output_type -> model.model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadResponse
+	81,  // 81: model.model.v1alpha.ModelPublicService.GetNamespaceLatestModelOperation:output_type -> model.model.v1alpha.GetNamespaceLatestModelOperationResponse
+	82,  // 82: model.model.v1alpha.ModelPublicService.GetModelOperation:output_type -> model.model.v1alpha.GetModelOperationResponse
+	83,  // 83: model.model.v1alpha.ModelPublicService.ListUserModels:output_type -> model.model.v1alpha.ListUserModelsResponse
+	84,  // 84: model.model.v1alpha.ModelPublicService.CreateUserModel:output_type -> model.model.v1alpha.CreateUserModelResponse
+	85,  // 85: model.model.v1alpha.ModelPublicService.GetUserModel:output_type -> model.model.v1alpha.GetUserModelResponse
+	86,  // 86: model.model.v1alpha.ModelPublicService.UpdateUserModel:output_type -> model.model.v1alpha.UpdateUserModelResponse
+	87,  // 87: model.model.v1alpha.ModelPublicService.DeleteUserModel:output_type -> model.model.v1alpha.DeleteUserModelResponse
+	88,  // 88: model.model.v1alpha.ModelPublicService.RenameUserModel:output_type -> model.model.v1alpha.RenameUserModelResponse
+	89,  // 89: model.model.v1alpha.ModelPublicService.WatchUserModel:output_type -> model.model.v1alpha.WatchUserModelResponse
+	90,  // 90: model.model.v1alpha.ModelPublicService.WatchUserLatestModel:output_type -> model.model.v1alpha.WatchUserLatestModelResponse
+	91,  // 91: model.model.v1alpha.ModelPublicService.ListUserModelVersions:output_type -> model.model.v1alpha.ListUserModelVersionsResponse
+	92,  // 92: model.model.v1alpha.ModelPublicService.DeleteUserModelVersion:output_type -> model.model.v1alpha.DeleteUserModelVersionResponse
+	93,  // 93: model.model.v1alpha.ModelPublicService.TriggerUserModel:output_type -> model.model.v1alpha.TriggerUserModelResponse
+	94,  // 94: model.model.v1alpha.ModelPublicService.TriggerAsyncUserModel:output_type -> model.model.v1alpha.TriggerAsyncUserModelResponse
+	95,  // 95: model.model.v1alpha.ModelPublicService.TriggerUserLatestModel:output_type -> model.model.v1alpha.TriggerUserLatestModelResponse
+	96,  // 96: model.model.v1alpha.ModelPublicService.TriggerAsyncUserLatestModel:output_type -> model.model.v1alpha.TriggerAsyncUserLatestModelResponse
+	97,  // 97: model.model.v1alpha.ModelPublicService.TriggerUserModelBinaryFileUpload:output_type -> model.model.v1alpha.TriggerUserModelBinaryFileUploadResponse
+	98,  // 98: model.model.v1alpha.ModelPublicService.ListOrganizationModels:output_type -> model.model.v1alpha.ListOrganizationModelsResponse
+	99,  // 99: model.model.v1alpha.ModelPublicService.CreateOrganizationModel:output_type -> model.model.v1alpha.CreateOrganizationModelResponse
+	100, // 100: model.model.v1alpha.ModelPublicService.GetOrganizationModel:output_type -> model.model.v1alpha.GetOrganizationModelResponse
+	101, // 101: model.model.v1alpha.ModelPublicService.UpdateOrganizationModel:output_type -> model.model.v1alpha.UpdateOrganizationModelResponse
+	102, // 102: model.model.v1alpha.ModelPublicService.DeleteOrganizationModel:output_type -> model.model.v1alpha.DeleteOrganizationModelResponse
+	103, // 103: model.model.v1alpha.ModelPublicService.RenameOrganizationModel:output_type -> model.model.v1alpha.RenameOrganizationModelResponse
+	104, // 104: model.model.v1alpha.ModelPublicService.WatchOrganizationModel:output_type -> model.model.v1alpha.WatchOrganizationModelResponse
+	105, // 105: model.model.v1alpha.ModelPublicService.WatchOrganizationLatestModel:output_type -> model.model.v1alpha.WatchOrganizationLatestModelResponse
+	106, // 106: model.model.v1alpha.ModelPublicService.ListOrganizationModelVersions:output_type -> model.model.v1alpha.ListOrganizationModelVersionsResponse
+	107, // 107: model.model.v1alpha.ModelPublicService.DeleteOrganizationModelVersion:output_type -> model.model.v1alpha.DeleteOrganizationModelVersionResponse
+	108, // 108: model.model.v1alpha.ModelPublicService.TriggerOrganizationModel:output_type -> model.model.v1alpha.TriggerOrganizationModelResponse
+	109, // 109: model.model.v1alpha.ModelPublicService.TriggerAsyncOrganizationModel:output_type -> model.model.v1alpha.TriggerAsyncOrganizationModelResponse
+	110, // 110: model.model.v1alpha.ModelPublicService.TriggerOrganizationLatestModel:output_type -> model.model.v1alpha.TriggerOrganizationLatestModelResponse
+	111, // 111: model.model.v1alpha.ModelPublicService.TriggerAsyncOrganizationLatestModel:output_type -> model.model.v1alpha.TriggerAsyncOrganizationLatestModelResponse
+	112, // 112: model.model.v1alpha.ModelPublicService.TriggerOrganizationModelBinaryFileUpload:output_type -> model.model.v1alpha.TriggerOrganizationModelBinaryFileUploadResponse
+	113, // 113: model.model.v1alpha.ModelPublicService.GetUserLatestModelOperation:output_type -> model.model.v1alpha.GetUserLatestModelOperationResponse
+	114, // 114: model.model.v1alpha.ModelPublicService.GetOrganizationLatestModelOperation:output_type -> model.model.v1alpha.GetOrganizationLatestModelOperationResponse
+	115, // 115: model.model.v1alpha.ModelPublicService.ListModelTriggers:output_type -> model.model.v1alpha.ListModelRunsResponse
+	58,  // [58:116] is the sub-list for method output_type
+	0,   // [0:58] is the sub-list for method input_type
 	0,   // [0:0] is the sub-list for extension type_name
 	0,   // [0:0] is the sub-list for extension extendee
 	0,   // [0:0] is the sub-list for field type_name

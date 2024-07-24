@@ -76,6 +76,7 @@ const (
 	ModelPublicService_TriggerOrganizationModelBinaryFileUpload_FullMethodName    = "/model.model.v1alpha.ModelPublicService/TriggerOrganizationModelBinaryFileUpload"
 	ModelPublicService_GetUserLatestModelOperation_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/GetUserLatestModelOperation"
 	ModelPublicService_GetOrganizationLatestModelOperation_FullMethodName         = "/model.model.v1alpha.ModelPublicService/GetOrganizationLatestModelOperation"
+	ModelPublicService_ListModelTriggers_FullMethodName                           = "/model.model.v1alpha.ModelPublicService/ListModelTriggers"
 )
 
 // ModelPublicServiceClient is the client API for ModelPublicService service.
@@ -414,6 +415,10 @@ type ModelPublicServiceClient interface {
 	// This method allows requesters to request the status and outcome of
 	// long-running operations in a model, such as deployment.
 	GetOrganizationLatestModelOperation(ctx context.Context, in *GetOrganizationLatestModelOperationRequest, opts ...grpc.CallOption) (*GetOrganizationLatestModelOperationResponse, error)
+	// List model runs
+	//
+	// Returns a paginated list of model runs.
+	ListModelTriggers(ctx context.Context, in *ListModelRunsRequest, opts ...grpc.CallOption) (*ListModelRunsResponse, error)
 }
 
 type modelPublicServiceClient struct {
@@ -1069,6 +1074,15 @@ func (c *modelPublicServiceClient) GetOrganizationLatestModelOperation(ctx conte
 	return out, nil
 }
 
+func (c *modelPublicServiceClient) ListModelTriggers(ctx context.Context, in *ListModelRunsRequest, opts ...grpc.CallOption) (*ListModelRunsResponse, error) {
+	out := new(ListModelRunsResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_ListModelTriggers_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ModelPublicServiceServer is the server API for ModelPublicService service.
 // All implementations should embed UnimplementedModelPublicServiceServer
 // for forward compatibility
@@ -1405,6 +1419,10 @@ type ModelPublicServiceServer interface {
 	// This method allows requesters to request the status and outcome of
 	// long-running operations in a model, such as deployment.
 	GetOrganizationLatestModelOperation(context.Context, *GetOrganizationLatestModelOperationRequest) (*GetOrganizationLatestModelOperationResponse, error)
+	// List model runs
+	//
+	// Returns a paginated list of model runs.
+	ListModelTriggers(context.Context, *ListModelRunsRequest) (*ListModelRunsResponse, error)
 }
 
 // UnimplementedModelPublicServiceServer should be embedded to have forward compatible implementations.
@@ -1581,6 +1599,9 @@ func (UnimplementedModelPublicServiceServer) GetUserLatestModelOperation(context
 }
 func (UnimplementedModelPublicServiceServer) GetOrganizationLatestModelOperation(context.Context, *GetOrganizationLatestModelOperationRequest) (*GetOrganizationLatestModelOperationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationLatestModelOperation not implemented")
+}
+func (UnimplementedModelPublicServiceServer) ListModelTriggers(context.Context, *ListModelRunsRequest) (*ListModelRunsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListModelTriggers not implemented")
 }
 
 // UnsafeModelPublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -2652,6 +2673,24 @@ func _ModelPublicService_GetOrganizationLatestModelOperation_Handler(srv interfa
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ModelPublicService_ListModelTriggers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListModelRunsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPublicServiceServer).ListModelTriggers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPublicService_ListModelTriggers_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPublicServiceServer).ListModelTriggers(ctx, req.(*ListModelRunsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ModelPublicService_ServiceDesc is the grpc.ServiceDesc for ModelPublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2870,6 +2909,10 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetOrganizationLatestModelOperation",
 			Handler:    _ModelPublicService_GetOrganizationLatestModelOperation_Handler,
+		},
+		{
+			MethodName: "ListModelTriggers",
+			Handler:    _ModelPublicService_ListModelTriggers_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
