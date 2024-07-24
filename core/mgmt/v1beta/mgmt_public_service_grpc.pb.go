@@ -47,8 +47,7 @@ const (
 	MgmtPublicService_ValidateToken_FullMethodName                     = "/core.mgmt.v1beta.MgmtPublicService/ValidateToken"
 	MgmtPublicService_GetRemainingCredit_FullMethodName                = "/core.mgmt.v1beta.MgmtPublicService/GetRemainingCredit"
 	MgmtPublicService_CheckNamespace_FullMethodName                    = "/core.mgmt.v1beta.MgmtPublicService/CheckNamespace"
-	MgmtPublicService_ListPipelineTriggerRecords_FullMethodName        = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerRecords"
-	MgmtPublicService_ListPipelineTriggerTableRecords_FullMethodName   = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerTableRecords"
+	MgmtPublicService_GetPipelineTriggerCount_FullMethodName           = "/core.mgmt.v1beta.MgmtPublicService/GetPipelineTriggerCount"
 	MgmtPublicService_ListPipelineTriggerChartRecords_FullMethodName   = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerChartRecords"
 	MgmtPublicService_ListCreditConsumptionChartRecords_FullMethodName = "/core.mgmt.v1beta.MgmtPublicService/ListCreditConsumptionChartRecords"
 	MgmtPublicService_AuthTokenIssuer_FullMethodName                   = "/core.mgmt.v1beta.MgmtPublicService/AuthTokenIssuer"
@@ -186,18 +185,16 @@ type MgmtPublicServiceClient interface {
 	// Returns the availability of a namespace or, alternatively, the type of
 	// resource that is using it.
 	CheckNamespace(ctx context.Context, in *CheckNamespaceRequest, opts ...grpc.CallOption) (*CheckNamespaceResponse, error)
-	// List pipeline triggers
+	// Get pipeline trigger count
 	//
-	// Returns a paginated list of pipeline executions.
-	ListPipelineTriggerRecords(ctx context.Context, in *ListPipelineTriggerRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerRecordsResponse, error)
-	// List pipeline trigger metrics
+	// Returns the pipeline trigger count of a given requester within a timespan.
+	// Results are grouped by trigger status.
+	GetPipelineTriggerCount(ctx context.Context, in *GetPipelineTriggerCountRequest, opts ...grpc.CallOption) (*GetPipelineTriggerCountResponse, error)
+	// List pipeline trigger time charts
 	//
-	// Returns a paginated list of pipeline executions aggregated by pipeline ID.
-	ListPipelineTriggerTableRecords(ctx context.Context, in *ListPipelineTriggerTableRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerTableRecordsResponse, error)
-	// List pipeline trigger computation time charts
-	//
-	// Returns a paginated list with pipeline trigger execution times, aggregated
-	// by pipeline and time frames.
+	// Returns a timeline of pipline trigger counts for a given requester. The
+	// response will contain one set of records (datapoints), representing the
+	// amount of triggers in a time bucket.
 	ListPipelineTriggerChartRecords(ctx context.Context, in *ListPipelineTriggerChartRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerChartRecordsResponse, error)
 	// List Instill Credit consumption time charts
 	//
@@ -488,18 +485,9 @@ func (c *mgmtPublicServiceClient) CheckNamespace(ctx context.Context, in *CheckN
 	return out, nil
 }
 
-func (c *mgmtPublicServiceClient) ListPipelineTriggerRecords(ctx context.Context, in *ListPipelineTriggerRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerRecordsResponse, error) {
-	out := new(ListPipelineTriggerRecordsResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_ListPipelineTriggerRecords_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mgmtPublicServiceClient) ListPipelineTriggerTableRecords(ctx context.Context, in *ListPipelineTriggerTableRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerTableRecordsResponse, error) {
-	out := new(ListPipelineTriggerTableRecordsResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_ListPipelineTriggerTableRecords_FullMethodName, in, out, opts...)
+func (c *mgmtPublicServiceClient) GetPipelineTriggerCount(ctx context.Context, in *GetPipelineTriggerCountRequest, opts ...grpc.CallOption) (*GetPipelineTriggerCountResponse, error) {
+	out := new(GetPipelineTriggerCountResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_GetPipelineTriggerCount_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -697,18 +685,16 @@ type MgmtPublicServiceServer interface {
 	// Returns the availability of a namespace or, alternatively, the type of
 	// resource that is using it.
 	CheckNamespace(context.Context, *CheckNamespaceRequest) (*CheckNamespaceResponse, error)
-	// List pipeline triggers
+	// Get pipeline trigger count
 	//
-	// Returns a paginated list of pipeline executions.
-	ListPipelineTriggerRecords(context.Context, *ListPipelineTriggerRecordsRequest) (*ListPipelineTriggerRecordsResponse, error)
-	// List pipeline trigger metrics
+	// Returns the pipeline trigger count of a given requester within a timespan.
+	// Results are grouped by trigger status.
+	GetPipelineTriggerCount(context.Context, *GetPipelineTriggerCountRequest) (*GetPipelineTriggerCountResponse, error)
+	// List pipeline trigger time charts
 	//
-	// Returns a paginated list of pipeline executions aggregated by pipeline ID.
-	ListPipelineTriggerTableRecords(context.Context, *ListPipelineTriggerTableRecordsRequest) (*ListPipelineTriggerTableRecordsResponse, error)
-	// List pipeline trigger computation time charts
-	//
-	// Returns a paginated list with pipeline trigger execution times, aggregated
-	// by pipeline and time frames.
+	// Returns a timeline of pipline trigger counts for a given requester. The
+	// response will contain one set of records (datapoints), representing the
+	// amount of triggers in a time bucket.
 	ListPipelineTriggerChartRecords(context.Context, *ListPipelineTriggerChartRecordsRequest) (*ListPipelineTriggerChartRecordsResponse, error)
 	// List Instill Credit consumption time charts
 	//
@@ -827,11 +813,8 @@ func (UnimplementedMgmtPublicServiceServer) GetRemainingCredit(context.Context, 
 func (UnimplementedMgmtPublicServiceServer) CheckNamespace(context.Context, *CheckNamespaceRequest) (*CheckNamespaceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckNamespace not implemented")
 }
-func (UnimplementedMgmtPublicServiceServer) ListPipelineTriggerRecords(context.Context, *ListPipelineTriggerRecordsRequest) (*ListPipelineTriggerRecordsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineTriggerRecords not implemented")
-}
-func (UnimplementedMgmtPublicServiceServer) ListPipelineTriggerTableRecords(context.Context, *ListPipelineTriggerTableRecordsRequest) (*ListPipelineTriggerTableRecordsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineTriggerTableRecords not implemented")
+func (UnimplementedMgmtPublicServiceServer) GetPipelineTriggerCount(context.Context, *GetPipelineTriggerCountRequest) (*GetPipelineTriggerCountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPipelineTriggerCount not implemented")
 }
 func (UnimplementedMgmtPublicServiceServer) ListPipelineTriggerChartRecords(context.Context, *ListPipelineTriggerChartRecordsRequest) (*ListPipelineTriggerChartRecordsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineTriggerChartRecords not implemented")
@@ -1370,38 +1353,20 @@ func _MgmtPublicService_CheckNamespace_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MgmtPublicService_ListPipelineTriggerRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListPipelineTriggerRecordsRequest)
+func _MgmtPublicService_GetPipelineTriggerCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPipelineTriggerCountRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).ListPipelineTriggerRecords(ctx, in)
+		return srv.(MgmtPublicServiceServer).GetPipelineTriggerCount(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: MgmtPublicService_ListPipelineTriggerRecords_FullMethodName,
+		FullMethod: MgmtPublicService_GetPipelineTriggerCount_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).ListPipelineTriggerRecords(ctx, req.(*ListPipelineTriggerRecordsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MgmtPublicService_ListPipelineTriggerTableRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListPipelineTriggerTableRecordsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).ListPipelineTriggerTableRecords(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_ListPipelineTriggerTableRecords_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).ListPipelineTriggerTableRecords(ctx, req.(*ListPipelineTriggerTableRecordsRequest))
+		return srv.(MgmtPublicServiceServer).GetPipelineTriggerCount(ctx, req.(*GetPipelineTriggerCountRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1652,12 +1617,8 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MgmtPublicService_CheckNamespace_Handler,
 		},
 		{
-			MethodName: "ListPipelineTriggerRecords",
-			Handler:    _MgmtPublicService_ListPipelineTriggerRecords_Handler,
-		},
-		{
-			MethodName: "ListPipelineTriggerTableRecords",
-			Handler:    _MgmtPublicService_ListPipelineTriggerTableRecords_Handler,
+			MethodName: "GetPipelineTriggerCount",
+			Handler:    _MgmtPublicService_GetPipelineTriggerCount_Handler,
 		},
 		{
 			MethodName: "ListPipelineTriggerChartRecords",
