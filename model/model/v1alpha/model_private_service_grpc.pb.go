@@ -21,9 +21,11 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	ModelPrivateService_ListModelsAdmin_FullMethodName                = "/model.model.v1alpha.ModelPrivateService/ListModelsAdmin"
 	ModelPrivateService_LookUpModelAdmin_FullMethodName               = "/model.model.v1alpha.ModelPrivateService/LookUpModelAdmin"
+	ModelPrivateService_DeployNamespaceModelAdmin_FullMethodName      = "/model.model.v1alpha.ModelPrivateService/DeployNamespaceModelAdmin"
 	ModelPrivateService_DeployUserModelAdmin_FullMethodName           = "/model.model.v1alpha.ModelPrivateService/DeployUserModelAdmin"
 	ModelPrivateService_DeployOrganizationModelAdmin_FullMethodName   = "/model.model.v1alpha.ModelPrivateService/DeployOrganizationModelAdmin"
 	ModelPrivateService_UndeployUserModelAdmin_FullMethodName         = "/model.model.v1alpha.ModelPrivateService/UndeployUserModelAdmin"
+	ModelPrivateService_UndeployNamespaceModelAdmin_FullMethodName    = "/model.model.v1alpha.ModelPrivateService/UndeployNamespaceModelAdmin"
 	ModelPrivateService_UndeployOrganizationModelAdmin_FullMethodName = "/model.model.v1alpha.ModelPrivateService/UndeployOrganizationModelAdmin"
 )
 
@@ -37,12 +39,16 @@ type ModelPrivateServiceClient interface {
 	// LookUpModelAdmin method receives a LookUpModelAdminRequest message and
 	// returns a LookUpModelAdminResponse
 	LookUpModelAdmin(ctx context.Context, in *LookUpModelAdminRequest, opts ...grpc.CallOption) (*LookUpModelAdminResponse, error)
+	// DeployNamespaceModelAdmin deploy a model to online state
+	DeployNamespaceModelAdmin(ctx context.Context, in *DeployNamespaceModelAdminRequest, opts ...grpc.CallOption) (*DeployNamespaceModelAdminResponse, error)
 	// DeployUserModelAdmin deploy a model to online state
 	DeployUserModelAdmin(ctx context.Context, in *DeployUserModelAdminRequest, opts ...grpc.CallOption) (*DeployUserModelAdminResponse, error)
 	// DeployOrganizationModelAdmin deploy a model to online state
 	DeployOrganizationModelAdmin(ctx context.Context, in *DeployOrganizationModelAdminRequest, opts ...grpc.CallOption) (*DeployOrganizationModelAdminResponse, error)
 	// UndeployUserModelAdmin undeploy a model to offline state
 	UndeployUserModelAdmin(ctx context.Context, in *UndeployUserModelAdminRequest, opts ...grpc.CallOption) (*UndeployUserModelAdminResponse, error)
+	// UndeployNamespaceModelAdmin undeploy a model to offline state
+	UndeployNamespaceModelAdmin(ctx context.Context, in *UndeployNamespaceModelAdminRequest, opts ...grpc.CallOption) (*UndeployNamespaceModelAdminResponse, error)
 	// UndeployOrganizationModelAdmin undeploy a model to offline state
 	UndeployOrganizationModelAdmin(ctx context.Context, in *UndeployOrganizationModelAdminRequest, opts ...grpc.CallOption) (*UndeployOrganizationModelAdminResponse, error)
 }
@@ -67,6 +73,15 @@ func (c *modelPrivateServiceClient) ListModelsAdmin(ctx context.Context, in *Lis
 func (c *modelPrivateServiceClient) LookUpModelAdmin(ctx context.Context, in *LookUpModelAdminRequest, opts ...grpc.CallOption) (*LookUpModelAdminResponse, error) {
 	out := new(LookUpModelAdminResponse)
 	err := c.cc.Invoke(ctx, ModelPrivateService_LookUpModelAdmin_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *modelPrivateServiceClient) DeployNamespaceModelAdmin(ctx context.Context, in *DeployNamespaceModelAdminRequest, opts ...grpc.CallOption) (*DeployNamespaceModelAdminResponse, error) {
+	out := new(DeployNamespaceModelAdminResponse)
+	err := c.cc.Invoke(ctx, ModelPrivateService_DeployNamespaceModelAdmin_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -100,6 +115,15 @@ func (c *modelPrivateServiceClient) UndeployUserModelAdmin(ctx context.Context, 
 	return out, nil
 }
 
+func (c *modelPrivateServiceClient) UndeployNamespaceModelAdmin(ctx context.Context, in *UndeployNamespaceModelAdminRequest, opts ...grpc.CallOption) (*UndeployNamespaceModelAdminResponse, error) {
+	out := new(UndeployNamespaceModelAdminResponse)
+	err := c.cc.Invoke(ctx, ModelPrivateService_UndeployNamespaceModelAdmin_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *modelPrivateServiceClient) UndeployOrganizationModelAdmin(ctx context.Context, in *UndeployOrganizationModelAdminRequest, opts ...grpc.CallOption) (*UndeployOrganizationModelAdminResponse, error) {
 	out := new(UndeployOrganizationModelAdminResponse)
 	err := c.cc.Invoke(ctx, ModelPrivateService_UndeployOrganizationModelAdmin_FullMethodName, in, out, opts...)
@@ -119,12 +143,16 @@ type ModelPrivateServiceServer interface {
 	// LookUpModelAdmin method receives a LookUpModelAdminRequest message and
 	// returns a LookUpModelAdminResponse
 	LookUpModelAdmin(context.Context, *LookUpModelAdminRequest) (*LookUpModelAdminResponse, error)
+	// DeployNamespaceModelAdmin deploy a model to online state
+	DeployNamespaceModelAdmin(context.Context, *DeployNamespaceModelAdminRequest) (*DeployNamespaceModelAdminResponse, error)
 	// DeployUserModelAdmin deploy a model to online state
 	DeployUserModelAdmin(context.Context, *DeployUserModelAdminRequest) (*DeployUserModelAdminResponse, error)
 	// DeployOrganizationModelAdmin deploy a model to online state
 	DeployOrganizationModelAdmin(context.Context, *DeployOrganizationModelAdminRequest) (*DeployOrganizationModelAdminResponse, error)
 	// UndeployUserModelAdmin undeploy a model to offline state
 	UndeployUserModelAdmin(context.Context, *UndeployUserModelAdminRequest) (*UndeployUserModelAdminResponse, error)
+	// UndeployNamespaceModelAdmin undeploy a model to offline state
+	UndeployNamespaceModelAdmin(context.Context, *UndeployNamespaceModelAdminRequest) (*UndeployNamespaceModelAdminResponse, error)
 	// UndeployOrganizationModelAdmin undeploy a model to offline state
 	UndeployOrganizationModelAdmin(context.Context, *UndeployOrganizationModelAdminRequest) (*UndeployOrganizationModelAdminResponse, error)
 }
@@ -139,6 +167,9 @@ func (UnimplementedModelPrivateServiceServer) ListModelsAdmin(context.Context, *
 func (UnimplementedModelPrivateServiceServer) LookUpModelAdmin(context.Context, *LookUpModelAdminRequest) (*LookUpModelAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LookUpModelAdmin not implemented")
 }
+func (UnimplementedModelPrivateServiceServer) DeployNamespaceModelAdmin(context.Context, *DeployNamespaceModelAdminRequest) (*DeployNamespaceModelAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeployNamespaceModelAdmin not implemented")
+}
 func (UnimplementedModelPrivateServiceServer) DeployUserModelAdmin(context.Context, *DeployUserModelAdminRequest) (*DeployUserModelAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeployUserModelAdmin not implemented")
 }
@@ -147,6 +178,9 @@ func (UnimplementedModelPrivateServiceServer) DeployOrganizationModelAdmin(conte
 }
 func (UnimplementedModelPrivateServiceServer) UndeployUserModelAdmin(context.Context, *UndeployUserModelAdminRequest) (*UndeployUserModelAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UndeployUserModelAdmin not implemented")
+}
+func (UnimplementedModelPrivateServiceServer) UndeployNamespaceModelAdmin(context.Context, *UndeployNamespaceModelAdminRequest) (*UndeployNamespaceModelAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UndeployNamespaceModelAdmin not implemented")
 }
 func (UnimplementedModelPrivateServiceServer) UndeployOrganizationModelAdmin(context.Context, *UndeployOrganizationModelAdminRequest) (*UndeployOrganizationModelAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UndeployOrganizationModelAdmin not implemented")
@@ -195,6 +229,24 @@ func _ModelPrivateService_LookUpModelAdmin_Handler(srv interface{}, ctx context.
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelPrivateServiceServer).LookUpModelAdmin(ctx, req.(*LookUpModelAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ModelPrivateService_DeployNamespaceModelAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeployNamespaceModelAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPrivateServiceServer).DeployNamespaceModelAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPrivateService_DeployNamespaceModelAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPrivateServiceServer).DeployNamespaceModelAdmin(ctx, req.(*DeployNamespaceModelAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -253,6 +305,24 @@ func _ModelPrivateService_UndeployUserModelAdmin_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ModelPrivateService_UndeployNamespaceModelAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UndeployNamespaceModelAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPrivateServiceServer).UndeployNamespaceModelAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPrivateService_UndeployNamespaceModelAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPrivateServiceServer).UndeployNamespaceModelAdmin(ctx, req.(*UndeployNamespaceModelAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ModelPrivateService_UndeployOrganizationModelAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UndeployOrganizationModelAdminRequest)
 	if err := dec(in); err != nil {
@@ -287,6 +357,10 @@ var ModelPrivateService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ModelPrivateService_LookUpModelAdmin_Handler,
 		},
 		{
+			MethodName: "DeployNamespaceModelAdmin",
+			Handler:    _ModelPrivateService_DeployNamespaceModelAdmin_Handler,
+		},
+		{
 			MethodName: "DeployUserModelAdmin",
 			Handler:    _ModelPrivateService_DeployUserModelAdmin_Handler,
 		},
@@ -297,6 +371,10 @@ var ModelPrivateService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UndeployUserModelAdmin",
 			Handler:    _ModelPrivateService_UndeployUserModelAdmin_Handler,
+		},
+		{
+			MethodName: "UndeployNamespaceModelAdmin",
+			Handler:    _ModelPrivateService_UndeployNamespaceModelAdmin_Handler,
 		},
 		{
 			MethodName: "UndeployOrganizationModelAdmin",

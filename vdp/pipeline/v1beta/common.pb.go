@@ -190,7 +190,7 @@ func (CheckNameResponse_Name) EnumDescriptor() ([]byte, []int) {
 
 // Sharing contains the information to share a resource with other users.
 //
-// For more information, see [Share Pipelines](https://www.instill.tech/docs/latest/vdp/share).
+// For more information, see [Share Pipelines](https://www.instill.tech/docs/vdp/share).
 type Sharing struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

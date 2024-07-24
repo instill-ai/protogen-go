@@ -31,18 +31,15 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-var (
-	filter_PipelinePrivateService_ListPipelinesAdmin_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
-
 func request_PipelinePrivateService_ListPipelinesAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListPipelinesAdminRequest
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePrivateService_ListPipelinesAdmin_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -55,10 +52,11 @@ func local_request_PipelinePrivateService_ListPipelinesAdmin_0(ctx context.Conte
 	var protoReq ListPipelinesAdminRequest
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePrivateService_ListPipelinesAdmin_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -67,35 +65,15 @@ func local_request_PipelinePrivateService_ListPipelinesAdmin_0(ctx context.Conte
 
 }
 
-var (
-	filter_PipelinePrivateService_LookUpPipelineAdmin_0 = &utilities.DoubleArray{Encoding: map[string]int{"permalink": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
-)
-
 func request_PipelinePrivateService_LookUpPipelineAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq LookUpPipelineAdminRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["permalink"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "permalink")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.Permalink, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "permalink", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePrivateService_LookUpPipelineAdmin_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -108,27 +86,11 @@ func local_request_PipelinePrivateService_LookUpPipelineAdmin_0(ctx context.Cont
 	var protoReq LookUpPipelineAdminRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["permalink"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "permalink")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.Permalink, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "permalink", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePrivateService_LookUpPipelineAdmin_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -137,18 +99,15 @@ func local_request_PipelinePrivateService_LookUpPipelineAdmin_0(ctx context.Cont
 
 }
 
-var (
-	filter_PipelinePrivateService_ListPipelineReleasesAdmin_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
-
 func request_PipelinePrivateService_ListPipelineReleasesAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListPipelineReleasesAdminRequest
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePrivateService_ListPipelineReleasesAdmin_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -161,10 +120,11 @@ func local_request_PipelinePrivateService_ListPipelineReleasesAdmin_0(ctx contex
 	var protoReq ListPipelineReleasesAdminRequest
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePrivateService_ListPipelineReleasesAdmin_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -179,7 +139,7 @@ func local_request_PipelinePrivateService_ListPipelineReleasesAdmin_0(ctx contex
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterPipelinePrivateServiceHandlerFromEndpoint instead.
 func RegisterPipelinePrivateServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server PipelinePrivateServiceServer) error {
 
-	mux.Handle("GET", pattern_PipelinePrivateService_ListPipelinesAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_PipelinePrivateService_ListPipelinesAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -187,7 +147,7 @@ func RegisterPipelinePrivateServiceHandlerServer(ctx context.Context, mux *runti
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePrivateService/ListPipelinesAdmin", runtime.WithHTTPPathPattern("/v1beta/admin/pipelines"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePrivateService/ListPipelinesAdmin", runtime.WithHTTPPathPattern("/vdp.pipeline.v1beta.PipelinePrivateService/ListPipelinesAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -204,7 +164,7 @@ func RegisterPipelinePrivateServiceHandlerServer(ctx context.Context, mux *runti
 
 	})
 
-	mux.Handle("GET", pattern_PipelinePrivateService_LookUpPipelineAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_PipelinePrivateService_LookUpPipelineAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -212,7 +172,7 @@ func RegisterPipelinePrivateServiceHandlerServer(ctx context.Context, mux *runti
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePrivateService/LookUpPipelineAdmin", runtime.WithHTTPPathPattern("/v1beta/admin/{permalink=pipelines/*}/lookUp"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePrivateService/LookUpPipelineAdmin", runtime.WithHTTPPathPattern("/vdp.pipeline.v1beta.PipelinePrivateService/LookUpPipelineAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -229,7 +189,7 @@ func RegisterPipelinePrivateServiceHandlerServer(ctx context.Context, mux *runti
 
 	})
 
-	mux.Handle("GET", pattern_PipelinePrivateService_ListPipelineReleasesAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_PipelinePrivateService_ListPipelineReleasesAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -237,7 +197,7 @@ func RegisterPipelinePrivateServiceHandlerServer(ctx context.Context, mux *runti
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePrivateService/ListPipelineReleasesAdmin", runtime.WithHTTPPathPattern("/v1beta/admin/releases"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePrivateService/ListPipelineReleasesAdmin", runtime.WithHTTPPathPattern("/vdp.pipeline.v1beta.PipelinePrivateService/ListPipelineReleasesAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -295,13 +255,13 @@ func RegisterPipelinePrivateServiceHandler(ctx context.Context, mux *runtime.Ser
 // "PipelinePrivateServiceClient" to call the correct interceptors.
 func RegisterPipelinePrivateServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client PipelinePrivateServiceClient) error {
 
-	mux.Handle("GET", pattern_PipelinePrivateService_ListPipelinesAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_PipelinePrivateService_ListPipelinesAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePrivateService/ListPipelinesAdmin", runtime.WithHTTPPathPattern("/v1beta/admin/pipelines"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePrivateService/ListPipelinesAdmin", runtime.WithHTTPPathPattern("/vdp.pipeline.v1beta.PipelinePrivateService/ListPipelinesAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -317,13 +277,13 @@ func RegisterPipelinePrivateServiceHandlerClient(ctx context.Context, mux *runti
 
 	})
 
-	mux.Handle("GET", pattern_PipelinePrivateService_LookUpPipelineAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_PipelinePrivateService_LookUpPipelineAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePrivateService/LookUpPipelineAdmin", runtime.WithHTTPPathPattern("/v1beta/admin/{permalink=pipelines/*}/lookUp"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePrivateService/LookUpPipelineAdmin", runtime.WithHTTPPathPattern("/vdp.pipeline.v1beta.PipelinePrivateService/LookUpPipelineAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -339,13 +299,13 @@ func RegisterPipelinePrivateServiceHandlerClient(ctx context.Context, mux *runti
 
 	})
 
-	mux.Handle("GET", pattern_PipelinePrivateService_ListPipelineReleasesAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_PipelinePrivateService_ListPipelineReleasesAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePrivateService/ListPipelineReleasesAdmin", runtime.WithHTTPPathPattern("/v1beta/admin/releases"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePrivateService/ListPipelineReleasesAdmin", runtime.WithHTTPPathPattern("/vdp.pipeline.v1beta.PipelinePrivateService/ListPipelineReleasesAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -365,11 +325,11 @@ func RegisterPipelinePrivateServiceHandlerClient(ctx context.Context, mux *runti
 }
 
 var (
-	pattern_PipelinePrivateService_ListPipelinesAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "admin", "pipelines"}, ""))
+	pattern_PipelinePrivateService_ListPipelinesAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"vdp.pipeline.v1beta.PipelinePrivateService", "ListPipelinesAdmin"}, ""))
 
-	pattern_PipelinePrivateService_LookUpPipelineAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 2, 5, 3, 2, 4}, []string{"v1beta", "admin", "pipelines", "permalink", "lookUp"}, ""))
+	pattern_PipelinePrivateService_LookUpPipelineAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"vdp.pipeline.v1beta.PipelinePrivateService", "LookUpPipelineAdmin"}, ""))
 
-	pattern_PipelinePrivateService_ListPipelineReleasesAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "admin", "releases"}, ""))
+	pattern_PipelinePrivateService_ListPipelineReleasesAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"vdp.pipeline.v1beta.PipelinePrivateService", "ListPipelineReleasesAdmin"}, ""))
 )
 
 var (

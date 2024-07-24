@@ -31,18 +31,15 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-var (
-	filter_MgmtPrivateService_ListUsersAdmin_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
-
 func request_MgmtPrivateService_ListUsersAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client MgmtPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListUsersAdminRequest
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtPrivateService_ListUsersAdmin_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -55,10 +52,11 @@ func local_request_MgmtPrivateService_ListUsersAdmin_0(ctx context.Context, mars
 	var protoReq ListUsersAdminRequest
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtPrivateService_ListUsersAdmin_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -67,35 +65,15 @@ func local_request_MgmtPrivateService_ListUsersAdmin_0(ctx context.Context, mars
 
 }
 
-var (
-	filter_MgmtPrivateService_GetUserAdmin_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
-)
-
 func request_MgmtPrivateService_GetUserAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client MgmtPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetUserAdminRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["name"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.Name, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtPrivateService_GetUserAdmin_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -108,27 +86,11 @@ func local_request_MgmtPrivateService_GetUserAdmin_0(ctx context.Context, marsha
 	var protoReq GetUserAdminRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["name"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.Name, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtPrivateService_GetUserAdmin_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -137,35 +99,15 @@ func local_request_MgmtPrivateService_GetUserAdmin_0(ctx context.Context, marsha
 
 }
 
-var (
-	filter_MgmtPrivateService_LookUpUserAdmin_0 = &utilities.DoubleArray{Encoding: map[string]int{"permalink": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
-)
-
 func request_MgmtPrivateService_LookUpUserAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client MgmtPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq LookUpUserAdminRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["permalink"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "permalink")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.Permalink, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "permalink", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtPrivateService_LookUpUserAdmin_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -178,27 +120,11 @@ func local_request_MgmtPrivateService_LookUpUserAdmin_0(ctx context.Context, mar
 	var protoReq LookUpUserAdminRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["permalink"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "permalink")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.Permalink, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "permalink", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtPrivateService_LookUpUserAdmin_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -207,18 +133,15 @@ func local_request_MgmtPrivateService_LookUpUserAdmin_0(ctx context.Context, mar
 
 }
 
-var (
-	filter_MgmtPrivateService_ListOrganizationsAdmin_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
-
 func request_MgmtPrivateService_ListOrganizationsAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client MgmtPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListOrganizationsAdminRequest
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtPrivateService_ListOrganizationsAdmin_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -231,10 +154,11 @@ func local_request_MgmtPrivateService_ListOrganizationsAdmin_0(ctx context.Conte
 	var protoReq ListOrganizationsAdminRequest
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtPrivateService_ListOrganizationsAdmin_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -243,35 +167,15 @@ func local_request_MgmtPrivateService_ListOrganizationsAdmin_0(ctx context.Conte
 
 }
 
-var (
-	filter_MgmtPrivateService_GetOrganizationAdmin_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
-)
-
 func request_MgmtPrivateService_GetOrganizationAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client MgmtPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetOrganizationAdminRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["name"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.Name, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtPrivateService_GetOrganizationAdmin_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -284,27 +188,11 @@ func local_request_MgmtPrivateService_GetOrganizationAdmin_0(ctx context.Context
 	var protoReq GetOrganizationAdminRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["name"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.Name, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtPrivateService_GetOrganizationAdmin_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -313,35 +201,15 @@ func local_request_MgmtPrivateService_GetOrganizationAdmin_0(ctx context.Context
 
 }
 
-var (
-	filter_MgmtPrivateService_LookUpOrganizationAdmin_0 = &utilities.DoubleArray{Encoding: map[string]int{"permalink": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
-)
-
 func request_MgmtPrivateService_LookUpOrganizationAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client MgmtPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq LookUpOrganizationAdminRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["permalink"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "permalink")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.Permalink, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "permalink", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtPrivateService_LookUpOrganizationAdmin_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -354,27 +222,11 @@ func local_request_MgmtPrivateService_LookUpOrganizationAdmin_0(ctx context.Cont
 	var protoReq LookUpOrganizationAdminRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["permalink"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "permalink")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.Permalink, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "permalink", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtPrivateService_LookUpOrganizationAdmin_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -387,21 +239,12 @@ func request_MgmtPrivateService_GetUserSubscriptionAdmin_0(ctx context.Context, 
 	var protoReq GetUserSubscriptionAdminRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["parent"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "parent")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.Parent, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "parent", err)
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
 	msg, err := client.GetUserSubscriptionAdmin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -413,21 +256,12 @@ func local_request_MgmtPrivateService_GetUserSubscriptionAdmin_0(ctx context.Con
 	var protoReq GetUserSubscriptionAdminRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["parent"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "parent")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.Parent, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "parent", err)
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
 	msg, err := server.GetUserSubscriptionAdmin(ctx, &protoReq)
@@ -439,21 +273,12 @@ func request_MgmtPrivateService_GetOrganizationSubscriptionAdmin_0(ctx context.C
 	var protoReq GetOrganizationSubscriptionAdminRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["parent"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "parent")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.Parent, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "parent", err)
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
 	msg, err := client.GetOrganizationSubscriptionAdmin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -465,21 +290,12 @@ func local_request_MgmtPrivateService_GetOrganizationSubscriptionAdmin_0(ctx con
 	var protoReq GetOrganizationSubscriptionAdminRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["parent"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "parent")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.Parent, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "parent", err)
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
 	msg, err := server.GetOrganizationSubscriptionAdmin(ctx, &protoReq)
@@ -595,7 +411,7 @@ func local_request_MgmtPrivateService_CheckNamespaceAdmin_0(ctx context.Context,
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterMgmtPrivateServiceHandlerFromEndpoint instead.
 func RegisterMgmtPrivateServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server MgmtPrivateServiceServer) error {
 
-	mux.Handle("GET", pattern_MgmtPrivateService_ListUsersAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_MgmtPrivateService_ListUsersAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -603,7 +419,7 @@ func RegisterMgmtPrivateServiceHandlerServer(ctx context.Context, mux *runtime.S
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/ListUsersAdmin", runtime.WithHTTPPathPattern("/v1beta/admin/users"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/ListUsersAdmin", runtime.WithHTTPPathPattern("/core.mgmt.v1beta.MgmtPrivateService/ListUsersAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -620,7 +436,7 @@ func RegisterMgmtPrivateServiceHandlerServer(ctx context.Context, mux *runtime.S
 
 	})
 
-	mux.Handle("GET", pattern_MgmtPrivateService_GetUserAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_MgmtPrivateService_GetUserAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -628,7 +444,7 @@ func RegisterMgmtPrivateServiceHandlerServer(ctx context.Context, mux *runtime.S
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/GetUserAdmin", runtime.WithHTTPPathPattern("/v1beta/admin/{name=users/*}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/GetUserAdmin", runtime.WithHTTPPathPattern("/core.mgmt.v1beta.MgmtPrivateService/GetUserAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -645,7 +461,7 @@ func RegisterMgmtPrivateServiceHandlerServer(ctx context.Context, mux *runtime.S
 
 	})
 
-	mux.Handle("GET", pattern_MgmtPrivateService_LookUpUserAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_MgmtPrivateService_LookUpUserAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -653,7 +469,7 @@ func RegisterMgmtPrivateServiceHandlerServer(ctx context.Context, mux *runtime.S
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/LookUpUserAdmin", runtime.WithHTTPPathPattern("/v1beta/admin/{permalink=users/*}/lookUp"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/LookUpUserAdmin", runtime.WithHTTPPathPattern("/core.mgmt.v1beta.MgmtPrivateService/LookUpUserAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -670,7 +486,7 @@ func RegisterMgmtPrivateServiceHandlerServer(ctx context.Context, mux *runtime.S
 
 	})
 
-	mux.Handle("GET", pattern_MgmtPrivateService_ListOrganizationsAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_MgmtPrivateService_ListOrganizationsAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -678,7 +494,7 @@ func RegisterMgmtPrivateServiceHandlerServer(ctx context.Context, mux *runtime.S
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/ListOrganizationsAdmin", runtime.WithHTTPPathPattern("/v1beta/admin/organizations"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/ListOrganizationsAdmin", runtime.WithHTTPPathPattern("/core.mgmt.v1beta.MgmtPrivateService/ListOrganizationsAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -695,7 +511,7 @@ func RegisterMgmtPrivateServiceHandlerServer(ctx context.Context, mux *runtime.S
 
 	})
 
-	mux.Handle("GET", pattern_MgmtPrivateService_GetOrganizationAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_MgmtPrivateService_GetOrganizationAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -703,7 +519,7 @@ func RegisterMgmtPrivateServiceHandlerServer(ctx context.Context, mux *runtime.S
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/GetOrganizationAdmin", runtime.WithHTTPPathPattern("/v1beta/admin/{name=organizations/*}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/GetOrganizationAdmin", runtime.WithHTTPPathPattern("/core.mgmt.v1beta.MgmtPrivateService/GetOrganizationAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -720,7 +536,7 @@ func RegisterMgmtPrivateServiceHandlerServer(ctx context.Context, mux *runtime.S
 
 	})
 
-	mux.Handle("GET", pattern_MgmtPrivateService_LookUpOrganizationAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_MgmtPrivateService_LookUpOrganizationAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -728,7 +544,7 @@ func RegisterMgmtPrivateServiceHandlerServer(ctx context.Context, mux *runtime.S
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/LookUpOrganizationAdmin", runtime.WithHTTPPathPattern("/v1beta/admin/{permalink=organizations/*}/lookUp"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/LookUpOrganizationAdmin", runtime.WithHTTPPathPattern("/core.mgmt.v1beta.MgmtPrivateService/LookUpOrganizationAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -745,7 +561,7 @@ func RegisterMgmtPrivateServiceHandlerServer(ctx context.Context, mux *runtime.S
 
 	})
 
-	mux.Handle("GET", pattern_MgmtPrivateService_GetUserSubscriptionAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_MgmtPrivateService_GetUserSubscriptionAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -753,7 +569,7 @@ func RegisterMgmtPrivateServiceHandlerServer(ctx context.Context, mux *runtime.S
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/GetUserSubscriptionAdmin", runtime.WithHTTPPathPattern("/v1beta/admin/{parent=users/*}/subscription"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/GetUserSubscriptionAdmin", runtime.WithHTTPPathPattern("/core.mgmt.v1beta.MgmtPrivateService/GetUserSubscriptionAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -770,7 +586,7 @@ func RegisterMgmtPrivateServiceHandlerServer(ctx context.Context, mux *runtime.S
 
 	})
 
-	mux.Handle("GET", pattern_MgmtPrivateService_GetOrganizationSubscriptionAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_MgmtPrivateService_GetOrganizationSubscriptionAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -778,7 +594,7 @@ func RegisterMgmtPrivateServiceHandlerServer(ctx context.Context, mux *runtime.S
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/GetOrganizationSubscriptionAdmin", runtime.WithHTTPPathPattern("/v1beta/admin/{parent=organizations/*}/subscription"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/GetOrganizationSubscriptionAdmin", runtime.WithHTTPPathPattern("/core.mgmt.v1beta.MgmtPrivateService/GetOrganizationSubscriptionAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -911,13 +727,13 @@ func RegisterMgmtPrivateServiceHandler(ctx context.Context, mux *runtime.ServeMu
 // "MgmtPrivateServiceClient" to call the correct interceptors.
 func RegisterMgmtPrivateServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client MgmtPrivateServiceClient) error {
 
-	mux.Handle("GET", pattern_MgmtPrivateService_ListUsersAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_MgmtPrivateService_ListUsersAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/ListUsersAdmin", runtime.WithHTTPPathPattern("/v1beta/admin/users"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/ListUsersAdmin", runtime.WithHTTPPathPattern("/core.mgmt.v1beta.MgmtPrivateService/ListUsersAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -933,13 +749,13 @@ func RegisterMgmtPrivateServiceHandlerClient(ctx context.Context, mux *runtime.S
 
 	})
 
-	mux.Handle("GET", pattern_MgmtPrivateService_GetUserAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_MgmtPrivateService_GetUserAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/GetUserAdmin", runtime.WithHTTPPathPattern("/v1beta/admin/{name=users/*}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/GetUserAdmin", runtime.WithHTTPPathPattern("/core.mgmt.v1beta.MgmtPrivateService/GetUserAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -955,13 +771,13 @@ func RegisterMgmtPrivateServiceHandlerClient(ctx context.Context, mux *runtime.S
 
 	})
 
-	mux.Handle("GET", pattern_MgmtPrivateService_LookUpUserAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_MgmtPrivateService_LookUpUserAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/LookUpUserAdmin", runtime.WithHTTPPathPattern("/v1beta/admin/{permalink=users/*}/lookUp"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/LookUpUserAdmin", runtime.WithHTTPPathPattern("/core.mgmt.v1beta.MgmtPrivateService/LookUpUserAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -977,13 +793,13 @@ func RegisterMgmtPrivateServiceHandlerClient(ctx context.Context, mux *runtime.S
 
 	})
 
-	mux.Handle("GET", pattern_MgmtPrivateService_ListOrganizationsAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_MgmtPrivateService_ListOrganizationsAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/ListOrganizationsAdmin", runtime.WithHTTPPathPattern("/v1beta/admin/organizations"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/ListOrganizationsAdmin", runtime.WithHTTPPathPattern("/core.mgmt.v1beta.MgmtPrivateService/ListOrganizationsAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -999,13 +815,13 @@ func RegisterMgmtPrivateServiceHandlerClient(ctx context.Context, mux *runtime.S
 
 	})
 
-	mux.Handle("GET", pattern_MgmtPrivateService_GetOrganizationAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_MgmtPrivateService_GetOrganizationAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/GetOrganizationAdmin", runtime.WithHTTPPathPattern("/v1beta/admin/{name=organizations/*}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/GetOrganizationAdmin", runtime.WithHTTPPathPattern("/core.mgmt.v1beta.MgmtPrivateService/GetOrganizationAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1021,13 +837,13 @@ func RegisterMgmtPrivateServiceHandlerClient(ctx context.Context, mux *runtime.S
 
 	})
 
-	mux.Handle("GET", pattern_MgmtPrivateService_LookUpOrganizationAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_MgmtPrivateService_LookUpOrganizationAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/LookUpOrganizationAdmin", runtime.WithHTTPPathPattern("/v1beta/admin/{permalink=organizations/*}/lookUp"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/LookUpOrganizationAdmin", runtime.WithHTTPPathPattern("/core.mgmt.v1beta.MgmtPrivateService/LookUpOrganizationAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1043,13 +859,13 @@ func RegisterMgmtPrivateServiceHandlerClient(ctx context.Context, mux *runtime.S
 
 	})
 
-	mux.Handle("GET", pattern_MgmtPrivateService_GetUserSubscriptionAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_MgmtPrivateService_GetUserSubscriptionAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/GetUserSubscriptionAdmin", runtime.WithHTTPPathPattern("/v1beta/admin/{parent=users/*}/subscription"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/GetUserSubscriptionAdmin", runtime.WithHTTPPathPattern("/core.mgmt.v1beta.MgmtPrivateService/GetUserSubscriptionAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1065,13 +881,13 @@ func RegisterMgmtPrivateServiceHandlerClient(ctx context.Context, mux *runtime.S
 
 	})
 
-	mux.Handle("GET", pattern_MgmtPrivateService_GetOrganizationSubscriptionAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_MgmtPrivateService_GetOrganizationSubscriptionAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/GetOrganizationSubscriptionAdmin", runtime.WithHTTPPathPattern("/v1beta/admin/{parent=organizations/*}/subscription"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPrivateService/GetOrganizationSubscriptionAdmin", runtime.WithHTTPPathPattern("/core.mgmt.v1beta.MgmtPrivateService/GetOrganizationSubscriptionAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1157,21 +973,21 @@ func RegisterMgmtPrivateServiceHandlerClient(ctx context.Context, mux *runtime.S
 }
 
 var (
-	pattern_MgmtPrivateService_ListUsersAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "admin", "users"}, ""))
+	pattern_MgmtPrivateService_ListUsersAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.mgmt.v1beta.MgmtPrivateService", "ListUsersAdmin"}, ""))
 
-	pattern_MgmtPrivateService_GetUserAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 2, 5, 3}, []string{"v1beta", "admin", "users", "name"}, ""))
+	pattern_MgmtPrivateService_GetUserAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.mgmt.v1beta.MgmtPrivateService", "GetUserAdmin"}, ""))
 
-	pattern_MgmtPrivateService_LookUpUserAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 2, 5, 3, 2, 4}, []string{"v1beta", "admin", "users", "permalink", "lookUp"}, ""))
+	pattern_MgmtPrivateService_LookUpUserAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.mgmt.v1beta.MgmtPrivateService", "LookUpUserAdmin"}, ""))
 
-	pattern_MgmtPrivateService_ListOrganizationsAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "admin", "organizations"}, ""))
+	pattern_MgmtPrivateService_ListOrganizationsAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.mgmt.v1beta.MgmtPrivateService", "ListOrganizationsAdmin"}, ""))
 
-	pattern_MgmtPrivateService_GetOrganizationAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 2, 5, 3}, []string{"v1beta", "admin", "organizations", "name"}, ""))
+	pattern_MgmtPrivateService_GetOrganizationAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.mgmt.v1beta.MgmtPrivateService", "GetOrganizationAdmin"}, ""))
 
-	pattern_MgmtPrivateService_LookUpOrganizationAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 2, 5, 3, 2, 4}, []string{"v1beta", "admin", "organizations", "permalink", "lookUp"}, ""))
+	pattern_MgmtPrivateService_LookUpOrganizationAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.mgmt.v1beta.MgmtPrivateService", "LookUpOrganizationAdmin"}, ""))
 
-	pattern_MgmtPrivateService_GetUserSubscriptionAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 2, 5, 3, 2, 4}, []string{"v1beta", "admin", "users", "parent", "subscription"}, ""))
+	pattern_MgmtPrivateService_GetUserSubscriptionAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.mgmt.v1beta.MgmtPrivateService", "GetUserSubscriptionAdmin"}, ""))
 
-	pattern_MgmtPrivateService_GetOrganizationSubscriptionAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 2, 5, 3, 2, 4}, []string{"v1beta", "admin", "organizations", "parent", "subscription"}, ""))
+	pattern_MgmtPrivateService_GetOrganizationSubscriptionAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.mgmt.v1beta.MgmtPrivateService", "GetOrganizationSubscriptionAdmin"}, ""))
 
 	pattern_MgmtPrivateService_SubtractCreditAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.mgmt.v1beta.MgmtPrivateService", "SubtractCreditAdmin"}, ""))
 

@@ -148,7 +148,7 @@ type MgmtPublicServiceClient interface {
 	//
 	// Returns the subscription details of the authenticated user.
 	GetAuthenticatedUserSubscription(ctx context.Context, in *GetAuthenticatedUserSubscriptionRequest, opts ...grpc.CallOption) (*GetAuthenticatedUserSubscriptionResponse, error)
-	// Get an organization subscription
+	// Get the subscription of an organization
 	//
 	// Returns the subscription details of an organization.
 	GetOrganizationSubscription(ctx context.Context, in *GetOrganizationSubscriptionRequest, opts ...grpc.CallOption) (*GetOrganizationSubscriptionResponse, error)
@@ -168,7 +168,7 @@ type MgmtPublicServiceClient interface {
 	//
 	// Deletes an API token.
 	DeleteToken(ctx context.Context, in *DeleteTokenRequest, opts ...grpc.CallOption) (*DeleteTokenResponse, error)
-	// Validate an API token.
+	// Validate an API token
 	//
 	// Validates an API token.
 	ValidateToken(ctx context.Context, in *ValidateTokenRequest, opts ...grpc.CallOption) (*ValidateTokenResponse, error)
@@ -648,7 +648,7 @@ type MgmtPublicServiceServer interface {
 	//
 	// Returns the subscription details of the authenticated user.
 	GetAuthenticatedUserSubscription(context.Context, *GetAuthenticatedUserSubscriptionRequest) (*GetAuthenticatedUserSubscriptionResponse, error)
-	// Get an organization subscription
+	// Get the subscription of an organization
 	//
 	// Returns the subscription details of an organization.
 	GetOrganizationSubscription(context.Context, *GetOrganizationSubscriptionRequest) (*GetOrganizationSubscriptionResponse, error)
@@ -668,7 +668,7 @@ type MgmtPublicServiceServer interface {
 	//
 	// Deletes an API token.
 	DeleteToken(context.Context, *DeleteTokenRequest) (*DeleteTokenResponse, error)
-	// Validate an API token.
+	// Validate an API token
 	//
 	// Validates an API token.
 	ValidateToken(context.Context, *ValidateTokenRequest) (*ValidateTokenResponse, error)
