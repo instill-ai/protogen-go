@@ -43,11 +43,11 @@ const (
 	PipelinePublicService_CloneNamespacePipelineRelease_FullMethodName           = "/vdp.pipeline.v1beta.PipelinePublicService/CloneNamespacePipelineRelease"
 	PipelinePublicService_TriggerNamespacePipelineRelease_FullMethodName         = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerNamespacePipelineRelease"
 	PipelinePublicService_TriggerAsyncNamespacePipelineRelease_FullMethodName    = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerAsyncNamespacePipelineRelease"
-	PipelinePublicService_CreateSecret_FullMethodName                            = "/vdp.pipeline.v1beta.PipelinePublicService/CreateSecret"
-	PipelinePublicService_ListSecrets_FullMethodName                             = "/vdp.pipeline.v1beta.PipelinePublicService/ListSecrets"
-	PipelinePublicService_GetSecret_FullMethodName                               = "/vdp.pipeline.v1beta.PipelinePublicService/GetSecret"
-	PipelinePublicService_UpdateSecret_FullMethodName                            = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateSecret"
-	PipelinePublicService_DeleteSecret_FullMethodName                            = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteSecret"
+	PipelinePublicService_CreateNamespaceSecret_FullMethodName                   = "/vdp.pipeline.v1beta.PipelinePublicService/CreateNamespaceSecret"
+	PipelinePublicService_ListNamespaceSecrets_FullMethodName                    = "/vdp.pipeline.v1beta.PipelinePublicService/ListNamespaceSecrets"
+	PipelinePublicService_GetNamespaceSecret_FullMethodName                      = "/vdp.pipeline.v1beta.PipelinePublicService/GetNamespaceSecret"
+	PipelinePublicService_UpdateNamespaceSecret_FullMethodName                   = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateNamespaceSecret"
+	PipelinePublicService_DeleteNamespaceSecret_FullMethodName                   = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteNamespaceSecret"
 	PipelinePublicService_ListComponentDefinitions_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/ListComponentDefinitions"
 	PipelinePublicService_GetOperation_FullMethodName                            = "/vdp.pipeline.v1beta.PipelinePublicService/GetOperation"
 	PipelinePublicService_CreateUserPipeline_FullMethodName                      = "/vdp.pipeline.v1beta.PipelinePublicService/CreateUserPipeline"
@@ -279,29 +279,29 @@ type PipelinePublicServiceClient interface {
 	// Create a secret
 	//
 	// Creates a new secret under the parenthood of an namespace.
-	CreateSecret(ctx context.Context, in *CreateSecretRequest, opts ...grpc.CallOption) (*CreateSecretResponse, error)
+	CreateNamespaceSecret(ctx context.Context, in *CreateNamespaceSecretRequest, opts ...grpc.CallOption) (*CreateNamespaceSecretResponse, error)
 	// List secrets
 	//
 	// Returns a paginated list of secrets that belong to the specified
 	// namespace.
-	ListSecrets(ctx context.Context, in *ListSecretsRequest, opts ...grpc.CallOption) (*ListSecretsResponse, error)
+	ListNamespaceSecrets(ctx context.Context, in *ListNamespaceSecretsRequest, opts ...grpc.CallOption) (*ListNamespaceSecretsResponse, error)
 	// Get a secret
 	//
 	// Returns the details of an namespace-owned secret by its resource name,
 	// which is defined by the parent namespace and the ID of the secret.
-	GetSecret(ctx context.Context, in *GetSecretRequest, opts ...grpc.CallOption) (*GetSecretResponse, error)
+	GetNamespaceSecret(ctx context.Context, in *GetNamespaceSecretRequest, opts ...grpc.CallOption) (*GetNamespaceSecretResponse, error)
 	// Update a secret
 	//
 	// # Udpates a secret, accessing it by its resource name, which is defined by
 	//
 	// In REST requests, only the supplied secret fields will be taken into
 	// account when updating the resource.
-	UpdateSecret(ctx context.Context, in *UpdateSecretRequest, opts ...grpc.CallOption) (*UpdateSecretResponse, error)
+	UpdateNamespaceSecret(ctx context.Context, in *UpdateNamespaceSecretRequest, opts ...grpc.CallOption) (*UpdateNamespaceSecretResponse, error)
 	// Delete a secret
 	//
 	// Deletes a secret, accesing it by its resource name, which is defined by
 	// the parent namespace and the ID of the secret.
-	DeleteSecret(ctx context.Context, in *DeleteSecretRequest, opts ...grpc.CallOption) (*DeleteSecretResponse, error)
+	DeleteNamespaceSecret(ctx context.Context, in *DeleteNamespaceSecretRequest, opts ...grpc.CallOption) (*DeleteNamespaceSecretResponse, error)
 	// List component definitions
 	//
 	// Returns a paginated list of component definitions, regardless their type.
@@ -1012,45 +1012,45 @@ func (c *pipelinePublicServiceClient) TriggerAsyncNamespacePipelineRelease(ctx c
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) CreateSecret(ctx context.Context, in *CreateSecretRequest, opts ...grpc.CallOption) (*CreateSecretResponse, error) {
-	out := new(CreateSecretResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_CreateSecret_FullMethodName, in, out, opts...)
+func (c *pipelinePublicServiceClient) CreateNamespaceSecret(ctx context.Context, in *CreateNamespaceSecretRequest, opts ...grpc.CallOption) (*CreateNamespaceSecretResponse, error) {
+	out := new(CreateNamespaceSecretResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_CreateNamespaceSecret_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) ListSecrets(ctx context.Context, in *ListSecretsRequest, opts ...grpc.CallOption) (*ListSecretsResponse, error) {
-	out := new(ListSecretsResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_ListSecrets_FullMethodName, in, out, opts...)
+func (c *pipelinePublicServiceClient) ListNamespaceSecrets(ctx context.Context, in *ListNamespaceSecretsRequest, opts ...grpc.CallOption) (*ListNamespaceSecretsResponse, error) {
+	out := new(ListNamespaceSecretsResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ListNamespaceSecrets_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) GetSecret(ctx context.Context, in *GetSecretRequest, opts ...grpc.CallOption) (*GetSecretResponse, error) {
-	out := new(GetSecretResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_GetSecret_FullMethodName, in, out, opts...)
+func (c *pipelinePublicServiceClient) GetNamespaceSecret(ctx context.Context, in *GetNamespaceSecretRequest, opts ...grpc.CallOption) (*GetNamespaceSecretResponse, error) {
+	out := new(GetNamespaceSecretResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_GetNamespaceSecret_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) UpdateSecret(ctx context.Context, in *UpdateSecretRequest, opts ...grpc.CallOption) (*UpdateSecretResponse, error) {
-	out := new(UpdateSecretResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_UpdateSecret_FullMethodName, in, out, opts...)
+func (c *pipelinePublicServiceClient) UpdateNamespaceSecret(ctx context.Context, in *UpdateNamespaceSecretRequest, opts ...grpc.CallOption) (*UpdateNamespaceSecretResponse, error) {
+	out := new(UpdateNamespaceSecretResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_UpdateNamespaceSecret_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) DeleteSecret(ctx context.Context, in *DeleteSecretRequest, opts ...grpc.CallOption) (*DeleteSecretResponse, error) {
-	out := new(DeleteSecretResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_DeleteSecret_FullMethodName, in, out, opts...)
+func (c *pipelinePublicServiceClient) DeleteNamespaceSecret(ctx context.Context, in *DeleteNamespaceSecretRequest, opts ...grpc.CallOption) (*DeleteNamespaceSecretResponse, error) {
+	out := new(DeleteNamespaceSecretResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_DeleteNamespaceSecret_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1861,29 +1861,29 @@ type PipelinePublicServiceServer interface {
 	// Create a secret
 	//
 	// Creates a new secret under the parenthood of an namespace.
-	CreateSecret(context.Context, *CreateSecretRequest) (*CreateSecretResponse, error)
+	CreateNamespaceSecret(context.Context, *CreateNamespaceSecretRequest) (*CreateNamespaceSecretResponse, error)
 	// List secrets
 	//
 	// Returns a paginated list of secrets that belong to the specified
 	// namespace.
-	ListSecrets(context.Context, *ListSecretsRequest) (*ListSecretsResponse, error)
+	ListNamespaceSecrets(context.Context, *ListNamespaceSecretsRequest) (*ListNamespaceSecretsResponse, error)
 	// Get a secret
 	//
 	// Returns the details of an namespace-owned secret by its resource name,
 	// which is defined by the parent namespace and the ID of the secret.
-	GetSecret(context.Context, *GetSecretRequest) (*GetSecretResponse, error)
+	GetNamespaceSecret(context.Context, *GetNamespaceSecretRequest) (*GetNamespaceSecretResponse, error)
 	// Update a secret
 	//
 	// # Udpates a secret, accessing it by its resource name, which is defined by
 	//
 	// In REST requests, only the supplied secret fields will be taken into
 	// account when updating the resource.
-	UpdateSecret(context.Context, *UpdateSecretRequest) (*UpdateSecretResponse, error)
+	UpdateNamespaceSecret(context.Context, *UpdateNamespaceSecretRequest) (*UpdateNamespaceSecretResponse, error)
 	// Delete a secret
 	//
 	// Deletes a secret, accesing it by its resource name, which is defined by
 	// the parent namespace and the ID of the secret.
-	DeleteSecret(context.Context, *DeleteSecretRequest) (*DeleteSecretResponse, error)
+	DeleteNamespaceSecret(context.Context, *DeleteNamespaceSecretRequest) (*DeleteNamespaceSecretResponse, error)
 	// List component definitions
 	//
 	// Returns a paginated list of component definitions, regardless their type.
@@ -2423,20 +2423,20 @@ func (UnimplementedPipelinePublicServiceServer) TriggerNamespacePipelineRelease(
 func (UnimplementedPipelinePublicServiceServer) TriggerAsyncNamespacePipelineRelease(context.Context, *TriggerAsyncNamespacePipelineReleaseRequest) (*TriggerAsyncNamespacePipelineReleaseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncNamespacePipelineRelease not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) CreateSecret(context.Context, *CreateSecretRequest) (*CreateSecretResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateSecret not implemented")
+func (UnimplementedPipelinePublicServiceServer) CreateNamespaceSecret(context.Context, *CreateNamespaceSecretRequest) (*CreateNamespaceSecretResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateNamespaceSecret not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) ListSecrets(context.Context, *ListSecretsRequest) (*ListSecretsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListSecrets not implemented")
+func (UnimplementedPipelinePublicServiceServer) ListNamespaceSecrets(context.Context, *ListNamespaceSecretsRequest) (*ListNamespaceSecretsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListNamespaceSecrets not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) GetSecret(context.Context, *GetSecretRequest) (*GetSecretResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetSecret not implemented")
+func (UnimplementedPipelinePublicServiceServer) GetNamespaceSecret(context.Context, *GetNamespaceSecretRequest) (*GetNamespaceSecretResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetNamespaceSecret not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) UpdateSecret(context.Context, *UpdateSecretRequest) (*UpdateSecretResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateSecret not implemented")
+func (UnimplementedPipelinePublicServiceServer) UpdateNamespaceSecret(context.Context, *UpdateNamespaceSecretRequest) (*UpdateNamespaceSecretResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateNamespaceSecret not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) DeleteSecret(context.Context, *DeleteSecretRequest) (*DeleteSecretResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteSecret not implemented")
+func (UnimplementedPipelinePublicServiceServer) DeleteNamespaceSecret(context.Context, *DeleteNamespaceSecretRequest) (*DeleteNamespaceSecretResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteNamespaceSecret not implemented")
 }
 func (UnimplementedPipelinePublicServiceServer) ListComponentDefinitions(context.Context, *ListComponentDefinitionsRequest) (*ListComponentDefinitionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListComponentDefinitions not implemented")
@@ -3062,92 +3062,92 @@ func _PipelinePublicService_TriggerAsyncNamespacePipelineRelease_Handler(srv int
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_CreateSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateSecretRequest)
+func _PipelinePublicService_CreateNamespaceSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateNamespaceSecretRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).CreateSecret(ctx, in)
+		return srv.(PipelinePublicServiceServer).CreateNamespaceSecret(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_CreateSecret_FullMethodName,
+		FullMethod: PipelinePublicService_CreateNamespaceSecret_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).CreateSecret(ctx, req.(*CreateSecretRequest))
+		return srv.(PipelinePublicServiceServer).CreateNamespaceSecret(ctx, req.(*CreateNamespaceSecretRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_ListSecrets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListSecretsRequest)
+func _PipelinePublicService_ListNamespaceSecrets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListNamespaceSecretsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).ListSecrets(ctx, in)
+		return srv.(PipelinePublicServiceServer).ListNamespaceSecrets(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_ListSecrets_FullMethodName,
+		FullMethod: PipelinePublicService_ListNamespaceSecrets_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).ListSecrets(ctx, req.(*ListSecretsRequest))
+		return srv.(PipelinePublicServiceServer).ListNamespaceSecrets(ctx, req.(*ListNamespaceSecretsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_GetSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetSecretRequest)
+func _PipelinePublicService_GetNamespaceSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetNamespaceSecretRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).GetSecret(ctx, in)
+		return srv.(PipelinePublicServiceServer).GetNamespaceSecret(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_GetSecret_FullMethodName,
+		FullMethod: PipelinePublicService_GetNamespaceSecret_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).GetSecret(ctx, req.(*GetSecretRequest))
+		return srv.(PipelinePublicServiceServer).GetNamespaceSecret(ctx, req.(*GetNamespaceSecretRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_UpdateSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateSecretRequest)
+func _PipelinePublicService_UpdateNamespaceSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateNamespaceSecretRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).UpdateSecret(ctx, in)
+		return srv.(PipelinePublicServiceServer).UpdateNamespaceSecret(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_UpdateSecret_FullMethodName,
+		FullMethod: PipelinePublicService_UpdateNamespaceSecret_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).UpdateSecret(ctx, req.(*UpdateSecretRequest))
+		return srv.(PipelinePublicServiceServer).UpdateNamespaceSecret(ctx, req.(*UpdateNamespaceSecretRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_DeleteSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteSecretRequest)
+func _PipelinePublicService_DeleteNamespaceSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteNamespaceSecretRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).DeleteSecret(ctx, in)
+		return srv.(PipelinePublicServiceServer).DeleteNamespaceSecret(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_DeleteSecret_FullMethodName,
+		FullMethod: PipelinePublicService_DeleteNamespaceSecret_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).DeleteSecret(ctx, req.(*DeleteSecretRequest))
+		return srv.(PipelinePublicServiceServer).DeleteNamespaceSecret(ctx, req.(*DeleteNamespaceSecretRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -4320,24 +4320,24 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _PipelinePublicService_TriggerAsyncNamespacePipelineRelease_Handler,
 		},
 		{
-			MethodName: "CreateSecret",
-			Handler:    _PipelinePublicService_CreateSecret_Handler,
+			MethodName: "CreateNamespaceSecret",
+			Handler:    _PipelinePublicService_CreateNamespaceSecret_Handler,
 		},
 		{
-			MethodName: "ListSecrets",
-			Handler:    _PipelinePublicService_ListSecrets_Handler,
+			MethodName: "ListNamespaceSecrets",
+			Handler:    _PipelinePublicService_ListNamespaceSecrets_Handler,
 		},
 		{
-			MethodName: "GetSecret",
-			Handler:    _PipelinePublicService_GetSecret_Handler,
+			MethodName: "GetNamespaceSecret",
+			Handler:    _PipelinePublicService_GetNamespaceSecret_Handler,
 		},
 		{
-			MethodName: "UpdateSecret",
-			Handler:    _PipelinePublicService_UpdateSecret_Handler,
+			MethodName: "UpdateNamespaceSecret",
+			Handler:    _PipelinePublicService_UpdateNamespaceSecret_Handler,
 		},
 		{
-			MethodName: "DeleteSecret",
-			Handler:    _PipelinePublicService_DeleteSecret_Handler,
+			MethodName: "DeleteNamespaceSecret",
+			Handler:    _PipelinePublicService_DeleteNamespaceSecret_Handler,
 		},
 		{
 			MethodName: "ListComponentDefinitions",

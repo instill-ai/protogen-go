@@ -30,6 +30,7 @@ const (
 	MgmtPrivateService_SubtractCreditAdmin_FullMethodName              = "/core.mgmt.v1beta.MgmtPrivateService/SubtractCreditAdmin"
 	MgmtPrivateService_GetRemainingCreditAdmin_FullMethodName          = "/core.mgmt.v1beta.MgmtPrivateService/GetRemainingCreditAdmin"
 	MgmtPrivateService_CheckNamespaceAdmin_FullMethodName              = "/core.mgmt.v1beta.MgmtPrivateService/CheckNamespaceAdmin"
+	MgmtPrivateService_CheckNamespaceByUIDAdmin_FullMethodName         = "/core.mgmt.v1beta.MgmtPrivateService/CheckNamespaceByUIDAdmin"
 )
 
 // MgmtPrivateServiceClient is the client API for MgmtPrivateService service.
@@ -81,6 +82,11 @@ type MgmtPrivateServiceClient interface {
 	// Returns the availability of a namespace or, alternatively, the type of
 	// resource that is using it.
 	CheckNamespaceAdmin(ctx context.Context, in *CheckNamespaceAdminRequest, opts ...grpc.CallOption) (*CheckNamespaceAdminResponse, error)
+	// Check if a namespace is in use by UID
+	//
+	// Returns the availability of a namespace or, alternatively, the type of
+	// resource that is using it.
+	CheckNamespaceByUIDAdmin(ctx context.Context, in *CheckNamespaceByUIDAdminRequest, opts ...grpc.CallOption) (*CheckNamespaceByUIDAdminResponse, error)
 }
 
 type mgmtPrivateServiceClient struct {
@@ -190,6 +196,15 @@ func (c *mgmtPrivateServiceClient) CheckNamespaceAdmin(ctx context.Context, in *
 	return out, nil
 }
 
+func (c *mgmtPrivateServiceClient) CheckNamespaceByUIDAdmin(ctx context.Context, in *CheckNamespaceByUIDAdminRequest, opts ...grpc.CallOption) (*CheckNamespaceByUIDAdminResponse, error) {
+	out := new(CheckNamespaceByUIDAdminResponse)
+	err := c.cc.Invoke(ctx, MgmtPrivateService_CheckNamespaceByUIDAdmin_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MgmtPrivateServiceServer is the server API for MgmtPrivateService service.
 // All implementations should embed UnimplementedMgmtPrivateServiceServer
 // for forward compatibility
@@ -239,6 +254,11 @@ type MgmtPrivateServiceServer interface {
 	// Returns the availability of a namespace or, alternatively, the type of
 	// resource that is using it.
 	CheckNamespaceAdmin(context.Context, *CheckNamespaceAdminRequest) (*CheckNamespaceAdminResponse, error)
+	// Check if a namespace is in use by UID
+	//
+	// Returns the availability of a namespace or, alternatively, the type of
+	// resource that is using it.
+	CheckNamespaceByUIDAdmin(context.Context, *CheckNamespaceByUIDAdminRequest) (*CheckNamespaceByUIDAdminResponse, error)
 }
 
 // UnimplementedMgmtPrivateServiceServer should be embedded to have forward compatible implementations.
@@ -277,6 +297,9 @@ func (UnimplementedMgmtPrivateServiceServer) GetRemainingCreditAdmin(context.Con
 }
 func (UnimplementedMgmtPrivateServiceServer) CheckNamespaceAdmin(context.Context, *CheckNamespaceAdminRequest) (*CheckNamespaceAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckNamespaceAdmin not implemented")
+}
+func (UnimplementedMgmtPrivateServiceServer) CheckNamespaceByUIDAdmin(context.Context, *CheckNamespaceByUIDAdminRequest) (*CheckNamespaceByUIDAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckNamespaceByUIDAdmin not implemented")
 }
 
 // UnsafeMgmtPrivateServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -488,6 +511,24 @@ func _MgmtPrivateService_CheckNamespaceAdmin_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MgmtPrivateService_CheckNamespaceByUIDAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckNamespaceByUIDAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPrivateServiceServer).CheckNamespaceByUIDAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPrivateService_CheckNamespaceByUIDAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPrivateServiceServer).CheckNamespaceByUIDAdmin(ctx, req.(*CheckNamespaceByUIDAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MgmtPrivateService_ServiceDesc is the grpc.ServiceDesc for MgmtPrivateService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -538,6 +579,10 @@ var MgmtPrivateService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CheckNamespaceAdmin",
 			Handler:    _MgmtPrivateService_CheckNamespaceAdmin_Handler,
+		},
+		{
+			MethodName: "CheckNamespaceByUIDAdmin",
+			Handler:    _MgmtPrivateService_CheckNamespaceByUIDAdmin_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

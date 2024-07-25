@@ -2019,12 +2019,8 @@ func local_request_PipelinePublicService_TriggerAsyncNamespacePipelineRelease_0(
 
 }
 
-var (
-	filter_PipelinePublicService_CreateSecret_0 = &utilities.DoubleArray{Encoding: map[string]int{"secret": 0, "namespace_id": 1, "namespaceId": 2}, Base: []int{1, 2, 3, 4, 0, 0, 0, 0}, Check: []int{0, 1, 1, 1, 2, 2, 3, 4}}
-)
-
-func request_PipelinePublicService_CreateSecret_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateSecretRequest
+func request_PipelinePublicService_CreateNamespaceSecret_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq CreateNamespaceSecretRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -2052,20 +2048,13 @@ func request_PipelinePublicService_CreateSecret_0(ctx context.Context, marshaler
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
 	}
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_CreateSecret_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.CreateSecret(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.CreateNamespaceSecret(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_PipelinePublicService_CreateSecret_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateSecretRequest
+func local_request_PipelinePublicService_CreateNamespaceSecret_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq CreateNamespaceSecretRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -2093,24 +2082,17 @@ func local_request_PipelinePublicService_CreateSecret_0(ctx context.Context, mar
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
 	}
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_CreateSecret_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := server.CreateSecret(ctx, &protoReq)
+	msg, err := server.CreateNamespaceSecret(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
 var (
-	filter_PipelinePublicService_ListSecrets_0 = &utilities.DoubleArray{Encoding: map[string]int{"namespace_id": 0, "namespaceId": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
+	filter_PipelinePublicService_ListNamespaceSecrets_0 = &utilities.DoubleArray{Encoding: map[string]int{"namespace_id": 0, "namespaceId": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
 )
 
-func request_PipelinePublicService_ListSecrets_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListSecretsRequest
+func request_PipelinePublicService_ListNamespaceSecrets_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ListNamespaceSecretsRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -2133,17 +2115,17 @@ func request_PipelinePublicService_ListSecrets_0(ctx context.Context, marshaler 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_ListSecrets_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_ListNamespaceSecrets_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.ListSecrets(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.ListNamespaceSecrets(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_PipelinePublicService_ListSecrets_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListSecretsRequest
+func local_request_PipelinePublicService_ListNamespaceSecrets_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ListNamespaceSecretsRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -2166,17 +2148,17 @@ func local_request_PipelinePublicService_ListSecrets_0(ctx context.Context, mars
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_ListSecrets_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_ListNamespaceSecrets_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.ListSecrets(ctx, &protoReq)
+	msg, err := server.ListNamespaceSecrets(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_PipelinePublicService_GetSecret_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSecretRequest
+func request_PipelinePublicService_GetNamespaceSecret_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetNamespaceSecretRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -2206,13 +2188,13 @@ func request_PipelinePublicService_GetSecret_0(ctx context.Context, marshaler ru
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "secret_id", err)
 	}
 
-	msg, err := client.GetSecret(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetNamespaceSecret(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_PipelinePublicService_GetSecret_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSecretRequest
+func local_request_PipelinePublicService_GetNamespaceSecret_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetNamespaceSecretRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -2242,17 +2224,17 @@ func local_request_PipelinePublicService_GetSecret_0(ctx context.Context, marsha
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "secret_id", err)
 	}
 
-	msg, err := server.GetSecret(ctx, &protoReq)
+	msg, err := server.GetNamespaceSecret(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
 var (
-	filter_PipelinePublicService_UpdateSecret_0 = &utilities.DoubleArray{Encoding: map[string]int{"secret": 0, "namespace_id": 1, "namespaceId": 2, "secret_id": 3, "secretId": 4}, Base: []int{1, 2, 3, 4, 5, 6, 0, 0, 0, 0, 0, 0}, Check: []int{0, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6}}
+	filter_PipelinePublicService_UpdateNamespaceSecret_0 = &utilities.DoubleArray{Encoding: map[string]int{"secret": 0, "namespace_id": 1, "namespaceId": 2, "secret_id": 3, "secretId": 4}, Base: []int{1, 2, 3, 4, 5, 6, 0, 0, 0, 0, 0, 0}, Check: []int{0, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6}}
 )
 
-func request_PipelinePublicService_UpdateSecret_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateSecretRequest
+func request_PipelinePublicService_UpdateNamespaceSecret_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpdateNamespaceSecretRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -2300,17 +2282,17 @@ func request_PipelinePublicService_UpdateSecret_0(ctx context.Context, marshaler
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_UpdateSecret_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_UpdateNamespaceSecret_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.UpdateSecret(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.UpdateNamespaceSecret(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_PipelinePublicService_UpdateSecret_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateSecretRequest
+func local_request_PipelinePublicService_UpdateNamespaceSecret_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpdateNamespaceSecretRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -2358,17 +2340,17 @@ func local_request_PipelinePublicService_UpdateSecret_0(ctx context.Context, mar
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_UpdateSecret_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_UpdateNamespaceSecret_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.UpdateSecret(ctx, &protoReq)
+	msg, err := server.UpdateNamespaceSecret(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_PipelinePublicService_DeleteSecret_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteSecretRequest
+func request_PipelinePublicService_DeleteNamespaceSecret_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DeleteNamespaceSecretRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -2398,13 +2380,13 @@ func request_PipelinePublicService_DeleteSecret_0(ctx context.Context, marshaler
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "secret_id", err)
 	}
 
-	msg, err := client.DeleteSecret(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.DeleteNamespaceSecret(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_PipelinePublicService_DeleteSecret_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteSecretRequest
+func local_request_PipelinePublicService_DeleteNamespaceSecret_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DeleteNamespaceSecretRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -2434,7 +2416,7 @@ func local_request_PipelinePublicService_DeleteSecret_0(ctx context.Context, mar
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "secret_id", err)
 	}
 
-	msg, err := server.DeleteSecret(ctx, &protoReq)
+	msg, err := server.DeleteNamespaceSecret(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -6922,7 +6904,7 @@ func RegisterPipelinePublicServiceHandlerServer(ctx context.Context, mux *runtim
 
 	})
 
-	mux.Handle("POST", pattern_PipelinePublicService_CreateSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_PipelinePublicService_CreateNamespaceSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -6930,12 +6912,12 @@ func RegisterPipelinePublicServiceHandlerServer(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/CreateSecret", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/secrets"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/CreateNamespaceSecret", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/secrets"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelinePublicService_CreateSecret_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelinePublicService_CreateNamespaceSecret_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -6943,11 +6925,11 @@ func RegisterPipelinePublicServiceHandlerServer(ctx context.Context, mux *runtim
 			return
 		}
 
-		forward_PipelinePublicService_CreateSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_CreateNamespaceSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_PipelinePublicService_ListSecrets_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_PipelinePublicService_ListNamespaceSecrets_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -6955,12 +6937,12 @@ func RegisterPipelinePublicServiceHandlerServer(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/ListSecrets", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/secrets"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/ListNamespaceSecrets", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/secrets"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelinePublicService_ListSecrets_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelinePublicService_ListNamespaceSecrets_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -6968,11 +6950,11 @@ func RegisterPipelinePublicServiceHandlerServer(ctx context.Context, mux *runtim
 			return
 		}
 
-		forward_PipelinePublicService_ListSecrets_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_ListNamespaceSecrets_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_PipelinePublicService_GetSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_PipelinePublicService_GetNamespaceSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -6980,12 +6962,12 @@ func RegisterPipelinePublicServiceHandlerServer(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/GetSecret", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/secrets/{secret_id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/GetNamespaceSecret", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/secrets/{secret_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelinePublicService_GetSecret_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelinePublicService_GetNamespaceSecret_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -6993,11 +6975,11 @@ func RegisterPipelinePublicServiceHandlerServer(ctx context.Context, mux *runtim
 			return
 		}
 
-		forward_PipelinePublicService_GetSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_GetNamespaceSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("PATCH", pattern_PipelinePublicService_UpdateSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PATCH", pattern_PipelinePublicService_UpdateNamespaceSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -7005,12 +6987,12 @@ func RegisterPipelinePublicServiceHandlerServer(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/UpdateSecret", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/secrets/{secret_id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/UpdateNamespaceSecret", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/secrets/{secret_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelinePublicService_UpdateSecret_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelinePublicService_UpdateNamespaceSecret_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -7018,11 +7000,11 @@ func RegisterPipelinePublicServiceHandlerServer(ctx context.Context, mux *runtim
 			return
 		}
 
-		forward_PipelinePublicService_UpdateSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_UpdateNamespaceSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("DELETE", pattern_PipelinePublicService_DeleteSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_PipelinePublicService_DeleteNamespaceSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -7030,12 +7012,12 @@ func RegisterPipelinePublicServiceHandlerServer(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/DeleteSecret", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/secrets/{secret_id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/DeleteNamespaceSecret", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/secrets/{secret_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelinePublicService_DeleteSecret_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelinePublicService_DeleteNamespaceSecret_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -7043,7 +7025,7 @@ func RegisterPipelinePublicServiceHandlerServer(ctx context.Context, mux *runtim
 			return
 		}
 
-		forward_PipelinePublicService_DeleteSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_DeleteNamespaceSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -9077,113 +9059,113 @@ func RegisterPipelinePublicServiceHandlerClient(ctx context.Context, mux *runtim
 
 	})
 
-	mux.Handle("POST", pattern_PipelinePublicService_CreateSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_PipelinePublicService_CreateNamespaceSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/CreateSecret", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/secrets"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/CreateNamespaceSecret", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/secrets"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelinePublicService_CreateSecret_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelinePublicService_CreateNamespaceSecret_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_PipelinePublicService_CreateSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_CreateNamespaceSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_PipelinePublicService_ListSecrets_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_PipelinePublicService_ListNamespaceSecrets_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/ListSecrets", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/secrets"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/ListNamespaceSecrets", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/secrets"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelinePublicService_ListSecrets_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelinePublicService_ListNamespaceSecrets_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_PipelinePublicService_ListSecrets_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_ListNamespaceSecrets_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_PipelinePublicService_GetSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_PipelinePublicService_GetNamespaceSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/GetSecret", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/secrets/{secret_id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/GetNamespaceSecret", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/secrets/{secret_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelinePublicService_GetSecret_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelinePublicService_GetNamespaceSecret_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_PipelinePublicService_GetSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_GetNamespaceSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("PATCH", pattern_PipelinePublicService_UpdateSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PATCH", pattern_PipelinePublicService_UpdateNamespaceSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/UpdateSecret", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/secrets/{secret_id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/UpdateNamespaceSecret", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/secrets/{secret_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelinePublicService_UpdateSecret_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelinePublicService_UpdateNamespaceSecret_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_PipelinePublicService_UpdateSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_UpdateNamespaceSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("DELETE", pattern_PipelinePublicService_DeleteSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_PipelinePublicService_DeleteNamespaceSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/DeleteSecret", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/secrets/{secret_id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/DeleteNamespaceSecret", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/secrets/{secret_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelinePublicService_DeleteSecret_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelinePublicService_DeleteNamespaceSecret_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_PipelinePublicService_DeleteSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_DeleteNamespaceSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -10539,15 +10521,15 @@ var (
 
 	pattern_PipelinePublicService_TriggerAsyncNamespacePipelineRelease_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6, 2, 7}, []string{"v1beta", "namespaces", "namespace_id", "pipelines", "pipeline_id", "releases", "release_id", "trigger-async"}, ""))
 
-	pattern_PipelinePublicService_CreateSecret_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1beta", "namespaces", "namespace_id", "secrets"}, ""))
+	pattern_PipelinePublicService_CreateNamespaceSecret_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1beta", "namespaces", "namespace_id", "secrets"}, ""))
 
-	pattern_PipelinePublicService_ListSecrets_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1beta", "namespaces", "namespace_id", "secrets"}, ""))
+	pattern_PipelinePublicService_ListNamespaceSecrets_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1beta", "namespaces", "namespace_id", "secrets"}, ""))
 
-	pattern_PipelinePublicService_GetSecret_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1beta", "namespaces", "namespace_id", "secrets", "secret_id"}, ""))
+	pattern_PipelinePublicService_GetNamespaceSecret_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1beta", "namespaces", "namespace_id", "secrets", "secret_id"}, ""))
 
-	pattern_PipelinePublicService_UpdateSecret_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1beta", "namespaces", "namespace_id", "secrets", "secret_id"}, ""))
+	pattern_PipelinePublicService_UpdateNamespaceSecret_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1beta", "namespaces", "namespace_id", "secrets", "secret_id"}, ""))
 
-	pattern_PipelinePublicService_DeleteSecret_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1beta", "namespaces", "namespace_id", "secrets", "secret_id"}, ""))
+	pattern_PipelinePublicService_DeleteNamespaceSecret_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1beta", "namespaces", "namespace_id", "secrets", "secret_id"}, ""))
 
 	pattern_PipelinePublicService_ListComponentDefinitions_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "component-definitions"}, ""))
 
@@ -10719,15 +10701,15 @@ var (
 
 	forward_PipelinePublicService_TriggerAsyncNamespacePipelineRelease_0 = runtime.ForwardResponseMessage
 
-	forward_PipelinePublicService_CreateSecret_0 = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_CreateNamespaceSecret_0 = runtime.ForwardResponseMessage
 
-	forward_PipelinePublicService_ListSecrets_0 = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_ListNamespaceSecrets_0 = runtime.ForwardResponseMessage
 
-	forward_PipelinePublicService_GetSecret_0 = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_GetNamespaceSecret_0 = runtime.ForwardResponseMessage
 
-	forward_PipelinePublicService_UpdateSecret_0 = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_UpdateNamespaceSecret_0 = runtime.ForwardResponseMessage
 
-	forward_PipelinePublicService_DeleteSecret_0 = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_DeleteNamespaceSecret_0 = runtime.ForwardResponseMessage
 
 	forward_PipelinePublicService_ListComponentDefinitions_0 = runtime.ForwardResponseMessage
 
