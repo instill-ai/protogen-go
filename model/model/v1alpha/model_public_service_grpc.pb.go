@@ -19,70 +19,63 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ModelPublicService_Liveness_FullMethodName                                 = "/model.model.v1alpha.ModelPublicService/Liveness"
-	ModelPublicService_Readiness_FullMethodName                                = "/model.model.v1alpha.ModelPublicService/Readiness"
-	ModelPublicService_ListModelDefinitions_FullMethodName                     = "/model.model.v1alpha.ModelPublicService/ListModelDefinitions"
-	ModelPublicService_ListAvailableRegions_FullMethodName                     = "/model.model.v1alpha.ModelPublicService/ListAvailableRegions"
-	ModelPublicService_GetModelDefinition_FullMethodName                       = "/model.model.v1alpha.ModelPublicService/GetModelDefinition"
-	ModelPublicService_ListModels_FullMethodName                               = "/model.model.v1alpha.ModelPublicService/ListModels"
-	ModelPublicService_LookUpModel_FullMethodName                              = "/model.model.v1alpha.ModelPublicService/LookUpModel"
-	ModelPublicService_ListNamespaceModels_FullMethodName                      = "/model.model.v1alpha.ModelPublicService/ListNamespaceModels"
-	ModelPublicService_CreateNamespaceModel_FullMethodName                     = "/model.model.v1alpha.ModelPublicService/CreateNamespaceModel"
-	ModelPublicService_GetNamespaceModel_FullMethodName                        = "/model.model.v1alpha.ModelPublicService/GetNamespaceModel"
-	ModelPublicService_UpdateNamespaceModel_FullMethodName                     = "/model.model.v1alpha.ModelPublicService/UpdateNamespaceModel"
-	ModelPublicService_DeleteNamespaceModel_FullMethodName                     = "/model.model.v1alpha.ModelPublicService/DeleteNamespaceModel"
-	ModelPublicService_RenameNamespaceModel_FullMethodName                     = "/model.model.v1alpha.ModelPublicService/RenameNamespaceModel"
-	ModelPublicService_PublishNamespaceModel_FullMethodName                    = "/model.model.v1alpha.ModelPublicService/PublishNamespaceModel"
-	ModelPublicService_UnpublishNamespaceModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/UnpublishNamespaceModel"
-	ModelPublicService_GetNamespaceModelCard_FullMethodName                    = "/model.model.v1alpha.ModelPublicService/GetNamespaceModelCard"
-	ModelPublicService_WatchNamespaceModel_FullMethodName                      = "/model.model.v1alpha.ModelPublicService/WatchNamespaceModel"
-	ModelPublicService_WatchNamespaceLatestModel_FullMethodName                = "/model.model.v1alpha.ModelPublicService/WatchNamespaceLatestModel"
-	ModelPublicService_ListNamespaceModelVersions_FullMethodName               = "/model.model.v1alpha.ModelPublicService/ListNamespaceModelVersions"
-	ModelPublicService_DeleteNamespaceModelVersion_FullMethodName              = "/model.model.v1alpha.ModelPublicService/DeleteNamespaceModelVersion"
-	ModelPublicService_TriggerNamespaceModel_FullMethodName                    = "/model.model.v1alpha.ModelPublicService/TriggerNamespaceModel"
-	ModelPublicService_TriggerAsyncNamespaceModel_FullMethodName               = "/model.model.v1alpha.ModelPublicService/TriggerAsyncNamespaceModel"
-	ModelPublicService_TriggerNamespaceLatestModel_FullMethodName              = "/model.model.v1alpha.ModelPublicService/TriggerNamespaceLatestModel"
-	ModelPublicService_TriggerAsyncNamespaceLatestModel_FullMethodName         = "/model.model.v1alpha.ModelPublicService/TriggerAsyncNamespaceLatestModel"
-	ModelPublicService_GetNamespaceLatestModelOperation_FullMethodName         = "/model.model.v1alpha.ModelPublicService/GetNamespaceLatestModelOperation"
-	ModelPublicService_GetModelOperation_FullMethodName                        = "/model.model.v1alpha.ModelPublicService/GetModelOperation"
-	ModelPublicService_ListUserModels_FullMethodName                           = "/model.model.v1alpha.ModelPublicService/ListUserModels"
-	ModelPublicService_CreateUserModel_FullMethodName                          = "/model.model.v1alpha.ModelPublicService/CreateUserModel"
-	ModelPublicService_GetUserModel_FullMethodName                             = "/model.model.v1alpha.ModelPublicService/GetUserModel"
-	ModelPublicService_UpdateUserModel_FullMethodName                          = "/model.model.v1alpha.ModelPublicService/UpdateUserModel"
-	ModelPublicService_DeleteUserModel_FullMethodName                          = "/model.model.v1alpha.ModelPublicService/DeleteUserModel"
-	ModelPublicService_RenameUserModel_FullMethodName                          = "/model.model.v1alpha.ModelPublicService/RenameUserModel"
-	ModelPublicService_PublishUserModel_FullMethodName                         = "/model.model.v1alpha.ModelPublicService/PublishUserModel"
-	ModelPublicService_UnpublishUserModel_FullMethodName                       = "/model.model.v1alpha.ModelPublicService/UnpublishUserModel"
-	ModelPublicService_GetUserModelCard_FullMethodName                         = "/model.model.v1alpha.ModelPublicService/GetUserModelCard"
-	ModelPublicService_WatchUserModel_FullMethodName                           = "/model.model.v1alpha.ModelPublicService/WatchUserModel"
-	ModelPublicService_WatchUserLatestModel_FullMethodName                     = "/model.model.v1alpha.ModelPublicService/WatchUserLatestModel"
-	ModelPublicService_ListUserModelVersions_FullMethodName                    = "/model.model.v1alpha.ModelPublicService/ListUserModelVersions"
-	ModelPublicService_DeleteUserModelVersion_FullMethodName                   = "/model.model.v1alpha.ModelPublicService/DeleteUserModelVersion"
-	ModelPublicService_TriggerUserModel_FullMethodName                         = "/model.model.v1alpha.ModelPublicService/TriggerUserModel"
-	ModelPublicService_TriggerAsyncUserModel_FullMethodName                    = "/model.model.v1alpha.ModelPublicService/TriggerAsyncUserModel"
-	ModelPublicService_TriggerUserLatestModel_FullMethodName                   = "/model.model.v1alpha.ModelPublicService/TriggerUserLatestModel"
-	ModelPublicService_TriggerAsyncUserLatestModel_FullMethodName              = "/model.model.v1alpha.ModelPublicService/TriggerAsyncUserLatestModel"
-	ModelPublicService_TriggerUserModelBinaryFileUpload_FullMethodName         = "/model.model.v1alpha.ModelPublicService/TriggerUserModelBinaryFileUpload"
-	ModelPublicService_ListOrganizationModels_FullMethodName                   = "/model.model.v1alpha.ModelPublicService/ListOrganizationModels"
-	ModelPublicService_CreateOrganizationModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/CreateOrganizationModel"
-	ModelPublicService_GetOrganizationModel_FullMethodName                     = "/model.model.v1alpha.ModelPublicService/GetOrganizationModel"
-	ModelPublicService_UpdateOrganizationModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/UpdateOrganizationModel"
-	ModelPublicService_DeleteOrganizationModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/DeleteOrganizationModel"
-	ModelPublicService_RenameOrganizationModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/RenameOrganizationModel"
-	ModelPublicService_PublishOrganizationModel_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/PublishOrganizationModel"
-	ModelPublicService_UnpublishOrganizationModel_FullMethodName               = "/model.model.v1alpha.ModelPublicService/UnpublishOrganizationModel"
-	ModelPublicService_GetOrganizationModelCard_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/GetOrganizationModelCard"
-	ModelPublicService_WatchOrganizationModel_FullMethodName                   = "/model.model.v1alpha.ModelPublicService/WatchOrganizationModel"
-	ModelPublicService_WatchOrganizationLatestModel_FullMethodName             = "/model.model.v1alpha.ModelPublicService/WatchOrganizationLatestModel"
-	ModelPublicService_ListOrganizationModelVersions_FullMethodName            = "/model.model.v1alpha.ModelPublicService/ListOrganizationModelVersions"
-	ModelPublicService_DeleteOrganizationModelVersion_FullMethodName           = "/model.model.v1alpha.ModelPublicService/DeleteOrganizationModelVersion"
-	ModelPublicService_TriggerOrganizationModel_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/TriggerOrganizationModel"
-	ModelPublicService_TriggerAsyncOrganizationModel_FullMethodName            = "/model.model.v1alpha.ModelPublicService/TriggerAsyncOrganizationModel"
-	ModelPublicService_TriggerOrganizationLatestModel_FullMethodName           = "/model.model.v1alpha.ModelPublicService/TriggerOrganizationLatestModel"
-	ModelPublicService_TriggerAsyncOrganizationLatestModel_FullMethodName      = "/model.model.v1alpha.ModelPublicService/TriggerAsyncOrganizationLatestModel"
-	ModelPublicService_TriggerOrganizationModelBinaryFileUpload_FullMethodName = "/model.model.v1alpha.ModelPublicService/TriggerOrganizationModelBinaryFileUpload"
-	ModelPublicService_GetUserLatestModelOperation_FullMethodName              = "/model.model.v1alpha.ModelPublicService/GetUserLatestModelOperation"
-	ModelPublicService_GetOrganizationLatestModelOperation_FullMethodName      = "/model.model.v1alpha.ModelPublicService/GetOrganizationLatestModelOperation"
+	ModelPublicService_Liveness_FullMethodName                                    = "/model.model.v1alpha.ModelPublicService/Liveness"
+	ModelPublicService_Readiness_FullMethodName                                   = "/model.model.v1alpha.ModelPublicService/Readiness"
+	ModelPublicService_ListModelDefinitions_FullMethodName                        = "/model.model.v1alpha.ModelPublicService/ListModelDefinitions"
+	ModelPublicService_ListAvailableRegions_FullMethodName                        = "/model.model.v1alpha.ModelPublicService/ListAvailableRegions"
+	ModelPublicService_GetModelDefinition_FullMethodName                          = "/model.model.v1alpha.ModelPublicService/GetModelDefinition"
+	ModelPublicService_ListModels_FullMethodName                                  = "/model.model.v1alpha.ModelPublicService/ListModels"
+	ModelPublicService_LookUpModel_FullMethodName                                 = "/model.model.v1alpha.ModelPublicService/LookUpModel"
+	ModelPublicService_ListNamespaceModels_FullMethodName                         = "/model.model.v1alpha.ModelPublicService/ListNamespaceModels"
+	ModelPublicService_CreateNamespaceModel_FullMethodName                        = "/model.model.v1alpha.ModelPublicService/CreateNamespaceModel"
+	ModelPublicService_GetNamespaceModel_FullMethodName                           = "/model.model.v1alpha.ModelPublicService/GetNamespaceModel"
+	ModelPublicService_UpdateNamespaceModel_FullMethodName                        = "/model.model.v1alpha.ModelPublicService/UpdateNamespaceModel"
+	ModelPublicService_DeleteNamespaceModel_FullMethodName                        = "/model.model.v1alpha.ModelPublicService/DeleteNamespaceModel"
+	ModelPublicService_RenameNamespaceModel_FullMethodName                        = "/model.model.v1alpha.ModelPublicService/RenameNamespaceModel"
+	ModelPublicService_WatchNamespaceModel_FullMethodName                         = "/model.model.v1alpha.ModelPublicService/WatchNamespaceModel"
+	ModelPublicService_WatchNamespaceLatestModel_FullMethodName                   = "/model.model.v1alpha.ModelPublicService/WatchNamespaceLatestModel"
+	ModelPublicService_ListNamespaceModelVersions_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/ListNamespaceModelVersions"
+	ModelPublicService_DeleteNamespaceModelVersion_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/DeleteNamespaceModelVersion"
+	ModelPublicService_TriggerNamespaceModel_FullMethodName                       = "/model.model.v1alpha.ModelPublicService/TriggerNamespaceModel"
+	ModelPublicService_TriggerAsyncNamespaceModel_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/TriggerAsyncNamespaceModel"
+	ModelPublicService_TriggerNamespaceLatestModel_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/TriggerNamespaceLatestModel"
+	ModelPublicService_TriggerAsyncNamespaceLatestModel_FullMethodName            = "/model.model.v1alpha.ModelPublicService/TriggerAsyncNamespaceLatestModel"
+	ModelPublicService_TriggerNamespaceModelBinaryFileUpload_FullMethodName       = "/model.model.v1alpha.ModelPublicService/TriggerNamespaceModelBinaryFileUpload"
+	ModelPublicService_TriggerNamespaceLatestModelBinaryFileUpload_FullMethodName = "/model.model.v1alpha.ModelPublicService/TriggerNamespaceLatestModelBinaryFileUpload"
+	ModelPublicService_GetNamespaceLatestModelOperation_FullMethodName            = "/model.model.v1alpha.ModelPublicService/GetNamespaceLatestModelOperation"
+	ModelPublicService_GetModelOperation_FullMethodName                           = "/model.model.v1alpha.ModelPublicService/GetModelOperation"
+	ModelPublicService_ListUserModels_FullMethodName                              = "/model.model.v1alpha.ModelPublicService/ListUserModels"
+	ModelPublicService_CreateUserModel_FullMethodName                             = "/model.model.v1alpha.ModelPublicService/CreateUserModel"
+	ModelPublicService_GetUserModel_FullMethodName                                = "/model.model.v1alpha.ModelPublicService/GetUserModel"
+	ModelPublicService_UpdateUserModel_FullMethodName                             = "/model.model.v1alpha.ModelPublicService/UpdateUserModel"
+	ModelPublicService_DeleteUserModel_FullMethodName                             = "/model.model.v1alpha.ModelPublicService/DeleteUserModel"
+	ModelPublicService_RenameUserModel_FullMethodName                             = "/model.model.v1alpha.ModelPublicService/RenameUserModel"
+	ModelPublicService_WatchUserModel_FullMethodName                              = "/model.model.v1alpha.ModelPublicService/WatchUserModel"
+	ModelPublicService_WatchUserLatestModel_FullMethodName                        = "/model.model.v1alpha.ModelPublicService/WatchUserLatestModel"
+	ModelPublicService_ListUserModelVersions_FullMethodName                       = "/model.model.v1alpha.ModelPublicService/ListUserModelVersions"
+	ModelPublicService_DeleteUserModelVersion_FullMethodName                      = "/model.model.v1alpha.ModelPublicService/DeleteUserModelVersion"
+	ModelPublicService_TriggerUserModel_FullMethodName                            = "/model.model.v1alpha.ModelPublicService/TriggerUserModel"
+	ModelPublicService_TriggerAsyncUserModel_FullMethodName                       = "/model.model.v1alpha.ModelPublicService/TriggerAsyncUserModel"
+	ModelPublicService_TriggerUserLatestModel_FullMethodName                      = "/model.model.v1alpha.ModelPublicService/TriggerUserLatestModel"
+	ModelPublicService_TriggerAsyncUserLatestModel_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/TriggerAsyncUserLatestModel"
+	ModelPublicService_TriggerUserModelBinaryFileUpload_FullMethodName            = "/model.model.v1alpha.ModelPublicService/TriggerUserModelBinaryFileUpload"
+	ModelPublicService_ListOrganizationModels_FullMethodName                      = "/model.model.v1alpha.ModelPublicService/ListOrganizationModels"
+	ModelPublicService_CreateOrganizationModel_FullMethodName                     = "/model.model.v1alpha.ModelPublicService/CreateOrganizationModel"
+	ModelPublicService_GetOrganizationModel_FullMethodName                        = "/model.model.v1alpha.ModelPublicService/GetOrganizationModel"
+	ModelPublicService_UpdateOrganizationModel_FullMethodName                     = "/model.model.v1alpha.ModelPublicService/UpdateOrganizationModel"
+	ModelPublicService_DeleteOrganizationModel_FullMethodName                     = "/model.model.v1alpha.ModelPublicService/DeleteOrganizationModel"
+	ModelPublicService_RenameOrganizationModel_FullMethodName                     = "/model.model.v1alpha.ModelPublicService/RenameOrganizationModel"
+	ModelPublicService_WatchOrganizationModel_FullMethodName                      = "/model.model.v1alpha.ModelPublicService/WatchOrganizationModel"
+	ModelPublicService_WatchOrganizationLatestModel_FullMethodName                = "/model.model.v1alpha.ModelPublicService/WatchOrganizationLatestModel"
+	ModelPublicService_ListOrganizationModelVersions_FullMethodName               = "/model.model.v1alpha.ModelPublicService/ListOrganizationModelVersions"
+	ModelPublicService_DeleteOrganizationModelVersion_FullMethodName              = "/model.model.v1alpha.ModelPublicService/DeleteOrganizationModelVersion"
+	ModelPublicService_TriggerOrganizationModel_FullMethodName                    = "/model.model.v1alpha.ModelPublicService/TriggerOrganizationModel"
+	ModelPublicService_TriggerAsyncOrganizationModel_FullMethodName               = "/model.model.v1alpha.ModelPublicService/TriggerAsyncOrganizationModel"
+	ModelPublicService_TriggerOrganizationLatestModel_FullMethodName              = "/model.model.v1alpha.ModelPublicService/TriggerOrganizationLatestModel"
+	ModelPublicService_TriggerAsyncOrganizationLatestModel_FullMethodName         = "/model.model.v1alpha.ModelPublicService/TriggerAsyncOrganizationLatestModel"
+	ModelPublicService_TriggerOrganizationModelBinaryFileUpload_FullMethodName    = "/model.model.v1alpha.ModelPublicService/TriggerOrganizationModelBinaryFileUpload"
+	ModelPublicService_GetUserLatestModelOperation_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/GetUserLatestModelOperation"
+	ModelPublicService_GetOrganizationLatestModelOperation_FullMethodName         = "/model.model.v1alpha.ModelPublicService/GetOrganizationLatestModelOperation"
 )
 
 // ModelPublicServiceClient is the client API for ModelPublicService service.
@@ -151,21 +144,6 @@ type ModelPublicServiceClient interface {
 	// Renames a model, accesing it by its resource name, which is defined by the
 	// parent namespace and the ID of the model.
 	RenameNamespaceModel(ctx context.Context, in *RenameNamespaceModelRequest, opts ...grpc.CallOption) (*RenameNamespaceModelResponse, error)
-	// Publish a model
-	//
-	// Updates the visibility in a model to PUBLIC. The model is accessed by its
-	// resource name, defined by the model ID and its parent namespace.
-	PublishNamespaceModel(ctx context.Context, in *PublishNamespaceModelRequest, opts ...grpc.CallOption) (*PublishNamespaceModelResponse, error)
-	// Unpublish a model
-	//
-	// Updates the visibility in a model to PRIVATE. The model is accessed by its
-	// resource name, defined by the model ID and its parent namespace.
-	UnpublishNamespaceModel(ctx context.Context, in *UnpublishNamespaceModelRequest, opts ...grpc.CallOption) (*UnpublishNamespaceModelResponse, error)
-	// Get a model card
-	//
-	// Returns the README file that accompanies a model, describing it and
-	// enhancing it with metadata. The model is accessed by its resource name.
-	GetNamespaceModelCard(ctx context.Context, in *GetNamespaceModelCardRequest, opts ...grpc.CallOption) (*GetNamespaceModelCardResponse, error)
 	// Watch the state of a model version
 	//
 	// Returns the state of a model. The model resource allocation and scaling actions take some
@@ -208,6 +186,16 @@ type ModelPublicServiceClient interface {
 	// Triggers the latest deployed model version to infer the result of a set of task or
 	// questions.
 	TriggerAsyncNamespaceLatestModel(ctx context.Context, in *TriggerAsyncNamespaceLatestModelRequest, opts ...grpc.CallOption) (*TriggerAsyncNamespaceLatestModelResponse, error)
+	// Trigger model inference with a binary input
+	//
+	// Triggers a deployed model to infer the result of a task or question,
+	// submitted as a binary file.
+	TriggerNamespaceModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TriggerNamespaceModelBinaryFileUploadClient, error)
+	// Trigger model inference with a binary input
+	//
+	// Triggers the latest deployed model version to infer the result of a set of task or
+	// questions, submitted as a binary file.
+	TriggerNamespaceLatestModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TriggerNamespaceLatestModelBinaryFileUploadClient, error)
 	// Get the details of the latest long-running operation from a namespace model
 	//
 	// This method allows requesters to request the status and outcome of
@@ -260,24 +248,6 @@ type ModelPublicServiceClient interface {
 	// Renames a model, accesing it by its resource name, which is defined by the
 	// parent user and the ID of the model.
 	RenameUserModel(ctx context.Context, in *RenameUserModelRequest, opts ...grpc.CallOption) (*RenameUserModelResponse, error)
-	// Deprecated: Do not use.
-	// Publish a model
-	//
-	// Updates the visibility in a model to PUBLIC. The model is accessed by its
-	// resource name, defined by the model ID and its parent user.
-	PublishUserModel(ctx context.Context, in *PublishUserModelRequest, opts ...grpc.CallOption) (*PublishUserModelResponse, error)
-	// Deprecated: Do not use.
-	// Unpublish a model
-	//
-	// Updates the visibility in a model to PRIVATE. The model is accessed by its
-	// resource name, defined by the model ID and its parent user.
-	UnpublishUserModel(ctx context.Context, in *UnpublishUserModelRequest, opts ...grpc.CallOption) (*UnpublishUserModelResponse, error)
-	// Deprecated: Do not use.
-	// Get a model card
-	//
-	// Returns the README file that accompanies a model, describing it and
-	// enhancing it with metadata. The model is accessed by its resource name.
-	GetUserModelCard(ctx context.Context, in *GetUserModelCardRequest, opts ...grpc.CallOption) (*GetUserModelCardResponse, error)
 	// Deprecated: Do not use.
 	// Watch the state of a model version
 	//
@@ -376,24 +346,6 @@ type ModelPublicServiceClient interface {
 	// Renames a model, accesing it by its resource name, which is defined by the
 	// parent organization and the ID of the model.
 	RenameOrganizationModel(ctx context.Context, in *RenameOrganizationModelRequest, opts ...grpc.CallOption) (*RenameOrganizationModelResponse, error)
-	// Deprecated: Do not use.
-	// Publish a model
-	//
-	// Updates the visibility in a model to PUBLIC. The model is accessed by its
-	// resource name, defined by the model ID and its parent organization.
-	PublishOrganizationModel(ctx context.Context, in *PublishOrganizationModelRequest, opts ...grpc.CallOption) (*PublishOrganizationModelResponse, error)
-	// Deprecated: Do not use.
-	// Unpublish a model
-	//
-	// Updates the visibility in a model to PRIVATE. The model is accessed by its
-	// resource name, defined by the model ID and its parent organization.
-	UnpublishOrganizationModel(ctx context.Context, in *UnpublishOrganizationModelRequest, opts ...grpc.CallOption) (*UnpublishOrganizationModelResponse, error)
-	// Deprecated: Do not use.
-	// Get a model card
-	//
-	// Returns the README file that accompanies a model, describing it and
-	// enhancing it with metadata. The model is accessed by its resource name.
-	GetOrganizationModelCard(ctx context.Context, in *GetOrganizationModelCardRequest, opts ...grpc.CallOption) (*GetOrganizationModelCardResponse, error)
 	// Deprecated: Do not use.
 	// Watch the state of a model version
 	//
@@ -589,33 +541,6 @@ func (c *modelPublicServiceClient) RenameNamespaceModel(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) PublishNamespaceModel(ctx context.Context, in *PublishNamespaceModelRequest, opts ...grpc.CallOption) (*PublishNamespaceModelResponse, error) {
-	out := new(PublishNamespaceModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_PublishNamespaceModel_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *modelPublicServiceClient) UnpublishNamespaceModel(ctx context.Context, in *UnpublishNamespaceModelRequest, opts ...grpc.CallOption) (*UnpublishNamespaceModelResponse, error) {
-	out := new(UnpublishNamespaceModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_UnpublishNamespaceModel_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *modelPublicServiceClient) GetNamespaceModelCard(ctx context.Context, in *GetNamespaceModelCardRequest, opts ...grpc.CallOption) (*GetNamespaceModelCardResponse, error) {
-	out := new(GetNamespaceModelCardResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_GetNamespaceModelCard_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *modelPublicServiceClient) WatchNamespaceModel(ctx context.Context, in *WatchNamespaceModelRequest, opts ...grpc.CallOption) (*WatchNamespaceModelResponse, error) {
 	out := new(WatchNamespaceModelResponse)
 	err := c.cc.Invoke(ctx, ModelPublicService_WatchNamespaceModel_FullMethodName, in, out, opts...)
@@ -686,6 +611,74 @@ func (c *modelPublicServiceClient) TriggerAsyncNamespaceLatestModel(ctx context.
 		return nil, err
 	}
 	return out, nil
+}
+
+func (c *modelPublicServiceClient) TriggerNamespaceModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TriggerNamespaceModelBinaryFileUploadClient, error) {
+	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[0], ModelPublicService_TriggerNamespaceModelBinaryFileUpload_FullMethodName, opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &modelPublicServiceTriggerNamespaceModelBinaryFileUploadClient{stream}
+	return x, nil
+}
+
+type ModelPublicService_TriggerNamespaceModelBinaryFileUploadClient interface {
+	Send(*TriggerNamespaceModelBinaryFileUploadRequest) error
+	CloseAndRecv() (*TriggerNamespaceModelBinaryFileUploadResponse, error)
+	grpc.ClientStream
+}
+
+type modelPublicServiceTriggerNamespaceModelBinaryFileUploadClient struct {
+	grpc.ClientStream
+}
+
+func (x *modelPublicServiceTriggerNamespaceModelBinaryFileUploadClient) Send(m *TriggerNamespaceModelBinaryFileUploadRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *modelPublicServiceTriggerNamespaceModelBinaryFileUploadClient) CloseAndRecv() (*TriggerNamespaceModelBinaryFileUploadResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(TriggerNamespaceModelBinaryFileUploadResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *modelPublicServiceClient) TriggerNamespaceLatestModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TriggerNamespaceLatestModelBinaryFileUploadClient, error) {
+	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[1], ModelPublicService_TriggerNamespaceLatestModelBinaryFileUpload_FullMethodName, opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &modelPublicServiceTriggerNamespaceLatestModelBinaryFileUploadClient{stream}
+	return x, nil
+}
+
+type ModelPublicService_TriggerNamespaceLatestModelBinaryFileUploadClient interface {
+	Send(*TriggerNamespaceLatestModelBinaryFileUploadRequest) error
+	CloseAndRecv() (*TriggerNamespaceLatestModelBinaryFileUploadResponse, error)
+	grpc.ClientStream
+}
+
+type modelPublicServiceTriggerNamespaceLatestModelBinaryFileUploadClient struct {
+	grpc.ClientStream
+}
+
+func (x *modelPublicServiceTriggerNamespaceLatestModelBinaryFileUploadClient) Send(m *TriggerNamespaceLatestModelBinaryFileUploadRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *modelPublicServiceTriggerNamespaceLatestModelBinaryFileUploadClient) CloseAndRecv() (*TriggerNamespaceLatestModelBinaryFileUploadResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(TriggerNamespaceLatestModelBinaryFileUploadResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 func (c *modelPublicServiceClient) GetNamespaceLatestModelOperation(ctx context.Context, in *GetNamespaceLatestModelOperationRequest, opts ...grpc.CallOption) (*GetNamespaceLatestModelOperationResponse, error) {
@@ -760,36 +753,6 @@ func (c *modelPublicServiceClient) DeleteUserModel(ctx context.Context, in *Dele
 func (c *modelPublicServiceClient) RenameUserModel(ctx context.Context, in *RenameUserModelRequest, opts ...grpc.CallOption) (*RenameUserModelResponse, error) {
 	out := new(RenameUserModelResponse)
 	err := c.cc.Invoke(ctx, ModelPublicService_RenameUserModel_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// Deprecated: Do not use.
-func (c *modelPublicServiceClient) PublishUserModel(ctx context.Context, in *PublishUserModelRequest, opts ...grpc.CallOption) (*PublishUserModelResponse, error) {
-	out := new(PublishUserModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_PublishUserModel_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// Deprecated: Do not use.
-func (c *modelPublicServiceClient) UnpublishUserModel(ctx context.Context, in *UnpublishUserModelRequest, opts ...grpc.CallOption) (*UnpublishUserModelResponse, error) {
-	out := new(UnpublishUserModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_UnpublishUserModel_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// Deprecated: Do not use.
-func (c *modelPublicServiceClient) GetUserModelCard(ctx context.Context, in *GetUserModelCardRequest, opts ...grpc.CallOption) (*GetUserModelCardResponse, error) {
-	out := new(GetUserModelCardResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_GetUserModelCard_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -878,7 +841,7 @@ func (c *modelPublicServiceClient) TriggerAsyncUserLatestModel(ctx context.Conte
 
 // Deprecated: Do not use.
 func (c *modelPublicServiceClient) TriggerUserModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TriggerUserModelBinaryFileUploadClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[0], ModelPublicService_TriggerUserModelBinaryFileUpload_FullMethodName, opts...)
+	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[2], ModelPublicService_TriggerUserModelBinaryFileUpload_FullMethodName, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -972,36 +935,6 @@ func (c *modelPublicServiceClient) RenameOrganizationModel(ctx context.Context, 
 }
 
 // Deprecated: Do not use.
-func (c *modelPublicServiceClient) PublishOrganizationModel(ctx context.Context, in *PublishOrganizationModelRequest, opts ...grpc.CallOption) (*PublishOrganizationModelResponse, error) {
-	out := new(PublishOrganizationModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_PublishOrganizationModel_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// Deprecated: Do not use.
-func (c *modelPublicServiceClient) UnpublishOrganizationModel(ctx context.Context, in *UnpublishOrganizationModelRequest, opts ...grpc.CallOption) (*UnpublishOrganizationModelResponse, error) {
-	out := new(UnpublishOrganizationModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_UnpublishOrganizationModel_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// Deprecated: Do not use.
-func (c *modelPublicServiceClient) GetOrganizationModelCard(ctx context.Context, in *GetOrganizationModelCardRequest, opts ...grpc.CallOption) (*GetOrganizationModelCardResponse, error) {
-	out := new(GetOrganizationModelCardResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_GetOrganizationModelCard_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// Deprecated: Do not use.
 func (c *modelPublicServiceClient) WatchOrganizationModel(ctx context.Context, in *WatchOrganizationModelRequest, opts ...grpc.CallOption) (*WatchOrganizationModelResponse, error) {
 	out := new(WatchOrganizationModelResponse)
 	err := c.cc.Invoke(ctx, ModelPublicService_WatchOrganizationModel_FullMethodName, in, out, opts...)
@@ -1083,7 +1016,7 @@ func (c *modelPublicServiceClient) TriggerAsyncOrganizationLatestModel(ctx conte
 
 // Deprecated: Do not use.
 func (c *modelPublicServiceClient) TriggerOrganizationModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TriggerOrganizationModelBinaryFileUploadClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[1], ModelPublicService_TriggerOrganizationModelBinaryFileUpload_FullMethodName, opts...)
+	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[3], ModelPublicService_TriggerOrganizationModelBinaryFileUpload_FullMethodName, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1202,21 +1135,6 @@ type ModelPublicServiceServer interface {
 	// Renames a model, accesing it by its resource name, which is defined by the
 	// parent namespace and the ID of the model.
 	RenameNamespaceModel(context.Context, *RenameNamespaceModelRequest) (*RenameNamespaceModelResponse, error)
-	// Publish a model
-	//
-	// Updates the visibility in a model to PUBLIC. The model is accessed by its
-	// resource name, defined by the model ID and its parent namespace.
-	PublishNamespaceModel(context.Context, *PublishNamespaceModelRequest) (*PublishNamespaceModelResponse, error)
-	// Unpublish a model
-	//
-	// Updates the visibility in a model to PRIVATE. The model is accessed by its
-	// resource name, defined by the model ID and its parent namespace.
-	UnpublishNamespaceModel(context.Context, *UnpublishNamespaceModelRequest) (*UnpublishNamespaceModelResponse, error)
-	// Get a model card
-	//
-	// Returns the README file that accompanies a model, describing it and
-	// enhancing it with metadata. The model is accessed by its resource name.
-	GetNamespaceModelCard(context.Context, *GetNamespaceModelCardRequest) (*GetNamespaceModelCardResponse, error)
 	// Watch the state of a model version
 	//
 	// Returns the state of a model. The model resource allocation and scaling actions take some
@@ -1259,6 +1177,16 @@ type ModelPublicServiceServer interface {
 	// Triggers the latest deployed model version to infer the result of a set of task or
 	// questions.
 	TriggerAsyncNamespaceLatestModel(context.Context, *TriggerAsyncNamespaceLatestModelRequest) (*TriggerAsyncNamespaceLatestModelResponse, error)
+	// Trigger model inference with a binary input
+	//
+	// Triggers a deployed model to infer the result of a task or question,
+	// submitted as a binary file.
+	TriggerNamespaceModelBinaryFileUpload(ModelPublicService_TriggerNamespaceModelBinaryFileUploadServer) error
+	// Trigger model inference with a binary input
+	//
+	// Triggers the latest deployed model version to infer the result of a set of task or
+	// questions, submitted as a binary file.
+	TriggerNamespaceLatestModelBinaryFileUpload(ModelPublicService_TriggerNamespaceLatestModelBinaryFileUploadServer) error
 	// Get the details of the latest long-running operation from a namespace model
 	//
 	// This method allows requesters to request the status and outcome of
@@ -1311,24 +1239,6 @@ type ModelPublicServiceServer interface {
 	// Renames a model, accesing it by its resource name, which is defined by the
 	// parent user and the ID of the model.
 	RenameUserModel(context.Context, *RenameUserModelRequest) (*RenameUserModelResponse, error)
-	// Deprecated: Do not use.
-	// Publish a model
-	//
-	// Updates the visibility in a model to PUBLIC. The model is accessed by its
-	// resource name, defined by the model ID and its parent user.
-	PublishUserModel(context.Context, *PublishUserModelRequest) (*PublishUserModelResponse, error)
-	// Deprecated: Do not use.
-	// Unpublish a model
-	//
-	// Updates the visibility in a model to PRIVATE. The model is accessed by its
-	// resource name, defined by the model ID and its parent user.
-	UnpublishUserModel(context.Context, *UnpublishUserModelRequest) (*UnpublishUserModelResponse, error)
-	// Deprecated: Do not use.
-	// Get a model card
-	//
-	// Returns the README file that accompanies a model, describing it and
-	// enhancing it with metadata. The model is accessed by its resource name.
-	GetUserModelCard(context.Context, *GetUserModelCardRequest) (*GetUserModelCardResponse, error)
 	// Deprecated: Do not use.
 	// Watch the state of a model version
 	//
@@ -1427,24 +1337,6 @@ type ModelPublicServiceServer interface {
 	// Renames a model, accesing it by its resource name, which is defined by the
 	// parent organization and the ID of the model.
 	RenameOrganizationModel(context.Context, *RenameOrganizationModelRequest) (*RenameOrganizationModelResponse, error)
-	// Deprecated: Do not use.
-	// Publish a model
-	//
-	// Updates the visibility in a model to PUBLIC. The model is accessed by its
-	// resource name, defined by the model ID and its parent organization.
-	PublishOrganizationModel(context.Context, *PublishOrganizationModelRequest) (*PublishOrganizationModelResponse, error)
-	// Deprecated: Do not use.
-	// Unpublish a model
-	//
-	// Updates the visibility in a model to PRIVATE. The model is accessed by its
-	// resource name, defined by the model ID and its parent organization.
-	UnpublishOrganizationModel(context.Context, *UnpublishOrganizationModelRequest) (*UnpublishOrganizationModelResponse, error)
-	// Deprecated: Do not use.
-	// Get a model card
-	//
-	// Returns the README file that accompanies a model, describing it and
-	// enhancing it with metadata. The model is accessed by its resource name.
-	GetOrganizationModelCard(context.Context, *GetOrganizationModelCardRequest) (*GetOrganizationModelCardResponse, error)
 	// Deprecated: Do not use.
 	// Watch the state of a model version
 	//
@@ -1558,15 +1450,6 @@ func (UnimplementedModelPublicServiceServer) DeleteNamespaceModel(context.Contex
 func (UnimplementedModelPublicServiceServer) RenameNamespaceModel(context.Context, *RenameNamespaceModelRequest) (*RenameNamespaceModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RenameNamespaceModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) PublishNamespaceModel(context.Context, *PublishNamespaceModelRequest) (*PublishNamespaceModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PublishNamespaceModel not implemented")
-}
-func (UnimplementedModelPublicServiceServer) UnpublishNamespaceModel(context.Context, *UnpublishNamespaceModelRequest) (*UnpublishNamespaceModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UnpublishNamespaceModel not implemented")
-}
-func (UnimplementedModelPublicServiceServer) GetNamespaceModelCard(context.Context, *GetNamespaceModelCardRequest) (*GetNamespaceModelCardResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetNamespaceModelCard not implemented")
-}
 func (UnimplementedModelPublicServiceServer) WatchNamespaceModel(context.Context, *WatchNamespaceModelRequest) (*WatchNamespaceModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method WatchNamespaceModel not implemented")
 }
@@ -1591,6 +1474,12 @@ func (UnimplementedModelPublicServiceServer) TriggerNamespaceLatestModel(context
 func (UnimplementedModelPublicServiceServer) TriggerAsyncNamespaceLatestModel(context.Context, *TriggerAsyncNamespaceLatestModelRequest) (*TriggerAsyncNamespaceLatestModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncNamespaceLatestModel not implemented")
 }
+func (UnimplementedModelPublicServiceServer) TriggerNamespaceModelBinaryFileUpload(ModelPublicService_TriggerNamespaceModelBinaryFileUploadServer) error {
+	return status.Errorf(codes.Unimplemented, "method TriggerNamespaceModelBinaryFileUpload not implemented")
+}
+func (UnimplementedModelPublicServiceServer) TriggerNamespaceLatestModelBinaryFileUpload(ModelPublicService_TriggerNamespaceLatestModelBinaryFileUploadServer) error {
+	return status.Errorf(codes.Unimplemented, "method TriggerNamespaceLatestModelBinaryFileUpload not implemented")
+}
 func (UnimplementedModelPublicServiceServer) GetNamespaceLatestModelOperation(context.Context, *GetNamespaceLatestModelOperationRequest) (*GetNamespaceLatestModelOperationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNamespaceLatestModelOperation not implemented")
 }
@@ -1614,15 +1503,6 @@ func (UnimplementedModelPublicServiceServer) DeleteUserModel(context.Context, *D
 }
 func (UnimplementedModelPublicServiceServer) RenameUserModel(context.Context, *RenameUserModelRequest) (*RenameUserModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RenameUserModel not implemented")
-}
-func (UnimplementedModelPublicServiceServer) PublishUserModel(context.Context, *PublishUserModelRequest) (*PublishUserModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PublishUserModel not implemented")
-}
-func (UnimplementedModelPublicServiceServer) UnpublishUserModel(context.Context, *UnpublishUserModelRequest) (*UnpublishUserModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UnpublishUserModel not implemented")
-}
-func (UnimplementedModelPublicServiceServer) GetUserModelCard(context.Context, *GetUserModelCardRequest) (*GetUserModelCardResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetUserModelCard not implemented")
 }
 func (UnimplementedModelPublicServiceServer) WatchUserModel(context.Context, *WatchUserModelRequest) (*WatchUserModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method WatchUserModel not implemented")
@@ -1668,15 +1548,6 @@ func (UnimplementedModelPublicServiceServer) DeleteOrganizationModel(context.Con
 }
 func (UnimplementedModelPublicServiceServer) RenameOrganizationModel(context.Context, *RenameOrganizationModelRequest) (*RenameOrganizationModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RenameOrganizationModel not implemented")
-}
-func (UnimplementedModelPublicServiceServer) PublishOrganizationModel(context.Context, *PublishOrganizationModelRequest) (*PublishOrganizationModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PublishOrganizationModel not implemented")
-}
-func (UnimplementedModelPublicServiceServer) UnpublishOrganizationModel(context.Context, *UnpublishOrganizationModelRequest) (*UnpublishOrganizationModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UnpublishOrganizationModel not implemented")
-}
-func (UnimplementedModelPublicServiceServer) GetOrganizationModelCard(context.Context, *GetOrganizationModelCardRequest) (*GetOrganizationModelCardResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationModelCard not implemented")
 }
 func (UnimplementedModelPublicServiceServer) WatchOrganizationModel(context.Context, *WatchOrganizationModelRequest) (*WatchOrganizationModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method WatchOrganizationModel not implemented")
@@ -1957,60 +1828,6 @@ func _ModelPublicService_RenameNamespaceModel_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_PublishNamespaceModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PublishNamespaceModelRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).PublishNamespaceModel(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ModelPublicService_PublishNamespaceModel_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).PublishNamespaceModel(ctx, req.(*PublishNamespaceModelRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ModelPublicService_UnpublishNamespaceModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UnpublishNamespaceModelRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).UnpublishNamespaceModel(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ModelPublicService_UnpublishNamespaceModel_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).UnpublishNamespaceModel(ctx, req.(*UnpublishNamespaceModelRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ModelPublicService_GetNamespaceModelCard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetNamespaceModelCardRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).GetNamespaceModelCard(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ModelPublicService_GetNamespaceModelCard_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).GetNamespaceModelCard(ctx, req.(*GetNamespaceModelCardRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _ModelPublicService_WatchNamespaceModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(WatchNamespaceModelRequest)
 	if err := dec(in); err != nil {
@@ -2155,6 +1972,58 @@ func _ModelPublicService_TriggerAsyncNamespaceLatestModel_Handler(srv interface{
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ModelPublicService_TriggerNamespaceModelBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ModelPublicServiceServer).TriggerNamespaceModelBinaryFileUpload(&modelPublicServiceTriggerNamespaceModelBinaryFileUploadServer{stream})
+}
+
+type ModelPublicService_TriggerNamespaceModelBinaryFileUploadServer interface {
+	SendAndClose(*TriggerNamespaceModelBinaryFileUploadResponse) error
+	Recv() (*TriggerNamespaceModelBinaryFileUploadRequest, error)
+	grpc.ServerStream
+}
+
+type modelPublicServiceTriggerNamespaceModelBinaryFileUploadServer struct {
+	grpc.ServerStream
+}
+
+func (x *modelPublicServiceTriggerNamespaceModelBinaryFileUploadServer) SendAndClose(m *TriggerNamespaceModelBinaryFileUploadResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *modelPublicServiceTriggerNamespaceModelBinaryFileUploadServer) Recv() (*TriggerNamespaceModelBinaryFileUploadRequest, error) {
+	m := new(TriggerNamespaceModelBinaryFileUploadRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func _ModelPublicService_TriggerNamespaceLatestModelBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ModelPublicServiceServer).TriggerNamespaceLatestModelBinaryFileUpload(&modelPublicServiceTriggerNamespaceLatestModelBinaryFileUploadServer{stream})
+}
+
+type ModelPublicService_TriggerNamespaceLatestModelBinaryFileUploadServer interface {
+	SendAndClose(*TriggerNamespaceLatestModelBinaryFileUploadResponse) error
+	Recv() (*TriggerNamespaceLatestModelBinaryFileUploadRequest, error)
+	grpc.ServerStream
+}
+
+type modelPublicServiceTriggerNamespaceLatestModelBinaryFileUploadServer struct {
+	grpc.ServerStream
+}
+
+func (x *modelPublicServiceTriggerNamespaceLatestModelBinaryFileUploadServer) SendAndClose(m *TriggerNamespaceLatestModelBinaryFileUploadResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *modelPublicServiceTriggerNamespaceLatestModelBinaryFileUploadServer) Recv() (*TriggerNamespaceLatestModelBinaryFileUploadRequest, error) {
+	m := new(TriggerNamespaceLatestModelBinaryFileUploadRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 func _ModelPublicService_GetNamespaceLatestModelOperation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetNamespaceLatestModelOperationRequest)
 	if err := dec(in); err != nil {
@@ -2295,60 +2164,6 @@ func _ModelPublicService_RenameUserModel_Handler(srv interface{}, ctx context.Co
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelPublicServiceServer).RenameUserModel(ctx, req.(*RenameUserModelRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ModelPublicService_PublishUserModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PublishUserModelRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).PublishUserModel(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ModelPublicService_PublishUserModel_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).PublishUserModel(ctx, req.(*PublishUserModelRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ModelPublicService_UnpublishUserModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UnpublishUserModelRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).UnpublishUserModel(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ModelPublicService_UnpublishUserModel_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).UnpublishUserModel(ctx, req.(*UnpublishUserModelRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ModelPublicService_GetUserModelCard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUserModelCardRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).GetUserModelCard(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ModelPublicService_GetUserModelCard_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).GetUserModelCard(ctx, req.(*GetUserModelCardRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2631,60 +2446,6 @@ func _ModelPublicService_RenameOrganizationModel_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_PublishOrganizationModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PublishOrganizationModelRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).PublishOrganizationModel(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ModelPublicService_PublishOrganizationModel_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).PublishOrganizationModel(ctx, req.(*PublishOrganizationModelRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ModelPublicService_UnpublishOrganizationModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UnpublishOrganizationModelRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).UnpublishOrganizationModel(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ModelPublicService_UnpublishOrganizationModel_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).UnpublishOrganizationModel(ctx, req.(*UnpublishOrganizationModelRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ModelPublicService_GetOrganizationModelCard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetOrganizationModelCardRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).GetOrganizationModelCard(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ModelPublicService_GetOrganizationModelCard_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).GetOrganizationModelCard(ctx, req.(*GetOrganizationModelCardRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _ModelPublicService_WatchOrganizationModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(WatchOrganizationModelRequest)
 	if err := dec(in); err != nil {
@@ -2951,18 +2712,6 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ModelPublicService_RenameNamespaceModel_Handler,
 		},
 		{
-			MethodName: "PublishNamespaceModel",
-			Handler:    _ModelPublicService_PublishNamespaceModel_Handler,
-		},
-		{
-			MethodName: "UnpublishNamespaceModel",
-			Handler:    _ModelPublicService_UnpublishNamespaceModel_Handler,
-		},
-		{
-			MethodName: "GetNamespaceModelCard",
-			Handler:    _ModelPublicService_GetNamespaceModelCard_Handler,
-		},
-		{
 			MethodName: "WatchNamespaceModel",
 			Handler:    _ModelPublicService_WatchNamespaceModel_Handler,
 		},
@@ -3027,18 +2776,6 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ModelPublicService_RenameUserModel_Handler,
 		},
 		{
-			MethodName: "PublishUserModel",
-			Handler:    _ModelPublicService_PublishUserModel_Handler,
-		},
-		{
-			MethodName: "UnpublishUserModel",
-			Handler:    _ModelPublicService_UnpublishUserModel_Handler,
-		},
-		{
-			MethodName: "GetUserModelCard",
-			Handler:    _ModelPublicService_GetUserModelCard_Handler,
-		},
-		{
 			MethodName: "WatchUserModel",
 			Handler:    _ModelPublicService_WatchUserModel_Handler,
 		},
@@ -3095,18 +2832,6 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ModelPublicService_RenameOrganizationModel_Handler,
 		},
 		{
-			MethodName: "PublishOrganizationModel",
-			Handler:    _ModelPublicService_PublishOrganizationModel_Handler,
-		},
-		{
-			MethodName: "UnpublishOrganizationModel",
-			Handler:    _ModelPublicService_UnpublishOrganizationModel_Handler,
-		},
-		{
-			MethodName: "GetOrganizationModelCard",
-			Handler:    _ModelPublicService_GetOrganizationModelCard_Handler,
-		},
-		{
 			MethodName: "WatchOrganizationModel",
 			Handler:    _ModelPublicService_WatchOrganizationModel_Handler,
 		},
@@ -3148,6 +2873,16 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "TriggerNamespaceModelBinaryFileUpload",
+			Handler:       _ModelPublicService_TriggerNamespaceModelBinaryFileUpload_Handler,
+			ClientStreams: true,
+		},
+		{
+			StreamName:    "TriggerNamespaceLatestModelBinaryFileUpload",
+			Handler:       _ModelPublicService_TriggerNamespaceLatestModelBinaryFileUpload_Handler,
+			ClientStreams: true,
+		},
 		{
 			StreamName:    "TriggerUserModelBinaryFileUpload",
 			Handler:       _ModelPublicService_TriggerUserModelBinaryFileUpload_Handler,
