@@ -32,6 +32,8 @@ const (
 	PipelinePublicService_ValidateNamespacePipeline_FullMethodName               = "/vdp.pipeline.v1beta.PipelinePublicService/ValidateNamespacePipeline"
 	PipelinePublicService_RenameNamespacePipeline_FullMethodName                 = "/vdp.pipeline.v1beta.PipelinePublicService/RenameNamespacePipeline"
 	PipelinePublicService_CloneNamespacePipeline_FullMethodName                  = "/vdp.pipeline.v1beta.PipelinePublicService/CloneNamespacePipeline"
+	PipelinePublicService_SendNamespacePipelineEvent_FullMethodName              = "/vdp.pipeline.v1beta.PipelinePublicService/SendNamespacePipelineEvent"
+	PipelinePublicService_SendNamespacePipelineReleaseEvent_FullMethodName       = "/vdp.pipeline.v1beta.PipelinePublicService/SendNamespacePipelineReleaseEvent"
 	PipelinePublicService_TriggerNamespacePipeline_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerNamespacePipeline"
 	PipelinePublicService_TriggerNamespacePipelineWithStream_FullMethodName      = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerNamespacePipelineWithStream"
 	PipelinePublicService_TriggerAsyncNamespacePipeline_FullMethodName           = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerAsyncNamespacePipeline"
@@ -185,6 +187,10 @@ type PipelinePublicServiceClient interface {
 	// Clones a pipeline owned by a namespace. The new pipeline may have a different
 	// parent, and this can be either a namespace or an organization.
 	CloneNamespacePipeline(ctx context.Context, in *CloneNamespacePipelineRequest, opts ...grpc.CallOption) (*CloneNamespacePipelineResponse, error)
+	// SendNamespacePipelineEvent
+	SendNamespacePipelineEvent(ctx context.Context, in *SendNamespacePipelineEventRequest, opts ...grpc.CallOption) (*SendNamespacePipelineEventResponse, error)
+	// SendNamespacePipelineReleaseEvent
+	SendNamespacePipelineReleaseEvent(ctx context.Context, in *SendNamespacePipelineReleaseEventRequest, opts ...grpc.CallOption) (*SendNamespacePipelineReleaseEventResponse, error)
 	// Trigger a pipeline
 	//
 	// Triggers the execution of a pipeline synchronously, i.e., the result is
@@ -884,6 +890,24 @@ func (c *pipelinePublicServiceClient) RenameNamespacePipeline(ctx context.Contex
 func (c *pipelinePublicServiceClient) CloneNamespacePipeline(ctx context.Context, in *CloneNamespacePipelineRequest, opts ...grpc.CallOption) (*CloneNamespacePipelineResponse, error) {
 	out := new(CloneNamespacePipelineResponse)
 	err := c.cc.Invoke(ctx, PipelinePublicService_CloneNamespacePipeline_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) SendNamespacePipelineEvent(ctx context.Context, in *SendNamespacePipelineEventRequest, opts ...grpc.CallOption) (*SendNamespacePipelineEventResponse, error) {
+	out := new(SendNamespacePipelineEventResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_SendNamespacePipelineEvent_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) SendNamespacePipelineReleaseEvent(ctx context.Context, in *SendNamespacePipelineReleaseEventRequest, opts ...grpc.CallOption) (*SendNamespacePipelineReleaseEventResponse, error) {
+	out := new(SendNamespacePipelineReleaseEventResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_SendNamespacePipelineReleaseEvent_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1767,6 +1791,10 @@ type PipelinePublicServiceServer interface {
 	// Clones a pipeline owned by a namespace. The new pipeline may have a different
 	// parent, and this can be either a namespace or an organization.
 	CloneNamespacePipeline(context.Context, *CloneNamespacePipelineRequest) (*CloneNamespacePipelineResponse, error)
+	// SendNamespacePipelineEvent
+	SendNamespacePipelineEvent(context.Context, *SendNamespacePipelineEventRequest) (*SendNamespacePipelineEventResponse, error)
+	// SendNamespacePipelineReleaseEvent
+	SendNamespacePipelineReleaseEvent(context.Context, *SendNamespacePipelineReleaseEventRequest) (*SendNamespacePipelineReleaseEventResponse, error)
 	// Trigger a pipeline
 	//
 	// Triggers the execution of a pipeline synchronously, i.e., the result is
@@ -2390,6 +2418,12 @@ func (UnimplementedPipelinePublicServiceServer) RenameNamespacePipeline(context.
 func (UnimplementedPipelinePublicServiceServer) CloneNamespacePipeline(context.Context, *CloneNamespacePipelineRequest) (*CloneNamespacePipelineResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CloneNamespacePipeline not implemented")
 }
+func (UnimplementedPipelinePublicServiceServer) SendNamespacePipelineEvent(context.Context, *SendNamespacePipelineEventRequest) (*SendNamespacePipelineEventResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendNamespacePipelineEvent not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) SendNamespacePipelineReleaseEvent(context.Context, *SendNamespacePipelineReleaseEventRequest) (*SendNamespacePipelineReleaseEventResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendNamespacePipelineReleaseEvent not implemented")
+}
 func (UnimplementedPipelinePublicServiceServer) TriggerNamespacePipeline(context.Context, *TriggerNamespacePipelineRequest) (*TriggerNamespacePipelineResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerNamespacePipeline not implemented")
 }
@@ -2857,6 +2891,42 @@ func _PipelinePublicService_CloneNamespacePipeline_Handler(srv interface{}, ctx 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PipelinePublicServiceServer).CloneNamespacePipeline(ctx, req.(*CloneNamespacePipelineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_SendNamespacePipelineEvent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendNamespacePipelineEventRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).SendNamespacePipelineEvent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_SendNamespacePipelineEvent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).SendNamespacePipelineEvent(ctx, req.(*SendNamespacePipelineEventRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_SendNamespacePipelineReleaseEvent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendNamespacePipelineReleaseEventRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).SendNamespacePipelineReleaseEvent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_SendNamespacePipelineReleaseEvent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).SendNamespacePipelineReleaseEvent(ctx, req.(*SendNamespacePipelineReleaseEventRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -4278,6 +4348,14 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CloneNamespacePipeline",
 			Handler:    _PipelinePublicService_CloneNamespacePipeline_Handler,
+		},
+		{
+			MethodName: "SendNamespacePipelineEvent",
+			Handler:    _PipelinePublicService_SendNamespacePipelineEvent_Handler,
+		},
+		{
+			MethodName: "SendNamespacePipelineReleaseEvent",
+			Handler:    _PipelinePublicService_SendNamespacePipelineReleaseEvent_Handler,
 		},
 		{
 			MethodName: "TriggerNamespacePipeline",
