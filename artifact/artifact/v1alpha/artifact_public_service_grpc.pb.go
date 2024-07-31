@@ -19,20 +19,20 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ArtifactPublicService_Liveness_FullMethodName                  = "/artifact.artifact.v1alpha.ArtifactPublicService/Liveness"
-	ArtifactPublicService_Readiness_FullMethodName                 = "/artifact.artifact.v1alpha.ArtifactPublicService/Readiness"
-	ArtifactPublicService_CreateKnowledgeBase_FullMethodName       = "/artifact.artifact.v1alpha.ArtifactPublicService/CreateKnowledgeBase"
-	ArtifactPublicService_ListKnowledgeBases_FullMethodName        = "/artifact.artifact.v1alpha.ArtifactPublicService/ListKnowledgeBases"
-	ArtifactPublicService_UpdateKnowledgeBase_FullMethodName       = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateKnowledgeBase"
-	ArtifactPublicService_DeleteKnowledgeBase_FullMethodName       = "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteKnowledgeBase"
-	ArtifactPublicService_UploadKnowledgeBaseFile_FullMethodName   = "/artifact.artifact.v1alpha.ArtifactPublicService/UploadKnowledgeBaseFile"
-	ArtifactPublicService_DeleteKnowledgeBaseFile_FullMethodName   = "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteKnowledgeBaseFile"
-	ArtifactPublicService_ProcessKnowledgeBaseFiles_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPublicService/ProcessKnowledgeBaseFiles"
-	ArtifactPublicService_ListKnowledgeBaseFiles_FullMethodName    = "/artifact.artifact.v1alpha.ArtifactPublicService/ListKnowledgeBaseFiles"
-	ArtifactPublicService_ListChunks_FullMethodName                = "/artifact.artifact.v1alpha.ArtifactPublicService/ListChunks"
-	ArtifactPublicService_GetSourceFile_FullMethodName             = "/artifact.artifact.v1alpha.ArtifactPublicService/GetSourceFile"
-	ArtifactPublicService_UpdateChunk_FullMethodName               = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateChunk"
-	ArtifactPublicService_SimilarityChunksSearch_FullMethodName    = "/artifact.artifact.v1alpha.ArtifactPublicService/SimilarityChunksSearch"
+	ArtifactPublicService_Liveness_FullMethodName               = "/artifact.artifact.v1alpha.ArtifactPublicService/Liveness"
+	ArtifactPublicService_Readiness_FullMethodName              = "/artifact.artifact.v1alpha.ArtifactPublicService/Readiness"
+	ArtifactPublicService_CreateCatalog_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPublicService/CreateCatalog"
+	ArtifactPublicService_ListCatalogs_FullMethodName           = "/artifact.artifact.v1alpha.ArtifactPublicService/ListCatalogs"
+	ArtifactPublicService_UpdateCatalog_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateCatalog"
+	ArtifactPublicService_DeleteCatalog_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteCatalog"
+	ArtifactPublicService_UploadCatalogFile_FullMethodName      = "/artifact.artifact.v1alpha.ArtifactPublicService/UploadCatalogFile"
+	ArtifactPublicService_DeleteCatalogFile_FullMethodName      = "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteCatalogFile"
+	ArtifactPublicService_ProcessCatalogFiles_FullMethodName    = "/artifact.artifact.v1alpha.ArtifactPublicService/ProcessCatalogFiles"
+	ArtifactPublicService_ListCatalogFiles_FullMethodName       = "/artifact.artifact.v1alpha.ArtifactPublicService/ListCatalogFiles"
+	ArtifactPublicService_ListChunks_FullMethodName             = "/artifact.artifact.v1alpha.ArtifactPublicService/ListChunks"
+	ArtifactPublicService_GetSourceFile_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPublicService/GetSourceFile"
+	ArtifactPublicService_UpdateChunk_FullMethodName            = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateChunk"
+	ArtifactPublicService_SimilarityChunksSearch_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPublicService/SimilarityChunksSearch"
 )
 
 // ArtifactPublicServiceClient is the client API for ArtifactPublicService service.
@@ -47,22 +47,22 @@ type ArtifactPublicServiceClient interface {
 	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error)
-	// Create a knowledge base
-	CreateKnowledgeBase(ctx context.Context, in *CreateKnowledgeBaseRequest, opts ...grpc.CallOption) (*CreateKnowledgeBaseResponse, error)
-	// Get all knowledge bases info
-	ListKnowledgeBases(ctx context.Context, in *ListKnowledgeBasesRequest, opts ...grpc.CallOption) (*ListKnowledgeBasesResponse, error)
-	// Update a knowledge base info
-	UpdateKnowledgeBase(ctx context.Context, in *UpdateKnowledgeBaseRequest, opts ...grpc.CallOption) (*UpdateKnowledgeBaseResponse, error)
-	// Delete a knowledge base
-	DeleteKnowledgeBase(ctx context.Context, in *DeleteKnowledgeBaseRequest, opts ...grpc.CallOption) (*DeleteKnowledgeBaseResponse, error)
+	// Create a catalog
+	CreateCatalog(ctx context.Context, in *CreateCatalogRequest, opts ...grpc.CallOption) (*CreateCatalogResponse, error)
+	// Get all catalogs info
+	ListCatalogs(ctx context.Context, in *ListCatalogsRequest, opts ...grpc.CallOption) (*ListCatalogsResponse, error)
+	// Update a catalog info
+	UpdateCatalog(ctx context.Context, in *UpdateCatalogRequest, opts ...grpc.CallOption) (*UpdateCatalogResponse, error)
+	// Delete a catalog
+	DeleteCatalog(ctx context.Context, in *DeleteCatalogRequest, opts ...grpc.CallOption) (*DeleteCatalogResponse, error)
 	// Create a file
-	UploadKnowledgeBaseFile(ctx context.Context, in *UploadKnowledgeBaseFileRequest, opts ...grpc.CallOption) (*UploadKnowledgeBaseFileResponse, error)
+	UploadCatalogFile(ctx context.Context, in *UploadCatalogFileRequest, opts ...grpc.CallOption) (*UploadCatalogFileResponse, error)
 	// Delete a file
-	DeleteKnowledgeBaseFile(ctx context.Context, in *DeleteKnowledgeBaseFileRequest, opts ...grpc.CallOption) (*DeleteKnowledgeBaseFileResponse, error)
+	DeleteCatalogFile(ctx context.Context, in *DeleteCatalogFileRequest, opts ...grpc.CallOption) (*DeleteCatalogFileResponse, error)
 	// process file
-	ProcessKnowledgeBaseFiles(ctx context.Context, in *ProcessKnowledgeBaseFilesRequest, opts ...grpc.CallOption) (*ProcessKnowledgeBaseFilesResponse, error)
+	ProcessCatalogFiles(ctx context.Context, in *ProcessCatalogFilesRequest, opts ...grpc.CallOption) (*ProcessCatalogFilesResponse, error)
 	// list files
-	ListKnowledgeBaseFiles(ctx context.Context, in *ListKnowledgeBaseFilesRequest, opts ...grpc.CallOption) (*ListKnowledgeBaseFilesResponse, error)
+	ListCatalogFiles(ctx context.Context, in *ListCatalogFilesRequest, opts ...grpc.CallOption) (*ListCatalogFilesResponse, error)
 	// List chunks
 	ListChunks(ctx context.Context, in *ListChunksRequest, opts ...grpc.CallOption) (*ListChunksResponse, error)
 	// Get source file
@@ -99,72 +99,72 @@ func (c *artifactPublicServiceClient) Readiness(ctx context.Context, in *Readine
 	return out, nil
 }
 
-func (c *artifactPublicServiceClient) CreateKnowledgeBase(ctx context.Context, in *CreateKnowledgeBaseRequest, opts ...grpc.CallOption) (*CreateKnowledgeBaseResponse, error) {
-	out := new(CreateKnowledgeBaseResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_CreateKnowledgeBase_FullMethodName, in, out, opts...)
+func (c *artifactPublicServiceClient) CreateCatalog(ctx context.Context, in *CreateCatalogRequest, opts ...grpc.CallOption) (*CreateCatalogResponse, error) {
+	out := new(CreateCatalogResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_CreateCatalog_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *artifactPublicServiceClient) ListKnowledgeBases(ctx context.Context, in *ListKnowledgeBasesRequest, opts ...grpc.CallOption) (*ListKnowledgeBasesResponse, error) {
-	out := new(ListKnowledgeBasesResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_ListKnowledgeBases_FullMethodName, in, out, opts...)
+func (c *artifactPublicServiceClient) ListCatalogs(ctx context.Context, in *ListCatalogsRequest, opts ...grpc.CallOption) (*ListCatalogsResponse, error) {
+	out := new(ListCatalogsResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_ListCatalogs_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *artifactPublicServiceClient) UpdateKnowledgeBase(ctx context.Context, in *UpdateKnowledgeBaseRequest, opts ...grpc.CallOption) (*UpdateKnowledgeBaseResponse, error) {
-	out := new(UpdateKnowledgeBaseResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_UpdateKnowledgeBase_FullMethodName, in, out, opts...)
+func (c *artifactPublicServiceClient) UpdateCatalog(ctx context.Context, in *UpdateCatalogRequest, opts ...grpc.CallOption) (*UpdateCatalogResponse, error) {
+	out := new(UpdateCatalogResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_UpdateCatalog_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *artifactPublicServiceClient) DeleteKnowledgeBase(ctx context.Context, in *DeleteKnowledgeBaseRequest, opts ...grpc.CallOption) (*DeleteKnowledgeBaseResponse, error) {
-	out := new(DeleteKnowledgeBaseResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_DeleteKnowledgeBase_FullMethodName, in, out, opts...)
+func (c *artifactPublicServiceClient) DeleteCatalog(ctx context.Context, in *DeleteCatalogRequest, opts ...grpc.CallOption) (*DeleteCatalogResponse, error) {
+	out := new(DeleteCatalogResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_DeleteCatalog_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *artifactPublicServiceClient) UploadKnowledgeBaseFile(ctx context.Context, in *UploadKnowledgeBaseFileRequest, opts ...grpc.CallOption) (*UploadKnowledgeBaseFileResponse, error) {
-	out := new(UploadKnowledgeBaseFileResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_UploadKnowledgeBaseFile_FullMethodName, in, out, opts...)
+func (c *artifactPublicServiceClient) UploadCatalogFile(ctx context.Context, in *UploadCatalogFileRequest, opts ...grpc.CallOption) (*UploadCatalogFileResponse, error) {
+	out := new(UploadCatalogFileResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_UploadCatalogFile_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *artifactPublicServiceClient) DeleteKnowledgeBaseFile(ctx context.Context, in *DeleteKnowledgeBaseFileRequest, opts ...grpc.CallOption) (*DeleteKnowledgeBaseFileResponse, error) {
-	out := new(DeleteKnowledgeBaseFileResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_DeleteKnowledgeBaseFile_FullMethodName, in, out, opts...)
+func (c *artifactPublicServiceClient) DeleteCatalogFile(ctx context.Context, in *DeleteCatalogFileRequest, opts ...grpc.CallOption) (*DeleteCatalogFileResponse, error) {
+	out := new(DeleteCatalogFileResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_DeleteCatalogFile_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *artifactPublicServiceClient) ProcessKnowledgeBaseFiles(ctx context.Context, in *ProcessKnowledgeBaseFilesRequest, opts ...grpc.CallOption) (*ProcessKnowledgeBaseFilesResponse, error) {
-	out := new(ProcessKnowledgeBaseFilesResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_ProcessKnowledgeBaseFiles_FullMethodName, in, out, opts...)
+func (c *artifactPublicServiceClient) ProcessCatalogFiles(ctx context.Context, in *ProcessCatalogFilesRequest, opts ...grpc.CallOption) (*ProcessCatalogFilesResponse, error) {
+	out := new(ProcessCatalogFilesResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_ProcessCatalogFiles_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *artifactPublicServiceClient) ListKnowledgeBaseFiles(ctx context.Context, in *ListKnowledgeBaseFilesRequest, opts ...grpc.CallOption) (*ListKnowledgeBaseFilesResponse, error) {
-	out := new(ListKnowledgeBaseFilesResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_ListKnowledgeBaseFiles_FullMethodName, in, out, opts...)
+func (c *artifactPublicServiceClient) ListCatalogFiles(ctx context.Context, in *ListCatalogFilesRequest, opts ...grpc.CallOption) (*ListCatalogFilesResponse, error) {
+	out := new(ListCatalogFilesResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_ListCatalogFiles_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -219,22 +219,22 @@ type ArtifactPublicServiceServer interface {
 	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error)
-	// Create a knowledge base
-	CreateKnowledgeBase(context.Context, *CreateKnowledgeBaseRequest) (*CreateKnowledgeBaseResponse, error)
-	// Get all knowledge bases info
-	ListKnowledgeBases(context.Context, *ListKnowledgeBasesRequest) (*ListKnowledgeBasesResponse, error)
-	// Update a knowledge base info
-	UpdateKnowledgeBase(context.Context, *UpdateKnowledgeBaseRequest) (*UpdateKnowledgeBaseResponse, error)
-	// Delete a knowledge base
-	DeleteKnowledgeBase(context.Context, *DeleteKnowledgeBaseRequest) (*DeleteKnowledgeBaseResponse, error)
+	// Create a catalog
+	CreateCatalog(context.Context, *CreateCatalogRequest) (*CreateCatalogResponse, error)
+	// Get all catalogs info
+	ListCatalogs(context.Context, *ListCatalogsRequest) (*ListCatalogsResponse, error)
+	// Update a catalog info
+	UpdateCatalog(context.Context, *UpdateCatalogRequest) (*UpdateCatalogResponse, error)
+	// Delete a catalog
+	DeleteCatalog(context.Context, *DeleteCatalogRequest) (*DeleteCatalogResponse, error)
 	// Create a file
-	UploadKnowledgeBaseFile(context.Context, *UploadKnowledgeBaseFileRequest) (*UploadKnowledgeBaseFileResponse, error)
+	UploadCatalogFile(context.Context, *UploadCatalogFileRequest) (*UploadCatalogFileResponse, error)
 	// Delete a file
-	DeleteKnowledgeBaseFile(context.Context, *DeleteKnowledgeBaseFileRequest) (*DeleteKnowledgeBaseFileResponse, error)
+	DeleteCatalogFile(context.Context, *DeleteCatalogFileRequest) (*DeleteCatalogFileResponse, error)
 	// process file
-	ProcessKnowledgeBaseFiles(context.Context, *ProcessKnowledgeBaseFilesRequest) (*ProcessKnowledgeBaseFilesResponse, error)
+	ProcessCatalogFiles(context.Context, *ProcessCatalogFilesRequest) (*ProcessCatalogFilesResponse, error)
 	// list files
-	ListKnowledgeBaseFiles(context.Context, *ListKnowledgeBaseFilesRequest) (*ListKnowledgeBaseFilesResponse, error)
+	ListCatalogFiles(context.Context, *ListCatalogFilesRequest) (*ListCatalogFilesResponse, error)
 	// List chunks
 	ListChunks(context.Context, *ListChunksRequest) (*ListChunksResponse, error)
 	// Get source file
@@ -255,29 +255,29 @@ func (UnimplementedArtifactPublicServiceServer) Liveness(context.Context, *Liven
 func (UnimplementedArtifactPublicServiceServer) Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Readiness not implemented")
 }
-func (UnimplementedArtifactPublicServiceServer) CreateKnowledgeBase(context.Context, *CreateKnowledgeBaseRequest) (*CreateKnowledgeBaseResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateKnowledgeBase not implemented")
+func (UnimplementedArtifactPublicServiceServer) CreateCatalog(context.Context, *CreateCatalogRequest) (*CreateCatalogResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateCatalog not implemented")
 }
-func (UnimplementedArtifactPublicServiceServer) ListKnowledgeBases(context.Context, *ListKnowledgeBasesRequest) (*ListKnowledgeBasesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListKnowledgeBases not implemented")
+func (UnimplementedArtifactPublicServiceServer) ListCatalogs(context.Context, *ListCatalogsRequest) (*ListCatalogsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListCatalogs not implemented")
 }
-func (UnimplementedArtifactPublicServiceServer) UpdateKnowledgeBase(context.Context, *UpdateKnowledgeBaseRequest) (*UpdateKnowledgeBaseResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateKnowledgeBase not implemented")
+func (UnimplementedArtifactPublicServiceServer) UpdateCatalog(context.Context, *UpdateCatalogRequest) (*UpdateCatalogResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateCatalog not implemented")
 }
-func (UnimplementedArtifactPublicServiceServer) DeleteKnowledgeBase(context.Context, *DeleteKnowledgeBaseRequest) (*DeleteKnowledgeBaseResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteKnowledgeBase not implemented")
+func (UnimplementedArtifactPublicServiceServer) DeleteCatalog(context.Context, *DeleteCatalogRequest) (*DeleteCatalogResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteCatalog not implemented")
 }
-func (UnimplementedArtifactPublicServiceServer) UploadKnowledgeBaseFile(context.Context, *UploadKnowledgeBaseFileRequest) (*UploadKnowledgeBaseFileResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UploadKnowledgeBaseFile not implemented")
+func (UnimplementedArtifactPublicServiceServer) UploadCatalogFile(context.Context, *UploadCatalogFileRequest) (*UploadCatalogFileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadCatalogFile not implemented")
 }
-func (UnimplementedArtifactPublicServiceServer) DeleteKnowledgeBaseFile(context.Context, *DeleteKnowledgeBaseFileRequest) (*DeleteKnowledgeBaseFileResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteKnowledgeBaseFile not implemented")
+func (UnimplementedArtifactPublicServiceServer) DeleteCatalogFile(context.Context, *DeleteCatalogFileRequest) (*DeleteCatalogFileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteCatalogFile not implemented")
 }
-func (UnimplementedArtifactPublicServiceServer) ProcessKnowledgeBaseFiles(context.Context, *ProcessKnowledgeBaseFilesRequest) (*ProcessKnowledgeBaseFilesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ProcessKnowledgeBaseFiles not implemented")
+func (UnimplementedArtifactPublicServiceServer) ProcessCatalogFiles(context.Context, *ProcessCatalogFilesRequest) (*ProcessCatalogFilesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProcessCatalogFiles not implemented")
 }
-func (UnimplementedArtifactPublicServiceServer) ListKnowledgeBaseFiles(context.Context, *ListKnowledgeBaseFilesRequest) (*ListKnowledgeBaseFilesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListKnowledgeBaseFiles not implemented")
+func (UnimplementedArtifactPublicServiceServer) ListCatalogFiles(context.Context, *ListCatalogFilesRequest) (*ListCatalogFilesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListCatalogFiles not implemented")
 }
 func (UnimplementedArtifactPublicServiceServer) ListChunks(context.Context, *ListChunksRequest) (*ListChunksResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListChunks not implemented")
@@ -339,146 +339,146 @@ func _ArtifactPublicService_Readiness_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPublicService_CreateKnowledgeBase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateKnowledgeBaseRequest)
+func _ArtifactPublicService_CreateCatalog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateCatalogRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).CreateKnowledgeBase(ctx, in)
+		return srv.(ArtifactPublicServiceServer).CreateCatalog(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPublicService_CreateKnowledgeBase_FullMethodName,
+		FullMethod: ArtifactPublicService_CreateCatalog_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).CreateKnowledgeBase(ctx, req.(*CreateKnowledgeBaseRequest))
+		return srv.(ArtifactPublicServiceServer).CreateCatalog(ctx, req.(*CreateCatalogRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPublicService_ListKnowledgeBases_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListKnowledgeBasesRequest)
+func _ArtifactPublicService_ListCatalogs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListCatalogsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).ListKnowledgeBases(ctx, in)
+		return srv.(ArtifactPublicServiceServer).ListCatalogs(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPublicService_ListKnowledgeBases_FullMethodName,
+		FullMethod: ArtifactPublicService_ListCatalogs_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).ListKnowledgeBases(ctx, req.(*ListKnowledgeBasesRequest))
+		return srv.(ArtifactPublicServiceServer).ListCatalogs(ctx, req.(*ListCatalogsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPublicService_UpdateKnowledgeBase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateKnowledgeBaseRequest)
+func _ArtifactPublicService_UpdateCatalog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateCatalogRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).UpdateKnowledgeBase(ctx, in)
+		return srv.(ArtifactPublicServiceServer).UpdateCatalog(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPublicService_UpdateKnowledgeBase_FullMethodName,
+		FullMethod: ArtifactPublicService_UpdateCatalog_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).UpdateKnowledgeBase(ctx, req.(*UpdateKnowledgeBaseRequest))
+		return srv.(ArtifactPublicServiceServer).UpdateCatalog(ctx, req.(*UpdateCatalogRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPublicService_DeleteKnowledgeBase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteKnowledgeBaseRequest)
+func _ArtifactPublicService_DeleteCatalog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteCatalogRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).DeleteKnowledgeBase(ctx, in)
+		return srv.(ArtifactPublicServiceServer).DeleteCatalog(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPublicService_DeleteKnowledgeBase_FullMethodName,
+		FullMethod: ArtifactPublicService_DeleteCatalog_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).DeleteKnowledgeBase(ctx, req.(*DeleteKnowledgeBaseRequest))
+		return srv.(ArtifactPublicServiceServer).DeleteCatalog(ctx, req.(*DeleteCatalogRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPublicService_UploadKnowledgeBaseFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UploadKnowledgeBaseFileRequest)
+func _ArtifactPublicService_UploadCatalogFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadCatalogFileRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).UploadKnowledgeBaseFile(ctx, in)
+		return srv.(ArtifactPublicServiceServer).UploadCatalogFile(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPublicService_UploadKnowledgeBaseFile_FullMethodName,
+		FullMethod: ArtifactPublicService_UploadCatalogFile_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).UploadKnowledgeBaseFile(ctx, req.(*UploadKnowledgeBaseFileRequest))
+		return srv.(ArtifactPublicServiceServer).UploadCatalogFile(ctx, req.(*UploadCatalogFileRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPublicService_DeleteKnowledgeBaseFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteKnowledgeBaseFileRequest)
+func _ArtifactPublicService_DeleteCatalogFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteCatalogFileRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).DeleteKnowledgeBaseFile(ctx, in)
+		return srv.(ArtifactPublicServiceServer).DeleteCatalogFile(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPublicService_DeleteKnowledgeBaseFile_FullMethodName,
+		FullMethod: ArtifactPublicService_DeleteCatalogFile_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).DeleteKnowledgeBaseFile(ctx, req.(*DeleteKnowledgeBaseFileRequest))
+		return srv.(ArtifactPublicServiceServer).DeleteCatalogFile(ctx, req.(*DeleteCatalogFileRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPublicService_ProcessKnowledgeBaseFiles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ProcessKnowledgeBaseFilesRequest)
+func _ArtifactPublicService_ProcessCatalogFiles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProcessCatalogFilesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).ProcessKnowledgeBaseFiles(ctx, in)
+		return srv.(ArtifactPublicServiceServer).ProcessCatalogFiles(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPublicService_ProcessKnowledgeBaseFiles_FullMethodName,
+		FullMethod: ArtifactPublicService_ProcessCatalogFiles_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).ProcessKnowledgeBaseFiles(ctx, req.(*ProcessKnowledgeBaseFilesRequest))
+		return srv.(ArtifactPublicServiceServer).ProcessCatalogFiles(ctx, req.(*ProcessCatalogFilesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPublicService_ListKnowledgeBaseFiles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListKnowledgeBaseFilesRequest)
+func _ArtifactPublicService_ListCatalogFiles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListCatalogFilesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).ListKnowledgeBaseFiles(ctx, in)
+		return srv.(ArtifactPublicServiceServer).ListCatalogFiles(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPublicService_ListKnowledgeBaseFiles_FullMethodName,
+		FullMethod: ArtifactPublicService_ListCatalogFiles_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).ListKnowledgeBaseFiles(ctx, req.(*ListKnowledgeBaseFilesRequest))
+		return srv.(ArtifactPublicServiceServer).ListCatalogFiles(ctx, req.(*ListCatalogFilesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -571,36 +571,36 @@ var ArtifactPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ArtifactPublicService_Readiness_Handler,
 		},
 		{
-			MethodName: "CreateKnowledgeBase",
-			Handler:    _ArtifactPublicService_CreateKnowledgeBase_Handler,
+			MethodName: "CreateCatalog",
+			Handler:    _ArtifactPublicService_CreateCatalog_Handler,
 		},
 		{
-			MethodName: "ListKnowledgeBases",
-			Handler:    _ArtifactPublicService_ListKnowledgeBases_Handler,
+			MethodName: "ListCatalogs",
+			Handler:    _ArtifactPublicService_ListCatalogs_Handler,
 		},
 		{
-			MethodName: "UpdateKnowledgeBase",
-			Handler:    _ArtifactPublicService_UpdateKnowledgeBase_Handler,
+			MethodName: "UpdateCatalog",
+			Handler:    _ArtifactPublicService_UpdateCatalog_Handler,
 		},
 		{
-			MethodName: "DeleteKnowledgeBase",
-			Handler:    _ArtifactPublicService_DeleteKnowledgeBase_Handler,
+			MethodName: "DeleteCatalog",
+			Handler:    _ArtifactPublicService_DeleteCatalog_Handler,
 		},
 		{
-			MethodName: "UploadKnowledgeBaseFile",
-			Handler:    _ArtifactPublicService_UploadKnowledgeBaseFile_Handler,
+			MethodName: "UploadCatalogFile",
+			Handler:    _ArtifactPublicService_UploadCatalogFile_Handler,
 		},
 		{
-			MethodName: "DeleteKnowledgeBaseFile",
-			Handler:    _ArtifactPublicService_DeleteKnowledgeBaseFile_Handler,
+			MethodName: "DeleteCatalogFile",
+			Handler:    _ArtifactPublicService_DeleteCatalogFile_Handler,
 		},
 		{
-			MethodName: "ProcessKnowledgeBaseFiles",
-			Handler:    _ArtifactPublicService_ProcessKnowledgeBaseFiles_Handler,
+			MethodName: "ProcessCatalogFiles",
+			Handler:    _ArtifactPublicService_ProcessCatalogFiles_Handler,
 		},
 		{
-			MethodName: "ListKnowledgeBaseFiles",
-			Handler:    _ArtifactPublicService_ListKnowledgeBaseFiles_Handler,
+			MethodName: "ListCatalogFiles",
+			Handler:    _ArtifactPublicService_ListCatalogFiles_Handler,
 		},
 		{
 			MethodName: "ListChunks",
