@@ -33,6 +33,8 @@ const (
 	ArtifactPublicService_GetSourceFile_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPublicService/GetSourceFile"
 	ArtifactPublicService_UpdateChunk_FullMethodName            = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateChunk"
 	ArtifactPublicService_SimilarityChunksSearch_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPublicService/SimilarityChunksSearch"
+	ArtifactPublicService_QuestionAnswering_FullMethodName      = "/artifact.artifact.v1alpha.ArtifactPublicService/QuestionAnswering"
+	ArtifactPublicService_GetFileCatalog_FullMethodName         = "/artifact.artifact.v1alpha.ArtifactPublicService/GetFileCatalog"
 )
 
 // ArtifactPublicServiceClient is the client API for ArtifactPublicService service.
@@ -71,6 +73,10 @@ type ArtifactPublicServiceClient interface {
 	UpdateChunk(ctx context.Context, in *UpdateChunkRequest, opts ...grpc.CallOption) (*UpdateChunkResponse, error)
 	// Similarity chunks search
 	SimilarityChunksSearch(ctx context.Context, in *SimilarityChunksSearchRequest, opts ...grpc.CallOption) (*SimilarityChunksSearchResponse, error)
+	// Question Answering
+	QuestionAnswering(ctx context.Context, in *QuestionAnsweringRequest, opts ...grpc.CallOption) (*QuestionAnsweringResponse, error)
+	// Get file catalog
+	GetFileCatalog(ctx context.Context, in *GetFileCatalogRequest, opts ...grpc.CallOption) (*GetFileCatalogResponse, error)
 }
 
 type artifactPublicServiceClient struct {
@@ -207,6 +213,24 @@ func (c *artifactPublicServiceClient) SimilarityChunksSearch(ctx context.Context
 	return out, nil
 }
 
+func (c *artifactPublicServiceClient) QuestionAnswering(ctx context.Context, in *QuestionAnsweringRequest, opts ...grpc.CallOption) (*QuestionAnsweringResponse, error) {
+	out := new(QuestionAnsweringResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_QuestionAnswering_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPublicServiceClient) GetFileCatalog(ctx context.Context, in *GetFileCatalogRequest, opts ...grpc.CallOption) (*GetFileCatalogResponse, error) {
+	out := new(GetFileCatalogResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_GetFileCatalog_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ArtifactPublicServiceServer is the server API for ArtifactPublicService service.
 // All implementations should embed UnimplementedArtifactPublicServiceServer
 // for forward compatibility
@@ -243,6 +267,10 @@ type ArtifactPublicServiceServer interface {
 	UpdateChunk(context.Context, *UpdateChunkRequest) (*UpdateChunkResponse, error)
 	// Similarity chunks search
 	SimilarityChunksSearch(context.Context, *SimilarityChunksSearchRequest) (*SimilarityChunksSearchResponse, error)
+	// Question Answering
+	QuestionAnswering(context.Context, *QuestionAnsweringRequest) (*QuestionAnsweringResponse, error)
+	// Get file catalog
+	GetFileCatalog(context.Context, *GetFileCatalogRequest) (*GetFileCatalogResponse, error)
 }
 
 // UnimplementedArtifactPublicServiceServer should be embedded to have forward compatible implementations.
@@ -290,6 +318,12 @@ func (UnimplementedArtifactPublicServiceServer) UpdateChunk(context.Context, *Up
 }
 func (UnimplementedArtifactPublicServiceServer) SimilarityChunksSearch(context.Context, *SimilarityChunksSearchRequest) (*SimilarityChunksSearchResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SimilarityChunksSearch not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) QuestionAnswering(context.Context, *QuestionAnsweringRequest) (*QuestionAnsweringResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method QuestionAnswering not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) GetFileCatalog(context.Context, *GetFileCatalogRequest) (*GetFileCatalogResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFileCatalog not implemented")
 }
 
 // UnsafeArtifactPublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -555,6 +589,42 @@ func _ArtifactPublicService_SimilarityChunksSearch_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArtifactPublicService_QuestionAnswering_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QuestionAnsweringRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).QuestionAnswering(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_QuestionAnswering_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).QuestionAnswering(ctx, req.(*QuestionAnsweringRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPublicService_GetFileCatalog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFileCatalogRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).GetFileCatalog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_GetFileCatalog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).GetFileCatalog(ctx, req.(*GetFileCatalogRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ArtifactPublicService_ServiceDesc is the grpc.ServiceDesc for ArtifactPublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -617,6 +687,14 @@ var ArtifactPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SimilarityChunksSearch",
 			Handler:    _ArtifactPublicService_SimilarityChunksSearch_Handler,
+		},
+		{
+			MethodName: "QuestionAnswering",
+			Handler:    _ArtifactPublicService_QuestionAnswering_Handler,
+		},
+		{
+			MethodName: "GetFileCatalog",
+			Handler:    _ArtifactPublicService_GetFileCatalog_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
