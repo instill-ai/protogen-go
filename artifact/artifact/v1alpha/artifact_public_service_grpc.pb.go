@@ -35,6 +35,14 @@ const (
 	ArtifactPublicService_SimilarityChunksSearch_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPublicService/SimilarityChunksSearch"
 	ArtifactPublicService_QuestionAnswering_FullMethodName      = "/artifact.artifact.v1alpha.ArtifactPublicService/QuestionAnswering"
 	ArtifactPublicService_GetFileCatalog_FullMethodName         = "/artifact.artifact.v1alpha.ArtifactPublicService/GetFileCatalog"
+	ArtifactPublicService_CreateConversation_FullMethodName     = "/artifact.artifact.v1alpha.ArtifactPublicService/CreateConversation"
+	ArtifactPublicService_ListConversations_FullMethodName      = "/artifact.artifact.v1alpha.ArtifactPublicService/ListConversations"
+	ArtifactPublicService_UpdateConversation_FullMethodName     = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateConversation"
+	ArtifactPublicService_DeleteConversation_FullMethodName     = "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteConversation"
+	ArtifactPublicService_CreateMessage_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPublicService/CreateMessage"
+	ArtifactPublicService_ListMessages_FullMethodName           = "/artifact.artifact.v1alpha.ArtifactPublicService/ListMessages"
+	ArtifactPublicService_UpdateMessage_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateMessage"
+	ArtifactPublicService_DeleteMessage_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteMessage"
 )
 
 // ArtifactPublicServiceClient is the client API for ArtifactPublicService service.
@@ -77,6 +85,22 @@ type ArtifactPublicServiceClient interface {
 	QuestionAnswering(ctx context.Context, in *QuestionAnsweringRequest, opts ...grpc.CallOption) (*QuestionAnsweringResponse, error)
 	// Get file catalog
 	GetFileCatalog(ctx context.Context, in *GetFileCatalogRequest, opts ...grpc.CallOption) (*GetFileCatalogResponse, error)
+	// CreateConversaion
+	CreateConversation(ctx context.Context, in *CreateConversationRequest, opts ...grpc.CallOption) (*CreateConversationResponse, error)
+	// ListConversations
+	ListConversations(ctx context.Context, in *ListConversationsRequest, opts ...grpc.CallOption) (*ListConversationsResponse, error)
+	// UpdateConversation
+	UpdateConversation(ctx context.Context, in *UpdateConversationRequest, opts ...grpc.CallOption) (*UpdateConversationResponse, error)
+	// DeleteConversation
+	DeleteConversation(ctx context.Context, in *DeleteConversationRequest, opts ...grpc.CallOption) (*DeleteConversationResponse, error)
+	// CreateMessage
+	CreateMessage(ctx context.Context, in *CreateMessageRequest, opts ...grpc.CallOption) (*CreateMessageResponse, error)
+	// ListMessages
+	ListMessages(ctx context.Context, in *ListMessagesRequest, opts ...grpc.CallOption) (*ListMessagesResponse, error)
+	// UpdateMessage
+	UpdateMessage(ctx context.Context, in *UpdateMessageRequest, opts ...grpc.CallOption) (*UpdateMessageResponse, error)
+	// DeleteMessage
+	DeleteMessage(ctx context.Context, in *DeleteMessageRequest, opts ...grpc.CallOption) (*DeleteMessageResponse, error)
 }
 
 type artifactPublicServiceClient struct {
@@ -231,6 +255,78 @@ func (c *artifactPublicServiceClient) GetFileCatalog(ctx context.Context, in *Ge
 	return out, nil
 }
 
+func (c *artifactPublicServiceClient) CreateConversation(ctx context.Context, in *CreateConversationRequest, opts ...grpc.CallOption) (*CreateConversationResponse, error) {
+	out := new(CreateConversationResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_CreateConversation_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPublicServiceClient) ListConversations(ctx context.Context, in *ListConversationsRequest, opts ...grpc.CallOption) (*ListConversationsResponse, error) {
+	out := new(ListConversationsResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_ListConversations_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPublicServiceClient) UpdateConversation(ctx context.Context, in *UpdateConversationRequest, opts ...grpc.CallOption) (*UpdateConversationResponse, error) {
+	out := new(UpdateConversationResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_UpdateConversation_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPublicServiceClient) DeleteConversation(ctx context.Context, in *DeleteConversationRequest, opts ...grpc.CallOption) (*DeleteConversationResponse, error) {
+	out := new(DeleteConversationResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_DeleteConversation_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPublicServiceClient) CreateMessage(ctx context.Context, in *CreateMessageRequest, opts ...grpc.CallOption) (*CreateMessageResponse, error) {
+	out := new(CreateMessageResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_CreateMessage_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPublicServiceClient) ListMessages(ctx context.Context, in *ListMessagesRequest, opts ...grpc.CallOption) (*ListMessagesResponse, error) {
+	out := new(ListMessagesResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_ListMessages_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPublicServiceClient) UpdateMessage(ctx context.Context, in *UpdateMessageRequest, opts ...grpc.CallOption) (*UpdateMessageResponse, error) {
+	out := new(UpdateMessageResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_UpdateMessage_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPublicServiceClient) DeleteMessage(ctx context.Context, in *DeleteMessageRequest, opts ...grpc.CallOption) (*DeleteMessageResponse, error) {
+	out := new(DeleteMessageResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_DeleteMessage_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ArtifactPublicServiceServer is the server API for ArtifactPublicService service.
 // All implementations should embed UnimplementedArtifactPublicServiceServer
 // for forward compatibility
@@ -271,6 +367,22 @@ type ArtifactPublicServiceServer interface {
 	QuestionAnswering(context.Context, *QuestionAnsweringRequest) (*QuestionAnsweringResponse, error)
 	// Get file catalog
 	GetFileCatalog(context.Context, *GetFileCatalogRequest) (*GetFileCatalogResponse, error)
+	// CreateConversaion
+	CreateConversation(context.Context, *CreateConversationRequest) (*CreateConversationResponse, error)
+	// ListConversations
+	ListConversations(context.Context, *ListConversationsRequest) (*ListConversationsResponse, error)
+	// UpdateConversation
+	UpdateConversation(context.Context, *UpdateConversationRequest) (*UpdateConversationResponse, error)
+	// DeleteConversation
+	DeleteConversation(context.Context, *DeleteConversationRequest) (*DeleteConversationResponse, error)
+	// CreateMessage
+	CreateMessage(context.Context, *CreateMessageRequest) (*CreateMessageResponse, error)
+	// ListMessages
+	ListMessages(context.Context, *ListMessagesRequest) (*ListMessagesResponse, error)
+	// UpdateMessage
+	UpdateMessage(context.Context, *UpdateMessageRequest) (*UpdateMessageResponse, error)
+	// DeleteMessage
+	DeleteMessage(context.Context, *DeleteMessageRequest) (*DeleteMessageResponse, error)
 }
 
 // UnimplementedArtifactPublicServiceServer should be embedded to have forward compatible implementations.
@@ -324,6 +436,30 @@ func (UnimplementedArtifactPublicServiceServer) QuestionAnswering(context.Contex
 }
 func (UnimplementedArtifactPublicServiceServer) GetFileCatalog(context.Context, *GetFileCatalogRequest) (*GetFileCatalogResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFileCatalog not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) CreateConversation(context.Context, *CreateConversationRequest) (*CreateConversationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateConversation not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) ListConversations(context.Context, *ListConversationsRequest) (*ListConversationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListConversations not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) UpdateConversation(context.Context, *UpdateConversationRequest) (*UpdateConversationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateConversation not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) DeleteConversation(context.Context, *DeleteConversationRequest) (*DeleteConversationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteConversation not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) CreateMessage(context.Context, *CreateMessageRequest) (*CreateMessageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateMessage not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) ListMessages(context.Context, *ListMessagesRequest) (*ListMessagesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListMessages not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) UpdateMessage(context.Context, *UpdateMessageRequest) (*UpdateMessageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateMessage not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) DeleteMessage(context.Context, *DeleteMessageRequest) (*DeleteMessageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteMessage not implemented")
 }
 
 // UnsafeArtifactPublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -625,6 +761,150 @@ func _ArtifactPublicService_GetFileCatalog_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArtifactPublicService_CreateConversation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateConversationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).CreateConversation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_CreateConversation_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).CreateConversation(ctx, req.(*CreateConversationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPublicService_ListConversations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListConversationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).ListConversations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_ListConversations_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).ListConversations(ctx, req.(*ListConversationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPublicService_UpdateConversation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateConversationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).UpdateConversation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_UpdateConversation_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).UpdateConversation(ctx, req.(*UpdateConversationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPublicService_DeleteConversation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteConversationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).DeleteConversation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_DeleteConversation_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).DeleteConversation(ctx, req.(*DeleteConversationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPublicService_CreateMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateMessageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).CreateMessage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_CreateMessage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).CreateMessage(ctx, req.(*CreateMessageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPublicService_ListMessages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListMessagesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).ListMessages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_ListMessages_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).ListMessages(ctx, req.(*ListMessagesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPublicService_UpdateMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateMessageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).UpdateMessage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_UpdateMessage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).UpdateMessage(ctx, req.(*UpdateMessageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPublicService_DeleteMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteMessageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).DeleteMessage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_DeleteMessage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).DeleteMessage(ctx, req.(*DeleteMessageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ArtifactPublicService_ServiceDesc is the grpc.ServiceDesc for ArtifactPublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -695,6 +975,38 @@ var ArtifactPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetFileCatalog",
 			Handler:    _ArtifactPublicService_GetFileCatalog_Handler,
+		},
+		{
+			MethodName: "CreateConversation",
+			Handler:    _ArtifactPublicService_CreateConversation_Handler,
+		},
+		{
+			MethodName: "ListConversations",
+			Handler:    _ArtifactPublicService_ListConversations_Handler,
+		},
+		{
+			MethodName: "UpdateConversation",
+			Handler:    _ArtifactPublicService_UpdateConversation_Handler,
+		},
+		{
+			MethodName: "DeleteConversation",
+			Handler:    _ArtifactPublicService_DeleteConversation_Handler,
+		},
+		{
+			MethodName: "CreateMessage",
+			Handler:    _ArtifactPublicService_CreateMessage_Handler,
+		},
+		{
+			MethodName: "ListMessages",
+			Handler:    _ArtifactPublicService_ListMessages_Handler,
+		},
+		{
+			MethodName: "UpdateMessage",
+			Handler:    _ArtifactPublicService_UpdateMessage_Handler,
+		},
+		{
+			MethodName: "DeleteMessage",
+			Handler:    _ArtifactPublicService_DeleteMessage_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
