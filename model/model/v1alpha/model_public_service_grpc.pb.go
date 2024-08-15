@@ -76,7 +76,7 @@ const (
 	ModelPublicService_TriggerOrganizationModelBinaryFileUpload_FullMethodName    = "/model.model.v1alpha.ModelPublicService/TriggerOrganizationModelBinaryFileUpload"
 	ModelPublicService_GetUserLatestModelOperation_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/GetUserLatestModelOperation"
 	ModelPublicService_GetOrganizationLatestModelOperation_FullMethodName         = "/model.model.v1alpha.ModelPublicService/GetOrganizationLatestModelOperation"
-	ModelPublicService_ListModelTriggers_FullMethodName                           = "/model.model.v1alpha.ModelPublicService/ListModelTriggers"
+	ModelPublicService_ListModelRuns_FullMethodName                               = "/model.model.v1alpha.ModelPublicService/ListModelRuns"
 )
 
 // ModelPublicServiceClient is the client API for ModelPublicService service.
@@ -418,7 +418,7 @@ type ModelPublicServiceClient interface {
 	// List model runs
 	//
 	// Returns a paginated list of model runs.
-	ListModelTriggers(ctx context.Context, in *ListModelRunsRequest, opts ...grpc.CallOption) (*ListModelRunsResponse, error)
+	ListModelRuns(ctx context.Context, in *ListModelRunsRequest, opts ...grpc.CallOption) (*ListModelRunsResponse, error)
 }
 
 type modelPublicServiceClient struct {
@@ -1074,9 +1074,9 @@ func (c *modelPublicServiceClient) GetOrganizationLatestModelOperation(ctx conte
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) ListModelTriggers(ctx context.Context, in *ListModelRunsRequest, opts ...grpc.CallOption) (*ListModelRunsResponse, error) {
+func (c *modelPublicServiceClient) ListModelRuns(ctx context.Context, in *ListModelRunsRequest, opts ...grpc.CallOption) (*ListModelRunsResponse, error) {
 	out := new(ListModelRunsResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_ListModelTriggers_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, ModelPublicService_ListModelRuns_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1422,7 +1422,7 @@ type ModelPublicServiceServer interface {
 	// List model runs
 	//
 	// Returns a paginated list of model runs.
-	ListModelTriggers(context.Context, *ListModelRunsRequest) (*ListModelRunsResponse, error)
+	ListModelRuns(context.Context, *ListModelRunsRequest) (*ListModelRunsResponse, error)
 }
 
 // UnimplementedModelPublicServiceServer should be embedded to have forward compatible implementations.
@@ -1600,8 +1600,8 @@ func (UnimplementedModelPublicServiceServer) GetUserLatestModelOperation(context
 func (UnimplementedModelPublicServiceServer) GetOrganizationLatestModelOperation(context.Context, *GetOrganizationLatestModelOperationRequest) (*GetOrganizationLatestModelOperationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationLatestModelOperation not implemented")
 }
-func (UnimplementedModelPublicServiceServer) ListModelTriggers(context.Context, *ListModelRunsRequest) (*ListModelRunsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListModelTriggers not implemented")
+func (UnimplementedModelPublicServiceServer) ListModelRuns(context.Context, *ListModelRunsRequest) (*ListModelRunsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListModelRuns not implemented")
 }
 
 // UnsafeModelPublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -2673,20 +2673,20 @@ func _ModelPublicService_GetOrganizationLatestModelOperation_Handler(srv interfa
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_ListModelTriggers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ModelPublicService_ListModelRuns_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListModelRunsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).ListModelTriggers(ctx, in)
+		return srv.(ModelPublicServiceServer).ListModelRuns(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_ListModelTriggers_FullMethodName,
+		FullMethod: ModelPublicService_ListModelRuns_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).ListModelTriggers(ctx, req.(*ListModelRunsRequest))
+		return srv.(ModelPublicServiceServer).ListModelRuns(ctx, req.(*ListModelRunsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2911,8 +2911,8 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ModelPublicService_GetOrganizationLatestModelOperation_Handler,
 		},
 		{
-			MethodName: "ListModelTriggers",
-			Handler:    _ModelPublicService_ListModelTriggers_Handler,
+			MethodName: "ListModelRuns",
+			Handler:    _ModelPublicService_ListModelRuns_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
