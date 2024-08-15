@@ -109,6 +109,8 @@ const (
 	PipelinePublicService_GetOrganizationSecret_FullMethodName                   = "/vdp.pipeline.v1beta.PipelinePublicService/GetOrganizationSecret"
 	PipelinePublicService_UpdateOrganizationSecret_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateOrganizationSecret"
 	PipelinePublicService_DeleteOrganizationSecret_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteOrganizationSecret"
+	PipelinePublicService_ListPipelineRuns_FullMethodName                        = "/vdp.pipeline.v1beta.PipelinePublicService/ListPipelineRuns"
+	PipelinePublicService_ListComponentRuns_FullMethodName                       = "/vdp.pipeline.v1beta.PipelinePublicService/ListComponentRuns"
 )
 
 // PipelinePublicServiceClient is the client API for PipelinePublicService service.
@@ -769,6 +771,17 @@ type PipelinePublicServiceClient interface {
 	// Deletes a secret, accesing it by its resource name, which is defined by
 	// the parent organization and the ID of the secret.
 	DeleteOrganizationSecret(ctx context.Context, in *DeleteOrganizationSecretRequest, opts ...grpc.CallOption) (*DeleteOrganizationSecretResponse, error)
+	// List Pipeline Runs
+	//
+	// Returns a paginated list of runs for a given pipeline. When the requester
+	// is the owner of the pipeline, they will be able to all the pipeline runs,
+	// regardless the requester. Other requesters will only be able to see the
+	// runs requested by themselves.
+	ListPipelineRuns(ctx context.Context, in *ListPipelineRunsRequest, opts ...grpc.CallOption) (*ListPipelineRunsResponse, error)
+	// List Component runs
+	//
+	// Returns the information of each component execution within a pipeline run.
+	ListComponentRuns(ctx context.Context, in *ListComponentRunsRequest, opts ...grpc.CallOption) (*ListComponentRunsResponse, error)
 }
 
 type pipelinePublicServiceClient struct {
@@ -1715,6 +1728,24 @@ func (c *pipelinePublicServiceClient) DeleteOrganizationSecret(ctx context.Conte
 	return out, nil
 }
 
+func (c *pipelinePublicServiceClient) ListPipelineRuns(ctx context.Context, in *ListPipelineRunsRequest, opts ...grpc.CallOption) (*ListPipelineRunsResponse, error) {
+	out := new(ListPipelineRunsResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ListPipelineRuns_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pipelinePublicServiceClient) ListComponentRuns(ctx context.Context, in *ListComponentRunsRequest, opts ...grpc.CallOption) (*ListComponentRunsResponse, error) {
+	out := new(ListComponentRunsResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ListComponentRuns_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PipelinePublicServiceServer is the server API for PipelinePublicService service.
 // All implementations should embed UnimplementedPipelinePublicServiceServer
 // for forward compatibility
@@ -2373,6 +2404,17 @@ type PipelinePublicServiceServer interface {
 	// Deletes a secret, accesing it by its resource name, which is defined by
 	// the parent organization and the ID of the secret.
 	DeleteOrganizationSecret(context.Context, *DeleteOrganizationSecretRequest) (*DeleteOrganizationSecretResponse, error)
+	// List Pipeline Runs
+	//
+	// Returns a paginated list of runs for a given pipeline. When the requester
+	// is the owner of the pipeline, they will be able to all the pipeline runs,
+	// regardless the requester. Other requesters will only be able to see the
+	// runs requested by themselves.
+	ListPipelineRuns(context.Context, *ListPipelineRunsRequest) (*ListPipelineRunsResponse, error)
+	// List Component runs
+	//
+	// Returns the information of each component execution within a pipeline run.
+	ListComponentRuns(context.Context, *ListComponentRunsRequest) (*ListComponentRunsResponse, error)
 }
 
 // UnimplementedPipelinePublicServiceServer should be embedded to have forward compatible implementations.
@@ -2648,6 +2690,12 @@ func (UnimplementedPipelinePublicServiceServer) UpdateOrganizationSecret(context
 }
 func (UnimplementedPipelinePublicServiceServer) DeleteOrganizationSecret(context.Context, *DeleteOrganizationSecretRequest) (*DeleteOrganizationSecretResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganizationSecret not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) ListPipelineRuns(context.Context, *ListPipelineRunsRequest) (*ListPipelineRunsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineRuns not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) ListComponentRuns(context.Context, *ListComponentRunsRequest) (*ListComponentRunsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListComponentRuns not implemented")
 }
 
 // UnsafePipelinePublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -4290,6 +4338,42 @@ func _PipelinePublicService_DeleteOrganizationSecret_Handler(srv interface{}, ct
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PipelinePublicService_ListPipelineRuns_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListPipelineRunsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).ListPipelineRuns(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_ListPipelineRuns_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).ListPipelineRuns(ctx, req.(*ListPipelineRunsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PipelinePublicService_ListComponentRuns_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListComponentRunsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).ListComponentRuns(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_ListComponentRuns_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).ListComponentRuns(ctx, req.(*ListComponentRunsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PipelinePublicService_ServiceDesc is the grpc.ServiceDesc for PipelinePublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -4644,6 +4728,14 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteOrganizationSecret",
 			Handler:    _PipelinePublicService_DeleteOrganizationSecret_Handler,
+		},
+		{
+			MethodName: "ListPipelineRuns",
+			Handler:    _PipelinePublicService_ListPipelineRuns_Handler,
+		},
+		{
+			MethodName: "ListComponentRuns",
+			Handler:    _PipelinePublicService_ListComponentRuns_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

@@ -14,6 +14,7 @@ import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	durationpb "google.golang.org/protobuf/types/known/durationpb"
 	fieldmaskpb "google.golang.org/protobuf/types/known/fieldmaskpb"
 	structpb "google.golang.org/protobuf/types/known/structpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -85,6 +86,63 @@ func (State) EnumDescriptor() ([]byte, []int) {
 	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{0}
 }
 
+// RunStatus represents the possible states of a pipeline or component run.
+type RunStatus int32
+
+const (
+	// The status is unknown or not set.
+	RunStatus_RUN_STATUS_UNSPECIFIED RunStatus = 0
+	// The run is currently in progress.
+	RunStatus_RUN_STATUS_RUNNING RunStatus = 1
+	// The run has completed successfully.
+	RunStatus_RUN_STATUS_COMPLETED RunStatus = 2
+	// The run has failed.
+	RunStatus_RUN_STATUS_FAILED RunStatus = 3
+)
+
+// Enum value maps for RunStatus.
+var (
+	RunStatus_name = map[int32]string{
+		0: "RUN_STATUS_UNSPECIFIED",
+		1: "RUN_STATUS_RUNNING",
+		2: "RUN_STATUS_COMPLETED",
+		3: "RUN_STATUS_FAILED",
+	}
+	RunStatus_value = map[string]int32{
+		"RUN_STATUS_UNSPECIFIED": 0,
+		"RUN_STATUS_RUNNING":     1,
+		"RUN_STATUS_COMPLETED":   2,
+		"RUN_STATUS_FAILED":      3,
+	}
+)
+
+func (x RunStatus) Enum() *RunStatus {
+	p := new(RunStatus)
+	*p = x
+	return p
+}
+
+func (x RunStatus) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (RunStatus) Descriptor() protoreflect.EnumDescriptor {
+	return file_vdp_pipeline_v1beta_pipeline_proto_enumTypes[1].Descriptor()
+}
+
+func (RunStatus) Type() protoreflect.EnumType {
+	return &file_vdp_pipeline_v1beta_pipeline_proto_enumTypes[1]
+}
+
+func (x RunStatus) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use RunStatus.Descriptor instead.
+func (RunStatus) EnumDescriptor() ([]byte, []int) {
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{1}
+}
+
 // View defines how a Pipeline is presented.
 type Pipeline_View int32
 
@@ -126,11 +184,11 @@ func (x Pipeline_View) String() string {
 }
 
 func (Pipeline_View) Descriptor() protoreflect.EnumDescriptor {
-	return file_vdp_pipeline_v1beta_pipeline_proto_enumTypes[1].Descriptor()
+	return file_vdp_pipeline_v1beta_pipeline_proto_enumTypes[2].Descriptor()
 }
 
 func (Pipeline_View) Type() protoreflect.EnumType {
-	return &file_vdp_pipeline_v1beta_pipeline_proto_enumTypes[1]
+	return &file_vdp_pipeline_v1beta_pipeline_proto_enumTypes[2]
 }
 
 func (x Pipeline_View) Number() protoreflect.EnumNumber {
@@ -179,11 +237,11 @@ func (x Pipeline_Visibility) String() string {
 }
 
 func (Pipeline_Visibility) Descriptor() protoreflect.EnumDescriptor {
-	return file_vdp_pipeline_v1beta_pipeline_proto_enumTypes[2].Descriptor()
+	return file_vdp_pipeline_v1beta_pipeline_proto_enumTypes[3].Descriptor()
 }
 
 func (Pipeline_Visibility) Type() protoreflect.EnumType {
-	return &file_vdp_pipeline_v1beta_pipeline_proto_enumTypes[2]
+	return &file_vdp_pipeline_v1beta_pipeline_proto_enumTypes[3]
 }
 
 func (x Pipeline_Visibility) Number() protoreflect.EnumNumber {
@@ -236,11 +294,11 @@ func (x Trace_Status) String() string {
 }
 
 func (Trace_Status) Descriptor() protoreflect.EnumDescriptor {
-	return file_vdp_pipeline_v1beta_pipeline_proto_enumTypes[3].Descriptor()
+	return file_vdp_pipeline_v1beta_pipeline_proto_enumTypes[4].Descriptor()
 }
 
 func (Trace_Status) Type() protoreflect.EnumType {
-	return &file_vdp_pipeline_v1beta_pipeline_proto_enumTypes[3]
+	return &file_vdp_pipeline_v1beta_pipeline_proto_enumTypes[4]
 }
 
 func (x Trace_Status) Number() protoreflect.EnumNumber {
@@ -250,6 +308,59 @@ func (x Trace_Status) Number() protoreflect.EnumNumber {
 // Deprecated: Use Trace_Status.Descriptor instead.
 func (Trace_Status) EnumDescriptor() ([]byte, []int) {
 	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{6, 0}
+}
+
+// RunSource defines the source of a pipeline run.
+type PipelineRun_RunSource int32
+
+const (
+	// Unspecified.
+	PipelineRun_RUN_SOURCE_UNSPECIFIED PipelineRun_RunSource = 0
+	// The request was triggered from Instill Console.
+	PipelineRun_RUN_SOURCE_CONSOLE PipelineRun_RunSource = 1
+	// The request was triggered from the API or SDK.
+	PipelineRun_RUN_SOURCE_API PipelineRun_RunSource = 2
+)
+
+// Enum value maps for PipelineRun_RunSource.
+var (
+	PipelineRun_RunSource_name = map[int32]string{
+		0: "RUN_SOURCE_UNSPECIFIED",
+		1: "RUN_SOURCE_CONSOLE",
+		2: "RUN_SOURCE_API",
+	}
+	PipelineRun_RunSource_value = map[string]int32{
+		"RUN_SOURCE_UNSPECIFIED": 0,
+		"RUN_SOURCE_CONSOLE":     1,
+		"RUN_SOURCE_API":         2,
+	}
+)
+
+func (x PipelineRun_RunSource) Enum() *PipelineRun_RunSource {
+	p := new(PipelineRun_RunSource)
+	*p = x
+	return p
+}
+
+func (x PipelineRun_RunSource) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (PipelineRun_RunSource) Descriptor() protoreflect.EnumDescriptor {
+	return file_vdp_pipeline_v1beta_pipeline_proto_enumTypes[5].Descriptor()
+}
+
+func (PipelineRun_RunSource) Type() protoreflect.EnumType {
+	return &file_vdp_pipeline_v1beta_pipeline_proto_enumTypes[5]
+}
+
+func (x PipelineRun_RunSource) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use PipelineRun_RunSource.Descriptor instead.
+func (PipelineRun_RunSource) EnumDescriptor() ([]byte, []int) {
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{155, 0}
 }
 
 // LivenessRequest represents a request to check a service liveness status
@@ -9803,6 +9914,685 @@ func (x *LookUpPipelineAdminResponse) GetPipeline() *Pipeline {
 	return nil
 }
 
+// ListPipelineRunsRequest is the request message for ListPipelineRuns.
+type ListPipelineRunsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The ID of the owner of the pipeline.
+	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
+	// The ID of the pipeline for which the runs will be listed.
+	PipelineId string `protobuf:"bytes,2,opt,name=pipeline_id,json=pipelineId,proto3" json:"pipeline_id,omitempty"`
+	// The page number to retrieve.
+	Page int32 `protobuf:"varint,3,opt,name=page,proto3" json:"page,omitempty"`
+	// The maximum number of items per page to return. The default and cap values
+	// are 10 and 100, respectively.
+	PageSize int32 `protobuf:"varint,4,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	// View allows clients to specify the desired run view in the response.
+	// The basic view excludes input / output data.
+	View *Pipeline_View `protobuf:"varint,5,opt,name=view,proto3,enum=vdp.pipeline.v1beta.Pipeline_View,oneof" json:"view,omitempty"`
+}
+
+func (x *ListPipelineRunsRequest) Reset() {
+	*x = ListPipelineRunsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[150]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListPipelineRunsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListPipelineRunsRequest) ProtoMessage() {}
+
+func (x *ListPipelineRunsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[150]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListPipelineRunsRequest.ProtoReflect.Descriptor instead.
+func (*ListPipelineRunsRequest) Descriptor() ([]byte, []int) {
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{150}
+}
+
+func (x *ListPipelineRunsRequest) GetNamespaceId() string {
+	if x != nil {
+		return x.NamespaceId
+	}
+	return ""
+}
+
+func (x *ListPipelineRunsRequest) GetPipelineId() string {
+	if x != nil {
+		return x.PipelineId
+	}
+	return ""
+}
+
+func (x *ListPipelineRunsRequest) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *ListPipelineRunsRequest) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+func (x *ListPipelineRunsRequest) GetView() Pipeline_View {
+	if x != nil && x.View != nil {
+		return *x.View
+	}
+	return Pipeline_VIEW_UNSPECIFIED
+}
+
+// ListPipelineRunsResponse is the response message for ListPipelineRuns.
+type ListPipelineRunsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The list of pipeline runs.
+	PipelineRuns []*PipelineRun `protobuf:"bytes,1,rep,name=pipeline_runs,json=pipelineRuns,proto3" json:"pipeline_runs,omitempty"`
+	// The total number of pipeline runs matching the request.
+	TotalSize int64 `protobuf:"varint,2,opt,name=total_size,json=totalSize,proto3" json:"total_size,omitempty"`
+	// The current page number.
+	Page int32 `protobuf:"varint,3,opt,name=page,proto3" json:"page,omitempty"`
+	// The number of items per page.
+	PageSize int32 `protobuf:"varint,4,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+}
+
+func (x *ListPipelineRunsResponse) Reset() {
+	*x = ListPipelineRunsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[151]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListPipelineRunsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListPipelineRunsResponse) ProtoMessage() {}
+
+func (x *ListPipelineRunsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[151]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListPipelineRunsResponse.ProtoReflect.Descriptor instead.
+func (*ListPipelineRunsResponse) Descriptor() ([]byte, []int) {
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{151}
+}
+
+func (x *ListPipelineRunsResponse) GetPipelineRuns() []*PipelineRun {
+	if x != nil {
+		return x.PipelineRuns
+	}
+	return nil
+}
+
+func (x *ListPipelineRunsResponse) GetTotalSize() int64 {
+	if x != nil {
+		return x.TotalSize
+	}
+	return 0
+}
+
+func (x *ListPipelineRunsResponse) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *ListPipelineRunsResponse) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+// ListComponentRunsRequest is the request message for ListComponentRuns.
+type ListComponentRunsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The unique identifier of the pipeline run to list component runs for.
+	PipelineRunId string `protobuf:"bytes,2,opt,name=pipeline_run_id,json=pipelineRunId,proto3" json:"pipeline_run_id,omitempty"`
+	// The page number to retrieve.
+	Page *int32 `protobuf:"varint,3,opt,name=page,proto3,oneof" json:"page,omitempty"`
+	// The maximum number of items per page to return. The default and cap values
+	// are 10 and 100, respectively.
+	PageSize *int32 `protobuf:"varint,4,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
+}
+
+func (x *ListComponentRunsRequest) Reset() {
+	*x = ListComponentRunsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[152]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListComponentRunsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListComponentRunsRequest) ProtoMessage() {}
+
+func (x *ListComponentRunsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[152]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListComponentRunsRequest.ProtoReflect.Descriptor instead.
+func (*ListComponentRunsRequest) Descriptor() ([]byte, []int) {
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{152}
+}
+
+func (x *ListComponentRunsRequest) GetPipelineRunId() string {
+	if x != nil {
+		return x.PipelineRunId
+	}
+	return ""
+}
+
+func (x *ListComponentRunsRequest) GetPage() int32 {
+	if x != nil && x.Page != nil {
+		return *x.Page
+	}
+	return 0
+}
+
+func (x *ListComponentRunsRequest) GetPageSize() int32 {
+	if x != nil && x.PageSize != nil {
+		return *x.PageSize
+	}
+	return 0
+}
+
+// ListComponentRunsResponse is the response message for ListComponentRuns.
+type ListComponentRunsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The list of component runs.
+	ComponentRuns []*ComponentRun `protobuf:"bytes,1,rep,name=component_runs,json=componentRuns,proto3" json:"component_runs,omitempty"`
+	// The total number of component runs matching the request.
+	TotalSize int64 `protobuf:"varint,2,opt,name=total_size,json=totalSize,proto3" json:"total_size,omitempty"`
+	// The current page number.
+	Page int32 `protobuf:"varint,3,opt,name=page,proto3" json:"page,omitempty"`
+	// The number of items per page.
+	PageSize int32 `protobuf:"varint,4,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+}
+
+func (x *ListComponentRunsResponse) Reset() {
+	*x = ListComponentRunsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[153]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListComponentRunsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListComponentRunsResponse) ProtoMessage() {}
+
+func (x *ListComponentRunsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[153]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListComponentRunsResponse.ProtoReflect.Descriptor instead.
+func (*ListComponentRunsResponse) Descriptor() ([]byte, []int) {
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{153}
+}
+
+func (x *ListComponentRunsResponse) GetComponentRuns() []*ComponentRun {
+	if x != nil {
+		return x.ComponentRuns
+	}
+	return nil
+}
+
+func (x *ListComponentRunsResponse) GetTotalSize() int64 {
+	if x != nil {
+		return x.TotalSize
+	}
+	return 0
+}
+
+func (x *ListComponentRunsResponse) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *ListComponentRunsResponse) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+// FileReference represents metadata for a file.
+type FileReference struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Name of the file.
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// Format of the file (e.g., PDF, TXT, JPG).
+	Type string `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
+	// Size of the file in bytes.
+	Size int64 `protobuf:"varint,3,opt,name=size,proto3" json:"size,omitempty"`
+	// URL of the file (e.g., S3 URL).
+	Url string `protobuf:"bytes,4,opt,name=url,proto3" json:"url,omitempty"`
+}
+
+func (x *FileReference) Reset() {
+	*x = FileReference{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[154]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FileReference) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FileReference) ProtoMessage() {}
+
+func (x *FileReference) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[154]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FileReference.ProtoReflect.Descriptor instead.
+func (*FileReference) Descriptor() ([]byte, []int) {
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{154}
+}
+
+func (x *FileReference) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *FileReference) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *FileReference) GetSize() int64 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *FileReference) GetUrl() string {
+	if x != nil {
+		return x.Url
+	}
+	return ""
+}
+
+// PipelineRun represents a single execution of a pipeline.
+type PipelineRun struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Unique identifier for the pipeline.
+	PipelineUid string `protobuf:"bytes,1,opt,name=pipeline_uid,json=pipelineUid,proto3" json:"pipeline_uid,omitempty"`
+	// Unique identifier for each run.
+	PipelineRunUid string `protobuf:"bytes,2,opt,name=pipeline_run_uid,json=pipelineRunUid,proto3" json:"pipeline_run_uid,omitempty"`
+	// Pipeline version used in the run.
+	PipelineVersion string `protobuf:"bytes,3,opt,name=pipeline_version,json=pipelineVersion,proto3" json:"pipeline_version,omitempty"`
+	// Current status of the run.
+	Status RunStatus `protobuf:"varint,4,opt,name=status,proto3,enum=vdp.pipeline.v1beta.RunStatus" json:"status,omitempty"`
+	// Origin of the run.
+	Source PipelineRun_RunSource `protobuf:"varint,5,opt,name=source,proto3,enum=vdp.pipeline.v1beta.PipelineRun_RunSource" json:"source,omitempty"`
+	// Time taken to complete the run.
+	TotalDuration *durationpb.Duration `protobuf:"bytes,6,opt,name=total_duration,json=totalDuration,proto3,oneof" json:"total_duration,omitempty"`
+	// Identity of the user who initiated the run.
+	RequesterId string `protobuf:"bytes,7,opt,name=requester_id,json=requesterId,proto3" json:"requester_id,omitempty"`
+	// Input files for the run.
+	Inputs []*FileReference `protobuf:"bytes,9,rep,name=inputs,proto3" json:"inputs,omitempty"`
+	// Output files from the run.
+	Outputs []*FileReference `protobuf:"bytes,10,rep,name=outputs,proto3" json:"outputs,omitempty"`
+	// Snapshot of the pipeline recipe used for this run.
+	RecipeSnapshot *structpb.Struct `protobuf:"bytes,11,opt,name=recipe_snapshot,json=recipeSnapshot,proto3" json:"recipe_snapshot,omitempty"`
+	// Time when the run started execution.
+	StartTime *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=start_time,json=startTime,proto3" json:"start_time,omitempty"`
+	// Time when the run completed.
+	CompleteTime *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=complete_time,json=completeTime,proto3,oneof" json:"complete_time,omitempty"`
+	// Error message if the run failed.
+	Error *string `protobuf:"bytes,15,opt,name=error,proto3,oneof" json:"error,omitempty"`
+	// Credits used of internal accounting metric.
+	CreditAmount *float32 `protobuf:"fixed32,16,opt,name=credit_amount,json=creditAmount,proto3,oneof" json:"credit_amount,omitempty"`
+}
+
+func (x *PipelineRun) Reset() {
+	*x = PipelineRun{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[155]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PipelineRun) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PipelineRun) ProtoMessage() {}
+
+func (x *PipelineRun) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[155]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PipelineRun.ProtoReflect.Descriptor instead.
+func (*PipelineRun) Descriptor() ([]byte, []int) {
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{155}
+}
+
+func (x *PipelineRun) GetPipelineUid() string {
+	if x != nil {
+		return x.PipelineUid
+	}
+	return ""
+}
+
+func (x *PipelineRun) GetPipelineRunUid() string {
+	if x != nil {
+		return x.PipelineRunUid
+	}
+	return ""
+}
+
+func (x *PipelineRun) GetPipelineVersion() string {
+	if x != nil {
+		return x.PipelineVersion
+	}
+	return ""
+}
+
+func (x *PipelineRun) GetStatus() RunStatus {
+	if x != nil {
+		return x.Status
+	}
+	return RunStatus_RUN_STATUS_UNSPECIFIED
+}
+
+func (x *PipelineRun) GetSource() PipelineRun_RunSource {
+	if x != nil {
+		return x.Source
+	}
+	return PipelineRun_RUN_SOURCE_UNSPECIFIED
+}
+
+func (x *PipelineRun) GetTotalDuration() *durationpb.Duration {
+	if x != nil {
+		return x.TotalDuration
+	}
+	return nil
+}
+
+func (x *PipelineRun) GetRequesterId() string {
+	if x != nil {
+		return x.RequesterId
+	}
+	return ""
+}
+
+func (x *PipelineRun) GetInputs() []*FileReference {
+	if x != nil {
+		return x.Inputs
+	}
+	return nil
+}
+
+func (x *PipelineRun) GetOutputs() []*FileReference {
+	if x != nil {
+		return x.Outputs
+	}
+	return nil
+}
+
+func (x *PipelineRun) GetRecipeSnapshot() *structpb.Struct {
+	if x != nil {
+		return x.RecipeSnapshot
+	}
+	return nil
+}
+
+func (x *PipelineRun) GetStartTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.StartTime
+	}
+	return nil
+}
+
+func (x *PipelineRun) GetCompleteTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CompleteTime
+	}
+	return nil
+}
+
+func (x *PipelineRun) GetError() string {
+	if x != nil && x.Error != nil {
+		return *x.Error
+	}
+	return ""
+}
+
+func (x *PipelineRun) GetCreditAmount() float32 {
+	if x != nil && x.CreditAmount != nil {
+		return *x.CreditAmount
+	}
+	return 0
+}
+
+// ComponentRun represents the execution details of a single component within a pipeline run.
+type ComponentRun struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Links to the parent PipelineRun.
+	PipelineRunUid string `protobuf:"bytes,1,opt,name=pipeline_run_uid,json=pipelineRunUid,proto3" json:"pipeline_run_uid,omitempty"`
+	// Unique identifier for each pipeline component.
+	ComponentId string `protobuf:"bytes,2,opt,name=component_id,json=componentId,proto3" json:"component_id,omitempty"`
+	// Completion status of the component.
+	Status RunStatus `protobuf:"varint,3,opt,name=status,proto3,enum=vdp.pipeline.v1beta.RunStatus" json:"status,omitempty"`
+	// Time taken to execute the component.
+	TotalDuration *durationpb.Duration `protobuf:"bytes,4,opt,name=total_duration,json=totalDuration,proto3,oneof" json:"total_duration,omitempty"`
+	// Time when the component started execution.
+	StartTime *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=start_time,json=startTime,proto3" json:"start_time,omitempty"`
+	// Time when the component finished execution.
+	CompleteTime *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=complete_time,json=completeTime,proto3,oneof" json:"complete_time,omitempty"`
+	// Error message if the component failed.
+	Error *string `protobuf:"bytes,7,opt,name=error,proto3,oneof" json:"error,omitempty"`
+	// Input files for the component.
+	Inputs []*FileReference `protobuf:"bytes,8,rep,name=inputs,proto3" json:"inputs,omitempty"`
+	// Output files from the component.
+	Outputs []*FileReference `protobuf:"bytes,9,rep,name=outputs,proto3" json:"outputs,omitempty"`
+	// Credits used of internal accounting metric.
+	CreditAmount *float32 `protobuf:"fixed32,10,opt,name=credit_amount,json=creditAmount,proto3,oneof" json:"credit_amount,omitempty"`
+}
+
+func (x *ComponentRun) Reset() {
+	*x = ComponentRun{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[156]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ComponentRun) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ComponentRun) ProtoMessage() {}
+
+func (x *ComponentRun) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[156]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ComponentRun.ProtoReflect.Descriptor instead.
+func (*ComponentRun) Descriptor() ([]byte, []int) {
+	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{156}
+}
+
+func (x *ComponentRun) GetPipelineRunUid() string {
+	if x != nil {
+		return x.PipelineRunUid
+	}
+	return ""
+}
+
+func (x *ComponentRun) GetComponentId() string {
+	if x != nil {
+		return x.ComponentId
+	}
+	return ""
+}
+
+func (x *ComponentRun) GetStatus() RunStatus {
+	if x != nil {
+		return x.Status
+	}
+	return RunStatus_RUN_STATUS_UNSPECIFIED
+}
+
+func (x *ComponentRun) GetTotalDuration() *durationpb.Duration {
+	if x != nil {
+		return x.TotalDuration
+	}
+	return nil
+}
+
+func (x *ComponentRun) GetStartTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.StartTime
+	}
+	return nil
+}
+
+func (x *ComponentRun) GetCompleteTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CompleteTime
+	}
+	return nil
+}
+
+func (x *ComponentRun) GetError() string {
+	if x != nil && x.Error != nil {
+		return *x.Error
+	}
+	return ""
+}
+
+func (x *ComponentRun) GetInputs() []*FileReference {
+	if x != nil {
+		return x.Inputs
+	}
+	return nil
+}
+
+func (x *ComponentRun) GetOutputs() []*FileReference {
+	if x != nil {
+		return x.Outputs
+	}
+	return nil
+}
+
+func (x *ComponentRun) GetCreditAmount() float32 {
+	if x != nil && x.CreditAmount != nil {
+		return *x.CreditAmount
+	}
+	return 0
+}
+
 // Statistic data
 type Pipeline_Stats struct {
 	state         protoimpl.MessageState
@@ -9820,7 +10610,7 @@ type Pipeline_Stats struct {
 func (x *Pipeline_Stats) Reset() {
 	*x = Pipeline_Stats{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[150]
+		mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[157]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -9833,7 +10623,7 @@ func (x *Pipeline_Stats) String() string {
 func (*Pipeline_Stats) ProtoMessage() {}
 
 func (x *Pipeline_Stats) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[150]
+	mi := &file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[157]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9893,6 +10683,8 @@ var file_vdp_pipeline_v1beta_pipeline_proto_rawDesc = []byte{
 	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x2e, 0x70,
 	0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1f, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f,
 	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x2e,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x64, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e,
 	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x2d, 0x67, 0x65,
 	0x6e, 0x2d, 0x6f, 0x70, 0x65, 0x6e, 0x61, 0x70, 0x69, 0x76, 0x32, 0x2f, 0x6f, 0x70, 0x74, 0x69,
 	0x6f, 0x6e, 0x73, 0x2f, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e,
@@ -11600,27 +12392,195 @@ var file_vdp_pipeline_v1beta_pipeline_proto_rawDesc = []byte{
 	0x6c, 0x69, 0x6e, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x76, 0x64, 0x70,
 	0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61,
 	0x2e, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x52, 0x08, 0x70, 0x69, 0x70, 0x65, 0x6c,
-	0x69, 0x6e, 0x65, 0x2a, 0x55, 0x0a, 0x05, 0x53, 0x74, 0x61, 0x74, 0x65, 0x12, 0x15, 0x0a, 0x11,
-	0x53, 0x54, 0x41, 0x54, 0x45, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45,
-	0x44, 0x10, 0x00, 0x12, 0x12, 0x0a, 0x0e, 0x53, 0x54, 0x41, 0x54, 0x45, 0x5f, 0x49, 0x4e, 0x41,
-	0x43, 0x54, 0x49, 0x56, 0x45, 0x10, 0x01, 0x12, 0x10, 0x0a, 0x0c, 0x53, 0x54, 0x41, 0x54, 0x45,
-	0x5f, 0x41, 0x43, 0x54, 0x49, 0x56, 0x45, 0x10, 0x02, 0x12, 0x0f, 0x0a, 0x0b, 0x53, 0x54, 0x41,
-	0x54, 0x45, 0x5f, 0x45, 0x52, 0x52, 0x4f, 0x52, 0x10, 0x03, 0x42, 0xdc, 0x01, 0x0a, 0x17, 0x63,
-	0x6f, 0x6d, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e,
-	0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x42, 0x0d, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65,
-	0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x44, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e,
-	0x63, 0x6f, 0x6d, 0x2f, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2d, 0x61, 0x69, 0x2f, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x67, 0x65, 0x6e, 0x2d, 0x67, 0x6f, 0x2f, 0x76, 0x64, 0x70, 0x2f, 0x70,
-	0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2f, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x3b, 0x70,
-	0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0xa2, 0x02, 0x03,
-	0x56, 0x50, 0x58, 0xaa, 0x02, 0x13, 0x56, 0x64, 0x70, 0x2e, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69,
-	0x6e, 0x65, 0x2e, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0xca, 0x02, 0x13, 0x56, 0x64, 0x70, 0x5c,
-	0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x5c, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0xe2,
-	0x02, 0x1f, 0x56, 0x64, 0x70, 0x5c, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x5c, 0x56,
-	0x31, 0x62, 0x65, 0x74, 0x61, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74,
-	0x61, 0xea, 0x02, 0x15, 0x56, 0x64, 0x70, 0x3a, 0x3a, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e,
-	0x65, 0x3a, 0x3a, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x69, 0x6e, 0x65, 0x22, 0xed, 0x01, 0x0a, 0x17, 0x4c, 0x69, 0x73, 0x74, 0x50, 0x69, 0x70, 0x65,
+	0x6c, 0x69, 0x6e, 0x65, 0x52, 0x75, 0x6e, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
+	0x26, 0x0a, 0x0c, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x5f, 0x69, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x0b, 0x6e, 0x61, 0x6d, 0x65,
+	0x73, 0x70, 0x61, 0x63, 0x65, 0x49, 0x64, 0x12, 0x24, 0x0a, 0x0b, 0x70, 0x69, 0x70, 0x65, 0x6c,
+	0x69, 0x6e, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41,
+	0x02, 0x52, 0x0a, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x49, 0x64, 0x12, 0x17, 0x0a,
+	0x04, 0x70, 0x61, 0x67, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x42, 0x03, 0xe0, 0x41, 0x01,
+	0x52, 0x04, 0x70, 0x61, 0x67, 0x65, 0x12, 0x20, 0x0a, 0x09, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x73,
+	0x69, 0x7a, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x05, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x08,
+	0x70, 0x61, 0x67, 0x65, 0x53, 0x69, 0x7a, 0x65, 0x12, 0x40, 0x0a, 0x04, 0x76, 0x69, 0x65, 0x77,
+	0x18, 0x05, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x22, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70,
+	0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x50, 0x69, 0x70,
+	0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x56, 0x69, 0x65, 0x77, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x48,
+	0x00, 0x52, 0x04, 0x76, 0x69, 0x65, 0x77, 0x88, 0x01, 0x01, 0x42, 0x07, 0x0a, 0x05, 0x5f, 0x76,
+	0x69, 0x65, 0x77, 0x22, 0xc5, 0x01, 0x0a, 0x18, 0x4c, 0x69, 0x73, 0x74, 0x50, 0x69, 0x70, 0x65,
+	0x6c, 0x69, 0x6e, 0x65, 0x52, 0x75, 0x6e, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x4a, 0x0a, 0x0d, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x5f, 0x72, 0x75, 0x6e,
+	0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69,
+	0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x50, 0x69,
+	0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x52, 0x75, 0x6e, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0c,
+	0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x52, 0x75, 0x6e, 0x73, 0x12, 0x22, 0x0a, 0x0a,
+	0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03,
+	0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x09, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x53, 0x69, 0x7a, 0x65,
+	0x12, 0x17, 0x0a, 0x04, 0x70, 0x61, 0x67, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x42, 0x03,
+	0xe0, 0x41, 0x03, 0x52, 0x04, 0x70, 0x61, 0x67, 0x65, 0x12, 0x20, 0x0a, 0x09, 0x70, 0x61, 0x67,
+	0x65, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x05, 0x42, 0x03, 0xe0, 0x41,
+	0x03, 0x52, 0x08, 0x70, 0x61, 0x67, 0x65, 0x53, 0x69, 0x7a, 0x65, 0x22, 0xa3, 0x01, 0x0a, 0x18,
+	0x4c, 0x69, 0x73, 0x74, 0x43, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x52, 0x75, 0x6e,
+	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2b, 0x0a, 0x0f, 0x70, 0x69, 0x70, 0x65,
+	0x6c, 0x69, 0x6e, 0x65, 0x5f, 0x72, 0x75, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x0d, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65,
+	0x52, 0x75, 0x6e, 0x49, 0x64, 0x12, 0x1c, 0x0a, 0x04, 0x70, 0x61, 0x67, 0x65, 0x18, 0x03, 0x20,
+	0x01, 0x28, 0x05, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x00, 0x52, 0x04, 0x70, 0x61, 0x67, 0x65,
+	0x88, 0x01, 0x01, 0x12, 0x25, 0x0a, 0x09, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x73, 0x69, 0x7a, 0x65,
+	0x18, 0x04, 0x20, 0x01, 0x28, 0x05, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x01, 0x52, 0x08, 0x70,
+	0x61, 0x67, 0x65, 0x53, 0x69, 0x7a, 0x65, 0x88, 0x01, 0x01, 0x42, 0x07, 0x0a, 0x05, 0x5f, 0x70,
+	0x61, 0x67, 0x65, 0x42, 0x0c, 0x0a, 0x0a, 0x5f, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x73, 0x69, 0x7a,
+	0x65, 0x22, 0xc9, 0x01, 0x0a, 0x19, 0x4c, 0x69, 0x73, 0x74, 0x43, 0x6f, 0x6d, 0x70, 0x6f, 0x6e,
+	0x65, 0x6e, 0x74, 0x52, 0x75, 0x6e, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x4d, 0x0a, 0x0e, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x5f, 0x72, 0x75, 0x6e,
+	0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x21, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69,
+	0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x43, 0x6f,
+	0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x52, 0x75, 0x6e, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52,
+	0x0d, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x52, 0x75, 0x6e, 0x73, 0x12, 0x22,
+	0x0a, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x03, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x09, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x53, 0x69,
+	0x7a, 0x65, 0x12, 0x17, 0x0a, 0x04, 0x70, 0x61, 0x67, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05,
+	0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x04, 0x70, 0x61, 0x67, 0x65, 0x12, 0x20, 0x0a, 0x09, 0x70,
+	0x61, 0x67, 0x65, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x05, 0x42, 0x03,
+	0xe0, 0x41, 0x03, 0x52, 0x08, 0x70, 0x61, 0x67, 0x65, 0x53, 0x69, 0x7a, 0x65, 0x22, 0x71, 0x0a,
+	0x0d, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x66, 0x65, 0x72, 0x65, 0x6e, 0x63, 0x65, 0x12, 0x17,
+	0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41,
+	0x02, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x17, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65,
+	0x12, 0x17, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03, 0x42, 0x03,
+	0xe0, 0x41, 0x02, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x12, 0x15, 0x0a, 0x03, 0x75, 0x72, 0x6c,
+	0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x03, 0x75, 0x72, 0x6c,
+	0x22, 0xd5, 0x07, 0x0a, 0x0b, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x52, 0x75, 0x6e,
+	0x12, 0x26, 0x0a, 0x0c, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x5f, 0x75, 0x69, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0b, 0x70, 0x69, 0x70,
+	0x65, 0x6c, 0x69, 0x6e, 0x65, 0x55, 0x69, 0x64, 0x12, 0x2d, 0x0a, 0x10, 0x70, 0x69, 0x70, 0x65,
+	0x6c, 0x69, 0x6e, 0x65, 0x5f, 0x72, 0x75, 0x6e, 0x5f, 0x75, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e,
+	0x65, 0x52, 0x75, 0x6e, 0x55, 0x69, 0x64, 0x12, 0x2e, 0x0a, 0x10, 0x70, 0x69, 0x70, 0x65, 0x6c,
+	0x69, 0x6e, 0x65, 0x5f, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0f, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65,
+	0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x3b, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75,
+	0x73, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x1e, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69,
+	0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x52, 0x75,
+	0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x06, 0x73, 0x74,
+	0x61, 0x74, 0x75, 0x73, 0x12, 0x47, 0x0a, 0x06, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x18, 0x05,
+	0x20, 0x01, 0x28, 0x0e, 0x32, 0x2a, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c,
+	0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x50, 0x69, 0x70, 0x65, 0x6c,
+	0x69, 0x6e, 0x65, 0x52, 0x75, 0x6e, 0x2e, 0x52, 0x75, 0x6e, 0x53, 0x6f, 0x75, 0x72, 0x63, 0x65,
+	0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x06, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x12, 0x4d, 0x0a,
+	0x0e, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x64, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18,
+	0x06, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x44, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x42, 0x06, 0xe0, 0x41, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x00, 0x52, 0x0d, 0x74, 0x6f, 0x74, 0x61,
+	0x6c, 0x44, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x88, 0x01, 0x01, 0x12, 0x26, 0x0a, 0x0c,
+	0x72, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x07, 0x20, 0x01,
+	0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0b, 0x72, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x65, 0x72, 0x49, 0x64, 0x12, 0x3f, 0x0a, 0x06, 0x69, 0x6e, 0x70, 0x75, 0x74, 0x73, 0x18, 0x09,
+	0x20, 0x03, 0x28, 0x0b, 0x32, 0x22, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c,
+	0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x46, 0x69, 0x6c, 0x65, 0x52,
+	0x65, 0x66, 0x65, 0x72, 0x65, 0x6e, 0x63, 0x65, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x06, 0x69,
+	0x6e, 0x70, 0x75, 0x74, 0x73, 0x12, 0x41, 0x0a, 0x07, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x73,
+	0x18, 0x0a, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x22, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70,
+	0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x46, 0x69, 0x6c,
+	0x65, 0x52, 0x65, 0x66, 0x65, 0x72, 0x65, 0x6e, 0x63, 0x65, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52,
+	0x07, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x73, 0x12, 0x45, 0x0a, 0x0f, 0x72, 0x65, 0x63, 0x69,
+	0x70, 0x65, 0x5f, 0x73, 0x6e, 0x61, 0x70, 0x73, 0x68, 0x6f, 0x74, 0x18, 0x0b, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52,
+	0x0e, 0x72, 0x65, 0x63, 0x69, 0x70, 0x65, 0x53, 0x6e, 0x61, 0x70, 0x73, 0x68, 0x6f, 0x74, 0x12,
+	0x3e, 0x0a, 0x0a, 0x73, 0x74, 0x61, 0x72, 0x74, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x0d, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42,
+	0x03, 0xe0, 0x41, 0x03, 0x52, 0x09, 0x73, 0x74, 0x61, 0x72, 0x74, 0x54, 0x69, 0x6d, 0x65, 0x12,
+	0x4c, 0x0a, 0x0d, 0x63, 0x6f, 0x6d, 0x70, 0x6c, 0x65, 0x74, 0x65, 0x5f, 0x74, 0x69, 0x6d, 0x65,
+	0x18, 0x0e, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61,
+	0x6d, 0x70, 0x42, 0x06, 0xe0, 0x41, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x01, 0x52, 0x0c, 0x63, 0x6f,
+	0x6d, 0x70, 0x6c, 0x65, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x88, 0x01, 0x01, 0x12, 0x21, 0x0a,
+	0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x18, 0x0f, 0x20, 0x01, 0x28, 0x09, 0x42, 0x06, 0xe0, 0x41,
+	0x03, 0xe0, 0x41, 0x01, 0x48, 0x02, 0x52, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x88, 0x01, 0x01,
+	0x12, 0x30, 0x0a, 0x0d, 0x63, 0x72, 0x65, 0x64, 0x69, 0x74, 0x5f, 0x61, 0x6d, 0x6f, 0x75, 0x6e,
+	0x74, 0x18, 0x10, 0x20, 0x01, 0x28, 0x02, 0x42, 0x06, 0xe0, 0x41, 0x03, 0xe0, 0x41, 0x01, 0x48,
+	0x03, 0x52, 0x0c, 0x63, 0x72, 0x65, 0x64, 0x69, 0x74, 0x41, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x88,
+	0x01, 0x01, 0x22, 0x53, 0x0a, 0x09, 0x52, 0x75, 0x6e, 0x53, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x12,
+	0x1a, 0x0a, 0x16, 0x52, 0x55, 0x4e, 0x5f, 0x53, 0x4f, 0x55, 0x52, 0x43, 0x45, 0x5f, 0x55, 0x4e,
+	0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x16, 0x0a, 0x12, 0x52,
+	0x55, 0x4e, 0x5f, 0x53, 0x4f, 0x55, 0x52, 0x43, 0x45, 0x5f, 0x43, 0x4f, 0x4e, 0x53, 0x4f, 0x4c,
+	0x45, 0x10, 0x01, 0x12, 0x12, 0x0a, 0x0e, 0x52, 0x55, 0x4e, 0x5f, 0x53, 0x4f, 0x55, 0x52, 0x43,
+	0x45, 0x5f, 0x41, 0x50, 0x49, 0x10, 0x02, 0x42, 0x11, 0x0a, 0x0f, 0x5f, 0x74, 0x6f, 0x74, 0x61,
+	0x6c, 0x5f, 0x64, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x10, 0x0a, 0x0e, 0x5f, 0x63,
+	0x6f, 0x6d, 0x70, 0x6c, 0x65, 0x74, 0x65, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x42, 0x08, 0x0a, 0x06,
+	0x5f, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x42, 0x10, 0x0a, 0x0e, 0x5f, 0x63, 0x72, 0x65, 0x64, 0x69,
+	0x74, 0x5f, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x22, 0x99, 0x05, 0x0a, 0x0c, 0x43, 0x6f, 0x6d,
+	0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x52, 0x75, 0x6e, 0x12, 0x2d, 0x0a, 0x10, 0x70, 0x69, 0x70,
+	0x65, 0x6c, 0x69, 0x6e, 0x65, 0x5f, 0x72, 0x75, 0x6e, 0x5f, 0x75, 0x69, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69,
+	0x6e, 0x65, 0x52, 0x75, 0x6e, 0x55, 0x69, 0x64, 0x12, 0x26, 0x0a, 0x0c, 0x63, 0x6f, 0x6d, 0x70,
+	0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03,
+	0xe0, 0x41, 0x03, 0x52, 0x0b, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x49, 0x64,
+	0x12, 0x3b, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0e,
+	0x32, 0x1e, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e,
+	0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x52, 0x75, 0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73,
+	0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x4d, 0x0a,
+	0x0e, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x64, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18,
+	0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x44, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x42, 0x06, 0xe0, 0x41, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x00, 0x52, 0x0d, 0x74, 0x6f, 0x74, 0x61,
+	0x6c, 0x44, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x88, 0x01, 0x01, 0x12, 0x3e, 0x0a, 0x0a,
+	0x73, 0x74, 0x61, 0x72, 0x74, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62,
+	0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42, 0x03, 0xe0, 0x41,
+	0x03, 0x52, 0x09, 0x73, 0x74, 0x61, 0x72, 0x74, 0x54, 0x69, 0x6d, 0x65, 0x12, 0x4c, 0x0a, 0x0d,
+	0x63, 0x6f, 0x6d, 0x70, 0x6c, 0x65, 0x74, 0x65, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x06, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42,
+	0x06, 0xe0, 0x41, 0x03, 0xe0, 0x41, 0x01, 0x48, 0x01, 0x52, 0x0c, 0x63, 0x6f, 0x6d, 0x70, 0x6c,
+	0x65, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x88, 0x01, 0x01, 0x12, 0x21, 0x0a, 0x05, 0x65, 0x72,
+	0x72, 0x6f, 0x72, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x42, 0x06, 0xe0, 0x41, 0x03, 0xe0, 0x41,
+	0x01, 0x48, 0x02, 0x52, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x88, 0x01, 0x01, 0x12, 0x3f, 0x0a,
+	0x06, 0x69, 0x6e, 0x70, 0x75, 0x74, 0x73, 0x18, 0x08, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x22, 0x2e,
+	0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62,
+	0x65, 0x74, 0x61, 0x2e, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x66, 0x65, 0x72, 0x65, 0x6e, 0x63,
+	0x65, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x06, 0x69, 0x6e, 0x70, 0x75, 0x74, 0x73, 0x12, 0x41,
+	0x0a, 0x07, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x73, 0x18, 0x09, 0x20, 0x03, 0x28, 0x0b, 0x32,
+	0x22, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76,
+	0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x66, 0x65, 0x72, 0x65,
+	0x6e, 0x63, 0x65, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x07, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74,
+	0x73, 0x12, 0x30, 0x0a, 0x0d, 0x63, 0x72, 0x65, 0x64, 0x69, 0x74, 0x5f, 0x61, 0x6d, 0x6f, 0x75,
+	0x6e, 0x74, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x02, 0x42, 0x06, 0xe0, 0x41, 0x03, 0xe0, 0x41, 0x01,
+	0x48, 0x03, 0x52, 0x0c, 0x63, 0x72, 0x65, 0x64, 0x69, 0x74, 0x41, 0x6d, 0x6f, 0x75, 0x6e, 0x74,
+	0x88, 0x01, 0x01, 0x42, 0x11, 0x0a, 0x0f, 0x5f, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x64, 0x75,
+	0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x10, 0x0a, 0x0e, 0x5f, 0x63, 0x6f, 0x6d, 0x70, 0x6c,
+	0x65, 0x74, 0x65, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x42, 0x08, 0x0a, 0x06, 0x5f, 0x65, 0x72, 0x72,
+	0x6f, 0x72, 0x42, 0x10, 0x0a, 0x0e, 0x5f, 0x63, 0x72, 0x65, 0x64, 0x69, 0x74, 0x5f, 0x61, 0x6d,
+	0x6f, 0x75, 0x6e, 0x74, 0x2a, 0x55, 0x0a, 0x05, 0x53, 0x74, 0x61, 0x74, 0x65, 0x12, 0x15, 0x0a,
+	0x11, 0x53, 0x54, 0x41, 0x54, 0x45, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49,
+	0x45, 0x44, 0x10, 0x00, 0x12, 0x12, 0x0a, 0x0e, 0x53, 0x54, 0x41, 0x54, 0x45, 0x5f, 0x49, 0x4e,
+	0x41, 0x43, 0x54, 0x49, 0x56, 0x45, 0x10, 0x01, 0x12, 0x10, 0x0a, 0x0c, 0x53, 0x54, 0x41, 0x54,
+	0x45, 0x5f, 0x41, 0x43, 0x54, 0x49, 0x56, 0x45, 0x10, 0x02, 0x12, 0x0f, 0x0a, 0x0b, 0x53, 0x54,
+	0x41, 0x54, 0x45, 0x5f, 0x45, 0x52, 0x52, 0x4f, 0x52, 0x10, 0x03, 0x2a, 0x70, 0x0a, 0x09, 0x52,
+	0x75, 0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x1a, 0x0a, 0x16, 0x52, 0x55, 0x4e, 0x5f,
+	0x53, 0x54, 0x41, 0x54, 0x55, 0x53, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49,
+	0x45, 0x44, 0x10, 0x00, 0x12, 0x16, 0x0a, 0x12, 0x52, 0x55, 0x4e, 0x5f, 0x53, 0x54, 0x41, 0x54,
+	0x55, 0x53, 0x5f, 0x52, 0x55, 0x4e, 0x4e, 0x49, 0x4e, 0x47, 0x10, 0x01, 0x12, 0x18, 0x0a, 0x14,
+	0x52, 0x55, 0x4e, 0x5f, 0x53, 0x54, 0x41, 0x54, 0x55, 0x53, 0x5f, 0x43, 0x4f, 0x4d, 0x50, 0x4c,
+	0x45, 0x54, 0x45, 0x44, 0x10, 0x02, 0x12, 0x15, 0x0a, 0x11, 0x52, 0x55, 0x4e, 0x5f, 0x53, 0x54,
+	0x41, 0x54, 0x55, 0x53, 0x5f, 0x46, 0x41, 0x49, 0x4c, 0x45, 0x44, 0x10, 0x03, 0x42, 0xdc, 0x01,
+	0x0a, 0x17, 0x63, 0x6f, 0x6d, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69,
+	0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x42, 0x0d, 0x50, 0x69, 0x70, 0x65, 0x6c,
+	0x69, 0x6e, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x44, 0x67, 0x69, 0x74, 0x68,
+	0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2d, 0x61,
+	0x69, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x67, 0x65, 0x6e, 0x2d, 0x67, 0x6f, 0x2f, 0x76, 0x64,
+	0x70, 0x2f, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2f, 0x76, 0x31, 0x62, 0x65, 0x74,
+	0x61, 0x3b, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61,
+	0xa2, 0x02, 0x03, 0x56, 0x50, 0x58, 0xaa, 0x02, 0x13, 0x56, 0x64, 0x70, 0x2e, 0x50, 0x69, 0x70,
+	0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0xca, 0x02, 0x13, 0x56,
+	0x64, 0x70, 0x5c, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x5c, 0x56, 0x31, 0x62, 0x65,
+	0x74, 0x61, 0xe2, 0x02, 0x1f, 0x56, 0x64, 0x70, 0x5c, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e,
+	0x65, 0x5c, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61,
+	0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x15, 0x56, 0x64, 0x70, 0x3a, 0x3a, 0x50, 0x69, 0x70, 0x65,
+	0x6c, 0x69, 0x6e, 0x65, 0x3a, 0x3a, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x62, 0x06, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -11635,357 +12595,384 @@ func file_vdp_pipeline_v1beta_pipeline_proto_rawDescGZIP() []byte {
 	return file_vdp_pipeline_v1beta_pipeline_proto_rawDescData
 }
 
-var file_vdp_pipeline_v1beta_pipeline_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
-var file_vdp_pipeline_v1beta_pipeline_proto_msgTypes = make([]protoimpl.MessageInfo, 153)
+var file_vdp_pipeline_v1beta_pipeline_proto_enumTypes = make([]protoimpl.EnumInfo, 6)
+var file_vdp_pipeline_v1beta_pipeline_proto_msgTypes = make([]protoimpl.MessageInfo, 160)
 var file_vdp_pipeline_v1beta_pipeline_proto_goTypes = []interface{}{
 	(State)(0),                                              // 0: vdp.pipeline.v1beta.State
-	(Pipeline_View)(0),                                      // 1: vdp.pipeline.v1beta.Pipeline.View
-	(Pipeline_Visibility)(0),                                // 2: vdp.pipeline.v1beta.Pipeline.Visibility
-	(Trace_Status)(0),                                       // 3: vdp.pipeline.v1beta.Trace.Status
-	(*LivenessRequest)(nil),                                 // 4: vdp.pipeline.v1beta.LivenessRequest
-	(*LivenessResponse)(nil),                                // 5: vdp.pipeline.v1beta.LivenessResponse
-	(*ReadinessRequest)(nil),                                // 6: vdp.pipeline.v1beta.ReadinessRequest
-	(*ReadinessResponse)(nil),                               // 7: vdp.pipeline.v1beta.ReadinessResponse
-	(*Pipeline)(nil),                                        // 8: vdp.pipeline.v1beta.Pipeline
-	(*TriggerMetadata)(nil),                                 // 9: vdp.pipeline.v1beta.TriggerMetadata
-	(*Trace)(nil),                                           // 10: vdp.pipeline.v1beta.Trace
-	(*GetHubStatsRequest)(nil),                              // 11: vdp.pipeline.v1beta.GetHubStatsRequest
-	(*GetHubStatsResponse)(nil),                             // 12: vdp.pipeline.v1beta.GetHubStatsResponse
-	(*PipelineRelease)(nil),                                 // 13: vdp.pipeline.v1beta.PipelineRelease
-	(*ListPipelinesRequest)(nil),                            // 14: vdp.pipeline.v1beta.ListPipelinesRequest
-	(*ListPipelinesResponse)(nil),                           // 15: vdp.pipeline.v1beta.ListPipelinesResponse
-	(*ListNamespacePipelinesRequest)(nil),                   // 16: vdp.pipeline.v1beta.ListNamespacePipelinesRequest
-	(*ListNamespacePipelinesResponse)(nil),                  // 17: vdp.pipeline.v1beta.ListNamespacePipelinesResponse
-	(*LookUpPipelineRequest)(nil),                           // 18: vdp.pipeline.v1beta.LookUpPipelineRequest
-	(*LookUpPipelineResponse)(nil),                          // 19: vdp.pipeline.v1beta.LookUpPipelineResponse
-	(*CreateNamespacePipelineRequest)(nil),                  // 20: vdp.pipeline.v1beta.CreateNamespacePipelineRequest
-	(*CreateNamespacePipelineResponse)(nil),                 // 21: vdp.pipeline.v1beta.CreateNamespacePipelineResponse
-	(*GetNamespacePipelineRequest)(nil),                     // 22: vdp.pipeline.v1beta.GetNamespacePipelineRequest
-	(*GetNamespacePipelineResponse)(nil),                    // 23: vdp.pipeline.v1beta.GetNamespacePipelineResponse
-	(*UpdateNamespacePipelineRequest)(nil),                  // 24: vdp.pipeline.v1beta.UpdateNamespacePipelineRequest
-	(*UpdateNamespacePipelineResponse)(nil),                 // 25: vdp.pipeline.v1beta.UpdateNamespacePipelineResponse
-	(*DeleteNamespacePipelineRequest)(nil),                  // 26: vdp.pipeline.v1beta.DeleteNamespacePipelineRequest
-	(*DeleteNamespacePipelineResponse)(nil),                 // 27: vdp.pipeline.v1beta.DeleteNamespacePipelineResponse
-	(*ValidateNamespacePipelineRequest)(nil),                // 28: vdp.pipeline.v1beta.ValidateNamespacePipelineRequest
-	(*ValidateNamespacePipelineResponse)(nil),               // 29: vdp.pipeline.v1beta.ValidateNamespacePipelineResponse
-	(*RenameNamespacePipelineRequest)(nil),                  // 30: vdp.pipeline.v1beta.RenameNamespacePipelineRequest
-	(*RenameNamespacePipelineResponse)(nil),                 // 31: vdp.pipeline.v1beta.RenameNamespacePipelineResponse
-	(*CloneNamespacePipelineRequest)(nil),                   // 32: vdp.pipeline.v1beta.CloneNamespacePipelineRequest
-	(*CloneNamespacePipelineResponse)(nil),                  // 33: vdp.pipeline.v1beta.CloneNamespacePipelineResponse
-	(*CloneNamespacePipelineReleaseRequest)(nil),            // 34: vdp.pipeline.v1beta.CloneNamespacePipelineReleaseRequest
-	(*CloneNamespacePipelineReleaseResponse)(nil),           // 35: vdp.pipeline.v1beta.CloneNamespacePipelineReleaseResponse
-	(*SendNamespacePipelineEventRequest)(nil),               // 36: vdp.pipeline.v1beta.SendNamespacePipelineEventRequest
-	(*SendNamespacePipelineEventResponse)(nil),              // 37: vdp.pipeline.v1beta.SendNamespacePipelineEventResponse
-	(*SendNamespacePipelineReleaseEventRequest)(nil),        // 38: vdp.pipeline.v1beta.SendNamespacePipelineReleaseEventRequest
-	(*SendNamespacePipelineReleaseEventResponse)(nil),       // 39: vdp.pipeline.v1beta.SendNamespacePipelineReleaseEventResponse
-	(*TriggerNamespacePipelineRequest)(nil),                 // 40: vdp.pipeline.v1beta.TriggerNamespacePipelineRequest
-	(*TriggerNamespacePipelineResponse)(nil),                // 41: vdp.pipeline.v1beta.TriggerNamespacePipelineResponse
-	(*TriggerNamespacePipelineWithStreamRequest)(nil),       // 42: vdp.pipeline.v1beta.TriggerNamespacePipelineWithStreamRequest
-	(*TriggerNamespacePipelineWithStreamResponse)(nil),      // 43: vdp.pipeline.v1beta.TriggerNamespacePipelineWithStreamResponse
-	(*TriggerAsyncNamespacePipelineRequest)(nil),            // 44: vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineRequest
-	(*TriggerAsyncNamespacePipelineResponse)(nil),           // 45: vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineResponse
-	(*CreateNamespacePipelineReleaseRequest)(nil),           // 46: vdp.pipeline.v1beta.CreateNamespacePipelineReleaseRequest
-	(*CreateNamespacePipelineReleaseResponse)(nil),          // 47: vdp.pipeline.v1beta.CreateNamespacePipelineReleaseResponse
-	(*ListNamespacePipelineReleasesRequest)(nil),            // 48: vdp.pipeline.v1beta.ListNamespacePipelineReleasesRequest
-	(*ListNamespacePipelineReleasesResponse)(nil),           // 49: vdp.pipeline.v1beta.ListNamespacePipelineReleasesResponse
-	(*GetNamespacePipelineReleaseRequest)(nil),              // 50: vdp.pipeline.v1beta.GetNamespacePipelineReleaseRequest
-	(*GetNamespacePipelineReleaseResponse)(nil),             // 51: vdp.pipeline.v1beta.GetNamespacePipelineReleaseResponse
-	(*UpdateNamespacePipelineReleaseRequest)(nil),           // 52: vdp.pipeline.v1beta.UpdateNamespacePipelineReleaseRequest
-	(*UpdateNamespacePipelineReleaseResponse)(nil),          // 53: vdp.pipeline.v1beta.UpdateNamespacePipelineReleaseResponse
-	(*DeleteNamespacePipelineReleaseRequest)(nil),           // 54: vdp.pipeline.v1beta.DeleteNamespacePipelineReleaseRequest
-	(*DeleteNamespacePipelineReleaseResponse)(nil),          // 55: vdp.pipeline.v1beta.DeleteNamespacePipelineReleaseResponse
-	(*TriggerNamespacePipelineReleaseRequest)(nil),          // 56: vdp.pipeline.v1beta.TriggerNamespacePipelineReleaseRequest
-	(*TriggerNamespacePipelineReleaseResponse)(nil),         // 57: vdp.pipeline.v1beta.TriggerNamespacePipelineReleaseResponse
-	(*TriggerAsyncNamespacePipelineReleaseRequest)(nil),     // 58: vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseRequest
-	(*TriggerAsyncNamespacePipelineReleaseResponse)(nil),    // 59: vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseResponse
-	(*CreateUserPipelineRequest)(nil),                       // 60: vdp.pipeline.v1beta.CreateUserPipelineRequest
-	(*CreateUserPipelineResponse)(nil),                      // 61: vdp.pipeline.v1beta.CreateUserPipelineResponse
-	(*ListUserPipelinesRequest)(nil),                        // 62: vdp.pipeline.v1beta.ListUserPipelinesRequest
-	(*ListUserPipelinesResponse)(nil),                       // 63: vdp.pipeline.v1beta.ListUserPipelinesResponse
-	(*GetUserPipelineRequest)(nil),                          // 64: vdp.pipeline.v1beta.GetUserPipelineRequest
-	(*GetUserPipelineResponse)(nil),                         // 65: vdp.pipeline.v1beta.GetUserPipelineResponse
-	(*UpdateUserPipelineRequest)(nil),                       // 66: vdp.pipeline.v1beta.UpdateUserPipelineRequest
-	(*UpdateUserPipelineResponse)(nil),                      // 67: vdp.pipeline.v1beta.UpdateUserPipelineResponse
-	(*DeleteUserPipelineRequest)(nil),                       // 68: vdp.pipeline.v1beta.DeleteUserPipelineRequest
-	(*DeleteUserPipelineResponse)(nil),                      // 69: vdp.pipeline.v1beta.DeleteUserPipelineResponse
-	(*PipelineValidationError)(nil),                         // 70: vdp.pipeline.v1beta.PipelineValidationError
-	(*ValidateUserPipelineRequest)(nil),                     // 71: vdp.pipeline.v1beta.ValidateUserPipelineRequest
-	(*ValidateUserPipelineResponse)(nil),                    // 72: vdp.pipeline.v1beta.ValidateUserPipelineResponse
-	(*RenameUserPipelineRequest)(nil),                       // 73: vdp.pipeline.v1beta.RenameUserPipelineRequest
-	(*RenameUserPipelineResponse)(nil),                      // 74: vdp.pipeline.v1beta.RenameUserPipelineResponse
-	(*CloneUserPipelineRequest)(nil),                        // 75: vdp.pipeline.v1beta.CloneUserPipelineRequest
-	(*CloneUserPipelineResponse)(nil),                       // 76: vdp.pipeline.v1beta.CloneUserPipelineResponse
-	(*CloneUserPipelineReleaseRequest)(nil),                 // 77: vdp.pipeline.v1beta.CloneUserPipelineReleaseRequest
-	(*CloneUserPipelineReleaseResponse)(nil),                // 78: vdp.pipeline.v1beta.CloneUserPipelineReleaseResponse
-	(*TriggerUserPipelineRequest)(nil),                      // 79: vdp.pipeline.v1beta.TriggerUserPipelineRequest
-	(*TriggerUserPipelineResponse)(nil),                     // 80: vdp.pipeline.v1beta.TriggerUserPipelineResponse
-	(*TriggerUserPipelineWithStreamRequest)(nil),            // 81: vdp.pipeline.v1beta.TriggerUserPipelineWithStreamRequest
-	(*TriggerUserPipelineWithStreamResponse)(nil),           // 82: vdp.pipeline.v1beta.TriggerUserPipelineWithStreamResponse
-	(*TriggerData)(nil),                                     // 83: vdp.pipeline.v1beta.TriggerData
-	(*TriggerAsyncUserPipelineRequest)(nil),                 // 84: vdp.pipeline.v1beta.TriggerAsyncUserPipelineRequest
-	(*TriggerAsyncUserPipelineResponse)(nil),                // 85: vdp.pipeline.v1beta.TriggerAsyncUserPipelineResponse
-	(*CreateUserPipelineReleaseRequest)(nil),                // 86: vdp.pipeline.v1beta.CreateUserPipelineReleaseRequest
-	(*CreateUserPipelineReleaseResponse)(nil),               // 87: vdp.pipeline.v1beta.CreateUserPipelineReleaseResponse
-	(*ListUserPipelineReleasesRequest)(nil),                 // 88: vdp.pipeline.v1beta.ListUserPipelineReleasesRequest
-	(*ListUserPipelineReleasesResponse)(nil),                // 89: vdp.pipeline.v1beta.ListUserPipelineReleasesResponse
-	(*GetUserPipelineReleaseRequest)(nil),                   // 90: vdp.pipeline.v1beta.GetUserPipelineReleaseRequest
-	(*GetUserPipelineReleaseResponse)(nil),                  // 91: vdp.pipeline.v1beta.GetUserPipelineReleaseResponse
-	(*UpdateUserPipelineReleaseRequest)(nil),                // 92: vdp.pipeline.v1beta.UpdateUserPipelineReleaseRequest
-	(*UpdateUserPipelineReleaseResponse)(nil),               // 93: vdp.pipeline.v1beta.UpdateUserPipelineReleaseResponse
-	(*DeleteUserPipelineReleaseRequest)(nil),                // 94: vdp.pipeline.v1beta.DeleteUserPipelineReleaseRequest
-	(*DeleteUserPipelineReleaseResponse)(nil),               // 95: vdp.pipeline.v1beta.DeleteUserPipelineReleaseResponse
-	(*RestoreUserPipelineReleaseRequest)(nil),               // 96: vdp.pipeline.v1beta.RestoreUserPipelineReleaseRequest
-	(*RestoreUserPipelineReleaseResponse)(nil),              // 97: vdp.pipeline.v1beta.RestoreUserPipelineReleaseResponse
-	(*RenameUserPipelineReleaseRequest)(nil),                // 98: vdp.pipeline.v1beta.RenameUserPipelineReleaseRequest
-	(*RenameUserPipelineReleaseResponse)(nil),               // 99: vdp.pipeline.v1beta.RenameUserPipelineReleaseResponse
-	(*TriggerUserPipelineReleaseRequest)(nil),               // 100: vdp.pipeline.v1beta.TriggerUserPipelineReleaseRequest
-	(*TriggerUserPipelineReleaseResponse)(nil),              // 101: vdp.pipeline.v1beta.TriggerUserPipelineReleaseResponse
-	(*TriggerAsyncUserPipelineReleaseRequest)(nil),          // 102: vdp.pipeline.v1beta.TriggerAsyncUserPipelineReleaseRequest
-	(*TriggerAsyncUserPipelineReleaseResponse)(nil),         // 103: vdp.pipeline.v1beta.TriggerAsyncUserPipelineReleaseResponse
-	(*CreateOrganizationPipelineRequest)(nil),               // 104: vdp.pipeline.v1beta.CreateOrganizationPipelineRequest
-	(*CreateOrganizationPipelineResponse)(nil),              // 105: vdp.pipeline.v1beta.CreateOrganizationPipelineResponse
-	(*ListOrganizationPipelinesRequest)(nil),                // 106: vdp.pipeline.v1beta.ListOrganizationPipelinesRequest
-	(*ListOrganizationPipelinesResponse)(nil),               // 107: vdp.pipeline.v1beta.ListOrganizationPipelinesResponse
-	(*GetOrganizationPipelineRequest)(nil),                  // 108: vdp.pipeline.v1beta.GetOrganizationPipelineRequest
-	(*GetOrganizationPipelineResponse)(nil),                 // 109: vdp.pipeline.v1beta.GetOrganizationPipelineResponse
-	(*UpdateOrganizationPipelineRequest)(nil),               // 110: vdp.pipeline.v1beta.UpdateOrganizationPipelineRequest
-	(*UpdateOrganizationPipelineResponse)(nil),              // 111: vdp.pipeline.v1beta.UpdateOrganizationPipelineResponse
-	(*DeleteOrganizationPipelineRequest)(nil),               // 112: vdp.pipeline.v1beta.DeleteOrganizationPipelineRequest
-	(*DeleteOrganizationPipelineResponse)(nil),              // 113: vdp.pipeline.v1beta.DeleteOrganizationPipelineResponse
-	(*ValidateOrganizationPipelineRequest)(nil),             // 114: vdp.pipeline.v1beta.ValidateOrganizationPipelineRequest
-	(*ValidateOrganizationPipelineResponse)(nil),            // 115: vdp.pipeline.v1beta.ValidateOrganizationPipelineResponse
-	(*RenameOrganizationPipelineRequest)(nil),               // 116: vdp.pipeline.v1beta.RenameOrganizationPipelineRequest
-	(*RenameOrganizationPipelineResponse)(nil),              // 117: vdp.pipeline.v1beta.RenameOrganizationPipelineResponse
-	(*CloneOrganizationPipelineRequest)(nil),                // 118: vdp.pipeline.v1beta.CloneOrganizationPipelineRequest
-	(*CloneOrganizationPipelineResponse)(nil),               // 119: vdp.pipeline.v1beta.CloneOrganizationPipelineResponse
-	(*CloneOrganizationPipelineReleaseRequest)(nil),         // 120: vdp.pipeline.v1beta.CloneOrganizationPipelineReleaseRequest
-	(*CloneOrganizationPipelineReleaseResponse)(nil),        // 121: vdp.pipeline.v1beta.CloneOrganizationPipelineReleaseResponse
-	(*TriggerOrganizationPipelineRequest)(nil),              // 122: vdp.pipeline.v1beta.TriggerOrganizationPipelineRequest
-	(*TriggerOrganizationPipelineResponse)(nil),             // 123: vdp.pipeline.v1beta.TriggerOrganizationPipelineResponse
-	(*TriggerOrganizationPipelineStreamRequest)(nil),        // 124: vdp.pipeline.v1beta.TriggerOrganizationPipelineStreamRequest
-	(*TriggerOrganizationPipelineStreamResponse)(nil),       // 125: vdp.pipeline.v1beta.TriggerOrganizationPipelineStreamResponse
-	(*TriggerAsyncOrganizationPipelineRequest)(nil),         // 126: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineRequest
-	(*TriggerAsyncOrganizationPipelineResponse)(nil),        // 127: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineResponse
-	(*CreateOrganizationPipelineReleaseRequest)(nil),        // 128: vdp.pipeline.v1beta.CreateOrganizationPipelineReleaseRequest
-	(*CreateOrganizationPipelineReleaseResponse)(nil),       // 129: vdp.pipeline.v1beta.CreateOrganizationPipelineReleaseResponse
-	(*ListOrganizationPipelineReleasesRequest)(nil),         // 130: vdp.pipeline.v1beta.ListOrganizationPipelineReleasesRequest
-	(*ListOrganizationPipelineReleasesResponse)(nil),        // 131: vdp.pipeline.v1beta.ListOrganizationPipelineReleasesResponse
-	(*GetOrganizationPipelineReleaseRequest)(nil),           // 132: vdp.pipeline.v1beta.GetOrganizationPipelineReleaseRequest
-	(*GetOrganizationPipelineReleaseResponse)(nil),          // 133: vdp.pipeline.v1beta.GetOrganizationPipelineReleaseResponse
-	(*UpdateOrganizationPipelineReleaseRequest)(nil),        // 134: vdp.pipeline.v1beta.UpdateOrganizationPipelineReleaseRequest
-	(*UpdateOrganizationPipelineReleaseResponse)(nil),       // 135: vdp.pipeline.v1beta.UpdateOrganizationPipelineReleaseResponse
-	(*DeleteOrganizationPipelineReleaseRequest)(nil),        // 136: vdp.pipeline.v1beta.DeleteOrganizationPipelineReleaseRequest
-	(*DeleteOrganizationPipelineReleaseResponse)(nil),       // 137: vdp.pipeline.v1beta.DeleteOrganizationPipelineReleaseResponse
-	(*RestoreOrganizationPipelineReleaseRequest)(nil),       // 138: vdp.pipeline.v1beta.RestoreOrganizationPipelineReleaseRequest
-	(*RestoreOrganizationPipelineReleaseResponse)(nil),      // 139: vdp.pipeline.v1beta.RestoreOrganizationPipelineReleaseResponse
-	(*RenameOrganizationPipelineReleaseRequest)(nil),        // 140: vdp.pipeline.v1beta.RenameOrganizationPipelineReleaseRequest
-	(*RenameOrganizationPipelineReleaseResponse)(nil),       // 141: vdp.pipeline.v1beta.RenameOrganizationPipelineReleaseResponse
-	(*TriggerOrganizationPipelineReleaseRequest)(nil),       // 142: vdp.pipeline.v1beta.TriggerOrganizationPipelineReleaseRequest
-	(*TriggerOrganizationPipelineReleaseResponse)(nil),      // 143: vdp.pipeline.v1beta.TriggerOrganizationPipelineReleaseResponse
-	(*TriggerAsyncOrganizationPipelineReleaseRequest)(nil),  // 144: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseRequest
-	(*TriggerAsyncOrganizationPipelineReleaseResponse)(nil), // 145: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseResponse
-	(*GetOperationRequest)(nil),                             // 146: vdp.pipeline.v1beta.GetOperationRequest
-	(*GetOperationResponse)(nil),                            // 147: vdp.pipeline.v1beta.GetOperationResponse
-	(*ListPipelinesAdminRequest)(nil),                       // 148: vdp.pipeline.v1beta.ListPipelinesAdminRequest
-	(*ListPipelinesAdminResponse)(nil),                      // 149: vdp.pipeline.v1beta.ListPipelinesAdminResponse
-	(*ListPipelineReleasesAdminRequest)(nil),                // 150: vdp.pipeline.v1beta.ListPipelineReleasesAdminRequest
-	(*ListPipelineReleasesAdminResponse)(nil),               // 151: vdp.pipeline.v1beta.ListPipelineReleasesAdminResponse
-	(*LookUpPipelineAdminRequest)(nil),                      // 152: vdp.pipeline.v1beta.LookUpPipelineAdminRequest
-	(*LookUpPipelineAdminResponse)(nil),                     // 153: vdp.pipeline.v1beta.LookUpPipelineAdminResponse
-	(*Pipeline_Stats)(nil),                                  // 154: vdp.pipeline.v1beta.Pipeline.Stats
-	nil,                                                     // 155: vdp.pipeline.v1beta.TriggerMetadata.TracesEntry
-	nil,                                                     // 156: vdp.pipeline.v1beta.TriggerData.SecretEntry
-	(*v1beta.HealthCheckRequest)(nil),                       // 157: common.healthcheck.v1beta.HealthCheckRequest
-	(*v1beta.HealthCheckResponse)(nil),                      // 158: common.healthcheck.v1beta.HealthCheckResponse
-	(*structpb.Struct)(nil),                                 // 159: google.protobuf.Struct
-	(*timestamppb.Timestamp)(nil),                           // 160: google.protobuf.Timestamp
-	(*Sharing)(nil),                                         // 161: vdp.pipeline.v1beta.Sharing
-	(*Permission)(nil),                                      // 162: vdp.pipeline.v1beta.Permission
-	(*v1beta1.Owner)(nil),                                   // 163: core.mgmt.v1beta.Owner
-	(*DataSpecification)(nil),                               // 164: vdp.pipeline.v1beta.DataSpecification
-	(*fieldmaskpb.FieldMask)(nil),                           // 165: google.protobuf.FieldMask
-	(*longrunningpb.Operation)(nil),                         // 166: google.longrunning.Operation
+	(RunStatus)(0),                                          // 1: vdp.pipeline.v1beta.RunStatus
+	(Pipeline_View)(0),                                      // 2: vdp.pipeline.v1beta.Pipeline.View
+	(Pipeline_Visibility)(0),                                // 3: vdp.pipeline.v1beta.Pipeline.Visibility
+	(Trace_Status)(0),                                       // 4: vdp.pipeline.v1beta.Trace.Status
+	(PipelineRun_RunSource)(0),                              // 5: vdp.pipeline.v1beta.PipelineRun.RunSource
+	(*LivenessRequest)(nil),                                 // 6: vdp.pipeline.v1beta.LivenessRequest
+	(*LivenessResponse)(nil),                                // 7: vdp.pipeline.v1beta.LivenessResponse
+	(*ReadinessRequest)(nil),                                // 8: vdp.pipeline.v1beta.ReadinessRequest
+	(*ReadinessResponse)(nil),                               // 9: vdp.pipeline.v1beta.ReadinessResponse
+	(*Pipeline)(nil),                                        // 10: vdp.pipeline.v1beta.Pipeline
+	(*TriggerMetadata)(nil),                                 // 11: vdp.pipeline.v1beta.TriggerMetadata
+	(*Trace)(nil),                                           // 12: vdp.pipeline.v1beta.Trace
+	(*GetHubStatsRequest)(nil),                              // 13: vdp.pipeline.v1beta.GetHubStatsRequest
+	(*GetHubStatsResponse)(nil),                             // 14: vdp.pipeline.v1beta.GetHubStatsResponse
+	(*PipelineRelease)(nil),                                 // 15: vdp.pipeline.v1beta.PipelineRelease
+	(*ListPipelinesRequest)(nil),                            // 16: vdp.pipeline.v1beta.ListPipelinesRequest
+	(*ListPipelinesResponse)(nil),                           // 17: vdp.pipeline.v1beta.ListPipelinesResponse
+	(*ListNamespacePipelinesRequest)(nil),                   // 18: vdp.pipeline.v1beta.ListNamespacePipelinesRequest
+	(*ListNamespacePipelinesResponse)(nil),                  // 19: vdp.pipeline.v1beta.ListNamespacePipelinesResponse
+	(*LookUpPipelineRequest)(nil),                           // 20: vdp.pipeline.v1beta.LookUpPipelineRequest
+	(*LookUpPipelineResponse)(nil),                          // 21: vdp.pipeline.v1beta.LookUpPipelineResponse
+	(*CreateNamespacePipelineRequest)(nil),                  // 22: vdp.pipeline.v1beta.CreateNamespacePipelineRequest
+	(*CreateNamespacePipelineResponse)(nil),                 // 23: vdp.pipeline.v1beta.CreateNamespacePipelineResponse
+	(*GetNamespacePipelineRequest)(nil),                     // 24: vdp.pipeline.v1beta.GetNamespacePipelineRequest
+	(*GetNamespacePipelineResponse)(nil),                    // 25: vdp.pipeline.v1beta.GetNamespacePipelineResponse
+	(*UpdateNamespacePipelineRequest)(nil),                  // 26: vdp.pipeline.v1beta.UpdateNamespacePipelineRequest
+	(*UpdateNamespacePipelineResponse)(nil),                 // 27: vdp.pipeline.v1beta.UpdateNamespacePipelineResponse
+	(*DeleteNamespacePipelineRequest)(nil),                  // 28: vdp.pipeline.v1beta.DeleteNamespacePipelineRequest
+	(*DeleteNamespacePipelineResponse)(nil),                 // 29: vdp.pipeline.v1beta.DeleteNamespacePipelineResponse
+	(*ValidateNamespacePipelineRequest)(nil),                // 30: vdp.pipeline.v1beta.ValidateNamespacePipelineRequest
+	(*ValidateNamespacePipelineResponse)(nil),               // 31: vdp.pipeline.v1beta.ValidateNamespacePipelineResponse
+	(*RenameNamespacePipelineRequest)(nil),                  // 32: vdp.pipeline.v1beta.RenameNamespacePipelineRequest
+	(*RenameNamespacePipelineResponse)(nil),                 // 33: vdp.pipeline.v1beta.RenameNamespacePipelineResponse
+	(*CloneNamespacePipelineRequest)(nil),                   // 34: vdp.pipeline.v1beta.CloneNamespacePipelineRequest
+	(*CloneNamespacePipelineResponse)(nil),                  // 35: vdp.pipeline.v1beta.CloneNamespacePipelineResponse
+	(*CloneNamespacePipelineReleaseRequest)(nil),            // 36: vdp.pipeline.v1beta.CloneNamespacePipelineReleaseRequest
+	(*CloneNamespacePipelineReleaseResponse)(nil),           // 37: vdp.pipeline.v1beta.CloneNamespacePipelineReleaseResponse
+	(*SendNamespacePipelineEventRequest)(nil),               // 38: vdp.pipeline.v1beta.SendNamespacePipelineEventRequest
+	(*SendNamespacePipelineEventResponse)(nil),              // 39: vdp.pipeline.v1beta.SendNamespacePipelineEventResponse
+	(*SendNamespacePipelineReleaseEventRequest)(nil),        // 40: vdp.pipeline.v1beta.SendNamespacePipelineReleaseEventRequest
+	(*SendNamespacePipelineReleaseEventResponse)(nil),       // 41: vdp.pipeline.v1beta.SendNamespacePipelineReleaseEventResponse
+	(*TriggerNamespacePipelineRequest)(nil),                 // 42: vdp.pipeline.v1beta.TriggerNamespacePipelineRequest
+	(*TriggerNamespacePipelineResponse)(nil),                // 43: vdp.pipeline.v1beta.TriggerNamespacePipelineResponse
+	(*TriggerNamespacePipelineWithStreamRequest)(nil),       // 44: vdp.pipeline.v1beta.TriggerNamespacePipelineWithStreamRequest
+	(*TriggerNamespacePipelineWithStreamResponse)(nil),      // 45: vdp.pipeline.v1beta.TriggerNamespacePipelineWithStreamResponse
+	(*TriggerAsyncNamespacePipelineRequest)(nil),            // 46: vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineRequest
+	(*TriggerAsyncNamespacePipelineResponse)(nil),           // 47: vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineResponse
+	(*CreateNamespacePipelineReleaseRequest)(nil),           // 48: vdp.pipeline.v1beta.CreateNamespacePipelineReleaseRequest
+	(*CreateNamespacePipelineReleaseResponse)(nil),          // 49: vdp.pipeline.v1beta.CreateNamespacePipelineReleaseResponse
+	(*ListNamespacePipelineReleasesRequest)(nil),            // 50: vdp.pipeline.v1beta.ListNamespacePipelineReleasesRequest
+	(*ListNamespacePipelineReleasesResponse)(nil),           // 51: vdp.pipeline.v1beta.ListNamespacePipelineReleasesResponse
+	(*GetNamespacePipelineReleaseRequest)(nil),              // 52: vdp.pipeline.v1beta.GetNamespacePipelineReleaseRequest
+	(*GetNamespacePipelineReleaseResponse)(nil),             // 53: vdp.pipeline.v1beta.GetNamespacePipelineReleaseResponse
+	(*UpdateNamespacePipelineReleaseRequest)(nil),           // 54: vdp.pipeline.v1beta.UpdateNamespacePipelineReleaseRequest
+	(*UpdateNamespacePipelineReleaseResponse)(nil),          // 55: vdp.pipeline.v1beta.UpdateNamespacePipelineReleaseResponse
+	(*DeleteNamespacePipelineReleaseRequest)(nil),           // 56: vdp.pipeline.v1beta.DeleteNamespacePipelineReleaseRequest
+	(*DeleteNamespacePipelineReleaseResponse)(nil),          // 57: vdp.pipeline.v1beta.DeleteNamespacePipelineReleaseResponse
+	(*TriggerNamespacePipelineReleaseRequest)(nil),          // 58: vdp.pipeline.v1beta.TriggerNamespacePipelineReleaseRequest
+	(*TriggerNamespacePipelineReleaseResponse)(nil),         // 59: vdp.pipeline.v1beta.TriggerNamespacePipelineReleaseResponse
+	(*TriggerAsyncNamespacePipelineReleaseRequest)(nil),     // 60: vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseRequest
+	(*TriggerAsyncNamespacePipelineReleaseResponse)(nil),    // 61: vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseResponse
+	(*CreateUserPipelineRequest)(nil),                       // 62: vdp.pipeline.v1beta.CreateUserPipelineRequest
+	(*CreateUserPipelineResponse)(nil),                      // 63: vdp.pipeline.v1beta.CreateUserPipelineResponse
+	(*ListUserPipelinesRequest)(nil),                        // 64: vdp.pipeline.v1beta.ListUserPipelinesRequest
+	(*ListUserPipelinesResponse)(nil),                       // 65: vdp.pipeline.v1beta.ListUserPipelinesResponse
+	(*GetUserPipelineRequest)(nil),                          // 66: vdp.pipeline.v1beta.GetUserPipelineRequest
+	(*GetUserPipelineResponse)(nil),                         // 67: vdp.pipeline.v1beta.GetUserPipelineResponse
+	(*UpdateUserPipelineRequest)(nil),                       // 68: vdp.pipeline.v1beta.UpdateUserPipelineRequest
+	(*UpdateUserPipelineResponse)(nil),                      // 69: vdp.pipeline.v1beta.UpdateUserPipelineResponse
+	(*DeleteUserPipelineRequest)(nil),                       // 70: vdp.pipeline.v1beta.DeleteUserPipelineRequest
+	(*DeleteUserPipelineResponse)(nil),                      // 71: vdp.pipeline.v1beta.DeleteUserPipelineResponse
+	(*PipelineValidationError)(nil),                         // 72: vdp.pipeline.v1beta.PipelineValidationError
+	(*ValidateUserPipelineRequest)(nil),                     // 73: vdp.pipeline.v1beta.ValidateUserPipelineRequest
+	(*ValidateUserPipelineResponse)(nil),                    // 74: vdp.pipeline.v1beta.ValidateUserPipelineResponse
+	(*RenameUserPipelineRequest)(nil),                       // 75: vdp.pipeline.v1beta.RenameUserPipelineRequest
+	(*RenameUserPipelineResponse)(nil),                      // 76: vdp.pipeline.v1beta.RenameUserPipelineResponse
+	(*CloneUserPipelineRequest)(nil),                        // 77: vdp.pipeline.v1beta.CloneUserPipelineRequest
+	(*CloneUserPipelineResponse)(nil),                       // 78: vdp.pipeline.v1beta.CloneUserPipelineResponse
+	(*CloneUserPipelineReleaseRequest)(nil),                 // 79: vdp.pipeline.v1beta.CloneUserPipelineReleaseRequest
+	(*CloneUserPipelineReleaseResponse)(nil),                // 80: vdp.pipeline.v1beta.CloneUserPipelineReleaseResponse
+	(*TriggerUserPipelineRequest)(nil),                      // 81: vdp.pipeline.v1beta.TriggerUserPipelineRequest
+	(*TriggerUserPipelineResponse)(nil),                     // 82: vdp.pipeline.v1beta.TriggerUserPipelineResponse
+	(*TriggerUserPipelineWithStreamRequest)(nil),            // 83: vdp.pipeline.v1beta.TriggerUserPipelineWithStreamRequest
+	(*TriggerUserPipelineWithStreamResponse)(nil),           // 84: vdp.pipeline.v1beta.TriggerUserPipelineWithStreamResponse
+	(*TriggerData)(nil),                                     // 85: vdp.pipeline.v1beta.TriggerData
+	(*TriggerAsyncUserPipelineRequest)(nil),                 // 86: vdp.pipeline.v1beta.TriggerAsyncUserPipelineRequest
+	(*TriggerAsyncUserPipelineResponse)(nil),                // 87: vdp.pipeline.v1beta.TriggerAsyncUserPipelineResponse
+	(*CreateUserPipelineReleaseRequest)(nil),                // 88: vdp.pipeline.v1beta.CreateUserPipelineReleaseRequest
+	(*CreateUserPipelineReleaseResponse)(nil),               // 89: vdp.pipeline.v1beta.CreateUserPipelineReleaseResponse
+	(*ListUserPipelineReleasesRequest)(nil),                 // 90: vdp.pipeline.v1beta.ListUserPipelineReleasesRequest
+	(*ListUserPipelineReleasesResponse)(nil),                // 91: vdp.pipeline.v1beta.ListUserPipelineReleasesResponse
+	(*GetUserPipelineReleaseRequest)(nil),                   // 92: vdp.pipeline.v1beta.GetUserPipelineReleaseRequest
+	(*GetUserPipelineReleaseResponse)(nil),                  // 93: vdp.pipeline.v1beta.GetUserPipelineReleaseResponse
+	(*UpdateUserPipelineReleaseRequest)(nil),                // 94: vdp.pipeline.v1beta.UpdateUserPipelineReleaseRequest
+	(*UpdateUserPipelineReleaseResponse)(nil),               // 95: vdp.pipeline.v1beta.UpdateUserPipelineReleaseResponse
+	(*DeleteUserPipelineReleaseRequest)(nil),                // 96: vdp.pipeline.v1beta.DeleteUserPipelineReleaseRequest
+	(*DeleteUserPipelineReleaseResponse)(nil),               // 97: vdp.pipeline.v1beta.DeleteUserPipelineReleaseResponse
+	(*RestoreUserPipelineReleaseRequest)(nil),               // 98: vdp.pipeline.v1beta.RestoreUserPipelineReleaseRequest
+	(*RestoreUserPipelineReleaseResponse)(nil),              // 99: vdp.pipeline.v1beta.RestoreUserPipelineReleaseResponse
+	(*RenameUserPipelineReleaseRequest)(nil),                // 100: vdp.pipeline.v1beta.RenameUserPipelineReleaseRequest
+	(*RenameUserPipelineReleaseResponse)(nil),               // 101: vdp.pipeline.v1beta.RenameUserPipelineReleaseResponse
+	(*TriggerUserPipelineReleaseRequest)(nil),               // 102: vdp.pipeline.v1beta.TriggerUserPipelineReleaseRequest
+	(*TriggerUserPipelineReleaseResponse)(nil),              // 103: vdp.pipeline.v1beta.TriggerUserPipelineReleaseResponse
+	(*TriggerAsyncUserPipelineReleaseRequest)(nil),          // 104: vdp.pipeline.v1beta.TriggerAsyncUserPipelineReleaseRequest
+	(*TriggerAsyncUserPipelineReleaseResponse)(nil),         // 105: vdp.pipeline.v1beta.TriggerAsyncUserPipelineReleaseResponse
+	(*CreateOrganizationPipelineRequest)(nil),               // 106: vdp.pipeline.v1beta.CreateOrganizationPipelineRequest
+	(*CreateOrganizationPipelineResponse)(nil),              // 107: vdp.pipeline.v1beta.CreateOrganizationPipelineResponse
+	(*ListOrganizationPipelinesRequest)(nil),                // 108: vdp.pipeline.v1beta.ListOrganizationPipelinesRequest
+	(*ListOrganizationPipelinesResponse)(nil),               // 109: vdp.pipeline.v1beta.ListOrganizationPipelinesResponse
+	(*GetOrganizationPipelineRequest)(nil),                  // 110: vdp.pipeline.v1beta.GetOrganizationPipelineRequest
+	(*GetOrganizationPipelineResponse)(nil),                 // 111: vdp.pipeline.v1beta.GetOrganizationPipelineResponse
+	(*UpdateOrganizationPipelineRequest)(nil),               // 112: vdp.pipeline.v1beta.UpdateOrganizationPipelineRequest
+	(*UpdateOrganizationPipelineResponse)(nil),              // 113: vdp.pipeline.v1beta.UpdateOrganizationPipelineResponse
+	(*DeleteOrganizationPipelineRequest)(nil),               // 114: vdp.pipeline.v1beta.DeleteOrganizationPipelineRequest
+	(*DeleteOrganizationPipelineResponse)(nil),              // 115: vdp.pipeline.v1beta.DeleteOrganizationPipelineResponse
+	(*ValidateOrganizationPipelineRequest)(nil),             // 116: vdp.pipeline.v1beta.ValidateOrganizationPipelineRequest
+	(*ValidateOrganizationPipelineResponse)(nil),            // 117: vdp.pipeline.v1beta.ValidateOrganizationPipelineResponse
+	(*RenameOrganizationPipelineRequest)(nil),               // 118: vdp.pipeline.v1beta.RenameOrganizationPipelineRequest
+	(*RenameOrganizationPipelineResponse)(nil),              // 119: vdp.pipeline.v1beta.RenameOrganizationPipelineResponse
+	(*CloneOrganizationPipelineRequest)(nil),                // 120: vdp.pipeline.v1beta.CloneOrganizationPipelineRequest
+	(*CloneOrganizationPipelineResponse)(nil),               // 121: vdp.pipeline.v1beta.CloneOrganizationPipelineResponse
+	(*CloneOrganizationPipelineReleaseRequest)(nil),         // 122: vdp.pipeline.v1beta.CloneOrganizationPipelineReleaseRequest
+	(*CloneOrganizationPipelineReleaseResponse)(nil),        // 123: vdp.pipeline.v1beta.CloneOrganizationPipelineReleaseResponse
+	(*TriggerOrganizationPipelineRequest)(nil),              // 124: vdp.pipeline.v1beta.TriggerOrganizationPipelineRequest
+	(*TriggerOrganizationPipelineResponse)(nil),             // 125: vdp.pipeline.v1beta.TriggerOrganizationPipelineResponse
+	(*TriggerOrganizationPipelineStreamRequest)(nil),        // 126: vdp.pipeline.v1beta.TriggerOrganizationPipelineStreamRequest
+	(*TriggerOrganizationPipelineStreamResponse)(nil),       // 127: vdp.pipeline.v1beta.TriggerOrganizationPipelineStreamResponse
+	(*TriggerAsyncOrganizationPipelineRequest)(nil),         // 128: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineRequest
+	(*TriggerAsyncOrganizationPipelineResponse)(nil),        // 129: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineResponse
+	(*CreateOrganizationPipelineReleaseRequest)(nil),        // 130: vdp.pipeline.v1beta.CreateOrganizationPipelineReleaseRequest
+	(*CreateOrganizationPipelineReleaseResponse)(nil),       // 131: vdp.pipeline.v1beta.CreateOrganizationPipelineReleaseResponse
+	(*ListOrganizationPipelineReleasesRequest)(nil),         // 132: vdp.pipeline.v1beta.ListOrganizationPipelineReleasesRequest
+	(*ListOrganizationPipelineReleasesResponse)(nil),        // 133: vdp.pipeline.v1beta.ListOrganizationPipelineReleasesResponse
+	(*GetOrganizationPipelineReleaseRequest)(nil),           // 134: vdp.pipeline.v1beta.GetOrganizationPipelineReleaseRequest
+	(*GetOrganizationPipelineReleaseResponse)(nil),          // 135: vdp.pipeline.v1beta.GetOrganizationPipelineReleaseResponse
+	(*UpdateOrganizationPipelineReleaseRequest)(nil),        // 136: vdp.pipeline.v1beta.UpdateOrganizationPipelineReleaseRequest
+	(*UpdateOrganizationPipelineReleaseResponse)(nil),       // 137: vdp.pipeline.v1beta.UpdateOrganizationPipelineReleaseResponse
+	(*DeleteOrganizationPipelineReleaseRequest)(nil),        // 138: vdp.pipeline.v1beta.DeleteOrganizationPipelineReleaseRequest
+	(*DeleteOrganizationPipelineReleaseResponse)(nil),       // 139: vdp.pipeline.v1beta.DeleteOrganizationPipelineReleaseResponse
+	(*RestoreOrganizationPipelineReleaseRequest)(nil),       // 140: vdp.pipeline.v1beta.RestoreOrganizationPipelineReleaseRequest
+	(*RestoreOrganizationPipelineReleaseResponse)(nil),      // 141: vdp.pipeline.v1beta.RestoreOrganizationPipelineReleaseResponse
+	(*RenameOrganizationPipelineReleaseRequest)(nil),        // 142: vdp.pipeline.v1beta.RenameOrganizationPipelineReleaseRequest
+	(*RenameOrganizationPipelineReleaseResponse)(nil),       // 143: vdp.pipeline.v1beta.RenameOrganizationPipelineReleaseResponse
+	(*TriggerOrganizationPipelineReleaseRequest)(nil),       // 144: vdp.pipeline.v1beta.TriggerOrganizationPipelineReleaseRequest
+	(*TriggerOrganizationPipelineReleaseResponse)(nil),      // 145: vdp.pipeline.v1beta.TriggerOrganizationPipelineReleaseResponse
+	(*TriggerAsyncOrganizationPipelineReleaseRequest)(nil),  // 146: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseRequest
+	(*TriggerAsyncOrganizationPipelineReleaseResponse)(nil), // 147: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseResponse
+	(*GetOperationRequest)(nil),                             // 148: vdp.pipeline.v1beta.GetOperationRequest
+	(*GetOperationResponse)(nil),                            // 149: vdp.pipeline.v1beta.GetOperationResponse
+	(*ListPipelinesAdminRequest)(nil),                       // 150: vdp.pipeline.v1beta.ListPipelinesAdminRequest
+	(*ListPipelinesAdminResponse)(nil),                      // 151: vdp.pipeline.v1beta.ListPipelinesAdminResponse
+	(*ListPipelineReleasesAdminRequest)(nil),                // 152: vdp.pipeline.v1beta.ListPipelineReleasesAdminRequest
+	(*ListPipelineReleasesAdminResponse)(nil),               // 153: vdp.pipeline.v1beta.ListPipelineReleasesAdminResponse
+	(*LookUpPipelineAdminRequest)(nil),                      // 154: vdp.pipeline.v1beta.LookUpPipelineAdminRequest
+	(*LookUpPipelineAdminResponse)(nil),                     // 155: vdp.pipeline.v1beta.LookUpPipelineAdminResponse
+	(*ListPipelineRunsRequest)(nil),                         // 156: vdp.pipeline.v1beta.ListPipelineRunsRequest
+	(*ListPipelineRunsResponse)(nil),                        // 157: vdp.pipeline.v1beta.ListPipelineRunsResponse
+	(*ListComponentRunsRequest)(nil),                        // 158: vdp.pipeline.v1beta.ListComponentRunsRequest
+	(*ListComponentRunsResponse)(nil),                       // 159: vdp.pipeline.v1beta.ListComponentRunsResponse
+	(*FileReference)(nil),                                   // 160: vdp.pipeline.v1beta.FileReference
+	(*PipelineRun)(nil),                                     // 161: vdp.pipeline.v1beta.PipelineRun
+	(*ComponentRun)(nil),                                    // 162: vdp.pipeline.v1beta.ComponentRun
+	(*Pipeline_Stats)(nil),                                  // 163: vdp.pipeline.v1beta.Pipeline.Stats
+	nil,                                                     // 164: vdp.pipeline.v1beta.TriggerMetadata.TracesEntry
+	nil,                                                     // 165: vdp.pipeline.v1beta.TriggerData.SecretEntry
+	(*v1beta.HealthCheckRequest)(nil),                       // 166: common.healthcheck.v1beta.HealthCheckRequest
+	(*v1beta.HealthCheckResponse)(nil),                      // 167: common.healthcheck.v1beta.HealthCheckResponse
+	(*structpb.Struct)(nil),                                 // 168: google.protobuf.Struct
+	(*timestamppb.Timestamp)(nil),                           // 169: google.protobuf.Timestamp
+	(*Sharing)(nil),                                         // 170: vdp.pipeline.v1beta.Sharing
+	(*Permission)(nil),                                      // 171: vdp.pipeline.v1beta.Permission
+	(*v1beta1.Owner)(nil),                                   // 172: core.mgmt.v1beta.Owner
+	(*DataSpecification)(nil),                               // 173: vdp.pipeline.v1beta.DataSpecification
+	(*fieldmaskpb.FieldMask)(nil),                           // 174: google.protobuf.FieldMask
+	(*longrunningpb.Operation)(nil),                         // 175: google.longrunning.Operation
+	(*durationpb.Duration)(nil),                             // 176: google.protobuf.Duration
 }
 var file_vdp_pipeline_v1beta_pipeline_proto_depIdxs = []int32{
-	157, // 0: vdp.pipeline.v1beta.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	158, // 1: vdp.pipeline.v1beta.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
-	157, // 2: vdp.pipeline.v1beta.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	158, // 3: vdp.pipeline.v1beta.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
-	159, // 4: vdp.pipeline.v1beta.Pipeline.recipe:type_name -> google.protobuf.Struct
-	160, // 5: vdp.pipeline.v1beta.Pipeline.create_time:type_name -> google.protobuf.Timestamp
-	160, // 6: vdp.pipeline.v1beta.Pipeline.update_time:type_name -> google.protobuf.Timestamp
-	160, // 7: vdp.pipeline.v1beta.Pipeline.delete_time:type_name -> google.protobuf.Timestamp
-	161, // 8: vdp.pipeline.v1beta.Pipeline.sharing:type_name -> vdp.pipeline.v1beta.Sharing
-	159, // 9: vdp.pipeline.v1beta.Pipeline.metadata:type_name -> google.protobuf.Struct
-	13,  // 10: vdp.pipeline.v1beta.Pipeline.releases:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	162, // 11: vdp.pipeline.v1beta.Pipeline.permission:type_name -> vdp.pipeline.v1beta.Permission
-	2,   // 12: vdp.pipeline.v1beta.Pipeline.visibility:type_name -> vdp.pipeline.v1beta.Pipeline.Visibility
-	163, // 13: vdp.pipeline.v1beta.Pipeline.owner:type_name -> core.mgmt.v1beta.Owner
-	164, // 14: vdp.pipeline.v1beta.Pipeline.data_specification:type_name -> vdp.pipeline.v1beta.DataSpecification
-	154, // 15: vdp.pipeline.v1beta.Pipeline.stats:type_name -> vdp.pipeline.v1beta.Pipeline.Stats
-	155, // 16: vdp.pipeline.v1beta.TriggerMetadata.traces:type_name -> vdp.pipeline.v1beta.TriggerMetadata.TracesEntry
-	3,   // 17: vdp.pipeline.v1beta.Trace.statuses:type_name -> vdp.pipeline.v1beta.Trace.Status
-	159, // 18: vdp.pipeline.v1beta.Trace.inputs:type_name -> google.protobuf.Struct
-	159, // 19: vdp.pipeline.v1beta.Trace.outputs:type_name -> google.protobuf.Struct
-	159, // 20: vdp.pipeline.v1beta.Trace.error:type_name -> google.protobuf.Struct
-	159, // 21: vdp.pipeline.v1beta.PipelineRelease.recipe:type_name -> google.protobuf.Struct
-	160, // 22: vdp.pipeline.v1beta.PipelineRelease.create_time:type_name -> google.protobuf.Timestamp
-	160, // 23: vdp.pipeline.v1beta.PipelineRelease.update_time:type_name -> google.protobuf.Timestamp
-	160, // 24: vdp.pipeline.v1beta.PipelineRelease.delete_time:type_name -> google.protobuf.Timestamp
-	159, // 25: vdp.pipeline.v1beta.PipelineRelease.metadata:type_name -> google.protobuf.Struct
-	164, // 26: vdp.pipeline.v1beta.PipelineRelease.data_specification:type_name -> vdp.pipeline.v1beta.DataSpecification
-	1,   // 27: vdp.pipeline.v1beta.ListPipelinesRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	2,   // 28: vdp.pipeline.v1beta.ListPipelinesRequest.visibility:type_name -> vdp.pipeline.v1beta.Pipeline.Visibility
-	8,   // 29: vdp.pipeline.v1beta.ListPipelinesResponse.pipelines:type_name -> vdp.pipeline.v1beta.Pipeline
-	1,   // 30: vdp.pipeline.v1beta.ListNamespacePipelinesRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	2,   // 31: vdp.pipeline.v1beta.ListNamespacePipelinesRequest.visibility:type_name -> vdp.pipeline.v1beta.Pipeline.Visibility
-	8,   // 32: vdp.pipeline.v1beta.ListNamespacePipelinesResponse.pipelines:type_name -> vdp.pipeline.v1beta.Pipeline
-	1,   // 33: vdp.pipeline.v1beta.LookUpPipelineRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	8,   // 34: vdp.pipeline.v1beta.LookUpPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	8,   // 35: vdp.pipeline.v1beta.CreateNamespacePipelineRequest.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	8,   // 36: vdp.pipeline.v1beta.CreateNamespacePipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	1,   // 37: vdp.pipeline.v1beta.GetNamespacePipelineRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	8,   // 38: vdp.pipeline.v1beta.GetNamespacePipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	8,   // 39: vdp.pipeline.v1beta.UpdateNamespacePipelineRequest.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	165, // 40: vdp.pipeline.v1beta.UpdateNamespacePipelineRequest.update_mask:type_name -> google.protobuf.FieldMask
-	8,   // 41: vdp.pipeline.v1beta.UpdateNamespacePipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	70,  // 42: vdp.pipeline.v1beta.ValidateNamespacePipelineResponse.errors:type_name -> vdp.pipeline.v1beta.PipelineValidationError
-	8,   // 43: vdp.pipeline.v1beta.RenameNamespacePipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	161, // 44: vdp.pipeline.v1beta.CloneNamespacePipelineRequest.sharing:type_name -> vdp.pipeline.v1beta.Sharing
-	161, // 45: vdp.pipeline.v1beta.CloneNamespacePipelineReleaseRequest.sharing:type_name -> vdp.pipeline.v1beta.Sharing
-	159, // 46: vdp.pipeline.v1beta.SendNamespacePipelineEventRequest.data:type_name -> google.protobuf.Struct
-	159, // 47: vdp.pipeline.v1beta.SendNamespacePipelineEventResponse.data:type_name -> google.protobuf.Struct
-	159, // 48: vdp.pipeline.v1beta.SendNamespacePipelineReleaseEventRequest.data:type_name -> google.protobuf.Struct
-	159, // 49: vdp.pipeline.v1beta.SendNamespacePipelineReleaseEventResponse.data:type_name -> google.protobuf.Struct
-	159, // 50: vdp.pipeline.v1beta.TriggerNamespacePipelineRequest.inputs:type_name -> google.protobuf.Struct
-	83,  // 51: vdp.pipeline.v1beta.TriggerNamespacePipelineRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
-	159, // 52: vdp.pipeline.v1beta.TriggerNamespacePipelineResponse.outputs:type_name -> google.protobuf.Struct
-	9,   // 53: vdp.pipeline.v1beta.TriggerNamespacePipelineResponse.metadata:type_name -> vdp.pipeline.v1beta.TriggerMetadata
-	159, // 54: vdp.pipeline.v1beta.TriggerNamespacePipelineWithStreamRequest.inputs:type_name -> google.protobuf.Struct
-	83,  // 55: vdp.pipeline.v1beta.TriggerNamespacePipelineWithStreamRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
-	159, // 56: vdp.pipeline.v1beta.TriggerNamespacePipelineWithStreamResponse.outputs:type_name -> google.protobuf.Struct
-	9,   // 57: vdp.pipeline.v1beta.TriggerNamespacePipelineWithStreamResponse.metadata:type_name -> vdp.pipeline.v1beta.TriggerMetadata
-	159, // 58: vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineRequest.inputs:type_name -> google.protobuf.Struct
-	83,  // 59: vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
-	166, // 60: vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineResponse.operation:type_name -> google.longrunning.Operation
-	13,  // 61: vdp.pipeline.v1beta.CreateNamespacePipelineReleaseRequest.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	13,  // 62: vdp.pipeline.v1beta.CreateNamespacePipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	1,   // 63: vdp.pipeline.v1beta.ListNamespacePipelineReleasesRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	13,  // 64: vdp.pipeline.v1beta.ListNamespacePipelineReleasesResponse.releases:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	1,   // 65: vdp.pipeline.v1beta.GetNamespacePipelineReleaseRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	13,  // 66: vdp.pipeline.v1beta.GetNamespacePipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	13,  // 67: vdp.pipeline.v1beta.UpdateNamespacePipelineReleaseRequest.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	165, // 68: vdp.pipeline.v1beta.UpdateNamespacePipelineReleaseRequest.update_mask:type_name -> google.protobuf.FieldMask
-	13,  // 69: vdp.pipeline.v1beta.UpdateNamespacePipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	159, // 70: vdp.pipeline.v1beta.TriggerNamespacePipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
-	83,  // 71: vdp.pipeline.v1beta.TriggerNamespacePipelineReleaseRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
-	159, // 72: vdp.pipeline.v1beta.TriggerNamespacePipelineReleaseResponse.outputs:type_name -> google.protobuf.Struct
-	9,   // 73: vdp.pipeline.v1beta.TriggerNamespacePipelineReleaseResponse.metadata:type_name -> vdp.pipeline.v1beta.TriggerMetadata
-	159, // 74: vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
-	83,  // 75: vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
-	166, // 76: vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseResponse.operation:type_name -> google.longrunning.Operation
-	8,   // 77: vdp.pipeline.v1beta.CreateUserPipelineRequest.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	8,   // 78: vdp.pipeline.v1beta.CreateUserPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	1,   // 79: vdp.pipeline.v1beta.ListUserPipelinesRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	2,   // 80: vdp.pipeline.v1beta.ListUserPipelinesRequest.visibility:type_name -> vdp.pipeline.v1beta.Pipeline.Visibility
-	8,   // 81: vdp.pipeline.v1beta.ListUserPipelinesResponse.pipelines:type_name -> vdp.pipeline.v1beta.Pipeline
-	1,   // 82: vdp.pipeline.v1beta.GetUserPipelineRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	8,   // 83: vdp.pipeline.v1beta.GetUserPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	8,   // 84: vdp.pipeline.v1beta.UpdateUserPipelineRequest.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	165, // 85: vdp.pipeline.v1beta.UpdateUserPipelineRequest.update_mask:type_name -> google.protobuf.FieldMask
-	8,   // 86: vdp.pipeline.v1beta.UpdateUserPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	70,  // 87: vdp.pipeline.v1beta.ValidateUserPipelineResponse.errors:type_name -> vdp.pipeline.v1beta.PipelineValidationError
-	8,   // 88: vdp.pipeline.v1beta.RenameUserPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	161, // 89: vdp.pipeline.v1beta.CloneUserPipelineRequest.sharing:type_name -> vdp.pipeline.v1beta.Sharing
-	161, // 90: vdp.pipeline.v1beta.CloneUserPipelineReleaseRequest.sharing:type_name -> vdp.pipeline.v1beta.Sharing
-	159, // 91: vdp.pipeline.v1beta.TriggerUserPipelineRequest.inputs:type_name -> google.protobuf.Struct
-	83,  // 92: vdp.pipeline.v1beta.TriggerUserPipelineRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
-	159, // 93: vdp.pipeline.v1beta.TriggerUserPipelineResponse.outputs:type_name -> google.protobuf.Struct
-	9,   // 94: vdp.pipeline.v1beta.TriggerUserPipelineResponse.metadata:type_name -> vdp.pipeline.v1beta.TriggerMetadata
-	159, // 95: vdp.pipeline.v1beta.TriggerUserPipelineWithStreamRequest.inputs:type_name -> google.protobuf.Struct
-	83,  // 96: vdp.pipeline.v1beta.TriggerUserPipelineWithStreamRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
-	159, // 97: vdp.pipeline.v1beta.TriggerUserPipelineWithStreamResponse.outputs:type_name -> google.protobuf.Struct
-	9,   // 98: vdp.pipeline.v1beta.TriggerUserPipelineWithStreamResponse.metadata:type_name -> vdp.pipeline.v1beta.TriggerMetadata
-	159, // 99: vdp.pipeline.v1beta.TriggerData.variable:type_name -> google.protobuf.Struct
-	156, // 100: vdp.pipeline.v1beta.TriggerData.secret:type_name -> vdp.pipeline.v1beta.TriggerData.SecretEntry
-	159, // 101: vdp.pipeline.v1beta.TriggerAsyncUserPipelineRequest.inputs:type_name -> google.protobuf.Struct
-	83,  // 102: vdp.pipeline.v1beta.TriggerAsyncUserPipelineRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
-	166, // 103: vdp.pipeline.v1beta.TriggerAsyncUserPipelineResponse.operation:type_name -> google.longrunning.Operation
-	13,  // 104: vdp.pipeline.v1beta.CreateUserPipelineReleaseRequest.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	13,  // 105: vdp.pipeline.v1beta.CreateUserPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	1,   // 106: vdp.pipeline.v1beta.ListUserPipelineReleasesRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	13,  // 107: vdp.pipeline.v1beta.ListUserPipelineReleasesResponse.releases:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	1,   // 108: vdp.pipeline.v1beta.GetUserPipelineReleaseRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	13,  // 109: vdp.pipeline.v1beta.GetUserPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	13,  // 110: vdp.pipeline.v1beta.UpdateUserPipelineReleaseRequest.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	165, // 111: vdp.pipeline.v1beta.UpdateUserPipelineReleaseRequest.update_mask:type_name -> google.protobuf.FieldMask
-	13,  // 112: vdp.pipeline.v1beta.UpdateUserPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	13,  // 113: vdp.pipeline.v1beta.RestoreUserPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	13,  // 114: vdp.pipeline.v1beta.RenameUserPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	159, // 115: vdp.pipeline.v1beta.TriggerUserPipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
-	83,  // 116: vdp.pipeline.v1beta.TriggerUserPipelineReleaseRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
-	159, // 117: vdp.pipeline.v1beta.TriggerUserPipelineReleaseResponse.outputs:type_name -> google.protobuf.Struct
-	9,   // 118: vdp.pipeline.v1beta.TriggerUserPipelineReleaseResponse.metadata:type_name -> vdp.pipeline.v1beta.TriggerMetadata
-	159, // 119: vdp.pipeline.v1beta.TriggerAsyncUserPipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
-	83,  // 120: vdp.pipeline.v1beta.TriggerAsyncUserPipelineReleaseRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
-	166, // 121: vdp.pipeline.v1beta.TriggerAsyncUserPipelineReleaseResponse.operation:type_name -> google.longrunning.Operation
-	8,   // 122: vdp.pipeline.v1beta.CreateOrganizationPipelineRequest.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	8,   // 123: vdp.pipeline.v1beta.CreateOrganizationPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	1,   // 124: vdp.pipeline.v1beta.ListOrganizationPipelinesRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	2,   // 125: vdp.pipeline.v1beta.ListOrganizationPipelinesRequest.visibility:type_name -> vdp.pipeline.v1beta.Pipeline.Visibility
-	8,   // 126: vdp.pipeline.v1beta.ListOrganizationPipelinesResponse.pipelines:type_name -> vdp.pipeline.v1beta.Pipeline
-	1,   // 127: vdp.pipeline.v1beta.GetOrganizationPipelineRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	8,   // 128: vdp.pipeline.v1beta.GetOrganizationPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	8,   // 129: vdp.pipeline.v1beta.UpdateOrganizationPipelineRequest.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	165, // 130: vdp.pipeline.v1beta.UpdateOrganizationPipelineRequest.update_mask:type_name -> google.protobuf.FieldMask
-	8,   // 131: vdp.pipeline.v1beta.UpdateOrganizationPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	70,  // 132: vdp.pipeline.v1beta.ValidateOrganizationPipelineResponse.errors:type_name -> vdp.pipeline.v1beta.PipelineValidationError
-	8,   // 133: vdp.pipeline.v1beta.RenameOrganizationPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	161, // 134: vdp.pipeline.v1beta.CloneOrganizationPipelineRequest.sharing:type_name -> vdp.pipeline.v1beta.Sharing
-	161, // 135: vdp.pipeline.v1beta.CloneOrganizationPipelineReleaseRequest.sharing:type_name -> vdp.pipeline.v1beta.Sharing
-	159, // 136: vdp.pipeline.v1beta.TriggerOrganizationPipelineRequest.inputs:type_name -> google.protobuf.Struct
-	83,  // 137: vdp.pipeline.v1beta.TriggerOrganizationPipelineRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
-	159, // 138: vdp.pipeline.v1beta.TriggerOrganizationPipelineResponse.outputs:type_name -> google.protobuf.Struct
-	9,   // 139: vdp.pipeline.v1beta.TriggerOrganizationPipelineResponse.metadata:type_name -> vdp.pipeline.v1beta.TriggerMetadata
-	159, // 140: vdp.pipeline.v1beta.TriggerOrganizationPipelineStreamRequest.inputs:type_name -> google.protobuf.Struct
-	83,  // 141: vdp.pipeline.v1beta.TriggerOrganizationPipelineStreamRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
-	159, // 142: vdp.pipeline.v1beta.TriggerOrganizationPipelineStreamResponse.outputs:type_name -> google.protobuf.Struct
-	9,   // 143: vdp.pipeline.v1beta.TriggerOrganizationPipelineStreamResponse.metadata:type_name -> vdp.pipeline.v1beta.TriggerMetadata
-	159, // 144: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineRequest.inputs:type_name -> google.protobuf.Struct
-	83,  // 145: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
-	166, // 146: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineResponse.operation:type_name -> google.longrunning.Operation
-	13,  // 147: vdp.pipeline.v1beta.CreateOrganizationPipelineReleaseRequest.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	13,  // 148: vdp.pipeline.v1beta.CreateOrganizationPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	1,   // 149: vdp.pipeline.v1beta.ListOrganizationPipelineReleasesRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	13,  // 150: vdp.pipeline.v1beta.ListOrganizationPipelineReleasesResponse.releases:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	1,   // 151: vdp.pipeline.v1beta.GetOrganizationPipelineReleaseRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	13,  // 152: vdp.pipeline.v1beta.GetOrganizationPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	13,  // 153: vdp.pipeline.v1beta.UpdateOrganizationPipelineReleaseRequest.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	165, // 154: vdp.pipeline.v1beta.UpdateOrganizationPipelineReleaseRequest.update_mask:type_name -> google.protobuf.FieldMask
-	13,  // 155: vdp.pipeline.v1beta.UpdateOrganizationPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	13,  // 156: vdp.pipeline.v1beta.RestoreOrganizationPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	13,  // 157: vdp.pipeline.v1beta.RenameOrganizationPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	159, // 158: vdp.pipeline.v1beta.TriggerOrganizationPipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
-	83,  // 159: vdp.pipeline.v1beta.TriggerOrganizationPipelineReleaseRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
-	159, // 160: vdp.pipeline.v1beta.TriggerOrganizationPipelineReleaseResponse.outputs:type_name -> google.protobuf.Struct
-	9,   // 161: vdp.pipeline.v1beta.TriggerOrganizationPipelineReleaseResponse.metadata:type_name -> vdp.pipeline.v1beta.TriggerMetadata
-	159, // 162: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
-	83,  // 163: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
-	166, // 164: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseResponse.operation:type_name -> google.longrunning.Operation
-	166, // 165: vdp.pipeline.v1beta.GetOperationResponse.operation:type_name -> google.longrunning.Operation
-	1,   // 166: vdp.pipeline.v1beta.ListPipelinesAdminRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	8,   // 167: vdp.pipeline.v1beta.ListPipelinesAdminResponse.pipelines:type_name -> vdp.pipeline.v1beta.Pipeline
-	1,   // 168: vdp.pipeline.v1beta.ListPipelineReleasesAdminRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	13,  // 169: vdp.pipeline.v1beta.ListPipelineReleasesAdminResponse.releases:type_name -> vdp.pipeline.v1beta.PipelineRelease
-	1,   // 170: vdp.pipeline.v1beta.LookUpPipelineAdminRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
-	8,   // 171: vdp.pipeline.v1beta.LookUpPipelineAdminResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
-	160, // 172: vdp.pipeline.v1beta.Pipeline.Stats.last_run_time:type_name -> google.protobuf.Timestamp
-	10,  // 173: vdp.pipeline.v1beta.TriggerMetadata.TracesEntry.value:type_name -> vdp.pipeline.v1beta.Trace
-	174, // [174:174] is the sub-list for method output_type
-	174, // [174:174] is the sub-list for method input_type
-	174, // [174:174] is the sub-list for extension type_name
-	174, // [174:174] is the sub-list for extension extendee
-	0,   // [0:174] is the sub-list for field type_name
+	166, // 0: vdp.pipeline.v1beta.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	167, // 1: vdp.pipeline.v1beta.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	166, // 2: vdp.pipeline.v1beta.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	167, // 3: vdp.pipeline.v1beta.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	168, // 4: vdp.pipeline.v1beta.Pipeline.recipe:type_name -> google.protobuf.Struct
+	169, // 5: vdp.pipeline.v1beta.Pipeline.create_time:type_name -> google.protobuf.Timestamp
+	169, // 6: vdp.pipeline.v1beta.Pipeline.update_time:type_name -> google.protobuf.Timestamp
+	169, // 7: vdp.pipeline.v1beta.Pipeline.delete_time:type_name -> google.protobuf.Timestamp
+	170, // 8: vdp.pipeline.v1beta.Pipeline.sharing:type_name -> vdp.pipeline.v1beta.Sharing
+	168, // 9: vdp.pipeline.v1beta.Pipeline.metadata:type_name -> google.protobuf.Struct
+	15,  // 10: vdp.pipeline.v1beta.Pipeline.releases:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	171, // 11: vdp.pipeline.v1beta.Pipeline.permission:type_name -> vdp.pipeline.v1beta.Permission
+	3,   // 12: vdp.pipeline.v1beta.Pipeline.visibility:type_name -> vdp.pipeline.v1beta.Pipeline.Visibility
+	172, // 13: vdp.pipeline.v1beta.Pipeline.owner:type_name -> core.mgmt.v1beta.Owner
+	173, // 14: vdp.pipeline.v1beta.Pipeline.data_specification:type_name -> vdp.pipeline.v1beta.DataSpecification
+	163, // 15: vdp.pipeline.v1beta.Pipeline.stats:type_name -> vdp.pipeline.v1beta.Pipeline.Stats
+	164, // 16: vdp.pipeline.v1beta.TriggerMetadata.traces:type_name -> vdp.pipeline.v1beta.TriggerMetadata.TracesEntry
+	4,   // 17: vdp.pipeline.v1beta.Trace.statuses:type_name -> vdp.pipeline.v1beta.Trace.Status
+	168, // 18: vdp.pipeline.v1beta.Trace.inputs:type_name -> google.protobuf.Struct
+	168, // 19: vdp.pipeline.v1beta.Trace.outputs:type_name -> google.protobuf.Struct
+	168, // 20: vdp.pipeline.v1beta.Trace.error:type_name -> google.protobuf.Struct
+	168, // 21: vdp.pipeline.v1beta.PipelineRelease.recipe:type_name -> google.protobuf.Struct
+	169, // 22: vdp.pipeline.v1beta.PipelineRelease.create_time:type_name -> google.protobuf.Timestamp
+	169, // 23: vdp.pipeline.v1beta.PipelineRelease.update_time:type_name -> google.protobuf.Timestamp
+	169, // 24: vdp.pipeline.v1beta.PipelineRelease.delete_time:type_name -> google.protobuf.Timestamp
+	168, // 25: vdp.pipeline.v1beta.PipelineRelease.metadata:type_name -> google.protobuf.Struct
+	173, // 26: vdp.pipeline.v1beta.PipelineRelease.data_specification:type_name -> vdp.pipeline.v1beta.DataSpecification
+	2,   // 27: vdp.pipeline.v1beta.ListPipelinesRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	3,   // 28: vdp.pipeline.v1beta.ListPipelinesRequest.visibility:type_name -> vdp.pipeline.v1beta.Pipeline.Visibility
+	10,  // 29: vdp.pipeline.v1beta.ListPipelinesResponse.pipelines:type_name -> vdp.pipeline.v1beta.Pipeline
+	2,   // 30: vdp.pipeline.v1beta.ListNamespacePipelinesRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	3,   // 31: vdp.pipeline.v1beta.ListNamespacePipelinesRequest.visibility:type_name -> vdp.pipeline.v1beta.Pipeline.Visibility
+	10,  // 32: vdp.pipeline.v1beta.ListNamespacePipelinesResponse.pipelines:type_name -> vdp.pipeline.v1beta.Pipeline
+	2,   // 33: vdp.pipeline.v1beta.LookUpPipelineRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	10,  // 34: vdp.pipeline.v1beta.LookUpPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	10,  // 35: vdp.pipeline.v1beta.CreateNamespacePipelineRequest.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	10,  // 36: vdp.pipeline.v1beta.CreateNamespacePipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	2,   // 37: vdp.pipeline.v1beta.GetNamespacePipelineRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	10,  // 38: vdp.pipeline.v1beta.GetNamespacePipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	10,  // 39: vdp.pipeline.v1beta.UpdateNamespacePipelineRequest.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	174, // 40: vdp.pipeline.v1beta.UpdateNamespacePipelineRequest.update_mask:type_name -> google.protobuf.FieldMask
+	10,  // 41: vdp.pipeline.v1beta.UpdateNamespacePipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	72,  // 42: vdp.pipeline.v1beta.ValidateNamespacePipelineResponse.errors:type_name -> vdp.pipeline.v1beta.PipelineValidationError
+	10,  // 43: vdp.pipeline.v1beta.RenameNamespacePipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	170, // 44: vdp.pipeline.v1beta.CloneNamespacePipelineRequest.sharing:type_name -> vdp.pipeline.v1beta.Sharing
+	170, // 45: vdp.pipeline.v1beta.CloneNamespacePipelineReleaseRequest.sharing:type_name -> vdp.pipeline.v1beta.Sharing
+	168, // 46: vdp.pipeline.v1beta.SendNamespacePipelineEventRequest.data:type_name -> google.protobuf.Struct
+	168, // 47: vdp.pipeline.v1beta.SendNamespacePipelineEventResponse.data:type_name -> google.protobuf.Struct
+	168, // 48: vdp.pipeline.v1beta.SendNamespacePipelineReleaseEventRequest.data:type_name -> google.protobuf.Struct
+	168, // 49: vdp.pipeline.v1beta.SendNamespacePipelineReleaseEventResponse.data:type_name -> google.protobuf.Struct
+	168, // 50: vdp.pipeline.v1beta.TriggerNamespacePipelineRequest.inputs:type_name -> google.protobuf.Struct
+	85,  // 51: vdp.pipeline.v1beta.TriggerNamespacePipelineRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
+	168, // 52: vdp.pipeline.v1beta.TriggerNamespacePipelineResponse.outputs:type_name -> google.protobuf.Struct
+	11,  // 53: vdp.pipeline.v1beta.TriggerNamespacePipelineResponse.metadata:type_name -> vdp.pipeline.v1beta.TriggerMetadata
+	168, // 54: vdp.pipeline.v1beta.TriggerNamespacePipelineWithStreamRequest.inputs:type_name -> google.protobuf.Struct
+	85,  // 55: vdp.pipeline.v1beta.TriggerNamespacePipelineWithStreamRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
+	168, // 56: vdp.pipeline.v1beta.TriggerNamespacePipelineWithStreamResponse.outputs:type_name -> google.protobuf.Struct
+	11,  // 57: vdp.pipeline.v1beta.TriggerNamespacePipelineWithStreamResponse.metadata:type_name -> vdp.pipeline.v1beta.TriggerMetadata
+	168, // 58: vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineRequest.inputs:type_name -> google.protobuf.Struct
+	85,  // 59: vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
+	175, // 60: vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineResponse.operation:type_name -> google.longrunning.Operation
+	15,  // 61: vdp.pipeline.v1beta.CreateNamespacePipelineReleaseRequest.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	15,  // 62: vdp.pipeline.v1beta.CreateNamespacePipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	2,   // 63: vdp.pipeline.v1beta.ListNamespacePipelineReleasesRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	15,  // 64: vdp.pipeline.v1beta.ListNamespacePipelineReleasesResponse.releases:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	2,   // 65: vdp.pipeline.v1beta.GetNamespacePipelineReleaseRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	15,  // 66: vdp.pipeline.v1beta.GetNamespacePipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	15,  // 67: vdp.pipeline.v1beta.UpdateNamespacePipelineReleaseRequest.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	174, // 68: vdp.pipeline.v1beta.UpdateNamespacePipelineReleaseRequest.update_mask:type_name -> google.protobuf.FieldMask
+	15,  // 69: vdp.pipeline.v1beta.UpdateNamespacePipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	168, // 70: vdp.pipeline.v1beta.TriggerNamespacePipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
+	85,  // 71: vdp.pipeline.v1beta.TriggerNamespacePipelineReleaseRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
+	168, // 72: vdp.pipeline.v1beta.TriggerNamespacePipelineReleaseResponse.outputs:type_name -> google.protobuf.Struct
+	11,  // 73: vdp.pipeline.v1beta.TriggerNamespacePipelineReleaseResponse.metadata:type_name -> vdp.pipeline.v1beta.TriggerMetadata
+	168, // 74: vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
+	85,  // 75: vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
+	175, // 76: vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseResponse.operation:type_name -> google.longrunning.Operation
+	10,  // 77: vdp.pipeline.v1beta.CreateUserPipelineRequest.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	10,  // 78: vdp.pipeline.v1beta.CreateUserPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	2,   // 79: vdp.pipeline.v1beta.ListUserPipelinesRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	3,   // 80: vdp.pipeline.v1beta.ListUserPipelinesRequest.visibility:type_name -> vdp.pipeline.v1beta.Pipeline.Visibility
+	10,  // 81: vdp.pipeline.v1beta.ListUserPipelinesResponse.pipelines:type_name -> vdp.pipeline.v1beta.Pipeline
+	2,   // 82: vdp.pipeline.v1beta.GetUserPipelineRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	10,  // 83: vdp.pipeline.v1beta.GetUserPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	10,  // 84: vdp.pipeline.v1beta.UpdateUserPipelineRequest.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	174, // 85: vdp.pipeline.v1beta.UpdateUserPipelineRequest.update_mask:type_name -> google.protobuf.FieldMask
+	10,  // 86: vdp.pipeline.v1beta.UpdateUserPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	72,  // 87: vdp.pipeline.v1beta.ValidateUserPipelineResponse.errors:type_name -> vdp.pipeline.v1beta.PipelineValidationError
+	10,  // 88: vdp.pipeline.v1beta.RenameUserPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	170, // 89: vdp.pipeline.v1beta.CloneUserPipelineRequest.sharing:type_name -> vdp.pipeline.v1beta.Sharing
+	170, // 90: vdp.pipeline.v1beta.CloneUserPipelineReleaseRequest.sharing:type_name -> vdp.pipeline.v1beta.Sharing
+	168, // 91: vdp.pipeline.v1beta.TriggerUserPipelineRequest.inputs:type_name -> google.protobuf.Struct
+	85,  // 92: vdp.pipeline.v1beta.TriggerUserPipelineRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
+	168, // 93: vdp.pipeline.v1beta.TriggerUserPipelineResponse.outputs:type_name -> google.protobuf.Struct
+	11,  // 94: vdp.pipeline.v1beta.TriggerUserPipelineResponse.metadata:type_name -> vdp.pipeline.v1beta.TriggerMetadata
+	168, // 95: vdp.pipeline.v1beta.TriggerUserPipelineWithStreamRequest.inputs:type_name -> google.protobuf.Struct
+	85,  // 96: vdp.pipeline.v1beta.TriggerUserPipelineWithStreamRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
+	168, // 97: vdp.pipeline.v1beta.TriggerUserPipelineWithStreamResponse.outputs:type_name -> google.protobuf.Struct
+	11,  // 98: vdp.pipeline.v1beta.TriggerUserPipelineWithStreamResponse.metadata:type_name -> vdp.pipeline.v1beta.TriggerMetadata
+	168, // 99: vdp.pipeline.v1beta.TriggerData.variable:type_name -> google.protobuf.Struct
+	165, // 100: vdp.pipeline.v1beta.TriggerData.secret:type_name -> vdp.pipeline.v1beta.TriggerData.SecretEntry
+	168, // 101: vdp.pipeline.v1beta.TriggerAsyncUserPipelineRequest.inputs:type_name -> google.protobuf.Struct
+	85,  // 102: vdp.pipeline.v1beta.TriggerAsyncUserPipelineRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
+	175, // 103: vdp.pipeline.v1beta.TriggerAsyncUserPipelineResponse.operation:type_name -> google.longrunning.Operation
+	15,  // 104: vdp.pipeline.v1beta.CreateUserPipelineReleaseRequest.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	15,  // 105: vdp.pipeline.v1beta.CreateUserPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	2,   // 106: vdp.pipeline.v1beta.ListUserPipelineReleasesRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	15,  // 107: vdp.pipeline.v1beta.ListUserPipelineReleasesResponse.releases:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	2,   // 108: vdp.pipeline.v1beta.GetUserPipelineReleaseRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	15,  // 109: vdp.pipeline.v1beta.GetUserPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	15,  // 110: vdp.pipeline.v1beta.UpdateUserPipelineReleaseRequest.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	174, // 111: vdp.pipeline.v1beta.UpdateUserPipelineReleaseRequest.update_mask:type_name -> google.protobuf.FieldMask
+	15,  // 112: vdp.pipeline.v1beta.UpdateUserPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	15,  // 113: vdp.pipeline.v1beta.RestoreUserPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	15,  // 114: vdp.pipeline.v1beta.RenameUserPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	168, // 115: vdp.pipeline.v1beta.TriggerUserPipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
+	85,  // 116: vdp.pipeline.v1beta.TriggerUserPipelineReleaseRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
+	168, // 117: vdp.pipeline.v1beta.TriggerUserPipelineReleaseResponse.outputs:type_name -> google.protobuf.Struct
+	11,  // 118: vdp.pipeline.v1beta.TriggerUserPipelineReleaseResponse.metadata:type_name -> vdp.pipeline.v1beta.TriggerMetadata
+	168, // 119: vdp.pipeline.v1beta.TriggerAsyncUserPipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
+	85,  // 120: vdp.pipeline.v1beta.TriggerAsyncUserPipelineReleaseRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
+	175, // 121: vdp.pipeline.v1beta.TriggerAsyncUserPipelineReleaseResponse.operation:type_name -> google.longrunning.Operation
+	10,  // 122: vdp.pipeline.v1beta.CreateOrganizationPipelineRequest.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	10,  // 123: vdp.pipeline.v1beta.CreateOrganizationPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	2,   // 124: vdp.pipeline.v1beta.ListOrganizationPipelinesRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	3,   // 125: vdp.pipeline.v1beta.ListOrganizationPipelinesRequest.visibility:type_name -> vdp.pipeline.v1beta.Pipeline.Visibility
+	10,  // 126: vdp.pipeline.v1beta.ListOrganizationPipelinesResponse.pipelines:type_name -> vdp.pipeline.v1beta.Pipeline
+	2,   // 127: vdp.pipeline.v1beta.GetOrganizationPipelineRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	10,  // 128: vdp.pipeline.v1beta.GetOrganizationPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	10,  // 129: vdp.pipeline.v1beta.UpdateOrganizationPipelineRequest.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	174, // 130: vdp.pipeline.v1beta.UpdateOrganizationPipelineRequest.update_mask:type_name -> google.protobuf.FieldMask
+	10,  // 131: vdp.pipeline.v1beta.UpdateOrganizationPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	72,  // 132: vdp.pipeline.v1beta.ValidateOrganizationPipelineResponse.errors:type_name -> vdp.pipeline.v1beta.PipelineValidationError
+	10,  // 133: vdp.pipeline.v1beta.RenameOrganizationPipelineResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	170, // 134: vdp.pipeline.v1beta.CloneOrganizationPipelineRequest.sharing:type_name -> vdp.pipeline.v1beta.Sharing
+	170, // 135: vdp.pipeline.v1beta.CloneOrganizationPipelineReleaseRequest.sharing:type_name -> vdp.pipeline.v1beta.Sharing
+	168, // 136: vdp.pipeline.v1beta.TriggerOrganizationPipelineRequest.inputs:type_name -> google.protobuf.Struct
+	85,  // 137: vdp.pipeline.v1beta.TriggerOrganizationPipelineRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
+	168, // 138: vdp.pipeline.v1beta.TriggerOrganizationPipelineResponse.outputs:type_name -> google.protobuf.Struct
+	11,  // 139: vdp.pipeline.v1beta.TriggerOrganizationPipelineResponse.metadata:type_name -> vdp.pipeline.v1beta.TriggerMetadata
+	168, // 140: vdp.pipeline.v1beta.TriggerOrganizationPipelineStreamRequest.inputs:type_name -> google.protobuf.Struct
+	85,  // 141: vdp.pipeline.v1beta.TriggerOrganizationPipelineStreamRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
+	168, // 142: vdp.pipeline.v1beta.TriggerOrganizationPipelineStreamResponse.outputs:type_name -> google.protobuf.Struct
+	11,  // 143: vdp.pipeline.v1beta.TriggerOrganizationPipelineStreamResponse.metadata:type_name -> vdp.pipeline.v1beta.TriggerMetadata
+	168, // 144: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineRequest.inputs:type_name -> google.protobuf.Struct
+	85,  // 145: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
+	175, // 146: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineResponse.operation:type_name -> google.longrunning.Operation
+	15,  // 147: vdp.pipeline.v1beta.CreateOrganizationPipelineReleaseRequest.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	15,  // 148: vdp.pipeline.v1beta.CreateOrganizationPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	2,   // 149: vdp.pipeline.v1beta.ListOrganizationPipelineReleasesRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	15,  // 150: vdp.pipeline.v1beta.ListOrganizationPipelineReleasesResponse.releases:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	2,   // 151: vdp.pipeline.v1beta.GetOrganizationPipelineReleaseRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	15,  // 152: vdp.pipeline.v1beta.GetOrganizationPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	15,  // 153: vdp.pipeline.v1beta.UpdateOrganizationPipelineReleaseRequest.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	174, // 154: vdp.pipeline.v1beta.UpdateOrganizationPipelineReleaseRequest.update_mask:type_name -> google.protobuf.FieldMask
+	15,  // 155: vdp.pipeline.v1beta.UpdateOrganizationPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	15,  // 156: vdp.pipeline.v1beta.RestoreOrganizationPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	15,  // 157: vdp.pipeline.v1beta.RenameOrganizationPipelineReleaseResponse.release:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	168, // 158: vdp.pipeline.v1beta.TriggerOrganizationPipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
+	85,  // 159: vdp.pipeline.v1beta.TriggerOrganizationPipelineReleaseRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
+	168, // 160: vdp.pipeline.v1beta.TriggerOrganizationPipelineReleaseResponse.outputs:type_name -> google.protobuf.Struct
+	11,  // 161: vdp.pipeline.v1beta.TriggerOrganizationPipelineReleaseResponse.metadata:type_name -> vdp.pipeline.v1beta.TriggerMetadata
+	168, // 162: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
+	85,  // 163: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseRequest.data:type_name -> vdp.pipeline.v1beta.TriggerData
+	175, // 164: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseResponse.operation:type_name -> google.longrunning.Operation
+	175, // 165: vdp.pipeline.v1beta.GetOperationResponse.operation:type_name -> google.longrunning.Operation
+	2,   // 166: vdp.pipeline.v1beta.ListPipelinesAdminRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	10,  // 167: vdp.pipeline.v1beta.ListPipelinesAdminResponse.pipelines:type_name -> vdp.pipeline.v1beta.Pipeline
+	2,   // 168: vdp.pipeline.v1beta.ListPipelineReleasesAdminRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	15,  // 169: vdp.pipeline.v1beta.ListPipelineReleasesAdminResponse.releases:type_name -> vdp.pipeline.v1beta.PipelineRelease
+	2,   // 170: vdp.pipeline.v1beta.LookUpPipelineAdminRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	10,  // 171: vdp.pipeline.v1beta.LookUpPipelineAdminResponse.pipeline:type_name -> vdp.pipeline.v1beta.Pipeline
+	2,   // 172: vdp.pipeline.v1beta.ListPipelineRunsRequest.view:type_name -> vdp.pipeline.v1beta.Pipeline.View
+	161, // 173: vdp.pipeline.v1beta.ListPipelineRunsResponse.pipeline_runs:type_name -> vdp.pipeline.v1beta.PipelineRun
+	162, // 174: vdp.pipeline.v1beta.ListComponentRunsResponse.component_runs:type_name -> vdp.pipeline.v1beta.ComponentRun
+	1,   // 175: vdp.pipeline.v1beta.PipelineRun.status:type_name -> vdp.pipeline.v1beta.RunStatus
+	5,   // 176: vdp.pipeline.v1beta.PipelineRun.source:type_name -> vdp.pipeline.v1beta.PipelineRun.RunSource
+	176, // 177: vdp.pipeline.v1beta.PipelineRun.total_duration:type_name -> google.protobuf.Duration
+	160, // 178: vdp.pipeline.v1beta.PipelineRun.inputs:type_name -> vdp.pipeline.v1beta.FileReference
+	160, // 179: vdp.pipeline.v1beta.PipelineRun.outputs:type_name -> vdp.pipeline.v1beta.FileReference
+	168, // 180: vdp.pipeline.v1beta.PipelineRun.recipe_snapshot:type_name -> google.protobuf.Struct
+	169, // 181: vdp.pipeline.v1beta.PipelineRun.start_time:type_name -> google.protobuf.Timestamp
+	169, // 182: vdp.pipeline.v1beta.PipelineRun.complete_time:type_name -> google.protobuf.Timestamp
+	1,   // 183: vdp.pipeline.v1beta.ComponentRun.status:type_name -> vdp.pipeline.v1beta.RunStatus
+	176, // 184: vdp.pipeline.v1beta.ComponentRun.total_duration:type_name -> google.protobuf.Duration
+	169, // 185: vdp.pipeline.v1beta.ComponentRun.start_time:type_name -> google.protobuf.Timestamp
+	169, // 186: vdp.pipeline.v1beta.ComponentRun.complete_time:type_name -> google.protobuf.Timestamp
+	160, // 187: vdp.pipeline.v1beta.ComponentRun.inputs:type_name -> vdp.pipeline.v1beta.FileReference
+	160, // 188: vdp.pipeline.v1beta.ComponentRun.outputs:type_name -> vdp.pipeline.v1beta.FileReference
+	169, // 189: vdp.pipeline.v1beta.Pipeline.Stats.last_run_time:type_name -> google.protobuf.Timestamp
+	12,  // 190: vdp.pipeline.v1beta.TriggerMetadata.TracesEntry.value:type_name -> vdp.pipeline.v1beta.Trace
+	191, // [191:191] is the sub-list for method output_type
+	191, // [191:191] is the sub-list for method input_type
+	191, // [191:191] is the sub-list for extension type_name
+	191, // [191:191] is the sub-list for extension extendee
+	0,   // [0:191] is the sub-list for field type_name
 }
 
 func init() { file_vdp_pipeline_v1beta_pipeline_proto_init() }
@@ -13797,6 +14784,90 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 			}
 		}
 		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[150].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListPipelineRunsRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[151].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListPipelineRunsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[152].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListComponentRunsRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[153].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListComponentRunsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[154].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FileReference); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[155].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*PipelineRun); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[156].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ComponentRun); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[157].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Pipeline_Stats); i {
 			case 0:
 				return &v.state
@@ -13830,13 +14901,17 @@ func file_vdp_pipeline_v1beta_pipeline_proto_init() {
 	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[144].OneofWrappers = []interface{}{}
 	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[146].OneofWrappers = []interface{}{}
 	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[148].OneofWrappers = []interface{}{}
+	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[150].OneofWrappers = []interface{}{}
+	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[152].OneofWrappers = []interface{}{}
+	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[155].OneofWrappers = []interface{}{}
+	file_vdp_pipeline_v1beta_pipeline_proto_msgTypes[156].OneofWrappers = []interface{}{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_vdp_pipeline_v1beta_pipeline_proto_rawDesc,
-			NumEnums:      4,
-			NumMessages:   153,
+			NumEnums:      6,
+			NumMessages:   160,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
