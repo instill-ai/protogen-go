@@ -5646,7 +5646,7 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/model.model.v1alpha.ModelPublicService/ListModelRuns", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/models/{model_id}/runs"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/model.model.v1alpha.ModelPublicService/ListModelRuns", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/models/{model_id}/runs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7008,7 +7008,7 @@ func RegisterModelPublicServiceHandlerClient(ctx context.Context, mux *runtime.S
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/model.model.v1alpha.ModelPublicService/ListModelRuns", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/models/{model_id}/runs"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/model.model.v1alpha.ModelPublicService/ListModelRuns", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/models/{model_id}/runs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7146,7 +7146,7 @@ var (
 
 	pattern_ModelPublicService_GetOrganizationLatestModelOperation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "organizations", "models", "name", "operation"}, ""))
 
-	pattern_ModelPublicService_ListModelRuns_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1beta", "namespaces", "namespace_id", "models", "model_id", "runs"}, ""))
+	pattern_ModelPublicService_ListModelRuns_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "namespace_id", "models", "model_id", "runs"}, ""))
 )
 
 var (
