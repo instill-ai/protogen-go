@@ -85,7 +85,7 @@ type ArtifactPublicServiceClient interface {
 	QuestionAnswering(ctx context.Context, in *QuestionAnsweringRequest, opts ...grpc.CallOption) (*QuestionAnsweringResponse, error)
 	// Get file catalog
 	GetFileCatalog(ctx context.Context, in *GetFileCatalogRequest, opts ...grpc.CallOption) (*GetFileCatalogResponse, error)
-	// CreateConversaion
+	// CreateConversation
 	CreateConversation(ctx context.Context, in *CreateConversationRequest, opts ...grpc.CallOption) (*CreateConversationResponse, error)
 	// ListConversations
 	ListConversations(ctx context.Context, in *ListConversationsRequest, opts ...grpc.CallOption) (*ListConversationsResponse, error)
@@ -367,7 +367,7 @@ type ArtifactPublicServiceServer interface {
 	QuestionAnswering(context.Context, *QuestionAnsweringRequest) (*QuestionAnsweringResponse, error)
 	// Get file catalog
 	GetFileCatalog(context.Context, *GetFileCatalogRequest) (*GetFileCatalogResponse, error)
-	// CreateConversaion
+	// CreateConversation
 	CreateConversation(context.Context, *CreateConversationRequest) (*CreateConversationResponse, error)
 	// ListConversations
 	ListConversations(context.Context, *ListConversationsRequest) (*ListConversationsResponse, error)

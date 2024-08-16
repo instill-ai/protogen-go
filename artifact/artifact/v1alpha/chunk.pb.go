@@ -389,7 +389,7 @@ type GetSourceFileResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// source file(either orignal file or converted file)
+	// source file(either original file or converted file)
 	SourceFile *SourceFile `protobuf:"bytes,1,opt,name=source_file,json=sourceFile,proto3" json:"source_file,omitempty"`
 }
 
@@ -490,7 +490,7 @@ func (x *UpdateChunkRequest) GetRetrievable() bool {
 	return false
 }
 
-// Updae chunk response
+// update chunk response
 type UpdateChunkResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -539,7 +539,7 @@ func (x *UpdateChunkResponse) GetChunk() *Chunk {
 	return nil
 }
 
-// Similar chunnk search request
+// Similar chunk search request
 type SimilarityChunksSearchRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -615,7 +615,7 @@ func (x *SimilarityChunksSearchRequest) GetTopK() uint32 {
 	return 0
 }
 
-// Similar chunnk search response
+// Similar chunk search response
 type SimilarityChunksSearchResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

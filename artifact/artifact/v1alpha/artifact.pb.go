@@ -100,7 +100,7 @@ func (FileProcessStatus) EnumDescriptor() ([]byte, []int) {
 type FileType int32
 
 const (
-	// upsecifid
+	// unspecified
 	FileType_FILE_TYPE_UNSPECIFIED FileType = 0
 	// text
 	FileType_FILE_TYPE_TEXT FileType = 1
@@ -911,7 +911,7 @@ type Catalog struct {
 	CreateTime string `protobuf:"bytes,5,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
 	// The last update time of the catalog.
 	UpdateTime string `protobuf:"bytes,6,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
-	// The owner/namespaceof the catalog.
+	// The owner/namespace of the catalog.
 	OwnerName string `protobuf:"bytes,7,opt,name=owner_name,json=ownerName,proto3" json:"owner_name,omitempty"`
 	// The catalog tags.
 	Tags []string `protobuf:"bytes,8,rep,name=tags,proto3" json:"tags,omitempty"`
@@ -1067,7 +1067,7 @@ type CreateCatalogRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The catalog's owner(nammespace).
+	// The catalog's owner(namespaces).
 	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
 	// The catalog name.
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
@@ -1516,7 +1516,7 @@ func (x *DeleteCatalogResponse) GetCatalog() *Catalog {
 	return nil
 }
 
-// file mata data
+// file
 type File struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1534,11 +1534,11 @@ type File struct {
 	ProcessOutcome string `protobuf:"bytes,5,opt,name=process_outcome,json=processOutcome,proto3" json:"process_outcome,omitempty"`
 	// retrievable(this is reserved for future use)
 	Retrievable bool `protobuf:"varint,6,opt,name=retrievable,proto3" json:"retrievable,omitempty"`
-	// contect(this is reserved for future use)
+	// content(this is reserved for future use)
 	Content string `protobuf:"bytes,7,opt,name=content,proto3" json:"content,omitempty"`
-	// owner/namespaceuid
+	// owner/namespace uid
 	OwnerUid string `protobuf:"bytes,8,opt,name=owner_uid,json=ownerUid,proto3" json:"owner_uid,omitempty"`
-	// cretor uid from authn token
+	// creator uid from authn token
 	CreatorUid string `protobuf:"bytes,9,opt,name=creator_uid,json=creatorUid,proto3" json:"creator_uid,omitempty"`
 	// catalog uid
 	CatalogUid string `protobuf:"bytes,10,opt,name=catalog_uid,json=catalogUid,proto3" json:"catalog_uid,omitempty"`
@@ -2068,7 +2068,7 @@ type ListCatalogFilesRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The owner/namespaceuid id.
+	// The owner/namespace uid id.
 	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
 	// The catalog id.
 	CatalogId string `protobuf:"bytes,2,opt,name=catalog_id,json=catalogId,proto3" json:"catalog_id,omitempty"`
