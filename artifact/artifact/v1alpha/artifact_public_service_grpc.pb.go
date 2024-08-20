@@ -69,37 +69,37 @@ type ArtifactPublicServiceClient interface {
 	UploadCatalogFile(ctx context.Context, in *UploadCatalogFileRequest, opts ...grpc.CallOption) (*UploadCatalogFileResponse, error)
 	// Delete a file
 	DeleteCatalogFile(ctx context.Context, in *DeleteCatalogFileRequest, opts ...grpc.CallOption) (*DeleteCatalogFileResponse, error)
-	// process file
+	// Process catalog files
 	ProcessCatalogFiles(ctx context.Context, in *ProcessCatalogFilesRequest, opts ...grpc.CallOption) (*ProcessCatalogFilesResponse, error)
-	// list files
+	// List catalog files
 	ListCatalogFiles(ctx context.Context, in *ListCatalogFilesRequest, opts ...grpc.CallOption) (*ListCatalogFilesResponse, error)
-	// List chunks
+	// List catalog chunks
 	ListChunks(ctx context.Context, in *ListChunksRequest, opts ...grpc.CallOption) (*ListChunksResponse, error)
-	// Get source file
+	// Get catalog single-source-of-truth file
 	GetSourceFile(ctx context.Context, in *GetSourceFileRequest, opts ...grpc.CallOption) (*GetSourceFileResponse, error)
-	// Update chunk
+	// Update catalog chunk
 	UpdateChunk(ctx context.Context, in *UpdateChunkRequest, opts ...grpc.CallOption) (*UpdateChunkResponse, error)
-	// Similarity chunks search
+	// Retrieve similar chunks
 	SimilarityChunksSearch(ctx context.Context, in *SimilarityChunksSearchRequest, opts ...grpc.CallOption) (*SimilarityChunksSearchResponse, error)
-	// Question Answering
+	// Ask a question
 	QuestionAnswering(ctx context.Context, in *QuestionAnsweringRequest, opts ...grpc.CallOption) (*QuestionAnsweringResponse, error)
 	// Get file catalog
 	GetFileCatalog(ctx context.Context, in *GetFileCatalogRequest, opts ...grpc.CallOption) (*GetFileCatalogResponse, error)
-	// CreateConversation
+	// Create a Conversation
 	CreateConversation(ctx context.Context, in *CreateConversationRequest, opts ...grpc.CallOption) (*CreateConversationResponse, error)
-	// ListConversations
+	// List conversations
 	ListConversations(ctx context.Context, in *ListConversationsRequest, opts ...grpc.CallOption) (*ListConversationsResponse, error)
-	// UpdateConversation
+	// Update a conversation
 	UpdateConversation(ctx context.Context, in *UpdateConversationRequest, opts ...grpc.CallOption) (*UpdateConversationResponse, error)
-	// DeleteConversation
+	// Delete a conversation
 	DeleteConversation(ctx context.Context, in *DeleteConversationRequest, opts ...grpc.CallOption) (*DeleteConversationResponse, error)
-	// CreateMessage
+	// Create a message
 	CreateMessage(ctx context.Context, in *CreateMessageRequest, opts ...grpc.CallOption) (*CreateMessageResponse, error)
-	// ListMessages
+	// List messages
 	ListMessages(ctx context.Context, in *ListMessagesRequest, opts ...grpc.CallOption) (*ListMessagesResponse, error)
-	// UpdateMessage
+	// Update a message
 	UpdateMessage(ctx context.Context, in *UpdateMessageRequest, opts ...grpc.CallOption) (*UpdateMessageResponse, error)
-	// DeleteMessage
+	// Delete a message
 	DeleteMessage(ctx context.Context, in *DeleteMessageRequest, opts ...grpc.CallOption) (*DeleteMessageResponse, error)
 }
 
@@ -351,37 +351,37 @@ type ArtifactPublicServiceServer interface {
 	UploadCatalogFile(context.Context, *UploadCatalogFileRequest) (*UploadCatalogFileResponse, error)
 	// Delete a file
 	DeleteCatalogFile(context.Context, *DeleteCatalogFileRequest) (*DeleteCatalogFileResponse, error)
-	// process file
+	// Process catalog files
 	ProcessCatalogFiles(context.Context, *ProcessCatalogFilesRequest) (*ProcessCatalogFilesResponse, error)
-	// list files
+	// List catalog files
 	ListCatalogFiles(context.Context, *ListCatalogFilesRequest) (*ListCatalogFilesResponse, error)
-	// List chunks
+	// List catalog chunks
 	ListChunks(context.Context, *ListChunksRequest) (*ListChunksResponse, error)
-	// Get source file
+	// Get catalog single-source-of-truth file
 	GetSourceFile(context.Context, *GetSourceFileRequest) (*GetSourceFileResponse, error)
-	// Update chunk
+	// Update catalog chunk
 	UpdateChunk(context.Context, *UpdateChunkRequest) (*UpdateChunkResponse, error)
-	// Similarity chunks search
+	// Retrieve similar chunks
 	SimilarityChunksSearch(context.Context, *SimilarityChunksSearchRequest) (*SimilarityChunksSearchResponse, error)
-	// Question Answering
+	// Ask a question
 	QuestionAnswering(context.Context, *QuestionAnsweringRequest) (*QuestionAnsweringResponse, error)
 	// Get file catalog
 	GetFileCatalog(context.Context, *GetFileCatalogRequest) (*GetFileCatalogResponse, error)
-	// CreateConversation
+	// Create a Conversation
 	CreateConversation(context.Context, *CreateConversationRequest) (*CreateConversationResponse, error)
-	// ListConversations
+	// List conversations
 	ListConversations(context.Context, *ListConversationsRequest) (*ListConversationsResponse, error)
-	// UpdateConversation
+	// Update a conversation
 	UpdateConversation(context.Context, *UpdateConversationRequest) (*UpdateConversationResponse, error)
-	// DeleteConversation
+	// Delete a conversation
 	DeleteConversation(context.Context, *DeleteConversationRequest) (*DeleteConversationResponse, error)
-	// CreateMessage
+	// Create a message
 	CreateMessage(context.Context, *CreateMessageRequest) (*CreateMessageResponse, error)
-	// ListMessages
+	// List messages
 	ListMessages(context.Context, *ListMessagesRequest) (*ListMessagesResponse, error)
-	// UpdateMessage
+	// Update a message
 	UpdateMessage(context.Context, *UpdateMessageRequest) (*UpdateMessageResponse, error)
-	// DeleteMessage
+	// Delete a message
 	DeleteMessage(context.Context, *DeleteMessageRequest) (*DeleteMessageResponse, error)
 }
 
