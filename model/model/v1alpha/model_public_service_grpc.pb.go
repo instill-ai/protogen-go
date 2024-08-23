@@ -42,6 +42,7 @@ const (
 	ModelPublicService_TriggerAsyncNamespaceLatestModel_FullMethodName            = "/model.model.v1alpha.ModelPublicService/TriggerAsyncNamespaceLatestModel"
 	ModelPublicService_TriggerNamespaceModelBinaryFileUpload_FullMethodName       = "/model.model.v1alpha.ModelPublicService/TriggerNamespaceModelBinaryFileUpload"
 	ModelPublicService_TriggerNamespaceLatestModelBinaryFileUpload_FullMethodName = "/model.model.v1alpha.ModelPublicService/TriggerNamespaceLatestModelBinaryFileUpload"
+	ModelPublicService_GetNamespaceModelOperation_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/GetNamespaceModelOperation"
 	ModelPublicService_GetNamespaceLatestModelOperation_FullMethodName            = "/model.model.v1alpha.ModelPublicService/GetNamespaceLatestModelOperation"
 	ModelPublicService_GetModelOperation_FullMethodName                           = "/model.model.v1alpha.ModelPublicService/GetModelOperation"
 	ModelPublicService_ListUserModels_FullMethodName                              = "/model.model.v1alpha.ModelPublicService/ListUserModels"
@@ -197,15 +198,21 @@ type ModelPublicServiceClient interface {
 	// Triggers the latest deployed model version to infer the result of a set of task or
 	// questions, submitted as a binary file.
 	TriggerNamespaceLatestModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (ModelPublicService_TriggerNamespaceLatestModelBinaryFileUploadClient, error)
+	// Get the details of the long-running operation from a namespace model
+	// with a particular version
+	//
+	// This method allows requesters to request the status and outcome of
+	// long-running operations in a model, such as trigger.
+	GetNamespaceModelOperation(ctx context.Context, in *GetNamespaceModelOperationRequest, opts ...grpc.CallOption) (*GetNamespaceModelOperationResponse, error)
 	// Get the details of the latest long-running operation from a namespace model
 	//
 	// This method allows requesters to request the status and outcome of
-	// long-running operations in a model, such as deployment.
+	// long-running operations in a model, such as trigger.
 	GetNamespaceLatestModelOperation(ctx context.Context, in *GetNamespaceLatestModelOperationRequest, opts ...grpc.CallOption) (*GetNamespaceLatestModelOperationResponse, error)
 	// Get the details of a long-running operation
 	//
 	// This method allows requesters to request the status and outcome of
-	// long-running operations in a model, such as deployment.
+	// long-running operations in a model, such as trigger.
 	GetModelOperation(ctx context.Context, in *GetModelOperationRequest, opts ...grpc.CallOption) (*GetModelOperationResponse, error)
 	// Deprecated: Do not use.
 	// List user models
@@ -407,13 +414,13 @@ type ModelPublicServiceClient interface {
 	// Get the details of the latest long-running operation from a user model
 	//
 	// This method allows requesters to request the status and outcome of
-	// long-running operations in a model, such as deployment.
+	// long-running operations in a model, such as trigger.
 	GetUserLatestModelOperation(ctx context.Context, in *GetUserLatestModelOperationRequest, opts ...grpc.CallOption) (*GetUserLatestModelOperationResponse, error)
 	// Deprecated: Do not use.
 	// Get the details of the latest long-running operation from a organization model
 	//
 	// This method allows requesters to request the status and outcome of
-	// long-running operations in a model, such as deployment.
+	// long-running operations in a model, such as trigger.
 	GetOrganizationLatestModelOperation(ctx context.Context, in *GetOrganizationLatestModelOperationRequest, opts ...grpc.CallOption) (*GetOrganizationLatestModelOperationResponse, error)
 	// List model runs
 	//
@@ -684,6 +691,15 @@ func (x *modelPublicServiceTriggerNamespaceLatestModelBinaryFileUploadClient) Cl
 		return nil, err
 	}
 	return m, nil
+}
+
+func (c *modelPublicServiceClient) GetNamespaceModelOperation(ctx context.Context, in *GetNamespaceModelOperationRequest, opts ...grpc.CallOption) (*GetNamespaceModelOperationResponse, error) {
+	out := new(GetNamespaceModelOperationResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_GetNamespaceModelOperation_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *modelPublicServiceClient) GetNamespaceLatestModelOperation(ctx context.Context, in *GetNamespaceLatestModelOperationRequest, opts ...grpc.CallOption) (*GetNamespaceLatestModelOperationResponse, error) {
@@ -1201,15 +1217,21 @@ type ModelPublicServiceServer interface {
 	// Triggers the latest deployed model version to infer the result of a set of task or
 	// questions, submitted as a binary file.
 	TriggerNamespaceLatestModelBinaryFileUpload(ModelPublicService_TriggerNamespaceLatestModelBinaryFileUploadServer) error
+	// Get the details of the long-running operation from a namespace model
+	// with a particular version
+	//
+	// This method allows requesters to request the status and outcome of
+	// long-running operations in a model, such as trigger.
+	GetNamespaceModelOperation(context.Context, *GetNamespaceModelOperationRequest) (*GetNamespaceModelOperationResponse, error)
 	// Get the details of the latest long-running operation from a namespace model
 	//
 	// This method allows requesters to request the status and outcome of
-	// long-running operations in a model, such as deployment.
+	// long-running operations in a model, such as trigger.
 	GetNamespaceLatestModelOperation(context.Context, *GetNamespaceLatestModelOperationRequest) (*GetNamespaceLatestModelOperationResponse, error)
 	// Get the details of a long-running operation
 	//
 	// This method allows requesters to request the status and outcome of
-	// long-running operations in a model, such as deployment.
+	// long-running operations in a model, such as trigger.
 	GetModelOperation(context.Context, *GetModelOperationRequest) (*GetModelOperationResponse, error)
 	// Deprecated: Do not use.
 	// List user models
@@ -1411,13 +1433,13 @@ type ModelPublicServiceServer interface {
 	// Get the details of the latest long-running operation from a user model
 	//
 	// This method allows requesters to request the status and outcome of
-	// long-running operations in a model, such as deployment.
+	// long-running operations in a model, such as trigger.
 	GetUserLatestModelOperation(context.Context, *GetUserLatestModelOperationRequest) (*GetUserLatestModelOperationResponse, error)
 	// Deprecated: Do not use.
 	// Get the details of the latest long-running operation from a organization model
 	//
 	// This method allows requesters to request the status and outcome of
-	// long-running operations in a model, such as deployment.
+	// long-running operations in a model, such as trigger.
 	GetOrganizationLatestModelOperation(context.Context, *GetOrganizationLatestModelOperationRequest) (*GetOrganizationLatestModelOperationResponse, error)
 	// List model runs
 	//
@@ -1497,6 +1519,9 @@ func (UnimplementedModelPublicServiceServer) TriggerNamespaceModelBinaryFileUplo
 }
 func (UnimplementedModelPublicServiceServer) TriggerNamespaceLatestModelBinaryFileUpload(ModelPublicService_TriggerNamespaceLatestModelBinaryFileUploadServer) error {
 	return status.Errorf(codes.Unimplemented, "method TriggerNamespaceLatestModelBinaryFileUpload not implemented")
+}
+func (UnimplementedModelPublicServiceServer) GetNamespaceModelOperation(context.Context, *GetNamespaceModelOperationRequest) (*GetNamespaceModelOperationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetNamespaceModelOperation not implemented")
 }
 func (UnimplementedModelPublicServiceServer) GetNamespaceLatestModelOperation(context.Context, *GetNamespaceLatestModelOperationRequest) (*GetNamespaceLatestModelOperationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNamespaceLatestModelOperation not implemented")
@@ -2043,6 +2068,24 @@ func (x *modelPublicServiceTriggerNamespaceLatestModelBinaryFileUploadServer) Re
 		return nil, err
 	}
 	return m, nil
+}
+
+func _ModelPublicService_GetNamespaceModelOperation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetNamespaceModelOperationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPublicServiceServer).GetNamespaceModelOperation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPublicService_GetNamespaceModelOperation_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPublicServiceServer).GetNamespaceModelOperation(ctx, req.(*GetNamespaceModelOperationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _ModelPublicService_GetNamespaceLatestModelOperation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -2781,6 +2824,10 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TriggerAsyncNamespaceLatestModel",
 			Handler:    _ModelPublicService_TriggerAsyncNamespaceLatestModel_Handler,
+		},
+		{
+			MethodName: "GetNamespaceModelOperation",
+			Handler:    _ModelPublicService_GetNamespaceModelOperation_Handler,
 		},
 		{
 			MethodName: "GetNamespaceLatestModelOperation",
