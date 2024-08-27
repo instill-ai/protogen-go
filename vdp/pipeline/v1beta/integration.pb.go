@@ -245,7 +245,7 @@ type ListNamespaceConnectionsRequest struct {
 	// expression.
 	// The following filters are supported:
 	// - `integration_id`
-	// - `q` (fuzzy search on connection ID, integration title or vendor)
+	// - `qConnection` (fuzzy search on connection ID, integration title or vendor)
 	// Examples:
 	// - List connections where app name, vendor or connection ID match `googl`:
 	// `q="googl"`.
@@ -1038,7 +1038,7 @@ type ListIntegrationsRequest struct {
 	// Filter can hold an [AIP-160](https://google.aip.dev/160)-compliant filter
 	// expression.
 	// The following filters are supported:
-	// - `q` (fuzzy search on title or vendor)
+	// - `qIntegration` (fuzzy search on title or vendor)
 	// - `featured`
 	// Examples:
 	// - List integrations where app name or vendor match `googl`: `q="googl"`.
