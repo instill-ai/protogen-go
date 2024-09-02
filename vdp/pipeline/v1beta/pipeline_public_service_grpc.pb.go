@@ -117,6 +117,7 @@ const (
 	PipelinePublicService_UpdateNamespaceConnection_FullMethodName               = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateNamespaceConnection"
 	PipelinePublicService_DeleteNamespaceConnection_FullMethodName               = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteNamespaceConnection"
 	PipelinePublicService_TestNamespaceConnection_FullMethodName                 = "/vdp.pipeline.v1beta.PipelinePublicService/TestNamespaceConnection"
+	PipelinePublicService_ListPipelineIDsByConnectionID_FullMethodName           = "/vdp.pipeline.v1beta.PipelinePublicService/ListPipelineIDsByConnectionID"
 	PipelinePublicService_ListIntegrations_FullMethodName                        = "/vdp.pipeline.v1beta.PipelinePublicService/ListIntegrations"
 	PipelinePublicService_GetIntegration_FullMethodName                          = "/vdp.pipeline.v1beta.PipelinePublicService/GetIntegration"
 )
@@ -820,6 +821,12 @@ type PipelinePublicServiceClient interface {
 	// Note that this action might affect the quota or billing of the integrated
 	// account in the 3rd party app.
 	TestNamespaceConnection(ctx context.Context, in *TestNamespaceConnectionRequest, opts ...grpc.CallOption) (*TestNamespaceConnectionResponse, error)
+	// List pipelines that reference a connection
+	//
+	// Returns a paginated list with the IDs of the pipelines that reference a
+	// given connection. All the pipelines will belong to the same namespace as
+	// the connection.
+	ListPipelineIDsByConnectionID(ctx context.Context, in *ListPipelineIDsByConnectionIDRequest, opts ...grpc.CallOption) (*ListPipelineIDsByConnectionIDResponse, error)
 	// List integrations
 	//
 	// Returns a paginated list of available integrations.
@@ -1846,6 +1853,15 @@ func (c *pipelinePublicServiceClient) TestNamespaceConnection(ctx context.Contex
 	return out, nil
 }
 
+func (c *pipelinePublicServiceClient) ListPipelineIDsByConnectionID(ctx context.Context, in *ListPipelineIDsByConnectionIDRequest, opts ...grpc.CallOption) (*ListPipelineIDsByConnectionIDResponse, error) {
+	out := new(ListPipelineIDsByConnectionIDResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ListPipelineIDsByConnectionID_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *pipelinePublicServiceClient) ListIntegrations(ctx context.Context, in *ListIntegrationsRequest, opts ...grpc.CallOption) (*ListIntegrationsResponse, error) {
 	out := new(ListIntegrationsResponse)
 	err := c.cc.Invoke(ctx, PipelinePublicService_ListIntegrations_FullMethodName, in, out, opts...)
@@ -2563,6 +2579,12 @@ type PipelinePublicServiceServer interface {
 	// Note that this action might affect the quota or billing of the integrated
 	// account in the 3rd party app.
 	TestNamespaceConnection(context.Context, *TestNamespaceConnectionRequest) (*TestNamespaceConnectionResponse, error)
+	// List pipelines that reference a connection
+	//
+	// Returns a paginated list with the IDs of the pipelines that reference a
+	// given connection. All the pipelines will belong to the same namespace as
+	// the connection.
+	ListPipelineIDsByConnectionID(context.Context, *ListPipelineIDsByConnectionIDRequest) (*ListPipelineIDsByConnectionIDResponse, error)
 	// List integrations
 	//
 	// Returns a paginated list of available integrations.
@@ -2870,6 +2892,9 @@ func (UnimplementedPipelinePublicServiceServer) DeleteNamespaceConnection(contex
 }
 func (UnimplementedPipelinePublicServiceServer) TestNamespaceConnection(context.Context, *TestNamespaceConnectionRequest) (*TestNamespaceConnectionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TestNamespaceConnection not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) ListPipelineIDsByConnectionID(context.Context, *ListPipelineIDsByConnectionIDRequest) (*ListPipelineIDsByConnectionIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineIDsByConnectionID not implemented")
 }
 func (UnimplementedPipelinePublicServiceServer) ListIntegrations(context.Context, *ListIntegrationsRequest) (*ListIntegrationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListIntegrations not implemented")
@@ -4662,6 +4687,24 @@ func _PipelinePublicService_TestNamespaceConnection_Handler(srv interface{}, ctx
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PipelinePublicService_ListPipelineIDsByConnectionID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListPipelineIDsByConnectionIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).ListPipelineIDsByConnectionID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_ListPipelineIDsByConnectionID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).ListPipelineIDsByConnectionID(ctx, req.(*ListPipelineIDsByConnectionIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PipelinePublicService_ListIntegrations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListIntegrationsRequest)
 	if err := dec(in); err != nil {
@@ -5084,6 +5127,10 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TestNamespaceConnection",
 			Handler:    _PipelinePublicService_TestNamespaceConnection_Handler,
+		},
+		{
+			MethodName: "ListPipelineIDsByConnectionID",
+			Handler:    _PipelinePublicService_ListPipelineIDsByConnectionID_Handler,
 		},
 		{
 			MethodName: "ListIntegrations",

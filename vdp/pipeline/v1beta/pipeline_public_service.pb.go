@@ -48,7 +48,7 @@ var file_vdp_pipeline_v1beta_pipeline_public_service_proto_rawDesc = []byte{
 	0x61, 0x2f, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
 	0x1a, 0x20, 0x76, 0x64, 0x70, 0x2f, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2f, 0x76,
 	0x31, 0x62, 0x65, 0x74, 0x61, 0x2f, 0x73, 0x65, 0x63, 0x72, 0x65, 0x74, 0x2e, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x32, 0xd0, 0xc2, 0x01, 0x0a, 0x15, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65,
+	0x74, 0x6f, 0x32, 0xd5, 0xc4, 0x01, 0x0a, 0x15, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65,
 	0x50, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x9e, 0x01,
 	0x0a, 0x08, 0x4c, 0x69, 0x76, 0x65, 0x6e, 0x65, 0x73, 0x73, 0x12, 0x24, 0x2e, 0x76, 0x64, 0x70,
 	0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61,
@@ -1583,44 +1583,60 @@ var file_vdp_pipeline_v1beta_pipeline_public_service_proto_rawDesc = []byte{
 	0x2f, 0x7b, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x5f, 0x69, 0x64, 0x7d, 0x2f,
 	0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2f, 0x7b, 0x63, 0x6f, 0x6e,
 	0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x7d, 0x2f, 0x74, 0x65, 0x73, 0x74,
-	0x12, 0x9d, 0x01, 0x0a, 0x10, 0x4c, 0x69, 0x73, 0x74, 0x49, 0x6e, 0x74, 0x65, 0x67, 0x72, 0x61,
-	0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x2c, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65,
-	0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x4c, 0x69, 0x73, 0x74,
-	0x49, 0x6e, 0x74, 0x65, 0x67, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x2d, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69,
-	0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x49, 0x6e,
-	0x74, 0x65, 0x67, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x22, 0x2c, 0x92, 0x41, 0x0d, 0x0a, 0x0b, 0x49, 0x6e, 0x74, 0x65, 0x67, 0x72, 0x61,
-	0x74, 0x69, 0x6f, 0x6e, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x16, 0x12, 0x14, 0x2f, 0x76, 0x31, 0x62,
-	0x65, 0x74, 0x61, 0x2f, 0x69, 0x6e, 0x74, 0x65, 0x67, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73,
-	0x12, 0xa8, 0x01, 0x0a, 0x0e, 0x47, 0x65, 0x74, 0x49, 0x6e, 0x74, 0x65, 0x67, 0x72, 0x61, 0x74,
-	0x69, 0x6f, 0x6e, 0x12, 0x2a, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69,
-	0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x47, 0x65, 0x74, 0x49, 0x6e, 0x74,
-	0x65, 0x67, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x2b, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76,
-	0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x47, 0x65, 0x74, 0x49, 0x6e, 0x74, 0x65, 0x67, 0x72, 0x61,
-	0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x3d, 0x92, 0x41,
-	0x0d, 0x0a, 0x0b, 0x49, 0x6e, 0x74, 0x65, 0x67, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x82, 0xd3,
-	0xe4, 0x93, 0x02, 0x27, 0x12, 0x25, 0x2f, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2f, 0x69, 0x6e,
-	0x74, 0x65, 0x67, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2f, 0x7b, 0x69, 0x6e, 0x74, 0x65,
-	0x67, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x7d, 0x1a, 0x19, 0x92, 0x41, 0x16,
-	0x12, 0x14, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x20, 0x56, 0x44, 0x50, 0x20, 0x65, 0x6e, 0x64,
-	0x70, 0x6f, 0x69, 0x6e, 0x74, 0x73, 0x42, 0xe9, 0x01, 0x0a, 0x17, 0x63, 0x6f, 0x6d, 0x2e, 0x76,
-	0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65,
-	0x74, 0x61, 0x42, 0x1a, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x50, 0x75, 0x62, 0x6c,
-	0x69, 0x63, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01,
-	0x5a, 0x44, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x69, 0x6e, 0x73,
-	0x74, 0x69, 0x6c, 0x6c, 0x2d, 0x61, 0x69, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x67, 0x65, 0x6e,
-	0x2d, 0x67, 0x6f, 0x2f, 0x76, 0x64, 0x70, 0x2f, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65,
-	0x2f, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x3b, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65,
-	0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0xa2, 0x02, 0x03, 0x56, 0x50, 0x58, 0xaa, 0x02, 0x13, 0x56,
-	0x64, 0x70, 0x2e, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x56, 0x31, 0x62, 0x65,
-	0x74, 0x61, 0xca, 0x02, 0x13, 0x56, 0x64, 0x70, 0x5c, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e,
-	0x65, 0x5c, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0xe2, 0x02, 0x1f, 0x56, 0x64, 0x70, 0x5c, 0x50,
-	0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x5c, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x5c, 0x47,
-	0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x15, 0x56, 0x64, 0x70,
-	0x3a, 0x3a, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x3a, 0x3a, 0x56, 0x31, 0x62, 0x65,
-	0x74, 0x61, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x12, 0x82, 0x02, 0x0a, 0x1d, 0x4c, 0x69, 0x73, 0x74, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e,
+	0x65, 0x49, 0x44, 0x73, 0x42, 0x79, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e,
+	0x49, 0x44, 0x12, 0x39, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e,
+	0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x50, 0x69, 0x70,
+	0x65, 0x6c, 0x69, 0x6e, 0x65, 0x49, 0x44, 0x73, 0x42, 0x79, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63,
+	0x74, 0x69, 0x6f, 0x6e, 0x49, 0x44, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x3a, 0x2e,
+	0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62,
+	0x65, 0x74, 0x61, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65,
+	0x49, 0x44, 0x73, 0x42, 0x79, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x49,
+	0x44, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x6a, 0x92, 0x41, 0x0d, 0x0a, 0x0b,
+	0x49, 0x6e, 0x74, 0x65, 0x67, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x82, 0xd3, 0xe4, 0x93, 0x02,
+	0x54, 0x12, 0x52, 0x2f, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2f, 0x6e, 0x61, 0x6d, 0x65, 0x73,
+	0x70, 0x61, 0x63, 0x65, 0x73, 0x2f, 0x7b, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65,
+	0x5f, 0x69, 0x64, 0x7d, 0x2f, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73,
+	0x2f, 0x7b, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x7d,
+	0x2f, 0x72, 0x65, 0x66, 0x65, 0x72, 0x65, 0x6e, 0x63, 0x65, 0x64, 0x2d, 0x70, 0x69, 0x70, 0x65,
+	0x6c, 0x69, 0x6e, 0x65, 0x73, 0x12, 0x9d, 0x01, 0x0a, 0x10, 0x4c, 0x69, 0x73, 0x74, 0x49, 0x6e,
+	0x74, 0x65, 0x67, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x2c, 0x2e, 0x76, 0x64, 0x70,
+	0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61,
+	0x2e, 0x4c, 0x69, 0x73, 0x74, 0x49, 0x6e, 0x74, 0x65, 0x67, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2d, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70,
+	0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x4c,
+	0x69, 0x73, 0x74, 0x49, 0x6e, 0x74, 0x65, 0x67, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x2c, 0x92, 0x41, 0x0d, 0x0a, 0x0b, 0x49, 0x6e,
+	0x74, 0x65, 0x67, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x16, 0x12,
+	0x14, 0x2f, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2f, 0x69, 0x6e, 0x74, 0x65, 0x67, 0x72, 0x61,
+	0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0xa8, 0x01, 0x0a, 0x0e, 0x47, 0x65, 0x74, 0x49, 0x6e, 0x74,
+	0x65, 0x67, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x2a, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70,
+	0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x47,
+	0x65, 0x74, 0x49, 0x6e, 0x74, 0x65, 0x67, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x2b, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c,
+	0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x47, 0x65, 0x74, 0x49, 0x6e,
+	0x74, 0x65, 0x67, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0x3d, 0x92, 0x41, 0x0d, 0x0a, 0x0b, 0x49, 0x6e, 0x74, 0x65, 0x67, 0x72, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x27, 0x12, 0x25, 0x2f, 0x76, 0x31, 0x62, 0x65,
+	0x74, 0x61, 0x2f, 0x69, 0x6e, 0x74, 0x65, 0x67, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2f,
+	0x7b, 0x69, 0x6e, 0x74, 0x65, 0x67, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x7d,
+	0x1a, 0x19, 0x92, 0x41, 0x16, 0x12, 0x14, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x20, 0x56, 0x44,
+	0x50, 0x20, 0x65, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x73, 0x42, 0xe9, 0x01, 0x0a, 0x17,
+	0x63, 0x6f, 0x6d, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65,
+	0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x42, 0x1a, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e,
+	0x65, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x50, 0x72,
+	0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x44, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
+	0x6d, 0x2f, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2d, 0x61, 0x69, 0x2f, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x67, 0x65, 0x6e, 0x2d, 0x67, 0x6f, 0x2f, 0x76, 0x64, 0x70, 0x2f, 0x70, 0x69, 0x70,
+	0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2f, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x3b, 0x70, 0x69, 0x70,
+	0x65, 0x6c, 0x69, 0x6e, 0x65, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0xa2, 0x02, 0x03, 0x56, 0x50,
+	0x58, 0xaa, 0x02, 0x13, 0x56, 0x64, 0x70, 0x2e, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65,
+	0x2e, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0xca, 0x02, 0x13, 0x56, 0x64, 0x70, 0x5c, 0x50, 0x69,
+	0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x5c, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0xe2, 0x02, 0x1f,
+	0x56, 0x64, 0x70, 0x5c, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x5c, 0x56, 0x31, 0x62,
+	0x65, 0x74, 0x61, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea,
+	0x02, 0x15, 0x56, 0x64, 0x70, 0x3a, 0x3a, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x3a,
+	0x3a, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var file_vdp_pipeline_v1beta_pipeline_public_service_proto_goTypes = []interface{}{
@@ -1722,108 +1738,110 @@ var file_vdp_pipeline_v1beta_pipeline_public_service_proto_goTypes = []interface
 	(*UpdateNamespaceConnectionRequest)(nil),                // 95: vdp.pipeline.v1beta.UpdateNamespaceConnectionRequest
 	(*DeleteNamespaceConnectionRequest)(nil),                // 96: vdp.pipeline.v1beta.DeleteNamespaceConnectionRequest
 	(*TestNamespaceConnectionRequest)(nil),                  // 97: vdp.pipeline.v1beta.TestNamespaceConnectionRequest
-	(*ListIntegrationsRequest)(nil),                         // 98: vdp.pipeline.v1beta.ListIntegrationsRequest
-	(*GetIntegrationRequest)(nil),                           // 99: vdp.pipeline.v1beta.GetIntegrationRequest
-	(*LivenessResponse)(nil),                                // 100: vdp.pipeline.v1beta.LivenessResponse
-	(*ReadinessResponse)(nil),                               // 101: vdp.pipeline.v1beta.ReadinessResponse
-	(*GetHubStatsResponse)(nil),                             // 102: vdp.pipeline.v1beta.GetHubStatsResponse
-	(*ListPipelinesResponse)(nil),                           // 103: vdp.pipeline.v1beta.ListPipelinesResponse
-	(*LookUpPipelineResponse)(nil),                          // 104: vdp.pipeline.v1beta.LookUpPipelineResponse
-	(*ListNamespacePipelinesResponse)(nil),                  // 105: vdp.pipeline.v1beta.ListNamespacePipelinesResponse
-	(*CreateNamespacePipelineResponse)(nil),                 // 106: vdp.pipeline.v1beta.CreateNamespacePipelineResponse
-	(*GetNamespacePipelineResponse)(nil),                    // 107: vdp.pipeline.v1beta.GetNamespacePipelineResponse
-	(*UpdateNamespacePipelineResponse)(nil),                 // 108: vdp.pipeline.v1beta.UpdateNamespacePipelineResponse
-	(*DeleteNamespacePipelineResponse)(nil),                 // 109: vdp.pipeline.v1beta.DeleteNamespacePipelineResponse
-	(*ValidateNamespacePipelineResponse)(nil),               // 110: vdp.pipeline.v1beta.ValidateNamespacePipelineResponse
-	(*RenameNamespacePipelineResponse)(nil),                 // 111: vdp.pipeline.v1beta.RenameNamespacePipelineResponse
-	(*CloneNamespacePipelineResponse)(nil),                  // 112: vdp.pipeline.v1beta.CloneNamespacePipelineResponse
-	(*SendNamespacePipelineEventResponse)(nil),              // 113: vdp.pipeline.v1beta.SendNamespacePipelineEventResponse
-	(*SendNamespacePipelineReleaseEventResponse)(nil),       // 114: vdp.pipeline.v1beta.SendNamespacePipelineReleaseEventResponse
-	(*TriggerNamespacePipelineResponse)(nil),                // 115: vdp.pipeline.v1beta.TriggerNamespacePipelineResponse
-	(*TriggerNamespacePipelineWithStreamResponse)(nil),      // 116: vdp.pipeline.v1beta.TriggerNamespacePipelineWithStreamResponse
-	(*TriggerAsyncNamespacePipelineResponse)(nil),           // 117: vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineResponse
-	(*CreateNamespacePipelineReleaseResponse)(nil),          // 118: vdp.pipeline.v1beta.CreateNamespacePipelineReleaseResponse
-	(*ListNamespacePipelineReleasesResponse)(nil),           // 119: vdp.pipeline.v1beta.ListNamespacePipelineReleasesResponse
-	(*GetNamespacePipelineReleaseResponse)(nil),             // 120: vdp.pipeline.v1beta.GetNamespacePipelineReleaseResponse
-	(*UpdateNamespacePipelineReleaseResponse)(nil),          // 121: vdp.pipeline.v1beta.UpdateNamespacePipelineReleaseResponse
-	(*DeleteNamespacePipelineReleaseResponse)(nil),          // 122: vdp.pipeline.v1beta.DeleteNamespacePipelineReleaseResponse
-	(*CloneNamespacePipelineReleaseResponse)(nil),           // 123: vdp.pipeline.v1beta.CloneNamespacePipelineReleaseResponse
-	(*TriggerNamespacePipelineReleaseResponse)(nil),         // 124: vdp.pipeline.v1beta.TriggerNamespacePipelineReleaseResponse
-	(*TriggerAsyncNamespacePipelineReleaseResponse)(nil),    // 125: vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseResponse
-	(*CreateNamespaceSecretResponse)(nil),                   // 126: vdp.pipeline.v1beta.CreateNamespaceSecretResponse
-	(*ListNamespaceSecretsResponse)(nil),                    // 127: vdp.pipeline.v1beta.ListNamespaceSecretsResponse
-	(*GetNamespaceSecretResponse)(nil),                      // 128: vdp.pipeline.v1beta.GetNamespaceSecretResponse
-	(*UpdateNamespaceSecretResponse)(nil),                   // 129: vdp.pipeline.v1beta.UpdateNamespaceSecretResponse
-	(*DeleteNamespaceSecretResponse)(nil),                   // 130: vdp.pipeline.v1beta.DeleteNamespaceSecretResponse
-	(*ListComponentDefinitionsResponse)(nil),                // 131: vdp.pipeline.v1beta.ListComponentDefinitionsResponse
-	(*GetOperationResponse)(nil),                            // 132: vdp.pipeline.v1beta.GetOperationResponse
-	(*CreateUserPipelineResponse)(nil),                      // 133: vdp.pipeline.v1beta.CreateUserPipelineResponse
-	(*ListUserPipelinesResponse)(nil),                       // 134: vdp.pipeline.v1beta.ListUserPipelinesResponse
-	(*GetUserPipelineResponse)(nil),                         // 135: vdp.pipeline.v1beta.GetUserPipelineResponse
-	(*UpdateUserPipelineResponse)(nil),                      // 136: vdp.pipeline.v1beta.UpdateUserPipelineResponse
-	(*DeleteUserPipelineResponse)(nil),                      // 137: vdp.pipeline.v1beta.DeleteUserPipelineResponse
-	(*ValidateUserPipelineResponse)(nil),                    // 138: vdp.pipeline.v1beta.ValidateUserPipelineResponse
-	(*RenameUserPipelineResponse)(nil),                      // 139: vdp.pipeline.v1beta.RenameUserPipelineResponse
-	(*CloneUserPipelineResponse)(nil),                       // 140: vdp.pipeline.v1beta.CloneUserPipelineResponse
-	(*CloneUserPipelineReleaseResponse)(nil),                // 141: vdp.pipeline.v1beta.CloneUserPipelineReleaseResponse
-	(*TriggerUserPipelineResponse)(nil),                     // 142: vdp.pipeline.v1beta.TriggerUserPipelineResponse
-	(*TriggerUserPipelineWithStreamResponse)(nil),           // 143: vdp.pipeline.v1beta.TriggerUserPipelineWithStreamResponse
-	(*TriggerAsyncUserPipelineResponse)(nil),                // 144: vdp.pipeline.v1beta.TriggerAsyncUserPipelineResponse
-	(*CreateUserPipelineReleaseResponse)(nil),               // 145: vdp.pipeline.v1beta.CreateUserPipelineReleaseResponse
-	(*ListUserPipelineReleasesResponse)(nil),                // 146: vdp.pipeline.v1beta.ListUserPipelineReleasesResponse
-	(*GetUserPipelineReleaseResponse)(nil),                  // 147: vdp.pipeline.v1beta.GetUserPipelineReleaseResponse
-	(*UpdateUserPipelineReleaseResponse)(nil),               // 148: vdp.pipeline.v1beta.UpdateUserPipelineReleaseResponse
-	(*DeleteUserPipelineReleaseResponse)(nil),               // 149: vdp.pipeline.v1beta.DeleteUserPipelineReleaseResponse
-	(*RestoreUserPipelineReleaseResponse)(nil),              // 150: vdp.pipeline.v1beta.RestoreUserPipelineReleaseResponse
-	(*RenameUserPipelineReleaseResponse)(nil),               // 151: vdp.pipeline.v1beta.RenameUserPipelineReleaseResponse
-	(*TriggerUserPipelineReleaseResponse)(nil),              // 152: vdp.pipeline.v1beta.TriggerUserPipelineReleaseResponse
-	(*TriggerAsyncUserPipelineReleaseResponse)(nil),         // 153: vdp.pipeline.v1beta.TriggerAsyncUserPipelineReleaseResponse
-	(*CreateOrganizationPipelineResponse)(nil),              // 154: vdp.pipeline.v1beta.CreateOrganizationPipelineResponse
-	(*ListOrganizationPipelinesResponse)(nil),               // 155: vdp.pipeline.v1beta.ListOrganizationPipelinesResponse
-	(*GetOrganizationPipelineResponse)(nil),                 // 156: vdp.pipeline.v1beta.GetOrganizationPipelineResponse
-	(*UpdateOrganizationPipelineResponse)(nil),              // 157: vdp.pipeline.v1beta.UpdateOrganizationPipelineResponse
-	(*DeleteOrganizationPipelineResponse)(nil),              // 158: vdp.pipeline.v1beta.DeleteOrganizationPipelineResponse
-	(*ValidateOrganizationPipelineResponse)(nil),            // 159: vdp.pipeline.v1beta.ValidateOrganizationPipelineResponse
-	(*RenameOrganizationPipelineResponse)(nil),              // 160: vdp.pipeline.v1beta.RenameOrganizationPipelineResponse
-	(*CloneOrganizationPipelineResponse)(nil),               // 161: vdp.pipeline.v1beta.CloneOrganizationPipelineResponse
-	(*CloneOrganizationPipelineReleaseResponse)(nil),        // 162: vdp.pipeline.v1beta.CloneOrganizationPipelineReleaseResponse
-	(*TriggerOrganizationPipelineStreamResponse)(nil),       // 163: vdp.pipeline.v1beta.TriggerOrganizationPipelineStreamResponse
-	(*TriggerOrganizationPipelineResponse)(nil),             // 164: vdp.pipeline.v1beta.TriggerOrganizationPipelineResponse
-	(*TriggerAsyncOrganizationPipelineResponse)(nil),        // 165: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineResponse
-	(*CreateOrganizationPipelineReleaseResponse)(nil),       // 166: vdp.pipeline.v1beta.CreateOrganizationPipelineReleaseResponse
-	(*ListOrganizationPipelineReleasesResponse)(nil),        // 167: vdp.pipeline.v1beta.ListOrganizationPipelineReleasesResponse
-	(*GetOrganizationPipelineReleaseResponse)(nil),          // 168: vdp.pipeline.v1beta.GetOrganizationPipelineReleaseResponse
-	(*UpdateOrganizationPipelineReleaseResponse)(nil),       // 169: vdp.pipeline.v1beta.UpdateOrganizationPipelineReleaseResponse
-	(*DeleteOrganizationPipelineReleaseResponse)(nil),       // 170: vdp.pipeline.v1beta.DeleteOrganizationPipelineReleaseResponse
-	(*RestoreOrganizationPipelineReleaseResponse)(nil),      // 171: vdp.pipeline.v1beta.RestoreOrganizationPipelineReleaseResponse
-	(*RenameOrganizationPipelineReleaseResponse)(nil),       // 172: vdp.pipeline.v1beta.RenameOrganizationPipelineReleaseResponse
-	(*TriggerOrganizationPipelineReleaseResponse)(nil),      // 173: vdp.pipeline.v1beta.TriggerOrganizationPipelineReleaseResponse
-	(*TriggerAsyncOrganizationPipelineReleaseResponse)(nil), // 174: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseResponse
-	(*ListConnectorDefinitionsResponse)(nil),                // 175: vdp.pipeline.v1beta.ListConnectorDefinitionsResponse
-	(*GetConnectorDefinitionResponse)(nil),                  // 176: vdp.pipeline.v1beta.GetConnectorDefinitionResponse
-	(*ListOperatorDefinitionsResponse)(nil),                 // 177: vdp.pipeline.v1beta.ListOperatorDefinitionsResponse
-	(*GetOperatorDefinitionResponse)(nil),                   // 178: vdp.pipeline.v1beta.GetOperatorDefinitionResponse
-	(*CheckNameResponse)(nil),                               // 179: vdp.pipeline.v1beta.CheckNameResponse
-	(*CreateUserSecretResponse)(nil),                        // 180: vdp.pipeline.v1beta.CreateUserSecretResponse
-	(*ListUserSecretsResponse)(nil),                         // 181: vdp.pipeline.v1beta.ListUserSecretsResponse
-	(*GetUserSecretResponse)(nil),                           // 182: vdp.pipeline.v1beta.GetUserSecretResponse
-	(*UpdateUserSecretResponse)(nil),                        // 183: vdp.pipeline.v1beta.UpdateUserSecretResponse
-	(*DeleteUserSecretResponse)(nil),                        // 184: vdp.pipeline.v1beta.DeleteUserSecretResponse
-	(*CreateOrganizationSecretResponse)(nil),                // 185: vdp.pipeline.v1beta.CreateOrganizationSecretResponse
-	(*ListOrganizationSecretsResponse)(nil),                 // 186: vdp.pipeline.v1beta.ListOrganizationSecretsResponse
-	(*GetOrganizationSecretResponse)(nil),                   // 187: vdp.pipeline.v1beta.GetOrganizationSecretResponse
-	(*UpdateOrganizationSecretResponse)(nil),                // 188: vdp.pipeline.v1beta.UpdateOrganizationSecretResponse
-	(*DeleteOrganizationSecretResponse)(nil),                // 189: vdp.pipeline.v1beta.DeleteOrganizationSecretResponse
-	(*ListPipelineRunsResponse)(nil),                        // 190: vdp.pipeline.v1beta.ListPipelineRunsResponse
-	(*ListComponentRunsResponse)(nil),                       // 191: vdp.pipeline.v1beta.ListComponentRunsResponse
-	(*ListNamespaceConnectionsResponse)(nil),                // 192: vdp.pipeline.v1beta.ListNamespaceConnectionsResponse
-	(*GetNamespaceConnectionResponse)(nil),                  // 193: vdp.pipeline.v1beta.GetNamespaceConnectionResponse
-	(*CreateNamespaceConnectionResponse)(nil),               // 194: vdp.pipeline.v1beta.CreateNamespaceConnectionResponse
-	(*UpdateNamespaceConnectionResponse)(nil),               // 195: vdp.pipeline.v1beta.UpdateNamespaceConnectionResponse
-	(*DeleteNamespaceConnectionResponse)(nil),               // 196: vdp.pipeline.v1beta.DeleteNamespaceConnectionResponse
-	(*TestNamespaceConnectionResponse)(nil),                 // 197: vdp.pipeline.v1beta.TestNamespaceConnectionResponse
-	(*ListIntegrationsResponse)(nil),                        // 198: vdp.pipeline.v1beta.ListIntegrationsResponse
-	(*GetIntegrationResponse)(nil),                          // 199: vdp.pipeline.v1beta.GetIntegrationResponse
+	(*ListPipelineIDsByConnectionIDRequest)(nil),            // 98: vdp.pipeline.v1beta.ListPipelineIDsByConnectionIDRequest
+	(*ListIntegrationsRequest)(nil),                         // 99: vdp.pipeline.v1beta.ListIntegrationsRequest
+	(*GetIntegrationRequest)(nil),                           // 100: vdp.pipeline.v1beta.GetIntegrationRequest
+	(*LivenessResponse)(nil),                                // 101: vdp.pipeline.v1beta.LivenessResponse
+	(*ReadinessResponse)(nil),                               // 102: vdp.pipeline.v1beta.ReadinessResponse
+	(*GetHubStatsResponse)(nil),                             // 103: vdp.pipeline.v1beta.GetHubStatsResponse
+	(*ListPipelinesResponse)(nil),                           // 104: vdp.pipeline.v1beta.ListPipelinesResponse
+	(*LookUpPipelineResponse)(nil),                          // 105: vdp.pipeline.v1beta.LookUpPipelineResponse
+	(*ListNamespacePipelinesResponse)(nil),                  // 106: vdp.pipeline.v1beta.ListNamespacePipelinesResponse
+	(*CreateNamespacePipelineResponse)(nil),                 // 107: vdp.pipeline.v1beta.CreateNamespacePipelineResponse
+	(*GetNamespacePipelineResponse)(nil),                    // 108: vdp.pipeline.v1beta.GetNamespacePipelineResponse
+	(*UpdateNamespacePipelineResponse)(nil),                 // 109: vdp.pipeline.v1beta.UpdateNamespacePipelineResponse
+	(*DeleteNamespacePipelineResponse)(nil),                 // 110: vdp.pipeline.v1beta.DeleteNamespacePipelineResponse
+	(*ValidateNamespacePipelineResponse)(nil),               // 111: vdp.pipeline.v1beta.ValidateNamespacePipelineResponse
+	(*RenameNamespacePipelineResponse)(nil),                 // 112: vdp.pipeline.v1beta.RenameNamespacePipelineResponse
+	(*CloneNamespacePipelineResponse)(nil),                  // 113: vdp.pipeline.v1beta.CloneNamespacePipelineResponse
+	(*SendNamespacePipelineEventResponse)(nil),              // 114: vdp.pipeline.v1beta.SendNamespacePipelineEventResponse
+	(*SendNamespacePipelineReleaseEventResponse)(nil),       // 115: vdp.pipeline.v1beta.SendNamespacePipelineReleaseEventResponse
+	(*TriggerNamespacePipelineResponse)(nil),                // 116: vdp.pipeline.v1beta.TriggerNamespacePipelineResponse
+	(*TriggerNamespacePipelineWithStreamResponse)(nil),      // 117: vdp.pipeline.v1beta.TriggerNamespacePipelineWithStreamResponse
+	(*TriggerAsyncNamespacePipelineResponse)(nil),           // 118: vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineResponse
+	(*CreateNamespacePipelineReleaseResponse)(nil),          // 119: vdp.pipeline.v1beta.CreateNamespacePipelineReleaseResponse
+	(*ListNamespacePipelineReleasesResponse)(nil),           // 120: vdp.pipeline.v1beta.ListNamespacePipelineReleasesResponse
+	(*GetNamespacePipelineReleaseResponse)(nil),             // 121: vdp.pipeline.v1beta.GetNamespacePipelineReleaseResponse
+	(*UpdateNamespacePipelineReleaseResponse)(nil),          // 122: vdp.pipeline.v1beta.UpdateNamespacePipelineReleaseResponse
+	(*DeleteNamespacePipelineReleaseResponse)(nil),          // 123: vdp.pipeline.v1beta.DeleteNamespacePipelineReleaseResponse
+	(*CloneNamespacePipelineReleaseResponse)(nil),           // 124: vdp.pipeline.v1beta.CloneNamespacePipelineReleaseResponse
+	(*TriggerNamespacePipelineReleaseResponse)(nil),         // 125: vdp.pipeline.v1beta.TriggerNamespacePipelineReleaseResponse
+	(*TriggerAsyncNamespacePipelineReleaseResponse)(nil),    // 126: vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseResponse
+	(*CreateNamespaceSecretResponse)(nil),                   // 127: vdp.pipeline.v1beta.CreateNamespaceSecretResponse
+	(*ListNamespaceSecretsResponse)(nil),                    // 128: vdp.pipeline.v1beta.ListNamespaceSecretsResponse
+	(*GetNamespaceSecretResponse)(nil),                      // 129: vdp.pipeline.v1beta.GetNamespaceSecretResponse
+	(*UpdateNamespaceSecretResponse)(nil),                   // 130: vdp.pipeline.v1beta.UpdateNamespaceSecretResponse
+	(*DeleteNamespaceSecretResponse)(nil),                   // 131: vdp.pipeline.v1beta.DeleteNamespaceSecretResponse
+	(*ListComponentDefinitionsResponse)(nil),                // 132: vdp.pipeline.v1beta.ListComponentDefinitionsResponse
+	(*GetOperationResponse)(nil),                            // 133: vdp.pipeline.v1beta.GetOperationResponse
+	(*CreateUserPipelineResponse)(nil),                      // 134: vdp.pipeline.v1beta.CreateUserPipelineResponse
+	(*ListUserPipelinesResponse)(nil),                       // 135: vdp.pipeline.v1beta.ListUserPipelinesResponse
+	(*GetUserPipelineResponse)(nil),                         // 136: vdp.pipeline.v1beta.GetUserPipelineResponse
+	(*UpdateUserPipelineResponse)(nil),                      // 137: vdp.pipeline.v1beta.UpdateUserPipelineResponse
+	(*DeleteUserPipelineResponse)(nil),                      // 138: vdp.pipeline.v1beta.DeleteUserPipelineResponse
+	(*ValidateUserPipelineResponse)(nil),                    // 139: vdp.pipeline.v1beta.ValidateUserPipelineResponse
+	(*RenameUserPipelineResponse)(nil),                      // 140: vdp.pipeline.v1beta.RenameUserPipelineResponse
+	(*CloneUserPipelineResponse)(nil),                       // 141: vdp.pipeline.v1beta.CloneUserPipelineResponse
+	(*CloneUserPipelineReleaseResponse)(nil),                // 142: vdp.pipeline.v1beta.CloneUserPipelineReleaseResponse
+	(*TriggerUserPipelineResponse)(nil),                     // 143: vdp.pipeline.v1beta.TriggerUserPipelineResponse
+	(*TriggerUserPipelineWithStreamResponse)(nil),           // 144: vdp.pipeline.v1beta.TriggerUserPipelineWithStreamResponse
+	(*TriggerAsyncUserPipelineResponse)(nil),                // 145: vdp.pipeline.v1beta.TriggerAsyncUserPipelineResponse
+	(*CreateUserPipelineReleaseResponse)(nil),               // 146: vdp.pipeline.v1beta.CreateUserPipelineReleaseResponse
+	(*ListUserPipelineReleasesResponse)(nil),                // 147: vdp.pipeline.v1beta.ListUserPipelineReleasesResponse
+	(*GetUserPipelineReleaseResponse)(nil),                  // 148: vdp.pipeline.v1beta.GetUserPipelineReleaseResponse
+	(*UpdateUserPipelineReleaseResponse)(nil),               // 149: vdp.pipeline.v1beta.UpdateUserPipelineReleaseResponse
+	(*DeleteUserPipelineReleaseResponse)(nil),               // 150: vdp.pipeline.v1beta.DeleteUserPipelineReleaseResponse
+	(*RestoreUserPipelineReleaseResponse)(nil),              // 151: vdp.pipeline.v1beta.RestoreUserPipelineReleaseResponse
+	(*RenameUserPipelineReleaseResponse)(nil),               // 152: vdp.pipeline.v1beta.RenameUserPipelineReleaseResponse
+	(*TriggerUserPipelineReleaseResponse)(nil),              // 153: vdp.pipeline.v1beta.TriggerUserPipelineReleaseResponse
+	(*TriggerAsyncUserPipelineReleaseResponse)(nil),         // 154: vdp.pipeline.v1beta.TriggerAsyncUserPipelineReleaseResponse
+	(*CreateOrganizationPipelineResponse)(nil),              // 155: vdp.pipeline.v1beta.CreateOrganizationPipelineResponse
+	(*ListOrganizationPipelinesResponse)(nil),               // 156: vdp.pipeline.v1beta.ListOrganizationPipelinesResponse
+	(*GetOrganizationPipelineResponse)(nil),                 // 157: vdp.pipeline.v1beta.GetOrganizationPipelineResponse
+	(*UpdateOrganizationPipelineResponse)(nil),              // 158: vdp.pipeline.v1beta.UpdateOrganizationPipelineResponse
+	(*DeleteOrganizationPipelineResponse)(nil),              // 159: vdp.pipeline.v1beta.DeleteOrganizationPipelineResponse
+	(*ValidateOrganizationPipelineResponse)(nil),            // 160: vdp.pipeline.v1beta.ValidateOrganizationPipelineResponse
+	(*RenameOrganizationPipelineResponse)(nil),              // 161: vdp.pipeline.v1beta.RenameOrganizationPipelineResponse
+	(*CloneOrganizationPipelineResponse)(nil),               // 162: vdp.pipeline.v1beta.CloneOrganizationPipelineResponse
+	(*CloneOrganizationPipelineReleaseResponse)(nil),        // 163: vdp.pipeline.v1beta.CloneOrganizationPipelineReleaseResponse
+	(*TriggerOrganizationPipelineStreamResponse)(nil),       // 164: vdp.pipeline.v1beta.TriggerOrganizationPipelineStreamResponse
+	(*TriggerOrganizationPipelineResponse)(nil),             // 165: vdp.pipeline.v1beta.TriggerOrganizationPipelineResponse
+	(*TriggerAsyncOrganizationPipelineResponse)(nil),        // 166: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineResponse
+	(*CreateOrganizationPipelineReleaseResponse)(nil),       // 167: vdp.pipeline.v1beta.CreateOrganizationPipelineReleaseResponse
+	(*ListOrganizationPipelineReleasesResponse)(nil),        // 168: vdp.pipeline.v1beta.ListOrganizationPipelineReleasesResponse
+	(*GetOrganizationPipelineReleaseResponse)(nil),          // 169: vdp.pipeline.v1beta.GetOrganizationPipelineReleaseResponse
+	(*UpdateOrganizationPipelineReleaseResponse)(nil),       // 170: vdp.pipeline.v1beta.UpdateOrganizationPipelineReleaseResponse
+	(*DeleteOrganizationPipelineReleaseResponse)(nil),       // 171: vdp.pipeline.v1beta.DeleteOrganizationPipelineReleaseResponse
+	(*RestoreOrganizationPipelineReleaseResponse)(nil),      // 172: vdp.pipeline.v1beta.RestoreOrganizationPipelineReleaseResponse
+	(*RenameOrganizationPipelineReleaseResponse)(nil),       // 173: vdp.pipeline.v1beta.RenameOrganizationPipelineReleaseResponse
+	(*TriggerOrganizationPipelineReleaseResponse)(nil),      // 174: vdp.pipeline.v1beta.TriggerOrganizationPipelineReleaseResponse
+	(*TriggerAsyncOrganizationPipelineReleaseResponse)(nil), // 175: vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseResponse
+	(*ListConnectorDefinitionsResponse)(nil),                // 176: vdp.pipeline.v1beta.ListConnectorDefinitionsResponse
+	(*GetConnectorDefinitionResponse)(nil),                  // 177: vdp.pipeline.v1beta.GetConnectorDefinitionResponse
+	(*ListOperatorDefinitionsResponse)(nil),                 // 178: vdp.pipeline.v1beta.ListOperatorDefinitionsResponse
+	(*GetOperatorDefinitionResponse)(nil),                   // 179: vdp.pipeline.v1beta.GetOperatorDefinitionResponse
+	(*CheckNameResponse)(nil),                               // 180: vdp.pipeline.v1beta.CheckNameResponse
+	(*CreateUserSecretResponse)(nil),                        // 181: vdp.pipeline.v1beta.CreateUserSecretResponse
+	(*ListUserSecretsResponse)(nil),                         // 182: vdp.pipeline.v1beta.ListUserSecretsResponse
+	(*GetUserSecretResponse)(nil),                           // 183: vdp.pipeline.v1beta.GetUserSecretResponse
+	(*UpdateUserSecretResponse)(nil),                        // 184: vdp.pipeline.v1beta.UpdateUserSecretResponse
+	(*DeleteUserSecretResponse)(nil),                        // 185: vdp.pipeline.v1beta.DeleteUserSecretResponse
+	(*CreateOrganizationSecretResponse)(nil),                // 186: vdp.pipeline.v1beta.CreateOrganizationSecretResponse
+	(*ListOrganizationSecretsResponse)(nil),                 // 187: vdp.pipeline.v1beta.ListOrganizationSecretsResponse
+	(*GetOrganizationSecretResponse)(nil),                   // 188: vdp.pipeline.v1beta.GetOrganizationSecretResponse
+	(*UpdateOrganizationSecretResponse)(nil),                // 189: vdp.pipeline.v1beta.UpdateOrganizationSecretResponse
+	(*DeleteOrganizationSecretResponse)(nil),                // 190: vdp.pipeline.v1beta.DeleteOrganizationSecretResponse
+	(*ListPipelineRunsResponse)(nil),                        // 191: vdp.pipeline.v1beta.ListPipelineRunsResponse
+	(*ListComponentRunsResponse)(nil),                       // 192: vdp.pipeline.v1beta.ListComponentRunsResponse
+	(*ListNamespaceConnectionsResponse)(nil),                // 193: vdp.pipeline.v1beta.ListNamespaceConnectionsResponse
+	(*GetNamespaceConnectionResponse)(nil),                  // 194: vdp.pipeline.v1beta.GetNamespaceConnectionResponse
+	(*CreateNamespaceConnectionResponse)(nil),               // 195: vdp.pipeline.v1beta.CreateNamespaceConnectionResponse
+	(*UpdateNamespaceConnectionResponse)(nil),               // 196: vdp.pipeline.v1beta.UpdateNamespaceConnectionResponse
+	(*DeleteNamespaceConnectionResponse)(nil),               // 197: vdp.pipeline.v1beta.DeleteNamespaceConnectionResponse
+	(*TestNamespaceConnectionResponse)(nil),                 // 198: vdp.pipeline.v1beta.TestNamespaceConnectionResponse
+	(*ListPipelineIDsByConnectionIDResponse)(nil),           // 199: vdp.pipeline.v1beta.ListPipelineIDsByConnectionIDResponse
+	(*ListIntegrationsResponse)(nil),                        // 200: vdp.pipeline.v1beta.ListIntegrationsResponse
+	(*GetIntegrationResponse)(nil),                          // 201: vdp.pipeline.v1beta.GetIntegrationResponse
 }
 var file_vdp_pipeline_v1beta_pipeline_public_service_proto_depIdxs = []int32{
 	0,   // 0: vdp.pipeline.v1beta.PipelinePublicService.Liveness:input_type -> vdp.pipeline.v1beta.LivenessRequest
@@ -1924,110 +1942,112 @@ var file_vdp_pipeline_v1beta_pipeline_public_service_proto_depIdxs = []int32{
 	95,  // 95: vdp.pipeline.v1beta.PipelinePublicService.UpdateNamespaceConnection:input_type -> vdp.pipeline.v1beta.UpdateNamespaceConnectionRequest
 	96,  // 96: vdp.pipeline.v1beta.PipelinePublicService.DeleteNamespaceConnection:input_type -> vdp.pipeline.v1beta.DeleteNamespaceConnectionRequest
 	97,  // 97: vdp.pipeline.v1beta.PipelinePublicService.TestNamespaceConnection:input_type -> vdp.pipeline.v1beta.TestNamespaceConnectionRequest
-	98,  // 98: vdp.pipeline.v1beta.PipelinePublicService.ListIntegrations:input_type -> vdp.pipeline.v1beta.ListIntegrationsRequest
-	99,  // 99: vdp.pipeline.v1beta.PipelinePublicService.GetIntegration:input_type -> vdp.pipeline.v1beta.GetIntegrationRequest
-	100, // 100: vdp.pipeline.v1beta.PipelinePublicService.Liveness:output_type -> vdp.pipeline.v1beta.LivenessResponse
-	101, // 101: vdp.pipeline.v1beta.PipelinePublicService.Readiness:output_type -> vdp.pipeline.v1beta.ReadinessResponse
-	102, // 102: vdp.pipeline.v1beta.PipelinePublicService.GetHubStats:output_type -> vdp.pipeline.v1beta.GetHubStatsResponse
-	103, // 103: vdp.pipeline.v1beta.PipelinePublicService.ListPipelines:output_type -> vdp.pipeline.v1beta.ListPipelinesResponse
-	104, // 104: vdp.pipeline.v1beta.PipelinePublicService.LookUpPipeline:output_type -> vdp.pipeline.v1beta.LookUpPipelineResponse
-	105, // 105: vdp.pipeline.v1beta.PipelinePublicService.ListNamespacePipelines:output_type -> vdp.pipeline.v1beta.ListNamespacePipelinesResponse
-	106, // 106: vdp.pipeline.v1beta.PipelinePublicService.CreateNamespacePipeline:output_type -> vdp.pipeline.v1beta.CreateNamespacePipelineResponse
-	107, // 107: vdp.pipeline.v1beta.PipelinePublicService.GetNamespacePipeline:output_type -> vdp.pipeline.v1beta.GetNamespacePipelineResponse
-	108, // 108: vdp.pipeline.v1beta.PipelinePublicService.UpdateNamespacePipeline:output_type -> vdp.pipeline.v1beta.UpdateNamespacePipelineResponse
-	109, // 109: vdp.pipeline.v1beta.PipelinePublicService.DeleteNamespacePipeline:output_type -> vdp.pipeline.v1beta.DeleteNamespacePipelineResponse
-	110, // 110: vdp.pipeline.v1beta.PipelinePublicService.ValidateNamespacePipeline:output_type -> vdp.pipeline.v1beta.ValidateNamespacePipelineResponse
-	111, // 111: vdp.pipeline.v1beta.PipelinePublicService.RenameNamespacePipeline:output_type -> vdp.pipeline.v1beta.RenameNamespacePipelineResponse
-	112, // 112: vdp.pipeline.v1beta.PipelinePublicService.CloneNamespacePipeline:output_type -> vdp.pipeline.v1beta.CloneNamespacePipelineResponse
-	113, // 113: vdp.pipeline.v1beta.PipelinePublicService.SendNamespacePipelineEvent:output_type -> vdp.pipeline.v1beta.SendNamespacePipelineEventResponse
-	114, // 114: vdp.pipeline.v1beta.PipelinePublicService.SendNamespacePipelineReleaseEvent:output_type -> vdp.pipeline.v1beta.SendNamespacePipelineReleaseEventResponse
-	115, // 115: vdp.pipeline.v1beta.PipelinePublicService.TriggerNamespacePipeline:output_type -> vdp.pipeline.v1beta.TriggerNamespacePipelineResponse
-	116, // 116: vdp.pipeline.v1beta.PipelinePublicService.TriggerNamespacePipelineWithStream:output_type -> vdp.pipeline.v1beta.TriggerNamespacePipelineWithStreamResponse
-	117, // 117: vdp.pipeline.v1beta.PipelinePublicService.TriggerAsyncNamespacePipeline:output_type -> vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineResponse
-	118, // 118: vdp.pipeline.v1beta.PipelinePublicService.CreateNamespacePipelineRelease:output_type -> vdp.pipeline.v1beta.CreateNamespacePipelineReleaseResponse
-	119, // 119: vdp.pipeline.v1beta.PipelinePublicService.ListNamespacePipelineReleases:output_type -> vdp.pipeline.v1beta.ListNamespacePipelineReleasesResponse
-	120, // 120: vdp.pipeline.v1beta.PipelinePublicService.GetNamespacePipelineRelease:output_type -> vdp.pipeline.v1beta.GetNamespacePipelineReleaseResponse
-	121, // 121: vdp.pipeline.v1beta.PipelinePublicService.UpdateNamespacePipelineRelease:output_type -> vdp.pipeline.v1beta.UpdateNamespacePipelineReleaseResponse
-	122, // 122: vdp.pipeline.v1beta.PipelinePublicService.DeleteNamespacePipelineRelease:output_type -> vdp.pipeline.v1beta.DeleteNamespacePipelineReleaseResponse
-	123, // 123: vdp.pipeline.v1beta.PipelinePublicService.CloneNamespacePipelineRelease:output_type -> vdp.pipeline.v1beta.CloneNamespacePipelineReleaseResponse
-	124, // 124: vdp.pipeline.v1beta.PipelinePublicService.TriggerNamespacePipelineRelease:output_type -> vdp.pipeline.v1beta.TriggerNamespacePipelineReleaseResponse
-	125, // 125: vdp.pipeline.v1beta.PipelinePublicService.TriggerAsyncNamespacePipelineRelease:output_type -> vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseResponse
-	126, // 126: vdp.pipeline.v1beta.PipelinePublicService.CreateNamespaceSecret:output_type -> vdp.pipeline.v1beta.CreateNamespaceSecretResponse
-	127, // 127: vdp.pipeline.v1beta.PipelinePublicService.ListNamespaceSecrets:output_type -> vdp.pipeline.v1beta.ListNamespaceSecretsResponse
-	128, // 128: vdp.pipeline.v1beta.PipelinePublicService.GetNamespaceSecret:output_type -> vdp.pipeline.v1beta.GetNamespaceSecretResponse
-	129, // 129: vdp.pipeline.v1beta.PipelinePublicService.UpdateNamespaceSecret:output_type -> vdp.pipeline.v1beta.UpdateNamespaceSecretResponse
-	130, // 130: vdp.pipeline.v1beta.PipelinePublicService.DeleteNamespaceSecret:output_type -> vdp.pipeline.v1beta.DeleteNamespaceSecretResponse
-	131, // 131: vdp.pipeline.v1beta.PipelinePublicService.ListComponentDefinitions:output_type -> vdp.pipeline.v1beta.ListComponentDefinitionsResponse
-	132, // 132: vdp.pipeline.v1beta.PipelinePublicService.GetOperation:output_type -> vdp.pipeline.v1beta.GetOperationResponse
-	133, // 133: vdp.pipeline.v1beta.PipelinePublicService.CreateUserPipeline:output_type -> vdp.pipeline.v1beta.CreateUserPipelineResponse
-	134, // 134: vdp.pipeline.v1beta.PipelinePublicService.ListUserPipelines:output_type -> vdp.pipeline.v1beta.ListUserPipelinesResponse
-	135, // 135: vdp.pipeline.v1beta.PipelinePublicService.GetUserPipeline:output_type -> vdp.pipeline.v1beta.GetUserPipelineResponse
-	136, // 136: vdp.pipeline.v1beta.PipelinePublicService.UpdateUserPipeline:output_type -> vdp.pipeline.v1beta.UpdateUserPipelineResponse
-	137, // 137: vdp.pipeline.v1beta.PipelinePublicService.DeleteUserPipeline:output_type -> vdp.pipeline.v1beta.DeleteUserPipelineResponse
-	138, // 138: vdp.pipeline.v1beta.PipelinePublicService.ValidateUserPipeline:output_type -> vdp.pipeline.v1beta.ValidateUserPipelineResponse
-	139, // 139: vdp.pipeline.v1beta.PipelinePublicService.RenameUserPipeline:output_type -> vdp.pipeline.v1beta.RenameUserPipelineResponse
-	140, // 140: vdp.pipeline.v1beta.PipelinePublicService.CloneUserPipeline:output_type -> vdp.pipeline.v1beta.CloneUserPipelineResponse
-	141, // 141: vdp.pipeline.v1beta.PipelinePublicService.CloneUserPipelineRelease:output_type -> vdp.pipeline.v1beta.CloneUserPipelineReleaseResponse
-	142, // 142: vdp.pipeline.v1beta.PipelinePublicService.TriggerUserPipeline:output_type -> vdp.pipeline.v1beta.TriggerUserPipelineResponse
-	143, // 143: vdp.pipeline.v1beta.PipelinePublicService.TriggerUserPipelineWithStream:output_type -> vdp.pipeline.v1beta.TriggerUserPipelineWithStreamResponse
-	144, // 144: vdp.pipeline.v1beta.PipelinePublicService.TriggerAsyncUserPipeline:output_type -> vdp.pipeline.v1beta.TriggerAsyncUserPipelineResponse
-	145, // 145: vdp.pipeline.v1beta.PipelinePublicService.CreateUserPipelineRelease:output_type -> vdp.pipeline.v1beta.CreateUserPipelineReleaseResponse
-	146, // 146: vdp.pipeline.v1beta.PipelinePublicService.ListUserPipelineReleases:output_type -> vdp.pipeline.v1beta.ListUserPipelineReleasesResponse
-	147, // 147: vdp.pipeline.v1beta.PipelinePublicService.GetUserPipelineRelease:output_type -> vdp.pipeline.v1beta.GetUserPipelineReleaseResponse
-	148, // 148: vdp.pipeline.v1beta.PipelinePublicService.UpdateUserPipelineRelease:output_type -> vdp.pipeline.v1beta.UpdateUserPipelineReleaseResponse
-	149, // 149: vdp.pipeline.v1beta.PipelinePublicService.DeleteUserPipelineRelease:output_type -> vdp.pipeline.v1beta.DeleteUserPipelineReleaseResponse
-	150, // 150: vdp.pipeline.v1beta.PipelinePublicService.RestoreUserPipelineRelease:output_type -> vdp.pipeline.v1beta.RestoreUserPipelineReleaseResponse
-	151, // 151: vdp.pipeline.v1beta.PipelinePublicService.RenameUserPipelineRelease:output_type -> vdp.pipeline.v1beta.RenameUserPipelineReleaseResponse
-	152, // 152: vdp.pipeline.v1beta.PipelinePublicService.TriggerUserPipelineRelease:output_type -> vdp.pipeline.v1beta.TriggerUserPipelineReleaseResponse
-	153, // 153: vdp.pipeline.v1beta.PipelinePublicService.TriggerAsyncUserPipelineRelease:output_type -> vdp.pipeline.v1beta.TriggerAsyncUserPipelineReleaseResponse
-	154, // 154: vdp.pipeline.v1beta.PipelinePublicService.CreateOrganizationPipeline:output_type -> vdp.pipeline.v1beta.CreateOrganizationPipelineResponse
-	155, // 155: vdp.pipeline.v1beta.PipelinePublicService.ListOrganizationPipelines:output_type -> vdp.pipeline.v1beta.ListOrganizationPipelinesResponse
-	156, // 156: vdp.pipeline.v1beta.PipelinePublicService.GetOrganizationPipeline:output_type -> vdp.pipeline.v1beta.GetOrganizationPipelineResponse
-	157, // 157: vdp.pipeline.v1beta.PipelinePublicService.UpdateOrganizationPipeline:output_type -> vdp.pipeline.v1beta.UpdateOrganizationPipelineResponse
-	158, // 158: vdp.pipeline.v1beta.PipelinePublicService.DeleteOrganizationPipeline:output_type -> vdp.pipeline.v1beta.DeleteOrganizationPipelineResponse
-	159, // 159: vdp.pipeline.v1beta.PipelinePublicService.ValidateOrganizationPipeline:output_type -> vdp.pipeline.v1beta.ValidateOrganizationPipelineResponse
-	160, // 160: vdp.pipeline.v1beta.PipelinePublicService.RenameOrganizationPipeline:output_type -> vdp.pipeline.v1beta.RenameOrganizationPipelineResponse
-	161, // 161: vdp.pipeline.v1beta.PipelinePublicService.CloneOrganizationPipeline:output_type -> vdp.pipeline.v1beta.CloneOrganizationPipelineResponse
-	162, // 162: vdp.pipeline.v1beta.PipelinePublicService.CloneOrganizationPipelineRelease:output_type -> vdp.pipeline.v1beta.CloneOrganizationPipelineReleaseResponse
-	163, // 163: vdp.pipeline.v1beta.PipelinePublicService.TriggerOrganizationPipelineStream:output_type -> vdp.pipeline.v1beta.TriggerOrganizationPipelineStreamResponse
-	164, // 164: vdp.pipeline.v1beta.PipelinePublicService.TriggerOrganizationPipeline:output_type -> vdp.pipeline.v1beta.TriggerOrganizationPipelineResponse
-	165, // 165: vdp.pipeline.v1beta.PipelinePublicService.TriggerAsyncOrganizationPipeline:output_type -> vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineResponse
-	166, // 166: vdp.pipeline.v1beta.PipelinePublicService.CreateOrganizationPipelineRelease:output_type -> vdp.pipeline.v1beta.CreateOrganizationPipelineReleaseResponse
-	167, // 167: vdp.pipeline.v1beta.PipelinePublicService.ListOrganizationPipelineReleases:output_type -> vdp.pipeline.v1beta.ListOrganizationPipelineReleasesResponse
-	168, // 168: vdp.pipeline.v1beta.PipelinePublicService.GetOrganizationPipelineRelease:output_type -> vdp.pipeline.v1beta.GetOrganizationPipelineReleaseResponse
-	169, // 169: vdp.pipeline.v1beta.PipelinePublicService.UpdateOrganizationPipelineRelease:output_type -> vdp.pipeline.v1beta.UpdateOrganizationPipelineReleaseResponse
-	170, // 170: vdp.pipeline.v1beta.PipelinePublicService.DeleteOrganizationPipelineRelease:output_type -> vdp.pipeline.v1beta.DeleteOrganizationPipelineReleaseResponse
-	171, // 171: vdp.pipeline.v1beta.PipelinePublicService.RestoreOrganizationPipelineRelease:output_type -> vdp.pipeline.v1beta.RestoreOrganizationPipelineReleaseResponse
-	172, // 172: vdp.pipeline.v1beta.PipelinePublicService.RenameOrganizationPipelineRelease:output_type -> vdp.pipeline.v1beta.RenameOrganizationPipelineReleaseResponse
-	173, // 173: vdp.pipeline.v1beta.PipelinePublicService.TriggerOrganizationPipelineRelease:output_type -> vdp.pipeline.v1beta.TriggerOrganizationPipelineReleaseResponse
-	174, // 174: vdp.pipeline.v1beta.PipelinePublicService.TriggerAsyncOrganizationPipelineRelease:output_type -> vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseResponse
-	175, // 175: vdp.pipeline.v1beta.PipelinePublicService.ListConnectorDefinitions:output_type -> vdp.pipeline.v1beta.ListConnectorDefinitionsResponse
-	176, // 176: vdp.pipeline.v1beta.PipelinePublicService.GetConnectorDefinition:output_type -> vdp.pipeline.v1beta.GetConnectorDefinitionResponse
-	177, // 177: vdp.pipeline.v1beta.PipelinePublicService.ListOperatorDefinitions:output_type -> vdp.pipeline.v1beta.ListOperatorDefinitionsResponse
-	178, // 178: vdp.pipeline.v1beta.PipelinePublicService.GetOperatorDefinition:output_type -> vdp.pipeline.v1beta.GetOperatorDefinitionResponse
-	179, // 179: vdp.pipeline.v1beta.PipelinePublicService.CheckName:output_type -> vdp.pipeline.v1beta.CheckNameResponse
-	180, // 180: vdp.pipeline.v1beta.PipelinePublicService.CreateUserSecret:output_type -> vdp.pipeline.v1beta.CreateUserSecretResponse
-	181, // 181: vdp.pipeline.v1beta.PipelinePublicService.ListUserSecrets:output_type -> vdp.pipeline.v1beta.ListUserSecretsResponse
-	182, // 182: vdp.pipeline.v1beta.PipelinePublicService.GetUserSecret:output_type -> vdp.pipeline.v1beta.GetUserSecretResponse
-	183, // 183: vdp.pipeline.v1beta.PipelinePublicService.UpdateUserSecret:output_type -> vdp.pipeline.v1beta.UpdateUserSecretResponse
-	184, // 184: vdp.pipeline.v1beta.PipelinePublicService.DeleteUserSecret:output_type -> vdp.pipeline.v1beta.DeleteUserSecretResponse
-	185, // 185: vdp.pipeline.v1beta.PipelinePublicService.CreateOrganizationSecret:output_type -> vdp.pipeline.v1beta.CreateOrganizationSecretResponse
-	186, // 186: vdp.pipeline.v1beta.PipelinePublicService.ListOrganizationSecrets:output_type -> vdp.pipeline.v1beta.ListOrganizationSecretsResponse
-	187, // 187: vdp.pipeline.v1beta.PipelinePublicService.GetOrganizationSecret:output_type -> vdp.pipeline.v1beta.GetOrganizationSecretResponse
-	188, // 188: vdp.pipeline.v1beta.PipelinePublicService.UpdateOrganizationSecret:output_type -> vdp.pipeline.v1beta.UpdateOrganizationSecretResponse
-	189, // 189: vdp.pipeline.v1beta.PipelinePublicService.DeleteOrganizationSecret:output_type -> vdp.pipeline.v1beta.DeleteOrganizationSecretResponse
-	190, // 190: vdp.pipeline.v1beta.PipelinePublicService.ListPipelineRuns:output_type -> vdp.pipeline.v1beta.ListPipelineRunsResponse
-	191, // 191: vdp.pipeline.v1beta.PipelinePublicService.ListComponentRuns:output_type -> vdp.pipeline.v1beta.ListComponentRunsResponse
-	192, // 192: vdp.pipeline.v1beta.PipelinePublicService.ListNamespaceConnections:output_type -> vdp.pipeline.v1beta.ListNamespaceConnectionsResponse
-	193, // 193: vdp.pipeline.v1beta.PipelinePublicService.GetNamespaceConnection:output_type -> vdp.pipeline.v1beta.GetNamespaceConnectionResponse
-	194, // 194: vdp.pipeline.v1beta.PipelinePublicService.CreateNamespaceConnection:output_type -> vdp.pipeline.v1beta.CreateNamespaceConnectionResponse
-	195, // 195: vdp.pipeline.v1beta.PipelinePublicService.UpdateNamespaceConnection:output_type -> vdp.pipeline.v1beta.UpdateNamespaceConnectionResponse
-	196, // 196: vdp.pipeline.v1beta.PipelinePublicService.DeleteNamespaceConnection:output_type -> vdp.pipeline.v1beta.DeleteNamespaceConnectionResponse
-	197, // 197: vdp.pipeline.v1beta.PipelinePublicService.TestNamespaceConnection:output_type -> vdp.pipeline.v1beta.TestNamespaceConnectionResponse
-	198, // 198: vdp.pipeline.v1beta.PipelinePublicService.ListIntegrations:output_type -> vdp.pipeline.v1beta.ListIntegrationsResponse
-	199, // 199: vdp.pipeline.v1beta.PipelinePublicService.GetIntegration:output_type -> vdp.pipeline.v1beta.GetIntegrationResponse
-	100, // [100:200] is the sub-list for method output_type
-	0,   // [0:100] is the sub-list for method input_type
+	98,  // 98: vdp.pipeline.v1beta.PipelinePublicService.ListPipelineIDsByConnectionID:input_type -> vdp.pipeline.v1beta.ListPipelineIDsByConnectionIDRequest
+	99,  // 99: vdp.pipeline.v1beta.PipelinePublicService.ListIntegrations:input_type -> vdp.pipeline.v1beta.ListIntegrationsRequest
+	100, // 100: vdp.pipeline.v1beta.PipelinePublicService.GetIntegration:input_type -> vdp.pipeline.v1beta.GetIntegrationRequest
+	101, // 101: vdp.pipeline.v1beta.PipelinePublicService.Liveness:output_type -> vdp.pipeline.v1beta.LivenessResponse
+	102, // 102: vdp.pipeline.v1beta.PipelinePublicService.Readiness:output_type -> vdp.pipeline.v1beta.ReadinessResponse
+	103, // 103: vdp.pipeline.v1beta.PipelinePublicService.GetHubStats:output_type -> vdp.pipeline.v1beta.GetHubStatsResponse
+	104, // 104: vdp.pipeline.v1beta.PipelinePublicService.ListPipelines:output_type -> vdp.pipeline.v1beta.ListPipelinesResponse
+	105, // 105: vdp.pipeline.v1beta.PipelinePublicService.LookUpPipeline:output_type -> vdp.pipeline.v1beta.LookUpPipelineResponse
+	106, // 106: vdp.pipeline.v1beta.PipelinePublicService.ListNamespacePipelines:output_type -> vdp.pipeline.v1beta.ListNamespacePipelinesResponse
+	107, // 107: vdp.pipeline.v1beta.PipelinePublicService.CreateNamespacePipeline:output_type -> vdp.pipeline.v1beta.CreateNamespacePipelineResponse
+	108, // 108: vdp.pipeline.v1beta.PipelinePublicService.GetNamespacePipeline:output_type -> vdp.pipeline.v1beta.GetNamespacePipelineResponse
+	109, // 109: vdp.pipeline.v1beta.PipelinePublicService.UpdateNamespacePipeline:output_type -> vdp.pipeline.v1beta.UpdateNamespacePipelineResponse
+	110, // 110: vdp.pipeline.v1beta.PipelinePublicService.DeleteNamespacePipeline:output_type -> vdp.pipeline.v1beta.DeleteNamespacePipelineResponse
+	111, // 111: vdp.pipeline.v1beta.PipelinePublicService.ValidateNamespacePipeline:output_type -> vdp.pipeline.v1beta.ValidateNamespacePipelineResponse
+	112, // 112: vdp.pipeline.v1beta.PipelinePublicService.RenameNamespacePipeline:output_type -> vdp.pipeline.v1beta.RenameNamespacePipelineResponse
+	113, // 113: vdp.pipeline.v1beta.PipelinePublicService.CloneNamespacePipeline:output_type -> vdp.pipeline.v1beta.CloneNamespacePipelineResponse
+	114, // 114: vdp.pipeline.v1beta.PipelinePublicService.SendNamespacePipelineEvent:output_type -> vdp.pipeline.v1beta.SendNamespacePipelineEventResponse
+	115, // 115: vdp.pipeline.v1beta.PipelinePublicService.SendNamespacePipelineReleaseEvent:output_type -> vdp.pipeline.v1beta.SendNamespacePipelineReleaseEventResponse
+	116, // 116: vdp.pipeline.v1beta.PipelinePublicService.TriggerNamespacePipeline:output_type -> vdp.pipeline.v1beta.TriggerNamespacePipelineResponse
+	117, // 117: vdp.pipeline.v1beta.PipelinePublicService.TriggerNamespacePipelineWithStream:output_type -> vdp.pipeline.v1beta.TriggerNamespacePipelineWithStreamResponse
+	118, // 118: vdp.pipeline.v1beta.PipelinePublicService.TriggerAsyncNamespacePipeline:output_type -> vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineResponse
+	119, // 119: vdp.pipeline.v1beta.PipelinePublicService.CreateNamespacePipelineRelease:output_type -> vdp.pipeline.v1beta.CreateNamespacePipelineReleaseResponse
+	120, // 120: vdp.pipeline.v1beta.PipelinePublicService.ListNamespacePipelineReleases:output_type -> vdp.pipeline.v1beta.ListNamespacePipelineReleasesResponse
+	121, // 121: vdp.pipeline.v1beta.PipelinePublicService.GetNamespacePipelineRelease:output_type -> vdp.pipeline.v1beta.GetNamespacePipelineReleaseResponse
+	122, // 122: vdp.pipeline.v1beta.PipelinePublicService.UpdateNamespacePipelineRelease:output_type -> vdp.pipeline.v1beta.UpdateNamespacePipelineReleaseResponse
+	123, // 123: vdp.pipeline.v1beta.PipelinePublicService.DeleteNamespacePipelineRelease:output_type -> vdp.pipeline.v1beta.DeleteNamespacePipelineReleaseResponse
+	124, // 124: vdp.pipeline.v1beta.PipelinePublicService.CloneNamespacePipelineRelease:output_type -> vdp.pipeline.v1beta.CloneNamespacePipelineReleaseResponse
+	125, // 125: vdp.pipeline.v1beta.PipelinePublicService.TriggerNamespacePipelineRelease:output_type -> vdp.pipeline.v1beta.TriggerNamespacePipelineReleaseResponse
+	126, // 126: vdp.pipeline.v1beta.PipelinePublicService.TriggerAsyncNamespacePipelineRelease:output_type -> vdp.pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseResponse
+	127, // 127: vdp.pipeline.v1beta.PipelinePublicService.CreateNamespaceSecret:output_type -> vdp.pipeline.v1beta.CreateNamespaceSecretResponse
+	128, // 128: vdp.pipeline.v1beta.PipelinePublicService.ListNamespaceSecrets:output_type -> vdp.pipeline.v1beta.ListNamespaceSecretsResponse
+	129, // 129: vdp.pipeline.v1beta.PipelinePublicService.GetNamespaceSecret:output_type -> vdp.pipeline.v1beta.GetNamespaceSecretResponse
+	130, // 130: vdp.pipeline.v1beta.PipelinePublicService.UpdateNamespaceSecret:output_type -> vdp.pipeline.v1beta.UpdateNamespaceSecretResponse
+	131, // 131: vdp.pipeline.v1beta.PipelinePublicService.DeleteNamespaceSecret:output_type -> vdp.pipeline.v1beta.DeleteNamespaceSecretResponse
+	132, // 132: vdp.pipeline.v1beta.PipelinePublicService.ListComponentDefinitions:output_type -> vdp.pipeline.v1beta.ListComponentDefinitionsResponse
+	133, // 133: vdp.pipeline.v1beta.PipelinePublicService.GetOperation:output_type -> vdp.pipeline.v1beta.GetOperationResponse
+	134, // 134: vdp.pipeline.v1beta.PipelinePublicService.CreateUserPipeline:output_type -> vdp.pipeline.v1beta.CreateUserPipelineResponse
+	135, // 135: vdp.pipeline.v1beta.PipelinePublicService.ListUserPipelines:output_type -> vdp.pipeline.v1beta.ListUserPipelinesResponse
+	136, // 136: vdp.pipeline.v1beta.PipelinePublicService.GetUserPipeline:output_type -> vdp.pipeline.v1beta.GetUserPipelineResponse
+	137, // 137: vdp.pipeline.v1beta.PipelinePublicService.UpdateUserPipeline:output_type -> vdp.pipeline.v1beta.UpdateUserPipelineResponse
+	138, // 138: vdp.pipeline.v1beta.PipelinePublicService.DeleteUserPipeline:output_type -> vdp.pipeline.v1beta.DeleteUserPipelineResponse
+	139, // 139: vdp.pipeline.v1beta.PipelinePublicService.ValidateUserPipeline:output_type -> vdp.pipeline.v1beta.ValidateUserPipelineResponse
+	140, // 140: vdp.pipeline.v1beta.PipelinePublicService.RenameUserPipeline:output_type -> vdp.pipeline.v1beta.RenameUserPipelineResponse
+	141, // 141: vdp.pipeline.v1beta.PipelinePublicService.CloneUserPipeline:output_type -> vdp.pipeline.v1beta.CloneUserPipelineResponse
+	142, // 142: vdp.pipeline.v1beta.PipelinePublicService.CloneUserPipelineRelease:output_type -> vdp.pipeline.v1beta.CloneUserPipelineReleaseResponse
+	143, // 143: vdp.pipeline.v1beta.PipelinePublicService.TriggerUserPipeline:output_type -> vdp.pipeline.v1beta.TriggerUserPipelineResponse
+	144, // 144: vdp.pipeline.v1beta.PipelinePublicService.TriggerUserPipelineWithStream:output_type -> vdp.pipeline.v1beta.TriggerUserPipelineWithStreamResponse
+	145, // 145: vdp.pipeline.v1beta.PipelinePublicService.TriggerAsyncUserPipeline:output_type -> vdp.pipeline.v1beta.TriggerAsyncUserPipelineResponse
+	146, // 146: vdp.pipeline.v1beta.PipelinePublicService.CreateUserPipelineRelease:output_type -> vdp.pipeline.v1beta.CreateUserPipelineReleaseResponse
+	147, // 147: vdp.pipeline.v1beta.PipelinePublicService.ListUserPipelineReleases:output_type -> vdp.pipeline.v1beta.ListUserPipelineReleasesResponse
+	148, // 148: vdp.pipeline.v1beta.PipelinePublicService.GetUserPipelineRelease:output_type -> vdp.pipeline.v1beta.GetUserPipelineReleaseResponse
+	149, // 149: vdp.pipeline.v1beta.PipelinePublicService.UpdateUserPipelineRelease:output_type -> vdp.pipeline.v1beta.UpdateUserPipelineReleaseResponse
+	150, // 150: vdp.pipeline.v1beta.PipelinePublicService.DeleteUserPipelineRelease:output_type -> vdp.pipeline.v1beta.DeleteUserPipelineReleaseResponse
+	151, // 151: vdp.pipeline.v1beta.PipelinePublicService.RestoreUserPipelineRelease:output_type -> vdp.pipeline.v1beta.RestoreUserPipelineReleaseResponse
+	152, // 152: vdp.pipeline.v1beta.PipelinePublicService.RenameUserPipelineRelease:output_type -> vdp.pipeline.v1beta.RenameUserPipelineReleaseResponse
+	153, // 153: vdp.pipeline.v1beta.PipelinePublicService.TriggerUserPipelineRelease:output_type -> vdp.pipeline.v1beta.TriggerUserPipelineReleaseResponse
+	154, // 154: vdp.pipeline.v1beta.PipelinePublicService.TriggerAsyncUserPipelineRelease:output_type -> vdp.pipeline.v1beta.TriggerAsyncUserPipelineReleaseResponse
+	155, // 155: vdp.pipeline.v1beta.PipelinePublicService.CreateOrganizationPipeline:output_type -> vdp.pipeline.v1beta.CreateOrganizationPipelineResponse
+	156, // 156: vdp.pipeline.v1beta.PipelinePublicService.ListOrganizationPipelines:output_type -> vdp.pipeline.v1beta.ListOrganizationPipelinesResponse
+	157, // 157: vdp.pipeline.v1beta.PipelinePublicService.GetOrganizationPipeline:output_type -> vdp.pipeline.v1beta.GetOrganizationPipelineResponse
+	158, // 158: vdp.pipeline.v1beta.PipelinePublicService.UpdateOrganizationPipeline:output_type -> vdp.pipeline.v1beta.UpdateOrganizationPipelineResponse
+	159, // 159: vdp.pipeline.v1beta.PipelinePublicService.DeleteOrganizationPipeline:output_type -> vdp.pipeline.v1beta.DeleteOrganizationPipelineResponse
+	160, // 160: vdp.pipeline.v1beta.PipelinePublicService.ValidateOrganizationPipeline:output_type -> vdp.pipeline.v1beta.ValidateOrganizationPipelineResponse
+	161, // 161: vdp.pipeline.v1beta.PipelinePublicService.RenameOrganizationPipeline:output_type -> vdp.pipeline.v1beta.RenameOrganizationPipelineResponse
+	162, // 162: vdp.pipeline.v1beta.PipelinePublicService.CloneOrganizationPipeline:output_type -> vdp.pipeline.v1beta.CloneOrganizationPipelineResponse
+	163, // 163: vdp.pipeline.v1beta.PipelinePublicService.CloneOrganizationPipelineRelease:output_type -> vdp.pipeline.v1beta.CloneOrganizationPipelineReleaseResponse
+	164, // 164: vdp.pipeline.v1beta.PipelinePublicService.TriggerOrganizationPipelineStream:output_type -> vdp.pipeline.v1beta.TriggerOrganizationPipelineStreamResponse
+	165, // 165: vdp.pipeline.v1beta.PipelinePublicService.TriggerOrganizationPipeline:output_type -> vdp.pipeline.v1beta.TriggerOrganizationPipelineResponse
+	166, // 166: vdp.pipeline.v1beta.PipelinePublicService.TriggerAsyncOrganizationPipeline:output_type -> vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineResponse
+	167, // 167: vdp.pipeline.v1beta.PipelinePublicService.CreateOrganizationPipelineRelease:output_type -> vdp.pipeline.v1beta.CreateOrganizationPipelineReleaseResponse
+	168, // 168: vdp.pipeline.v1beta.PipelinePublicService.ListOrganizationPipelineReleases:output_type -> vdp.pipeline.v1beta.ListOrganizationPipelineReleasesResponse
+	169, // 169: vdp.pipeline.v1beta.PipelinePublicService.GetOrganizationPipelineRelease:output_type -> vdp.pipeline.v1beta.GetOrganizationPipelineReleaseResponse
+	170, // 170: vdp.pipeline.v1beta.PipelinePublicService.UpdateOrganizationPipelineRelease:output_type -> vdp.pipeline.v1beta.UpdateOrganizationPipelineReleaseResponse
+	171, // 171: vdp.pipeline.v1beta.PipelinePublicService.DeleteOrganizationPipelineRelease:output_type -> vdp.pipeline.v1beta.DeleteOrganizationPipelineReleaseResponse
+	172, // 172: vdp.pipeline.v1beta.PipelinePublicService.RestoreOrganizationPipelineRelease:output_type -> vdp.pipeline.v1beta.RestoreOrganizationPipelineReleaseResponse
+	173, // 173: vdp.pipeline.v1beta.PipelinePublicService.RenameOrganizationPipelineRelease:output_type -> vdp.pipeline.v1beta.RenameOrganizationPipelineReleaseResponse
+	174, // 174: vdp.pipeline.v1beta.PipelinePublicService.TriggerOrganizationPipelineRelease:output_type -> vdp.pipeline.v1beta.TriggerOrganizationPipelineReleaseResponse
+	175, // 175: vdp.pipeline.v1beta.PipelinePublicService.TriggerAsyncOrganizationPipelineRelease:output_type -> vdp.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseResponse
+	176, // 176: vdp.pipeline.v1beta.PipelinePublicService.ListConnectorDefinitions:output_type -> vdp.pipeline.v1beta.ListConnectorDefinitionsResponse
+	177, // 177: vdp.pipeline.v1beta.PipelinePublicService.GetConnectorDefinition:output_type -> vdp.pipeline.v1beta.GetConnectorDefinitionResponse
+	178, // 178: vdp.pipeline.v1beta.PipelinePublicService.ListOperatorDefinitions:output_type -> vdp.pipeline.v1beta.ListOperatorDefinitionsResponse
+	179, // 179: vdp.pipeline.v1beta.PipelinePublicService.GetOperatorDefinition:output_type -> vdp.pipeline.v1beta.GetOperatorDefinitionResponse
+	180, // 180: vdp.pipeline.v1beta.PipelinePublicService.CheckName:output_type -> vdp.pipeline.v1beta.CheckNameResponse
+	181, // 181: vdp.pipeline.v1beta.PipelinePublicService.CreateUserSecret:output_type -> vdp.pipeline.v1beta.CreateUserSecretResponse
+	182, // 182: vdp.pipeline.v1beta.PipelinePublicService.ListUserSecrets:output_type -> vdp.pipeline.v1beta.ListUserSecretsResponse
+	183, // 183: vdp.pipeline.v1beta.PipelinePublicService.GetUserSecret:output_type -> vdp.pipeline.v1beta.GetUserSecretResponse
+	184, // 184: vdp.pipeline.v1beta.PipelinePublicService.UpdateUserSecret:output_type -> vdp.pipeline.v1beta.UpdateUserSecretResponse
+	185, // 185: vdp.pipeline.v1beta.PipelinePublicService.DeleteUserSecret:output_type -> vdp.pipeline.v1beta.DeleteUserSecretResponse
+	186, // 186: vdp.pipeline.v1beta.PipelinePublicService.CreateOrganizationSecret:output_type -> vdp.pipeline.v1beta.CreateOrganizationSecretResponse
+	187, // 187: vdp.pipeline.v1beta.PipelinePublicService.ListOrganizationSecrets:output_type -> vdp.pipeline.v1beta.ListOrganizationSecretsResponse
+	188, // 188: vdp.pipeline.v1beta.PipelinePublicService.GetOrganizationSecret:output_type -> vdp.pipeline.v1beta.GetOrganizationSecretResponse
+	189, // 189: vdp.pipeline.v1beta.PipelinePublicService.UpdateOrganizationSecret:output_type -> vdp.pipeline.v1beta.UpdateOrganizationSecretResponse
+	190, // 190: vdp.pipeline.v1beta.PipelinePublicService.DeleteOrganizationSecret:output_type -> vdp.pipeline.v1beta.DeleteOrganizationSecretResponse
+	191, // 191: vdp.pipeline.v1beta.PipelinePublicService.ListPipelineRuns:output_type -> vdp.pipeline.v1beta.ListPipelineRunsResponse
+	192, // 192: vdp.pipeline.v1beta.PipelinePublicService.ListComponentRuns:output_type -> vdp.pipeline.v1beta.ListComponentRunsResponse
+	193, // 193: vdp.pipeline.v1beta.PipelinePublicService.ListNamespaceConnections:output_type -> vdp.pipeline.v1beta.ListNamespaceConnectionsResponse
+	194, // 194: vdp.pipeline.v1beta.PipelinePublicService.GetNamespaceConnection:output_type -> vdp.pipeline.v1beta.GetNamespaceConnectionResponse
+	195, // 195: vdp.pipeline.v1beta.PipelinePublicService.CreateNamespaceConnection:output_type -> vdp.pipeline.v1beta.CreateNamespaceConnectionResponse
+	196, // 196: vdp.pipeline.v1beta.PipelinePublicService.UpdateNamespaceConnection:output_type -> vdp.pipeline.v1beta.UpdateNamespaceConnectionResponse
+	197, // 197: vdp.pipeline.v1beta.PipelinePublicService.DeleteNamespaceConnection:output_type -> vdp.pipeline.v1beta.DeleteNamespaceConnectionResponse
+	198, // 198: vdp.pipeline.v1beta.PipelinePublicService.TestNamespaceConnection:output_type -> vdp.pipeline.v1beta.TestNamespaceConnectionResponse
+	199, // 199: vdp.pipeline.v1beta.PipelinePublicService.ListPipelineIDsByConnectionID:output_type -> vdp.pipeline.v1beta.ListPipelineIDsByConnectionIDResponse
+	200, // 200: vdp.pipeline.v1beta.PipelinePublicService.ListIntegrations:output_type -> vdp.pipeline.v1beta.ListIntegrationsResponse
+	201, // 201: vdp.pipeline.v1beta.PipelinePublicService.GetIntegration:output_type -> vdp.pipeline.v1beta.GetIntegrationResponse
+	101, // [101:202] is the sub-list for method output_type
+	0,   // [0:101] is the sub-list for method input_type
 	0,   // [0:0] is the sub-list for extension type_name
 	0,   // [0:0] is the sub-list for extension extendee
 	0,   // [0:0] is the sub-list for field type_name
