@@ -9458,22 +9458,22 @@ var _ interface {
 	ErrorName() string
 } = DeleteUserPipelineResponseValidationError{}
 
-// Validate checks the field values on PipelineValidationError with the rules
+// Validate checks the field values on ErrPipelineValidation with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.
-func (m *PipelineValidationError) Validate() error {
+func (m *ErrPipelineValidation) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on PipelineValidationError with the
-// rules defined in the proto definition for this message. If any rules are
+// ValidateAll checks the field values on ErrPipelineValidation with the rules
+// defined in the proto definition for this message. If any rules are
 // violated, the result is a list of violation errors wrapped in
-// PipelineValidationErrorMultiError, or nil if none found.
-func (m *PipelineValidationError) ValidateAll() error {
+// ErrPipelineValidationMultiError, or nil if none found.
+func (m *ErrPipelineValidation) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *PipelineValidationError) validate(all bool) error {
+func (m *ErrPipelineValidation) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -9485,19 +9485,19 @@ func (m *PipelineValidationError) validate(all bool) error {
 	// no validation rules for Error
 
 	if len(errors) > 0 {
-		return PipelineValidationErrorMultiError(errors)
+		return ErrPipelineValidationMultiError(errors)
 	}
 
 	return nil
 }
 
-// PipelineValidationErrorMultiError is an error wrapping multiple validation
-// errors returned by PipelineValidationError.ValidateAll() if the designated
+// ErrPipelineValidationMultiError is an error wrapping multiple validation
+// errors returned by ErrPipelineValidation.ValidateAll() if the designated
 // constraints aren't met.
-type PipelineValidationErrorMultiError []error
+type ErrPipelineValidationMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m PipelineValidationErrorMultiError) Error() string {
+func (m ErrPipelineValidationMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -9506,11 +9506,11 @@ func (m PipelineValidationErrorMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m PipelineValidationErrorMultiError) AllErrors() []error { return m }
+func (m ErrPipelineValidationMultiError) AllErrors() []error { return m }
 
-// PipelineValidationErrorValidationError is the validation error returned by
-// PipelineValidationError.Validate if the designated constraints aren't met.
-type PipelineValidationErrorValidationError struct {
+// ErrPipelineValidationValidationError is the validation error returned by
+// ErrPipelineValidation.Validate if the designated constraints aren't met.
+type ErrPipelineValidationValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -9518,24 +9518,24 @@ type PipelineValidationErrorValidationError struct {
 }
 
 // Field function returns field value.
-func (e PipelineValidationErrorValidationError) Field() string { return e.field }
+func (e ErrPipelineValidationValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e PipelineValidationErrorValidationError) Reason() string { return e.reason }
+func (e ErrPipelineValidationValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e PipelineValidationErrorValidationError) Cause() error { return e.cause }
+func (e ErrPipelineValidationValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e PipelineValidationErrorValidationError) Key() bool { return e.key }
+func (e ErrPipelineValidationValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e PipelineValidationErrorValidationError) ErrorName() string {
-	return "PipelineValidationErrorValidationError"
+func (e ErrPipelineValidationValidationError) ErrorName() string {
+	return "ErrPipelineValidationValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e PipelineValidationErrorValidationError) Error() string {
+func (e ErrPipelineValidationValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -9547,14 +9547,14 @@ func (e PipelineValidationErrorValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sPipelineValidationError.%s: %s%s",
+		"invalid %sErrPipelineValidation.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = PipelineValidationErrorValidationError{}
+var _ error = ErrPipelineValidationValidationError{}
 
 var _ interface {
 	Field() string
@@ -9562,7 +9562,7 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = PipelineValidationErrorValidationError{}
+} = ErrPipelineValidationValidationError{}
 
 // Validate checks the field values on ValidateUserPipelineRequest with the
 // rules defined in the proto definition for this message. If any rules are
