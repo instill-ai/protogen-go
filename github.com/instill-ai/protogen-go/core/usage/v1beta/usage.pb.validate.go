@@ -18,9 +18,9 @@ import (
 
 	"google.golang.org/protobuf/types/known/anypb"
 
-	mgmtv1beta "github.com/instill-ai/protobufs/gen/go/core/mgmt/v1beta"
+	mgmtv1beta "github.com/instill-ai/protogen-go/core/mgmt/v1beta"
 
-	taskv1alpha "github.com/instill-ai/protobufs/gen/go/common/task/v1alpha"
+	taskv1alpha "github.com/instill-ai/protogen-go/common/task/v1alpha"
 )
 
 // ensure the imports are used
