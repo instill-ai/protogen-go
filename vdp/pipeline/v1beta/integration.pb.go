@@ -115,8 +115,11 @@ type Connection struct {
 	// with some extra information that might vary across vendors. This
 	// information is passed as connection metadata.
 	OAuthAccessDetails *structpb.Struct `protobuf:"bytes,12,opt,name=o_auth_access_details,json=oAuthAccessDetails,proto3,oneof" json:"o_auth_access_details,omitempty"`
-	// View defines how the integration is presented. The `setup` field is only
-	// showed in the FULL view.
+	// View defines how the connection is presented. The following fields are
+	// only shown in the FULL view:
+	// - setup
+	// - scopes
+	// - oAuthAccessDetails
 	View View `protobuf:"varint,8,opt,name=view,proto3,enum=vdp.pipeline.v1beta.View" json:"view,omitempty"`
 	// Creation timestamp.
 	CreateTime *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
