@@ -60,16 +60,20 @@ func (m *Connection) validate(all bool) error {
 
 	var errors []error
 
-	if err := m._validateUuid(m.GetUid()); err != nil {
-		err = ConnectionValidationError{
-			field:  "Uid",
-			reason: "value must be a valid UUID",
-			cause:  err,
+	if m.GetUid() != "" {
+
+		if err := m._validateUuid(m.GetUid()); err != nil {
+			err = ConnectionValidationError{
+				field:  "Uid",
+				reason: "value must be a valid UUID",
+				cause:  err,
+			}
+			if !all {
+				return err
+			}
+			errors = append(errors, err)
 		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
+
 	}
 
 	// no validation rules for Id
@@ -169,6 +173,39 @@ func (m *Connection) validate(all bool) error {
 				cause:  err,
 			}
 		}
+	}
+
+	if m.OAuthAccessDetails != nil {
+
+		if all {
+			switch v := interface{}(m.GetOAuthAccessDetails()).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, ConnectionValidationError{
+						field:  "OAuthAccessDetails",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, ConnectionValidationError{
+						field:  "OAuthAccessDetails",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(m.GetOAuthAccessDetails()).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return ConnectionValidationError{
+					field:  "OAuthAccessDetails",
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
 	}
 
 	if len(errors) > 0 {
@@ -1794,6 +1831,37 @@ func (m *Integration) validate(all bool) error {
 
 	// no validation rules for Icon
 
+	if all {
+		switch v := interface{}(m.GetSetupSchema()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, IntegrationValidationError{
+					field:  "SetupSchema",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, IntegrationValidationError{
+					field:  "SetupSchema",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetSetupSchema()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return IntegrationValidationError{
+				field:  "SetupSchema",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	// no validation rules for View
+
 	for idx, item := range m.GetSchemas() {
 		_, _ = idx, item
 
@@ -1828,10 +1896,70 @@ func (m *Integration) validate(all bool) error {
 
 	}
 
-	// no validation rules for View
-
 	if m.HelpLink != nil {
-		// no validation rules for HelpLink
+
+		if all {
+			switch v := interface{}(m.GetHelpLink()).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, IntegrationValidationError{
+						field:  "HelpLink",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, IntegrationValidationError{
+						field:  "HelpLink",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(m.GetHelpLink()).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return IntegrationValidationError{
+					field:  "HelpLink",
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if m.OAuthConfig != nil {
+
+		if all {
+			switch v := interface{}(m.GetOAuthConfig()).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, IntegrationValidationError{
+						field:  "OAuthConfig",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, IntegrationValidationError{
+						field:  "OAuthConfig",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(m.GetOAuthConfig()).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return IntegrationValidationError{
+					field:  "OAuthConfig",
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
 	}
 
 	if len(errors) > 0 {
@@ -2642,6 +2770,254 @@ var _ interface {
 	ErrorName() string
 } = GetIntegrationResponseValidationError{}
 
+// Validate checks the field values on Integration_Link with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *Integration_Link) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on Integration_Link with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// Integration_LinkMultiError, or nil if none found.
+func (m *Integration_Link) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *Integration_Link) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Text
+
+	// no validation rules for Url
+
+	if len(errors) > 0 {
+		return Integration_LinkMultiError(errors)
+	}
+
+	return nil
+}
+
+// Integration_LinkMultiError is an error wrapping multiple validation errors
+// returned by Integration_Link.ValidateAll() if the designated constraints
+// aren't met.
+type Integration_LinkMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m Integration_LinkMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m Integration_LinkMultiError) AllErrors() []error { return m }
+
+// Integration_LinkValidationError is the validation error returned by
+// Integration_Link.Validate if the designated constraints aren't met.
+type Integration_LinkValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e Integration_LinkValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e Integration_LinkValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e Integration_LinkValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e Integration_LinkValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e Integration_LinkValidationError) ErrorName() string { return "Integration_LinkValidationError" }
+
+// Error satisfies the builtin error interface
+func (e Integration_LinkValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sIntegration_Link.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = Integration_LinkValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = Integration_LinkValidationError{}
+
+// Validate checks the field values on Integration_OAuthConfig with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *Integration_OAuthConfig) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on Integration_OAuthConfig with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// Integration_OAuthConfigMultiError, or nil if none found.
+func (m *Integration_OAuthConfig) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *Integration_OAuthConfig) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if uri, err := url.Parse(m.GetAuthUrl()); err != nil {
+		err = Integration_OAuthConfigValidationError{
+			field:  "AuthUrl",
+			reason: "value must be a valid URI",
+			cause:  err,
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	} else if !uri.IsAbs() {
+		err := Integration_OAuthConfigValidationError{
+			field:  "AuthUrl",
+			reason: "value must be absolute",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if uri, err := url.Parse(m.GetAccessUrl()); err != nil {
+		err = Integration_OAuthConfigValidationError{
+			field:  "AccessUrl",
+			reason: "value must be a valid URI",
+			cause:  err,
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	} else if !uri.IsAbs() {
+		err := Integration_OAuthConfigValidationError{
+			field:  "AccessUrl",
+			reason: "value must be absolute",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if len(errors) > 0 {
+		return Integration_OAuthConfigMultiError(errors)
+	}
+
+	return nil
+}
+
+// Integration_OAuthConfigMultiError is an error wrapping multiple validation
+// errors returned by Integration_OAuthConfig.ValidateAll() if the designated
+// constraints aren't met.
+type Integration_OAuthConfigMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m Integration_OAuthConfigMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m Integration_OAuthConfigMultiError) AllErrors() []error { return m }
+
+// Integration_OAuthConfigValidationError is the validation error returned by
+// Integration_OAuthConfig.Validate if the designated constraints aren't met.
+type Integration_OAuthConfigValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e Integration_OAuthConfigValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e Integration_OAuthConfigValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e Integration_OAuthConfigValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e Integration_OAuthConfigValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e Integration_OAuthConfigValidationError) ErrorName() string {
+	return "Integration_OAuthConfigValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e Integration_OAuthConfigValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sIntegration_OAuthConfig.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = Integration_OAuthConfigValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = Integration_OAuthConfigValidationError{}
+
 // Validate checks the field values on Integration_SetupSchema with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.
@@ -2774,107 +3150,3 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = Integration_SetupSchemaValidationError{}
-
-// Validate checks the field values on Integration_Link with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// first error encountered is returned, or nil if there are no violations.
-func (m *Integration_Link) Validate() error {
-	return m.validate(false)
-}
-
-// ValidateAll checks the field values on Integration_Link with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// Integration_LinkMultiError, or nil if none found.
-func (m *Integration_Link) ValidateAll() error {
-	return m.validate(true)
-}
-
-func (m *Integration_Link) validate(all bool) error {
-	if m == nil {
-		return nil
-	}
-
-	var errors []error
-
-	// no validation rules for Text
-
-	// no validation rules for Url
-
-	if len(errors) > 0 {
-		return Integration_LinkMultiError(errors)
-	}
-
-	return nil
-}
-
-// Integration_LinkMultiError is an error wrapping multiple validation errors
-// returned by Integration_Link.ValidateAll() if the designated constraints
-// aren't met.
-type Integration_LinkMultiError []error
-
-// Error returns a concatenation of all the error messages it wraps.
-func (m Integration_LinkMultiError) Error() string {
-	var msgs []string
-	for _, err := range m {
-		msgs = append(msgs, err.Error())
-	}
-	return strings.Join(msgs, "; ")
-}
-
-// AllErrors returns a list of validation violation errors.
-func (m Integration_LinkMultiError) AllErrors() []error { return m }
-
-// Integration_LinkValidationError is the validation error returned by
-// Integration_Link.Validate if the designated constraints aren't met.
-type Integration_LinkValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e Integration_LinkValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e Integration_LinkValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e Integration_LinkValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e Integration_LinkValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e Integration_LinkValidationError) ErrorName() string { return "Integration_LinkValidationError" }
-
-// Error satisfies the builtin error interface
-func (e Integration_LinkValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sIntegration_Link.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = Integration_LinkValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = Integration_LinkValidationError{}
