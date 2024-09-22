@@ -565,6 +565,151 @@ var _ interface {
 	ErrorName() string
 } = ReadinessResponseValidationError{}
 
+// Validate checks the field values on Endpoints with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *Endpoints) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on Endpoints with the rules defined in
+// the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in EndpointsMultiError, or nil
+// if none found.
+func (m *Endpoints) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *Endpoints) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	{
+		sorted_keys := make([]string, len(m.GetWebhooks()))
+		i := 0
+		for key := range m.GetWebhooks() {
+			sorted_keys[i] = key
+			i++
+		}
+		sort.Slice(sorted_keys, func(i, j int) bool { return sorted_keys[i] < sorted_keys[j] })
+		for _, key := range sorted_keys {
+			val := m.GetWebhooks()[key]
+			_ = val
+
+			// no validation rules for Webhooks[key]
+
+			if all {
+				switch v := interface{}(val).(type) {
+				case interface{ ValidateAll() error }:
+					if err := v.ValidateAll(); err != nil {
+						errors = append(errors, EndpointsValidationError{
+							field:  fmt.Sprintf("Webhooks[%v]", key),
+							reason: "embedded message failed validation",
+							cause:  err,
+						})
+					}
+				case interface{ Validate() error }:
+					if err := v.Validate(); err != nil {
+						errors = append(errors, EndpointsValidationError{
+							field:  fmt.Sprintf("Webhooks[%v]", key),
+							reason: "embedded message failed validation",
+							cause:  err,
+						})
+					}
+				}
+			} else if v, ok := interface{}(val).(interface{ Validate() error }); ok {
+				if err := v.Validate(); err != nil {
+					return EndpointsValidationError{
+						field:  fmt.Sprintf("Webhooks[%v]", key),
+						reason: "embedded message failed validation",
+						cause:  err,
+					}
+				}
+			}
+
+		}
+	}
+
+	if len(errors) > 0 {
+		return EndpointsMultiError(errors)
+	}
+
+	return nil
+}
+
+// EndpointsMultiError is an error wrapping multiple validation errors returned
+// by Endpoints.ValidateAll() if the designated constraints aren't met.
+type EndpointsMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m EndpointsMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m EndpointsMultiError) AllErrors() []error { return m }
+
+// EndpointsValidationError is the validation error returned by
+// Endpoints.Validate if the designated constraints aren't met.
+type EndpointsValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e EndpointsValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e EndpointsValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e EndpointsValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e EndpointsValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e EndpointsValidationError) ErrorName() string { return "EndpointsValidationError" }
+
+// Error satisfies the builtin error interface
+func (e EndpointsValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sEndpoints.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = EndpointsValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = EndpointsValidationError{}
+
 // Validate checks the field values on Pipeline with the rules defined in the
 // proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.
@@ -895,6 +1040,35 @@ func (m *Pipeline) validate(all bool) error {
 	}
 
 	// no validation rules for RawRecipe
+
+	if all {
+		switch v := interface{}(m.GetEndpoints()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, PipelineValidationError{
+					field:  "Endpoints",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, PipelineValidationError{
+					field:  "Endpoints",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetEndpoints()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return PipelineValidationError{
+				field:  "Endpoints",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
 
 	if m.Description != nil {
 		// no validation rules for Description
@@ -1784,6 +1958,35 @@ func (m *PipelineRelease) validate(all bool) error {
 	}
 
 	// no validation rules for RawRecipe
+
+	if all {
+		switch v := interface{}(m.GetEndpoints()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, PipelineReleaseValidationError{
+					field:  "Endpoints",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, PipelineReleaseValidationError{
+					field:  "Endpoints",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetEndpoints()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return PipelineReleaseValidationError{
+				field:  "Endpoints",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
 
 	if m.Description != nil {
 		// no validation rules for Description
@@ -22144,6 +22347,112 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = ComponentRunValidationError{}
+
+// Validate checks the field values on Endpoints_WebhookEndpoint with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *Endpoints_WebhookEndpoint) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on Endpoints_WebhookEndpoint with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// Endpoints_WebhookEndpointMultiError, or nil if none found.
+func (m *Endpoints_WebhookEndpoint) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *Endpoints_WebhookEndpoint) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Url
+
+	// no validation rules for Description
+
+	if len(errors) > 0 {
+		return Endpoints_WebhookEndpointMultiError(errors)
+	}
+
+	return nil
+}
+
+// Endpoints_WebhookEndpointMultiError is an error wrapping multiple validation
+// errors returned by Endpoints_WebhookEndpoint.ValidateAll() if the
+// designated constraints aren't met.
+type Endpoints_WebhookEndpointMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m Endpoints_WebhookEndpointMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m Endpoints_WebhookEndpointMultiError) AllErrors() []error { return m }
+
+// Endpoints_WebhookEndpointValidationError is the validation error returned by
+// Endpoints_WebhookEndpoint.Validate if the designated constraints aren't met.
+type Endpoints_WebhookEndpointValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e Endpoints_WebhookEndpointValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e Endpoints_WebhookEndpointValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e Endpoints_WebhookEndpointValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e Endpoints_WebhookEndpointValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e Endpoints_WebhookEndpointValidationError) ErrorName() string {
+	return "Endpoints_WebhookEndpointValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e Endpoints_WebhookEndpointValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sEndpoints_WebhookEndpoint.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = Endpoints_WebhookEndpointValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = Endpoints_WebhookEndpointValidationError{}
 
 // Validate checks the field values on Pipeline_Stats with the rules defined in
 // the proto definition for this message. If any rules are violated, the first
