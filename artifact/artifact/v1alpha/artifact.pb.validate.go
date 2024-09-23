@@ -1676,6 +1676,8 @@ func (m *Catalog) validate(all bool) error {
 
 	var errors []error
 
+	// no validation rules for CatalogUid
+
 	// no validation rules for CatalogId
 
 	// no validation rules for Name
