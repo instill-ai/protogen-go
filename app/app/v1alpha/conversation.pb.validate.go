@@ -639,6 +639,8 @@ func (m *ListConversationsRequest) validate(all bool) error {
 
 	// no validation rules for PageToken
 
+	// no validation rules for ConversationUid
+
 	// no validation rules for ConversationId
 
 	// no validation rules for IfAll
@@ -1710,6 +1712,8 @@ func (m *ListMessagesRequest) validate(all bool) error {
 	// no validation rules for IncludeSystemMessages
 
 	// no validation rules for IfAll
+
+	// no validation rules for MessageUid
 
 	if len(errors) > 0 {
 		return ListMessagesRequestMultiError(errors)
