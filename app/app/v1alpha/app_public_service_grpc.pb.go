@@ -33,7 +33,7 @@ const (
 	AppPublicService_ListMessages_FullMethodName                   = "/app.app.v1alpha.AppPublicService/ListMessages"
 	AppPublicService_UpdateMessage_FullMethodName                  = "/app.app.v1alpha.AppPublicService/UpdateMessage"
 	AppPublicService_DeleteMessage_FullMethodName                  = "/app.app.v1alpha.AppPublicService/DeleteMessage"
-	AppPublicService_UpdateAiAssistantAppPlayground_FullMethodName = "/app.app.v1alpha.AppPublicService/UpdateAiAssistantAppPlayground"
+	AppPublicService_UpdateAIAssistantAppPlayground_FullMethodName = "/app.app.v1alpha.AppPublicService/UpdateAIAssistantAppPlayground"
 )
 
 // AppPublicServiceClient is the client API for AppPublicService service.
@@ -72,8 +72,8 @@ type AppPublicServiceClient interface {
 	UpdateMessage(ctx context.Context, in *UpdateMessageRequest, opts ...grpc.CallOption) (*UpdateMessageResponse, error)
 	// Delete a message
 	DeleteMessage(ctx context.Context, in *DeleteMessageRequest, opts ...grpc.CallOption) (*DeleteMessageResponse, error)
-	// Update ai assistant app playground
-	UpdateAiAssistantAppPlayground(ctx context.Context, in *UpdateAiAssistantAppPlaygroundRequest, opts ...grpc.CallOption) (*UpdateAiAssistantAppPlaygroundResponse, error)
+	// Update AI assistant app playground
+	UpdateAIAssistantAppPlayground(ctx context.Context, in *UpdateAIAssistantAppPlaygroundRequest, opts ...grpc.CallOption) (*UpdateAIAssistantAppPlaygroundResponse, error)
 }
 
 type appPublicServiceClient struct {
@@ -210,9 +210,9 @@ func (c *appPublicServiceClient) DeleteMessage(ctx context.Context, in *DeleteMe
 	return out, nil
 }
 
-func (c *appPublicServiceClient) UpdateAiAssistantAppPlayground(ctx context.Context, in *UpdateAiAssistantAppPlaygroundRequest, opts ...grpc.CallOption) (*UpdateAiAssistantAppPlaygroundResponse, error) {
-	out := new(UpdateAiAssistantAppPlaygroundResponse)
-	err := c.cc.Invoke(ctx, AppPublicService_UpdateAiAssistantAppPlayground_FullMethodName, in, out, opts...)
+func (c *appPublicServiceClient) UpdateAIAssistantAppPlayground(ctx context.Context, in *UpdateAIAssistantAppPlaygroundRequest, opts ...grpc.CallOption) (*UpdateAIAssistantAppPlaygroundResponse, error) {
+	out := new(UpdateAIAssistantAppPlaygroundResponse)
+	err := c.cc.Invoke(ctx, AppPublicService_UpdateAIAssistantAppPlayground_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -255,8 +255,8 @@ type AppPublicServiceServer interface {
 	UpdateMessage(context.Context, *UpdateMessageRequest) (*UpdateMessageResponse, error)
 	// Delete a message
 	DeleteMessage(context.Context, *DeleteMessageRequest) (*DeleteMessageResponse, error)
-	// Update ai assistant app playground
-	UpdateAiAssistantAppPlayground(context.Context, *UpdateAiAssistantAppPlaygroundRequest) (*UpdateAiAssistantAppPlaygroundResponse, error)
+	// Update AI assistant app playground
+	UpdateAIAssistantAppPlayground(context.Context, *UpdateAIAssistantAppPlaygroundRequest) (*UpdateAIAssistantAppPlaygroundResponse, error)
 }
 
 // UnimplementedAppPublicServiceServer should be embedded to have forward compatible implementations.
@@ -305,8 +305,8 @@ func (UnimplementedAppPublicServiceServer) UpdateMessage(context.Context, *Updat
 func (UnimplementedAppPublicServiceServer) DeleteMessage(context.Context, *DeleteMessageRequest) (*DeleteMessageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteMessage not implemented")
 }
-func (UnimplementedAppPublicServiceServer) UpdateAiAssistantAppPlayground(context.Context, *UpdateAiAssistantAppPlaygroundRequest) (*UpdateAiAssistantAppPlaygroundResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateAiAssistantAppPlayground not implemented")
+func (UnimplementedAppPublicServiceServer) UpdateAIAssistantAppPlayground(context.Context, *UpdateAIAssistantAppPlaygroundRequest) (*UpdateAIAssistantAppPlaygroundResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateAIAssistantAppPlayground not implemented")
 }
 
 // UnsafeAppPublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -572,20 +572,20 @@ func _AppPublicService_DeleteMessage_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppPublicService_UpdateAiAssistantAppPlayground_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateAiAssistantAppPlaygroundRequest)
+func _AppPublicService_UpdateAIAssistantAppPlayground_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateAIAssistantAppPlaygroundRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppPublicServiceServer).UpdateAiAssistantAppPlayground(ctx, in)
+		return srv.(AppPublicServiceServer).UpdateAIAssistantAppPlayground(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AppPublicService_UpdateAiAssistantAppPlayground_FullMethodName,
+		FullMethod: AppPublicService_UpdateAIAssistantAppPlayground_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppPublicServiceServer).UpdateAiAssistantAppPlayground(ctx, req.(*UpdateAiAssistantAppPlaygroundRequest))
+		return srv.(AppPublicServiceServer).UpdateAIAssistantAppPlayground(ctx, req.(*UpdateAIAssistantAppPlaygroundRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -654,8 +654,8 @@ var AppPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppPublicService_DeleteMessage_Handler,
 		},
 		{
-			MethodName: "UpdateAiAssistantAppPlayground",
-			Handler:    _AppPublicService_UpdateAiAssistantAppPlayground_Handler,
+			MethodName: "UpdateAIAssistantAppPlayground",
+			Handler:    _AppPublicService_UpdateAIAssistantAppPlayground_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

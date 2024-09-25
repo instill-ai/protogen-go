@@ -381,7 +381,7 @@ func (m *App) GetMetadata() isApp_Metadata {
 	return nil
 }
 
-func (x *App) GetAiAssistantApp() *AiAssistantAppMetadata {
+func (x *App) GetAiAssistantApp() *AIAssistantAppMetadata {
 	if x, ok := x.GetMetadata().(*App_AiAssistantApp); ok {
 		return x.AiAssistantApp
 	}
@@ -414,28 +414,28 @@ type isApp_Metadata interface {
 }
 
 type App_AiAssistantApp struct {
-	// The ai assistant app metadata.
-	AiAssistantApp *AiAssistantAppMetadata `protobuf:"bytes,7,opt,name=ai_assistant_app,json=aiAssistantApp,proto3,oneof"`
+	// The AI assistant app metadata.
+	AiAssistantApp *AIAssistantAppMetadata `protobuf:"bytes,7,opt,name=ai_assistant_app,json=aiAssistantApp,proto3,oneof"`
 }
 
 func (*App_AiAssistantApp) isApp_Metadata() {}
 
-// AiAssistantAppMetadata represents the metadata for the ai assistant app.
-type AiAssistantAppMetadata struct {
+// AIAssistantAppMetadata represents the metadata for the AI assistant app.
+type AIAssistantAppMetadata struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The ai assistant app catalog uid.
+	// The AI assistant app catalog uid.
 	CatalogUid string `protobuf:"bytes,1,opt,name=catalog_uid,json=catalogUid,proto3" json:"catalog_uid,omitempty"`
-	// The ai assistant app top k.
+	// The AI assistant app top k.
 	TopK int32 `protobuf:"varint,2,opt,name=top_k,json=topK,proto3" json:"top_k,omitempty"`
-	// The ai assistant app conversation uid.
+	// The AI assistant app conversation uid.
 	ConversationUid string `protobuf:"bytes,3,opt,name=conversation_uid,json=conversationUid,proto3" json:"conversation_uid,omitempty"`
 }
 
-func (x *AiAssistantAppMetadata) Reset() {
-	*x = AiAssistantAppMetadata{}
+func (x *AIAssistantAppMetadata) Reset() {
+	*x = AIAssistantAppMetadata{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_app_v1alpha_app_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -443,13 +443,13 @@ func (x *AiAssistantAppMetadata) Reset() {
 	}
 }
 
-func (x *AiAssistantAppMetadata) String() string {
+func (x *AIAssistantAppMetadata) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*AiAssistantAppMetadata) ProtoMessage() {}
+func (*AIAssistantAppMetadata) ProtoMessage() {}
 
-func (x *AiAssistantAppMetadata) ProtoReflect() protoreflect.Message {
+func (x *AIAssistantAppMetadata) ProtoReflect() protoreflect.Message {
 	mi := &file_app_app_v1alpha_app_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -461,26 +461,26 @@ func (x *AiAssistantAppMetadata) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use AiAssistantAppMetadata.ProtoReflect.Descriptor instead.
-func (*AiAssistantAppMetadata) Descriptor() ([]byte, []int) {
+// Deprecated: Use AIAssistantAppMetadata.ProtoReflect.Descriptor instead.
+func (*AIAssistantAppMetadata) Descriptor() ([]byte, []int) {
 	return file_app_app_v1alpha_app_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *AiAssistantAppMetadata) GetCatalogUid() string {
+func (x *AIAssistantAppMetadata) GetCatalogUid() string {
 	if x != nil {
 		return x.CatalogUid
 	}
 	return ""
 }
 
-func (x *AiAssistantAppMetadata) GetTopK() int32 {
+func (x *AIAssistantAppMetadata) GetTopK() int32 {
 	if x != nil {
 		return x.TopK
 	}
 	return 0
 }
 
-func (x *AiAssistantAppMetadata) GetConversationUid() string {
+func (x *AIAssistantAppMetadata) GetConversationUid() string {
 	if x != nil {
 		return x.ConversationUid
 	}
@@ -728,9 +728,9 @@ type UpdateAppRequest struct {
 	NewDescription string `protobuf:"bytes,4,opt,name=new_description,json=newDescription,proto3" json:"new_description,omitempty"`
 	// The app tags.
 	NewTags []string `protobuf:"bytes,5,rep,name=new_tags,json=newTags,proto3" json:"new_tags,omitempty"`
-	// last ai assistant app catalog uid
+	// last AI assistant app catalog uid
 	LastAiAssistantAppCatalogUid string `protobuf:"bytes,6,opt,name=last_ai_assistant_app_catalog_uid,json=lastAiAssistantAppCatalogUid,proto3" json:"last_ai_assistant_app_catalog_uid,omitempty"`
-	// last ai assistant app top k
+	// last AI assistant app top k
 	LastAiAssistantAppTopK int32 `protobuf:"varint,7,opt,name=last_ai_assistant_app_top_k,json=lastAiAssistantAppTopK,proto3" json:"last_ai_assistant_app_top_k,omitempty"`
 }
 
@@ -961,16 +961,11 @@ func (*DeleteAppResponse) Descriptor() ([]byte, []int) {
 	return file_app_app_v1alpha_app_proto_rawDescGZIP(), []int{13}
 }
 
-// UpdateAiAssistantAppPlaygroundRequest represents a request to update a ai assistant app playground.
-// after the update, the app's metadata will be updated with the last ai assistant app
-// uses catalog uid, top k, and conversation uid.
-// parameters:
-// - namespace_id: the namespace id.
-// - app_id: the app id.
-// - last_ai_app_catalog_uid: the last ai app catalog uid.
-// - last_ai_app_top_k: the last ai app top k.
-// - last_ai_app_conversation_uid: the last ai app conversation uid.
-type UpdateAiAssistantAppPlaygroundRequest struct {
+// UpdateAIAssistantAppPlaygroundRequest represents a request to update an AI
+// assistant app playground.
+// After the update, the app's metadata will be updated with the last AI
+// assistant app uses catalog UID, top k, and conversation UID.
+type UpdateAIAssistantAppPlaygroundRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -979,16 +974,16 @@ type UpdateAiAssistantAppPlaygroundRequest struct {
 	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
 	// The app id.
 	AppId string `protobuf:"bytes,2,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
-	// The last ai app uses catalog uid.
+	// The last AI app uses catalog uid.
 	LastAiAppCatalogUid string `protobuf:"bytes,3,opt,name=last_ai_app_catalog_uid,json=lastAiAppCatalogUid,proto3" json:"last_ai_app_catalog_uid,omitempty"`
-	// The last ai app uses top k.
+	// The last AI app uses top k.
 	LastAiAppTopK int32 `protobuf:"varint,4,opt,name=last_ai_app_top_k,json=lastAiAppTopK,proto3" json:"last_ai_app_top_k,omitempty"`
-	// The last ai app uses conversation uid.
+	// The last AI app uses conversation uid.
 	LastAiAppConversationUid string `protobuf:"bytes,5,opt,name=last_ai_app_conversation_uid,json=lastAiAppConversationUid,proto3" json:"last_ai_app_conversation_uid,omitempty"`
 }
 
-func (x *UpdateAiAssistantAppPlaygroundRequest) Reset() {
-	*x = UpdateAiAssistantAppPlaygroundRequest{}
+func (x *UpdateAIAssistantAppPlaygroundRequest) Reset() {
+	*x = UpdateAIAssistantAppPlaygroundRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_app_v1alpha_app_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -996,13 +991,13 @@ func (x *UpdateAiAssistantAppPlaygroundRequest) Reset() {
 	}
 }
 
-func (x *UpdateAiAssistantAppPlaygroundRequest) String() string {
+func (x *UpdateAIAssistantAppPlaygroundRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateAiAssistantAppPlaygroundRequest) ProtoMessage() {}
+func (*UpdateAIAssistantAppPlaygroundRequest) ProtoMessage() {}
 
-func (x *UpdateAiAssistantAppPlaygroundRequest) ProtoReflect() protoreflect.Message {
+func (x *UpdateAIAssistantAppPlaygroundRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_app_app_v1alpha_app_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1014,55 +1009,56 @@ func (x *UpdateAiAssistantAppPlaygroundRequest) ProtoReflect() protoreflect.Mess
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateAiAssistantAppPlaygroundRequest.ProtoReflect.Descriptor instead.
-func (*UpdateAiAssistantAppPlaygroundRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use UpdateAIAssistantAppPlaygroundRequest.ProtoReflect.Descriptor instead.
+func (*UpdateAIAssistantAppPlaygroundRequest) Descriptor() ([]byte, []int) {
 	return file_app_app_v1alpha_app_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *UpdateAiAssistantAppPlaygroundRequest) GetNamespaceId() string {
+func (x *UpdateAIAssistantAppPlaygroundRequest) GetNamespaceId() string {
 	if x != nil {
 		return x.NamespaceId
 	}
 	return ""
 }
 
-func (x *UpdateAiAssistantAppPlaygroundRequest) GetAppId() string {
+func (x *UpdateAIAssistantAppPlaygroundRequest) GetAppId() string {
 	if x != nil {
 		return x.AppId
 	}
 	return ""
 }
 
-func (x *UpdateAiAssistantAppPlaygroundRequest) GetLastAiAppCatalogUid() string {
+func (x *UpdateAIAssistantAppPlaygroundRequest) GetLastAiAppCatalogUid() string {
 	if x != nil {
 		return x.LastAiAppCatalogUid
 	}
 	return ""
 }
 
-func (x *UpdateAiAssistantAppPlaygroundRequest) GetLastAiAppTopK() int32 {
+func (x *UpdateAIAssistantAppPlaygroundRequest) GetLastAiAppTopK() int32 {
 	if x != nil {
 		return x.LastAiAppTopK
 	}
 	return 0
 }
 
-func (x *UpdateAiAssistantAppPlaygroundRequest) GetLastAiAppConversationUid() string {
+func (x *UpdateAIAssistantAppPlaygroundRequest) GetLastAiAppConversationUid() string {
 	if x != nil {
 		return x.LastAiAppConversationUid
 	}
 	return ""
 }
 
-// UpdateAiAssistantAppPlaygroundResponse represents a response for updating a ai assistant app playground.
-type UpdateAiAssistantAppPlaygroundResponse struct {
+// UpdateAIAssistantAppPlaygroundResponse represents a response for updating a
+// AI assistant app playground.
+type UpdateAIAssistantAppPlaygroundResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *UpdateAiAssistantAppPlaygroundResponse) Reset() {
-	*x = UpdateAiAssistantAppPlaygroundResponse{}
+func (x *UpdateAIAssistantAppPlaygroundResponse) Reset() {
+	*x = UpdateAIAssistantAppPlaygroundResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_app_v1alpha_app_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1070,13 +1066,13 @@ func (x *UpdateAiAssistantAppPlaygroundResponse) Reset() {
 	}
 }
 
-func (x *UpdateAiAssistantAppPlaygroundResponse) String() string {
+func (x *UpdateAIAssistantAppPlaygroundResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateAiAssistantAppPlaygroundResponse) ProtoMessage() {}
+func (*UpdateAIAssistantAppPlaygroundResponse) ProtoMessage() {}
 
-func (x *UpdateAiAssistantAppPlaygroundResponse) ProtoReflect() protoreflect.Message {
+func (x *UpdateAIAssistantAppPlaygroundResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_app_app_v1alpha_app_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1088,8 +1084,8 @@ func (x *UpdateAiAssistantAppPlaygroundResponse) ProtoReflect() protoreflect.Mes
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateAiAssistantAppPlaygroundResponse.ProtoReflect.Descriptor instead.
-func (*UpdateAiAssistantAppPlaygroundResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use UpdateAIAssistantAppPlaygroundResponse.ProtoReflect.Descriptor instead.
+func (*UpdateAIAssistantAppPlaygroundResponse) Descriptor() ([]byte, []int) {
 	return file_app_app_v1alpha_app_proto_rawDescGZIP(), []int{15}
 }
 
@@ -1159,7 +1155,7 @@ var file_app_app_v1alpha_app_proto_rawDesc = []byte{
 	0x18, 0x06, 0x20, 0x03, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x04, 0x74, 0x61, 0x67,
 	0x73, 0x12, 0x58, 0x0a, 0x10, 0x61, 0x69, 0x5f, 0x61, 0x73, 0x73, 0x69, 0x73, 0x74, 0x61, 0x6e,
 	0x74, 0x5f, 0x61, 0x70, 0x70, 0x18, 0x07, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e, 0x61, 0x70,
-	0x70, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x41, 0x69,
+	0x70, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x41, 0x49,
 	0x41, 0x73, 0x73, 0x69, 0x73, 0x74, 0x61, 0x6e, 0x74, 0x41, 0x70, 0x70, 0x4d, 0x65, 0x74, 0x61,
 	0x64, 0x61, 0x74, 0x61, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x48, 0x00, 0x52, 0x0e, 0x61, 0x69, 0x41,
 	0x73, 0x73, 0x69, 0x73, 0x74, 0x61, 0x6e, 0x74, 0x41, 0x70, 0x70, 0x12, 0x38, 0x0a, 0x08, 0x61,
@@ -1171,7 +1167,7 @@ var file_app_app_v1alpha_app_proto_rawDesc = []byte{
 	0x55, 0x69, 0x64, 0x12, 0x24, 0x0a, 0x0b, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x5f, 0x75,
 	0x69, 0x64, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0a, 0x63,
 	0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x55, 0x69, 0x64, 0x42, 0x0a, 0x0a, 0x08, 0x6d, 0x65, 0x74,
-	0x61, 0x64, 0x61, 0x74, 0x61, 0x22, 0x88, 0x01, 0x0a, 0x16, 0x41, 0x69, 0x41, 0x73, 0x73, 0x69,
+	0x61, 0x64, 0x61, 0x74, 0x61, 0x22, 0x88, 0x01, 0x0a, 0x16, 0x41, 0x49, 0x41, 0x73, 0x73, 0x69,
 	0x73, 0x74, 0x61, 0x6e, 0x74, 0x41, 0x70, 0x70, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61,
 	0x12, 0x24, 0x0a, 0x0b, 0x63, 0x61, 0x74, 0x61, 0x6c, 0x6f, 0x67, 0x5f, 0x75, 0x69, 0x64, 0x18,
 	0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x0a, 0x63, 0x61, 0x74, 0x61,
@@ -1234,7 +1230,7 @@ var file_app_app_v1alpha_app_proto_rawDesc = []byte{
 	0x70, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52,
 	0x05, 0x61, 0x70, 0x70, 0x49, 0x64, 0x22, 0x13, 0x0a, 0x11, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65,
 	0x41, 0x70, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x9a, 0x02, 0x0a, 0x25,
-	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x69, 0x41, 0x73, 0x73, 0x69, 0x73, 0x74, 0x61, 0x6e,
+	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x49, 0x41, 0x73, 0x73, 0x69, 0x73, 0x74, 0x61, 0x6e,
 	0x74, 0x41, 0x70, 0x70, 0x50, 0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x52, 0x65,
 	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x26, 0x0a, 0x0c, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61,
 	0x63, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x02,
@@ -1252,7 +1248,7 @@ var file_app_app_v1alpha_app_proto_rawDesc = []byte{
 	0x75, 0x69, 0x64, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x01, 0x52, 0x18,
 	0x6c, 0x61, 0x73, 0x74, 0x41, 0x69, 0x41, 0x70, 0x70, 0x43, 0x6f, 0x6e, 0x76, 0x65, 0x72, 0x73,
 	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x55, 0x69, 0x64, 0x22, 0x28, 0x0a, 0x26, 0x55, 0x70, 0x64, 0x61,
-	0x74, 0x65, 0x41, 0x69, 0x41, 0x73, 0x73, 0x69, 0x73, 0x74, 0x61, 0x6e, 0x74, 0x41, 0x70, 0x70,
+	0x74, 0x65, 0x41, 0x49, 0x41, 0x73, 0x73, 0x69, 0x73, 0x74, 0x61, 0x6e, 0x74, 0x41, 0x70, 0x70,
 	0x50, 0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
 	0x73, 0x65, 0x2a, 0x3e, 0x0a, 0x07, 0x41, 0x70, 0x70, 0x54, 0x79, 0x70, 0x65, 0x12, 0x18, 0x0a,
 	0x14, 0x41, 0x50, 0x50, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43,
@@ -1294,7 +1290,7 @@ var file_app_app_v1alpha_app_proto_goTypes = []interface{}{
 	(*ReadinessRequest)(nil),                       // 3: app.app.v1alpha.ReadinessRequest
 	(*ReadinessResponse)(nil),                      // 4: app.app.v1alpha.ReadinessResponse
 	(*App)(nil),                                    // 5: app.app.v1alpha.App
-	(*AiAssistantAppMetadata)(nil),                 // 6: app.app.v1alpha.AiAssistantAppMetadata
+	(*AIAssistantAppMetadata)(nil),                 // 6: app.app.v1alpha.AIAssistantAppMetadata
 	(*CreateAppRequest)(nil),                       // 7: app.app.v1alpha.CreateAppRequest
 	(*CreateAppResponse)(nil),                      // 8: app.app.v1alpha.CreateAppResponse
 	(*ListAppsRequest)(nil),                        // 9: app.app.v1alpha.ListAppsRequest
@@ -1303,8 +1299,8 @@ var file_app_app_v1alpha_app_proto_goTypes = []interface{}{
 	(*UpdateAppResponse)(nil),                      // 12: app.app.v1alpha.UpdateAppResponse
 	(*DeleteAppRequest)(nil),                       // 13: app.app.v1alpha.DeleteAppRequest
 	(*DeleteAppResponse)(nil),                      // 14: app.app.v1alpha.DeleteAppResponse
-	(*UpdateAiAssistantAppPlaygroundRequest)(nil),  // 15: app.app.v1alpha.UpdateAiAssistantAppPlaygroundRequest
-	(*UpdateAiAssistantAppPlaygroundResponse)(nil), // 16: app.app.v1alpha.UpdateAiAssistantAppPlaygroundResponse
+	(*UpdateAIAssistantAppPlaygroundRequest)(nil),  // 15: app.app.v1alpha.UpdateAIAssistantAppPlaygroundRequest
+	(*UpdateAIAssistantAppPlaygroundResponse)(nil), // 16: app.app.v1alpha.UpdateAIAssistantAppPlaygroundResponse
 	(*v1beta.HealthCheckRequest)(nil),              // 17: common.healthcheck.v1beta.HealthCheckRequest
 	(*v1beta.HealthCheckResponse)(nil),             // 18: common.healthcheck.v1beta.HealthCheckResponse
 	(*timestamppb.Timestamp)(nil),                  // 19: google.protobuf.Timestamp
@@ -1316,7 +1312,7 @@ var file_app_app_v1alpha_app_proto_depIdxs = []int32{
 	18, // 3: app.app.v1alpha.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
 	19, // 4: app.app.v1alpha.App.create_time:type_name -> google.protobuf.Timestamp
 	19, // 5: app.app.v1alpha.App.update_time:type_name -> google.protobuf.Timestamp
-	6,  // 6: app.app.v1alpha.App.ai_assistant_app:type_name -> app.app.v1alpha.AiAssistantAppMetadata
+	6,  // 6: app.app.v1alpha.App.ai_assistant_app:type_name -> app.app.v1alpha.AIAssistantAppMetadata
 	0,  // 7: app.app.v1alpha.App.app_type:type_name -> app.app.v1alpha.AppType
 	5,  // 8: app.app.v1alpha.CreateAppResponse.app:type_name -> app.app.v1alpha.App
 	5,  // 9: app.app.v1alpha.ListAppsResponse.apps:type_name -> app.app.v1alpha.App
@@ -1395,7 +1391,7 @@ func file_app_app_v1alpha_app_proto_init() {
 			}
 		}
 		file_app_app_v1alpha_app_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AiAssistantAppMetadata); i {
+			switch v := v.(*AIAssistantAppMetadata); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1503,7 +1499,7 @@ func file_app_app_v1alpha_app_proto_init() {
 			}
 		}
 		file_app_app_v1alpha_app_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateAiAssistantAppPlaygroundRequest); i {
+			switch v := v.(*UpdateAIAssistantAppPlaygroundRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1515,7 +1511,7 @@ func file_app_app_v1alpha_app_proto_init() {
 			}
 		}
 		file_app_app_v1alpha_app_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateAiAssistantAppPlaygroundResponse); i {
+			switch v := v.(*UpdateAIAssistantAppPlaygroundResponse); i {
 			case 0:
 				return &v.state
 			case 1:

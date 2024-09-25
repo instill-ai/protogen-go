@@ -1291,8 +1291,8 @@ func local_request_AppPublicService_DeleteMessage_0(ctx context.Context, marshal
 
 }
 
-func request_AppPublicService_UpdateAiAssistantAppPlayground_0(ctx context.Context, marshaler runtime.Marshaler, client AppPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateAiAssistantAppPlaygroundRequest
+func request_AppPublicService_UpdateAIAssistantAppPlayground_0(ctx context.Context, marshaler runtime.Marshaler, client AppPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpdateAIAssistantAppPlaygroundRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1330,13 +1330,13 @@ func request_AppPublicService_UpdateAiAssistantAppPlayground_0(ctx context.Conte
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "app_id", err)
 	}
 
-	msg, err := client.UpdateAiAssistantAppPlayground(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.UpdateAIAssistantAppPlayground(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_AppPublicService_UpdateAiAssistantAppPlayground_0(ctx context.Context, marshaler runtime.Marshaler, server AppPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateAiAssistantAppPlaygroundRequest
+func local_request_AppPublicService_UpdateAIAssistantAppPlayground_0(ctx context.Context, marshaler runtime.Marshaler, server AppPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpdateAIAssistantAppPlaygroundRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1374,7 +1374,7 @@ func local_request_AppPublicService_UpdateAiAssistantAppPlayground_0(ctx context
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "app_id", err)
 	}
 
-	msg, err := server.UpdateAiAssistantAppPlayground(ctx, &protoReq)
+	msg, err := server.UpdateAIAssistantAppPlayground(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -1785,7 +1785,7 @@ func RegisterAppPublicServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 
 	})
 
-	mux.Handle("PUT", pattern_AppPublicService_UpdateAiAssistantAppPlayground_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PUT", pattern_AppPublicService_UpdateAIAssistantAppPlayground_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -1793,12 +1793,12 @@ func RegisterAppPublicServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/app.app.v1alpha.AppPublicService/UpdateAiAssistantAppPlayground", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/apps/{app_id}/ai_assistant_playground"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/app.app.v1alpha.AppPublicService/UpdateAIAssistantAppPlayground", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/apps/{app_id}/ai_assistant_playground"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppPublicService_UpdateAiAssistantAppPlayground_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppPublicService_UpdateAIAssistantAppPlayground_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -1806,7 +1806,7 @@ func RegisterAppPublicServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 			return
 		}
 
-		forward_AppPublicService_UpdateAiAssistantAppPlayground_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppPublicService_UpdateAIAssistantAppPlayground_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -2203,25 +2203,25 @@ func RegisterAppPublicServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 
 	})
 
-	mux.Handle("PUT", pattern_AppPublicService_UpdateAiAssistantAppPlayground_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PUT", pattern_AppPublicService_UpdateAIAssistantAppPlayground_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/app.app.v1alpha.AppPublicService/UpdateAiAssistantAppPlayground", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/apps/{app_id}/ai_assistant_playground"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/app.app.v1alpha.AppPublicService/UpdateAIAssistantAppPlayground", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/apps/{app_id}/ai_assistant_playground"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppPublicService_UpdateAiAssistantAppPlayground_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppPublicService_UpdateAIAssistantAppPlayground_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AppPublicService_UpdateAiAssistantAppPlayground_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppPublicService_UpdateAIAssistantAppPlayground_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -2261,7 +2261,7 @@ var (
 
 	pattern_AppPublicService_DeleteMessage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6, 2, 7, 1, 0, 4, 1, 5, 8}, []string{"v1alpha", "namespaces", "namespace_id", "apps", "app_id", "conversations", "conversation_id", "messages", "message_uid"}, ""))
 
-	pattern_AppPublicService_UpdateAiAssistantAppPlayground_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "namespace_id", "apps", "app_id", "ai_assistant_playground"}, ""))
+	pattern_AppPublicService_UpdateAIAssistantAppPlayground_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "namespace_id", "apps", "app_id", "ai_assistant_playground"}, ""))
 )
 
 var (
@@ -2297,5 +2297,5 @@ var (
 
 	forward_AppPublicService_DeleteMessage_0 = runtime.ForwardResponseMessage
 
-	forward_AppPublicService_UpdateAiAssistantAppPlayground_0 = runtime.ForwardResponseMessage
+	forward_AppPublicService_UpdateAIAssistantAppPlayground_0 = runtime.ForwardResponseMessage
 )

@@ -775,22 +775,22 @@ var _ interface {
 	ErrorName() string
 } = AppValidationError{}
 
-// Validate checks the field values on AiAssistantAppMetadata with the rules
+// Validate checks the field values on AIAssistantAppMetadata with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.
-func (m *AiAssistantAppMetadata) Validate() error {
+func (m *AIAssistantAppMetadata) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on AiAssistantAppMetadata with the rules
+// ValidateAll checks the field values on AIAssistantAppMetadata with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, the result is a list of violation errors wrapped in
-// AiAssistantAppMetadataMultiError, or nil if none found.
-func (m *AiAssistantAppMetadata) ValidateAll() error {
+// AIAssistantAppMetadataMultiError, or nil if none found.
+func (m *AIAssistantAppMetadata) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *AiAssistantAppMetadata) validate(all bool) error {
+func (m *AIAssistantAppMetadata) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -804,19 +804,19 @@ func (m *AiAssistantAppMetadata) validate(all bool) error {
 	// no validation rules for ConversationUid
 
 	if len(errors) > 0 {
-		return AiAssistantAppMetadataMultiError(errors)
+		return AIAssistantAppMetadataMultiError(errors)
 	}
 
 	return nil
 }
 
-// AiAssistantAppMetadataMultiError is an error wrapping multiple validation
-// errors returned by AiAssistantAppMetadata.ValidateAll() if the designated
+// AIAssistantAppMetadataMultiError is an error wrapping multiple validation
+// errors returned by AIAssistantAppMetadata.ValidateAll() if the designated
 // constraints aren't met.
-type AiAssistantAppMetadataMultiError []error
+type AIAssistantAppMetadataMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m AiAssistantAppMetadataMultiError) Error() string {
+func (m AIAssistantAppMetadataMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -825,11 +825,11 @@ func (m AiAssistantAppMetadataMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m AiAssistantAppMetadataMultiError) AllErrors() []error { return m }
+func (m AIAssistantAppMetadataMultiError) AllErrors() []error { return m }
 
-// AiAssistantAppMetadataValidationError is the validation error returned by
-// AiAssistantAppMetadata.Validate if the designated constraints aren't met.
-type AiAssistantAppMetadataValidationError struct {
+// AIAssistantAppMetadataValidationError is the validation error returned by
+// AIAssistantAppMetadata.Validate if the designated constraints aren't met.
+type AIAssistantAppMetadataValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -837,24 +837,24 @@ type AiAssistantAppMetadataValidationError struct {
 }
 
 // Field function returns field value.
-func (e AiAssistantAppMetadataValidationError) Field() string { return e.field }
+func (e AIAssistantAppMetadataValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e AiAssistantAppMetadataValidationError) Reason() string { return e.reason }
+func (e AIAssistantAppMetadataValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e AiAssistantAppMetadataValidationError) Cause() error { return e.cause }
+func (e AIAssistantAppMetadataValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e AiAssistantAppMetadataValidationError) Key() bool { return e.key }
+func (e AIAssistantAppMetadataValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e AiAssistantAppMetadataValidationError) ErrorName() string {
-	return "AiAssistantAppMetadataValidationError"
+func (e AIAssistantAppMetadataValidationError) ErrorName() string {
+	return "AIAssistantAppMetadataValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e AiAssistantAppMetadataValidationError) Error() string {
+func (e AIAssistantAppMetadataValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -866,14 +866,14 @@ func (e AiAssistantAppMetadataValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sAiAssistantAppMetadata.%s: %s%s",
+		"invalid %sAIAssistantAppMetadata.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = AiAssistantAppMetadataValidationError{}
+var _ error = AIAssistantAppMetadataValidationError{}
 
 var _ interface {
 	Field() string
@@ -881,7 +881,7 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = AiAssistantAppMetadataValidationError{}
+} = AIAssistantAppMetadataValidationError{}
 
 // Validate checks the field values on CreateAppRequest with the rules defined
 // in the proto definition for this message. If any rules are violated, the
@@ -1805,23 +1805,23 @@ var _ interface {
 	ErrorName() string
 } = DeleteAppResponseValidationError{}
 
-// Validate checks the field values on UpdateAiAssistantAppPlaygroundRequest
+// Validate checks the field values on UpdateAIAssistantAppPlaygroundRequest
 // with the rules defined in the proto definition for this message. If any
 // rules are violated, the first error encountered is returned, or nil if
 // there are no violations.
-func (m *UpdateAiAssistantAppPlaygroundRequest) Validate() error {
+func (m *UpdateAIAssistantAppPlaygroundRequest) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on UpdateAiAssistantAppPlaygroundRequest
+// ValidateAll checks the field values on UpdateAIAssistantAppPlaygroundRequest
 // with the rules defined in the proto definition for this message. If any
 // rules are violated, the result is a list of violation errors wrapped in
-// UpdateAiAssistantAppPlaygroundRequestMultiError, or nil if none found.
-func (m *UpdateAiAssistantAppPlaygroundRequest) ValidateAll() error {
+// UpdateAIAssistantAppPlaygroundRequestMultiError, or nil if none found.
+func (m *UpdateAIAssistantAppPlaygroundRequest) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *UpdateAiAssistantAppPlaygroundRequest) validate(all bool) error {
+func (m *UpdateAIAssistantAppPlaygroundRequest) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -1839,20 +1839,20 @@ func (m *UpdateAiAssistantAppPlaygroundRequest) validate(all bool) error {
 	// no validation rules for LastAiAppConversationUid
 
 	if len(errors) > 0 {
-		return UpdateAiAssistantAppPlaygroundRequestMultiError(errors)
+		return UpdateAIAssistantAppPlaygroundRequestMultiError(errors)
 	}
 
 	return nil
 }
 
-// UpdateAiAssistantAppPlaygroundRequestMultiError is an error wrapping
+// UpdateAIAssistantAppPlaygroundRequestMultiError is an error wrapping
 // multiple validation errors returned by
-// UpdateAiAssistantAppPlaygroundRequest.ValidateAll() if the designated
+// UpdateAIAssistantAppPlaygroundRequest.ValidateAll() if the designated
 // constraints aren't met.
-type UpdateAiAssistantAppPlaygroundRequestMultiError []error
+type UpdateAIAssistantAppPlaygroundRequestMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m UpdateAiAssistantAppPlaygroundRequestMultiError) Error() string {
+func (m UpdateAIAssistantAppPlaygroundRequestMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -1861,12 +1861,12 @@ func (m UpdateAiAssistantAppPlaygroundRequestMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m UpdateAiAssistantAppPlaygroundRequestMultiError) AllErrors() []error { return m }
+func (m UpdateAIAssistantAppPlaygroundRequestMultiError) AllErrors() []error { return m }
 
-// UpdateAiAssistantAppPlaygroundRequestValidationError is the validation error
-// returned by UpdateAiAssistantAppPlaygroundRequest.Validate if the
+// UpdateAIAssistantAppPlaygroundRequestValidationError is the validation error
+// returned by UpdateAIAssistantAppPlaygroundRequest.Validate if the
 // designated constraints aren't met.
-type UpdateAiAssistantAppPlaygroundRequestValidationError struct {
+type UpdateAIAssistantAppPlaygroundRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -1874,24 +1874,24 @@ type UpdateAiAssistantAppPlaygroundRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e UpdateAiAssistantAppPlaygroundRequestValidationError) Field() string { return e.field }
+func (e UpdateAIAssistantAppPlaygroundRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e UpdateAiAssistantAppPlaygroundRequestValidationError) Reason() string { return e.reason }
+func (e UpdateAIAssistantAppPlaygroundRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e UpdateAiAssistantAppPlaygroundRequestValidationError) Cause() error { return e.cause }
+func (e UpdateAIAssistantAppPlaygroundRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e UpdateAiAssistantAppPlaygroundRequestValidationError) Key() bool { return e.key }
+func (e UpdateAIAssistantAppPlaygroundRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e UpdateAiAssistantAppPlaygroundRequestValidationError) ErrorName() string {
-	return "UpdateAiAssistantAppPlaygroundRequestValidationError"
+func (e UpdateAIAssistantAppPlaygroundRequestValidationError) ErrorName() string {
+	return "UpdateAIAssistantAppPlaygroundRequestValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e UpdateAiAssistantAppPlaygroundRequestValidationError) Error() string {
+func (e UpdateAIAssistantAppPlaygroundRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -1903,14 +1903,14 @@ func (e UpdateAiAssistantAppPlaygroundRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sUpdateAiAssistantAppPlaygroundRequest.%s: %s%s",
+		"invalid %sUpdateAIAssistantAppPlaygroundRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = UpdateAiAssistantAppPlaygroundRequestValidationError{}
+var _ error = UpdateAIAssistantAppPlaygroundRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -1918,26 +1918,26 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = UpdateAiAssistantAppPlaygroundRequestValidationError{}
+} = UpdateAIAssistantAppPlaygroundRequestValidationError{}
 
-// Validate checks the field values on UpdateAiAssistantAppPlaygroundResponse
+// Validate checks the field values on UpdateAIAssistantAppPlaygroundResponse
 // with the rules defined in the proto definition for this message. If any
 // rules are violated, the first error encountered is returned, or nil if
 // there are no violations.
-func (m *UpdateAiAssistantAppPlaygroundResponse) Validate() error {
+func (m *UpdateAIAssistantAppPlaygroundResponse) Validate() error {
 	return m.validate(false)
 }
 
 // ValidateAll checks the field values on
-// UpdateAiAssistantAppPlaygroundResponse with the rules defined in the proto
+// UpdateAIAssistantAppPlaygroundResponse with the rules defined in the proto
 // definition for this message. If any rules are violated, the result is a
 // list of violation errors wrapped in
-// UpdateAiAssistantAppPlaygroundResponseMultiError, or nil if none found.
-func (m *UpdateAiAssistantAppPlaygroundResponse) ValidateAll() error {
+// UpdateAIAssistantAppPlaygroundResponseMultiError, or nil if none found.
+func (m *UpdateAIAssistantAppPlaygroundResponse) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *UpdateAiAssistantAppPlaygroundResponse) validate(all bool) error {
+func (m *UpdateAIAssistantAppPlaygroundResponse) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -1945,20 +1945,20 @@ func (m *UpdateAiAssistantAppPlaygroundResponse) validate(all bool) error {
 	var errors []error
 
 	if len(errors) > 0 {
-		return UpdateAiAssistantAppPlaygroundResponseMultiError(errors)
+		return UpdateAIAssistantAppPlaygroundResponseMultiError(errors)
 	}
 
 	return nil
 }
 
-// UpdateAiAssistantAppPlaygroundResponseMultiError is an error wrapping
+// UpdateAIAssistantAppPlaygroundResponseMultiError is an error wrapping
 // multiple validation errors returned by
-// UpdateAiAssistantAppPlaygroundResponse.ValidateAll() if the designated
+// UpdateAIAssistantAppPlaygroundResponse.ValidateAll() if the designated
 // constraints aren't met.
-type UpdateAiAssistantAppPlaygroundResponseMultiError []error
+type UpdateAIAssistantAppPlaygroundResponseMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m UpdateAiAssistantAppPlaygroundResponseMultiError) Error() string {
+func (m UpdateAIAssistantAppPlaygroundResponseMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -1967,12 +1967,12 @@ func (m UpdateAiAssistantAppPlaygroundResponseMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m UpdateAiAssistantAppPlaygroundResponseMultiError) AllErrors() []error { return m }
+func (m UpdateAIAssistantAppPlaygroundResponseMultiError) AllErrors() []error { return m }
 
-// UpdateAiAssistantAppPlaygroundResponseValidationError is the validation
-// error returned by UpdateAiAssistantAppPlaygroundResponse.Validate if the
+// UpdateAIAssistantAppPlaygroundResponseValidationError is the validation
+// error returned by UpdateAIAssistantAppPlaygroundResponse.Validate if the
 // designated constraints aren't met.
-type UpdateAiAssistantAppPlaygroundResponseValidationError struct {
+type UpdateAIAssistantAppPlaygroundResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -1980,24 +1980,24 @@ type UpdateAiAssistantAppPlaygroundResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e UpdateAiAssistantAppPlaygroundResponseValidationError) Field() string { return e.field }
+func (e UpdateAIAssistantAppPlaygroundResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e UpdateAiAssistantAppPlaygroundResponseValidationError) Reason() string { return e.reason }
+func (e UpdateAIAssistantAppPlaygroundResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e UpdateAiAssistantAppPlaygroundResponseValidationError) Cause() error { return e.cause }
+func (e UpdateAIAssistantAppPlaygroundResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e UpdateAiAssistantAppPlaygroundResponseValidationError) Key() bool { return e.key }
+func (e UpdateAIAssistantAppPlaygroundResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e UpdateAiAssistantAppPlaygroundResponseValidationError) ErrorName() string {
-	return "UpdateAiAssistantAppPlaygroundResponseValidationError"
+func (e UpdateAIAssistantAppPlaygroundResponseValidationError) ErrorName() string {
+	return "UpdateAIAssistantAppPlaygroundResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e UpdateAiAssistantAppPlaygroundResponseValidationError) Error() string {
+func (e UpdateAIAssistantAppPlaygroundResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -2009,14 +2009,14 @@ func (e UpdateAiAssistantAppPlaygroundResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sUpdateAiAssistantAppPlaygroundResponse.%s: %s%s",
+		"invalid %sUpdateAIAssistantAppPlaygroundResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = UpdateAiAssistantAppPlaygroundResponseValidationError{}
+var _ error = UpdateAIAssistantAppPlaygroundResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -2024,4 +2024,4 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = UpdateAiAssistantAppPlaygroundResponseValidationError{}
+} = UpdateAIAssistantAppPlaygroundResponseValidationError{}
