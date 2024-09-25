@@ -2025,3 +2025,439 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = UpdateAIAssistantAppPlaygroundResponseValidationError{}
+
+// Validate checks the field values on RestartPlaygroundConversationRequest
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the first error encountered is returned, or nil if
+// there are no violations.
+func (m *RestartPlaygroundConversationRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on RestartPlaygroundConversationRequest
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the result is a list of violation errors wrapped in
+// RestartPlaygroundConversationRequestMultiError, or nil if none found.
+func (m *RestartPlaygroundConversationRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *RestartPlaygroundConversationRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for NamespaceId
+
+	// no validation rules for AppId
+
+	if len(errors) > 0 {
+		return RestartPlaygroundConversationRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// RestartPlaygroundConversationRequestMultiError is an error wrapping multiple
+// validation errors returned by
+// RestartPlaygroundConversationRequest.ValidateAll() if the designated
+// constraints aren't met.
+type RestartPlaygroundConversationRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m RestartPlaygroundConversationRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m RestartPlaygroundConversationRequestMultiError) AllErrors() []error { return m }
+
+// RestartPlaygroundConversationRequestValidationError is the validation error
+// returned by RestartPlaygroundConversationRequest.Validate if the designated
+// constraints aren't met.
+type RestartPlaygroundConversationRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e RestartPlaygroundConversationRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e RestartPlaygroundConversationRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e RestartPlaygroundConversationRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e RestartPlaygroundConversationRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e RestartPlaygroundConversationRequestValidationError) ErrorName() string {
+	return "RestartPlaygroundConversationRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e RestartPlaygroundConversationRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sRestartPlaygroundConversationRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = RestartPlaygroundConversationRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = RestartPlaygroundConversationRequestValidationError{}
+
+// Validate checks the field values on RestartPlaygroundConversationResponse
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the first error encountered is returned, or nil if
+// there are no violations.
+func (m *RestartPlaygroundConversationResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on RestartPlaygroundConversationResponse
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the result is a list of violation errors wrapped in
+// RestartPlaygroundConversationResponseMultiError, or nil if none found.
+func (m *RestartPlaygroundConversationResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *RestartPlaygroundConversationResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for ConversationUid
+
+	// no validation rules for ConversationId
+
+	if len(errors) > 0 {
+		return RestartPlaygroundConversationResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// RestartPlaygroundConversationResponseMultiError is an error wrapping
+// multiple validation errors returned by
+// RestartPlaygroundConversationResponse.ValidateAll() if the designated
+// constraints aren't met.
+type RestartPlaygroundConversationResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m RestartPlaygroundConversationResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m RestartPlaygroundConversationResponseMultiError) AllErrors() []error { return m }
+
+// RestartPlaygroundConversationResponseValidationError is the validation error
+// returned by RestartPlaygroundConversationResponse.Validate if the
+// designated constraints aren't met.
+type RestartPlaygroundConversationResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e RestartPlaygroundConversationResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e RestartPlaygroundConversationResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e RestartPlaygroundConversationResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e RestartPlaygroundConversationResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e RestartPlaygroundConversationResponseValidationError) ErrorName() string {
+	return "RestartPlaygroundConversationResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e RestartPlaygroundConversationResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sRestartPlaygroundConversationResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = RestartPlaygroundConversationResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = RestartPlaygroundConversationResponseValidationError{}
+
+// Validate checks the field values on GetPlaygroundConversationRequest with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the first error encountered is returned, or nil if there are
+// no violations.
+func (m *GetPlaygroundConversationRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetPlaygroundConversationRequest with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the result is a list of violation errors wrapped in
+// GetPlaygroundConversationRequestMultiError, or nil if none found.
+func (m *GetPlaygroundConversationRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetPlaygroundConversationRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for NamespaceId
+
+	// no validation rules for AppId
+
+	if len(errors) > 0 {
+		return GetPlaygroundConversationRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetPlaygroundConversationRequestMultiError is an error wrapping multiple
+// validation errors returned by
+// GetPlaygroundConversationRequest.ValidateAll() if the designated
+// constraints aren't met.
+type GetPlaygroundConversationRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetPlaygroundConversationRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetPlaygroundConversationRequestMultiError) AllErrors() []error { return m }
+
+// GetPlaygroundConversationRequestValidationError is the validation error
+// returned by GetPlaygroundConversationRequest.Validate if the designated
+// constraints aren't met.
+type GetPlaygroundConversationRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetPlaygroundConversationRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetPlaygroundConversationRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetPlaygroundConversationRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetPlaygroundConversationRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetPlaygroundConversationRequestValidationError) ErrorName() string {
+	return "GetPlaygroundConversationRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetPlaygroundConversationRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetPlaygroundConversationRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetPlaygroundConversationRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetPlaygroundConversationRequestValidationError{}
+
+// Validate checks the field values on GetPlaygroundConversationResponse with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the first error encountered is returned, or nil if there are
+// no violations.
+func (m *GetPlaygroundConversationResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetPlaygroundConversationResponse
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the result is a list of violation errors wrapped in
+// GetPlaygroundConversationResponseMultiError, or nil if none found.
+func (m *GetPlaygroundConversationResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetPlaygroundConversationResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for ConversationUid
+
+	// no validation rules for ConversationId
+
+	if len(errors) > 0 {
+		return GetPlaygroundConversationResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetPlaygroundConversationResponseMultiError is an error wrapping multiple
+// validation errors returned by
+// GetPlaygroundConversationResponse.ValidateAll() if the designated
+// constraints aren't met.
+type GetPlaygroundConversationResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetPlaygroundConversationResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetPlaygroundConversationResponseMultiError) AllErrors() []error { return m }
+
+// GetPlaygroundConversationResponseValidationError is the validation error
+// returned by GetPlaygroundConversationResponse.Validate if the designated
+// constraints aren't met.
+type GetPlaygroundConversationResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetPlaygroundConversationResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetPlaygroundConversationResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetPlaygroundConversationResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetPlaygroundConversationResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetPlaygroundConversationResponseValidationError) ErrorName() string {
+	return "GetPlaygroundConversationResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetPlaygroundConversationResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetPlaygroundConversationResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetPlaygroundConversationResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetPlaygroundConversationResponseValidationError{}

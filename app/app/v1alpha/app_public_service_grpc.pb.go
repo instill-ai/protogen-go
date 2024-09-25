@@ -34,6 +34,8 @@ const (
 	AppPublicService_UpdateMessage_FullMethodName                  = "/app.app.v1alpha.AppPublicService/UpdateMessage"
 	AppPublicService_DeleteMessage_FullMethodName                  = "/app.app.v1alpha.AppPublicService/DeleteMessage"
 	AppPublicService_UpdateAIAssistantAppPlayground_FullMethodName = "/app.app.v1alpha.AppPublicService/UpdateAIAssistantAppPlayground"
+	AppPublicService_GetPlaygroundConversation_FullMethodName      = "/app.app.v1alpha.AppPublicService/GetPlaygroundConversation"
+	AppPublicService_RestartPlaygroundConversation_FullMethodName  = "/app.app.v1alpha.AppPublicService/RestartPlaygroundConversation"
 )
 
 // AppPublicServiceClient is the client API for AppPublicService service.
@@ -74,6 +76,15 @@ type AppPublicServiceClient interface {
 	DeleteMessage(ctx context.Context, in *DeleteMessageRequest, opts ...grpc.CallOption) (*DeleteMessageResponse, error)
 	// Update AI assistant app playground
 	UpdateAIAssistantAppPlayground(ctx context.Context, in *UpdateAIAssistantAppPlaygroundRequest, opts ...grpc.CallOption) (*UpdateAIAssistantAppPlaygroundResponse, error)
+	// Get Playground Conversation
+	//
+	// get the latest conversation of auth user(e.g. login user and api key user)
+	GetPlaygroundConversation(ctx context.Context, in *GetPlaygroundConversationRequest, opts ...grpc.CallOption) (*GetPlaygroundConversationResponse, error)
+	// Restart Playground Conversation
+	//
+	// create a new conversation and use the auth user uid as creator uid and auto
+	// generate a new conversation id on the behalf of auth user.
+	RestartPlaygroundConversation(ctx context.Context, in *RestartPlaygroundConversationRequest, opts ...grpc.CallOption) (*RestartPlaygroundConversationResponse, error)
 }
 
 type appPublicServiceClient struct {
@@ -219,6 +230,24 @@ func (c *appPublicServiceClient) UpdateAIAssistantAppPlayground(ctx context.Cont
 	return out, nil
 }
 
+func (c *appPublicServiceClient) GetPlaygroundConversation(ctx context.Context, in *GetPlaygroundConversationRequest, opts ...grpc.CallOption) (*GetPlaygroundConversationResponse, error) {
+	out := new(GetPlaygroundConversationResponse)
+	err := c.cc.Invoke(ctx, AppPublicService_GetPlaygroundConversation_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appPublicServiceClient) RestartPlaygroundConversation(ctx context.Context, in *RestartPlaygroundConversationRequest, opts ...grpc.CallOption) (*RestartPlaygroundConversationResponse, error) {
+	out := new(RestartPlaygroundConversationResponse)
+	err := c.cc.Invoke(ctx, AppPublicService_RestartPlaygroundConversation_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AppPublicServiceServer is the server API for AppPublicService service.
 // All implementations should embed UnimplementedAppPublicServiceServer
 // for forward compatibility
@@ -257,6 +286,15 @@ type AppPublicServiceServer interface {
 	DeleteMessage(context.Context, *DeleteMessageRequest) (*DeleteMessageResponse, error)
 	// Update AI assistant app playground
 	UpdateAIAssistantAppPlayground(context.Context, *UpdateAIAssistantAppPlaygroundRequest) (*UpdateAIAssistantAppPlaygroundResponse, error)
+	// Get Playground Conversation
+	//
+	// get the latest conversation of auth user(e.g. login user and api key user)
+	GetPlaygroundConversation(context.Context, *GetPlaygroundConversationRequest) (*GetPlaygroundConversationResponse, error)
+	// Restart Playground Conversation
+	//
+	// create a new conversation and use the auth user uid as creator uid and auto
+	// generate a new conversation id on the behalf of auth user.
+	RestartPlaygroundConversation(context.Context, *RestartPlaygroundConversationRequest) (*RestartPlaygroundConversationResponse, error)
 }
 
 // UnimplementedAppPublicServiceServer should be embedded to have forward compatible implementations.
@@ -307,6 +345,12 @@ func (UnimplementedAppPublicServiceServer) DeleteMessage(context.Context, *Delet
 }
 func (UnimplementedAppPublicServiceServer) UpdateAIAssistantAppPlayground(context.Context, *UpdateAIAssistantAppPlaygroundRequest) (*UpdateAIAssistantAppPlaygroundResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateAIAssistantAppPlayground not implemented")
+}
+func (UnimplementedAppPublicServiceServer) GetPlaygroundConversation(context.Context, *GetPlaygroundConversationRequest) (*GetPlaygroundConversationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPlaygroundConversation not implemented")
+}
+func (UnimplementedAppPublicServiceServer) RestartPlaygroundConversation(context.Context, *RestartPlaygroundConversationRequest) (*RestartPlaygroundConversationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RestartPlaygroundConversation not implemented")
 }
 
 // UnsafeAppPublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -590,6 +634,42 @@ func _AppPublicService_UpdateAIAssistantAppPlayground_Handler(srv interface{}, c
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppPublicService_GetPlaygroundConversation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPlaygroundConversationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppPublicServiceServer).GetPlaygroundConversation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AppPublicService_GetPlaygroundConversation_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppPublicServiceServer).GetPlaygroundConversation(ctx, req.(*GetPlaygroundConversationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppPublicService_RestartPlaygroundConversation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RestartPlaygroundConversationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppPublicServiceServer).RestartPlaygroundConversation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AppPublicService_RestartPlaygroundConversation_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppPublicServiceServer).RestartPlaygroundConversation(ctx, req.(*RestartPlaygroundConversationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AppPublicService_ServiceDesc is the grpc.ServiceDesc for AppPublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -656,6 +736,14 @@ var AppPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateAIAssistantAppPlayground",
 			Handler:    _AppPublicService_UpdateAIAssistantAppPlayground_Handler,
+		},
+		{
+			MethodName: "GetPlaygroundConversation",
+			Handler:    _AppPublicService_GetPlaygroundConversation_Handler,
+		},
+		{
+			MethodName: "RestartPlaygroundConversation",
+			Handler:    _AppPublicService_RestartPlaygroundConversation_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
