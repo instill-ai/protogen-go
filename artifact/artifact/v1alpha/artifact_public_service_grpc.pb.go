@@ -35,6 +35,7 @@ const (
 	ArtifactPublicService_SimilarityChunksSearch_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPublicService/SimilarityChunksSearch"
 	ArtifactPublicService_QuestionAnswering_FullMethodName      = "/artifact.artifact.v1alpha.ArtifactPublicService/QuestionAnswering"
 	ArtifactPublicService_GetFileCatalog_FullMethodName         = "/artifact.artifact.v1alpha.ArtifactPublicService/GetFileCatalog"
+	ArtifactPublicService_ListCatalogRuns_FullMethodName        = "/artifact.artifact.v1alpha.ArtifactPublicService/ListCatalogRuns"
 )
 
 // ArtifactPublicServiceClient is the client API for ArtifactPublicService service.
@@ -77,6 +78,8 @@ type ArtifactPublicServiceClient interface {
 	QuestionAnswering(ctx context.Context, in *QuestionAnsweringRequest, opts ...grpc.CallOption) (*QuestionAnsweringResponse, error)
 	// Get file catalog
 	GetFileCatalog(ctx context.Context, in *GetFileCatalogRequest, opts ...grpc.CallOption) (*GetFileCatalogResponse, error)
+	// List Catalog Runs
+	ListCatalogRuns(ctx context.Context, in *ListCatalogRunsRequest, opts ...grpc.CallOption) (*ListCatalogRunsResponse, error)
 }
 
 type artifactPublicServiceClient struct {
@@ -231,6 +234,15 @@ func (c *artifactPublicServiceClient) GetFileCatalog(ctx context.Context, in *Ge
 	return out, nil
 }
 
+func (c *artifactPublicServiceClient) ListCatalogRuns(ctx context.Context, in *ListCatalogRunsRequest, opts ...grpc.CallOption) (*ListCatalogRunsResponse, error) {
+	out := new(ListCatalogRunsResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_ListCatalogRuns_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ArtifactPublicServiceServer is the server API for ArtifactPublicService service.
 // All implementations should embed UnimplementedArtifactPublicServiceServer
 // for forward compatibility
@@ -271,6 +283,8 @@ type ArtifactPublicServiceServer interface {
 	QuestionAnswering(context.Context, *QuestionAnsweringRequest) (*QuestionAnsweringResponse, error)
 	// Get file catalog
 	GetFileCatalog(context.Context, *GetFileCatalogRequest) (*GetFileCatalogResponse, error)
+	// List Catalog Runs
+	ListCatalogRuns(context.Context, *ListCatalogRunsRequest) (*ListCatalogRunsResponse, error)
 }
 
 // UnimplementedArtifactPublicServiceServer should be embedded to have forward compatible implementations.
@@ -324,6 +338,9 @@ func (UnimplementedArtifactPublicServiceServer) QuestionAnswering(context.Contex
 }
 func (UnimplementedArtifactPublicServiceServer) GetFileCatalog(context.Context, *GetFileCatalogRequest) (*GetFileCatalogResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFileCatalog not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) ListCatalogRuns(context.Context, *ListCatalogRunsRequest) (*ListCatalogRunsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListCatalogRuns not implemented")
 }
 
 // UnsafeArtifactPublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -625,6 +642,24 @@ func _ArtifactPublicService_GetFileCatalog_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArtifactPublicService_ListCatalogRuns_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListCatalogRunsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).ListCatalogRuns(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_ListCatalogRuns_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).ListCatalogRuns(ctx, req.(*ListCatalogRunsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ArtifactPublicService_ServiceDesc is the grpc.ServiceDesc for ArtifactPublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -695,6 +730,10 @@ var ArtifactPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetFileCatalog",
 			Handler:    _ArtifactPublicService_GetFileCatalog_Handler,
+		},
+		{
+			MethodName: "ListCatalogRuns",
+			Handler:    _ArtifactPublicService_ListCatalogRuns_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

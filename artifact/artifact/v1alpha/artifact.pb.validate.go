@@ -17,6 +17,8 @@ import (
 	"unicode/utf8"
 
 	"google.golang.org/protobuf/types/known/anypb"
+
+	runv1alpha "github.com/instill-ai/protogen-go/common/run/v1alpha"
 )
 
 // ensure the imports are used
@@ -33,6 +35,8 @@ var (
 	_ = (*mail.Address)(nil)
 	_ = anypb.Any{}
 	_ = sort.Sort
+
+	_ = runv1alpha.RunStatus(0)
 )
 
 // Validate checks the field values on LivenessRequest with the rules defined
@@ -4063,3 +4067,487 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = ListCatalogFilesResponseValidationError{}
+
+// Validate checks the field values on CatalogRun with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *CatalogRun) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on CatalogRun with the rules defined in
+// the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in CatalogRunMultiError, or
+// nil if none found.
+func (m *CatalogRun) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *CatalogRun) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Uid
+
+	// no validation rules for CatalogUid
+
+	// no validation rules for Action
+
+	// no validation rules for Status
+
+	// no validation rules for Source
+
+	if all {
+		switch v := interface{}(m.GetStartTime()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, CatalogRunValidationError{
+					field:  "StartTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, CatalogRunValidationError{
+					field:  "StartTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetStartTime()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return CatalogRunValidationError{
+				field:  "StartTime",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if m.TotalDuration != nil {
+		// no validation rules for TotalDuration
+	}
+
+	if m.RunnerId != nil {
+		// no validation rules for RunnerId
+	}
+
+	if m.NamespaceId != nil {
+		// no validation rules for NamespaceId
+	}
+
+	if m.Payload != nil {
+
+		if all {
+			switch v := interface{}(m.GetPayload()).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, CatalogRunValidationError{
+						field:  "Payload",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, CatalogRunValidationError{
+						field:  "Payload",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return CatalogRunValidationError{
+					field:  "Payload",
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if m.CompleteTime != nil {
+
+		if all {
+			switch v := interface{}(m.GetCompleteTime()).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, CatalogRunValidationError{
+						field:  "CompleteTime",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, CatalogRunValidationError{
+						field:  "CompleteTime",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(m.GetCompleteTime()).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return CatalogRunValidationError{
+					field:  "CompleteTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if m.Error != nil {
+		// no validation rules for Error
+	}
+
+	if m.CreditAmount != nil {
+		// no validation rules for CreditAmount
+	}
+
+	if len(errors) > 0 {
+		return CatalogRunMultiError(errors)
+	}
+
+	return nil
+}
+
+// CatalogRunMultiError is an error wrapping multiple validation errors
+// returned by CatalogRun.ValidateAll() if the designated constraints aren't met.
+type CatalogRunMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m CatalogRunMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m CatalogRunMultiError) AllErrors() []error { return m }
+
+// CatalogRunValidationError is the validation error returned by
+// CatalogRun.Validate if the designated constraints aren't met.
+type CatalogRunValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CatalogRunValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CatalogRunValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CatalogRunValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CatalogRunValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CatalogRunValidationError) ErrorName() string { return "CatalogRunValidationError" }
+
+// Error satisfies the builtin error interface
+func (e CatalogRunValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCatalogRun.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CatalogRunValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CatalogRunValidationError{}
+
+// Validate checks the field values on ListCatalogRunsResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *ListCatalogRunsResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on ListCatalogRunsResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// ListCatalogRunsResponseMultiError, or nil if none found.
+func (m *ListCatalogRunsResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *ListCatalogRunsResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	for idx, item := range m.GetCatalogRuns() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, ListCatalogRunsResponseValidationError{
+						field:  fmt.Sprintf("CatalogRuns[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, ListCatalogRunsResponseValidationError{
+						field:  fmt.Sprintf("CatalogRuns[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return ListCatalogRunsResponseValidationError{
+					field:  fmt.Sprintf("CatalogRuns[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	// no validation rules for TotalSize
+
+	// no validation rules for Page
+
+	// no validation rules for PageSize
+
+	if len(errors) > 0 {
+		return ListCatalogRunsResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// ListCatalogRunsResponseMultiError is an error wrapping multiple validation
+// errors returned by ListCatalogRunsResponse.ValidateAll() if the designated
+// constraints aren't met.
+type ListCatalogRunsResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m ListCatalogRunsResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m ListCatalogRunsResponseMultiError) AllErrors() []error { return m }
+
+// ListCatalogRunsResponseValidationError is the validation error returned by
+// ListCatalogRunsResponse.Validate if the designated constraints aren't met.
+type ListCatalogRunsResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListCatalogRunsResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListCatalogRunsResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListCatalogRunsResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListCatalogRunsResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListCatalogRunsResponseValidationError) ErrorName() string {
+	return "ListCatalogRunsResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ListCatalogRunsResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListCatalogRunsResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListCatalogRunsResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListCatalogRunsResponseValidationError{}
+
+// Validate checks the field values on ListCatalogRunsRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *ListCatalogRunsRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on ListCatalogRunsRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// ListCatalogRunsRequestMultiError, or nil if none found.
+func (m *ListCatalogRunsRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *ListCatalogRunsRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for NamespaceId
+
+	// no validation rules for CatalogId
+
+	// no validation rules for Page
+
+	// no validation rules for PageSize
+
+	if m.Filter != nil {
+		// no validation rules for Filter
+	}
+
+	if m.OrderBy != nil {
+		// no validation rules for OrderBy
+	}
+
+	if len(errors) > 0 {
+		return ListCatalogRunsRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// ListCatalogRunsRequestMultiError is an error wrapping multiple validation
+// errors returned by ListCatalogRunsRequest.ValidateAll() if the designated
+// constraints aren't met.
+type ListCatalogRunsRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m ListCatalogRunsRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m ListCatalogRunsRequestMultiError) AllErrors() []error { return m }
+
+// ListCatalogRunsRequestValidationError is the validation error returned by
+// ListCatalogRunsRequest.Validate if the designated constraints aren't met.
+type ListCatalogRunsRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListCatalogRunsRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListCatalogRunsRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListCatalogRunsRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListCatalogRunsRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListCatalogRunsRequestValidationError) ErrorName() string {
+	return "ListCatalogRunsRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ListCatalogRunsRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListCatalogRunsRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListCatalogRunsRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListCatalogRunsRequestValidationError{}
