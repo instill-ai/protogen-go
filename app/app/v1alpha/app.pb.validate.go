@@ -801,8 +801,6 @@ func (m *AIAssistantAppMetadata) validate(all bool) error {
 
 	// no validation rules for TopK
 
-	// no validation rules for ConversationUid
-
 	if len(errors) > 0 {
 		return AIAssistantAppMetadataMultiError(errors)
 	}
@@ -2156,9 +2154,34 @@ func (m *RestartPlaygroundConversationResponse) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for ConversationUid
-
-	// no validation rules for ConversationId
+	if all {
+		switch v := interface{}(m.GetConversation()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, RestartPlaygroundConversationResponseValidationError{
+					field:  "Conversation",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, RestartPlaygroundConversationResponseValidationError{
+					field:  "Conversation",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetConversation()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return RestartPlaygroundConversationResponseValidationError{
+				field:  "Conversation",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
 
 	if len(errors) > 0 {
 		return RestartPlaygroundConversationResponseMultiError(errors)
@@ -2374,9 +2397,34 @@ func (m *GetPlaygroundConversationResponse) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for ConversationUid
-
-	// no validation rules for ConversationId
+	if all {
+		switch v := interface{}(m.GetConversation()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, GetPlaygroundConversationResponseValidationError{
+					field:  "Conversation",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, GetPlaygroundConversationResponseValidationError{
+					field:  "Conversation",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetConversation()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return GetPlaygroundConversationResponseValidationError{
+				field:  "Conversation",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
 
 	if len(errors) > 0 {
 		return GetPlaygroundConversationResponseMultiError(errors)
