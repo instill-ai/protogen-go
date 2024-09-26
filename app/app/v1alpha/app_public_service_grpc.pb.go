@@ -36,6 +36,7 @@ const (
 	AppPublicService_UpdateAIAssistantAppPlayground_FullMethodName = "/app.app.v1alpha.AppPublicService/UpdateAIAssistantAppPlayground"
 	AppPublicService_GetPlaygroundConversation_FullMethodName      = "/app.app.v1alpha.AppPublicService/GetPlaygroundConversation"
 	AppPublicService_RestartPlaygroundConversation_FullMethodName  = "/app.app.v1alpha.AppPublicService/RestartPlaygroundConversation"
+	AppPublicService_Chat_FullMethodName                           = "/app.app.v1alpha.AppPublicService/Chat"
 )
 
 // AppPublicServiceClient is the client API for AppPublicService service.
@@ -85,6 +86,12 @@ type AppPublicServiceClient interface {
 	// create a new conversation and use the auth user uid as creator uid and auto
 	// generate a new conversation id on the behalf of auth user.
 	RestartPlaygroundConversation(ctx context.Context, in *RestartPlaygroundConversationRequest, opts ...grpc.CallOption) (*RestartPlaygroundConversationResponse, error)
+	// Chat
+	//
+	// Chat sends a message asynchronously and streams back the response.
+	// This method is intended for real-time conversation with a chatbot
+	// and the response needs to be processed incrementally.
+	Chat(ctx context.Context, in *ChatRequest, opts ...grpc.CallOption) (AppPublicService_ChatClient, error)
 }
 
 type appPublicServiceClient struct {
@@ -248,6 +255,38 @@ func (c *appPublicServiceClient) RestartPlaygroundConversation(ctx context.Conte
 	return out, nil
 }
 
+func (c *appPublicServiceClient) Chat(ctx context.Context, in *ChatRequest, opts ...grpc.CallOption) (AppPublicService_ChatClient, error) {
+	stream, err := c.cc.NewStream(ctx, &AppPublicService_ServiceDesc.Streams[0], AppPublicService_Chat_FullMethodName, opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &appPublicServiceChatClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type AppPublicService_ChatClient interface {
+	Recv() (*ChatResponse, error)
+	grpc.ClientStream
+}
+
+type appPublicServiceChatClient struct {
+	grpc.ClientStream
+}
+
+func (x *appPublicServiceChatClient) Recv() (*ChatResponse, error) {
+	m := new(ChatResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // AppPublicServiceServer is the server API for AppPublicService service.
 // All implementations should embed UnimplementedAppPublicServiceServer
 // for forward compatibility
@@ -295,6 +334,12 @@ type AppPublicServiceServer interface {
 	// create a new conversation and use the auth user uid as creator uid and auto
 	// generate a new conversation id on the behalf of auth user.
 	RestartPlaygroundConversation(context.Context, *RestartPlaygroundConversationRequest) (*RestartPlaygroundConversationResponse, error)
+	// Chat
+	//
+	// Chat sends a message asynchronously and streams back the response.
+	// This method is intended for real-time conversation with a chatbot
+	// and the response needs to be processed incrementally.
+	Chat(*ChatRequest, AppPublicService_ChatServer) error
 }
 
 // UnimplementedAppPublicServiceServer should be embedded to have forward compatible implementations.
@@ -351,6 +396,9 @@ func (UnimplementedAppPublicServiceServer) GetPlaygroundConversation(context.Con
 }
 func (UnimplementedAppPublicServiceServer) RestartPlaygroundConversation(context.Context, *RestartPlaygroundConversationRequest) (*RestartPlaygroundConversationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RestartPlaygroundConversation not implemented")
+}
+func (UnimplementedAppPublicServiceServer) Chat(*ChatRequest, AppPublicService_ChatServer) error {
+	return status.Errorf(codes.Unimplemented, "method Chat not implemented")
 }
 
 // UnsafeAppPublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -670,6 +718,27 @@ func _AppPublicService_RestartPlaygroundConversation_Handler(srv interface{}, ct
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppPublicService_Chat_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(ChatRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(AppPublicServiceServer).Chat(m, &appPublicServiceChatServer{stream})
+}
+
+type AppPublicService_ChatServer interface {
+	Send(*ChatResponse) error
+	grpc.ServerStream
+}
+
+type appPublicServiceChatServer struct {
+	grpc.ServerStream
+}
+
+func (x *appPublicServiceChatServer) Send(m *ChatResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 // AppPublicService_ServiceDesc is the grpc.ServiceDesc for AppPublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -746,6 +815,12 @@ var AppPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppPublicService_RestartPlaygroundConversation_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "Chat",
+			Handler:       _AppPublicService_Chat_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "app/app/v1alpha/app_public_service.proto",
 }
