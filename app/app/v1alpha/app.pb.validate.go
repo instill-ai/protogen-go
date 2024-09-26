@@ -1836,8 +1836,6 @@ func (m *UpdateAIAssistantAppPlaygroundRequest) validate(all bool) error {
 
 	// no validation rules for LastAiAppTopK
 
-	// no validation rules for LastAiAppConversationUid
-
 	if len(errors) > 0 {
 		return UpdateAIAssistantAppPlaygroundRequestMultiError(errors)
 	}

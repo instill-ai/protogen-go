@@ -50,9 +50,9 @@ type AppPublicServiceClient interface {
 	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error)
-	// Create a App
+	// Create a app
 	CreateApp(ctx context.Context, in *CreateAppRequest, opts ...grpc.CallOption) (*CreateAppResponse, error)
-	// Get all apps info
+	// List all apps info
 	ListApps(ctx context.Context, in *ListAppsRequest, opts ...grpc.CallOption) (*ListAppsResponse, error)
 	// Update a app info
 	UpdateApp(ctx context.Context, in *UpdateAppRequest, opts ...grpc.CallOption) (*UpdateAppResponse, error)
@@ -260,9 +260,9 @@ type AppPublicServiceServer interface {
 	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error)
-	// Create a App
+	// Create a app
 	CreateApp(context.Context, *CreateAppRequest) (*CreateAppResponse, error)
-	// Get all apps info
+	// List all apps info
 	ListApps(context.Context, *ListAppsRequest) (*ListAppsResponse, error)
 	// Update a app info
 	UpdateApp(context.Context, *UpdateAppRequest) (*UpdateAppResponse, error)
