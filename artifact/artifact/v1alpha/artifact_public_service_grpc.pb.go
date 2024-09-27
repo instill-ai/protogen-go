@@ -19,23 +19,23 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ArtifactPublicService_Liveness_FullMethodName               = "/artifact.artifact.v1alpha.ArtifactPublicService/Liveness"
-	ArtifactPublicService_Readiness_FullMethodName              = "/artifact.artifact.v1alpha.ArtifactPublicService/Readiness"
-	ArtifactPublicService_CreateCatalog_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPublicService/CreateCatalog"
-	ArtifactPublicService_ListCatalogs_FullMethodName           = "/artifact.artifact.v1alpha.ArtifactPublicService/ListCatalogs"
-	ArtifactPublicService_UpdateCatalog_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateCatalog"
-	ArtifactPublicService_DeleteCatalog_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteCatalog"
-	ArtifactPublicService_UploadCatalogFile_FullMethodName      = "/artifact.artifact.v1alpha.ArtifactPublicService/UploadCatalogFile"
-	ArtifactPublicService_DeleteCatalogFile_FullMethodName      = "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteCatalogFile"
-	ArtifactPublicService_ProcessCatalogFiles_FullMethodName    = "/artifact.artifact.v1alpha.ArtifactPublicService/ProcessCatalogFiles"
-	ArtifactPublicService_ListCatalogFiles_FullMethodName       = "/artifact.artifact.v1alpha.ArtifactPublicService/ListCatalogFiles"
-	ArtifactPublicService_ListChunks_FullMethodName             = "/artifact.artifact.v1alpha.ArtifactPublicService/ListChunks"
-	ArtifactPublicService_GetSourceFile_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPublicService/GetSourceFile"
-	ArtifactPublicService_UpdateChunk_FullMethodName            = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateChunk"
-	ArtifactPublicService_SimilarityChunksSearch_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPublicService/SimilarityChunksSearch"
-	ArtifactPublicService_QuestionAnswering_FullMethodName      = "/artifact.artifact.v1alpha.ArtifactPublicService/QuestionAnswering"
-	ArtifactPublicService_GetFileCatalog_FullMethodName         = "/artifact.artifact.v1alpha.ArtifactPublicService/GetFileCatalog"
-	ArtifactPublicService_ListCatalogRuns_FullMethodName        = "/artifact.artifact.v1alpha.ArtifactPublicService/ListCatalogRuns"
+	ArtifactPublicService_Liveness_FullMethodName            = "/artifact.artifact.v1alpha.ArtifactPublicService/Liveness"
+	ArtifactPublicService_Readiness_FullMethodName           = "/artifact.artifact.v1alpha.ArtifactPublicService/Readiness"
+	ArtifactPublicService_CreateCatalog_FullMethodName       = "/artifact.artifact.v1alpha.ArtifactPublicService/CreateCatalog"
+	ArtifactPublicService_ListCatalogs_FullMethodName        = "/artifact.artifact.v1alpha.ArtifactPublicService/ListCatalogs"
+	ArtifactPublicService_UpdateCatalog_FullMethodName       = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateCatalog"
+	ArtifactPublicService_DeleteCatalog_FullMethodName       = "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteCatalog"
+	ArtifactPublicService_UploadCatalogFile_FullMethodName   = "/artifact.artifact.v1alpha.ArtifactPublicService/UploadCatalogFile"
+	ArtifactPublicService_DeleteCatalogFile_FullMethodName   = "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteCatalogFile"
+	ArtifactPublicService_ProcessCatalogFiles_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPublicService/ProcessCatalogFiles"
+	ArtifactPublicService_ListCatalogFiles_FullMethodName    = "/artifact.artifact.v1alpha.ArtifactPublicService/ListCatalogFiles"
+	ArtifactPublicService_ListChunks_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPublicService/ListChunks"
+	ArtifactPublicService_GetSourceFile_FullMethodName       = "/artifact.artifact.v1alpha.ArtifactPublicService/GetSourceFile"
+	ArtifactPublicService_UpdateChunk_FullMethodName         = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateChunk"
+	ArtifactPublicService_ViewChunks_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPublicService/ViewChunks"
+	ArtifactPublicService_QuestionAnswering_FullMethodName   = "/artifact.artifact.v1alpha.ArtifactPublicService/QuestionAnswering"
+	ArtifactPublicService_GetFileCatalog_FullMethodName      = "/artifact.artifact.v1alpha.ArtifactPublicService/GetFileCatalog"
+	ArtifactPublicService_ListCatalogRuns_FullMethodName     = "/artifact.artifact.v1alpha.ArtifactPublicService/ListCatalogRuns"
 )
 
 // ArtifactPublicServiceClient is the client API for ArtifactPublicService service.
@@ -72,8 +72,8 @@ type ArtifactPublicServiceClient interface {
 	GetSourceFile(ctx context.Context, in *GetSourceFileRequest, opts ...grpc.CallOption) (*GetSourceFileResponse, error)
 	// Update catalog chunk
 	UpdateChunk(ctx context.Context, in *UpdateChunkRequest, opts ...grpc.CallOption) (*UpdateChunkResponse, error)
-	// Retrieve similar chunks
-	SimilarityChunksSearch(ctx context.Context, in *SimilarityChunksSearchRequest, opts ...grpc.CallOption) (*SimilarityChunksSearchResponse, error)
+	// View similar chunks
+	ViewChunks(ctx context.Context, in *ViewChunksRequest, opts ...grpc.CallOption) (*ViewChunksResponse, error)
 	// Ask a question
 	QuestionAnswering(ctx context.Context, in *QuestionAnsweringRequest, opts ...grpc.CallOption) (*QuestionAnsweringResponse, error)
 	// Get file catalog
@@ -207,9 +207,9 @@ func (c *artifactPublicServiceClient) UpdateChunk(ctx context.Context, in *Updat
 	return out, nil
 }
 
-func (c *artifactPublicServiceClient) SimilarityChunksSearch(ctx context.Context, in *SimilarityChunksSearchRequest, opts ...grpc.CallOption) (*SimilarityChunksSearchResponse, error) {
-	out := new(SimilarityChunksSearchResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_SimilarityChunksSearch_FullMethodName, in, out, opts...)
+func (c *artifactPublicServiceClient) ViewChunks(ctx context.Context, in *ViewChunksRequest, opts ...grpc.CallOption) (*ViewChunksResponse, error) {
+	out := new(ViewChunksResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_ViewChunks_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -277,8 +277,8 @@ type ArtifactPublicServiceServer interface {
 	GetSourceFile(context.Context, *GetSourceFileRequest) (*GetSourceFileResponse, error)
 	// Update catalog chunk
 	UpdateChunk(context.Context, *UpdateChunkRequest) (*UpdateChunkResponse, error)
-	// Retrieve similar chunks
-	SimilarityChunksSearch(context.Context, *SimilarityChunksSearchRequest) (*SimilarityChunksSearchResponse, error)
+	// View similar chunks
+	ViewChunks(context.Context, *ViewChunksRequest) (*ViewChunksResponse, error)
 	// Ask a question
 	QuestionAnswering(context.Context, *QuestionAnsweringRequest) (*QuestionAnsweringResponse, error)
 	// Get file catalog
@@ -330,8 +330,8 @@ func (UnimplementedArtifactPublicServiceServer) GetSourceFile(context.Context, *
 func (UnimplementedArtifactPublicServiceServer) UpdateChunk(context.Context, *UpdateChunkRequest) (*UpdateChunkResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateChunk not implemented")
 }
-func (UnimplementedArtifactPublicServiceServer) SimilarityChunksSearch(context.Context, *SimilarityChunksSearchRequest) (*SimilarityChunksSearchResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SimilarityChunksSearch not implemented")
+func (UnimplementedArtifactPublicServiceServer) ViewChunks(context.Context, *ViewChunksRequest) (*ViewChunksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ViewChunks not implemented")
 }
 func (UnimplementedArtifactPublicServiceServer) QuestionAnswering(context.Context, *QuestionAnsweringRequest) (*QuestionAnsweringResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method QuestionAnswering not implemented")
@@ -588,20 +588,20 @@ func _ArtifactPublicService_UpdateChunk_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPublicService_SimilarityChunksSearch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SimilarityChunksSearchRequest)
+func _ArtifactPublicService_ViewChunks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ViewChunksRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).SimilarityChunksSearch(ctx, in)
+		return srv.(ArtifactPublicServiceServer).ViewChunks(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPublicService_SimilarityChunksSearch_FullMethodName,
+		FullMethod: ArtifactPublicService_ViewChunks_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).SimilarityChunksSearch(ctx, req.(*SimilarityChunksSearchRequest))
+		return srv.(ArtifactPublicServiceServer).ViewChunks(ctx, req.(*ViewChunksRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -720,8 +720,8 @@ var ArtifactPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ArtifactPublicService_UpdateChunk_Handler,
 		},
 		{
-			MethodName: "SimilarityChunksSearch",
-			Handler:    _ArtifactPublicService_SimilarityChunksSearch_Handler,
+			MethodName: "ViewChunks",
+			Handler:    _ArtifactPublicService_ViewChunks_Handler,
 		},
 		{
 			MethodName: "QuestionAnswering",

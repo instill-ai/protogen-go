@@ -1055,22 +1055,22 @@ var _ interface {
 	ErrorName() string
 } = UpdateChunkResponseValidationError{}
 
-// Validate checks the field values on SimilarityChunksSearchRequest with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, the first error encountered is returned, or nil if there are no violations.
-func (m *SimilarityChunksSearchRequest) Validate() error {
+// Validate checks the field values on ViewChunksRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *ViewChunksRequest) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on SimilarityChunksSearchRequest with
-// the rules defined in the proto definition for this message. If any rules
-// are violated, the result is a list of violation errors wrapped in
-// SimilarityChunksSearchRequestMultiError, or nil if none found.
-func (m *SimilarityChunksSearchRequest) ValidateAll() error {
+// ValidateAll checks the field values on ViewChunksRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// ViewChunksRequestMultiError, or nil if none found.
+func (m *ViewChunksRequest) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *SimilarityChunksSearchRequest) validate(all bool) error {
+func (m *ViewChunksRequest) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -1086,19 +1086,19 @@ func (m *SimilarityChunksSearchRequest) validate(all bool) error {
 	// no validation rules for TopK
 
 	if len(errors) > 0 {
-		return SimilarityChunksSearchRequestMultiError(errors)
+		return ViewChunksRequestMultiError(errors)
 	}
 
 	return nil
 }
 
-// SimilarityChunksSearchRequestMultiError is an error wrapping multiple
-// validation errors returned by SimilarityChunksSearchRequest.ValidateAll()
-// if the designated constraints aren't met.
-type SimilarityChunksSearchRequestMultiError []error
+// ViewChunksRequestMultiError is an error wrapping multiple validation errors
+// returned by ViewChunksRequest.ValidateAll() if the designated constraints
+// aren't met.
+type ViewChunksRequestMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m SimilarityChunksSearchRequestMultiError) Error() string {
+func (m ViewChunksRequestMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -1107,12 +1107,11 @@ func (m SimilarityChunksSearchRequestMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m SimilarityChunksSearchRequestMultiError) AllErrors() []error { return m }
+func (m ViewChunksRequestMultiError) AllErrors() []error { return m }
 
-// SimilarityChunksSearchRequestValidationError is the validation error
-// returned by SimilarityChunksSearchRequest.Validate if the designated
-// constraints aren't met.
-type SimilarityChunksSearchRequestValidationError struct {
+// ViewChunksRequestValidationError is the validation error returned by
+// ViewChunksRequest.Validate if the designated constraints aren't met.
+type ViewChunksRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -1120,24 +1119,24 @@ type SimilarityChunksSearchRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e SimilarityChunksSearchRequestValidationError) Field() string { return e.field }
+func (e ViewChunksRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e SimilarityChunksSearchRequestValidationError) Reason() string { return e.reason }
+func (e ViewChunksRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e SimilarityChunksSearchRequestValidationError) Cause() error { return e.cause }
+func (e ViewChunksRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e SimilarityChunksSearchRequestValidationError) Key() bool { return e.key }
+func (e ViewChunksRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e SimilarityChunksSearchRequestValidationError) ErrorName() string {
-	return "SimilarityChunksSearchRequestValidationError"
+func (e ViewChunksRequestValidationError) ErrorName() string {
+	return "ViewChunksRequestValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e SimilarityChunksSearchRequestValidationError) Error() string {
+func (e ViewChunksRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -1149,14 +1148,14 @@ func (e SimilarityChunksSearchRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sSimilarityChunksSearchRequest.%s: %s%s",
+		"invalid %sViewChunksRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = SimilarityChunksSearchRequestValidationError{}
+var _ error = ViewChunksRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -1164,24 +1163,24 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = SimilarityChunksSearchRequestValidationError{}
+} = ViewChunksRequestValidationError{}
 
-// Validate checks the field values on SimilarityChunksSearchResponse with the
-// rules defined in the proto definition for this message. If any rules are
+// Validate checks the field values on ViewChunksResponse with the rules
+// defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.
-func (m *SimilarityChunksSearchResponse) Validate() error {
+func (m *ViewChunksResponse) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on SimilarityChunksSearchResponse with
-// the rules defined in the proto definition for this message. If any rules
-// are violated, the result is a list of violation errors wrapped in
-// SimilarityChunksSearchResponseMultiError, or nil if none found.
-func (m *SimilarityChunksSearchResponse) ValidateAll() error {
+// ValidateAll checks the field values on ViewChunksResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// ViewChunksResponseMultiError, or nil if none found.
+func (m *ViewChunksResponse) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *SimilarityChunksSearchResponse) validate(all bool) error {
+func (m *ViewChunksResponse) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -1195,7 +1194,7 @@ func (m *SimilarityChunksSearchResponse) validate(all bool) error {
 			switch v := interface{}(item).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, SimilarityChunksSearchResponseValidationError{
+					errors = append(errors, ViewChunksResponseValidationError{
 						field:  fmt.Sprintf("SimilarChunks[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -1203,7 +1202,7 @@ func (m *SimilarityChunksSearchResponse) validate(all bool) error {
 				}
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
-					errors = append(errors, SimilarityChunksSearchResponseValidationError{
+					errors = append(errors, ViewChunksResponseValidationError{
 						field:  fmt.Sprintf("SimilarChunks[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -1212,7 +1211,7 @@ func (m *SimilarityChunksSearchResponse) validate(all bool) error {
 			}
 		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return SimilarityChunksSearchResponseValidationError{
+				return ViewChunksResponseValidationError{
 					field:  fmt.Sprintf("SimilarChunks[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1223,19 +1222,19 @@ func (m *SimilarityChunksSearchResponse) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return SimilarityChunksSearchResponseMultiError(errors)
+		return ViewChunksResponseMultiError(errors)
 	}
 
 	return nil
 }
 
-// SimilarityChunksSearchResponseMultiError is an error wrapping multiple
-// validation errors returned by SimilarityChunksSearchResponse.ValidateAll()
-// if the designated constraints aren't met.
-type SimilarityChunksSearchResponseMultiError []error
+// ViewChunksResponseMultiError is an error wrapping multiple validation errors
+// returned by ViewChunksResponse.ValidateAll() if the designated constraints
+// aren't met.
+type ViewChunksResponseMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m SimilarityChunksSearchResponseMultiError) Error() string {
+func (m ViewChunksResponseMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -1244,12 +1243,11 @@ func (m SimilarityChunksSearchResponseMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m SimilarityChunksSearchResponseMultiError) AllErrors() []error { return m }
+func (m ViewChunksResponseMultiError) AllErrors() []error { return m }
 
-// SimilarityChunksSearchResponseValidationError is the validation error
-// returned by SimilarityChunksSearchResponse.Validate if the designated
-// constraints aren't met.
-type SimilarityChunksSearchResponseValidationError struct {
+// ViewChunksResponseValidationError is the validation error returned by
+// ViewChunksResponse.Validate if the designated constraints aren't met.
+type ViewChunksResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -1257,24 +1255,24 @@ type SimilarityChunksSearchResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e SimilarityChunksSearchResponseValidationError) Field() string { return e.field }
+func (e ViewChunksResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e SimilarityChunksSearchResponseValidationError) Reason() string { return e.reason }
+func (e ViewChunksResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e SimilarityChunksSearchResponseValidationError) Cause() error { return e.cause }
+func (e ViewChunksResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e SimilarityChunksSearchResponseValidationError) Key() bool { return e.key }
+func (e ViewChunksResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e SimilarityChunksSearchResponseValidationError) ErrorName() string {
-	return "SimilarityChunksSearchResponseValidationError"
+func (e ViewChunksResponseValidationError) ErrorName() string {
+	return "ViewChunksResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e SimilarityChunksSearchResponseValidationError) Error() string {
+func (e ViewChunksResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -1286,14 +1284,14 @@ func (e SimilarityChunksSearchResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sSimilarityChunksSearchResponse.%s: %s%s",
+		"invalid %sViewChunksResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = SimilarityChunksSearchResponseValidationError{}
+var _ error = ViewChunksResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -1301,7 +1299,7 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = SimilarityChunksSearchResponseValidationError{}
+} = ViewChunksResponseValidationError{}
 
 // Validate checks the field values on SimilarityChunk with the rules defined
 // in the proto definition for this message. If any rules are violated, the
