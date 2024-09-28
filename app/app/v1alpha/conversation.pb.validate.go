@@ -2456,7 +2456,9 @@ func (m *ChatRequest) validate(all bool) error {
 
 	// no validation rules for Message
 
-	// no validation rules for TopK
+	if m.TopK != nil {
+		// no validation rules for TopK
+	}
 
 	if len(errors) > 0 {
 		return ChatRequestMultiError(errors)
