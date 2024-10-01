@@ -91,7 +91,7 @@ type AppPublicServiceClient interface {
 	// Chat sends a message asynchronously and streams back the response.
 	// This method is intended for real-time conversation with a chatbot
 	// and the response needs to be processed incrementally.
-	Chat(ctx context.Context, in *ChatRequest, opts ...grpc.CallOption) (AppPublicService_ChatClient, error)
+	Chat(ctx context.Context, in *ChatRequest, opts ...grpc.CallOption) (*ChatResponse, error)
 }
 
 type appPublicServiceClient struct {
@@ -255,36 +255,13 @@ func (c *appPublicServiceClient) RestartPlaygroundConversation(ctx context.Conte
 	return out, nil
 }
 
-func (c *appPublicServiceClient) Chat(ctx context.Context, in *ChatRequest, opts ...grpc.CallOption) (AppPublicService_ChatClient, error) {
-	stream, err := c.cc.NewStream(ctx, &AppPublicService_ServiceDesc.Streams[0], AppPublicService_Chat_FullMethodName, opts...)
+func (c *appPublicServiceClient) Chat(ctx context.Context, in *ChatRequest, opts ...grpc.CallOption) (*ChatResponse, error) {
+	out := new(ChatResponse)
+	err := c.cc.Invoke(ctx, AppPublicService_Chat_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &appPublicServiceChatClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type AppPublicService_ChatClient interface {
-	Recv() (*ChatResponse, error)
-	grpc.ClientStream
-}
-
-type appPublicServiceChatClient struct {
-	grpc.ClientStream
-}
-
-func (x *appPublicServiceChatClient) Recv() (*ChatResponse, error) {
-	m := new(ChatResponse)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
+	return out, nil
 }
 
 // AppPublicServiceServer is the server API for AppPublicService service.
@@ -339,7 +316,7 @@ type AppPublicServiceServer interface {
 	// Chat sends a message asynchronously and streams back the response.
 	// This method is intended for real-time conversation with a chatbot
 	// and the response needs to be processed incrementally.
-	Chat(*ChatRequest, AppPublicService_ChatServer) error
+	Chat(context.Context, *ChatRequest) (*ChatResponse, error)
 }
 
 // UnimplementedAppPublicServiceServer should be embedded to have forward compatible implementations.
@@ -397,8 +374,8 @@ func (UnimplementedAppPublicServiceServer) GetPlaygroundConversation(context.Con
 func (UnimplementedAppPublicServiceServer) RestartPlaygroundConversation(context.Context, *RestartPlaygroundConversationRequest) (*RestartPlaygroundConversationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RestartPlaygroundConversation not implemented")
 }
-func (UnimplementedAppPublicServiceServer) Chat(*ChatRequest, AppPublicService_ChatServer) error {
-	return status.Errorf(codes.Unimplemented, "method Chat not implemented")
+func (UnimplementedAppPublicServiceServer) Chat(context.Context, *ChatRequest) (*ChatResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Chat not implemented")
 }
 
 // UnsafeAppPublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -718,25 +695,22 @@ func _AppPublicService_RestartPlaygroundConversation_Handler(srv interface{}, ct
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppPublicService_Chat_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(ChatRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
+func _AppPublicService_Chat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ChatRequest)
+	if err := dec(in); err != nil {
+		return nil, err
 	}
-	return srv.(AppPublicServiceServer).Chat(m, &appPublicServiceChatServer{stream})
-}
-
-type AppPublicService_ChatServer interface {
-	Send(*ChatResponse) error
-	grpc.ServerStream
-}
-
-type appPublicServiceChatServer struct {
-	grpc.ServerStream
-}
-
-func (x *appPublicServiceChatServer) Send(m *ChatResponse) error {
-	return x.ServerStream.SendMsg(m)
+	if interceptor == nil {
+		return srv.(AppPublicServiceServer).Chat(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AppPublicService_Chat_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppPublicServiceServer).Chat(ctx, req.(*ChatRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 // AppPublicService_ServiceDesc is the grpc.ServiceDesc for AppPublicService service.
@@ -814,13 +788,11 @@ var AppPublicService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "RestartPlaygroundConversation",
 			Handler:    _AppPublicService_RestartPlaygroundConversation_Handler,
 		},
-	},
-	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "Chat",
-			Handler:       _AppPublicService_Chat_Handler,
-			ServerStreams: true,
+			MethodName: "Chat",
+			Handler:    _AppPublicService_Chat_Handler,
 		},
 	},
+	Streams:  []grpc.StreamDesc{},
 	Metadata: "app/app/v1alpha/app_public_service.proto",
 }

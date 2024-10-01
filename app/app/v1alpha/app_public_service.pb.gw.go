@@ -1523,7 +1523,7 @@ func local_request_AppPublicService_RestartPlaygroundConversation_0(ctx context.
 
 }
 
-func request_AppPublicService_Chat_0(ctx context.Context, marshaler runtime.Marshaler, client AppPublicServiceClient, req *http.Request, pathParams map[string]string) (AppPublicService_ChatClient, runtime.ServerMetadata, error) {
+func request_AppPublicService_Chat_0(ctx context.Context, marshaler runtime.Marshaler, client AppPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ChatRequest
 	var metadata runtime.ServerMetadata
 
@@ -1562,16 +1562,52 @@ func request_AppPublicService_Chat_0(ctx context.Context, marshaler runtime.Mars
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "app_id", err)
 	}
 
-	stream, err := client.Chat(ctx, &protoReq)
-	if err != nil {
-		return nil, metadata, err
+	msg, err := client.Chat(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_AppPublicService_Chat_0(ctx context.Context, marshaler runtime.Marshaler, server AppPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ChatRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	header, err := stream.Header()
-	if err != nil {
-		return nil, metadata, err
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	metadata.HeaderMD = header
-	return stream, metadata, nil
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["namespace_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
+	}
+
+	protoReq.NamespaceId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
+	}
+
+	val, ok = pathParams["app_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "app_id")
+	}
+
+	protoReq.AppId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "app_id", err)
+	}
+
+	msg, err := server.Chat(ctx, &protoReq)
+	return msg, metadata, err
 
 }
 
@@ -2057,10 +2093,28 @@ func RegisterAppPublicServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 	})
 
 	mux.Handle("POST", pattern_AppPublicService_Chat_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
-		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-		return
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/app.app.v1alpha.AppPublicService/Chat", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/apps/{app_id}/chat"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_AppPublicService_Chat_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_AppPublicService_Chat_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
 	})
 
 	return nil
@@ -2528,7 +2582,7 @@ func RegisterAppPublicServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/app.app.v1alpha.AppPublicService/Chat", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/apps/{app_id}/chat-stream"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/app.app.v1alpha.AppPublicService/Chat", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/apps/{app_id}/chat"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2540,7 +2594,7 @@ func RegisterAppPublicServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 			return
 		}
 
-		forward_AppPublicService_Chat_0(annotatedContext, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
+		forward_AppPublicService_Chat_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -2586,7 +2640,7 @@ var (
 
 	pattern_AppPublicService_RestartPlaygroundConversation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 2, 6}, []string{"v1alpha", "namespaces", "namespace_id", "apps", "app_id", "ai_assistant_playground", "restart"}, ""))
 
-	pattern_AppPublicService_Chat_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "namespace_id", "apps", "app_id", "chat-stream"}, ""))
+	pattern_AppPublicService_Chat_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "namespace_id", "apps", "app_id", "chat"}, ""))
 )
 
 var (
@@ -2628,5 +2682,5 @@ var (
 
 	forward_AppPublicService_RestartPlaygroundConversation_0 = runtime.ForwardResponseMessage
 
-	forward_AppPublicService_Chat_0 = runtime.ForwardResponseStream
+	forward_AppPublicService_Chat_0 = runtime.ForwardResponseMessage
 )
