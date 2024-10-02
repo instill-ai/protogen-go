@@ -123,6 +123,14 @@ func (m *Conversation) validate(all bool) error {
 		}
 	}
 
+	if m.LastUsedCatalogUid != nil {
+		// no validation rules for LastUsedCatalogUid
+	}
+
+	if m.LastUsedTopK != nil {
+		// no validation rules for LastUsedTopK
+	}
+
 	if len(errors) > 0 {
 		return ConversationMultiError(errors)
 	}
@@ -893,7 +901,17 @@ func (m *UpdateConversationRequest) validate(all bool) error {
 
 	// no validation rules for ConversationId
 
-	// no validation rules for NewConversationId
+	if m.NewConversationId != nil {
+		// no validation rules for NewConversationId
+	}
+
+	if m.LastUsedCatalogUid != nil {
+		// no validation rules for LastUsedCatalogUid
+	}
+
+	if m.LastUsedTopK != nil {
+		// no validation rules for LastUsedTopK
+	}
 
 	if len(errors) > 0 {
 		return UpdateConversationRequestMultiError(errors)
