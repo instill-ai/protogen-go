@@ -19,24 +19,23 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	AppPublicService_Liveness_FullMethodName                       = "/app.app.v1alpha.AppPublicService/Liveness"
-	AppPublicService_Readiness_FullMethodName                      = "/app.app.v1alpha.AppPublicService/Readiness"
-	AppPublicService_CreateApp_FullMethodName                      = "/app.app.v1alpha.AppPublicService/CreateApp"
-	AppPublicService_ListApps_FullMethodName                       = "/app.app.v1alpha.AppPublicService/ListApps"
-	AppPublicService_UpdateApp_FullMethodName                      = "/app.app.v1alpha.AppPublicService/UpdateApp"
-	AppPublicService_DeleteApp_FullMethodName                      = "/app.app.v1alpha.AppPublicService/DeleteApp"
-	AppPublicService_CreateConversation_FullMethodName             = "/app.app.v1alpha.AppPublicService/CreateConversation"
-	AppPublicService_ListConversations_FullMethodName              = "/app.app.v1alpha.AppPublicService/ListConversations"
-	AppPublicService_UpdateConversation_FullMethodName             = "/app.app.v1alpha.AppPublicService/UpdateConversation"
-	AppPublicService_DeleteConversation_FullMethodName             = "/app.app.v1alpha.AppPublicService/DeleteConversation"
-	AppPublicService_CreateMessage_FullMethodName                  = "/app.app.v1alpha.AppPublicService/CreateMessage"
-	AppPublicService_ListMessages_FullMethodName                   = "/app.app.v1alpha.AppPublicService/ListMessages"
-	AppPublicService_UpdateMessage_FullMethodName                  = "/app.app.v1alpha.AppPublicService/UpdateMessage"
-	AppPublicService_DeleteMessage_FullMethodName                  = "/app.app.v1alpha.AppPublicService/DeleteMessage"
-	AppPublicService_UpdateAIAssistantAppPlayground_FullMethodName = "/app.app.v1alpha.AppPublicService/UpdateAIAssistantAppPlayground"
-	AppPublicService_GetPlaygroundConversation_FullMethodName      = "/app.app.v1alpha.AppPublicService/GetPlaygroundConversation"
-	AppPublicService_RestartPlaygroundConversation_FullMethodName  = "/app.app.v1alpha.AppPublicService/RestartPlaygroundConversation"
-	AppPublicService_Chat_FullMethodName                           = "/app.app.v1alpha.AppPublicService/Chat"
+	AppPublicService_Liveness_FullMethodName                      = "/app.app.v1alpha.AppPublicService/Liveness"
+	AppPublicService_Readiness_FullMethodName                     = "/app.app.v1alpha.AppPublicService/Readiness"
+	AppPublicService_CreateApp_FullMethodName                     = "/app.app.v1alpha.AppPublicService/CreateApp"
+	AppPublicService_ListApps_FullMethodName                      = "/app.app.v1alpha.AppPublicService/ListApps"
+	AppPublicService_UpdateApp_FullMethodName                     = "/app.app.v1alpha.AppPublicService/UpdateApp"
+	AppPublicService_DeleteApp_FullMethodName                     = "/app.app.v1alpha.AppPublicService/DeleteApp"
+	AppPublicService_CreateConversation_FullMethodName            = "/app.app.v1alpha.AppPublicService/CreateConversation"
+	AppPublicService_ListConversations_FullMethodName             = "/app.app.v1alpha.AppPublicService/ListConversations"
+	AppPublicService_UpdateConversation_FullMethodName            = "/app.app.v1alpha.AppPublicService/UpdateConversation"
+	AppPublicService_DeleteConversation_FullMethodName            = "/app.app.v1alpha.AppPublicService/DeleteConversation"
+	AppPublicService_CreateMessage_FullMethodName                 = "/app.app.v1alpha.AppPublicService/CreateMessage"
+	AppPublicService_ListMessages_FullMethodName                  = "/app.app.v1alpha.AppPublicService/ListMessages"
+	AppPublicService_UpdateMessage_FullMethodName                 = "/app.app.v1alpha.AppPublicService/UpdateMessage"
+	AppPublicService_DeleteMessage_FullMethodName                 = "/app.app.v1alpha.AppPublicService/DeleteMessage"
+	AppPublicService_GetPlaygroundConversation_FullMethodName     = "/app.app.v1alpha.AppPublicService/GetPlaygroundConversation"
+	AppPublicService_RestartPlaygroundConversation_FullMethodName = "/app.app.v1alpha.AppPublicService/RestartPlaygroundConversation"
+	AppPublicService_Chat_FullMethodName                          = "/app.app.v1alpha.AppPublicService/Chat"
 )
 
 // AppPublicServiceClient is the client API for AppPublicService service.
@@ -75,8 +74,6 @@ type AppPublicServiceClient interface {
 	UpdateMessage(ctx context.Context, in *UpdateMessageRequest, opts ...grpc.CallOption) (*UpdateMessageResponse, error)
 	// Delete a message
 	DeleteMessage(ctx context.Context, in *DeleteMessageRequest, opts ...grpc.CallOption) (*DeleteMessageResponse, error)
-	// Update AI assistant app playground
-	UpdateAIAssistantAppPlayground(ctx context.Context, in *UpdateAIAssistantAppPlaygroundRequest, opts ...grpc.CallOption) (*UpdateAIAssistantAppPlaygroundResponse, error)
 	// Get Playground Conversation
 	//
 	// get the latest conversation of auth user(e.g. login user and api key user)
@@ -228,15 +225,6 @@ func (c *appPublicServiceClient) DeleteMessage(ctx context.Context, in *DeleteMe
 	return out, nil
 }
 
-func (c *appPublicServiceClient) UpdateAIAssistantAppPlayground(ctx context.Context, in *UpdateAIAssistantAppPlaygroundRequest, opts ...grpc.CallOption) (*UpdateAIAssistantAppPlaygroundResponse, error) {
-	out := new(UpdateAIAssistantAppPlaygroundResponse)
-	err := c.cc.Invoke(ctx, AppPublicService_UpdateAIAssistantAppPlayground_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *appPublicServiceClient) GetPlaygroundConversation(ctx context.Context, in *GetPlaygroundConversationRequest, opts ...grpc.CallOption) (*GetPlaygroundConversationResponse, error) {
 	out := new(GetPlaygroundConversationResponse)
 	err := c.cc.Invoke(ctx, AppPublicService_GetPlaygroundConversation_FullMethodName, in, out, opts...)
@@ -300,8 +288,6 @@ type AppPublicServiceServer interface {
 	UpdateMessage(context.Context, *UpdateMessageRequest) (*UpdateMessageResponse, error)
 	// Delete a message
 	DeleteMessage(context.Context, *DeleteMessageRequest) (*DeleteMessageResponse, error)
-	// Update AI assistant app playground
-	UpdateAIAssistantAppPlayground(context.Context, *UpdateAIAssistantAppPlaygroundRequest) (*UpdateAIAssistantAppPlaygroundResponse, error)
 	// Get Playground Conversation
 	//
 	// get the latest conversation of auth user(e.g. login user and api key user)
@@ -364,9 +350,6 @@ func (UnimplementedAppPublicServiceServer) UpdateMessage(context.Context, *Updat
 }
 func (UnimplementedAppPublicServiceServer) DeleteMessage(context.Context, *DeleteMessageRequest) (*DeleteMessageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteMessage not implemented")
-}
-func (UnimplementedAppPublicServiceServer) UpdateAIAssistantAppPlayground(context.Context, *UpdateAIAssistantAppPlaygroundRequest) (*UpdateAIAssistantAppPlaygroundResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateAIAssistantAppPlayground not implemented")
 }
 func (UnimplementedAppPublicServiceServer) GetPlaygroundConversation(context.Context, *GetPlaygroundConversationRequest) (*GetPlaygroundConversationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPlaygroundConversation not implemented")
@@ -641,24 +624,6 @@ func _AppPublicService_DeleteMessage_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppPublicService_UpdateAIAssistantAppPlayground_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateAIAssistantAppPlaygroundRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppPublicServiceServer).UpdateAIAssistantAppPlayground(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AppPublicService_UpdateAIAssistantAppPlayground_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppPublicServiceServer).UpdateAIAssistantAppPlayground(ctx, req.(*UpdateAIAssistantAppPlaygroundRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _AppPublicService_GetPlaygroundConversation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetPlaygroundConversationRequest)
 	if err := dec(in); err != nil {
@@ -775,10 +740,6 @@ var AppPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteMessage",
 			Handler:    _AppPublicService_DeleteMessage_Handler,
-		},
-		{
-			MethodName: "UpdateAIAssistantAppPlayground",
-			Handler:    _AppPublicService_UpdateAIAssistantAppPlayground_Handler,
 		},
 		{
 			MethodName: "GetPlaygroundConversation",
