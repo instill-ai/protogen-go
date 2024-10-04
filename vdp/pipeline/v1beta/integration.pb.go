@@ -251,21 +251,18 @@ type ListNamespaceConnectionsRequest struct {
 
 	// Namespace ID.
 	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// The maximum number of items to return. The default and cap values are 10
-	// and 100, respectively.
+	// The maximum number of items to return. The default and cap values are 10 and 100, respectively.
 	PageSize *int32 `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
 	// Page token. By default, the first page will be returned.
 	PageToken *string `protobuf:"bytes,3,opt,name=page_token,json=pageToken,proto3,oneof" json:"page_token,omitempty"`
-	// Filter can hold an [AIP-160](https://google.aip.dev/160)-compliant filter
-	// expression.
+	// Filter can hold an [AIP-160](https://google.aip.dev/160)-compliant filter expression.
 	// The following filters are supported:
 	// - `integrationId`
 	// - `qConnection` (fuzzy search on connection ID, integration title or vendor)
-	// Examples:
-	// - List connections where app name, vendor or connection ID match `googl`:
-	// `q="googl"`.
-	// - List connections where the component type is `openai` (e.g. to setup a
-	// connector within a pipeline): `integration_id="openai"`.
+	//
+	// **Examples**:
+	// - List connections where app name, vendor or connection ID match `googl`: `q="googl"`.
+	// - List connections where the component type is `openai` (e.g. to setup a connector within a pipeline): `integrationId="openai"`.
 	Filter *string `protobuf:"bytes,4,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
 }
 
@@ -1099,13 +1096,11 @@ type ListPipelineIDsByConnectionIDRequest struct {
 	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
 	// Connection ID.
 	ConnectionId string `protobuf:"bytes,2,opt,name=connection_id,json=connectionId,proto3" json:"connection_id,omitempty"`
-	// The maximum number of items to return. The default and cap values are 10
-	// and 100, respectively.
+	// The maximum number of items to return. The default and cap values are 10 and 100, respectively.
 	PageSize *int32 `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
 	// Page token. By default, the first page will be returned.
 	PageToken *string `protobuf:"bytes,4,opt,name=page_token,json=pageToken,proto3,oneof" json:"page_token,omitempty"`
-	// Filter can hold an [AIP-160](https://google.aip.dev/160)-compliant filter
-	// expression.
+	// Filter can hold an [AIP-160](https://google.aip.dev/160)-compliant filter expression.
 	// The following filters are supported:
 	// - `q` (fuzzy search on pipeline ID)
 	Filter *string `protobuf:"bytes,5,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
@@ -1252,16 +1247,15 @@ type ListIntegrationsRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The maximum number of items to return. The default and cap values are 10
-	// and 100, respectively.
+	// The maximum number of items to return. The default and cap values are 10 and 100, respectively.
 	PageSize *int32 `protobuf:"varint,1,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
 	// Page token. By default, the first page will be returned.
 	PageToken *string `protobuf:"bytes,2,opt,name=page_token,json=pageToken,proto3,oneof" json:"page_token,omitempty"`
-	// Filter can hold an [AIP-160](https://google.aip.dev/160)-compliant filter
-	// expression.
+	// Filter can hold an [AIP-160](https://google.aip.dev/160)-compliant filter expression.
 	// The following filters are supported:
 	// - `qIntegration` (fuzzy search on title or vendor)
-	// Examples:
+	//
+	// **Examples**:
 	// - List integrations where app name or vendor match `googl`: `q="googl"`.
 	Filter *string `protobuf:"bytes,3,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
 }
