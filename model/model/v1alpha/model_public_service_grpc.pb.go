@@ -78,6 +78,7 @@ const (
 	ModelPublicService_GetUserLatestModelOperation_FullMethodName                 = "/model.model.v1alpha.ModelPublicService/GetUserLatestModelOperation"
 	ModelPublicService_GetOrganizationLatestModelOperation_FullMethodName         = "/model.model.v1alpha.ModelPublicService/GetOrganizationLatestModelOperation"
 	ModelPublicService_ListModelRuns_FullMethodName                               = "/model.model.v1alpha.ModelPublicService/ListModelRuns"
+	ModelPublicService_ListModelRunsByCreditOwner_FullMethodName                  = "/model.model.v1alpha.ModelPublicService/ListModelRunsByCreditOwner"
 )
 
 // ModelPublicServiceClient is the client API for ModelPublicService service.
@@ -426,6 +427,11 @@ type ModelPublicServiceClient interface {
 	//
 	// Returns a paginated list of model runs.
 	ListModelRuns(ctx context.Context, in *ListModelRunsRequest, opts ...grpc.CallOption) (*ListModelRunsResponse, error)
+	// List Model Runs of a Namespace (user or organization)
+	//
+	// Returns a paginated list of runs for 1 or more models. This is mainly used by credit dashboard.
+	// The requester can view all the runs that consumed their credits across different models.
+	ListModelRunsByCreditOwner(ctx context.Context, in *ListModelRunsByCreditOwnerRequest, opts ...grpc.CallOption) (*ListModelRunsByCreditOwnerResponse, error)
 }
 
 type modelPublicServiceClient struct {
@@ -1099,6 +1105,15 @@ func (c *modelPublicServiceClient) ListModelRuns(ctx context.Context, in *ListMo
 	return out, nil
 }
 
+func (c *modelPublicServiceClient) ListModelRunsByCreditOwner(ctx context.Context, in *ListModelRunsByCreditOwnerRequest, opts ...grpc.CallOption) (*ListModelRunsByCreditOwnerResponse, error) {
+	out := new(ListModelRunsByCreditOwnerResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_ListModelRunsByCreditOwner_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ModelPublicServiceServer is the server API for ModelPublicService service.
 // All implementations should embed UnimplementedModelPublicServiceServer
 // for forward compatibility
@@ -1445,6 +1460,11 @@ type ModelPublicServiceServer interface {
 	//
 	// Returns a paginated list of model runs.
 	ListModelRuns(context.Context, *ListModelRunsRequest) (*ListModelRunsResponse, error)
+	// List Model Runs of a Namespace (user or organization)
+	//
+	// Returns a paginated list of runs for 1 or more models. This is mainly used by credit dashboard.
+	// The requester can view all the runs that consumed their credits across different models.
+	ListModelRunsByCreditOwner(context.Context, *ListModelRunsByCreditOwnerRequest) (*ListModelRunsByCreditOwnerResponse, error)
 }
 
 // UnimplementedModelPublicServiceServer should be embedded to have forward compatible implementations.
@@ -1627,6 +1647,9 @@ func (UnimplementedModelPublicServiceServer) GetOrganizationLatestModelOperation
 }
 func (UnimplementedModelPublicServiceServer) ListModelRuns(context.Context, *ListModelRunsRequest) (*ListModelRunsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListModelRuns not implemented")
+}
+func (UnimplementedModelPublicServiceServer) ListModelRunsByCreditOwner(context.Context, *ListModelRunsByCreditOwnerRequest) (*ListModelRunsByCreditOwnerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListModelRunsByCreditOwner not implemented")
 }
 
 // UnsafeModelPublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -2734,6 +2757,24 @@ func _ModelPublicService_ListModelRuns_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ModelPublicService_ListModelRunsByCreditOwner_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListModelRunsByCreditOwnerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPublicServiceServer).ListModelRunsByCreditOwner(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPublicService_ListModelRunsByCreditOwner_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPublicServiceServer).ListModelRunsByCreditOwner(ctx, req.(*ListModelRunsByCreditOwnerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ModelPublicService_ServiceDesc is the grpc.ServiceDesc for ModelPublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2960,6 +3001,10 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListModelRuns",
 			Handler:    _ModelPublicService_ListModelRuns_Handler,
+		},
+		{
+			MethodName: "ListModelRunsByCreditOwner",
+			Handler:    _ModelPublicService_ListModelRunsByCreditOwner_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

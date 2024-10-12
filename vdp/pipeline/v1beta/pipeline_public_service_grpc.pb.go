@@ -107,6 +107,7 @@ const (
 	PipelinePublicService_DeleteOrganizationSecret_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteOrganizationSecret"
 	PipelinePublicService_ListPipelineRuns_FullMethodName                        = "/vdp.pipeline.v1beta.PipelinePublicService/ListPipelineRuns"
 	PipelinePublicService_ListComponentRuns_FullMethodName                       = "/vdp.pipeline.v1beta.PipelinePublicService/ListComponentRuns"
+	PipelinePublicService_ListPipelineRunsByCreditOwner_FullMethodName           = "/vdp.pipeline.v1beta.PipelinePublicService/ListPipelineRunsByCreditOwner"
 	PipelinePublicService_ListNamespaceConnections_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/ListNamespaceConnections"
 	PipelinePublicService_GetNamespaceConnection_FullMethodName                  = "/vdp.pipeline.v1beta.PipelinePublicService/GetNamespaceConnection"
 	PipelinePublicService_CreateNamespaceConnection_FullMethodName               = "/vdp.pipeline.v1beta.PipelinePublicService/CreateNamespaceConnection"
@@ -763,6 +764,11 @@ type PipelinePublicServiceClient interface {
 	//
 	// Returns the information of each component execution within a pipeline run.
 	ListComponentRuns(ctx context.Context, in *ListComponentRunsRequest, opts ...grpc.CallOption) (*ListComponentRunsResponse, error)
+	// List Pipeline Runs of a Namespace (user or organization)
+	//
+	// Returns a paginated list of runs for 1 or more pipelines. This is mainly used by credit dashboard.
+	// The requester can view all the runs that consumed their credits across different pipelines.
+	ListPipelineRunsByCreditOwner(ctx context.Context, in *ListPipelineRunsByCreditOwnerRequest, opts ...grpc.CallOption) (*ListPipelineRunsByCreditOwnerResponse, error)
 	// List namespace connections
 	//
 	// Returns a paginated list of connections created by a namespace.
@@ -1731,6 +1737,15 @@ func (c *pipelinePublicServiceClient) ListComponentRuns(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *pipelinePublicServiceClient) ListPipelineRunsByCreditOwner(ctx context.Context, in *ListPipelineRunsByCreditOwnerRequest, opts ...grpc.CallOption) (*ListPipelineRunsByCreditOwnerResponse, error) {
+	out := new(ListPipelineRunsByCreditOwnerResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ListPipelineRunsByCreditOwner_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *pipelinePublicServiceClient) ListNamespaceConnections(ctx context.Context, in *ListNamespaceConnectionsRequest, opts ...grpc.CallOption) (*ListNamespaceConnectionsResponse, error) {
 	out := new(ListNamespaceConnectionsResponse)
 	err := c.cc.Invoke(ctx, PipelinePublicService_ListNamespaceConnections_FullMethodName, in, out, opts...)
@@ -2457,6 +2472,11 @@ type PipelinePublicServiceServer interface {
 	//
 	// Returns the information of each component execution within a pipeline run.
 	ListComponentRuns(context.Context, *ListComponentRunsRequest) (*ListComponentRunsResponse, error)
+	// List Pipeline Runs of a Namespace (user or organization)
+	//
+	// Returns a paginated list of runs for 1 or more pipelines. This is mainly used by credit dashboard.
+	// The requester can view all the runs that consumed their credits across different pipelines.
+	ListPipelineRunsByCreditOwner(context.Context, *ListPipelineRunsByCreditOwnerRequest) (*ListPipelineRunsByCreditOwnerResponse, error)
 	// List namespace connections
 	//
 	// Returns a paginated list of connections created by a namespace.
@@ -2770,6 +2790,9 @@ func (UnimplementedPipelinePublicServiceServer) ListPipelineRuns(context.Context
 }
 func (UnimplementedPipelinePublicServiceServer) ListComponentRuns(context.Context, *ListComponentRunsRequest) (*ListComponentRunsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListComponentRuns not implemented")
+}
+func (UnimplementedPipelinePublicServiceServer) ListPipelineRunsByCreditOwner(context.Context, *ListPipelineRunsByCreditOwnerRequest) (*ListPipelineRunsByCreditOwnerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineRunsByCreditOwner not implemented")
 }
 func (UnimplementedPipelinePublicServiceServer) ListNamespaceConnections(context.Context, *ListNamespaceConnectionsRequest) (*ListNamespaceConnectionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListNamespaceConnections not implemented")
@@ -4403,6 +4426,24 @@ func _PipelinePublicService_ListComponentRuns_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PipelinePublicService_ListPipelineRunsByCreditOwner_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListPipelineRunsByCreditOwnerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).ListPipelineRunsByCreditOwner(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_ListPipelineRunsByCreditOwner_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).ListPipelineRunsByCreditOwner(ctx, req.(*ListPipelineRunsByCreditOwnerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PipelinePublicService_ListNamespaceConnections_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListNamespaceConnectionsRequest)
 	if err := dec(in); err != nil {
@@ -4911,6 +4952,10 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListComponentRuns",
 			Handler:    _PipelinePublicService_ListComponentRuns_Handler,
+		},
+		{
+			MethodName: "ListPipelineRunsByCreditOwner",
+			Handler:    _PipelinePublicService_ListPipelineRunsByCreditOwner_Handler,
 		},
 		{
 			MethodName: "ListNamespaceConnections",
