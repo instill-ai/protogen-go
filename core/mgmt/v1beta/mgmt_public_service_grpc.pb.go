@@ -48,7 +48,6 @@ const (
 	MgmtPublicService_GetRemainingCredit_FullMethodName                = "/core.mgmt.v1beta.MgmtPublicService/GetRemainingCredit"
 	MgmtPublicService_CheckNamespace_FullMethodName                    = "/core.mgmt.v1beta.MgmtPublicService/CheckNamespace"
 	MgmtPublicService_GetPipelineTriggerCount_FullMethodName           = "/core.mgmt.v1beta.MgmtPublicService/GetPipelineTriggerCount"
-	MgmtPublicService_ListPipelineTriggerTableRecords_FullMethodName   = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerTableRecords"
 	MgmtPublicService_ListPipelineTriggerChartRecords_FullMethodName   = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerChartRecords"
 	MgmtPublicService_ListCreditConsumptionChartRecords_FullMethodName = "/core.mgmt.v1beta.MgmtPublicService/ListCreditConsumptionChartRecords"
 	MgmtPublicService_AuthTokenIssuer_FullMethodName                   = "/core.mgmt.v1beta.MgmtPublicService/AuthTokenIssuer"
@@ -191,17 +190,11 @@ type MgmtPublicServiceClient interface {
 	// Returns the pipeline trigger count of a given requester within a timespan.
 	// Results are grouped by trigger status.
 	GetPipelineTriggerCount(ctx context.Context, in *GetPipelineTriggerCountRequest, opts ...grpc.CallOption) (*GetPipelineTriggerCountResponse, error)
-	// Deprecated: Do not use.
-	// List pipeline trigger metrics
-	//
-	// Returns a paginated list of pipeline executions aggregated by pipeline ID.
-	// NOTE: This method is deprecated and will be retired soon.
-	ListPipelineTriggerTableRecords(ctx context.Context, in *ListPipelineTriggerTableRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerTableRecordsResponse, error)
 	// List pipeline trigger time charts
 	//
-	// Returns a timeline of pipline trigger counts for the pipelines of a given
-	// owner.
-	// NOTE: This method will soon return the trigger counts of a given requester.
+	// Returns a timeline of pipline trigger counts for a given requester. The
+	// response will contain one set of records (datapoints), representing the
+	// amount of triggers in a time bucket.
 	ListPipelineTriggerChartRecords(ctx context.Context, in *ListPipelineTriggerChartRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerChartRecordsResponse, error)
 	// List Instill Credit consumption time charts
 	//
@@ -501,16 +494,6 @@ func (c *mgmtPublicServiceClient) GetPipelineTriggerCount(ctx context.Context, i
 	return out, nil
 }
 
-// Deprecated: Do not use.
-func (c *mgmtPublicServiceClient) ListPipelineTriggerTableRecords(ctx context.Context, in *ListPipelineTriggerTableRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerTableRecordsResponse, error) {
-	out := new(ListPipelineTriggerTableRecordsResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_ListPipelineTriggerTableRecords_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *mgmtPublicServiceClient) ListPipelineTriggerChartRecords(ctx context.Context, in *ListPipelineTriggerChartRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerChartRecordsResponse, error) {
 	out := new(ListPipelineTriggerChartRecordsResponse)
 	err := c.cc.Invoke(ctx, MgmtPublicService_ListPipelineTriggerChartRecords_FullMethodName, in, out, opts...)
@@ -707,17 +690,11 @@ type MgmtPublicServiceServer interface {
 	// Returns the pipeline trigger count of a given requester within a timespan.
 	// Results are grouped by trigger status.
 	GetPipelineTriggerCount(context.Context, *GetPipelineTriggerCountRequest) (*GetPipelineTriggerCountResponse, error)
-	// Deprecated: Do not use.
-	// List pipeline trigger metrics
-	//
-	// Returns a paginated list of pipeline executions aggregated by pipeline ID.
-	// NOTE: This method is deprecated and will be retired soon.
-	ListPipelineTriggerTableRecords(context.Context, *ListPipelineTriggerTableRecordsRequest) (*ListPipelineTriggerTableRecordsResponse, error)
 	// List pipeline trigger time charts
 	//
-	// Returns a timeline of pipline trigger counts for the pipelines of a given
-	// owner.
-	// NOTE: This method will soon return the trigger counts of a given requester.
+	// Returns a timeline of pipline trigger counts for a given requester. The
+	// response will contain one set of records (datapoints), representing the
+	// amount of triggers in a time bucket.
 	ListPipelineTriggerChartRecords(context.Context, *ListPipelineTriggerChartRecordsRequest) (*ListPipelineTriggerChartRecordsResponse, error)
 	// List Instill Credit consumption time charts
 	//
@@ -838,9 +815,6 @@ func (UnimplementedMgmtPublicServiceServer) CheckNamespace(context.Context, *Che
 }
 func (UnimplementedMgmtPublicServiceServer) GetPipelineTriggerCount(context.Context, *GetPipelineTriggerCountRequest) (*GetPipelineTriggerCountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPipelineTriggerCount not implemented")
-}
-func (UnimplementedMgmtPublicServiceServer) ListPipelineTriggerTableRecords(context.Context, *ListPipelineTriggerTableRecordsRequest) (*ListPipelineTriggerTableRecordsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineTriggerTableRecords not implemented")
 }
 func (UnimplementedMgmtPublicServiceServer) ListPipelineTriggerChartRecords(context.Context, *ListPipelineTriggerChartRecordsRequest) (*ListPipelineTriggerChartRecordsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineTriggerChartRecords not implemented")
@@ -1397,24 +1371,6 @@ func _MgmtPublicService_GetPipelineTriggerCount_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MgmtPublicService_ListPipelineTriggerTableRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListPipelineTriggerTableRecordsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).ListPipelineTriggerTableRecords(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_ListPipelineTriggerTableRecords_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).ListPipelineTriggerTableRecords(ctx, req.(*ListPipelineTriggerTableRecordsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _MgmtPublicService_ListPipelineTriggerChartRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListPipelineTriggerChartRecordsRequest)
 	if err := dec(in); err != nil {
@@ -1663,10 +1619,6 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPipelineTriggerCount",
 			Handler:    _MgmtPublicService_GetPipelineTriggerCount_Handler,
-		},
-		{
-			MethodName: "ListPipelineTriggerTableRecords",
-			Handler:    _MgmtPublicService_ListPipelineTriggerTableRecords_Handler,
 		},
 		{
 			MethodName: "ListPipelineTriggerChartRecords",
