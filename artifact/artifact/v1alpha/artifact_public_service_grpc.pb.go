@@ -36,6 +36,8 @@ const (
 	ArtifactPublicService_QuestionAnswering_FullMethodName      = "/artifact.artifact.v1alpha.ArtifactPublicService/QuestionAnswering"
 	ArtifactPublicService_GetFileCatalog_FullMethodName         = "/artifact.artifact.v1alpha.ArtifactPublicService/GetFileCatalog"
 	ArtifactPublicService_ListCatalogRuns_FullMethodName        = "/artifact.artifact.v1alpha.ArtifactPublicService/ListCatalogRuns"
+	ArtifactPublicService_GetObjectUploadURL_FullMethodName     = "/artifact.artifact.v1alpha.ArtifactPublicService/GetObjectUploadURL"
+	ArtifactPublicService_GetObjectDownloadURL_FullMethodName   = "/artifact.artifact.v1alpha.ArtifactPublicService/GetObjectDownloadURL"
 )
 
 // ArtifactPublicServiceClient is the client API for ArtifactPublicService service.
@@ -80,6 +82,10 @@ type ArtifactPublicServiceClient interface {
 	GetFileCatalog(ctx context.Context, in *GetFileCatalogRequest, opts ...grpc.CallOption) (*GetFileCatalogResponse, error)
 	// List Catalog Runs
 	ListCatalogRuns(ctx context.Context, in *ListCatalogRunsRequest, opts ...grpc.CallOption) (*ListCatalogRunsResponse, error)
+	// Get Object Upload URL
+	GetObjectUploadURL(ctx context.Context, in *GetObjectUploadURLRequest, opts ...grpc.CallOption) (*GetObjectUploadURLResponse, error)
+	// Get Object Download URL
+	GetObjectDownloadURL(ctx context.Context, in *GetObjectDownloadURLRequest, opts ...grpc.CallOption) (*GetObjectDownloadURLResponse, error)
 }
 
 type artifactPublicServiceClient struct {
@@ -243,6 +249,24 @@ func (c *artifactPublicServiceClient) ListCatalogRuns(ctx context.Context, in *L
 	return out, nil
 }
 
+func (c *artifactPublicServiceClient) GetObjectUploadURL(ctx context.Context, in *GetObjectUploadURLRequest, opts ...grpc.CallOption) (*GetObjectUploadURLResponse, error) {
+	out := new(GetObjectUploadURLResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_GetObjectUploadURL_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPublicServiceClient) GetObjectDownloadURL(ctx context.Context, in *GetObjectDownloadURLRequest, opts ...grpc.CallOption) (*GetObjectDownloadURLResponse, error) {
+	out := new(GetObjectDownloadURLResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_GetObjectDownloadURL_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ArtifactPublicServiceServer is the server API for ArtifactPublicService service.
 // All implementations should embed UnimplementedArtifactPublicServiceServer
 // for forward compatibility
@@ -285,6 +309,10 @@ type ArtifactPublicServiceServer interface {
 	GetFileCatalog(context.Context, *GetFileCatalogRequest) (*GetFileCatalogResponse, error)
 	// List Catalog Runs
 	ListCatalogRuns(context.Context, *ListCatalogRunsRequest) (*ListCatalogRunsResponse, error)
+	// Get Object Upload URL
+	GetObjectUploadURL(context.Context, *GetObjectUploadURLRequest) (*GetObjectUploadURLResponse, error)
+	// Get Object Download URL
+	GetObjectDownloadURL(context.Context, *GetObjectDownloadURLRequest) (*GetObjectDownloadURLResponse, error)
 }
 
 // UnimplementedArtifactPublicServiceServer should be embedded to have forward compatible implementations.
@@ -341,6 +369,12 @@ func (UnimplementedArtifactPublicServiceServer) GetFileCatalog(context.Context, 
 }
 func (UnimplementedArtifactPublicServiceServer) ListCatalogRuns(context.Context, *ListCatalogRunsRequest) (*ListCatalogRunsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListCatalogRuns not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) GetObjectUploadURL(context.Context, *GetObjectUploadURLRequest) (*GetObjectUploadURLResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetObjectUploadURL not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) GetObjectDownloadURL(context.Context, *GetObjectDownloadURLRequest) (*GetObjectDownloadURLResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetObjectDownloadURL not implemented")
 }
 
 // UnsafeArtifactPublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -660,6 +694,42 @@ func _ArtifactPublicService_ListCatalogRuns_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArtifactPublicService_GetObjectUploadURL_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetObjectUploadURLRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).GetObjectUploadURL(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_GetObjectUploadURL_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).GetObjectUploadURL(ctx, req.(*GetObjectUploadURLRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPublicService_GetObjectDownloadURL_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetObjectDownloadURLRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).GetObjectDownloadURL(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_GetObjectDownloadURL_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).GetObjectDownloadURL(ctx, req.(*GetObjectDownloadURLRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ArtifactPublicService_ServiceDesc is the grpc.ServiceDesc for ArtifactPublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -734,6 +804,14 @@ var ArtifactPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListCatalogRuns",
 			Handler:    _ArtifactPublicService_ListCatalogRuns_Handler,
+		},
+		{
+			MethodName: "GetObjectUploadURL",
+			Handler:    _ArtifactPublicService_GetObjectUploadURL_Handler,
+		},
+		{
+			MethodName: "GetObjectDownloadURL",
+			Handler:    _ArtifactPublicService_GetObjectDownloadURL_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
