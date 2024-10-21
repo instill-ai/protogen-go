@@ -23,6 +23,7 @@ const (
 	ArtifactPrivateService_GetRepositoryTag_FullMethodName    = "/artifact.artifact.v1alpha.ArtifactPrivateService/GetRepositoryTag"
 	ArtifactPrivateService_CreateRepositoryTag_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPrivateService/CreateRepositoryTag"
 	ArtifactPrivateService_DeleteRepositoryTag_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPrivateService/DeleteRepositoryTag"
+	ArtifactPrivateService_GetObjectURL_FullMethodName        = "/artifact.artifact.v1alpha.ArtifactPrivateService/GetObjectURL"
 )
 
 // ArtifactPrivateServiceClient is the client API for ArtifactPrivateService service.
@@ -46,6 +47,8 @@ type ArtifactPrivateServiceClient interface {
 	CreateRepositoryTag(ctx context.Context, in *CreateRepositoryTagRequest, opts ...grpc.CallOption) (*CreateRepositoryTagResponse, error)
 	// Delete a repository tag.
 	DeleteRepositoryTag(ctx context.Context, in *DeleteRepositoryTagRequest, opts ...grpc.CallOption) (*DeleteRepositoryTagResponse, error)
+	// Get Object Upload URL
+	GetObjectURL(ctx context.Context, in *GetObjectURLRequest, opts ...grpc.CallOption) (*GetObjectURLResponse, error)
 }
 
 type artifactPrivateServiceClient struct {
@@ -92,6 +95,15 @@ func (c *artifactPrivateServiceClient) DeleteRepositoryTag(ctx context.Context, 
 	return out, nil
 }
 
+func (c *artifactPrivateServiceClient) GetObjectURL(ctx context.Context, in *GetObjectURLRequest, opts ...grpc.CallOption) (*GetObjectURLResponse, error) {
+	out := new(GetObjectURLResponse)
+	err := c.cc.Invoke(ctx, ArtifactPrivateService_GetObjectURL_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ArtifactPrivateServiceServer is the server API for ArtifactPrivateService service.
 // All implementations should embed UnimplementedArtifactPrivateServiceServer
 // for forward compatibility
@@ -113,6 +125,8 @@ type ArtifactPrivateServiceServer interface {
 	CreateRepositoryTag(context.Context, *CreateRepositoryTagRequest) (*CreateRepositoryTagResponse, error)
 	// Delete a repository tag.
 	DeleteRepositoryTag(context.Context, *DeleteRepositoryTagRequest) (*DeleteRepositoryTagResponse, error)
+	// Get Object Upload URL
+	GetObjectURL(context.Context, *GetObjectURLRequest) (*GetObjectURLResponse, error)
 }
 
 // UnimplementedArtifactPrivateServiceServer should be embedded to have forward compatible implementations.
@@ -130,6 +144,9 @@ func (UnimplementedArtifactPrivateServiceServer) CreateRepositoryTag(context.Con
 }
 func (UnimplementedArtifactPrivateServiceServer) DeleteRepositoryTag(context.Context, *DeleteRepositoryTagRequest) (*DeleteRepositoryTagResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteRepositoryTag not implemented")
+}
+func (UnimplementedArtifactPrivateServiceServer) GetObjectURL(context.Context, *GetObjectURLRequest) (*GetObjectURLResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetObjectURL not implemented")
 }
 
 // UnsafeArtifactPrivateServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -215,6 +232,24 @@ func _ArtifactPrivateService_DeleteRepositoryTag_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArtifactPrivateService_GetObjectURL_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetObjectURLRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPrivateServiceServer).GetObjectURL(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPrivateService_GetObjectURL_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPrivateServiceServer).GetObjectURL(ctx, req.(*GetObjectURLRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ArtifactPrivateService_ServiceDesc is the grpc.ServiceDesc for ArtifactPrivateService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -237,6 +272,10 @@ var ArtifactPrivateService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteRepositoryTag",
 			Handler:    _ArtifactPrivateService_DeleteRepositoryTag_Handler,
+		},
+		{
+			MethodName: "GetObjectURL",
+			Handler:    _ArtifactPrivateService_GetObjectURL_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
