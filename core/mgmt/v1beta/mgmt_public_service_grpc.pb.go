@@ -47,6 +47,7 @@ const (
 	MgmtPublicService_ValidateToken_FullMethodName                     = "/core.mgmt.v1beta.MgmtPublicService/ValidateToken"
 	MgmtPublicService_GetRemainingCredit_FullMethodName                = "/core.mgmt.v1beta.MgmtPublicService/GetRemainingCredit"
 	MgmtPublicService_CheckNamespace_FullMethodName                    = "/core.mgmt.v1beta.MgmtPublicService/CheckNamespace"
+	MgmtPublicService_ListPipelineTriggerRecords_FullMethodName        = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerRecords"
 	MgmtPublicService_GetPipelineTriggerCount_FullMethodName           = "/core.mgmt.v1beta.MgmtPublicService/GetPipelineTriggerCount"
 	MgmtPublicService_ListPipelineTriggerTableRecords_FullMethodName   = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerTableRecords"
 	MgmtPublicService_ListPipelineTriggerChartRecords_FullMethodName   = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerChartRecords"
@@ -186,6 +187,10 @@ type MgmtPublicServiceClient interface {
 	// Returns the availability of a namespace or, alternatively, the type of
 	// resource that is using it.
 	CheckNamespace(ctx context.Context, in *CheckNamespaceRequest, opts ...grpc.CallOption) (*CheckNamespaceResponse, error)
+	// List pipeline triggers
+	//
+	// Returns a paginated list of pipeline executions.
+	ListPipelineTriggerRecords(ctx context.Context, in *ListPipelineTriggerRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerRecordsResponse, error)
 	// Get pipeline trigger count
 	//
 	// Returns the pipeline trigger count of a given requester within a timespan.
@@ -492,6 +497,15 @@ func (c *mgmtPublicServiceClient) CheckNamespace(ctx context.Context, in *CheckN
 	return out, nil
 }
 
+func (c *mgmtPublicServiceClient) ListPipelineTriggerRecords(ctx context.Context, in *ListPipelineTriggerRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerRecordsResponse, error) {
+	out := new(ListPipelineTriggerRecordsResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_ListPipelineTriggerRecords_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *mgmtPublicServiceClient) GetPipelineTriggerCount(ctx context.Context, in *GetPipelineTriggerCountRequest, opts ...grpc.CallOption) (*GetPipelineTriggerCountResponse, error) {
 	out := new(GetPipelineTriggerCountResponse)
 	err := c.cc.Invoke(ctx, MgmtPublicService_GetPipelineTriggerCount_FullMethodName, in, out, opts...)
@@ -702,6 +716,10 @@ type MgmtPublicServiceServer interface {
 	// Returns the availability of a namespace or, alternatively, the type of
 	// resource that is using it.
 	CheckNamespace(context.Context, *CheckNamespaceRequest) (*CheckNamespaceResponse, error)
+	// List pipeline triggers
+	//
+	// Returns a paginated list of pipeline executions.
+	ListPipelineTriggerRecords(context.Context, *ListPipelineTriggerRecordsRequest) (*ListPipelineTriggerRecordsResponse, error)
 	// Get pipeline trigger count
 	//
 	// Returns the pipeline trigger count of a given requester within a timespan.
@@ -835,6 +853,9 @@ func (UnimplementedMgmtPublicServiceServer) GetRemainingCredit(context.Context, 
 }
 func (UnimplementedMgmtPublicServiceServer) CheckNamespace(context.Context, *CheckNamespaceRequest) (*CheckNamespaceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckNamespace not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) ListPipelineTriggerRecords(context.Context, *ListPipelineTriggerRecordsRequest) (*ListPipelineTriggerRecordsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineTriggerRecords not implemented")
 }
 func (UnimplementedMgmtPublicServiceServer) GetPipelineTriggerCount(context.Context, *GetPipelineTriggerCountRequest) (*GetPipelineTriggerCountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPipelineTriggerCount not implemented")
@@ -1379,6 +1400,24 @@ func _MgmtPublicService_CheckNamespace_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MgmtPublicService_ListPipelineTriggerRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListPipelineTriggerRecordsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).ListPipelineTriggerRecords(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_ListPipelineTriggerRecords_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).ListPipelineTriggerRecords(ctx, req.(*ListPipelineTriggerRecordsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _MgmtPublicService_GetPipelineTriggerCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetPipelineTriggerCountRequest)
 	if err := dec(in); err != nil {
@@ -1659,6 +1698,10 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CheckNamespace",
 			Handler:    _MgmtPublicService_CheckNamespace_Handler,
+		},
+		{
+			MethodName: "ListPipelineTriggerRecords",
+			Handler:    _MgmtPublicService_ListPipelineTriggerRecords_Handler,
 		},
 		{
 			MethodName: "GetPipelineTriggerCount",
