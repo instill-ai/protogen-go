@@ -50,38 +50,62 @@ type AppPublicServiceClient interface {
 	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error)
-	// Create a app
+	// Create an app
+	//
+	// Creates an app.
 	CreateApp(ctx context.Context, in *CreateAppRequest, opts ...grpc.CallOption) (*CreateAppResponse, error)
 	// List all apps info
+	//
+	// Returns a paginated list of apps.
 	ListApps(ctx context.Context, in *ListAppsRequest, opts ...grpc.CallOption) (*ListAppsResponse, error)
 	// Update a app info
+	//
+	// Updates the information of an app.
 	UpdateApp(ctx context.Context, in *UpdateAppRequest, opts ...grpc.CallOption) (*UpdateAppResponse, error)
 	// Delete a app
+	//
+	// Deletes an app.
 	DeleteApp(ctx context.Context, in *DeleteAppRequest, opts ...grpc.CallOption) (*DeleteAppResponse, error)
-	// Create a Conversation
+	// Create a conversation
+	//
+	// Creates a conversation.
 	CreateConversation(ctx context.Context, in *CreateConversationRequest, opts ...grpc.CallOption) (*CreateConversationResponse, error)
 	// List conversations
+	//
+	// Returns a paginated list of conversations.
 	ListConversations(ctx context.Context, in *ListConversationsRequest, opts ...grpc.CallOption) (*ListConversationsResponse, error)
 	// Update a conversation
+	//
+	// Updates a conversation.
 	UpdateConversation(ctx context.Context, in *UpdateConversationRequest, opts ...grpc.CallOption) (*UpdateConversationResponse, error)
 	// Delete a conversation
+	//
+	// Deletes a conversation.
 	DeleteConversation(ctx context.Context, in *DeleteConversationRequest, opts ...grpc.CallOption) (*DeleteConversationResponse, error)
 	// Create a message
+	//
+	// Creates a message.
 	CreateMessage(ctx context.Context, in *CreateMessageRequest, opts ...grpc.CallOption) (*CreateMessageResponse, error)
 	// List messages
+	//
+	// Returns a paginated list of messages.
 	ListMessages(ctx context.Context, in *ListMessagesRequest, opts ...grpc.CallOption) (*ListMessagesResponse, error)
 	// Update a message
+	//
+	// Updates a message.
 	UpdateMessage(ctx context.Context, in *UpdateMessageRequest, opts ...grpc.CallOption) (*UpdateMessageResponse, error)
 	// Delete a message
+	//
+	// Deletes a message.
 	DeleteMessage(ctx context.Context, in *DeleteMessageRequest, opts ...grpc.CallOption) (*DeleteMessageResponse, error)
 	// Get Playground Conversation
 	//
-	// get the latest conversation of auth user(e.g. login user and api key user)
+	// Returns the latest conversation of auth user(e.g. login user and api key user).
 	GetPlaygroundConversation(ctx context.Context, in *GetPlaygroundConversationRequest, opts ...grpc.CallOption) (*GetPlaygroundConversationResponse, error)
 	// Restart Playground Conversation
 	//
-	// create a new conversation and use the auth user uid as creator uid and auto
-	// generate a new conversation id on the behalf of auth user.
+	// Creates a new conversation and uses the auth user UID as creator UID and
+	// auto-generates a new conversation ID on the behalf of auth user.
 	RestartPlaygroundConversation(ctx context.Context, in *RestartPlaygroundConversationRequest, opts ...grpc.CallOption) (*RestartPlaygroundConversationResponse, error)
 	// Chat
 	//
@@ -264,38 +288,62 @@ type AppPublicServiceServer interface {
 	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error)
-	// Create a app
+	// Create an app
+	//
+	// Creates an app.
 	CreateApp(context.Context, *CreateAppRequest) (*CreateAppResponse, error)
 	// List all apps info
+	//
+	// Returns a paginated list of apps.
 	ListApps(context.Context, *ListAppsRequest) (*ListAppsResponse, error)
 	// Update a app info
+	//
+	// Updates the information of an app.
 	UpdateApp(context.Context, *UpdateAppRequest) (*UpdateAppResponse, error)
 	// Delete a app
+	//
+	// Deletes an app.
 	DeleteApp(context.Context, *DeleteAppRequest) (*DeleteAppResponse, error)
-	// Create a Conversation
+	// Create a conversation
+	//
+	// Creates a conversation.
 	CreateConversation(context.Context, *CreateConversationRequest) (*CreateConversationResponse, error)
 	// List conversations
+	//
+	// Returns a paginated list of conversations.
 	ListConversations(context.Context, *ListConversationsRequest) (*ListConversationsResponse, error)
 	// Update a conversation
+	//
+	// Updates a conversation.
 	UpdateConversation(context.Context, *UpdateConversationRequest) (*UpdateConversationResponse, error)
 	// Delete a conversation
+	//
+	// Deletes a conversation.
 	DeleteConversation(context.Context, *DeleteConversationRequest) (*DeleteConversationResponse, error)
 	// Create a message
+	//
+	// Creates a message.
 	CreateMessage(context.Context, *CreateMessageRequest) (*CreateMessageResponse, error)
 	// List messages
+	//
+	// Returns a paginated list of messages.
 	ListMessages(context.Context, *ListMessagesRequest) (*ListMessagesResponse, error)
 	// Update a message
+	//
+	// Updates a message.
 	UpdateMessage(context.Context, *UpdateMessageRequest) (*UpdateMessageResponse, error)
 	// Delete a message
+	//
+	// Deletes a message.
 	DeleteMessage(context.Context, *DeleteMessageRequest) (*DeleteMessageResponse, error)
 	// Get Playground Conversation
 	//
-	// get the latest conversation of auth user(e.g. login user and api key user)
+	// Returns the latest conversation of auth user(e.g. login user and api key user).
 	GetPlaygroundConversation(context.Context, *GetPlaygroundConversationRequest) (*GetPlaygroundConversationResponse, error)
 	// Restart Playground Conversation
 	//
-	// create a new conversation and use the auth user uid as creator uid and auto
-	// generate a new conversation id on the behalf of auth user.
+	// Creates a new conversation and uses the auth user UID as creator UID and
+	// auto-generates a new conversation ID on the behalf of auth user.
 	RestartPlaygroundConversation(context.Context, *RestartPlaygroundConversationRequest) (*RestartPlaygroundConversationResponse, error)
 	// Chat
 	//

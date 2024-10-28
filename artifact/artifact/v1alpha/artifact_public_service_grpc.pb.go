@@ -53,38 +53,72 @@ type ArtifactPublicServiceClient interface {
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error)
 	// Create a catalog
+	//
+	// Creates a catalog.
 	CreateCatalog(ctx context.Context, in *CreateCatalogRequest, opts ...grpc.CallOption) (*CreateCatalogResponse, error)
 	// Get all catalogs info
+	//
+	// Returns a paginated list of catalogs.
 	ListCatalogs(ctx context.Context, in *ListCatalogsRequest, opts ...grpc.CallOption) (*ListCatalogsResponse, error)
 	// Update a catalog info
+	//
+	// Updates the information of a catalog.
 	UpdateCatalog(ctx context.Context, in *UpdateCatalogRequest, opts ...grpc.CallOption) (*UpdateCatalogResponse, error)
 	// Delete a catalog
+	//
+	// Deletes a catalog.
 	DeleteCatalog(ctx context.Context, in *DeleteCatalogRequest, opts ...grpc.CallOption) (*DeleteCatalogResponse, error)
 	// Create a file
+	//
+	// Creates a file.
 	UploadCatalogFile(ctx context.Context, in *UploadCatalogFileRequest, opts ...grpc.CallOption) (*UploadCatalogFileResponse, error)
 	// Delete a file
+	//
+	// Deletes a file.
 	DeleteCatalogFile(ctx context.Context, in *DeleteCatalogFileRequest, opts ...grpc.CallOption) (*DeleteCatalogFileResponse, error)
 	// Process catalog files
+	//
+	// Processes catalog files.
 	ProcessCatalogFiles(ctx context.Context, in *ProcessCatalogFilesRequest, opts ...grpc.CallOption) (*ProcessCatalogFilesResponse, error)
 	// List catalog files
+	//
+	// Returns a paginated list of catalog files.
 	ListCatalogFiles(ctx context.Context, in *ListCatalogFilesRequest, opts ...grpc.CallOption) (*ListCatalogFilesResponse, error)
 	// List catalog chunks
+	//
+	// Returns a paginated list of catalog chunks.
 	ListChunks(ctx context.Context, in *ListChunksRequest, opts ...grpc.CallOption) (*ListChunksResponse, error)
 	// Get catalog single-source-of-truth file
+	//
+	// Gets the single-source-of-truth file of a catalog.
 	GetSourceFile(ctx context.Context, in *GetSourceFileRequest, opts ...grpc.CallOption) (*GetSourceFileResponse, error)
 	// Update catalog chunk
+	//
+	// Updates a catalog chunk.
 	UpdateChunk(ctx context.Context, in *UpdateChunkRequest, opts ...grpc.CallOption) (*UpdateChunkResponse, error)
 	// Retrieve similar chunks
+	//
+	// Returns the similar chunks.
 	SimilarityChunksSearch(ctx context.Context, in *SimilarityChunksSearchRequest, opts ...grpc.CallOption) (*SimilarityChunksSearchResponse, error)
 	// Ask a question
+	//
+	// Asks a question.
 	QuestionAnswering(ctx context.Context, in *QuestionAnsweringRequest, opts ...grpc.CallOption) (*QuestionAnsweringResponse, error)
 	// Get file catalog
+	//
+	// Get the catalog file.
 	GetFileCatalog(ctx context.Context, in *GetFileCatalogRequest, opts ...grpc.CallOption) (*GetFileCatalogResponse, error)
 	// List Catalog Runs
+	//
+	// Returns a paginated list of catalog runs.
 	ListCatalogRuns(ctx context.Context, in *ListCatalogRunsRequest, opts ...grpc.CallOption) (*ListCatalogRunsResponse, error)
 	// Get Object Upload URL
+	//
+	// Returns the upload URL of an object.
 	GetObjectUploadURL(ctx context.Context, in *GetObjectUploadURLRequest, opts ...grpc.CallOption) (*GetObjectUploadURLResponse, error)
 	// Get Object Download URL
+	//
+	// Returns the download URL of an object.
 	GetObjectDownloadURL(ctx context.Context, in *GetObjectDownloadURLRequest, opts ...grpc.CallOption) (*GetObjectDownloadURLResponse, error)
 }
 
@@ -280,38 +314,72 @@ type ArtifactPublicServiceServer interface {
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error)
 	// Create a catalog
+	//
+	// Creates a catalog.
 	CreateCatalog(context.Context, *CreateCatalogRequest) (*CreateCatalogResponse, error)
 	// Get all catalogs info
+	//
+	// Returns a paginated list of catalogs.
 	ListCatalogs(context.Context, *ListCatalogsRequest) (*ListCatalogsResponse, error)
 	// Update a catalog info
+	//
+	// Updates the information of a catalog.
 	UpdateCatalog(context.Context, *UpdateCatalogRequest) (*UpdateCatalogResponse, error)
 	// Delete a catalog
+	//
+	// Deletes a catalog.
 	DeleteCatalog(context.Context, *DeleteCatalogRequest) (*DeleteCatalogResponse, error)
 	// Create a file
+	//
+	// Creates a file.
 	UploadCatalogFile(context.Context, *UploadCatalogFileRequest) (*UploadCatalogFileResponse, error)
 	// Delete a file
+	//
+	// Deletes a file.
 	DeleteCatalogFile(context.Context, *DeleteCatalogFileRequest) (*DeleteCatalogFileResponse, error)
 	// Process catalog files
+	//
+	// Processes catalog files.
 	ProcessCatalogFiles(context.Context, *ProcessCatalogFilesRequest) (*ProcessCatalogFilesResponse, error)
 	// List catalog files
+	//
+	// Returns a paginated list of catalog files.
 	ListCatalogFiles(context.Context, *ListCatalogFilesRequest) (*ListCatalogFilesResponse, error)
 	// List catalog chunks
+	//
+	// Returns a paginated list of catalog chunks.
 	ListChunks(context.Context, *ListChunksRequest) (*ListChunksResponse, error)
 	// Get catalog single-source-of-truth file
+	//
+	// Gets the single-source-of-truth file of a catalog.
 	GetSourceFile(context.Context, *GetSourceFileRequest) (*GetSourceFileResponse, error)
 	// Update catalog chunk
+	//
+	// Updates a catalog chunk.
 	UpdateChunk(context.Context, *UpdateChunkRequest) (*UpdateChunkResponse, error)
 	// Retrieve similar chunks
+	//
+	// Returns the similar chunks.
 	SimilarityChunksSearch(context.Context, *SimilarityChunksSearchRequest) (*SimilarityChunksSearchResponse, error)
 	// Ask a question
+	//
+	// Asks a question.
 	QuestionAnswering(context.Context, *QuestionAnsweringRequest) (*QuestionAnsweringResponse, error)
 	// Get file catalog
+	//
+	// Get the catalog file.
 	GetFileCatalog(context.Context, *GetFileCatalogRequest) (*GetFileCatalogResponse, error)
 	// List Catalog Runs
+	//
+	// Returns a paginated list of catalog runs.
 	ListCatalogRuns(context.Context, *ListCatalogRunsRequest) (*ListCatalogRunsResponse, error)
 	// Get Object Upload URL
+	//
+	// Returns the upload URL of an object.
 	GetObjectUploadURL(context.Context, *GetObjectUploadURLRequest) (*GetObjectUploadURLResponse, error)
 	// Get Object Download URL
+	//
+	// Returns the download URL of an object.
 	GetObjectDownloadURL(context.Context, *GetObjectDownloadURLRequest) (*GetObjectDownloadURLResponse, error)
 }
 

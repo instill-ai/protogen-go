@@ -6626,14 +6626,14 @@ func request_PipelinePublicService_CreateNamespaceConnection_0(ctx context.Conte
 		_   = err
 	)
 
-	val, ok = pathParams["connection.namespace_id"]
+	val, ok = pathParams["namespace_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "connection.namespace_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
 	}
 
-	err = runtime.PopulateFieldFromPath(&protoReq, "connection.namespace_id", val)
+	protoReq.NamespaceId, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "connection.namespace_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
 	}
 
 	msg, err := client.CreateNamespaceConnection(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -6660,14 +6660,14 @@ func local_request_PipelinePublicService_CreateNamespaceConnection_0(ctx context
 		_   = err
 	)
 
-	val, ok = pathParams["connection.namespace_id"]
+	val, ok = pathParams["namespace_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "connection.namespace_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
 	}
 
-	err = runtime.PopulateFieldFromPath(&protoReq, "connection.namespace_id", val)
+	protoReq.NamespaceId, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "connection.namespace_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
 	}
 
 	msg, err := server.CreateNamespaceConnection(ctx, &protoReq)
@@ -6676,7 +6676,7 @@ func local_request_PipelinePublicService_CreateNamespaceConnection_0(ctx context
 }
 
 var (
-	filter_PipelinePublicService_UpdateNamespaceConnection_0 = &utilities.DoubleArray{Encoding: map[string]int{"connection": 0, "namespace_id": 1, "namespaceId": 2, "connection_id": 3, "connectionId": 4}, Base: []int{1, 3, 1, 4, 5, 6, 0, 0, 0, 0, 0, 0}, Check: []int{0, 1, 2, 1, 1, 1, 3, 2, 2, 4, 5, 6}}
+	filter_PipelinePublicService_UpdateNamespaceConnection_0 = &utilities.DoubleArray{Encoding: map[string]int{"connection": 0, "namespace_id": 1, "namespaceId": 2, "connection_id": 3, "connectionId": 4}, Base: []int{1, 2, 3, 4, 5, 6, 0, 0, 0, 0, 0, 0}, Check: []int{0, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6}}
 )
 
 func request_PipelinePublicService_UpdateNamespaceConnection_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -6705,14 +6705,14 @@ func request_PipelinePublicService_UpdateNamespaceConnection_0(ctx context.Conte
 		_   = err
 	)
 
-	val, ok = pathParams["connection.namespace_id"]
+	val, ok = pathParams["namespace_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "connection.namespace_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
 	}
 
-	err = runtime.PopulateFieldFromPath(&protoReq, "connection.namespace_id", val)
+	protoReq.NamespaceId, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "connection.namespace_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
 	}
 
 	val, ok = pathParams["connection_id"]
@@ -6763,14 +6763,14 @@ func local_request_PipelinePublicService_UpdateNamespaceConnection_0(ctx context
 		_   = err
 	)
 
-	val, ok = pathParams["connection.namespace_id"]
+	val, ok = pathParams["namespace_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "connection.namespace_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
 	}
 
-	err = runtime.PopulateFieldFromPath(&protoReq, "connection.namespace_id", val)
+	protoReq.NamespaceId, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "connection.namespace_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
 	}
 
 	val, ok = pathParams["connection_id"]
@@ -9395,7 +9395,7 @@ func RegisterPipelinePublicServiceHandlerServer(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/CreateNamespaceConnection", runtime.WithHTTPPathPattern("/v1beta/namespaces/{connection.namespace_id}/connections"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/CreateNamespaceConnection", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/connections"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -9420,7 +9420,7 @@ func RegisterPipelinePublicServiceHandlerServer(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/UpdateNamespaceConnection", runtime.WithHTTPPathPattern("/v1beta/namespaces/{connection.namespace_id}/connections/{connection_id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/UpdateNamespaceConnection", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/connections/{connection_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -11633,7 +11633,7 @@ func RegisterPipelinePublicServiceHandlerClient(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/CreateNamespaceConnection", runtime.WithHTTPPathPattern("/v1beta/namespaces/{connection.namespace_id}/connections"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/CreateNamespaceConnection", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/connections"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -11655,7 +11655,7 @@ func RegisterPipelinePublicServiceHandlerClient(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/UpdateNamespaceConnection", runtime.WithHTTPPathPattern("/v1beta/namespaces/{connection.namespace_id}/connections/{connection_id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/vdp.pipeline.v1beta.PipelinePublicService/UpdateNamespaceConnection", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/connections/{connection_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -11987,9 +11987,9 @@ var (
 
 	pattern_PipelinePublicService_GetNamespaceConnection_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1beta", "namespaces", "namespace_id", "connections", "connection_id"}, ""))
 
-	pattern_PipelinePublicService_CreateNamespaceConnection_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1beta", "namespaces", "connection.namespace_id", "connections"}, ""))
+	pattern_PipelinePublicService_CreateNamespaceConnection_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1beta", "namespaces", "namespace_id", "connections"}, ""))
 
-	pattern_PipelinePublicService_UpdateNamespaceConnection_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1beta", "namespaces", "connection.namespace_id", "connections", "connection_id"}, ""))
+	pattern_PipelinePublicService_UpdateNamespaceConnection_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1beta", "namespaces", "namespace_id", "connections", "connection_id"}, ""))
 
 	pattern_PipelinePublicService_DeleteNamespaceConnection_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1beta", "namespaces", "namespace_id", "connections", "connection_id"}, ""))
 
