@@ -183,8 +183,8 @@ type GetObjectUploadURLRequest struct {
 	// name of the object with length limit to 1024 characters.
 	// this is the unique identifier of the object in the namespace
 	ObjectName string `protobuf:"bytes,2,opt,name=object_name,json=objectName,proto3" json:"object_name,omitempty"`
-	// Expiration time in days for the URL.
-	// Minimum is 1 day and maximum is 7 days. If not set or set to 0, defaults to 1 day.
+	// expiration time in days for the URL.
+	// maximum is 7 days. if set to 0, URL will not expire.
 	UrlExpireDays int32 `protobuf:"varint,3,opt,name=url_expire_days,json=urlExpireDays,proto3" json:"url_expire_days,omitempty"`
 	// last modified time this value is provided by the client when the object url is created
 	// it must be in RFC3339 formatted date-time string
@@ -339,7 +339,7 @@ type GetObjectDownloadURLRequest struct {
 	// uid of the object
 	ObjectUid string `protobuf:"bytes,2,opt,name=object_uid,json=objectUid,proto3" json:"object_uid,omitempty"`
 	// expiration time in days for the URL.
-	// minimum is 1 day. if not set or set to 0, defaults to 1 day.
+	// maximum is 7 days. if set to 0, URL will not expire.
 	UrlExpireDays int32 `protobuf:"varint,3,opt,name=url_expire_days,json=urlExpireDays,proto3" json:"url_expire_days,omitempty"`
 }
 
