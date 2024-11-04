@@ -49,6 +49,7 @@ const (
 	MgmtPublicService_CheckNamespace_FullMethodName                    = "/core.mgmt.v1beta.MgmtPublicService/CheckNamespace"
 	MgmtPublicService_ListPipelineTriggerRecords_FullMethodName        = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerRecords"
 	MgmtPublicService_GetPipelineTriggerCount_FullMethodName           = "/core.mgmt.v1beta.MgmtPublicService/GetPipelineTriggerCount"
+	MgmtPublicService_GetModelTriggerCount_FullMethodName              = "/core.mgmt.v1beta.MgmtPublicService/GetModelTriggerCount"
 	MgmtPublicService_ListPipelineTriggerTableRecords_FullMethodName   = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerTableRecords"
 	MgmtPublicService_ListPipelineTriggerChartRecords_FullMethodName   = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerChartRecords"
 	MgmtPublicService_ListModelTriggerChartRecords_FullMethodName      = "/core.mgmt.v1beta.MgmtPublicService/ListModelTriggerChartRecords"
@@ -197,6 +198,11 @@ type MgmtPublicServiceClient interface {
 	// Returns the pipeline trigger count of a given requester within a timespan.
 	// Results are grouped by trigger status.
 	GetPipelineTriggerCount(ctx context.Context, in *GetPipelineTriggerCountRequest, opts ...grpc.CallOption) (*GetPipelineTriggerCountResponse, error)
+	// Get model trigger count
+	//
+	// Returns the model trigger count of a given requester within a timespan.
+	// Results are grouped by trigger status.
+	GetModelTriggerCount(ctx context.Context, in *GetModelTriggerCountRequest, opts ...grpc.CallOption) (*GetModelTriggerCountResponse, error)
 	// Deprecated: Do not use.
 	// List pipeline trigger metrics
 	//
@@ -522,6 +528,15 @@ func (c *mgmtPublicServiceClient) GetPipelineTriggerCount(ctx context.Context, i
 	return out, nil
 }
 
+func (c *mgmtPublicServiceClient) GetModelTriggerCount(ctx context.Context, in *GetModelTriggerCountRequest, opts ...grpc.CallOption) (*GetModelTriggerCountResponse, error) {
+	out := new(GetModelTriggerCountResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_GetModelTriggerCount_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Deprecated: Do not use.
 func (c *mgmtPublicServiceClient) ListPipelineTriggerTableRecords(ctx context.Context, in *ListPipelineTriggerTableRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerTableRecordsResponse, error) {
 	out := new(ListPipelineTriggerTableRecordsResponse)
@@ -741,6 +756,11 @@ type MgmtPublicServiceServer interface {
 	// Returns the pipeline trigger count of a given requester within a timespan.
 	// Results are grouped by trigger status.
 	GetPipelineTriggerCount(context.Context, *GetPipelineTriggerCountRequest) (*GetPipelineTriggerCountResponse, error)
+	// Get model trigger count
+	//
+	// Returns the model trigger count of a given requester within a timespan.
+	// Results are grouped by trigger status.
+	GetModelTriggerCount(context.Context, *GetModelTriggerCountRequest) (*GetModelTriggerCountResponse, error)
 	// Deprecated: Do not use.
 	// List pipeline trigger metrics
 	//
@@ -881,6 +901,9 @@ func (UnimplementedMgmtPublicServiceServer) ListPipelineTriggerRecords(context.C
 }
 func (UnimplementedMgmtPublicServiceServer) GetPipelineTriggerCount(context.Context, *GetPipelineTriggerCountRequest) (*GetPipelineTriggerCountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPipelineTriggerCount not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) GetModelTriggerCount(context.Context, *GetModelTriggerCountRequest) (*GetModelTriggerCountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetModelTriggerCount not implemented")
 }
 func (UnimplementedMgmtPublicServiceServer) ListPipelineTriggerTableRecords(context.Context, *ListPipelineTriggerTableRecordsRequest) (*ListPipelineTriggerTableRecordsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineTriggerTableRecords not implemented")
@@ -1461,6 +1484,24 @@ func _MgmtPublicService_GetPipelineTriggerCount_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MgmtPublicService_GetModelTriggerCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetModelTriggerCountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).GetModelTriggerCount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_GetModelTriggerCount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).GetModelTriggerCount(ctx, req.(*GetModelTriggerCountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _MgmtPublicService_ListPipelineTriggerTableRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListPipelineTriggerTableRecordsRequest)
 	if err := dec(in); err != nil {
@@ -1749,6 +1790,10 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPipelineTriggerCount",
 			Handler:    _MgmtPublicService_GetPipelineTriggerCount_Handler,
+		},
+		{
+			MethodName: "GetModelTriggerCount",
+			Handler:    _MgmtPublicService_GetModelTriggerCount_Handler,
 		},
 		{
 			MethodName: "ListPipelineTriggerTableRecords",
