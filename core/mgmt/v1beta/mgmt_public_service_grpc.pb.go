@@ -51,6 +51,7 @@ const (
 	MgmtPublicService_GetPipelineTriggerCount_FullMethodName           = "/core.mgmt.v1beta.MgmtPublicService/GetPipelineTriggerCount"
 	MgmtPublicService_ListPipelineTriggerTableRecords_FullMethodName   = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerTableRecords"
 	MgmtPublicService_ListPipelineTriggerChartRecords_FullMethodName   = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerChartRecords"
+	MgmtPublicService_ListModelTriggerTableRecords_FullMethodName      = "/core.mgmt.v1beta.MgmtPublicService/ListModelTriggerTableRecords"
 	MgmtPublicService_ListModelTriggerChartRecords_FullMethodName      = "/core.mgmt.v1beta.MgmtPublicService/ListModelTriggerChartRecords"
 	MgmtPublicService_ListCreditConsumptionChartRecords_FullMethodName = "/core.mgmt.v1beta.MgmtPublicService/ListCreditConsumptionChartRecords"
 	MgmtPublicService_AuthTokenIssuer_FullMethodName                   = "/core.mgmt.v1beta.MgmtPublicService/AuthTokenIssuer"
@@ -209,6 +210,12 @@ type MgmtPublicServiceClient interface {
 	// owner.
 	// NOTE: This method will soon return the trigger counts of a given requester.
 	ListPipelineTriggerChartRecords(ctx context.Context, in *ListPipelineTriggerChartRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerChartRecordsResponse, error)
+	// Deprecated: Do not use.
+	// List model trigger metrics
+	//
+	// Returns a paginated list of model executions aggregated by model ID.
+	// NOTE: This method is deprecated and will be retired soon.
+	ListModelTriggerTableRecords(ctx context.Context, in *ListModelTriggerTableRecordsRequest, opts ...grpc.CallOption) (*ListModelTriggerTableRecordsResponse, error)
 	// List model trigger time charts
 	//
 	// Returns a timeline of model trigger counts for a given requester. The
@@ -541,6 +548,16 @@ func (c *mgmtPublicServiceClient) ListPipelineTriggerChartRecords(ctx context.Co
 	return out, nil
 }
 
+// Deprecated: Do not use.
+func (c *mgmtPublicServiceClient) ListModelTriggerTableRecords(ctx context.Context, in *ListModelTriggerTableRecordsRequest, opts ...grpc.CallOption) (*ListModelTriggerTableRecordsResponse, error) {
+	out := new(ListModelTriggerTableRecordsResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_ListModelTriggerTableRecords_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *mgmtPublicServiceClient) ListModelTriggerChartRecords(ctx context.Context, in *ListModelTriggerChartRecordsRequest, opts ...grpc.CallOption) (*ListModelTriggerChartRecordsResponse, error) {
 	out := new(ListModelTriggerChartRecordsResponse)
 	err := c.cc.Invoke(ctx, MgmtPublicService_ListModelTriggerChartRecords_FullMethodName, in, out, opts...)
@@ -753,6 +770,12 @@ type MgmtPublicServiceServer interface {
 	// owner.
 	// NOTE: This method will soon return the trigger counts of a given requester.
 	ListPipelineTriggerChartRecords(context.Context, *ListPipelineTriggerChartRecordsRequest) (*ListPipelineTriggerChartRecordsResponse, error)
+	// Deprecated: Do not use.
+	// List model trigger metrics
+	//
+	// Returns a paginated list of model executions aggregated by model ID.
+	// NOTE: This method is deprecated and will be retired soon.
+	ListModelTriggerTableRecords(context.Context, *ListModelTriggerTableRecordsRequest) (*ListModelTriggerTableRecordsResponse, error)
 	// List model trigger time charts
 	//
 	// Returns a timeline of model trigger counts for a given requester. The
@@ -887,6 +910,9 @@ func (UnimplementedMgmtPublicServiceServer) ListPipelineTriggerTableRecords(cont
 }
 func (UnimplementedMgmtPublicServiceServer) ListPipelineTriggerChartRecords(context.Context, *ListPipelineTriggerChartRecordsRequest) (*ListPipelineTriggerChartRecordsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineTriggerChartRecords not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) ListModelTriggerTableRecords(context.Context, *ListModelTriggerTableRecordsRequest) (*ListModelTriggerTableRecordsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListModelTriggerTableRecords not implemented")
 }
 func (UnimplementedMgmtPublicServiceServer) ListModelTriggerChartRecords(context.Context, *ListModelTriggerChartRecordsRequest) (*ListModelTriggerChartRecordsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListModelTriggerChartRecords not implemented")
@@ -1497,6 +1523,24 @@ func _MgmtPublicService_ListPipelineTriggerChartRecords_Handler(srv interface{},
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MgmtPublicService_ListModelTriggerTableRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListModelTriggerTableRecordsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).ListModelTriggerTableRecords(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_ListModelTriggerTableRecords_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).ListModelTriggerTableRecords(ctx, req.(*ListModelTriggerTableRecordsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _MgmtPublicService_ListModelTriggerChartRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListModelTriggerChartRecordsRequest)
 	if err := dec(in); err != nil {
@@ -1757,6 +1801,10 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListPipelineTriggerChartRecords",
 			Handler:    _MgmtPublicService_ListPipelineTriggerChartRecords_Handler,
+		},
+		{
+			MethodName: "ListModelTriggerTableRecords",
+			Handler:    _MgmtPublicService_ListModelTriggerTableRecords_Handler,
 		},
 		{
 			MethodName: "ListModelTriggerChartRecords",
