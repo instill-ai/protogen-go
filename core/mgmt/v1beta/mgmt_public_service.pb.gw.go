@@ -2851,7 +2851,7 @@ func RegisterMgmtPublicServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/GetModelTriggerCount", runtime.WithHTTPPathPattern("/v1beta/model-runs:count"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/GetModelTriggerCount", runtime.WithHTTPPathPattern("/v1beta/model-runs/count"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2926,7 +2926,7 @@ func RegisterMgmtPublicServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/ListModelTriggerChartRecords", runtime.WithHTTPPathPattern("/v1beta/model-runs:query-charts"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/ListModelTriggerChartRecords", runtime.WithHTTPPathPattern("/v1beta/model-runs/query-charts"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3844,7 +3844,7 @@ func RegisterMgmtPublicServiceHandlerClient(ctx context.Context, mux *runtime.Se
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/GetModelTriggerCount", runtime.WithHTTPPathPattern("/v1beta/model-runs:count"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/GetModelTriggerCount", runtime.WithHTTPPathPattern("/v1beta/model-runs/count"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3910,7 +3910,7 @@ func RegisterMgmtPublicServiceHandlerClient(ctx context.Context, mux *runtime.Se
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/ListModelTriggerChartRecords", runtime.WithHTTPPathPattern("/v1beta/model-runs:query-charts"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/ListModelTriggerChartRecords", runtime.WithHTTPPathPattern("/v1beta/model-runs/query-charts"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4126,13 +4126,13 @@ var (
 
 	pattern_MgmtPublicService_GetPipelineTriggerCount_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"v1beta", "metrics", "vdp", "pipeline", "trigger-count"}, ""))
 
-	pattern_MgmtPublicService_GetModelTriggerCount_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "model-runs"}, "count"))
+	pattern_MgmtPublicService_GetModelTriggerCount_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "model-runs", "count"}, ""))
 
 	pattern_MgmtPublicService_ListPipelineTriggerTableRecords_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"v1beta", "metrics", "vdp", "pipeline", "tables"}, ""))
 
 	pattern_MgmtPublicService_ListPipelineTriggerChartRecords_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"v1beta", "metrics", "vdp", "pipeline", "charts"}, ""))
 
-	pattern_MgmtPublicService_ListModelTriggerChartRecords_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "model-runs"}, "query-charts"))
+	pattern_MgmtPublicService_ListModelTriggerChartRecords_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "model-runs", "query-charts"}, ""))
 
 	pattern_MgmtPublicService_ListCreditConsumptionChartRecords_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"v1beta", "metrics", "credit", "charts"}, ""))
 
