@@ -90,10 +90,6 @@ const (
 	PipelinePublicService_RenameOrganizationPipelineRelease_FullMethodName       = "/vdp.pipeline.v1beta.PipelinePublicService/RenameOrganizationPipelineRelease"
 	PipelinePublicService_TriggerOrganizationPipelineRelease_FullMethodName      = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerOrganizationPipelineRelease"
 	PipelinePublicService_TriggerAsyncOrganizationPipelineRelease_FullMethodName = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerAsyncOrganizationPipelineRelease"
-	PipelinePublicService_ListConnectorDefinitions_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/ListConnectorDefinitions"
-	PipelinePublicService_GetConnectorDefinition_FullMethodName                  = "/vdp.pipeline.v1beta.PipelinePublicService/GetConnectorDefinition"
-	PipelinePublicService_ListOperatorDefinitions_FullMethodName                 = "/vdp.pipeline.v1beta.PipelinePublicService/ListOperatorDefinitions"
-	PipelinePublicService_GetOperatorDefinition_FullMethodName                   = "/vdp.pipeline.v1beta.PipelinePublicService/GetOperatorDefinition"
 	PipelinePublicService_CheckName_FullMethodName                               = "/vdp.pipeline.v1beta.PipelinePublicService/CheckName"
 	PipelinePublicService_CreateUserSecret_FullMethodName                        = "/vdp.pipeline.v1beta.PipelinePublicService/CreateUserSecret"
 	PipelinePublicService_ListUserSecrets_FullMethodName                         = "/vdp.pipeline.v1beta.PipelinePublicService/ListUserSecrets"
@@ -665,26 +661,6 @@ type PipelinePublicServiceClient interface {
 	// The pipeline is identified by its resource name, formed by its parent
 	// organization and ID.
 	TriggerAsyncOrganizationPipelineRelease(ctx context.Context, in *TriggerAsyncOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerAsyncOrganizationPipelineReleaseResponse, error)
-	// Deprecated: Do not use.
-	// List connector definitions
-	//
-	// Returns a paginated list of connector definitions.
-	ListConnectorDefinitions(ctx context.Context, in *ListConnectorDefinitionsRequest, opts ...grpc.CallOption) (*ListConnectorDefinitionsResponse, error)
-	// Deprecated: Do not use.
-	// Get connector definition
-	//
-	// Returns the details of a connector definition.
-	GetConnectorDefinition(ctx context.Context, in *GetConnectorDefinitionRequest, opts ...grpc.CallOption) (*GetConnectorDefinitionResponse, error)
-	// Deprecated: Do not use.
-	// List operator definitions
-	//
-	// Returns a paginated list of operator definitions.
-	ListOperatorDefinitions(ctx context.Context, in *ListOperatorDefinitionsRequest, opts ...grpc.CallOption) (*ListOperatorDefinitionsResponse, error)
-	// Deprecated: Do not use.
-	// Get operator definition
-	//
-	// Returns the details of an operator definition.
-	GetOperatorDefinition(ctx context.Context, in *GetOperatorDefinitionRequest, opts ...grpc.CallOption) (*GetOperatorDefinitionResponse, error)
 	// Deprecated: Do not use.
 	// Check the availibity of a resource name
 	//
@@ -1570,46 +1546,6 @@ func (c *pipelinePublicServiceClient) TriggerAsyncOrganizationPipelineRelease(ct
 }
 
 // Deprecated: Do not use.
-func (c *pipelinePublicServiceClient) ListConnectorDefinitions(ctx context.Context, in *ListConnectorDefinitionsRequest, opts ...grpc.CallOption) (*ListConnectorDefinitionsResponse, error) {
-	out := new(ListConnectorDefinitionsResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_ListConnectorDefinitions_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// Deprecated: Do not use.
-func (c *pipelinePublicServiceClient) GetConnectorDefinition(ctx context.Context, in *GetConnectorDefinitionRequest, opts ...grpc.CallOption) (*GetConnectorDefinitionResponse, error) {
-	out := new(GetConnectorDefinitionResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_GetConnectorDefinition_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// Deprecated: Do not use.
-func (c *pipelinePublicServiceClient) ListOperatorDefinitions(ctx context.Context, in *ListOperatorDefinitionsRequest, opts ...grpc.CallOption) (*ListOperatorDefinitionsResponse, error) {
-	out := new(ListOperatorDefinitionsResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_ListOperatorDefinitions_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// Deprecated: Do not use.
-func (c *pipelinePublicServiceClient) GetOperatorDefinition(ctx context.Context, in *GetOperatorDefinitionRequest, opts ...grpc.CallOption) (*GetOperatorDefinitionResponse, error) {
-	out := new(GetOperatorDefinitionResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_GetOperatorDefinition_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// Deprecated: Do not use.
 func (c *pipelinePublicServiceClient) CheckName(ctx context.Context, in *CheckNameRequest, opts ...grpc.CallOption) (*CheckNameResponse, error) {
 	out := new(CheckNameResponse)
 	err := c.cc.Invoke(ctx, PipelinePublicService_CheckName_FullMethodName, in, out, opts...)
@@ -2374,26 +2310,6 @@ type PipelinePublicServiceServer interface {
 	// organization and ID.
 	TriggerAsyncOrganizationPipelineRelease(context.Context, *TriggerAsyncOrganizationPipelineReleaseRequest) (*TriggerAsyncOrganizationPipelineReleaseResponse, error)
 	// Deprecated: Do not use.
-	// List connector definitions
-	//
-	// Returns a paginated list of connector definitions.
-	ListConnectorDefinitions(context.Context, *ListConnectorDefinitionsRequest) (*ListConnectorDefinitionsResponse, error)
-	// Deprecated: Do not use.
-	// Get connector definition
-	//
-	// Returns the details of a connector definition.
-	GetConnectorDefinition(context.Context, *GetConnectorDefinitionRequest) (*GetConnectorDefinitionResponse, error)
-	// Deprecated: Do not use.
-	// List operator definitions
-	//
-	// Returns a paginated list of operator definitions.
-	ListOperatorDefinitions(context.Context, *ListOperatorDefinitionsRequest) (*ListOperatorDefinitionsResponse, error)
-	// Deprecated: Do not use.
-	// Get operator definition
-	//
-	// Returns the details of an operator definition.
-	GetOperatorDefinition(context.Context, *GetOperatorDefinitionRequest) (*GetOperatorDefinitionResponse, error)
-	// Deprecated: Do not use.
 	// Check the availibity of a resource name
 	//
 	// Check whether a resource name is already in use. Currently this endpoint
@@ -2739,18 +2655,6 @@ func (UnimplementedPipelinePublicServiceServer) TriggerOrganizationPipelineRelea
 }
 func (UnimplementedPipelinePublicServiceServer) TriggerAsyncOrganizationPipelineRelease(context.Context, *TriggerAsyncOrganizationPipelineReleaseRequest) (*TriggerAsyncOrganizationPipelineReleaseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncOrganizationPipelineRelease not implemented")
-}
-func (UnimplementedPipelinePublicServiceServer) ListConnectorDefinitions(context.Context, *ListConnectorDefinitionsRequest) (*ListConnectorDefinitionsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListConnectorDefinitions not implemented")
-}
-func (UnimplementedPipelinePublicServiceServer) GetConnectorDefinition(context.Context, *GetConnectorDefinitionRequest) (*GetConnectorDefinitionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetConnectorDefinition not implemented")
-}
-func (UnimplementedPipelinePublicServiceServer) ListOperatorDefinitions(context.Context, *ListOperatorDefinitionsRequest) (*ListOperatorDefinitionsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListOperatorDefinitions not implemented")
-}
-func (UnimplementedPipelinePublicServiceServer) GetOperatorDefinition(context.Context, *GetOperatorDefinitionRequest) (*GetOperatorDefinitionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetOperatorDefinition not implemented")
 }
 func (UnimplementedPipelinePublicServiceServer) CheckName(context.Context, *CheckNameRequest) (*CheckNameResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckName not implemented")
@@ -4120,78 +4024,6 @@ func _PipelinePublicService_TriggerAsyncOrganizationPipelineRelease_Handler(srv 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_ListConnectorDefinitions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListConnectorDefinitionsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).ListConnectorDefinitions(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PipelinePublicService_ListConnectorDefinitions_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).ListConnectorDefinitions(ctx, req.(*ListConnectorDefinitionsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PipelinePublicService_GetConnectorDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetConnectorDefinitionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).GetConnectorDefinition(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PipelinePublicService_GetConnectorDefinition_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).GetConnectorDefinition(ctx, req.(*GetConnectorDefinitionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PipelinePublicService_ListOperatorDefinitions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListOperatorDefinitionsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).ListOperatorDefinitions(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PipelinePublicService_ListOperatorDefinitions_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).ListOperatorDefinitions(ctx, req.(*ListOperatorDefinitionsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PipelinePublicService_GetOperatorDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetOperatorDefinitionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).GetOperatorDefinition(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PipelinePublicService_GetOperatorDefinition_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).GetOperatorDefinition(ctx, req.(*GetOperatorDefinitionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _PipelinePublicService_CheckName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CheckNameRequest)
 	if err := dec(in); err != nil {
@@ -4884,22 +4716,6 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TriggerAsyncOrganizationPipelineRelease",
 			Handler:    _PipelinePublicService_TriggerAsyncOrganizationPipelineRelease_Handler,
-		},
-		{
-			MethodName: "ListConnectorDefinitions",
-			Handler:    _PipelinePublicService_ListConnectorDefinitions_Handler,
-		},
-		{
-			MethodName: "GetConnectorDefinition",
-			Handler:    _PipelinePublicService_GetConnectorDefinition_Handler,
-		},
-		{
-			MethodName: "ListOperatorDefinitions",
-			Handler:    _PipelinePublicService_ListOperatorDefinitions_Handler,
-		},
-		{
-			MethodName: "GetOperatorDefinition",
-			Handler:    _PipelinePublicService_GetOperatorDefinition_Handler,
 		},
 		{
 			MethodName: "CheckName",
