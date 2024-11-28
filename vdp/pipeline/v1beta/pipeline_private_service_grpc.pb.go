@@ -22,6 +22,7 @@ const (
 	PipelinePrivateService_ListPipelinesAdmin_FullMethodName        = "/vdp.pipeline.v1beta.PipelinePrivateService/ListPipelinesAdmin"
 	PipelinePrivateService_LookUpPipelineAdmin_FullMethodName       = "/vdp.pipeline.v1beta.PipelinePrivateService/LookUpPipelineAdmin"
 	PipelinePrivateService_ListPipelineReleasesAdmin_FullMethodName = "/vdp.pipeline.v1beta.PipelinePrivateService/ListPipelineReleasesAdmin"
+	PipelinePrivateService_LookUpConnectionAdmin_FullMethodName     = "/vdp.pipeline.v1beta.PipelinePrivateService/LookUpConnectionAdmin"
 )
 
 // PipelinePrivateServiceClient is the client API for PipelinePrivateService service.
@@ -30,19 +31,23 @@ const (
 type PipelinePrivateServiceClient interface {
 	// List pipelines (admin only)
 	//
-	// This is a *private* method that allows admin users and internal clients to
-	// list *all* pipeline resources.
+	// This *private* method allows internal clients to list *all* pipeline
+	// resources.
 	ListPipelinesAdmin(ctx context.Context, in *ListPipelinesAdminRequest, opts ...grpc.CallOption) (*ListPipelinesAdminResponse, error)
 	// Get a pipeline by UID (admin only)
 	//
-	// This is a *private* method that allows admin users to access any pipeline
-	// resource by its UID.
+	// This *private* method allows internal clients to access any pipeline
+	// resource by UID.
 	LookUpPipelineAdmin(ctx context.Context, in *LookUpPipelineAdminRequest, opts ...grpc.CallOption) (*LookUpPipelineAdminResponse, error)
 	// List pipeline releases (admin only)
 	//
-	// This is a *private* method that allows admin users to list *all* pipeline
-	// releases.
+	// This *private* method allows admin users to list *all* pipeline releases.
 	ListPipelineReleasesAdmin(ctx context.Context, in *ListPipelineReleasesAdminRequest, opts ...grpc.CallOption) (*ListPipelineReleasesAdminResponse, error)
+	// Get a connection by UID (admin only)
+	//
+	// This *private* method allows internal clients to access any connection
+	// resource by UID.
+	LookUpConnectionAdmin(ctx context.Context, in *LookUpConnectionAdminRequest, opts ...grpc.CallOption) (*LookUpConnectionAdminResponse, error)
 }
 
 type pipelinePrivateServiceClient struct {
@@ -80,25 +85,38 @@ func (c *pipelinePrivateServiceClient) ListPipelineReleasesAdmin(ctx context.Con
 	return out, nil
 }
 
+func (c *pipelinePrivateServiceClient) LookUpConnectionAdmin(ctx context.Context, in *LookUpConnectionAdminRequest, opts ...grpc.CallOption) (*LookUpConnectionAdminResponse, error) {
+	out := new(LookUpConnectionAdminResponse)
+	err := c.cc.Invoke(ctx, PipelinePrivateService_LookUpConnectionAdmin_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PipelinePrivateServiceServer is the server API for PipelinePrivateService service.
 // All implementations should embed UnimplementedPipelinePrivateServiceServer
 // for forward compatibility
 type PipelinePrivateServiceServer interface {
 	// List pipelines (admin only)
 	//
-	// This is a *private* method that allows admin users and internal clients to
-	// list *all* pipeline resources.
+	// This *private* method allows internal clients to list *all* pipeline
+	// resources.
 	ListPipelinesAdmin(context.Context, *ListPipelinesAdminRequest) (*ListPipelinesAdminResponse, error)
 	// Get a pipeline by UID (admin only)
 	//
-	// This is a *private* method that allows admin users to access any pipeline
-	// resource by its UID.
+	// This *private* method allows internal clients to access any pipeline
+	// resource by UID.
 	LookUpPipelineAdmin(context.Context, *LookUpPipelineAdminRequest) (*LookUpPipelineAdminResponse, error)
 	// List pipeline releases (admin only)
 	//
-	// This is a *private* method that allows admin users to list *all* pipeline
-	// releases.
+	// This *private* method allows admin users to list *all* pipeline releases.
 	ListPipelineReleasesAdmin(context.Context, *ListPipelineReleasesAdminRequest) (*ListPipelineReleasesAdminResponse, error)
+	// Get a connection by UID (admin only)
+	//
+	// This *private* method allows internal clients to access any connection
+	// resource by UID.
+	LookUpConnectionAdmin(context.Context, *LookUpConnectionAdminRequest) (*LookUpConnectionAdminResponse, error)
 }
 
 // UnimplementedPipelinePrivateServiceServer should be embedded to have forward compatible implementations.
@@ -113,6 +131,9 @@ func (UnimplementedPipelinePrivateServiceServer) LookUpPipelineAdmin(context.Con
 }
 func (UnimplementedPipelinePrivateServiceServer) ListPipelineReleasesAdmin(context.Context, *ListPipelineReleasesAdminRequest) (*ListPipelineReleasesAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineReleasesAdmin not implemented")
+}
+func (UnimplementedPipelinePrivateServiceServer) LookUpConnectionAdmin(context.Context, *LookUpConnectionAdminRequest) (*LookUpConnectionAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LookUpConnectionAdmin not implemented")
 }
 
 // UnsafePipelinePrivateServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -180,6 +201,24 @@ func _PipelinePrivateService_ListPipelineReleasesAdmin_Handler(srv interface{}, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PipelinePrivateService_LookUpConnectionAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LookUpConnectionAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePrivateServiceServer).LookUpConnectionAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePrivateService_LookUpConnectionAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePrivateServiceServer).LookUpConnectionAdmin(ctx, req.(*LookUpConnectionAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PipelinePrivateService_ServiceDesc is the grpc.ServiceDesc for PipelinePrivateService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -198,6 +237,10 @@ var PipelinePrivateService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListPipelineReleasesAdmin",
 			Handler:    _PipelinePrivateService_ListPipelineReleasesAdmin_Handler,
+		},
+		{
+			MethodName: "LookUpConnectionAdmin",
+			Handler:    _PipelinePrivateService_LookUpConnectionAdmin_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

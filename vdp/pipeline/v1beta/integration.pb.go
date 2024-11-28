@@ -1500,6 +1500,115 @@ func (x *GetIntegrationResponse) GetIntegration() *Integration {
 	return nil
 }
 
+// LookUpConnectionAdminRequest represents a request to fetch the details of a
+// connection by UID.
+type LookUpConnectionAdminRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Connection UID.
+	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
+	// View allows clients to specify the desired view in the response. It
+	// defaults to `VIEW_BASIC`.
+	View *View `protobuf:"varint,2,opt,name=view,proto3,enum=vdp.pipeline.v1beta.View,oneof" json:"view,omitempty"`
+}
+
+func (x *LookUpConnectionAdminRequest) Reset() {
+	*x = LookUpConnectionAdminRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_pipeline_v1beta_integration_proto_msgTypes[20]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *LookUpConnectionAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LookUpConnectionAdminRequest) ProtoMessage() {}
+
+func (x *LookUpConnectionAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_pipeline_v1beta_integration_proto_msgTypes[20]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LookUpConnectionAdminRequest.ProtoReflect.Descriptor instead.
+func (*LookUpConnectionAdminRequest) Descriptor() ([]byte, []int) {
+	return file_vdp_pipeline_v1beta_integration_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *LookUpConnectionAdminRequest) GetNamespaceId() string {
+	if x != nil {
+		return x.NamespaceId
+	}
+	return ""
+}
+
+func (x *LookUpConnectionAdminRequest) GetView() View {
+	if x != nil && x.View != nil {
+		return *x.View
+	}
+	return View_VIEW_UNSPECIFIED
+}
+
+// LookUpConnectionAdminResponse contains the requested connection.
+type LookUpConnectionAdminResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The requested connection.
+	Connection *Connection `protobuf:"bytes,1,opt,name=connection,proto3" json:"connection,omitempty"`
+}
+
+func (x *LookUpConnectionAdminResponse) Reset() {
+	*x = LookUpConnectionAdminResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vdp_pipeline_v1beta_integration_proto_msgTypes[21]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *LookUpConnectionAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LookUpConnectionAdminResponse) ProtoMessage() {}
+
+func (x *LookUpConnectionAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_vdp_pipeline_v1beta_integration_proto_msgTypes[21]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LookUpConnectionAdminResponse.ProtoReflect.Descriptor instead.
+func (*LookUpConnectionAdminResponse) Descriptor() ([]byte, []int) {
+	return file_vdp_pipeline_v1beta_integration_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *LookUpConnectionAdminResponse) GetConnection() *Connection {
+	if x != nil {
+		return x.Connection
+	}
+	return nil
+}
+
 // Link contains the information to display an reference to an external URL.
 type Integration_Link struct {
 	state         protoimpl.MessageState
@@ -1515,7 +1624,7 @@ type Integration_Link struct {
 func (x *Integration_Link) Reset() {
 	*x = Integration_Link{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_integration_proto_msgTypes[20]
+		mi := &file_vdp_pipeline_v1beta_integration_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1528,7 +1637,7 @@ func (x *Integration_Link) String() string {
 func (*Integration_Link) ProtoMessage() {}
 
 func (x *Integration_Link) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_integration_proto_msgTypes[20]
+	mi := &file_vdp_pipeline_v1beta_integration_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1579,7 +1688,7 @@ type Integration_OAuthConfig struct {
 func (x *Integration_OAuthConfig) Reset() {
 	*x = Integration_OAuthConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vdp_pipeline_v1beta_integration_proto_msgTypes[21]
+		mi := &file_vdp_pipeline_v1beta_integration_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1592,7 +1701,7 @@ func (x *Integration_OAuthConfig) String() string {
 func (*Integration_OAuthConfig) ProtoMessage() {}
 
 func (x *Integration_OAuthConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_vdp_pipeline_v1beta_integration_proto_msgTypes[21]
+	mi := &file_vdp_pipeline_v1beta_integration_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1902,22 +2011,37 @@ var file_vdp_pipeline_v1beta_integration_proto_rawDesc = []byte{
 	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65,
 	0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x49, 0x6e, 0x74, 0x65,
 	0x67, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0b, 0x69, 0x6e,
-	0x74, 0x65, 0x67, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0xdf, 0x01, 0x0a, 0x17, 0x63, 0x6f,
-	0x6d, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76,
-	0x31, 0x62, 0x65, 0x74, 0x61, 0x42, 0x10, 0x49, 0x6e, 0x74, 0x65, 0x67, 0x72, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x44, 0x67, 0x69, 0x74, 0x68, 0x75,
-	0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2d, 0x61, 0x69,
-	0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x67, 0x65, 0x6e, 0x2d, 0x67, 0x6f, 0x2f, 0x76, 0x64, 0x70,
-	0x2f, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2f, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61,
-	0x3b, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0xa2,
-	0x02, 0x03, 0x56, 0x50, 0x58, 0xaa, 0x02, 0x13, 0x56, 0x64, 0x70, 0x2e, 0x50, 0x69, 0x70, 0x65,
-	0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0xca, 0x02, 0x13, 0x56, 0x64,
-	0x70, 0x5c, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x5c, 0x56, 0x31, 0x62, 0x65, 0x74,
-	0x61, 0xe2, 0x02, 0x1f, 0x56, 0x64, 0x70, 0x5c, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65,
-	0x5c, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64,
-	0x61, 0x74, 0x61, 0xea, 0x02, 0x15, 0x56, 0x64, 0x70, 0x3a, 0x3a, 0x50, 0x69, 0x70, 0x65, 0x6c,
-	0x69, 0x6e, 0x65, 0x3a, 0x3a, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x74, 0x65, 0x67, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x88, 0x01, 0x0a, 0x1c, 0x4c, 0x6f,
+	0x6f, 0x6b, 0x55, 0x70, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41, 0x64,
+	0x6d, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x26, 0x0a, 0x0c, 0x6e, 0x61,
+	0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x0b, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65,
+	0x49, 0x64, 0x12, 0x37, 0x0a, 0x04, 0x76, 0x69, 0x65, 0x77, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e,
+	0x32, 0x19, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e,
+	0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e, 0x56, 0x69, 0x65, 0x77, 0x42, 0x03, 0xe0, 0x41, 0x01,
+	0x48, 0x00, 0x52, 0x04, 0x76, 0x69, 0x65, 0x77, 0x88, 0x01, 0x01, 0x42, 0x07, 0x0a, 0x05, 0x5f,
+	0x76, 0x69, 0x65, 0x77, 0x22, 0x65, 0x0a, 0x1d, 0x4c, 0x6f, 0x6f, 0x6b, 0x55, 0x70, 0x43, 0x6f,
+	0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x44, 0x0a, 0x0a, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74,
+	0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x76, 0x64, 0x70, 0x2e,
+	0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x2e,
+	0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52,
+	0x0a, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0xdf, 0x01, 0x0a, 0x17,
+	0x63, 0x6f, 0x6d, 0x2e, 0x76, 0x64, 0x70, 0x2e, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65,
+	0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x42, 0x10, 0x49, 0x6e, 0x74, 0x65, 0x67, 0x72, 0x61,
+	0x74, 0x69, 0x6f, 0x6e, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x44, 0x67, 0x69, 0x74,
+	0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2d,
+	0x61, 0x69, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x67, 0x65, 0x6e, 0x2d, 0x67, 0x6f, 0x2f, 0x76,
+	0x64, 0x70, 0x2f, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2f, 0x76, 0x31, 0x62, 0x65,
+	0x74, 0x61, 0x3b, 0x70, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x76, 0x31, 0x62, 0x65, 0x74,
+	0x61, 0xa2, 0x02, 0x03, 0x56, 0x50, 0x58, 0xaa, 0x02, 0x13, 0x56, 0x64, 0x70, 0x2e, 0x50, 0x69,
+	0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x2e, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0xca, 0x02, 0x13,
+	0x56, 0x64, 0x70, 0x5c, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69, 0x6e, 0x65, 0x5c, 0x56, 0x31, 0x62,
+	0x65, 0x74, 0x61, 0xe2, 0x02, 0x1f, 0x56, 0x64, 0x70, 0x5c, 0x50, 0x69, 0x70, 0x65, 0x6c, 0x69,
+	0x6e, 0x65, 0x5c, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74,
+	0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x15, 0x56, 0x64, 0x70, 0x3a, 0x3a, 0x50, 0x69, 0x70,
+	0x65, 0x6c, 0x69, 0x6e, 0x65, 0x3a, 0x3a, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1933,7 +2057,7 @@ func file_vdp_pipeline_v1beta_integration_proto_rawDescGZIP() []byte {
 }
 
 var file_vdp_pipeline_v1beta_integration_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_vdp_pipeline_v1beta_integration_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
+var file_vdp_pipeline_v1beta_integration_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
 var file_vdp_pipeline_v1beta_integration_proto_goTypes = []interface{}{
 	(Connection_Method)(0),                        // 0: vdp.pipeline.v1beta.Connection.Method
 	(*Connection)(nil),                            // 1: vdp.pipeline.v1beta.Connection
@@ -1956,40 +2080,44 @@ var file_vdp_pipeline_v1beta_integration_proto_goTypes = []interface{}{
 	(*ListIntegrationsResponse)(nil),              // 18: vdp.pipeline.v1beta.ListIntegrationsResponse
 	(*GetIntegrationRequest)(nil),                 // 19: vdp.pipeline.v1beta.GetIntegrationRequest
 	(*GetIntegrationResponse)(nil),                // 20: vdp.pipeline.v1beta.GetIntegrationResponse
-	(*Integration_Link)(nil),                      // 21: vdp.pipeline.v1beta.Integration.Link
-	(*Integration_OAuthConfig)(nil),               // 22: vdp.pipeline.v1beta.Integration.OAuthConfig
-	(*structpb.Struct)(nil),                       // 23: google.protobuf.Struct
-	(View)(0),                                     // 24: vdp.pipeline.v1beta.View
-	(*timestamppb.Timestamp)(nil),                 // 25: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil),                 // 26: google.protobuf.FieldMask
+	(*LookUpConnectionAdminRequest)(nil),          // 21: vdp.pipeline.v1beta.LookUpConnectionAdminRequest
+	(*LookUpConnectionAdminResponse)(nil),         // 22: vdp.pipeline.v1beta.LookUpConnectionAdminResponse
+	(*Integration_Link)(nil),                      // 23: vdp.pipeline.v1beta.Integration.Link
+	(*Integration_OAuthConfig)(nil),               // 24: vdp.pipeline.v1beta.Integration.OAuthConfig
+	(*structpb.Struct)(nil),                       // 25: google.protobuf.Struct
+	(View)(0),                                     // 26: vdp.pipeline.v1beta.View
+	(*timestamppb.Timestamp)(nil),                 // 27: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil),                 // 28: google.protobuf.FieldMask
 }
 var file_vdp_pipeline_v1beta_integration_proto_depIdxs = []int32{
 	0,  // 0: vdp.pipeline.v1beta.Connection.method:type_name -> vdp.pipeline.v1beta.Connection.Method
-	23, // 1: vdp.pipeline.v1beta.Connection.setup:type_name -> google.protobuf.Struct
-	23, // 2: vdp.pipeline.v1beta.Connection.o_auth_access_details:type_name -> google.protobuf.Struct
-	24, // 3: vdp.pipeline.v1beta.Connection.view:type_name -> vdp.pipeline.v1beta.View
-	25, // 4: vdp.pipeline.v1beta.Connection.create_time:type_name -> google.protobuf.Timestamp
-	25, // 5: vdp.pipeline.v1beta.Connection.update_time:type_name -> google.protobuf.Timestamp
+	25, // 1: vdp.pipeline.v1beta.Connection.setup:type_name -> google.protobuf.Struct
+	25, // 2: vdp.pipeline.v1beta.Connection.o_auth_access_details:type_name -> google.protobuf.Struct
+	26, // 3: vdp.pipeline.v1beta.Connection.view:type_name -> vdp.pipeline.v1beta.View
+	27, // 4: vdp.pipeline.v1beta.Connection.create_time:type_name -> google.protobuf.Timestamp
+	27, // 5: vdp.pipeline.v1beta.Connection.update_time:type_name -> google.protobuf.Timestamp
 	1,  // 6: vdp.pipeline.v1beta.ListNamespaceConnectionsResponse.connections:type_name -> vdp.pipeline.v1beta.Connection
-	24, // 7: vdp.pipeline.v1beta.GetNamespaceConnectionRequest.view:type_name -> vdp.pipeline.v1beta.View
+	26, // 7: vdp.pipeline.v1beta.GetNamespaceConnectionRequest.view:type_name -> vdp.pipeline.v1beta.View
 	1,  // 8: vdp.pipeline.v1beta.GetNamespaceConnectionResponse.connection:type_name -> vdp.pipeline.v1beta.Connection
 	1,  // 9: vdp.pipeline.v1beta.CreateNamespaceConnectionRequest.connection:type_name -> vdp.pipeline.v1beta.Connection
 	1,  // 10: vdp.pipeline.v1beta.CreateNamespaceConnectionResponse.connection:type_name -> vdp.pipeline.v1beta.Connection
 	1,  // 11: vdp.pipeline.v1beta.UpdateNamespaceConnectionRequest.connection:type_name -> vdp.pipeline.v1beta.Connection
-	26, // 12: vdp.pipeline.v1beta.UpdateNamespaceConnectionRequest.update_mask:type_name -> google.protobuf.FieldMask
+	28, // 12: vdp.pipeline.v1beta.UpdateNamespaceConnectionRequest.update_mask:type_name -> google.protobuf.FieldMask
 	1,  // 13: vdp.pipeline.v1beta.UpdateNamespaceConnectionResponse.connection:type_name -> vdp.pipeline.v1beta.Connection
-	21, // 14: vdp.pipeline.v1beta.Integration.help_link:type_name -> vdp.pipeline.v1beta.Integration.Link
-	23, // 15: vdp.pipeline.v1beta.Integration.setup_schema:type_name -> google.protobuf.Struct
-	22, // 16: vdp.pipeline.v1beta.Integration.o_auth_config:type_name -> vdp.pipeline.v1beta.Integration.OAuthConfig
-	24, // 17: vdp.pipeline.v1beta.Integration.view:type_name -> vdp.pipeline.v1beta.View
+	23, // 14: vdp.pipeline.v1beta.Integration.help_link:type_name -> vdp.pipeline.v1beta.Integration.Link
+	25, // 15: vdp.pipeline.v1beta.Integration.setup_schema:type_name -> google.protobuf.Struct
+	24, // 16: vdp.pipeline.v1beta.Integration.o_auth_config:type_name -> vdp.pipeline.v1beta.Integration.OAuthConfig
+	26, // 17: vdp.pipeline.v1beta.Integration.view:type_name -> vdp.pipeline.v1beta.View
 	14, // 18: vdp.pipeline.v1beta.ListIntegrationsResponse.integrations:type_name -> vdp.pipeline.v1beta.Integration
-	24, // 19: vdp.pipeline.v1beta.GetIntegrationRequest.view:type_name -> vdp.pipeline.v1beta.View
+	26, // 19: vdp.pipeline.v1beta.GetIntegrationRequest.view:type_name -> vdp.pipeline.v1beta.View
 	14, // 20: vdp.pipeline.v1beta.GetIntegrationResponse.integration:type_name -> vdp.pipeline.v1beta.Integration
-	21, // [21:21] is the sub-list for method output_type
-	21, // [21:21] is the sub-list for method input_type
-	21, // [21:21] is the sub-list for extension type_name
-	21, // [21:21] is the sub-list for extension extendee
-	0,  // [0:21] is the sub-list for field type_name
+	26, // 21: vdp.pipeline.v1beta.LookUpConnectionAdminRequest.view:type_name -> vdp.pipeline.v1beta.View
+	1,  // 22: vdp.pipeline.v1beta.LookUpConnectionAdminResponse.connection:type_name -> vdp.pipeline.v1beta.Connection
+	23, // [23:23] is the sub-list for method output_type
+	23, // [23:23] is the sub-list for method input_type
+	23, // [23:23] is the sub-list for extension type_name
+	23, // [23:23] is the sub-list for extension extendee
+	0,  // [0:23] is the sub-list for field type_name
 }
 
 func init() { file_vdp_pipeline_v1beta_integration_proto_init() }
@@ -2240,7 +2368,7 @@ func file_vdp_pipeline_v1beta_integration_proto_init() {
 			}
 		}
 		file_vdp_pipeline_v1beta_integration_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Integration_Link); i {
+			switch v := v.(*LookUpConnectionAdminRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2252,6 +2380,30 @@ func file_vdp_pipeline_v1beta_integration_proto_init() {
 			}
 		}
 		file_vdp_pipeline_v1beta_integration_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*LookUpConnectionAdminResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_pipeline_v1beta_integration_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Integration_Link); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vdp_pipeline_v1beta_integration_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Integration_OAuthConfig); i {
 			case 0:
 				return &v.state
@@ -2271,13 +2423,14 @@ func file_vdp_pipeline_v1beta_integration_proto_init() {
 	file_vdp_pipeline_v1beta_integration_proto_msgTypes[14].OneofWrappers = []interface{}{}
 	file_vdp_pipeline_v1beta_integration_proto_msgTypes[16].OneofWrappers = []interface{}{}
 	file_vdp_pipeline_v1beta_integration_proto_msgTypes[18].OneofWrappers = []interface{}{}
+	file_vdp_pipeline_v1beta_integration_proto_msgTypes[20].OneofWrappers = []interface{}{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_vdp_pipeline_v1beta_integration_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   22,
+			NumMessages:   24,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
