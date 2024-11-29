@@ -423,14 +423,18 @@ type ModelPublicServiceClient interface {
 	// This method allows requesters to request the status and outcome of
 	// long-running operations in a model, such as trigger.
 	GetOrganizationLatestModelOperation(ctx context.Context, in *GetOrganizationLatestModelOperationRequest, opts ...grpc.CallOption) (*GetOrganizationLatestModelOperationResponse, error)
-	// List model runs
+	// List Model Runs
 	//
-	// Returns a paginated list of model runs.
+	// Returns a paginated list of runs for a given model. When the requester is
+	// the owner of the model, they will be able to all the model runs,
+	// regardless who requested the trigger (the view will be partial to hide
+	// sensitive data like e.g. the trigger input and output). Other requesters
+	// will only be able to see the runs requested by themselves.
 	ListModelRuns(ctx context.Context, in *ListModelRunsRequest, opts ...grpc.CallOption) (*ListModelRunsResponse, error)
-	// List Model Runs of a Namespace (user or organization)
+	// List Model Runs By Requester
 	//
-	// Returns a paginated list of runs for 1 or more models. This is mainly used by dashboard.
-	// The requester can view all the runs by the requester across different models.
+	// Returns a paginated list of runs requested by a namespace. The response
+	// may contain runs from several models.
 	ListModelRunsByRequester(ctx context.Context, in *ListModelRunsByRequesterRequest, opts ...grpc.CallOption) (*ListModelRunsByRequesterResponse, error)
 }
 
@@ -1456,14 +1460,18 @@ type ModelPublicServiceServer interface {
 	// This method allows requesters to request the status and outcome of
 	// long-running operations in a model, such as trigger.
 	GetOrganizationLatestModelOperation(context.Context, *GetOrganizationLatestModelOperationRequest) (*GetOrganizationLatestModelOperationResponse, error)
-	// List model runs
+	// List Model Runs
 	//
-	// Returns a paginated list of model runs.
+	// Returns a paginated list of runs for a given model. When the requester is
+	// the owner of the model, they will be able to all the model runs,
+	// regardless who requested the trigger (the view will be partial to hide
+	// sensitive data like e.g. the trigger input and output). Other requesters
+	// will only be able to see the runs requested by themselves.
 	ListModelRuns(context.Context, *ListModelRunsRequest) (*ListModelRunsResponse, error)
-	// List Model Runs of a Namespace (user or organization)
+	// List Model Runs By Requester
 	//
-	// Returns a paginated list of runs for 1 or more models. This is mainly used by dashboard.
-	// The requester can view all the runs by the requester across different models.
+	// Returns a paginated list of runs requested by a namespace. The response
+	// may contain runs from several models.
 	ListModelRunsByRequester(context.Context, *ListModelRunsByRequesterRequest) (*ListModelRunsByRequesterResponse, error)
 }
 

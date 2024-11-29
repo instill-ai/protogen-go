@@ -2103,7 +2103,7 @@ func RegisterArtifactPublicServiceHandlerServer(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListCatalogRuns", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/catalogs/{catalog_id}/runs"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListCatalogRuns", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/runs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2657,7 +2657,7 @@ func RegisterArtifactPublicServiceHandlerClient(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListCatalogRuns", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/catalogs/{catalog_id}/runs"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListCatalogRuns", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/runs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2761,7 +2761,7 @@ var (
 
 	pattern_ArtifactPublicService_GetFileCatalog_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id"}, ""))
 
-	pattern_ArtifactPublicService_ListCatalogRuns_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1beta", "namespaces", "namespace_id", "catalogs", "catalog_id", "runs"}, ""))
+	pattern_ArtifactPublicService_ListCatalogRuns_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id", "runs"}, ""))
 
 	pattern_ArtifactPublicService_GetObjectUploadURL_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "namespace_id", "object-upload-url"}, ""))
 

@@ -735,17 +735,18 @@ type PipelinePublicServiceClient interface {
 	//
 	// Returns a paginated list of runs for a given pipeline. When the requester
 	// is the owner of the pipeline, they will be able to all the pipeline runs,
-	// regardless the requester. Other requesters will only be able to see the
-	// runs requested by themselves.
+	// regardless who requested the trigger (the view will be partial to hide
+	// sensitive data like e.g. the trigger input and output). Other requesters
+	// will only be able to see the runs requested by themselves.
 	ListPipelineRuns(ctx context.Context, in *ListPipelineRunsRequest, opts ...grpc.CallOption) (*ListPipelineRunsResponse, error)
-	// List Component runs
+	// List Component Runs
 	//
 	// Returns the information of each component execution within a pipeline run.
 	ListComponentRuns(ctx context.Context, in *ListComponentRunsRequest, opts ...grpc.CallOption) (*ListComponentRunsResponse, error)
-	// List Pipeline Runs of a Namespace (user or organization)
+	// List Pipeline Runs By Requester
 	//
-	// Returns a paginated list of runs for 1 or more pipelines. This is mainly used by dashboard.
-	// The requester can view all the runs by the requester across different pipelines.
+	// Returns a paginated list of runs for requested by a namespace. The
+	// response may contain runs from several pipelines.
 	ListPipelineRunsByRequester(ctx context.Context, in *ListPipelineRunsByRequesterRequest, opts ...grpc.CallOption) (*ListPipelineRunsByRequesterResponse, error)
 	// List namespace connections
 	//
@@ -2377,17 +2378,18 @@ type PipelinePublicServiceServer interface {
 	//
 	// Returns a paginated list of runs for a given pipeline. When the requester
 	// is the owner of the pipeline, they will be able to all the pipeline runs,
-	// regardless the requester. Other requesters will only be able to see the
-	// runs requested by themselves.
+	// regardless who requested the trigger (the view will be partial to hide
+	// sensitive data like e.g. the trigger input and output). Other requesters
+	// will only be able to see the runs requested by themselves.
 	ListPipelineRuns(context.Context, *ListPipelineRunsRequest) (*ListPipelineRunsResponse, error)
-	// List Component runs
+	// List Component Runs
 	//
 	// Returns the information of each component execution within a pipeline run.
 	ListComponentRuns(context.Context, *ListComponentRunsRequest) (*ListComponentRunsResponse, error)
-	// List Pipeline Runs of a Namespace (user or organization)
+	// List Pipeline Runs By Requester
 	//
-	// Returns a paginated list of runs for 1 or more pipelines. This is mainly used by dashboard.
-	// The requester can view all the runs by the requester across different pipelines.
+	// Returns a paginated list of runs for requested by a namespace. The
+	// response may contain runs from several pipelines.
 	ListPipelineRunsByRequester(context.Context, *ListPipelineRunsByRequesterRequest) (*ListPipelineRunsByRequesterResponse, error)
 	// List namespace connections
 	//
