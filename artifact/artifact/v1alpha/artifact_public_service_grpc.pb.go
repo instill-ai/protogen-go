@@ -30,7 +30,9 @@ const (
 	ArtifactPublicService_ProcessCatalogFiles_FullMethodName    = "/artifact.artifact.v1alpha.ArtifactPublicService/ProcessCatalogFiles"
 	ArtifactPublicService_ListCatalogFiles_FullMethodName       = "/artifact.artifact.v1alpha.ArtifactPublicService/ListCatalogFiles"
 	ArtifactPublicService_ListChunks_FullMethodName             = "/artifact.artifact.v1alpha.ArtifactPublicService/ListChunks"
+	ArtifactPublicService_SearchChunks_FullMethodName           = "/artifact.artifact.v1alpha.ArtifactPublicService/SearchChunks"
 	ArtifactPublicService_GetSourceFile_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPublicService/GetSourceFile"
+	ArtifactPublicService_SearchSourceFiles_FullMethodName      = "/artifact.artifact.v1alpha.ArtifactPublicService/SearchSourceFiles"
 	ArtifactPublicService_UpdateChunk_FullMethodName            = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateChunk"
 	ArtifactPublicService_SimilarityChunksSearch_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPublicService/SimilarityChunksSearch"
 	ArtifactPublicService_QuestionAnswering_FullMethodName      = "/artifact.artifact.v1alpha.ArtifactPublicService/QuestionAnswering"
@@ -88,10 +90,18 @@ type ArtifactPublicServiceClient interface {
 	//
 	// Returns a paginated list of catalog chunks.
 	ListChunks(ctx context.Context, in *ListChunksRequest, opts ...grpc.CallOption) (*ListChunksResponse, error)
+	// Search catalog chunks
+	//
+	// Returns a paginated list of catalog chunks based on search criteria.
+	SearchChunks(ctx context.Context, in *SearchChunksRequest, opts ...grpc.CallOption) (*SearchChunksResponse, error)
 	// Get catalog single-source-of-truth file
 	//
 	// Gets the single-source-of-truth file of a catalog.
 	GetSourceFile(ctx context.Context, in *GetSourceFileRequest, opts ...grpc.CallOption) (*GetSourceFileResponse, error)
+	// Search single-source-of-truth files
+	//
+	// Searches the single-source-of-truth files of a catalog.
+	SearchSourceFiles(ctx context.Context, in *SearchSourceFilesRequest, opts ...grpc.CallOption) (*SearchSourceFilesResponse, error)
 	// Update catalog chunk
 	//
 	// Updates a catalog chunk.
@@ -229,9 +239,27 @@ func (c *artifactPublicServiceClient) ListChunks(ctx context.Context, in *ListCh
 	return out, nil
 }
 
+func (c *artifactPublicServiceClient) SearchChunks(ctx context.Context, in *SearchChunksRequest, opts ...grpc.CallOption) (*SearchChunksResponse, error) {
+	out := new(SearchChunksResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_SearchChunks_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *artifactPublicServiceClient) GetSourceFile(ctx context.Context, in *GetSourceFileRequest, opts ...grpc.CallOption) (*GetSourceFileResponse, error) {
 	out := new(GetSourceFileResponse)
 	err := c.cc.Invoke(ctx, ArtifactPublicService_GetSourceFile_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPublicServiceClient) SearchSourceFiles(ctx context.Context, in *SearchSourceFilesRequest, opts ...grpc.CallOption) (*SearchSourceFilesResponse, error) {
+	out := new(SearchSourceFilesResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_SearchSourceFiles_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -349,10 +377,18 @@ type ArtifactPublicServiceServer interface {
 	//
 	// Returns a paginated list of catalog chunks.
 	ListChunks(context.Context, *ListChunksRequest) (*ListChunksResponse, error)
+	// Search catalog chunks
+	//
+	// Returns a paginated list of catalog chunks based on search criteria.
+	SearchChunks(context.Context, *SearchChunksRequest) (*SearchChunksResponse, error)
 	// Get catalog single-source-of-truth file
 	//
 	// Gets the single-source-of-truth file of a catalog.
 	GetSourceFile(context.Context, *GetSourceFileRequest) (*GetSourceFileResponse, error)
+	// Search single-source-of-truth files
+	//
+	// Searches the single-source-of-truth files of a catalog.
+	SearchSourceFiles(context.Context, *SearchSourceFilesRequest) (*SearchSourceFilesResponse, error)
 	// Update catalog chunk
 	//
 	// Updates a catalog chunk.
@@ -420,8 +456,14 @@ func (UnimplementedArtifactPublicServiceServer) ListCatalogFiles(context.Context
 func (UnimplementedArtifactPublicServiceServer) ListChunks(context.Context, *ListChunksRequest) (*ListChunksResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListChunks not implemented")
 }
+func (UnimplementedArtifactPublicServiceServer) SearchChunks(context.Context, *SearchChunksRequest) (*SearchChunksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SearchChunks not implemented")
+}
 func (UnimplementedArtifactPublicServiceServer) GetSourceFile(context.Context, *GetSourceFileRequest) (*GetSourceFileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSourceFile not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) SearchSourceFiles(context.Context, *SearchSourceFilesRequest) (*SearchSourceFilesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SearchSourceFiles not implemented")
 }
 func (UnimplementedArtifactPublicServiceServer) UpdateChunk(context.Context, *UpdateChunkRequest) (*UpdateChunkResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateChunk not implemented")
@@ -654,6 +696,24 @@ func _ArtifactPublicService_ListChunks_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArtifactPublicService_SearchChunks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SearchChunksRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).SearchChunks(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_SearchChunks_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).SearchChunks(ctx, req.(*SearchChunksRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ArtifactPublicService_GetSourceFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetSourceFileRequest)
 	if err := dec(in); err != nil {
@@ -668,6 +728,24 @@ func _ArtifactPublicService_GetSourceFile_Handler(srv interface{}, ctx context.C
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ArtifactPublicServiceServer).GetSourceFile(ctx, req.(*GetSourceFileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPublicService_SearchSourceFiles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SearchSourceFilesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).SearchSourceFiles(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_SearchSourceFiles_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).SearchSourceFiles(ctx, req.(*SearchSourceFilesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -850,8 +928,16 @@ var ArtifactPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ArtifactPublicService_ListChunks_Handler,
 		},
 		{
+			MethodName: "SearchChunks",
+			Handler:    _ArtifactPublicService_SearchChunks_Handler,
+		},
+		{
 			MethodName: "GetSourceFile",
 			Handler:    _ArtifactPublicService_GetSourceFile_Handler,
+		},
+		{
+			MethodName: "SearchSourceFiles",
+			Handler:    _ArtifactPublicService_SearchSourceFiles_Handler,
 		},
 		{
 			MethodName: "UpdateChunk",
