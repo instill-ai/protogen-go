@@ -19,101 +19,99 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	PipelinePublicService_Liveness_FullMethodName                                   = "/vdp.pipeline.v1beta.PipelinePublicService/Liveness"
-	PipelinePublicService_Readiness_FullMethodName                                  = "/vdp.pipeline.v1beta.PipelinePublicService/Readiness"
-	PipelinePublicService_GetHubStats_FullMethodName                                = "/vdp.pipeline.v1beta.PipelinePublicService/GetHubStats"
-	PipelinePublicService_ListPipelines_FullMethodName                              = "/vdp.pipeline.v1beta.PipelinePublicService/ListPipelines"
-	PipelinePublicService_LookUpPipeline_FullMethodName                             = "/vdp.pipeline.v1beta.PipelinePublicService/LookUpPipeline"
-	PipelinePublicService_ListNamespacePipelines_FullMethodName                     = "/vdp.pipeline.v1beta.PipelinePublicService/ListNamespacePipelines"
-	PipelinePublicService_CreateNamespacePipeline_FullMethodName                    = "/vdp.pipeline.v1beta.PipelinePublicService/CreateNamespacePipeline"
-	PipelinePublicService_GetNamespacePipeline_FullMethodName                       = "/vdp.pipeline.v1beta.PipelinePublicService/GetNamespacePipeline"
-	PipelinePublicService_UpdateNamespacePipeline_FullMethodName                    = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateNamespacePipeline"
-	PipelinePublicService_DeleteNamespacePipeline_FullMethodName                    = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteNamespacePipeline"
-	PipelinePublicService_ValidateNamespacePipeline_FullMethodName                  = "/vdp.pipeline.v1beta.PipelinePublicService/ValidateNamespacePipeline"
-	PipelinePublicService_RenameNamespacePipeline_FullMethodName                    = "/vdp.pipeline.v1beta.PipelinePublicService/RenameNamespacePipeline"
-	PipelinePublicService_CloneNamespacePipeline_FullMethodName                     = "/vdp.pipeline.v1beta.PipelinePublicService/CloneNamespacePipeline"
-	PipelinePublicService_HandleNamespacePipelineWebhookEvent_FullMethodName        = "/vdp.pipeline.v1beta.PipelinePublicService/HandleNamespacePipelineWebhookEvent"
-	PipelinePublicService_HandleNamespacePipelineReleaseWebhookEvent_FullMethodName = "/vdp.pipeline.v1beta.PipelinePublicService/HandleNamespacePipelineReleaseWebhookEvent"
-	PipelinePublicService_DispatchPipelineWebhookEvent_FullMethodName               = "/vdp.pipeline.v1beta.PipelinePublicService/DispatchPipelineWebhookEvent"
-	PipelinePublicService_TriggerNamespacePipeline_FullMethodName                   = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerNamespacePipeline"
-	PipelinePublicService_TriggerNamespacePipelineWithStream_FullMethodName         = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerNamespacePipelineWithStream"
-	PipelinePublicService_TriggerAsyncNamespacePipeline_FullMethodName              = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerAsyncNamespacePipeline"
-	PipelinePublicService_CreateNamespacePipelineRelease_FullMethodName             = "/vdp.pipeline.v1beta.PipelinePublicService/CreateNamespacePipelineRelease"
-	PipelinePublicService_ListNamespacePipelineReleases_FullMethodName              = "/vdp.pipeline.v1beta.PipelinePublicService/ListNamespacePipelineReleases"
-	PipelinePublicService_GetNamespacePipelineRelease_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/GetNamespacePipelineRelease"
-	PipelinePublicService_UpdateNamespacePipelineRelease_FullMethodName             = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateNamespacePipelineRelease"
-	PipelinePublicService_DeleteNamespacePipelineRelease_FullMethodName             = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteNamespacePipelineRelease"
-	PipelinePublicService_CloneNamespacePipelineRelease_FullMethodName              = "/vdp.pipeline.v1beta.PipelinePublicService/CloneNamespacePipelineRelease"
-	PipelinePublicService_TriggerNamespacePipelineRelease_FullMethodName            = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerNamespacePipelineRelease"
-	PipelinePublicService_TriggerAsyncNamespacePipelineRelease_FullMethodName       = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerAsyncNamespacePipelineRelease"
-	PipelinePublicService_CreateNamespaceSecret_FullMethodName                      = "/vdp.pipeline.v1beta.PipelinePublicService/CreateNamespaceSecret"
-	PipelinePublicService_ListNamespaceSecrets_FullMethodName                       = "/vdp.pipeline.v1beta.PipelinePublicService/ListNamespaceSecrets"
-	PipelinePublicService_GetNamespaceSecret_FullMethodName                         = "/vdp.pipeline.v1beta.PipelinePublicService/GetNamespaceSecret"
-	PipelinePublicService_UpdateNamespaceSecret_FullMethodName                      = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateNamespaceSecret"
-	PipelinePublicService_DeleteNamespaceSecret_FullMethodName                      = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteNamespaceSecret"
-	PipelinePublicService_ListComponentDefinitions_FullMethodName                   = "/vdp.pipeline.v1beta.PipelinePublicService/ListComponentDefinitions"
-	PipelinePublicService_GetOperation_FullMethodName                               = "/vdp.pipeline.v1beta.PipelinePublicService/GetOperation"
-	PipelinePublicService_CreateUserPipeline_FullMethodName                         = "/vdp.pipeline.v1beta.PipelinePublicService/CreateUserPipeline"
-	PipelinePublicService_ListUserPipelines_FullMethodName                          = "/vdp.pipeline.v1beta.PipelinePublicService/ListUserPipelines"
-	PipelinePublicService_GetUserPipeline_FullMethodName                            = "/vdp.pipeline.v1beta.PipelinePublicService/GetUserPipeline"
-	PipelinePublicService_UpdateUserPipeline_FullMethodName                         = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateUserPipeline"
-	PipelinePublicService_DeleteUserPipeline_FullMethodName                         = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteUserPipeline"
-	PipelinePublicService_ValidateUserPipeline_FullMethodName                       = "/vdp.pipeline.v1beta.PipelinePublicService/ValidateUserPipeline"
-	PipelinePublicService_RenameUserPipeline_FullMethodName                         = "/vdp.pipeline.v1beta.PipelinePublicService/RenameUserPipeline"
-	PipelinePublicService_TriggerUserPipeline_FullMethodName                        = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerUserPipeline"
-	PipelinePublicService_TriggerUserPipelineWithStream_FullMethodName              = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerUserPipelineWithStream"
-	PipelinePublicService_TriggerAsyncUserPipeline_FullMethodName                   = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerAsyncUserPipeline"
-	PipelinePublicService_CreateUserPipelineRelease_FullMethodName                  = "/vdp.pipeline.v1beta.PipelinePublicService/CreateUserPipelineRelease"
-	PipelinePublicService_ListUserPipelineReleases_FullMethodName                   = "/vdp.pipeline.v1beta.PipelinePublicService/ListUserPipelineReleases"
-	PipelinePublicService_GetUserPipelineRelease_FullMethodName                     = "/vdp.pipeline.v1beta.PipelinePublicService/GetUserPipelineRelease"
-	PipelinePublicService_UpdateUserPipelineRelease_FullMethodName                  = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateUserPipelineRelease"
-	PipelinePublicService_DeleteUserPipelineRelease_FullMethodName                  = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteUserPipelineRelease"
-	PipelinePublicService_RestoreUserPipelineRelease_FullMethodName                 = "/vdp.pipeline.v1beta.PipelinePublicService/RestoreUserPipelineRelease"
-	PipelinePublicService_RenameUserPipelineRelease_FullMethodName                  = "/vdp.pipeline.v1beta.PipelinePublicService/RenameUserPipelineRelease"
-	PipelinePublicService_TriggerUserPipelineRelease_FullMethodName                 = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerUserPipelineRelease"
-	PipelinePublicService_TriggerAsyncUserPipelineRelease_FullMethodName            = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerAsyncUserPipelineRelease"
-	PipelinePublicService_CreateOrganizationPipeline_FullMethodName                 = "/vdp.pipeline.v1beta.PipelinePublicService/CreateOrganizationPipeline"
-	PipelinePublicService_ListOrganizationPipelines_FullMethodName                  = "/vdp.pipeline.v1beta.PipelinePublicService/ListOrganizationPipelines"
-	PipelinePublicService_GetOrganizationPipeline_FullMethodName                    = "/vdp.pipeline.v1beta.PipelinePublicService/GetOrganizationPipeline"
-	PipelinePublicService_UpdateOrganizationPipeline_FullMethodName                 = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateOrganizationPipeline"
-	PipelinePublicService_DeleteOrganizationPipeline_FullMethodName                 = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteOrganizationPipeline"
-	PipelinePublicService_ValidateOrganizationPipeline_FullMethodName               = "/vdp.pipeline.v1beta.PipelinePublicService/ValidateOrganizationPipeline"
-	PipelinePublicService_RenameOrganizationPipeline_FullMethodName                 = "/vdp.pipeline.v1beta.PipelinePublicService/RenameOrganizationPipeline"
-	PipelinePublicService_TriggerOrganizationPipelineStream_FullMethodName          = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerOrganizationPipelineStream"
-	PipelinePublicService_TriggerOrganizationPipeline_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerOrganizationPipeline"
-	PipelinePublicService_TriggerAsyncOrganizationPipeline_FullMethodName           = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerAsyncOrganizationPipeline"
-	PipelinePublicService_CreateOrganizationPipelineRelease_FullMethodName          = "/vdp.pipeline.v1beta.PipelinePublicService/CreateOrganizationPipelineRelease"
-	PipelinePublicService_ListOrganizationPipelineReleases_FullMethodName           = "/vdp.pipeline.v1beta.PipelinePublicService/ListOrganizationPipelineReleases"
-	PipelinePublicService_GetOrganizationPipelineRelease_FullMethodName             = "/vdp.pipeline.v1beta.PipelinePublicService/GetOrganizationPipelineRelease"
-	PipelinePublicService_UpdateOrganizationPipelineRelease_FullMethodName          = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateOrganizationPipelineRelease"
-	PipelinePublicService_DeleteOrganizationPipelineRelease_FullMethodName          = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteOrganizationPipelineRelease"
-	PipelinePublicService_RestoreOrganizationPipelineRelease_FullMethodName         = "/vdp.pipeline.v1beta.PipelinePublicService/RestoreOrganizationPipelineRelease"
-	PipelinePublicService_RenameOrganizationPipelineRelease_FullMethodName          = "/vdp.pipeline.v1beta.PipelinePublicService/RenameOrganizationPipelineRelease"
-	PipelinePublicService_TriggerOrganizationPipelineRelease_FullMethodName         = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerOrganizationPipelineRelease"
-	PipelinePublicService_TriggerAsyncOrganizationPipelineRelease_FullMethodName    = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerAsyncOrganizationPipelineRelease"
-	PipelinePublicService_CheckName_FullMethodName                                  = "/vdp.pipeline.v1beta.PipelinePublicService/CheckName"
-	PipelinePublicService_CreateUserSecret_FullMethodName                           = "/vdp.pipeline.v1beta.PipelinePublicService/CreateUserSecret"
-	PipelinePublicService_ListUserSecrets_FullMethodName                            = "/vdp.pipeline.v1beta.PipelinePublicService/ListUserSecrets"
-	PipelinePublicService_GetUserSecret_FullMethodName                              = "/vdp.pipeline.v1beta.PipelinePublicService/GetUserSecret"
-	PipelinePublicService_UpdateUserSecret_FullMethodName                           = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateUserSecret"
-	PipelinePublicService_DeleteUserSecret_FullMethodName                           = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteUserSecret"
-	PipelinePublicService_CreateOrganizationSecret_FullMethodName                   = "/vdp.pipeline.v1beta.PipelinePublicService/CreateOrganizationSecret"
-	PipelinePublicService_ListOrganizationSecrets_FullMethodName                    = "/vdp.pipeline.v1beta.PipelinePublicService/ListOrganizationSecrets"
-	PipelinePublicService_GetOrganizationSecret_FullMethodName                      = "/vdp.pipeline.v1beta.PipelinePublicService/GetOrganizationSecret"
-	PipelinePublicService_UpdateOrganizationSecret_FullMethodName                   = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateOrganizationSecret"
-	PipelinePublicService_DeleteOrganizationSecret_FullMethodName                   = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteOrganizationSecret"
-	PipelinePublicService_ListPipelineRuns_FullMethodName                           = "/vdp.pipeline.v1beta.PipelinePublicService/ListPipelineRuns"
-	PipelinePublicService_ListComponentRuns_FullMethodName                          = "/vdp.pipeline.v1beta.PipelinePublicService/ListComponentRuns"
-	PipelinePublicService_ListPipelineRunsByRequester_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/ListPipelineRunsByRequester"
-	PipelinePublicService_ListNamespaceConnections_FullMethodName                   = "/vdp.pipeline.v1beta.PipelinePublicService/ListNamespaceConnections"
-	PipelinePublicService_GetNamespaceConnection_FullMethodName                     = "/vdp.pipeline.v1beta.PipelinePublicService/GetNamespaceConnection"
-	PipelinePublicService_CreateNamespaceConnection_FullMethodName                  = "/vdp.pipeline.v1beta.PipelinePublicService/CreateNamespaceConnection"
-	PipelinePublicService_UpdateNamespaceConnection_FullMethodName                  = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateNamespaceConnection"
-	PipelinePublicService_DeleteNamespaceConnection_FullMethodName                  = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteNamespaceConnection"
-	PipelinePublicService_TestNamespaceConnection_FullMethodName                    = "/vdp.pipeline.v1beta.PipelinePublicService/TestNamespaceConnection"
-	PipelinePublicService_ListPipelineIDsByConnectionID_FullMethodName              = "/vdp.pipeline.v1beta.PipelinePublicService/ListPipelineIDsByConnectionID"
-	PipelinePublicService_ListIntegrations_FullMethodName                           = "/vdp.pipeline.v1beta.PipelinePublicService/ListIntegrations"
-	PipelinePublicService_GetIntegration_FullMethodName                             = "/vdp.pipeline.v1beta.PipelinePublicService/GetIntegration"
+	PipelinePublicService_Liveness_FullMethodName                                = "/vdp.pipeline.v1beta.PipelinePublicService/Liveness"
+	PipelinePublicService_Readiness_FullMethodName                               = "/vdp.pipeline.v1beta.PipelinePublicService/Readiness"
+	PipelinePublicService_GetHubStats_FullMethodName                             = "/vdp.pipeline.v1beta.PipelinePublicService/GetHubStats"
+	PipelinePublicService_ListPipelines_FullMethodName                           = "/vdp.pipeline.v1beta.PipelinePublicService/ListPipelines"
+	PipelinePublicService_LookUpPipeline_FullMethodName                          = "/vdp.pipeline.v1beta.PipelinePublicService/LookUpPipeline"
+	PipelinePublicService_ListNamespacePipelines_FullMethodName                  = "/vdp.pipeline.v1beta.PipelinePublicService/ListNamespacePipelines"
+	PipelinePublicService_CreateNamespacePipeline_FullMethodName                 = "/vdp.pipeline.v1beta.PipelinePublicService/CreateNamespacePipeline"
+	PipelinePublicService_GetNamespacePipeline_FullMethodName                    = "/vdp.pipeline.v1beta.PipelinePublicService/GetNamespacePipeline"
+	PipelinePublicService_UpdateNamespacePipeline_FullMethodName                 = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateNamespacePipeline"
+	PipelinePublicService_DeleteNamespacePipeline_FullMethodName                 = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteNamespacePipeline"
+	PipelinePublicService_ValidateNamespacePipeline_FullMethodName               = "/vdp.pipeline.v1beta.PipelinePublicService/ValidateNamespacePipeline"
+	PipelinePublicService_RenameNamespacePipeline_FullMethodName                 = "/vdp.pipeline.v1beta.PipelinePublicService/RenameNamespacePipeline"
+	PipelinePublicService_CloneNamespacePipeline_FullMethodName                  = "/vdp.pipeline.v1beta.PipelinePublicService/CloneNamespacePipeline"
+	PipelinePublicService_DispatchPipelineWebhookEvent_FullMethodName            = "/vdp.pipeline.v1beta.PipelinePublicService/DispatchPipelineWebhookEvent"
+	PipelinePublicService_TriggerNamespacePipeline_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerNamespacePipeline"
+	PipelinePublicService_TriggerNamespacePipelineWithStream_FullMethodName      = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerNamespacePipelineWithStream"
+	PipelinePublicService_TriggerAsyncNamespacePipeline_FullMethodName           = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerAsyncNamespacePipeline"
+	PipelinePublicService_CreateNamespacePipelineRelease_FullMethodName          = "/vdp.pipeline.v1beta.PipelinePublicService/CreateNamespacePipelineRelease"
+	PipelinePublicService_ListNamespacePipelineReleases_FullMethodName           = "/vdp.pipeline.v1beta.PipelinePublicService/ListNamespacePipelineReleases"
+	PipelinePublicService_GetNamespacePipelineRelease_FullMethodName             = "/vdp.pipeline.v1beta.PipelinePublicService/GetNamespacePipelineRelease"
+	PipelinePublicService_UpdateNamespacePipelineRelease_FullMethodName          = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateNamespacePipelineRelease"
+	PipelinePublicService_DeleteNamespacePipelineRelease_FullMethodName          = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteNamespacePipelineRelease"
+	PipelinePublicService_CloneNamespacePipelineRelease_FullMethodName           = "/vdp.pipeline.v1beta.PipelinePublicService/CloneNamespacePipelineRelease"
+	PipelinePublicService_TriggerNamespacePipelineRelease_FullMethodName         = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerNamespacePipelineRelease"
+	PipelinePublicService_TriggerAsyncNamespacePipelineRelease_FullMethodName    = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerAsyncNamespacePipelineRelease"
+	PipelinePublicService_CreateNamespaceSecret_FullMethodName                   = "/vdp.pipeline.v1beta.PipelinePublicService/CreateNamespaceSecret"
+	PipelinePublicService_ListNamespaceSecrets_FullMethodName                    = "/vdp.pipeline.v1beta.PipelinePublicService/ListNamespaceSecrets"
+	PipelinePublicService_GetNamespaceSecret_FullMethodName                      = "/vdp.pipeline.v1beta.PipelinePublicService/GetNamespaceSecret"
+	PipelinePublicService_UpdateNamespaceSecret_FullMethodName                   = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateNamespaceSecret"
+	PipelinePublicService_DeleteNamespaceSecret_FullMethodName                   = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteNamespaceSecret"
+	PipelinePublicService_ListComponentDefinitions_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/ListComponentDefinitions"
+	PipelinePublicService_GetOperation_FullMethodName                            = "/vdp.pipeline.v1beta.PipelinePublicService/GetOperation"
+	PipelinePublicService_CreateUserPipeline_FullMethodName                      = "/vdp.pipeline.v1beta.PipelinePublicService/CreateUserPipeline"
+	PipelinePublicService_ListUserPipelines_FullMethodName                       = "/vdp.pipeline.v1beta.PipelinePublicService/ListUserPipelines"
+	PipelinePublicService_GetUserPipeline_FullMethodName                         = "/vdp.pipeline.v1beta.PipelinePublicService/GetUserPipeline"
+	PipelinePublicService_UpdateUserPipeline_FullMethodName                      = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateUserPipeline"
+	PipelinePublicService_DeleteUserPipeline_FullMethodName                      = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteUserPipeline"
+	PipelinePublicService_ValidateUserPipeline_FullMethodName                    = "/vdp.pipeline.v1beta.PipelinePublicService/ValidateUserPipeline"
+	PipelinePublicService_RenameUserPipeline_FullMethodName                      = "/vdp.pipeline.v1beta.PipelinePublicService/RenameUserPipeline"
+	PipelinePublicService_TriggerUserPipeline_FullMethodName                     = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerUserPipeline"
+	PipelinePublicService_TriggerUserPipelineWithStream_FullMethodName           = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerUserPipelineWithStream"
+	PipelinePublicService_TriggerAsyncUserPipeline_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerAsyncUserPipeline"
+	PipelinePublicService_CreateUserPipelineRelease_FullMethodName               = "/vdp.pipeline.v1beta.PipelinePublicService/CreateUserPipelineRelease"
+	PipelinePublicService_ListUserPipelineReleases_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/ListUserPipelineReleases"
+	PipelinePublicService_GetUserPipelineRelease_FullMethodName                  = "/vdp.pipeline.v1beta.PipelinePublicService/GetUserPipelineRelease"
+	PipelinePublicService_UpdateUserPipelineRelease_FullMethodName               = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateUserPipelineRelease"
+	PipelinePublicService_DeleteUserPipelineRelease_FullMethodName               = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteUserPipelineRelease"
+	PipelinePublicService_RestoreUserPipelineRelease_FullMethodName              = "/vdp.pipeline.v1beta.PipelinePublicService/RestoreUserPipelineRelease"
+	PipelinePublicService_RenameUserPipelineRelease_FullMethodName               = "/vdp.pipeline.v1beta.PipelinePublicService/RenameUserPipelineRelease"
+	PipelinePublicService_TriggerUserPipelineRelease_FullMethodName              = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerUserPipelineRelease"
+	PipelinePublicService_TriggerAsyncUserPipelineRelease_FullMethodName         = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerAsyncUserPipelineRelease"
+	PipelinePublicService_CreateOrganizationPipeline_FullMethodName              = "/vdp.pipeline.v1beta.PipelinePublicService/CreateOrganizationPipeline"
+	PipelinePublicService_ListOrganizationPipelines_FullMethodName               = "/vdp.pipeline.v1beta.PipelinePublicService/ListOrganizationPipelines"
+	PipelinePublicService_GetOrganizationPipeline_FullMethodName                 = "/vdp.pipeline.v1beta.PipelinePublicService/GetOrganizationPipeline"
+	PipelinePublicService_UpdateOrganizationPipeline_FullMethodName              = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateOrganizationPipeline"
+	PipelinePublicService_DeleteOrganizationPipeline_FullMethodName              = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteOrganizationPipeline"
+	PipelinePublicService_ValidateOrganizationPipeline_FullMethodName            = "/vdp.pipeline.v1beta.PipelinePublicService/ValidateOrganizationPipeline"
+	PipelinePublicService_RenameOrganizationPipeline_FullMethodName              = "/vdp.pipeline.v1beta.PipelinePublicService/RenameOrganizationPipeline"
+	PipelinePublicService_TriggerOrganizationPipelineStream_FullMethodName       = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerOrganizationPipelineStream"
+	PipelinePublicService_TriggerOrganizationPipeline_FullMethodName             = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerOrganizationPipeline"
+	PipelinePublicService_TriggerAsyncOrganizationPipeline_FullMethodName        = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerAsyncOrganizationPipeline"
+	PipelinePublicService_CreateOrganizationPipelineRelease_FullMethodName       = "/vdp.pipeline.v1beta.PipelinePublicService/CreateOrganizationPipelineRelease"
+	PipelinePublicService_ListOrganizationPipelineReleases_FullMethodName        = "/vdp.pipeline.v1beta.PipelinePublicService/ListOrganizationPipelineReleases"
+	PipelinePublicService_GetOrganizationPipelineRelease_FullMethodName          = "/vdp.pipeline.v1beta.PipelinePublicService/GetOrganizationPipelineRelease"
+	PipelinePublicService_UpdateOrganizationPipelineRelease_FullMethodName       = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateOrganizationPipelineRelease"
+	PipelinePublicService_DeleteOrganizationPipelineRelease_FullMethodName       = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteOrganizationPipelineRelease"
+	PipelinePublicService_RestoreOrganizationPipelineRelease_FullMethodName      = "/vdp.pipeline.v1beta.PipelinePublicService/RestoreOrganizationPipelineRelease"
+	PipelinePublicService_RenameOrganizationPipelineRelease_FullMethodName       = "/vdp.pipeline.v1beta.PipelinePublicService/RenameOrganizationPipelineRelease"
+	PipelinePublicService_TriggerOrganizationPipelineRelease_FullMethodName      = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerOrganizationPipelineRelease"
+	PipelinePublicService_TriggerAsyncOrganizationPipelineRelease_FullMethodName = "/vdp.pipeline.v1beta.PipelinePublicService/TriggerAsyncOrganizationPipelineRelease"
+	PipelinePublicService_CheckName_FullMethodName                               = "/vdp.pipeline.v1beta.PipelinePublicService/CheckName"
+	PipelinePublicService_CreateUserSecret_FullMethodName                        = "/vdp.pipeline.v1beta.PipelinePublicService/CreateUserSecret"
+	PipelinePublicService_ListUserSecrets_FullMethodName                         = "/vdp.pipeline.v1beta.PipelinePublicService/ListUserSecrets"
+	PipelinePublicService_GetUserSecret_FullMethodName                           = "/vdp.pipeline.v1beta.PipelinePublicService/GetUserSecret"
+	PipelinePublicService_UpdateUserSecret_FullMethodName                        = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateUserSecret"
+	PipelinePublicService_DeleteUserSecret_FullMethodName                        = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteUserSecret"
+	PipelinePublicService_CreateOrganizationSecret_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/CreateOrganizationSecret"
+	PipelinePublicService_ListOrganizationSecrets_FullMethodName                 = "/vdp.pipeline.v1beta.PipelinePublicService/ListOrganizationSecrets"
+	PipelinePublicService_GetOrganizationSecret_FullMethodName                   = "/vdp.pipeline.v1beta.PipelinePublicService/GetOrganizationSecret"
+	PipelinePublicService_UpdateOrganizationSecret_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateOrganizationSecret"
+	PipelinePublicService_DeleteOrganizationSecret_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteOrganizationSecret"
+	PipelinePublicService_ListPipelineRuns_FullMethodName                        = "/vdp.pipeline.v1beta.PipelinePublicService/ListPipelineRuns"
+	PipelinePublicService_ListComponentRuns_FullMethodName                       = "/vdp.pipeline.v1beta.PipelinePublicService/ListComponentRuns"
+	PipelinePublicService_ListPipelineRunsByRequester_FullMethodName             = "/vdp.pipeline.v1beta.PipelinePublicService/ListPipelineRunsByRequester"
+	PipelinePublicService_ListNamespaceConnections_FullMethodName                = "/vdp.pipeline.v1beta.PipelinePublicService/ListNamespaceConnections"
+	PipelinePublicService_GetNamespaceConnection_FullMethodName                  = "/vdp.pipeline.v1beta.PipelinePublicService/GetNamespaceConnection"
+	PipelinePublicService_CreateNamespaceConnection_FullMethodName               = "/vdp.pipeline.v1beta.PipelinePublicService/CreateNamespaceConnection"
+	PipelinePublicService_UpdateNamespaceConnection_FullMethodName               = "/vdp.pipeline.v1beta.PipelinePublicService/UpdateNamespaceConnection"
+	PipelinePublicService_DeleteNamespaceConnection_FullMethodName               = "/vdp.pipeline.v1beta.PipelinePublicService/DeleteNamespaceConnection"
+	PipelinePublicService_TestNamespaceConnection_FullMethodName                 = "/vdp.pipeline.v1beta.PipelinePublicService/TestNamespaceConnection"
+	PipelinePublicService_ListPipelineIDsByConnectionID_FullMethodName           = "/vdp.pipeline.v1beta.PipelinePublicService/ListPipelineIDsByConnectionID"
+	PipelinePublicService_ListIntegrations_FullMethodName                        = "/vdp.pipeline.v1beta.PipelinePublicService/ListIntegrations"
+	PipelinePublicService_GetIntegration_FullMethodName                          = "/vdp.pipeline.v1beta.PipelinePublicService/GetIntegration"
 )
 
 // PipelinePublicServiceClient is the client API for PipelinePublicService service.
@@ -192,10 +190,6 @@ type PipelinePublicServiceClient interface {
 	// Clones a pipeline owned by a namespace. The new pipeline may have a different
 	// parent, and this can be either a namespace or an organization.
 	CloneNamespacePipeline(ctx context.Context, in *CloneNamespacePipelineRequest, opts ...grpc.CallOption) (*CloneNamespacePipelineResponse, error)
-	// HandleNamespacePipelineWebhookEvent
-	HandleNamespacePipelineWebhookEvent(ctx context.Context, in *HandleNamespacePipelineWebhookEventRequest, opts ...grpc.CallOption) (*HandleNamespacePipelineWebhookEventResponse, error)
-	// HandleNamespacePipelineReleaseWebhookEvent
-	HandleNamespacePipelineReleaseWebhookEvent(ctx context.Context, in *HandleNamespacePipelineReleaseWebhookEventRequest, opts ...grpc.CallOption) (*HandleNamespacePipelineReleaseWebhookEventResponse, error)
 	// Dispatch Pipeline Webhook Event
 	//
 	// Handles webhook events by routing them to the appropriate pipeline based on the webhook type and message.
@@ -918,24 +912,6 @@ func (c *pipelinePublicServiceClient) RenameNamespacePipeline(ctx context.Contex
 func (c *pipelinePublicServiceClient) CloneNamespacePipeline(ctx context.Context, in *CloneNamespacePipelineRequest, opts ...grpc.CallOption) (*CloneNamespacePipelineResponse, error) {
 	out := new(CloneNamespacePipelineResponse)
 	err := c.cc.Invoke(ctx, PipelinePublicService_CloneNamespacePipeline_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *pipelinePublicServiceClient) HandleNamespacePipelineWebhookEvent(ctx context.Context, in *HandleNamespacePipelineWebhookEventRequest, opts ...grpc.CallOption) (*HandleNamespacePipelineWebhookEventResponse, error) {
-	out := new(HandleNamespacePipelineWebhookEventResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_HandleNamespacePipelineWebhookEvent_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *pipelinePublicServiceClient) HandleNamespacePipelineReleaseWebhookEvent(ctx context.Context, in *HandleNamespacePipelineReleaseWebhookEventRequest, opts ...grpc.CallOption) (*HandleNamespacePipelineReleaseWebhookEventResponse, error) {
-	out := new(HandleNamespacePipelineReleaseWebhookEventResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_HandleNamespacePipelineReleaseWebhookEvent_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1856,10 +1832,6 @@ type PipelinePublicServiceServer interface {
 	// Clones a pipeline owned by a namespace. The new pipeline may have a different
 	// parent, and this can be either a namespace or an organization.
 	CloneNamespacePipeline(context.Context, *CloneNamespacePipelineRequest) (*CloneNamespacePipelineResponse, error)
-	// HandleNamespacePipelineWebhookEvent
-	HandleNamespacePipelineWebhookEvent(context.Context, *HandleNamespacePipelineWebhookEventRequest) (*HandleNamespacePipelineWebhookEventResponse, error)
-	// HandleNamespacePipelineReleaseWebhookEvent
-	HandleNamespacePipelineReleaseWebhookEvent(context.Context, *HandleNamespacePipelineReleaseWebhookEventRequest) (*HandleNamespacePipelineReleaseWebhookEventResponse, error)
 	// Dispatch Pipeline Webhook Event
 	//
 	// Handles webhook events by routing them to the appropriate pipeline based on the webhook type and message.
@@ -2506,12 +2478,6 @@ func (UnimplementedPipelinePublicServiceServer) RenameNamespacePipeline(context.
 func (UnimplementedPipelinePublicServiceServer) CloneNamespacePipeline(context.Context, *CloneNamespacePipelineRequest) (*CloneNamespacePipelineResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CloneNamespacePipeline not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) HandleNamespacePipelineWebhookEvent(context.Context, *HandleNamespacePipelineWebhookEventRequest) (*HandleNamespacePipelineWebhookEventResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method HandleNamespacePipelineWebhookEvent not implemented")
-}
-func (UnimplementedPipelinePublicServiceServer) HandleNamespacePipelineReleaseWebhookEvent(context.Context, *HandleNamespacePipelineReleaseWebhookEventRequest) (*HandleNamespacePipelineReleaseWebhookEventResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method HandleNamespacePipelineReleaseWebhookEvent not implemented")
-}
 func (UnimplementedPipelinePublicServiceServer) DispatchPipelineWebhookEvent(context.Context, *DispatchPipelineWebhookEventRequest) (*DispatchPipelineWebhookEventResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DispatchPipelineWebhookEvent not implemented")
 }
@@ -2994,42 +2960,6 @@ func _PipelinePublicService_CloneNamespacePipeline_Handler(srv interface{}, ctx 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PipelinePublicServiceServer).CloneNamespacePipeline(ctx, req.(*CloneNamespacePipelineRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PipelinePublicService_HandleNamespacePipelineWebhookEvent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(HandleNamespacePipelineWebhookEventRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).HandleNamespacePipelineWebhookEvent(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PipelinePublicService_HandleNamespacePipelineWebhookEvent_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).HandleNamespacePipelineWebhookEvent(ctx, req.(*HandleNamespacePipelineWebhookEventRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PipelinePublicService_HandleNamespacePipelineReleaseWebhookEvent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(HandleNamespacePipelineReleaseWebhookEventRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).HandleNamespacePipelineReleaseWebhookEvent(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PipelinePublicService_HandleNamespacePipelineReleaseWebhookEvent_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).HandleNamespacePipelineReleaseWebhookEvent(ctx, req.(*HandleNamespacePipelineReleaseWebhookEventRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -4541,14 +4471,6 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CloneNamespacePipeline",
 			Handler:    _PipelinePublicService_CloneNamespacePipeline_Handler,
-		},
-		{
-			MethodName: "HandleNamespacePipelineWebhookEvent",
-			Handler:    _PipelinePublicService_HandleNamespacePipelineWebhookEvent_Handler,
-		},
-		{
-			MethodName: "HandleNamespacePipelineReleaseWebhookEvent",
-			Handler:    _PipelinePublicService_HandleNamespacePipelineReleaseWebhookEvent_Handler,
 		},
 		{
 			MethodName: "DispatchPipelineWebhookEvent",
