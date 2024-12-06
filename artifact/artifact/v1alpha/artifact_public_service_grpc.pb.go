@@ -40,6 +40,7 @@ const (
 	ArtifactPublicService_ListCatalogRuns_FullMethodName        = "/artifact.artifact.v1alpha.ArtifactPublicService/ListCatalogRuns"
 	ArtifactPublicService_GetObjectUploadURL_FullMethodName     = "/artifact.artifact.v1alpha.ArtifactPublicService/GetObjectUploadURL"
 	ArtifactPublicService_GetObjectDownloadURL_FullMethodName   = "/artifact.artifact.v1alpha.ArtifactPublicService/GetObjectDownloadURL"
+	ArtifactPublicService_MoveFileToCatalog_FullMethodName      = "/artifact.artifact.v1alpha.ArtifactPublicService/MoveFileToCatalog"
 )
 
 // ArtifactPublicServiceClient is the client API for ArtifactPublicService service.
@@ -130,6 +131,10 @@ type ArtifactPublicServiceClient interface {
 	//
 	// Returns the download URL of an object.
 	GetObjectDownloadURL(ctx context.Context, in *GetObjectDownloadURLRequest, opts ...grpc.CallOption) (*GetObjectDownloadURLResponse, error)
+	// Move file to another catalog
+	//
+	// Moves a file to another catalog.
+	MoveFileToCatalog(ctx context.Context, in *MoveFileToCatalogRequest, opts ...grpc.CallOption) (*MoveFileToCatalogResponse, error)
 }
 
 type artifactPublicServiceClient struct {
@@ -329,6 +334,15 @@ func (c *artifactPublicServiceClient) GetObjectDownloadURL(ctx context.Context, 
 	return out, nil
 }
 
+func (c *artifactPublicServiceClient) MoveFileToCatalog(ctx context.Context, in *MoveFileToCatalogRequest, opts ...grpc.CallOption) (*MoveFileToCatalogResponse, error) {
+	out := new(MoveFileToCatalogResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_MoveFileToCatalog_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ArtifactPublicServiceServer is the server API for ArtifactPublicService service.
 // All implementations should embed UnimplementedArtifactPublicServiceServer
 // for forward compatibility
@@ -417,6 +431,10 @@ type ArtifactPublicServiceServer interface {
 	//
 	// Returns the download URL of an object.
 	GetObjectDownloadURL(context.Context, *GetObjectDownloadURLRequest) (*GetObjectDownloadURLResponse, error)
+	// Move file to another catalog
+	//
+	// Moves a file to another catalog.
+	MoveFileToCatalog(context.Context, *MoveFileToCatalogRequest) (*MoveFileToCatalogResponse, error)
 }
 
 // UnimplementedArtifactPublicServiceServer should be embedded to have forward compatible implementations.
@@ -485,6 +503,9 @@ func (UnimplementedArtifactPublicServiceServer) GetObjectUploadURL(context.Conte
 }
 func (UnimplementedArtifactPublicServiceServer) GetObjectDownloadURL(context.Context, *GetObjectDownloadURLRequest) (*GetObjectDownloadURLResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetObjectDownloadURL not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) MoveFileToCatalog(context.Context, *MoveFileToCatalogRequest) (*MoveFileToCatalogResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MoveFileToCatalog not implemented")
 }
 
 // UnsafeArtifactPublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -876,6 +897,24 @@ func _ArtifactPublicService_GetObjectDownloadURL_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArtifactPublicService_MoveFileToCatalog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MoveFileToCatalogRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).MoveFileToCatalog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_MoveFileToCatalog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).MoveFileToCatalog(ctx, req.(*MoveFileToCatalogRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ArtifactPublicService_ServiceDesc is the grpc.ServiceDesc for ArtifactPublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -966,6 +1005,10 @@ var ArtifactPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetObjectDownloadURL",
 			Handler:    _ArtifactPublicService_GetObjectDownloadURL_Handler,
+		},
+		{
+			MethodName: "MoveFileToCatalog",
+			Handler:    _ArtifactPublicService_MoveFileToCatalog_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
