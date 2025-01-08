@@ -46,6 +46,20 @@ const (
 	AppPublicService_ListChatMessages_FullMethodName              = "/app.app.v1alpha.AppPublicService/ListChatMessages"
 	AppPublicService_RestartPlaygroundConversation_FullMethodName = "/app.app.v1alpha.AppPublicService/RestartPlaygroundConversation"
 	AppPublicService_Chat_FullMethodName                          = "/app.app.v1alpha.AppPublicService/Chat"
+	AppPublicService_ListTables_FullMethodName                    = "/app.app.v1alpha.AppPublicService/ListTables"
+	AppPublicService_CreateTable_FullMethodName                   = "/app.app.v1alpha.AppPublicService/CreateTable"
+	AppPublicService_GetTable_FullMethodName                      = "/app.app.v1alpha.AppPublicService/GetTable"
+	AppPublicService_UpdateTable_FullMethodName                   = "/app.app.v1alpha.AppPublicService/UpdateTable"
+	AppPublicService_DeleteTable_FullMethodName                   = "/app.app.v1alpha.AppPublicService/DeleteTable"
+	AppPublicService_GetColumnDefinitions_FullMethodName          = "/app.app.v1alpha.AppPublicService/GetColumnDefinitions"
+	AppPublicService_UpdateColumnDefinitions_FullMethodName       = "/app.app.v1alpha.AppPublicService/UpdateColumnDefinitions"
+	AppPublicService_ListRows_FullMethodName                      = "/app.app.v1alpha.AppPublicService/ListRows"
+	AppPublicService_InsertRow_FullMethodName                     = "/app.app.v1alpha.AppPublicService/InsertRow"
+	AppPublicService_UpdateRow_FullMethodName                     = "/app.app.v1alpha.AppPublicService/UpdateRow"
+	AppPublicService_UpdateRows_FullMethodName                    = "/app.app.v1alpha.AppPublicService/UpdateRows"
+	AppPublicService_DeleteRow_FullMethodName                     = "/app.app.v1alpha.AppPublicService/DeleteRow"
+	AppPublicService_DeleteRows_FullMethodName                    = "/app.app.v1alpha.AppPublicService/DeleteRows"
+	AppPublicService_Export_FullMethodName                        = "/app.app.v1alpha.AppPublicService/Export"
 )
 
 // AppPublicServiceClient is the client API for AppPublicService service.
@@ -163,6 +177,62 @@ type AppPublicServiceClient interface {
 	// This method is intended for real-time conversation with a chatbot
 	// and the response needs to be processed incrementally.
 	Chat(ctx context.Context, in *ChatRequest, opts ...grpc.CallOption) (*ChatResponse, error)
+	// List tables
+	//
+	// Returns a paginated list of tables.
+	ListTables(ctx context.Context, in *ListTablesRequest, opts ...grpc.CallOption) (*ListTablesResponse, error)
+	// Create a table
+	//
+	// Creates a table.
+	CreateTable(ctx context.Context, in *CreateTableRequest, opts ...grpc.CallOption) (*CreateTableResponse, error)
+	// Get table
+	//
+	// Gets a table.
+	GetTable(ctx context.Context, in *GetTableRequest, opts ...grpc.CallOption) (*GetTableResponse, error)
+	// Update table
+	//
+	// Updates a table.
+	UpdateTable(ctx context.Context, in *UpdateTableRequest, opts ...grpc.CallOption) (*UpdateTableResponse, error)
+	// Delete table
+	//
+	// Deletes a table.
+	DeleteTable(ctx context.Context, in *DeleteTableRequest, opts ...grpc.CallOption) (*DeleteTableResponse, error)
+	// Get column definitions
+	//
+	// Gets column definitions for a table.
+	GetColumnDefinitions(ctx context.Context, in *GetColumnDefinitionsRequest, opts ...grpc.CallOption) (*GetColumnDefinitionsResponse, error)
+	// Update column definitions
+	//
+	// Updates column definitions for a table.
+	UpdateColumnDefinitions(ctx context.Context, in *UpdateColumnDefinitionsRequest, opts ...grpc.CallOption) (*UpdateColumnDefinitionsResponse, error)
+	// List rows
+	//
+	// Returns list of rows.
+	ListRows(ctx context.Context, in *ListRowsRequest, opts ...grpc.CallOption) (*ListRowsResponse, error)
+	// Insert row
+	//
+	// Inserts a row into a table.
+	InsertRow(ctx context.Context, in *InsertRowRequest, opts ...grpc.CallOption) (*InsertRowResponse, error)
+	// Update row
+	//
+	// Updates a row in a table.
+	UpdateRow(ctx context.Context, in *UpdateRowRequest, opts ...grpc.CallOption) (*UpdateRowResponse, error)
+	// Update rows
+	//
+	// Updates multiple rows in a table.
+	UpdateRows(ctx context.Context, in *UpdateRowsRequest, opts ...grpc.CallOption) (*UpdateRowsResponse, error)
+	// Delete row
+	//
+	// Deletes a row from a table.
+	DeleteRow(ctx context.Context, in *DeleteRowRequest, opts ...grpc.CallOption) (*DeleteRowResponse, error)
+	// Delete rows
+	//
+	// Deletes multiple rows from a table.
+	DeleteRows(ctx context.Context, in *DeleteRowsRequest, opts ...grpc.CallOption) (*DeleteRowsResponse, error)
+	// Export table
+	//
+	// Exports table data.
+	Export(ctx context.Context, in *ExportRequest, opts ...grpc.CallOption) (*ExportResponse, error)
 }
 
 type appPublicServiceClient struct {
@@ -416,6 +486,132 @@ func (c *appPublicServiceClient) Chat(ctx context.Context, in *ChatRequest, opts
 	return out, nil
 }
 
+func (c *appPublicServiceClient) ListTables(ctx context.Context, in *ListTablesRequest, opts ...grpc.CallOption) (*ListTablesResponse, error) {
+	out := new(ListTablesResponse)
+	err := c.cc.Invoke(ctx, AppPublicService_ListTables_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appPublicServiceClient) CreateTable(ctx context.Context, in *CreateTableRequest, opts ...grpc.CallOption) (*CreateTableResponse, error) {
+	out := new(CreateTableResponse)
+	err := c.cc.Invoke(ctx, AppPublicService_CreateTable_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appPublicServiceClient) GetTable(ctx context.Context, in *GetTableRequest, opts ...grpc.CallOption) (*GetTableResponse, error) {
+	out := new(GetTableResponse)
+	err := c.cc.Invoke(ctx, AppPublicService_GetTable_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appPublicServiceClient) UpdateTable(ctx context.Context, in *UpdateTableRequest, opts ...grpc.CallOption) (*UpdateTableResponse, error) {
+	out := new(UpdateTableResponse)
+	err := c.cc.Invoke(ctx, AppPublicService_UpdateTable_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appPublicServiceClient) DeleteTable(ctx context.Context, in *DeleteTableRequest, opts ...grpc.CallOption) (*DeleteTableResponse, error) {
+	out := new(DeleteTableResponse)
+	err := c.cc.Invoke(ctx, AppPublicService_DeleteTable_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appPublicServiceClient) GetColumnDefinitions(ctx context.Context, in *GetColumnDefinitionsRequest, opts ...grpc.CallOption) (*GetColumnDefinitionsResponse, error) {
+	out := new(GetColumnDefinitionsResponse)
+	err := c.cc.Invoke(ctx, AppPublicService_GetColumnDefinitions_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appPublicServiceClient) UpdateColumnDefinitions(ctx context.Context, in *UpdateColumnDefinitionsRequest, opts ...grpc.CallOption) (*UpdateColumnDefinitionsResponse, error) {
+	out := new(UpdateColumnDefinitionsResponse)
+	err := c.cc.Invoke(ctx, AppPublicService_UpdateColumnDefinitions_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appPublicServiceClient) ListRows(ctx context.Context, in *ListRowsRequest, opts ...grpc.CallOption) (*ListRowsResponse, error) {
+	out := new(ListRowsResponse)
+	err := c.cc.Invoke(ctx, AppPublicService_ListRows_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appPublicServiceClient) InsertRow(ctx context.Context, in *InsertRowRequest, opts ...grpc.CallOption) (*InsertRowResponse, error) {
+	out := new(InsertRowResponse)
+	err := c.cc.Invoke(ctx, AppPublicService_InsertRow_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appPublicServiceClient) UpdateRow(ctx context.Context, in *UpdateRowRequest, opts ...grpc.CallOption) (*UpdateRowResponse, error) {
+	out := new(UpdateRowResponse)
+	err := c.cc.Invoke(ctx, AppPublicService_UpdateRow_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appPublicServiceClient) UpdateRows(ctx context.Context, in *UpdateRowsRequest, opts ...grpc.CallOption) (*UpdateRowsResponse, error) {
+	out := new(UpdateRowsResponse)
+	err := c.cc.Invoke(ctx, AppPublicService_UpdateRows_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appPublicServiceClient) DeleteRow(ctx context.Context, in *DeleteRowRequest, opts ...grpc.CallOption) (*DeleteRowResponse, error) {
+	out := new(DeleteRowResponse)
+	err := c.cc.Invoke(ctx, AppPublicService_DeleteRow_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appPublicServiceClient) DeleteRows(ctx context.Context, in *DeleteRowsRequest, opts ...grpc.CallOption) (*DeleteRowsResponse, error) {
+	out := new(DeleteRowsResponse)
+	err := c.cc.Invoke(ctx, AppPublicService_DeleteRows_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appPublicServiceClient) Export(ctx context.Context, in *ExportRequest, opts ...grpc.CallOption) (*ExportResponse, error) {
+	out := new(ExportResponse)
+	err := c.cc.Invoke(ctx, AppPublicService_Export_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AppPublicServiceServer is the server API for AppPublicService service.
 // All implementations should embed UnimplementedAppPublicServiceServer
 // for forward compatibility
@@ -531,6 +727,62 @@ type AppPublicServiceServer interface {
 	// This method is intended for real-time conversation with a chatbot
 	// and the response needs to be processed incrementally.
 	Chat(context.Context, *ChatRequest) (*ChatResponse, error)
+	// List tables
+	//
+	// Returns a paginated list of tables.
+	ListTables(context.Context, *ListTablesRequest) (*ListTablesResponse, error)
+	// Create a table
+	//
+	// Creates a table.
+	CreateTable(context.Context, *CreateTableRequest) (*CreateTableResponse, error)
+	// Get table
+	//
+	// Gets a table.
+	GetTable(context.Context, *GetTableRequest) (*GetTableResponse, error)
+	// Update table
+	//
+	// Updates a table.
+	UpdateTable(context.Context, *UpdateTableRequest) (*UpdateTableResponse, error)
+	// Delete table
+	//
+	// Deletes a table.
+	DeleteTable(context.Context, *DeleteTableRequest) (*DeleteTableResponse, error)
+	// Get column definitions
+	//
+	// Gets column definitions for a table.
+	GetColumnDefinitions(context.Context, *GetColumnDefinitionsRequest) (*GetColumnDefinitionsResponse, error)
+	// Update column definitions
+	//
+	// Updates column definitions for a table.
+	UpdateColumnDefinitions(context.Context, *UpdateColumnDefinitionsRequest) (*UpdateColumnDefinitionsResponse, error)
+	// List rows
+	//
+	// Returns list of rows.
+	ListRows(context.Context, *ListRowsRequest) (*ListRowsResponse, error)
+	// Insert row
+	//
+	// Inserts a row into a table.
+	InsertRow(context.Context, *InsertRowRequest) (*InsertRowResponse, error)
+	// Update row
+	//
+	// Updates a row in a table.
+	UpdateRow(context.Context, *UpdateRowRequest) (*UpdateRowResponse, error)
+	// Update rows
+	//
+	// Updates multiple rows in a table.
+	UpdateRows(context.Context, *UpdateRowsRequest) (*UpdateRowsResponse, error)
+	// Delete row
+	//
+	// Deletes a row from a table.
+	DeleteRow(context.Context, *DeleteRowRequest) (*DeleteRowResponse, error)
+	// Delete rows
+	//
+	// Deletes multiple rows from a table.
+	DeleteRows(context.Context, *DeleteRowsRequest) (*DeleteRowsResponse, error)
+	// Export table
+	//
+	// Exports table data.
+	Export(context.Context, *ExportRequest) (*ExportResponse, error)
 }
 
 // UnimplementedAppPublicServiceServer should be embedded to have forward compatible implementations.
@@ -617,6 +869,48 @@ func (UnimplementedAppPublicServiceServer) RestartPlaygroundConversation(context
 }
 func (UnimplementedAppPublicServiceServer) Chat(context.Context, *ChatRequest) (*ChatResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Chat not implemented")
+}
+func (UnimplementedAppPublicServiceServer) ListTables(context.Context, *ListTablesRequest) (*ListTablesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTables not implemented")
+}
+func (UnimplementedAppPublicServiceServer) CreateTable(context.Context, *CreateTableRequest) (*CreateTableResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateTable not implemented")
+}
+func (UnimplementedAppPublicServiceServer) GetTable(context.Context, *GetTableRequest) (*GetTableResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTable not implemented")
+}
+func (UnimplementedAppPublicServiceServer) UpdateTable(context.Context, *UpdateTableRequest) (*UpdateTableResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateTable not implemented")
+}
+func (UnimplementedAppPublicServiceServer) DeleteTable(context.Context, *DeleteTableRequest) (*DeleteTableResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteTable not implemented")
+}
+func (UnimplementedAppPublicServiceServer) GetColumnDefinitions(context.Context, *GetColumnDefinitionsRequest) (*GetColumnDefinitionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetColumnDefinitions not implemented")
+}
+func (UnimplementedAppPublicServiceServer) UpdateColumnDefinitions(context.Context, *UpdateColumnDefinitionsRequest) (*UpdateColumnDefinitionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateColumnDefinitions not implemented")
+}
+func (UnimplementedAppPublicServiceServer) ListRows(context.Context, *ListRowsRequest) (*ListRowsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListRows not implemented")
+}
+func (UnimplementedAppPublicServiceServer) InsertRow(context.Context, *InsertRowRequest) (*InsertRowResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InsertRow not implemented")
+}
+func (UnimplementedAppPublicServiceServer) UpdateRow(context.Context, *UpdateRowRequest) (*UpdateRowResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateRow not implemented")
+}
+func (UnimplementedAppPublicServiceServer) UpdateRows(context.Context, *UpdateRowsRequest) (*UpdateRowsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateRows not implemented")
+}
+func (UnimplementedAppPublicServiceServer) DeleteRow(context.Context, *DeleteRowRequest) (*DeleteRowResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteRow not implemented")
+}
+func (UnimplementedAppPublicServiceServer) DeleteRows(context.Context, *DeleteRowsRequest) (*DeleteRowsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteRows not implemented")
+}
+func (UnimplementedAppPublicServiceServer) Export(context.Context, *ExportRequest) (*ExportResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Export not implemented")
 }
 
 // UnsafeAppPublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -1116,6 +1410,258 @@ func _AppPublicService_Chat_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppPublicService_ListTables_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTablesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppPublicServiceServer).ListTables(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AppPublicService_ListTables_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppPublicServiceServer).ListTables(ctx, req.(*ListTablesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppPublicService_CreateTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateTableRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppPublicServiceServer).CreateTable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AppPublicService_CreateTable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppPublicServiceServer).CreateTable(ctx, req.(*CreateTableRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppPublicService_GetTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTableRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppPublicServiceServer).GetTable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AppPublicService_GetTable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppPublicServiceServer).GetTable(ctx, req.(*GetTableRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppPublicService_UpdateTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateTableRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppPublicServiceServer).UpdateTable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AppPublicService_UpdateTable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppPublicServiceServer).UpdateTable(ctx, req.(*UpdateTableRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppPublicService_DeleteTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteTableRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppPublicServiceServer).DeleteTable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AppPublicService_DeleteTable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppPublicServiceServer).DeleteTable(ctx, req.(*DeleteTableRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppPublicService_GetColumnDefinitions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetColumnDefinitionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppPublicServiceServer).GetColumnDefinitions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AppPublicService_GetColumnDefinitions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppPublicServiceServer).GetColumnDefinitions(ctx, req.(*GetColumnDefinitionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppPublicService_UpdateColumnDefinitions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateColumnDefinitionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppPublicServiceServer).UpdateColumnDefinitions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AppPublicService_UpdateColumnDefinitions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppPublicServiceServer).UpdateColumnDefinitions(ctx, req.(*UpdateColumnDefinitionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppPublicService_ListRows_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRowsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppPublicServiceServer).ListRows(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AppPublicService_ListRows_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppPublicServiceServer).ListRows(ctx, req.(*ListRowsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppPublicService_InsertRow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InsertRowRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppPublicServiceServer).InsertRow(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AppPublicService_InsertRow_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppPublicServiceServer).InsertRow(ctx, req.(*InsertRowRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppPublicService_UpdateRow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateRowRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppPublicServiceServer).UpdateRow(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AppPublicService_UpdateRow_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppPublicServiceServer).UpdateRow(ctx, req.(*UpdateRowRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppPublicService_UpdateRows_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateRowsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppPublicServiceServer).UpdateRows(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AppPublicService_UpdateRows_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppPublicServiceServer).UpdateRows(ctx, req.(*UpdateRowsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppPublicService_DeleteRow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteRowRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppPublicServiceServer).DeleteRow(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AppPublicService_DeleteRow_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppPublicServiceServer).DeleteRow(ctx, req.(*DeleteRowRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppPublicService_DeleteRows_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteRowsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppPublicServiceServer).DeleteRows(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AppPublicService_DeleteRows_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppPublicServiceServer).DeleteRows(ctx, req.(*DeleteRowsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppPublicService_Export_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExportRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppPublicServiceServer).Export(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AppPublicService_Export_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppPublicServiceServer).Export(ctx, req.(*ExportRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AppPublicService_ServiceDesc is the grpc.ServiceDesc for AppPublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1230,6 +1776,62 @@ var AppPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Chat",
 			Handler:    _AppPublicService_Chat_Handler,
+		},
+		{
+			MethodName: "ListTables",
+			Handler:    _AppPublicService_ListTables_Handler,
+		},
+		{
+			MethodName: "CreateTable",
+			Handler:    _AppPublicService_CreateTable_Handler,
+		},
+		{
+			MethodName: "GetTable",
+			Handler:    _AppPublicService_GetTable_Handler,
+		},
+		{
+			MethodName: "UpdateTable",
+			Handler:    _AppPublicService_UpdateTable_Handler,
+		},
+		{
+			MethodName: "DeleteTable",
+			Handler:    _AppPublicService_DeleteTable_Handler,
+		},
+		{
+			MethodName: "GetColumnDefinitions",
+			Handler:    _AppPublicService_GetColumnDefinitions_Handler,
+		},
+		{
+			MethodName: "UpdateColumnDefinitions",
+			Handler:    _AppPublicService_UpdateColumnDefinitions_Handler,
+		},
+		{
+			MethodName: "ListRows",
+			Handler:    _AppPublicService_ListRows_Handler,
+		},
+		{
+			MethodName: "InsertRow",
+			Handler:    _AppPublicService_InsertRow_Handler,
+		},
+		{
+			MethodName: "UpdateRow",
+			Handler:    _AppPublicService_UpdateRow_Handler,
+		},
+		{
+			MethodName: "UpdateRows",
+			Handler:    _AppPublicService_UpdateRows_Handler,
+		},
+		{
+			MethodName: "DeleteRow",
+			Handler:    _AppPublicService_DeleteRow_Handler,
+		},
+		{
+			MethodName: "DeleteRows",
+			Handler:    _AppPublicService_DeleteRows_Handler,
+		},
+		{
+			MethodName: "Export",
+			Handler:    _AppPublicService_Export_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
