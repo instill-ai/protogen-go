@@ -59,6 +59,7 @@ const (
 	AppPublicService_UpdateRows_FullMethodName                    = "/app.app.v1alpha.AppPublicService/UpdateRows"
 	AppPublicService_DeleteRow_FullMethodName                     = "/app.app.v1alpha.AppPublicService/DeleteRow"
 	AppPublicService_DeleteRows_FullMethodName                    = "/app.app.v1alpha.AppPublicService/DeleteRows"
+	AppPublicService_MoveRows_FullMethodName                      = "/app.app.v1alpha.AppPublicService/MoveRows"
 	AppPublicService_Export_FullMethodName                        = "/app.app.v1alpha.AppPublicService/Export"
 )
 
@@ -229,6 +230,10 @@ type AppPublicServiceClient interface {
 	//
 	// Deletes multiple rows from a table.
 	DeleteRows(ctx context.Context, in *DeleteRowsRequest, opts ...grpc.CallOption) (*DeleteRowsResponse, error)
+	// Move row
+	//
+	// Moves a row to a new position in a table.
+	MoveRows(ctx context.Context, in *MoveRowsRequest, opts ...grpc.CallOption) (*MoveRowsResponse, error)
 	// Export table
 	//
 	// Exports table data.
@@ -603,6 +608,15 @@ func (c *appPublicServiceClient) DeleteRows(ctx context.Context, in *DeleteRowsR
 	return out, nil
 }
 
+func (c *appPublicServiceClient) MoveRows(ctx context.Context, in *MoveRowsRequest, opts ...grpc.CallOption) (*MoveRowsResponse, error) {
+	out := new(MoveRowsResponse)
+	err := c.cc.Invoke(ctx, AppPublicService_MoveRows_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appPublicServiceClient) Export(ctx context.Context, in *ExportRequest, opts ...grpc.CallOption) (*ExportResponse, error) {
 	out := new(ExportResponse)
 	err := c.cc.Invoke(ctx, AppPublicService_Export_FullMethodName, in, out, opts...)
@@ -779,6 +793,10 @@ type AppPublicServiceServer interface {
 	//
 	// Deletes multiple rows from a table.
 	DeleteRows(context.Context, *DeleteRowsRequest) (*DeleteRowsResponse, error)
+	// Move row
+	//
+	// Moves a row to a new position in a table.
+	MoveRows(context.Context, *MoveRowsRequest) (*MoveRowsResponse, error)
 	// Export table
 	//
 	// Exports table data.
@@ -908,6 +926,9 @@ func (UnimplementedAppPublicServiceServer) DeleteRow(context.Context, *DeleteRow
 }
 func (UnimplementedAppPublicServiceServer) DeleteRows(context.Context, *DeleteRowsRequest) (*DeleteRowsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteRows not implemented")
+}
+func (UnimplementedAppPublicServiceServer) MoveRows(context.Context, *MoveRowsRequest) (*MoveRowsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MoveRows not implemented")
 }
 func (UnimplementedAppPublicServiceServer) Export(context.Context, *ExportRequest) (*ExportResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Export not implemented")
@@ -1644,6 +1665,24 @@ func _AppPublicService_DeleteRows_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppPublicService_MoveRows_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MoveRowsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppPublicServiceServer).MoveRows(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AppPublicService_MoveRows_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppPublicServiceServer).MoveRows(ctx, req.(*MoveRowsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppPublicService_Export_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ExportRequest)
 	if err := dec(in); err != nil {
@@ -1828,6 +1867,10 @@ var AppPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteRows",
 			Handler:    _AppPublicService_DeleteRows_Handler,
+		},
+		{
+			MethodName: "MoveRows",
+			Handler:    _AppPublicService_MoveRows_Handler,
 		},
 		{
 			MethodName: "Export",
