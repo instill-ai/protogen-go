@@ -19,48 +19,32 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	AppPublicService_Liveness_FullMethodName                      = "/app.app.v1alpha.AppPublicService/Liveness"
-	AppPublicService_Readiness_FullMethodName                     = "/app.app.v1alpha.AppPublicService/Readiness"
-	AppPublicService_CreateApp_FullMethodName                     = "/app.app.v1alpha.AppPublicService/CreateApp"
-	AppPublicService_ListApps_FullMethodName                      = "/app.app.v1alpha.AppPublicService/ListApps"
-	AppPublicService_UpdateApp_FullMethodName                     = "/app.app.v1alpha.AppPublicService/UpdateApp"
-	AppPublicService_DeleteApp_FullMethodName                     = "/app.app.v1alpha.AppPublicService/DeleteApp"
-	AppPublicService_CreateConversation_FullMethodName            = "/app.app.v1alpha.AppPublicService/CreateConversation"
-	AppPublicService_ListConversations_FullMethodName             = "/app.app.v1alpha.AppPublicService/ListConversations"
-	AppPublicService_UpdateConversation_FullMethodName            = "/app.app.v1alpha.AppPublicService/UpdateConversation"
-	AppPublicService_DeleteConversation_FullMethodName            = "/app.app.v1alpha.AppPublicService/DeleteConversation"
-	AppPublicService_CreateAgent_FullMethodName                   = "/app.app.v1alpha.AppPublicService/CreateAgent"
-	AppPublicService_ListAgents_FullMethodName                    = "/app.app.v1alpha.AppPublicService/ListAgents"
-	AppPublicService_UpdateAgent_FullMethodName                   = "/app.app.v1alpha.AppPublicService/UpdateAgent"
-	AppPublicService_DeleteAgent_FullMethodName                   = "/app.app.v1alpha.AppPublicService/DeleteAgent"
-	AppPublicService_CreateChat_FullMethodName                    = "/app.app.v1alpha.AppPublicService/CreateChat"
-	AppPublicService_ListChats_FullMethodName                     = "/app.app.v1alpha.AppPublicService/ListChats"
-	AppPublicService_UpdateChat_FullMethodName                    = "/app.app.v1alpha.AppPublicService/UpdateChat"
-	AppPublicService_DeleteChat_FullMethodName                    = "/app.app.v1alpha.AppPublicService/DeleteChat"
-	AppPublicService_CreateMessage_FullMethodName                 = "/app.app.v1alpha.AppPublicService/CreateMessage"
-	AppPublicService_ListMessages_FullMethodName                  = "/app.app.v1alpha.AppPublicService/ListMessages"
-	AppPublicService_UpdateMessage_FullMethodName                 = "/app.app.v1alpha.AppPublicService/UpdateMessage"
-	AppPublicService_DeleteMessage_FullMethodName                 = "/app.app.v1alpha.AppPublicService/DeleteMessage"
-	AppPublicService_GetPlaygroundConversation_FullMethodName     = "/app.app.v1alpha.AppPublicService/GetPlaygroundConversation"
-	AppPublicService_ListTools_FullMethodName                     = "/app.app.v1alpha.AppPublicService/ListTools"
-	AppPublicService_ListChatMessages_FullMethodName              = "/app.app.v1alpha.AppPublicService/ListChatMessages"
-	AppPublicService_RestartPlaygroundConversation_FullMethodName = "/app.app.v1alpha.AppPublicService/RestartPlaygroundConversation"
-	AppPublicService_Chat_FullMethodName                          = "/app.app.v1alpha.AppPublicService/Chat"
-	AppPublicService_ListTables_FullMethodName                    = "/app.app.v1alpha.AppPublicService/ListTables"
-	AppPublicService_CreateTable_FullMethodName                   = "/app.app.v1alpha.AppPublicService/CreateTable"
-	AppPublicService_GetTable_FullMethodName                      = "/app.app.v1alpha.AppPublicService/GetTable"
-	AppPublicService_UpdateTable_FullMethodName                   = "/app.app.v1alpha.AppPublicService/UpdateTable"
-	AppPublicService_DeleteTable_FullMethodName                   = "/app.app.v1alpha.AppPublicService/DeleteTable"
-	AppPublicService_GetColumnDefinitions_FullMethodName          = "/app.app.v1alpha.AppPublicService/GetColumnDefinitions"
-	AppPublicService_UpdateColumnDefinitions_FullMethodName       = "/app.app.v1alpha.AppPublicService/UpdateColumnDefinitions"
-	AppPublicService_ListRows_FullMethodName                      = "/app.app.v1alpha.AppPublicService/ListRows"
-	AppPublicService_InsertRow_FullMethodName                     = "/app.app.v1alpha.AppPublicService/InsertRow"
-	AppPublicService_UpdateRow_FullMethodName                     = "/app.app.v1alpha.AppPublicService/UpdateRow"
-	AppPublicService_UpdateRows_FullMethodName                    = "/app.app.v1alpha.AppPublicService/UpdateRows"
-	AppPublicService_DeleteRow_FullMethodName                     = "/app.app.v1alpha.AppPublicService/DeleteRow"
-	AppPublicService_DeleteRows_FullMethodName                    = "/app.app.v1alpha.AppPublicService/DeleteRows"
-	AppPublicService_MoveRows_FullMethodName                      = "/app.app.v1alpha.AppPublicService/MoveRows"
-	AppPublicService_Export_FullMethodName                        = "/app.app.v1alpha.AppPublicService/Export"
+	AppPublicService_Liveness_FullMethodName                = "/app.app.v1alpha.AppPublicService/Liveness"
+	AppPublicService_Readiness_FullMethodName               = "/app.app.v1alpha.AppPublicService/Readiness"
+	AppPublicService_CreateChat_FullMethodName              = "/app.app.v1alpha.AppPublicService/CreateChat"
+	AppPublicService_ListChats_FullMethodName               = "/app.app.v1alpha.AppPublicService/ListChats"
+	AppPublicService_UpdateChat_FullMethodName              = "/app.app.v1alpha.AppPublicService/UpdateChat"
+	AppPublicService_DeleteChat_FullMethodName              = "/app.app.v1alpha.AppPublicService/DeleteChat"
+	AppPublicService_CreateMessage_FullMethodName           = "/app.app.v1alpha.AppPublicService/CreateMessage"
+	AppPublicService_ListMessages_FullMethodName            = "/app.app.v1alpha.AppPublicService/ListMessages"
+	AppPublicService_UpdateMessage_FullMethodName           = "/app.app.v1alpha.AppPublicService/UpdateMessage"
+	AppPublicService_DeleteMessage_FullMethodName           = "/app.app.v1alpha.AppPublicService/DeleteMessage"
+	AppPublicService_Chat_FullMethodName                    = "/app.app.v1alpha.AppPublicService/Chat"
+	AppPublicService_ListTables_FullMethodName              = "/app.app.v1alpha.AppPublicService/ListTables"
+	AppPublicService_CreateTable_FullMethodName             = "/app.app.v1alpha.AppPublicService/CreateTable"
+	AppPublicService_GetTable_FullMethodName                = "/app.app.v1alpha.AppPublicService/GetTable"
+	AppPublicService_UpdateTable_FullMethodName             = "/app.app.v1alpha.AppPublicService/UpdateTable"
+	AppPublicService_DeleteTable_FullMethodName             = "/app.app.v1alpha.AppPublicService/DeleteTable"
+	AppPublicService_GetColumnDefinitions_FullMethodName    = "/app.app.v1alpha.AppPublicService/GetColumnDefinitions"
+	AppPublicService_UpdateColumnDefinitions_FullMethodName = "/app.app.v1alpha.AppPublicService/UpdateColumnDefinitions"
+	AppPublicService_ListRows_FullMethodName                = "/app.app.v1alpha.AppPublicService/ListRows"
+	AppPublicService_InsertRow_FullMethodName               = "/app.app.v1alpha.AppPublicService/InsertRow"
+	AppPublicService_UpdateRow_FullMethodName               = "/app.app.v1alpha.AppPublicService/UpdateRow"
+	AppPublicService_UpdateRows_FullMethodName              = "/app.app.v1alpha.AppPublicService/UpdateRows"
+	AppPublicService_DeleteRow_FullMethodName               = "/app.app.v1alpha.AppPublicService/DeleteRow"
+	AppPublicService_DeleteRows_FullMethodName              = "/app.app.v1alpha.AppPublicService/DeleteRows"
+	AppPublicService_MoveRows_FullMethodName                = "/app.app.v1alpha.AppPublicService/MoveRows"
+	AppPublicService_Export_FullMethodName                  = "/app.app.v1alpha.AppPublicService/Export"
 )
 
 // AppPublicServiceClient is the client API for AppPublicService service.
@@ -75,54 +59,6 @@ type AppPublicServiceClient interface {
 	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error)
-	// Create an app
-	//
-	// Creates an app.
-	CreateApp(ctx context.Context, in *CreateAppRequest, opts ...grpc.CallOption) (*CreateAppResponse, error)
-	// List all apps info
-	//
-	// Returns a paginated list of apps.
-	ListApps(ctx context.Context, in *ListAppsRequest, opts ...grpc.CallOption) (*ListAppsResponse, error)
-	// Update an app's information
-	//
-	// Updates the information of an app.
-	UpdateApp(ctx context.Context, in *UpdateAppRequest, opts ...grpc.CallOption) (*UpdateAppResponse, error)
-	// Delete an app
-	//
-	// Deletes an app.
-	DeleteApp(ctx context.Context, in *DeleteAppRequest, opts ...grpc.CallOption) (*DeleteAppResponse, error)
-	// Create a conversation
-	//
-	// Creates a conversation.
-	CreateConversation(ctx context.Context, in *CreateConversationRequest, opts ...grpc.CallOption) (*CreateConversationResponse, error)
-	// List conversations
-	//
-	// Returns a paginated list of conversations.
-	ListConversations(ctx context.Context, in *ListConversationsRequest, opts ...grpc.CallOption) (*ListConversationsResponse, error)
-	// Update a conversation
-	//
-	// Updates a conversation.
-	UpdateConversation(ctx context.Context, in *UpdateConversationRequest, opts ...grpc.CallOption) (*UpdateConversationResponse, error)
-	// Delete a conversation
-	//
-	// Deletes a conversation.
-	DeleteConversation(ctx context.Context, in *DeleteConversationRequest, opts ...grpc.CallOption) (*DeleteConversationResponse, error)
-	// Create an agent
-	//
-	// Creates an agent.
-	CreateAgent(ctx context.Context, in *CreateAgentRequest, opts ...grpc.CallOption) (*CreateAgentResponse, error)
-	// List all agents info
-	//
-	// Returns a paginated list of agents.
-	ListAgents(ctx context.Context, in *ListAgentsRequest, opts ...grpc.CallOption) (*ListAgentsResponse, error)
-	// Update an agent
-	//
-	// Updates the information of an agent.
-	UpdateAgent(ctx context.Context, in *UpdateAgentRequest, opts ...grpc.CallOption) (*UpdateAgentResponse, error)
-	// Delete an agent
-	//
-	// Deletes an agent.
-	DeleteAgent(ctx context.Context, in *DeleteAgentRequest, opts ...grpc.CallOption) (*DeleteAgentResponse, error)
 	// Create a chat
 	//
 	// Creates a chat.
@@ -155,23 +91,6 @@ type AppPublicServiceClient interface {
 	//
 	// Deletes a message.
 	DeleteMessage(ctx context.Context, in *DeleteMessageRequest, opts ...grpc.CallOption) (*DeleteMessageResponse, error)
-	// Get Playground Conversation
-	//
-	// Returns the latest conversation for the authenticated user (e.g., logged-in user or API key user).
-	GetPlaygroundConversation(ctx context.Context, in *GetPlaygroundConversationRequest, opts ...grpc.CallOption) (*GetPlaygroundConversationResponse, error)
-	// List all tools
-	//
-	// Returns a list of tools.
-	ListTools(ctx context.Context, in *ListToolsRequest, opts ...grpc.CallOption) (*ListToolsResponse, error)
-	// List chat messages
-	//
-	// Returns a paginated list of messages.
-	ListChatMessages(ctx context.Context, in *ListChatMessagesRequest, opts ...grpc.CallOption) (*ListChatMessagesResponse, error)
-	// Restart Playground Conversation
-	//
-	// Creates a new conversation using the authenticated user's UID as creator and
-	// auto-generates a new conversation ID on behalf of the authenticated user.
-	RestartPlaygroundConversation(ctx context.Context, in *RestartPlaygroundConversationRequest, opts ...grpc.CallOption) (*RestartPlaygroundConversationResponse, error)
 	// Chat
 	//
 	// Chat sends a message asynchronously and streams back the response.
@@ -266,114 +185,6 @@ func (c *appPublicServiceClient) Readiness(ctx context.Context, in *ReadinessReq
 	return out, nil
 }
 
-func (c *appPublicServiceClient) CreateApp(ctx context.Context, in *CreateAppRequest, opts ...grpc.CallOption) (*CreateAppResponse, error) {
-	out := new(CreateAppResponse)
-	err := c.cc.Invoke(ctx, AppPublicService_CreateApp_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *appPublicServiceClient) ListApps(ctx context.Context, in *ListAppsRequest, opts ...grpc.CallOption) (*ListAppsResponse, error) {
-	out := new(ListAppsResponse)
-	err := c.cc.Invoke(ctx, AppPublicService_ListApps_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *appPublicServiceClient) UpdateApp(ctx context.Context, in *UpdateAppRequest, opts ...grpc.CallOption) (*UpdateAppResponse, error) {
-	out := new(UpdateAppResponse)
-	err := c.cc.Invoke(ctx, AppPublicService_UpdateApp_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *appPublicServiceClient) DeleteApp(ctx context.Context, in *DeleteAppRequest, opts ...grpc.CallOption) (*DeleteAppResponse, error) {
-	out := new(DeleteAppResponse)
-	err := c.cc.Invoke(ctx, AppPublicService_DeleteApp_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *appPublicServiceClient) CreateConversation(ctx context.Context, in *CreateConversationRequest, opts ...grpc.CallOption) (*CreateConversationResponse, error) {
-	out := new(CreateConversationResponse)
-	err := c.cc.Invoke(ctx, AppPublicService_CreateConversation_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *appPublicServiceClient) ListConversations(ctx context.Context, in *ListConversationsRequest, opts ...grpc.CallOption) (*ListConversationsResponse, error) {
-	out := new(ListConversationsResponse)
-	err := c.cc.Invoke(ctx, AppPublicService_ListConversations_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *appPublicServiceClient) UpdateConversation(ctx context.Context, in *UpdateConversationRequest, opts ...grpc.CallOption) (*UpdateConversationResponse, error) {
-	out := new(UpdateConversationResponse)
-	err := c.cc.Invoke(ctx, AppPublicService_UpdateConversation_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *appPublicServiceClient) DeleteConversation(ctx context.Context, in *DeleteConversationRequest, opts ...grpc.CallOption) (*DeleteConversationResponse, error) {
-	out := new(DeleteConversationResponse)
-	err := c.cc.Invoke(ctx, AppPublicService_DeleteConversation_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *appPublicServiceClient) CreateAgent(ctx context.Context, in *CreateAgentRequest, opts ...grpc.CallOption) (*CreateAgentResponse, error) {
-	out := new(CreateAgentResponse)
-	err := c.cc.Invoke(ctx, AppPublicService_CreateAgent_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *appPublicServiceClient) ListAgents(ctx context.Context, in *ListAgentsRequest, opts ...grpc.CallOption) (*ListAgentsResponse, error) {
-	out := new(ListAgentsResponse)
-	err := c.cc.Invoke(ctx, AppPublicService_ListAgents_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *appPublicServiceClient) UpdateAgent(ctx context.Context, in *UpdateAgentRequest, opts ...grpc.CallOption) (*UpdateAgentResponse, error) {
-	out := new(UpdateAgentResponse)
-	err := c.cc.Invoke(ctx, AppPublicService_UpdateAgent_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *appPublicServiceClient) DeleteAgent(ctx context.Context, in *DeleteAgentRequest, opts ...grpc.CallOption) (*DeleteAgentResponse, error) {
-	out := new(DeleteAgentResponse)
-	err := c.cc.Invoke(ctx, AppPublicService_DeleteAgent_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *appPublicServiceClient) CreateChat(ctx context.Context, in *CreateChatRequest, opts ...grpc.CallOption) (*CreateChatResponse, error) {
 	out := new(CreateChatResponse)
 	err := c.cc.Invoke(ctx, AppPublicService_CreateChat_FullMethodName, in, out, opts...)
@@ -440,42 +251,6 @@ func (c *appPublicServiceClient) UpdateMessage(ctx context.Context, in *UpdateMe
 func (c *appPublicServiceClient) DeleteMessage(ctx context.Context, in *DeleteMessageRequest, opts ...grpc.CallOption) (*DeleteMessageResponse, error) {
 	out := new(DeleteMessageResponse)
 	err := c.cc.Invoke(ctx, AppPublicService_DeleteMessage_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *appPublicServiceClient) GetPlaygroundConversation(ctx context.Context, in *GetPlaygroundConversationRequest, opts ...grpc.CallOption) (*GetPlaygroundConversationResponse, error) {
-	out := new(GetPlaygroundConversationResponse)
-	err := c.cc.Invoke(ctx, AppPublicService_GetPlaygroundConversation_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *appPublicServiceClient) ListTools(ctx context.Context, in *ListToolsRequest, opts ...grpc.CallOption) (*ListToolsResponse, error) {
-	out := new(ListToolsResponse)
-	err := c.cc.Invoke(ctx, AppPublicService_ListTools_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *appPublicServiceClient) ListChatMessages(ctx context.Context, in *ListChatMessagesRequest, opts ...grpc.CallOption) (*ListChatMessagesResponse, error) {
-	out := new(ListChatMessagesResponse)
-	err := c.cc.Invoke(ctx, AppPublicService_ListChatMessages_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *appPublicServiceClient) RestartPlaygroundConversation(ctx context.Context, in *RestartPlaygroundConversationRequest, opts ...grpc.CallOption) (*RestartPlaygroundConversationResponse, error) {
-	out := new(RestartPlaygroundConversationResponse)
-	err := c.cc.Invoke(ctx, AppPublicService_RestartPlaygroundConversation_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -638,54 +413,6 @@ type AppPublicServiceServer interface {
 	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error)
-	// Create an app
-	//
-	// Creates an app.
-	CreateApp(context.Context, *CreateAppRequest) (*CreateAppResponse, error)
-	// List all apps info
-	//
-	// Returns a paginated list of apps.
-	ListApps(context.Context, *ListAppsRequest) (*ListAppsResponse, error)
-	// Update an app's information
-	//
-	// Updates the information of an app.
-	UpdateApp(context.Context, *UpdateAppRequest) (*UpdateAppResponse, error)
-	// Delete an app
-	//
-	// Deletes an app.
-	DeleteApp(context.Context, *DeleteAppRequest) (*DeleteAppResponse, error)
-	// Create a conversation
-	//
-	// Creates a conversation.
-	CreateConversation(context.Context, *CreateConversationRequest) (*CreateConversationResponse, error)
-	// List conversations
-	//
-	// Returns a paginated list of conversations.
-	ListConversations(context.Context, *ListConversationsRequest) (*ListConversationsResponse, error)
-	// Update a conversation
-	//
-	// Updates a conversation.
-	UpdateConversation(context.Context, *UpdateConversationRequest) (*UpdateConversationResponse, error)
-	// Delete a conversation
-	//
-	// Deletes a conversation.
-	DeleteConversation(context.Context, *DeleteConversationRequest) (*DeleteConversationResponse, error)
-	// Create an agent
-	//
-	// Creates an agent.
-	CreateAgent(context.Context, *CreateAgentRequest) (*CreateAgentResponse, error)
-	// List all agents info
-	//
-	// Returns a paginated list of agents.
-	ListAgents(context.Context, *ListAgentsRequest) (*ListAgentsResponse, error)
-	// Update an agent
-	//
-	// Updates the information of an agent.
-	UpdateAgent(context.Context, *UpdateAgentRequest) (*UpdateAgentResponse, error)
-	// Delete an agent
-	//
-	// Deletes an agent.
-	DeleteAgent(context.Context, *DeleteAgentRequest) (*DeleteAgentResponse, error)
 	// Create a chat
 	//
 	// Creates a chat.
@@ -718,23 +445,6 @@ type AppPublicServiceServer interface {
 	//
 	// Deletes a message.
 	DeleteMessage(context.Context, *DeleteMessageRequest) (*DeleteMessageResponse, error)
-	// Get Playground Conversation
-	//
-	// Returns the latest conversation for the authenticated user (e.g., logged-in user or API key user).
-	GetPlaygroundConversation(context.Context, *GetPlaygroundConversationRequest) (*GetPlaygroundConversationResponse, error)
-	// List all tools
-	//
-	// Returns a list of tools.
-	ListTools(context.Context, *ListToolsRequest) (*ListToolsResponse, error)
-	// List chat messages
-	//
-	// Returns a paginated list of messages.
-	ListChatMessages(context.Context, *ListChatMessagesRequest) (*ListChatMessagesResponse, error)
-	// Restart Playground Conversation
-	//
-	// Creates a new conversation using the authenticated user's UID as creator and
-	// auto-generates a new conversation ID on behalf of the authenticated user.
-	RestartPlaygroundConversation(context.Context, *RestartPlaygroundConversationRequest) (*RestartPlaygroundConversationResponse, error)
 	// Chat
 	//
 	// Chat sends a message asynchronously and streams back the response.
@@ -813,42 +523,6 @@ func (UnimplementedAppPublicServiceServer) Liveness(context.Context, *LivenessRe
 func (UnimplementedAppPublicServiceServer) Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Readiness not implemented")
 }
-func (UnimplementedAppPublicServiceServer) CreateApp(context.Context, *CreateAppRequest) (*CreateAppResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateApp not implemented")
-}
-func (UnimplementedAppPublicServiceServer) ListApps(context.Context, *ListAppsRequest) (*ListAppsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListApps not implemented")
-}
-func (UnimplementedAppPublicServiceServer) UpdateApp(context.Context, *UpdateAppRequest) (*UpdateAppResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateApp not implemented")
-}
-func (UnimplementedAppPublicServiceServer) DeleteApp(context.Context, *DeleteAppRequest) (*DeleteAppResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteApp not implemented")
-}
-func (UnimplementedAppPublicServiceServer) CreateConversation(context.Context, *CreateConversationRequest) (*CreateConversationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateConversation not implemented")
-}
-func (UnimplementedAppPublicServiceServer) ListConversations(context.Context, *ListConversationsRequest) (*ListConversationsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListConversations not implemented")
-}
-func (UnimplementedAppPublicServiceServer) UpdateConversation(context.Context, *UpdateConversationRequest) (*UpdateConversationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateConversation not implemented")
-}
-func (UnimplementedAppPublicServiceServer) DeleteConversation(context.Context, *DeleteConversationRequest) (*DeleteConversationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteConversation not implemented")
-}
-func (UnimplementedAppPublicServiceServer) CreateAgent(context.Context, *CreateAgentRequest) (*CreateAgentResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateAgent not implemented")
-}
-func (UnimplementedAppPublicServiceServer) ListAgents(context.Context, *ListAgentsRequest) (*ListAgentsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListAgents not implemented")
-}
-func (UnimplementedAppPublicServiceServer) UpdateAgent(context.Context, *UpdateAgentRequest) (*UpdateAgentResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateAgent not implemented")
-}
-func (UnimplementedAppPublicServiceServer) DeleteAgent(context.Context, *DeleteAgentRequest) (*DeleteAgentResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteAgent not implemented")
-}
 func (UnimplementedAppPublicServiceServer) CreateChat(context.Context, *CreateChatRequest) (*CreateChatResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateChat not implemented")
 }
@@ -872,18 +546,6 @@ func (UnimplementedAppPublicServiceServer) UpdateMessage(context.Context, *Updat
 }
 func (UnimplementedAppPublicServiceServer) DeleteMessage(context.Context, *DeleteMessageRequest) (*DeleteMessageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteMessage not implemented")
-}
-func (UnimplementedAppPublicServiceServer) GetPlaygroundConversation(context.Context, *GetPlaygroundConversationRequest) (*GetPlaygroundConversationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPlaygroundConversation not implemented")
-}
-func (UnimplementedAppPublicServiceServer) ListTools(context.Context, *ListToolsRequest) (*ListToolsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListTools not implemented")
-}
-func (UnimplementedAppPublicServiceServer) ListChatMessages(context.Context, *ListChatMessagesRequest) (*ListChatMessagesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListChatMessages not implemented")
-}
-func (UnimplementedAppPublicServiceServer) RestartPlaygroundConversation(context.Context, *RestartPlaygroundConversationRequest) (*RestartPlaygroundConversationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RestartPlaygroundConversation not implemented")
 }
 func (UnimplementedAppPublicServiceServer) Chat(context.Context, *ChatRequest) (*ChatResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Chat not implemented")
@@ -977,222 +639,6 @@ func _AppPublicService_Readiness_Handler(srv interface{}, ctx context.Context, d
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppPublicServiceServer).Readiness(ctx, req.(*ReadinessRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AppPublicService_CreateApp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateAppRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppPublicServiceServer).CreateApp(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AppPublicService_CreateApp_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppPublicServiceServer).CreateApp(ctx, req.(*CreateAppRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AppPublicService_ListApps_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListAppsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppPublicServiceServer).ListApps(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AppPublicService_ListApps_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppPublicServiceServer).ListApps(ctx, req.(*ListAppsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AppPublicService_UpdateApp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateAppRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppPublicServiceServer).UpdateApp(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AppPublicService_UpdateApp_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppPublicServiceServer).UpdateApp(ctx, req.(*UpdateAppRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AppPublicService_DeleteApp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteAppRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppPublicServiceServer).DeleteApp(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AppPublicService_DeleteApp_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppPublicServiceServer).DeleteApp(ctx, req.(*DeleteAppRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AppPublicService_CreateConversation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateConversationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppPublicServiceServer).CreateConversation(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AppPublicService_CreateConversation_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppPublicServiceServer).CreateConversation(ctx, req.(*CreateConversationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AppPublicService_ListConversations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListConversationsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppPublicServiceServer).ListConversations(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AppPublicService_ListConversations_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppPublicServiceServer).ListConversations(ctx, req.(*ListConversationsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AppPublicService_UpdateConversation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateConversationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppPublicServiceServer).UpdateConversation(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AppPublicService_UpdateConversation_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppPublicServiceServer).UpdateConversation(ctx, req.(*UpdateConversationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AppPublicService_DeleteConversation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteConversationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppPublicServiceServer).DeleteConversation(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AppPublicService_DeleteConversation_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppPublicServiceServer).DeleteConversation(ctx, req.(*DeleteConversationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AppPublicService_CreateAgent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateAgentRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppPublicServiceServer).CreateAgent(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AppPublicService_CreateAgent_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppPublicServiceServer).CreateAgent(ctx, req.(*CreateAgentRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AppPublicService_ListAgents_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListAgentsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppPublicServiceServer).ListAgents(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AppPublicService_ListAgents_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppPublicServiceServer).ListAgents(ctx, req.(*ListAgentsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AppPublicService_UpdateAgent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateAgentRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppPublicServiceServer).UpdateAgent(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AppPublicService_UpdateAgent_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppPublicServiceServer).UpdateAgent(ctx, req.(*UpdateAgentRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AppPublicService_DeleteAgent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteAgentRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppPublicServiceServer).DeleteAgent(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AppPublicService_DeleteAgent_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppPublicServiceServer).DeleteAgent(ctx, req.(*DeleteAgentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1337,78 +783,6 @@ func _AppPublicService_DeleteMessage_Handler(srv interface{}, ctx context.Contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppPublicServiceServer).DeleteMessage(ctx, req.(*DeleteMessageRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AppPublicService_GetPlaygroundConversation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetPlaygroundConversationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppPublicServiceServer).GetPlaygroundConversation(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AppPublicService_GetPlaygroundConversation_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppPublicServiceServer).GetPlaygroundConversation(ctx, req.(*GetPlaygroundConversationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AppPublicService_ListTools_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListToolsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppPublicServiceServer).ListTools(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AppPublicService_ListTools_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppPublicServiceServer).ListTools(ctx, req.(*ListToolsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AppPublicService_ListChatMessages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListChatMessagesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppPublicServiceServer).ListChatMessages(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AppPublicService_ListChatMessages_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppPublicServiceServer).ListChatMessages(ctx, req.(*ListChatMessagesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AppPublicService_RestartPlaygroundConversation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RestartPlaygroundConversationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppPublicServiceServer).RestartPlaygroundConversation(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AppPublicService_RestartPlaygroundConversation_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppPublicServiceServer).RestartPlaygroundConversation(ctx, req.(*RestartPlaygroundConversationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1717,54 +1091,6 @@ var AppPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppPublicService_Readiness_Handler,
 		},
 		{
-			MethodName: "CreateApp",
-			Handler:    _AppPublicService_CreateApp_Handler,
-		},
-		{
-			MethodName: "ListApps",
-			Handler:    _AppPublicService_ListApps_Handler,
-		},
-		{
-			MethodName: "UpdateApp",
-			Handler:    _AppPublicService_UpdateApp_Handler,
-		},
-		{
-			MethodName: "DeleteApp",
-			Handler:    _AppPublicService_DeleteApp_Handler,
-		},
-		{
-			MethodName: "CreateConversation",
-			Handler:    _AppPublicService_CreateConversation_Handler,
-		},
-		{
-			MethodName: "ListConversations",
-			Handler:    _AppPublicService_ListConversations_Handler,
-		},
-		{
-			MethodName: "UpdateConversation",
-			Handler:    _AppPublicService_UpdateConversation_Handler,
-		},
-		{
-			MethodName: "DeleteConversation",
-			Handler:    _AppPublicService_DeleteConversation_Handler,
-		},
-		{
-			MethodName: "CreateAgent",
-			Handler:    _AppPublicService_CreateAgent_Handler,
-		},
-		{
-			MethodName: "ListAgents",
-			Handler:    _AppPublicService_ListAgents_Handler,
-		},
-		{
-			MethodName: "UpdateAgent",
-			Handler:    _AppPublicService_UpdateAgent_Handler,
-		},
-		{
-			MethodName: "DeleteAgent",
-			Handler:    _AppPublicService_DeleteAgent_Handler,
-		},
-		{
 			MethodName: "CreateChat",
 			Handler:    _AppPublicService_CreateChat_Handler,
 		},
@@ -1795,22 +1121,6 @@ var AppPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteMessage",
 			Handler:    _AppPublicService_DeleteMessage_Handler,
-		},
-		{
-			MethodName: "GetPlaygroundConversation",
-			Handler:    _AppPublicService_GetPlaygroundConversation_Handler,
-		},
-		{
-			MethodName: "ListTools",
-			Handler:    _AppPublicService_ListTools_Handler,
-		},
-		{
-			MethodName: "ListChatMessages",
-			Handler:    _AppPublicService_ListChatMessages_Handler,
-		},
-		{
-			MethodName: "RestartPlaygroundConversation",
-			Handler:    _AppPublicService_RestartPlaygroundConversation_Handler,
 		},
 		{
 			MethodName: "Chat",
