@@ -44,7 +44,9 @@ const (
 	AppPublicService_DeleteRow_FullMethodName               = "/app.app.v1alpha.AppPublicService/DeleteRow"
 	AppPublicService_DeleteRows_FullMethodName              = "/app.app.v1alpha.AppPublicService/DeleteRows"
 	AppPublicService_MoveRows_FullMethodName                = "/app.app.v1alpha.AppPublicService/MoveRows"
+	AppPublicService_GetTableEvents_FullMethodName          = "/app.app.v1alpha.AppPublicService/GetTableEvents"
 	AppPublicService_Export_FullMethodName                  = "/app.app.v1alpha.AppPublicService/Export"
+	AppPublicService_GenerateMockTable_FullMethodName       = "/app.app.v1alpha.AppPublicService/GenerateMockTable"
 )
 
 // AppPublicServiceClient is the client API for AppPublicService service.
@@ -153,10 +155,20 @@ type AppPublicServiceClient interface {
 	//
 	// Moves a row to a new position in a table.
 	MoveRows(ctx context.Context, in *MoveRowsRequest, opts ...grpc.CallOption) (*MoveRowsResponse, error)
+	// Get table events
+	//
+	// Returns a list of events for a table.
+	GetTableEvents(ctx context.Context, in *GetTableEventsRequest, opts ...grpc.CallOption) (AppPublicService_GetTableEventsClient, error)
 	// Export table
 	//
 	// Exports table data.
 	Export(ctx context.Context, in *ExportRequest, opts ...grpc.CallOption) (*ExportResponse, error)
+	// Generate mock table
+	//
+	// Generates mock table data.
+	// This API is only available for internal use to generate mock row data for testing purposes.
+	// It should not be used in production environments.
+	GenerateMockTable(ctx context.Context, in *GenerateMockTableRequest, opts ...grpc.CallOption) (*GenerateMockTableResponse, error)
 }
 
 type appPublicServiceClient struct {
@@ -392,9 +404,50 @@ func (c *appPublicServiceClient) MoveRows(ctx context.Context, in *MoveRowsReque
 	return out, nil
 }
 
+func (c *appPublicServiceClient) GetTableEvents(ctx context.Context, in *GetTableEventsRequest, opts ...grpc.CallOption) (AppPublicService_GetTableEventsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &AppPublicService_ServiceDesc.Streams[0], AppPublicService_GetTableEvents_FullMethodName, opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &appPublicServiceGetTableEventsClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type AppPublicService_GetTableEventsClient interface {
+	Recv() (*GetTableEventsResponse, error)
+	grpc.ClientStream
+}
+
+type appPublicServiceGetTableEventsClient struct {
+	grpc.ClientStream
+}
+
+func (x *appPublicServiceGetTableEventsClient) Recv() (*GetTableEventsResponse, error) {
+	m := new(GetTableEventsResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 func (c *appPublicServiceClient) Export(ctx context.Context, in *ExportRequest, opts ...grpc.CallOption) (*ExportResponse, error) {
 	out := new(ExportResponse)
 	err := c.cc.Invoke(ctx, AppPublicService_Export_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appPublicServiceClient) GenerateMockTable(ctx context.Context, in *GenerateMockTableRequest, opts ...grpc.CallOption) (*GenerateMockTableResponse, error) {
+	out := new(GenerateMockTableResponse)
+	err := c.cc.Invoke(ctx, AppPublicService_GenerateMockTable_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -507,10 +560,20 @@ type AppPublicServiceServer interface {
 	//
 	// Moves a row to a new position in a table.
 	MoveRows(context.Context, *MoveRowsRequest) (*MoveRowsResponse, error)
+	// Get table events
+	//
+	// Returns a list of events for a table.
+	GetTableEvents(*GetTableEventsRequest, AppPublicService_GetTableEventsServer) error
 	// Export table
 	//
 	// Exports table data.
 	Export(context.Context, *ExportRequest) (*ExportResponse, error)
+	// Generate mock table
+	//
+	// Generates mock table data.
+	// This API is only available for internal use to generate mock row data for testing purposes.
+	// It should not be used in production environments.
+	GenerateMockTable(context.Context, *GenerateMockTableRequest) (*GenerateMockTableResponse, error)
 }
 
 // UnimplementedAppPublicServiceServer should be embedded to have forward compatible implementations.
@@ -592,8 +655,14 @@ func (UnimplementedAppPublicServiceServer) DeleteRows(context.Context, *DeleteRo
 func (UnimplementedAppPublicServiceServer) MoveRows(context.Context, *MoveRowsRequest) (*MoveRowsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MoveRows not implemented")
 }
+func (UnimplementedAppPublicServiceServer) GetTableEvents(*GetTableEventsRequest, AppPublicService_GetTableEventsServer) error {
+	return status.Errorf(codes.Unimplemented, "method GetTableEvents not implemented")
+}
 func (UnimplementedAppPublicServiceServer) Export(context.Context, *ExportRequest) (*ExportResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Export not implemented")
+}
+func (UnimplementedAppPublicServiceServer) GenerateMockTable(context.Context, *GenerateMockTableRequest) (*GenerateMockTableResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GenerateMockTable not implemented")
 }
 
 // UnsafeAppPublicServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -1057,6 +1126,27 @@ func _AppPublicService_MoveRows_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppPublicService_GetTableEvents_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(GetTableEventsRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(AppPublicServiceServer).GetTableEvents(m, &appPublicServiceGetTableEventsServer{stream})
+}
+
+type AppPublicService_GetTableEventsServer interface {
+	Send(*GetTableEventsResponse) error
+	grpc.ServerStream
+}
+
+type appPublicServiceGetTableEventsServer struct {
+	grpc.ServerStream
+}
+
+func (x *appPublicServiceGetTableEventsServer) Send(m *GetTableEventsResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 func _AppPublicService_Export_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ExportRequest)
 	if err := dec(in); err != nil {
@@ -1071,6 +1161,24 @@ func _AppPublicService_Export_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppPublicServiceServer).Export(ctx, req.(*ExportRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppPublicService_GenerateMockTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GenerateMockTableRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppPublicServiceServer).GenerateMockTable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AppPublicService_GenerateMockTable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppPublicServiceServer).GenerateMockTable(ctx, req.(*GenerateMockTableRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1186,7 +1294,17 @@ var AppPublicService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "Export",
 			Handler:    _AppPublicService_Export_Handler,
 		},
+		{
+			MethodName: "GenerateMockTable",
+			Handler:    _AppPublicService_GenerateMockTable_Handler,
+		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "GetTableEvents",
+			Handler:       _AppPublicService_GetTableEvents_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "app/app/v1alpha/app_public_service.proto",
 }
