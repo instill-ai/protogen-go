@@ -45,7 +45,7 @@ const (
 	AgentPublicService_DeleteRows_FullMethodName              = "/agent.agent.v1alpha.AgentPublicService/DeleteRows"
 	AgentPublicService_MoveRows_FullMethodName                = "/agent.agent.v1alpha.AgentPublicService/MoveRows"
 	AgentPublicService_GetTableEvents_FullMethodName          = "/agent.agent.v1alpha.AgentPublicService/GetTableEvents"
-	AgentPublicService_Export_FullMethodName                  = "/agent.agent.v1alpha.AgentPublicService/Export"
+	AgentPublicService_ExportTable_FullMethodName             = "/agent.agent.v1alpha.AgentPublicService/ExportTable"
 	AgentPublicService_GenerateMockTable_FullMethodName       = "/agent.agent.v1alpha.AgentPublicService/GenerateMockTable"
 )
 
@@ -162,7 +162,7 @@ type AgentPublicServiceClient interface {
 	// Export table
 	//
 	// Exports table data.
-	Export(ctx context.Context, in *ExportRequest, opts ...grpc.CallOption) (*ExportResponse, error)
+	ExportTable(ctx context.Context, in *ExportTableRequest, opts ...grpc.CallOption) (*ExportTableResponse, error)
 	// Generate mock table
 	//
 	// Generates mock table data.
@@ -436,9 +436,9 @@ func (x *agentPublicServiceGetTableEventsClient) Recv() (*GetTableEventsResponse
 	return m, nil
 }
 
-func (c *agentPublicServiceClient) Export(ctx context.Context, in *ExportRequest, opts ...grpc.CallOption) (*ExportResponse, error) {
-	out := new(ExportResponse)
-	err := c.cc.Invoke(ctx, AgentPublicService_Export_FullMethodName, in, out, opts...)
+func (c *agentPublicServiceClient) ExportTable(ctx context.Context, in *ExportTableRequest, opts ...grpc.CallOption) (*ExportTableResponse, error) {
+	out := new(ExportTableResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_ExportTable_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -567,7 +567,7 @@ type AgentPublicServiceServer interface {
 	// Export table
 	//
 	// Exports table data.
-	Export(context.Context, *ExportRequest) (*ExportResponse, error)
+	ExportTable(context.Context, *ExportTableRequest) (*ExportTableResponse, error)
 	// Generate mock table
 	//
 	// Generates mock table data.
@@ -658,8 +658,8 @@ func (UnimplementedAgentPublicServiceServer) MoveRows(context.Context, *MoveRows
 func (UnimplementedAgentPublicServiceServer) GetTableEvents(*GetTableEventsRequest, AgentPublicService_GetTableEventsServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetTableEvents not implemented")
 }
-func (UnimplementedAgentPublicServiceServer) Export(context.Context, *ExportRequest) (*ExportResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Export not implemented")
+func (UnimplementedAgentPublicServiceServer) ExportTable(context.Context, *ExportTableRequest) (*ExportTableResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExportTable not implemented")
 }
 func (UnimplementedAgentPublicServiceServer) GenerateMockTable(context.Context, *GenerateMockTableRequest) (*GenerateMockTableResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GenerateMockTable not implemented")
@@ -1147,20 +1147,20 @@ func (x *agentPublicServiceGetTableEventsServer) Send(m *GetTableEventsResponse)
 	return x.ServerStream.SendMsg(m)
 }
 
-func _AgentPublicService_Export_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ExportRequest)
+func _AgentPublicService_ExportTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExportTableRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AgentPublicServiceServer).Export(ctx, in)
+		return srv.(AgentPublicServiceServer).ExportTable(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AgentPublicService_Export_FullMethodName,
+		FullMethod: AgentPublicService_ExportTable_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AgentPublicServiceServer).Export(ctx, req.(*ExportRequest))
+		return srv.(AgentPublicServiceServer).ExportTable(ctx, req.(*ExportTableRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1291,8 +1291,8 @@ var AgentPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AgentPublicService_MoveRows_Handler,
 		},
 		{
-			MethodName: "Export",
-			Handler:    _AgentPublicService_Export_Handler,
+			MethodName: "ExportTable",
+			Handler:    _AgentPublicService_ExportTable_Handler,
 		},
 		{
 			MethodName: "GenerateMockTable",

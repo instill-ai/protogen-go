@@ -2189,13 +2189,17 @@ func request_AgentPublicService_GetTableEvents_0(ctx context.Context, marshaler 
 
 }
 
-var (
-	filter_AgentPublicService_Export_0 = &utilities.DoubleArray{Encoding: map[string]int{"namespace_id": 0, "namespaceId": 1, "table_uid": 2, "tableUid": 3}, Base: []int{1, 1, 2, 3, 4, 0, 0, 0, 0}, Check: []int{0, 1, 1, 1, 1, 2, 3, 4, 5}}
-)
-
-func request_AgentPublicService_Export_0(ctx context.Context, marshaler runtime.Marshaler, client AgentPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ExportRequest
+func request_AgentPublicService_ExportTable_0(ctx context.Context, marshaler runtime.Marshaler, client AgentPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ExportTableRequest
 	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
 
 	var (
 		val string
@@ -2224,21 +2228,22 @@ func request_AgentPublicService_Export_0(ctx context.Context, marshaler runtime.
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "table_uid", err)
 	}
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_AgentPublicService_Export_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.Export(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.ExportTable(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_AgentPublicService_Export_0(ctx context.Context, marshaler runtime.Marshaler, server AgentPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ExportRequest
+func local_request_AgentPublicService_ExportTable_0(ctx context.Context, marshaler runtime.Marshaler, server AgentPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ExportTableRequest
 	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
 
 	var (
 		val string
@@ -2267,14 +2272,7 @@ func local_request_AgentPublicService_Export_0(ctx context.Context, marshaler ru
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "table_uid", err)
 	}
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_AgentPublicService_Export_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := server.Export(ctx, &protoReq)
+	msg, err := server.ExportTable(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -3055,7 +3053,7 @@ func RegisterAgentPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 		return
 	})
 
-	mux.Handle("GET", pattern_AgentPublicService_Export_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AgentPublicService_ExportTable_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -3063,12 +3061,12 @@ func RegisterAgentPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/agent.agent.v1alpha.AgentPublicService/Export", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/tables/{table_uid}/export"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/agent.agent.v1alpha.AgentPublicService/ExportTable", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/tables/{table_uid}/export"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AgentPublicService_Export_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AgentPublicService_ExportTable_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -3076,7 +3074,7 @@ func RegisterAgentPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 			return
 		}
 
-		forward_AgentPublicService_Export_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AgentPublicService_ExportTable_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -3762,25 +3760,25 @@ func RegisterAgentPublicServiceHandlerClient(ctx context.Context, mux *runtime.S
 
 	})
 
-	mux.Handle("GET", pattern_AgentPublicService_Export_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AgentPublicService_ExportTable_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/agent.agent.v1alpha.AgentPublicService/Export", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/tables/{table_uid}/export"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/agent.agent.v1alpha.AgentPublicService/ExportTable", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/tables/{table_uid}/export"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AgentPublicService_Export_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AgentPublicService_ExportTable_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AgentPublicService_Export_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AgentPublicService_ExportTable_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -3866,7 +3864,7 @@ var (
 
 	pattern_AgentPublicService_GetTableEvents_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "namespace_id", "tables", "table_uid", "events"}, ""))
 
-	pattern_AgentPublicService_Export_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "namespace_id", "tables", "table_uid", "export"}, ""))
+	pattern_AgentPublicService_ExportTable_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "namespace_id", "tables", "table_uid", "export"}, ""))
 
 	pattern_AgentPublicService_GenerateMockTable_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "namespace_id", "tables", "table_uid", "generate-mock"}, ""))
 )
@@ -3928,7 +3926,7 @@ var (
 
 	forward_AgentPublicService_GetTableEvents_0 = runtime.ForwardResponseStream
 
-	forward_AgentPublicService_Export_0 = runtime.ForwardResponseMessage
+	forward_AgentPublicService_ExportTable_0 = runtime.ForwardResponseMessage
 
 	forward_AgentPublicService_GenerateMockTable_0 = runtime.ForwardResponseMessage
 )
