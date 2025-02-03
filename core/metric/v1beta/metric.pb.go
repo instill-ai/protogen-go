@@ -2588,9 +2588,9 @@ type PipelineUsageRecord struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// A unique request id given by vdp when trigger the pipeline.
+	// A unique request id given by Instill Core when trigger the pipeline.
 	RequestId string `protobuf:"bytes,1,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
-	// A unique operation id given by vdp
+	// A unique operation id given by Instill Core
 	OperationId string `protobuf:"bytes,2,opt,name=operation_id,json=operationId,proto3" json:"operation_id,omitempty"`
 	// The HTTP status received when user trigger the pipeline
 	Status string `protobuf:"bytes,3,opt,name=status,proto3" json:"status,omitempty"`
