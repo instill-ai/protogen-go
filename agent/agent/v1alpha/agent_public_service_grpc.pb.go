@@ -30,6 +30,9 @@ const (
 	AgentPublicService_UpdateMessage_FullMethodName           = "/agent.agent.v1alpha.AgentPublicService/UpdateMessage"
 	AgentPublicService_DeleteMessage_FullMethodName           = "/agent.agent.v1alpha.AgentPublicService/DeleteMessage"
 	AgentPublicService_Chat_FullMethodName                    = "/agent.agent.v1alpha.AgentPublicService/Chat"
+	AgentPublicService_BindChatTable_FullMethodName           = "/agent.agent.v1alpha.AgentPublicService/BindChatTable"
+	AgentPublicService_UnbindChatTable_FullMethodName         = "/agent.agent.v1alpha.AgentPublicService/UnbindChatTable"
+	AgentPublicService_ListChatTables_FullMethodName          = "/agent.agent.v1alpha.AgentPublicService/ListChatTables"
 	AgentPublicService_ListTables_FullMethodName              = "/agent.agent.v1alpha.AgentPublicService/ListTables"
 	AgentPublicService_CreateTable_FullMethodName             = "/agent.agent.v1alpha.AgentPublicService/CreateTable"
 	AgentPublicService_GetTable_FullMethodName                = "/agent.agent.v1alpha.AgentPublicService/GetTable"
@@ -99,6 +102,18 @@ type AgentPublicServiceClient interface {
 	// This method is intended for real-time conversation with a chatbot
 	// and the response needs to be processed incrementally.
 	Chat(ctx context.Context, in *ChatRequest, opts ...grpc.CallOption) (*ChatResponse, error)
+	// Bind table to chat
+	//
+	// Binds a table to a chat.
+	BindChatTable(ctx context.Context, in *BindChatTableRequest, opts ...grpc.CallOption) (*BindChatTableResponse, error)
+	// Unbind table from chat
+	//
+	// Unbinds a table from a chat.
+	UnbindChatTable(ctx context.Context, in *UnbindChatTableRequest, opts ...grpc.CallOption) (*UnbindChatTableResponse, error)
+	// List chat tables
+	//
+	// Returns a list of tables bound to a chat.
+	ListChatTables(ctx context.Context, in *ListChatTablesRequest, opts ...grpc.CallOption) (*ListChatTablesResponse, error)
 	// List tables
 	//
 	// Returns a paginated list of tables.
@@ -272,6 +287,33 @@ func (c *agentPublicServiceClient) DeleteMessage(ctx context.Context, in *Delete
 func (c *agentPublicServiceClient) Chat(ctx context.Context, in *ChatRequest, opts ...grpc.CallOption) (*ChatResponse, error) {
 	out := new(ChatResponse)
 	err := c.cc.Invoke(ctx, AgentPublicService_Chat_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentPublicServiceClient) BindChatTable(ctx context.Context, in *BindChatTableRequest, opts ...grpc.CallOption) (*BindChatTableResponse, error) {
+	out := new(BindChatTableResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_BindChatTable_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentPublicServiceClient) UnbindChatTable(ctx context.Context, in *UnbindChatTableRequest, opts ...grpc.CallOption) (*UnbindChatTableResponse, error) {
+	out := new(UnbindChatTableResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_UnbindChatTable_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentPublicServiceClient) ListChatTables(ctx context.Context, in *ListChatTablesRequest, opts ...grpc.CallOption) (*ListChatTablesResponse, error) {
+	out := new(ListChatTablesResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_ListChatTables_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -504,6 +546,18 @@ type AgentPublicServiceServer interface {
 	// This method is intended for real-time conversation with a chatbot
 	// and the response needs to be processed incrementally.
 	Chat(context.Context, *ChatRequest) (*ChatResponse, error)
+	// Bind table to chat
+	//
+	// Binds a table to a chat.
+	BindChatTable(context.Context, *BindChatTableRequest) (*BindChatTableResponse, error)
+	// Unbind table from chat
+	//
+	// Unbinds a table from a chat.
+	UnbindChatTable(context.Context, *UnbindChatTableRequest) (*UnbindChatTableResponse, error)
+	// List chat tables
+	//
+	// Returns a list of tables bound to a chat.
+	ListChatTables(context.Context, *ListChatTablesRequest) (*ListChatTablesResponse, error)
 	// List tables
 	//
 	// Returns a paginated list of tables.
@@ -612,6 +666,15 @@ func (UnimplementedAgentPublicServiceServer) DeleteMessage(context.Context, *Del
 }
 func (UnimplementedAgentPublicServiceServer) Chat(context.Context, *ChatRequest) (*ChatResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Chat not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) BindChatTable(context.Context, *BindChatTableRequest) (*BindChatTableResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BindChatTable not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) UnbindChatTable(context.Context, *UnbindChatTableRequest) (*UnbindChatTableResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnbindChatTable not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) ListChatTables(context.Context, *ListChatTablesRequest) (*ListChatTablesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListChatTables not implemented")
 }
 func (UnimplementedAgentPublicServiceServer) ListTables(context.Context, *ListTablesRequest) (*ListTablesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTables not implemented")
@@ -870,6 +933,60 @@ func _AgentPublicService_Chat_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AgentPublicServiceServer).Chat(ctx, req.(*ChatRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentPublicService_BindChatTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BindChatTableRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).BindChatTable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_BindChatTable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).BindChatTable(ctx, req.(*BindChatTableRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentPublicService_UnbindChatTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnbindChatTableRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).UnbindChatTable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_UnbindChatTable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).UnbindChatTable(ctx, req.(*UnbindChatTableRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentPublicService_ListChatTables_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListChatTablesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).ListChatTables(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_ListChatTables_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).ListChatTables(ctx, req.(*ListChatTablesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1233,6 +1350,18 @@ var AgentPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Chat",
 			Handler:    _AgentPublicService_Chat_Handler,
+		},
+		{
+			MethodName: "BindChatTable",
+			Handler:    _AgentPublicService_BindChatTable_Handler,
+		},
+		{
+			MethodName: "UnbindChatTable",
+			Handler:    _AgentPublicService_UnbindChatTable_Handler,
+		},
+		{
+			MethodName: "ListChatTables",
+			Handler:    _AgentPublicService_ListChatTables_Handler,
 		},
 		{
 			MethodName: "ListTables",
