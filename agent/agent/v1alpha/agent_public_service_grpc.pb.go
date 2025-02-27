@@ -24,6 +24,7 @@ const (
 	AgentPublicService_CreateChat_FullMethodName              = "/agent.agent.v1alpha.AgentPublicService/CreateChat"
 	AgentPublicService_ListChats_FullMethodName               = "/agent.agent.v1alpha.AgentPublicService/ListChats"
 	AgentPublicService_UpdateChat_FullMethodName              = "/agent.agent.v1alpha.AgentPublicService/UpdateChat"
+	AgentPublicService_GetChat_FullMethodName                 = "/agent.agent.v1alpha.AgentPublicService/GetChat"
 	AgentPublicService_DeleteChat_FullMethodName              = "/agent.agent.v1alpha.AgentPublicService/DeleteChat"
 	AgentPublicService_CreateMessage_FullMethodName           = "/agent.agent.v1alpha.AgentPublicService/CreateMessage"
 	AgentPublicService_ListMessages_FullMethodName            = "/agent.agent.v1alpha.AgentPublicService/ListMessages"
@@ -76,6 +77,10 @@ type AgentPublicServiceClient interface {
 	//
 	// Updates a chat.
 	UpdateChat(ctx context.Context, in *UpdateChatRequest, opts ...grpc.CallOption) (*UpdateChatResponse, error)
+	// Get a chat
+	//
+	// Gets a chat.
+	GetChat(ctx context.Context, in *GetChatRequest, opts ...grpc.CallOption) (*GetChatResponse, error)
 	// Delete a chat
 	//
 	// Deletes a chat.
@@ -233,6 +238,15 @@ func (c *agentPublicServiceClient) ListChats(ctx context.Context, in *ListChatsR
 func (c *agentPublicServiceClient) UpdateChat(ctx context.Context, in *UpdateChatRequest, opts ...grpc.CallOption) (*UpdateChatResponse, error) {
 	out := new(UpdateChatResponse)
 	err := c.cc.Invoke(ctx, AgentPublicService_UpdateChat_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentPublicServiceClient) GetChat(ctx context.Context, in *GetChatRequest, opts ...grpc.CallOption) (*GetChatResponse, error) {
+	out := new(GetChatResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_GetChat_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -520,6 +534,10 @@ type AgentPublicServiceServer interface {
 	//
 	// Updates a chat.
 	UpdateChat(context.Context, *UpdateChatRequest) (*UpdateChatResponse, error)
+	// Get a chat
+	//
+	// Gets a chat.
+	GetChat(context.Context, *GetChatRequest) (*GetChatResponse, error)
 	// Delete a chat
 	//
 	// Deletes a chat.
@@ -648,6 +666,9 @@ func (UnimplementedAgentPublicServiceServer) ListChats(context.Context, *ListCha
 }
 func (UnimplementedAgentPublicServiceServer) UpdateChat(context.Context, *UpdateChatRequest) (*UpdateChatResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateChat not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) GetChat(context.Context, *GetChatRequest) (*GetChatResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetChat not implemented")
 }
 func (UnimplementedAgentPublicServiceServer) DeleteChat(context.Context, *DeleteChatRequest) (*DeleteChatResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteChat not implemented")
@@ -825,6 +846,24 @@ func _AgentPublicService_UpdateChat_Handler(srv interface{}, ctx context.Context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AgentPublicServiceServer).UpdateChat(ctx, req.(*UpdateChatRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentPublicService_GetChat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetChatRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).GetChat(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_GetChat_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).GetChat(ctx, req.(*GetChatRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1326,6 +1365,10 @@ var AgentPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateChat",
 			Handler:    _AgentPublicService_UpdateChat_Handler,
+		},
+		{
+			MethodName: "GetChat",
+			Handler:    _AgentPublicService_GetChat_Handler,
 		},
 		{
 			MethodName: "DeleteChat",
