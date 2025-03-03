@@ -32,6 +32,7 @@ const (
 	ArtifactPublicService_ListChunks_FullMethodName             = "/artifact.artifact.v1alpha.ArtifactPublicService/ListChunks"
 	ArtifactPublicService_SearchChunks_FullMethodName           = "/artifact.artifact.v1alpha.ArtifactPublicService/SearchChunks"
 	ArtifactPublicService_GetSourceFile_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPublicService/GetSourceFile"
+	ArtifactPublicService_GetFileSummary_FullMethodName         = "/artifact.artifact.v1alpha.ArtifactPublicService/GetFileSummary"
 	ArtifactPublicService_SearchSourceFiles_FullMethodName      = "/artifact.artifact.v1alpha.ArtifactPublicService/SearchSourceFiles"
 	ArtifactPublicService_UpdateChunk_FullMethodName            = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateChunk"
 	ArtifactPublicService_SimilarityChunksSearch_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPublicService/SimilarityChunksSearch"
@@ -99,6 +100,10 @@ type ArtifactPublicServiceClient interface {
 	//
 	// Gets the single-source-of-truth file of a catalog.
 	GetSourceFile(ctx context.Context, in *GetSourceFileRequest, opts ...grpc.CallOption) (*GetSourceFileResponse, error)
+	// Get summary from a catalog file
+	//
+	// Gets summary from a catalog file
+	GetFileSummary(ctx context.Context, in *GetFileSummaryRequest, opts ...grpc.CallOption) (*GetFileSummaryResponse, error)
 	// Search single-source-of-truth files
 	//
 	// Searches the single-source-of-truth files of a catalog.
@@ -262,6 +267,15 @@ func (c *artifactPublicServiceClient) GetSourceFile(ctx context.Context, in *Get
 	return out, nil
 }
 
+func (c *artifactPublicServiceClient) GetFileSummary(ctx context.Context, in *GetFileSummaryRequest, opts ...grpc.CallOption) (*GetFileSummaryResponse, error) {
+	out := new(GetFileSummaryResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_GetFileSummary_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *artifactPublicServiceClient) SearchSourceFiles(ctx context.Context, in *SearchSourceFilesRequest, opts ...grpc.CallOption) (*SearchSourceFilesResponse, error) {
 	out := new(SearchSourceFilesResponse)
 	err := c.cc.Invoke(ctx, ArtifactPublicService_SearchSourceFiles_FullMethodName, in, out, opts...)
@@ -399,6 +413,10 @@ type ArtifactPublicServiceServer interface {
 	//
 	// Gets the single-source-of-truth file of a catalog.
 	GetSourceFile(context.Context, *GetSourceFileRequest) (*GetSourceFileResponse, error)
+	// Get summary from a catalog file
+	//
+	// Gets summary from a catalog file
+	GetFileSummary(context.Context, *GetFileSummaryRequest) (*GetFileSummaryResponse, error)
 	// Search single-source-of-truth files
 	//
 	// Searches the single-source-of-truth files of a catalog.
@@ -479,6 +497,9 @@ func (UnimplementedArtifactPublicServiceServer) SearchChunks(context.Context, *S
 }
 func (UnimplementedArtifactPublicServiceServer) GetSourceFile(context.Context, *GetSourceFileRequest) (*GetSourceFileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSourceFile not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) GetFileSummary(context.Context, *GetFileSummaryRequest) (*GetFileSummaryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFileSummary not implemented")
 }
 func (UnimplementedArtifactPublicServiceServer) SearchSourceFiles(context.Context, *SearchSourceFilesRequest) (*SearchSourceFilesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SearchSourceFiles not implemented")
@@ -753,6 +774,24 @@ func _ArtifactPublicService_GetSourceFile_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArtifactPublicService_GetFileSummary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFileSummaryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).GetFileSummary(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_GetFileSummary_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).GetFileSummary(ctx, req.(*GetFileSummaryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ArtifactPublicService_SearchSourceFiles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SearchSourceFilesRequest)
 	if err := dec(in); err != nil {
@@ -973,6 +1012,10 @@ var ArtifactPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetSourceFile",
 			Handler:    _ArtifactPublicService_GetSourceFile_Handler,
+		},
+		{
+			MethodName: "GetFileSummary",
+			Handler:    _ArtifactPublicService_GetFileSummary_Handler,
 		},
 		{
 			MethodName: "SearchSourceFiles",
