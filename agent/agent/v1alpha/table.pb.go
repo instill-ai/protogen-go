@@ -260,63 +260,6 @@ func (ColumnDefinition_Sort) EnumDescriptor() ([]byte, []int) {
 	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{11, 0}
 }
 
-// The type of the citation.
-type Cell_Citation_Type int32
-
-const (
-	// The type is not specified.
-	Cell_Citation_TYPE_UNSPECIFIED Cell_Citation_Type = 0
-	// The type is a url of a web page.
-	Cell_Citation_TYPE_WEB Cell_Citation_Type = 1
-	// The type is a url of a file resource.
-	Cell_Citation_TYPE_FILE Cell_Citation_Type = 2
-	// The type is a url of a table resource.
-	Cell_Citation_TYPE_TABLE Cell_Citation_Type = 3
-)
-
-// Enum value maps for Cell_Citation_Type.
-var (
-	Cell_Citation_Type_name = map[int32]string{
-		0: "TYPE_UNSPECIFIED",
-		1: "TYPE_WEB",
-		2: "TYPE_FILE",
-		3: "TYPE_TABLE",
-	}
-	Cell_Citation_Type_value = map[string]int32{
-		"TYPE_UNSPECIFIED": 0,
-		"TYPE_WEB":         1,
-		"TYPE_FILE":        2,
-		"TYPE_TABLE":       3,
-	}
-)
-
-func (x Cell_Citation_Type) Enum() *Cell_Citation_Type {
-	p := new(Cell_Citation_Type)
-	*p = x
-	return p
-}
-
-func (x Cell_Citation_Type) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (Cell_Citation_Type) Descriptor() protoreflect.EnumDescriptor {
-	return file_agent_agent_v1alpha_table_proto_enumTypes[4].Descriptor()
-}
-
-func (Cell_Citation_Type) Type() protoreflect.EnumType {
-	return &file_agent_agent_v1alpha_table_proto_enumTypes[4]
-}
-
-func (x Cell_Citation_Type) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use Cell_Citation_Type.Descriptor instead.
-func (Cell_Citation_Type) EnumDescriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{16, 1, 0}
-}
-
 // The mode to generate mock data.
 type GenerateMockTableRequest_Mode int32
 
@@ -354,11 +297,11 @@ func (x GenerateMockTableRequest_Mode) String() string {
 }
 
 func (GenerateMockTableRequest_Mode) Descriptor() protoreflect.EnumDescriptor {
-	return file_agent_agent_v1alpha_table_proto_enumTypes[5].Descriptor()
+	return file_agent_agent_v1alpha_table_proto_enumTypes[4].Descriptor()
 }
 
 func (GenerateMockTableRequest_Mode) Type() protoreflect.EnumType {
-	return &file_agent_agent_v1alpha_table_proto_enumTypes[5]
+	return &file_agent_agent_v1alpha_table_proto_enumTypes[4]
 }
 
 func (x GenerateMockTableRequest_Mode) Number() protoreflect.EnumNumber {
@@ -1402,7 +1345,7 @@ type Cell struct {
 	// The status of the cell.
 	Status CellStatus `protobuf:"varint,12,opt,name=status,proto3,enum=agent.agent.v1alpha.CellStatus" json:"status,omitempty"`
 	// The citations for the cell.
-	Citations []*Cell_Citation `protobuf:"bytes,14,rep,name=citations,proto3" json:"citations,omitempty"`
+	Citations []*Citation `protobuf:"bytes,14,rep,name=citations,proto3" json:"citations,omitempty"`
 	// The transparency of the cell.
 	Transparency *Cell_Transparency `protobuf:"bytes,13,opt,name=transparency,proto3" json:"transparency,omitempty"`
 }
@@ -1523,7 +1466,7 @@ func (x *Cell) GetStatus() CellStatus {
 	return CellStatus_CELL_STATUS_UNSPECIFIED
 }
 
-func (x *Cell) GetCitations() []*Cell_Citation {
+func (x *Cell) GetCitations() []*Citation {
 	if x != nil {
 		return x.Citations
 	}
@@ -4167,89 +4110,15 @@ func (x *Cell_Transparency) GetText() string {
 	return ""
 }
 
-// The citations for the cell.
-type Cell_Citation struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// The type of the citation.
-	Type Cell_Citation_Type `protobuf:"varint,1,opt,name=type,proto3,enum=agent.agent.v1alpha.Cell_Citation_Type" json:"type,omitempty"`
-	// The url of the citation.
-	Url string `protobuf:"bytes,2,opt,name=url,proto3" json:"url,omitempty"`
-	// The title of the citation.
-	Title string `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
-	// The summary of the citation.
-	Summary string `protobuf:"bytes,4,opt,name=summary,proto3" json:"summary,omitempty"`
-}
-
-func (x *Cell_Citation) Reset() {
-	*x = Cell_Citation{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_agent_agent_v1alpha_table_proto_msgTypes[64]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *Cell_Citation) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Cell_Citation) ProtoMessage() {}
-
-func (x *Cell_Citation) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[64]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Cell_Citation.ProtoReflect.Descriptor instead.
-func (*Cell_Citation) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{16, 1}
-}
-
-func (x *Cell_Citation) GetType() Cell_Citation_Type {
-	if x != nil {
-		return x.Type
-	}
-	return Cell_Citation_TYPE_UNSPECIFIED
-}
-
-func (x *Cell_Citation) GetUrl() string {
-	if x != nil {
-		return x.Url
-	}
-	return ""
-}
-
-func (x *Cell_Citation) GetTitle() string {
-	if x != nil {
-		return x.Title
-	}
-	return ""
-}
-
-func (x *Cell_Citation) GetSummary() string {
-	if x != nil {
-		return x.Summary
-	}
-	return ""
-}
-
 var File_agent_agent_v1alpha_table_proto protoreflect.FileDescriptor
 
 var file_agent_agent_v1alpha_table_proto_rawDesc = []byte{
 	0x0a, 0x1f, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x2f, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x2f, 0x76, 0x31,
 	0x61, 0x6c, 0x70, 0x68, 0x61, 0x2f, 0x74, 0x61, 0x62, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74,
 	0x6f, 0x12, 0x13, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x2e, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x2e, 0x76,
-	0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x1a, 0x1f, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x61,
+	0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x1a, 0x1e, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x2f, 0x61, 0x67,
+	0x65, 0x6e, 0x74, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2f, 0x63, 0x68, 0x61, 0x74,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1f, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x61,
 	0x70, 0x69, 0x2f, 0x66, 0x69, 0x65, 0x6c, 0x64, 0x5f, 0x62, 0x65, 0x68, 0x61, 0x76, 0x69, 0x6f,
 	0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x20, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f,
 	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x66, 0x69, 0x65, 0x6c, 0x64, 0x5f, 0x6d,
@@ -4441,7 +4310,7 @@ var file_agent_agent_v1alpha_table_proto_rawDesc = []byte{
 	0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x25, 0x2e, 0x61, 0x67, 0x65, 0x6e, 0x74,
 	0x2e, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x43,
 	0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x44, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x52,
-	0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x22, 0x97, 0x08, 0x0a, 0x04, 0x43,
+	0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x22, 0xa7, 0x06, 0x0a, 0x04, 0x43,
 	0x65, 0x6c, 0x6c, 0x12, 0x15, 0x0a, 0x03, 0x75, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
 	0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x03, 0x75, 0x69, 0x64, 0x12, 0x22, 0x0a, 0x0a, 0x63, 0x6f,
 	0x6c, 0x75, 0x6d, 0x6e, 0x5f, 0x75, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03,
@@ -4480,33 +4349,18 @@ var file_agent_agent_v1alpha_table_proto_rawDesc = []byte{
 	0x0e, 0x32, 0x1f, 0x2e, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x2e, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x2e,
 	0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x43, 0x65, 0x6c, 0x6c, 0x53, 0x74, 0x61, 0x74,
 	0x75, 0x73, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12,
-	0x45, 0x0a, 0x09, 0x63, 0x69, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x0e, 0x20, 0x03,
-	0x28, 0x0b, 0x32, 0x22, 0x2e, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x2e, 0x61, 0x67, 0x65, 0x6e, 0x74,
-	0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x43, 0x65, 0x6c, 0x6c, 0x2e, 0x43, 0x69,
-	0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x09, 0x63, 0x69, 0x74,
-	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x4f, 0x0a, 0x0c, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x70,
-	0x61, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x18, 0x0d, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x26, 0x2e, 0x61,
-	0x67, 0x65, 0x6e, 0x74, 0x2e, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70,
-	0x68, 0x61, 0x2e, 0x43, 0x65, 0x6c, 0x6c, 0x2e, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x70, 0x61, 0x72,
-	0x65, 0x6e, 0x63, 0x79, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0c, 0x74, 0x72, 0x61, 0x6e, 0x73,
-	0x70, 0x61, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x1a, 0x27, 0x0a, 0x0c, 0x54, 0x72, 0x61, 0x6e, 0x73,
-	0x70, 0x61, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x12, 0x17, 0x0a, 0x04, 0x74, 0x65, 0x78, 0x74, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x04, 0x74, 0x65, 0x78, 0x74,
-	0x1a, 0xe8, 0x01, 0x0a, 0x08, 0x43, 0x69, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x40, 0x0a,
-	0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x27, 0x2e, 0x61, 0x67,
-	0x65, 0x6e, 0x74, 0x2e, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68,
-	0x61, 0x2e, 0x43, 0x65, 0x6c, 0x6c, 0x2e, 0x43, 0x69, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e,
-	0x54, 0x79, 0x70, 0x65, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12,
-	0x15, 0x0a, 0x03, 0x75, 0x72, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41,
-	0x03, 0x52, 0x03, 0x75, 0x72, 0x6c, 0x12, 0x19, 0x0a, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x18,
-	0x03, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x05, 0x74, 0x69, 0x74, 0x6c,
-	0x65, 0x12, 0x1d, 0x0a, 0x07, 0x73, 0x75, 0x6d, 0x6d, 0x61, 0x72, 0x79, 0x18, 0x04, 0x20, 0x01,
-	0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x07, 0x73, 0x75, 0x6d, 0x6d, 0x61, 0x72, 0x79,
-	0x22, 0x49, 0x0a, 0x04, 0x54, 0x79, 0x70, 0x65, 0x12, 0x14, 0x0a, 0x10, 0x54, 0x59, 0x50, 0x45,
-	0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x0c,
-	0x0a, 0x08, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x57, 0x45, 0x42, 0x10, 0x01, 0x12, 0x0d, 0x0a, 0x09,
-	0x54, 0x59, 0x50, 0x45, 0x5f, 0x46, 0x49, 0x4c, 0x45, 0x10, 0x02, 0x12, 0x0e, 0x0a, 0x0a, 0x54,
-	0x59, 0x50, 0x45, 0x5f, 0x54, 0x41, 0x42, 0x4c, 0x45, 0x10, 0x03, 0x42, 0x07, 0x0a, 0x05, 0x76,
+	0x40, 0x0a, 0x09, 0x63, 0x69, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x0e, 0x20, 0x03,
+	0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x2e, 0x61, 0x67, 0x65, 0x6e, 0x74,
+	0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x43, 0x69, 0x74, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x09, 0x63, 0x69, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x73, 0x12, 0x4f, 0x0a, 0x0c, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x70, 0x61, 0x72, 0x65, 0x6e, 0x63,
+	0x79, 0x18, 0x0d, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x26, 0x2e, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x2e,
+	0x61, 0x67, 0x65, 0x6e, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x43, 0x65,
+	0x6c, 0x6c, 0x2e, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x70, 0x61, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x42,
+	0x03, 0xe0, 0x41, 0x03, 0x52, 0x0c, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x70, 0x61, 0x72, 0x65, 0x6e,
+	0x63, 0x79, 0x1a, 0x27, 0x0a, 0x0c, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x70, 0x61, 0x72, 0x65, 0x6e,
+	0x63, 0x79, 0x12, 0x17, 0x0a, 0x04, 0x74, 0x65, 0x78, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x04, 0x74, 0x65, 0x78, 0x74, 0x42, 0x07, 0x0a, 0x05, 0x76,
 	0x61, 0x6c, 0x75, 0x65, 0x22, 0x0a, 0x0a, 0x08, 0x4e, 0x75, 0x6c, 0x6c, 0x43, 0x65, 0x6c, 0x6c,
 	0x22, 0x27, 0x0a, 0x0a, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x43, 0x65, 0x6c, 0x6c, 0x12, 0x19,
 	0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0,
@@ -4876,152 +4730,150 @@ func file_agent_agent_v1alpha_table_proto_rawDescGZIP() []byte {
 	return file_agent_agent_v1alpha_table_proto_rawDescData
 }
 
-var file_agent_agent_v1alpha_table_proto_enumTypes = make([]protoimpl.EnumInfo, 6)
-var file_agent_agent_v1alpha_table_proto_msgTypes = make([]protoimpl.MessageInfo, 67)
+var file_agent_agent_v1alpha_table_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
+var file_agent_agent_v1alpha_table_proto_msgTypes = make([]protoimpl.MessageInfo, 66)
 var file_agent_agent_v1alpha_table_proto_goTypes = []interface{}{
 	(Type)(0),                               // 0: agent.agent.v1alpha.Type
 	(CellStatus)(0),                         // 1: agent.agent.v1alpha.CellStatus
 	(ExportFormat)(0),                       // 2: agent.agent.v1alpha.ExportFormat
 	(ColumnDefinition_Sort)(0),              // 3: agent.agent.v1alpha.ColumnDefinition.Sort
-	(Cell_Citation_Type)(0),                 // 4: agent.agent.v1alpha.Cell.Citation.Type
-	(GenerateMockTableRequest_Mode)(0),      // 5: agent.agent.v1alpha.GenerateMockTableRequest.Mode
-	(*Table)(nil),                           // 6: agent.agent.v1alpha.Table
-	(*ListTablesRequest)(nil),               // 7: agent.agent.v1alpha.ListTablesRequest
-	(*ListTablesResponse)(nil),              // 8: agent.agent.v1alpha.ListTablesResponse
-	(*CreateTableRequest)(nil),              // 9: agent.agent.v1alpha.CreateTableRequest
-	(*CreateTableResponse)(nil),             // 10: agent.agent.v1alpha.CreateTableResponse
-	(*GetTableRequest)(nil),                 // 11: agent.agent.v1alpha.GetTableRequest
-	(*GetTableResponse)(nil),                // 12: agent.agent.v1alpha.GetTableResponse
-	(*UpdateTableRequest)(nil),              // 13: agent.agent.v1alpha.UpdateTableRequest
-	(*UpdateTableResponse)(nil),             // 14: agent.agent.v1alpha.UpdateTableResponse
-	(*DeleteTableRequest)(nil),              // 15: agent.agent.v1alpha.DeleteTableRequest
-	(*DeleteTableResponse)(nil),             // 16: agent.agent.v1alpha.DeleteTableResponse
-	(*ColumnDefinition)(nil),                // 17: agent.agent.v1alpha.ColumnDefinition
-	(*GetColumnDefinitionsRequest)(nil),     // 18: agent.agent.v1alpha.GetColumnDefinitionsRequest
-	(*GetColumnDefinitionsResponse)(nil),    // 19: agent.agent.v1alpha.GetColumnDefinitionsResponse
-	(*UpdateColumnDefinitionsRequest)(nil),  // 20: agent.agent.v1alpha.UpdateColumnDefinitionsRequest
-	(*UpdateColumnDefinitionsResponse)(nil), // 21: agent.agent.v1alpha.UpdateColumnDefinitionsResponse
-	(*Cell)(nil),                            // 22: agent.agent.v1alpha.Cell
-	(*NullCell)(nil),                        // 23: agent.agent.v1alpha.NullCell
-	(*StringCell)(nil),                      // 24: agent.agent.v1alpha.StringCell
-	(*NumberCell)(nil),                      // 25: agent.agent.v1alpha.NumberCell
-	(*BooleanCell)(nil),                     // 26: agent.agent.v1alpha.BooleanCell
-	(*FileCell)(nil),                        // 27: agent.agent.v1alpha.FileCell
-	(*Row)(nil),                             // 28: agent.agent.v1alpha.Row
-	(*ListRowsRequest)(nil),                 // 29: agent.agent.v1alpha.ListRowsRequest
-	(*ListRowsResponse)(nil),                // 30: agent.agent.v1alpha.ListRowsResponse
-	(*InsertRowRequest)(nil),                // 31: agent.agent.v1alpha.InsertRowRequest
-	(*InsertRowResponse)(nil),               // 32: agent.agent.v1alpha.InsertRowResponse
-	(*UpdateRowRequest)(nil),                // 33: agent.agent.v1alpha.UpdateRowRequest
-	(*UpdateRowResponse)(nil),               // 34: agent.agent.v1alpha.UpdateRowResponse
-	(*UpdateRowsRequest)(nil),               // 35: agent.agent.v1alpha.UpdateRowsRequest
-	(*UpdateRowsResponse)(nil),              // 36: agent.agent.v1alpha.UpdateRowsResponse
-	(*DeleteRowRequest)(nil),                // 37: agent.agent.v1alpha.DeleteRowRequest
-	(*DeleteRowResponse)(nil),               // 38: agent.agent.v1alpha.DeleteRowResponse
-	(*DeleteRowsRequest)(nil),               // 39: agent.agent.v1alpha.DeleteRowsRequest
-	(*DeleteRowsResponse)(nil),              // 40: agent.agent.v1alpha.DeleteRowsResponse
-	(*MoveRowsRequest)(nil),                 // 41: agent.agent.v1alpha.MoveRowsRequest
-	(*MoveRowsResponse)(nil),                // 42: agent.agent.v1alpha.MoveRowsResponse
-	(*ExportTableRequest)(nil),              // 43: agent.agent.v1alpha.ExportTableRequest
-	(*ExportTableResponse)(nil),             // 44: agent.agent.v1alpha.ExportTableResponse
-	(*GetTableEventsRequest)(nil),           // 45: agent.agent.v1alpha.GetTableEventsRequest
-	(*GetTableEventsResponse)(nil),          // 46: agent.agent.v1alpha.GetTableEventsResponse
-	(*TableEvent)(nil),                      // 47: agent.agent.v1alpha.TableEvent
-	(*TableUpdatedEvent)(nil),               // 48: agent.agent.v1alpha.TableUpdatedEvent
-	(*TableDeletedEvent)(nil),               // 49: agent.agent.v1alpha.TableDeletedEvent
-	(*ColumnDefinitionsUpdatedEvent)(nil),   // 50: agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent
-	(*RowInsertedEvent)(nil),                // 51: agent.agent.v1alpha.RowInsertedEvent
-	(*RowUpdatedEvent)(nil),                 // 52: agent.agent.v1alpha.RowUpdatedEvent
-	(*RowDeletedEvent)(nil),                 // 53: agent.agent.v1alpha.RowDeletedEvent
-	(*RowsMovedEvent)(nil),                  // 54: agent.agent.v1alpha.RowsMovedEvent
-	(*CellUpdatedEvent)(nil),                // 55: agent.agent.v1alpha.CellUpdatedEvent
-	(*GenerateMockTableRequest)(nil),        // 56: agent.agent.v1alpha.GenerateMockTableRequest
-	(*GenerateMockTableResponse)(nil),       // 57: agent.agent.v1alpha.GenerateMockTableResponse
-	(*BindChatTableRequest)(nil),            // 58: agent.agent.v1alpha.BindChatTableRequest
-	(*BindChatTableResponse)(nil),           // 59: agent.agent.v1alpha.BindChatTableResponse
-	(*UnbindChatTableRequest)(nil),          // 60: agent.agent.v1alpha.UnbindChatTableRequest
-	(*UnbindChatTableResponse)(nil),         // 61: agent.agent.v1alpha.UnbindChatTableResponse
-	(*ListChatTablesRequest)(nil),           // 62: agent.agent.v1alpha.ListChatTablesRequest
-	(*ListChatTablesResponse)(nil),          // 63: agent.agent.v1alpha.ListChatTablesResponse
-	(*Table_AgentConfig)(nil),               // 64: agent.agent.v1alpha.Table.AgentConfig
-	(*ColumnDefinition_AgentConfig)(nil),    // 65: agent.agent.v1alpha.ColumnDefinition.AgentConfig
-	nil,                                     // 66: agent.agent.v1alpha.GetColumnDefinitionsResponse.ColumnDefinitionsEntry
-	nil,                                     // 67: agent.agent.v1alpha.UpdateColumnDefinitionsRequest.ColumnDefinitionsEntry
-	nil,                                     // 68: agent.agent.v1alpha.UpdateColumnDefinitionsResponse.ColumnDefinitionsEntry
-	(*Cell_Transparency)(nil),               // 69: agent.agent.v1alpha.Cell.Transparency
-	(*Cell_Citation)(nil),                   // 70: agent.agent.v1alpha.Cell.Citation
-	nil,                                     // 71: agent.agent.v1alpha.Row.CellsEntry
-	nil,                                     // 72: agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent.ColumnDefinitionsEntry
-	(*structpb.Struct)(nil),                 // 73: google.protobuf.Struct
-	(*timestamppb.Timestamp)(nil),           // 74: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil),           // 75: google.protobuf.FieldMask
+	(GenerateMockTableRequest_Mode)(0),      // 4: agent.agent.v1alpha.GenerateMockTableRequest.Mode
+	(*Table)(nil),                           // 5: agent.agent.v1alpha.Table
+	(*ListTablesRequest)(nil),               // 6: agent.agent.v1alpha.ListTablesRequest
+	(*ListTablesResponse)(nil),              // 7: agent.agent.v1alpha.ListTablesResponse
+	(*CreateTableRequest)(nil),              // 8: agent.agent.v1alpha.CreateTableRequest
+	(*CreateTableResponse)(nil),             // 9: agent.agent.v1alpha.CreateTableResponse
+	(*GetTableRequest)(nil),                 // 10: agent.agent.v1alpha.GetTableRequest
+	(*GetTableResponse)(nil),                // 11: agent.agent.v1alpha.GetTableResponse
+	(*UpdateTableRequest)(nil),              // 12: agent.agent.v1alpha.UpdateTableRequest
+	(*UpdateTableResponse)(nil),             // 13: agent.agent.v1alpha.UpdateTableResponse
+	(*DeleteTableRequest)(nil),              // 14: agent.agent.v1alpha.DeleteTableRequest
+	(*DeleteTableResponse)(nil),             // 15: agent.agent.v1alpha.DeleteTableResponse
+	(*ColumnDefinition)(nil),                // 16: agent.agent.v1alpha.ColumnDefinition
+	(*GetColumnDefinitionsRequest)(nil),     // 17: agent.agent.v1alpha.GetColumnDefinitionsRequest
+	(*GetColumnDefinitionsResponse)(nil),    // 18: agent.agent.v1alpha.GetColumnDefinitionsResponse
+	(*UpdateColumnDefinitionsRequest)(nil),  // 19: agent.agent.v1alpha.UpdateColumnDefinitionsRequest
+	(*UpdateColumnDefinitionsResponse)(nil), // 20: agent.agent.v1alpha.UpdateColumnDefinitionsResponse
+	(*Cell)(nil),                            // 21: agent.agent.v1alpha.Cell
+	(*NullCell)(nil),                        // 22: agent.agent.v1alpha.NullCell
+	(*StringCell)(nil),                      // 23: agent.agent.v1alpha.StringCell
+	(*NumberCell)(nil),                      // 24: agent.agent.v1alpha.NumberCell
+	(*BooleanCell)(nil),                     // 25: agent.agent.v1alpha.BooleanCell
+	(*FileCell)(nil),                        // 26: agent.agent.v1alpha.FileCell
+	(*Row)(nil),                             // 27: agent.agent.v1alpha.Row
+	(*ListRowsRequest)(nil),                 // 28: agent.agent.v1alpha.ListRowsRequest
+	(*ListRowsResponse)(nil),                // 29: agent.agent.v1alpha.ListRowsResponse
+	(*InsertRowRequest)(nil),                // 30: agent.agent.v1alpha.InsertRowRequest
+	(*InsertRowResponse)(nil),               // 31: agent.agent.v1alpha.InsertRowResponse
+	(*UpdateRowRequest)(nil),                // 32: agent.agent.v1alpha.UpdateRowRequest
+	(*UpdateRowResponse)(nil),               // 33: agent.agent.v1alpha.UpdateRowResponse
+	(*UpdateRowsRequest)(nil),               // 34: agent.agent.v1alpha.UpdateRowsRequest
+	(*UpdateRowsResponse)(nil),              // 35: agent.agent.v1alpha.UpdateRowsResponse
+	(*DeleteRowRequest)(nil),                // 36: agent.agent.v1alpha.DeleteRowRequest
+	(*DeleteRowResponse)(nil),               // 37: agent.agent.v1alpha.DeleteRowResponse
+	(*DeleteRowsRequest)(nil),               // 38: agent.agent.v1alpha.DeleteRowsRequest
+	(*DeleteRowsResponse)(nil),              // 39: agent.agent.v1alpha.DeleteRowsResponse
+	(*MoveRowsRequest)(nil),                 // 40: agent.agent.v1alpha.MoveRowsRequest
+	(*MoveRowsResponse)(nil),                // 41: agent.agent.v1alpha.MoveRowsResponse
+	(*ExportTableRequest)(nil),              // 42: agent.agent.v1alpha.ExportTableRequest
+	(*ExportTableResponse)(nil),             // 43: agent.agent.v1alpha.ExportTableResponse
+	(*GetTableEventsRequest)(nil),           // 44: agent.agent.v1alpha.GetTableEventsRequest
+	(*GetTableEventsResponse)(nil),          // 45: agent.agent.v1alpha.GetTableEventsResponse
+	(*TableEvent)(nil),                      // 46: agent.agent.v1alpha.TableEvent
+	(*TableUpdatedEvent)(nil),               // 47: agent.agent.v1alpha.TableUpdatedEvent
+	(*TableDeletedEvent)(nil),               // 48: agent.agent.v1alpha.TableDeletedEvent
+	(*ColumnDefinitionsUpdatedEvent)(nil),   // 49: agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent
+	(*RowInsertedEvent)(nil),                // 50: agent.agent.v1alpha.RowInsertedEvent
+	(*RowUpdatedEvent)(nil),                 // 51: agent.agent.v1alpha.RowUpdatedEvent
+	(*RowDeletedEvent)(nil),                 // 52: agent.agent.v1alpha.RowDeletedEvent
+	(*RowsMovedEvent)(nil),                  // 53: agent.agent.v1alpha.RowsMovedEvent
+	(*CellUpdatedEvent)(nil),                // 54: agent.agent.v1alpha.CellUpdatedEvent
+	(*GenerateMockTableRequest)(nil),        // 55: agent.agent.v1alpha.GenerateMockTableRequest
+	(*GenerateMockTableResponse)(nil),       // 56: agent.agent.v1alpha.GenerateMockTableResponse
+	(*BindChatTableRequest)(nil),            // 57: agent.agent.v1alpha.BindChatTableRequest
+	(*BindChatTableResponse)(nil),           // 58: agent.agent.v1alpha.BindChatTableResponse
+	(*UnbindChatTableRequest)(nil),          // 59: agent.agent.v1alpha.UnbindChatTableRequest
+	(*UnbindChatTableResponse)(nil),         // 60: agent.agent.v1alpha.UnbindChatTableResponse
+	(*ListChatTablesRequest)(nil),           // 61: agent.agent.v1alpha.ListChatTablesRequest
+	(*ListChatTablesResponse)(nil),          // 62: agent.agent.v1alpha.ListChatTablesResponse
+	(*Table_AgentConfig)(nil),               // 63: agent.agent.v1alpha.Table.AgentConfig
+	(*ColumnDefinition_AgentConfig)(nil),    // 64: agent.agent.v1alpha.ColumnDefinition.AgentConfig
+	nil,                                     // 65: agent.agent.v1alpha.GetColumnDefinitionsResponse.ColumnDefinitionsEntry
+	nil,                                     // 66: agent.agent.v1alpha.UpdateColumnDefinitionsRequest.ColumnDefinitionsEntry
+	nil,                                     // 67: agent.agent.v1alpha.UpdateColumnDefinitionsResponse.ColumnDefinitionsEntry
+	(*Cell_Transparency)(nil),               // 68: agent.agent.v1alpha.Cell.Transparency
+	nil,                                     // 69: agent.agent.v1alpha.Row.CellsEntry
+	nil,                                     // 70: agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent.ColumnDefinitionsEntry
+	(*structpb.Struct)(nil),                 // 71: google.protobuf.Struct
+	(*timestamppb.Timestamp)(nil),           // 72: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil),           // 73: google.protobuf.FieldMask
+	(*Citation)(nil),                        // 74: agent.agent.v1alpha.Citation
 }
 var file_agent_agent_v1alpha_table_proto_depIdxs = []int32{
-	73, // 0: agent.agent.v1alpha.Table.metadata:type_name -> google.protobuf.Struct
-	74, // 1: agent.agent.v1alpha.Table.create_time:type_name -> google.protobuf.Timestamp
-	74, // 2: agent.agent.v1alpha.Table.update_time:type_name -> google.protobuf.Timestamp
-	64, // 3: agent.agent.v1alpha.Table.agent_config:type_name -> agent.agent.v1alpha.Table.AgentConfig
-	6,  // 4: agent.agent.v1alpha.ListTablesResponse.tables:type_name -> agent.agent.v1alpha.Table
-	6,  // 5: agent.agent.v1alpha.CreateTableRequest.table:type_name -> agent.agent.v1alpha.Table
-	6,  // 6: agent.agent.v1alpha.CreateTableResponse.table:type_name -> agent.agent.v1alpha.Table
-	6,  // 7: agent.agent.v1alpha.GetTableResponse.table:type_name -> agent.agent.v1alpha.Table
-	6,  // 8: agent.agent.v1alpha.UpdateTableRequest.table:type_name -> agent.agent.v1alpha.Table
-	75, // 9: agent.agent.v1alpha.UpdateTableRequest.update_mask:type_name -> google.protobuf.FieldMask
-	6,  // 10: agent.agent.v1alpha.UpdateTableResponse.table:type_name -> agent.agent.v1alpha.Table
+	71, // 0: agent.agent.v1alpha.Table.metadata:type_name -> google.protobuf.Struct
+	72, // 1: agent.agent.v1alpha.Table.create_time:type_name -> google.protobuf.Timestamp
+	72, // 2: agent.agent.v1alpha.Table.update_time:type_name -> google.protobuf.Timestamp
+	63, // 3: agent.agent.v1alpha.Table.agent_config:type_name -> agent.agent.v1alpha.Table.AgentConfig
+	5,  // 4: agent.agent.v1alpha.ListTablesResponse.tables:type_name -> agent.agent.v1alpha.Table
+	5,  // 5: agent.agent.v1alpha.CreateTableRequest.table:type_name -> agent.agent.v1alpha.Table
+	5,  // 6: agent.agent.v1alpha.CreateTableResponse.table:type_name -> agent.agent.v1alpha.Table
+	5,  // 7: agent.agent.v1alpha.GetTableResponse.table:type_name -> agent.agent.v1alpha.Table
+	5,  // 8: agent.agent.v1alpha.UpdateTableRequest.table:type_name -> agent.agent.v1alpha.Table
+	73, // 9: agent.agent.v1alpha.UpdateTableRequest.update_mask:type_name -> google.protobuf.FieldMask
+	5,  // 10: agent.agent.v1alpha.UpdateTableResponse.table:type_name -> agent.agent.v1alpha.Table
 	0,  // 11: agent.agent.v1alpha.ColumnDefinition.type:type_name -> agent.agent.v1alpha.Type
-	65, // 12: agent.agent.v1alpha.ColumnDefinition.agent_config:type_name -> agent.agent.v1alpha.ColumnDefinition.AgentConfig
+	64, // 12: agent.agent.v1alpha.ColumnDefinition.agent_config:type_name -> agent.agent.v1alpha.ColumnDefinition.AgentConfig
 	3,  // 13: agent.agent.v1alpha.ColumnDefinition.sort:type_name -> agent.agent.v1alpha.ColumnDefinition.Sort
-	66, // 14: agent.agent.v1alpha.GetColumnDefinitionsResponse.column_definitions:type_name -> agent.agent.v1alpha.GetColumnDefinitionsResponse.ColumnDefinitionsEntry
-	67, // 15: agent.agent.v1alpha.UpdateColumnDefinitionsRequest.column_definitions:type_name -> agent.agent.v1alpha.UpdateColumnDefinitionsRequest.ColumnDefinitionsEntry
-	68, // 16: agent.agent.v1alpha.UpdateColumnDefinitionsResponse.column_definitions:type_name -> agent.agent.v1alpha.UpdateColumnDefinitionsResponse.ColumnDefinitionsEntry
-	74, // 17: agent.agent.v1alpha.Cell.update_time:type_name -> google.protobuf.Timestamp
+	65, // 14: agent.agent.v1alpha.GetColumnDefinitionsResponse.column_definitions:type_name -> agent.agent.v1alpha.GetColumnDefinitionsResponse.ColumnDefinitionsEntry
+	66, // 15: agent.agent.v1alpha.UpdateColumnDefinitionsRequest.column_definitions:type_name -> agent.agent.v1alpha.UpdateColumnDefinitionsRequest.ColumnDefinitionsEntry
+	67, // 16: agent.agent.v1alpha.UpdateColumnDefinitionsResponse.column_definitions:type_name -> agent.agent.v1alpha.UpdateColumnDefinitionsResponse.ColumnDefinitionsEntry
+	72, // 17: agent.agent.v1alpha.Cell.update_time:type_name -> google.protobuf.Timestamp
 	0,  // 18: agent.agent.v1alpha.Cell.type:type_name -> agent.agent.v1alpha.Type
-	24, // 19: agent.agent.v1alpha.Cell.string_value:type_name -> agent.agent.v1alpha.StringCell
-	25, // 20: agent.agent.v1alpha.Cell.number_value:type_name -> agent.agent.v1alpha.NumberCell
-	26, // 21: agent.agent.v1alpha.Cell.boolean_value:type_name -> agent.agent.v1alpha.BooleanCell
-	27, // 22: agent.agent.v1alpha.Cell.file_value:type_name -> agent.agent.v1alpha.FileCell
-	73, // 23: agent.agent.v1alpha.Cell.metadata:type_name -> google.protobuf.Struct
+	23, // 19: agent.agent.v1alpha.Cell.string_value:type_name -> agent.agent.v1alpha.StringCell
+	24, // 20: agent.agent.v1alpha.Cell.number_value:type_name -> agent.agent.v1alpha.NumberCell
+	25, // 21: agent.agent.v1alpha.Cell.boolean_value:type_name -> agent.agent.v1alpha.BooleanCell
+	26, // 22: agent.agent.v1alpha.Cell.file_value:type_name -> agent.agent.v1alpha.FileCell
+	71, // 23: agent.agent.v1alpha.Cell.metadata:type_name -> google.protobuf.Struct
 	1,  // 24: agent.agent.v1alpha.Cell.status:type_name -> agent.agent.v1alpha.CellStatus
-	70, // 25: agent.agent.v1alpha.Cell.citations:type_name -> agent.agent.v1alpha.Cell.Citation
-	69, // 26: agent.agent.v1alpha.Cell.transparency:type_name -> agent.agent.v1alpha.Cell.Transparency
-	71, // 27: agent.agent.v1alpha.Row.cells:type_name -> agent.agent.v1alpha.Row.CellsEntry
-	74, // 28: agent.agent.v1alpha.Row.create_time:type_name -> google.protobuf.Timestamp
-	74, // 29: agent.agent.v1alpha.Row.update_time:type_name -> google.protobuf.Timestamp
-	28, // 30: agent.agent.v1alpha.ListRowsResponse.rows:type_name -> agent.agent.v1alpha.Row
-	28, // 31: agent.agent.v1alpha.InsertRowRequest.row:type_name -> agent.agent.v1alpha.Row
-	28, // 32: agent.agent.v1alpha.InsertRowResponse.row:type_name -> agent.agent.v1alpha.Row
-	28, // 33: agent.agent.v1alpha.UpdateRowRequest.row:type_name -> agent.agent.v1alpha.Row
-	28, // 34: agent.agent.v1alpha.UpdateRowResponse.row:type_name -> agent.agent.v1alpha.Row
-	28, // 35: agent.agent.v1alpha.UpdateRowsRequest.rows:type_name -> agent.agent.v1alpha.Row
-	28, // 36: agent.agent.v1alpha.UpdateRowsResponse.rows:type_name -> agent.agent.v1alpha.Row
+	74, // 25: agent.agent.v1alpha.Cell.citations:type_name -> agent.agent.v1alpha.Citation
+	68, // 26: agent.agent.v1alpha.Cell.transparency:type_name -> agent.agent.v1alpha.Cell.Transparency
+	69, // 27: agent.agent.v1alpha.Row.cells:type_name -> agent.agent.v1alpha.Row.CellsEntry
+	72, // 28: agent.agent.v1alpha.Row.create_time:type_name -> google.protobuf.Timestamp
+	72, // 29: agent.agent.v1alpha.Row.update_time:type_name -> google.protobuf.Timestamp
+	27, // 30: agent.agent.v1alpha.ListRowsResponse.rows:type_name -> agent.agent.v1alpha.Row
+	27, // 31: agent.agent.v1alpha.InsertRowRequest.row:type_name -> agent.agent.v1alpha.Row
+	27, // 32: agent.agent.v1alpha.InsertRowResponse.row:type_name -> agent.agent.v1alpha.Row
+	27, // 33: agent.agent.v1alpha.UpdateRowRequest.row:type_name -> agent.agent.v1alpha.Row
+	27, // 34: agent.agent.v1alpha.UpdateRowResponse.row:type_name -> agent.agent.v1alpha.Row
+	27, // 35: agent.agent.v1alpha.UpdateRowsRequest.rows:type_name -> agent.agent.v1alpha.Row
+	27, // 36: agent.agent.v1alpha.UpdateRowsResponse.rows:type_name -> agent.agent.v1alpha.Row
 	2,  // 37: agent.agent.v1alpha.ExportTableRequest.format:type_name -> agent.agent.v1alpha.ExportFormat
-	47, // 38: agent.agent.v1alpha.GetTableEventsResponse.event:type_name -> agent.agent.v1alpha.TableEvent
-	48, // 39: agent.agent.v1alpha.TableEvent.table_updated_event:type_name -> agent.agent.v1alpha.TableUpdatedEvent
-	49, // 40: agent.agent.v1alpha.TableEvent.table_deleted_event:type_name -> agent.agent.v1alpha.TableDeletedEvent
-	50, // 41: agent.agent.v1alpha.TableEvent.column_definitions_updated_event:type_name -> agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent
-	51, // 42: agent.agent.v1alpha.TableEvent.row_inserted_event:type_name -> agent.agent.v1alpha.RowInsertedEvent
-	52, // 43: agent.agent.v1alpha.TableEvent.row_updated_event:type_name -> agent.agent.v1alpha.RowUpdatedEvent
-	53, // 44: agent.agent.v1alpha.TableEvent.row_deleted_event:type_name -> agent.agent.v1alpha.RowDeletedEvent
-	54, // 45: agent.agent.v1alpha.TableEvent.rows_moved_event:type_name -> agent.agent.v1alpha.RowsMovedEvent
-	55, // 46: agent.agent.v1alpha.TableEvent.cell_updated_event:type_name -> agent.agent.v1alpha.CellUpdatedEvent
-	6,  // 47: agent.agent.v1alpha.TableUpdatedEvent.table:type_name -> agent.agent.v1alpha.Table
-	72, // 48: agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent.column_definitions:type_name -> agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent.ColumnDefinitionsEntry
-	28, // 49: agent.agent.v1alpha.RowInsertedEvent.row:type_name -> agent.agent.v1alpha.Row
-	28, // 50: agent.agent.v1alpha.RowUpdatedEvent.row:type_name -> agent.agent.v1alpha.Row
-	22, // 51: agent.agent.v1alpha.CellUpdatedEvent.cell:type_name -> agent.agent.v1alpha.Cell
-	5,  // 52: agent.agent.v1alpha.GenerateMockTableRequest.mode:type_name -> agent.agent.v1alpha.GenerateMockTableRequest.Mode
-	6,  // 53: agent.agent.v1alpha.ListChatTablesResponse.tables:type_name -> agent.agent.v1alpha.Table
-	17, // 54: agent.agent.v1alpha.GetColumnDefinitionsResponse.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
-	17, // 55: agent.agent.v1alpha.UpdateColumnDefinitionsRequest.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
-	17, // 56: agent.agent.v1alpha.UpdateColumnDefinitionsResponse.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
-	4,  // 57: agent.agent.v1alpha.Cell.Citation.type:type_name -> agent.agent.v1alpha.Cell.Citation.Type
-	22, // 58: agent.agent.v1alpha.Row.CellsEntry.value:type_name -> agent.agent.v1alpha.Cell
-	17, // 59: agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
-	60, // [60:60] is the sub-list for method output_type
-	60, // [60:60] is the sub-list for method input_type
-	60, // [60:60] is the sub-list for extension type_name
-	60, // [60:60] is the sub-list for extension extendee
-	0,  // [0:60] is the sub-list for field type_name
+	46, // 38: agent.agent.v1alpha.GetTableEventsResponse.event:type_name -> agent.agent.v1alpha.TableEvent
+	47, // 39: agent.agent.v1alpha.TableEvent.table_updated_event:type_name -> agent.agent.v1alpha.TableUpdatedEvent
+	48, // 40: agent.agent.v1alpha.TableEvent.table_deleted_event:type_name -> agent.agent.v1alpha.TableDeletedEvent
+	49, // 41: agent.agent.v1alpha.TableEvent.column_definitions_updated_event:type_name -> agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent
+	50, // 42: agent.agent.v1alpha.TableEvent.row_inserted_event:type_name -> agent.agent.v1alpha.RowInsertedEvent
+	51, // 43: agent.agent.v1alpha.TableEvent.row_updated_event:type_name -> agent.agent.v1alpha.RowUpdatedEvent
+	52, // 44: agent.agent.v1alpha.TableEvent.row_deleted_event:type_name -> agent.agent.v1alpha.RowDeletedEvent
+	53, // 45: agent.agent.v1alpha.TableEvent.rows_moved_event:type_name -> agent.agent.v1alpha.RowsMovedEvent
+	54, // 46: agent.agent.v1alpha.TableEvent.cell_updated_event:type_name -> agent.agent.v1alpha.CellUpdatedEvent
+	5,  // 47: agent.agent.v1alpha.TableUpdatedEvent.table:type_name -> agent.agent.v1alpha.Table
+	70, // 48: agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent.column_definitions:type_name -> agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent.ColumnDefinitionsEntry
+	27, // 49: agent.agent.v1alpha.RowInsertedEvent.row:type_name -> agent.agent.v1alpha.Row
+	27, // 50: agent.agent.v1alpha.RowUpdatedEvent.row:type_name -> agent.agent.v1alpha.Row
+	21, // 51: agent.agent.v1alpha.CellUpdatedEvent.cell:type_name -> agent.agent.v1alpha.Cell
+	4,  // 52: agent.agent.v1alpha.GenerateMockTableRequest.mode:type_name -> agent.agent.v1alpha.GenerateMockTableRequest.Mode
+	5,  // 53: agent.agent.v1alpha.ListChatTablesResponse.tables:type_name -> agent.agent.v1alpha.Table
+	16, // 54: agent.agent.v1alpha.GetColumnDefinitionsResponse.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
+	16, // 55: agent.agent.v1alpha.UpdateColumnDefinitionsRequest.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
+	16, // 56: agent.agent.v1alpha.UpdateColumnDefinitionsResponse.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
+	21, // 57: agent.agent.v1alpha.Row.CellsEntry.value:type_name -> agent.agent.v1alpha.Cell
+	16, // 58: agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
+	59, // [59:59] is the sub-list for method output_type
+	59, // [59:59] is the sub-list for method input_type
+	59, // [59:59] is the sub-list for extension type_name
+	59, // [59:59] is the sub-list for extension extendee
+	0,  // [0:59] is the sub-list for field type_name
 }
 
 func init() { file_agent_agent_v1alpha_table_proto_init() }
@@ -5029,6 +4881,7 @@ func file_agent_agent_v1alpha_table_proto_init() {
 	if File_agent_agent_v1alpha_table_proto != nil {
 		return
 	}
+	file_agent_agent_v1alpha_chat_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_agent_agent_v1alpha_table_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Table); i {
@@ -5762,18 +5615,6 @@ func file_agent_agent_v1alpha_table_proto_init() {
 				return nil
 			}
 		}
-		file_agent_agent_v1alpha_table_proto_msgTypes[64].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Cell_Citation); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
 	}
 	file_agent_agent_v1alpha_table_proto_msgTypes[16].OneofWrappers = []interface{}{
 		(*Cell_StringValue)(nil),
@@ -5800,8 +5641,8 @@ func file_agent_agent_v1alpha_table_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_agent_agent_v1alpha_table_proto_rawDesc,
-			NumEnums:      6,
-			NumMessages:   67,
+			NumEnums:      5,
+			NumMessages:   66,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
