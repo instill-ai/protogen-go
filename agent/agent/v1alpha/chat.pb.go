@@ -1850,6 +1850,577 @@ func (x *ChatResponse) GetOutputs() []*structpb.Struct {
 	return nil
 }
 
+// ChatStartedEvent represents an event for a chat started
+type ChatStartedEvent struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The time when chat start
+	CreateTime *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+}
+
+func (x *ChatStartedEvent) Reset() {
+	*x = ChatStartedEvent{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[25]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ChatStartedEvent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ChatStartedEvent) ProtoMessage() {}
+
+func (x *ChatStartedEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[25]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ChatStartedEvent.ProtoReflect.Descriptor instead.
+func (*ChatStartedEvent) Descriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *ChatStartedEvent) GetCreateTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreateTime
+	}
+	return nil
+}
+
+// ChatStatusUpdatedEvent represents an event for a chat status change
+type ChatStatusUpdatedEvent struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The time when chat status change
+	CreateTime *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+	// The updated chat status
+	ChatStatus string `protobuf:"bytes,2,opt,name=chat_status,json=chatStatus,proto3" json:"chat_status,omitempty"`
+}
+
+func (x *ChatStatusUpdatedEvent) Reset() {
+	*x = ChatStatusUpdatedEvent{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[26]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ChatStatusUpdatedEvent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ChatStatusUpdatedEvent) ProtoMessage() {}
+
+func (x *ChatStatusUpdatedEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[26]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ChatStatusUpdatedEvent.ProtoReflect.Descriptor instead.
+func (*ChatStatusUpdatedEvent) Descriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *ChatStatusUpdatedEvent) GetCreateTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreateTime
+	}
+	return nil
+}
+
+func (x *ChatStatusUpdatedEvent) GetChatStatus() string {
+	if x != nil {
+		return x.ChatStatus
+	}
+	return ""
+}
+
+// ChatOutputUpdatedEvent represents an event for chat has new output
+type ChatOutputUpdatedEvent struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The time when chat has new output
+	CreateTime *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+	// The output chunk delta
+	OutputChunkDelta string `protobuf:"bytes,2,opt,name=output_chunk_delta,json=outputChunkDelta,proto3" json:"output_chunk_delta,omitempty"`
+}
+
+func (x *ChatOutputUpdatedEvent) Reset() {
+	*x = ChatOutputUpdatedEvent{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[27]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ChatOutputUpdatedEvent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ChatOutputUpdatedEvent) ProtoMessage() {}
+
+func (x *ChatOutputUpdatedEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[27]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ChatOutputUpdatedEvent.ProtoReflect.Descriptor instead.
+func (*ChatOutputUpdatedEvent) Descriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *ChatOutputUpdatedEvent) GetCreateTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreateTime
+	}
+	return nil
+}
+
+func (x *ChatOutputUpdatedEvent) GetOutputChunkDelta() string {
+	if x != nil {
+		return x.OutputChunkDelta
+	}
+	return ""
+}
+
+// ChatNameUpdatedEvent represents an event for chat name change
+type ChatNameUpdatedEvent struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The time when chat name change
+	CreateTime *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+	// The updated chat name
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+}
+
+func (x *ChatNameUpdatedEvent) Reset() {
+	*x = ChatNameUpdatedEvent{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[28]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ChatNameUpdatedEvent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ChatNameUpdatedEvent) ProtoMessage() {}
+
+func (x *ChatNameUpdatedEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[28]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ChatNameUpdatedEvent.ProtoReflect.Descriptor instead.
+func (*ChatNameUpdatedEvent) Descriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *ChatNameUpdatedEvent) GetCreateTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreateTime
+	}
+	return nil
+}
+
+func (x *ChatNameUpdatedEvent) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+// ChatReplanTriggeredEvent represents an event for a triggered replan
+type ChatReplanTriggeredEvent struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The time when replan trigger
+	CreateTime *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+	// The current number of replan
+	NumberOfReplan uint32 `protobuf:"varint,2,opt,name=number_of_replan,json=numberOfReplan,proto3" json:"number_of_replan,omitempty"`
+}
+
+func (x *ChatReplanTriggeredEvent) Reset() {
+	*x = ChatReplanTriggeredEvent{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[29]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ChatReplanTriggeredEvent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ChatReplanTriggeredEvent) ProtoMessage() {}
+
+func (x *ChatReplanTriggeredEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[29]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ChatReplanTriggeredEvent.ProtoReflect.Descriptor instead.
+func (*ChatReplanTriggeredEvent) Descriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *ChatReplanTriggeredEvent) GetCreateTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreateTime
+	}
+	return nil
+}
+
+func (x *ChatReplanTriggeredEvent) GetNumberOfReplan() uint32 {
+	if x != nil {
+		return x.NumberOfReplan
+	}
+	return 0
+}
+
+// ChatCitationListUpdatedEvent represents an event for a citation list output
+type ChatCitationListUpdatedEvent struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The time when citation list output
+	CreateTime *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+	// The citation list
+	Citations []*Citation `protobuf:"bytes,2,rep,name=citations,proto3" json:"citations,omitempty"`
+}
+
+func (x *ChatCitationListUpdatedEvent) Reset() {
+	*x = ChatCitationListUpdatedEvent{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[30]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ChatCitationListUpdatedEvent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ChatCitationListUpdatedEvent) ProtoMessage() {}
+
+func (x *ChatCitationListUpdatedEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[30]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ChatCitationListUpdatedEvent.ProtoReflect.Descriptor instead.
+func (*ChatCitationListUpdatedEvent) Descriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *ChatCitationListUpdatedEvent) GetCreateTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreateTime
+	}
+	return nil
+}
+
+func (x *ChatCitationListUpdatedEvent) GetCitations() []*Citation {
+	if x != nil {
+		return x.Citations
+	}
+	return nil
+}
+
+// ChatTableCreatedEvent represents an event for a table creation
+type ChatTableCreatedEvent struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The time when table is created
+	CreateTime *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+	// The created table uid
+	TableUid string `protobuf:"bytes,2,opt,name=table_uid,json=tableUid,proto3" json:"table_uid,omitempty"`
+}
+
+func (x *ChatTableCreatedEvent) Reset() {
+	*x = ChatTableCreatedEvent{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[31]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ChatTableCreatedEvent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ChatTableCreatedEvent) ProtoMessage() {}
+
+func (x *ChatTableCreatedEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[31]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ChatTableCreatedEvent.ProtoReflect.Descriptor instead.
+func (*ChatTableCreatedEvent) Descriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{31}
+}
+
+func (x *ChatTableCreatedEvent) GetCreateTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreateTime
+	}
+	return nil
+}
+
+func (x *ChatTableCreatedEvent) GetTableUid() string {
+	if x != nil {
+		return x.TableUid
+	}
+	return ""
+}
+
+// ChatErrorUpdatedEvent represents an event for an error
+type ChatErrorUpdatedEvent struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The time when error triggered
+	CreateTime *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+	// The error type
+	ErrorType string `protobuf:"bytes,2,opt,name=error_type,json=errorType,proto3" json:"error_type,omitempty"`
+	// The error message
+	Error string `protobuf:"bytes,3,opt,name=error,proto3" json:"error,omitempty"`
+}
+
+func (x *ChatErrorUpdatedEvent) Reset() {
+	*x = ChatErrorUpdatedEvent{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[32]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ChatErrorUpdatedEvent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ChatErrorUpdatedEvent) ProtoMessage() {}
+
+func (x *ChatErrorUpdatedEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[32]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ChatErrorUpdatedEvent.ProtoReflect.Descriptor instead.
+func (*ChatErrorUpdatedEvent) Descriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{32}
+}
+
+func (x *ChatErrorUpdatedEvent) GetCreateTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreateTime
+	}
+	return nil
+}
+
+func (x *ChatErrorUpdatedEvent) GetErrorType() string {
+	if x != nil {
+		return x.ErrorType
+	}
+	return ""
+}
+
+func (x *ChatErrorUpdatedEvent) GetError() string {
+	if x != nil {
+		return x.Error
+	}
+	return ""
+}
+
+// ChatDebugOutputUpdatedEvent represents an event for debug log
+type ChatDebugOutputUpdatedEvent struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The time when debug log output
+	CreateTime *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+	// The debug output
+	DebugOutput string `protobuf:"bytes,2,opt,name=debug_output,json=debugOutput,proto3" json:"debug_output,omitempty"`
+}
+
+func (x *ChatDebugOutputUpdatedEvent) Reset() {
+	*x = ChatDebugOutputUpdatedEvent{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[33]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ChatDebugOutputUpdatedEvent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ChatDebugOutputUpdatedEvent) ProtoMessage() {}
+
+func (x *ChatDebugOutputUpdatedEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[33]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ChatDebugOutputUpdatedEvent.ProtoReflect.Descriptor instead.
+func (*ChatDebugOutputUpdatedEvent) Descriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *ChatDebugOutputUpdatedEvent) GetCreateTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreateTime
+	}
+	return nil
+}
+
+func (x *ChatDebugOutputUpdatedEvent) GetDebugOutput() string {
+	if x != nil {
+		return x.DebugOutput
+	}
+	return ""
+}
+
+// ChatEndedEvent represents an event when chat ends
+type ChatEndedEvent struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The time when chat ends
+	CreateTime *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+}
+
+func (x *ChatEndedEvent) Reset() {
+	*x = ChatEndedEvent{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[34]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ChatEndedEvent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ChatEndedEvent) ProtoMessage() {}
+
+func (x *ChatEndedEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[34]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ChatEndedEvent.ProtoReflect.Descriptor instead.
+func (*ChatEndedEvent) Descriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{34}
+}
+
+func (x *ChatEndedEvent) GetCreateTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreateTime
+	}
+	return nil
+}
+
 var File_agent_agent_v1alpha_chat_proto protoreflect.FileDescriptor
 
 var file_agent_agent_v1alpha_chat_proto_rawDesc = []byte{
@@ -2122,29 +2693,110 @@ var file_agent_agent_v1alpha_chat_proto_rawDesc = []byte{
 	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x36, 0x0a, 0x07, 0x6f, 0x75, 0x74, 0x70, 0x75,
 	0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
 	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63,
-	0x74, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x07, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x73, 0x2a,
-	0x75, 0x0a, 0x0c, 0x43, 0x69, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x12,
-	0x1d, 0x0a, 0x19, 0x43, 0x49, 0x54, 0x41, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x54, 0x59, 0x50, 0x45,
-	0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x16,
-	0x0a, 0x12, 0x43, 0x49, 0x54, 0x41, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f,
-	0x46, 0x49, 0x4c, 0x45, 0x10, 0x01, 0x12, 0x15, 0x0a, 0x11, 0x43, 0x49, 0x54, 0x41, 0x54, 0x49,
-	0x4f, 0x4e, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x57, 0x45, 0x42, 0x10, 0x02, 0x12, 0x17, 0x0a,
-	0x13, 0x43, 0x49, 0x54, 0x41, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x54,
-	0x41, 0x42, 0x4c, 0x45, 0x10, 0x03, 0x42, 0xd6, 0x01, 0x0a, 0x17, 0x63, 0x6f, 0x6d, 0x2e, 0x61,
-	0x67, 0x65, 0x6e, 0x74, 0x2e, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70,
-	0x68, 0x61, 0x42, 0x09, 0x43, 0x68, 0x61, 0x74, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a,
-	0x42, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x69, 0x6e, 0x73, 0x74,
-	0x69, 0x6c, 0x6c, 0x2d, 0x61, 0x69, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x67, 0x65, 0x6e, 0x2d,
-	0x67, 0x6f, 0x2f, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x2f, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x2f, 0x76,
-	0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x3b, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x76, 0x31, 0x61, 0x6c,
-	0x70, 0x68, 0x61, 0xa2, 0x02, 0x03, 0x41, 0x41, 0x58, 0xaa, 0x02, 0x13, 0x41, 0x67, 0x65, 0x6e,
-	0x74, 0x2e, 0x41, 0x67, 0x65, 0x6e, 0x74, 0x2e, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xca,
-	0x02, 0x13, 0x41, 0x67, 0x65, 0x6e, 0x74, 0x5c, 0x41, 0x67, 0x65, 0x6e, 0x74, 0x5c, 0x56, 0x31,
-	0x61, 0x6c, 0x70, 0x68, 0x61, 0xe2, 0x02, 0x1f, 0x41, 0x67, 0x65, 0x6e, 0x74, 0x5c, 0x41, 0x67,
-	0x65, 0x6e, 0x74, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x5c, 0x47, 0x50, 0x42, 0x4d,
-	0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x15, 0x41, 0x67, 0x65, 0x6e, 0x74, 0x3a,
-	0x3a, 0x41, 0x67, 0x65, 0x6e, 0x74, 0x3a, 0x3a, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x62,
-	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x74, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x07, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x73, 0x22,
+	0x54, 0x0a, 0x10, 0x43, 0x68, 0x61, 0x74, 0x53, 0x74, 0x61, 0x72, 0x74, 0x65, 0x64, 0x45, 0x76,
+	0x65, 0x6e, 0x74, 0x12, 0x40, 0x0a, 0x0b, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x5f, 0x74, 0x69,
+	0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
+	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73,
+	0x74, 0x61, 0x6d, 0x70, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0a, 0x63, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x54, 0x69, 0x6d, 0x65, 0x22, 0x80, 0x01, 0x0a, 0x16, 0x43, 0x68, 0x61, 0x74, 0x53, 0x74,
+	0x61, 0x74, 0x75, 0x73, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x45, 0x76, 0x65, 0x6e, 0x74,
+	0x12, 0x40, 0x0a, 0x0b, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d,
+	0x70, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0a, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x54, 0x69,
+	0x6d, 0x65, 0x12, 0x24, 0x0a, 0x0b, 0x63, 0x68, 0x61, 0x74, 0x5f, 0x73, 0x74, 0x61, 0x74, 0x75,
+	0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0a, 0x63, 0x68,
+	0x61, 0x74, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0x90, 0x01, 0x0a, 0x16, 0x43, 0x68, 0x61,
+	0x74, 0x4f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x45, 0x76,
+	0x65, 0x6e, 0x74, 0x12, 0x40, 0x0a, 0x0b, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x5f, 0x74, 0x69,
+	0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
+	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73,
+	0x74, 0x61, 0x6d, 0x70, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0a, 0x63, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x54, 0x69, 0x6d, 0x65, 0x12, 0x34, 0x0a, 0x12, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x5f,
+	0x63, 0x68, 0x75, 0x6e, 0x6b, 0x5f, 0x64, 0x65, 0x6c, 0x74, 0x61, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x09, 0x42, 0x06, 0xe0, 0x41, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x10, 0x6f, 0x75, 0x74, 0x70, 0x75,
+	0x74, 0x43, 0x68, 0x75, 0x6e, 0x6b, 0x44, 0x65, 0x6c, 0x74, 0x61, 0x22, 0x71, 0x0a, 0x14, 0x43,
+	0x68, 0x61, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x45, 0x76,
+	0x65, 0x6e, 0x74, 0x12, 0x40, 0x0a, 0x0b, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x5f, 0x74, 0x69,
+	0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
+	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73,
+	0x74, 0x61, 0x6d, 0x70, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0a, 0x63, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x54, 0x69, 0x6d, 0x65, 0x12, 0x17, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x8b,
+	0x01, 0x0a, 0x18, 0x43, 0x68, 0x61, 0x74, 0x52, 0x65, 0x70, 0x6c, 0x61, 0x6e, 0x54, 0x72, 0x69,
+	0x67, 0x67, 0x65, 0x72, 0x65, 0x64, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x12, 0x40, 0x0a, 0x0b, 0x63,
+	0x72, 0x65, 0x61, 0x74, 0x65, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62,
+	0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42, 0x03, 0xe0, 0x41,
+	0x03, 0x52, 0x0a, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x12, 0x2d, 0x0a,
+	0x10, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x5f, 0x6f, 0x66, 0x5f, 0x72, 0x65, 0x70, 0x6c, 0x61,
+	0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0e, 0x6e, 0x75,
+	0x6d, 0x62, 0x65, 0x72, 0x4f, 0x66, 0x52, 0x65, 0x70, 0x6c, 0x61, 0x6e, 0x22, 0xa5, 0x01, 0x0a,
+	0x1c, 0x43, 0x68, 0x61, 0x74, 0x43, 0x69, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x4c, 0x69, 0x73,
+	0x74, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x12, 0x40, 0x0a,
+	0x0b, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42, 0x03,
+	0xe0, 0x41, 0x03, 0x52, 0x0a, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x12,
+	0x43, 0x0a, 0x09, 0x63, 0x69, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x02, 0x20, 0x03,
+	0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x2e, 0x61, 0x67, 0x65, 0x6e, 0x74,
+	0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x2e, 0x43, 0x69, 0x74, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x42, 0x06, 0xe0, 0x41, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x09, 0x63, 0x69, 0x74, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x73, 0x22, 0x7b, 0x0a, 0x15, 0x43, 0x68, 0x61, 0x74, 0x54, 0x61, 0x62, 0x6c,
+	0x65, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x12, 0x40, 0x0a,
+	0x0b, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42, 0x03,
+	0xe0, 0x41, 0x03, 0x52, 0x0a, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x12,
+	0x20, 0x0a, 0x09, 0x74, 0x61, 0x62, 0x6c, 0x65, 0x5f, 0x75, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x08, 0x74, 0x61, 0x62, 0x6c, 0x65, 0x55, 0x69,
+	0x64, 0x22, 0x98, 0x01, 0x0a, 0x15, 0x43, 0x68, 0x61, 0x74, 0x45, 0x72, 0x72, 0x6f, 0x72, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x12, 0x40, 0x0a, 0x0b, 0x63,
+	0x72, 0x65, 0x61, 0x74, 0x65, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62,
+	0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42, 0x03, 0xe0, 0x41,
+	0x03, 0x52, 0x0a, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x12, 0x22, 0x0a,
+	0x0a, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x09, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x54, 0x79, 0x70,
+	0x65, 0x12, 0x19, 0x0a, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
+	0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x22, 0x87, 0x01, 0x0a,
+	0x1b, 0x43, 0x68, 0x61, 0x74, 0x44, 0x65, 0x62, 0x75, 0x67, 0x4f, 0x75, 0x74, 0x70, 0x75, 0x74,
+	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x12, 0x40, 0x0a, 0x0b,
+	0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42, 0x03, 0xe0,
+	0x41, 0x03, 0x52, 0x0a, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x12, 0x26,
+	0x0a, 0x0c, 0x64, 0x65, 0x62, 0x75, 0x67, 0x5f, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0b, 0x64, 0x65, 0x62, 0x75, 0x67,
+	0x4f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x22, 0x52, 0x0a, 0x0e, 0x43, 0x68, 0x61, 0x74, 0x45, 0x6e,
+	0x64, 0x65, 0x64, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x12, 0x40, 0x0a, 0x0b, 0x63, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e,
+	0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e,
+	0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x0a,
+	0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x2a, 0x75, 0x0a, 0x0c, 0x43, 0x69,
+	0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x12, 0x1d, 0x0a, 0x19, 0x43, 0x49,
+	0x54, 0x41, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x55, 0x4e, 0x53, 0x50,
+	0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x16, 0x0a, 0x12, 0x43, 0x49, 0x54,
+	0x41, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x46, 0x49, 0x4c, 0x45, 0x10,
+	0x01, 0x12, 0x15, 0x0a, 0x11, 0x43, 0x49, 0x54, 0x41, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x54, 0x59,
+	0x50, 0x45, 0x5f, 0x57, 0x45, 0x42, 0x10, 0x02, 0x12, 0x17, 0x0a, 0x13, 0x43, 0x49, 0x54, 0x41,
+	0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x54, 0x41, 0x42, 0x4c, 0x45, 0x10,
+	0x03, 0x42, 0xd6, 0x01, 0x0a, 0x17, 0x63, 0x6f, 0x6d, 0x2e, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x2e,
+	0x61, 0x67, 0x65, 0x6e, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x42, 0x09, 0x43,
+	0x68, 0x61, 0x74, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x42, 0x67, 0x69, 0x74, 0x68,
+	0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2d, 0x61,
+	0x69, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x67, 0x65, 0x6e, 0x2d, 0x67, 0x6f, 0x2f, 0x61, 0x67,
+	0x65, 0x6e, 0x74, 0x2f, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68,
+	0x61, 0x3b, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xa2, 0x02,
+	0x03, 0x41, 0x41, 0x58, 0xaa, 0x02, 0x13, 0x41, 0x67, 0x65, 0x6e, 0x74, 0x2e, 0x41, 0x67, 0x65,
+	0x6e, 0x74, 0x2e, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xca, 0x02, 0x13, 0x41, 0x67, 0x65,
+	0x6e, 0x74, 0x5c, 0x41, 0x67, 0x65, 0x6e, 0x74, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61,
+	0xe2, 0x02, 0x1f, 0x41, 0x67, 0x65, 0x6e, 0x74, 0x5c, 0x41, 0x67, 0x65, 0x6e, 0x74, 0x5c, 0x56,
+	0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61,
+	0x74, 0x61, 0xea, 0x02, 0x15, 0x41, 0x67, 0x65, 0x6e, 0x74, 0x3a, 0x3a, 0x41, 0x67, 0x65, 0x6e,
+	0x74, 0x3a, 0x3a, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x33,
 }
 
 var (
@@ -2160,49 +2812,59 @@ func file_agent_agent_v1alpha_chat_proto_rawDescGZIP() []byte {
 }
 
 var file_agent_agent_v1alpha_chat_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_agent_agent_v1alpha_chat_proto_msgTypes = make([]protoimpl.MessageInfo, 26)
+var file_agent_agent_v1alpha_chat_proto_msgTypes = make([]protoimpl.MessageInfo, 36)
 var file_agent_agent_v1alpha_chat_proto_goTypes = []interface{}{
-	(CitationType)(0),             // 0: agent.agent.v1alpha.CitationType
-	(Message_MessageType)(0),      // 1: agent.agent.v1alpha.Message.MessageType
-	(*AgentConfig)(nil),           // 2: agent.agent.v1alpha.AgentConfig
-	(*Chat)(nil),                  // 3: agent.agent.v1alpha.Chat
-	(*Citation)(nil),              // 4: agent.agent.v1alpha.Citation
-	(*Message)(nil),               // 5: agent.agent.v1alpha.Message
-	(*CreateChatRequest)(nil),     // 6: agent.agent.v1alpha.CreateChatRequest
-	(*CreateChatResponse)(nil),    // 7: agent.agent.v1alpha.CreateChatResponse
-	(*ListChatsRequest)(nil),      // 8: agent.agent.v1alpha.ListChatsRequest
-	(*ListChatsResponse)(nil),     // 9: agent.agent.v1alpha.ListChatsResponse
-	(*UpdateChatRequest)(nil),     // 10: agent.agent.v1alpha.UpdateChatRequest
-	(*UpdateChatResponse)(nil),    // 11: agent.agent.v1alpha.UpdateChatResponse
-	(*GetChatRequest)(nil),        // 12: agent.agent.v1alpha.GetChatRequest
-	(*GetChatResponse)(nil),       // 13: agent.agent.v1alpha.GetChatResponse
-	(*DeleteChatRequest)(nil),     // 14: agent.agent.v1alpha.DeleteChatRequest
-	(*DeleteChatResponse)(nil),    // 15: agent.agent.v1alpha.DeleteChatResponse
-	(*CreateMessageRequest)(nil),  // 16: agent.agent.v1alpha.CreateMessageRequest
-	(*CreateMessageResponse)(nil), // 17: agent.agent.v1alpha.CreateMessageResponse
-	(*MessageSenderProfile)(nil),  // 18: agent.agent.v1alpha.MessageSenderProfile
-	(*ListMessagesRequest)(nil),   // 19: agent.agent.v1alpha.ListMessagesRequest
-	(*ListMessagesResponse)(nil),  // 20: agent.agent.v1alpha.ListMessagesResponse
-	(*UpdateMessageRequest)(nil),  // 21: agent.agent.v1alpha.UpdateMessageRequest
-	(*UpdateMessageResponse)(nil), // 22: agent.agent.v1alpha.UpdateMessageResponse
-	(*DeleteMessageRequest)(nil),  // 23: agent.agent.v1alpha.DeleteMessageRequest
-	(*DeleteMessageResponse)(nil), // 24: agent.agent.v1alpha.DeleteMessageResponse
-	(*ChatRequest)(nil),           // 25: agent.agent.v1alpha.ChatRequest
-	(*ChatResponse)(nil),          // 26: agent.agent.v1alpha.ChatResponse
-	nil,                           // 27: agent.agent.v1alpha.AgentConfig.ConnectionsEntry
-	(*timestamppb.Timestamp)(nil), // 28: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),       // 29: google.protobuf.Struct
+	(CitationType)(0),                    // 0: agent.agent.v1alpha.CitationType
+	(Message_MessageType)(0),             // 1: agent.agent.v1alpha.Message.MessageType
+	(*AgentConfig)(nil),                  // 2: agent.agent.v1alpha.AgentConfig
+	(*Chat)(nil),                         // 3: agent.agent.v1alpha.Chat
+	(*Citation)(nil),                     // 4: agent.agent.v1alpha.Citation
+	(*Message)(nil),                      // 5: agent.agent.v1alpha.Message
+	(*CreateChatRequest)(nil),            // 6: agent.agent.v1alpha.CreateChatRequest
+	(*CreateChatResponse)(nil),           // 7: agent.agent.v1alpha.CreateChatResponse
+	(*ListChatsRequest)(nil),             // 8: agent.agent.v1alpha.ListChatsRequest
+	(*ListChatsResponse)(nil),            // 9: agent.agent.v1alpha.ListChatsResponse
+	(*UpdateChatRequest)(nil),            // 10: agent.agent.v1alpha.UpdateChatRequest
+	(*UpdateChatResponse)(nil),           // 11: agent.agent.v1alpha.UpdateChatResponse
+	(*GetChatRequest)(nil),               // 12: agent.agent.v1alpha.GetChatRequest
+	(*GetChatResponse)(nil),              // 13: agent.agent.v1alpha.GetChatResponse
+	(*DeleteChatRequest)(nil),            // 14: agent.agent.v1alpha.DeleteChatRequest
+	(*DeleteChatResponse)(nil),           // 15: agent.agent.v1alpha.DeleteChatResponse
+	(*CreateMessageRequest)(nil),         // 16: agent.agent.v1alpha.CreateMessageRequest
+	(*CreateMessageResponse)(nil),        // 17: agent.agent.v1alpha.CreateMessageResponse
+	(*MessageSenderProfile)(nil),         // 18: agent.agent.v1alpha.MessageSenderProfile
+	(*ListMessagesRequest)(nil),          // 19: agent.agent.v1alpha.ListMessagesRequest
+	(*ListMessagesResponse)(nil),         // 20: agent.agent.v1alpha.ListMessagesResponse
+	(*UpdateMessageRequest)(nil),         // 21: agent.agent.v1alpha.UpdateMessageRequest
+	(*UpdateMessageResponse)(nil),        // 22: agent.agent.v1alpha.UpdateMessageResponse
+	(*DeleteMessageRequest)(nil),         // 23: agent.agent.v1alpha.DeleteMessageRequest
+	(*DeleteMessageResponse)(nil),        // 24: agent.agent.v1alpha.DeleteMessageResponse
+	(*ChatRequest)(nil),                  // 25: agent.agent.v1alpha.ChatRequest
+	(*ChatResponse)(nil),                 // 26: agent.agent.v1alpha.ChatResponse
+	(*ChatStartedEvent)(nil),             // 27: agent.agent.v1alpha.ChatStartedEvent
+	(*ChatStatusUpdatedEvent)(nil),       // 28: agent.agent.v1alpha.ChatStatusUpdatedEvent
+	(*ChatOutputUpdatedEvent)(nil),       // 29: agent.agent.v1alpha.ChatOutputUpdatedEvent
+	(*ChatNameUpdatedEvent)(nil),         // 30: agent.agent.v1alpha.ChatNameUpdatedEvent
+	(*ChatReplanTriggeredEvent)(nil),     // 31: agent.agent.v1alpha.ChatReplanTriggeredEvent
+	(*ChatCitationListUpdatedEvent)(nil), // 32: agent.agent.v1alpha.ChatCitationListUpdatedEvent
+	(*ChatTableCreatedEvent)(nil),        // 33: agent.agent.v1alpha.ChatTableCreatedEvent
+	(*ChatErrorUpdatedEvent)(nil),        // 34: agent.agent.v1alpha.ChatErrorUpdatedEvent
+	(*ChatDebugOutputUpdatedEvent)(nil),  // 35: agent.agent.v1alpha.ChatDebugOutputUpdatedEvent
+	(*ChatEndedEvent)(nil),               // 36: agent.agent.v1alpha.ChatEndedEvent
+	nil,                                  // 37: agent.agent.v1alpha.AgentConfig.ConnectionsEntry
+	(*timestamppb.Timestamp)(nil),        // 38: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),              // 39: google.protobuf.Struct
 }
 var file_agent_agent_v1alpha_chat_proto_depIdxs = []int32{
-	27, // 0: agent.agent.v1alpha.AgentConfig.connections:type_name -> agent.agent.v1alpha.AgentConfig.ConnectionsEntry
+	37, // 0: agent.agent.v1alpha.AgentConfig.connections:type_name -> agent.agent.v1alpha.AgentConfig.ConnectionsEntry
 	2,  // 1: agent.agent.v1alpha.Chat.agent_config:type_name -> agent.agent.v1alpha.AgentConfig
-	28, // 2: agent.agent.v1alpha.Chat.create_time:type_name -> google.protobuf.Timestamp
-	28, // 3: agent.agent.v1alpha.Chat.update_time:type_name -> google.protobuf.Timestamp
-	28, // 4: agent.agent.v1alpha.Chat.delete_time:type_name -> google.protobuf.Timestamp
+	38, // 2: agent.agent.v1alpha.Chat.create_time:type_name -> google.protobuf.Timestamp
+	38, // 3: agent.agent.v1alpha.Chat.update_time:type_name -> google.protobuf.Timestamp
+	38, // 4: agent.agent.v1alpha.Chat.delete_time:type_name -> google.protobuf.Timestamp
 	0,  // 5: agent.agent.v1alpha.Citation.type:type_name -> agent.agent.v1alpha.CitationType
 	1,  // 6: agent.agent.v1alpha.Message.type:type_name -> agent.agent.v1alpha.Message.MessageType
-	28, // 7: agent.agent.v1alpha.Message.create_time:type_name -> google.protobuf.Timestamp
-	28, // 8: agent.agent.v1alpha.Message.update_time:type_name -> google.protobuf.Timestamp
+	38, // 7: agent.agent.v1alpha.Message.create_time:type_name -> google.protobuf.Timestamp
+	38, // 8: agent.agent.v1alpha.Message.update_time:type_name -> google.protobuf.Timestamp
 	4,  // 9: agent.agent.v1alpha.Message.citations:type_name -> agent.agent.v1alpha.Citation
 	2,  // 10: agent.agent.v1alpha.CreateChatRequest.agent_config:type_name -> agent.agent.v1alpha.AgentConfig
 	3,  // 11: agent.agent.v1alpha.CreateChatResponse.chat:type_name -> agent.agent.v1alpha.Chat
@@ -2215,12 +2877,23 @@ var file_agent_agent_v1alpha_chat_proto_depIdxs = []int32{
 	5,  // 18: agent.agent.v1alpha.ListMessagesResponse.messages:type_name -> agent.agent.v1alpha.Message
 	18, // 19: agent.agent.v1alpha.ListMessagesResponse.sender_profiles:type_name -> agent.agent.v1alpha.MessageSenderProfile
 	5,  // 20: agent.agent.v1alpha.UpdateMessageResponse.message:type_name -> agent.agent.v1alpha.Message
-	29, // 21: agent.agent.v1alpha.ChatResponse.outputs:type_name -> google.protobuf.Struct
-	22, // [22:22] is the sub-list for method output_type
-	22, // [22:22] is the sub-list for method input_type
-	22, // [22:22] is the sub-list for extension type_name
-	22, // [22:22] is the sub-list for extension extendee
-	0,  // [0:22] is the sub-list for field type_name
+	39, // 21: agent.agent.v1alpha.ChatResponse.outputs:type_name -> google.protobuf.Struct
+	38, // 22: agent.agent.v1alpha.ChatStartedEvent.create_time:type_name -> google.protobuf.Timestamp
+	38, // 23: agent.agent.v1alpha.ChatStatusUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
+	38, // 24: agent.agent.v1alpha.ChatOutputUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
+	38, // 25: agent.agent.v1alpha.ChatNameUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
+	38, // 26: agent.agent.v1alpha.ChatReplanTriggeredEvent.create_time:type_name -> google.protobuf.Timestamp
+	38, // 27: agent.agent.v1alpha.ChatCitationListUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
+	4,  // 28: agent.agent.v1alpha.ChatCitationListUpdatedEvent.citations:type_name -> agent.agent.v1alpha.Citation
+	38, // 29: agent.agent.v1alpha.ChatTableCreatedEvent.create_time:type_name -> google.protobuf.Timestamp
+	38, // 30: agent.agent.v1alpha.ChatErrorUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
+	38, // 31: agent.agent.v1alpha.ChatDebugOutputUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
+	38, // 32: agent.agent.v1alpha.ChatEndedEvent.create_time:type_name -> google.protobuf.Timestamp
+	33, // [33:33] is the sub-list for method output_type
+	33, // [33:33] is the sub-list for method input_type
+	33, // [33:33] is the sub-list for extension type_name
+	33, // [33:33] is the sub-list for extension extendee
+	0,  // [0:33] is the sub-list for field type_name
 }
 
 func init() { file_agent_agent_v1alpha_chat_proto_init() }
@@ -2529,6 +3202,126 @@ func file_agent_agent_v1alpha_chat_proto_init() {
 				return nil
 			}
 		}
+		file_agent_agent_v1alpha_chat_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ChatStartedEvent); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_agent_agent_v1alpha_chat_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ChatStatusUpdatedEvent); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_agent_agent_v1alpha_chat_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ChatOutputUpdatedEvent); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_agent_agent_v1alpha_chat_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ChatNameUpdatedEvent); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_agent_agent_v1alpha_chat_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ChatReplanTriggeredEvent); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_agent_agent_v1alpha_chat_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ChatCitationListUpdatedEvent); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_agent_agent_v1alpha_chat_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ChatTableCreatedEvent); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_agent_agent_v1alpha_chat_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ChatErrorUpdatedEvent); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_agent_agent_v1alpha_chat_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ChatDebugOutputUpdatedEvent); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_agent_agent_v1alpha_chat_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ChatEndedEvent); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	file_agent_agent_v1alpha_chat_proto_msgTypes[2].OneofWrappers = []interface{}{}
 	file_agent_agent_v1alpha_chat_proto_msgTypes[16].OneofWrappers = []interface{}{}
@@ -2538,7 +3331,7 @@ func file_agent_agent_v1alpha_chat_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_agent_agent_v1alpha_chat_proto_rawDesc,
 			NumEnums:      2,
-			NumMessages:   26,
+			NumMessages:   36,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
