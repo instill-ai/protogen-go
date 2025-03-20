@@ -234,6 +234,122 @@ func (x *GetFileCatalogResponse) GetChunks() []*GetFileCatalogResponse_Chunk {
 	return nil
 }
 
+// GetChatFileRequest
+type GetChatFileRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// id of the namespace
+	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
+	// id of the catalog
+	CatalogId string `protobuf:"bytes,2,opt,name=catalog_id,json=catalogId,proto3" json:"catalog_id,omitempty"`
+	// id of the file(i.e. file name)
+	FileId string `protobuf:"bytes,3,opt,name=file_id,json=fileId,proto3" json:"file_id,omitempty"`
+}
+
+func (x *GetChatFileRequest) Reset() {
+	*x = GetChatFileRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetChatFileRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetChatFileRequest) ProtoMessage() {}
+
+func (x *GetChatFileRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetChatFileRequest.ProtoReflect.Descriptor instead.
+func (*GetChatFileRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_file_catalog_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *GetChatFileRequest) GetNamespaceId() string {
+	if x != nil {
+		return x.NamespaceId
+	}
+	return ""
+}
+
+func (x *GetChatFileRequest) GetCatalogId() string {
+	if x != nil {
+		return x.CatalogId
+	}
+	return ""
+}
+
+func (x *GetChatFileRequest) GetFileId() string {
+	if x != nil {
+		return x.FileId
+	}
+	return ""
+}
+
+// GetChatFileResponse
+type GetChatFileResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// converted markdown content
+	Markdown string `protobuf:"bytes,1,opt,name=markdown,proto3" json:"markdown,omitempty"`
+}
+
+func (x *GetChatFileResponse) Reset() {
+	*x = GetChatFileResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetChatFileResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetChatFileResponse) ProtoMessage() {}
+
+func (x *GetChatFileResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetChatFileResponse.ProtoReflect.Descriptor instead.
+func (*GetChatFileResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_file_catalog_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetChatFileResponse) GetMarkdown() string {
+	if x != nil {
+		return x.Markdown
+	}
+	return ""
+}
+
 // metadata
 type GetFileCatalogResponse_Metadata struct {
 	state         protoimpl.MessageState
@@ -257,7 +373,7 @@ type GetFileCatalogResponse_Metadata struct {
 func (x *GetFileCatalogResponse_Metadata) Reset() {
 	*x = GetFileCatalogResponse_Metadata{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[2]
+		mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -270,7 +386,7 @@ func (x *GetFileCatalogResponse_Metadata) String() string {
 func (*GetFileCatalogResponse_Metadata) ProtoMessage() {}
 
 func (x *GetFileCatalogResponse_Metadata) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[2]
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -349,7 +465,7 @@ type GetFileCatalogResponse_Text struct {
 func (x *GetFileCatalogResponse_Text) Reset() {
 	*x = GetFileCatalogResponse_Text{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[3]
+		mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -362,7 +478,7 @@ func (x *GetFileCatalogResponse_Text) String() string {
 func (*GetFileCatalogResponse_Text) ProtoMessage() {}
 
 func (x *GetFileCatalogResponse_Text) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[3]
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -442,7 +558,7 @@ type GetFileCatalogResponse_Chunk struct {
 func (x *GetFileCatalogResponse_Chunk) Reset() {
 	*x = GetFileCatalogResponse_Chunk{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[4]
+		mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -455,7 +571,7 @@ func (x *GetFileCatalogResponse_Chunk) String() string {
 func (*GetFileCatalogResponse_Chunk) ProtoMessage() {}
 
 func (x *GetFileCatalogResponse_Chunk) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[4]
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -644,24 +760,34 @@ var file_artifact_artifact_v1alpha_file_catalog_proto_rawDesc = []byte{
 	0x55, 0x4e, 0x4b, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x49, 0x4d, 0x41, 0x47, 0x45, 0x10, 0x02,
 	0x12, 0x14, 0x0a, 0x10, 0x43, 0x48, 0x55, 0x4e, 0x4b, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x41,
 	0x55, 0x44, 0x49, 0x4f, 0x10, 0x03, 0x12, 0x14, 0x0a, 0x10, 0x43, 0x48, 0x55, 0x4e, 0x4b, 0x5f,
-	0x54, 0x59, 0x50, 0x45, 0x5f, 0x56, 0x49, 0x44, 0x45, 0x4f, 0x10, 0x04, 0x42, 0x84, 0x02, 0x0a,
-	0x1d, 0x63, 0x6f, 0x6d, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x61, 0x72,
-	0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x42, 0x10,
-	0x46, 0x69, 0x6c, 0x65, 0x43, 0x61, 0x74, 0x61, 0x6c, 0x6f, 0x67, 0x50, 0x72, 0x6f, 0x74, 0x6f,
-	0x50, 0x01, 0x5a, 0x4b, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x69,
-	0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2d, 0x61, 0x69, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x67,
-	0x65, 0x6e, 0x2d, 0x67, 0x6f, 0x2f, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2f, 0x61,
-	0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x3b,
-	0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xa2,
-	0x02, 0x03, 0x41, 0x41, 0x58, 0xaa, 0x02, 0x19, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74,
-	0x2e, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68,
-	0x61, 0xca, 0x02, 0x19, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x5c, 0x41, 0x72, 0x74,
-	0x69, 0x66, 0x61, 0x63, 0x74, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0xe2, 0x02, 0x25,
-	0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x5c, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63,
-	0x74, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74,
-	0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x1b, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74,
-	0x3a, 0x3a, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x3a, 0x3a, 0x56, 0x31, 0x61, 0x6c,
-	0x70, 0x68, 0x61, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x54, 0x59, 0x50, 0x45, 0x5f, 0x56, 0x49, 0x44, 0x45, 0x4f, 0x10, 0x04, 0x22, 0x6f, 0x0a, 0x12,
+	0x47, 0x65, 0x74, 0x43, 0x68, 0x61, 0x74, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x21, 0x0a, 0x0c, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x5f,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70,
+	0x61, 0x63, 0x65, 0x49, 0x64, 0x12, 0x1d, 0x0a, 0x0a, 0x63, 0x61, 0x74, 0x61, 0x6c, 0x6f, 0x67,
+	0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x63, 0x61, 0x74, 0x61, 0x6c,
+	0x6f, 0x67, 0x49, 0x64, 0x12, 0x17, 0x0a, 0x07, 0x66, 0x69, 0x6c, 0x65, 0x5f, 0x69, 0x64, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x66, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x22, 0x31, 0x0a,
+	0x13, 0x47, 0x65, 0x74, 0x43, 0x68, 0x61, 0x74, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x6d, 0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6d, 0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e,
+	0x42, 0x84, 0x02, 0x0a, 0x1d, 0x63, 0x6f, 0x6d, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63,
+	0x74, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70,
+	0x68, 0x61, 0x42, 0x10, 0x46, 0x69, 0x6c, 0x65, 0x43, 0x61, 0x74, 0x61, 0x6c, 0x6f, 0x67, 0x50,
+	0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x4b, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63,
+	0x6f, 0x6d, 0x2f, 0x69, 0x6e, 0x73, 0x74, 0x69, 0x6c, 0x6c, 0x2d, 0x61, 0x69, 0x2f, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x67, 0x65, 0x6e, 0x2d, 0x67, 0x6f, 0x2f, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61,
+	0x63, 0x74, 0x2f, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2f, 0x76, 0x31, 0x61, 0x6c,
+	0x70, 0x68, 0x61, 0x3b, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x76, 0x31, 0x61, 0x6c,
+	0x70, 0x68, 0x61, 0xa2, 0x02, 0x03, 0x41, 0x41, 0x58, 0xaa, 0x02, 0x19, 0x41, 0x72, 0x74, 0x69,
+	0x66, 0x61, 0x63, 0x74, 0x2e, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x2e, 0x56, 0x31,
+	0x61, 0x6c, 0x70, 0x68, 0x61, 0xca, 0x02, 0x19, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74,
+	0x5c, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68,
+	0x61, 0xe2, 0x02, 0x25, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x5c, 0x41, 0x72, 0x74,
+	0x69, 0x66, 0x61, 0x63, 0x74, 0x5c, 0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x5c, 0x47, 0x50,
+	0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x1b, 0x41, 0x72, 0x74, 0x69,
+	0x66, 0x61, 0x63, 0x74, 0x3a, 0x3a, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x3a, 0x3a,
+	0x56, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -677,33 +803,35 @@ func file_artifact_artifact_v1alpha_file_catalog_proto_rawDescGZIP() []byte {
 }
 
 var file_artifact_artifact_v1alpha_file_catalog_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_artifact_artifact_v1alpha_file_catalog_proto_goTypes = []interface{}{
 	(GetFileCatalogResponse_ChunkType)(0),   // 0: artifact.artifact.v1alpha.GetFileCatalogResponse.ChunkType
 	(*GetFileCatalogRequest)(nil),           // 1: artifact.artifact.v1alpha.GetFileCatalogRequest
 	(*GetFileCatalogResponse)(nil),          // 2: artifact.artifact.v1alpha.GetFileCatalogResponse
-	(*GetFileCatalogResponse_Metadata)(nil), // 3: artifact.artifact.v1alpha.GetFileCatalogResponse.Metadata
-	(*GetFileCatalogResponse_Text)(nil),     // 4: artifact.artifact.v1alpha.GetFileCatalogResponse.Text
-	(*GetFileCatalogResponse_Chunk)(nil),    // 5: artifact.artifact.v1alpha.GetFileCatalogResponse.Chunk
-	(FileType)(0),                           // 6: artifact.artifact.v1alpha.FileType
-	(*timestamppb.Timestamp)(nil),           // 7: google.protobuf.Timestamp
-	(FileProcessStatus)(0),                  // 8: artifact.artifact.v1alpha.FileProcessStatus
+	(*GetChatFileRequest)(nil),              // 3: artifact.artifact.v1alpha.GetChatFileRequest
+	(*GetChatFileResponse)(nil),             // 4: artifact.artifact.v1alpha.GetChatFileResponse
+	(*GetFileCatalogResponse_Metadata)(nil), // 5: artifact.artifact.v1alpha.GetFileCatalogResponse.Metadata
+	(*GetFileCatalogResponse_Text)(nil),     // 6: artifact.artifact.v1alpha.GetFileCatalogResponse.Text
+	(*GetFileCatalogResponse_Chunk)(nil),    // 7: artifact.artifact.v1alpha.GetFileCatalogResponse.Chunk
+	(FileType)(0),                           // 8: artifact.artifact.v1alpha.FileType
+	(*timestamppb.Timestamp)(nil),           // 9: google.protobuf.Timestamp
+	(FileProcessStatus)(0),                  // 10: artifact.artifact.v1alpha.FileProcessStatus
 }
 var file_artifact_artifact_v1alpha_file_catalog_proto_depIdxs = []int32{
-	3, // 0: artifact.artifact.v1alpha.GetFileCatalogResponse.metadata:type_name -> artifact.artifact.v1alpha.GetFileCatalogResponse.Metadata
-	4, // 1: artifact.artifact.v1alpha.GetFileCatalogResponse.text:type_name -> artifact.artifact.v1alpha.GetFileCatalogResponse.Text
-	5, // 2: artifact.artifact.v1alpha.GetFileCatalogResponse.chunks:type_name -> artifact.artifact.v1alpha.GetFileCatalogResponse.Chunk
-	6, // 3: artifact.artifact.v1alpha.GetFileCatalogResponse.Metadata.file_type:type_name -> artifact.artifact.v1alpha.FileType
-	7, // 4: artifact.artifact.v1alpha.GetFileCatalogResponse.Metadata.file_upload_time:type_name -> google.protobuf.Timestamp
-	8, // 5: artifact.artifact.v1alpha.GetFileCatalogResponse.Metadata.file_process_status:type_name -> artifact.artifact.v1alpha.FileProcessStatus
-	7, // 6: artifact.artifact.v1alpha.GetFileCatalogResponse.Text.transformed_content_update_time:type_name -> google.protobuf.Timestamp
-	0, // 7: artifact.artifact.v1alpha.GetFileCatalogResponse.Chunk.type:type_name -> artifact.artifact.v1alpha.GetFileCatalogResponse.ChunkType
-	7, // 8: artifact.artifact.v1alpha.GetFileCatalogResponse.Chunk.create_time:type_name -> google.protobuf.Timestamp
-	9, // [9:9] is the sub-list for method output_type
-	9, // [9:9] is the sub-list for method input_type
-	9, // [9:9] is the sub-list for extension type_name
-	9, // [9:9] is the sub-list for extension extendee
-	0, // [0:9] is the sub-list for field type_name
+	5,  // 0: artifact.artifact.v1alpha.GetFileCatalogResponse.metadata:type_name -> artifact.artifact.v1alpha.GetFileCatalogResponse.Metadata
+	6,  // 1: artifact.artifact.v1alpha.GetFileCatalogResponse.text:type_name -> artifact.artifact.v1alpha.GetFileCatalogResponse.Text
+	7,  // 2: artifact.artifact.v1alpha.GetFileCatalogResponse.chunks:type_name -> artifact.artifact.v1alpha.GetFileCatalogResponse.Chunk
+	8,  // 3: artifact.artifact.v1alpha.GetFileCatalogResponse.Metadata.file_type:type_name -> artifact.artifact.v1alpha.FileType
+	9,  // 4: artifact.artifact.v1alpha.GetFileCatalogResponse.Metadata.file_upload_time:type_name -> google.protobuf.Timestamp
+	10, // 5: artifact.artifact.v1alpha.GetFileCatalogResponse.Metadata.file_process_status:type_name -> artifact.artifact.v1alpha.FileProcessStatus
+	9,  // 6: artifact.artifact.v1alpha.GetFileCatalogResponse.Text.transformed_content_update_time:type_name -> google.protobuf.Timestamp
+	0,  // 7: artifact.artifact.v1alpha.GetFileCatalogResponse.Chunk.type:type_name -> artifact.artifact.v1alpha.GetFileCatalogResponse.ChunkType
+	9,  // 8: artifact.artifact.v1alpha.GetFileCatalogResponse.Chunk.create_time:type_name -> google.protobuf.Timestamp
+	9,  // [9:9] is the sub-list for method output_type
+	9,  // [9:9] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_artifact_artifact_v1alpha_file_catalog_proto_init() }
@@ -738,7 +866,7 @@ func file_artifact_artifact_v1alpha_file_catalog_proto_init() {
 			}
 		}
 		file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetFileCatalogResponse_Metadata); i {
+			switch v := v.(*GetChatFileRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -750,7 +878,7 @@ func file_artifact_artifact_v1alpha_file_catalog_proto_init() {
 			}
 		}
 		file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetFileCatalogResponse_Text); i {
+			switch v := v.(*GetChatFileResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -762,6 +890,30 @@ func file_artifact_artifact_v1alpha_file_catalog_proto_init() {
 			}
 		}
 		file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetFileCatalogResponse_Metadata); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetFileCatalogResponse_Text); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetFileCatalogResponse_Chunk); i {
 			case 0:
 				return &v.state
@@ -780,7 +932,7 @@ func file_artifact_artifact_v1alpha_file_catalog_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_artifact_artifact_v1alpha_file_catalog_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   5,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

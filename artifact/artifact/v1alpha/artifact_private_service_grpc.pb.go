@@ -26,6 +26,7 @@ const (
 	ArtifactPrivateService_GetObject_FullMethodName           = "/artifact.artifact.v1alpha.ArtifactPrivateService/GetObject"
 	ArtifactPrivateService_GetObjectURL_FullMethodName        = "/artifact.artifact.v1alpha.ArtifactPrivateService/GetObjectURL"
 	ArtifactPrivateService_UpdateObject_FullMethodName        = "/artifact.artifact.v1alpha.ArtifactPrivateService/UpdateObject"
+	ArtifactPrivateService_GetChatFile_FullMethodName         = "/artifact.artifact.v1alpha.ArtifactPrivateService/GetChatFile"
 )
 
 // ArtifactPrivateServiceClient is the client API for ArtifactPrivateService service.
@@ -55,6 +56,8 @@ type ArtifactPrivateServiceClient interface {
 	GetObjectURL(ctx context.Context, in *GetObjectURLRequest, opts ...grpc.CallOption) (*GetObjectURLResponse, error)
 	// Update Object
 	UpdateObject(ctx context.Context, in *UpdateObjectRequest, opts ...grpc.CallOption) (*UpdateObjectResponse, error)
+	// Get Chat file
+	GetChatFile(ctx context.Context, in *GetChatFileRequest, opts ...grpc.CallOption) (*GetChatFileResponse, error)
 }
 
 type artifactPrivateServiceClient struct {
@@ -128,6 +131,15 @@ func (c *artifactPrivateServiceClient) UpdateObject(ctx context.Context, in *Upd
 	return out, nil
 }
 
+func (c *artifactPrivateServiceClient) GetChatFile(ctx context.Context, in *GetChatFileRequest, opts ...grpc.CallOption) (*GetChatFileResponse, error) {
+	out := new(GetChatFileResponse)
+	err := c.cc.Invoke(ctx, ArtifactPrivateService_GetChatFile_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ArtifactPrivateServiceServer is the server API for ArtifactPrivateService service.
 // All implementations should embed UnimplementedArtifactPrivateServiceServer
 // for forward compatibility
@@ -155,6 +167,8 @@ type ArtifactPrivateServiceServer interface {
 	GetObjectURL(context.Context, *GetObjectURLRequest) (*GetObjectURLResponse, error)
 	// Update Object
 	UpdateObject(context.Context, *UpdateObjectRequest) (*UpdateObjectResponse, error)
+	// Get Chat file
+	GetChatFile(context.Context, *GetChatFileRequest) (*GetChatFileResponse, error)
 }
 
 // UnimplementedArtifactPrivateServiceServer should be embedded to have forward compatible implementations.
@@ -181,6 +195,9 @@ func (UnimplementedArtifactPrivateServiceServer) GetObjectURL(context.Context, *
 }
 func (UnimplementedArtifactPrivateServiceServer) UpdateObject(context.Context, *UpdateObjectRequest) (*UpdateObjectResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateObject not implemented")
+}
+func (UnimplementedArtifactPrivateServiceServer) GetChatFile(context.Context, *GetChatFileRequest) (*GetChatFileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetChatFile not implemented")
 }
 
 // UnsafeArtifactPrivateServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -320,6 +337,24 @@ func _ArtifactPrivateService_UpdateObject_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArtifactPrivateService_GetChatFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetChatFileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPrivateServiceServer).GetChatFile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPrivateService_GetChatFile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPrivateServiceServer).GetChatFile(ctx, req.(*GetChatFileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ArtifactPrivateService_ServiceDesc is the grpc.ServiceDesc for ArtifactPrivateService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -354,6 +389,10 @@ var ArtifactPrivateService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateObject",
 			Handler:    _ArtifactPrivateService_UpdateObject_Handler,
+		},
+		{
+			MethodName: "GetChatFile",
+			Handler:    _ArtifactPrivateService_GetChatFile_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
