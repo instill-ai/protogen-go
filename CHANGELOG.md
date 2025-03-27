@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.4-alpha](https://github.com/instill-ai/protogen-go/compare/v0.3.3-alpha...v0.3.4-alpha) (2025-03-27)
+
+
+### Bug Fixes
+
+* **mod:** update golang.org/x/net module to fix vulnerability issue ([#64](https://github.com/instill-ai/protogen-go/issues/64)) ([a48650b](https://github.com/instill-ai/protogen-go/commit/a48650b35655811e4ac82e513b509dc417b8153f))
+* rollback protobufs to 1.30 to prevent plugin break ([#57](https://github.com/instill-ai/protogen-go/issues/57)) ([6be99d9](https://github.com/instill-ai/protogen-go/commit/6be99d973473c7bd56bc9c6ce1bc07ff37803086))
+
 ## [0.3.3-alpha](https://github.com/instill-ai/protogen-go/compare/v0.3.2-alpha...v0.3.3-alpha) (2022-09-14)
 
 
