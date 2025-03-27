@@ -206,7 +206,7 @@ type PipelinePublicServiceClient interface {
 	// The pipeline is identified by its resource name, formed by the parent namespace
 	// and ID of the pipeline.
 	//
-	// For more information, see [Run NamespacePipeline](https://www.instill.tech/docs/pipeline/run-pipeline).
+	// For more information, see [Run NamespacePipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerNamespacePipeline(ctx context.Context, in *TriggerNamespacePipelineRequest, opts ...grpc.CallOption) (*TriggerNamespacePipelineResponse, error)
 	// Trigger a pipeline via streaming
 	//
@@ -227,7 +227,7 @@ type PipelinePublicServiceClient interface {
 	// The pipeline is identified by its resource name, formed by the parent namespace
 	// and ID of the pipeline.
 	//
-	// For more information, see [Run NamespacePipeline](https://www.instill.tech/docs/pipeline/run-pipeline).
+	// For more information, see [Run NamespacePipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerAsyncNamespacePipeline(ctx context.Context, in *TriggerAsyncNamespacePipelineRequest, opts ...grpc.CallOption) (*TriggerAsyncNamespacePipelineResponse, error)
 	// Create a pipeline release
 	//
@@ -394,7 +394,7 @@ type PipelinePublicServiceClient interface {
 	// The pipeline is identified by its resource name, formed by the parent user
 	// and ID of the pipeline.
 	//
-	// For more information, see [Run Pipeline](https://www.instill.tech/docs/pipeline/run-pipeline).
+	// For more information, see [Run Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerUserPipeline(ctx context.Context, in *TriggerUserPipelineRequest, opts ...grpc.CallOption) (*TriggerUserPipelineResponse, error)
 	// Deprecated: Do not use.
 	// Trigger a pipeline owned by a user and stream back the response
@@ -417,7 +417,7 @@ type PipelinePublicServiceClient interface {
 	// The pipeline is identified by its resource name, formed by the parent user
 	// and ID of the pipeline.
 	//
-	// For more information, see [Run Pipeline](https://www.instill.tech/docs/pipeline/run-pipeline).
+	// For more information, see [Run Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerAsyncUserPipeline(ctx context.Context, in *TriggerAsyncUserPipelineRequest, opts ...grpc.CallOption) (*TriggerAsyncUserPipelineResponse, error)
 	// Deprecated: Do not use.
 	// Release a version of a pipeline owned by a user
@@ -565,7 +565,7 @@ type PipelinePublicServiceClient interface {
 	// The pipeline is identified by its resource name, formed by the parent
 	// organization and ID of the pipeline.
 	//
-	// For more information, see [Run Pipeline](https://www.instill.tech/docs/pipeline/run-pipeline).
+	// For more information, see [Run Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerOrganizationPipelineStream(ctx context.Context, in *TriggerOrganizationPipelineStreamRequest, opts ...grpc.CallOption) (PipelinePublicService_TriggerOrganizationPipelineStreamClient, error)
 	// Deprecated: Do not use.
 	// Trigger a pipeline owned by an organization
@@ -577,7 +577,7 @@ type PipelinePublicServiceClient interface {
 	// The pipeline is identified by its resource name, formed by the parent
 	// organization and ID of the pipeline.
 	//
-	// For more information, see [Run Pipeline](https://www.instill.tech/docs/pipeline/run-pipeline).
+	// For more information, see [Run Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerOrganizationPipeline(ctx context.Context, in *TriggerOrganizationPipelineRequest, opts ...grpc.CallOption) (*TriggerOrganizationPipelineResponse, error)
 	// Deprecated: Do not use.
 	// Trigger a pipeline owned by an organization asynchronously
@@ -590,7 +590,7 @@ type PipelinePublicServiceClient interface {
 	// The pipeline is identified by its resource name, formed by the parent
 	// organization and ID of the pipeline.
 	//
-	// For more information, see [Run Pipeline](https://www.instill.tech/docs/pipeline/run-pipeline).
+	// For more information, see [Run Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerAsyncOrganizationPipeline(ctx context.Context, in *TriggerAsyncOrganizationPipelineRequest, opts ...grpc.CallOption) (*TriggerAsyncOrganizationPipelineResponse, error)
 	// Deprecated: Do not use.
 	// Release a version of a pipeline owned by an organization
@@ -1849,7 +1849,7 @@ type PipelinePublicServiceServer interface {
 	// The pipeline is identified by its resource name, formed by the parent namespace
 	// and ID of the pipeline.
 	//
-	// For more information, see [Run NamespacePipeline](https://www.instill.tech/docs/pipeline/run-pipeline).
+	// For more information, see [Run NamespacePipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerNamespacePipeline(context.Context, *TriggerNamespacePipelineRequest) (*TriggerNamespacePipelineResponse, error)
 	// Trigger a pipeline via streaming
 	//
@@ -1870,7 +1870,7 @@ type PipelinePublicServiceServer interface {
 	// The pipeline is identified by its resource name, formed by the parent namespace
 	// and ID of the pipeline.
 	//
-	// For more information, see [Run NamespacePipeline](https://www.instill.tech/docs/pipeline/run-pipeline).
+	// For more information, see [Run NamespacePipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerAsyncNamespacePipeline(context.Context, *TriggerAsyncNamespacePipelineRequest) (*TriggerAsyncNamespacePipelineResponse, error)
 	// Create a pipeline release
 	//
@@ -2037,7 +2037,7 @@ type PipelinePublicServiceServer interface {
 	// The pipeline is identified by its resource name, formed by the parent user
 	// and ID of the pipeline.
 	//
-	// For more information, see [Run Pipeline](https://www.instill.tech/docs/pipeline/run-pipeline).
+	// For more information, see [Run Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerUserPipeline(context.Context, *TriggerUserPipelineRequest) (*TriggerUserPipelineResponse, error)
 	// Deprecated: Do not use.
 	// Trigger a pipeline owned by a user and stream back the response
@@ -2060,7 +2060,7 @@ type PipelinePublicServiceServer interface {
 	// The pipeline is identified by its resource name, formed by the parent user
 	// and ID of the pipeline.
 	//
-	// For more information, see [Run Pipeline](https://www.instill.tech/docs/pipeline/run-pipeline).
+	// For more information, see [Run Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerAsyncUserPipeline(context.Context, *TriggerAsyncUserPipelineRequest) (*TriggerAsyncUserPipelineResponse, error)
 	// Deprecated: Do not use.
 	// Release a version of a pipeline owned by a user
@@ -2208,7 +2208,7 @@ type PipelinePublicServiceServer interface {
 	// The pipeline is identified by its resource name, formed by the parent
 	// organization and ID of the pipeline.
 	//
-	// For more information, see [Run Pipeline](https://www.instill.tech/docs/pipeline/run-pipeline).
+	// For more information, see [Run Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerOrganizationPipelineStream(*TriggerOrganizationPipelineStreamRequest, PipelinePublicService_TriggerOrganizationPipelineStreamServer) error
 	// Deprecated: Do not use.
 	// Trigger a pipeline owned by an organization
@@ -2220,7 +2220,7 @@ type PipelinePublicServiceServer interface {
 	// The pipeline is identified by its resource name, formed by the parent
 	// organization and ID of the pipeline.
 	//
-	// For more information, see [Run Pipeline](https://www.instill.tech/docs/pipeline/run-pipeline).
+	// For more information, see [Run Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerOrganizationPipeline(context.Context, *TriggerOrganizationPipelineRequest) (*TriggerOrganizationPipelineResponse, error)
 	// Deprecated: Do not use.
 	// Trigger a pipeline owned by an organization asynchronously
@@ -2233,7 +2233,7 @@ type PipelinePublicServiceServer interface {
 	// The pipeline is identified by its resource name, formed by the parent
 	// organization and ID of the pipeline.
 	//
-	// For more information, see [Run Pipeline](https://www.instill.tech/docs/pipeline/run-pipeline).
+	// For more information, see [Run Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerAsyncOrganizationPipeline(context.Context, *TriggerAsyncOrganizationPipelineRequest) (*TriggerAsyncOrganizationPipelineResponse, error)
 	// Deprecated: Do not use.
 	// Release a version of a pipeline owned by an organization
