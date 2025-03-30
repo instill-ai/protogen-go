@@ -29,6 +29,7 @@ const (
 	ArtifactPublicService_DeleteCatalogFile_FullMethodName      = "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteCatalogFile"
 	ArtifactPublicService_ProcessCatalogFiles_FullMethodName    = "/artifact.artifact.v1alpha.ArtifactPublicService/ProcessCatalogFiles"
 	ArtifactPublicService_ListCatalogFiles_FullMethodName       = "/artifact.artifact.v1alpha.ArtifactPublicService/ListCatalogFiles"
+	ArtifactPublicService_GetCatalogFile_FullMethodName         = "/artifact.artifact.v1alpha.ArtifactPublicService/GetCatalogFile"
 	ArtifactPublicService_ListChunks_FullMethodName             = "/artifact.artifact.v1alpha.ArtifactPublicService/ListChunks"
 	ArtifactPublicService_SearchChunks_FullMethodName           = "/artifact.artifact.v1alpha.ArtifactPublicService/SearchChunks"
 	ArtifactPublicService_GetSourceFile_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPublicService/GetSourceFile"
@@ -88,6 +89,10 @@ type ArtifactPublicServiceClient interface {
 	//
 	// Returns a paginated list of catalog files.
 	ListCatalogFiles(ctx context.Context, in *ListCatalogFilesRequest, opts ...grpc.CallOption) (*ListCatalogFilesResponse, error)
+	// Get catalog file
+	//
+	// Gets the file of a catalog.
+	GetCatalogFile(ctx context.Context, in *GetCatalogFileRequest, opts ...grpc.CallOption) (*GetCatalogFileResponse, error)
 	// List catalog chunks
 	//
 	// Returns a paginated list of catalog chunks.
@@ -234,6 +239,15 @@ func (c *artifactPublicServiceClient) ProcessCatalogFiles(ctx context.Context, i
 func (c *artifactPublicServiceClient) ListCatalogFiles(ctx context.Context, in *ListCatalogFilesRequest, opts ...grpc.CallOption) (*ListCatalogFilesResponse, error) {
 	out := new(ListCatalogFilesResponse)
 	err := c.cc.Invoke(ctx, ArtifactPublicService_ListCatalogFiles_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPublicServiceClient) GetCatalogFile(ctx context.Context, in *GetCatalogFileRequest, opts ...grpc.CallOption) (*GetCatalogFileResponse, error) {
+	out := new(GetCatalogFileResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_GetCatalogFile_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -401,6 +415,10 @@ type ArtifactPublicServiceServer interface {
 	//
 	// Returns a paginated list of catalog files.
 	ListCatalogFiles(context.Context, *ListCatalogFilesRequest) (*ListCatalogFilesResponse, error)
+	// Get catalog file
+	//
+	// Gets the file of a catalog.
+	GetCatalogFile(context.Context, *GetCatalogFileRequest) (*GetCatalogFileResponse, error)
 	// List catalog chunks
 	//
 	// Returns a paginated list of catalog chunks.
@@ -488,6 +506,9 @@ func (UnimplementedArtifactPublicServiceServer) ProcessCatalogFiles(context.Cont
 }
 func (UnimplementedArtifactPublicServiceServer) ListCatalogFiles(context.Context, *ListCatalogFilesRequest) (*ListCatalogFilesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListCatalogFiles not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) GetCatalogFile(context.Context, *GetCatalogFileRequest) (*GetCatalogFileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCatalogFile not implemented")
 }
 func (UnimplementedArtifactPublicServiceServer) ListChunks(context.Context, *ListChunksRequest) (*ListChunksResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListChunks not implemented")
@@ -716,6 +737,24 @@ func _ArtifactPublicService_ListCatalogFiles_Handler(srv interface{}, ctx contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ArtifactPublicServiceServer).ListCatalogFiles(ctx, req.(*ListCatalogFilesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPublicService_GetCatalogFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCatalogFileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).GetCatalogFile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_GetCatalogFile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).GetCatalogFile(ctx, req.(*GetCatalogFileRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1000,6 +1039,10 @@ var ArtifactPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListCatalogFiles",
 			Handler:    _ArtifactPublicService_ListCatalogFiles_Handler,
+		},
+		{
+			MethodName: "GetCatalogFile",
+			Handler:    _ArtifactPublicService_GetCatalogFile_Handler,
 		},
 		{
 			MethodName: "ListChunks",
