@@ -49,9 +49,11 @@ const (
 	// Starting is the state when the system is provisioning the necessary
 	// resources for the model
 	State_STATE_STARTING State = 6
-	// Scaling Up is the transition state when the system is provisioning compute resource for this model instance.
+	// Scaling Up is the transition state when the system is provisioning compute
+	// resource for this model instance.
 	State_STATE_SCALING_UP State = 7
-	// Scaling is the transition state when the system is releasing compute resource for this model instance.
+	// Scaling is the transition state when the system is releasing compute
+	// resource for this model instance.
 	State_STATE_SCALING_DOWN State = 8
 )
 
@@ -866,8 +868,9 @@ type ListModelsRequest struct {
 	Filter *string `protobuf:"bytes,5,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
 	// Limit results to pipelines with the specified visibility.
 	Visibility *Model_Visibility `protobuf:"varint,6,opt,name=visibility,proto3,enum=model.model.v1alpha.Model_Visibility,oneof" json:"visibility,omitempty"`
-	// Order by field, with options for ordering by `id`, `create_time` or `update_time`.
-	// Format: `order_by=id` or `order_by=create_time desc`, default is `asc`.
+	// Order by field, with options for ordering by `id`, `create_time` or
+	// `update_time`. Format: `order_by=id` or `order_by=create_time desc`,
+	// default is `asc`.
 	OrderBy *string `protobuf:"bytes,7,opt,name=order_by,json=orderBy,proto3,oneof" json:"order_by,omitempty"`
 }
 
@@ -1151,8 +1154,9 @@ type ListNamespaceModelsRequest struct {
 	Filter *string `protobuf:"bytes,6,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
 	// Limit results to pipelines with the specified visibility.
 	Visibility *Model_Visibility `protobuf:"varint,7,opt,name=visibility,proto3,enum=model.model.v1alpha.Model_Visibility,oneof" json:"visibility,omitempty"`
-	// Order by field, with options for ordering by `id`, `create_time` or `update_time`.
-	// Format: `order_by=id` or `order_by=create_time desc`, default is `asc`.
+	// Order by field, with options for ordering by `id`, `create_time` or
+	// `update_time`. Format: `order_by=id` or `order_by=create_time desc`,
+	// default is `asc`.
 	OrderBy *string `protobuf:"bytes,8,opt,name=order_by,json=orderBy,proto3,oneof" json:"order_by,omitempty"`
 }
 
@@ -1311,7 +1315,8 @@ func (x *ListNamespaceModelsResponse) GetTotalSize() int32 {
 	return 0
 }
 
-// CreateNamespaceModelRequest represents a request from a namespace to create a model.
+// CreateNamespaceModelRequest represents a request from a namespace to create a
+// model.
 type CreateNamespaceModelRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1879,7 +1884,8 @@ func (x *RenameNamespaceModelResponse) GetModel() *Model {
 	return nil
 }
 
-// WatchNamespaceModelRequest represents a request to fetch current state of a model
+// WatchNamespaceModelRequest represents a request to fetch current state of a
+// model
 type WatchNamespaceModelRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2004,8 +2010,8 @@ func (x *WatchNamespaceModelResponse) GetMessage() string {
 	return ""
 }
 
-// WatchNamespaceNamespaceLatestModelRequest represents a request to fetch current state of
-// the latest model version.
+// WatchNamespaceNamespaceLatestModelRequest represents a request to fetch
+// current state of the latest model version.
 type WatchNamespaceLatestModelRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2063,7 +2069,8 @@ func (x *WatchNamespaceLatestModelRequest) GetModelId() string {
 	return ""
 }
 
-// WatchNamespaceLatestModelResponse contains the state of the latest model version.
+// WatchNamespaceLatestModelResponse contains the state of the latest model
+// version.
 type WatchNamespaceLatestModelResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2121,8 +2128,8 @@ func (x *WatchNamespaceLatestModelResponse) GetMessage() string {
 	return ""
 }
 
-// ListNamespaceModelVersionsRequest represents a request to list all the versions
-// of a model namespace of a namespace.
+// ListNamespaceModelVersionsRequest represents a request to list all the
+// versions of a model namespace of a namespace.
 type ListNamespaceModelVersionsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2275,7 +2282,8 @@ func (x *ListNamespaceModelVersionsResponse) GetPage() int32 {
 	return 0
 }
 
-// DeleteNamespaceModelVersionRequest represents a request to delete a model version
+// DeleteNamespaceModelVersionRequest represents a request to delete a model
+// version
 //
 //	owned by a namespace.
 type DeleteNamespaceModelVersionRequest struct {
@@ -2383,7 +2391,8 @@ func (*DeleteNamespaceModelVersionResponse) Descriptor() ([]byte, []int) {
 	return file_model_model_v1alpha_model_proto_rawDescGZIP(), []int{31}
 }
 
-// TriggerNamespaceModelRequest represents a request to trigger a model inference.
+// TriggerNamespaceModelRequest represents a request to trigger a model
+// inference.
 type TriggerNamespaceModelRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2517,8 +2526,8 @@ func (x *TriggerNamespaceModelResponse) GetTaskOutputs() []*structpb.Struct {
 	return nil
 }
 
-// TriggerAsyncNamespaceModelRequest represents a request to trigger a model inference
-// asynchronously.
+// TriggerAsyncNamespaceModelRequest represents a request to trigger a model
+// inference asynchronously.
 type TriggerAsyncNamespaceModelRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2644,8 +2653,8 @@ func (x *TriggerAsyncNamespaceModelResponse) GetOperation() *longrunningpb.Opera
 	return nil
 }
 
-// TriggerNamespaceLatestModelRequest represents a request to trigger a model inference
-// with the latest uploaded version.
+// TriggerNamespaceLatestModelRequest represents a request to trigger a model
+// inference with the latest uploaded version.
 type TriggerNamespaceLatestModelRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2770,8 +2779,8 @@ func (x *TriggerNamespaceLatestModelResponse) GetTaskOutputs() []*structpb.Struc
 	return nil
 }
 
-// TriggerAsyncNamespaceLatestModelRequest represents a request to trigger a model inference
-// asynchronously with the latest uploaded version.
+// TriggerAsyncNamespaceLatestModelRequest represents a request to trigger a
+// model inference asynchronously with the latest uploaded version.
 type TriggerAsyncNamespaceLatestModelRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2838,8 +2847,8 @@ func (x *TriggerAsyncNamespaceLatestModelRequest) GetTaskInputs() []*structpb.St
 	return nil
 }
 
-// TriggerAsyncNamespaceLatestModelResponse contains the information to access the
-// status of an asynchronous model inference.
+// TriggerAsyncNamespaceLatestModelResponse contains the information to access
+// the status of an asynchronous model inference.
 type TriggerAsyncNamespaceLatestModelResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2888,8 +2897,8 @@ func (x *TriggerAsyncNamespaceLatestModelResponse) GetOperation() *longrunningpb
 	return nil
 }
 
-// TriggerNamespaceModelBinaryFileUploadRequest represents a request trigger a model
-// inference by uploading a binary file as the input.
+// TriggerNamespaceModelBinaryFileUploadRequest represents a request trigger a
+// model inference by uploading a binary file as the input.
 type TriggerNamespaceModelBinaryFileUploadRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2965,7 +2974,8 @@ func (x *TriggerNamespaceModelBinaryFileUploadRequest) GetTaskInput() []*structp
 	return nil
 }
 
-// TriggerNamespaceModelBinaryFileUploadResponse contains the model inference results.
+// TriggerNamespaceModelBinaryFileUploadResponse contains the model inference
+// results.
 type TriggerNamespaceModelBinaryFileUploadResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -3023,8 +3033,8 @@ func (x *TriggerNamespaceModelBinaryFileUploadResponse) GetTaskOutputs() []*stru
 	return nil
 }
 
-// TriggerNamespaceModelLatestBinaryFileUploadRequest represents a request trigger a model
-// inference by uploading a binary file as the input.
+// TriggerNamespaceModelLatestBinaryFileUploadRequest represents a request
+// trigger a model inference by uploading a binary file as the input.
 type TriggerNamespaceLatestModelBinaryFileUploadRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -3091,7 +3101,8 @@ func (x *TriggerNamespaceLatestModelBinaryFileUploadRequest) GetTaskInput() []*s
 	return nil
 }
 
-// TriggerNamespaceLatestModelBinaryFileUploadResponse contains the model inference results.
+// TriggerNamespaceLatestModelBinaryFileUploadResponse contains the model
+// inference results.
 type TriggerNamespaceLatestModelBinaryFileUploadResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -3150,8 +3161,8 @@ func (x *TriggerNamespaceLatestModelBinaryFileUploadResponse) GetTaskOutputs() [
 	return nil
 }
 
-// GetNamespaceLatestModelOperationRequest represents a request to fetch the latest long-running
-// operation performed on a model for a namespace.
+// GetNamespaceLatestModelOperationRequest represents a request to fetch the
+// latest long-running operation performed on a model for a namespace.
 type GetNamespaceLatestModelOperationRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -3161,7 +3172,8 @@ type GetNamespaceLatestModelOperationRequest struct {
 	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
 	// Model ID
 	ModelId string `protobuf:"bytes,2,opt,name=model_id,json=modelId,proto3" json:"model_id,omitempty"`
-	// View allows clients to specify the desired operation result in the response.
+	// View allows clients to specify the desired operation result in the
+	// response.
 	View *View `protobuf:"varint,3,opt,name=view,proto3,enum=model.model.v1alpha.View,oneof" json:"view,omitempty"`
 }
 
@@ -3218,8 +3230,8 @@ func (x *GetNamespaceLatestModelOperationRequest) GetView() View {
 	return View_VIEW_UNSPECIFIED
 }
 
-// GetNamespaceLatestModelOperationResponse represents a response to query a long-running
-// operation.
+// GetNamespaceLatestModelOperationResponse represents a response to query a
+// long-running operation.
 type GetNamespaceLatestModelOperationResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -3268,8 +3280,9 @@ func (x *GetNamespaceLatestModelOperationResponse) GetOperation() *longrunningpb
 	return nil
 }
 
-// GetNamespaceModelOperationRequest represents a request to fetch the long-running
-// operation performed on a particular model version for a namespace.
+// GetNamespaceModelOperationRequest represents a request to fetch the
+// long-running operation performed on a particular model version for a
+// namespace.
 type GetNamespaceModelOperationRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -3281,7 +3294,8 @@ type GetNamespaceModelOperationRequest struct {
 	ModelId string `protobuf:"bytes,2,opt,name=model_id,json=modelId,proto3" json:"model_id,omitempty"`
 	// Model version
 	Version string `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
-	// View allows clients to specify the desired operation result in the response.
+	// View allows clients to specify the desired operation result in the
+	// response.
 	View *View `protobuf:"varint,4,opt,name=view,proto3,enum=model.model.v1alpha.View,oneof" json:"view,omitempty"`
 }
 
@@ -3345,8 +3359,8 @@ func (x *GetNamespaceModelOperationRequest) GetView() View {
 	return View_VIEW_UNSPECIFIED
 }
 
-// GetNamespaceModelOperationResponse represents a response to query a long-running
-// operation.
+// GetNamespaceModelOperationResponse represents a response to query a
+// long-running operation.
 type GetNamespaceModelOperationResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -3395,7 +3409,8 @@ func (x *GetNamespaceModelOperationResponse) GetOperation() *longrunningpb.Opera
 	return nil
 }
 
-// DeployNamespaceModelAdminRequest represents a request to deploy a model to online state
+// DeployNamespaceModelAdminRequest represents a request to deploy a model to
+// online state
 type DeployNamespaceModelAdminRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -3510,8 +3525,8 @@ func (*DeployNamespaceModelAdminResponse) Descriptor() ([]byte, []int) {
 	return file_model_model_v1alpha_model_proto_rawDescGZIP(), []int{49}
 }
 
-// UndeployNamespaceModelAdminRequest represents a request to undeploy a model to offline
-// state
+// UndeployNamespaceModelAdminRequest represents a request to undeploy a model
+// to offline state
 type UndeployNamespaceModelAdminRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -3587,7 +3602,8 @@ func (x *UndeployNamespaceModelAdminRequest) GetDigest() string {
 	return ""
 }
 
-// UndeployNamespaceModelAdminResponse represents a response for a undeployed model
+// UndeployNamespaceModelAdminResponse represents a response for a undeployed
+// model
 type UndeployNamespaceModelAdminResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -3759,8 +3775,9 @@ type ListUserModelsRequest struct {
 	Filter *string `protobuf:"bytes,6,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
 	// Limit results to pipelines with the specified visibility.
 	Visibility *Model_Visibility `protobuf:"varint,7,opt,name=visibility,proto3,enum=model.model.v1alpha.Model_Visibility,oneof" json:"visibility,omitempty"`
-	// Order by field, with options for ordering by `id`, `create_time` or `update_time`.
-	// Format: `order_by=id` or `order_by=create_time desc`, default is `asc`.
+	// Order by field, with options for ordering by `id`, `create_time` or
+	// `update_time`. Format: `order_by=id` or `order_by=create_time desc`,
+	// default is `asc`.
 	OrderBy *string `protobuf:"bytes,8,opt,name=order_by,json=orderBy,proto3,oneof" json:"order_by,omitempty"`
 }
 
@@ -4946,8 +4963,8 @@ func (x *TriggerUserModelResponse) GetTaskOutputs() []*structpb.Struct {
 	return nil
 }
 
-// TriggerAsyncUserModelRequest represents a request to trigger a model inference
-// asynchronously.
+// TriggerAsyncUserModelRequest represents a request to trigger a model
+// inference asynchronously.
 type TriggerAsyncUserModelRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -5066,8 +5083,8 @@ func (x *TriggerAsyncUserModelResponse) GetOperation() *longrunningpb.Operation 
 	return nil
 }
 
-// TriggerUserLatestModelRequest represents a request to trigger a model inference
-// with the latest uploaded version.
+// TriggerUserLatestModelRequest represents a request to trigger a model
+// inference with the latest uploaded version.
 type TriggerUserLatestModelRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -5185,8 +5202,8 @@ func (x *TriggerUserLatestModelResponse) GetTaskOutputs() []*structpb.Struct {
 	return nil
 }
 
-// TriggerAsyncUserLatestModelRequest represents a request to trigger a model inference
-// asynchronously with the latest uploaded version.
+// TriggerAsyncUserLatestModelRequest represents a request to trigger a model
+// inference asynchronously with the latest uploaded version.
 type TriggerAsyncUserLatestModelRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -5366,7 +5383,8 @@ func (x *TriggerUserModelBinaryFileUploadRequest) GetTaskInputs() []*structpb.St
 	return nil
 }
 
-// TriggerUserModelBinaryFileUploadResponse contains the model inference results.
+// TriggerUserModelBinaryFileUploadResponse contains the model inference
+// results.
 type TriggerUserModelBinaryFileUploadResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -5424,7 +5442,8 @@ func (x *TriggerUserModelBinaryFileUploadResponse) GetTaskOutputs() []*structpb.
 	return nil
 }
 
-// CreateOrganizationModelRequest represents a request from an organization to create a model.
+// CreateOrganizationModelRequest represents a request from an organization to
+// create a model.
 type CreateOrganizationModelRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -5558,8 +5577,9 @@ type ListOrganizationModelsRequest struct {
 	Filter *string `protobuf:"bytes,6,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
 	// Limit results to pipelines with the specified visibility.
 	Visibility *Model_Visibility `protobuf:"varint,7,opt,name=visibility,proto3,enum=model.model.v1alpha.Model_Visibility,oneof" json:"visibility,omitempty"`
-	// Order by field, with options for ordering by `id`, `create_time` or `update_time`.
-	// Format: `order_by=id` or `order_by=create_time desc`, default is `asc`.
+	// Order by field, with options for ordering by `id`, `create_time` or
+	// `update_time`. Format: `order_by=id` or `order_by=create_time desc`,
+	// default is `asc`.
 	OrderBy *string `protobuf:"bytes,8,opt,name=order_by,json=orderBy,proto3,oneof" json:"order_by,omitempty"`
 }
 
@@ -5718,15 +5738,15 @@ func (x *ListOrganizationModelsResponse) GetTotalSize() int32 {
 	return 0
 }
 
-// GetOrganizationModelRequest represents a request to fetch the details of a model
-// owned by an organization.
+// GetOrganizationModelRequest represents a request to fetch the details of a
+// model owned by an organization.
 type GetOrganizationModelRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The resource name of the model, which allows its access by parent organization
-	// and ID.
+	// The resource name of the model, which allows its access by parent
+	// organization and ID.
 	// - Format: `organizations/{organization.id}/models/{model.id}`.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// View allows clients to specify the desired model view in the response.
@@ -5828,8 +5848,8 @@ func (x *GetOrganizationModelResponse) GetModel() *Model {
 	return nil
 }
 
-// UpdateOrganizationModelRequest represents a request to update a model owned by an
-// organization.
+// UpdateOrganizationModelRequest represents a request to update a model owned
+// by an organization.
 type UpdateOrganizationModelRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -5939,15 +5959,15 @@ func (x *UpdateOrganizationModelResponse) GetModel() *Model {
 	return nil
 }
 
-// DeleteOrganizationModelRequest represents a request to delete a model owned by an
-// organization.
+// DeleteOrganizationModelRequest represents a request to delete a model owned
+// by an organization.
 type DeleteOrganizationModelRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The resource name of the model, which allows its access by parent organization
-	// and ID.
+	// The resource name of the model, which allows its access by parent
+	// organization and ID.
 	// - Format: `organizations/{organization.id}/models/{model.id}`.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 }
@@ -6036,8 +6056,8 @@ type RenameOrganizationModelRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The resource name of the model, which allows its access by parent organization
-	// and ID.
+	// The resource name of the model, which allows its access by parent
+	// organization and ID.
 	// - Format: `organizations/{organization.id}/models/{model.id}`.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// The new resource ID. This will transform the resource name into
@@ -6140,14 +6160,15 @@ func (x *RenameOrganizationModelResponse) GetModel() *Model {
 	return nil
 }
 
-// WatchOrganizationModelRequest represents a request to fetch current state of a model.
+// WatchOrganizationModelRequest represents a request to fetch current state of
+// a model.
 type WatchOrganizationModelRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The resource name of the model, which allows its access by parent organization
-	// and ID.
+	// The resource name of the model, which allows its access by parent
+	// organization and ID.
 	// - Format: `organizations/{organization.id}/models/{model.id}`.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Model version
@@ -6258,15 +6279,15 @@ func (x *WatchOrganizationModelResponse) GetMessage() string {
 	return ""
 }
 
-// WatchOrganizationLatestModelRequest represents a request to fetch current state of
-// the latest model version
+// WatchOrganizationLatestModelRequest represents a request to fetch current
+// state of the latest model version
 type WatchOrganizationLatestModelRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The resource name of the model, which allows its access by parent organization
-	// and ID.
+	// The resource name of the model, which allows its access by parent
+	// organization and ID.
 	// - Format: `organizations/{organization.id}/models/{model.id}`.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 }
@@ -6310,7 +6331,8 @@ func (x *WatchOrganizationLatestModelRequest) GetName() string {
 	return ""
 }
 
-// WatchOrganizationLatestModelResponse contains the state of the latest model version.
+// WatchOrganizationLatestModelResponse contains the state of the latest model
+// version.
 type WatchOrganizationLatestModelResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -6368,8 +6390,8 @@ func (x *WatchOrganizationLatestModelResponse) GetMessage() string {
 	return ""
 }
 
-// ListOrganizationModelVersionsRequest represents a request to list all the versions
-// of a model namespace of an organization.
+// ListOrganizationModelVersionsRequest represents a request to list all the
+// versions of a model namespace of an organization.
 type ListOrganizationModelVersionsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -6517,7 +6539,8 @@ func (x *ListOrganizationModelVersionsResponse) GetPage() int32 {
 	return 0
 }
 
-// DeleteOrganizationModelVersionRequest represents a request to delete a model version
+// DeleteOrganizationModelVersionRequest represents a request to delete a model
+// version
 //
 //	owned by an organization.
 type DeleteOrganizationModelVersionRequest struct {
@@ -6620,14 +6643,15 @@ func (*DeleteOrganizationModelVersionResponse) Descriptor() ([]byte, []int) {
 	return file_model_model_v1alpha_model_proto_rawDescGZIP(), []int{101}
 }
 
-// TriggerOrganizationModelRequest represents a request to trigger a model inference.
+// TriggerOrganizationModelRequest represents a request to trigger a model
+// inference.
 type TriggerOrganizationModelRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The resource name of the model , which allows its access by parent organization
-	// and ID.
+	// The resource name of the model , which allows its access by parent
+	// organization and ID.
 	// - Format: `organizations/{organization.id}/models/{model.id}`.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Model version
@@ -6747,15 +6771,15 @@ func (x *TriggerOrganizationModelResponse) GetTaskOutputs() []*structpb.Struct {
 	return nil
 }
 
-// TriggerAsyncOrganizationModelRequest represents a request to trigger a model inference
-// asynchronously
+// TriggerAsyncOrganizationModelRequest represents a request to trigger a model
+// inference asynchronously
 type TriggerAsyncOrganizationModelRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The resource name of the model , which allows its access by parent organization
-	// and ID.
+	// The resource name of the model , which allows its access by parent
+	// organization and ID.
 	// - Format: `organizations/{organization.id}/models/{model.id}`.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Model version
@@ -6867,14 +6891,15 @@ func (x *TriggerAsyncOrganizationModelResponse) GetOperation() *longrunningpb.Op
 	return nil
 }
 
-// TriggerOrganizationLatestModelRequest represents a request to trigger a model inference.
+// TriggerOrganizationLatestModelRequest represents a request to trigger a model
+// inference.
 type TriggerOrganizationLatestModelRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The resource name of the model , which allows its access by parent organization
-	// and ID.
+	// The resource name of the model , which allows its access by parent
+	// organization and ID.
 	// - Format: `organizations/{organization.id}/models/{model.id}`.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Model inference inputs.
@@ -6985,15 +7010,15 @@ func (x *TriggerOrganizationLatestModelResponse) GetTaskOutputs() []*structpb.St
 	return nil
 }
 
-// TriggerAsyncOrganizationLatestModelRequest represents a request to trigger a model inference
-// asynchronously
+// TriggerAsyncOrganizationLatestModelRequest represents a request to trigger a
+// model inference asynchronously
 type TriggerAsyncOrganizationLatestModelRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The resource name of the model , which allows its access by parent organization
-	// and ID.
+	// The resource name of the model , which allows its access by parent
+	// organization and ID.
 	// - Format: `organizations/{organization.id}/models/{model.id}`.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Model inference inputs.
@@ -7046,8 +7071,8 @@ func (x *TriggerAsyncOrganizationLatestModelRequest) GetTaskInputs() []*structpb
 	return nil
 }
 
-// TriggerAsyncOrganizationLatestModelResponse contains the information to access the
-// status of an asynchronous model inference.
+// TriggerAsyncOrganizationLatestModelResponse contains the information to
+// access the status of an asynchronous model inference.
 type TriggerAsyncOrganizationLatestModelResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -7096,15 +7121,15 @@ func (x *TriggerAsyncOrganizationLatestModelResponse) GetOperation() *longrunnin
 	return nil
 }
 
-// TriggerOrganizationModelBinaryFileUploadRequest represents a request trigger a model
-// inference by uploading a binary file as the input.
+// TriggerOrganizationModelBinaryFileUploadRequest represents a request trigger
+// a model inference by uploading a binary file as the input.
 type TriggerOrganizationModelBinaryFileUploadRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The resource name of the model , which allows its access by parent organization
-	// and ID.
+	// The resource name of the model , which allows its access by parent
+	// organization and ID.
 	// - Format: `organizations/{organization.id}/models/{model.id}`.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Model version
@@ -7166,7 +7191,8 @@ func (x *TriggerOrganizationModelBinaryFileUploadRequest) GetTaskInputs() []*str
 	return nil
 }
 
-// TriggerOrganizationModelBinaryFileUploadResponse contains the model inference results.
+// TriggerOrganizationModelBinaryFileUploadResponse contains the model inference
+// results.
 type TriggerOrganizationModelBinaryFileUploadResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -7336,7 +7362,8 @@ func (x *GetModelOperationResponse) GetOperation() *longrunningpb.Operation {
 	return nil
 }
 
-// LatestOperation represents an internal message for GetLatestModelOperation Response
+// LatestOperation represents an internal message for GetLatestModelOperation
+// Response
 type LatestOperation struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -7394,8 +7421,8 @@ func (x *LatestOperation) GetResponse() *TriggerNamespaceModelResponse {
 	return nil
 }
 
-// GetUserLatestModelOperationRequest represents a request to fetch the latest long-running
-// operation performed on a model for a user.
+// GetUserLatestModelOperationRequest represents a request to fetch the latest
+// long-running operation performed on a model for a user.
 type GetUserLatestModelOperationRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -7405,7 +7432,8 @@ type GetUserLatestModelOperationRequest struct {
 	// and ID.
 	// - Format: `users/{user.id}/models/{model.id}`.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// View allows clients to specify the desired operation result in the response.
+	// View allows clients to specify the desired operation result in the
+	// response.
 	View *View `protobuf:"varint,2,opt,name=view,proto3,enum=model.model.v1alpha.View,oneof" json:"view,omitempty"`
 }
 
@@ -7455,8 +7483,8 @@ func (x *GetUserLatestModelOperationRequest) GetView() View {
 	return View_VIEW_UNSPECIFIED
 }
 
-// GetUserLatestModelOperationRequest represents a request to query a long-running
-// operation.
+// GetUserLatestModelOperationRequest represents a request to query a
+// long-running operation.
 type GetUserLatestModelOperationResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -7505,18 +7533,19 @@ func (x *GetUserLatestModelOperationResponse) GetOperation() *longrunningpb.Oper
 	return nil
 }
 
-// GetOrganizationLatestModelOperationRequest represents a request to fetch the latest long-running
-// operation performed on a model for a user.
+// GetOrganizationLatestModelOperationRequest represents a request to fetch the
+// latest long-running operation performed on a model for a user.
 type GetOrganizationLatestModelOperationRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The resource name of the model, which allows its access by parent organization
-	// and ID.
+	// The resource name of the model, which allows its access by parent
+	// organization and ID.
 	// - Format: `organizations/{organization.id}/models/{model.id}`.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// View allows clients to specify the desired operation result in the response.
+	// View allows clients to specify the desired operation result in the
+	// response.
 	View *View `protobuf:"varint,2,opt,name=view,proto3,enum=model.model.v1alpha.View,oneof" json:"view,omitempty"`
 }
 
@@ -7566,8 +7595,8 @@ func (x *GetOrganizationLatestModelOperationRequest) GetView() View {
 	return View_VIEW_UNSPECIFIED
 }
 
-// GetOrganizationLatestModelOperationRequest represents a request to query a long-running
-// operation.
+// GetOrganizationLatestModelOperationRequest represents a request to query a
+// long-running operation.
 type GetOrganizationLatestModelOperationResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -7977,7 +8006,8 @@ func (x *LookUpModelAdminResponse) GetModel() *Model {
 	return nil
 }
 
-// DeployUserModelAdminRequest represents a request to deploy a model to online state
+// DeployUserModelAdminRequest represents a request to deploy a model to online
+// state
 type DeployUserModelAdminRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -8085,7 +8115,8 @@ func (*DeployUserModelAdminResponse) Descriptor() ([]byte, []int) {
 	return file_model_model_v1alpha_model_proto_rawDescGZIP(), []int{126}
 }
 
-// DeployOrganizationModelAdminRequest represents a request to deploy a model to online state
+// DeployOrganizationModelAdminRequest represents a request to deploy a model to
+// online state
 type DeployOrganizationModelAdminRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -8154,7 +8185,8 @@ func (x *DeployOrganizationModelAdminRequest) GetDigest() string {
 	return ""
 }
 
-// DeployOrganizationModelAdminResponse represents a response for a deployed model
+// DeployOrganizationModelAdminResponse represents a response for a deployed
+// model
 type DeployOrganizationModelAdminResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -8193,8 +8225,8 @@ func (*DeployOrganizationModelAdminResponse) Descriptor() ([]byte, []int) {
 	return file_model_model_v1alpha_model_proto_rawDescGZIP(), []int{128}
 }
 
-// UndeployUserModelAdminRequest represents a request to undeploy a model to offline
-// state
+// UndeployUserModelAdminRequest represents a request to undeploy a model to
+// offline state
 type UndeployUserModelAdminRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -8302,8 +8334,8 @@ func (*UndeployUserModelAdminResponse) Descriptor() ([]byte, []int) {
 	return file_model_model_v1alpha_model_proto_rawDescGZIP(), []int{130}
 }
 
-// UndeployOrganizationModelAdminRequest represents a request to undeploy a model to offline
-// state
+// UndeployOrganizationModelAdminRequest represents a request to undeploy a
+// model to offline state
 type UndeployOrganizationModelAdminRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -8372,7 +8404,8 @@ func (x *UndeployOrganizationModelAdminRequest) GetDigest() string {
 	return ""
 }
 
-// UndeployOrganizationModelAdminResponse represents a response for a undeployed model
+// UndeployOrganizationModelAdminResponse represents a response for a undeployed
+// model
 type UndeployOrganizationModelAdminResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -8427,9 +8460,11 @@ type ModelRun struct {
 	TotalDuration *int32 `protobuf:"varint,5,opt,name=total_duration,json=totalDuration,proto3,oneof" json:"total_duration,omitempty"`
 	// Run end time.
 	EndTime *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=end_time,json=endTime,proto3,oneof" json:"end_time,omitempty"`
-	// Runner ID. If current viewing requester does not have enough permission, it will return null.
+	// Runner ID. If current viewing requester does not have enough permission, it
+	// will return null.
 	RunnerId *string `protobuf:"bytes,7,opt,name=runner_id,json=runnerId,proto3,oneof" json:"runner_id,omitempty"`
-	// The amount of Instill Credit consumed by the run. This field will only be present on Instill Cloud.
+	// The amount of Instill Credit consumed by the run. This field will only be
+	// present on Instill Cloud.
 	CreditAmount *float32 `protobuf:"fixed32,8,opt,name=credit_amount,json=creditAmount,proto3,oneof" json:"credit_amount,omitempty"`
 	// Error message occurred during model run.
 	Error *string `protobuf:"bytes,9,opt,name=error,proto3,oneof" json:"error,omitempty"`
@@ -8699,7 +8734,8 @@ func (x *ListModelRunsRequest) GetFilter() string {
 	return ""
 }
 
-// ListModelRunsByRequesterRequest is the request message for ListModelRunsByRequester.
+// ListModelRunsByRequesterRequest is the request message for
+// ListModelRunsByRequester.
 type ListModelRunsByRequesterRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -8890,7 +8926,8 @@ func (x *ListModelRunsResponse) GetPage() int32 {
 	return 0
 }
 
-// ListModelRunsByRequesterResponse is the request message for ListModelRunsByRequester.
+// ListModelRunsByRequesterResponse is the request message for
+// ListModelRunsByRequester.
 type ListModelRunsByRequesterResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
