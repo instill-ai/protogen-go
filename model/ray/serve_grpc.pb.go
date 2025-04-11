@@ -16,9 +16,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             (unknown)
-// source: model/model/v1alpha/model_ray_serve.proto
+// source: model/ray/serve.proto
 
-package modelv1alpha
+package ray
 
 import (
 	context "context"
@@ -33,8 +33,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	RayServeAPIService_ListApplications_FullMethodName = "/model.model.v1alpha.RayServeAPIService/ListApplications"
-	RayServeAPIService_Healthz_FullMethodName          = "/model.model.v1alpha.RayServeAPIService/Healthz"
+	RayServeAPIService_ListApplications_FullMethodName = "/ray.serve.RayServeAPIService/ListApplications"
+	RayServeAPIService_Healthz_FullMethodName          = "/ray.serve.RayServeAPIService/Healthz"
 )
 
 // RayServeAPIServiceClient is the client API for RayServeAPIService service.
@@ -141,7 +141,7 @@ func _RayServeAPIService_Healthz_Handler(srv interface{}, ctx context.Context, d
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var RayServeAPIService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "model.model.v1alpha.RayServeAPIService",
+	ServiceName: "ray.serve.RayServeAPIService",
 	HandlerType: (*RayServeAPIServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -154,5 +154,5 @@ var RayServeAPIService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "model/model/v1alpha/model_ray_serve.proto",
+	Metadata: "model/ray/serve.proto",
 }
