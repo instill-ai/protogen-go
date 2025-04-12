@@ -10,6 +10,7 @@ package metricv1beta
 
 import (
 	"context"
+	"errors"
 	"io"
 	"net/http"
 
@@ -24,776 +25,557 @@ import (
 )
 
 // Suppress "imported and not used" errors
-var _ codes.Code
-var _ io.Reader
-var _ status.Status
-var _ = runtime.String
-var _ = utilities.NewDoubleArray
-var _ = metadata.Join
+var (
+	_ codes.Code
+	_ io.Reader
+	_ status.Status
+	_ = errors.New
+	_ = runtime.String
+	_ = utilities.NewDoubleArray
+	_ = metadata.Join
+)
 
 func request_PipelineService_GetPipelines_0(ctx context.Context, marshaler runtime.Marshaler, client PipelineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetPipelinesRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetPipelinesRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetPipelines(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_PipelineService_GetPipelines_0(ctx context.Context, marshaler runtime.Marshaler, server PipelineServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetPipelinesRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetPipelinesRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetPipelines(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_PipelineService_ReportPipelineTrigger_0(ctx context.Context, marshaler runtime.Marshaler, client PipelineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ReportPipelineTriggerRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq ReportPipelineTriggerRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.ReportPipelineTrigger(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_PipelineService_ReportPipelineTrigger_0(ctx context.Context, marshaler runtime.Marshaler, server PipelineServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ReportPipelineTriggerRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq ReportPipelineTriggerRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.ReportPipelineTrigger(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_PipelineService_ReportPipelineTriggers_0(ctx context.Context, marshaler runtime.Marshaler, client PipelineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ReportPipelineTriggersRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq ReportPipelineTriggersRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.ReportPipelineTriggers(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_PipelineService_ReportPipelineTriggers_0(ctx context.Context, marshaler runtime.Marshaler, server PipelineServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ReportPipelineTriggersRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq ReportPipelineTriggersRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.ReportPipelineTriggers(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_PipelineService_GetPipelineTriggerRecords_0(ctx context.Context, marshaler runtime.Marshaler, client PipelineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetPipelineTriggerRecordsRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetPipelineTriggerRecordsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetPipelineTriggerRecords(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_PipelineService_GetPipelineTriggerRecords_0(ctx context.Context, marshaler runtime.Marshaler, server PipelineServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetPipelineTriggerRecordsRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetPipelineTriggerRecordsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetPipelineTriggerRecords(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_PipelineService_GetBulkPipelineTriggerRecords_0(ctx context.Context, marshaler runtime.Marshaler, client PipelineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetBulkPipelineTriggerRecordsRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetBulkPipelineTriggerRecordsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetBulkPipelineTriggerRecords(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_PipelineService_GetBulkPipelineTriggerRecords_0(ctx context.Context, marshaler runtime.Marshaler, server PipelineServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetBulkPipelineTriggerRecordsRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetBulkPipelineTriggerRecordsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetBulkPipelineTriggerRecords(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_PipelineService_GetCumulativePipelineTriggerRecords_0(ctx context.Context, marshaler runtime.Marshaler, client PipelineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetCumulativePipelineTriggerRecordsRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetCumulativePipelineTriggerRecordsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetCumulativePipelineTriggerRecords(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_PipelineService_GetCumulativePipelineTriggerRecords_0(ctx context.Context, marshaler runtime.Marshaler, server PipelineServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetCumulativePipelineTriggerRecordsRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetCumulativePipelineTriggerRecordsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetCumulativePipelineTriggerRecords(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_PipelineService_GetBulkCumulativePipelineTriggerRecords_0(ctx context.Context, marshaler runtime.Marshaler, client PipelineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetBulkCumulativePipelineTriggerRecordsRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetBulkCumulativePipelineTriggerRecordsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetBulkCumulativePipelineTriggerRecords(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_PipelineService_GetBulkCumulativePipelineTriggerRecords_0(ctx context.Context, marshaler runtime.Marshaler, server PipelineServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetBulkCumulativePipelineTriggerRecordsRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetBulkCumulativePipelineTriggerRecordsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetBulkCumulativePipelineTriggerRecords(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_PipelineService_GetPipelineTriggerSummary_0(ctx context.Context, marshaler runtime.Marshaler, client PipelineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetPipelineTriggerSummaryRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetPipelineTriggerSummaryRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetPipelineTriggerSummary(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_PipelineService_GetPipelineTriggerSummary_0(ctx context.Context, marshaler runtime.Marshaler, server PipelineServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetPipelineTriggerSummaryRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetPipelineTriggerSummaryRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetPipelineTriggerSummary(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_PipelineService_GetBulkPipelineTriggerSummaries_0(ctx context.Context, marshaler runtime.Marshaler, client PipelineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetBulkPipelineTriggerSummariesRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetBulkPipelineTriggerSummariesRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetBulkPipelineTriggerSummaries(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_PipelineService_GetBulkPipelineTriggerSummaries_0(ctx context.Context, marshaler runtime.Marshaler, server PipelineServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetBulkPipelineTriggerSummariesRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetBulkPipelineTriggerSummariesRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetBulkPipelineTriggerSummaries(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_PipelineService_GetPipelineTriggerPrice_0(ctx context.Context, marshaler runtime.Marshaler, client PipelineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetPipelineTriggerPriceRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetPipelineTriggerPriceRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetPipelineTriggerPrice(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_PipelineService_GetPipelineTriggerPrice_0(ctx context.Context, marshaler runtime.Marshaler, server PipelineServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetPipelineTriggerPriceRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetPipelineTriggerPriceRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetPipelineTriggerPrice(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_PipelineService_GetBulkPipelineTriggerPrice_0(ctx context.Context, marshaler runtime.Marshaler, client PipelineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetBulkPipelineTriggerPriceRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetBulkPipelineTriggerPriceRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetBulkPipelineTriggerPrice(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_PipelineService_GetBulkPipelineTriggerPrice_0(ctx context.Context, marshaler runtime.Marshaler, server PipelineServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetBulkPipelineTriggerPriceRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetBulkPipelineTriggerPriceRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetBulkPipelineTriggerPrice(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_ModelService_GetModels_0(ctx context.Context, marshaler runtime.Marshaler, client ModelServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetModelsRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetModelsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetModels(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_ModelService_GetModels_0(ctx context.Context, marshaler runtime.Marshaler, server ModelServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetModelsRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetModelsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetModels(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_ModelService_ReportModelOnline_0(ctx context.Context, marshaler runtime.Marshaler, client ModelServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ReportModelOnlineRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq ReportModelOnlineRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.ReportModelOnline(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_ModelService_ReportModelOnline_0(ctx context.Context, marshaler runtime.Marshaler, server ModelServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ReportModelOnlineRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq ReportModelOnlineRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.ReportModelOnline(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_ModelService_ReportModelOnlines_0(ctx context.Context, marshaler runtime.Marshaler, client ModelServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ReportModelOnlinesRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq ReportModelOnlinesRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.ReportModelOnlines(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_ModelService_ReportModelOnlines_0(ctx context.Context, marshaler runtime.Marshaler, server ModelServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ReportModelOnlinesRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq ReportModelOnlinesRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.ReportModelOnlines(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_ModelService_GetModelOnlineRecords_0(ctx context.Context, marshaler runtime.Marshaler, client ModelServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetModelOnlineRecordsRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetModelOnlineRecordsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetModelOnlineRecords(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_ModelService_GetModelOnlineRecords_0(ctx context.Context, marshaler runtime.Marshaler, server ModelServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetModelOnlineRecordsRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetModelOnlineRecordsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetModelOnlineRecords(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_ModelService_GetBulkModelOnlineRecords_0(ctx context.Context, marshaler runtime.Marshaler, client ModelServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetBulkModelOnlineRecordsRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetBulkModelOnlineRecordsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetBulkModelOnlineRecords(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_ModelService_GetBulkModelOnlineRecords_0(ctx context.Context, marshaler runtime.Marshaler, server ModelServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetBulkModelOnlineRecordsRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetBulkModelOnlineRecordsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetBulkModelOnlineRecords(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_ModelService_GetCumulativeModelOnlineRecords_0(ctx context.Context, marshaler runtime.Marshaler, client ModelServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetCumulativeModelOnlineRecordsRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetCumulativeModelOnlineRecordsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetCumulativeModelOnlineRecords(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_ModelService_GetCumulativeModelOnlineRecords_0(ctx context.Context, marshaler runtime.Marshaler, server ModelServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetCumulativeModelOnlineRecordsRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetCumulativeModelOnlineRecordsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetCumulativeModelOnlineRecords(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_ModelService_GetBulkCumulativeModelOnlineRecords_0(ctx context.Context, marshaler runtime.Marshaler, client ModelServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetBulkCumulativeModelOnlineRecordsRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetBulkCumulativeModelOnlineRecordsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetBulkCumulativeModelOnlineRecords(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_ModelService_GetBulkCumulativeModelOnlineRecords_0(ctx context.Context, marshaler runtime.Marshaler, server ModelServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetBulkCumulativeModelOnlineRecordsRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetBulkCumulativeModelOnlineRecordsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetBulkCumulativeModelOnlineRecords(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_ModelService_GetModelOnlineSummary_0(ctx context.Context, marshaler runtime.Marshaler, client ModelServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetModelOnlineSummaryRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetModelOnlineSummaryRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetModelOnlineSummary(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_ModelService_GetModelOnlineSummary_0(ctx context.Context, marshaler runtime.Marshaler, server ModelServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetModelOnlineSummaryRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetModelOnlineSummaryRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetModelOnlineSummary(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_ModelService_GetBulkModelOnlineSummary_0(ctx context.Context, marshaler runtime.Marshaler, client ModelServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetBulkModelOnlineSummaryRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetBulkModelOnlineSummaryRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetBulkModelOnlineSummary(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_ModelService_GetBulkModelOnlineSummary_0(ctx context.Context, marshaler runtime.Marshaler, server ModelServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetBulkModelOnlineSummaryRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetBulkModelOnlineSummaryRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetBulkModelOnlineSummary(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_ModelService_GetModelOnlinePrice_0(ctx context.Context, marshaler runtime.Marshaler, client ModelServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetModelOnlinePriceRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetModelOnlinePriceRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetModelOnlinePrice(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_ModelService_GetModelOnlinePrice_0(ctx context.Context, marshaler runtime.Marshaler, server ModelServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetModelOnlinePriceRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetModelOnlinePriceRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetModelOnlinePrice(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_ModelService_GetBulkModelOnlinePrice_0(ctx context.Context, marshaler runtime.Marshaler, client ModelServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetBulkModelOnlinePriceRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetBulkModelOnlinePriceRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetBulkModelOnlinePrice(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_ModelService_GetBulkModelOnlinePrice_0(ctx context.Context, marshaler runtime.Marshaler, server ModelServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetBulkModelOnlinePriceRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetBulkModelOnlinePriceRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetBulkModelOnlinePrice(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 // RegisterPipelineServiceHandlerServer registers the http handlers for service PipelineService to "mux".
 // UnaryRPC     :call PipelineServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterPipelineServiceHandlerFromEndpoint instead.
+// GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server PipelineServiceServer) error {
-
-	mux.Handle("POST", pattern_PipelineService_GetPipelines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelineService_GetPipelines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetPipelines", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetPipelines"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetPipelines", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetPipelines"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -805,20 +587,15 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_PipelineService_GetPipelines_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_PipelineService_ReportPipelineTrigger_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelineService_ReportPipelineTrigger_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/ReportPipelineTrigger", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/ReportPipelineTrigger"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/ReportPipelineTrigger", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/ReportPipelineTrigger"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -830,20 +607,15 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_PipelineService_ReportPipelineTrigger_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_PipelineService_ReportPipelineTriggers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelineService_ReportPipelineTriggers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/ReportPipelineTriggers", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/ReportPipelineTriggers"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/ReportPipelineTriggers", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/ReportPipelineTriggers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -855,20 +627,15 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_PipelineService_ReportPipelineTriggers_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_PipelineService_GetPipelineTriggerRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelineService_GetPipelineTriggerRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetPipelineTriggerRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetPipelineTriggerRecords"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetPipelineTriggerRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetPipelineTriggerRecords"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -880,20 +647,15 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_PipelineService_GetPipelineTriggerRecords_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_PipelineService_GetBulkPipelineTriggerRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelineService_GetBulkPipelineTriggerRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetBulkPipelineTriggerRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetBulkPipelineTriggerRecords"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetBulkPipelineTriggerRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetBulkPipelineTriggerRecords"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -905,20 +667,15 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_PipelineService_GetBulkPipelineTriggerRecords_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_PipelineService_GetCumulativePipelineTriggerRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelineService_GetCumulativePipelineTriggerRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetCumulativePipelineTriggerRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetCumulativePipelineTriggerRecords"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetCumulativePipelineTriggerRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetCumulativePipelineTriggerRecords"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -930,20 +687,15 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_PipelineService_GetCumulativePipelineTriggerRecords_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_PipelineService_GetBulkCumulativePipelineTriggerRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelineService_GetBulkCumulativePipelineTriggerRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetBulkCumulativePipelineTriggerRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetBulkCumulativePipelineTriggerRecords"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetBulkCumulativePipelineTriggerRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetBulkCumulativePipelineTriggerRecords"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -955,20 +707,15 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_PipelineService_GetBulkCumulativePipelineTriggerRecords_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_PipelineService_GetPipelineTriggerSummary_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelineService_GetPipelineTriggerSummary_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetPipelineTriggerSummary", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetPipelineTriggerSummary"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetPipelineTriggerSummary", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetPipelineTriggerSummary"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -980,20 +727,15 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_PipelineService_GetPipelineTriggerSummary_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_PipelineService_GetBulkPipelineTriggerSummaries_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelineService_GetBulkPipelineTriggerSummaries_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetBulkPipelineTriggerSummaries", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetBulkPipelineTriggerSummaries"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetBulkPipelineTriggerSummaries", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetBulkPipelineTriggerSummaries"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1005,20 +747,15 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_PipelineService_GetBulkPipelineTriggerSummaries_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_PipelineService_GetPipelineTriggerPrice_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelineService_GetPipelineTriggerPrice_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetPipelineTriggerPrice", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetPipelineTriggerPrice"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetPipelineTriggerPrice", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetPipelineTriggerPrice"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1030,20 +767,15 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_PipelineService_GetPipelineTriggerPrice_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_PipelineService_GetBulkPipelineTriggerPrice_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelineService_GetBulkPipelineTriggerPrice_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetBulkPipelineTriggerPrice", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetBulkPipelineTriggerPrice"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetBulkPipelineTriggerPrice", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetBulkPipelineTriggerPrice"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1055,9 +787,7 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_PipelineService_GetBulkPipelineTriggerPrice_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -1067,17 +797,15 @@ func RegisterPipelineServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 // UnaryRPC     :call ModelServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterModelServiceHandlerFromEndpoint instead.
+// GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ModelServiceServer) error {
-
-	mux.Handle("POST", pattern_ModelService_GetModels_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelService_GetModels_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetModels", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetModels"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetModels", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetModels"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1089,20 +817,15 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelService_GetModels_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelService_ReportModelOnline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelService_ReportModelOnline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.ModelService/ReportModelOnline", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/ReportModelOnline"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.ModelService/ReportModelOnline", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/ReportModelOnline"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1114,20 +837,15 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelService_ReportModelOnline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelService_ReportModelOnlines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelService_ReportModelOnlines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.ModelService/ReportModelOnlines", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/ReportModelOnlines"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.ModelService/ReportModelOnlines", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/ReportModelOnlines"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1139,20 +857,15 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelService_ReportModelOnlines_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelService_GetModelOnlineRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelService_GetModelOnlineRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetModelOnlineRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetModelOnlineRecords"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetModelOnlineRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetModelOnlineRecords"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1164,20 +877,15 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelService_GetModelOnlineRecords_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelService_GetBulkModelOnlineRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelService_GetBulkModelOnlineRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetBulkModelOnlineRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetBulkModelOnlineRecords"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetBulkModelOnlineRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetBulkModelOnlineRecords"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1189,20 +897,15 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelService_GetBulkModelOnlineRecords_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelService_GetCumulativeModelOnlineRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelService_GetCumulativeModelOnlineRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetCumulativeModelOnlineRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetCumulativeModelOnlineRecords"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetCumulativeModelOnlineRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetCumulativeModelOnlineRecords"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1214,20 +917,15 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelService_GetCumulativeModelOnlineRecords_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelService_GetBulkCumulativeModelOnlineRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelService_GetBulkCumulativeModelOnlineRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetBulkCumulativeModelOnlineRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetBulkCumulativeModelOnlineRecords"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetBulkCumulativeModelOnlineRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetBulkCumulativeModelOnlineRecords"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1239,20 +937,15 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelService_GetBulkCumulativeModelOnlineRecords_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelService_GetModelOnlineSummary_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelService_GetModelOnlineSummary_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetModelOnlineSummary", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetModelOnlineSummary"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetModelOnlineSummary", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetModelOnlineSummary"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1264,20 +957,15 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelService_GetModelOnlineSummary_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelService_GetBulkModelOnlineSummary_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelService_GetBulkModelOnlineSummary_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetBulkModelOnlineSummary", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetBulkModelOnlineSummary"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetBulkModelOnlineSummary", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetBulkModelOnlineSummary"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1289,20 +977,15 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelService_GetBulkModelOnlineSummary_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelService_GetModelOnlinePrice_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelService_GetModelOnlinePrice_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetModelOnlinePrice", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetModelOnlinePrice"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetModelOnlinePrice", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetModelOnlinePrice"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1314,20 +997,15 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelService_GetModelOnlinePrice_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelService_GetBulkModelOnlinePrice_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelService_GetBulkModelOnlinePrice_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetBulkModelOnlinePrice", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetBulkModelOnlinePrice"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetBulkModelOnlinePrice", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetBulkModelOnlinePrice"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1339,9 +1017,7 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelService_GetBulkModelOnlinePrice_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -1350,25 +1026,24 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 // RegisterPipelineServiceHandlerFromEndpoint is same as RegisterPipelineServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterPipelineServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.DialContext(ctx, endpoint, opts...)
+	conn, err := grpc.NewClient(endpoint, opts...)
 	if err != nil {
 		return err
 	}
 	defer func() {
 		if err != nil {
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 			return
 		}
 		go func() {
 			<-ctx.Done()
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 		}()
 	}()
-
 	return RegisterPipelineServiceHandler(ctx, mux, conn)
 }
 
@@ -1382,16 +1057,13 @@ func RegisterPipelineServiceHandler(ctx context.Context, mux *runtime.ServeMux, 
 // to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "PipelineServiceClient".
 // Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "PipelineServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "PipelineServiceClient" to call the correct interceptors.
+// "PipelineServiceClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client PipelineServiceClient) error {
-
-	mux.Handle("POST", pattern_PipelineService_GetPipelines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelineService_GetPipelines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetPipelines", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetPipelines"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetPipelines", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetPipelines"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1402,18 +1074,13 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_PipelineService_GetPipelines_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_PipelineService_ReportPipelineTrigger_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelineService_ReportPipelineTrigger_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/ReportPipelineTrigger", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/ReportPipelineTrigger"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/ReportPipelineTrigger", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/ReportPipelineTrigger"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1424,18 +1091,13 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_PipelineService_ReportPipelineTrigger_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_PipelineService_ReportPipelineTriggers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelineService_ReportPipelineTriggers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/ReportPipelineTriggers", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/ReportPipelineTriggers"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/ReportPipelineTriggers", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/ReportPipelineTriggers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1446,18 +1108,13 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_PipelineService_ReportPipelineTriggers_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_PipelineService_GetPipelineTriggerRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelineService_GetPipelineTriggerRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetPipelineTriggerRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetPipelineTriggerRecords"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetPipelineTriggerRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetPipelineTriggerRecords"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1468,18 +1125,13 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_PipelineService_GetPipelineTriggerRecords_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_PipelineService_GetBulkPipelineTriggerRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelineService_GetBulkPipelineTriggerRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetBulkPipelineTriggerRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetBulkPipelineTriggerRecords"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetBulkPipelineTriggerRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetBulkPipelineTriggerRecords"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1490,18 +1142,13 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_PipelineService_GetBulkPipelineTriggerRecords_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_PipelineService_GetCumulativePipelineTriggerRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelineService_GetCumulativePipelineTriggerRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetCumulativePipelineTriggerRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetCumulativePipelineTriggerRecords"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetCumulativePipelineTriggerRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetCumulativePipelineTriggerRecords"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1512,18 +1159,13 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_PipelineService_GetCumulativePipelineTriggerRecords_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_PipelineService_GetBulkCumulativePipelineTriggerRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelineService_GetBulkCumulativePipelineTriggerRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetBulkCumulativePipelineTriggerRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetBulkCumulativePipelineTriggerRecords"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetBulkCumulativePipelineTriggerRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetBulkCumulativePipelineTriggerRecords"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1534,18 +1176,13 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_PipelineService_GetBulkCumulativePipelineTriggerRecords_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_PipelineService_GetPipelineTriggerSummary_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelineService_GetPipelineTriggerSummary_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetPipelineTriggerSummary", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetPipelineTriggerSummary"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetPipelineTriggerSummary", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetPipelineTriggerSummary"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1556,18 +1193,13 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_PipelineService_GetPipelineTriggerSummary_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_PipelineService_GetBulkPipelineTriggerSummaries_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelineService_GetBulkPipelineTriggerSummaries_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetBulkPipelineTriggerSummaries", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetBulkPipelineTriggerSummaries"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetBulkPipelineTriggerSummaries", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetBulkPipelineTriggerSummaries"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1578,18 +1210,13 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_PipelineService_GetBulkPipelineTriggerSummaries_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_PipelineService_GetPipelineTriggerPrice_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelineService_GetPipelineTriggerPrice_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetPipelineTriggerPrice", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetPipelineTriggerPrice"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetPipelineTriggerPrice", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetPipelineTriggerPrice"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1600,18 +1227,13 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_PipelineService_GetPipelineTriggerPrice_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_PipelineService_GetBulkPipelineTriggerPrice_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelineService_GetBulkPipelineTriggerPrice_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetBulkPipelineTriggerPrice", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetBulkPipelineTriggerPrice"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.PipelineService/GetBulkPipelineTriggerPrice", runtime.WithHTTPPathPattern("/core.metric.v1beta.PipelineService/GetBulkPipelineTriggerPrice"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1622,84 +1244,60 @@ func RegisterPipelineServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_PipelineService_GetBulkPipelineTriggerPrice_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
-	pattern_PipelineService_GetPipelines_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.PipelineService", "GetPipelines"}, ""))
-
-	pattern_PipelineService_ReportPipelineTrigger_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.PipelineService", "ReportPipelineTrigger"}, ""))
-
-	pattern_PipelineService_ReportPipelineTriggers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.PipelineService", "ReportPipelineTriggers"}, ""))
-
-	pattern_PipelineService_GetPipelineTriggerRecords_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.PipelineService", "GetPipelineTriggerRecords"}, ""))
-
-	pattern_PipelineService_GetBulkPipelineTriggerRecords_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.PipelineService", "GetBulkPipelineTriggerRecords"}, ""))
-
-	pattern_PipelineService_GetCumulativePipelineTriggerRecords_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.PipelineService", "GetCumulativePipelineTriggerRecords"}, ""))
-
+	pattern_PipelineService_GetPipelines_0                            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.PipelineService", "GetPipelines"}, ""))
+	pattern_PipelineService_ReportPipelineTrigger_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.PipelineService", "ReportPipelineTrigger"}, ""))
+	pattern_PipelineService_ReportPipelineTriggers_0                  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.PipelineService", "ReportPipelineTriggers"}, ""))
+	pattern_PipelineService_GetPipelineTriggerRecords_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.PipelineService", "GetPipelineTriggerRecords"}, ""))
+	pattern_PipelineService_GetBulkPipelineTriggerRecords_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.PipelineService", "GetBulkPipelineTriggerRecords"}, ""))
+	pattern_PipelineService_GetCumulativePipelineTriggerRecords_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.PipelineService", "GetCumulativePipelineTriggerRecords"}, ""))
 	pattern_PipelineService_GetBulkCumulativePipelineTriggerRecords_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.PipelineService", "GetBulkCumulativePipelineTriggerRecords"}, ""))
-
-	pattern_PipelineService_GetPipelineTriggerSummary_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.PipelineService", "GetPipelineTriggerSummary"}, ""))
-
-	pattern_PipelineService_GetBulkPipelineTriggerSummaries_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.PipelineService", "GetBulkPipelineTriggerSummaries"}, ""))
-
-	pattern_PipelineService_GetPipelineTriggerPrice_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.PipelineService", "GetPipelineTriggerPrice"}, ""))
-
-	pattern_PipelineService_GetBulkPipelineTriggerPrice_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.PipelineService", "GetBulkPipelineTriggerPrice"}, ""))
+	pattern_PipelineService_GetPipelineTriggerSummary_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.PipelineService", "GetPipelineTriggerSummary"}, ""))
+	pattern_PipelineService_GetBulkPipelineTriggerSummaries_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.PipelineService", "GetBulkPipelineTriggerSummaries"}, ""))
+	pattern_PipelineService_GetPipelineTriggerPrice_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.PipelineService", "GetPipelineTriggerPrice"}, ""))
+	pattern_PipelineService_GetBulkPipelineTriggerPrice_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.PipelineService", "GetBulkPipelineTriggerPrice"}, ""))
 )
 
 var (
-	forward_PipelineService_GetPipelines_0 = runtime.ForwardResponseMessage
-
-	forward_PipelineService_ReportPipelineTrigger_0 = runtime.ForwardResponseMessage
-
-	forward_PipelineService_ReportPipelineTriggers_0 = runtime.ForwardResponseMessage
-
-	forward_PipelineService_GetPipelineTriggerRecords_0 = runtime.ForwardResponseMessage
-
-	forward_PipelineService_GetBulkPipelineTriggerRecords_0 = runtime.ForwardResponseMessage
-
-	forward_PipelineService_GetCumulativePipelineTriggerRecords_0 = runtime.ForwardResponseMessage
-
+	forward_PipelineService_GetPipelines_0                            = runtime.ForwardResponseMessage
+	forward_PipelineService_ReportPipelineTrigger_0                   = runtime.ForwardResponseMessage
+	forward_PipelineService_ReportPipelineTriggers_0                  = runtime.ForwardResponseMessage
+	forward_PipelineService_GetPipelineTriggerRecords_0               = runtime.ForwardResponseMessage
+	forward_PipelineService_GetBulkPipelineTriggerRecords_0           = runtime.ForwardResponseMessage
+	forward_PipelineService_GetCumulativePipelineTriggerRecords_0     = runtime.ForwardResponseMessage
 	forward_PipelineService_GetBulkCumulativePipelineTriggerRecords_0 = runtime.ForwardResponseMessage
-
-	forward_PipelineService_GetPipelineTriggerSummary_0 = runtime.ForwardResponseMessage
-
-	forward_PipelineService_GetBulkPipelineTriggerSummaries_0 = runtime.ForwardResponseMessage
-
-	forward_PipelineService_GetPipelineTriggerPrice_0 = runtime.ForwardResponseMessage
-
-	forward_PipelineService_GetBulkPipelineTriggerPrice_0 = runtime.ForwardResponseMessage
+	forward_PipelineService_GetPipelineTriggerSummary_0               = runtime.ForwardResponseMessage
+	forward_PipelineService_GetBulkPipelineTriggerSummaries_0         = runtime.ForwardResponseMessage
+	forward_PipelineService_GetPipelineTriggerPrice_0                 = runtime.ForwardResponseMessage
+	forward_PipelineService_GetBulkPipelineTriggerPrice_0             = runtime.ForwardResponseMessage
 )
 
 // RegisterModelServiceHandlerFromEndpoint is same as RegisterModelServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterModelServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.DialContext(ctx, endpoint, opts...)
+	conn, err := grpc.NewClient(endpoint, opts...)
 	if err != nil {
 		return err
 	}
 	defer func() {
 		if err != nil {
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 			return
 		}
 		go func() {
 			<-ctx.Done()
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 		}()
 	}()
-
 	return RegisterModelServiceHandler(ctx, mux, conn)
 }
 
@@ -1713,16 +1311,13 @@ func RegisterModelServiceHandler(ctx context.Context, mux *runtime.ServeMux, con
 // to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "ModelServiceClient".
 // Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "ModelServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "ModelServiceClient" to call the correct interceptors.
+// "ModelServiceClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ModelServiceClient) error {
-
-	mux.Handle("POST", pattern_ModelService_GetModels_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelService_GetModels_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetModels", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetModels"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetModels", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetModels"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1733,18 +1328,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelService_GetModels_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelService_ReportModelOnline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelService_ReportModelOnline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.ModelService/ReportModelOnline", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/ReportModelOnline"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.ModelService/ReportModelOnline", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/ReportModelOnline"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1755,18 +1345,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelService_ReportModelOnline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelService_ReportModelOnlines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelService_ReportModelOnlines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.ModelService/ReportModelOnlines", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/ReportModelOnlines"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.ModelService/ReportModelOnlines", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/ReportModelOnlines"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1777,18 +1362,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelService_ReportModelOnlines_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelService_GetModelOnlineRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelService_GetModelOnlineRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetModelOnlineRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetModelOnlineRecords"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetModelOnlineRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetModelOnlineRecords"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1799,18 +1379,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelService_GetModelOnlineRecords_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelService_GetBulkModelOnlineRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelService_GetBulkModelOnlineRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetBulkModelOnlineRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetBulkModelOnlineRecords"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetBulkModelOnlineRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetBulkModelOnlineRecords"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1821,18 +1396,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelService_GetBulkModelOnlineRecords_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelService_GetCumulativeModelOnlineRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelService_GetCumulativeModelOnlineRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetCumulativeModelOnlineRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetCumulativeModelOnlineRecords"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetCumulativeModelOnlineRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetCumulativeModelOnlineRecords"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1843,18 +1413,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelService_GetCumulativeModelOnlineRecords_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelService_GetBulkCumulativeModelOnlineRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelService_GetBulkCumulativeModelOnlineRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetBulkCumulativeModelOnlineRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetBulkCumulativeModelOnlineRecords"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetBulkCumulativeModelOnlineRecords", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetBulkCumulativeModelOnlineRecords"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1865,18 +1430,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelService_GetBulkCumulativeModelOnlineRecords_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelService_GetModelOnlineSummary_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelService_GetModelOnlineSummary_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetModelOnlineSummary", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetModelOnlineSummary"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetModelOnlineSummary", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetModelOnlineSummary"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1887,18 +1447,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelService_GetModelOnlineSummary_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelService_GetBulkModelOnlineSummary_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelService_GetBulkModelOnlineSummary_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetBulkModelOnlineSummary", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetBulkModelOnlineSummary"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetBulkModelOnlineSummary", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetBulkModelOnlineSummary"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1909,18 +1464,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelService_GetBulkModelOnlineSummary_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelService_GetModelOnlinePrice_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelService_GetModelOnlinePrice_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetModelOnlinePrice", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetModelOnlinePrice"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetModelOnlinePrice", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetModelOnlinePrice"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1931,18 +1481,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelService_GetModelOnlinePrice_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelService_GetBulkModelOnlinePrice_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelService_GetBulkModelOnlinePrice_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetBulkModelOnlinePrice", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetBulkModelOnlinePrice"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.metric.v1beta.ModelService/GetBulkModelOnlinePrice", runtime.WithHTTPPathPattern("/core.metric.v1beta.ModelService/GetBulkModelOnlinePrice"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1953,58 +1498,35 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelService_GetBulkModelOnlinePrice_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
-	pattern_ModelService_GetModels_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.ModelService", "GetModels"}, ""))
-
-	pattern_ModelService_ReportModelOnline_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.ModelService", "ReportModelOnline"}, ""))
-
-	pattern_ModelService_ReportModelOnlines_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.ModelService", "ReportModelOnlines"}, ""))
-
-	pattern_ModelService_GetModelOnlineRecords_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.ModelService", "GetModelOnlineRecords"}, ""))
-
-	pattern_ModelService_GetBulkModelOnlineRecords_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.ModelService", "GetBulkModelOnlineRecords"}, ""))
-
-	pattern_ModelService_GetCumulativeModelOnlineRecords_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.ModelService", "GetCumulativeModelOnlineRecords"}, ""))
-
+	pattern_ModelService_GetModels_0                           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.ModelService", "GetModels"}, ""))
+	pattern_ModelService_ReportModelOnline_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.ModelService", "ReportModelOnline"}, ""))
+	pattern_ModelService_ReportModelOnlines_0                  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.ModelService", "ReportModelOnlines"}, ""))
+	pattern_ModelService_GetModelOnlineRecords_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.ModelService", "GetModelOnlineRecords"}, ""))
+	pattern_ModelService_GetBulkModelOnlineRecords_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.ModelService", "GetBulkModelOnlineRecords"}, ""))
+	pattern_ModelService_GetCumulativeModelOnlineRecords_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.ModelService", "GetCumulativeModelOnlineRecords"}, ""))
 	pattern_ModelService_GetBulkCumulativeModelOnlineRecords_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.ModelService", "GetBulkCumulativeModelOnlineRecords"}, ""))
-
-	pattern_ModelService_GetModelOnlineSummary_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.ModelService", "GetModelOnlineSummary"}, ""))
-
-	pattern_ModelService_GetBulkModelOnlineSummary_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.ModelService", "GetBulkModelOnlineSummary"}, ""))
-
-	pattern_ModelService_GetModelOnlinePrice_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.ModelService", "GetModelOnlinePrice"}, ""))
-
-	pattern_ModelService_GetBulkModelOnlinePrice_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.ModelService", "GetBulkModelOnlinePrice"}, ""))
+	pattern_ModelService_GetModelOnlineSummary_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.ModelService", "GetModelOnlineSummary"}, ""))
+	pattern_ModelService_GetBulkModelOnlineSummary_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.ModelService", "GetBulkModelOnlineSummary"}, ""))
+	pattern_ModelService_GetModelOnlinePrice_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.ModelService", "GetModelOnlinePrice"}, ""))
+	pattern_ModelService_GetBulkModelOnlinePrice_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"core.metric.v1beta.ModelService", "GetBulkModelOnlinePrice"}, ""))
 )
 
 var (
-	forward_ModelService_GetModels_0 = runtime.ForwardResponseMessage
-
-	forward_ModelService_ReportModelOnline_0 = runtime.ForwardResponseMessage
-
-	forward_ModelService_ReportModelOnlines_0 = runtime.ForwardResponseMessage
-
-	forward_ModelService_GetModelOnlineRecords_0 = runtime.ForwardResponseMessage
-
-	forward_ModelService_GetBulkModelOnlineRecords_0 = runtime.ForwardResponseMessage
-
-	forward_ModelService_GetCumulativeModelOnlineRecords_0 = runtime.ForwardResponseMessage
-
+	forward_ModelService_GetModels_0                           = runtime.ForwardResponseMessage
+	forward_ModelService_ReportModelOnline_0                   = runtime.ForwardResponseMessage
+	forward_ModelService_ReportModelOnlines_0                  = runtime.ForwardResponseMessage
+	forward_ModelService_GetModelOnlineRecords_0               = runtime.ForwardResponseMessage
+	forward_ModelService_GetBulkModelOnlineRecords_0           = runtime.ForwardResponseMessage
+	forward_ModelService_GetCumulativeModelOnlineRecords_0     = runtime.ForwardResponseMessage
 	forward_ModelService_GetBulkCumulativeModelOnlineRecords_0 = runtime.ForwardResponseMessage
-
-	forward_ModelService_GetModelOnlineSummary_0 = runtime.ForwardResponseMessage
-
-	forward_ModelService_GetBulkModelOnlineSummary_0 = runtime.ForwardResponseMessage
-
-	forward_ModelService_GetModelOnlinePrice_0 = runtime.ForwardResponseMessage
-
-	forward_ModelService_GetBulkModelOnlinePrice_0 = runtime.ForwardResponseMessage
+	forward_ModelService_GetModelOnlineSummary_0               = runtime.ForwardResponseMessage
+	forward_ModelService_GetBulkModelOnlineSummary_0           = runtime.ForwardResponseMessage
+	forward_ModelService_GetModelOnlinePrice_0                 = runtime.ForwardResponseMessage
+	forward_ModelService_GetBulkModelOnlinePrice_0             = runtime.ForwardResponseMessage
 )

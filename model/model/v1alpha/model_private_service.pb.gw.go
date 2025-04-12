@@ -10,6 +10,7 @@ package modelv1alpha
 
 import (
 	"context"
+	"errors"
 	"io"
 	"net/http"
 
@@ -24,300 +25,221 @@ import (
 )
 
 // Suppress "imported and not used" errors
-var _ codes.Code
-var _ io.Reader
-var _ status.Status
-var _ = runtime.String
-var _ = utilities.NewDoubleArray
-var _ = metadata.Join
+var (
+	_ codes.Code
+	_ io.Reader
+	_ status.Status
+	_ = errors.New
+	_ = runtime.String
+	_ = utilities.NewDoubleArray
+	_ = metadata.Join
+)
 
 func request_ModelPrivateService_ListModelsAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListModelsAdminRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq ListModelsAdminRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.ListModelsAdmin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_ModelPrivateService_ListModelsAdmin_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListModelsAdminRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq ListModelsAdminRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.ListModelsAdmin(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_ModelPrivateService_LookUpModelAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq LookUpModelAdminRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq LookUpModelAdminRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.LookUpModelAdmin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_ModelPrivateService_LookUpModelAdmin_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq LookUpModelAdminRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq LookUpModelAdminRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.LookUpModelAdmin(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_ModelPrivateService_DeployNamespaceModelAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeployNamespaceModelAdminRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq DeployNamespaceModelAdminRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.DeployNamespaceModelAdmin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_ModelPrivateService_DeployNamespaceModelAdmin_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeployNamespaceModelAdminRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq DeployNamespaceModelAdminRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.DeployNamespaceModelAdmin(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_ModelPrivateService_DeployUserModelAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeployUserModelAdminRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq DeployUserModelAdminRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.DeployUserModelAdmin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_ModelPrivateService_DeployUserModelAdmin_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeployUserModelAdminRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq DeployUserModelAdminRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.DeployUserModelAdmin(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_ModelPrivateService_DeployOrganizationModelAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeployOrganizationModelAdminRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq DeployOrganizationModelAdminRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.DeployOrganizationModelAdmin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_ModelPrivateService_DeployOrganizationModelAdmin_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeployOrganizationModelAdminRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq DeployOrganizationModelAdminRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.DeployOrganizationModelAdmin(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_ModelPrivateService_UndeployUserModelAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UndeployUserModelAdminRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq UndeployUserModelAdminRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.UndeployUserModelAdmin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_ModelPrivateService_UndeployUserModelAdmin_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UndeployUserModelAdminRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq UndeployUserModelAdminRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.UndeployUserModelAdmin(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_ModelPrivateService_UndeployNamespaceModelAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UndeployNamespaceModelAdminRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq UndeployNamespaceModelAdminRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.UndeployNamespaceModelAdmin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_ModelPrivateService_UndeployNamespaceModelAdmin_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UndeployNamespaceModelAdminRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq UndeployNamespaceModelAdminRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.UndeployNamespaceModelAdmin(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_ModelPrivateService_UndeployOrganizationModelAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UndeployOrganizationModelAdminRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq UndeployOrganizationModelAdminRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.UndeployOrganizationModelAdmin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_ModelPrivateService_UndeployOrganizationModelAdmin_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UndeployOrganizationModelAdminRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq UndeployOrganizationModelAdminRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.UndeployOrganizationModelAdmin(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 // RegisterModelPrivateServiceHandlerServer registers the http handlers for service ModelPrivateService to "mux".
 // UnaryRPC     :call ModelPrivateServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterModelPrivateServiceHandlerFromEndpoint instead.
+// GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterModelPrivateServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ModelPrivateServiceServer) error {
-
-	mux.Handle("POST", pattern_ModelPrivateService_ListModelsAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPrivateService_ListModelsAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/ListModelsAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/ListModelsAdmin"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/ListModelsAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/ListModelsAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -329,20 +251,15 @@ func RegisterModelPrivateServiceHandlerServer(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelPrivateService_ListModelsAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelPrivateService_LookUpModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPrivateService_LookUpModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/LookUpModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/LookUpModelAdmin"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/LookUpModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/LookUpModelAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -354,20 +271,15 @@ func RegisterModelPrivateServiceHandlerServer(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelPrivateService_LookUpModelAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelPrivateService_DeployNamespaceModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPrivateService_DeployNamespaceModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/DeployNamespaceModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/DeployNamespaceModelAdmin"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/DeployNamespaceModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/DeployNamespaceModelAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -379,20 +291,15 @@ func RegisterModelPrivateServiceHandlerServer(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelPrivateService_DeployNamespaceModelAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelPrivateService_DeployUserModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPrivateService_DeployUserModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/DeployUserModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/DeployUserModelAdmin"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/DeployUserModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/DeployUserModelAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -404,20 +311,15 @@ func RegisterModelPrivateServiceHandlerServer(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelPrivateService_DeployUserModelAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelPrivateService_DeployOrganizationModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPrivateService_DeployOrganizationModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/DeployOrganizationModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/DeployOrganizationModelAdmin"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/DeployOrganizationModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/DeployOrganizationModelAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -429,20 +331,15 @@ func RegisterModelPrivateServiceHandlerServer(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelPrivateService_DeployOrganizationModelAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelPrivateService_UndeployUserModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPrivateService_UndeployUserModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/UndeployUserModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/UndeployUserModelAdmin"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/UndeployUserModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/UndeployUserModelAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -454,20 +351,15 @@ func RegisterModelPrivateServiceHandlerServer(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelPrivateService_UndeployUserModelAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelPrivateService_UndeployNamespaceModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPrivateService_UndeployNamespaceModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/UndeployNamespaceModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/UndeployNamespaceModelAdmin"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/UndeployNamespaceModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/UndeployNamespaceModelAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -479,20 +371,15 @@ func RegisterModelPrivateServiceHandlerServer(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelPrivateService_UndeployNamespaceModelAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelPrivateService_UndeployOrganizationModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPrivateService_UndeployOrganizationModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/UndeployOrganizationModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/UndeployOrganizationModelAdmin"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/UndeployOrganizationModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/UndeployOrganizationModelAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -504,9 +391,7 @@ func RegisterModelPrivateServiceHandlerServer(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelPrivateService_UndeployOrganizationModelAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -515,25 +400,24 @@ func RegisterModelPrivateServiceHandlerServer(ctx context.Context, mux *runtime.
 // RegisterModelPrivateServiceHandlerFromEndpoint is same as RegisterModelPrivateServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterModelPrivateServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.DialContext(ctx, endpoint, opts...)
+	conn, err := grpc.NewClient(endpoint, opts...)
 	if err != nil {
 		return err
 	}
 	defer func() {
 		if err != nil {
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 			return
 		}
 		go func() {
 			<-ctx.Done()
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 		}()
 	}()
-
 	return RegisterModelPrivateServiceHandler(ctx, mux, conn)
 }
 
@@ -547,16 +431,13 @@ func RegisterModelPrivateServiceHandler(ctx context.Context, mux *runtime.ServeM
 // to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "ModelPrivateServiceClient".
 // Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "ModelPrivateServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "ModelPrivateServiceClient" to call the correct interceptors.
+// "ModelPrivateServiceClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterModelPrivateServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ModelPrivateServiceClient) error {
-
-	mux.Handle("POST", pattern_ModelPrivateService_ListModelsAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPrivateService_ListModelsAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/ListModelsAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/ListModelsAdmin"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/ListModelsAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/ListModelsAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -567,18 +448,13 @@ func RegisterModelPrivateServiceHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelPrivateService_ListModelsAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelPrivateService_LookUpModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPrivateService_LookUpModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/LookUpModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/LookUpModelAdmin"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/LookUpModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/LookUpModelAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -589,18 +465,13 @@ func RegisterModelPrivateServiceHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelPrivateService_LookUpModelAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelPrivateService_DeployNamespaceModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPrivateService_DeployNamespaceModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/DeployNamespaceModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/DeployNamespaceModelAdmin"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/DeployNamespaceModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/DeployNamespaceModelAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -611,18 +482,13 @@ func RegisterModelPrivateServiceHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelPrivateService_DeployNamespaceModelAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelPrivateService_DeployUserModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPrivateService_DeployUserModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/DeployUserModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/DeployUserModelAdmin"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/DeployUserModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/DeployUserModelAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -633,18 +499,13 @@ func RegisterModelPrivateServiceHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelPrivateService_DeployUserModelAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelPrivateService_DeployOrganizationModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPrivateService_DeployOrganizationModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/DeployOrganizationModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/DeployOrganizationModelAdmin"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/DeployOrganizationModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/DeployOrganizationModelAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -655,18 +516,13 @@ func RegisterModelPrivateServiceHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelPrivateService_DeployOrganizationModelAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelPrivateService_UndeployUserModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPrivateService_UndeployUserModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/UndeployUserModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/UndeployUserModelAdmin"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/UndeployUserModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/UndeployUserModelAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -677,18 +533,13 @@ func RegisterModelPrivateServiceHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelPrivateService_UndeployUserModelAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelPrivateService_UndeployNamespaceModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPrivateService_UndeployNamespaceModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/UndeployNamespaceModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/UndeployNamespaceModelAdmin"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/UndeployNamespaceModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/UndeployNamespaceModelAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -699,18 +550,13 @@ func RegisterModelPrivateServiceHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelPrivateService_UndeployNamespaceModelAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ModelPrivateService_UndeployOrganizationModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPrivateService_UndeployOrganizationModelAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/UndeployOrganizationModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/UndeployOrganizationModelAdmin"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/UndeployOrganizationModelAdmin", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/UndeployOrganizationModelAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -721,46 +567,29 @@ func RegisterModelPrivateServiceHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ModelPrivateService_UndeployOrganizationModelAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
-	pattern_ModelPrivateService_ListModelsAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.model.v1alpha.ModelPrivateService", "ListModelsAdmin"}, ""))
-
-	pattern_ModelPrivateService_LookUpModelAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.model.v1alpha.ModelPrivateService", "LookUpModelAdmin"}, ""))
-
-	pattern_ModelPrivateService_DeployNamespaceModelAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.model.v1alpha.ModelPrivateService", "DeployNamespaceModelAdmin"}, ""))
-
-	pattern_ModelPrivateService_DeployUserModelAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.model.v1alpha.ModelPrivateService", "DeployUserModelAdmin"}, ""))
-
-	pattern_ModelPrivateService_DeployOrganizationModelAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.model.v1alpha.ModelPrivateService", "DeployOrganizationModelAdmin"}, ""))
-
-	pattern_ModelPrivateService_UndeployUserModelAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.model.v1alpha.ModelPrivateService", "UndeployUserModelAdmin"}, ""))
-
-	pattern_ModelPrivateService_UndeployNamespaceModelAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.model.v1alpha.ModelPrivateService", "UndeployNamespaceModelAdmin"}, ""))
-
+	pattern_ModelPrivateService_ListModelsAdmin_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.model.v1alpha.ModelPrivateService", "ListModelsAdmin"}, ""))
+	pattern_ModelPrivateService_LookUpModelAdmin_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.model.v1alpha.ModelPrivateService", "LookUpModelAdmin"}, ""))
+	pattern_ModelPrivateService_DeployNamespaceModelAdmin_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.model.v1alpha.ModelPrivateService", "DeployNamespaceModelAdmin"}, ""))
+	pattern_ModelPrivateService_DeployUserModelAdmin_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.model.v1alpha.ModelPrivateService", "DeployUserModelAdmin"}, ""))
+	pattern_ModelPrivateService_DeployOrganizationModelAdmin_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.model.v1alpha.ModelPrivateService", "DeployOrganizationModelAdmin"}, ""))
+	pattern_ModelPrivateService_UndeployUserModelAdmin_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.model.v1alpha.ModelPrivateService", "UndeployUserModelAdmin"}, ""))
+	pattern_ModelPrivateService_UndeployNamespaceModelAdmin_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.model.v1alpha.ModelPrivateService", "UndeployNamespaceModelAdmin"}, ""))
 	pattern_ModelPrivateService_UndeployOrganizationModelAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.model.v1alpha.ModelPrivateService", "UndeployOrganizationModelAdmin"}, ""))
 )
 
 var (
-	forward_ModelPrivateService_ListModelsAdmin_0 = runtime.ForwardResponseMessage
-
-	forward_ModelPrivateService_LookUpModelAdmin_0 = runtime.ForwardResponseMessage
-
-	forward_ModelPrivateService_DeployNamespaceModelAdmin_0 = runtime.ForwardResponseMessage
-
-	forward_ModelPrivateService_DeployUserModelAdmin_0 = runtime.ForwardResponseMessage
-
-	forward_ModelPrivateService_DeployOrganizationModelAdmin_0 = runtime.ForwardResponseMessage
-
-	forward_ModelPrivateService_UndeployUserModelAdmin_0 = runtime.ForwardResponseMessage
-
-	forward_ModelPrivateService_UndeployNamespaceModelAdmin_0 = runtime.ForwardResponseMessage
-
+	forward_ModelPrivateService_ListModelsAdmin_0                = runtime.ForwardResponseMessage
+	forward_ModelPrivateService_LookUpModelAdmin_0               = runtime.ForwardResponseMessage
+	forward_ModelPrivateService_DeployNamespaceModelAdmin_0      = runtime.ForwardResponseMessage
+	forward_ModelPrivateService_DeployUserModelAdmin_0           = runtime.ForwardResponseMessage
+	forward_ModelPrivateService_DeployOrganizationModelAdmin_0   = runtime.ForwardResponseMessage
+	forward_ModelPrivateService_UndeployUserModelAdmin_0         = runtime.ForwardResponseMessage
+	forward_ModelPrivateService_UndeployNamespaceModelAdmin_0    = runtime.ForwardResponseMessage
 	forward_ModelPrivateService_UndeployOrganizationModelAdmin_0 = runtime.ForwardResponseMessage
 )
