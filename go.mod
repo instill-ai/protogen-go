@@ -1,7 +1,7 @@
 module github.com/instill-ai/protogen-go
 
 go 1.21
-toolchain go1.23.7
+toolchain go1.24.1
 
 retract v0.3.0-alpha
 
@@ -15,7 +15,7 @@ require (
 
 require (
 	github.com/golang/protobuf v1.5.3 // indirect
-	golang.org/x/net v0.36.0 // indirect
-	golang.org/x/sys v0.30.0 // indirect
-	golang.org/x/text v0.22.0 // indirect
+	golang.org/x/net v0.38.0 // indirect
+	golang.org/x/sys v0.31.0 // indirect
+	golang.org/x/text v0.23.0 // indirect
 )
