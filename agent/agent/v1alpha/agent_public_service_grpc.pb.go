@@ -41,13 +41,22 @@ const (
 	AgentPublicService_DeleteTable_FullMethodName             = "/agent.agent.v1alpha.AgentPublicService/DeleteTable"
 	AgentPublicService_GetColumnDefinitions_FullMethodName    = "/agent.agent.v1alpha.AgentPublicService/GetColumnDefinitions"
 	AgentPublicService_UpdateColumnDefinitions_FullMethodName = "/agent.agent.v1alpha.AgentPublicService/UpdateColumnDefinitions"
+	AgentPublicService_GetColumnDefinition_FullMethodName     = "/agent.agent.v1alpha.AgentPublicService/GetColumnDefinition"
+	AgentPublicService_RecomputeColumn_FullMethodName         = "/agent.agent.v1alpha.AgentPublicService/RecomputeColumn"
 	AgentPublicService_ListRows_FullMethodName                = "/agent.agent.v1alpha.AgentPublicService/ListRows"
+	AgentPublicService_GetRow_FullMethodName                  = "/agent.agent.v1alpha.AgentPublicService/GetRow"
 	AgentPublicService_InsertRow_FullMethodName               = "/agent.agent.v1alpha.AgentPublicService/InsertRow"
 	AgentPublicService_UpdateRow_FullMethodName               = "/agent.agent.v1alpha.AgentPublicService/UpdateRow"
 	AgentPublicService_UpdateRows_FullMethodName              = "/agent.agent.v1alpha.AgentPublicService/UpdateRows"
 	AgentPublicService_DeleteRow_FullMethodName               = "/agent.agent.v1alpha.AgentPublicService/DeleteRow"
 	AgentPublicService_DeleteRows_FullMethodName              = "/agent.agent.v1alpha.AgentPublicService/DeleteRows"
 	AgentPublicService_MoveRows_FullMethodName                = "/agent.agent.v1alpha.AgentPublicService/MoveRows"
+	AgentPublicService_GetCell_FullMethodName                 = "/agent.agent.v1alpha.AgentPublicService/GetCell"
+	AgentPublicService_UpdateCell_FullMethodName              = "/agent.agent.v1alpha.AgentPublicService/UpdateCell"
+	AgentPublicService_ResetCell_FullMethodName               = "/agent.agent.v1alpha.AgentPublicService/ResetCell"
+	AgentPublicService_RecomputeCell_FullMethodName           = "/agent.agent.v1alpha.AgentPublicService/RecomputeCell"
+	AgentPublicService_LockCell_FullMethodName                = "/agent.agent.v1alpha.AgentPublicService/LockCell"
+	AgentPublicService_UnlockCell_FullMethodName              = "/agent.agent.v1alpha.AgentPublicService/UnlockCell"
 	AgentPublicService_GetTableEvents_FullMethodName          = "/agent.agent.v1alpha.AgentPublicService/GetTableEvents"
 	AgentPublicService_ExportTable_FullMethodName             = "/agent.agent.v1alpha.AgentPublicService/ExportTable"
 	AgentPublicService_GenerateMockTable_FullMethodName       = "/agent.agent.v1alpha.AgentPublicService/GenerateMockTable"
@@ -148,12 +157,27 @@ type AgentPublicServiceClient interface {
 	GetColumnDefinitions(ctx context.Context, in *GetColumnDefinitionsRequest, opts ...grpc.CallOption) (*GetColumnDefinitionsResponse, error)
 	// Update column definitions
 	//
-	// Updates column definitions for a table.
+	// Updates column definitions for a table. When updating the column
+	// definitions, if the column's agent instructions are updated, the existing
+	// cells in that column will be cleared and recomputed. This ensures that all
+	// data reflects the latest instructions.
 	UpdateColumnDefinitions(ctx context.Context, in *UpdateColumnDefinitionsRequest, opts ...grpc.CallOption) (*UpdateColumnDefinitionsResponse, error)
+	// Get column definition
+	//
+	// Gets a column definition for a table.
+	GetColumnDefinition(ctx context.Context, in *GetColumnDefinitionRequest, opts ...grpc.CallOption) (*GetColumnDefinitionResponse, error)
+	// Recompute column
+	//
+	// Recomputes all the cells in a column.
+	RecomputeColumn(ctx context.Context, in *RecomputeColumnRequest, opts ...grpc.CallOption) (*RecomputeColumnResponse, error)
 	// List rows
 	//
 	// Returns list of rows.
 	ListRows(ctx context.Context, in *ListRowsRequest, opts ...grpc.CallOption) (*ListRowsResponse, error)
+	// Get row
+	//
+	// Gets a row from a table.
+	GetRow(ctx context.Context, in *GetRowRequest, opts ...grpc.CallOption) (*GetRowResponse, error)
 	// Insert row
 	//
 	// Inserts a row into a table.
@@ -178,6 +202,32 @@ type AgentPublicServiceClient interface {
 	//
 	// Moves a row to a new position in a table.
 	MoveRows(ctx context.Context, in *MoveRowsRequest, opts ...grpc.CallOption) (*MoveRowsResponse, error)
+	// Get cell
+	//
+	// Gets a cell from a table.
+	GetCell(ctx context.Context, in *GetCellRequest, opts ...grpc.CallOption) (*GetCellResponse, error)
+	// Update cell
+	//
+	// Updates a cell in a table.
+	UpdateCell(ctx context.Context, in *UpdateCellRequest, opts ...grpc.CallOption) (*UpdateCellResponse, error)
+	// Reset cell
+	//
+	// Resets a cell in a table. Resetting a cell clears its user input and
+	// reverts to using the computed value if available. This operation only
+	// affects cells that have a user input set.
+	ResetCell(ctx context.Context, in *ResetCellRequest, opts ...grpc.CallOption) (*ResetCellResponse, error)
+	// Recompute cell
+	//
+	// Recomputes a cell in a table.
+	RecomputeCell(ctx context.Context, in *RecomputeCellRequest, opts ...grpc.CallOption) (*RecomputeCellResponse, error)
+	// Lock cell
+	//
+	// Locks a cell in a table.
+	LockCell(ctx context.Context, in *LockCellRequest, opts ...grpc.CallOption) (*LockCellResponse, error)
+	// Unlock cell
+	//
+	// Unlocks a cell in a table.
+	UnlockCell(ctx context.Context, in *UnlockCellRequest, opts ...grpc.CallOption) (*UnlockCellResponse, error)
 	// Get table events
 	//
 	// Returns a list of events for a table.
@@ -422,10 +472,40 @@ func (c *agentPublicServiceClient) UpdateColumnDefinitions(ctx context.Context, 
 	return out, nil
 }
 
+func (c *agentPublicServiceClient) GetColumnDefinition(ctx context.Context, in *GetColumnDefinitionRequest, opts ...grpc.CallOption) (*GetColumnDefinitionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetColumnDefinitionResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_GetColumnDefinition_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentPublicServiceClient) RecomputeColumn(ctx context.Context, in *RecomputeColumnRequest, opts ...grpc.CallOption) (*RecomputeColumnResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RecomputeColumnResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_RecomputeColumn_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *agentPublicServiceClient) ListRows(ctx context.Context, in *ListRowsRequest, opts ...grpc.CallOption) (*ListRowsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListRowsResponse)
 	err := c.cc.Invoke(ctx, AgentPublicService_ListRows_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentPublicServiceClient) GetRow(ctx context.Context, in *GetRowRequest, opts ...grpc.CallOption) (*GetRowResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetRowResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_GetRow_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -486,6 +566,66 @@ func (c *agentPublicServiceClient) MoveRows(ctx context.Context, in *MoveRowsReq
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(MoveRowsResponse)
 	err := c.cc.Invoke(ctx, AgentPublicService_MoveRows_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentPublicServiceClient) GetCell(ctx context.Context, in *GetCellRequest, opts ...grpc.CallOption) (*GetCellResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetCellResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_GetCell_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentPublicServiceClient) UpdateCell(ctx context.Context, in *UpdateCellRequest, opts ...grpc.CallOption) (*UpdateCellResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateCellResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_UpdateCell_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentPublicServiceClient) ResetCell(ctx context.Context, in *ResetCellRequest, opts ...grpc.CallOption) (*ResetCellResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ResetCellResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_ResetCell_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentPublicServiceClient) RecomputeCell(ctx context.Context, in *RecomputeCellRequest, opts ...grpc.CallOption) (*RecomputeCellResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RecomputeCellResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_RecomputeCell_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentPublicServiceClient) LockCell(ctx context.Context, in *LockCellRequest, opts ...grpc.CallOption) (*LockCellResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(LockCellResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_LockCell_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentPublicServiceClient) UnlockCell(ctx context.Context, in *UnlockCellRequest, opts ...grpc.CallOption) (*UnlockCellResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UnlockCellResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_UnlockCell_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -626,12 +766,27 @@ type AgentPublicServiceServer interface {
 	GetColumnDefinitions(context.Context, *GetColumnDefinitionsRequest) (*GetColumnDefinitionsResponse, error)
 	// Update column definitions
 	//
-	// Updates column definitions for a table.
+	// Updates column definitions for a table. When updating the column
+	// definitions, if the column's agent instructions are updated, the existing
+	// cells in that column will be cleared and recomputed. This ensures that all
+	// data reflects the latest instructions.
 	UpdateColumnDefinitions(context.Context, *UpdateColumnDefinitionsRequest) (*UpdateColumnDefinitionsResponse, error)
+	// Get column definition
+	//
+	// Gets a column definition for a table.
+	GetColumnDefinition(context.Context, *GetColumnDefinitionRequest) (*GetColumnDefinitionResponse, error)
+	// Recompute column
+	//
+	// Recomputes all the cells in a column.
+	RecomputeColumn(context.Context, *RecomputeColumnRequest) (*RecomputeColumnResponse, error)
 	// List rows
 	//
 	// Returns list of rows.
 	ListRows(context.Context, *ListRowsRequest) (*ListRowsResponse, error)
+	// Get row
+	//
+	// Gets a row from a table.
+	GetRow(context.Context, *GetRowRequest) (*GetRowResponse, error)
 	// Insert row
 	//
 	// Inserts a row into a table.
@@ -656,6 +811,32 @@ type AgentPublicServiceServer interface {
 	//
 	// Moves a row to a new position in a table.
 	MoveRows(context.Context, *MoveRowsRequest) (*MoveRowsResponse, error)
+	// Get cell
+	//
+	// Gets a cell from a table.
+	GetCell(context.Context, *GetCellRequest) (*GetCellResponse, error)
+	// Update cell
+	//
+	// Updates a cell in a table.
+	UpdateCell(context.Context, *UpdateCellRequest) (*UpdateCellResponse, error)
+	// Reset cell
+	//
+	// Resets a cell in a table. Resetting a cell clears its user input and
+	// reverts to using the computed value if available. This operation only
+	// affects cells that have a user input set.
+	ResetCell(context.Context, *ResetCellRequest) (*ResetCellResponse, error)
+	// Recompute cell
+	//
+	// Recomputes a cell in a table.
+	RecomputeCell(context.Context, *RecomputeCellRequest) (*RecomputeCellResponse, error)
+	// Lock cell
+	//
+	// Locks a cell in a table.
+	LockCell(context.Context, *LockCellRequest) (*LockCellResponse, error)
+	// Unlock cell
+	//
+	// Unlocks a cell in a table.
+	UnlockCell(context.Context, *UnlockCellRequest) (*UnlockCellResponse, error)
 	// Get table events
 	//
 	// Returns a list of events for a table.
@@ -745,8 +926,17 @@ func (UnimplementedAgentPublicServiceServer) GetColumnDefinitions(context.Contex
 func (UnimplementedAgentPublicServiceServer) UpdateColumnDefinitions(context.Context, *UpdateColumnDefinitionsRequest) (*UpdateColumnDefinitionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateColumnDefinitions not implemented")
 }
+func (UnimplementedAgentPublicServiceServer) GetColumnDefinition(context.Context, *GetColumnDefinitionRequest) (*GetColumnDefinitionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetColumnDefinition not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) RecomputeColumn(context.Context, *RecomputeColumnRequest) (*RecomputeColumnResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RecomputeColumn not implemented")
+}
 func (UnimplementedAgentPublicServiceServer) ListRows(context.Context, *ListRowsRequest) (*ListRowsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListRows not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) GetRow(context.Context, *GetRowRequest) (*GetRowResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRow not implemented")
 }
 func (UnimplementedAgentPublicServiceServer) InsertRow(context.Context, *InsertRowRequest) (*InsertRowResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InsertRow not implemented")
@@ -765,6 +955,24 @@ func (UnimplementedAgentPublicServiceServer) DeleteRows(context.Context, *Delete
 }
 func (UnimplementedAgentPublicServiceServer) MoveRows(context.Context, *MoveRowsRequest) (*MoveRowsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MoveRows not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) GetCell(context.Context, *GetCellRequest) (*GetCellResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCell not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) UpdateCell(context.Context, *UpdateCellRequest) (*UpdateCellResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateCell not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) ResetCell(context.Context, *ResetCellRequest) (*ResetCellResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ResetCell not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) RecomputeCell(context.Context, *RecomputeCellRequest) (*RecomputeCellResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RecomputeCell not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) LockCell(context.Context, *LockCellRequest) (*LockCellResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LockCell not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) UnlockCell(context.Context, *UnlockCellRequest) (*UnlockCellResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnlockCell not implemented")
 }
 func (UnimplementedAgentPublicServiceServer) GetTableEvents(*GetTableEventsRequest, grpc.ServerStreamingServer[GetTableEventsResponse]) error {
 	return status.Errorf(codes.Unimplemented, "method GetTableEvents not implemented")
@@ -1191,6 +1399,42 @@ func _AgentPublicService_UpdateColumnDefinitions_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AgentPublicService_GetColumnDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetColumnDefinitionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).GetColumnDefinition(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_GetColumnDefinition_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).GetColumnDefinition(ctx, req.(*GetColumnDefinitionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentPublicService_RecomputeColumn_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RecomputeColumnRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).RecomputeColumn(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_RecomputeColumn_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).RecomputeColumn(ctx, req.(*RecomputeColumnRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AgentPublicService_ListRows_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListRowsRequest)
 	if err := dec(in); err != nil {
@@ -1205,6 +1449,24 @@ func _AgentPublicService_ListRows_Handler(srv interface{}, ctx context.Context, 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AgentPublicServiceServer).ListRows(ctx, req.(*ListRowsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentPublicService_GetRow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRowRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).GetRow(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_GetRow_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).GetRow(ctx, req.(*GetRowRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1313,6 +1575,114 @@ func _AgentPublicService_MoveRows_Handler(srv interface{}, ctx context.Context, 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AgentPublicServiceServer).MoveRows(ctx, req.(*MoveRowsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentPublicService_GetCell_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCellRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).GetCell(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_GetCell_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).GetCell(ctx, req.(*GetCellRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentPublicService_UpdateCell_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateCellRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).UpdateCell(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_UpdateCell_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).UpdateCell(ctx, req.(*UpdateCellRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentPublicService_ResetCell_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ResetCellRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).ResetCell(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_ResetCell_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).ResetCell(ctx, req.(*ResetCellRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentPublicService_RecomputeCell_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RecomputeCellRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).RecomputeCell(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_RecomputeCell_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).RecomputeCell(ctx, req.(*RecomputeCellRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentPublicService_LockCell_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LockCellRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).LockCell(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_LockCell_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).LockCell(ctx, req.(*LockCellRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentPublicService_UnlockCell_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnlockCellRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).UnlockCell(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_UnlockCell_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).UnlockCell(ctx, req.(*UnlockCellRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1460,8 +1830,20 @@ var AgentPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AgentPublicService_UpdateColumnDefinitions_Handler,
 		},
 		{
+			MethodName: "GetColumnDefinition",
+			Handler:    _AgentPublicService_GetColumnDefinition_Handler,
+		},
+		{
+			MethodName: "RecomputeColumn",
+			Handler:    _AgentPublicService_RecomputeColumn_Handler,
+		},
+		{
 			MethodName: "ListRows",
 			Handler:    _AgentPublicService_ListRows_Handler,
+		},
+		{
+			MethodName: "GetRow",
+			Handler:    _AgentPublicService_GetRow_Handler,
 		},
 		{
 			MethodName: "InsertRow",
@@ -1486,6 +1868,30 @@ var AgentPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "MoveRows",
 			Handler:    _AgentPublicService_MoveRows_Handler,
+		},
+		{
+			MethodName: "GetCell",
+			Handler:    _AgentPublicService_GetCell_Handler,
+		},
+		{
+			MethodName: "UpdateCell",
+			Handler:    _AgentPublicService_UpdateCell_Handler,
+		},
+		{
+			MethodName: "ResetCell",
+			Handler:    _AgentPublicService_ResetCell_Handler,
+		},
+		{
+			MethodName: "RecomputeCell",
+			Handler:    _AgentPublicService_RecomputeCell_Handler,
+		},
+		{
+			MethodName: "LockCell",
+			Handler:    _AgentPublicService_LockCell_Handler,
+		},
+		{
+			MethodName: "UnlockCell",
+			Handler:    _AgentPublicService_UnlockCell_Handler,
 		},
 		{
 			MethodName: "ExportTable",
