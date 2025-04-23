@@ -264,6 +264,8 @@ type Chat struct {
 	// chat delete time.
 	DeleteTime *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=delete_time,json=deleteTime,proto3" json:"delete_time,omitempty"`
 	// catalog id
+	//
+	// Deprecated: Marked as deprecated in agent/agent/v1alpha/chat.proto.
 	CatalogId     string `protobuf:"bytes,8,opt,name=catalog_id,json=catalogId,proto3" json:"catalog_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -348,6 +350,7 @@ func (x *Chat) GetDeleteTime() *timestamppb.Timestamp {
 	return nil
 }
 
+// Deprecated: Marked as deprecated in agent/agent/v1alpha/chat.proto.
 func (x *Chat) GetCatalogId() string {
 	if x != nil {
 		return x.CatalogId
@@ -574,6 +577,8 @@ type CreateChatRequest struct {
 	// agent config
 	AgentConfig *AgentConfig `protobuf:"bytes,3,opt,name=agent_config,json=agentConfig,proto3" json:"agent_config,omitempty"`
 	// catalog id
+	//
+	// Deprecated: Marked as deprecated in agent/agent/v1alpha/chat.proto.
 	CatalogId     string `protobuf:"bytes,4,opt,name=catalog_id,json=catalogId,proto3" json:"catalog_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -630,6 +635,7 @@ func (x *CreateChatRequest) GetAgentConfig() *AgentConfig {
 	return nil
 }
 
+// Deprecated: Marked as deprecated in agent/agent/v1alpha/chat.proto.
 func (x *CreateChatRequest) GetCatalogId() string {
 	if x != nil {
 		return x.CatalogId
@@ -1739,11 +1745,15 @@ type ChatRequest struct {
 	// User message
 	Message string `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
 	// file UIDs
+	//
+	// Deprecated: Marked as deprecated in agent/agent/v1alpha/chat.proto.
 	FileUids []string `protobuf:"bytes,4,rep,name=file_uids,json=fileUids,proto3" json:"file_uids,omitempty"`
 	// Whether to enable web search for the chat.
 	EnableWebSearch bool `protobuf:"varint,5,opt,name=enable_web_search,json=enableWebSearch,proto3" json:"enable_web_search,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	// object UIDs
+	ObjectUids    []string `protobuf:"bytes,6,rep,name=object_uids,json=objectUids,proto3" json:"object_uids,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ChatRequest) Reset() {
@@ -1797,6 +1807,7 @@ func (x *ChatRequest) GetMessage() string {
 	return ""
 }
 
+// Deprecated: Marked as deprecated in agent/agent/v1alpha/chat.proto.
 func (x *ChatRequest) GetFileUids() []string {
 	if x != nil {
 		return x.FileUids
@@ -1809,6 +1820,13 @@ func (x *ChatRequest) GetEnableWebSearch() bool {
 		return x.EnableWebSearch
 	}
 	return false
+}
+
+func (x *ChatRequest) GetObjectUids() []string {
+	if x != nil {
+		return x.ObjectUids
+	}
+	return nil
 }
 
 // ChatResponse contains the chatbot response.
@@ -2408,7 +2426,7 @@ const file_agent_agent_v1alpha_chat_proto_rawDesc = "" +
 	"\vconnections\x18\x02 \x03(\v21.agent.agent.v1alpha.AgentConfig.ConnectionsEntryB\x03\xe0A\x01R\vconnections\x1a>\n" +
 	"\x10ConnectionsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xaa\x03\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xac\x03\n" +
 	"\x04Chat\x12\x15\n" +
 	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12&\n" +
 	"\fnamespace_id\x18\x02 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12/\n" +
@@ -2419,9 +2437,9 @@ const file_agent_agent_v1alpha_chat_proto_rawDesc = "" +
 	"\vupdate_time\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
 	"updateTime\x12@\n" +
 	"\vdelete_time\x18\a \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
-	"deleteTime\x12\"\n" +
+	"deleteTime\x12$\n" +
 	"\n" +
-	"catalog_id\x18\b \x01(\tB\x03\xe0A\x03R\tcatalogId\"\x9a\x02\n" +
+	"catalog_id\x18\b \x01(\tB\x05\xe0A\x03\x18\x01R\tcatalogId\"\x9a\x02\n" +
 	"\bCitation\x125\n" +
 	"\x04type\x18\x01 \x01(\x0e2!.agent.agent.v1alpha.CitationTypeR\x04type\x12\x17\n" +
 	"\x04name\x18\x02 \x01(\tB\x03\xe0A\x03R\x04name\x12\x15\n" +
@@ -2445,13 +2463,13 @@ const file_agent_agent_v1alpha_chat_proto_rawDesc = "" +
 	"\tcitations\x18\t \x03(\v2\x1d.agent.agent.v1alpha.CitationB\x03\xe0A\x03R\tcitations\"B\n" +
 	"\vMessageType\x12\x1c\n" +
 	"\x18MESSAGE_TYPE_UNSPECIFIED\x10\x00\x12\x15\n" +
-	"\x11MESSAGE_TYPE_TEXT\x10\x01\"\xda\x01\n" +
+	"\x11MESSAGE_TYPE_TEXT\x10\x01\"\xdc\x01\n" +
 	"\x11CreateChatRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12/\n" +
 	"\x11chat_display_name\x18\x02 \x01(\tB\x03\xe0A\x01R\x0fchatDisplayName\x12H\n" +
-	"\fagent_config\x18\x03 \x01(\v2 .agent.agent.v1alpha.AgentConfigB\x03\xe0A\x01R\vagentConfig\x12\"\n" +
+	"\fagent_config\x18\x03 \x01(\v2 .agent.agent.v1alpha.AgentConfigB\x03\xe0A\x01R\vagentConfig\x12$\n" +
 	"\n" +
-	"catalog_id\x18\x04 \x01(\tB\x03\xe0A\x01R\tcatalogId\"H\n" +
+	"catalog_id\x18\x04 \x01(\tB\x05\xe0A\x01\x18\x01R\tcatalogId\"H\n" +
 	"\x12CreateChatResponse\x122\n" +
 	"\x04chat\x18\x01 \x01(\v2\x19.agent.agent.v1alpha.ChatB\x03\xe0A\x03R\x04chat\"\xbc\x01\n" +
 	"\x10ListChatsRequest\x12&\n" +
@@ -2524,13 +2542,15 @@ const file_agent_agent_v1alpha_chat_proto_rawDesc = "" +
 	"\bchat_uid\x18\x02 \x01(\tB\x03\xe0A\x02R\achatUid\x12$\n" +
 	"\vmessage_uid\x18\x03 \x01(\tB\x03\xe0A\x02R\n" +
 	"messageUid\"\x17\n" +
-	"\x15DeleteMessageResponse\"\xc7\x01\n" +
+	"\x15DeleteMessageResponse\"\xef\x01\n" +
 	"\vChatRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\x1e\n" +
 	"\bchat_uid\x18\x02 \x01(\tB\x03\xe0A\x02R\achatUid\x12\x1d\n" +
-	"\amessage\x18\x03 \x01(\tB\x03\xe0A\x02R\amessage\x12 \n" +
-	"\tfile_uids\x18\x04 \x03(\tB\x03\xe0A\x01R\bfileUids\x12/\n" +
-	"\x11enable_web_search\x18\x05 \x01(\bB\x03\xe0A\x01R\x0fenableWebSearch\"F\n" +
+	"\amessage\x18\x03 \x01(\tB\x03\xe0A\x02R\amessage\x12\"\n" +
+	"\tfile_uids\x18\x04 \x03(\tB\x05\xe0A\x01\x18\x01R\bfileUids\x12/\n" +
+	"\x11enable_web_search\x18\x05 \x01(\bB\x03\xe0A\x01R\x0fenableWebSearch\x12$\n" +
+	"\vobject_uids\x18\x06 \x03(\tB\x03\xe0A\x01R\n" +
+	"objectUids\"F\n" +
 	"\fChatResponse\x126\n" +
 	"\aoutputs\x18\x01 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\aoutputs\"T\n" +
 	"\x10ChatStartedEvent\x12@\n" +
