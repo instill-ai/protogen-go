@@ -19,47 +19,45 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AgentPublicService_Liveness_FullMethodName                = "/agent.agent.v1alpha.AgentPublicService/Liveness"
-	AgentPublicService_Readiness_FullMethodName               = "/agent.agent.v1alpha.AgentPublicService/Readiness"
-	AgentPublicService_CreateChat_FullMethodName              = "/agent.agent.v1alpha.AgentPublicService/CreateChat"
-	AgentPublicService_ListChats_FullMethodName               = "/agent.agent.v1alpha.AgentPublicService/ListChats"
-	AgentPublicService_UpdateChat_FullMethodName              = "/agent.agent.v1alpha.AgentPublicService/UpdateChat"
-	AgentPublicService_GetChat_FullMethodName                 = "/agent.agent.v1alpha.AgentPublicService/GetChat"
-	AgentPublicService_DeleteChat_FullMethodName              = "/agent.agent.v1alpha.AgentPublicService/DeleteChat"
-	AgentPublicService_CreateMessage_FullMethodName           = "/agent.agent.v1alpha.AgentPublicService/CreateMessage"
-	AgentPublicService_ListMessages_FullMethodName            = "/agent.agent.v1alpha.AgentPublicService/ListMessages"
-	AgentPublicService_UpdateMessage_FullMethodName           = "/agent.agent.v1alpha.AgentPublicService/UpdateMessage"
-	AgentPublicService_DeleteMessage_FullMethodName           = "/agent.agent.v1alpha.AgentPublicService/DeleteMessage"
-	AgentPublicService_Chat_FullMethodName                    = "/agent.agent.v1alpha.AgentPublicService/Chat"
-	AgentPublicService_BindChatTable_FullMethodName           = "/agent.agent.v1alpha.AgentPublicService/BindChatTable"
-	AgentPublicService_UnbindChatTable_FullMethodName         = "/agent.agent.v1alpha.AgentPublicService/UnbindChatTable"
-	AgentPublicService_ListChatTables_FullMethodName          = "/agent.agent.v1alpha.AgentPublicService/ListChatTables"
-	AgentPublicService_ListTables_FullMethodName              = "/agent.agent.v1alpha.AgentPublicService/ListTables"
-	AgentPublicService_CreateTable_FullMethodName             = "/agent.agent.v1alpha.AgentPublicService/CreateTable"
-	AgentPublicService_GetTable_FullMethodName                = "/agent.agent.v1alpha.AgentPublicService/GetTable"
-	AgentPublicService_UpdateTable_FullMethodName             = "/agent.agent.v1alpha.AgentPublicService/UpdateTable"
-	AgentPublicService_DeleteTable_FullMethodName             = "/agent.agent.v1alpha.AgentPublicService/DeleteTable"
-	AgentPublicService_GetColumnDefinitions_FullMethodName    = "/agent.agent.v1alpha.AgentPublicService/GetColumnDefinitions"
-	AgentPublicService_UpdateColumnDefinitions_FullMethodName = "/agent.agent.v1alpha.AgentPublicService/UpdateColumnDefinitions"
-	AgentPublicService_GetColumnDefinition_FullMethodName     = "/agent.agent.v1alpha.AgentPublicService/GetColumnDefinition"
-	AgentPublicService_RecomputeColumn_FullMethodName         = "/agent.agent.v1alpha.AgentPublicService/RecomputeColumn"
-	AgentPublicService_ListRows_FullMethodName                = "/agent.agent.v1alpha.AgentPublicService/ListRows"
-	AgentPublicService_GetRow_FullMethodName                  = "/agent.agent.v1alpha.AgentPublicService/GetRow"
-	AgentPublicService_InsertRow_FullMethodName               = "/agent.agent.v1alpha.AgentPublicService/InsertRow"
-	AgentPublicService_UpdateRow_FullMethodName               = "/agent.agent.v1alpha.AgentPublicService/UpdateRow"
-	AgentPublicService_UpdateRows_FullMethodName              = "/agent.agent.v1alpha.AgentPublicService/UpdateRows"
-	AgentPublicService_DeleteRow_FullMethodName               = "/agent.agent.v1alpha.AgentPublicService/DeleteRow"
-	AgentPublicService_DeleteRows_FullMethodName              = "/agent.agent.v1alpha.AgentPublicService/DeleteRows"
-	AgentPublicService_MoveRows_FullMethodName                = "/agent.agent.v1alpha.AgentPublicService/MoveRows"
-	AgentPublicService_GetCell_FullMethodName                 = "/agent.agent.v1alpha.AgentPublicService/GetCell"
-	AgentPublicService_UpdateCell_FullMethodName              = "/agent.agent.v1alpha.AgentPublicService/UpdateCell"
-	AgentPublicService_ResetCell_FullMethodName               = "/agent.agent.v1alpha.AgentPublicService/ResetCell"
-	AgentPublicService_RecomputeCell_FullMethodName           = "/agent.agent.v1alpha.AgentPublicService/RecomputeCell"
-	AgentPublicService_LockCell_FullMethodName                = "/agent.agent.v1alpha.AgentPublicService/LockCell"
-	AgentPublicService_UnlockCell_FullMethodName              = "/agent.agent.v1alpha.AgentPublicService/UnlockCell"
-	AgentPublicService_GetTableEvents_FullMethodName          = "/agent.agent.v1alpha.AgentPublicService/GetTableEvents"
-	AgentPublicService_ExportTable_FullMethodName             = "/agent.agent.v1alpha.AgentPublicService/ExportTable"
-	AgentPublicService_GenerateMockTable_FullMethodName       = "/agent.agent.v1alpha.AgentPublicService/GenerateMockTable"
+	AgentPublicService_Liveness_FullMethodName                      = "/agent.agent.v1alpha.AgentPublicService/Liveness"
+	AgentPublicService_Readiness_FullMethodName                     = "/agent.agent.v1alpha.AgentPublicService/Readiness"
+	AgentPublicService_CreateChat_FullMethodName                    = "/agent.agent.v1alpha.AgentPublicService/CreateChat"
+	AgentPublicService_ListChats_FullMethodName                     = "/agent.agent.v1alpha.AgentPublicService/ListChats"
+	AgentPublicService_UpdateChat_FullMethodName                    = "/agent.agent.v1alpha.AgentPublicService/UpdateChat"
+	AgentPublicService_GetChat_FullMethodName                       = "/agent.agent.v1alpha.AgentPublicService/GetChat"
+	AgentPublicService_DeleteChat_FullMethodName                    = "/agent.agent.v1alpha.AgentPublicService/DeleteChat"
+	AgentPublicService_ListMessages_FullMethodName                  = "/agent.agent.v1alpha.AgentPublicService/ListMessages"
+	AgentPublicService_ChatWithAgent_FullMethodName                 = "/agent.agent.v1alpha.AgentPublicService/ChatWithAgent"
+	AgentPublicService_BindChatTable_FullMethodName                 = "/agent.agent.v1alpha.AgentPublicService/BindChatTable"
+	AgentPublicService_UnbindChatTable_FullMethodName               = "/agent.agent.v1alpha.AgentPublicService/UnbindChatTable"
+	AgentPublicService_ListChatTables_FullMethodName                = "/agent.agent.v1alpha.AgentPublicService/ListChatTables"
+	AgentPublicService_ListTables_FullMethodName                    = "/agent.agent.v1alpha.AgentPublicService/ListTables"
+	AgentPublicService_CreateTable_FullMethodName                   = "/agent.agent.v1alpha.AgentPublicService/CreateTable"
+	AgentPublicService_GetTable_FullMethodName                      = "/agent.agent.v1alpha.AgentPublicService/GetTable"
+	AgentPublicService_UpdateTable_FullMethodName                   = "/agent.agent.v1alpha.AgentPublicService/UpdateTable"
+	AgentPublicService_DeleteTable_FullMethodName                   = "/agent.agent.v1alpha.AgentPublicService/DeleteTable"
+	AgentPublicService_ChatWithTableBuilderAgent_FullMethodName     = "/agent.agent.v1alpha.AgentPublicService/ChatWithTableBuilderAgent"
+	AgentPublicService_ListTableBuilderAgentMessages_FullMethodName = "/agent.agent.v1alpha.AgentPublicService/ListTableBuilderAgentMessages"
+	AgentPublicService_GetColumnDefinitions_FullMethodName          = "/agent.agent.v1alpha.AgentPublicService/GetColumnDefinitions"
+	AgentPublicService_UpdateColumnDefinitions_FullMethodName       = "/agent.agent.v1alpha.AgentPublicService/UpdateColumnDefinitions"
+	AgentPublicService_GetColumnDefinition_FullMethodName           = "/agent.agent.v1alpha.AgentPublicService/GetColumnDefinition"
+	AgentPublicService_RecomputeColumn_FullMethodName               = "/agent.agent.v1alpha.AgentPublicService/RecomputeColumn"
+	AgentPublicService_ListRows_FullMethodName                      = "/agent.agent.v1alpha.AgentPublicService/ListRows"
+	AgentPublicService_GetRow_FullMethodName                        = "/agent.agent.v1alpha.AgentPublicService/GetRow"
+	AgentPublicService_InsertRow_FullMethodName                     = "/agent.agent.v1alpha.AgentPublicService/InsertRow"
+	AgentPublicService_UpdateRow_FullMethodName                     = "/agent.agent.v1alpha.AgentPublicService/UpdateRow"
+	AgentPublicService_UpdateRows_FullMethodName                    = "/agent.agent.v1alpha.AgentPublicService/UpdateRows"
+	AgentPublicService_DeleteRow_FullMethodName                     = "/agent.agent.v1alpha.AgentPublicService/DeleteRow"
+	AgentPublicService_DeleteRows_FullMethodName                    = "/agent.agent.v1alpha.AgentPublicService/DeleteRows"
+	AgentPublicService_MoveRows_FullMethodName                      = "/agent.agent.v1alpha.AgentPublicService/MoveRows"
+	AgentPublicService_GetCell_FullMethodName                       = "/agent.agent.v1alpha.AgentPublicService/GetCell"
+	AgentPublicService_UpdateCell_FullMethodName                    = "/agent.agent.v1alpha.AgentPublicService/UpdateCell"
+	AgentPublicService_ResetCell_FullMethodName                     = "/agent.agent.v1alpha.AgentPublicService/ResetCell"
+	AgentPublicService_RecomputeCell_FullMethodName                 = "/agent.agent.v1alpha.AgentPublicService/RecomputeCell"
+	AgentPublicService_LockCell_FullMethodName                      = "/agent.agent.v1alpha.AgentPublicService/LockCell"
+	AgentPublicService_UnlockCell_FullMethodName                    = "/agent.agent.v1alpha.AgentPublicService/UnlockCell"
+	AgentPublicService_GetTableEvents_FullMethodName                = "/agent.agent.v1alpha.AgentPublicService/GetTableEvents"
+	AgentPublicService_ExportTable_FullMethodName                   = "/agent.agent.v1alpha.AgentPublicService/ExportTable"
 )
 
 // AgentPublicServiceClient is the client API for AgentPublicService service.
@@ -97,28 +95,14 @@ type AgentPublicServiceClient interface {
 	//
 	// Deletes a chat.
 	DeleteChat(ctx context.Context, in *DeleteChatRequest, opts ...grpc.CallOption) (*DeleteChatResponse, error)
-	// Create a message
-	//
-	// Creates a message.
-	CreateMessage(ctx context.Context, in *CreateMessageRequest, opts ...grpc.CallOption) (*CreateMessageResponse, error)
 	// List messages
 	//
 	// Returns a paginated list of messages.
 	ListMessages(ctx context.Context, in *ListMessagesRequest, opts ...grpc.CallOption) (*ListMessagesResponse, error)
-	// Update a message
+	// Chat with agent
 	//
-	// Updates a message.
-	UpdateMessage(ctx context.Context, in *UpdateMessageRequest, opts ...grpc.CallOption) (*UpdateMessageResponse, error)
-	// Delete a message
-	//
-	// Deletes a message.
-	DeleteMessage(ctx context.Context, in *DeleteMessageRequest, opts ...grpc.CallOption) (*DeleteMessageResponse, error)
-	// Chat
-	//
-	// Chat sends a message asynchronously and streams back the response.
-	// This method is intended for real-time conversation with a chatbot
-	// and the response needs to be processed incrementally.
-	Chat(ctx context.Context, in *ChatRequest, opts ...grpc.CallOption) (*ChatResponse, error)
+	// Chat with the agent.
+	ChatWithAgent(ctx context.Context, in *ChatWithAgentRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ChatWithAgentResponse], error)
 	// Bind table to chat
 	//
 	// Binds a table to a chat.
@@ -151,6 +135,14 @@ type AgentPublicServiceClient interface {
 	//
 	// Deletes a table.
 	DeleteTable(ctx context.Context, in *DeleteTableRequest, opts ...grpc.CallOption) (*DeleteTableResponse, error)
+	// Chat with table builder agent
+	//
+	// Chat with the table builder agent.
+	ChatWithTableBuilderAgent(ctx context.Context, in *ChatWithTableBuilderAgentRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ChatWithTableBuilderAgentResponse], error)
+	// List table builder agent messages
+	//
+	// Lists the messages from the table builder agent.
+	ListTableBuilderAgentMessages(ctx context.Context, in *ListTableBuilderAgentMessagesRequest, opts ...grpc.CallOption) (*ListTableBuilderAgentMessagesResponse, error)
 	// Get column definitions
 	//
 	// Gets column definitions for a table.
@@ -236,12 +228,6 @@ type AgentPublicServiceClient interface {
 	//
 	// Exports table data.
 	ExportTable(ctx context.Context, in *ExportTableRequest, opts ...grpc.CallOption) (*ExportTableResponse, error)
-	// Generate mock table
-	//
-	// Generates mock table data.
-	// This API is only available for internal use to generate mock row data for testing purposes.
-	// It should not be used in production environments.
-	GenerateMockTable(ctx context.Context, in *GenerateMockTableRequest, opts ...grpc.CallOption) (*GenerateMockTableResponse, error)
 }
 
 type agentPublicServiceClient struct {
@@ -322,16 +308,6 @@ func (c *agentPublicServiceClient) DeleteChat(ctx context.Context, in *DeleteCha
 	return out, nil
 }
 
-func (c *agentPublicServiceClient) CreateMessage(ctx context.Context, in *CreateMessageRequest, opts ...grpc.CallOption) (*CreateMessageResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateMessageResponse)
-	err := c.cc.Invoke(ctx, AgentPublicService_CreateMessage_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *agentPublicServiceClient) ListMessages(ctx context.Context, in *ListMessagesRequest, opts ...grpc.CallOption) (*ListMessagesResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListMessagesResponse)
@@ -342,35 +318,24 @@ func (c *agentPublicServiceClient) ListMessages(ctx context.Context, in *ListMes
 	return out, nil
 }
 
-func (c *agentPublicServiceClient) UpdateMessage(ctx context.Context, in *UpdateMessageRequest, opts ...grpc.CallOption) (*UpdateMessageResponse, error) {
+func (c *agentPublicServiceClient) ChatWithAgent(ctx context.Context, in *ChatWithAgentRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ChatWithAgentResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateMessageResponse)
-	err := c.cc.Invoke(ctx, AgentPublicService_UpdateMessage_FullMethodName, in, out, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &AgentPublicService_ServiceDesc.Streams[0], AgentPublicService_ChatWithAgent_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	x := &grpc.GenericClientStream[ChatWithAgentRequest, ChatWithAgentResponse]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
 }
 
-func (c *agentPublicServiceClient) DeleteMessage(ctx context.Context, in *DeleteMessageRequest, opts ...grpc.CallOption) (*DeleteMessageResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteMessageResponse)
-	err := c.cc.Invoke(ctx, AgentPublicService_DeleteMessage_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *agentPublicServiceClient) Chat(ctx context.Context, in *ChatRequest, opts ...grpc.CallOption) (*ChatResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ChatResponse)
-	err := c.cc.Invoke(ctx, AgentPublicService_Chat_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type AgentPublicService_ChatWithAgentClient = grpc.ServerStreamingClient[ChatWithAgentResponse]
 
 func (c *agentPublicServiceClient) BindChatTable(ctx context.Context, in *BindChatTableRequest, opts ...grpc.CallOption) (*BindChatTableResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
@@ -446,6 +411,35 @@ func (c *agentPublicServiceClient) DeleteTable(ctx context.Context, in *DeleteTa
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteTableResponse)
 	err := c.cc.Invoke(ctx, AgentPublicService_DeleteTable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentPublicServiceClient) ChatWithTableBuilderAgent(ctx context.Context, in *ChatWithTableBuilderAgentRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ChatWithTableBuilderAgentResponse], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &AgentPublicService_ServiceDesc.Streams[1], AgentPublicService_ChatWithTableBuilderAgent_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[ChatWithTableBuilderAgentRequest, ChatWithTableBuilderAgentResponse]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type AgentPublicService_ChatWithTableBuilderAgentClient = grpc.ServerStreamingClient[ChatWithTableBuilderAgentResponse]
+
+func (c *agentPublicServiceClient) ListTableBuilderAgentMessages(ctx context.Context, in *ListTableBuilderAgentMessagesRequest, opts ...grpc.CallOption) (*ListTableBuilderAgentMessagesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListTableBuilderAgentMessagesResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_ListTableBuilderAgentMessages_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -634,7 +628,7 @@ func (c *agentPublicServiceClient) UnlockCell(ctx context.Context, in *UnlockCel
 
 func (c *agentPublicServiceClient) GetTableEvents(ctx context.Context, in *GetTableEventsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[GetTableEventsResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &AgentPublicService_ServiceDesc.Streams[0], AgentPublicService_GetTableEvents_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &AgentPublicService_ServiceDesc.Streams[2], AgentPublicService_GetTableEvents_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -655,16 +649,6 @@ func (c *agentPublicServiceClient) ExportTable(ctx context.Context, in *ExportTa
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ExportTableResponse)
 	err := c.cc.Invoke(ctx, AgentPublicService_ExportTable_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *agentPublicServiceClient) GenerateMockTable(ctx context.Context, in *GenerateMockTableRequest, opts ...grpc.CallOption) (*GenerateMockTableResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GenerateMockTableResponse)
-	err := c.cc.Invoke(ctx, AgentPublicService_GenerateMockTable_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -706,28 +690,14 @@ type AgentPublicServiceServer interface {
 	//
 	// Deletes a chat.
 	DeleteChat(context.Context, *DeleteChatRequest) (*DeleteChatResponse, error)
-	// Create a message
-	//
-	// Creates a message.
-	CreateMessage(context.Context, *CreateMessageRequest) (*CreateMessageResponse, error)
 	// List messages
 	//
 	// Returns a paginated list of messages.
 	ListMessages(context.Context, *ListMessagesRequest) (*ListMessagesResponse, error)
-	// Update a message
+	// Chat with agent
 	//
-	// Updates a message.
-	UpdateMessage(context.Context, *UpdateMessageRequest) (*UpdateMessageResponse, error)
-	// Delete a message
-	//
-	// Deletes a message.
-	DeleteMessage(context.Context, *DeleteMessageRequest) (*DeleteMessageResponse, error)
-	// Chat
-	//
-	// Chat sends a message asynchronously and streams back the response.
-	// This method is intended for real-time conversation with a chatbot
-	// and the response needs to be processed incrementally.
-	Chat(context.Context, *ChatRequest) (*ChatResponse, error)
+	// Chat with the agent.
+	ChatWithAgent(*ChatWithAgentRequest, grpc.ServerStreamingServer[ChatWithAgentResponse]) error
 	// Bind table to chat
 	//
 	// Binds a table to a chat.
@@ -760,6 +730,14 @@ type AgentPublicServiceServer interface {
 	//
 	// Deletes a table.
 	DeleteTable(context.Context, *DeleteTableRequest) (*DeleteTableResponse, error)
+	// Chat with table builder agent
+	//
+	// Chat with the table builder agent.
+	ChatWithTableBuilderAgent(*ChatWithTableBuilderAgentRequest, grpc.ServerStreamingServer[ChatWithTableBuilderAgentResponse]) error
+	// List table builder agent messages
+	//
+	// Lists the messages from the table builder agent.
+	ListTableBuilderAgentMessages(context.Context, *ListTableBuilderAgentMessagesRequest) (*ListTableBuilderAgentMessagesResponse, error)
 	// Get column definitions
 	//
 	// Gets column definitions for a table.
@@ -845,12 +823,6 @@ type AgentPublicServiceServer interface {
 	//
 	// Exports table data.
 	ExportTable(context.Context, *ExportTableRequest) (*ExportTableResponse, error)
-	// Generate mock table
-	//
-	// Generates mock table data.
-	// This API is only available for internal use to generate mock row data for testing purposes.
-	// It should not be used in production environments.
-	GenerateMockTable(context.Context, *GenerateMockTableRequest) (*GenerateMockTableResponse, error)
 }
 
 // UnimplementedAgentPublicServiceServer should be embedded to have
@@ -881,20 +853,11 @@ func (UnimplementedAgentPublicServiceServer) GetChat(context.Context, *GetChatRe
 func (UnimplementedAgentPublicServiceServer) DeleteChat(context.Context, *DeleteChatRequest) (*DeleteChatResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteChat not implemented")
 }
-func (UnimplementedAgentPublicServiceServer) CreateMessage(context.Context, *CreateMessageRequest) (*CreateMessageResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateMessage not implemented")
-}
 func (UnimplementedAgentPublicServiceServer) ListMessages(context.Context, *ListMessagesRequest) (*ListMessagesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListMessages not implemented")
 }
-func (UnimplementedAgentPublicServiceServer) UpdateMessage(context.Context, *UpdateMessageRequest) (*UpdateMessageResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateMessage not implemented")
-}
-func (UnimplementedAgentPublicServiceServer) DeleteMessage(context.Context, *DeleteMessageRequest) (*DeleteMessageResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteMessage not implemented")
-}
-func (UnimplementedAgentPublicServiceServer) Chat(context.Context, *ChatRequest) (*ChatResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Chat not implemented")
+func (UnimplementedAgentPublicServiceServer) ChatWithAgent(*ChatWithAgentRequest, grpc.ServerStreamingServer[ChatWithAgentResponse]) error {
+	return status.Errorf(codes.Unimplemented, "method ChatWithAgent not implemented")
 }
 func (UnimplementedAgentPublicServiceServer) BindChatTable(context.Context, *BindChatTableRequest) (*BindChatTableResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BindChatTable not implemented")
@@ -919,6 +882,12 @@ func (UnimplementedAgentPublicServiceServer) UpdateTable(context.Context, *Updat
 }
 func (UnimplementedAgentPublicServiceServer) DeleteTable(context.Context, *DeleteTableRequest) (*DeleteTableResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteTable not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) ChatWithTableBuilderAgent(*ChatWithTableBuilderAgentRequest, grpc.ServerStreamingServer[ChatWithTableBuilderAgentResponse]) error {
+	return status.Errorf(codes.Unimplemented, "method ChatWithTableBuilderAgent not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) ListTableBuilderAgentMessages(context.Context, *ListTableBuilderAgentMessagesRequest) (*ListTableBuilderAgentMessagesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTableBuilderAgentMessages not implemented")
 }
 func (UnimplementedAgentPublicServiceServer) GetColumnDefinitions(context.Context, *GetColumnDefinitionsRequest) (*GetColumnDefinitionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetColumnDefinitions not implemented")
@@ -979,9 +948,6 @@ func (UnimplementedAgentPublicServiceServer) GetTableEvents(*GetTableEventsReque
 }
 func (UnimplementedAgentPublicServiceServer) ExportTable(context.Context, *ExportTableRequest) (*ExportTableResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ExportTable not implemented")
-}
-func (UnimplementedAgentPublicServiceServer) GenerateMockTable(context.Context, *GenerateMockTableRequest) (*GenerateMockTableResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GenerateMockTable not implemented")
 }
 func (UnimplementedAgentPublicServiceServer) testEmbeddedByValue() {}
 
@@ -1129,24 +1095,6 @@ func _AgentPublicService_DeleteChat_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AgentPublicService_CreateMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateMessageRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AgentPublicServiceServer).CreateMessage(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AgentPublicService_CreateMessage_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AgentPublicServiceServer).CreateMessage(ctx, req.(*CreateMessageRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _AgentPublicService_ListMessages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListMessagesRequest)
 	if err := dec(in); err != nil {
@@ -1165,59 +1113,16 @@ func _AgentPublicService_ListMessages_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AgentPublicService_UpdateMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateMessageRequest)
-	if err := dec(in); err != nil {
-		return nil, err
+func _AgentPublicService_ChatWithAgent_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(ChatWithAgentRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
 	}
-	if interceptor == nil {
-		return srv.(AgentPublicServiceServer).UpdateMessage(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AgentPublicService_UpdateMessage_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AgentPublicServiceServer).UpdateMessage(ctx, req.(*UpdateMessageRequest))
-	}
-	return interceptor(ctx, in, info, handler)
+	return srv.(AgentPublicServiceServer).ChatWithAgent(m, &grpc.GenericServerStream[ChatWithAgentRequest, ChatWithAgentResponse]{ServerStream: stream})
 }
 
-func _AgentPublicService_DeleteMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteMessageRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AgentPublicServiceServer).DeleteMessage(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AgentPublicService_DeleteMessage_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AgentPublicServiceServer).DeleteMessage(ctx, req.(*DeleteMessageRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AgentPublicService_Chat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ChatRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AgentPublicServiceServer).Chat(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AgentPublicService_Chat_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AgentPublicServiceServer).Chat(ctx, req.(*ChatRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type AgentPublicService_ChatWithAgentServer = grpc.ServerStreamingServer[ChatWithAgentResponse]
 
 func _AgentPublicService_BindChatTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(BindChatTableRequest)
@@ -1359,6 +1264,35 @@ func _AgentPublicService_DeleteTable_Handler(srv interface{}, ctx context.Contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AgentPublicServiceServer).DeleteTable(ctx, req.(*DeleteTableRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentPublicService_ChatWithTableBuilderAgent_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(ChatWithTableBuilderAgentRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(AgentPublicServiceServer).ChatWithTableBuilderAgent(m, &grpc.GenericServerStream[ChatWithTableBuilderAgentRequest, ChatWithTableBuilderAgentResponse]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type AgentPublicService_ChatWithTableBuilderAgentServer = grpc.ServerStreamingServer[ChatWithTableBuilderAgentResponse]
+
+func _AgentPublicService_ListTableBuilderAgentMessages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTableBuilderAgentMessagesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).ListTableBuilderAgentMessages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_ListTableBuilderAgentMessages_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).ListTableBuilderAgentMessages(ctx, req.(*ListTableBuilderAgentMessagesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1716,24 +1650,6 @@ func _AgentPublicService_ExportTable_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AgentPublicService_GenerateMockTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GenerateMockTableRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AgentPublicServiceServer).GenerateMockTable(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AgentPublicService_GenerateMockTable_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AgentPublicServiceServer).GenerateMockTable(ctx, req.(*GenerateMockTableRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // AgentPublicService_ServiceDesc is the grpc.ServiceDesc for AgentPublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1770,24 +1686,8 @@ var AgentPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AgentPublicService_DeleteChat_Handler,
 		},
 		{
-			MethodName: "CreateMessage",
-			Handler:    _AgentPublicService_CreateMessage_Handler,
-		},
-		{
 			MethodName: "ListMessages",
 			Handler:    _AgentPublicService_ListMessages_Handler,
-		},
-		{
-			MethodName: "UpdateMessage",
-			Handler:    _AgentPublicService_UpdateMessage_Handler,
-		},
-		{
-			MethodName: "DeleteMessage",
-			Handler:    _AgentPublicService_DeleteMessage_Handler,
-		},
-		{
-			MethodName: "Chat",
-			Handler:    _AgentPublicService_Chat_Handler,
 		},
 		{
 			MethodName: "BindChatTable",
@@ -1820,6 +1720,10 @@ var AgentPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteTable",
 			Handler:    _AgentPublicService_DeleteTable_Handler,
+		},
+		{
+			MethodName: "ListTableBuilderAgentMessages",
+			Handler:    _AgentPublicService_ListTableBuilderAgentMessages_Handler,
 		},
 		{
 			MethodName: "GetColumnDefinitions",
@@ -1897,12 +1801,18 @@ var AgentPublicService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "ExportTable",
 			Handler:    _AgentPublicService_ExportTable_Handler,
 		},
-		{
-			MethodName: "GenerateMockTable",
-			Handler:    _AgentPublicService_GenerateMockTable_Handler,
-		},
 	},
 	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "ChatWithAgent",
+			Handler:       _AgentPublicService_ChatWithAgent_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "ChatWithTableBuilderAgent",
+			Handler:       _AgentPublicService_ChatWithTableBuilderAgent_Handler,
+			ServerStreams: true,
+		},
 		{
 			StreamName:    "GetTableEvents",
 			Handler:       _AgentPublicService_GetTableEvents_Handler,

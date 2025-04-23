@@ -5125,6 +5125,317 @@ func (x *ListChatTablesResponse) GetTables() []*Table {
 	return nil
 }
 
+// TableBuilderAgentMessage represents a message from the table builder agent.
+type TableBuilderAgentMessage struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The message.
+	Message       string `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TableBuilderAgentMessage) Reset() {
+	*x = TableBuilderAgentMessage{}
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[77]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TableBuilderAgentMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TableBuilderAgentMessage) ProtoMessage() {}
+
+func (x *TableBuilderAgentMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[77]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TableBuilderAgentMessage.ProtoReflect.Descriptor instead.
+func (*TableBuilderAgentMessage) Descriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{77}
+}
+
+func (x *TableBuilderAgentMessage) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+// ListTableBuilderAgentMessagesRequest is used to list messages in a conversation
+type ListTableBuilderAgentMessagesRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// namespace id
+	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
+	// table uid
+	TableUid string `protobuf:"bytes,2,opt,name=table_uid,json=tableUid,proto3" json:"table_uid,omitempty"`
+	// page size
+	PageSize int32 `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	// page token
+	PageToken string `protobuf:"bytes,4,opt,name=page_token,json=pageToken,proto3" json:"page_token,omitempty"`
+	// If true, all messages will be returned. This has higher priority over page_size and page_token.
+	IfAll         bool `protobuf:"varint,5,opt,name=if_all,json=ifAll,proto3" json:"if_all,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListTableBuilderAgentMessagesRequest) Reset() {
+	*x = ListTableBuilderAgentMessagesRequest{}
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[78]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListTableBuilderAgentMessagesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListTableBuilderAgentMessagesRequest) ProtoMessage() {}
+
+func (x *ListTableBuilderAgentMessagesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[78]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListTableBuilderAgentMessagesRequest.ProtoReflect.Descriptor instead.
+func (*ListTableBuilderAgentMessagesRequest) Descriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{78}
+}
+
+func (x *ListTableBuilderAgentMessagesRequest) GetNamespaceId() string {
+	if x != nil {
+		return x.NamespaceId
+	}
+	return ""
+}
+
+func (x *ListTableBuilderAgentMessagesRequest) GetTableUid() string {
+	if x != nil {
+		return x.TableUid
+	}
+	return ""
+}
+
+func (x *ListTableBuilderAgentMessagesRequest) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+func (x *ListTableBuilderAgentMessagesRequest) GetPageToken() string {
+	if x != nil {
+		return x.PageToken
+	}
+	return ""
+}
+
+func (x *ListTableBuilderAgentMessagesRequest) GetIfAll() bool {
+	if x != nil {
+		return x.IfAll
+	}
+	return false
+}
+
+// ListTableBuilderAgentMessagesResponse returns a list of messages
+type ListTableBuilderAgentMessagesResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// messages
+	Messages []*Message `protobuf:"bytes,1,rep,name=messages,proto3" json:"messages,omitempty"`
+	// next page token
+	NextPageToken string `protobuf:"bytes,2,opt,name=next_page_token,json=nextPageToken,proto3" json:"next_page_token,omitempty"`
+	// total size
+	TotalSize int32 `protobuf:"varint,3,opt,name=total_size,json=totalSize,proto3" json:"total_size,omitempty"`
+	// message sender profiles
+	SenderProfiles []*MessageSenderProfile `protobuf:"bytes,4,rep,name=sender_profiles,json=senderProfiles,proto3" json:"sender_profiles,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *ListTableBuilderAgentMessagesResponse) Reset() {
+	*x = ListTableBuilderAgentMessagesResponse{}
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[79]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListTableBuilderAgentMessagesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListTableBuilderAgentMessagesResponse) ProtoMessage() {}
+
+func (x *ListTableBuilderAgentMessagesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[79]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListTableBuilderAgentMessagesResponse.ProtoReflect.Descriptor instead.
+func (*ListTableBuilderAgentMessagesResponse) Descriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{79}
+}
+
+func (x *ListTableBuilderAgentMessagesResponse) GetMessages() []*Message {
+	if x != nil {
+		return x.Messages
+	}
+	return nil
+}
+
+func (x *ListTableBuilderAgentMessagesResponse) GetNextPageToken() string {
+	if x != nil {
+		return x.NextPageToken
+	}
+	return ""
+}
+
+func (x *ListTableBuilderAgentMessagesResponse) GetTotalSize() int32 {
+	if x != nil {
+		return x.TotalSize
+	}
+	return 0
+}
+
+func (x *ListTableBuilderAgentMessagesResponse) GetSenderProfiles() []*MessageSenderProfile {
+	if x != nil {
+		return x.SenderProfiles
+	}
+	return nil
+}
+
+// ChatWithTableBuilderAgentRequest represents a request to chat with the table builder agent.
+type ChatWithTableBuilderAgentRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The ID of the namespace that owns the table.
+	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
+	// The UID of the table to send a message to.
+	TableUid string `protobuf:"bytes,2,opt,name=table_uid,json=tableUid,proto3" json:"table_uid,omitempty"`
+	// User message
+	Message       string `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ChatWithTableBuilderAgentRequest) Reset() {
+	*x = ChatWithTableBuilderAgentRequest{}
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[80]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ChatWithTableBuilderAgentRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ChatWithTableBuilderAgentRequest) ProtoMessage() {}
+
+func (x *ChatWithTableBuilderAgentRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[80]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ChatWithTableBuilderAgentRequest.ProtoReflect.Descriptor instead.
+func (*ChatWithTableBuilderAgentRequest) Descriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{80}
+}
+
+func (x *ChatWithTableBuilderAgentRequest) GetNamespaceId() string {
+	if x != nil {
+		return x.NamespaceId
+	}
+	return ""
+}
+
+func (x *ChatWithTableBuilderAgentRequest) GetTableUid() string {
+	if x != nil {
+		return x.TableUid
+	}
+	return ""
+}
+
+func (x *ChatWithTableBuilderAgentRequest) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+// ChatWithTableBuilderAgentResponse contains the response from the table builder agent.
+type ChatWithTableBuilderAgentResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The response from the table builder agent.
+	Event         *ChatEvent `protobuf:"bytes,1,opt,name=event,proto3" json:"event,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ChatWithTableBuilderAgentResponse) Reset() {
+	*x = ChatWithTableBuilderAgentResponse{}
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[81]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ChatWithTableBuilderAgentResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ChatWithTableBuilderAgentResponse) ProtoMessage() {}
+
+func (x *ChatWithTableBuilderAgentResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[81]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ChatWithTableBuilderAgentResponse.ProtoReflect.Descriptor instead.
+func (*ChatWithTableBuilderAgentResponse) Descriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{81}
+}
+
+func (x *ChatWithTableBuilderAgentResponse) GetEvent() *ChatEvent {
+	if x != nil {
+		return x.Event
+	}
+	return nil
+}
+
 // The configuration for the agent.
 type Table_AgentConfig struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -5136,7 +5447,7 @@ type Table_AgentConfig struct {
 
 func (x *Table_AgentConfig) Reset() {
 	*x = Table_AgentConfig{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[77]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[82]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5148,7 +5459,7 @@ func (x *Table_AgentConfig) String() string {
 func (*Table_AgentConfig) ProtoMessage() {}
 
 func (x *Table_AgentConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[77]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[82]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5188,7 +5499,7 @@ type ColumnDefinition_AgentConfig struct {
 
 func (x *ColumnDefinition_AgentConfig) Reset() {
 	*x = ColumnDefinition_AgentConfig{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[78]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[83]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5200,7 +5511,7 @@ func (x *ColumnDefinition_AgentConfig) String() string {
 func (*ColumnDefinition_AgentConfig) ProtoMessage() {}
 
 func (x *ColumnDefinition_AgentConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[78]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[83]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5255,7 +5566,7 @@ type ColumnDefinition_AgentConfig_Context struct {
 
 func (x *ColumnDefinition_AgentConfig_Context) Reset() {
 	*x = ColumnDefinition_AgentConfig_Context{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[79]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[84]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5267,7 +5578,7 @@ func (x *ColumnDefinition_AgentConfig_Context) String() string {
 func (*ColumnDefinition_AgentConfig_Context) ProtoMessage() {}
 
 func (x *ColumnDefinition_AgentConfig_Context) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[79]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[84]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5301,7 +5612,7 @@ type Cell_Transparency struct {
 
 func (x *Cell_Transparency) Reset() {
 	*x = Cell_Transparency{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[83]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[88]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5313,7 +5624,7 @@ func (x *Cell_Transparency) String() string {
 func (*Cell_Transparency) ProtoMessage() {}
 
 func (x *Cell_Transparency) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[83]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[88]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5689,7 +6000,28 @@ const file_agent_agent_v1alpha_table_proto_rawDesc = "" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\x1e\n" +
 	"\bchat_uid\x18\x02 \x01(\tB\x03\xe0A\x02R\achatUid\"Q\n" +
 	"\x16ListChatTablesResponse\x127\n" +
-	"\x06tables\x18\x01 \x03(\v2\x1a.agent.agent.v1alpha.TableB\x03\xe0A\x03R\x06tables*r\n" +
+	"\x06tables\x18\x01 \x03(\v2\x1a.agent.agent.v1alpha.TableB\x03\xe0A\x03R\x06tables\"9\n" +
+	"\x18TableBuilderAgentMessage\x12\x1d\n" +
+	"\amessage\x18\x01 \x01(\tB\x03\xe0A\x02R\amessage\"\xd2\x01\n" +
+	"$ListTableBuilderAgentMessagesRequest\x12&\n" +
+	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12 \n" +
+	"\ttable_uid\x18\x02 \x01(\tB\x03\xe0A\x02R\btableUid\x12 \n" +
+	"\tpage_size\x18\x03 \x01(\x05B\x03\xe0A\x03R\bpageSize\x12\"\n" +
+	"\n" +
+	"page_token\x18\x04 \x01(\tB\x03\xe0A\x03R\tpageToken\x12\x1a\n" +
+	"\x06if_all\x18\x05 \x01(\bB\x03\xe0A\x01R\x05ifAll\"\x90\x02\n" +
+	"%ListTableBuilderAgentMessagesResponse\x12=\n" +
+	"\bmessages\x18\x01 \x03(\v2\x1c.agent.agent.v1alpha.MessageB\x03\xe0A\x03R\bmessages\x12+\n" +
+	"\x0fnext_page_token\x18\x02 \x01(\tB\x03\xe0A\x03R\rnextPageToken\x12\"\n" +
+	"\n" +
+	"total_size\x18\x03 \x01(\x05B\x03\xe0A\x03R\ttotalSize\x12W\n" +
+	"\x0fsender_profiles\x18\x04 \x03(\v2).agent.agent.v1alpha.MessageSenderProfileB\x03\xe0A\x03R\x0esenderProfiles\"\x8b\x01\n" +
+	" ChatWithTableBuilderAgentRequest\x12&\n" +
+	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12 \n" +
+	"\ttable_uid\x18\x02 \x01(\tB\x03\xe0A\x02R\btableUid\x12\x1d\n" +
+	"\amessage\x18\x03 \x01(\tB\x03\xe0A\x02R\amessage\"^\n" +
+	"!ChatWithTableBuilderAgentResponse\x129\n" +
+	"\x05event\x18\x01 \x01(\v2\x1e.agent.agent.v1alpha.ChatEventB\x03\xe0A\x03R\x05event*r\n" +
 	"\x04Type\x12\x14\n" +
 	"\x10TYPE_UNSPECIFIED\x10\x00\x12\x0f\n" +
 	"\vTYPE_STRING\x10\x01\x12\x0f\n" +
@@ -5732,182 +6064,193 @@ func file_agent_agent_v1alpha_table_proto_rawDescGZIP() []byte {
 }
 
 var file_agent_agent_v1alpha_table_proto_enumTypes = make([]protoimpl.EnumInfo, 6)
-var file_agent_agent_v1alpha_table_proto_msgTypes = make([]protoimpl.MessageInfo, 86)
+var file_agent_agent_v1alpha_table_proto_msgTypes = make([]protoimpl.MessageInfo, 91)
 var file_agent_agent_v1alpha_table_proto_goTypes = []any{
-	(Type)(0),                                    // 0: agent.agent.v1alpha.Type
-	(CellStatus)(0),                              // 1: agent.agent.v1alpha.CellStatus
-	(LockState)(0),                               // 2: agent.agent.v1alpha.LockState
-	(ExportFormat)(0),                            // 3: agent.agent.v1alpha.ExportFormat
-	(ColumnDefinition_Sort)(0),                   // 4: agent.agent.v1alpha.ColumnDefinition.Sort
-	(GenerateMockTableRequest_Mode)(0),           // 5: agent.agent.v1alpha.GenerateMockTableRequest.Mode
-	(*Table)(nil),                                // 6: agent.agent.v1alpha.Table
-	(*ListTablesRequest)(nil),                    // 7: agent.agent.v1alpha.ListTablesRequest
-	(*ListTablesResponse)(nil),                   // 8: agent.agent.v1alpha.ListTablesResponse
-	(*CreateTableRequest)(nil),                   // 9: agent.agent.v1alpha.CreateTableRequest
-	(*CreateTableResponse)(nil),                  // 10: agent.agent.v1alpha.CreateTableResponse
-	(*GetTableRequest)(nil),                      // 11: agent.agent.v1alpha.GetTableRequest
-	(*GetTableResponse)(nil),                     // 12: agent.agent.v1alpha.GetTableResponse
-	(*UpdateTableRequest)(nil),                   // 13: agent.agent.v1alpha.UpdateTableRequest
-	(*UpdateTableResponse)(nil),                  // 14: agent.agent.v1alpha.UpdateTableResponse
-	(*DeleteTableRequest)(nil),                   // 15: agent.agent.v1alpha.DeleteTableRequest
-	(*DeleteTableResponse)(nil),                  // 16: agent.agent.v1alpha.DeleteTableResponse
-	(*ColumnDefinition)(nil),                     // 17: agent.agent.v1alpha.ColumnDefinition
-	(*GetColumnDefinitionsRequest)(nil),          // 18: agent.agent.v1alpha.GetColumnDefinitionsRequest
-	(*GetColumnDefinitionsResponse)(nil),         // 19: agent.agent.v1alpha.GetColumnDefinitionsResponse
-	(*UpdateColumnDefinitionsRequest)(nil),       // 20: agent.agent.v1alpha.UpdateColumnDefinitionsRequest
-	(*UpdateColumnDefinitionsResponse)(nil),      // 21: agent.agent.v1alpha.UpdateColumnDefinitionsResponse
-	(*GetColumnDefinitionRequest)(nil),           // 22: agent.agent.v1alpha.GetColumnDefinitionRequest
-	(*GetColumnDefinitionResponse)(nil),          // 23: agent.agent.v1alpha.GetColumnDefinitionResponse
-	(*RecomputeColumnRequest)(nil),               // 24: agent.agent.v1alpha.RecomputeColumnRequest
-	(*RecomputeColumnResponse)(nil),              // 25: agent.agent.v1alpha.RecomputeColumnResponse
-	(*Cell)(nil),                                 // 26: agent.agent.v1alpha.Cell
-	(*NullCell)(nil),                             // 27: agent.agent.v1alpha.NullCell
-	(*StringCell)(nil),                           // 28: agent.agent.v1alpha.StringCell
-	(*NumberCell)(nil),                           // 29: agent.agent.v1alpha.NumberCell
-	(*BooleanCell)(nil),                          // 30: agent.agent.v1alpha.BooleanCell
-	(*FileCell)(nil),                             // 31: agent.agent.v1alpha.FileCell
-	(*DocumentCell)(nil),                         // 32: agent.agent.v1alpha.DocumentCell
-	(*Row)(nil),                                  // 33: agent.agent.v1alpha.Row
-	(*ListRowsRequest)(nil),                      // 34: agent.agent.v1alpha.ListRowsRequest
-	(*ListRowsResponse)(nil),                     // 35: agent.agent.v1alpha.ListRowsResponse
-	(*InsertRowRequest)(nil),                     // 36: agent.agent.v1alpha.InsertRowRequest
-	(*InsertRowResponse)(nil),                    // 37: agent.agent.v1alpha.InsertRowResponse
-	(*UpdateRowRequest)(nil),                     // 38: agent.agent.v1alpha.UpdateRowRequest
-	(*UpdateRowResponse)(nil),                    // 39: agent.agent.v1alpha.UpdateRowResponse
-	(*GetRowRequest)(nil),                        // 40: agent.agent.v1alpha.GetRowRequest
-	(*GetRowResponse)(nil),                       // 41: agent.agent.v1alpha.GetRowResponse
-	(*UpdateRowsRequest)(nil),                    // 42: agent.agent.v1alpha.UpdateRowsRequest
-	(*UpdateRowsResponse)(nil),                   // 43: agent.agent.v1alpha.UpdateRowsResponse
-	(*DeleteRowRequest)(nil),                     // 44: agent.agent.v1alpha.DeleteRowRequest
-	(*DeleteRowResponse)(nil),                    // 45: agent.agent.v1alpha.DeleteRowResponse
-	(*DeleteRowsRequest)(nil),                    // 46: agent.agent.v1alpha.DeleteRowsRequest
-	(*DeleteRowsResponse)(nil),                   // 47: agent.agent.v1alpha.DeleteRowsResponse
-	(*MoveRowsRequest)(nil),                      // 48: agent.agent.v1alpha.MoveRowsRequest
-	(*MoveRowsResponse)(nil),                     // 49: agent.agent.v1alpha.MoveRowsResponse
-	(*GetCellRequest)(nil),                       // 50: agent.agent.v1alpha.GetCellRequest
-	(*GetCellResponse)(nil),                      // 51: agent.agent.v1alpha.GetCellResponse
-	(*UpdateCellRequest)(nil),                    // 52: agent.agent.v1alpha.UpdateCellRequest
-	(*UpdateCellResponse)(nil),                   // 53: agent.agent.v1alpha.UpdateCellResponse
-	(*RecomputeCellRequest)(nil),                 // 54: agent.agent.v1alpha.RecomputeCellRequest
-	(*RecomputeCellResponse)(nil),                // 55: agent.agent.v1alpha.RecomputeCellResponse
-	(*ResetCellRequest)(nil),                     // 56: agent.agent.v1alpha.ResetCellRequest
-	(*ResetCellResponse)(nil),                    // 57: agent.agent.v1alpha.ResetCellResponse
-	(*LockCellRequest)(nil),                      // 58: agent.agent.v1alpha.LockCellRequest
-	(*LockCellResponse)(nil),                     // 59: agent.agent.v1alpha.LockCellResponse
-	(*UnlockCellRequest)(nil),                    // 60: agent.agent.v1alpha.UnlockCellRequest
-	(*UnlockCellResponse)(nil),                   // 61: agent.agent.v1alpha.UnlockCellResponse
-	(*ExportTableRequest)(nil),                   // 62: agent.agent.v1alpha.ExportTableRequest
-	(*ExportTableResponse)(nil),                  // 63: agent.agent.v1alpha.ExportTableResponse
-	(*GetTableEventsRequest)(nil),                // 64: agent.agent.v1alpha.GetTableEventsRequest
-	(*GetTableEventsResponse)(nil),               // 65: agent.agent.v1alpha.GetTableEventsResponse
-	(*TableEvent)(nil),                           // 66: agent.agent.v1alpha.TableEvent
-	(*TableUpdatedEvent)(nil),                    // 67: agent.agent.v1alpha.TableUpdatedEvent
-	(*TableDeletedEvent)(nil),                    // 68: agent.agent.v1alpha.TableDeletedEvent
-	(*ColumnDefinitionsUpdatedEvent)(nil),        // 69: agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent
-	(*RowInsertedEvent)(nil),                     // 70: agent.agent.v1alpha.RowInsertedEvent
-	(*RowUpdatedEvent)(nil),                      // 71: agent.agent.v1alpha.RowUpdatedEvent
-	(*RowDeletedEvent)(nil),                      // 72: agent.agent.v1alpha.RowDeletedEvent
-	(*RowsMovedEvent)(nil),                       // 73: agent.agent.v1alpha.RowsMovedEvent
-	(*CellUpdatedEvent)(nil),                     // 74: agent.agent.v1alpha.CellUpdatedEvent
-	(*GenerateMockTableRequest)(nil),             // 75: agent.agent.v1alpha.GenerateMockTableRequest
-	(*GenerateMockTableResponse)(nil),            // 76: agent.agent.v1alpha.GenerateMockTableResponse
-	(*BindChatTableRequest)(nil),                 // 77: agent.agent.v1alpha.BindChatTableRequest
-	(*BindChatTableResponse)(nil),                // 78: agent.agent.v1alpha.BindChatTableResponse
-	(*UnbindChatTableRequest)(nil),               // 79: agent.agent.v1alpha.UnbindChatTableRequest
-	(*UnbindChatTableResponse)(nil),              // 80: agent.agent.v1alpha.UnbindChatTableResponse
-	(*ListChatTablesRequest)(nil),                // 81: agent.agent.v1alpha.ListChatTablesRequest
-	(*ListChatTablesResponse)(nil),               // 82: agent.agent.v1alpha.ListChatTablesResponse
-	(*Table_AgentConfig)(nil),                    // 83: agent.agent.v1alpha.Table.AgentConfig
-	(*ColumnDefinition_AgentConfig)(nil),         // 84: agent.agent.v1alpha.ColumnDefinition.AgentConfig
-	(*ColumnDefinition_AgentConfig_Context)(nil), // 85: agent.agent.v1alpha.ColumnDefinition.AgentConfig.Context
-	nil,                           // 86: agent.agent.v1alpha.GetColumnDefinitionsResponse.ColumnDefinitionsEntry
-	nil,                           // 87: agent.agent.v1alpha.UpdateColumnDefinitionsRequest.ColumnDefinitionsEntry
-	nil,                           // 88: agent.agent.v1alpha.UpdateColumnDefinitionsResponse.ColumnDefinitionsEntry
-	(*Cell_Transparency)(nil),     // 89: agent.agent.v1alpha.Cell.Transparency
-	nil,                           // 90: agent.agent.v1alpha.Row.CellsEntry
-	nil,                           // 91: agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent.ColumnDefinitionsEntry
-	(*structpb.Struct)(nil),       // 92: google.protobuf.Struct
-	(*timestamppb.Timestamp)(nil), // 93: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil), // 94: google.protobuf.FieldMask
-	(*Citation)(nil),              // 95: agent.agent.v1alpha.Citation
+	(Type)(0),                                     // 0: agent.agent.v1alpha.Type
+	(CellStatus)(0),                               // 1: agent.agent.v1alpha.CellStatus
+	(LockState)(0),                                // 2: agent.agent.v1alpha.LockState
+	(ExportFormat)(0),                             // 3: agent.agent.v1alpha.ExportFormat
+	(ColumnDefinition_Sort)(0),                    // 4: agent.agent.v1alpha.ColumnDefinition.Sort
+	(GenerateMockTableRequest_Mode)(0),            // 5: agent.agent.v1alpha.GenerateMockTableRequest.Mode
+	(*Table)(nil),                                 // 6: agent.agent.v1alpha.Table
+	(*ListTablesRequest)(nil),                     // 7: agent.agent.v1alpha.ListTablesRequest
+	(*ListTablesResponse)(nil),                    // 8: agent.agent.v1alpha.ListTablesResponse
+	(*CreateTableRequest)(nil),                    // 9: agent.agent.v1alpha.CreateTableRequest
+	(*CreateTableResponse)(nil),                   // 10: agent.agent.v1alpha.CreateTableResponse
+	(*GetTableRequest)(nil),                       // 11: agent.agent.v1alpha.GetTableRequest
+	(*GetTableResponse)(nil),                      // 12: agent.agent.v1alpha.GetTableResponse
+	(*UpdateTableRequest)(nil),                    // 13: agent.agent.v1alpha.UpdateTableRequest
+	(*UpdateTableResponse)(nil),                   // 14: agent.agent.v1alpha.UpdateTableResponse
+	(*DeleteTableRequest)(nil),                    // 15: agent.agent.v1alpha.DeleteTableRequest
+	(*DeleteTableResponse)(nil),                   // 16: agent.agent.v1alpha.DeleteTableResponse
+	(*ColumnDefinition)(nil),                      // 17: agent.agent.v1alpha.ColumnDefinition
+	(*GetColumnDefinitionsRequest)(nil),           // 18: agent.agent.v1alpha.GetColumnDefinitionsRequest
+	(*GetColumnDefinitionsResponse)(nil),          // 19: agent.agent.v1alpha.GetColumnDefinitionsResponse
+	(*UpdateColumnDefinitionsRequest)(nil),        // 20: agent.agent.v1alpha.UpdateColumnDefinitionsRequest
+	(*UpdateColumnDefinitionsResponse)(nil),       // 21: agent.agent.v1alpha.UpdateColumnDefinitionsResponse
+	(*GetColumnDefinitionRequest)(nil),            // 22: agent.agent.v1alpha.GetColumnDefinitionRequest
+	(*GetColumnDefinitionResponse)(nil),           // 23: agent.agent.v1alpha.GetColumnDefinitionResponse
+	(*RecomputeColumnRequest)(nil),                // 24: agent.agent.v1alpha.RecomputeColumnRequest
+	(*RecomputeColumnResponse)(nil),               // 25: agent.agent.v1alpha.RecomputeColumnResponse
+	(*Cell)(nil),                                  // 26: agent.agent.v1alpha.Cell
+	(*NullCell)(nil),                              // 27: agent.agent.v1alpha.NullCell
+	(*StringCell)(nil),                            // 28: agent.agent.v1alpha.StringCell
+	(*NumberCell)(nil),                            // 29: agent.agent.v1alpha.NumberCell
+	(*BooleanCell)(nil),                           // 30: agent.agent.v1alpha.BooleanCell
+	(*FileCell)(nil),                              // 31: agent.agent.v1alpha.FileCell
+	(*DocumentCell)(nil),                          // 32: agent.agent.v1alpha.DocumentCell
+	(*Row)(nil),                                   // 33: agent.agent.v1alpha.Row
+	(*ListRowsRequest)(nil),                       // 34: agent.agent.v1alpha.ListRowsRequest
+	(*ListRowsResponse)(nil),                      // 35: agent.agent.v1alpha.ListRowsResponse
+	(*InsertRowRequest)(nil),                      // 36: agent.agent.v1alpha.InsertRowRequest
+	(*InsertRowResponse)(nil),                     // 37: agent.agent.v1alpha.InsertRowResponse
+	(*UpdateRowRequest)(nil),                      // 38: agent.agent.v1alpha.UpdateRowRequest
+	(*UpdateRowResponse)(nil),                     // 39: agent.agent.v1alpha.UpdateRowResponse
+	(*GetRowRequest)(nil),                         // 40: agent.agent.v1alpha.GetRowRequest
+	(*GetRowResponse)(nil),                        // 41: agent.agent.v1alpha.GetRowResponse
+	(*UpdateRowsRequest)(nil),                     // 42: agent.agent.v1alpha.UpdateRowsRequest
+	(*UpdateRowsResponse)(nil),                    // 43: agent.agent.v1alpha.UpdateRowsResponse
+	(*DeleteRowRequest)(nil),                      // 44: agent.agent.v1alpha.DeleteRowRequest
+	(*DeleteRowResponse)(nil),                     // 45: agent.agent.v1alpha.DeleteRowResponse
+	(*DeleteRowsRequest)(nil),                     // 46: agent.agent.v1alpha.DeleteRowsRequest
+	(*DeleteRowsResponse)(nil),                    // 47: agent.agent.v1alpha.DeleteRowsResponse
+	(*MoveRowsRequest)(nil),                       // 48: agent.agent.v1alpha.MoveRowsRequest
+	(*MoveRowsResponse)(nil),                      // 49: agent.agent.v1alpha.MoveRowsResponse
+	(*GetCellRequest)(nil),                        // 50: agent.agent.v1alpha.GetCellRequest
+	(*GetCellResponse)(nil),                       // 51: agent.agent.v1alpha.GetCellResponse
+	(*UpdateCellRequest)(nil),                     // 52: agent.agent.v1alpha.UpdateCellRequest
+	(*UpdateCellResponse)(nil),                    // 53: agent.agent.v1alpha.UpdateCellResponse
+	(*RecomputeCellRequest)(nil),                  // 54: agent.agent.v1alpha.RecomputeCellRequest
+	(*RecomputeCellResponse)(nil),                 // 55: agent.agent.v1alpha.RecomputeCellResponse
+	(*ResetCellRequest)(nil),                      // 56: agent.agent.v1alpha.ResetCellRequest
+	(*ResetCellResponse)(nil),                     // 57: agent.agent.v1alpha.ResetCellResponse
+	(*LockCellRequest)(nil),                       // 58: agent.agent.v1alpha.LockCellRequest
+	(*LockCellResponse)(nil),                      // 59: agent.agent.v1alpha.LockCellResponse
+	(*UnlockCellRequest)(nil),                     // 60: agent.agent.v1alpha.UnlockCellRequest
+	(*UnlockCellResponse)(nil),                    // 61: agent.agent.v1alpha.UnlockCellResponse
+	(*ExportTableRequest)(nil),                    // 62: agent.agent.v1alpha.ExportTableRequest
+	(*ExportTableResponse)(nil),                   // 63: agent.agent.v1alpha.ExportTableResponse
+	(*GetTableEventsRequest)(nil),                 // 64: agent.agent.v1alpha.GetTableEventsRequest
+	(*GetTableEventsResponse)(nil),                // 65: agent.agent.v1alpha.GetTableEventsResponse
+	(*TableEvent)(nil),                            // 66: agent.agent.v1alpha.TableEvent
+	(*TableUpdatedEvent)(nil),                     // 67: agent.agent.v1alpha.TableUpdatedEvent
+	(*TableDeletedEvent)(nil),                     // 68: agent.agent.v1alpha.TableDeletedEvent
+	(*ColumnDefinitionsUpdatedEvent)(nil),         // 69: agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent
+	(*RowInsertedEvent)(nil),                      // 70: agent.agent.v1alpha.RowInsertedEvent
+	(*RowUpdatedEvent)(nil),                       // 71: agent.agent.v1alpha.RowUpdatedEvent
+	(*RowDeletedEvent)(nil),                       // 72: agent.agent.v1alpha.RowDeletedEvent
+	(*RowsMovedEvent)(nil),                        // 73: agent.agent.v1alpha.RowsMovedEvent
+	(*CellUpdatedEvent)(nil),                      // 74: agent.agent.v1alpha.CellUpdatedEvent
+	(*GenerateMockTableRequest)(nil),              // 75: agent.agent.v1alpha.GenerateMockTableRequest
+	(*GenerateMockTableResponse)(nil),             // 76: agent.agent.v1alpha.GenerateMockTableResponse
+	(*BindChatTableRequest)(nil),                  // 77: agent.agent.v1alpha.BindChatTableRequest
+	(*BindChatTableResponse)(nil),                 // 78: agent.agent.v1alpha.BindChatTableResponse
+	(*UnbindChatTableRequest)(nil),                // 79: agent.agent.v1alpha.UnbindChatTableRequest
+	(*UnbindChatTableResponse)(nil),               // 80: agent.agent.v1alpha.UnbindChatTableResponse
+	(*ListChatTablesRequest)(nil),                 // 81: agent.agent.v1alpha.ListChatTablesRequest
+	(*ListChatTablesResponse)(nil),                // 82: agent.agent.v1alpha.ListChatTablesResponse
+	(*TableBuilderAgentMessage)(nil),              // 83: agent.agent.v1alpha.TableBuilderAgentMessage
+	(*ListTableBuilderAgentMessagesRequest)(nil),  // 84: agent.agent.v1alpha.ListTableBuilderAgentMessagesRequest
+	(*ListTableBuilderAgentMessagesResponse)(nil), // 85: agent.agent.v1alpha.ListTableBuilderAgentMessagesResponse
+	(*ChatWithTableBuilderAgentRequest)(nil),      // 86: agent.agent.v1alpha.ChatWithTableBuilderAgentRequest
+	(*ChatWithTableBuilderAgentResponse)(nil),     // 87: agent.agent.v1alpha.ChatWithTableBuilderAgentResponse
+	(*Table_AgentConfig)(nil),                     // 88: agent.agent.v1alpha.Table.AgentConfig
+	(*ColumnDefinition_AgentConfig)(nil),          // 89: agent.agent.v1alpha.ColumnDefinition.AgentConfig
+	(*ColumnDefinition_AgentConfig_Context)(nil),  // 90: agent.agent.v1alpha.ColumnDefinition.AgentConfig.Context
+	nil,                           // 91: agent.agent.v1alpha.GetColumnDefinitionsResponse.ColumnDefinitionsEntry
+	nil,                           // 92: agent.agent.v1alpha.UpdateColumnDefinitionsRequest.ColumnDefinitionsEntry
+	nil,                           // 93: agent.agent.v1alpha.UpdateColumnDefinitionsResponse.ColumnDefinitionsEntry
+	(*Cell_Transparency)(nil),     // 94: agent.agent.v1alpha.Cell.Transparency
+	nil,                           // 95: agent.agent.v1alpha.Row.CellsEntry
+	nil,                           // 96: agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent.ColumnDefinitionsEntry
+	(*structpb.Struct)(nil),       // 97: google.protobuf.Struct
+	(*timestamppb.Timestamp)(nil), // 98: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil), // 99: google.protobuf.FieldMask
+	(*Citation)(nil),              // 100: agent.agent.v1alpha.Citation
+	(*Message)(nil),               // 101: agent.agent.v1alpha.Message
+	(*MessageSenderProfile)(nil),  // 102: agent.agent.v1alpha.MessageSenderProfile
+	(*ChatEvent)(nil),             // 103: agent.agent.v1alpha.ChatEvent
 }
 var file_agent_agent_v1alpha_table_proto_depIdxs = []int32{
-	92, // 0: agent.agent.v1alpha.Table.metadata:type_name -> google.protobuf.Struct
-	93, // 1: agent.agent.v1alpha.Table.create_time:type_name -> google.protobuf.Timestamp
-	93, // 2: agent.agent.v1alpha.Table.update_time:type_name -> google.protobuf.Timestamp
-	83, // 3: agent.agent.v1alpha.Table.agent_config:type_name -> agent.agent.v1alpha.Table.AgentConfig
-	6,  // 4: agent.agent.v1alpha.ListTablesResponse.tables:type_name -> agent.agent.v1alpha.Table
-	6,  // 5: agent.agent.v1alpha.CreateTableRequest.table:type_name -> agent.agent.v1alpha.Table
-	6,  // 6: agent.agent.v1alpha.CreateTableResponse.table:type_name -> agent.agent.v1alpha.Table
-	6,  // 7: agent.agent.v1alpha.GetTableResponse.table:type_name -> agent.agent.v1alpha.Table
-	6,  // 8: agent.agent.v1alpha.UpdateTableRequest.table:type_name -> agent.agent.v1alpha.Table
-	94, // 9: agent.agent.v1alpha.UpdateTableRequest.update_mask:type_name -> google.protobuf.FieldMask
-	6,  // 10: agent.agent.v1alpha.UpdateTableResponse.table:type_name -> agent.agent.v1alpha.Table
-	0,  // 11: agent.agent.v1alpha.ColumnDefinition.type:type_name -> agent.agent.v1alpha.Type
-	84, // 12: agent.agent.v1alpha.ColumnDefinition.agent_config:type_name -> agent.agent.v1alpha.ColumnDefinition.AgentConfig
-	4,  // 13: agent.agent.v1alpha.ColumnDefinition.sort:type_name -> agent.agent.v1alpha.ColumnDefinition.Sort
-	86, // 14: agent.agent.v1alpha.GetColumnDefinitionsResponse.column_definitions:type_name -> agent.agent.v1alpha.GetColumnDefinitionsResponse.ColumnDefinitionsEntry
-	87, // 15: agent.agent.v1alpha.UpdateColumnDefinitionsRequest.column_definitions:type_name -> agent.agent.v1alpha.UpdateColumnDefinitionsRequest.ColumnDefinitionsEntry
-	88, // 16: agent.agent.v1alpha.UpdateColumnDefinitionsResponse.column_definitions:type_name -> agent.agent.v1alpha.UpdateColumnDefinitionsResponse.ColumnDefinitionsEntry
-	17, // 17: agent.agent.v1alpha.GetColumnDefinitionResponse.column_definition:type_name -> agent.agent.v1alpha.ColumnDefinition
-	93, // 18: agent.agent.v1alpha.Cell.update_time:type_name -> google.protobuf.Timestamp
-	0,  // 19: agent.agent.v1alpha.Cell.type:type_name -> agent.agent.v1alpha.Type
-	28, // 20: agent.agent.v1alpha.Cell.string_value:type_name -> agent.agent.v1alpha.StringCell
-	29, // 21: agent.agent.v1alpha.Cell.number_value:type_name -> agent.agent.v1alpha.NumberCell
-	30, // 22: agent.agent.v1alpha.Cell.boolean_value:type_name -> agent.agent.v1alpha.BooleanCell
-	31, // 23: agent.agent.v1alpha.Cell.file_value:type_name -> agent.agent.v1alpha.FileCell
-	32, // 24: agent.agent.v1alpha.Cell.document_value:type_name -> agent.agent.v1alpha.DocumentCell
-	92, // 25: agent.agent.v1alpha.Cell.metadata:type_name -> google.protobuf.Struct
-	1,  // 26: agent.agent.v1alpha.Cell.status:type_name -> agent.agent.v1alpha.CellStatus
-	95, // 27: agent.agent.v1alpha.Cell.citations:type_name -> agent.agent.v1alpha.Citation
-	89, // 28: agent.agent.v1alpha.Cell.transparency:type_name -> agent.agent.v1alpha.Cell.Transparency
-	2,  // 29: agent.agent.v1alpha.Cell.lock_state:type_name -> agent.agent.v1alpha.LockState
-	90, // 30: agent.agent.v1alpha.Row.cells:type_name -> agent.agent.v1alpha.Row.CellsEntry
-	93, // 31: agent.agent.v1alpha.Row.create_time:type_name -> google.protobuf.Timestamp
-	93, // 32: agent.agent.v1alpha.Row.update_time:type_name -> google.protobuf.Timestamp
-	33, // 33: agent.agent.v1alpha.ListRowsResponse.rows:type_name -> agent.agent.v1alpha.Row
-	33, // 34: agent.agent.v1alpha.InsertRowRequest.row:type_name -> agent.agent.v1alpha.Row
-	33, // 35: agent.agent.v1alpha.InsertRowResponse.row:type_name -> agent.agent.v1alpha.Row
-	33, // 36: agent.agent.v1alpha.UpdateRowRequest.row:type_name -> agent.agent.v1alpha.Row
-	33, // 37: agent.agent.v1alpha.UpdateRowResponse.row:type_name -> agent.agent.v1alpha.Row
-	33, // 38: agent.agent.v1alpha.GetRowResponse.row:type_name -> agent.agent.v1alpha.Row
-	33, // 39: agent.agent.v1alpha.UpdateRowsRequest.rows:type_name -> agent.agent.v1alpha.Row
-	33, // 40: agent.agent.v1alpha.UpdateRowsResponse.rows:type_name -> agent.agent.v1alpha.Row
-	26, // 41: agent.agent.v1alpha.GetCellResponse.cell:type_name -> agent.agent.v1alpha.Cell
-	26, // 42: agent.agent.v1alpha.UpdateCellRequest.cell:type_name -> agent.agent.v1alpha.Cell
-	26, // 43: agent.agent.v1alpha.UpdateCellResponse.cell:type_name -> agent.agent.v1alpha.Cell
-	26, // 44: agent.agent.v1alpha.RecomputeCellResponse.cell:type_name -> agent.agent.v1alpha.Cell
-	26, // 45: agent.agent.v1alpha.ResetCellResponse.cell:type_name -> agent.agent.v1alpha.Cell
-	26, // 46: agent.agent.v1alpha.LockCellResponse.cell:type_name -> agent.agent.v1alpha.Cell
-	26, // 47: agent.agent.v1alpha.UnlockCellResponse.cell:type_name -> agent.agent.v1alpha.Cell
-	3,  // 48: agent.agent.v1alpha.ExportTableRequest.format:type_name -> agent.agent.v1alpha.ExportFormat
-	66, // 49: agent.agent.v1alpha.GetTableEventsResponse.event:type_name -> agent.agent.v1alpha.TableEvent
-	67, // 50: agent.agent.v1alpha.TableEvent.table_updated_event:type_name -> agent.agent.v1alpha.TableUpdatedEvent
-	68, // 51: agent.agent.v1alpha.TableEvent.table_deleted_event:type_name -> agent.agent.v1alpha.TableDeletedEvent
-	69, // 52: agent.agent.v1alpha.TableEvent.column_definitions_updated_event:type_name -> agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent
-	70, // 53: agent.agent.v1alpha.TableEvent.row_inserted_event:type_name -> agent.agent.v1alpha.RowInsertedEvent
-	71, // 54: agent.agent.v1alpha.TableEvent.row_updated_event:type_name -> agent.agent.v1alpha.RowUpdatedEvent
-	72, // 55: agent.agent.v1alpha.TableEvent.row_deleted_event:type_name -> agent.agent.v1alpha.RowDeletedEvent
-	73, // 56: agent.agent.v1alpha.TableEvent.rows_moved_event:type_name -> agent.agent.v1alpha.RowsMovedEvent
-	74, // 57: agent.agent.v1alpha.TableEvent.cell_updated_event:type_name -> agent.agent.v1alpha.CellUpdatedEvent
-	6,  // 58: agent.agent.v1alpha.TableUpdatedEvent.table:type_name -> agent.agent.v1alpha.Table
-	91, // 59: agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent.column_definitions:type_name -> agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent.ColumnDefinitionsEntry
-	33, // 60: agent.agent.v1alpha.RowInsertedEvent.row:type_name -> agent.agent.v1alpha.Row
-	33, // 61: agent.agent.v1alpha.RowUpdatedEvent.row:type_name -> agent.agent.v1alpha.Row
-	26, // 62: agent.agent.v1alpha.CellUpdatedEvent.cell:type_name -> agent.agent.v1alpha.Cell
-	5,  // 63: agent.agent.v1alpha.GenerateMockTableRequest.mode:type_name -> agent.agent.v1alpha.GenerateMockTableRequest.Mode
-	6,  // 64: agent.agent.v1alpha.ListChatTablesResponse.tables:type_name -> agent.agent.v1alpha.Table
-	85, // 65: agent.agent.v1alpha.ColumnDefinition.AgentConfig.context:type_name -> agent.agent.v1alpha.ColumnDefinition.AgentConfig.Context
-	17, // 66: agent.agent.v1alpha.GetColumnDefinitionsResponse.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
-	17, // 67: agent.agent.v1alpha.UpdateColumnDefinitionsRequest.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
-	17, // 68: agent.agent.v1alpha.UpdateColumnDefinitionsResponse.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
-	26, // 69: agent.agent.v1alpha.Row.CellsEntry.value:type_name -> agent.agent.v1alpha.Cell
-	17, // 70: agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
-	71, // [71:71] is the sub-list for method output_type
-	71, // [71:71] is the sub-list for method input_type
-	71, // [71:71] is the sub-list for extension type_name
-	71, // [71:71] is the sub-list for extension extendee
-	0,  // [0:71] is the sub-list for field type_name
+	97,  // 0: agent.agent.v1alpha.Table.metadata:type_name -> google.protobuf.Struct
+	98,  // 1: agent.agent.v1alpha.Table.create_time:type_name -> google.protobuf.Timestamp
+	98,  // 2: agent.agent.v1alpha.Table.update_time:type_name -> google.protobuf.Timestamp
+	88,  // 3: agent.agent.v1alpha.Table.agent_config:type_name -> agent.agent.v1alpha.Table.AgentConfig
+	6,   // 4: agent.agent.v1alpha.ListTablesResponse.tables:type_name -> agent.agent.v1alpha.Table
+	6,   // 5: agent.agent.v1alpha.CreateTableRequest.table:type_name -> agent.agent.v1alpha.Table
+	6,   // 6: agent.agent.v1alpha.CreateTableResponse.table:type_name -> agent.agent.v1alpha.Table
+	6,   // 7: agent.agent.v1alpha.GetTableResponse.table:type_name -> agent.agent.v1alpha.Table
+	6,   // 8: agent.agent.v1alpha.UpdateTableRequest.table:type_name -> agent.agent.v1alpha.Table
+	99,  // 9: agent.agent.v1alpha.UpdateTableRequest.update_mask:type_name -> google.protobuf.FieldMask
+	6,   // 10: agent.agent.v1alpha.UpdateTableResponse.table:type_name -> agent.agent.v1alpha.Table
+	0,   // 11: agent.agent.v1alpha.ColumnDefinition.type:type_name -> agent.agent.v1alpha.Type
+	89,  // 12: agent.agent.v1alpha.ColumnDefinition.agent_config:type_name -> agent.agent.v1alpha.ColumnDefinition.AgentConfig
+	4,   // 13: agent.agent.v1alpha.ColumnDefinition.sort:type_name -> agent.agent.v1alpha.ColumnDefinition.Sort
+	91,  // 14: agent.agent.v1alpha.GetColumnDefinitionsResponse.column_definitions:type_name -> agent.agent.v1alpha.GetColumnDefinitionsResponse.ColumnDefinitionsEntry
+	92,  // 15: agent.agent.v1alpha.UpdateColumnDefinitionsRequest.column_definitions:type_name -> agent.agent.v1alpha.UpdateColumnDefinitionsRequest.ColumnDefinitionsEntry
+	93,  // 16: agent.agent.v1alpha.UpdateColumnDefinitionsResponse.column_definitions:type_name -> agent.agent.v1alpha.UpdateColumnDefinitionsResponse.ColumnDefinitionsEntry
+	17,  // 17: agent.agent.v1alpha.GetColumnDefinitionResponse.column_definition:type_name -> agent.agent.v1alpha.ColumnDefinition
+	98,  // 18: agent.agent.v1alpha.Cell.update_time:type_name -> google.protobuf.Timestamp
+	0,   // 19: agent.agent.v1alpha.Cell.type:type_name -> agent.agent.v1alpha.Type
+	28,  // 20: agent.agent.v1alpha.Cell.string_value:type_name -> agent.agent.v1alpha.StringCell
+	29,  // 21: agent.agent.v1alpha.Cell.number_value:type_name -> agent.agent.v1alpha.NumberCell
+	30,  // 22: agent.agent.v1alpha.Cell.boolean_value:type_name -> agent.agent.v1alpha.BooleanCell
+	31,  // 23: agent.agent.v1alpha.Cell.file_value:type_name -> agent.agent.v1alpha.FileCell
+	32,  // 24: agent.agent.v1alpha.Cell.document_value:type_name -> agent.agent.v1alpha.DocumentCell
+	97,  // 25: agent.agent.v1alpha.Cell.metadata:type_name -> google.protobuf.Struct
+	1,   // 26: agent.agent.v1alpha.Cell.status:type_name -> agent.agent.v1alpha.CellStatus
+	100, // 27: agent.agent.v1alpha.Cell.citations:type_name -> agent.agent.v1alpha.Citation
+	94,  // 28: agent.agent.v1alpha.Cell.transparency:type_name -> agent.agent.v1alpha.Cell.Transparency
+	2,   // 29: agent.agent.v1alpha.Cell.lock_state:type_name -> agent.agent.v1alpha.LockState
+	95,  // 30: agent.agent.v1alpha.Row.cells:type_name -> agent.agent.v1alpha.Row.CellsEntry
+	98,  // 31: agent.agent.v1alpha.Row.create_time:type_name -> google.protobuf.Timestamp
+	98,  // 32: agent.agent.v1alpha.Row.update_time:type_name -> google.protobuf.Timestamp
+	33,  // 33: agent.agent.v1alpha.ListRowsResponse.rows:type_name -> agent.agent.v1alpha.Row
+	33,  // 34: agent.agent.v1alpha.InsertRowRequest.row:type_name -> agent.agent.v1alpha.Row
+	33,  // 35: agent.agent.v1alpha.InsertRowResponse.row:type_name -> agent.agent.v1alpha.Row
+	33,  // 36: agent.agent.v1alpha.UpdateRowRequest.row:type_name -> agent.agent.v1alpha.Row
+	33,  // 37: agent.agent.v1alpha.UpdateRowResponse.row:type_name -> agent.agent.v1alpha.Row
+	33,  // 38: agent.agent.v1alpha.GetRowResponse.row:type_name -> agent.agent.v1alpha.Row
+	33,  // 39: agent.agent.v1alpha.UpdateRowsRequest.rows:type_name -> agent.agent.v1alpha.Row
+	33,  // 40: agent.agent.v1alpha.UpdateRowsResponse.rows:type_name -> agent.agent.v1alpha.Row
+	26,  // 41: agent.agent.v1alpha.GetCellResponse.cell:type_name -> agent.agent.v1alpha.Cell
+	26,  // 42: agent.agent.v1alpha.UpdateCellRequest.cell:type_name -> agent.agent.v1alpha.Cell
+	26,  // 43: agent.agent.v1alpha.UpdateCellResponse.cell:type_name -> agent.agent.v1alpha.Cell
+	26,  // 44: agent.agent.v1alpha.RecomputeCellResponse.cell:type_name -> agent.agent.v1alpha.Cell
+	26,  // 45: agent.agent.v1alpha.ResetCellResponse.cell:type_name -> agent.agent.v1alpha.Cell
+	26,  // 46: agent.agent.v1alpha.LockCellResponse.cell:type_name -> agent.agent.v1alpha.Cell
+	26,  // 47: agent.agent.v1alpha.UnlockCellResponse.cell:type_name -> agent.agent.v1alpha.Cell
+	3,   // 48: agent.agent.v1alpha.ExportTableRequest.format:type_name -> agent.agent.v1alpha.ExportFormat
+	66,  // 49: agent.agent.v1alpha.GetTableEventsResponse.event:type_name -> agent.agent.v1alpha.TableEvent
+	67,  // 50: agent.agent.v1alpha.TableEvent.table_updated_event:type_name -> agent.agent.v1alpha.TableUpdatedEvent
+	68,  // 51: agent.agent.v1alpha.TableEvent.table_deleted_event:type_name -> agent.agent.v1alpha.TableDeletedEvent
+	69,  // 52: agent.agent.v1alpha.TableEvent.column_definitions_updated_event:type_name -> agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent
+	70,  // 53: agent.agent.v1alpha.TableEvent.row_inserted_event:type_name -> agent.agent.v1alpha.RowInsertedEvent
+	71,  // 54: agent.agent.v1alpha.TableEvent.row_updated_event:type_name -> agent.agent.v1alpha.RowUpdatedEvent
+	72,  // 55: agent.agent.v1alpha.TableEvent.row_deleted_event:type_name -> agent.agent.v1alpha.RowDeletedEvent
+	73,  // 56: agent.agent.v1alpha.TableEvent.rows_moved_event:type_name -> agent.agent.v1alpha.RowsMovedEvent
+	74,  // 57: agent.agent.v1alpha.TableEvent.cell_updated_event:type_name -> agent.agent.v1alpha.CellUpdatedEvent
+	6,   // 58: agent.agent.v1alpha.TableUpdatedEvent.table:type_name -> agent.agent.v1alpha.Table
+	96,  // 59: agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent.column_definitions:type_name -> agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent.ColumnDefinitionsEntry
+	33,  // 60: agent.agent.v1alpha.RowInsertedEvent.row:type_name -> agent.agent.v1alpha.Row
+	33,  // 61: agent.agent.v1alpha.RowUpdatedEvent.row:type_name -> agent.agent.v1alpha.Row
+	26,  // 62: agent.agent.v1alpha.CellUpdatedEvent.cell:type_name -> agent.agent.v1alpha.Cell
+	5,   // 63: agent.agent.v1alpha.GenerateMockTableRequest.mode:type_name -> agent.agent.v1alpha.GenerateMockTableRequest.Mode
+	6,   // 64: agent.agent.v1alpha.ListChatTablesResponse.tables:type_name -> agent.agent.v1alpha.Table
+	101, // 65: agent.agent.v1alpha.ListTableBuilderAgentMessagesResponse.messages:type_name -> agent.agent.v1alpha.Message
+	102, // 66: agent.agent.v1alpha.ListTableBuilderAgentMessagesResponse.sender_profiles:type_name -> agent.agent.v1alpha.MessageSenderProfile
+	103, // 67: agent.agent.v1alpha.ChatWithTableBuilderAgentResponse.event:type_name -> agent.agent.v1alpha.ChatEvent
+	90,  // 68: agent.agent.v1alpha.ColumnDefinition.AgentConfig.context:type_name -> agent.agent.v1alpha.ColumnDefinition.AgentConfig.Context
+	17,  // 69: agent.agent.v1alpha.GetColumnDefinitionsResponse.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
+	17,  // 70: agent.agent.v1alpha.UpdateColumnDefinitionsRequest.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
+	17,  // 71: agent.agent.v1alpha.UpdateColumnDefinitionsResponse.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
+	26,  // 72: agent.agent.v1alpha.Row.CellsEntry.value:type_name -> agent.agent.v1alpha.Cell
+	17,  // 73: agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
+	74,  // [74:74] is the sub-list for method output_type
+	74,  // [74:74] is the sub-list for method input_type
+	74,  // [74:74] is the sub-list for extension type_name
+	74,  // [74:74] is the sub-list for extension extendee
+	0,   // [0:74] is the sub-list for field type_name
 }
 
 func init() { file_agent_agent_v1alpha_table_proto_init() }
@@ -5940,14 +6283,14 @@ func file_agent_agent_v1alpha_table_proto_init() {
 	}
 	file_agent_agent_v1alpha_table_proto_msgTypes[67].OneofWrappers = []any{}
 	file_agent_agent_v1alpha_table_proto_msgTypes[69].OneofWrappers = []any{}
-	file_agent_agent_v1alpha_table_proto_msgTypes[78].OneofWrappers = []any{}
+	file_agent_agent_v1alpha_table_proto_msgTypes[83].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_agent_agent_v1alpha_table_proto_rawDesc), len(file_agent_agent_v1alpha_table_proto_rawDesc)),
 			NumEnums:      6,
-			NumMessages:   86,
+			NumMessages:   91,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
