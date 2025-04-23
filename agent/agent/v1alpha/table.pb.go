@@ -5247,8 +5247,8 @@ func (x *ColumnDefinition_AgentConfig) GetContext() *ColumnDefinition_AgentConfi
 // The context for the agent.
 type ColumnDefinition_AgentConfig_Context struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The column names to include in the context.
-	Columns       []string `protobuf:"bytes,1,rep,name=columns,proto3" json:"columns,omitempty"`
+	// The column uids to include in the context.
+	ColumnUids    []string `protobuf:"bytes,1,rep,name=column_uids,json=columnUids,proto3" json:"column_uids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5283,9 +5283,9 @@ func (*ColumnDefinition_AgentConfig_Context) Descriptor() ([]byte, []int) {
 	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{11, 0, 0}
 }
 
-func (x *ColumnDefinition_AgentConfig_Context) GetColumns() []string {
+func (x *ColumnDefinition_AgentConfig_Context) GetColumnUids() []string {
 	if x != nil {
-		return x.Columns
+		return x.ColumnUids
 	}
 	return nil
 }
@@ -5385,7 +5385,7 @@ const file_agent_agent_v1alpha_table_proto_rawDesc = "" +
 	"\x12DeleteTableRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12 \n" +
 	"\ttable_uid\x18\x02 \x01(\tB\x03\xe0A\x02R\btableUid\"\x15\n" +
-	"\x13DeleteTableResponse\"\xe0\x05\n" +
+	"\x13DeleteTableResponse\"\xe7\x05\n" +
 	"\x10ColumnDefinition\x12\"\n" +
 	"\n" +
 	"column_uid\x18\x01 \x01(\tB\x03\xe0A\x03R\tcolumnUid\x12\x17\n" +
@@ -5393,14 +5393,15 @@ const file_agent_agent_v1alpha_table_proto_rawDesc = "" +
 	"\x04type\x18\x03 \x01(\x0e2\x19.agent.agent.v1alpha.TypeB\x03\xe0A\x02R\x04type\x12\x19\n" +
 	"\x05order\x18\x04 \x01(\x05B\x03\xe0A\x02R\x05order\x12Y\n" +
 	"\fagent_config\x18\x05 \x01(\v21.agent.agent.v1alpha.ColumnDefinition.AgentConfigB\x03\xe0A\x01R\vagentConfig\x12C\n" +
-	"\x04sort\x18\x06 \x01(\x0e2*.agent.agent.v1alpha.ColumnDefinition.SortB\x03\xe0A\x01R\x04sort\x1a\xd8\x02\n" +
+	"\x04sort\x18\x06 \x01(\x0e2*.agent.agent.v1alpha.ColumnDefinition.SortB\x03\xe0A\x01R\x04sort\x1a\xdf\x02\n" +
 	"\vAgentConfig\x12'\n" +
 	"\finstructions\x18\x01 \x01(\tB\x03\xe0A\x02R\finstructions\x12/\n" +
 	"\x11enable_web_search\x18\x02 \x01(\bB\x03\xe0A\x02R\x0fenableWebSearch\x12J\n" +
 	"\x1cenable_automatic_computation\x18\x03 \x01(\bB\x03\xe0A\x01H\x00R\x1aenableAutomaticComputation\x88\x01\x01\x12X\n" +
-	"\acontext\x18\x04 \x01(\v29.agent.agent.v1alpha.ColumnDefinition.AgentConfig.ContextB\x03\xe0A\x01R\acontext\x1a(\n" +
-	"\aContext\x12\x1d\n" +
-	"\acolumns\x18\x01 \x03(\tB\x03\xe0A\x01R\acolumnsB\x1f\n" +
+	"\acontext\x18\x04 \x01(\v29.agent.agent.v1alpha.ColumnDefinition.AgentConfig.ContextB\x03\xe0A\x01R\acontext\x1a/\n" +
+	"\aContext\x12$\n" +
+	"\vcolumn_uids\x18\x01 \x03(\tB\x03\xe0A\x01R\n" +
+	"columnUidsB\x1f\n" +
 	"\x1d_enable_automatic_computation\"E\n" +
 	"\x04Sort\x12\x14\n" +
 	"\x10SORT_UNSPECIFIED\x10\x00\x12\x12\n" +
