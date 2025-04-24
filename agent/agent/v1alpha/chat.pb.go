@@ -1394,7 +1394,9 @@ type ChatWithAgentRequest struct {
 	// Whether to enable web search for the chat.
 	EnableWebSearch bool `protobuf:"varint,5,opt,name=enable_web_search,json=enableWebSearch,proto3" json:"enable_web_search,omitempty"`
 	// object UIDs
-	ObjectUids    []string `protobuf:"bytes,6,rep,name=object_uids,json=objectUids,proto3" json:"object_uids,omitempty"`
+	ObjectUids []string `protobuf:"bytes,6,rep,name=object_uids,json=objectUids,proto3" json:"object_uids,omitempty"`
+	// The context for the agent.
+	Context       *ChatWithAgentRequest_Context `protobuf:"bytes,7,opt,name=context,proto3" json:"context,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1468,6 +1470,13 @@ func (x *ChatWithAgentRequest) GetEnableWebSearch() bool {
 func (x *ChatWithAgentRequest) GetObjectUids() []string {
 	if x != nil {
 		return x.ObjectUids
+	}
+	return nil
+}
+
+func (x *ChatWithAgentRequest) GetContext() *ChatWithAgentRequest_Context {
+	if x != nil {
+		return x.Context
 	}
 	return nil
 }
@@ -2303,6 +2312,52 @@ func (x *ChatEndedEvent) GetCreateTime() *timestamppb.Timestamp {
 	return nil
 }
 
+// The context for the chat.
+type ChatWithAgentRequest_Context struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The table uids to include in the context.
+	TableUids     []string `protobuf:"bytes,1,rep,name=table_uids,json=tableUids,proto3" json:"table_uids,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ChatWithAgentRequest_Context) Reset() {
+	*x = ChatWithAgentRequest_Context{}
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[31]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ChatWithAgentRequest_Context) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ChatWithAgentRequest_Context) ProtoMessage() {}
+
+func (x *ChatWithAgentRequest_Context) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[31]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ChatWithAgentRequest_Context.ProtoReflect.Descriptor instead.
+func (*ChatWithAgentRequest_Context) Descriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{17, 0}
+}
+
+func (x *ChatWithAgentRequest_Context) GetTableUids() []string {
+	if x != nil {
+		return x.TableUids
+	}
+	return nil
+}
+
 var File_agent_agent_v1alpha_chat_proto protoreflect.FileDescriptor
 
 const file_agent_agent_v1alpha_chat_proto_rawDesc = "" +
@@ -2406,7 +2461,7 @@ const file_agent_agent_v1alpha_chat_proto_rawDesc = "" +
 	"\x0fnext_page_token\x18\x02 \x01(\tB\x03\xe0A\x03R\rnextPageToken\x12\"\n" +
 	"\n" +
 	"total_size\x18\x03 \x01(\x05B\x03\xe0A\x03R\ttotalSize\x12W\n" +
-	"\x0fsender_profiles\x18\x04 \x03(\v2).agent.agent.v1alpha.MessageSenderProfileB\x03\xe0A\x03R\x0esenderProfiles\"\xf8\x01\n" +
+	"\x0fsender_profiles\x18\x04 \x03(\v2).agent.agent.v1alpha.MessageSenderProfileB\x03\xe0A\x03R\x0esenderProfiles\"\xf9\x02\n" +
 	"\x14ChatWithAgentRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\x1e\n" +
 	"\bchat_uid\x18\x02 \x01(\tB\x03\xe0A\x02R\achatUid\x12\x1d\n" +
@@ -2414,7 +2469,11 @@ const file_agent_agent_v1alpha_chat_proto_rawDesc = "" +
 	"\tfile_uids\x18\x04 \x03(\tB\x05\xe0A\x01\x18\x01R\bfileUids\x12/\n" +
 	"\x11enable_web_search\x18\x05 \x01(\bB\x03\xe0A\x01R\x0fenableWebSearch\x12$\n" +
 	"\vobject_uids\x18\x06 \x03(\tB\x03\xe0A\x01R\n" +
-	"objectUids\"O\n" +
+	"objectUids\x12P\n" +
+	"\acontext\x18\a \x01(\v21.agent.agent.v1alpha.ChatWithAgentRequest.ContextB\x03\xe0A\x01R\acontext\x1a-\n" +
+	"\aContext\x12\"\n" +
+	"\n" +
+	"table_uids\x18\x01 \x03(\tB\x03\xe0A\x01R\ttableUids\"O\n" +
 	"\x15ChatWithAgentResponse\x126\n" +
 	"\aoutputs\x18\x01 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\aoutputs\"\xd8\b\n" +
 	"\tChatEvent\x12\x19\n" +
@@ -2499,7 +2558,7 @@ func file_agent_agent_v1alpha_chat_proto_rawDescGZIP() []byte {
 }
 
 var file_agent_agent_v1alpha_chat_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_agent_agent_v1alpha_chat_proto_msgTypes = make([]protoimpl.MessageInfo, 31)
+var file_agent_agent_v1alpha_chat_proto_msgTypes = make([]protoimpl.MessageInfo, 32)
 var file_agent_agent_v1alpha_chat_proto_goTypes = []any{
 	(CitationType)(0),                    // 0: agent.agent.v1alpha.CitationType
 	(CitationExtractMethodType)(0),       // 1: agent.agent.v1alpha.CitationExtractMethodType
@@ -2535,20 +2594,21 @@ var file_agent_agent_v1alpha_chat_proto_goTypes = []any{
 	(*ChatDebugOutputUpdatedEvent)(nil),  // 31: agent.agent.v1alpha.ChatDebugOutputUpdatedEvent
 	(*ChatEndedEvent)(nil),               // 32: agent.agent.v1alpha.ChatEndedEvent
 	nil,                                  // 33: agent.agent.v1alpha.AgentConfig.ConnectionsEntry
-	(*timestamppb.Timestamp)(nil),        // 34: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),              // 35: google.protobuf.Struct
+	(*ChatWithAgentRequest_Context)(nil), // 34: agent.agent.v1alpha.ChatWithAgentRequest.Context
+	(*timestamppb.Timestamp)(nil),        // 35: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),              // 36: google.protobuf.Struct
 }
 var file_agent_agent_v1alpha_chat_proto_depIdxs = []int32{
 	33, // 0: agent.agent.v1alpha.AgentConfig.connections:type_name -> agent.agent.v1alpha.AgentConfig.ConnectionsEntry
 	3,  // 1: agent.agent.v1alpha.Chat.agent_config:type_name -> agent.agent.v1alpha.AgentConfig
-	34, // 2: agent.agent.v1alpha.Chat.create_time:type_name -> google.protobuf.Timestamp
-	34, // 3: agent.agent.v1alpha.Chat.update_time:type_name -> google.protobuf.Timestamp
-	34, // 4: agent.agent.v1alpha.Chat.delete_time:type_name -> google.protobuf.Timestamp
+	35, // 2: agent.agent.v1alpha.Chat.create_time:type_name -> google.protobuf.Timestamp
+	35, // 3: agent.agent.v1alpha.Chat.update_time:type_name -> google.protobuf.Timestamp
+	35, // 4: agent.agent.v1alpha.Chat.delete_time:type_name -> google.protobuf.Timestamp
 	0,  // 5: agent.agent.v1alpha.Citation.type:type_name -> agent.agent.v1alpha.CitationType
 	1,  // 6: agent.agent.v1alpha.Citation.extract_method:type_name -> agent.agent.v1alpha.CitationExtractMethodType
 	2,  // 7: agent.agent.v1alpha.Message.type:type_name -> agent.agent.v1alpha.Message.MessageType
-	34, // 8: agent.agent.v1alpha.Message.create_time:type_name -> google.protobuf.Timestamp
-	34, // 9: agent.agent.v1alpha.Message.update_time:type_name -> google.protobuf.Timestamp
+	35, // 8: agent.agent.v1alpha.Message.create_time:type_name -> google.protobuf.Timestamp
+	35, // 9: agent.agent.v1alpha.Message.update_time:type_name -> google.protobuf.Timestamp
 	5,  // 10: agent.agent.v1alpha.Message.citations:type_name -> agent.agent.v1alpha.Citation
 	3,  // 11: agent.agent.v1alpha.CreateChatRequest.agent_config:type_name -> agent.agent.v1alpha.AgentConfig
 	4,  // 12: agent.agent.v1alpha.CreateChatResponse.chat:type_name -> agent.agent.v1alpha.Chat
@@ -2558,33 +2618,34 @@ var file_agent_agent_v1alpha_chat_proto_depIdxs = []int32{
 	4,  // 16: agent.agent.v1alpha.GetChatResponse.chat:type_name -> agent.agent.v1alpha.Chat
 	6,  // 17: agent.agent.v1alpha.ListMessagesResponse.messages:type_name -> agent.agent.v1alpha.Message
 	17, // 18: agent.agent.v1alpha.ListMessagesResponse.sender_profiles:type_name -> agent.agent.v1alpha.MessageSenderProfile
-	35, // 19: agent.agent.v1alpha.ChatWithAgentResponse.outputs:type_name -> google.protobuf.Struct
-	23, // 20: agent.agent.v1alpha.ChatEvent.chat_started_event:type_name -> agent.agent.v1alpha.ChatStartedEvent
-	24, // 21: agent.agent.v1alpha.ChatEvent.chat_status_updated_event:type_name -> agent.agent.v1alpha.ChatStatusUpdatedEvent
-	25, // 22: agent.agent.v1alpha.ChatEvent.chat_output_updated_event:type_name -> agent.agent.v1alpha.ChatOutputUpdatedEvent
-	26, // 23: agent.agent.v1alpha.ChatEvent.chat_name_updated_event:type_name -> agent.agent.v1alpha.ChatNameUpdatedEvent
-	27, // 24: agent.agent.v1alpha.ChatEvent.chat_replan_triggered_event:type_name -> agent.agent.v1alpha.ChatReplanTriggeredEvent
-	28, // 25: agent.agent.v1alpha.ChatEvent.chat_citation_list_updated_event:type_name -> agent.agent.v1alpha.ChatCitationListUpdatedEvent
-	29, // 26: agent.agent.v1alpha.ChatEvent.chat_table_created_event:type_name -> agent.agent.v1alpha.ChatTableCreatedEvent
-	30, // 27: agent.agent.v1alpha.ChatEvent.chat_error_updated_event:type_name -> agent.agent.v1alpha.ChatErrorUpdatedEvent
-	31, // 28: agent.agent.v1alpha.ChatEvent.chat_debug_output_updated_event:type_name -> agent.agent.v1alpha.ChatDebugOutputUpdatedEvent
-	32, // 29: agent.agent.v1alpha.ChatEvent.chat_ended_event:type_name -> agent.agent.v1alpha.ChatEndedEvent
-	34, // 30: agent.agent.v1alpha.ChatStartedEvent.create_time:type_name -> google.protobuf.Timestamp
-	34, // 31: agent.agent.v1alpha.ChatStatusUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
-	34, // 32: agent.agent.v1alpha.ChatOutputUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
-	34, // 33: agent.agent.v1alpha.ChatNameUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
-	34, // 34: agent.agent.v1alpha.ChatReplanTriggeredEvent.create_time:type_name -> google.protobuf.Timestamp
-	34, // 35: agent.agent.v1alpha.ChatCitationListUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
-	5,  // 36: agent.agent.v1alpha.ChatCitationListUpdatedEvent.citations:type_name -> agent.agent.v1alpha.Citation
-	34, // 37: agent.agent.v1alpha.ChatTableCreatedEvent.create_time:type_name -> google.protobuf.Timestamp
-	34, // 38: agent.agent.v1alpha.ChatErrorUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
-	34, // 39: agent.agent.v1alpha.ChatDebugOutputUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
-	34, // 40: agent.agent.v1alpha.ChatEndedEvent.create_time:type_name -> google.protobuf.Timestamp
-	41, // [41:41] is the sub-list for method output_type
-	41, // [41:41] is the sub-list for method input_type
-	41, // [41:41] is the sub-list for extension type_name
-	41, // [41:41] is the sub-list for extension extendee
-	0,  // [0:41] is the sub-list for field type_name
+	34, // 19: agent.agent.v1alpha.ChatWithAgentRequest.context:type_name -> agent.agent.v1alpha.ChatWithAgentRequest.Context
+	36, // 20: agent.agent.v1alpha.ChatWithAgentResponse.outputs:type_name -> google.protobuf.Struct
+	23, // 21: agent.agent.v1alpha.ChatEvent.chat_started_event:type_name -> agent.agent.v1alpha.ChatStartedEvent
+	24, // 22: agent.agent.v1alpha.ChatEvent.chat_status_updated_event:type_name -> agent.agent.v1alpha.ChatStatusUpdatedEvent
+	25, // 23: agent.agent.v1alpha.ChatEvent.chat_output_updated_event:type_name -> agent.agent.v1alpha.ChatOutputUpdatedEvent
+	26, // 24: agent.agent.v1alpha.ChatEvent.chat_name_updated_event:type_name -> agent.agent.v1alpha.ChatNameUpdatedEvent
+	27, // 25: agent.agent.v1alpha.ChatEvent.chat_replan_triggered_event:type_name -> agent.agent.v1alpha.ChatReplanTriggeredEvent
+	28, // 26: agent.agent.v1alpha.ChatEvent.chat_citation_list_updated_event:type_name -> agent.agent.v1alpha.ChatCitationListUpdatedEvent
+	29, // 27: agent.agent.v1alpha.ChatEvent.chat_table_created_event:type_name -> agent.agent.v1alpha.ChatTableCreatedEvent
+	30, // 28: agent.agent.v1alpha.ChatEvent.chat_error_updated_event:type_name -> agent.agent.v1alpha.ChatErrorUpdatedEvent
+	31, // 29: agent.agent.v1alpha.ChatEvent.chat_debug_output_updated_event:type_name -> agent.agent.v1alpha.ChatDebugOutputUpdatedEvent
+	32, // 30: agent.agent.v1alpha.ChatEvent.chat_ended_event:type_name -> agent.agent.v1alpha.ChatEndedEvent
+	35, // 31: agent.agent.v1alpha.ChatStartedEvent.create_time:type_name -> google.protobuf.Timestamp
+	35, // 32: agent.agent.v1alpha.ChatStatusUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
+	35, // 33: agent.agent.v1alpha.ChatOutputUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
+	35, // 34: agent.agent.v1alpha.ChatNameUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
+	35, // 35: agent.agent.v1alpha.ChatReplanTriggeredEvent.create_time:type_name -> google.protobuf.Timestamp
+	35, // 36: agent.agent.v1alpha.ChatCitationListUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
+	5,  // 37: agent.agent.v1alpha.ChatCitationListUpdatedEvent.citations:type_name -> agent.agent.v1alpha.Citation
+	35, // 38: agent.agent.v1alpha.ChatTableCreatedEvent.create_time:type_name -> google.protobuf.Timestamp
+	35, // 39: agent.agent.v1alpha.ChatErrorUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
+	35, // 40: agent.agent.v1alpha.ChatDebugOutputUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
+	35, // 41: agent.agent.v1alpha.ChatEndedEvent.create_time:type_name -> google.protobuf.Timestamp
+	42, // [42:42] is the sub-list for method output_type
+	42, // [42:42] is the sub-list for method input_type
+	42, // [42:42] is the sub-list for extension type_name
+	42, // [42:42] is the sub-list for extension extendee
+	0,  // [0:42] is the sub-list for field type_name
 }
 
 func init() { file_agent_agent_v1alpha_chat_proto_init() }
@@ -2612,7 +2673,7 @@ func file_agent_agent_v1alpha_chat_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_agent_agent_v1alpha_chat_proto_rawDesc), len(file_agent_agent_v1alpha_chat_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   31,
+			NumMessages:   32,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
