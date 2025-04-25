@@ -398,7 +398,9 @@ type Table struct {
 	// The timestamp when the table was last updated.
 	UpdateTime *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
 	// The configuration for the agent.
-	AgentConfig   *Table_AgentConfig `protobuf:"bytes,8,opt,name=agent_config,json=agentConfig,proto3" json:"agent_config,omitempty"`
+	AgentConfig *Table_AgentConfig `protobuf:"bytes,8,opt,name=agent_config,json=agentConfig,proto3" json:"agent_config,omitempty"`
+	// Whether to enable draft mode for the table.
+	DraftMode     bool `protobuf:"varint,9,opt,name=draft_mode,json=draftMode,proto3" json:"draft_mode,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -487,6 +489,13 @@ func (x *Table) GetAgentConfig() *Table_AgentConfig {
 		return x.AgentConfig
 	}
 	return nil
+}
+
+func (x *Table) GetDraftMode() bool {
+	if x != nil {
+		return x.DraftMode
+	}
+	return false
 }
 
 // ListTablesRequest represents a request to list tables.
@@ -5651,7 +5660,7 @@ var File_agent_agent_v1alpha_table_proto protoreflect.FileDescriptor
 
 const file_agent_agent_v1alpha_table_proto_rawDesc = "" +
 	"\n" +
-	"\x1fagent/agent/v1alpha/table.proto\x12\x13agent.agent.v1alpha\x1a\x1eagent/agent/v1alpha/chat.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xbe\x03\n" +
+	"\x1fagent/agent/v1alpha/table.proto\x12\x13agent.agent.v1alpha\x1a\x1eagent/agent/v1alpha/chat.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xec\x03\n" +
 	"\x05Table\x12\x15\n" +
 	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x02R\x02id\x12\x19\n" +
@@ -5661,10 +5670,12 @@ const file_agent_agent_v1alpha_table_proto_rawDesc = "" +
 	"\vcreate_time\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
 	"createTime\x12@\n" +
 	"\vupdate_time\x18\a \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
-	"updateTime\x12I\n" +
-	"\fagent_config\x18\b \x01(\v2&.agent.agent.v1alpha.Table.AgentConfigR\vagentConfig\x1a>\n" +
-	"\vAgentConfig\x12/\n" +
-	"\x13enable_transparency\x18\x01 \x01(\bR\x12enableTransparency\"\x81\x01\n" +
+	"updateTime\x12N\n" +
+	"\fagent_config\x18\b \x01(\v2&.agent.agent.v1alpha.Table.AgentConfigB\x03\xe0A\x02R\vagentConfig\x12\"\n" +
+	"\n" +
+	"draft_mode\x18\t \x01(\bB\x03\xe0A\x02R\tdraftMode\x1aC\n" +
+	"\vAgentConfig\x124\n" +
+	"\x13enable_transparency\x18\x01 \x01(\bB\x03\xe0A\x02R\x12enableTransparency\"\x81\x01\n" +
 	"\x11ListTablesRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\"\n" +
 	"\n" +
