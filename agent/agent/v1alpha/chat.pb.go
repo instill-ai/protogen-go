@@ -468,10 +468,16 @@ type Message struct {
 	UpdateTime *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
 	// message sender uid(only for user messages)
 	MsgSenderUid string `protobuf:"bytes,8,opt,name=msg_sender_uid,json=msgSenderUid,proto3" json:"msg_sender_uid,omitempty"`
-	// citations(only for agent messages)
-	Citations     []*Citation `protobuf:"bytes,9,rep,name=citations,proto3" json:"citations,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	// citations (only for agent messages)
+	Citations []*Citation `protobuf:"bytes,9,rep,name=citations,proto3" json:"citations,omitempty"`
+	// context for the message
+	Context *ChatContext `protobuf:"bytes,10,opt,name=context,proto3" json:"context,omitempty"`
+	// attachments for the message
+	Attachments *ChatAttachments `protobuf:"bytes,11,opt,name=attachments,proto3" json:"attachments,omitempty"`
+	// enable web search (only for user messages)
+	EnableWebSearch bool `protobuf:"varint,12,opt,name=enable_web_search,json=enableWebSearch,proto3" json:"enable_web_search,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *Message) Reset() {
@@ -567,6 +573,119 @@ func (x *Message) GetCitations() []*Citation {
 	return nil
 }
 
+func (x *Message) GetContext() *ChatContext {
+	if x != nil {
+		return x.Context
+	}
+	return nil
+}
+
+func (x *Message) GetAttachments() *ChatAttachments {
+	if x != nil {
+		return x.Attachments
+	}
+	return nil
+}
+
+func (x *Message) GetEnableWebSearch() bool {
+	if x != nil {
+		return x.EnableWebSearch
+	}
+	return false
+}
+
+// The context for the message.
+type ChatContext struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The table uids to include in the context.
+	TableUids     []string `protobuf:"bytes,1,rep,name=table_uids,json=tableUids,proto3" json:"table_uids,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ChatContext) Reset() {
+	*x = ChatContext{}
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ChatContext) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ChatContext) ProtoMessage() {}
+
+func (x *ChatContext) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ChatContext.ProtoReflect.Descriptor instead.
+func (*ChatContext) Descriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *ChatContext) GetTableUids() []string {
+	if x != nil {
+		return x.TableUids
+	}
+	return nil
+}
+
+// ChatAttachments represents the attachment for the message
+type ChatAttachments struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// file urls (only for user messages)
+	FileUrls      []string `protobuf:"bytes,1,rep,name=file_urls,json=fileUrls,proto3" json:"file_urls,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ChatAttachments) Reset() {
+	*x = ChatAttachments{}
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ChatAttachments) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ChatAttachments) ProtoMessage() {}
+
+func (x *ChatAttachments) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ChatAttachments.ProtoReflect.Descriptor instead.
+func (*ChatAttachments) Descriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *ChatAttachments) GetFileUrls() []string {
+	if x != nil {
+		return x.FileUrls
+	}
+	return nil
+}
+
 // CreateChatRequest is used to create a new chat
 type CreateChatRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -586,7 +705,7 @@ type CreateChatRequest struct {
 
 func (x *CreateChatRequest) Reset() {
 	*x = CreateChatRequest{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[4]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -598,7 +717,7 @@ func (x *CreateChatRequest) String() string {
 func (*CreateChatRequest) ProtoMessage() {}
 
 func (x *CreateChatRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[4]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -611,7 +730,7 @@ func (x *CreateChatRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateChatRequest.ProtoReflect.Descriptor instead.
 func (*CreateChatRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{4}
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *CreateChatRequest) GetNamespaceId() string {
@@ -654,7 +773,7 @@ type CreateChatResponse struct {
 
 func (x *CreateChatResponse) Reset() {
 	*x = CreateChatResponse{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[5]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -666,7 +785,7 @@ func (x *CreateChatResponse) String() string {
 func (*CreateChatResponse) ProtoMessage() {}
 
 func (x *CreateChatResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[5]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -679,7 +798,7 @@ func (x *CreateChatResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateChatResponse.ProtoReflect.Descriptor instead.
 func (*CreateChatResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{5}
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *CreateChatResponse) GetChat() *Chat {
@@ -709,7 +828,7 @@ type ListChatsRequest struct {
 
 func (x *ListChatsRequest) Reset() {
 	*x = ListChatsRequest{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[6]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -721,7 +840,7 @@ func (x *ListChatsRequest) String() string {
 func (*ListChatsRequest) ProtoMessage() {}
 
 func (x *ListChatsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[6]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -734,7 +853,7 @@ func (x *ListChatsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListChatsRequest.ProtoReflect.Descriptor instead.
 func (*ListChatsRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{6}
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *ListChatsRequest) GetNamespaceId() string {
@@ -787,7 +906,7 @@ type ListChatsResponse struct {
 
 func (x *ListChatsResponse) Reset() {
 	*x = ListChatsResponse{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[7]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -799,7 +918,7 @@ func (x *ListChatsResponse) String() string {
 func (*ListChatsResponse) ProtoMessage() {}
 
 func (x *ListChatsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[7]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -812,7 +931,7 @@ func (x *ListChatsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListChatsResponse.ProtoReflect.Descriptor instead.
 func (*ListChatsResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{7}
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *ListChatsResponse) GetChats() []*Chat {
@@ -853,7 +972,7 @@ type UpdateChatRequest struct {
 
 func (x *UpdateChatRequest) Reset() {
 	*x = UpdateChatRequest{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[8]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -865,7 +984,7 @@ func (x *UpdateChatRequest) String() string {
 func (*UpdateChatRequest) ProtoMessage() {}
 
 func (x *UpdateChatRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[8]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -878,7 +997,7 @@ func (x *UpdateChatRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateChatRequest.ProtoReflect.Descriptor instead.
 func (*UpdateChatRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{8}
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *UpdateChatRequest) GetNamespaceId() string {
@@ -920,7 +1039,7 @@ type UpdateChatResponse struct {
 
 func (x *UpdateChatResponse) Reset() {
 	*x = UpdateChatResponse{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[9]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -932,7 +1051,7 @@ func (x *UpdateChatResponse) String() string {
 func (*UpdateChatResponse) ProtoMessage() {}
 
 func (x *UpdateChatResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[9]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -945,7 +1064,7 @@ func (x *UpdateChatResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateChatResponse.ProtoReflect.Descriptor instead.
 func (*UpdateChatResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{9}
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *UpdateChatResponse) GetChat() *Chat {
@@ -968,7 +1087,7 @@ type GetChatRequest struct {
 
 func (x *GetChatRequest) Reset() {
 	*x = GetChatRequest{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[10]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -980,7 +1099,7 @@ func (x *GetChatRequest) String() string {
 func (*GetChatRequest) ProtoMessage() {}
 
 func (x *GetChatRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[10]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -993,7 +1112,7 @@ func (x *GetChatRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetChatRequest.ProtoReflect.Descriptor instead.
 func (*GetChatRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{10}
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *GetChatRequest) GetNamespaceId() string {
@@ -1021,7 +1140,7 @@ type GetChatResponse struct {
 
 func (x *GetChatResponse) Reset() {
 	*x = GetChatResponse{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[11]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1033,7 +1152,7 @@ func (x *GetChatResponse) String() string {
 func (*GetChatResponse) ProtoMessage() {}
 
 func (x *GetChatResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[11]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1046,7 +1165,7 @@ func (x *GetChatResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetChatResponse.ProtoReflect.Descriptor instead.
 func (*GetChatResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{11}
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *GetChatResponse) GetChat() *Chat {
@@ -1069,7 +1188,7 @@ type DeleteChatRequest struct {
 
 func (x *DeleteChatRequest) Reset() {
 	*x = DeleteChatRequest{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[12]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1081,7 +1200,7 @@ func (x *DeleteChatRequest) String() string {
 func (*DeleteChatRequest) ProtoMessage() {}
 
 func (x *DeleteChatRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[12]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1094,7 +1213,7 @@ func (x *DeleteChatRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteChatRequest.ProtoReflect.Descriptor instead.
 func (*DeleteChatRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{12}
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *DeleteChatRequest) GetNamespaceId() string {
@@ -1120,7 +1239,7 @@ type DeleteChatResponse struct {
 
 func (x *DeleteChatResponse) Reset() {
 	*x = DeleteChatResponse{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[13]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1132,7 +1251,7 @@ func (x *DeleteChatResponse) String() string {
 func (*DeleteChatResponse) ProtoMessage() {}
 
 func (x *DeleteChatResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[13]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1145,7 +1264,7 @@ func (x *DeleteChatResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteChatResponse.ProtoReflect.Descriptor instead.
 func (*DeleteChatResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{13}
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{15}
 }
 
 // MessageSenderProfile describes the public data of a message sender.
@@ -1166,7 +1285,7 @@ type MessageSenderProfile struct {
 
 func (x *MessageSenderProfile) Reset() {
 	*x = MessageSenderProfile{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[14]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1178,7 +1297,7 @@ func (x *MessageSenderProfile) String() string {
 func (*MessageSenderProfile) ProtoMessage() {}
 
 func (x *MessageSenderProfile) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[14]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1191,7 +1310,7 @@ func (x *MessageSenderProfile) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MessageSenderProfile.ProtoReflect.Descriptor instead.
 func (*MessageSenderProfile) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{14}
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *MessageSenderProfile) GetMsgSenderUid() string {
@@ -1241,7 +1360,7 @@ type ListMessagesRequest struct {
 
 func (x *ListMessagesRequest) Reset() {
 	*x = ListMessagesRequest{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[15]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1253,7 +1372,7 @@ func (x *ListMessagesRequest) String() string {
 func (*ListMessagesRequest) ProtoMessage() {}
 
 func (x *ListMessagesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[15]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1266,7 +1385,7 @@ func (x *ListMessagesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListMessagesRequest.ProtoReflect.Descriptor instead.
 func (*ListMessagesRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{15}
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *ListMessagesRequest) GetNamespaceId() string {
@@ -1321,7 +1440,7 @@ type ListMessagesResponse struct {
 
 func (x *ListMessagesResponse) Reset() {
 	*x = ListMessagesResponse{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[16]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1333,7 +1452,7 @@ func (x *ListMessagesResponse) String() string {
 func (*ListMessagesResponse) ProtoMessage() {}
 
 func (x *ListMessagesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[16]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1346,7 +1465,7 @@ func (x *ListMessagesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListMessagesResponse.ProtoReflect.Descriptor instead.
 func (*ListMessagesResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{16}
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *ListMessagesResponse) GetMessages() []*Message {
@@ -1395,15 +1514,15 @@ type ChatWithAgentRequest struct {
 	EnableWebSearch bool `protobuf:"varint,5,opt,name=enable_web_search,json=enableWebSearch,proto3" json:"enable_web_search,omitempty"`
 	// object UIDs
 	ObjectUids []string `protobuf:"bytes,6,rep,name=object_uids,json=objectUids,proto3" json:"object_uids,omitempty"`
-	// The context for the agent.
-	Context       *ChatWithAgentRequest_Context `protobuf:"bytes,7,opt,name=context,proto3" json:"context,omitempty"`
+	// The context for the chat.
+	Context       *ChatContext `protobuf:"bytes,7,opt,name=context,proto3" json:"context,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ChatWithAgentRequest) Reset() {
 	*x = ChatWithAgentRequest{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[17]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1415,7 +1534,7 @@ func (x *ChatWithAgentRequest) String() string {
 func (*ChatWithAgentRequest) ProtoMessage() {}
 
 func (x *ChatWithAgentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[17]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1428,7 +1547,7 @@ func (x *ChatWithAgentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChatWithAgentRequest.ProtoReflect.Descriptor instead.
 func (*ChatWithAgentRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{17}
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *ChatWithAgentRequest) GetNamespaceId() string {
@@ -1474,7 +1593,7 @@ func (x *ChatWithAgentRequest) GetObjectUids() []string {
 	return nil
 }
 
-func (x *ChatWithAgentRequest) GetContext() *ChatWithAgentRequest_Context {
+func (x *ChatWithAgentRequest) GetContext() *ChatContext {
 	if x != nil {
 		return x.Context
 	}
@@ -1492,7 +1611,7 @@ type ChatWithAgentResponse struct {
 
 func (x *ChatWithAgentResponse) Reset() {
 	*x = ChatWithAgentResponse{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[18]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1504,7 +1623,7 @@ func (x *ChatWithAgentResponse) String() string {
 func (*ChatWithAgentResponse) ProtoMessage() {}
 
 func (x *ChatWithAgentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[18]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1517,7 +1636,7 @@ func (x *ChatWithAgentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChatWithAgentResponse.ProtoReflect.Descriptor instead.
 func (*ChatWithAgentResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{18}
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *ChatWithAgentResponse) GetOutputs() []*structpb.Struct {
@@ -1558,7 +1677,7 @@ type ChatEvent struct {
 
 func (x *ChatEvent) Reset() {
 	*x = ChatEvent{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[19]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1570,7 +1689,7 @@ func (x *ChatEvent) String() string {
 func (*ChatEvent) ProtoMessage() {}
 
 func (x *ChatEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[19]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1583,7 +1702,7 @@ func (x *ChatEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChatEvent.ProtoReflect.Descriptor instead.
 func (*ChatEvent) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{19}
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *ChatEvent) GetEvent() string {
@@ -1782,7 +1901,7 @@ type ChatStartedEvent struct {
 
 func (x *ChatStartedEvent) Reset() {
 	*x = ChatStartedEvent{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[20]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1794,7 +1913,7 @@ func (x *ChatStartedEvent) String() string {
 func (*ChatStartedEvent) ProtoMessage() {}
 
 func (x *ChatStartedEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[20]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1807,7 +1926,7 @@ func (x *ChatStartedEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChatStartedEvent.ProtoReflect.Descriptor instead.
 func (*ChatStartedEvent) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{20}
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *ChatStartedEvent) GetCreateTime() *timestamppb.Timestamp {
@@ -1830,7 +1949,7 @@ type ChatStatusUpdatedEvent struct {
 
 func (x *ChatStatusUpdatedEvent) Reset() {
 	*x = ChatStatusUpdatedEvent{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[21]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1842,7 +1961,7 @@ func (x *ChatStatusUpdatedEvent) String() string {
 func (*ChatStatusUpdatedEvent) ProtoMessage() {}
 
 func (x *ChatStatusUpdatedEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[21]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1855,7 +1974,7 @@ func (x *ChatStatusUpdatedEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChatStatusUpdatedEvent.ProtoReflect.Descriptor instead.
 func (*ChatStatusUpdatedEvent) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{21}
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *ChatStatusUpdatedEvent) GetCreateTime() *timestamppb.Timestamp {
@@ -1885,7 +2004,7 @@ type ChatOutputUpdatedEvent struct {
 
 func (x *ChatOutputUpdatedEvent) Reset() {
 	*x = ChatOutputUpdatedEvent{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[22]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1897,7 +2016,7 @@ func (x *ChatOutputUpdatedEvent) String() string {
 func (*ChatOutputUpdatedEvent) ProtoMessage() {}
 
 func (x *ChatOutputUpdatedEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[22]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1910,7 +2029,7 @@ func (x *ChatOutputUpdatedEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChatOutputUpdatedEvent.ProtoReflect.Descriptor instead.
 func (*ChatOutputUpdatedEvent) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{22}
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *ChatOutputUpdatedEvent) GetCreateTime() *timestamppb.Timestamp {
@@ -1940,7 +2059,7 @@ type ChatNameUpdatedEvent struct {
 
 func (x *ChatNameUpdatedEvent) Reset() {
 	*x = ChatNameUpdatedEvent{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[23]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1952,7 +2071,7 @@ func (x *ChatNameUpdatedEvent) String() string {
 func (*ChatNameUpdatedEvent) ProtoMessage() {}
 
 func (x *ChatNameUpdatedEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[23]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1965,7 +2084,7 @@ func (x *ChatNameUpdatedEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChatNameUpdatedEvent.ProtoReflect.Descriptor instead.
 func (*ChatNameUpdatedEvent) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{23}
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *ChatNameUpdatedEvent) GetCreateTime() *timestamppb.Timestamp {
@@ -1995,7 +2114,7 @@ type ChatReplanTriggeredEvent struct {
 
 func (x *ChatReplanTriggeredEvent) Reset() {
 	*x = ChatReplanTriggeredEvent{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[24]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2007,7 +2126,7 @@ func (x *ChatReplanTriggeredEvent) String() string {
 func (*ChatReplanTriggeredEvent) ProtoMessage() {}
 
 func (x *ChatReplanTriggeredEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[24]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2020,7 +2139,7 @@ func (x *ChatReplanTriggeredEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChatReplanTriggeredEvent.ProtoReflect.Descriptor instead.
 func (*ChatReplanTriggeredEvent) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{24}
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *ChatReplanTriggeredEvent) GetCreateTime() *timestamppb.Timestamp {
@@ -2050,7 +2169,7 @@ type ChatCitationListUpdatedEvent struct {
 
 func (x *ChatCitationListUpdatedEvent) Reset() {
 	*x = ChatCitationListUpdatedEvent{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[25]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2062,7 +2181,7 @@ func (x *ChatCitationListUpdatedEvent) String() string {
 func (*ChatCitationListUpdatedEvent) ProtoMessage() {}
 
 func (x *ChatCitationListUpdatedEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[25]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2075,7 +2194,7 @@ func (x *ChatCitationListUpdatedEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChatCitationListUpdatedEvent.ProtoReflect.Descriptor instead.
 func (*ChatCitationListUpdatedEvent) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{25}
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *ChatCitationListUpdatedEvent) GetCreateTime() *timestamppb.Timestamp {
@@ -2105,7 +2224,7 @@ type ChatTableCreatedEvent struct {
 
 func (x *ChatTableCreatedEvent) Reset() {
 	*x = ChatTableCreatedEvent{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[26]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2117,7 +2236,7 @@ func (x *ChatTableCreatedEvent) String() string {
 func (*ChatTableCreatedEvent) ProtoMessage() {}
 
 func (x *ChatTableCreatedEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[26]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2130,7 +2249,7 @@ func (x *ChatTableCreatedEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChatTableCreatedEvent.ProtoReflect.Descriptor instead.
 func (*ChatTableCreatedEvent) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{26}
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *ChatTableCreatedEvent) GetCreateTime() *timestamppb.Timestamp {
@@ -2162,7 +2281,7 @@ type ChatErrorUpdatedEvent struct {
 
 func (x *ChatErrorUpdatedEvent) Reset() {
 	*x = ChatErrorUpdatedEvent{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[27]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2174,7 +2293,7 @@ func (x *ChatErrorUpdatedEvent) String() string {
 func (*ChatErrorUpdatedEvent) ProtoMessage() {}
 
 func (x *ChatErrorUpdatedEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[27]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2187,7 +2306,7 @@ func (x *ChatErrorUpdatedEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChatErrorUpdatedEvent.ProtoReflect.Descriptor instead.
 func (*ChatErrorUpdatedEvent) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{27}
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *ChatErrorUpdatedEvent) GetCreateTime() *timestamppb.Timestamp {
@@ -2224,7 +2343,7 @@ type ChatDebugOutputUpdatedEvent struct {
 
 func (x *ChatDebugOutputUpdatedEvent) Reset() {
 	*x = ChatDebugOutputUpdatedEvent{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[28]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2236,7 +2355,7 @@ func (x *ChatDebugOutputUpdatedEvent) String() string {
 func (*ChatDebugOutputUpdatedEvent) ProtoMessage() {}
 
 func (x *ChatDebugOutputUpdatedEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[28]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2249,7 +2368,7 @@ func (x *ChatDebugOutputUpdatedEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChatDebugOutputUpdatedEvent.ProtoReflect.Descriptor instead.
 func (*ChatDebugOutputUpdatedEvent) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{28}
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *ChatDebugOutputUpdatedEvent) GetCreateTime() *timestamppb.Timestamp {
@@ -2277,7 +2396,7 @@ type ChatEndedEvent struct {
 
 func (x *ChatEndedEvent) Reset() {
 	*x = ChatEndedEvent{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[29]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2289,7 +2408,7 @@ func (x *ChatEndedEvent) String() string {
 func (*ChatEndedEvent) ProtoMessage() {}
 
 func (x *ChatEndedEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[29]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2302,58 +2421,12 @@ func (x *ChatEndedEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChatEndedEvent.ProtoReflect.Descriptor instead.
 func (*ChatEndedEvent) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{29}
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *ChatEndedEvent) GetCreateTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreateTime
-	}
-	return nil
-}
-
-// The context for the chat.
-type ChatWithAgentRequest_Context struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The table uids to include in the context.
-	TableUids     []string `protobuf:"bytes,1,rep,name=table_uids,json=tableUids,proto3" json:"table_uids,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ChatWithAgentRequest_Context) Reset() {
-	*x = ChatWithAgentRequest_Context{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[31]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ChatWithAgentRequest_Context) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ChatWithAgentRequest_Context) ProtoMessage() {}
-
-func (x *ChatWithAgentRequest_Context) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[31]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ChatWithAgentRequest_Context.ProtoReflect.Descriptor instead.
-func (*ChatWithAgentRequest_Context) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{17, 0}
-}
-
-func (x *ChatWithAgentRequest_Context) GetTableUids() []string {
-	if x != nil {
-		return x.TableUids
 	}
 	return nil
 }
@@ -2390,7 +2463,7 @@ const file_agent_agent_v1alpha_chat_proto_rawDesc = "" +
 	"\asummary\x18\x05 \x01(\tB\x03\xe0A\x03H\x00R\asummary\x88\x01\x01\x12Z\n" +
 	"\x0eextract_method\x18\x06 \x01(\x0e2..agent.agent.v1alpha.CitationExtractMethodTypeB\x03\xe0A\x03R\rextractMethodB\n" +
 	"\n" +
-	"\b_summary\"\xf0\x03\n" +
+	"\b_summary\"\xaf\x05\n" +
 	"\aMessage\x12\x15\n" +
 	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x1e\n" +
 	"\bchat_uid\x18\x02 \x01(\tB\x03\xe0A\x03R\achatUid\x12\x1d\n" +
@@ -2402,10 +2475,19 @@ const file_agent_agent_v1alpha_chat_proto_rawDesc = "" +
 	"\vupdate_time\x18\a \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
 	"updateTime\x12)\n" +
 	"\x0emsg_sender_uid\x18\b \x01(\tB\x03\xe0A\x03R\fmsgSenderUid\x12@\n" +
-	"\tcitations\x18\t \x03(\v2\x1d.agent.agent.v1alpha.CitationB\x03\xe0A\x03R\tcitations\"B\n" +
+	"\tcitations\x18\t \x03(\v2\x1d.agent.agent.v1alpha.CitationB\x03\xe0A\x03R\tcitations\x12?\n" +
+	"\acontext\x18\n" +
+	" \x01(\v2 .agent.agent.v1alpha.ChatContextB\x03\xe0A\x03R\acontext\x12K\n" +
+	"\vattachments\x18\v \x01(\v2$.agent.agent.v1alpha.ChatAttachmentsB\x03\xe0A\x03R\vattachments\x12/\n" +
+	"\x11enable_web_search\x18\f \x01(\bB\x03\xe0A\x03R\x0fenableWebSearch\"B\n" +
 	"\vMessageType\x12\x1c\n" +
 	"\x18MESSAGE_TYPE_UNSPECIFIED\x10\x00\x12\x15\n" +
-	"\x11MESSAGE_TYPE_TEXT\x10\x01\"\xdc\x01\n" +
+	"\x11MESSAGE_TYPE_TEXT\x10\x01\"1\n" +
+	"\vChatContext\x12\"\n" +
+	"\n" +
+	"table_uids\x18\x01 \x03(\tB\x03\xe0A\x01R\ttableUids\"3\n" +
+	"\x0fChatAttachments\x12 \n" +
+	"\tfile_urls\x18\x01 \x03(\tB\x03\xe0A\x03R\bfileUrls\"\xdc\x01\n" +
 	"\x11CreateChatRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12/\n" +
 	"\x11chat_display_name\x18\x02 \x01(\tB\x03\xe0A\x01R\x0fchatDisplayName\x12H\n" +
@@ -2461,7 +2543,7 @@ const file_agent_agent_v1alpha_chat_proto_rawDesc = "" +
 	"\x0fnext_page_token\x18\x02 \x01(\tB\x03\xe0A\x03R\rnextPageToken\x12\"\n" +
 	"\n" +
 	"total_size\x18\x03 \x01(\x05B\x03\xe0A\x03R\ttotalSize\x12W\n" +
-	"\x0fsender_profiles\x18\x04 \x03(\v2).agent.agent.v1alpha.MessageSenderProfileB\x03\xe0A\x03R\x0esenderProfiles\"\xf9\x02\n" +
+	"\x0fsender_profiles\x18\x04 \x03(\v2).agent.agent.v1alpha.MessageSenderProfileB\x03\xe0A\x03R\x0esenderProfiles\"\xb9\x02\n" +
 	"\x14ChatWithAgentRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\x1e\n" +
 	"\bchat_uid\x18\x02 \x01(\tB\x03\xe0A\x02R\achatUid\x12\x1d\n" +
@@ -2469,11 +2551,8 @@ const file_agent_agent_v1alpha_chat_proto_rawDesc = "" +
 	"\tfile_uids\x18\x04 \x03(\tB\x05\xe0A\x01\x18\x01R\bfileUids\x12/\n" +
 	"\x11enable_web_search\x18\x05 \x01(\bB\x03\xe0A\x01R\x0fenableWebSearch\x12$\n" +
 	"\vobject_uids\x18\x06 \x03(\tB\x03\xe0A\x01R\n" +
-	"objectUids\x12P\n" +
-	"\acontext\x18\a \x01(\v21.agent.agent.v1alpha.ChatWithAgentRequest.ContextB\x03\xe0A\x01R\acontext\x1a-\n" +
-	"\aContext\x12\"\n" +
-	"\n" +
-	"table_uids\x18\x01 \x03(\tB\x03\xe0A\x01R\ttableUids\"O\n" +
+	"objectUids\x12?\n" +
+	"\acontext\x18\a \x01(\v2 .agent.agent.v1alpha.ChatContextB\x03\xe0A\x01R\acontext\"O\n" +
 	"\x15ChatWithAgentResponse\x126\n" +
 	"\aoutputs\x18\x01 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\aoutputs\"\xd8\b\n" +
 	"\tChatEvent\x12\x19\n" +
@@ -2558,7 +2637,7 @@ func file_agent_agent_v1alpha_chat_proto_rawDescGZIP() []byte {
 }
 
 var file_agent_agent_v1alpha_chat_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_agent_agent_v1alpha_chat_proto_msgTypes = make([]protoimpl.MessageInfo, 32)
+var file_agent_agent_v1alpha_chat_proto_msgTypes = make([]protoimpl.MessageInfo, 33)
 var file_agent_agent_v1alpha_chat_proto_goTypes = []any{
 	(CitationType)(0),                    // 0: agent.agent.v1alpha.CitationType
 	(CitationExtractMethodType)(0),       // 1: agent.agent.v1alpha.CitationExtractMethodType
@@ -2567,85 +2646,88 @@ var file_agent_agent_v1alpha_chat_proto_goTypes = []any{
 	(*Chat)(nil),                         // 4: agent.agent.v1alpha.Chat
 	(*Citation)(nil),                     // 5: agent.agent.v1alpha.Citation
 	(*Message)(nil),                      // 6: agent.agent.v1alpha.Message
-	(*CreateChatRequest)(nil),            // 7: agent.agent.v1alpha.CreateChatRequest
-	(*CreateChatResponse)(nil),           // 8: agent.agent.v1alpha.CreateChatResponse
-	(*ListChatsRequest)(nil),             // 9: agent.agent.v1alpha.ListChatsRequest
-	(*ListChatsResponse)(nil),            // 10: agent.agent.v1alpha.ListChatsResponse
-	(*UpdateChatRequest)(nil),            // 11: agent.agent.v1alpha.UpdateChatRequest
-	(*UpdateChatResponse)(nil),           // 12: agent.agent.v1alpha.UpdateChatResponse
-	(*GetChatRequest)(nil),               // 13: agent.agent.v1alpha.GetChatRequest
-	(*GetChatResponse)(nil),              // 14: agent.agent.v1alpha.GetChatResponse
-	(*DeleteChatRequest)(nil),            // 15: agent.agent.v1alpha.DeleteChatRequest
-	(*DeleteChatResponse)(nil),           // 16: agent.agent.v1alpha.DeleteChatResponse
-	(*MessageSenderProfile)(nil),         // 17: agent.agent.v1alpha.MessageSenderProfile
-	(*ListMessagesRequest)(nil),          // 18: agent.agent.v1alpha.ListMessagesRequest
-	(*ListMessagesResponse)(nil),         // 19: agent.agent.v1alpha.ListMessagesResponse
-	(*ChatWithAgentRequest)(nil),         // 20: agent.agent.v1alpha.ChatWithAgentRequest
-	(*ChatWithAgentResponse)(nil),        // 21: agent.agent.v1alpha.ChatWithAgentResponse
-	(*ChatEvent)(nil),                    // 22: agent.agent.v1alpha.ChatEvent
-	(*ChatStartedEvent)(nil),             // 23: agent.agent.v1alpha.ChatStartedEvent
-	(*ChatStatusUpdatedEvent)(nil),       // 24: agent.agent.v1alpha.ChatStatusUpdatedEvent
-	(*ChatOutputUpdatedEvent)(nil),       // 25: agent.agent.v1alpha.ChatOutputUpdatedEvent
-	(*ChatNameUpdatedEvent)(nil),         // 26: agent.agent.v1alpha.ChatNameUpdatedEvent
-	(*ChatReplanTriggeredEvent)(nil),     // 27: agent.agent.v1alpha.ChatReplanTriggeredEvent
-	(*ChatCitationListUpdatedEvent)(nil), // 28: agent.agent.v1alpha.ChatCitationListUpdatedEvent
-	(*ChatTableCreatedEvent)(nil),        // 29: agent.agent.v1alpha.ChatTableCreatedEvent
-	(*ChatErrorUpdatedEvent)(nil),        // 30: agent.agent.v1alpha.ChatErrorUpdatedEvent
-	(*ChatDebugOutputUpdatedEvent)(nil),  // 31: agent.agent.v1alpha.ChatDebugOutputUpdatedEvent
-	(*ChatEndedEvent)(nil),               // 32: agent.agent.v1alpha.ChatEndedEvent
-	nil,                                  // 33: agent.agent.v1alpha.AgentConfig.ConnectionsEntry
-	(*ChatWithAgentRequest_Context)(nil), // 34: agent.agent.v1alpha.ChatWithAgentRequest.Context
-	(*timestamppb.Timestamp)(nil),        // 35: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),              // 36: google.protobuf.Struct
+	(*ChatContext)(nil),                  // 7: agent.agent.v1alpha.ChatContext
+	(*ChatAttachments)(nil),              // 8: agent.agent.v1alpha.ChatAttachments
+	(*CreateChatRequest)(nil),            // 9: agent.agent.v1alpha.CreateChatRequest
+	(*CreateChatResponse)(nil),           // 10: agent.agent.v1alpha.CreateChatResponse
+	(*ListChatsRequest)(nil),             // 11: agent.agent.v1alpha.ListChatsRequest
+	(*ListChatsResponse)(nil),            // 12: agent.agent.v1alpha.ListChatsResponse
+	(*UpdateChatRequest)(nil),            // 13: agent.agent.v1alpha.UpdateChatRequest
+	(*UpdateChatResponse)(nil),           // 14: agent.agent.v1alpha.UpdateChatResponse
+	(*GetChatRequest)(nil),               // 15: agent.agent.v1alpha.GetChatRequest
+	(*GetChatResponse)(nil),              // 16: agent.agent.v1alpha.GetChatResponse
+	(*DeleteChatRequest)(nil),            // 17: agent.agent.v1alpha.DeleteChatRequest
+	(*DeleteChatResponse)(nil),           // 18: agent.agent.v1alpha.DeleteChatResponse
+	(*MessageSenderProfile)(nil),         // 19: agent.agent.v1alpha.MessageSenderProfile
+	(*ListMessagesRequest)(nil),          // 20: agent.agent.v1alpha.ListMessagesRequest
+	(*ListMessagesResponse)(nil),         // 21: agent.agent.v1alpha.ListMessagesResponse
+	(*ChatWithAgentRequest)(nil),         // 22: agent.agent.v1alpha.ChatWithAgentRequest
+	(*ChatWithAgentResponse)(nil),        // 23: agent.agent.v1alpha.ChatWithAgentResponse
+	(*ChatEvent)(nil),                    // 24: agent.agent.v1alpha.ChatEvent
+	(*ChatStartedEvent)(nil),             // 25: agent.agent.v1alpha.ChatStartedEvent
+	(*ChatStatusUpdatedEvent)(nil),       // 26: agent.agent.v1alpha.ChatStatusUpdatedEvent
+	(*ChatOutputUpdatedEvent)(nil),       // 27: agent.agent.v1alpha.ChatOutputUpdatedEvent
+	(*ChatNameUpdatedEvent)(nil),         // 28: agent.agent.v1alpha.ChatNameUpdatedEvent
+	(*ChatReplanTriggeredEvent)(nil),     // 29: agent.agent.v1alpha.ChatReplanTriggeredEvent
+	(*ChatCitationListUpdatedEvent)(nil), // 30: agent.agent.v1alpha.ChatCitationListUpdatedEvent
+	(*ChatTableCreatedEvent)(nil),        // 31: agent.agent.v1alpha.ChatTableCreatedEvent
+	(*ChatErrorUpdatedEvent)(nil),        // 32: agent.agent.v1alpha.ChatErrorUpdatedEvent
+	(*ChatDebugOutputUpdatedEvent)(nil),  // 33: agent.agent.v1alpha.ChatDebugOutputUpdatedEvent
+	(*ChatEndedEvent)(nil),               // 34: agent.agent.v1alpha.ChatEndedEvent
+	nil,                                  // 35: agent.agent.v1alpha.AgentConfig.ConnectionsEntry
+	(*timestamppb.Timestamp)(nil),        // 36: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),              // 37: google.protobuf.Struct
 }
 var file_agent_agent_v1alpha_chat_proto_depIdxs = []int32{
-	33, // 0: agent.agent.v1alpha.AgentConfig.connections:type_name -> agent.agent.v1alpha.AgentConfig.ConnectionsEntry
+	35, // 0: agent.agent.v1alpha.AgentConfig.connections:type_name -> agent.agent.v1alpha.AgentConfig.ConnectionsEntry
 	3,  // 1: agent.agent.v1alpha.Chat.agent_config:type_name -> agent.agent.v1alpha.AgentConfig
-	35, // 2: agent.agent.v1alpha.Chat.create_time:type_name -> google.protobuf.Timestamp
-	35, // 3: agent.agent.v1alpha.Chat.update_time:type_name -> google.protobuf.Timestamp
-	35, // 4: agent.agent.v1alpha.Chat.delete_time:type_name -> google.protobuf.Timestamp
+	36, // 2: agent.agent.v1alpha.Chat.create_time:type_name -> google.protobuf.Timestamp
+	36, // 3: agent.agent.v1alpha.Chat.update_time:type_name -> google.protobuf.Timestamp
+	36, // 4: agent.agent.v1alpha.Chat.delete_time:type_name -> google.protobuf.Timestamp
 	0,  // 5: agent.agent.v1alpha.Citation.type:type_name -> agent.agent.v1alpha.CitationType
 	1,  // 6: agent.agent.v1alpha.Citation.extract_method:type_name -> agent.agent.v1alpha.CitationExtractMethodType
 	2,  // 7: agent.agent.v1alpha.Message.type:type_name -> agent.agent.v1alpha.Message.MessageType
-	35, // 8: agent.agent.v1alpha.Message.create_time:type_name -> google.protobuf.Timestamp
-	35, // 9: agent.agent.v1alpha.Message.update_time:type_name -> google.protobuf.Timestamp
+	36, // 8: agent.agent.v1alpha.Message.create_time:type_name -> google.protobuf.Timestamp
+	36, // 9: agent.agent.v1alpha.Message.update_time:type_name -> google.protobuf.Timestamp
 	5,  // 10: agent.agent.v1alpha.Message.citations:type_name -> agent.agent.v1alpha.Citation
-	3,  // 11: agent.agent.v1alpha.CreateChatRequest.agent_config:type_name -> agent.agent.v1alpha.AgentConfig
-	4,  // 12: agent.agent.v1alpha.CreateChatResponse.chat:type_name -> agent.agent.v1alpha.Chat
-	4,  // 13: agent.agent.v1alpha.ListChatsResponse.chats:type_name -> agent.agent.v1alpha.Chat
-	3,  // 14: agent.agent.v1alpha.UpdateChatRequest.agent_config:type_name -> agent.agent.v1alpha.AgentConfig
-	4,  // 15: agent.agent.v1alpha.UpdateChatResponse.chat:type_name -> agent.agent.v1alpha.Chat
-	4,  // 16: agent.agent.v1alpha.GetChatResponse.chat:type_name -> agent.agent.v1alpha.Chat
-	6,  // 17: agent.agent.v1alpha.ListMessagesResponse.messages:type_name -> agent.agent.v1alpha.Message
-	17, // 18: agent.agent.v1alpha.ListMessagesResponse.sender_profiles:type_name -> agent.agent.v1alpha.MessageSenderProfile
-	34, // 19: agent.agent.v1alpha.ChatWithAgentRequest.context:type_name -> agent.agent.v1alpha.ChatWithAgentRequest.Context
-	36, // 20: agent.agent.v1alpha.ChatWithAgentResponse.outputs:type_name -> google.protobuf.Struct
-	23, // 21: agent.agent.v1alpha.ChatEvent.chat_started_event:type_name -> agent.agent.v1alpha.ChatStartedEvent
-	24, // 22: agent.agent.v1alpha.ChatEvent.chat_status_updated_event:type_name -> agent.agent.v1alpha.ChatStatusUpdatedEvent
-	25, // 23: agent.agent.v1alpha.ChatEvent.chat_output_updated_event:type_name -> agent.agent.v1alpha.ChatOutputUpdatedEvent
-	26, // 24: agent.agent.v1alpha.ChatEvent.chat_name_updated_event:type_name -> agent.agent.v1alpha.ChatNameUpdatedEvent
-	27, // 25: agent.agent.v1alpha.ChatEvent.chat_replan_triggered_event:type_name -> agent.agent.v1alpha.ChatReplanTriggeredEvent
-	28, // 26: agent.agent.v1alpha.ChatEvent.chat_citation_list_updated_event:type_name -> agent.agent.v1alpha.ChatCitationListUpdatedEvent
-	29, // 27: agent.agent.v1alpha.ChatEvent.chat_table_created_event:type_name -> agent.agent.v1alpha.ChatTableCreatedEvent
-	30, // 28: agent.agent.v1alpha.ChatEvent.chat_error_updated_event:type_name -> agent.agent.v1alpha.ChatErrorUpdatedEvent
-	31, // 29: agent.agent.v1alpha.ChatEvent.chat_debug_output_updated_event:type_name -> agent.agent.v1alpha.ChatDebugOutputUpdatedEvent
-	32, // 30: agent.agent.v1alpha.ChatEvent.chat_ended_event:type_name -> agent.agent.v1alpha.ChatEndedEvent
-	35, // 31: agent.agent.v1alpha.ChatStartedEvent.create_time:type_name -> google.protobuf.Timestamp
-	35, // 32: agent.agent.v1alpha.ChatStatusUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
-	35, // 33: agent.agent.v1alpha.ChatOutputUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
-	35, // 34: agent.agent.v1alpha.ChatNameUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
-	35, // 35: agent.agent.v1alpha.ChatReplanTriggeredEvent.create_time:type_name -> google.protobuf.Timestamp
-	35, // 36: agent.agent.v1alpha.ChatCitationListUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
-	5,  // 37: agent.agent.v1alpha.ChatCitationListUpdatedEvent.citations:type_name -> agent.agent.v1alpha.Citation
-	35, // 38: agent.agent.v1alpha.ChatTableCreatedEvent.create_time:type_name -> google.protobuf.Timestamp
-	35, // 39: agent.agent.v1alpha.ChatErrorUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
-	35, // 40: agent.agent.v1alpha.ChatDebugOutputUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
-	35, // 41: agent.agent.v1alpha.ChatEndedEvent.create_time:type_name -> google.protobuf.Timestamp
-	42, // [42:42] is the sub-list for method output_type
-	42, // [42:42] is the sub-list for method input_type
-	42, // [42:42] is the sub-list for extension type_name
-	42, // [42:42] is the sub-list for extension extendee
-	0,  // [0:42] is the sub-list for field type_name
+	7,  // 11: agent.agent.v1alpha.Message.context:type_name -> agent.agent.v1alpha.ChatContext
+	8,  // 12: agent.agent.v1alpha.Message.attachments:type_name -> agent.agent.v1alpha.ChatAttachments
+	3,  // 13: agent.agent.v1alpha.CreateChatRequest.agent_config:type_name -> agent.agent.v1alpha.AgentConfig
+	4,  // 14: agent.agent.v1alpha.CreateChatResponse.chat:type_name -> agent.agent.v1alpha.Chat
+	4,  // 15: agent.agent.v1alpha.ListChatsResponse.chats:type_name -> agent.agent.v1alpha.Chat
+	3,  // 16: agent.agent.v1alpha.UpdateChatRequest.agent_config:type_name -> agent.agent.v1alpha.AgentConfig
+	4,  // 17: agent.agent.v1alpha.UpdateChatResponse.chat:type_name -> agent.agent.v1alpha.Chat
+	4,  // 18: agent.agent.v1alpha.GetChatResponse.chat:type_name -> agent.agent.v1alpha.Chat
+	6,  // 19: agent.agent.v1alpha.ListMessagesResponse.messages:type_name -> agent.agent.v1alpha.Message
+	19, // 20: agent.agent.v1alpha.ListMessagesResponse.sender_profiles:type_name -> agent.agent.v1alpha.MessageSenderProfile
+	7,  // 21: agent.agent.v1alpha.ChatWithAgentRequest.context:type_name -> agent.agent.v1alpha.ChatContext
+	37, // 22: agent.agent.v1alpha.ChatWithAgentResponse.outputs:type_name -> google.protobuf.Struct
+	25, // 23: agent.agent.v1alpha.ChatEvent.chat_started_event:type_name -> agent.agent.v1alpha.ChatStartedEvent
+	26, // 24: agent.agent.v1alpha.ChatEvent.chat_status_updated_event:type_name -> agent.agent.v1alpha.ChatStatusUpdatedEvent
+	27, // 25: agent.agent.v1alpha.ChatEvent.chat_output_updated_event:type_name -> agent.agent.v1alpha.ChatOutputUpdatedEvent
+	28, // 26: agent.agent.v1alpha.ChatEvent.chat_name_updated_event:type_name -> agent.agent.v1alpha.ChatNameUpdatedEvent
+	29, // 27: agent.agent.v1alpha.ChatEvent.chat_replan_triggered_event:type_name -> agent.agent.v1alpha.ChatReplanTriggeredEvent
+	30, // 28: agent.agent.v1alpha.ChatEvent.chat_citation_list_updated_event:type_name -> agent.agent.v1alpha.ChatCitationListUpdatedEvent
+	31, // 29: agent.agent.v1alpha.ChatEvent.chat_table_created_event:type_name -> agent.agent.v1alpha.ChatTableCreatedEvent
+	32, // 30: agent.agent.v1alpha.ChatEvent.chat_error_updated_event:type_name -> agent.agent.v1alpha.ChatErrorUpdatedEvent
+	33, // 31: agent.agent.v1alpha.ChatEvent.chat_debug_output_updated_event:type_name -> agent.agent.v1alpha.ChatDebugOutputUpdatedEvent
+	34, // 32: agent.agent.v1alpha.ChatEvent.chat_ended_event:type_name -> agent.agent.v1alpha.ChatEndedEvent
+	36, // 33: agent.agent.v1alpha.ChatStartedEvent.create_time:type_name -> google.protobuf.Timestamp
+	36, // 34: agent.agent.v1alpha.ChatStatusUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
+	36, // 35: agent.agent.v1alpha.ChatOutputUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
+	36, // 36: agent.agent.v1alpha.ChatNameUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
+	36, // 37: agent.agent.v1alpha.ChatReplanTriggeredEvent.create_time:type_name -> google.protobuf.Timestamp
+	36, // 38: agent.agent.v1alpha.ChatCitationListUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
+	5,  // 39: agent.agent.v1alpha.ChatCitationListUpdatedEvent.citations:type_name -> agent.agent.v1alpha.Citation
+	36, // 40: agent.agent.v1alpha.ChatTableCreatedEvent.create_time:type_name -> google.protobuf.Timestamp
+	36, // 41: agent.agent.v1alpha.ChatErrorUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
+	36, // 42: agent.agent.v1alpha.ChatDebugOutputUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
+	36, // 43: agent.agent.v1alpha.ChatEndedEvent.create_time:type_name -> google.protobuf.Timestamp
+	44, // [44:44] is the sub-list for method output_type
+	44, // [44:44] is the sub-list for method input_type
+	44, // [44:44] is the sub-list for extension type_name
+	44, // [44:44] is the sub-list for extension extendee
+	0,  // [0:44] is the sub-list for field type_name
 }
 
 func init() { file_agent_agent_v1alpha_chat_proto_init() }
@@ -2654,8 +2736,8 @@ func file_agent_agent_v1alpha_chat_proto_init() {
 		return
 	}
 	file_agent_agent_v1alpha_chat_proto_msgTypes[2].OneofWrappers = []any{}
-	file_agent_agent_v1alpha_chat_proto_msgTypes[14].OneofWrappers = []any{}
-	file_agent_agent_v1alpha_chat_proto_msgTypes[19].OneofWrappers = []any{
+	file_agent_agent_v1alpha_chat_proto_msgTypes[16].OneofWrappers = []any{}
+	file_agent_agent_v1alpha_chat_proto_msgTypes[21].OneofWrappers = []any{
 		(*ChatEvent_ChatStartedEvent)(nil),
 		(*ChatEvent_ChatStatusUpdatedEvent)(nil),
 		(*ChatEvent_ChatOutputUpdatedEvent)(nil),
@@ -2673,7 +2755,7 @@ func file_agent_agent_v1alpha_chat_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_agent_agent_v1alpha_chat_proto_rawDesc), len(file_agent_agent_v1alpha_chat_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   32,
+			NumMessages:   33,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
