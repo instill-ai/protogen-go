@@ -385,8 +385,6 @@ type Table struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The unique identifier of the table.
 	Uid string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
-	// The ID of the table.
-	Id string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
 	// The title of the table.
 	Title string `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
 	// A description of the table.
@@ -438,13 +436,6 @@ func (*Table) Descriptor() ([]byte, []int) {
 func (x *Table) GetUid() string {
 	if x != nil {
 		return x.Uid
-	}
-	return ""
-}
-
-func (x *Table) GetId() string {
-	if x != nil {
-		return x.Id
 	}
 	return ""
 }
@@ -5358,10 +5349,9 @@ var File_agent_agent_v1alpha_table_proto protoreflect.FileDescriptor
 
 const file_agent_agent_v1alpha_table_proto_rawDesc = "" +
 	"\n" +
-	"\x1fagent/agent/v1alpha/table.proto\x12\x13agent.agent.v1alpha\x1a agent/agent/v1alpha/common.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xec\x03\n" +
+	"\x1fagent/agent/v1alpha/table.proto\x12\x13agent.agent.v1alpha\x1a agent/agent/v1alpha/common.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xdd\x03\n" +
 	"\x05Table\x12\x15\n" +
-	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x13\n" +
-	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x02R\x02id\x12\x19\n" +
+	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x19\n" +
 	"\x05title\x18\x03 \x01(\tB\x03\xe0A\x02R\x05title\x12%\n" +
 	"\vdescription\x18\x04 \x01(\tB\x03\xe0A\x01R\vdescription\x128\n" +
 	"\bmetadata\x18\x05 \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x01R\bmetadata\x12@\n" +
@@ -5373,7 +5363,7 @@ const file_agent_agent_v1alpha_table_proto_rawDesc = "" +
 	"\n" +
 	"draft_mode\x18\t \x01(\bB\x03\xe0A\x02R\tdraftMode\x1aC\n" +
 	"\vAgentConfig\x124\n" +
-	"\x13enable_transparency\x18\x01 \x01(\bB\x03\xe0A\x02R\x12enableTransparency\"\x81\x01\n" +
+	"\x13enable_transparency\x18\x01 \x01(\bB\x03\xe0A\x02R\x12enableTransparencyJ\x04\b\x02\x10\x03\"\x81\x01\n" +
 	"\x11ListTablesRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\"\n" +
 	"\n" +
