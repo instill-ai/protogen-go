@@ -2258,7 +2258,11 @@ type FileCell struct {
 	// File name
 	Name string `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
 	// MIME type of the file.
-	MimeType      string `protobuf:"bytes,5,opt,name=mime_type,json=mimeType,proto3" json:"mime_type,omitempty"`
+	MimeType string `protobuf:"bytes,5,opt,name=mime_type,json=mimeType,proto3" json:"mime_type,omitempty"`
+	// The catalog ID of the file resource.
+	CatalogId string `protobuf:"bytes,6,opt,name=catalog_id,json=catalogId,proto3" json:"catalog_id,omitempty"`
+	// The URL of the file resource.
+	FileUrl       string `protobuf:"bytes,7,opt,name=file_url,json=fileUrl,proto3" json:"file_url,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2324,6 +2328,20 @@ func (x *FileCell) GetName() string {
 func (x *FileCell) GetMimeType() string {
 	if x != nil {
 		return x.MimeType
+	}
+	return ""
+}
+
+func (x *FileCell) GetCatalogId() string {
+	if x != nil {
+		return x.CatalogId
+	}
+	return ""
+}
+
+func (x *FileCell) GetFileUrl() string {
+	if x != nil {
+		return x.FileUrl
 	}
 	return ""
 }
@@ -5898,14 +5916,17 @@ const file_agent_agent_v1alpha_table_proto_rawDesc = "" +
 	"user_input\x18\x02 \x01(\bB\x03\xe0A\x01H\x00R\tuserInput\x88\x01\x01\x12/\n" +
 	"\x0ecomputed_value\x18\x03 \x01(\bB\x03\xe0A\x03H\x01R\rcomputedValue\x88\x01\x01B\r\n" +
 	"\v_user_inputB\x11\n" +
-	"\x0f_computed_value\"\xac\x01\n" +
+	"\x0f_computed_value\"\xf0\x01\n" +
 	"\bFileCell\x12!\n" +
-	"\tnamespace\x18\x01 \x01(\tB\x03\xe0A\x02R\tnamespace\x12\x1e\n" +
-	"\bfile_uid\x18\x02 \x01(\tB\x03\xe0A\x02R\afileUid\x12\"\n" +
+	"\tnamespace\x18\x01 \x01(\tB\x03\xe0A\x03R\tnamespace\x12\x1e\n" +
+	"\bfile_uid\x18\x02 \x01(\tB\x03\xe0A\x03R\afileUid\x12\"\n" +
 	"\n" +
 	"object_uid\x18\x03 \x01(\tB\x03\xe0A\x02R\tobjectUid\x12\x17\n" +
-	"\x04name\x18\x04 \x01(\tB\x03\xe0A\x02R\x04name\x12 \n" +
-	"\tmime_type\x18\x05 \x01(\tB\x03\xe0A\x02R\bmimeType\"\xb0\x01\n" +
+	"\x04name\x18\x04 \x01(\tB\x03\xe0A\x03R\x04name\x12 \n" +
+	"\tmime_type\x18\x05 \x01(\tB\x03\xe0A\x03R\bmimeType\x12\"\n" +
+	"\n" +
+	"catalog_id\x18\x06 \x01(\tB\x03\xe0A\x03R\tcatalogId\x12\x1e\n" +
+	"\bfile_url\x18\a \x01(\tB\x03\xe0A\x03R\afileUrl\"\xb0\x01\n" +
 	"\fDocumentCell\x12!\n" +
 	"\tnamespace\x18\x01 \x01(\tB\x03\xe0A\x02R\tnamespace\x12\x1e\n" +
 	"\bfile_uid\x18\x02 \x01(\tB\x03\xe0A\x02R\afileUid\x12\"\n" +
