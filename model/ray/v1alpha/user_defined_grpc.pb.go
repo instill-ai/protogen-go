@@ -19,109 +19,109 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	RayUserDefinedService_XCall___FullMethodName = "/model.ray.v1alpha.RayUserDefinedService/__call__"
+	UserDefinedService_XCall___FullMethodName = "/model.ray.v1alpha.UserDefinedService/__call__"
 )
 
-// RayUserDefinedServiceClient is the client API for RayUserDefinedService service.
+// UserDefinedServiceClient is the client API for UserDefinedService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
-// Ray user defined service for internal process
-type RayUserDefinedServiceClient interface {
+// User defined service for internal process
+type UserDefinedServiceClient interface {
 	// Trigger method is the default trigger entry for ray deployment
 	// Ray doesn't comply with the naming convention of protobuf, so we need to
 	// buf:lint:ignore RPC_PASCAL_CASE
 	XCall__(ctx context.Context, in *CallRequest, opts ...grpc.CallOption) (*CallResponse, error)
 }
 
-type rayUserDefinedServiceClient struct {
+type userDefinedServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewRayUserDefinedServiceClient(cc grpc.ClientConnInterface) RayUserDefinedServiceClient {
-	return &rayUserDefinedServiceClient{cc}
+func NewUserDefinedServiceClient(cc grpc.ClientConnInterface) UserDefinedServiceClient {
+	return &userDefinedServiceClient{cc}
 }
 
-func (c *rayUserDefinedServiceClient) XCall__(ctx context.Context, in *CallRequest, opts ...grpc.CallOption) (*CallResponse, error) {
+func (c *userDefinedServiceClient) XCall__(ctx context.Context, in *CallRequest, opts ...grpc.CallOption) (*CallResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CallResponse)
-	err := c.cc.Invoke(ctx, RayUserDefinedService_XCall___FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, UserDefinedService_XCall___FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// RayUserDefinedServiceServer is the server API for RayUserDefinedService service.
-// All implementations should embed UnimplementedRayUserDefinedServiceServer
+// UserDefinedServiceServer is the server API for UserDefinedService service.
+// All implementations should embed UnimplementedUserDefinedServiceServer
 // for forward compatibility.
 //
-// Ray user defined service for internal process
-type RayUserDefinedServiceServer interface {
+// User defined service for internal process
+type UserDefinedServiceServer interface {
 	// Trigger method is the default trigger entry for ray deployment
 	// Ray doesn't comply with the naming convention of protobuf, so we need to
 	// buf:lint:ignore RPC_PASCAL_CASE
 	XCall__(context.Context, *CallRequest) (*CallResponse, error)
 }
 
-// UnimplementedRayUserDefinedServiceServer should be embedded to have
+// UnimplementedUserDefinedServiceServer should be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedRayUserDefinedServiceServer struct{}
+type UnimplementedUserDefinedServiceServer struct{}
 
-func (UnimplementedRayUserDefinedServiceServer) XCall__(context.Context, *CallRequest) (*CallResponse, error) {
+func (UnimplementedUserDefinedServiceServer) XCall__(context.Context, *CallRequest) (*CallResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method XCall__ not implemented")
 }
-func (UnimplementedRayUserDefinedServiceServer) testEmbeddedByValue() {}
+func (UnimplementedUserDefinedServiceServer) testEmbeddedByValue() {}
 
-// UnsafeRayUserDefinedServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to RayUserDefinedServiceServer will
+// UnsafeUserDefinedServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to UserDefinedServiceServer will
 // result in compilation errors.
-type UnsafeRayUserDefinedServiceServer interface {
-	mustEmbedUnimplementedRayUserDefinedServiceServer()
+type UnsafeUserDefinedServiceServer interface {
+	mustEmbedUnimplementedUserDefinedServiceServer()
 }
 
-func RegisterRayUserDefinedServiceServer(s grpc.ServiceRegistrar, srv RayUserDefinedServiceServer) {
-	// If the following call pancis, it indicates UnimplementedRayUserDefinedServiceServer was
+func RegisterUserDefinedServiceServer(s grpc.ServiceRegistrar, srv UserDefinedServiceServer) {
+	// If the following call pancis, it indicates UnimplementedUserDefinedServiceServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&RayUserDefinedService_ServiceDesc, srv)
+	s.RegisterService(&UserDefinedService_ServiceDesc, srv)
 }
 
-func _RayUserDefinedService_XCall___Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserDefinedService_XCall___Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CallRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RayUserDefinedServiceServer).XCall__(ctx, in)
+		return srv.(UserDefinedServiceServer).XCall__(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: RayUserDefinedService_XCall___FullMethodName,
+		FullMethod: UserDefinedService_XCall___FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RayUserDefinedServiceServer).XCall__(ctx, req.(*CallRequest))
+		return srv.(UserDefinedServiceServer).XCall__(ctx, req.(*CallRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// RayUserDefinedService_ServiceDesc is the grpc.ServiceDesc for RayUserDefinedService service.
+// UserDefinedService_ServiceDesc is the grpc.ServiceDesc for UserDefinedService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var RayUserDefinedService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "model.ray.v1alpha.RayUserDefinedService",
-	HandlerType: (*RayUserDefinedServiceServer)(nil),
+var UserDefinedService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "model.ray.v1alpha.UserDefinedService",
+	HandlerType: (*UserDefinedServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "__call__",
-			Handler:    _RayUserDefinedService_XCall___Handler,
+			Handler:    _UserDefinedService_XCall___Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

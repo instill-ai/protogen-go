@@ -35,7 +35,7 @@ var (
 	_ = metadata.Join
 )
 
-func request_RayUserDefinedService_XCall___0(ctx context.Context, marshaler runtime.Marshaler, client RayUserDefinedServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_UserDefinedService_XCall___0(ctx context.Context, marshaler runtime.Marshaler, client UserDefinedServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq CallRequest
 		metadata runtime.ServerMetadata
@@ -47,7 +47,7 @@ func request_RayUserDefinedService_XCall___0(ctx context.Context, marshaler runt
 	return msg, metadata, err
 }
 
-func local_request_RayUserDefinedService_XCall___0(ctx context.Context, marshaler runtime.Marshaler, server RayUserDefinedServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_UserDefinedService_XCall___0(ctx context.Context, marshaler runtime.Marshaler, server UserDefinedServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq CallRequest
 		metadata runtime.ServerMetadata
@@ -59,39 +59,39 @@ func local_request_RayUserDefinedService_XCall___0(ctx context.Context, marshale
 	return msg, metadata, err
 }
 
-// RegisterRayUserDefinedServiceHandlerServer registers the http handlers for service RayUserDefinedService to "mux".
-// UnaryRPC     :call RayUserDefinedServiceServer directly.
+// RegisterUserDefinedServiceHandlerServer registers the http handlers for service UserDefinedService to "mux".
+// UnaryRPC     :call UserDefinedServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterRayUserDefinedServiceHandlerFromEndpoint instead.
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterUserDefinedServiceHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
-func RegisterRayUserDefinedServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server RayUserDefinedServiceServer) error {
-	mux.Handle(http.MethodPost, pattern_RayUserDefinedService_XCall___0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+func RegisterUserDefinedServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server UserDefinedServiceServer) error {
+	mux.Handle(http.MethodPost, pattern_UserDefinedService_XCall___0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.ray.v1alpha.RayUserDefinedService/XCall__", runtime.WithHTTPPathPattern("/model.ray.v1alpha.RayUserDefinedService/__call__"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.ray.v1alpha.UserDefinedService/XCall__", runtime.WithHTTPPathPattern("/model.ray.v1alpha.UserDefinedService/__call__"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_RayUserDefinedService_XCall___0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_UserDefinedService_XCall___0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_RayUserDefinedService_XCall___0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_UserDefinedService_XCall___0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
 	return nil
 }
 
-// RegisterRayUserDefinedServiceHandlerFromEndpoint is same as RegisterRayUserDefinedServiceHandler but
+// RegisterUserDefinedServiceHandlerFromEndpoint is same as RegisterUserDefinedServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterRayUserDefinedServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterUserDefinedServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.NewClient(endpoint, opts...)
 	if err != nil {
 		return err
@@ -110,45 +110,45 @@ func RegisterRayUserDefinedServiceHandlerFromEndpoint(ctx context.Context, mux *
 			}
 		}()
 	}()
-	return RegisterRayUserDefinedServiceHandler(ctx, mux, conn)
+	return RegisterUserDefinedServiceHandler(ctx, mux, conn)
 }
 
-// RegisterRayUserDefinedServiceHandler registers the http handlers for service RayUserDefinedService to "mux".
+// RegisterUserDefinedServiceHandler registers the http handlers for service UserDefinedService to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterRayUserDefinedServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterRayUserDefinedServiceHandlerClient(ctx, mux, NewRayUserDefinedServiceClient(conn))
+func RegisterUserDefinedServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterUserDefinedServiceHandlerClient(ctx, mux, NewUserDefinedServiceClient(conn))
 }
 
-// RegisterRayUserDefinedServiceHandlerClient registers the http handlers for service RayUserDefinedService
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "RayUserDefinedServiceClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "RayUserDefinedServiceClient"
+// RegisterUserDefinedServiceHandlerClient registers the http handlers for service UserDefinedService
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "UserDefinedServiceClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "UserDefinedServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "RayUserDefinedServiceClient" to call the correct interceptors. This client ignores the HTTP middlewares.
-func RegisterRayUserDefinedServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client RayUserDefinedServiceClient) error {
-	mux.Handle(http.MethodPost, pattern_RayUserDefinedService_XCall___0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+// "UserDefinedServiceClient" to call the correct interceptors. This client ignores the HTTP middlewares.
+func RegisterUserDefinedServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client UserDefinedServiceClient) error {
+	mux.Handle(http.MethodPost, pattern_UserDefinedService_XCall___0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.ray.v1alpha.RayUserDefinedService/XCall__", runtime.WithHTTPPathPattern("/model.ray.v1alpha.RayUserDefinedService/__call__"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.ray.v1alpha.UserDefinedService/XCall__", runtime.WithHTTPPathPattern("/model.ray.v1alpha.UserDefinedService/__call__"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_RayUserDefinedService_XCall___0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_UserDefinedService_XCall___0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_RayUserDefinedService_XCall___0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_UserDefinedService_XCall___0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	return nil
 }
 
 var (
-	pattern_RayUserDefinedService_XCall___0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.ray.v1alpha.RayUserDefinedService", "__call__"}, ""))
+	pattern_UserDefinedService_XCall___0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.ray.v1alpha.UserDefinedService", "__call__"}, ""))
 )
 
 var (
-	forward_RayUserDefinedService_XCall___0 = runtime.ForwardResponseMessage
+	forward_UserDefinedService_XCall___0 = runtime.ForwardResponseMessage
 )

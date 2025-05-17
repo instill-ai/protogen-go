@@ -123,8 +123,8 @@ const file_model_ray_v1alpha_user_defined_proto_rawDesc = "" +
 	"\vtask_inputs\x18\x01 \x03(\v2\x17.google.protobuf.StructR\n" +
 	"taskInputs\"J\n" +
 	"\fCallResponse\x12:\n" +
-	"\ftask_outputs\x18\x01 \x03(\v2\x17.google.protobuf.StructR\vtaskOutputs2d\n" +
-	"\x15RayUserDefinedService\x12K\n" +
+	"\ftask_outputs\x18\x01 \x03(\v2\x17.google.protobuf.StructR\vtaskOutputs2a\n" +
+	"\x12UserDefinedService\x12K\n" +
 	"\b__call__\x12\x1e.model.ray.v1alpha.CallRequest\x1a\x1f.model.ray.v1alpha.CallResponseB\xcf\x01\n" +
 	"\x15com.model.ray.v1alphaB\x10UserDefinedProtoP\x01Z>github.com/instill-ai/protogen-go/model/ray/v1alpha;rayv1alpha\xa2\x02\x03MRX\xaa\x02\x11Model.Ray.V1alpha\xca\x02\x11Model\\Ray\\V1alpha\xe2\x02\x1dModel\\Ray\\V1alpha\\GPBMetadata\xea\x02\x13Model::Ray::V1alphab\x06proto3"
 
@@ -149,8 +149,8 @@ var file_model_ray_v1alpha_user_defined_proto_goTypes = []any{
 var file_model_ray_v1alpha_user_defined_proto_depIdxs = []int32{
 	2, // 0: model.ray.v1alpha.CallRequest.task_inputs:type_name -> google.protobuf.Struct
 	2, // 1: model.ray.v1alpha.CallResponse.task_outputs:type_name -> google.protobuf.Struct
-	0, // 2: model.ray.v1alpha.RayUserDefinedService.__call__:input_type -> model.ray.v1alpha.CallRequest
-	1, // 3: model.ray.v1alpha.RayUserDefinedService.__call__:output_type -> model.ray.v1alpha.CallResponse
+	0, // 2: model.ray.v1alpha.UserDefinedService.__call__:input_type -> model.ray.v1alpha.CallRequest
+	1, // 3: model.ray.v1alpha.UserDefinedService.__call__:output_type -> model.ray.v1alpha.CallResponse
 	3, // [3:4] is the sub-list for method output_type
 	2, // [2:3] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
