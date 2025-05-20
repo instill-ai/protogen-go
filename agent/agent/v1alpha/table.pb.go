@@ -500,6 +500,8 @@ type Table struct {
 	// The unique identifier of the table.
 	Uid string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
 	// The title of the table.
+	// If the table is in draft mode, the title is optional.
+	// If the table is not in draft mode, the title is required.
 	Title string `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
 	// A description of the table.
 	Description string `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
@@ -5743,7 +5745,7 @@ const file_agent_agent_v1alpha_table_proto_rawDesc = "" +
 	"\x1fagent/agent/v1alpha/table.proto\x12\x13agent.agent.v1alpha\x1a agent/agent/v1alpha/common.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xdd\x03\n" +
 	"\x05Table\x12\x15\n" +
 	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x19\n" +
-	"\x05title\x18\x03 \x01(\tB\x03\xe0A\x02R\x05title\x12%\n" +
+	"\x05title\x18\x03 \x01(\tB\x03\xe0A\x01R\x05title\x12%\n" +
 	"\vdescription\x18\x04 \x01(\tB\x03\xe0A\x01R\vdescription\x128\n" +
 	"\bmetadata\x18\x05 \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x01R\bmetadata\x12@\n" +
 	"\vcreate_time\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
