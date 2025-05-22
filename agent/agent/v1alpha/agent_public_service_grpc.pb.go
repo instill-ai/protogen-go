@@ -31,7 +31,10 @@ const (
 	AgentPublicService_BindChatTable_FullMethodName                 = "/agent.agent.v1alpha.AgentPublicService/BindChatTable"
 	AgentPublicService_UnbindChatTable_FullMethodName               = "/agent.agent.v1alpha.AgentPublicService/UnbindChatTable"
 	AgentPublicService_ListChatTables_FullMethodName                = "/agent.agent.v1alpha.AgentPublicService/ListChatTables"
+	AgentPublicService_ListTableTemplates_FullMethodName            = "/agent.agent.v1alpha.AgentPublicService/ListTableTemplates"
+	AgentPublicService_GetTableTemplate_FullMethodName              = "/agent.agent.v1alpha.AgentPublicService/GetTableTemplate"
 	AgentPublicService_ListTables_FullMethodName                    = "/agent.agent.v1alpha.AgentPublicService/ListTables"
+	AgentPublicService_CreateTableFromTemplate_FullMethodName       = "/agent.agent.v1alpha.AgentPublicService/CreateTableFromTemplate"
 	AgentPublicService_CreateTable_FullMethodName                   = "/agent.agent.v1alpha.AgentPublicService/CreateTable"
 	AgentPublicService_GetTable_FullMethodName                      = "/agent.agent.v1alpha.AgentPublicService/GetTable"
 	AgentPublicService_UpdateTable_FullMethodName                   = "/agent.agent.v1alpha.AgentPublicService/UpdateTable"
@@ -115,10 +118,22 @@ type AgentPublicServiceClient interface {
 	//
 	// Returns a list of tables bound to a chat.
 	ListChatTables(ctx context.Context, in *ListChatTablesRequest, opts ...grpc.CallOption) (*ListChatTablesResponse, error)
+	// List table templates
+	//
+	// Returns a paginated list of table templates.
+	ListTableTemplates(ctx context.Context, in *ListTableTemplatesRequest, opts ...grpc.CallOption) (*ListTableTemplatesResponse, error)
+	// Get table template
+	//
+	// Returns a table template.
+	GetTableTemplate(ctx context.Context, in *GetTableTemplateRequest, opts ...grpc.CallOption) (*GetTableTemplateResponse, error)
 	// List tables
 	//
 	// Returns a paginated list of tables.
 	ListTables(ctx context.Context, in *ListTablesRequest, opts ...grpc.CallOption) (*ListTablesResponse, error)
+	// Create a table from a table template
+	//
+	// Creates a table from a table template.
+	CreateTableFromTemplate(ctx context.Context, in *CreateTableFromTemplateRequest, opts ...grpc.CallOption) (*CreateTableFromTemplateResponse, error)
 	// Create a table
 	//
 	// Creates a table.
@@ -367,10 +382,40 @@ func (c *agentPublicServiceClient) ListChatTables(ctx context.Context, in *ListC
 	return out, nil
 }
 
+func (c *agentPublicServiceClient) ListTableTemplates(ctx context.Context, in *ListTableTemplatesRequest, opts ...grpc.CallOption) (*ListTableTemplatesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListTableTemplatesResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_ListTableTemplates_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentPublicServiceClient) GetTableTemplate(ctx context.Context, in *GetTableTemplateRequest, opts ...grpc.CallOption) (*GetTableTemplateResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTableTemplateResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_GetTableTemplate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *agentPublicServiceClient) ListTables(ctx context.Context, in *ListTablesRequest, opts ...grpc.CallOption) (*ListTablesResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListTablesResponse)
 	err := c.cc.Invoke(ctx, AgentPublicService_ListTables_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentPublicServiceClient) CreateTableFromTemplate(ctx context.Context, in *CreateTableFromTemplateRequest, opts ...grpc.CallOption) (*CreateTableFromTemplateResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateTableFromTemplateResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_CreateTableFromTemplate_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -710,10 +755,22 @@ type AgentPublicServiceServer interface {
 	//
 	// Returns a list of tables bound to a chat.
 	ListChatTables(context.Context, *ListChatTablesRequest) (*ListChatTablesResponse, error)
+	// List table templates
+	//
+	// Returns a paginated list of table templates.
+	ListTableTemplates(context.Context, *ListTableTemplatesRequest) (*ListTableTemplatesResponse, error)
+	// Get table template
+	//
+	// Returns a table template.
+	GetTableTemplate(context.Context, *GetTableTemplateRequest) (*GetTableTemplateResponse, error)
 	// List tables
 	//
 	// Returns a paginated list of tables.
 	ListTables(context.Context, *ListTablesRequest) (*ListTablesResponse, error)
+	// Create a table from a table template
+	//
+	// Creates a table from a table template.
+	CreateTableFromTemplate(context.Context, *CreateTableFromTemplateRequest) (*CreateTableFromTemplateResponse, error)
 	// Create a table
 	//
 	// Creates a table.
@@ -868,8 +925,17 @@ func (UnimplementedAgentPublicServiceServer) UnbindChatTable(context.Context, *U
 func (UnimplementedAgentPublicServiceServer) ListChatTables(context.Context, *ListChatTablesRequest) (*ListChatTablesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListChatTables not implemented")
 }
+func (UnimplementedAgentPublicServiceServer) ListTableTemplates(context.Context, *ListTableTemplatesRequest) (*ListTableTemplatesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTableTemplates not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) GetTableTemplate(context.Context, *GetTableTemplateRequest) (*GetTableTemplateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTableTemplate not implemented")
+}
 func (UnimplementedAgentPublicServiceServer) ListTables(context.Context, *ListTablesRequest) (*ListTablesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTables not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) CreateTableFromTemplate(context.Context, *CreateTableFromTemplateRequest) (*CreateTableFromTemplateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateTableFromTemplate not implemented")
 }
 func (UnimplementedAgentPublicServiceServer) CreateTable(context.Context, *CreateTableRequest) (*CreateTableResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTable not implemented")
@@ -1178,6 +1244,42 @@ func _AgentPublicService_ListChatTables_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AgentPublicService_ListTableTemplates_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTableTemplatesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).ListTableTemplates(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_ListTableTemplates_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).ListTableTemplates(ctx, req.(*ListTableTemplatesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentPublicService_GetTableTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTableTemplateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).GetTableTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_GetTableTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).GetTableTemplate(ctx, req.(*GetTableTemplateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AgentPublicService_ListTables_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListTablesRequest)
 	if err := dec(in); err != nil {
@@ -1192,6 +1294,24 @@ func _AgentPublicService_ListTables_Handler(srv interface{}, ctx context.Context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AgentPublicServiceServer).ListTables(ctx, req.(*ListTablesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentPublicService_CreateTableFromTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateTableFromTemplateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).CreateTableFromTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_CreateTableFromTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).CreateTableFromTemplate(ctx, req.(*CreateTableFromTemplateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1702,8 +1822,20 @@ var AgentPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AgentPublicService_ListChatTables_Handler,
 		},
 		{
+			MethodName: "ListTableTemplates",
+			Handler:    _AgentPublicService_ListTableTemplates_Handler,
+		},
+		{
+			MethodName: "GetTableTemplate",
+			Handler:    _AgentPublicService_GetTableTemplate_Handler,
+		},
+		{
 			MethodName: "ListTables",
 			Handler:    _AgentPublicService_ListTables_Handler,
+		},
+		{
+			MethodName: "CreateTableFromTemplate",
+			Handler:    _AgentPublicService_CreateTableFromTemplate_Handler,
 		},
 		{
 			MethodName: "CreateTable",
