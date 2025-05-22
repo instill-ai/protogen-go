@@ -30,7 +30,7 @@ const file_openapi_v2_conf_proto_rawDesc = "" +
 	"\x13🔮 Instill AI API\x12/Interact with Instill AI through its public API\"?\n" +
 	"\n" +
 	"Instill AI\x12\x1dhttps://github.com/instill-ai\x1a\x12hello@instill.tech*W\n" +
-	"\x1aElastic License 2.0 (ELv2)\x129https://github.com/instill-ai/protobufs/blob/main/LICENSE2\fv0.50.4-beta\x1a\x12api.instill-ai.com*\x02\x02\x012\x10application/json:\x10application/jsonR<\n" +
+	"\x1aElastic License 2.0 (ELv2)\x129https://github.com/instill-ai/protobufs/blob/main/LICENSE2\fv0.50.5-beta\x1a\x12api.instill-ai.com*\x02\x02\x012\x10application/json:\x10application/jsonR<\n" +
 	"\x03401\x125\n" +
 	"3Returned when the client credentials are not valid.Z\x8b\x01\n" +
 	"\x88\x01\n" +
