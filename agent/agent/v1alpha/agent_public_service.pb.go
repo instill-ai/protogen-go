@@ -27,7 +27,7 @@ var File_agent_agent_v1alpha_agent_public_service_proto protoreflect.FileDescrip
 
 const file_agent_agent_v1alpha_agent_public_service_proto_rawDesc = "" +
 	"\n" +
-	".agent/agent/v1alpha/agent_public_service.proto\x12\x13agent.agent.v1alpha\x1a\x1fagent/agent/v1alpha/agent.proto\x1a\x1eagent/agent/v1alpha/chat.proto\x1a\x1fagent/agent/v1alpha/table.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xd6D\n" +
+	".agent/agent/v1alpha/agent_public_service.proto\x12\x13agent.agent.v1alpha\x1a\x1fagent/agent/v1alpha/agent.proto\x1a\x1eagent/agent/v1alpha/chat.proto\x1a\x1fagent/agent/v1alpha/table.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xd7A\n" +
 	"\x12AgentPublicService\x12\x9d\x01\n" +
 	"\bLiveness\x12$.agent.agent.v1alpha.LivenessRequest\x1a%.agent.agent.v1alpha.LivenessResponse\"D\xfa\xd2\xe4\x93\x02\n" +
 	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02.Z\x17\x12\x15/v1alpha/health/agent\x12\x13/v1alpha/__liveness\x12\xa0\x01\n" +
@@ -72,13 +72,7 @@ const file_agent_agent_v1alpha_agent_public_service_proto_rawDesc = "" +
 	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02E:\x01*\"@/v1alpha/namespaces/{namespace_id}/chats/{chat_uid}/unbind-table\x12\xcb\x01\n" +
 	"\x0eListChatTables\x12*.agent.agent.v1alpha.ListChatTablesRequest\x1a+.agent.agent.v1alpha.ListChatTablesResponse\"`\x92A\x1b\n" +
 	"\x05Tablej\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02<\x12:/v1alpha/namespaces/{namespace_id}/chats/{chat_uid}/tables\x12\xb5\x01\n" +
-	"\x12ListTableTemplates\x12..agent.agent.v1alpha.ListTableTemplatesRequest\x1a/.agent.agent.v1alpha.ListTableTemplatesResponse\">\x92A\x1b\n" +
-	"\x05Tablej\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02\x1a\x12\x18/v1alpha/table-templates\x12\xc4\x01\n" +
-	"\x10GetTableTemplate\x12,.agent.agent.v1alpha.GetTableTemplateRequest\x1a-.agent.agent.v1alpha.GetTableTemplateResponse\"S\x92A\x1b\n" +
-	"\x05Tablej\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02/\x12-/v1alpha/table-templates/{table_template_uid}\x12\xae\x01\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02<\x12:/v1alpha/namespaces/{namespace_id}/chats/{chat_uid}/tables\x12\xae\x01\n" +
 	"\n" +
 	"ListTables\x12&.agent.agent.v1alpha.ListTablesRequest\x1a'.agent.agent.v1alpha.ListTablesResponse\"O\x92A\x1b\n" +
 	"\x05Tablej\x12\n" +
@@ -183,78 +177,74 @@ var file_agent_agent_v1alpha_agent_public_service_proto_goTypes = []any{
 	(*BindChatTableRequest)(nil),                  // 9: agent.agent.v1alpha.BindChatTableRequest
 	(*UnbindChatTableRequest)(nil),                // 10: agent.agent.v1alpha.UnbindChatTableRequest
 	(*ListChatTablesRequest)(nil),                 // 11: agent.agent.v1alpha.ListChatTablesRequest
-	(*ListTableTemplatesRequest)(nil),             // 12: agent.agent.v1alpha.ListTableTemplatesRequest
-	(*GetTableTemplateRequest)(nil),               // 13: agent.agent.v1alpha.GetTableTemplateRequest
-	(*ListTablesRequest)(nil),                     // 14: agent.agent.v1alpha.ListTablesRequest
-	(*CreateTableFromTemplateRequest)(nil),        // 15: agent.agent.v1alpha.CreateTableFromTemplateRequest
-	(*CreateTableRequest)(nil),                    // 16: agent.agent.v1alpha.CreateTableRequest
-	(*GetTableRequest)(nil),                       // 17: agent.agent.v1alpha.GetTableRequest
-	(*UpdateTableRequest)(nil),                    // 18: agent.agent.v1alpha.UpdateTableRequest
-	(*DeleteTableRequest)(nil),                    // 19: agent.agent.v1alpha.DeleteTableRequest
-	(*ChatWithTableBuilderAgentRequest)(nil),      // 20: agent.agent.v1alpha.ChatWithTableBuilderAgentRequest
-	(*ListTableBuilderAgentMessagesRequest)(nil),  // 21: agent.agent.v1alpha.ListTableBuilderAgentMessagesRequest
-	(*GetColumnDefinitionsRequest)(nil),           // 22: agent.agent.v1alpha.GetColumnDefinitionsRequest
-	(*UpdateColumnDefinitionsRequest)(nil),        // 23: agent.agent.v1alpha.UpdateColumnDefinitionsRequest
-	(*GetColumnDefinitionRequest)(nil),            // 24: agent.agent.v1alpha.GetColumnDefinitionRequest
-	(*RecomputeColumnRequest)(nil),                // 25: agent.agent.v1alpha.RecomputeColumnRequest
-	(*ListRowsRequest)(nil),                       // 26: agent.agent.v1alpha.ListRowsRequest
-	(*GetRowRequest)(nil),                         // 27: agent.agent.v1alpha.GetRowRequest
-	(*InsertRowRequest)(nil),                      // 28: agent.agent.v1alpha.InsertRowRequest
-	(*UpdateRowRequest)(nil),                      // 29: agent.agent.v1alpha.UpdateRowRequest
-	(*UpdateRowsRequest)(nil),                     // 30: agent.agent.v1alpha.UpdateRowsRequest
-	(*DeleteRowRequest)(nil),                      // 31: agent.agent.v1alpha.DeleteRowRequest
-	(*DeleteRowsRequest)(nil),                     // 32: agent.agent.v1alpha.DeleteRowsRequest
-	(*MoveRowsRequest)(nil),                       // 33: agent.agent.v1alpha.MoveRowsRequest
-	(*GetCellRequest)(nil),                        // 34: agent.agent.v1alpha.GetCellRequest
-	(*UpdateCellRequest)(nil),                     // 35: agent.agent.v1alpha.UpdateCellRequest
-	(*ResetCellRequest)(nil),                      // 36: agent.agent.v1alpha.ResetCellRequest
-	(*RecomputeCellRequest)(nil),                  // 37: agent.agent.v1alpha.RecomputeCellRequest
-	(*LockCellRequest)(nil),                       // 38: agent.agent.v1alpha.LockCellRequest
-	(*UnlockCellRequest)(nil),                     // 39: agent.agent.v1alpha.UnlockCellRequest
-	(*GetTableEventsRequest)(nil),                 // 40: agent.agent.v1alpha.GetTableEventsRequest
-	(*ExportTableRequest)(nil),                    // 41: agent.agent.v1alpha.ExportTableRequest
-	(*LivenessResponse)(nil),                      // 42: agent.agent.v1alpha.LivenessResponse
-	(*ReadinessResponse)(nil),                     // 43: agent.agent.v1alpha.ReadinessResponse
-	(*CreateChatResponse)(nil),                    // 44: agent.agent.v1alpha.CreateChatResponse
-	(*ListChatsResponse)(nil),                     // 45: agent.agent.v1alpha.ListChatsResponse
-	(*UpdateChatResponse)(nil),                    // 46: agent.agent.v1alpha.UpdateChatResponse
-	(*GetChatResponse)(nil),                       // 47: agent.agent.v1alpha.GetChatResponse
-	(*DeleteChatResponse)(nil),                    // 48: agent.agent.v1alpha.DeleteChatResponse
-	(*ListMessagesResponse)(nil),                  // 49: agent.agent.v1alpha.ListMessagesResponse
-	(*ChatWithAgentResponse)(nil),                 // 50: agent.agent.v1alpha.ChatWithAgentResponse
-	(*BindChatTableResponse)(nil),                 // 51: agent.agent.v1alpha.BindChatTableResponse
-	(*UnbindChatTableResponse)(nil),               // 52: agent.agent.v1alpha.UnbindChatTableResponse
-	(*ListChatTablesResponse)(nil),                // 53: agent.agent.v1alpha.ListChatTablesResponse
-	(*ListTableTemplatesResponse)(nil),            // 54: agent.agent.v1alpha.ListTableTemplatesResponse
-	(*GetTableTemplateResponse)(nil),              // 55: agent.agent.v1alpha.GetTableTemplateResponse
-	(*ListTablesResponse)(nil),                    // 56: agent.agent.v1alpha.ListTablesResponse
-	(*CreateTableFromTemplateResponse)(nil),       // 57: agent.agent.v1alpha.CreateTableFromTemplateResponse
-	(*CreateTableResponse)(nil),                   // 58: agent.agent.v1alpha.CreateTableResponse
-	(*GetTableResponse)(nil),                      // 59: agent.agent.v1alpha.GetTableResponse
-	(*UpdateTableResponse)(nil),                   // 60: agent.agent.v1alpha.UpdateTableResponse
-	(*DeleteTableResponse)(nil),                   // 61: agent.agent.v1alpha.DeleteTableResponse
-	(*ChatWithTableBuilderAgentResponse)(nil),     // 62: agent.agent.v1alpha.ChatWithTableBuilderAgentResponse
-	(*ListTableBuilderAgentMessagesResponse)(nil), // 63: agent.agent.v1alpha.ListTableBuilderAgentMessagesResponse
-	(*GetColumnDefinitionsResponse)(nil),          // 64: agent.agent.v1alpha.GetColumnDefinitionsResponse
-	(*UpdateColumnDefinitionsResponse)(nil),       // 65: agent.agent.v1alpha.UpdateColumnDefinitionsResponse
-	(*GetColumnDefinitionResponse)(nil),           // 66: agent.agent.v1alpha.GetColumnDefinitionResponse
-	(*RecomputeColumnResponse)(nil),               // 67: agent.agent.v1alpha.RecomputeColumnResponse
-	(*ListRowsResponse)(nil),                      // 68: agent.agent.v1alpha.ListRowsResponse
-	(*GetRowResponse)(nil),                        // 69: agent.agent.v1alpha.GetRowResponse
-	(*InsertRowResponse)(nil),                     // 70: agent.agent.v1alpha.InsertRowResponse
-	(*UpdateRowResponse)(nil),                     // 71: agent.agent.v1alpha.UpdateRowResponse
-	(*UpdateRowsResponse)(nil),                    // 72: agent.agent.v1alpha.UpdateRowsResponse
-	(*DeleteRowResponse)(nil),                     // 73: agent.agent.v1alpha.DeleteRowResponse
-	(*DeleteRowsResponse)(nil),                    // 74: agent.agent.v1alpha.DeleteRowsResponse
-	(*MoveRowsResponse)(nil),                      // 75: agent.agent.v1alpha.MoveRowsResponse
-	(*GetCellResponse)(nil),                       // 76: agent.agent.v1alpha.GetCellResponse
-	(*UpdateCellResponse)(nil),                    // 77: agent.agent.v1alpha.UpdateCellResponse
-	(*ResetCellResponse)(nil),                     // 78: agent.agent.v1alpha.ResetCellResponse
-	(*RecomputeCellResponse)(nil),                 // 79: agent.agent.v1alpha.RecomputeCellResponse
-	(*LockCellResponse)(nil),                      // 80: agent.agent.v1alpha.LockCellResponse
-	(*UnlockCellResponse)(nil),                    // 81: agent.agent.v1alpha.UnlockCellResponse
-	(*GetTableEventsResponse)(nil),                // 82: agent.agent.v1alpha.GetTableEventsResponse
-	(*ExportTableResponse)(nil),                   // 83: agent.agent.v1alpha.ExportTableResponse
+	(*ListTablesRequest)(nil),                     // 12: agent.agent.v1alpha.ListTablesRequest
+	(*CreateTableFromTemplateRequest)(nil),        // 13: agent.agent.v1alpha.CreateTableFromTemplateRequest
+	(*CreateTableRequest)(nil),                    // 14: agent.agent.v1alpha.CreateTableRequest
+	(*GetTableRequest)(nil),                       // 15: agent.agent.v1alpha.GetTableRequest
+	(*UpdateTableRequest)(nil),                    // 16: agent.agent.v1alpha.UpdateTableRequest
+	(*DeleteTableRequest)(nil),                    // 17: agent.agent.v1alpha.DeleteTableRequest
+	(*ChatWithTableBuilderAgentRequest)(nil),      // 18: agent.agent.v1alpha.ChatWithTableBuilderAgentRequest
+	(*ListTableBuilderAgentMessagesRequest)(nil),  // 19: agent.agent.v1alpha.ListTableBuilderAgentMessagesRequest
+	(*GetColumnDefinitionsRequest)(nil),           // 20: agent.agent.v1alpha.GetColumnDefinitionsRequest
+	(*UpdateColumnDefinitionsRequest)(nil),        // 21: agent.agent.v1alpha.UpdateColumnDefinitionsRequest
+	(*GetColumnDefinitionRequest)(nil),            // 22: agent.agent.v1alpha.GetColumnDefinitionRequest
+	(*RecomputeColumnRequest)(nil),                // 23: agent.agent.v1alpha.RecomputeColumnRequest
+	(*ListRowsRequest)(nil),                       // 24: agent.agent.v1alpha.ListRowsRequest
+	(*GetRowRequest)(nil),                         // 25: agent.agent.v1alpha.GetRowRequest
+	(*InsertRowRequest)(nil),                      // 26: agent.agent.v1alpha.InsertRowRequest
+	(*UpdateRowRequest)(nil),                      // 27: agent.agent.v1alpha.UpdateRowRequest
+	(*UpdateRowsRequest)(nil),                     // 28: agent.agent.v1alpha.UpdateRowsRequest
+	(*DeleteRowRequest)(nil),                      // 29: agent.agent.v1alpha.DeleteRowRequest
+	(*DeleteRowsRequest)(nil),                     // 30: agent.agent.v1alpha.DeleteRowsRequest
+	(*MoveRowsRequest)(nil),                       // 31: agent.agent.v1alpha.MoveRowsRequest
+	(*GetCellRequest)(nil),                        // 32: agent.agent.v1alpha.GetCellRequest
+	(*UpdateCellRequest)(nil),                     // 33: agent.agent.v1alpha.UpdateCellRequest
+	(*ResetCellRequest)(nil),                      // 34: agent.agent.v1alpha.ResetCellRequest
+	(*RecomputeCellRequest)(nil),                  // 35: agent.agent.v1alpha.RecomputeCellRequest
+	(*LockCellRequest)(nil),                       // 36: agent.agent.v1alpha.LockCellRequest
+	(*UnlockCellRequest)(nil),                     // 37: agent.agent.v1alpha.UnlockCellRequest
+	(*GetTableEventsRequest)(nil),                 // 38: agent.agent.v1alpha.GetTableEventsRequest
+	(*ExportTableRequest)(nil),                    // 39: agent.agent.v1alpha.ExportTableRequest
+	(*LivenessResponse)(nil),                      // 40: agent.agent.v1alpha.LivenessResponse
+	(*ReadinessResponse)(nil),                     // 41: agent.agent.v1alpha.ReadinessResponse
+	(*CreateChatResponse)(nil),                    // 42: agent.agent.v1alpha.CreateChatResponse
+	(*ListChatsResponse)(nil),                     // 43: agent.agent.v1alpha.ListChatsResponse
+	(*UpdateChatResponse)(nil),                    // 44: agent.agent.v1alpha.UpdateChatResponse
+	(*GetChatResponse)(nil),                       // 45: agent.agent.v1alpha.GetChatResponse
+	(*DeleteChatResponse)(nil),                    // 46: agent.agent.v1alpha.DeleteChatResponse
+	(*ListMessagesResponse)(nil),                  // 47: agent.agent.v1alpha.ListMessagesResponse
+	(*ChatWithAgentResponse)(nil),                 // 48: agent.agent.v1alpha.ChatWithAgentResponse
+	(*BindChatTableResponse)(nil),                 // 49: agent.agent.v1alpha.BindChatTableResponse
+	(*UnbindChatTableResponse)(nil),               // 50: agent.agent.v1alpha.UnbindChatTableResponse
+	(*ListChatTablesResponse)(nil),                // 51: agent.agent.v1alpha.ListChatTablesResponse
+	(*ListTablesResponse)(nil),                    // 52: agent.agent.v1alpha.ListTablesResponse
+	(*CreateTableFromTemplateResponse)(nil),       // 53: agent.agent.v1alpha.CreateTableFromTemplateResponse
+	(*CreateTableResponse)(nil),                   // 54: agent.agent.v1alpha.CreateTableResponse
+	(*GetTableResponse)(nil),                      // 55: agent.agent.v1alpha.GetTableResponse
+	(*UpdateTableResponse)(nil),                   // 56: agent.agent.v1alpha.UpdateTableResponse
+	(*DeleteTableResponse)(nil),                   // 57: agent.agent.v1alpha.DeleteTableResponse
+	(*ChatWithTableBuilderAgentResponse)(nil),     // 58: agent.agent.v1alpha.ChatWithTableBuilderAgentResponse
+	(*ListTableBuilderAgentMessagesResponse)(nil), // 59: agent.agent.v1alpha.ListTableBuilderAgentMessagesResponse
+	(*GetColumnDefinitionsResponse)(nil),          // 60: agent.agent.v1alpha.GetColumnDefinitionsResponse
+	(*UpdateColumnDefinitionsResponse)(nil),       // 61: agent.agent.v1alpha.UpdateColumnDefinitionsResponse
+	(*GetColumnDefinitionResponse)(nil),           // 62: agent.agent.v1alpha.GetColumnDefinitionResponse
+	(*RecomputeColumnResponse)(nil),               // 63: agent.agent.v1alpha.RecomputeColumnResponse
+	(*ListRowsResponse)(nil),                      // 64: agent.agent.v1alpha.ListRowsResponse
+	(*GetRowResponse)(nil),                        // 65: agent.agent.v1alpha.GetRowResponse
+	(*InsertRowResponse)(nil),                     // 66: agent.agent.v1alpha.InsertRowResponse
+	(*UpdateRowResponse)(nil),                     // 67: agent.agent.v1alpha.UpdateRowResponse
+	(*UpdateRowsResponse)(nil),                    // 68: agent.agent.v1alpha.UpdateRowsResponse
+	(*DeleteRowResponse)(nil),                     // 69: agent.agent.v1alpha.DeleteRowResponse
+	(*DeleteRowsResponse)(nil),                    // 70: agent.agent.v1alpha.DeleteRowsResponse
+	(*MoveRowsResponse)(nil),                      // 71: agent.agent.v1alpha.MoveRowsResponse
+	(*GetCellResponse)(nil),                       // 72: agent.agent.v1alpha.GetCellResponse
+	(*UpdateCellResponse)(nil),                    // 73: agent.agent.v1alpha.UpdateCellResponse
+	(*ResetCellResponse)(nil),                     // 74: agent.agent.v1alpha.ResetCellResponse
+	(*RecomputeCellResponse)(nil),                 // 75: agent.agent.v1alpha.RecomputeCellResponse
+	(*LockCellResponse)(nil),                      // 76: agent.agent.v1alpha.LockCellResponse
+	(*UnlockCellResponse)(nil),                    // 77: agent.agent.v1alpha.UnlockCellResponse
+	(*GetTableEventsResponse)(nil),                // 78: agent.agent.v1alpha.GetTableEventsResponse
+	(*ExportTableResponse)(nil),                   // 79: agent.agent.v1alpha.ExportTableResponse
 }
 var file_agent_agent_v1alpha_agent_public_service_proto_depIdxs = []int32{
 	0,  // 0: agent.agent.v1alpha.AgentPublicService.Liveness:input_type -> agent.agent.v1alpha.LivenessRequest
@@ -269,80 +259,76 @@ var file_agent_agent_v1alpha_agent_public_service_proto_depIdxs = []int32{
 	9,  // 9: agent.agent.v1alpha.AgentPublicService.BindChatTable:input_type -> agent.agent.v1alpha.BindChatTableRequest
 	10, // 10: agent.agent.v1alpha.AgentPublicService.UnbindChatTable:input_type -> agent.agent.v1alpha.UnbindChatTableRequest
 	11, // 11: agent.agent.v1alpha.AgentPublicService.ListChatTables:input_type -> agent.agent.v1alpha.ListChatTablesRequest
-	12, // 12: agent.agent.v1alpha.AgentPublicService.ListTableTemplates:input_type -> agent.agent.v1alpha.ListTableTemplatesRequest
-	13, // 13: agent.agent.v1alpha.AgentPublicService.GetTableTemplate:input_type -> agent.agent.v1alpha.GetTableTemplateRequest
-	14, // 14: agent.agent.v1alpha.AgentPublicService.ListTables:input_type -> agent.agent.v1alpha.ListTablesRequest
-	15, // 15: agent.agent.v1alpha.AgentPublicService.CreateTableFromTemplate:input_type -> agent.agent.v1alpha.CreateTableFromTemplateRequest
-	16, // 16: agent.agent.v1alpha.AgentPublicService.CreateTable:input_type -> agent.agent.v1alpha.CreateTableRequest
-	17, // 17: agent.agent.v1alpha.AgentPublicService.GetTable:input_type -> agent.agent.v1alpha.GetTableRequest
-	18, // 18: agent.agent.v1alpha.AgentPublicService.UpdateTable:input_type -> agent.agent.v1alpha.UpdateTableRequest
-	19, // 19: agent.agent.v1alpha.AgentPublicService.DeleteTable:input_type -> agent.agent.v1alpha.DeleteTableRequest
-	20, // 20: agent.agent.v1alpha.AgentPublicService.ChatWithTableBuilderAgent:input_type -> agent.agent.v1alpha.ChatWithTableBuilderAgentRequest
-	21, // 21: agent.agent.v1alpha.AgentPublicService.ListTableBuilderAgentMessages:input_type -> agent.agent.v1alpha.ListTableBuilderAgentMessagesRequest
-	22, // 22: agent.agent.v1alpha.AgentPublicService.GetColumnDefinitions:input_type -> agent.agent.v1alpha.GetColumnDefinitionsRequest
-	23, // 23: agent.agent.v1alpha.AgentPublicService.UpdateColumnDefinitions:input_type -> agent.agent.v1alpha.UpdateColumnDefinitionsRequest
-	24, // 24: agent.agent.v1alpha.AgentPublicService.GetColumnDefinition:input_type -> agent.agent.v1alpha.GetColumnDefinitionRequest
-	25, // 25: agent.agent.v1alpha.AgentPublicService.RecomputeColumn:input_type -> agent.agent.v1alpha.RecomputeColumnRequest
-	26, // 26: agent.agent.v1alpha.AgentPublicService.ListRows:input_type -> agent.agent.v1alpha.ListRowsRequest
-	27, // 27: agent.agent.v1alpha.AgentPublicService.GetRow:input_type -> agent.agent.v1alpha.GetRowRequest
-	28, // 28: agent.agent.v1alpha.AgentPublicService.InsertRow:input_type -> agent.agent.v1alpha.InsertRowRequest
-	29, // 29: agent.agent.v1alpha.AgentPublicService.UpdateRow:input_type -> agent.agent.v1alpha.UpdateRowRequest
-	30, // 30: agent.agent.v1alpha.AgentPublicService.UpdateRows:input_type -> agent.agent.v1alpha.UpdateRowsRequest
-	31, // 31: agent.agent.v1alpha.AgentPublicService.DeleteRow:input_type -> agent.agent.v1alpha.DeleteRowRequest
-	32, // 32: agent.agent.v1alpha.AgentPublicService.DeleteRows:input_type -> agent.agent.v1alpha.DeleteRowsRequest
-	33, // 33: agent.agent.v1alpha.AgentPublicService.MoveRows:input_type -> agent.agent.v1alpha.MoveRowsRequest
-	34, // 34: agent.agent.v1alpha.AgentPublicService.GetCell:input_type -> agent.agent.v1alpha.GetCellRequest
-	35, // 35: agent.agent.v1alpha.AgentPublicService.UpdateCell:input_type -> agent.agent.v1alpha.UpdateCellRequest
-	36, // 36: agent.agent.v1alpha.AgentPublicService.ResetCell:input_type -> agent.agent.v1alpha.ResetCellRequest
-	37, // 37: agent.agent.v1alpha.AgentPublicService.RecomputeCell:input_type -> agent.agent.v1alpha.RecomputeCellRequest
-	38, // 38: agent.agent.v1alpha.AgentPublicService.LockCell:input_type -> agent.agent.v1alpha.LockCellRequest
-	39, // 39: agent.agent.v1alpha.AgentPublicService.UnlockCell:input_type -> agent.agent.v1alpha.UnlockCellRequest
-	40, // 40: agent.agent.v1alpha.AgentPublicService.GetTableEvents:input_type -> agent.agent.v1alpha.GetTableEventsRequest
-	41, // 41: agent.agent.v1alpha.AgentPublicService.ExportTable:input_type -> agent.agent.v1alpha.ExportTableRequest
-	42, // 42: agent.agent.v1alpha.AgentPublicService.Liveness:output_type -> agent.agent.v1alpha.LivenessResponse
-	43, // 43: agent.agent.v1alpha.AgentPublicService.Readiness:output_type -> agent.agent.v1alpha.ReadinessResponse
-	44, // 44: agent.agent.v1alpha.AgentPublicService.CreateChat:output_type -> agent.agent.v1alpha.CreateChatResponse
-	45, // 45: agent.agent.v1alpha.AgentPublicService.ListChats:output_type -> agent.agent.v1alpha.ListChatsResponse
-	46, // 46: agent.agent.v1alpha.AgentPublicService.UpdateChat:output_type -> agent.agent.v1alpha.UpdateChatResponse
-	47, // 47: agent.agent.v1alpha.AgentPublicService.GetChat:output_type -> agent.agent.v1alpha.GetChatResponse
-	48, // 48: agent.agent.v1alpha.AgentPublicService.DeleteChat:output_type -> agent.agent.v1alpha.DeleteChatResponse
-	49, // 49: agent.agent.v1alpha.AgentPublicService.ListMessages:output_type -> agent.agent.v1alpha.ListMessagesResponse
-	50, // 50: agent.agent.v1alpha.AgentPublicService.ChatWithAgent:output_type -> agent.agent.v1alpha.ChatWithAgentResponse
-	51, // 51: agent.agent.v1alpha.AgentPublicService.BindChatTable:output_type -> agent.agent.v1alpha.BindChatTableResponse
-	52, // 52: agent.agent.v1alpha.AgentPublicService.UnbindChatTable:output_type -> agent.agent.v1alpha.UnbindChatTableResponse
-	53, // 53: agent.agent.v1alpha.AgentPublicService.ListChatTables:output_type -> agent.agent.v1alpha.ListChatTablesResponse
-	54, // 54: agent.agent.v1alpha.AgentPublicService.ListTableTemplates:output_type -> agent.agent.v1alpha.ListTableTemplatesResponse
-	55, // 55: agent.agent.v1alpha.AgentPublicService.GetTableTemplate:output_type -> agent.agent.v1alpha.GetTableTemplateResponse
-	56, // 56: agent.agent.v1alpha.AgentPublicService.ListTables:output_type -> agent.agent.v1alpha.ListTablesResponse
-	57, // 57: agent.agent.v1alpha.AgentPublicService.CreateTableFromTemplate:output_type -> agent.agent.v1alpha.CreateTableFromTemplateResponse
-	58, // 58: agent.agent.v1alpha.AgentPublicService.CreateTable:output_type -> agent.agent.v1alpha.CreateTableResponse
-	59, // 59: agent.agent.v1alpha.AgentPublicService.GetTable:output_type -> agent.agent.v1alpha.GetTableResponse
-	60, // 60: agent.agent.v1alpha.AgentPublicService.UpdateTable:output_type -> agent.agent.v1alpha.UpdateTableResponse
-	61, // 61: agent.agent.v1alpha.AgentPublicService.DeleteTable:output_type -> agent.agent.v1alpha.DeleteTableResponse
-	62, // 62: agent.agent.v1alpha.AgentPublicService.ChatWithTableBuilderAgent:output_type -> agent.agent.v1alpha.ChatWithTableBuilderAgentResponse
-	63, // 63: agent.agent.v1alpha.AgentPublicService.ListTableBuilderAgentMessages:output_type -> agent.agent.v1alpha.ListTableBuilderAgentMessagesResponse
-	64, // 64: agent.agent.v1alpha.AgentPublicService.GetColumnDefinitions:output_type -> agent.agent.v1alpha.GetColumnDefinitionsResponse
-	65, // 65: agent.agent.v1alpha.AgentPublicService.UpdateColumnDefinitions:output_type -> agent.agent.v1alpha.UpdateColumnDefinitionsResponse
-	66, // 66: agent.agent.v1alpha.AgentPublicService.GetColumnDefinition:output_type -> agent.agent.v1alpha.GetColumnDefinitionResponse
-	67, // 67: agent.agent.v1alpha.AgentPublicService.RecomputeColumn:output_type -> agent.agent.v1alpha.RecomputeColumnResponse
-	68, // 68: agent.agent.v1alpha.AgentPublicService.ListRows:output_type -> agent.agent.v1alpha.ListRowsResponse
-	69, // 69: agent.agent.v1alpha.AgentPublicService.GetRow:output_type -> agent.agent.v1alpha.GetRowResponse
-	70, // 70: agent.agent.v1alpha.AgentPublicService.InsertRow:output_type -> agent.agent.v1alpha.InsertRowResponse
-	71, // 71: agent.agent.v1alpha.AgentPublicService.UpdateRow:output_type -> agent.agent.v1alpha.UpdateRowResponse
-	72, // 72: agent.agent.v1alpha.AgentPublicService.UpdateRows:output_type -> agent.agent.v1alpha.UpdateRowsResponse
-	73, // 73: agent.agent.v1alpha.AgentPublicService.DeleteRow:output_type -> agent.agent.v1alpha.DeleteRowResponse
-	74, // 74: agent.agent.v1alpha.AgentPublicService.DeleteRows:output_type -> agent.agent.v1alpha.DeleteRowsResponse
-	75, // 75: agent.agent.v1alpha.AgentPublicService.MoveRows:output_type -> agent.agent.v1alpha.MoveRowsResponse
-	76, // 76: agent.agent.v1alpha.AgentPublicService.GetCell:output_type -> agent.agent.v1alpha.GetCellResponse
-	77, // 77: agent.agent.v1alpha.AgentPublicService.UpdateCell:output_type -> agent.agent.v1alpha.UpdateCellResponse
-	78, // 78: agent.agent.v1alpha.AgentPublicService.ResetCell:output_type -> agent.agent.v1alpha.ResetCellResponse
-	79, // 79: agent.agent.v1alpha.AgentPublicService.RecomputeCell:output_type -> agent.agent.v1alpha.RecomputeCellResponse
-	80, // 80: agent.agent.v1alpha.AgentPublicService.LockCell:output_type -> agent.agent.v1alpha.LockCellResponse
-	81, // 81: agent.agent.v1alpha.AgentPublicService.UnlockCell:output_type -> agent.agent.v1alpha.UnlockCellResponse
-	82, // 82: agent.agent.v1alpha.AgentPublicService.GetTableEvents:output_type -> agent.agent.v1alpha.GetTableEventsResponse
-	83, // 83: agent.agent.v1alpha.AgentPublicService.ExportTable:output_type -> agent.agent.v1alpha.ExportTableResponse
-	42, // [42:84] is the sub-list for method output_type
-	0,  // [0:42] is the sub-list for method input_type
+	12, // 12: agent.agent.v1alpha.AgentPublicService.ListTables:input_type -> agent.agent.v1alpha.ListTablesRequest
+	13, // 13: agent.agent.v1alpha.AgentPublicService.CreateTableFromTemplate:input_type -> agent.agent.v1alpha.CreateTableFromTemplateRequest
+	14, // 14: agent.agent.v1alpha.AgentPublicService.CreateTable:input_type -> agent.agent.v1alpha.CreateTableRequest
+	15, // 15: agent.agent.v1alpha.AgentPublicService.GetTable:input_type -> agent.agent.v1alpha.GetTableRequest
+	16, // 16: agent.agent.v1alpha.AgentPublicService.UpdateTable:input_type -> agent.agent.v1alpha.UpdateTableRequest
+	17, // 17: agent.agent.v1alpha.AgentPublicService.DeleteTable:input_type -> agent.agent.v1alpha.DeleteTableRequest
+	18, // 18: agent.agent.v1alpha.AgentPublicService.ChatWithTableBuilderAgent:input_type -> agent.agent.v1alpha.ChatWithTableBuilderAgentRequest
+	19, // 19: agent.agent.v1alpha.AgentPublicService.ListTableBuilderAgentMessages:input_type -> agent.agent.v1alpha.ListTableBuilderAgentMessagesRequest
+	20, // 20: agent.agent.v1alpha.AgentPublicService.GetColumnDefinitions:input_type -> agent.agent.v1alpha.GetColumnDefinitionsRequest
+	21, // 21: agent.agent.v1alpha.AgentPublicService.UpdateColumnDefinitions:input_type -> agent.agent.v1alpha.UpdateColumnDefinitionsRequest
+	22, // 22: agent.agent.v1alpha.AgentPublicService.GetColumnDefinition:input_type -> agent.agent.v1alpha.GetColumnDefinitionRequest
+	23, // 23: agent.agent.v1alpha.AgentPublicService.RecomputeColumn:input_type -> agent.agent.v1alpha.RecomputeColumnRequest
+	24, // 24: agent.agent.v1alpha.AgentPublicService.ListRows:input_type -> agent.agent.v1alpha.ListRowsRequest
+	25, // 25: agent.agent.v1alpha.AgentPublicService.GetRow:input_type -> agent.agent.v1alpha.GetRowRequest
+	26, // 26: agent.agent.v1alpha.AgentPublicService.InsertRow:input_type -> agent.agent.v1alpha.InsertRowRequest
+	27, // 27: agent.agent.v1alpha.AgentPublicService.UpdateRow:input_type -> agent.agent.v1alpha.UpdateRowRequest
+	28, // 28: agent.agent.v1alpha.AgentPublicService.UpdateRows:input_type -> agent.agent.v1alpha.UpdateRowsRequest
+	29, // 29: agent.agent.v1alpha.AgentPublicService.DeleteRow:input_type -> agent.agent.v1alpha.DeleteRowRequest
+	30, // 30: agent.agent.v1alpha.AgentPublicService.DeleteRows:input_type -> agent.agent.v1alpha.DeleteRowsRequest
+	31, // 31: agent.agent.v1alpha.AgentPublicService.MoveRows:input_type -> agent.agent.v1alpha.MoveRowsRequest
+	32, // 32: agent.agent.v1alpha.AgentPublicService.GetCell:input_type -> agent.agent.v1alpha.GetCellRequest
+	33, // 33: agent.agent.v1alpha.AgentPublicService.UpdateCell:input_type -> agent.agent.v1alpha.UpdateCellRequest
+	34, // 34: agent.agent.v1alpha.AgentPublicService.ResetCell:input_type -> agent.agent.v1alpha.ResetCellRequest
+	35, // 35: agent.agent.v1alpha.AgentPublicService.RecomputeCell:input_type -> agent.agent.v1alpha.RecomputeCellRequest
+	36, // 36: agent.agent.v1alpha.AgentPublicService.LockCell:input_type -> agent.agent.v1alpha.LockCellRequest
+	37, // 37: agent.agent.v1alpha.AgentPublicService.UnlockCell:input_type -> agent.agent.v1alpha.UnlockCellRequest
+	38, // 38: agent.agent.v1alpha.AgentPublicService.GetTableEvents:input_type -> agent.agent.v1alpha.GetTableEventsRequest
+	39, // 39: agent.agent.v1alpha.AgentPublicService.ExportTable:input_type -> agent.agent.v1alpha.ExportTableRequest
+	40, // 40: agent.agent.v1alpha.AgentPublicService.Liveness:output_type -> agent.agent.v1alpha.LivenessResponse
+	41, // 41: agent.agent.v1alpha.AgentPublicService.Readiness:output_type -> agent.agent.v1alpha.ReadinessResponse
+	42, // 42: agent.agent.v1alpha.AgentPublicService.CreateChat:output_type -> agent.agent.v1alpha.CreateChatResponse
+	43, // 43: agent.agent.v1alpha.AgentPublicService.ListChats:output_type -> agent.agent.v1alpha.ListChatsResponse
+	44, // 44: agent.agent.v1alpha.AgentPublicService.UpdateChat:output_type -> agent.agent.v1alpha.UpdateChatResponse
+	45, // 45: agent.agent.v1alpha.AgentPublicService.GetChat:output_type -> agent.agent.v1alpha.GetChatResponse
+	46, // 46: agent.agent.v1alpha.AgentPublicService.DeleteChat:output_type -> agent.agent.v1alpha.DeleteChatResponse
+	47, // 47: agent.agent.v1alpha.AgentPublicService.ListMessages:output_type -> agent.agent.v1alpha.ListMessagesResponse
+	48, // 48: agent.agent.v1alpha.AgentPublicService.ChatWithAgent:output_type -> agent.agent.v1alpha.ChatWithAgentResponse
+	49, // 49: agent.agent.v1alpha.AgentPublicService.BindChatTable:output_type -> agent.agent.v1alpha.BindChatTableResponse
+	50, // 50: agent.agent.v1alpha.AgentPublicService.UnbindChatTable:output_type -> agent.agent.v1alpha.UnbindChatTableResponse
+	51, // 51: agent.agent.v1alpha.AgentPublicService.ListChatTables:output_type -> agent.agent.v1alpha.ListChatTablesResponse
+	52, // 52: agent.agent.v1alpha.AgentPublicService.ListTables:output_type -> agent.agent.v1alpha.ListTablesResponse
+	53, // 53: agent.agent.v1alpha.AgentPublicService.CreateTableFromTemplate:output_type -> agent.agent.v1alpha.CreateTableFromTemplateResponse
+	54, // 54: agent.agent.v1alpha.AgentPublicService.CreateTable:output_type -> agent.agent.v1alpha.CreateTableResponse
+	55, // 55: agent.agent.v1alpha.AgentPublicService.GetTable:output_type -> agent.agent.v1alpha.GetTableResponse
+	56, // 56: agent.agent.v1alpha.AgentPublicService.UpdateTable:output_type -> agent.agent.v1alpha.UpdateTableResponse
+	57, // 57: agent.agent.v1alpha.AgentPublicService.DeleteTable:output_type -> agent.agent.v1alpha.DeleteTableResponse
+	58, // 58: agent.agent.v1alpha.AgentPublicService.ChatWithTableBuilderAgent:output_type -> agent.agent.v1alpha.ChatWithTableBuilderAgentResponse
+	59, // 59: agent.agent.v1alpha.AgentPublicService.ListTableBuilderAgentMessages:output_type -> agent.agent.v1alpha.ListTableBuilderAgentMessagesResponse
+	60, // 60: agent.agent.v1alpha.AgentPublicService.GetColumnDefinitions:output_type -> agent.agent.v1alpha.GetColumnDefinitionsResponse
+	61, // 61: agent.agent.v1alpha.AgentPublicService.UpdateColumnDefinitions:output_type -> agent.agent.v1alpha.UpdateColumnDefinitionsResponse
+	62, // 62: agent.agent.v1alpha.AgentPublicService.GetColumnDefinition:output_type -> agent.agent.v1alpha.GetColumnDefinitionResponse
+	63, // 63: agent.agent.v1alpha.AgentPublicService.RecomputeColumn:output_type -> agent.agent.v1alpha.RecomputeColumnResponse
+	64, // 64: agent.agent.v1alpha.AgentPublicService.ListRows:output_type -> agent.agent.v1alpha.ListRowsResponse
+	65, // 65: agent.agent.v1alpha.AgentPublicService.GetRow:output_type -> agent.agent.v1alpha.GetRowResponse
+	66, // 66: agent.agent.v1alpha.AgentPublicService.InsertRow:output_type -> agent.agent.v1alpha.InsertRowResponse
+	67, // 67: agent.agent.v1alpha.AgentPublicService.UpdateRow:output_type -> agent.agent.v1alpha.UpdateRowResponse
+	68, // 68: agent.agent.v1alpha.AgentPublicService.UpdateRows:output_type -> agent.agent.v1alpha.UpdateRowsResponse
+	69, // 69: agent.agent.v1alpha.AgentPublicService.DeleteRow:output_type -> agent.agent.v1alpha.DeleteRowResponse
+	70, // 70: agent.agent.v1alpha.AgentPublicService.DeleteRows:output_type -> agent.agent.v1alpha.DeleteRowsResponse
+	71, // 71: agent.agent.v1alpha.AgentPublicService.MoveRows:output_type -> agent.agent.v1alpha.MoveRowsResponse
+	72, // 72: agent.agent.v1alpha.AgentPublicService.GetCell:output_type -> agent.agent.v1alpha.GetCellResponse
+	73, // 73: agent.agent.v1alpha.AgentPublicService.UpdateCell:output_type -> agent.agent.v1alpha.UpdateCellResponse
+	74, // 74: agent.agent.v1alpha.AgentPublicService.ResetCell:output_type -> agent.agent.v1alpha.ResetCellResponse
+	75, // 75: agent.agent.v1alpha.AgentPublicService.RecomputeCell:output_type -> agent.agent.v1alpha.RecomputeCellResponse
+	76, // 76: agent.agent.v1alpha.AgentPublicService.LockCell:output_type -> agent.agent.v1alpha.LockCellResponse
+	77, // 77: agent.agent.v1alpha.AgentPublicService.UnlockCell:output_type -> agent.agent.v1alpha.UnlockCellResponse
+	78, // 78: agent.agent.v1alpha.AgentPublicService.GetTableEvents:output_type -> agent.agent.v1alpha.GetTableEventsResponse
+	79, // 79: agent.agent.v1alpha.AgentPublicService.ExportTable:output_type -> agent.agent.v1alpha.ExportTableResponse
+	40, // [40:80] is the sub-list for method output_type
+	0,  // [0:40] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
