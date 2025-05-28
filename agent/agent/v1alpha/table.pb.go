@@ -2248,11 +2248,11 @@ type NumberCell struct {
 	// The value of the cell as a number.
 	//
 	// Deprecated: Marked as deprecated in agent/agent/v1alpha/table.proto.
-	Value float32 `protobuf:"fixed32,1,opt,name=value,proto3" json:"value,omitempty"`
+	Value float64 `protobuf:"fixed64,1,opt,name=value,proto3" json:"value,omitempty"`
 	// The value of the cell that directly set by the user.
-	UserInput *float32 `protobuf:"fixed32,2,opt,name=user_input,json=userInput,proto3,oneof" json:"user_input,omitempty"`
+	UserInput *float64 `protobuf:"fixed64,2,opt,name=user_input,json=userInput,proto3,oneof" json:"user_input,omitempty"`
 	// The value of the cell that was computed by the automatic computation.
-	ComputedValue *float32 `protobuf:"fixed32,3,opt,name=computed_value,json=computedValue,proto3,oneof" json:"computed_value,omitempty"`
+	ComputedValue *float64 `protobuf:"fixed64,3,opt,name=computed_value,json=computedValue,proto3,oneof" json:"computed_value,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2288,21 +2288,21 @@ func (*NumberCell) Descriptor() ([]byte, []int) {
 }
 
 // Deprecated: Marked as deprecated in agent/agent/v1alpha/table.proto.
-func (x *NumberCell) GetValue() float32 {
+func (x *NumberCell) GetValue() float64 {
 	if x != nil {
 		return x.Value
 	}
 	return 0
 }
 
-func (x *NumberCell) GetUserInput() float32 {
+func (x *NumberCell) GetUserInput() float64 {
 	if x != nil && x.UserInput != nil {
 		return *x.UserInput
 	}
 	return 0
 }
 
-func (x *NumberCell) GetComputedValue() float32 {
+func (x *NumberCell) GetComputedValue() float64 {
 	if x != nil && x.ComputedValue != nil {
 		return *x.ComputedValue
 	}
@@ -5832,7 +5832,7 @@ func (x *ColumnDefinition_Selection_Option) GetStringValue() string {
 	return ""
 }
 
-func (x *ColumnDefinition_Selection_Option) GetNumberValue() float32 {
+func (x *ColumnDefinition_Selection_Option) GetNumberValue() float64 {
 	if x != nil {
 		if x, ok := x.Value.(*ColumnDefinition_Selection_Option_NumberValue); ok {
 			return x.NumberValue
@@ -5859,7 +5859,7 @@ type ColumnDefinition_Selection_Option_StringValue struct {
 
 type ColumnDefinition_Selection_Option_NumberValue struct {
 	// The value of the cell as a number.
-	NumberValue float32 `protobuf:"fixed32,2,opt,name=number_value,json=numberValue,proto3,oneof"`
+	NumberValue float64 `protobuf:"fixed64,2,opt,name=number_value,json=numberValue,proto3,oneof"`
 }
 
 func (*ColumnDefinition_Selection_Option_StringValue) isColumnDefinition_Selection_Option_Value() {}
@@ -6013,7 +6013,7 @@ const file_agent_agent_v1alpha_table_proto_rawDesc = "" +
 	"\aoptions\x18\x02 \x03(\v26.agent.agent.v1alpha.ColumnDefinition.Selection.OptionB\x03\xe0A\x01R\aoptions\x1a\x80\x01\n" +
 	"\x06Option\x12(\n" +
 	"\fstring_value\x18\x01 \x01(\tB\x03\xe0A\x01H\x00R\vstringValue\x12(\n" +
-	"\fnumber_value\x18\x02 \x01(\x02B\x03\xe0A\x01H\x00R\vnumberValue\x12\x19\n" +
+	"\fnumber_value\x18\x02 \x01(\x01B\x03\xe0A\x01H\x00R\vnumberValue\x12\x19\n" +
 	"\x05color\x18\x03 \x01(\tB\x03\xe0A\x01R\x05colorB\a\n" +
 	"\x05value\"c\n" +
 	"\rSelectionType\x12\x1e\n" +
@@ -6094,10 +6094,10 @@ const file_agent_agent_v1alpha_table_proto_rawDesc = "" +
 	"\x0f_computed_value\"\xa5\x01\n" +
 	"\n" +
 	"NumberCell\x12\x1b\n" +
-	"\x05value\x18\x01 \x01(\x02B\x05\xe0A\x02\x18\x01R\x05value\x12'\n" +
+	"\x05value\x18\x01 \x01(\x01B\x05\xe0A\x02\x18\x01R\x05value\x12'\n" +
 	"\n" +
-	"user_input\x18\x02 \x01(\x02B\x03\xe0A\x01H\x00R\tuserInput\x88\x01\x01\x12/\n" +
-	"\x0ecomputed_value\x18\x03 \x01(\x02B\x03\xe0A\x03H\x01R\rcomputedValue\x88\x01\x01B\r\n" +
+	"user_input\x18\x02 \x01(\x01B\x03\xe0A\x01H\x00R\tuserInput\x88\x01\x01\x12/\n" +
+	"\x0ecomputed_value\x18\x03 \x01(\x01B\x03\xe0A\x03H\x01R\rcomputedValue\x88\x01\x01B\r\n" +
 	"\v_user_inputB\x11\n" +
 	"\x0f_computed_value\"\xa6\x01\n" +
 	"\vBooleanCell\x12\x1b\n" +
