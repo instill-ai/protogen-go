@@ -26,7 +26,7 @@ var File_openapi_v2_conf_proto protoreflect.FileDescriptor
 const file_openapi_v2_conf_proto_rawDesc = "" +
 	"\n" +
 	"\x15openapi/v2/conf.proto\x12\n" +
-	"openapi.v2\x1a.protoc-gen-openapiv2/options/annotations.protoB\xaf\t\x92A\x8f\b\x12\xee\x01\n" +
+	"openapi.v2\x1a.protoc-gen-openapiv2/options/annotations.protoB\xd7\t\x92A\xb7\b\x12\xee\x01\n" +
 	"\x13🔮 Instill AI API\x12/Interact with Instill AI through its public API\"?\n" +
 	"\n" +
 	"Instill AI\x12\x1dhttps://github.com/instill-ai\x1a\x12hello@instill.tech*W\n" +
@@ -45,7 +45,8 @@ const file_openapi_v2_conf_proto_rawDesc = "" +
 	"\r💾 Artifact\x12@Data orchestration for unified unstructured data representation.j%\n" +
 	"\n" +
 	"🍎 Agent\x12\x17Ready-to-use AI agents.j$\n" +
-	"\x05Table\x12\x1bTable resources for agents.j'\n" +
+	"\x05Table\x12\x1bTable resources for agents.j&\n" +
+	"\x06Folder\x12\x1cFolder resources for agents.j'\n" +
 	"\f📊 Metrics\x12\x17Resource usage metrics.j4\n" +
 	"\x11🤝 Subscription\x12\x1fPricing plans on Instill Cloud.r8\n" +
 	"\x15More about Instill AI\x12\x1fhttps://www.instill-ai.dev/docs\n" +

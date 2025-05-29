@@ -146,8 +146,6 @@ type Chat struct {
 	// chat delete time.
 	DeleteTime *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=delete_time,json=deleteTime,proto3" json:"delete_time,omitempty"`
 	// catalog id
-	//
-	// Deprecated: Marked as deprecated in agent/agent/v1alpha/chat.proto.
 	CatalogId     string `protobuf:"bytes,8,opt,name=catalog_id,json=catalogId,proto3" json:"catalog_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -232,7 +230,6 @@ func (x *Chat) GetDeleteTime() *timestamppb.Timestamp {
 	return nil
 }
 
-// Deprecated: Marked as deprecated in agent/agent/v1alpha/chat.proto.
 func (x *Chat) GetCatalogId() string {
 	if x != nil {
 		return x.CatalogId
@@ -2795,7 +2792,7 @@ const file_agent_agent_v1alpha_chat_proto_rawDesc = "" +
 	"\vconnections\x18\x02 \x03(\v21.agent.agent.v1alpha.AgentConfig.ConnectionsEntryB\x03\xe0A\x01R\vconnections\x1a>\n" +
 	"\x10ConnectionsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xac\x03\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xaa\x03\n" +
 	"\x04Chat\x12\x15\n" +
 	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12&\n" +
 	"\fnamespace_id\x18\x02 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12/\n" +
@@ -2806,9 +2803,9 @@ const file_agent_agent_v1alpha_chat_proto_rawDesc = "" +
 	"\vupdate_time\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
 	"updateTime\x12@\n" +
 	"\vdelete_time\x18\a \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
-	"deleteTime\x12$\n" +
+	"deleteTime\x12\"\n" +
 	"\n" +
-	"catalog_id\x18\b \x01(\tB\x05\xe0A\x03\x18\x01R\tcatalogId\"\xaf\x05\n" +
+	"catalog_id\x18\b \x01(\tB\x03\xe0A\x03R\tcatalogId\"\xaf\x05\n" +
 	"\aMessage\x12\x15\n" +
 	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x1e\n" +
 	"\bchat_uid\x18\x02 \x01(\tB\x03\xe0A\x03R\achatUid\x12\x1d\n" +

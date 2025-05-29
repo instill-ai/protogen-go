@@ -59,6 +59,11 @@ const (
 	AgentPublicService_UnlockCell_FullMethodName                    = "/agent.agent.v1alpha.AgentPublicService/UnlockCell"
 	AgentPublicService_GetTableEvents_FullMethodName                = "/agent.agent.v1alpha.AgentPublicService/GetTableEvents"
 	AgentPublicService_ExportTable_FullMethodName                   = "/agent.agent.v1alpha.AgentPublicService/ExportTable"
+	AgentPublicService_ListFolders_FullMethodName                   = "/agent.agent.v1alpha.AgentPublicService/ListFolders"
+	AgentPublicService_CreateFolder_FullMethodName                  = "/agent.agent.v1alpha.AgentPublicService/CreateFolder"
+	AgentPublicService_GetFolder_FullMethodName                     = "/agent.agent.v1alpha.AgentPublicService/GetFolder"
+	AgentPublicService_UpdateFolder_FullMethodName                  = "/agent.agent.v1alpha.AgentPublicService/UpdateFolder"
+	AgentPublicService_DeleteFolder_FullMethodName                  = "/agent.agent.v1alpha.AgentPublicService/DeleteFolder"
 )
 
 // AgentPublicServiceClient is the client API for AgentPublicService service.
@@ -233,6 +238,26 @@ type AgentPublicServiceClient interface {
 	//
 	// Exports table data.
 	ExportTable(ctx context.Context, in *ExportTableRequest, opts ...grpc.CallOption) (*ExportTableResponse, error)
+	// List folders
+	//
+	// Returns a list of folders.
+	ListFolders(ctx context.Context, in *ListFoldersRequest, opts ...grpc.CallOption) (*ListFoldersResponse, error)
+	// Create folder
+	//
+	// Creates a folder.
+	CreateFolder(ctx context.Context, in *CreateFolderRequest, opts ...grpc.CallOption) (*CreateFolderResponse, error)
+	// Get folder
+	//
+	// Gets a folder.
+	GetFolder(ctx context.Context, in *GetFolderRequest, opts ...grpc.CallOption) (*GetFolderResponse, error)
+	// Update folder
+	//
+	// Updates a folder.
+	UpdateFolder(ctx context.Context, in *UpdateFolderRequest, opts ...grpc.CallOption) (*UpdateFolderResponse, error)
+	// Delete folder
+	//
+	// Deletes a folder.
+	DeleteFolder(ctx context.Context, in *DeleteFolderRequest, opts ...grpc.CallOption) (*DeleteFolderResponse, error)
 }
 
 type agentPublicServiceClient struct {
@@ -670,6 +695,56 @@ func (c *agentPublicServiceClient) ExportTable(ctx context.Context, in *ExportTa
 	return out, nil
 }
 
+func (c *agentPublicServiceClient) ListFolders(ctx context.Context, in *ListFoldersRequest, opts ...grpc.CallOption) (*ListFoldersResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListFoldersResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_ListFolders_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentPublicServiceClient) CreateFolder(ctx context.Context, in *CreateFolderRequest, opts ...grpc.CallOption) (*CreateFolderResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateFolderResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_CreateFolder_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentPublicServiceClient) GetFolder(ctx context.Context, in *GetFolderRequest, opts ...grpc.CallOption) (*GetFolderResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetFolderResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_GetFolder_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentPublicServiceClient) UpdateFolder(ctx context.Context, in *UpdateFolderRequest, opts ...grpc.CallOption) (*UpdateFolderResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateFolderResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_UpdateFolder_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentPublicServiceClient) DeleteFolder(ctx context.Context, in *DeleteFolderRequest, opts ...grpc.CallOption) (*DeleteFolderResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteFolderResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_DeleteFolder_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AgentPublicServiceServer is the server API for AgentPublicService service.
 // All implementations should embed UnimplementedAgentPublicServiceServer
 // for forward compatibility.
@@ -842,6 +917,26 @@ type AgentPublicServiceServer interface {
 	//
 	// Exports table data.
 	ExportTable(context.Context, *ExportTableRequest) (*ExportTableResponse, error)
+	// List folders
+	//
+	// Returns a list of folders.
+	ListFolders(context.Context, *ListFoldersRequest) (*ListFoldersResponse, error)
+	// Create folder
+	//
+	// Creates a folder.
+	CreateFolder(context.Context, *CreateFolderRequest) (*CreateFolderResponse, error)
+	// Get folder
+	//
+	// Gets a folder.
+	GetFolder(context.Context, *GetFolderRequest) (*GetFolderResponse, error)
+	// Update folder
+	//
+	// Updates a folder.
+	UpdateFolder(context.Context, *UpdateFolderRequest) (*UpdateFolderResponse, error)
+	// Delete folder
+	//
+	// Deletes a folder.
+	DeleteFolder(context.Context, *DeleteFolderRequest) (*DeleteFolderResponse, error)
 }
 
 // UnimplementedAgentPublicServiceServer should be embedded to have
@@ -970,6 +1065,21 @@ func (UnimplementedAgentPublicServiceServer) GetTableEvents(*GetTableEventsReque
 }
 func (UnimplementedAgentPublicServiceServer) ExportTable(context.Context, *ExportTableRequest) (*ExportTableResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ExportTable not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) ListFolders(context.Context, *ListFoldersRequest) (*ListFoldersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListFolders not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) CreateFolder(context.Context, *CreateFolderRequest) (*CreateFolderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateFolder not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) GetFolder(context.Context, *GetFolderRequest) (*GetFolderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFolder not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) UpdateFolder(context.Context, *UpdateFolderRequest) (*UpdateFolderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateFolder not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) DeleteFolder(context.Context, *DeleteFolderRequest) (*DeleteFolderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteFolder not implemented")
 }
 func (UnimplementedAgentPublicServiceServer) testEmbeddedByValue() {}
 
@@ -1690,6 +1800,96 @@ func _AgentPublicService_ExportTable_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AgentPublicService_ListFolders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListFoldersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).ListFolders(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_ListFolders_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).ListFolders(ctx, req.(*ListFoldersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentPublicService_CreateFolder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateFolderRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).CreateFolder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_CreateFolder_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).CreateFolder(ctx, req.(*CreateFolderRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentPublicService_GetFolder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFolderRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).GetFolder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_GetFolder_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).GetFolder(ctx, req.(*GetFolderRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentPublicService_UpdateFolder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateFolderRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).UpdateFolder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_UpdateFolder_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).UpdateFolder(ctx, req.(*UpdateFolderRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentPublicService_DeleteFolder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteFolderRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).DeleteFolder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_DeleteFolder_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).DeleteFolder(ctx, req.(*DeleteFolderRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AgentPublicService_ServiceDesc is the grpc.ServiceDesc for AgentPublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1844,6 +2044,26 @@ var AgentPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ExportTable",
 			Handler:    _AgentPublicService_ExportTable_Handler,
+		},
+		{
+			MethodName: "ListFolders",
+			Handler:    _AgentPublicService_ListFolders_Handler,
+		},
+		{
+			MethodName: "CreateFolder",
+			Handler:    _AgentPublicService_CreateFolder_Handler,
+		},
+		{
+			MethodName: "GetFolder",
+			Handler:    _AgentPublicService_GetFolder_Handler,
+		},
+		{
+			MethodName: "UpdateFolder",
+			Handler:    _AgentPublicService_UpdateFolder_Handler,
+		},
+		{
+			MethodName: "DeleteFolder",
+			Handler:    _AgentPublicService_DeleteFolder_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
