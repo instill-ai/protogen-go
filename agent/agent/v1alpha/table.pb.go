@@ -514,7 +514,7 @@ type Table struct {
 	// The configuration for the agent.
 	AgentConfig *Table_AgentConfig `protobuf:"bytes,8,opt,name=agent_config,json=agentConfig,proto3" json:"agent_config,omitempty"`
 	// Whether to enable draft mode for the table.
-	DraftMode bool `protobuf:"varint,9,opt,name=draft_mode,json=draftMode,proto3" json:"draft_mode,omitempty"`
+	DraftMode *bool `protobuf:"varint,9,opt,name=draft_mode,json=draftMode,proto3,oneof" json:"draft_mode,omitempty"`
 	// Permission defines how a table can be used.
 	Permission *Table_Permission `protobuf:"bytes,10,opt,name=permission,proto3" json:"permission,omitempty"`
 	// The ID of the catalog that this table is bound to.
@@ -603,8 +603,8 @@ func (x *Table) GetAgentConfig() *Table_AgentConfig {
 }
 
 func (x *Table) GetDraftMode() bool {
-	if x != nil {
-		return x.DraftMode
+	if x != nil && x.DraftMode != nil {
+		return *x.DraftMode
 	}
 	return false
 }
@@ -5934,7 +5934,7 @@ var File_agent_agent_v1alpha_table_proto protoreflect.FileDescriptor
 
 const file_agent_agent_v1alpha_table_proto_rawDesc = "" +
 	"\n" +
-	"\x1fagent/agent/v1alpha/table.proto\x12\x13agent.agent.v1alpha\x1a agent/agent/v1alpha/common.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xf6\x04\n" +
+	"\x1fagent/agent/v1alpha/table.proto\x12\x13agent.agent.v1alpha\x1a agent/agent/v1alpha/common.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x8a\x05\n" +
 	"\x05Table\x12\x15\n" +
 	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x19\n" +
 	"\x05title\x18\x03 \x01(\tB\x03\xe0A\x01R\x05title\x12%\n" +
@@ -5944,9 +5944,9 @@ const file_agent_agent_v1alpha_table_proto_rawDesc = "" +
 	"createTime\x12@\n" +
 	"\vupdate_time\x18\a \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
 	"updateTime\x12N\n" +
-	"\fagent_config\x18\b \x01(\v2&.agent.agent.v1alpha.Table.AgentConfigB\x03\xe0A\x02R\vagentConfig\x12\"\n" +
+	"\fagent_config\x18\b \x01(\v2&.agent.agent.v1alpha.Table.AgentConfigB\x03\xe0A\x02R\vagentConfig\x12'\n" +
 	"\n" +
-	"draft_mode\x18\t \x01(\bB\x03\xe0A\x02R\tdraftMode\x12J\n" +
+	"draft_mode\x18\t \x01(\bB\x03\xe0A\x01H\x00R\tdraftMode\x88\x01\x01\x12J\n" +
 	"\n" +
 	"permission\x18\n" +
 	" \x01(\v2%.agent.agent.v1alpha.Table.PermissionB\x03\xe0A\x03R\n" +
@@ -5957,7 +5957,8 @@ const file_agent_agent_v1alpha_table_proto_rawDesc = "" +
 	"\x13enable_transparency\x18\x01 \x01(\bB\x03\xe0A\x02R\x12enableTransparency\x1a'\n" +
 	"\n" +
 	"Permission\x12\x19\n" +
-	"\bcan_edit\x18\x01 \x01(\bR\acanEditJ\x04\b\x02\x10\x03\"\xeb\x01\n" +
+	"\bcan_edit\x18\x01 \x01(\bR\acanEditB\r\n" +
+	"\v_draft_modeJ\x04\b\x02\x10\x03\"\xeb\x01\n" +
 	"\x1eCreateTableFromTemplateRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x125\n" +
 	"\x05table\x18\x02 \x01(\v2\x1a.agent.agent.v1alpha.TableB\x03\xe0A\x02R\x05table\x127\n" +
@@ -6575,6 +6576,7 @@ func file_agent_agent_v1alpha_table_proto_init() {
 		return
 	}
 	file_agent_agent_v1alpha_common_proto_init()
+	file_agent_agent_v1alpha_table_proto_msgTypes[0].OneofWrappers = []any{}
 	file_agent_agent_v1alpha_table_proto_msgTypes[14].OneofWrappers = []any{
 		(*ColumnDefinition_NumberFormat)(nil),
 	}
