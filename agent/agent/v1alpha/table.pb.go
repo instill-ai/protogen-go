@@ -2196,10 +2196,6 @@ func (*NullCell) Descriptor() ([]byte, []int) {
 // StringCell represents a cell with a string value.
 type StringCell struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The value of the cell as a string.
-	//
-	// Deprecated: Marked as deprecated in agent/agent/v1alpha/table.proto.
-	Value string `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
 	// The value of the cell that directly set by the user.
 	UserInput *string `protobuf:"bytes,2,opt,name=user_input,json=userInput,proto3,oneof" json:"user_input,omitempty"`
 	// The value of the cell that was computed by the automatic computation.
@@ -2238,14 +2234,6 @@ func (*StringCell) Descriptor() ([]byte, []int) {
 	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{25}
 }
 
-// Deprecated: Marked as deprecated in agent/agent/v1alpha/table.proto.
-func (x *StringCell) GetValue() string {
-	if x != nil {
-		return x.Value
-	}
-	return ""
-}
-
 func (x *StringCell) GetUserInput() string {
 	if x != nil && x.UserInput != nil {
 		return *x.UserInput
@@ -2263,10 +2251,6 @@ func (x *StringCell) GetComputedValue() string {
 // NumberCell represents a cell with a number value.
 type NumberCell struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The value of the cell as a number.
-	//
-	// Deprecated: Marked as deprecated in agent/agent/v1alpha/table.proto.
-	Value float64 `protobuf:"fixed64,1,opt,name=value,proto3" json:"value,omitempty"`
 	// The value of the cell that directly set by the user.
 	UserInput *float64 `protobuf:"fixed64,2,opt,name=user_input,json=userInput,proto3,oneof" json:"user_input,omitempty"`
 	// The value of the cell that was computed by the automatic computation.
@@ -2305,14 +2289,6 @@ func (*NumberCell) Descriptor() ([]byte, []int) {
 	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{26}
 }
 
-// Deprecated: Marked as deprecated in agent/agent/v1alpha/table.proto.
-func (x *NumberCell) GetValue() float64 {
-	if x != nil {
-		return x.Value
-	}
-	return 0
-}
-
 func (x *NumberCell) GetUserInput() float64 {
 	if x != nil && x.UserInput != nil {
 		return *x.UserInput
@@ -2330,10 +2306,6 @@ func (x *NumberCell) GetComputedValue() float64 {
 // BooleanCell represents a cell with a boolean value.
 type BooleanCell struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The value of the cell as a boolean.
-	//
-	// Deprecated: Marked as deprecated in agent/agent/v1alpha/table.proto.
-	Value bool `protobuf:"varint,1,opt,name=value,proto3" json:"value,omitempty"`
 	// The value of the cell that directly set by the user.
 	UserInput *bool `protobuf:"varint,2,opt,name=user_input,json=userInput,proto3,oneof" json:"user_input,omitempty"`
 	// The value of the cell that was computed by the automatic computation.
@@ -2370,14 +2342,6 @@ func (x *BooleanCell) ProtoReflect() protoreflect.Message {
 // Deprecated: Use BooleanCell.ProtoReflect.Descriptor instead.
 func (*BooleanCell) Descriptor() ([]byte, []int) {
 	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{27}
-}
-
-// Deprecated: Marked as deprecated in agent/agent/v1alpha/table.proto.
-func (x *BooleanCell) GetValue() bool {
-	if x != nil {
-		return x.Value
-	}
-	return false
 }
 
 func (x *BooleanCell) GetUserInput() bool {
@@ -6105,30 +6069,27 @@ const file_agent_agent_v1alpha_table_proto_rawDesc = "" +
 	"\x04text\x18\x01 \x01(\tB\x03\xe0A\x03R\x04textB\a\n" +
 	"\x05value\"\n" +
 	"\n" +
-	"\bNullCell\"\xa5\x01\n" +
+	"\bNullCell\"\x8e\x01\n" +
 	"\n" +
-	"StringCell\x12\x1b\n" +
-	"\x05value\x18\x01 \x01(\tB\x05\xe0A\x02\x18\x01R\x05value\x12'\n" +
+	"StringCell\x12'\n" +
 	"\n" +
 	"user_input\x18\x02 \x01(\tB\x03\xe0A\x01H\x00R\tuserInput\x88\x01\x01\x12/\n" +
 	"\x0ecomputed_value\x18\x03 \x01(\tB\x03\xe0A\x01H\x01R\rcomputedValue\x88\x01\x01B\r\n" +
 	"\v_user_inputB\x11\n" +
-	"\x0f_computed_value\"\xa5\x01\n" +
+	"\x0f_computed_valueJ\x04\b\x01\x10\x02\"\x8e\x01\n" +
 	"\n" +
-	"NumberCell\x12\x1b\n" +
-	"\x05value\x18\x01 \x01(\x01B\x05\xe0A\x02\x18\x01R\x05value\x12'\n" +
+	"NumberCell\x12'\n" +
 	"\n" +
 	"user_input\x18\x02 \x01(\x01B\x03\xe0A\x01H\x00R\tuserInput\x88\x01\x01\x12/\n" +
 	"\x0ecomputed_value\x18\x03 \x01(\x01B\x03\xe0A\x03H\x01R\rcomputedValue\x88\x01\x01B\r\n" +
 	"\v_user_inputB\x11\n" +
-	"\x0f_computed_value\"\xa6\x01\n" +
-	"\vBooleanCell\x12\x1b\n" +
-	"\x05value\x18\x01 \x01(\bB\x05\xe0A\x02\x18\x01R\x05value\x12'\n" +
+	"\x0f_computed_valueJ\x04\b\x01\x10\x02\"\x8f\x01\n" +
+	"\vBooleanCell\x12'\n" +
 	"\n" +
 	"user_input\x18\x02 \x01(\bB\x03\xe0A\x01H\x00R\tuserInput\x88\x01\x01\x12/\n" +
 	"\x0ecomputed_value\x18\x03 \x01(\bB\x03\xe0A\x03H\x01R\rcomputedValue\x88\x01\x01B\r\n" +
 	"\v_user_inputB\x11\n" +
-	"\x0f_computed_value\"\xf0\x01\n" +
+	"\x0f_computed_valueJ\x04\b\x01\x10\x02\"\xf0\x01\n" +
 	"\bFileCell\x12!\n" +
 	"\tnamespace\x18\x01 \x01(\tB\x03\xe0A\x03R\tnamespace\x12\x1e\n" +
 	"\bfile_uid\x18\x02 \x01(\tB\x03\xe0A\x03R\afileUid\x12\"\n" +
