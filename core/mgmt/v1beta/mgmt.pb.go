@@ -567,8 +567,8 @@ const (
 	UserSubscription_PLAN_UNSPECIFIED UserSubscription_Plan = 0
 	// Free plan.
 	UserSubscription_PLAN_FREE UserSubscription_Plan = 1
-	// Pro plan.
-	UserSubscription_PLAN_PRO UserSubscription_Plan = 2
+	// Starter plan.
+	UserSubscription_PLAN_STARTER UserSubscription_Plan = 3
 )
 
 // Enum value maps for UserSubscription_Plan.
@@ -576,12 +576,12 @@ var (
 	UserSubscription_Plan_name = map[int32]string{
 		0: "PLAN_UNSPECIFIED",
 		1: "PLAN_FREE",
-		2: "PLAN_PRO",
+		3: "PLAN_STARTER",
 	}
 	UserSubscription_Plan_value = map[string]int32{
 		"PLAN_UNSPECIFIED": 0,
 		"PLAN_FREE":        1,
-		"PLAN_PRO":         2,
+		"PLAN_STARTER":     3,
 	}
 )
 
@@ -7119,14 +7119,14 @@ const file_core_mgmt_v1beta_mgmt_proto_rawDesc = "" +
 	"\rSTATUS_PAUSED\x10\bB\x0e\n" +
 	"\f_canceled_atB\f\n" +
 	"\n" +
-	"_trial_end\"\xd8\x01\n" +
+	"_trial_end\"\xe2\x01\n" +
 	"\x10UserSubscription\x12@\n" +
 	"\x04plan\x18\x01 \x01(\x0e2'.core.mgmt.v1beta.UserSubscription.PlanB\x03\xe0A\x03R\x04plan\x12G\n" +
-	"\x06detail\x18\x02 \x01(\v2*.core.mgmt.v1beta.StripeSubscriptionDetailB\x03\xe0A\x03R\x06detail\"9\n" +
+	"\x06detail\x18\x02 \x01(\v2*.core.mgmt.v1beta.StripeSubscriptionDetailB\x03\xe0A\x03R\x06detail\"C\n" +
 	"\x04Plan\x12\x14\n" +
 	"\x10PLAN_UNSPECIFIED\x10\x00\x12\r\n" +
-	"\tPLAN_FREE\x10\x01\x12\f\n" +
-	"\bPLAN_PRO\x10\x02\"\xa8\x02\n" +
+	"\tPLAN_FREE\x10\x01\x12\x10\n" +
+	"\fPLAN_STARTER\x10\x03\"\x04\b\x02\x10\x02\"\xa8\x02\n" +
 	"\x18OrganizationSubscription\x12H\n" +
 	"\x04plan\x18\x01 \x01(\x0e2/.core.mgmt.v1beta.OrganizationSubscription.PlanB\x03\xe0A\x03R\x04plan\x12G\n" +
 	"\x06detail\x18\x02 \x01(\v2*.core.mgmt.v1beta.StripeSubscriptionDetailB\x03\xe0A\x03R\x06detail\x12\"\n" +
