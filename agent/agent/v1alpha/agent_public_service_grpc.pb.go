@@ -55,6 +55,7 @@ const (
 	AgentPublicService_UpdateCell_FullMethodName                    = "/agent.agent.v1alpha.AgentPublicService/UpdateCell"
 	AgentPublicService_ResetCell_FullMethodName                     = "/agent.agent.v1alpha.AgentPublicService/ResetCell"
 	AgentPublicService_RecomputeCell_FullMethodName                 = "/agent.agent.v1alpha.AgentPublicService/RecomputeCell"
+	AgentPublicService_ListCellAutofillAgentMessages_FullMethodName = "/agent.agent.v1alpha.AgentPublicService/ListCellAutofillAgentMessages"
 	AgentPublicService_LockCell_FullMethodName                      = "/agent.agent.v1alpha.AgentPublicService/LockCell"
 	AgentPublicService_UnlockCell_FullMethodName                    = "/agent.agent.v1alpha.AgentPublicService/UnlockCell"
 	AgentPublicService_GetTableEvents_FullMethodName                = "/agent.agent.v1alpha.AgentPublicService/GetTableEvents"
@@ -222,6 +223,10 @@ type AgentPublicServiceClient interface {
 	//
 	// Recomputes a cell in a table.
 	RecomputeCell(ctx context.Context, in *RecomputeCellRequest, opts ...grpc.CallOption) (*RecomputeCellResponse, error)
+	// List cell messages
+	//
+	// Lists the internal LLM messages that used to generate the cell value.
+	ListCellAutofillAgentMessages(ctx context.Context, in *ListCellAutofillAgentMessagesRequest, opts ...grpc.CallOption) (*ListCellAutofillAgentMessagesResponse, error)
 	// Lock cell
 	//
 	// Locks a cell in a table.
@@ -646,6 +651,16 @@ func (c *agentPublicServiceClient) RecomputeCell(ctx context.Context, in *Recomp
 	return out, nil
 }
 
+func (c *agentPublicServiceClient) ListCellAutofillAgentMessages(ctx context.Context, in *ListCellAutofillAgentMessagesRequest, opts ...grpc.CallOption) (*ListCellAutofillAgentMessagesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListCellAutofillAgentMessagesResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_ListCellAutofillAgentMessages_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *agentPublicServiceClient) LockCell(ctx context.Context, in *LockCellRequest, opts ...grpc.CallOption) (*LockCellResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(LockCellResponse)
@@ -901,6 +916,10 @@ type AgentPublicServiceServer interface {
 	//
 	// Recomputes a cell in a table.
 	RecomputeCell(context.Context, *RecomputeCellRequest) (*RecomputeCellResponse, error)
+	// List cell messages
+	//
+	// Lists the internal LLM messages that used to generate the cell value.
+	ListCellAutofillAgentMessages(context.Context, *ListCellAutofillAgentMessagesRequest) (*ListCellAutofillAgentMessagesResponse, error)
 	// Lock cell
 	//
 	// Locks a cell in a table.
@@ -1053,6 +1072,9 @@ func (UnimplementedAgentPublicServiceServer) ResetCell(context.Context, *ResetCe
 }
 func (UnimplementedAgentPublicServiceServer) RecomputeCell(context.Context, *RecomputeCellRequest) (*RecomputeCellResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RecomputeCell not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) ListCellAutofillAgentMessages(context.Context, *ListCellAutofillAgentMessagesRequest) (*ListCellAutofillAgentMessagesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListCellAutofillAgentMessages not implemented")
 }
 func (UnimplementedAgentPublicServiceServer) LockCell(context.Context, *LockCellRequest) (*LockCellResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LockCell not implemented")
@@ -1735,6 +1757,24 @@ func _AgentPublicService_RecomputeCell_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AgentPublicService_ListCellAutofillAgentMessages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListCellAutofillAgentMessagesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).ListCellAutofillAgentMessages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_ListCellAutofillAgentMessages_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).ListCellAutofillAgentMessages(ctx, req.(*ListCellAutofillAgentMessagesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AgentPublicService_LockCell_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(LockCellRequest)
 	if err := dec(in); err != nil {
@@ -2032,6 +2072,10 @@ var AgentPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RecomputeCell",
 			Handler:    _AgentPublicService_RecomputeCell_Handler,
+		},
+		{
+			MethodName: "ListCellAutofillAgentMessages",
+			Handler:    _AgentPublicService_ListCellAutofillAgentMessages_Handler,
 		},
 		{
 			MethodName: "LockCell",
