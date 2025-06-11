@@ -43,7 +43,9 @@ type Folder struct {
 	// The ID of the catalog that this folder is bound to.
 	CatalogId string `protobuf:"bytes,7,opt,name=catalog_id,json=catalogId,proto3" json:"catalog_id,omitempty"`
 	// Permission defines how a folder can be used.
-	Permission    *Folder_Permission `protobuf:"bytes,8,opt,name=permission,proto3" json:"permission,omitempty"`
+	Permission *Folder_Permission `protobuf:"bytes,8,opt,name=permission,proto3" json:"permission,omitempty"`
+	// The information about the catalog.
+	CatalogInfo   *CatalogInfo `protobuf:"bytes,9,opt,name=catalog_info,json=catalogInfo,proto3" json:"catalog_info,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -134,6 +136,68 @@ func (x *Folder) GetPermission() *Folder_Permission {
 	return nil
 }
 
+func (x *Folder) GetCatalogInfo() *CatalogInfo {
+	if x != nil {
+		return x.CatalogInfo
+	}
+	return nil
+}
+
+// CatalogInfo contains the information about the catalog.
+type CatalogInfo struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The number of files in the catalog.
+	FileCount int32 `protobuf:"varint,1,opt,name=file_count,json=fileCount,proto3" json:"file_count,omitempty"`
+	// The total size of all files in the catalog in bytes.
+	TotalSizeBytes int64 `protobuf:"varint,2,opt,name=total_size_bytes,json=totalSizeBytes,proto3" json:"total_size_bytes,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *CatalogInfo) Reset() {
+	*x = CatalogInfo{}
+	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CatalogInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CatalogInfo) ProtoMessage() {}
+
+func (x *CatalogInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CatalogInfo.ProtoReflect.Descriptor instead.
+func (*CatalogInfo) Descriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_folder_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *CatalogInfo) GetFileCount() int32 {
+	if x != nil {
+		return x.FileCount
+	}
+	return 0
+}
+
+func (x *CatalogInfo) GetTotalSizeBytes() int64 {
+	if x != nil {
+		return x.TotalSizeBytes
+	}
+	return 0
+}
+
 // ListFoldersRequest represents a request to list folders.
 type ListFoldersRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -149,7 +213,7 @@ type ListFoldersRequest struct {
 
 func (x *ListFoldersRequest) Reset() {
 	*x = ListFoldersRequest{}
-	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[1]
+	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -161,7 +225,7 @@ func (x *ListFoldersRequest) String() string {
 func (*ListFoldersRequest) ProtoMessage() {}
 
 func (x *ListFoldersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[1]
+	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -174,7 +238,7 @@ func (x *ListFoldersRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListFoldersRequest.ProtoReflect.Descriptor instead.
 func (*ListFoldersRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_folder_proto_rawDescGZIP(), []int{1}
+	return file_agent_agent_v1alpha_folder_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ListFoldersRequest) GetNamespaceId() string {
@@ -213,7 +277,7 @@ type ListFoldersResponse struct {
 
 func (x *ListFoldersResponse) Reset() {
 	*x = ListFoldersResponse{}
-	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[2]
+	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -225,7 +289,7 @@ func (x *ListFoldersResponse) String() string {
 func (*ListFoldersResponse) ProtoMessage() {}
 
 func (x *ListFoldersResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[2]
+	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -238,7 +302,7 @@ func (x *ListFoldersResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListFoldersResponse.ProtoReflect.Descriptor instead.
 func (*ListFoldersResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_folder_proto_rawDescGZIP(), []int{2}
+	return file_agent_agent_v1alpha_folder_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *ListFoldersResponse) GetFolders() []*Folder {
@@ -275,7 +339,7 @@ type CreateFolderRequest struct {
 
 func (x *CreateFolderRequest) Reset() {
 	*x = CreateFolderRequest{}
-	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[3]
+	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -287,7 +351,7 @@ func (x *CreateFolderRequest) String() string {
 func (*CreateFolderRequest) ProtoMessage() {}
 
 func (x *CreateFolderRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[3]
+	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -300,7 +364,7 @@ func (x *CreateFolderRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateFolderRequest.ProtoReflect.Descriptor instead.
 func (*CreateFolderRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_folder_proto_rawDescGZIP(), []int{3}
+	return file_agent_agent_v1alpha_folder_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *CreateFolderRequest) GetNamespaceId() string {
@@ -328,7 +392,7 @@ type CreateFolderResponse struct {
 
 func (x *CreateFolderResponse) Reset() {
 	*x = CreateFolderResponse{}
-	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[4]
+	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -340,7 +404,7 @@ func (x *CreateFolderResponse) String() string {
 func (*CreateFolderResponse) ProtoMessage() {}
 
 func (x *CreateFolderResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[4]
+	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -353,7 +417,7 @@ func (x *CreateFolderResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateFolderResponse.ProtoReflect.Descriptor instead.
 func (*CreateFolderResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_folder_proto_rawDescGZIP(), []int{4}
+	return file_agent_agent_v1alpha_folder_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *CreateFolderResponse) GetFolder() *Folder {
@@ -376,7 +440,7 @@ type GetFolderRequest struct {
 
 func (x *GetFolderRequest) Reset() {
 	*x = GetFolderRequest{}
-	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[5]
+	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -388,7 +452,7 @@ func (x *GetFolderRequest) String() string {
 func (*GetFolderRequest) ProtoMessage() {}
 
 func (x *GetFolderRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[5]
+	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -401,7 +465,7 @@ func (x *GetFolderRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFolderRequest.ProtoReflect.Descriptor instead.
 func (*GetFolderRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_folder_proto_rawDescGZIP(), []int{5}
+	return file_agent_agent_v1alpha_folder_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *GetFolderRequest) GetNamespaceId() string {
@@ -429,7 +493,7 @@ type GetFolderResponse struct {
 
 func (x *GetFolderResponse) Reset() {
 	*x = GetFolderResponse{}
-	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[6]
+	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -441,7 +505,7 @@ func (x *GetFolderResponse) String() string {
 func (*GetFolderResponse) ProtoMessage() {}
 
 func (x *GetFolderResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[6]
+	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -454,7 +518,7 @@ func (x *GetFolderResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFolderResponse.ProtoReflect.Descriptor instead.
 func (*GetFolderResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_folder_proto_rawDescGZIP(), []int{6}
+	return file_agent_agent_v1alpha_folder_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GetFolderResponse) GetFolder() *Folder {
@@ -481,7 +545,7 @@ type UpdateFolderRequest struct {
 
 func (x *UpdateFolderRequest) Reset() {
 	*x = UpdateFolderRequest{}
-	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[7]
+	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -493,7 +557,7 @@ func (x *UpdateFolderRequest) String() string {
 func (*UpdateFolderRequest) ProtoMessage() {}
 
 func (x *UpdateFolderRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[7]
+	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -506,7 +570,7 @@ func (x *UpdateFolderRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateFolderRequest.ProtoReflect.Descriptor instead.
 func (*UpdateFolderRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_folder_proto_rawDescGZIP(), []int{7}
+	return file_agent_agent_v1alpha_folder_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *UpdateFolderRequest) GetNamespaceId() string {
@@ -548,7 +612,7 @@ type UpdateFolderResponse struct {
 
 func (x *UpdateFolderResponse) Reset() {
 	*x = UpdateFolderResponse{}
-	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[8]
+	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -560,7 +624,7 @@ func (x *UpdateFolderResponse) String() string {
 func (*UpdateFolderResponse) ProtoMessage() {}
 
 func (x *UpdateFolderResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[8]
+	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -573,7 +637,7 @@ func (x *UpdateFolderResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateFolderResponse.ProtoReflect.Descriptor instead.
 func (*UpdateFolderResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_folder_proto_rawDescGZIP(), []int{8}
+	return file_agent_agent_v1alpha_folder_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *UpdateFolderResponse) GetFolder() *Folder {
@@ -596,7 +660,7 @@ type DeleteFolderRequest struct {
 
 func (x *DeleteFolderRequest) Reset() {
 	*x = DeleteFolderRequest{}
-	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[9]
+	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -608,7 +672,7 @@ func (x *DeleteFolderRequest) String() string {
 func (*DeleteFolderRequest) ProtoMessage() {}
 
 func (x *DeleteFolderRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[9]
+	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -621,7 +685,7 @@ func (x *DeleteFolderRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteFolderRequest.ProtoReflect.Descriptor instead.
 func (*DeleteFolderRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_folder_proto_rawDescGZIP(), []int{9}
+	return file_agent_agent_v1alpha_folder_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *DeleteFolderRequest) GetNamespaceId() string {
@@ -647,7 +711,7 @@ type DeleteFolderResponse struct {
 
 func (x *DeleteFolderResponse) Reset() {
 	*x = DeleteFolderResponse{}
-	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[10]
+	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -659,7 +723,7 @@ func (x *DeleteFolderResponse) String() string {
 func (*DeleteFolderResponse) ProtoMessage() {}
 
 func (x *DeleteFolderResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[10]
+	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -672,7 +736,7 @@ func (x *DeleteFolderResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteFolderResponse.ProtoReflect.Descriptor instead.
 func (*DeleteFolderResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_folder_proto_rawDescGZIP(), []int{10}
+	return file_agent_agent_v1alpha_folder_proto_rawDescGZIP(), []int{11}
 }
 
 // Permission defines how a folder can be used.
@@ -686,7 +750,7 @@ type Folder_Permission struct {
 
 func (x *Folder_Permission) Reset() {
 	*x = Folder_Permission{}
-	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[11]
+	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -698,7 +762,7 @@ func (x *Folder_Permission) String() string {
 func (*Folder_Permission) ProtoMessage() {}
 
 func (x *Folder_Permission) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[11]
+	mi := &file_agent_agent_v1alpha_folder_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -725,7 +789,7 @@ var File_agent_agent_v1alpha_folder_proto protoreflect.FileDescriptor
 
 const file_agent_agent_v1alpha_folder_proto_rawDesc = "" +
 	"\n" +
-	" agent/agent/v1alpha/folder.proto\x12\x13agent.agent.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb7\x03\n" +
+	" agent/agent/v1alpha/folder.proto\x12\x13agent.agent.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x81\x04\n" +
 	"\x06Folder\x12\x15\n" +
 	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x17\n" +
 	"\x04name\x18\x02 \x01(\tB\x03\xe0A\x02R\x04name\x12%\n" +
@@ -739,10 +803,15 @@ const file_agent_agent_v1alpha_folder_proto_rawDesc = "" +
 	"catalog_id\x18\a \x01(\tB\x03\xe0A\x03R\tcatalogId\x12K\n" +
 	"\n" +
 	"permission\x18\b \x01(\v2&.agent.agent.v1alpha.Folder.PermissionB\x03\xe0A\x03R\n" +
-	"permission\x1a'\n" +
+	"permission\x12H\n" +
+	"\fcatalog_info\x18\t \x01(\v2 .agent.agent.v1alpha.CatalogInfoB\x03\xe0A\x03R\vcatalogInfo\x1a'\n" +
 	"\n" +
 	"Permission\x12\x19\n" +
-	"\bcan_edit\x18\x01 \x01(\bR\acanEdit\"\x82\x01\n" +
+	"\bcan_edit\x18\x01 \x01(\bR\acanEdit\"`\n" +
+	"\vCatalogInfo\x12\"\n" +
+	"\n" +
+	"file_count\x18\x01 \x01(\x05B\x03\xe0A\x03R\tfileCount\x12-\n" +
+	"\x10total_size_bytes\x18\x02 \x01(\x03B\x03\xe0A\x03R\x0etotalSizeBytes\"\x82\x01\n" +
 	"\x12ListFoldersRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\"\n" +
 	"\n" +
@@ -792,41 +861,43 @@ func file_agent_agent_v1alpha_folder_proto_rawDescGZIP() []byte {
 	return file_agent_agent_v1alpha_folder_proto_rawDescData
 }
 
-var file_agent_agent_v1alpha_folder_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_agent_agent_v1alpha_folder_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_agent_agent_v1alpha_folder_proto_goTypes = []any{
 	(*Folder)(nil),                // 0: agent.agent.v1alpha.Folder
-	(*ListFoldersRequest)(nil),    // 1: agent.agent.v1alpha.ListFoldersRequest
-	(*ListFoldersResponse)(nil),   // 2: agent.agent.v1alpha.ListFoldersResponse
-	(*CreateFolderRequest)(nil),   // 3: agent.agent.v1alpha.CreateFolderRequest
-	(*CreateFolderResponse)(nil),  // 4: agent.agent.v1alpha.CreateFolderResponse
-	(*GetFolderRequest)(nil),      // 5: agent.agent.v1alpha.GetFolderRequest
-	(*GetFolderResponse)(nil),     // 6: agent.agent.v1alpha.GetFolderResponse
-	(*UpdateFolderRequest)(nil),   // 7: agent.agent.v1alpha.UpdateFolderRequest
-	(*UpdateFolderResponse)(nil),  // 8: agent.agent.v1alpha.UpdateFolderResponse
-	(*DeleteFolderRequest)(nil),   // 9: agent.agent.v1alpha.DeleteFolderRequest
-	(*DeleteFolderResponse)(nil),  // 10: agent.agent.v1alpha.DeleteFolderResponse
-	(*Folder_Permission)(nil),     // 11: agent.agent.v1alpha.Folder.Permission
-	(*structpb.Struct)(nil),       // 12: google.protobuf.Struct
-	(*timestamppb.Timestamp)(nil), // 13: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil), // 14: google.protobuf.FieldMask
+	(*CatalogInfo)(nil),           // 1: agent.agent.v1alpha.CatalogInfo
+	(*ListFoldersRequest)(nil),    // 2: agent.agent.v1alpha.ListFoldersRequest
+	(*ListFoldersResponse)(nil),   // 3: agent.agent.v1alpha.ListFoldersResponse
+	(*CreateFolderRequest)(nil),   // 4: agent.agent.v1alpha.CreateFolderRequest
+	(*CreateFolderResponse)(nil),  // 5: agent.agent.v1alpha.CreateFolderResponse
+	(*GetFolderRequest)(nil),      // 6: agent.agent.v1alpha.GetFolderRequest
+	(*GetFolderResponse)(nil),     // 7: agent.agent.v1alpha.GetFolderResponse
+	(*UpdateFolderRequest)(nil),   // 8: agent.agent.v1alpha.UpdateFolderRequest
+	(*UpdateFolderResponse)(nil),  // 9: agent.agent.v1alpha.UpdateFolderResponse
+	(*DeleteFolderRequest)(nil),   // 10: agent.agent.v1alpha.DeleteFolderRequest
+	(*DeleteFolderResponse)(nil),  // 11: agent.agent.v1alpha.DeleteFolderResponse
+	(*Folder_Permission)(nil),     // 12: agent.agent.v1alpha.Folder.Permission
+	(*structpb.Struct)(nil),       // 13: google.protobuf.Struct
+	(*timestamppb.Timestamp)(nil), // 14: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil), // 15: google.protobuf.FieldMask
 }
 var file_agent_agent_v1alpha_folder_proto_depIdxs = []int32{
-	12, // 0: agent.agent.v1alpha.Folder.metadata:type_name -> google.protobuf.Struct
-	13, // 1: agent.agent.v1alpha.Folder.create_time:type_name -> google.protobuf.Timestamp
-	13, // 2: agent.agent.v1alpha.Folder.update_time:type_name -> google.protobuf.Timestamp
-	11, // 3: agent.agent.v1alpha.Folder.permission:type_name -> agent.agent.v1alpha.Folder.Permission
-	0,  // 4: agent.agent.v1alpha.ListFoldersResponse.folders:type_name -> agent.agent.v1alpha.Folder
-	0,  // 5: agent.agent.v1alpha.CreateFolderRequest.folder:type_name -> agent.agent.v1alpha.Folder
-	0,  // 6: agent.agent.v1alpha.CreateFolderResponse.folder:type_name -> agent.agent.v1alpha.Folder
-	0,  // 7: agent.agent.v1alpha.GetFolderResponse.folder:type_name -> agent.agent.v1alpha.Folder
-	0,  // 8: agent.agent.v1alpha.UpdateFolderRequest.folder:type_name -> agent.agent.v1alpha.Folder
-	14, // 9: agent.agent.v1alpha.UpdateFolderRequest.update_mask:type_name -> google.protobuf.FieldMask
-	0,  // 10: agent.agent.v1alpha.UpdateFolderResponse.folder:type_name -> agent.agent.v1alpha.Folder
-	11, // [11:11] is the sub-list for method output_type
-	11, // [11:11] is the sub-list for method input_type
-	11, // [11:11] is the sub-list for extension type_name
-	11, // [11:11] is the sub-list for extension extendee
-	0,  // [0:11] is the sub-list for field type_name
+	13, // 0: agent.agent.v1alpha.Folder.metadata:type_name -> google.protobuf.Struct
+	14, // 1: agent.agent.v1alpha.Folder.create_time:type_name -> google.protobuf.Timestamp
+	14, // 2: agent.agent.v1alpha.Folder.update_time:type_name -> google.protobuf.Timestamp
+	12, // 3: agent.agent.v1alpha.Folder.permission:type_name -> agent.agent.v1alpha.Folder.Permission
+	1,  // 4: agent.agent.v1alpha.Folder.catalog_info:type_name -> agent.agent.v1alpha.CatalogInfo
+	0,  // 5: agent.agent.v1alpha.ListFoldersResponse.folders:type_name -> agent.agent.v1alpha.Folder
+	0,  // 6: agent.agent.v1alpha.CreateFolderRequest.folder:type_name -> agent.agent.v1alpha.Folder
+	0,  // 7: agent.agent.v1alpha.CreateFolderResponse.folder:type_name -> agent.agent.v1alpha.Folder
+	0,  // 8: agent.agent.v1alpha.GetFolderResponse.folder:type_name -> agent.agent.v1alpha.Folder
+	0,  // 9: agent.agent.v1alpha.UpdateFolderRequest.folder:type_name -> agent.agent.v1alpha.Folder
+	15, // 10: agent.agent.v1alpha.UpdateFolderRequest.update_mask:type_name -> google.protobuf.FieldMask
+	0,  // 11: agent.agent.v1alpha.UpdateFolderResponse.folder:type_name -> agent.agent.v1alpha.Folder
+	12, // [12:12] is the sub-list for method output_type
+	12, // [12:12] is the sub-list for method input_type
+	12, // [12:12] is the sub-list for extension type_name
+	12, // [12:12] is the sub-list for extension extendee
+	0,  // [0:12] is the sub-list for field type_name
 }
 
 func init() { file_agent_agent_v1alpha_folder_proto_init() }
@@ -840,7 +911,7 @@ func file_agent_agent_v1alpha_folder_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_agent_agent_v1alpha_folder_proto_rawDesc), len(file_agent_agent_v1alpha_folder_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
