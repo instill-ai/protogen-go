@@ -1642,8 +1642,9 @@ type CreateCatalogRequest struct {
 	// The catalog type. default is PERSISTENT
 	Type CatalogType `protobuf:"varint,5,opt,name=type,proto3,enum=artifact.artifact.v1alpha.CatalogType" json:"type,omitempty"`
 	// Pipelines used for converting documents (i.e., files with pdf, doc[x] or
-	// ppt[x] extension) to Markdown. The pipelines must have the following
-	// variable and output fields:
+	// ppt[x] extension) to Markdown. The strings in the list identify the
+	// pipelines and MUST have the format `{namespaceID}/{pipelineID}@{version}`.
+	// The pipeline recipes MUST have the following variable and output fields:
 	// ```yaml variable
 	// variable:
 	//
