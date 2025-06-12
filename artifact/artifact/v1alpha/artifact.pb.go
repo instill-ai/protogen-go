@@ -1640,9 +1640,39 @@ type CreateCatalogRequest struct {
 	// The catalog tags.
 	Tags []string `protobuf:"bytes,4,rep,name=tags,proto3" json:"tags,omitempty"`
 	// The catalog type. default is PERSISTENT
-	Type          CatalogType `protobuf:"varint,5,opt,name=type,proto3,enum=artifact.artifact.v1alpha.CatalogType" json:"type,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	Type CatalogType `protobuf:"varint,5,opt,name=type,proto3,enum=artifact.artifact.v1alpha.CatalogType" json:"type,omitempty"`
+	// Pipelines used for converting documents (i.e., files with pdf, doc* or
+	// ppt* extension) to Markdown. The pipelines must have the following
+	// variable and output fields:
+	// ```
+	// variable:
+	//
+	//	document_input:
+	//	  title: document-input
+	//	  description: Upload a document (PDF/DOCX/DOC/PPTX/PPT)
+	//	  type: file
+	//
+	// ```
+	// ```
+	// output:
+	//
+	//	convert_result:
+	//	  title: convert-result
+	//	  value: ${merge-markdown-refinement.output.results[0]}
+	//
+	// ```
+	// Other variable and output fields will be ignored.
+	//
+	// The pipelines will be executed in order until one produces a successful,
+	// non-empty result.
+	//
+	// If no pipelines are provided, a default pipeline will be used. For
+	// non-document catalog files, the conversion pipeline is deterministic (such
+	// files are typically trivial to convert and don't require a dedicated
+	// pipeline to improve the conversion performance).
+	ConvertingPipelines []string `protobuf:"bytes,6,rep,name=converting_pipelines,json=convertingPipelines,proto3" json:"converting_pipelines,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
 func (x *CreateCatalogRequest) Reset() {
@@ -1708,6 +1738,13 @@ func (x *CreateCatalogRequest) GetType() CatalogType {
 		return x.Type
 	}
 	return CatalogType_CATALOG_TYPE_UNSPECIFIED
+}
+
+func (x *CreateCatalogRequest) GetConvertingPipelines() []string {
+	if x != nil {
+		return x.ConvertingPipelines
+	}
+	return nil
 }
 
 // CreateCatalogResponse represents a response for creating a catalog.
@@ -3460,13 +3497,14 @@ const file_artifact_artifact_v1alpha_artifact_proto_rawDesc = "" +
 	"totalFiles\x12!\n" +
 	"\ftotal_tokens\x18\x0e \x01(\rR\vtotalTokens\x12!\n" +
 	"\fused_storage\x18\x0f \x01(\x04R\vusedStorage\x123\n" +
-	"\x15summarizing_pipelines\x18\x10 \x03(\tR\x14summarizingPipelines\"\xbf\x01\n" +
+	"\x15summarizing_pipelines\x18\x10 \x03(\tR\x14summarizingPipelines\"\xf2\x01\n" +
 	"\x14CreateCatalogRequest\x12!\n" +
 	"\fnamespace_id\x18\x01 \x01(\tR\vnamespaceId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\x12\n" +
 	"\x04tags\x18\x04 \x03(\tR\x04tags\x12:\n" +
-	"\x04type\x18\x05 \x01(\x0e2&.artifact.artifact.v1alpha.CatalogTypeR\x04type\"U\n" +
+	"\x04type\x18\x05 \x01(\x0e2&.artifact.artifact.v1alpha.CatalogTypeR\x04type\x121\n" +
+	"\x14converting_pipelines\x18\x06 \x03(\tR\x13convertingPipelines\"U\n" +
 	"\x15CreateCatalogResponse\x12<\n" +
 	"\acatalog\x18\x01 \x01(\v2\".artifact.artifact.v1alpha.CatalogR\acatalog\"8\n" +
 	"\x13ListCatalogsRequest\x12!\n" +
