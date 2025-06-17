@@ -332,9 +332,9 @@ func (x *ChatContext) GetTableUids() []string {
 type ChatAttachments struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// file urls (only for user messages)
-	FileUrls      []string `protobuf:"bytes,1,rep,name=file_urls,json=fileUrls,proto3" json:"file_urls,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	FileAttachments []*ChatAttachments_FileAttachment `protobuf:"bytes,1,rep,name=file_attachments,json=fileAttachments,proto3" json:"file_attachments,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *ChatAttachments) Reset() {
@@ -367,9 +367,9 @@ func (*ChatAttachments) Descriptor() ([]byte, []int) {
 	return file_agent_agent_v1alpha_common_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *ChatAttachments) GetFileUrls() []string {
+func (x *ChatAttachments) GetFileAttachments() []*ChatAttachments_FileAttachment {
 	if x != nil {
-		return x.FileUrls
+		return x.FileAttachments
 	}
 	return nil
 }
@@ -537,6 +537,88 @@ func (x *Message) GetRawMessage() *structpb.Struct {
 	return nil
 }
 
+// FileAttachment represents the file attachment for the message.
+type ChatAttachments_FileAttachment struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// file name
+	FileName string `protobuf:"bytes,1,opt,name=file_name,json=fileName,proto3" json:"file_name,omitempty"`
+	// file size
+	FileSize uint64 `protobuf:"varint,2,opt,name=file_size,json=fileSize,proto3" json:"file_size,omitempty"`
+	// file type
+	ContentType string `protobuf:"bytes,3,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
+	// file extension
+	FileExtension string `protobuf:"bytes,4,opt,name=file_extension,json=fileExtension,proto3" json:"file_extension,omitempty"`
+	// file download url
+	DownloadUrl   string `protobuf:"bytes,5,opt,name=download_url,json=downloadUrl,proto3" json:"download_url,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ChatAttachments_FileAttachment) Reset() {
+	*x = ChatAttachments_FileAttachment{}
+	mi := &file_agent_agent_v1alpha_common_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ChatAttachments_FileAttachment) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ChatAttachments_FileAttachment) ProtoMessage() {}
+
+func (x *ChatAttachments_FileAttachment) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_agent_v1alpha_common_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ChatAttachments_FileAttachment.ProtoReflect.Descriptor instead.
+func (*ChatAttachments_FileAttachment) Descriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_common_proto_rawDescGZIP(), []int{2, 0}
+}
+
+func (x *ChatAttachments_FileAttachment) GetFileName() string {
+	if x != nil {
+		return x.FileName
+	}
+	return ""
+}
+
+func (x *ChatAttachments_FileAttachment) GetFileSize() uint64 {
+	if x != nil {
+		return x.FileSize
+	}
+	return 0
+}
+
+func (x *ChatAttachments_FileAttachment) GetContentType() string {
+	if x != nil {
+		return x.ContentType
+	}
+	return ""
+}
+
+func (x *ChatAttachments_FileAttachment) GetFileExtension() string {
+	if x != nil {
+		return x.FileExtension
+	}
+	return ""
+}
+
+func (x *ChatAttachments_FileAttachment) GetDownloadUrl() string {
+	if x != nil {
+		return x.DownloadUrl
+	}
+	return ""
+}
+
 var File_agent_agent_v1alpha_common_proto protoreflect.FileDescriptor
 
 const file_agent_agent_v1alpha_common_proto_rawDesc = "" +
@@ -553,9 +635,15 @@ const file_agent_agent_v1alpha_common_proto_rawDesc = "" +
 	"\b_summary\"1\n" +
 	"\vChatContext\x12\"\n" +
 	"\n" +
-	"table_uids\x18\x01 \x03(\tB\x03\xe0A\x01R\ttableUids\"3\n" +
-	"\x0fChatAttachments\x12 \n" +
-	"\tfile_urls\x18\x01 \x03(\tB\x03\xe0A\x03R\bfileUrls\"\xa4\x06\n" +
+	"table_uids\x18\x01 \x03(\tB\x03\xe0A\x01R\ttableUids\"\xc9\x02\n" +
+	"\x0fChatAttachments\x12c\n" +
+	"\x10file_attachments\x18\x01 \x03(\v23.agent.agent.v1alpha.ChatAttachments.FileAttachmentB\x03\xe0A\x03R\x0ffileAttachments\x1a\xd0\x01\n" +
+	"\x0eFileAttachment\x12 \n" +
+	"\tfile_name\x18\x01 \x01(\tB\x03\xe0A\x03R\bfileName\x12 \n" +
+	"\tfile_size\x18\x02 \x01(\x04B\x03\xe0A\x03R\bfileSize\x12&\n" +
+	"\fcontent_type\x18\x03 \x01(\tB\x03\xe0A\x03R\vcontentType\x12*\n" +
+	"\x0efile_extension\x18\x04 \x01(\tB\x03\xe0A\x03R\rfileExtension\x12&\n" +
+	"\fdownload_url\x18\x05 \x01(\tB\x03\xe0A\x03R\vdownloadUrl\"\xa4\x06\n" +
 	"\aMessage\x12\x15\n" +
 	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x1e\n" +
 	"\bchat_uid\x18\x02 \x01(\tB\x03\xe0A\x03R\achatUid\x12\x1d\n" +
@@ -605,33 +693,35 @@ func file_agent_agent_v1alpha_common_proto_rawDescGZIP() []byte {
 }
 
 var file_agent_agent_v1alpha_common_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_agent_agent_v1alpha_common_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_agent_agent_v1alpha_common_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_agent_agent_v1alpha_common_proto_goTypes = []any{
-	(CitationType)(0),              // 0: agent.agent.v1alpha.CitationType
-	(CitationExtractMethodType)(0), // 1: agent.agent.v1alpha.CitationExtractMethodType
-	(Message_MessageType)(0),       // 2: agent.agent.v1alpha.Message.MessageType
-	(*Citation)(nil),               // 3: agent.agent.v1alpha.Citation
-	(*ChatContext)(nil),            // 4: agent.agent.v1alpha.ChatContext
-	(*ChatAttachments)(nil),        // 5: agent.agent.v1alpha.ChatAttachments
-	(*Message)(nil),                // 6: agent.agent.v1alpha.Message
-	(*timestamppb.Timestamp)(nil),  // 7: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),        // 8: google.protobuf.Struct
+	(CitationType)(0),                      // 0: agent.agent.v1alpha.CitationType
+	(CitationExtractMethodType)(0),         // 1: agent.agent.v1alpha.CitationExtractMethodType
+	(Message_MessageType)(0),               // 2: agent.agent.v1alpha.Message.MessageType
+	(*Citation)(nil),                       // 3: agent.agent.v1alpha.Citation
+	(*ChatContext)(nil),                    // 4: agent.agent.v1alpha.ChatContext
+	(*ChatAttachments)(nil),                // 5: agent.agent.v1alpha.ChatAttachments
+	(*Message)(nil),                        // 6: agent.agent.v1alpha.Message
+	(*ChatAttachments_FileAttachment)(nil), // 7: agent.agent.v1alpha.ChatAttachments.FileAttachment
+	(*timestamppb.Timestamp)(nil),          // 8: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),                // 9: google.protobuf.Struct
 }
 var file_agent_agent_v1alpha_common_proto_depIdxs = []int32{
-	0, // 0: agent.agent.v1alpha.Citation.type:type_name -> agent.agent.v1alpha.CitationType
-	1, // 1: agent.agent.v1alpha.Citation.extract_method:type_name -> agent.agent.v1alpha.CitationExtractMethodType
-	2, // 2: agent.agent.v1alpha.Message.type:type_name -> agent.agent.v1alpha.Message.MessageType
-	7, // 3: agent.agent.v1alpha.Message.create_time:type_name -> google.protobuf.Timestamp
-	7, // 4: agent.agent.v1alpha.Message.update_time:type_name -> google.protobuf.Timestamp
-	3, // 5: agent.agent.v1alpha.Message.citations:type_name -> agent.agent.v1alpha.Citation
-	4, // 6: agent.agent.v1alpha.Message.context:type_name -> agent.agent.v1alpha.ChatContext
-	5, // 7: agent.agent.v1alpha.Message.attachments:type_name -> agent.agent.v1alpha.ChatAttachments
-	8, // 8: agent.agent.v1alpha.Message.raw_message:type_name -> google.protobuf.Struct
-	9, // [9:9] is the sub-list for method output_type
-	9, // [9:9] is the sub-list for method input_type
-	9, // [9:9] is the sub-list for extension type_name
-	9, // [9:9] is the sub-list for extension extendee
-	0, // [0:9] is the sub-list for field type_name
+	0,  // 0: agent.agent.v1alpha.Citation.type:type_name -> agent.agent.v1alpha.CitationType
+	1,  // 1: agent.agent.v1alpha.Citation.extract_method:type_name -> agent.agent.v1alpha.CitationExtractMethodType
+	7,  // 2: agent.agent.v1alpha.ChatAttachments.file_attachments:type_name -> agent.agent.v1alpha.ChatAttachments.FileAttachment
+	2,  // 3: agent.agent.v1alpha.Message.type:type_name -> agent.agent.v1alpha.Message.MessageType
+	8,  // 4: agent.agent.v1alpha.Message.create_time:type_name -> google.protobuf.Timestamp
+	8,  // 5: agent.agent.v1alpha.Message.update_time:type_name -> google.protobuf.Timestamp
+	3,  // 6: agent.agent.v1alpha.Message.citations:type_name -> agent.agent.v1alpha.Citation
+	4,  // 7: agent.agent.v1alpha.Message.context:type_name -> agent.agent.v1alpha.ChatContext
+	5,  // 8: agent.agent.v1alpha.Message.attachments:type_name -> agent.agent.v1alpha.ChatAttachments
+	9,  // 9: agent.agent.v1alpha.Message.raw_message:type_name -> google.protobuf.Struct
+	10, // [10:10] is the sub-list for method output_type
+	10, // [10:10] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	10, // [10:10] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
 func init() { file_agent_agent_v1alpha_common_proto_init() }
@@ -647,7 +737,7 @@ func file_agent_agent_v1alpha_common_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_agent_agent_v1alpha_common_proto_rawDesc), len(file_agent_agent_v1alpha_common_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   4,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
