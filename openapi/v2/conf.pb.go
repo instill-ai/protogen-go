@@ -26,11 +26,11 @@ var File_openapi_v2_conf_proto protoreflect.FileDescriptor
 const file_openapi_v2_conf_proto_rawDesc = "" +
 	"\n" +
 	"\x15openapi/v2/conf.proto\x12\n" +
-	"openapi.v2\x1a.protoc-gen-openapiv2/options/annotations.protoB\xd7\t\x92A\xb7\b\x12\xee\x01\n" +
+	"openapi.v2\x1a.protoc-gen-openapiv2/options/annotations.protoB\xd2\t\x92A\xb2\b\x12\xe9\x01\n" +
 	"\x13🔮 Instill AI API\x12/Interact with Instill AI through its public API\"?\n" +
 	"\n" +
 	"Instill AI\x12\x1dhttps://github.com/instill-ai\x1a\x12hello@instill.tech*W\n" +
-	"\x1aElastic License 2.0 (ELv2)\x129https://github.com/instill-ai/protobufs/blob/main/LICENSE2\fv0.50.6-beta\x1a\x12api.instill-ai.com*\x02\x02\x012\x10application/json:\x10application/jsonR<\n" +
+	"\x1aElastic License 2.0 (ELv2)\x129https://github.com/instill-ai/protobufs/blob/main/LICENSE2\av0.51.0\x1a\x12api.instill-ai.com*\x02\x02\x012\x10application/json:\x10application/jsonR<\n" +
 	"\x03401\x125\n" +
 	"3Returned when the client credentials are not valid.Z\x8b\x01\n" +
 	"\x88\x01\n" +
