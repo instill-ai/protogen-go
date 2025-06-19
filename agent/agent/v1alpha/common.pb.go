@@ -287,8 +287,10 @@ type ChatContext struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The table uids to include in the context.
 	TableUids []string `protobuf:"bytes,1,rep,name=table_uids,json=tableUids,proto3" json:"table_uids,omitempty"`
-	// The folders and files to include in the context.
-	FolderFiles   []*ChatContext_FolderFiles `protobuf:"bytes,2,rep,name=folder_files,json=folderFiles,proto3" json:"folder_files,omitempty"`
+	// The folders to include in the context.
+	Folders []*ChatContext_Folder `protobuf:"bytes,2,rep,name=folders,proto3" json:"folders,omitempty"`
+	// The catalogs to include in the context.
+	Catalogs      []*ChatContext_Catalog `protobuf:"bytes,3,rep,name=catalogs,proto3" json:"catalogs,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -330,9 +332,16 @@ func (x *ChatContext) GetTableUids() []string {
 	return nil
 }
 
-func (x *ChatContext) GetFolderFiles() []*ChatContext_FolderFiles {
+func (x *ChatContext) GetFolders() []*ChatContext_Folder {
 	if x != nil {
-		return x.FolderFiles
+		return x.Folders
+	}
+	return nil
+}
+
+func (x *ChatContext) GetCatalogs() []*ChatContext_Catalog {
+	if x != nil {
+		return x.Catalogs
 	}
 	return nil
 }
@@ -546,8 +555,8 @@ func (x *Message) GetRawMessage() *structpb.Struct {
 	return nil
 }
 
-// Represents specific files within a folder.
-type ChatContext_FolderFiles struct {
+// Represents a folder.
+type ChatContext_Folder struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The folder containing the files
 	FolderUid string `protobuf:"bytes,1,opt,name=folder_uid,json=folderUid,proto3" json:"folder_uid,omitempty"`
@@ -557,20 +566,20 @@ type ChatContext_FolderFiles struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ChatContext_FolderFiles) Reset() {
-	*x = ChatContext_FolderFiles{}
+func (x *ChatContext_Folder) Reset() {
+	*x = ChatContext_Folder{}
 	mi := &file_agent_agent_v1alpha_common_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ChatContext_FolderFiles) String() string {
+func (x *ChatContext_Folder) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ChatContext_FolderFiles) ProtoMessage() {}
+func (*ChatContext_Folder) ProtoMessage() {}
 
-func (x *ChatContext_FolderFiles) ProtoReflect() protoreflect.Message {
+func (x *ChatContext_Folder) ProtoReflect() protoreflect.Message {
 	mi := &file_agent_agent_v1alpha_common_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -582,19 +591,74 @@ func (x *ChatContext_FolderFiles) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ChatContext_FolderFiles.ProtoReflect.Descriptor instead.
-func (*ChatContext_FolderFiles) Descriptor() ([]byte, []int) {
+// Deprecated: Use ChatContext_Folder.ProtoReflect.Descriptor instead.
+func (*ChatContext_Folder) Descriptor() ([]byte, []int) {
 	return file_agent_agent_v1alpha_common_proto_rawDescGZIP(), []int{1, 0}
 }
 
-func (x *ChatContext_FolderFiles) GetFolderUid() string {
+func (x *ChatContext_Folder) GetFolderUid() string {
 	if x != nil {
 		return x.FolderUid
 	}
 	return ""
 }
 
-func (x *ChatContext_FolderFiles) GetFileUids() []string {
+func (x *ChatContext_Folder) GetFileUids() []string {
+	if x != nil {
+		return x.FileUids
+	}
+	return nil
+}
+
+// Represents a catalog.
+type ChatContext_Catalog struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The catalog containing the files
+	CatalogId string `protobuf:"bytes,1,opt,name=catalog_id,json=catalogId,proto3" json:"catalog_id,omitempty"`
+	// Specific file UIDs within the catalog, leave empty to include all files in the catalog
+	FileUids      []string `protobuf:"bytes,2,rep,name=file_uids,json=fileUids,proto3" json:"file_uids,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ChatContext_Catalog) Reset() {
+	*x = ChatContext_Catalog{}
+	mi := &file_agent_agent_v1alpha_common_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ChatContext_Catalog) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ChatContext_Catalog) ProtoMessage() {}
+
+func (x *ChatContext_Catalog) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_agent_v1alpha_common_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ChatContext_Catalog.ProtoReflect.Descriptor instead.
+func (*ChatContext_Catalog) Descriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_common_proto_rawDescGZIP(), []int{1, 1}
+}
+
+func (x *ChatContext_Catalog) GetCatalogId() string {
+	if x != nil {
+		return x.CatalogId
+	}
+	return ""
+}
+
+func (x *ChatContext_Catalog) GetFileUids() []string {
 	if x != nil {
 		return x.FileUids
 	}
@@ -620,7 +684,7 @@ type ChatAttachments_FileAttachment struct {
 
 func (x *ChatAttachments_FileAttachment) Reset() {
 	*x = ChatAttachments_FileAttachment{}
-	mi := &file_agent_agent_v1alpha_common_proto_msgTypes[5]
+	mi := &file_agent_agent_v1alpha_common_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -632,7 +696,7 @@ func (x *ChatAttachments_FileAttachment) String() string {
 func (*ChatAttachments_FileAttachment) ProtoMessage() {}
 
 func (x *ChatAttachments_FileAttachment) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_common_proto_msgTypes[5]
+	mi := &file_agent_agent_v1alpha_common_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -696,14 +760,19 @@ const file_agent_agent_v1alpha_common_proto_rawDesc = "" +
 	"\asummary\x18\x05 \x01(\tB\x03\xe0A\x03H\x00R\asummary\x88\x01\x01\x12Z\n" +
 	"\x0eextract_method\x18\x06 \x01(\x0e2..agent.agent.v1alpha.CitationExtractMethodTypeB\x03\xe0A\x03R\rextractMethodB\n" +
 	"\n" +
-	"\b_summary\"\xdc\x01\n" +
+	"\b_summary\"\xe5\x02\n" +
 	"\vChatContext\x12\"\n" +
 	"\n" +
-	"table_uids\x18\x01 \x03(\tB\x03\xe0A\x01R\ttableUids\x12T\n" +
-	"\ffolder_files\x18\x02 \x03(\v2,.agent.agent.v1alpha.ChatContext.FolderFilesB\x03\xe0A\x01R\vfolderFiles\x1aS\n" +
-	"\vFolderFiles\x12\"\n" +
+	"table_uids\x18\x01 \x03(\tB\x03\xe0A\x01R\ttableUids\x12F\n" +
+	"\afolders\x18\x02 \x03(\v2'.agent.agent.v1alpha.ChatContext.FolderB\x03\xe0A\x01R\afolders\x12I\n" +
+	"\bcatalogs\x18\x03 \x03(\v2(.agent.agent.v1alpha.ChatContext.CatalogB\x03\xe0A\x01R\bcatalogs\x1aN\n" +
+	"\x06Folder\x12\"\n" +
 	"\n" +
 	"folder_uid\x18\x01 \x01(\tB\x03\xe0A\x02R\tfolderUid\x12 \n" +
+	"\tfile_uids\x18\x02 \x03(\tB\x03\xe0A\x01R\bfileUids\x1aO\n" +
+	"\aCatalog\x12\"\n" +
+	"\n" +
+	"catalog_id\x18\x01 \x01(\tB\x03\xe0A\x02R\tcatalogId\x12 \n" +
 	"\tfile_uids\x18\x02 \x03(\tB\x03\xe0A\x01R\bfileUids\"\xc9\x02\n" +
 	"\x0fChatAttachments\x12c\n" +
 	"\x10file_attachments\x18\x01 \x03(\v23.agent.agent.v1alpha.ChatAttachments.FileAttachmentB\x03\xe0A\x03R\x0ffileAttachments\x1a\xd0\x01\n" +
@@ -762,7 +831,7 @@ func file_agent_agent_v1alpha_common_proto_rawDescGZIP() []byte {
 }
 
 var file_agent_agent_v1alpha_common_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_agent_agent_v1alpha_common_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_agent_agent_v1alpha_common_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_agent_agent_v1alpha_common_proto_goTypes = []any{
 	(CitationType)(0),                      // 0: agent.agent.v1alpha.CitationType
 	(CitationExtractMethodType)(0),         // 1: agent.agent.v1alpha.CitationExtractMethodType
@@ -771,28 +840,30 @@ var file_agent_agent_v1alpha_common_proto_goTypes = []any{
 	(*ChatContext)(nil),                    // 4: agent.agent.v1alpha.ChatContext
 	(*ChatAttachments)(nil),                // 5: agent.agent.v1alpha.ChatAttachments
 	(*Message)(nil),                        // 6: agent.agent.v1alpha.Message
-	(*ChatContext_FolderFiles)(nil),        // 7: agent.agent.v1alpha.ChatContext.FolderFiles
-	(*ChatAttachments_FileAttachment)(nil), // 8: agent.agent.v1alpha.ChatAttachments.FileAttachment
-	(*timestamppb.Timestamp)(nil),          // 9: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),                // 10: google.protobuf.Struct
+	(*ChatContext_Folder)(nil),             // 7: agent.agent.v1alpha.ChatContext.Folder
+	(*ChatContext_Catalog)(nil),            // 8: agent.agent.v1alpha.ChatContext.Catalog
+	(*ChatAttachments_FileAttachment)(nil), // 9: agent.agent.v1alpha.ChatAttachments.FileAttachment
+	(*timestamppb.Timestamp)(nil),          // 10: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),                // 11: google.protobuf.Struct
 }
 var file_agent_agent_v1alpha_common_proto_depIdxs = []int32{
 	0,  // 0: agent.agent.v1alpha.Citation.type:type_name -> agent.agent.v1alpha.CitationType
 	1,  // 1: agent.agent.v1alpha.Citation.extract_method:type_name -> agent.agent.v1alpha.CitationExtractMethodType
-	7,  // 2: agent.agent.v1alpha.ChatContext.folder_files:type_name -> agent.agent.v1alpha.ChatContext.FolderFiles
-	8,  // 3: agent.agent.v1alpha.ChatAttachments.file_attachments:type_name -> agent.agent.v1alpha.ChatAttachments.FileAttachment
-	2,  // 4: agent.agent.v1alpha.Message.type:type_name -> agent.agent.v1alpha.Message.MessageType
-	9,  // 5: agent.agent.v1alpha.Message.create_time:type_name -> google.protobuf.Timestamp
-	9,  // 6: agent.agent.v1alpha.Message.update_time:type_name -> google.protobuf.Timestamp
-	3,  // 7: agent.agent.v1alpha.Message.citations:type_name -> agent.agent.v1alpha.Citation
-	4,  // 8: agent.agent.v1alpha.Message.context:type_name -> agent.agent.v1alpha.ChatContext
-	5,  // 9: agent.agent.v1alpha.Message.attachments:type_name -> agent.agent.v1alpha.ChatAttachments
-	10, // 10: agent.agent.v1alpha.Message.raw_message:type_name -> google.protobuf.Struct
-	11, // [11:11] is the sub-list for method output_type
-	11, // [11:11] is the sub-list for method input_type
-	11, // [11:11] is the sub-list for extension type_name
-	11, // [11:11] is the sub-list for extension extendee
-	0,  // [0:11] is the sub-list for field type_name
+	7,  // 2: agent.agent.v1alpha.ChatContext.folders:type_name -> agent.agent.v1alpha.ChatContext.Folder
+	8,  // 3: agent.agent.v1alpha.ChatContext.catalogs:type_name -> agent.agent.v1alpha.ChatContext.Catalog
+	9,  // 4: agent.agent.v1alpha.ChatAttachments.file_attachments:type_name -> agent.agent.v1alpha.ChatAttachments.FileAttachment
+	2,  // 5: agent.agent.v1alpha.Message.type:type_name -> agent.agent.v1alpha.Message.MessageType
+	10, // 6: agent.agent.v1alpha.Message.create_time:type_name -> google.protobuf.Timestamp
+	10, // 7: agent.agent.v1alpha.Message.update_time:type_name -> google.protobuf.Timestamp
+	3,  // 8: agent.agent.v1alpha.Message.citations:type_name -> agent.agent.v1alpha.Citation
+	4,  // 9: agent.agent.v1alpha.Message.context:type_name -> agent.agent.v1alpha.ChatContext
+	5,  // 10: agent.agent.v1alpha.Message.attachments:type_name -> agent.agent.v1alpha.ChatAttachments
+	11, // 11: agent.agent.v1alpha.Message.raw_message:type_name -> google.protobuf.Struct
+	12, // [12:12] is the sub-list for method output_type
+	12, // [12:12] is the sub-list for method input_type
+	12, // [12:12] is the sub-list for extension type_name
+	12, // [12:12] is the sub-list for extension extendee
+	0,  // [0:12] is the sub-list for field type_name
 }
 
 func init() { file_agent_agent_v1alpha_common_proto_init() }
@@ -808,7 +879,7 @@ func file_agent_agent_v1alpha_common_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_agent_agent_v1alpha_common_proto_rawDesc), len(file_agent_agent_v1alpha_common_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   6,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
