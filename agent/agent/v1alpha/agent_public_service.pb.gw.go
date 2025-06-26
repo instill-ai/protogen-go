@@ -1247,6 +1247,64 @@ func local_request_AgentPublicService_UpdateColumnDefinitions_0(ctx context.Cont
 	return msg, metadata, err
 }
 
+func request_AgentPublicService_SuggestColumnDefinition_0(ctx context.Context, marshaler runtime.Marshaler, client AgentPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq SuggestColumnDefinitionRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["namespace_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
+	}
+	protoReq.NamespaceId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
+	}
+	val, ok = pathParams["table_uid"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "table_uid")
+	}
+	protoReq.TableUid, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "table_uid", err)
+	}
+	msg, err := client.SuggestColumnDefinition(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_AgentPublicService_SuggestColumnDefinition_0(ctx context.Context, marshaler runtime.Marshaler, server AgentPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq SuggestColumnDefinitionRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["namespace_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
+	}
+	protoReq.NamespaceId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
+	}
+	val, ok = pathParams["table_uid"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "table_uid")
+	}
+	protoReq.TableUid, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "table_uid", err)
+	}
+	msg, err := server.SuggestColumnDefinition(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 func request_AgentPublicService_GetColumnDefinition_0(ctx context.Context, marshaler runtime.Marshaler, client AgentPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq GetColumnDefinitionRequest
@@ -3349,6 +3407,26 @@ func RegisterAgentPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 		}
 		forward_AgentPublicService_UpdateColumnDefinitions_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_AgentPublicService_SuggestColumnDefinition_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/agent.agent.v1alpha.AgentPublicService/SuggestColumnDefinition", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/tables/{table_uid}/column-definitions-helper/suggest"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_AgentPublicService_SuggestColumnDefinition_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AgentPublicService_SuggestColumnDefinition_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodGet, pattern_AgentPublicService_GetColumnDefinition_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -4264,6 +4342,23 @@ func RegisterAgentPublicServiceHandlerClient(ctx context.Context, mux *runtime.S
 		}
 		forward_AgentPublicService_UpdateColumnDefinitions_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_AgentPublicService_SuggestColumnDefinition_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/agent.agent.v1alpha.AgentPublicService/SuggestColumnDefinition", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/tables/{table_uid}/column-definitions-helper/suggest"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_AgentPublicService_SuggestColumnDefinition_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AgentPublicService_SuggestColumnDefinition_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodGet, pattern_AgentPublicService_GetColumnDefinition_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -4700,6 +4795,7 @@ var (
 	pattern_AgentPublicService_ListTableBuilderAgentMessages_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 2, 6}, []string{"v1alpha", "namespaces", "namespace_id", "tables", "table_uid", "builder", "messages"}, ""))
 	pattern_AgentPublicService_GetColumnDefinitions_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "namespace_id", "tables", "table_uid", "column-definitions"}, ""))
 	pattern_AgentPublicService_UpdateColumnDefinitions_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "namespace_id", "tables", "table_uid", "column-definitions"}, ""))
+	pattern_AgentPublicService_SuggestColumnDefinition_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 2, 6}, []string{"v1alpha", "namespaces", "namespace_id", "tables", "table_uid", "column-definitions-helper", "suggest"}, ""))
 	pattern_AgentPublicService_GetColumnDefinition_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6}, []string{"v1alpha", "namespaces", "namespace_id", "tables", "table_uid", "column-definitions", "column_uid"}, ""))
 	pattern_AgentPublicService_RecomputeColumn_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6, 2, 7}, []string{"v1alpha", "namespaces", "namespace_id", "tables", "table_uid", "column-definitions", "column_uid", "recompute"}, ""))
 	pattern_AgentPublicService_ListRows_0                      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "namespace_id", "tables", "table_uid", "rows"}, ""))
@@ -4751,6 +4847,7 @@ var (
 	forward_AgentPublicService_ListTableBuilderAgentMessages_0 = runtime.ForwardResponseMessage
 	forward_AgentPublicService_GetColumnDefinitions_0          = runtime.ForwardResponseMessage
 	forward_AgentPublicService_UpdateColumnDefinitions_0       = runtime.ForwardResponseMessage
+	forward_AgentPublicService_SuggestColumnDefinition_0       = runtime.ForwardResponseMessage
 	forward_AgentPublicService_GetColumnDefinition_0           = runtime.ForwardResponseMessage
 	forward_AgentPublicService_RecomputeColumn_0               = runtime.ForwardResponseMessage
 	forward_AgentPublicService_ListRows_0                      = runtime.ForwardResponseMessage

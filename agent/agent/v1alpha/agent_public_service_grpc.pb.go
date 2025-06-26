@@ -41,6 +41,7 @@ const (
 	AgentPublicService_ListTableBuilderAgentMessages_FullMethodName = "/agent.agent.v1alpha.AgentPublicService/ListTableBuilderAgentMessages"
 	AgentPublicService_GetColumnDefinitions_FullMethodName          = "/agent.agent.v1alpha.AgentPublicService/GetColumnDefinitions"
 	AgentPublicService_UpdateColumnDefinitions_FullMethodName       = "/agent.agent.v1alpha.AgentPublicService/UpdateColumnDefinitions"
+	AgentPublicService_SuggestColumnDefinition_FullMethodName       = "/agent.agent.v1alpha.AgentPublicService/SuggestColumnDefinition"
 	AgentPublicService_GetColumnDefinition_FullMethodName           = "/agent.agent.v1alpha.AgentPublicService/GetColumnDefinition"
 	AgentPublicService_RecomputeColumn_FullMethodName               = "/agent.agent.v1alpha.AgentPublicService/RecomputeColumn"
 	AgentPublicService_ListRows_FullMethodName                      = "/agent.agent.v1alpha.AgentPublicService/ListRows"
@@ -165,6 +166,10 @@ type AgentPublicServiceClient interface {
 	// cells in that column will be cleared and recomputed. This ensures that all
 	// data reflects the latest instructions.
 	UpdateColumnDefinitions(ctx context.Context, in *UpdateColumnDefinitionsRequest, opts ...grpc.CallOption) (*UpdateColumnDefinitionsResponse, error)
+	// Suggest column definition
+	//
+	// Suggests a column definition based on existing table columns and user input.
+	SuggestColumnDefinition(ctx context.Context, in *SuggestColumnDefinitionRequest, opts ...grpc.CallOption) (*SuggestColumnDefinitionResponse, error)
 	// Get column definition
 	//
 	// Gets a column definition for a table.
@@ -505,6 +510,16 @@ func (c *agentPublicServiceClient) UpdateColumnDefinitions(ctx context.Context, 
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UpdateColumnDefinitionsResponse)
 	err := c.cc.Invoke(ctx, AgentPublicService_UpdateColumnDefinitions_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentPublicServiceClient) SuggestColumnDefinition(ctx context.Context, in *SuggestColumnDefinitionRequest, opts ...grpc.CallOption) (*SuggestColumnDefinitionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SuggestColumnDefinitionResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_SuggestColumnDefinition_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -858,6 +873,10 @@ type AgentPublicServiceServer interface {
 	// cells in that column will be cleared and recomputed. This ensures that all
 	// data reflects the latest instructions.
 	UpdateColumnDefinitions(context.Context, *UpdateColumnDefinitionsRequest) (*UpdateColumnDefinitionsResponse, error)
+	// Suggest column definition
+	//
+	// Suggests a column definition based on existing table columns and user input.
+	SuggestColumnDefinition(context.Context, *SuggestColumnDefinitionRequest) (*SuggestColumnDefinitionResponse, error)
 	// Get column definition
 	//
 	// Gets a column definition for a table.
@@ -1030,6 +1049,9 @@ func (UnimplementedAgentPublicServiceServer) GetColumnDefinitions(context.Contex
 }
 func (UnimplementedAgentPublicServiceServer) UpdateColumnDefinitions(context.Context, *UpdateColumnDefinitionsRequest) (*UpdateColumnDefinitionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateColumnDefinitions not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) SuggestColumnDefinition(context.Context, *SuggestColumnDefinitionRequest) (*SuggestColumnDefinitionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SuggestColumnDefinition not implemented")
 }
 func (UnimplementedAgentPublicServiceServer) GetColumnDefinition(context.Context, *GetColumnDefinitionRequest) (*GetColumnDefinitionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetColumnDefinition not implemented")
@@ -1501,6 +1523,24 @@ func _AgentPublicService_UpdateColumnDefinitions_Handler(srv interface{}, ctx co
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AgentPublicServiceServer).UpdateColumnDefinitions(ctx, req.(*UpdateColumnDefinitionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentPublicService_SuggestColumnDefinition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SuggestColumnDefinitionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).SuggestColumnDefinition(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_SuggestColumnDefinition_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).SuggestColumnDefinition(ctx, req.(*SuggestColumnDefinitionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2016,6 +2056,10 @@ var AgentPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateColumnDefinitions",
 			Handler:    _AgentPublicService_UpdateColumnDefinitions_Handler,
+		},
+		{
+			MethodName: "SuggestColumnDefinition",
+			Handler:    _AgentPublicService_SuggestColumnDefinition_Handler,
 		},
 		{
 			MethodName: "GetColumnDefinition",
