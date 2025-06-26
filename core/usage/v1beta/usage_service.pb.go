@@ -26,12 +26,12 @@ var File_core_usage_v1beta_usage_service_proto protoreflect.FileDescriptor
 
 const file_core_usage_v1beta_usage_service_proto_rawDesc = "" +
 	"\n" +
-	"%core/usage/v1beta/usage_service.proto\x12\x11core.usage.v1beta\x1a\x1dcore/usage/v1beta/usage.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x17google/api/client.proto\x1a\x1bgoogle/api/visibility.proto2\xce\x04\n" +
+	"%core/usage/v1beta/usage_service.proto\x12\x11core.usage.v1beta\x1a\x1dcore/usage/v1beta/usage.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x17google/api/client.proto\x1a\x1bgoogle/api/visibility.proto2\xd0\x04\n" +
 	"\fUsageService\x12\x87\x01\n" +
 	"\bLiveness\x12\".core.usage.v1beta.LivenessRequest\x1a#.core.usage.v1beta.LivenessResponse\"2\x82\xd3\xe4\x93\x02,Z\x16\x12\x14/v1beta/health/usage\x12\x12/v1beta/__liveness\x12s\n" +
 	"\tReadiness\x12#.core.usage.v1beta.ReadinessRequest\x1a$.core.usage.v1beta.ReadinessResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v1beta/__readiness\x12\x85\x01\n" +
 	"\rCreateSession\x12'.core.usage.v1beta.CreateSessionRequest\x1a(.core.usage.v1beta.CreateSessionResponse\"!\x82\xd3\xe4\x93\x02\x1b:\asession\"\x10/v1beta/sessions\x12\x8f\x01\n" +
-	"\x11SendSessionReport\x12+.core.usage.v1beta.SendSessionReportRequest\x1a,.core.usage.v1beta.SendSessionReportResponse\"\x1f\x82\xd3\xe4\x93\x02\x19:\x06report\"\x0f/v1beta/reports\x1a%\xcaA\x12usage.instill.tech\xfa\xd2\xe4\x93\x02\n" +
+	"\x11SendSessionReport\x12+.core.usage.v1beta.SendSessionReportRequest\x1a,.core.usage.v1beta.SendSessionReportResponse\"\x1f\x82\xd3\xe4\x93\x02\x19:\x06report\"\x0f/v1beta/reports\x1a'\xcaA\x14usage.instill-ai.com\xfa\xd2\xe4\x93\x02\n" +
 	"\x12\bINTERNALB\xd1\x01\n" +
 	"\x15com.core.usage.v1betaB\x11UsageServiceProtoP\x01Z?github.com/instill-ai/protogen-go/core/usage/v1beta;usagev1beta\xa2\x02\x03CUX\xaa\x02\x11Core.Usage.V1beta\xca\x02\x11Core\\Usage\\V1beta\xe2\x02\x1dCore\\Usage\\V1beta\\GPBMetadata\xea\x02\x13Core::Usage::V1betab\x06proto3"
 

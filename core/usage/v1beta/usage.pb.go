@@ -34,7 +34,7 @@ const (
 	Session_SERVICE_UNSPECIFIED Session_Service = 0
 	// Service: MGMT
 	Session_SERVICE_MGMT Session_Service = 1
-	// Service: CONNECTOR
+	// Service: CONNECTOR (Deprecated)
 	Session_SERVICE_CONNECTOR Session_Service = 2
 	// Service: MODEL
 	Session_SERVICE_MODEL Session_Service = 3
@@ -275,9 +275,10 @@ func (x *ReadinessResponse) GetHealthCheckResponse() *v1beta.HealthCheckResponse
 	return nil
 }
 
-// Session represents a unique session whenever a new instance of Instill Core service
-// gets started. The usage server returns a token that should be used as part of
-// the challenge when sending a report with data collected from this session
+// Session represents a unique session whenever a new instance of Instill Core
+// service gets started. The usage server returns a token that should be used as
+// part of the challenge when sending a report with data collected from this
+// session
 type Session struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Resource name in the format of 'sessions/uid'
@@ -1252,7 +1253,7 @@ func (x *ModelUsageData_UserUsageData) GetOwnerType() v1beta1.OwnerType {
 // Per trigger usage metadata
 type ModelUsageData_UserUsageData_ModelTriggerData struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// UID for the trigged model
+	// UID for the triggered model
 	ModelUid string `protobuf:"bytes,1,opt,name=model_uid,json=modelUid,proto3" json:"model_uid,omitempty"`
 	// UID for the trigger log
 	TriggerUid string `protobuf:"bytes,2,opt,name=trigger_uid,json=triggerUid,proto3" json:"trigger_uid,omitempty"`
