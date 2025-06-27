@@ -335,6 +335,59 @@ func (NumberFormat_Format) EnumDescriptor() ([]byte, []int) {
 	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{13, 0}
 }
 
+// The type of the selection.
+type Selection_SelectionType int32
+
+const (
+	// The selection is not specified.
+	Selection_SELECTION_TYPE_UNSPECIFIED Selection_SelectionType = 0
+	// No selection.
+	Selection_SELECTION_TYPE_NONE Selection_SelectionType = 1
+	// The selection is a single value.
+	Selection_SELECTION_TYPE_SINGLE Selection_SelectionType = 2
+)
+
+// Enum value maps for Selection_SelectionType.
+var (
+	Selection_SelectionType_name = map[int32]string{
+		0: "SELECTION_TYPE_UNSPECIFIED",
+		1: "SELECTION_TYPE_NONE",
+		2: "SELECTION_TYPE_SINGLE",
+	}
+	Selection_SelectionType_value = map[string]int32{
+		"SELECTION_TYPE_UNSPECIFIED": 0,
+		"SELECTION_TYPE_NONE":        1,
+		"SELECTION_TYPE_SINGLE":      2,
+	}
+)
+
+func (x Selection_SelectionType) Enum() *Selection_SelectionType {
+	p := new(Selection_SelectionType)
+	*p = x
+	return p
+}
+
+func (x Selection_SelectionType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (Selection_SelectionType) Descriptor() protoreflect.EnumDescriptor {
+	return file_agent_agent_v1alpha_table_proto_enumTypes[5].Descriptor()
+}
+
+func (Selection_SelectionType) Type() protoreflect.EnumType {
+	return &file_agent_agent_v1alpha_table_proto_enumTypes[5]
+}
+
+func (x Selection_SelectionType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use Selection_SelectionType.Descriptor instead.
+func (Selection_SelectionType) EnumDescriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{14, 0}
+}
+
 // The sort of the column.
 type ColumnDefinition_Sort int32
 
@@ -372,11 +425,11 @@ func (x ColumnDefinition_Sort) String() string {
 }
 
 func (ColumnDefinition_Sort) Descriptor() protoreflect.EnumDescriptor {
-	return file_agent_agent_v1alpha_table_proto_enumTypes[5].Descriptor()
+	return file_agent_agent_v1alpha_table_proto_enumTypes[6].Descriptor()
 }
 
 func (ColumnDefinition_Sort) Type() protoreflect.EnumType {
-	return &file_agent_agent_v1alpha_table_proto_enumTypes[5]
+	return &file_agent_agent_v1alpha_table_proto_enumTypes[6]
 }
 
 func (x ColumnDefinition_Sort) Number() protoreflect.EnumNumber {
@@ -385,60 +438,7 @@ func (x ColumnDefinition_Sort) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ColumnDefinition_Sort.Descriptor instead.
 func (ColumnDefinition_Sort) EnumDescriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{14, 0}
-}
-
-// The type of the selection.
-type ColumnDefinition_Selection_SelectionType int32
-
-const (
-	// The selection is not specified.
-	ColumnDefinition_Selection_SELECTION_TYPE_UNSPECIFIED ColumnDefinition_Selection_SelectionType = 0
-	// No selection.
-	ColumnDefinition_Selection_SELECTION_TYPE_NONE ColumnDefinition_Selection_SelectionType = 1
-	// The selection is a single value.
-	ColumnDefinition_Selection_SELECTION_TYPE_SINGLE ColumnDefinition_Selection_SelectionType = 2
-)
-
-// Enum value maps for ColumnDefinition_Selection_SelectionType.
-var (
-	ColumnDefinition_Selection_SelectionType_name = map[int32]string{
-		0: "SELECTION_TYPE_UNSPECIFIED",
-		1: "SELECTION_TYPE_NONE",
-		2: "SELECTION_TYPE_SINGLE",
-	}
-	ColumnDefinition_Selection_SelectionType_value = map[string]int32{
-		"SELECTION_TYPE_UNSPECIFIED": 0,
-		"SELECTION_TYPE_NONE":        1,
-		"SELECTION_TYPE_SINGLE":      2,
-	}
-)
-
-func (x ColumnDefinition_Selection_SelectionType) Enum() *ColumnDefinition_Selection_SelectionType {
-	p := new(ColumnDefinition_Selection_SelectionType)
-	*p = x
-	return p
-}
-
-func (x ColumnDefinition_Selection_SelectionType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (ColumnDefinition_Selection_SelectionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_agent_agent_v1alpha_table_proto_enumTypes[6].Descriptor()
-}
-
-func (ColumnDefinition_Selection_SelectionType) Type() protoreflect.EnumType {
-	return &file_agent_agent_v1alpha_table_proto_enumTypes[6]
-}
-
-func (x ColumnDefinition_Selection_SelectionType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use ColumnDefinition_Selection_SelectionType.Descriptor instead.
-func (ColumnDefinition_Selection_SelectionType) EnumDescriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{14, 1, 0}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{15, 0}
 }
 
 // The mode to generate mock data.
@@ -491,7 +491,7 @@ func (x GenerateMockTableRequest_Mode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use GenerateMockTableRequest_Mode.Descriptor instead.
 func (GenerateMockTableRequest_Mode) EnumDescriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{74, 0}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{75, 0}
 }
 
 // Table represents a table resource.
@@ -1349,6 +1349,61 @@ func (x *NumberFormat) GetCurrencyCode() string {
 	return ""
 }
 
+// The selection settings of the column.
+type Selection struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The selection of the column.
+	Type Selection_SelectionType `protobuf:"varint,1,opt,name=type,proto3,enum=agent.agent.v1alpha.Selection_SelectionType" json:"type,omitempty"`
+	// The options for the selection.
+	Options       []*Selection_Option `protobuf:"bytes,2,rep,name=options,proto3" json:"options,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Selection) Reset() {
+	*x = Selection{}
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Selection) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Selection) ProtoMessage() {}
+
+func (x *Selection) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Selection.ProtoReflect.Descriptor instead.
+func (*Selection) Descriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *Selection) GetType() Selection_SelectionType {
+	if x != nil {
+		return x.Type
+	}
+	return Selection_SELECTION_TYPE_UNSPECIFIED
+}
+
+func (x *Selection) GetOptions() []*Selection_Option {
+	if x != nil {
+		return x.Options
+	}
+	return nil
+}
+
 // ColumnDefinition represents a column definition in a table.
 type ColumnDefinition struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -1376,7 +1431,7 @@ type ColumnDefinition struct {
 	//	*ColumnDefinition_NumberFormat
 	Format isColumnDefinition_Format `protobuf_oneof:"format"`
 	// The selection settings of the column.
-	Selection *ColumnDefinition_Selection `protobuf:"bytes,9,opt,name=selection,proto3" json:"selection,omitempty"`
+	Selection *Selection `protobuf:"bytes,9,opt,name=selection,proto3" json:"selection,omitempty"`
 	// The metadata of the column.
 	Metadata      *structpb.Struct `protobuf:"bytes,10,opt,name=metadata,proto3" json:"metadata,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -1385,7 +1440,7 @@ type ColumnDefinition struct {
 
 func (x *ColumnDefinition) Reset() {
 	*x = ColumnDefinition{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[14]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1397,7 +1452,7 @@ func (x *ColumnDefinition) String() string {
 func (*ColumnDefinition) ProtoMessage() {}
 
 func (x *ColumnDefinition) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[14]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1410,7 +1465,7 @@ func (x *ColumnDefinition) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ColumnDefinition.ProtoReflect.Descriptor instead.
 func (*ColumnDefinition) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{14}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *ColumnDefinition) GetColumnUid() string {
@@ -1478,7 +1533,7 @@ func (x *ColumnDefinition) GetNumberFormat() *NumberFormat {
 	return nil
 }
 
-func (x *ColumnDefinition) GetSelection() *ColumnDefinition_Selection {
+func (x *ColumnDefinition) GetSelection() *Selection {
 	if x != nil {
 		return x.Selection
 	}
@@ -1516,7 +1571,7 @@ type GetColumnDefinitionsRequest struct {
 
 func (x *GetColumnDefinitionsRequest) Reset() {
 	*x = GetColumnDefinitionsRequest{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[15]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1528,7 +1583,7 @@ func (x *GetColumnDefinitionsRequest) String() string {
 func (*GetColumnDefinitionsRequest) ProtoMessage() {}
 
 func (x *GetColumnDefinitionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[15]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1541,7 +1596,7 @@ func (x *GetColumnDefinitionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetColumnDefinitionsRequest.ProtoReflect.Descriptor instead.
 func (*GetColumnDefinitionsRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{15}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *GetColumnDefinitionsRequest) GetNamespaceId() string {
@@ -1569,7 +1624,7 @@ type GetColumnDefinitionsResponse struct {
 
 func (x *GetColumnDefinitionsResponse) Reset() {
 	*x = GetColumnDefinitionsResponse{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[16]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1581,7 +1636,7 @@ func (x *GetColumnDefinitionsResponse) String() string {
 func (*GetColumnDefinitionsResponse) ProtoMessage() {}
 
 func (x *GetColumnDefinitionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[16]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1594,7 +1649,7 @@ func (x *GetColumnDefinitionsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetColumnDefinitionsResponse.ProtoReflect.Descriptor instead.
 func (*GetColumnDefinitionsResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{16}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *GetColumnDefinitionsResponse) GetColumnDefinitions() map[string]*ColumnDefinition {
@@ -1619,7 +1674,7 @@ type UpdateColumnDefinitionsRequest struct {
 
 func (x *UpdateColumnDefinitionsRequest) Reset() {
 	*x = UpdateColumnDefinitionsRequest{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[17]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1631,7 +1686,7 @@ func (x *UpdateColumnDefinitionsRequest) String() string {
 func (*UpdateColumnDefinitionsRequest) ProtoMessage() {}
 
 func (x *UpdateColumnDefinitionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[17]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1644,7 +1699,7 @@ func (x *UpdateColumnDefinitionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateColumnDefinitionsRequest.ProtoReflect.Descriptor instead.
 func (*UpdateColumnDefinitionsRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{17}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *UpdateColumnDefinitionsRequest) GetNamespaceId() string {
@@ -1679,7 +1734,7 @@ type UpdateColumnDefinitionsResponse struct {
 
 func (x *UpdateColumnDefinitionsResponse) Reset() {
 	*x = UpdateColumnDefinitionsResponse{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[18]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1691,7 +1746,7 @@ func (x *UpdateColumnDefinitionsResponse) String() string {
 func (*UpdateColumnDefinitionsResponse) ProtoMessage() {}
 
 func (x *UpdateColumnDefinitionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[18]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1704,7 +1759,7 @@ func (x *UpdateColumnDefinitionsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateColumnDefinitionsResponse.ProtoReflect.Descriptor instead.
 func (*UpdateColumnDefinitionsResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{18}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *UpdateColumnDefinitionsResponse) GetColumnDefinitions() map[string]*ColumnDefinition {
@@ -1729,7 +1784,7 @@ type GetColumnDefinitionRequest struct {
 
 func (x *GetColumnDefinitionRequest) Reset() {
 	*x = GetColumnDefinitionRequest{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[19]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1741,7 +1796,7 @@ func (x *GetColumnDefinitionRequest) String() string {
 func (*GetColumnDefinitionRequest) ProtoMessage() {}
 
 func (x *GetColumnDefinitionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[19]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1754,7 +1809,7 @@ func (x *GetColumnDefinitionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetColumnDefinitionRequest.ProtoReflect.Descriptor instead.
 func (*GetColumnDefinitionRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{19}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *GetColumnDefinitionRequest) GetNamespaceId() string {
@@ -1789,7 +1844,7 @@ type GetColumnDefinitionResponse struct {
 
 func (x *GetColumnDefinitionResponse) Reset() {
 	*x = GetColumnDefinitionResponse{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[20]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1801,7 +1856,7 @@ func (x *GetColumnDefinitionResponse) String() string {
 func (*GetColumnDefinitionResponse) ProtoMessage() {}
 
 func (x *GetColumnDefinitionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[20]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1814,7 +1869,7 @@ func (x *GetColumnDefinitionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetColumnDefinitionResponse.ProtoReflect.Descriptor instead.
 func (*GetColumnDefinitionResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{20}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *GetColumnDefinitionResponse) GetColumnDefinition() *ColumnDefinition {
@@ -1839,7 +1894,7 @@ type RecomputeColumnRequest struct {
 
 func (x *RecomputeColumnRequest) Reset() {
 	*x = RecomputeColumnRequest{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[21]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1851,7 +1906,7 @@ func (x *RecomputeColumnRequest) String() string {
 func (*RecomputeColumnRequest) ProtoMessage() {}
 
 func (x *RecomputeColumnRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[21]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1864,7 +1919,7 @@ func (x *RecomputeColumnRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RecomputeColumnRequest.ProtoReflect.Descriptor instead.
 func (*RecomputeColumnRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{21}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *RecomputeColumnRequest) GetNamespaceId() string {
@@ -1897,7 +1952,7 @@ type RecomputeColumnResponse struct {
 
 func (x *RecomputeColumnResponse) Reset() {
 	*x = RecomputeColumnResponse{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[22]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1909,7 +1964,7 @@ func (x *RecomputeColumnResponse) String() string {
 func (*RecomputeColumnResponse) ProtoMessage() {}
 
 func (x *RecomputeColumnResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[22]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1922,7 +1977,7 @@ func (x *RecomputeColumnResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RecomputeColumnResponse.ProtoReflect.Descriptor instead.
 func (*RecomputeColumnResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{22}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{23}
 }
 
 // Cell represents a cell in a table.
@@ -1966,7 +2021,7 @@ type Cell struct {
 
 func (x *Cell) Reset() {
 	*x = Cell{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[23]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1978,7 +2033,7 @@ func (x *Cell) String() string {
 func (*Cell) ProtoMessage() {}
 
 func (x *Cell) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[23]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1991,7 +2046,7 @@ func (x *Cell) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Cell.ProtoReflect.Descriptor instead.
 func (*Cell) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{23}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *Cell) GetUid() string {
@@ -2174,7 +2229,7 @@ type NullCell struct {
 
 func (x *NullCell) Reset() {
 	*x = NullCell{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[24]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2186,7 +2241,7 @@ func (x *NullCell) String() string {
 func (*NullCell) ProtoMessage() {}
 
 func (x *NullCell) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[24]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2199,7 +2254,7 @@ func (x *NullCell) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NullCell.ProtoReflect.Descriptor instead.
 func (*NullCell) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{24}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{25}
 }
 
 // StringCell represents a cell with a string value.
@@ -2215,7 +2270,7 @@ type StringCell struct {
 
 func (x *StringCell) Reset() {
 	*x = StringCell{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[25]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2227,7 +2282,7 @@ func (x *StringCell) String() string {
 func (*StringCell) ProtoMessage() {}
 
 func (x *StringCell) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[25]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2240,7 +2295,7 @@ func (x *StringCell) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringCell.ProtoReflect.Descriptor instead.
 func (*StringCell) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{25}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *StringCell) GetUserInput() string {
@@ -2270,7 +2325,7 @@ type NumberCell struct {
 
 func (x *NumberCell) Reset() {
 	*x = NumberCell{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[26]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2282,7 +2337,7 @@ func (x *NumberCell) String() string {
 func (*NumberCell) ProtoMessage() {}
 
 func (x *NumberCell) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[26]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2295,7 +2350,7 @@ func (x *NumberCell) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NumberCell.ProtoReflect.Descriptor instead.
 func (*NumberCell) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{26}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *NumberCell) GetUserInput() float64 {
@@ -2325,7 +2380,7 @@ type BooleanCell struct {
 
 func (x *BooleanCell) Reset() {
 	*x = BooleanCell{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[27]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2337,7 +2392,7 @@ func (x *BooleanCell) String() string {
 func (*BooleanCell) ProtoMessage() {}
 
 func (x *BooleanCell) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[27]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2350,7 +2405,7 @@ func (x *BooleanCell) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BooleanCell.ProtoReflect.Descriptor instead.
 func (*BooleanCell) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{27}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *BooleanCell) GetUserInput() bool {
@@ -2390,7 +2445,7 @@ type FileCell struct {
 
 func (x *FileCell) Reset() {
 	*x = FileCell{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[28]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2402,7 +2457,7 @@ func (x *FileCell) String() string {
 func (*FileCell) ProtoMessage() {}
 
 func (x *FileCell) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[28]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2415,7 +2470,7 @@ func (x *FileCell) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FileCell.ProtoReflect.Descriptor instead.
 func (*FileCell) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{28}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *FileCell) GetNamespace() string {
@@ -2486,7 +2541,7 @@ type DocumentCell struct {
 
 func (x *DocumentCell) Reset() {
 	*x = DocumentCell{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[29]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2498,7 +2553,7 @@ func (x *DocumentCell) String() string {
 func (*DocumentCell) ProtoMessage() {}
 
 func (x *DocumentCell) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[29]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2511,7 +2566,7 @@ func (x *DocumentCell) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DocumentCell.ProtoReflect.Descriptor instead.
 func (*DocumentCell) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{29}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *DocumentCell) GetNamespace() string {
@@ -2569,7 +2624,7 @@ type Row struct {
 
 func (x *Row) Reset() {
 	*x = Row{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[30]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2581,7 +2636,7 @@ func (x *Row) String() string {
 func (*Row) ProtoMessage() {}
 
 func (x *Row) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[30]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2594,7 +2649,7 @@ func (x *Row) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Row.ProtoReflect.Descriptor instead.
 func (*Row) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{30}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *Row) GetUid() string {
@@ -2649,7 +2704,7 @@ type ListRowsRequest struct {
 
 func (x *ListRowsRequest) Reset() {
 	*x = ListRowsRequest{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[31]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2661,7 +2716,7 @@ func (x *ListRowsRequest) String() string {
 func (*ListRowsRequest) ProtoMessage() {}
 
 func (x *ListRowsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[31]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2674,7 +2729,7 @@ func (x *ListRowsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListRowsRequest.ProtoReflect.Descriptor instead.
 func (*ListRowsRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{31}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *ListRowsRequest) GetNamespaceId() string {
@@ -2720,7 +2775,7 @@ type ListRowsResponse struct {
 
 func (x *ListRowsResponse) Reset() {
 	*x = ListRowsResponse{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[32]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2732,7 +2787,7 @@ func (x *ListRowsResponse) String() string {
 func (*ListRowsResponse) ProtoMessage() {}
 
 func (x *ListRowsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[32]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2745,7 +2800,7 @@ func (x *ListRowsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListRowsResponse.ProtoReflect.Descriptor instead.
 func (*ListRowsResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{32}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *ListRowsResponse) GetRows() []*Row {
@@ -2786,7 +2841,7 @@ type InsertRowRequest struct {
 
 func (x *InsertRowRequest) Reset() {
 	*x = InsertRowRequest{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[33]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2798,7 +2853,7 @@ func (x *InsertRowRequest) String() string {
 func (*InsertRowRequest) ProtoMessage() {}
 
 func (x *InsertRowRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[33]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2811,7 +2866,7 @@ func (x *InsertRowRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InsertRowRequest.ProtoReflect.Descriptor instead.
 func (*InsertRowRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{33}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *InsertRowRequest) GetNamespaceId() string {
@@ -2853,7 +2908,7 @@ type InsertRowResponse struct {
 
 func (x *InsertRowResponse) Reset() {
 	*x = InsertRowResponse{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[34]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2865,7 +2920,7 @@ func (x *InsertRowResponse) String() string {
 func (*InsertRowResponse) ProtoMessage() {}
 
 func (x *InsertRowResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[34]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2878,7 +2933,7 @@ func (x *InsertRowResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InsertRowResponse.ProtoReflect.Descriptor instead.
 func (*InsertRowResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{34}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *InsertRowResponse) GetRow() *Row {
@@ -2905,7 +2960,7 @@ type UpdateRowRequest struct {
 
 func (x *UpdateRowRequest) Reset() {
 	*x = UpdateRowRequest{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[35]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2917,7 +2972,7 @@ func (x *UpdateRowRequest) String() string {
 func (*UpdateRowRequest) ProtoMessage() {}
 
 func (x *UpdateRowRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[35]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2930,7 +2985,7 @@ func (x *UpdateRowRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateRowRequest.ProtoReflect.Descriptor instead.
 func (*UpdateRowRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{35}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *UpdateRowRequest) GetNamespaceId() string {
@@ -2972,7 +3027,7 @@ type UpdateRowResponse struct {
 
 func (x *UpdateRowResponse) Reset() {
 	*x = UpdateRowResponse{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[36]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2984,7 +3039,7 @@ func (x *UpdateRowResponse) String() string {
 func (*UpdateRowResponse) ProtoMessage() {}
 
 func (x *UpdateRowResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[36]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2997,7 +3052,7 @@ func (x *UpdateRowResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateRowResponse.ProtoReflect.Descriptor instead.
 func (*UpdateRowResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{36}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *UpdateRowResponse) GetRow() *Row {
@@ -3022,7 +3077,7 @@ type GetRowRequest struct {
 
 func (x *GetRowRequest) Reset() {
 	*x = GetRowRequest{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[37]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3034,7 +3089,7 @@ func (x *GetRowRequest) String() string {
 func (*GetRowRequest) ProtoMessage() {}
 
 func (x *GetRowRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[37]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3047,7 +3102,7 @@ func (x *GetRowRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRowRequest.ProtoReflect.Descriptor instead.
 func (*GetRowRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{37}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *GetRowRequest) GetNamespaceId() string {
@@ -3082,7 +3137,7 @@ type GetRowResponse struct {
 
 func (x *GetRowResponse) Reset() {
 	*x = GetRowResponse{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[38]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3094,7 +3149,7 @@ func (x *GetRowResponse) String() string {
 func (*GetRowResponse) ProtoMessage() {}
 
 func (x *GetRowResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[38]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3107,7 +3162,7 @@ func (x *GetRowResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRowResponse.ProtoReflect.Descriptor instead.
 func (*GetRowResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{38}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *GetRowResponse) GetRow() *Row {
@@ -3132,7 +3187,7 @@ type UpdateRowsRequest struct {
 
 func (x *UpdateRowsRequest) Reset() {
 	*x = UpdateRowsRequest{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[39]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3144,7 +3199,7 @@ func (x *UpdateRowsRequest) String() string {
 func (*UpdateRowsRequest) ProtoMessage() {}
 
 func (x *UpdateRowsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[39]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3157,7 +3212,7 @@ func (x *UpdateRowsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateRowsRequest.ProtoReflect.Descriptor instead.
 func (*UpdateRowsRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{39}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *UpdateRowsRequest) GetNamespaceId() string {
@@ -3192,7 +3247,7 @@ type UpdateRowsResponse struct {
 
 func (x *UpdateRowsResponse) Reset() {
 	*x = UpdateRowsResponse{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[40]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3204,7 +3259,7 @@ func (x *UpdateRowsResponse) String() string {
 func (*UpdateRowsResponse) ProtoMessage() {}
 
 func (x *UpdateRowsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[40]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3217,7 +3272,7 @@ func (x *UpdateRowsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateRowsResponse.ProtoReflect.Descriptor instead.
 func (*UpdateRowsResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{40}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *UpdateRowsResponse) GetRows() []*Row {
@@ -3242,7 +3297,7 @@ type DeleteRowRequest struct {
 
 func (x *DeleteRowRequest) Reset() {
 	*x = DeleteRowRequest{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[41]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3254,7 +3309,7 @@ func (x *DeleteRowRequest) String() string {
 func (*DeleteRowRequest) ProtoMessage() {}
 
 func (x *DeleteRowRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[41]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3267,7 +3322,7 @@ func (x *DeleteRowRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRowRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRowRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{41}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *DeleteRowRequest) GetNamespaceId() string {
@@ -3300,7 +3355,7 @@ type DeleteRowResponse struct {
 
 func (x *DeleteRowResponse) Reset() {
 	*x = DeleteRowResponse{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[42]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3312,7 +3367,7 @@ func (x *DeleteRowResponse) String() string {
 func (*DeleteRowResponse) ProtoMessage() {}
 
 func (x *DeleteRowResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[42]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3325,7 +3380,7 @@ func (x *DeleteRowResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRowResponse.ProtoReflect.Descriptor instead.
 func (*DeleteRowResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{42}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{43}
 }
 
 // DeleteRowsRequest represents a request to delete multiple rows.
@@ -3343,7 +3398,7 @@ type DeleteRowsRequest struct {
 
 func (x *DeleteRowsRequest) Reset() {
 	*x = DeleteRowsRequest{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[43]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3355,7 +3410,7 @@ func (x *DeleteRowsRequest) String() string {
 func (*DeleteRowsRequest) ProtoMessage() {}
 
 func (x *DeleteRowsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[43]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3368,7 +3423,7 @@ func (x *DeleteRowsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRowsRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRowsRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{43}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *DeleteRowsRequest) GetNamespaceId() string {
@@ -3401,7 +3456,7 @@ type DeleteRowsResponse struct {
 
 func (x *DeleteRowsResponse) Reset() {
 	*x = DeleteRowsResponse{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[44]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3413,7 +3468,7 @@ func (x *DeleteRowsResponse) String() string {
 func (*DeleteRowsResponse) ProtoMessage() {}
 
 func (x *DeleteRowsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[44]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3426,7 +3481,7 @@ func (x *DeleteRowsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRowsResponse.ProtoReflect.Descriptor instead.
 func (*DeleteRowsResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{44}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{45}
 }
 
 // MoveRowsRequest represents a request to move multiple rows.
@@ -3446,7 +3501,7 @@ type MoveRowsRequest struct {
 
 func (x *MoveRowsRequest) Reset() {
 	*x = MoveRowsRequest{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[45]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3458,7 +3513,7 @@ func (x *MoveRowsRequest) String() string {
 func (*MoveRowsRequest) ProtoMessage() {}
 
 func (x *MoveRowsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[45]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3471,7 +3526,7 @@ func (x *MoveRowsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MoveRowsRequest.ProtoReflect.Descriptor instead.
 func (*MoveRowsRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{45}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *MoveRowsRequest) GetNamespaceId() string {
@@ -3511,7 +3566,7 @@ type MoveRowsResponse struct {
 
 func (x *MoveRowsResponse) Reset() {
 	*x = MoveRowsResponse{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[46]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3523,7 +3578,7 @@ func (x *MoveRowsResponse) String() string {
 func (*MoveRowsResponse) ProtoMessage() {}
 
 func (x *MoveRowsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[46]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3536,7 +3591,7 @@ func (x *MoveRowsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MoveRowsResponse.ProtoReflect.Descriptor instead.
 func (*MoveRowsResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{46}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{47}
 }
 
 // GetCellRequest represents a request to get a cell.
@@ -3556,7 +3611,7 @@ type GetCellRequest struct {
 
 func (x *GetCellRequest) Reset() {
 	*x = GetCellRequest{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[47]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3568,7 +3623,7 @@ func (x *GetCellRequest) String() string {
 func (*GetCellRequest) ProtoMessage() {}
 
 func (x *GetCellRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[47]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3581,7 +3636,7 @@ func (x *GetCellRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCellRequest.ProtoReflect.Descriptor instead.
 func (*GetCellRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{47}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *GetCellRequest) GetNamespaceId() string {
@@ -3623,7 +3678,7 @@ type GetCellResponse struct {
 
 func (x *GetCellResponse) Reset() {
 	*x = GetCellResponse{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[48]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3635,7 +3690,7 @@ func (x *GetCellResponse) String() string {
 func (*GetCellResponse) ProtoMessage() {}
 
 func (x *GetCellResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[48]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3648,7 +3703,7 @@ func (x *GetCellResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCellResponse.ProtoReflect.Descriptor instead.
 func (*GetCellResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{48}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *GetCellResponse) GetCell() *Cell {
@@ -3677,7 +3732,7 @@ type UpdateCellRequest struct {
 
 func (x *UpdateCellRequest) Reset() {
 	*x = UpdateCellRequest{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[49]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3689,7 +3744,7 @@ func (x *UpdateCellRequest) String() string {
 func (*UpdateCellRequest) ProtoMessage() {}
 
 func (x *UpdateCellRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[49]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3702,7 +3757,7 @@ func (x *UpdateCellRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateCellRequest.ProtoReflect.Descriptor instead.
 func (*UpdateCellRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{49}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *UpdateCellRequest) GetNamespaceId() string {
@@ -3751,7 +3806,7 @@ type UpdateCellResponse struct {
 
 func (x *UpdateCellResponse) Reset() {
 	*x = UpdateCellResponse{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[50]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3763,7 +3818,7 @@ func (x *UpdateCellResponse) String() string {
 func (*UpdateCellResponse) ProtoMessage() {}
 
 func (x *UpdateCellResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[50]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3776,7 +3831,7 @@ func (x *UpdateCellResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateCellResponse.ProtoReflect.Descriptor instead.
 func (*UpdateCellResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{50}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *UpdateCellResponse) GetCell() *Cell {
@@ -3803,7 +3858,7 @@ type RecomputeCellRequest struct {
 
 func (x *RecomputeCellRequest) Reset() {
 	*x = RecomputeCellRequest{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[51]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3815,7 +3870,7 @@ func (x *RecomputeCellRequest) String() string {
 func (*RecomputeCellRequest) ProtoMessage() {}
 
 func (x *RecomputeCellRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[51]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3828,7 +3883,7 @@ func (x *RecomputeCellRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RecomputeCellRequest.ProtoReflect.Descriptor instead.
 func (*RecomputeCellRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{51}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *RecomputeCellRequest) GetNamespaceId() string {
@@ -3870,7 +3925,7 @@ type RecomputeCellResponse struct {
 
 func (x *RecomputeCellResponse) Reset() {
 	*x = RecomputeCellResponse{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[52]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3882,7 +3937,7 @@ func (x *RecomputeCellResponse) String() string {
 func (*RecomputeCellResponse) ProtoMessage() {}
 
 func (x *RecomputeCellResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[52]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3895,7 +3950,7 @@ func (x *RecomputeCellResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RecomputeCellResponse.ProtoReflect.Descriptor instead.
 func (*RecomputeCellResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{52}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *RecomputeCellResponse) GetCell() *Cell {
@@ -3922,7 +3977,7 @@ type ResetCellRequest struct {
 
 func (x *ResetCellRequest) Reset() {
 	*x = ResetCellRequest{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[53]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3934,7 +3989,7 @@ func (x *ResetCellRequest) String() string {
 func (*ResetCellRequest) ProtoMessage() {}
 
 func (x *ResetCellRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[53]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3947,7 +4002,7 @@ func (x *ResetCellRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResetCellRequest.ProtoReflect.Descriptor instead.
 func (*ResetCellRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{53}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *ResetCellRequest) GetNamespaceId() string {
@@ -3989,7 +4044,7 @@ type ResetCellResponse struct {
 
 func (x *ResetCellResponse) Reset() {
 	*x = ResetCellResponse{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[54]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4001,7 +4056,7 @@ func (x *ResetCellResponse) String() string {
 func (*ResetCellResponse) ProtoMessage() {}
 
 func (x *ResetCellResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[54]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4014,7 +4069,7 @@ func (x *ResetCellResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResetCellResponse.ProtoReflect.Descriptor instead.
 func (*ResetCellResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{54}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *ResetCellResponse) GetCell() *Cell {
@@ -4049,7 +4104,7 @@ type ListCellAutofillAgentMessagesRequest struct {
 
 func (x *ListCellAutofillAgentMessagesRequest) Reset() {
 	*x = ListCellAutofillAgentMessagesRequest{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[55]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4061,7 +4116,7 @@ func (x *ListCellAutofillAgentMessagesRequest) String() string {
 func (*ListCellAutofillAgentMessagesRequest) ProtoMessage() {}
 
 func (x *ListCellAutofillAgentMessagesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[55]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4074,7 +4129,7 @@ func (x *ListCellAutofillAgentMessagesRequest) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use ListCellAutofillAgentMessagesRequest.ProtoReflect.Descriptor instead.
 func (*ListCellAutofillAgentMessagesRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{55}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *ListCellAutofillAgentMessagesRequest) GetNamespaceId() string {
@@ -4148,7 +4203,7 @@ type ListCellAutofillAgentMessagesResponse struct {
 
 func (x *ListCellAutofillAgentMessagesResponse) Reset() {
 	*x = ListCellAutofillAgentMessagesResponse{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[56]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4160,7 +4215,7 @@ func (x *ListCellAutofillAgentMessagesResponse) String() string {
 func (*ListCellAutofillAgentMessagesResponse) ProtoMessage() {}
 
 func (x *ListCellAutofillAgentMessagesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[56]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4173,7 +4228,7 @@ func (x *ListCellAutofillAgentMessagesResponse) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use ListCellAutofillAgentMessagesResponse.ProtoReflect.Descriptor instead.
 func (*ListCellAutofillAgentMessagesResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{56}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *ListCellAutofillAgentMessagesResponse) GetMessages() []*Message {
@@ -4214,7 +4269,7 @@ type LockCellRequest struct {
 
 func (x *LockCellRequest) Reset() {
 	*x = LockCellRequest{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[57]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4226,7 +4281,7 @@ func (x *LockCellRequest) String() string {
 func (*LockCellRequest) ProtoMessage() {}
 
 func (x *LockCellRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[57]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4239,7 +4294,7 @@ func (x *LockCellRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LockCellRequest.ProtoReflect.Descriptor instead.
 func (*LockCellRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{57}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *LockCellRequest) GetNamespaceId() string {
@@ -4281,7 +4336,7 @@ type LockCellResponse struct {
 
 func (x *LockCellResponse) Reset() {
 	*x = LockCellResponse{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[58]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4293,7 +4348,7 @@ func (x *LockCellResponse) String() string {
 func (*LockCellResponse) ProtoMessage() {}
 
 func (x *LockCellResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[58]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4306,7 +4361,7 @@ func (x *LockCellResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LockCellResponse.ProtoReflect.Descriptor instead.
 func (*LockCellResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{58}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{59}
 }
 
 func (x *LockCellResponse) GetCell() *Cell {
@@ -4333,7 +4388,7 @@ type UnlockCellRequest struct {
 
 func (x *UnlockCellRequest) Reset() {
 	*x = UnlockCellRequest{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[59]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4345,7 +4400,7 @@ func (x *UnlockCellRequest) String() string {
 func (*UnlockCellRequest) ProtoMessage() {}
 
 func (x *UnlockCellRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[59]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4358,7 +4413,7 @@ func (x *UnlockCellRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnlockCellRequest.ProtoReflect.Descriptor instead.
 func (*UnlockCellRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{59}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{60}
 }
 
 func (x *UnlockCellRequest) GetNamespaceId() string {
@@ -4400,7 +4455,7 @@ type UnlockCellResponse struct {
 
 func (x *UnlockCellResponse) Reset() {
 	*x = UnlockCellResponse{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[60]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4412,7 +4467,7 @@ func (x *UnlockCellResponse) String() string {
 func (*UnlockCellResponse) ProtoMessage() {}
 
 func (x *UnlockCellResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[60]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4425,7 +4480,7 @@ func (x *UnlockCellResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnlockCellResponse.ProtoReflect.Descriptor instead.
 func (*UnlockCellResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{60}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{61}
 }
 
 func (x *UnlockCellResponse) GetCell() *Cell {
@@ -4450,7 +4505,7 @@ type ExportTableRequest struct {
 
 func (x *ExportTableRequest) Reset() {
 	*x = ExportTableRequest{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[61]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4462,7 +4517,7 @@ func (x *ExportTableRequest) String() string {
 func (*ExportTableRequest) ProtoMessage() {}
 
 func (x *ExportTableRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[61]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4475,7 +4530,7 @@ func (x *ExportTableRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExportTableRequest.ProtoReflect.Descriptor instead.
 func (*ExportTableRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{61}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{62}
 }
 
 func (x *ExportTableRequest) GetNamespaceId() string {
@@ -4510,7 +4565,7 @@ type ExportTableResponse struct {
 
 func (x *ExportTableResponse) Reset() {
 	*x = ExportTableResponse{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[62]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4522,7 +4577,7 @@ func (x *ExportTableResponse) String() string {
 func (*ExportTableResponse) ProtoMessage() {}
 
 func (x *ExportTableResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[62]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4535,7 +4590,7 @@ func (x *ExportTableResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExportTableResponse.ProtoReflect.Descriptor instead.
 func (*ExportTableResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{62}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{63}
 }
 
 func (x *ExportTableResponse) GetData() []byte {
@@ -4558,7 +4613,7 @@ type GetTableEventsRequest struct {
 
 func (x *GetTableEventsRequest) Reset() {
 	*x = GetTableEventsRequest{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[63]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4570,7 +4625,7 @@ func (x *GetTableEventsRequest) String() string {
 func (*GetTableEventsRequest) ProtoMessage() {}
 
 func (x *GetTableEventsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[63]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4583,7 +4638,7 @@ func (x *GetTableEventsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTableEventsRequest.ProtoReflect.Descriptor instead.
 func (*GetTableEventsRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{63}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{64}
 }
 
 func (x *GetTableEventsRequest) GetNamespaceId() string {
@@ -4611,7 +4666,7 @@ type GetTableEventsResponse struct {
 
 func (x *GetTableEventsResponse) Reset() {
 	*x = GetTableEventsResponse{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[64]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4623,7 +4678,7 @@ func (x *GetTableEventsResponse) String() string {
 func (*GetTableEventsResponse) ProtoMessage() {}
 
 func (x *GetTableEventsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[64]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4636,7 +4691,7 @@ func (x *GetTableEventsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTableEventsResponse.ProtoReflect.Descriptor instead.
 func (*GetTableEventsResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{64}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{65}
 }
 
 func (x *GetTableEventsResponse) GetEvent() *TableEvent {
@@ -4675,7 +4730,7 @@ type TableEvent struct {
 
 func (x *TableEvent) Reset() {
 	*x = TableEvent{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[65]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[66]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4687,7 +4742,7 @@ func (x *TableEvent) String() string {
 func (*TableEvent) ProtoMessage() {}
 
 func (x *TableEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[65]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[66]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4700,7 +4755,7 @@ func (x *TableEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TableEvent.ProtoReflect.Descriptor instead.
 func (*TableEvent) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{65}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{66}
 }
 
 func (x *TableEvent) GetEvent() string {
@@ -4867,7 +4922,7 @@ type TableUpdatedEvent struct {
 
 func (x *TableUpdatedEvent) Reset() {
 	*x = TableUpdatedEvent{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[66]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[67]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4879,7 +4934,7 @@ func (x *TableUpdatedEvent) String() string {
 func (*TableUpdatedEvent) ProtoMessage() {}
 
 func (x *TableUpdatedEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[66]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[67]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4892,7 +4947,7 @@ func (x *TableUpdatedEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TableUpdatedEvent.ProtoReflect.Descriptor instead.
 func (*TableUpdatedEvent) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{66}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{67}
 }
 
 func (x *TableUpdatedEvent) GetTable() *Table {
@@ -4911,7 +4966,7 @@ type TableDeletedEvent struct {
 
 func (x *TableDeletedEvent) Reset() {
 	*x = TableDeletedEvent{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[67]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[68]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4923,7 +4978,7 @@ func (x *TableDeletedEvent) String() string {
 func (*TableDeletedEvent) ProtoMessage() {}
 
 func (x *TableDeletedEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[67]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[68]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4936,7 +4991,7 @@ func (x *TableDeletedEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TableDeletedEvent.ProtoReflect.Descriptor instead.
 func (*TableDeletedEvent) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{67}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{68}
 }
 
 // ColumnDefinitionsUpdatedEvent represents an event for column definitions being updated.
@@ -4950,7 +5005,7 @@ type ColumnDefinitionsUpdatedEvent struct {
 
 func (x *ColumnDefinitionsUpdatedEvent) Reset() {
 	*x = ColumnDefinitionsUpdatedEvent{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[68]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[69]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4962,7 +5017,7 @@ func (x *ColumnDefinitionsUpdatedEvent) String() string {
 func (*ColumnDefinitionsUpdatedEvent) ProtoMessage() {}
 
 func (x *ColumnDefinitionsUpdatedEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[68]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[69]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4975,7 +5030,7 @@ func (x *ColumnDefinitionsUpdatedEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ColumnDefinitionsUpdatedEvent.ProtoReflect.Descriptor instead.
 func (*ColumnDefinitionsUpdatedEvent) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{68}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{69}
 }
 
 func (x *ColumnDefinitionsUpdatedEvent) GetColumnDefinitions() map[string]*ColumnDefinition {
@@ -4999,7 +5054,7 @@ type RowInsertedEvent struct {
 
 func (x *RowInsertedEvent) Reset() {
 	*x = RowInsertedEvent{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[69]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[70]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5011,7 +5066,7 @@ func (x *RowInsertedEvent) String() string {
 func (*RowInsertedEvent) ProtoMessage() {}
 
 func (x *RowInsertedEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[69]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[70]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5024,7 +5079,7 @@ func (x *RowInsertedEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RowInsertedEvent.ProtoReflect.Descriptor instead.
 func (*RowInsertedEvent) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{69}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{70}
 }
 
 func (x *RowInsertedEvent) GetRow() *Row {
@@ -5053,7 +5108,7 @@ type RowUpdatedEvent struct {
 
 func (x *RowUpdatedEvent) Reset() {
 	*x = RowUpdatedEvent{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[70]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[71]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5065,7 +5120,7 @@ func (x *RowUpdatedEvent) String() string {
 func (*RowUpdatedEvent) ProtoMessage() {}
 
 func (x *RowUpdatedEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[70]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[71]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5078,7 +5133,7 @@ func (x *RowUpdatedEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RowUpdatedEvent.ProtoReflect.Descriptor instead.
 func (*RowUpdatedEvent) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{70}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{71}
 }
 
 func (x *RowUpdatedEvent) GetRow() *Row {
@@ -5099,7 +5154,7 @@ type RowDeletedEvent struct {
 
 func (x *RowDeletedEvent) Reset() {
 	*x = RowDeletedEvent{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[71]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[72]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5111,7 +5166,7 @@ func (x *RowDeletedEvent) String() string {
 func (*RowDeletedEvent) ProtoMessage() {}
 
 func (x *RowDeletedEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[71]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[72]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5124,7 +5179,7 @@ func (x *RowDeletedEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RowDeletedEvent.ProtoReflect.Descriptor instead.
 func (*RowDeletedEvent) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{71}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{72}
 }
 
 func (x *RowDeletedEvent) GetRowUid() string {
@@ -5147,7 +5202,7 @@ type RowsMovedEvent struct {
 
 func (x *RowsMovedEvent) Reset() {
 	*x = RowsMovedEvent{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[72]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[73]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5159,7 +5214,7 @@ func (x *RowsMovedEvent) String() string {
 func (*RowsMovedEvent) ProtoMessage() {}
 
 func (x *RowsMovedEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[72]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[73]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5172,7 +5227,7 @@ func (x *RowsMovedEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RowsMovedEvent.ProtoReflect.Descriptor instead.
 func (*RowsMovedEvent) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{72}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{73}
 }
 
 func (x *RowsMovedEvent) GetRowUids() []string {
@@ -5204,7 +5259,7 @@ type CellUpdatedEvent struct {
 
 func (x *CellUpdatedEvent) Reset() {
 	*x = CellUpdatedEvent{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[73]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[74]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5216,7 +5271,7 @@ func (x *CellUpdatedEvent) String() string {
 func (*CellUpdatedEvent) ProtoMessage() {}
 
 func (x *CellUpdatedEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[73]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[74]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5229,7 +5284,7 @@ func (x *CellUpdatedEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CellUpdatedEvent.ProtoReflect.Descriptor instead.
 func (*CellUpdatedEvent) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{73}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{74}
 }
 
 func (x *CellUpdatedEvent) GetCell() *Cell {
@@ -5265,7 +5320,7 @@ type GenerateMockTableRequest struct {
 
 func (x *GenerateMockTableRequest) Reset() {
 	*x = GenerateMockTableRequest{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[74]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[75]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5277,7 +5332,7 @@ func (x *GenerateMockTableRequest) String() string {
 func (*GenerateMockTableRequest) ProtoMessage() {}
 
 func (x *GenerateMockTableRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[74]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[75]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5290,7 +5345,7 @@ func (x *GenerateMockTableRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GenerateMockTableRequest.ProtoReflect.Descriptor instead.
 func (*GenerateMockTableRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{74}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{75}
 }
 
 func (x *GenerateMockTableRequest) GetNamespaceId() string {
@@ -5337,7 +5392,7 @@ type GenerateMockTableResponse struct {
 
 func (x *GenerateMockTableResponse) Reset() {
 	*x = GenerateMockTableResponse{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[75]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[76]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5349,7 +5404,7 @@ func (x *GenerateMockTableResponse) String() string {
 func (*GenerateMockTableResponse) ProtoMessage() {}
 
 func (x *GenerateMockTableResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[75]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[76]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5362,7 +5417,7 @@ func (x *GenerateMockTableResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GenerateMockTableResponse.ProtoReflect.Descriptor instead.
 func (*GenerateMockTableResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{75}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{76}
 }
 
 // BindChatTableRequest represents a request to bind a table to a chat.
@@ -5380,7 +5435,7 @@ type BindChatTableRequest struct {
 
 func (x *BindChatTableRequest) Reset() {
 	*x = BindChatTableRequest{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[76]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[77]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5392,7 +5447,7 @@ func (x *BindChatTableRequest) String() string {
 func (*BindChatTableRequest) ProtoMessage() {}
 
 func (x *BindChatTableRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[76]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[77]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5405,7 +5460,7 @@ func (x *BindChatTableRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BindChatTableRequest.ProtoReflect.Descriptor instead.
 func (*BindChatTableRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{76}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{77}
 }
 
 func (x *BindChatTableRequest) GetNamespaceId() string {
@@ -5438,7 +5493,7 @@ type BindChatTableResponse struct {
 
 func (x *BindChatTableResponse) Reset() {
 	*x = BindChatTableResponse{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[77]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[78]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5450,7 +5505,7 @@ func (x *BindChatTableResponse) String() string {
 func (*BindChatTableResponse) ProtoMessage() {}
 
 func (x *BindChatTableResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[77]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[78]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5463,7 +5518,7 @@ func (x *BindChatTableResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BindChatTableResponse.ProtoReflect.Descriptor instead.
 func (*BindChatTableResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{77}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{78}
 }
 
 // UnbindChatTableRequest represents a request to unbind a table from a chat.
@@ -5481,7 +5536,7 @@ type UnbindChatTableRequest struct {
 
 func (x *UnbindChatTableRequest) Reset() {
 	*x = UnbindChatTableRequest{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[78]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[79]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5493,7 +5548,7 @@ func (x *UnbindChatTableRequest) String() string {
 func (*UnbindChatTableRequest) ProtoMessage() {}
 
 func (x *UnbindChatTableRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[78]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[79]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5506,7 +5561,7 @@ func (x *UnbindChatTableRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnbindChatTableRequest.ProtoReflect.Descriptor instead.
 func (*UnbindChatTableRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{78}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{79}
 }
 
 func (x *UnbindChatTableRequest) GetNamespaceId() string {
@@ -5539,7 +5594,7 @@ type UnbindChatTableResponse struct {
 
 func (x *UnbindChatTableResponse) Reset() {
 	*x = UnbindChatTableResponse{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[79]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[80]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5551,7 +5606,7 @@ func (x *UnbindChatTableResponse) String() string {
 func (*UnbindChatTableResponse) ProtoMessage() {}
 
 func (x *UnbindChatTableResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[79]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[80]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5564,7 +5619,7 @@ func (x *UnbindChatTableResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnbindChatTableResponse.ProtoReflect.Descriptor instead.
 func (*UnbindChatTableResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{79}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{80}
 }
 
 // ListChatTablesRequest represents a request to list tables bound to a chat.
@@ -5580,7 +5635,7 @@ type ListChatTablesRequest struct {
 
 func (x *ListChatTablesRequest) Reset() {
 	*x = ListChatTablesRequest{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[80]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[81]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5592,7 +5647,7 @@ func (x *ListChatTablesRequest) String() string {
 func (*ListChatTablesRequest) ProtoMessage() {}
 
 func (x *ListChatTablesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[80]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[81]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5605,7 +5660,7 @@ func (x *ListChatTablesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListChatTablesRequest.ProtoReflect.Descriptor instead.
 func (*ListChatTablesRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{80}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{81}
 }
 
 func (x *ListChatTablesRequest) GetNamespaceId() string {
@@ -5633,7 +5688,7 @@ type ListChatTablesResponse struct {
 
 func (x *ListChatTablesResponse) Reset() {
 	*x = ListChatTablesResponse{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[81]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[82]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5645,7 +5700,7 @@ func (x *ListChatTablesResponse) String() string {
 func (*ListChatTablesResponse) ProtoMessage() {}
 
 func (x *ListChatTablesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[81]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[82]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5658,7 +5713,7 @@ func (x *ListChatTablesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListChatTablesResponse.ProtoReflect.Descriptor instead.
 func (*ListChatTablesResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{81}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{82}
 }
 
 func (x *ListChatTablesResponse) GetTables() []*Table {
@@ -5681,17 +5736,21 @@ type SuggestColumnDefinitionRequest struct {
 	// If not provided, the agent will suggest the type.
 	// If provided, the agent will use this value as the type setting.
 	Type *Type `protobuf:"varint,4,opt,name=type,proto3,enum=agent.agent.v1alpha.Type,oneof" json:"type,omitempty"`
+	// The selection settings of the column.
+	// If not provided, the agent will suggest the selection.
+	// If provided, the agent will use this value as the selection setting.
+	Selection *Selection `protobuf:"bytes,5,opt,name=selection,proto3,oneof" json:"selection,omitempty"`
 	// Whether to enable automatic computation for the column.
 	// If not provided, the agent will suggest whether to enable it or not.
 	// If provided, the agent will use this value as the enable_automatic_computation setting.
-	EnableAutomaticComputation *bool `protobuf:"varint,5,opt,name=enable_automatic_computation,json=enableAutomaticComputation,proto3,oneof" json:"enable_automatic_computation,omitempty"`
+	EnableAutomaticComputation *bool `protobuf:"varint,6,opt,name=enable_automatic_computation,json=enableAutomaticComputation,proto3,oneof" json:"enable_automatic_computation,omitempty"`
 	unknownFields              protoimpl.UnknownFields
 	sizeCache                  protoimpl.SizeCache
 }
 
 func (x *SuggestColumnDefinitionRequest) Reset() {
 	*x = SuggestColumnDefinitionRequest{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[82]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[83]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5703,7 +5762,7 @@ func (x *SuggestColumnDefinitionRequest) String() string {
 func (*SuggestColumnDefinitionRequest) ProtoMessage() {}
 
 func (x *SuggestColumnDefinitionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[82]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[83]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5716,7 +5775,7 @@ func (x *SuggestColumnDefinitionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SuggestColumnDefinitionRequest.ProtoReflect.Descriptor instead.
 func (*SuggestColumnDefinitionRequest) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{82}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{83}
 }
 
 func (x *SuggestColumnDefinitionRequest) GetNamespaceId() string {
@@ -5747,6 +5806,13 @@ func (x *SuggestColumnDefinitionRequest) GetType() Type {
 	return Type_TYPE_UNSPECIFIED
 }
 
+func (x *SuggestColumnDefinitionRequest) GetSelection() *Selection {
+	if x != nil {
+		return x.Selection
+	}
+	return nil
+}
+
 func (x *SuggestColumnDefinitionRequest) GetEnableAutomaticComputation() bool {
 	if x != nil && x.EnableAutomaticComputation != nil {
 		return *x.EnableAutomaticComputation
@@ -5757,15 +5823,19 @@ func (x *SuggestColumnDefinitionRequest) GetEnableAutomaticComputation() bool {
 // SuggestColumnDefinitionResponse represents a response to a request to suggest a column definition.
 type SuggestColumnDefinitionResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
+	// Whether the suggestion is successful.
+	Success bool `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	// The suggested column definition.
-	ColumnDefinition *ColumnDefinition `protobuf:"bytes,1,opt,name=column_definition,json=columnDefinition,proto3" json:"column_definition,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	ColumnDefinition *ColumnDefinition `protobuf:"bytes,2,opt,name=column_definition,json=columnDefinition,proto3" json:"column_definition,omitempty"`
+	// The error message of the suggestion.
+	ErrorMessage  string `protobuf:"bytes,3,opt,name=error_message,json=errorMessage,proto3" json:"error_message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SuggestColumnDefinitionResponse) Reset() {
 	*x = SuggestColumnDefinitionResponse{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[83]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[84]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5777,7 +5847,7 @@ func (x *SuggestColumnDefinitionResponse) String() string {
 func (*SuggestColumnDefinitionResponse) ProtoMessage() {}
 
 func (x *SuggestColumnDefinitionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[83]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[84]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5790,7 +5860,14 @@ func (x *SuggestColumnDefinitionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SuggestColumnDefinitionResponse.ProtoReflect.Descriptor instead.
 func (*SuggestColumnDefinitionResponse) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{83}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{84}
+}
+
+func (x *SuggestColumnDefinitionResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
 }
 
 func (x *SuggestColumnDefinitionResponse) GetColumnDefinition() *ColumnDefinition {
@@ -5798,6 +5875,152 @@ func (x *SuggestColumnDefinitionResponse) GetColumnDefinition() *ColumnDefinitio
 		return x.ColumnDefinition
 	}
 	return nil
+}
+
+func (x *SuggestColumnDefinitionResponse) GetErrorMessage() string {
+	if x != nil {
+		return x.ErrorMessage
+	}
+	return ""
+}
+
+// EnhanceColumnDefinitionInstructionsRequest represents a request to enhance the instruction of a column definition.
+type EnhanceColumnDefinitionInstructionsRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The ID of the namespace that owns the table.
+	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
+	// The UID of the table to enhance a column definition for.
+	TableUid string `protobuf:"bytes,2,opt,name=table_uid,json=tableUid,proto3" json:"table_uid,omitempty"`
+	// The UID of the column to be enhanced.
+	// Please provide this field if you want to enhance the instruction of an existing column definition.
+	// Ignore it if you want to enhance the instruction of a non-created column in the new column creation flow.
+	ColumnUid *string `protobuf:"bytes,3,opt,name=column_uid,json=columnUid,proto3,oneof" json:"column_uid,omitempty"`
+	// The column definition to be enhanced.
+	ColumnDefinition *ColumnDefinition `protobuf:"bytes,4,opt,name=column_definition,json=columnDefinition,proto3" json:"column_definition,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *EnhanceColumnDefinitionInstructionsRequest) Reset() {
+	*x = EnhanceColumnDefinitionInstructionsRequest{}
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[85]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EnhanceColumnDefinitionInstructionsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EnhanceColumnDefinitionInstructionsRequest) ProtoMessage() {}
+
+func (x *EnhanceColumnDefinitionInstructionsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[85]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EnhanceColumnDefinitionInstructionsRequest.ProtoReflect.Descriptor instead.
+func (*EnhanceColumnDefinitionInstructionsRequest) Descriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{85}
+}
+
+func (x *EnhanceColumnDefinitionInstructionsRequest) GetNamespaceId() string {
+	if x != nil {
+		return x.NamespaceId
+	}
+	return ""
+}
+
+func (x *EnhanceColumnDefinitionInstructionsRequest) GetTableUid() string {
+	if x != nil {
+		return x.TableUid
+	}
+	return ""
+}
+
+func (x *EnhanceColumnDefinitionInstructionsRequest) GetColumnUid() string {
+	if x != nil && x.ColumnUid != nil {
+		return *x.ColumnUid
+	}
+	return ""
+}
+
+func (x *EnhanceColumnDefinitionInstructionsRequest) GetColumnDefinition() *ColumnDefinition {
+	if x != nil {
+		return x.ColumnDefinition
+	}
+	return nil
+}
+
+// EnhanceColumnDefinitionInstructionsResponse represents a response to a request to enhance the instruction of a column definition.
+type EnhanceColumnDefinitionInstructionsResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Whether the enhancement is successful.
+	Success bool `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	// The enhanced instructions.
+	Instructions string `protobuf:"bytes,2,opt,name=instructions,proto3" json:"instructions,omitempty"`
+	// The error message of the enhancement.
+	ErrorMessage  string `protobuf:"bytes,3,opt,name=error_message,json=errorMessage,proto3" json:"error_message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EnhanceColumnDefinitionInstructionsResponse) Reset() {
+	*x = EnhanceColumnDefinitionInstructionsResponse{}
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[86]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EnhanceColumnDefinitionInstructionsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EnhanceColumnDefinitionInstructionsResponse) ProtoMessage() {}
+
+func (x *EnhanceColumnDefinitionInstructionsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[86]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EnhanceColumnDefinitionInstructionsResponse.ProtoReflect.Descriptor instead.
+func (*EnhanceColumnDefinitionInstructionsResponse) Descriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{86}
+}
+
+func (x *EnhanceColumnDefinitionInstructionsResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *EnhanceColumnDefinitionInstructionsResponse) GetInstructions() string {
+	if x != nil {
+		return x.Instructions
+	}
+	return ""
+}
+
+func (x *EnhanceColumnDefinitionInstructionsResponse) GetErrorMessage() string {
+	if x != nil {
+		return x.ErrorMessage
+	}
+	return ""
 }
 
 // The configuration for the agent.
@@ -5811,7 +6034,7 @@ type Table_AgentConfig struct {
 
 func (x *Table_AgentConfig) Reset() {
 	*x = Table_AgentConfig{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[84]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[87]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5823,7 +6046,7 @@ func (x *Table_AgentConfig) String() string {
 func (*Table_AgentConfig) ProtoMessage() {}
 
 func (x *Table_AgentConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[84]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[87]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5857,7 +6080,7 @@ type Table_Permission struct {
 
 func (x *Table_Permission) Reset() {
 	*x = Table_Permission{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[85]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[88]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5869,7 +6092,7 @@ func (x *Table_Permission) String() string {
 func (*Table_Permission) ProtoMessage() {}
 
 func (x *Table_Permission) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[85]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[88]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5892,6 +6115,102 @@ func (x *Table_Permission) GetCanEdit() bool {
 	return false
 }
 
+// An option for the selection.
+type Selection_Option struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The value of the cell as a string.
+	//
+	// Types that are valid to be assigned to Value:
+	//
+	//	*Selection_Option_StringValue
+	//	*Selection_Option_NumberValue
+	Value isSelection_Option_Value `protobuf_oneof:"value"`
+	// Display color of the option.
+	Color         string `protobuf:"bytes,3,opt,name=color,proto3" json:"color,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Selection_Option) Reset() {
+	*x = Selection_Option{}
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[89]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Selection_Option) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Selection_Option) ProtoMessage() {}
+
+func (x *Selection_Option) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[89]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Selection_Option.ProtoReflect.Descriptor instead.
+func (*Selection_Option) Descriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{14, 0}
+}
+
+func (x *Selection_Option) GetValue() isSelection_Option_Value {
+	if x != nil {
+		return x.Value
+	}
+	return nil
+}
+
+func (x *Selection_Option) GetStringValue() string {
+	if x != nil {
+		if x, ok := x.Value.(*Selection_Option_StringValue); ok {
+			return x.StringValue
+		}
+	}
+	return ""
+}
+
+func (x *Selection_Option) GetNumberValue() float64 {
+	if x != nil {
+		if x, ok := x.Value.(*Selection_Option_NumberValue); ok {
+			return x.NumberValue
+		}
+	}
+	return 0
+}
+
+func (x *Selection_Option) GetColor() string {
+	if x != nil {
+		return x.Color
+	}
+	return ""
+}
+
+type isSelection_Option_Value interface {
+	isSelection_Option_Value()
+}
+
+type Selection_Option_StringValue struct {
+	// The value of the cell as a string.
+	StringValue string `protobuf:"bytes,1,opt,name=string_value,json=stringValue,proto3,oneof"`
+}
+
+type Selection_Option_NumberValue struct {
+	// The value of the cell as a number.
+	NumberValue float64 `protobuf:"fixed64,2,opt,name=number_value,json=numberValue,proto3,oneof"`
+}
+
+func (*Selection_Option_StringValue) isSelection_Option_Value() {}
+
+func (*Selection_Option_NumberValue) isSelection_Option_Value() {}
+
 // The configuration for the agent.
 type ColumnDefinition_AgentConfig struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -5909,7 +6228,7 @@ type ColumnDefinition_AgentConfig struct {
 
 func (x *ColumnDefinition_AgentConfig) Reset() {
 	*x = ColumnDefinition_AgentConfig{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[86]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[90]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5921,7 +6240,7 @@ func (x *ColumnDefinition_AgentConfig) String() string {
 func (*ColumnDefinition_AgentConfig) ProtoMessage() {}
 
 func (x *ColumnDefinition_AgentConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[86]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[90]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5934,7 +6253,7 @@ func (x *ColumnDefinition_AgentConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ColumnDefinition_AgentConfig.ProtoReflect.Descriptor instead.
 func (*ColumnDefinition_AgentConfig) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{14, 0}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{15, 0}
 }
 
 func (x *ColumnDefinition_AgentConfig) GetInstructions() string {
@@ -5965,61 +6284,6 @@ func (x *ColumnDefinition_AgentConfig) GetContext() *ColumnDefinition_AgentConfi
 	return nil
 }
 
-// The selection settings of the column.
-type ColumnDefinition_Selection struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The selection of the column.
-	Type ColumnDefinition_Selection_SelectionType `protobuf:"varint,1,opt,name=type,proto3,enum=agent.agent.v1alpha.ColumnDefinition_Selection_SelectionType" json:"type,omitempty"`
-	// The options for the selection.
-	Options       []*ColumnDefinition_Selection_Option `protobuf:"bytes,2,rep,name=options,proto3" json:"options,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ColumnDefinition_Selection) Reset() {
-	*x = ColumnDefinition_Selection{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[87]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ColumnDefinition_Selection) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ColumnDefinition_Selection) ProtoMessage() {}
-
-func (x *ColumnDefinition_Selection) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[87]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ColumnDefinition_Selection.ProtoReflect.Descriptor instead.
-func (*ColumnDefinition_Selection) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{14, 1}
-}
-
-func (x *ColumnDefinition_Selection) GetType() ColumnDefinition_Selection_SelectionType {
-	if x != nil {
-		return x.Type
-	}
-	return ColumnDefinition_Selection_SELECTION_TYPE_UNSPECIFIED
-}
-
-func (x *ColumnDefinition_Selection) GetOptions() []*ColumnDefinition_Selection_Option {
-	if x != nil {
-		return x.Options
-	}
-	return nil
-}
-
 // The context for the agent.
 type ColumnDefinition_AgentConfig_Context struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -6031,7 +6295,7 @@ type ColumnDefinition_AgentConfig_Context struct {
 
 func (x *ColumnDefinition_AgentConfig_Context) Reset() {
 	*x = ColumnDefinition_AgentConfig_Context{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[88]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[91]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6043,7 +6307,7 @@ func (x *ColumnDefinition_AgentConfig_Context) String() string {
 func (*ColumnDefinition_AgentConfig_Context) ProtoMessage() {}
 
 func (x *ColumnDefinition_AgentConfig_Context) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[88]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[91]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6056,7 +6320,7 @@ func (x *ColumnDefinition_AgentConfig_Context) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use ColumnDefinition_AgentConfig_Context.ProtoReflect.Descriptor instead.
 func (*ColumnDefinition_AgentConfig_Context) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{14, 0, 0}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{15, 0, 0}
 }
 
 func (x *ColumnDefinition_AgentConfig_Context) GetColumnUids() []string {
@@ -6065,102 +6329,6 @@ func (x *ColumnDefinition_AgentConfig_Context) GetColumnUids() []string {
 	}
 	return nil
 }
-
-// An option for the selection.
-type ColumnDefinition_Selection_Option struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The value of the cell as a string.
-	//
-	// Types that are valid to be assigned to Value:
-	//
-	//	*ColumnDefinition_Selection_Option_StringValue
-	//	*ColumnDefinition_Selection_Option_NumberValue
-	Value isColumnDefinition_Selection_Option_Value `protobuf_oneof:"value"`
-	// Display color of the option.
-	Color         string `protobuf:"bytes,3,opt,name=color,proto3" json:"color,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ColumnDefinition_Selection_Option) Reset() {
-	*x = ColumnDefinition_Selection_Option{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[89]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ColumnDefinition_Selection_Option) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ColumnDefinition_Selection_Option) ProtoMessage() {}
-
-func (x *ColumnDefinition_Selection_Option) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[89]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ColumnDefinition_Selection_Option.ProtoReflect.Descriptor instead.
-func (*ColumnDefinition_Selection_Option) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{14, 1, 0}
-}
-
-func (x *ColumnDefinition_Selection_Option) GetValue() isColumnDefinition_Selection_Option_Value {
-	if x != nil {
-		return x.Value
-	}
-	return nil
-}
-
-func (x *ColumnDefinition_Selection_Option) GetStringValue() string {
-	if x != nil {
-		if x, ok := x.Value.(*ColumnDefinition_Selection_Option_StringValue); ok {
-			return x.StringValue
-		}
-	}
-	return ""
-}
-
-func (x *ColumnDefinition_Selection_Option) GetNumberValue() float64 {
-	if x != nil {
-		if x, ok := x.Value.(*ColumnDefinition_Selection_Option_NumberValue); ok {
-			return x.NumberValue
-		}
-	}
-	return 0
-}
-
-func (x *ColumnDefinition_Selection_Option) GetColor() string {
-	if x != nil {
-		return x.Color
-	}
-	return ""
-}
-
-type isColumnDefinition_Selection_Option_Value interface {
-	isColumnDefinition_Selection_Option_Value()
-}
-
-type ColumnDefinition_Selection_Option_StringValue struct {
-	// The value of the cell as a string.
-	StringValue string `protobuf:"bytes,1,opt,name=string_value,json=stringValue,proto3,oneof"`
-}
-
-type ColumnDefinition_Selection_Option_NumberValue struct {
-	// The value of the cell as a number.
-	NumberValue float64 `protobuf:"fixed64,2,opt,name=number_value,json=numberValue,proto3,oneof"`
-}
-
-func (*ColumnDefinition_Selection_Option_StringValue) isColumnDefinition_Selection_Option_Value() {}
-
-func (*ColumnDefinition_Selection_Option_NumberValue) isColumnDefinition_Selection_Option_Value() {}
 
 // The transparency of the cell.
 type Cell_Transparency struct {
@@ -6173,7 +6341,7 @@ type Cell_Transparency struct {
 
 func (x *Cell_Transparency) Reset() {
 	*x = Cell_Transparency{}
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[93]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[95]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6185,7 +6353,7 @@ func (x *Cell_Transparency) String() string {
 func (*Cell_Transparency) ProtoMessage() {}
 
 func (x *Cell_Transparency) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[93]
+	mi := &file_agent_agent_v1alpha_table_proto_msgTypes[95]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6198,7 +6366,7 @@ func (x *Cell_Transparency) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Cell_Transparency.ProtoReflect.Descriptor instead.
 func (*Cell_Transparency) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{23, 0}
+	return file_agent_agent_v1alpha_table_proto_rawDescGZIP(), []int{24, 0}
 }
 
 func (x *Cell_Transparency) GetText() string {
@@ -6285,7 +6453,19 @@ const file_agent_agent_v1alpha_table_proto_rawDesc = "" +
 	"\fFORMAT_PLAIN\x10\x01\x12\x11\n" +
 	"\rFORMAT_COMMAS\x10\x02\x12\x13\n" +
 	"\x0fFORMAT_CURRENCY\x10\x03\x12\x15\n" +
-	"\x11FORMAT_PERCENTAGE\x10\x04\"\x9a\v\n" +
+	"\x11FORMAT_PERCENTAGE\x10\x04\"\x80\x03\n" +
+	"\tSelection\x12E\n" +
+	"\x04type\x18\x01 \x01(\x0e2,.agent.agent.v1alpha.Selection.SelectionTypeB\x03\xe0A\x02R\x04type\x12D\n" +
+	"\aoptions\x18\x02 \x03(\v2%.agent.agent.v1alpha.Selection.OptionB\x03\xe0A\x01R\aoptions\x1a\x80\x01\n" +
+	"\x06Option\x12(\n" +
+	"\fstring_value\x18\x01 \x01(\tB\x03\xe0A\x01H\x00R\vstringValue\x12(\n" +
+	"\fnumber_value\x18\x02 \x01(\x01B\x03\xe0A\x01H\x00R\vnumberValue\x12\x19\n" +
+	"\x05color\x18\x03 \x01(\tB\x03\xe0A\x01R\x05colorB\a\n" +
+	"\x05value\"c\n" +
+	"\rSelectionType\x12\x1e\n" +
+	"\x1aSELECTION_TYPE_UNSPECIFIED\x10\x00\x12\x17\n" +
+	"\x13SELECTION_TYPE_NONE\x10\x01\x12\x19\n" +
+	"\x15SELECTION_TYPE_SINGLE\x10\x02\"\xe4\a\n" +
 	"\x10ColumnDefinition\x12\"\n" +
 	"\n" +
 	"column_uid\x18\x01 \x01(\tB\x03\xe0A\x03R\tcolumnUid\x12\x17\n" +
@@ -6295,8 +6475,8 @@ const file_agent_agent_v1alpha_table_proto_rawDesc = "" +
 	"\fagent_config\x18\x05 \x01(\v21.agent.agent.v1alpha.ColumnDefinition.AgentConfigB\x03\xe0A\x01R\vagentConfig\x12C\n" +
 	"\x04sort\x18\x06 \x01(\x0e2*.agent.agent.v1alpha.ColumnDefinition.SortB\x03\xe0A\x01R\x04sort\x12%\n" +
 	"\vdescription\x18\a \x01(\tB\x03\xe0A\x01R\vdescription\x12M\n" +
-	"\rnumber_format\x18\b \x01(\v2!.agent.agent.v1alpha.NumberFormatB\x03\xe0A\x01H\x00R\fnumberFormat\x12R\n" +
-	"\tselection\x18\t \x01(\v2/.agent.agent.v1alpha.ColumnDefinition.SelectionB\x03\xe0A\x01R\tselection\x128\n" +
+	"\rnumber_format\x18\b \x01(\v2!.agent.agent.v1alpha.NumberFormatB\x03\xe0A\x01H\x00R\fnumberFormat\x12A\n" +
+	"\tselection\x18\t \x01(\v2\x1e.agent.agent.v1alpha.SelectionB\x03\xe0A\x01R\tselection\x128\n" +
 	"\bmetadata\x18\n" +
 	" \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x01R\bmetadata\x1a\xdf\x02\n" +
 	"\vAgentConfig\x12'\n" +
@@ -6307,19 +6487,7 @@ const file_agent_agent_v1alpha_table_proto_rawDesc = "" +
 	"\aContext\x12$\n" +
 	"\vcolumn_uids\x18\x01 \x03(\tB\x03\xe0A\x01R\n" +
 	"columnUidsB\x1f\n" +
-	"\x1d_enable_automatic_computation\x1a\xa2\x03\n" +
-	"\tSelection\x12V\n" +
-	"\x04type\x18\x01 \x01(\x0e2=.agent.agent.v1alpha.ColumnDefinition.Selection.SelectionTypeB\x03\xe0A\x02R\x04type\x12U\n" +
-	"\aoptions\x18\x02 \x03(\v26.agent.agent.v1alpha.ColumnDefinition.Selection.OptionB\x03\xe0A\x01R\aoptions\x1a\x80\x01\n" +
-	"\x06Option\x12(\n" +
-	"\fstring_value\x18\x01 \x01(\tB\x03\xe0A\x01H\x00R\vstringValue\x12(\n" +
-	"\fnumber_value\x18\x02 \x01(\x01B\x03\xe0A\x01H\x00R\vnumberValue\x12\x19\n" +
-	"\x05color\x18\x03 \x01(\tB\x03\xe0A\x01R\x05colorB\a\n" +
-	"\x05value\"c\n" +
-	"\rSelectionType\x12\x1e\n" +
-	"\x1aSELECTION_TYPE_UNSPECIFIED\x10\x00\x12\x17\n" +
-	"\x13SELECTION_TYPE_NONE\x10\x01\x12\x19\n" +
-	"\x15SELECTION_TYPE_SINGLE\x10\x02\"E\n" +
+	"\x1d_enable_automatic_computation\"E\n" +
 	"\x04Sort\x12\x14\n" +
 	"\x10SORT_UNSPECIFIED\x10\x00\x12\x12\n" +
 	"\x0eSORT_ASCENDING\x10\x01\x12\x13\n" +
@@ -6623,17 +6791,33 @@ const file_agent_agent_v1alpha_table_proto_rawDesc = "" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\x1e\n" +
 	"\bchat_uid\x18\x02 \x01(\tB\x03\xe0A\x02R\achatUid\"Q\n" +
 	"\x16ListChatTablesResponse\x127\n" +
-	"\x06tables\x18\x01 \x03(\v2\x1a.agent.agent.v1alpha.TableB\x03\xe0A\x03R\x06tables\"\xb2\x02\n" +
+	"\x06tables\x18\x01 \x03(\v2\x1a.agent.agent.v1alpha.TableB\x03\xe0A\x03R\x06tables\"\x88\x03\n" +
 	"\x1eSuggestColumnDefinitionRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12 \n" +
 	"\ttable_uid\x18\x02 \x01(\tB\x03\xe0A\x02R\btableUid\x12\x17\n" +
 	"\x04name\x18\x03 \x01(\tB\x03\xe0A\x02R\x04name\x127\n" +
-	"\x04type\x18\x04 \x01(\x0e2\x19.agent.agent.v1alpha.TypeB\x03\xe0A\x01H\x00R\x04type\x88\x01\x01\x12J\n" +
-	"\x1cenable_automatic_computation\x18\x05 \x01(\bB\x03\xe0A\x01H\x01R\x1aenableAutomaticComputation\x88\x01\x01B\a\n" +
-	"\x05_typeB\x1f\n" +
-	"\x1d_enable_automatic_computation\"z\n" +
-	"\x1fSuggestColumnDefinitionResponse\x12W\n" +
-	"\x11column_definition\x18\x01 \x01(\v2%.agent.agent.v1alpha.ColumnDefinitionB\x03\xe0A\x03R\x10columnDefinition*r\n" +
+	"\x04type\x18\x04 \x01(\x0e2\x19.agent.agent.v1alpha.TypeB\x03\xe0A\x01H\x00R\x04type\x88\x01\x01\x12F\n" +
+	"\tselection\x18\x05 \x01(\v2\x1e.agent.agent.v1alpha.SelectionB\x03\xe0A\x01H\x01R\tselection\x88\x01\x01\x12J\n" +
+	"\x1cenable_automatic_computation\x18\x06 \x01(\bB\x03\xe0A\x01H\x02R\x1aenableAutomaticComputation\x88\x01\x01B\a\n" +
+	"\x05_typeB\f\n" +
+	"\n" +
+	"_selectionB\x1f\n" +
+	"\x1d_enable_automatic_computation\"\xc3\x01\n" +
+	"\x1fSuggestColumnDefinitionResponse\x12\x1d\n" +
+	"\asuccess\x18\x01 \x01(\bB\x03\xe0A\x03R\asuccess\x12W\n" +
+	"\x11column_definition\x18\x02 \x01(\v2%.agent.agent.v1alpha.ColumnDefinitionB\x03\xe0A\x03R\x10columnDefinition\x12(\n" +
+	"\rerror_message\x18\x03 \x01(\tB\x03\xe0A\x03R\ferrorMessage\"\x87\x02\n" +
+	"*EnhanceColumnDefinitionInstructionsRequest\x12&\n" +
+	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12 \n" +
+	"\ttable_uid\x18\x02 \x01(\tB\x03\xe0A\x02R\btableUid\x12'\n" +
+	"\n" +
+	"column_uid\x18\x03 \x01(\tB\x03\xe0A\x01H\x00R\tcolumnUid\x88\x01\x01\x12W\n" +
+	"\x11column_definition\x18\x04 \x01(\v2%.agent.agent.v1alpha.ColumnDefinitionB\x03\xe0A\x02R\x10columnDefinitionB\r\n" +
+	"\v_column_uid\"\x9f\x01\n" +
+	"+EnhanceColumnDefinitionInstructionsResponse\x12\x1d\n" +
+	"\asuccess\x18\x01 \x01(\bB\x03\xe0A\x03R\asuccess\x12'\n" +
+	"\finstructions\x18\x02 \x01(\tB\x03\xe0A\x03R\finstructions\x12(\n" +
+	"\rerror_message\x18\x03 \x01(\tB\x03\xe0A\x03R\ferrorMessage*r\n" +
 	"\x04Type\x12\x14\n" +
 	"\x10TYPE_UNSPECIFIED\x10\x00\x12\x0f\n" +
 	"\vTYPE_STRING\x10\x01\x12\x0f\n" +
@@ -6676,124 +6860,126 @@ func file_agent_agent_v1alpha_table_proto_rawDescGZIP() []byte {
 }
 
 var file_agent_agent_v1alpha_table_proto_enumTypes = make([]protoimpl.EnumInfo, 8)
-var file_agent_agent_v1alpha_table_proto_msgTypes = make([]protoimpl.MessageInfo, 96)
+var file_agent_agent_v1alpha_table_proto_msgTypes = make([]protoimpl.MessageInfo, 98)
 var file_agent_agent_v1alpha_table_proto_goTypes = []any{
-	(Type)(0),                  // 0: agent.agent.v1alpha.Type
-	(CellStatus)(0),            // 1: agent.agent.v1alpha.CellStatus
-	(LockState)(0),             // 2: agent.agent.v1alpha.LockState
-	(ExportFormat)(0),          // 3: agent.agent.v1alpha.ExportFormat
-	(NumberFormat_Format)(0),   // 4: agent.agent.v1alpha.NumberFormat.Format
-	(ColumnDefinition_Sort)(0), // 5: agent.agent.v1alpha.ColumnDefinition.Sort
-	(ColumnDefinition_Selection_SelectionType)(0), // 6: agent.agent.v1alpha.ColumnDefinition.Selection.SelectionType
-	(GenerateMockTableRequest_Mode)(0),            // 7: agent.agent.v1alpha.GenerateMockTableRequest.Mode
-	(*Table)(nil),                                 // 8: agent.agent.v1alpha.Table
-	(*CreateTableFromTemplateRequest)(nil),        // 9: agent.agent.v1alpha.CreateTableFromTemplateRequest
-	(*CreateTableFromTemplateResponse)(nil),       // 10: agent.agent.v1alpha.CreateTableFromTemplateResponse
-	(*ListTablesRequest)(nil),                     // 11: agent.agent.v1alpha.ListTablesRequest
-	(*ListTablesResponse)(nil),                    // 12: agent.agent.v1alpha.ListTablesResponse
-	(*CreateTableRequest)(nil),                    // 13: agent.agent.v1alpha.CreateTableRequest
-	(*CreateTableResponse)(nil),                   // 14: agent.agent.v1alpha.CreateTableResponse
-	(*GetTableRequest)(nil),                       // 15: agent.agent.v1alpha.GetTableRequest
-	(*GetTableResponse)(nil),                      // 16: agent.agent.v1alpha.GetTableResponse
-	(*UpdateTableRequest)(nil),                    // 17: agent.agent.v1alpha.UpdateTableRequest
-	(*UpdateTableResponse)(nil),                   // 18: agent.agent.v1alpha.UpdateTableResponse
-	(*DeleteTableRequest)(nil),                    // 19: agent.agent.v1alpha.DeleteTableRequest
-	(*DeleteTableResponse)(nil),                   // 20: agent.agent.v1alpha.DeleteTableResponse
-	(*NumberFormat)(nil),                          // 21: agent.agent.v1alpha.NumberFormat
-	(*ColumnDefinition)(nil),                      // 22: agent.agent.v1alpha.ColumnDefinition
-	(*GetColumnDefinitionsRequest)(nil),           // 23: agent.agent.v1alpha.GetColumnDefinitionsRequest
-	(*GetColumnDefinitionsResponse)(nil),          // 24: agent.agent.v1alpha.GetColumnDefinitionsResponse
-	(*UpdateColumnDefinitionsRequest)(nil),        // 25: agent.agent.v1alpha.UpdateColumnDefinitionsRequest
-	(*UpdateColumnDefinitionsResponse)(nil),       // 26: agent.agent.v1alpha.UpdateColumnDefinitionsResponse
-	(*GetColumnDefinitionRequest)(nil),            // 27: agent.agent.v1alpha.GetColumnDefinitionRequest
-	(*GetColumnDefinitionResponse)(nil),           // 28: agent.agent.v1alpha.GetColumnDefinitionResponse
-	(*RecomputeColumnRequest)(nil),                // 29: agent.agent.v1alpha.RecomputeColumnRequest
-	(*RecomputeColumnResponse)(nil),               // 30: agent.agent.v1alpha.RecomputeColumnResponse
-	(*Cell)(nil),                                  // 31: agent.agent.v1alpha.Cell
-	(*NullCell)(nil),                              // 32: agent.agent.v1alpha.NullCell
-	(*StringCell)(nil),                            // 33: agent.agent.v1alpha.StringCell
-	(*NumberCell)(nil),                            // 34: agent.agent.v1alpha.NumberCell
-	(*BooleanCell)(nil),                           // 35: agent.agent.v1alpha.BooleanCell
-	(*FileCell)(nil),                              // 36: agent.agent.v1alpha.FileCell
-	(*DocumentCell)(nil),                          // 37: agent.agent.v1alpha.DocumentCell
-	(*Row)(nil),                                   // 38: agent.agent.v1alpha.Row
-	(*ListRowsRequest)(nil),                       // 39: agent.agent.v1alpha.ListRowsRequest
-	(*ListRowsResponse)(nil),                      // 40: agent.agent.v1alpha.ListRowsResponse
-	(*InsertRowRequest)(nil),                      // 41: agent.agent.v1alpha.InsertRowRequest
-	(*InsertRowResponse)(nil),                     // 42: agent.agent.v1alpha.InsertRowResponse
-	(*UpdateRowRequest)(nil),                      // 43: agent.agent.v1alpha.UpdateRowRequest
-	(*UpdateRowResponse)(nil),                     // 44: agent.agent.v1alpha.UpdateRowResponse
-	(*GetRowRequest)(nil),                         // 45: agent.agent.v1alpha.GetRowRequest
-	(*GetRowResponse)(nil),                        // 46: agent.agent.v1alpha.GetRowResponse
-	(*UpdateRowsRequest)(nil),                     // 47: agent.agent.v1alpha.UpdateRowsRequest
-	(*UpdateRowsResponse)(nil),                    // 48: agent.agent.v1alpha.UpdateRowsResponse
-	(*DeleteRowRequest)(nil),                      // 49: agent.agent.v1alpha.DeleteRowRequest
-	(*DeleteRowResponse)(nil),                     // 50: agent.agent.v1alpha.DeleteRowResponse
-	(*DeleteRowsRequest)(nil),                     // 51: agent.agent.v1alpha.DeleteRowsRequest
-	(*DeleteRowsResponse)(nil),                    // 52: agent.agent.v1alpha.DeleteRowsResponse
-	(*MoveRowsRequest)(nil),                       // 53: agent.agent.v1alpha.MoveRowsRequest
-	(*MoveRowsResponse)(nil),                      // 54: agent.agent.v1alpha.MoveRowsResponse
-	(*GetCellRequest)(nil),                        // 55: agent.agent.v1alpha.GetCellRequest
-	(*GetCellResponse)(nil),                       // 56: agent.agent.v1alpha.GetCellResponse
-	(*UpdateCellRequest)(nil),                     // 57: agent.agent.v1alpha.UpdateCellRequest
-	(*UpdateCellResponse)(nil),                    // 58: agent.agent.v1alpha.UpdateCellResponse
-	(*RecomputeCellRequest)(nil),                  // 59: agent.agent.v1alpha.RecomputeCellRequest
-	(*RecomputeCellResponse)(nil),                 // 60: agent.agent.v1alpha.RecomputeCellResponse
-	(*ResetCellRequest)(nil),                      // 61: agent.agent.v1alpha.ResetCellRequest
-	(*ResetCellResponse)(nil),                     // 62: agent.agent.v1alpha.ResetCellResponse
-	(*ListCellAutofillAgentMessagesRequest)(nil),  // 63: agent.agent.v1alpha.ListCellAutofillAgentMessagesRequest
-	(*ListCellAutofillAgentMessagesResponse)(nil), // 64: agent.agent.v1alpha.ListCellAutofillAgentMessagesResponse
-	(*LockCellRequest)(nil),                       // 65: agent.agent.v1alpha.LockCellRequest
-	(*LockCellResponse)(nil),                      // 66: agent.agent.v1alpha.LockCellResponse
-	(*UnlockCellRequest)(nil),                     // 67: agent.agent.v1alpha.UnlockCellRequest
-	(*UnlockCellResponse)(nil),                    // 68: agent.agent.v1alpha.UnlockCellResponse
-	(*ExportTableRequest)(nil),                    // 69: agent.agent.v1alpha.ExportTableRequest
-	(*ExportTableResponse)(nil),                   // 70: agent.agent.v1alpha.ExportTableResponse
-	(*GetTableEventsRequest)(nil),                 // 71: agent.agent.v1alpha.GetTableEventsRequest
-	(*GetTableEventsResponse)(nil),                // 72: agent.agent.v1alpha.GetTableEventsResponse
-	(*TableEvent)(nil),                            // 73: agent.agent.v1alpha.TableEvent
-	(*TableUpdatedEvent)(nil),                     // 74: agent.agent.v1alpha.TableUpdatedEvent
-	(*TableDeletedEvent)(nil),                     // 75: agent.agent.v1alpha.TableDeletedEvent
-	(*ColumnDefinitionsUpdatedEvent)(nil),         // 76: agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent
-	(*RowInsertedEvent)(nil),                      // 77: agent.agent.v1alpha.RowInsertedEvent
-	(*RowUpdatedEvent)(nil),                       // 78: agent.agent.v1alpha.RowUpdatedEvent
-	(*RowDeletedEvent)(nil),                       // 79: agent.agent.v1alpha.RowDeletedEvent
-	(*RowsMovedEvent)(nil),                        // 80: agent.agent.v1alpha.RowsMovedEvent
-	(*CellUpdatedEvent)(nil),                      // 81: agent.agent.v1alpha.CellUpdatedEvent
-	(*GenerateMockTableRequest)(nil),              // 82: agent.agent.v1alpha.GenerateMockTableRequest
-	(*GenerateMockTableResponse)(nil),             // 83: agent.agent.v1alpha.GenerateMockTableResponse
-	(*BindChatTableRequest)(nil),                  // 84: agent.agent.v1alpha.BindChatTableRequest
-	(*BindChatTableResponse)(nil),                 // 85: agent.agent.v1alpha.BindChatTableResponse
-	(*UnbindChatTableRequest)(nil),                // 86: agent.agent.v1alpha.UnbindChatTableRequest
-	(*UnbindChatTableResponse)(nil),               // 87: agent.agent.v1alpha.UnbindChatTableResponse
-	(*ListChatTablesRequest)(nil),                 // 88: agent.agent.v1alpha.ListChatTablesRequest
-	(*ListChatTablesResponse)(nil),                // 89: agent.agent.v1alpha.ListChatTablesResponse
-	(*SuggestColumnDefinitionRequest)(nil),        // 90: agent.agent.v1alpha.SuggestColumnDefinitionRequest
-	(*SuggestColumnDefinitionResponse)(nil),       // 91: agent.agent.v1alpha.SuggestColumnDefinitionResponse
-	(*Table_AgentConfig)(nil),                     // 92: agent.agent.v1alpha.Table.AgentConfig
-	(*Table_Permission)(nil),                      // 93: agent.agent.v1alpha.Table.Permission
-	(*ColumnDefinition_AgentConfig)(nil),          // 94: agent.agent.v1alpha.ColumnDefinition.AgentConfig
-	(*ColumnDefinition_Selection)(nil),            // 95: agent.agent.v1alpha.ColumnDefinition.Selection
-	(*ColumnDefinition_AgentConfig_Context)(nil),  // 96: agent.agent.v1alpha.ColumnDefinition.AgentConfig.Context
-	(*ColumnDefinition_Selection_Option)(nil),     // 97: agent.agent.v1alpha.ColumnDefinition.Selection.Option
-	nil,                           // 98: agent.agent.v1alpha.GetColumnDefinitionsResponse.ColumnDefinitionsEntry
-	nil,                           // 99: agent.agent.v1alpha.UpdateColumnDefinitionsRequest.ColumnDefinitionsEntry
-	nil,                           // 100: agent.agent.v1alpha.UpdateColumnDefinitionsResponse.ColumnDefinitionsEntry
-	(*Cell_Transparency)(nil),     // 101: agent.agent.v1alpha.Cell.Transparency
-	nil,                           // 102: agent.agent.v1alpha.Row.CellsEntry
-	nil,                           // 103: agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent.ColumnDefinitionsEntry
-	(*structpb.Struct)(nil),       // 104: google.protobuf.Struct
-	(*timestamppb.Timestamp)(nil), // 105: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil), // 106: google.protobuf.FieldMask
-	(*Citation)(nil),              // 107: agent.agent.v1alpha.Citation
-	(*Message)(nil),               // 108: agent.agent.v1alpha.Message
+	(Type)(0),                                           // 0: agent.agent.v1alpha.Type
+	(CellStatus)(0),                                     // 1: agent.agent.v1alpha.CellStatus
+	(LockState)(0),                                      // 2: agent.agent.v1alpha.LockState
+	(ExportFormat)(0),                                   // 3: agent.agent.v1alpha.ExportFormat
+	(NumberFormat_Format)(0),                            // 4: agent.agent.v1alpha.NumberFormat.Format
+	(Selection_SelectionType)(0),                        // 5: agent.agent.v1alpha.Selection.SelectionType
+	(ColumnDefinition_Sort)(0),                          // 6: agent.agent.v1alpha.ColumnDefinition.Sort
+	(GenerateMockTableRequest_Mode)(0),                  // 7: agent.agent.v1alpha.GenerateMockTableRequest.Mode
+	(*Table)(nil),                                       // 8: agent.agent.v1alpha.Table
+	(*CreateTableFromTemplateRequest)(nil),              // 9: agent.agent.v1alpha.CreateTableFromTemplateRequest
+	(*CreateTableFromTemplateResponse)(nil),             // 10: agent.agent.v1alpha.CreateTableFromTemplateResponse
+	(*ListTablesRequest)(nil),                           // 11: agent.agent.v1alpha.ListTablesRequest
+	(*ListTablesResponse)(nil),                          // 12: agent.agent.v1alpha.ListTablesResponse
+	(*CreateTableRequest)(nil),                          // 13: agent.agent.v1alpha.CreateTableRequest
+	(*CreateTableResponse)(nil),                         // 14: agent.agent.v1alpha.CreateTableResponse
+	(*GetTableRequest)(nil),                             // 15: agent.agent.v1alpha.GetTableRequest
+	(*GetTableResponse)(nil),                            // 16: agent.agent.v1alpha.GetTableResponse
+	(*UpdateTableRequest)(nil),                          // 17: agent.agent.v1alpha.UpdateTableRequest
+	(*UpdateTableResponse)(nil),                         // 18: agent.agent.v1alpha.UpdateTableResponse
+	(*DeleteTableRequest)(nil),                          // 19: agent.agent.v1alpha.DeleteTableRequest
+	(*DeleteTableResponse)(nil),                         // 20: agent.agent.v1alpha.DeleteTableResponse
+	(*NumberFormat)(nil),                                // 21: agent.agent.v1alpha.NumberFormat
+	(*Selection)(nil),                                   // 22: agent.agent.v1alpha.Selection
+	(*ColumnDefinition)(nil),                            // 23: agent.agent.v1alpha.ColumnDefinition
+	(*GetColumnDefinitionsRequest)(nil),                 // 24: agent.agent.v1alpha.GetColumnDefinitionsRequest
+	(*GetColumnDefinitionsResponse)(nil),                // 25: agent.agent.v1alpha.GetColumnDefinitionsResponse
+	(*UpdateColumnDefinitionsRequest)(nil),              // 26: agent.agent.v1alpha.UpdateColumnDefinitionsRequest
+	(*UpdateColumnDefinitionsResponse)(nil),             // 27: agent.agent.v1alpha.UpdateColumnDefinitionsResponse
+	(*GetColumnDefinitionRequest)(nil),                  // 28: agent.agent.v1alpha.GetColumnDefinitionRequest
+	(*GetColumnDefinitionResponse)(nil),                 // 29: agent.agent.v1alpha.GetColumnDefinitionResponse
+	(*RecomputeColumnRequest)(nil),                      // 30: agent.agent.v1alpha.RecomputeColumnRequest
+	(*RecomputeColumnResponse)(nil),                     // 31: agent.agent.v1alpha.RecomputeColumnResponse
+	(*Cell)(nil),                                        // 32: agent.agent.v1alpha.Cell
+	(*NullCell)(nil),                                    // 33: agent.agent.v1alpha.NullCell
+	(*StringCell)(nil),                                  // 34: agent.agent.v1alpha.StringCell
+	(*NumberCell)(nil),                                  // 35: agent.agent.v1alpha.NumberCell
+	(*BooleanCell)(nil),                                 // 36: agent.agent.v1alpha.BooleanCell
+	(*FileCell)(nil),                                    // 37: agent.agent.v1alpha.FileCell
+	(*DocumentCell)(nil),                                // 38: agent.agent.v1alpha.DocumentCell
+	(*Row)(nil),                                         // 39: agent.agent.v1alpha.Row
+	(*ListRowsRequest)(nil),                             // 40: agent.agent.v1alpha.ListRowsRequest
+	(*ListRowsResponse)(nil),                            // 41: agent.agent.v1alpha.ListRowsResponse
+	(*InsertRowRequest)(nil),                            // 42: agent.agent.v1alpha.InsertRowRequest
+	(*InsertRowResponse)(nil),                           // 43: agent.agent.v1alpha.InsertRowResponse
+	(*UpdateRowRequest)(nil),                            // 44: agent.agent.v1alpha.UpdateRowRequest
+	(*UpdateRowResponse)(nil),                           // 45: agent.agent.v1alpha.UpdateRowResponse
+	(*GetRowRequest)(nil),                               // 46: agent.agent.v1alpha.GetRowRequest
+	(*GetRowResponse)(nil),                              // 47: agent.agent.v1alpha.GetRowResponse
+	(*UpdateRowsRequest)(nil),                           // 48: agent.agent.v1alpha.UpdateRowsRequest
+	(*UpdateRowsResponse)(nil),                          // 49: agent.agent.v1alpha.UpdateRowsResponse
+	(*DeleteRowRequest)(nil),                            // 50: agent.agent.v1alpha.DeleteRowRequest
+	(*DeleteRowResponse)(nil),                           // 51: agent.agent.v1alpha.DeleteRowResponse
+	(*DeleteRowsRequest)(nil),                           // 52: agent.agent.v1alpha.DeleteRowsRequest
+	(*DeleteRowsResponse)(nil),                          // 53: agent.agent.v1alpha.DeleteRowsResponse
+	(*MoveRowsRequest)(nil),                             // 54: agent.agent.v1alpha.MoveRowsRequest
+	(*MoveRowsResponse)(nil),                            // 55: agent.agent.v1alpha.MoveRowsResponse
+	(*GetCellRequest)(nil),                              // 56: agent.agent.v1alpha.GetCellRequest
+	(*GetCellResponse)(nil),                             // 57: agent.agent.v1alpha.GetCellResponse
+	(*UpdateCellRequest)(nil),                           // 58: agent.agent.v1alpha.UpdateCellRequest
+	(*UpdateCellResponse)(nil),                          // 59: agent.agent.v1alpha.UpdateCellResponse
+	(*RecomputeCellRequest)(nil),                        // 60: agent.agent.v1alpha.RecomputeCellRequest
+	(*RecomputeCellResponse)(nil),                       // 61: agent.agent.v1alpha.RecomputeCellResponse
+	(*ResetCellRequest)(nil),                            // 62: agent.agent.v1alpha.ResetCellRequest
+	(*ResetCellResponse)(nil),                           // 63: agent.agent.v1alpha.ResetCellResponse
+	(*ListCellAutofillAgentMessagesRequest)(nil),        // 64: agent.agent.v1alpha.ListCellAutofillAgentMessagesRequest
+	(*ListCellAutofillAgentMessagesResponse)(nil),       // 65: agent.agent.v1alpha.ListCellAutofillAgentMessagesResponse
+	(*LockCellRequest)(nil),                             // 66: agent.agent.v1alpha.LockCellRequest
+	(*LockCellResponse)(nil),                            // 67: agent.agent.v1alpha.LockCellResponse
+	(*UnlockCellRequest)(nil),                           // 68: agent.agent.v1alpha.UnlockCellRequest
+	(*UnlockCellResponse)(nil),                          // 69: agent.agent.v1alpha.UnlockCellResponse
+	(*ExportTableRequest)(nil),                          // 70: agent.agent.v1alpha.ExportTableRequest
+	(*ExportTableResponse)(nil),                         // 71: agent.agent.v1alpha.ExportTableResponse
+	(*GetTableEventsRequest)(nil),                       // 72: agent.agent.v1alpha.GetTableEventsRequest
+	(*GetTableEventsResponse)(nil),                      // 73: agent.agent.v1alpha.GetTableEventsResponse
+	(*TableEvent)(nil),                                  // 74: agent.agent.v1alpha.TableEvent
+	(*TableUpdatedEvent)(nil),                           // 75: agent.agent.v1alpha.TableUpdatedEvent
+	(*TableDeletedEvent)(nil),                           // 76: agent.agent.v1alpha.TableDeletedEvent
+	(*ColumnDefinitionsUpdatedEvent)(nil),               // 77: agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent
+	(*RowInsertedEvent)(nil),                            // 78: agent.agent.v1alpha.RowInsertedEvent
+	(*RowUpdatedEvent)(nil),                             // 79: agent.agent.v1alpha.RowUpdatedEvent
+	(*RowDeletedEvent)(nil),                             // 80: agent.agent.v1alpha.RowDeletedEvent
+	(*RowsMovedEvent)(nil),                              // 81: agent.agent.v1alpha.RowsMovedEvent
+	(*CellUpdatedEvent)(nil),                            // 82: agent.agent.v1alpha.CellUpdatedEvent
+	(*GenerateMockTableRequest)(nil),                    // 83: agent.agent.v1alpha.GenerateMockTableRequest
+	(*GenerateMockTableResponse)(nil),                   // 84: agent.agent.v1alpha.GenerateMockTableResponse
+	(*BindChatTableRequest)(nil),                        // 85: agent.agent.v1alpha.BindChatTableRequest
+	(*BindChatTableResponse)(nil),                       // 86: agent.agent.v1alpha.BindChatTableResponse
+	(*UnbindChatTableRequest)(nil),                      // 87: agent.agent.v1alpha.UnbindChatTableRequest
+	(*UnbindChatTableResponse)(nil),                     // 88: agent.agent.v1alpha.UnbindChatTableResponse
+	(*ListChatTablesRequest)(nil),                       // 89: agent.agent.v1alpha.ListChatTablesRequest
+	(*ListChatTablesResponse)(nil),                      // 90: agent.agent.v1alpha.ListChatTablesResponse
+	(*SuggestColumnDefinitionRequest)(nil),              // 91: agent.agent.v1alpha.SuggestColumnDefinitionRequest
+	(*SuggestColumnDefinitionResponse)(nil),             // 92: agent.agent.v1alpha.SuggestColumnDefinitionResponse
+	(*EnhanceColumnDefinitionInstructionsRequest)(nil),  // 93: agent.agent.v1alpha.EnhanceColumnDefinitionInstructionsRequest
+	(*EnhanceColumnDefinitionInstructionsResponse)(nil), // 94: agent.agent.v1alpha.EnhanceColumnDefinitionInstructionsResponse
+	(*Table_AgentConfig)(nil),                           // 95: agent.agent.v1alpha.Table.AgentConfig
+	(*Table_Permission)(nil),                            // 96: agent.agent.v1alpha.Table.Permission
+	(*Selection_Option)(nil),                            // 97: agent.agent.v1alpha.Selection.Option
+	(*ColumnDefinition_AgentConfig)(nil),                // 98: agent.agent.v1alpha.ColumnDefinition.AgentConfig
+	(*ColumnDefinition_AgentConfig_Context)(nil),        // 99: agent.agent.v1alpha.ColumnDefinition.AgentConfig.Context
+	nil,                           // 100: agent.agent.v1alpha.GetColumnDefinitionsResponse.ColumnDefinitionsEntry
+	nil,                           // 101: agent.agent.v1alpha.UpdateColumnDefinitionsRequest.ColumnDefinitionsEntry
+	nil,                           // 102: agent.agent.v1alpha.UpdateColumnDefinitionsResponse.ColumnDefinitionsEntry
+	(*Cell_Transparency)(nil),     // 103: agent.agent.v1alpha.Cell.Transparency
+	nil,                           // 104: agent.agent.v1alpha.Row.CellsEntry
+	nil,                           // 105: agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent.ColumnDefinitionsEntry
+	(*structpb.Struct)(nil),       // 106: google.protobuf.Struct
+	(*timestamppb.Timestamp)(nil), // 107: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil), // 108: google.protobuf.FieldMask
+	(*Citation)(nil),              // 109: agent.agent.v1alpha.Citation
+	(*Message)(nil),               // 110: agent.agent.v1alpha.Message
 }
 var file_agent_agent_v1alpha_table_proto_depIdxs = []int32{
-	104, // 0: agent.agent.v1alpha.Table.metadata:type_name -> google.protobuf.Struct
-	105, // 1: agent.agent.v1alpha.Table.create_time:type_name -> google.protobuf.Timestamp
-	105, // 2: agent.agent.v1alpha.Table.update_time:type_name -> google.protobuf.Timestamp
-	92,  // 3: agent.agent.v1alpha.Table.agent_config:type_name -> agent.agent.v1alpha.Table.AgentConfig
-	93,  // 4: agent.agent.v1alpha.Table.permission:type_name -> agent.agent.v1alpha.Table.Permission
+	106, // 0: agent.agent.v1alpha.Table.metadata:type_name -> google.protobuf.Struct
+	107, // 1: agent.agent.v1alpha.Table.create_time:type_name -> google.protobuf.Timestamp
+	107, // 2: agent.agent.v1alpha.Table.update_time:type_name -> google.protobuf.Timestamp
+	95,  // 3: agent.agent.v1alpha.Table.agent_config:type_name -> agent.agent.v1alpha.Table.AgentConfig
+	96,  // 4: agent.agent.v1alpha.Table.permission:type_name -> agent.agent.v1alpha.Table.Permission
 	8,   // 5: agent.agent.v1alpha.CreateTableFromTemplateRequest.table:type_name -> agent.agent.v1alpha.Table
 	8,   // 6: agent.agent.v1alpha.CreateTableFromTemplateResponse.table:type_name -> agent.agent.v1alpha.Table
 	8,   // 7: agent.agent.v1alpha.ListTablesResponse.tables:type_name -> agent.agent.v1alpha.Table
@@ -6801,82 +6987,84 @@ var file_agent_agent_v1alpha_table_proto_depIdxs = []int32{
 	8,   // 9: agent.agent.v1alpha.CreateTableResponse.table:type_name -> agent.agent.v1alpha.Table
 	8,   // 10: agent.agent.v1alpha.GetTableResponse.table:type_name -> agent.agent.v1alpha.Table
 	8,   // 11: agent.agent.v1alpha.UpdateTableRequest.table:type_name -> agent.agent.v1alpha.Table
-	106, // 12: agent.agent.v1alpha.UpdateTableRequest.update_mask:type_name -> google.protobuf.FieldMask
+	108, // 12: agent.agent.v1alpha.UpdateTableRequest.update_mask:type_name -> google.protobuf.FieldMask
 	8,   // 13: agent.agent.v1alpha.UpdateTableResponse.table:type_name -> agent.agent.v1alpha.Table
 	4,   // 14: agent.agent.v1alpha.NumberFormat.format:type_name -> agent.agent.v1alpha.NumberFormat.Format
-	0,   // 15: agent.agent.v1alpha.ColumnDefinition.type:type_name -> agent.agent.v1alpha.Type
-	94,  // 16: agent.agent.v1alpha.ColumnDefinition.agent_config:type_name -> agent.agent.v1alpha.ColumnDefinition.AgentConfig
-	5,   // 17: agent.agent.v1alpha.ColumnDefinition.sort:type_name -> agent.agent.v1alpha.ColumnDefinition.Sort
-	21,  // 18: agent.agent.v1alpha.ColumnDefinition.number_format:type_name -> agent.agent.v1alpha.NumberFormat
-	95,  // 19: agent.agent.v1alpha.ColumnDefinition.selection:type_name -> agent.agent.v1alpha.ColumnDefinition.Selection
-	104, // 20: agent.agent.v1alpha.ColumnDefinition.metadata:type_name -> google.protobuf.Struct
-	98,  // 21: agent.agent.v1alpha.GetColumnDefinitionsResponse.column_definitions:type_name -> agent.agent.v1alpha.GetColumnDefinitionsResponse.ColumnDefinitionsEntry
-	99,  // 22: agent.agent.v1alpha.UpdateColumnDefinitionsRequest.column_definitions:type_name -> agent.agent.v1alpha.UpdateColumnDefinitionsRequest.ColumnDefinitionsEntry
-	100, // 23: agent.agent.v1alpha.UpdateColumnDefinitionsResponse.column_definitions:type_name -> agent.agent.v1alpha.UpdateColumnDefinitionsResponse.ColumnDefinitionsEntry
-	22,  // 24: agent.agent.v1alpha.GetColumnDefinitionResponse.column_definition:type_name -> agent.agent.v1alpha.ColumnDefinition
-	105, // 25: agent.agent.v1alpha.Cell.update_time:type_name -> google.protobuf.Timestamp
-	0,   // 26: agent.agent.v1alpha.Cell.type:type_name -> agent.agent.v1alpha.Type
-	33,  // 27: agent.agent.v1alpha.Cell.string_value:type_name -> agent.agent.v1alpha.StringCell
-	34,  // 28: agent.agent.v1alpha.Cell.number_value:type_name -> agent.agent.v1alpha.NumberCell
-	35,  // 29: agent.agent.v1alpha.Cell.boolean_value:type_name -> agent.agent.v1alpha.BooleanCell
-	36,  // 30: agent.agent.v1alpha.Cell.file_value:type_name -> agent.agent.v1alpha.FileCell
-	37,  // 31: agent.agent.v1alpha.Cell.document_value:type_name -> agent.agent.v1alpha.DocumentCell
-	104, // 32: agent.agent.v1alpha.Cell.metadata:type_name -> google.protobuf.Struct
-	1,   // 33: agent.agent.v1alpha.Cell.status:type_name -> agent.agent.v1alpha.CellStatus
-	107, // 34: agent.agent.v1alpha.Cell.citations:type_name -> agent.agent.v1alpha.Citation
-	101, // 35: agent.agent.v1alpha.Cell.transparency:type_name -> agent.agent.v1alpha.Cell.Transparency
-	2,   // 36: agent.agent.v1alpha.Cell.lock_state:type_name -> agent.agent.v1alpha.LockState
-	102, // 37: agent.agent.v1alpha.Row.cells:type_name -> agent.agent.v1alpha.Row.CellsEntry
-	105, // 38: agent.agent.v1alpha.Row.create_time:type_name -> google.protobuf.Timestamp
-	105, // 39: agent.agent.v1alpha.Row.update_time:type_name -> google.protobuf.Timestamp
-	38,  // 40: agent.agent.v1alpha.ListRowsResponse.rows:type_name -> agent.agent.v1alpha.Row
-	38,  // 41: agent.agent.v1alpha.InsertRowRequest.row:type_name -> agent.agent.v1alpha.Row
-	38,  // 42: agent.agent.v1alpha.InsertRowResponse.row:type_name -> agent.agent.v1alpha.Row
-	38,  // 43: agent.agent.v1alpha.UpdateRowRequest.row:type_name -> agent.agent.v1alpha.Row
-	38,  // 44: agent.agent.v1alpha.UpdateRowResponse.row:type_name -> agent.agent.v1alpha.Row
-	38,  // 45: agent.agent.v1alpha.GetRowResponse.row:type_name -> agent.agent.v1alpha.Row
-	38,  // 46: agent.agent.v1alpha.UpdateRowsRequest.rows:type_name -> agent.agent.v1alpha.Row
-	38,  // 47: agent.agent.v1alpha.UpdateRowsResponse.rows:type_name -> agent.agent.v1alpha.Row
-	31,  // 48: agent.agent.v1alpha.GetCellResponse.cell:type_name -> agent.agent.v1alpha.Cell
-	31,  // 49: agent.agent.v1alpha.UpdateCellRequest.cell:type_name -> agent.agent.v1alpha.Cell
-	31,  // 50: agent.agent.v1alpha.UpdateCellResponse.cell:type_name -> agent.agent.v1alpha.Cell
-	31,  // 51: agent.agent.v1alpha.RecomputeCellResponse.cell:type_name -> agent.agent.v1alpha.Cell
-	31,  // 52: agent.agent.v1alpha.ResetCellResponse.cell:type_name -> agent.agent.v1alpha.Cell
-	108, // 53: agent.agent.v1alpha.ListCellAutofillAgentMessagesResponse.messages:type_name -> agent.agent.v1alpha.Message
-	31,  // 54: agent.agent.v1alpha.LockCellResponse.cell:type_name -> agent.agent.v1alpha.Cell
-	31,  // 55: agent.agent.v1alpha.UnlockCellResponse.cell:type_name -> agent.agent.v1alpha.Cell
-	3,   // 56: agent.agent.v1alpha.ExportTableRequest.format:type_name -> agent.agent.v1alpha.ExportFormat
-	73,  // 57: agent.agent.v1alpha.GetTableEventsResponse.event:type_name -> agent.agent.v1alpha.TableEvent
-	74,  // 58: agent.agent.v1alpha.TableEvent.table_updated_event:type_name -> agent.agent.v1alpha.TableUpdatedEvent
-	75,  // 59: agent.agent.v1alpha.TableEvent.table_deleted_event:type_name -> agent.agent.v1alpha.TableDeletedEvent
-	76,  // 60: agent.agent.v1alpha.TableEvent.column_definitions_updated_event:type_name -> agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent
-	77,  // 61: agent.agent.v1alpha.TableEvent.row_inserted_event:type_name -> agent.agent.v1alpha.RowInsertedEvent
-	78,  // 62: agent.agent.v1alpha.TableEvent.row_updated_event:type_name -> agent.agent.v1alpha.RowUpdatedEvent
-	79,  // 63: agent.agent.v1alpha.TableEvent.row_deleted_event:type_name -> agent.agent.v1alpha.RowDeletedEvent
-	80,  // 64: agent.agent.v1alpha.TableEvent.rows_moved_event:type_name -> agent.agent.v1alpha.RowsMovedEvent
-	81,  // 65: agent.agent.v1alpha.TableEvent.cell_updated_event:type_name -> agent.agent.v1alpha.CellUpdatedEvent
-	8,   // 66: agent.agent.v1alpha.TableUpdatedEvent.table:type_name -> agent.agent.v1alpha.Table
-	103, // 67: agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent.column_definitions:type_name -> agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent.ColumnDefinitionsEntry
-	38,  // 68: agent.agent.v1alpha.RowInsertedEvent.row:type_name -> agent.agent.v1alpha.Row
-	38,  // 69: agent.agent.v1alpha.RowUpdatedEvent.row:type_name -> agent.agent.v1alpha.Row
-	31,  // 70: agent.agent.v1alpha.CellUpdatedEvent.cell:type_name -> agent.agent.v1alpha.Cell
-	7,   // 71: agent.agent.v1alpha.GenerateMockTableRequest.mode:type_name -> agent.agent.v1alpha.GenerateMockTableRequest.Mode
-	8,   // 72: agent.agent.v1alpha.ListChatTablesResponse.tables:type_name -> agent.agent.v1alpha.Table
-	0,   // 73: agent.agent.v1alpha.SuggestColumnDefinitionRequest.type:type_name -> agent.agent.v1alpha.Type
-	22,  // 74: agent.agent.v1alpha.SuggestColumnDefinitionResponse.column_definition:type_name -> agent.agent.v1alpha.ColumnDefinition
-	96,  // 75: agent.agent.v1alpha.ColumnDefinition.AgentConfig.context:type_name -> agent.agent.v1alpha.ColumnDefinition.AgentConfig.Context
-	6,   // 76: agent.agent.v1alpha.ColumnDefinition.Selection.type:type_name -> agent.agent.v1alpha.ColumnDefinition.Selection.SelectionType
-	97,  // 77: agent.agent.v1alpha.ColumnDefinition.Selection.options:type_name -> agent.agent.v1alpha.ColumnDefinition.Selection.Option
-	22,  // 78: agent.agent.v1alpha.GetColumnDefinitionsResponse.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
-	22,  // 79: agent.agent.v1alpha.UpdateColumnDefinitionsRequest.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
-	22,  // 80: agent.agent.v1alpha.UpdateColumnDefinitionsResponse.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
-	31,  // 81: agent.agent.v1alpha.Row.CellsEntry.value:type_name -> agent.agent.v1alpha.Cell
-	22,  // 82: agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
-	83,  // [83:83] is the sub-list for method output_type
-	83,  // [83:83] is the sub-list for method input_type
-	83,  // [83:83] is the sub-list for extension type_name
-	83,  // [83:83] is the sub-list for extension extendee
-	0,   // [0:83] is the sub-list for field type_name
+	5,   // 15: agent.agent.v1alpha.Selection.type:type_name -> agent.agent.v1alpha.Selection.SelectionType
+	97,  // 16: agent.agent.v1alpha.Selection.options:type_name -> agent.agent.v1alpha.Selection.Option
+	0,   // 17: agent.agent.v1alpha.ColumnDefinition.type:type_name -> agent.agent.v1alpha.Type
+	98,  // 18: agent.agent.v1alpha.ColumnDefinition.agent_config:type_name -> agent.agent.v1alpha.ColumnDefinition.AgentConfig
+	6,   // 19: agent.agent.v1alpha.ColumnDefinition.sort:type_name -> agent.agent.v1alpha.ColumnDefinition.Sort
+	21,  // 20: agent.agent.v1alpha.ColumnDefinition.number_format:type_name -> agent.agent.v1alpha.NumberFormat
+	22,  // 21: agent.agent.v1alpha.ColumnDefinition.selection:type_name -> agent.agent.v1alpha.Selection
+	106, // 22: agent.agent.v1alpha.ColumnDefinition.metadata:type_name -> google.protobuf.Struct
+	100, // 23: agent.agent.v1alpha.GetColumnDefinitionsResponse.column_definitions:type_name -> agent.agent.v1alpha.GetColumnDefinitionsResponse.ColumnDefinitionsEntry
+	101, // 24: agent.agent.v1alpha.UpdateColumnDefinitionsRequest.column_definitions:type_name -> agent.agent.v1alpha.UpdateColumnDefinitionsRequest.ColumnDefinitionsEntry
+	102, // 25: agent.agent.v1alpha.UpdateColumnDefinitionsResponse.column_definitions:type_name -> agent.agent.v1alpha.UpdateColumnDefinitionsResponse.ColumnDefinitionsEntry
+	23,  // 26: agent.agent.v1alpha.GetColumnDefinitionResponse.column_definition:type_name -> agent.agent.v1alpha.ColumnDefinition
+	107, // 27: agent.agent.v1alpha.Cell.update_time:type_name -> google.protobuf.Timestamp
+	0,   // 28: agent.agent.v1alpha.Cell.type:type_name -> agent.agent.v1alpha.Type
+	34,  // 29: agent.agent.v1alpha.Cell.string_value:type_name -> agent.agent.v1alpha.StringCell
+	35,  // 30: agent.agent.v1alpha.Cell.number_value:type_name -> agent.agent.v1alpha.NumberCell
+	36,  // 31: agent.agent.v1alpha.Cell.boolean_value:type_name -> agent.agent.v1alpha.BooleanCell
+	37,  // 32: agent.agent.v1alpha.Cell.file_value:type_name -> agent.agent.v1alpha.FileCell
+	38,  // 33: agent.agent.v1alpha.Cell.document_value:type_name -> agent.agent.v1alpha.DocumentCell
+	106, // 34: agent.agent.v1alpha.Cell.metadata:type_name -> google.protobuf.Struct
+	1,   // 35: agent.agent.v1alpha.Cell.status:type_name -> agent.agent.v1alpha.CellStatus
+	109, // 36: agent.agent.v1alpha.Cell.citations:type_name -> agent.agent.v1alpha.Citation
+	103, // 37: agent.agent.v1alpha.Cell.transparency:type_name -> agent.agent.v1alpha.Cell.Transparency
+	2,   // 38: agent.agent.v1alpha.Cell.lock_state:type_name -> agent.agent.v1alpha.LockState
+	104, // 39: agent.agent.v1alpha.Row.cells:type_name -> agent.agent.v1alpha.Row.CellsEntry
+	107, // 40: agent.agent.v1alpha.Row.create_time:type_name -> google.protobuf.Timestamp
+	107, // 41: agent.agent.v1alpha.Row.update_time:type_name -> google.protobuf.Timestamp
+	39,  // 42: agent.agent.v1alpha.ListRowsResponse.rows:type_name -> agent.agent.v1alpha.Row
+	39,  // 43: agent.agent.v1alpha.InsertRowRequest.row:type_name -> agent.agent.v1alpha.Row
+	39,  // 44: agent.agent.v1alpha.InsertRowResponse.row:type_name -> agent.agent.v1alpha.Row
+	39,  // 45: agent.agent.v1alpha.UpdateRowRequest.row:type_name -> agent.agent.v1alpha.Row
+	39,  // 46: agent.agent.v1alpha.UpdateRowResponse.row:type_name -> agent.agent.v1alpha.Row
+	39,  // 47: agent.agent.v1alpha.GetRowResponse.row:type_name -> agent.agent.v1alpha.Row
+	39,  // 48: agent.agent.v1alpha.UpdateRowsRequest.rows:type_name -> agent.agent.v1alpha.Row
+	39,  // 49: agent.agent.v1alpha.UpdateRowsResponse.rows:type_name -> agent.agent.v1alpha.Row
+	32,  // 50: agent.agent.v1alpha.GetCellResponse.cell:type_name -> agent.agent.v1alpha.Cell
+	32,  // 51: agent.agent.v1alpha.UpdateCellRequest.cell:type_name -> agent.agent.v1alpha.Cell
+	32,  // 52: agent.agent.v1alpha.UpdateCellResponse.cell:type_name -> agent.agent.v1alpha.Cell
+	32,  // 53: agent.agent.v1alpha.RecomputeCellResponse.cell:type_name -> agent.agent.v1alpha.Cell
+	32,  // 54: agent.agent.v1alpha.ResetCellResponse.cell:type_name -> agent.agent.v1alpha.Cell
+	110, // 55: agent.agent.v1alpha.ListCellAutofillAgentMessagesResponse.messages:type_name -> agent.agent.v1alpha.Message
+	32,  // 56: agent.agent.v1alpha.LockCellResponse.cell:type_name -> agent.agent.v1alpha.Cell
+	32,  // 57: agent.agent.v1alpha.UnlockCellResponse.cell:type_name -> agent.agent.v1alpha.Cell
+	3,   // 58: agent.agent.v1alpha.ExportTableRequest.format:type_name -> agent.agent.v1alpha.ExportFormat
+	74,  // 59: agent.agent.v1alpha.GetTableEventsResponse.event:type_name -> agent.agent.v1alpha.TableEvent
+	75,  // 60: agent.agent.v1alpha.TableEvent.table_updated_event:type_name -> agent.agent.v1alpha.TableUpdatedEvent
+	76,  // 61: agent.agent.v1alpha.TableEvent.table_deleted_event:type_name -> agent.agent.v1alpha.TableDeletedEvent
+	77,  // 62: agent.agent.v1alpha.TableEvent.column_definitions_updated_event:type_name -> agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent
+	78,  // 63: agent.agent.v1alpha.TableEvent.row_inserted_event:type_name -> agent.agent.v1alpha.RowInsertedEvent
+	79,  // 64: agent.agent.v1alpha.TableEvent.row_updated_event:type_name -> agent.agent.v1alpha.RowUpdatedEvent
+	80,  // 65: agent.agent.v1alpha.TableEvent.row_deleted_event:type_name -> agent.agent.v1alpha.RowDeletedEvent
+	81,  // 66: agent.agent.v1alpha.TableEvent.rows_moved_event:type_name -> agent.agent.v1alpha.RowsMovedEvent
+	82,  // 67: agent.agent.v1alpha.TableEvent.cell_updated_event:type_name -> agent.agent.v1alpha.CellUpdatedEvent
+	8,   // 68: agent.agent.v1alpha.TableUpdatedEvent.table:type_name -> agent.agent.v1alpha.Table
+	105, // 69: agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent.column_definitions:type_name -> agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent.ColumnDefinitionsEntry
+	39,  // 70: agent.agent.v1alpha.RowInsertedEvent.row:type_name -> agent.agent.v1alpha.Row
+	39,  // 71: agent.agent.v1alpha.RowUpdatedEvent.row:type_name -> agent.agent.v1alpha.Row
+	32,  // 72: agent.agent.v1alpha.CellUpdatedEvent.cell:type_name -> agent.agent.v1alpha.Cell
+	7,   // 73: agent.agent.v1alpha.GenerateMockTableRequest.mode:type_name -> agent.agent.v1alpha.GenerateMockTableRequest.Mode
+	8,   // 74: agent.agent.v1alpha.ListChatTablesResponse.tables:type_name -> agent.agent.v1alpha.Table
+	0,   // 75: agent.agent.v1alpha.SuggestColumnDefinitionRequest.type:type_name -> agent.agent.v1alpha.Type
+	22,  // 76: agent.agent.v1alpha.SuggestColumnDefinitionRequest.selection:type_name -> agent.agent.v1alpha.Selection
+	23,  // 77: agent.agent.v1alpha.SuggestColumnDefinitionResponse.column_definition:type_name -> agent.agent.v1alpha.ColumnDefinition
+	23,  // 78: agent.agent.v1alpha.EnhanceColumnDefinitionInstructionsRequest.column_definition:type_name -> agent.agent.v1alpha.ColumnDefinition
+	99,  // 79: agent.agent.v1alpha.ColumnDefinition.AgentConfig.context:type_name -> agent.agent.v1alpha.ColumnDefinition.AgentConfig.Context
+	23,  // 80: agent.agent.v1alpha.GetColumnDefinitionsResponse.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
+	23,  // 81: agent.agent.v1alpha.UpdateColumnDefinitionsRequest.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
+	23,  // 82: agent.agent.v1alpha.UpdateColumnDefinitionsResponse.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
+	32,  // 83: agent.agent.v1alpha.Row.CellsEntry.value:type_name -> agent.agent.v1alpha.Cell
+	23,  // 84: agent.agent.v1alpha.ColumnDefinitionsUpdatedEvent.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
+	85,  // [85:85] is the sub-list for method output_type
+	85,  // [85:85] is the sub-list for method input_type
+	85,  // [85:85] is the sub-list for extension type_name
+	85,  // [85:85] is the sub-list for extension extendee
+	0,   // [0:85] is the sub-list for field type_name
 }
 
 func init() { file_agent_agent_v1alpha_table_proto_init() }
@@ -6886,22 +7074,22 @@ func file_agent_agent_v1alpha_table_proto_init() {
 	}
 	file_agent_agent_v1alpha_common_proto_init()
 	file_agent_agent_v1alpha_table_proto_msgTypes[0].OneofWrappers = []any{}
-	file_agent_agent_v1alpha_table_proto_msgTypes[14].OneofWrappers = []any{
+	file_agent_agent_v1alpha_table_proto_msgTypes[15].OneofWrappers = []any{
 		(*ColumnDefinition_NumberFormat)(nil),
 	}
-	file_agent_agent_v1alpha_table_proto_msgTypes[23].OneofWrappers = []any{
+	file_agent_agent_v1alpha_table_proto_msgTypes[24].OneofWrappers = []any{
 		(*Cell_StringValue)(nil),
 		(*Cell_NumberValue)(nil),
 		(*Cell_BooleanValue)(nil),
 		(*Cell_FileValue)(nil),
 		(*Cell_DocumentValue)(nil),
 	}
-	file_agent_agent_v1alpha_table_proto_msgTypes[25].OneofWrappers = []any{}
 	file_agent_agent_v1alpha_table_proto_msgTypes[26].OneofWrappers = []any{}
 	file_agent_agent_v1alpha_table_proto_msgTypes[27].OneofWrappers = []any{}
-	file_agent_agent_v1alpha_table_proto_msgTypes[33].OneofWrappers = []any{}
-	file_agent_agent_v1alpha_table_proto_msgTypes[45].OneofWrappers = []any{}
-	file_agent_agent_v1alpha_table_proto_msgTypes[65].OneofWrappers = []any{
+	file_agent_agent_v1alpha_table_proto_msgTypes[28].OneofWrappers = []any{}
+	file_agent_agent_v1alpha_table_proto_msgTypes[34].OneofWrappers = []any{}
+	file_agent_agent_v1alpha_table_proto_msgTypes[46].OneofWrappers = []any{}
+	file_agent_agent_v1alpha_table_proto_msgTypes[66].OneofWrappers = []any{
 		(*TableEvent_TableUpdatedEvent)(nil),
 		(*TableEvent_TableDeletedEvent)(nil),
 		(*TableEvent_ColumnDefinitionsUpdatedEvent)(nil),
@@ -6911,21 +7099,22 @@ func file_agent_agent_v1alpha_table_proto_init() {
 		(*TableEvent_RowsMovedEvent)(nil),
 		(*TableEvent_CellUpdatedEvent)(nil),
 	}
-	file_agent_agent_v1alpha_table_proto_msgTypes[72].OneofWrappers = []any{}
-	file_agent_agent_v1alpha_table_proto_msgTypes[74].OneofWrappers = []any{}
-	file_agent_agent_v1alpha_table_proto_msgTypes[82].OneofWrappers = []any{}
-	file_agent_agent_v1alpha_table_proto_msgTypes[86].OneofWrappers = []any{}
+	file_agent_agent_v1alpha_table_proto_msgTypes[73].OneofWrappers = []any{}
+	file_agent_agent_v1alpha_table_proto_msgTypes[75].OneofWrappers = []any{}
+	file_agent_agent_v1alpha_table_proto_msgTypes[83].OneofWrappers = []any{}
+	file_agent_agent_v1alpha_table_proto_msgTypes[85].OneofWrappers = []any{}
 	file_agent_agent_v1alpha_table_proto_msgTypes[89].OneofWrappers = []any{
-		(*ColumnDefinition_Selection_Option_StringValue)(nil),
-		(*ColumnDefinition_Selection_Option_NumberValue)(nil),
+		(*Selection_Option_StringValue)(nil),
+		(*Selection_Option_NumberValue)(nil),
 	}
+	file_agent_agent_v1alpha_table_proto_msgTypes[90].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_agent_agent_v1alpha_table_proto_rawDesc), len(file_agent_agent_v1alpha_table_proto_rawDesc)),
 			NumEnums:      8,
-			NumMessages:   96,
+			NumMessages:   98,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

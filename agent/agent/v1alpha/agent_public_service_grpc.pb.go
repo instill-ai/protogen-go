@@ -19,53 +19,54 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AgentPublicService_Liveness_FullMethodName                      = "/agent.agent.v1alpha.AgentPublicService/Liveness"
-	AgentPublicService_Readiness_FullMethodName                     = "/agent.agent.v1alpha.AgentPublicService/Readiness"
-	AgentPublicService_CreateChat_FullMethodName                    = "/agent.agent.v1alpha.AgentPublicService/CreateChat"
-	AgentPublicService_ListChats_FullMethodName                     = "/agent.agent.v1alpha.AgentPublicService/ListChats"
-	AgentPublicService_UpdateChat_FullMethodName                    = "/agent.agent.v1alpha.AgentPublicService/UpdateChat"
-	AgentPublicService_GetChat_FullMethodName                       = "/agent.agent.v1alpha.AgentPublicService/GetChat"
-	AgentPublicService_DeleteChat_FullMethodName                    = "/agent.agent.v1alpha.AgentPublicService/DeleteChat"
-	AgentPublicService_ListMessages_FullMethodName                  = "/agent.agent.v1alpha.AgentPublicService/ListMessages"
-	AgentPublicService_ChatWithAgent_FullMethodName                 = "/agent.agent.v1alpha.AgentPublicService/ChatWithAgent"
-	AgentPublicService_BindChatTable_FullMethodName                 = "/agent.agent.v1alpha.AgentPublicService/BindChatTable"
-	AgentPublicService_UnbindChatTable_FullMethodName               = "/agent.agent.v1alpha.AgentPublicService/UnbindChatTable"
-	AgentPublicService_ListChatTables_FullMethodName                = "/agent.agent.v1alpha.AgentPublicService/ListChatTables"
-	AgentPublicService_ListTables_FullMethodName                    = "/agent.agent.v1alpha.AgentPublicService/ListTables"
-	AgentPublicService_CreateTableFromTemplate_FullMethodName       = "/agent.agent.v1alpha.AgentPublicService/CreateTableFromTemplate"
-	AgentPublicService_CreateTable_FullMethodName                   = "/agent.agent.v1alpha.AgentPublicService/CreateTable"
-	AgentPublicService_GetTable_FullMethodName                      = "/agent.agent.v1alpha.AgentPublicService/GetTable"
-	AgentPublicService_UpdateTable_FullMethodName                   = "/agent.agent.v1alpha.AgentPublicService/UpdateTable"
-	AgentPublicService_DeleteTable_FullMethodName                   = "/agent.agent.v1alpha.AgentPublicService/DeleteTable"
-	AgentPublicService_ChatWithTableBuilderAgent_FullMethodName     = "/agent.agent.v1alpha.AgentPublicService/ChatWithTableBuilderAgent"
-	AgentPublicService_ListTableBuilderAgentMessages_FullMethodName = "/agent.agent.v1alpha.AgentPublicService/ListTableBuilderAgentMessages"
-	AgentPublicService_GetColumnDefinitions_FullMethodName          = "/agent.agent.v1alpha.AgentPublicService/GetColumnDefinitions"
-	AgentPublicService_UpdateColumnDefinitions_FullMethodName       = "/agent.agent.v1alpha.AgentPublicService/UpdateColumnDefinitions"
-	AgentPublicService_SuggestColumnDefinition_FullMethodName       = "/agent.agent.v1alpha.AgentPublicService/SuggestColumnDefinition"
-	AgentPublicService_GetColumnDefinition_FullMethodName           = "/agent.agent.v1alpha.AgentPublicService/GetColumnDefinition"
-	AgentPublicService_RecomputeColumn_FullMethodName               = "/agent.agent.v1alpha.AgentPublicService/RecomputeColumn"
-	AgentPublicService_ListRows_FullMethodName                      = "/agent.agent.v1alpha.AgentPublicService/ListRows"
-	AgentPublicService_GetRow_FullMethodName                        = "/agent.agent.v1alpha.AgentPublicService/GetRow"
-	AgentPublicService_InsertRow_FullMethodName                     = "/agent.agent.v1alpha.AgentPublicService/InsertRow"
-	AgentPublicService_UpdateRow_FullMethodName                     = "/agent.agent.v1alpha.AgentPublicService/UpdateRow"
-	AgentPublicService_UpdateRows_FullMethodName                    = "/agent.agent.v1alpha.AgentPublicService/UpdateRows"
-	AgentPublicService_DeleteRow_FullMethodName                     = "/agent.agent.v1alpha.AgentPublicService/DeleteRow"
-	AgentPublicService_DeleteRows_FullMethodName                    = "/agent.agent.v1alpha.AgentPublicService/DeleteRows"
-	AgentPublicService_MoveRows_FullMethodName                      = "/agent.agent.v1alpha.AgentPublicService/MoveRows"
-	AgentPublicService_GetCell_FullMethodName                       = "/agent.agent.v1alpha.AgentPublicService/GetCell"
-	AgentPublicService_UpdateCell_FullMethodName                    = "/agent.agent.v1alpha.AgentPublicService/UpdateCell"
-	AgentPublicService_ResetCell_FullMethodName                     = "/agent.agent.v1alpha.AgentPublicService/ResetCell"
-	AgentPublicService_RecomputeCell_FullMethodName                 = "/agent.agent.v1alpha.AgentPublicService/RecomputeCell"
-	AgentPublicService_ListCellAutofillAgentMessages_FullMethodName = "/agent.agent.v1alpha.AgentPublicService/ListCellAutofillAgentMessages"
-	AgentPublicService_LockCell_FullMethodName                      = "/agent.agent.v1alpha.AgentPublicService/LockCell"
-	AgentPublicService_UnlockCell_FullMethodName                    = "/agent.agent.v1alpha.AgentPublicService/UnlockCell"
-	AgentPublicService_GetTableEvents_FullMethodName                = "/agent.agent.v1alpha.AgentPublicService/GetTableEvents"
-	AgentPublicService_ExportTable_FullMethodName                   = "/agent.agent.v1alpha.AgentPublicService/ExportTable"
-	AgentPublicService_ListFolders_FullMethodName                   = "/agent.agent.v1alpha.AgentPublicService/ListFolders"
-	AgentPublicService_CreateFolder_FullMethodName                  = "/agent.agent.v1alpha.AgentPublicService/CreateFolder"
-	AgentPublicService_GetFolder_FullMethodName                     = "/agent.agent.v1alpha.AgentPublicService/GetFolder"
-	AgentPublicService_UpdateFolder_FullMethodName                  = "/agent.agent.v1alpha.AgentPublicService/UpdateFolder"
-	AgentPublicService_DeleteFolder_FullMethodName                  = "/agent.agent.v1alpha.AgentPublicService/DeleteFolder"
+	AgentPublicService_Liveness_FullMethodName                            = "/agent.agent.v1alpha.AgentPublicService/Liveness"
+	AgentPublicService_Readiness_FullMethodName                           = "/agent.agent.v1alpha.AgentPublicService/Readiness"
+	AgentPublicService_CreateChat_FullMethodName                          = "/agent.agent.v1alpha.AgentPublicService/CreateChat"
+	AgentPublicService_ListChats_FullMethodName                           = "/agent.agent.v1alpha.AgentPublicService/ListChats"
+	AgentPublicService_UpdateChat_FullMethodName                          = "/agent.agent.v1alpha.AgentPublicService/UpdateChat"
+	AgentPublicService_GetChat_FullMethodName                             = "/agent.agent.v1alpha.AgentPublicService/GetChat"
+	AgentPublicService_DeleteChat_FullMethodName                          = "/agent.agent.v1alpha.AgentPublicService/DeleteChat"
+	AgentPublicService_ListMessages_FullMethodName                        = "/agent.agent.v1alpha.AgentPublicService/ListMessages"
+	AgentPublicService_ChatWithAgent_FullMethodName                       = "/agent.agent.v1alpha.AgentPublicService/ChatWithAgent"
+	AgentPublicService_BindChatTable_FullMethodName                       = "/agent.agent.v1alpha.AgentPublicService/BindChatTable"
+	AgentPublicService_UnbindChatTable_FullMethodName                     = "/agent.agent.v1alpha.AgentPublicService/UnbindChatTable"
+	AgentPublicService_ListChatTables_FullMethodName                      = "/agent.agent.v1alpha.AgentPublicService/ListChatTables"
+	AgentPublicService_ListTables_FullMethodName                          = "/agent.agent.v1alpha.AgentPublicService/ListTables"
+	AgentPublicService_CreateTableFromTemplate_FullMethodName             = "/agent.agent.v1alpha.AgentPublicService/CreateTableFromTemplate"
+	AgentPublicService_CreateTable_FullMethodName                         = "/agent.agent.v1alpha.AgentPublicService/CreateTable"
+	AgentPublicService_GetTable_FullMethodName                            = "/agent.agent.v1alpha.AgentPublicService/GetTable"
+	AgentPublicService_UpdateTable_FullMethodName                         = "/agent.agent.v1alpha.AgentPublicService/UpdateTable"
+	AgentPublicService_DeleteTable_FullMethodName                         = "/agent.agent.v1alpha.AgentPublicService/DeleteTable"
+	AgentPublicService_ChatWithTableBuilderAgent_FullMethodName           = "/agent.agent.v1alpha.AgentPublicService/ChatWithTableBuilderAgent"
+	AgentPublicService_ListTableBuilderAgentMessages_FullMethodName       = "/agent.agent.v1alpha.AgentPublicService/ListTableBuilderAgentMessages"
+	AgentPublicService_GetColumnDefinitions_FullMethodName                = "/agent.agent.v1alpha.AgentPublicService/GetColumnDefinitions"
+	AgentPublicService_UpdateColumnDefinitions_FullMethodName             = "/agent.agent.v1alpha.AgentPublicService/UpdateColumnDefinitions"
+	AgentPublicService_SuggestColumnDefinition_FullMethodName             = "/agent.agent.v1alpha.AgentPublicService/SuggestColumnDefinition"
+	AgentPublicService_EnhanceColumnDefinitionInstructions_FullMethodName = "/agent.agent.v1alpha.AgentPublicService/EnhanceColumnDefinitionInstructions"
+	AgentPublicService_GetColumnDefinition_FullMethodName                 = "/agent.agent.v1alpha.AgentPublicService/GetColumnDefinition"
+	AgentPublicService_RecomputeColumn_FullMethodName                     = "/agent.agent.v1alpha.AgentPublicService/RecomputeColumn"
+	AgentPublicService_ListRows_FullMethodName                            = "/agent.agent.v1alpha.AgentPublicService/ListRows"
+	AgentPublicService_GetRow_FullMethodName                              = "/agent.agent.v1alpha.AgentPublicService/GetRow"
+	AgentPublicService_InsertRow_FullMethodName                           = "/agent.agent.v1alpha.AgentPublicService/InsertRow"
+	AgentPublicService_UpdateRow_FullMethodName                           = "/agent.agent.v1alpha.AgentPublicService/UpdateRow"
+	AgentPublicService_UpdateRows_FullMethodName                          = "/agent.agent.v1alpha.AgentPublicService/UpdateRows"
+	AgentPublicService_DeleteRow_FullMethodName                           = "/agent.agent.v1alpha.AgentPublicService/DeleteRow"
+	AgentPublicService_DeleteRows_FullMethodName                          = "/agent.agent.v1alpha.AgentPublicService/DeleteRows"
+	AgentPublicService_MoveRows_FullMethodName                            = "/agent.agent.v1alpha.AgentPublicService/MoveRows"
+	AgentPublicService_GetCell_FullMethodName                             = "/agent.agent.v1alpha.AgentPublicService/GetCell"
+	AgentPublicService_UpdateCell_FullMethodName                          = "/agent.agent.v1alpha.AgentPublicService/UpdateCell"
+	AgentPublicService_ResetCell_FullMethodName                           = "/agent.agent.v1alpha.AgentPublicService/ResetCell"
+	AgentPublicService_RecomputeCell_FullMethodName                       = "/agent.agent.v1alpha.AgentPublicService/RecomputeCell"
+	AgentPublicService_ListCellAutofillAgentMessages_FullMethodName       = "/agent.agent.v1alpha.AgentPublicService/ListCellAutofillAgentMessages"
+	AgentPublicService_LockCell_FullMethodName                            = "/agent.agent.v1alpha.AgentPublicService/LockCell"
+	AgentPublicService_UnlockCell_FullMethodName                          = "/agent.agent.v1alpha.AgentPublicService/UnlockCell"
+	AgentPublicService_GetTableEvents_FullMethodName                      = "/agent.agent.v1alpha.AgentPublicService/GetTableEvents"
+	AgentPublicService_ExportTable_FullMethodName                         = "/agent.agent.v1alpha.AgentPublicService/ExportTable"
+	AgentPublicService_ListFolders_FullMethodName                         = "/agent.agent.v1alpha.AgentPublicService/ListFolders"
+	AgentPublicService_CreateFolder_FullMethodName                        = "/agent.agent.v1alpha.AgentPublicService/CreateFolder"
+	AgentPublicService_GetFolder_FullMethodName                           = "/agent.agent.v1alpha.AgentPublicService/GetFolder"
+	AgentPublicService_UpdateFolder_FullMethodName                        = "/agent.agent.v1alpha.AgentPublicService/UpdateFolder"
+	AgentPublicService_DeleteFolder_FullMethodName                        = "/agent.agent.v1alpha.AgentPublicService/DeleteFolder"
 )
 
 // AgentPublicServiceClient is the client API for AgentPublicService service.
@@ -170,6 +171,10 @@ type AgentPublicServiceClient interface {
 	//
 	// Suggests a column definition based on existing table columns and user input.
 	SuggestColumnDefinition(ctx context.Context, in *SuggestColumnDefinitionRequest, opts ...grpc.CallOption) (*SuggestColumnDefinitionResponse, error)
+	// Enhance column definition instructions
+	//
+	// Enhances the instructions of a column definition.
+	EnhanceColumnDefinitionInstructions(ctx context.Context, in *EnhanceColumnDefinitionInstructionsRequest, opts ...grpc.CallOption) (*EnhanceColumnDefinitionInstructionsResponse, error)
 	// Get column definition
 	//
 	// Gets a column definition for a table.
@@ -520,6 +525,16 @@ func (c *agentPublicServiceClient) SuggestColumnDefinition(ctx context.Context, 
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SuggestColumnDefinitionResponse)
 	err := c.cc.Invoke(ctx, AgentPublicService_SuggestColumnDefinition_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentPublicServiceClient) EnhanceColumnDefinitionInstructions(ctx context.Context, in *EnhanceColumnDefinitionInstructionsRequest, opts ...grpc.CallOption) (*EnhanceColumnDefinitionInstructionsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EnhanceColumnDefinitionInstructionsResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_EnhanceColumnDefinitionInstructions_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -877,6 +892,10 @@ type AgentPublicServiceServer interface {
 	//
 	// Suggests a column definition based on existing table columns and user input.
 	SuggestColumnDefinition(context.Context, *SuggestColumnDefinitionRequest) (*SuggestColumnDefinitionResponse, error)
+	// Enhance column definition instructions
+	//
+	// Enhances the instructions of a column definition.
+	EnhanceColumnDefinitionInstructions(context.Context, *EnhanceColumnDefinitionInstructionsRequest) (*EnhanceColumnDefinitionInstructionsResponse, error)
 	// Get column definition
 	//
 	// Gets a column definition for a table.
@@ -1052,6 +1071,9 @@ func (UnimplementedAgentPublicServiceServer) UpdateColumnDefinitions(context.Con
 }
 func (UnimplementedAgentPublicServiceServer) SuggestColumnDefinition(context.Context, *SuggestColumnDefinitionRequest) (*SuggestColumnDefinitionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SuggestColumnDefinition not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) EnhanceColumnDefinitionInstructions(context.Context, *EnhanceColumnDefinitionInstructionsRequest) (*EnhanceColumnDefinitionInstructionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EnhanceColumnDefinitionInstructions not implemented")
 }
 func (UnimplementedAgentPublicServiceServer) GetColumnDefinition(context.Context, *GetColumnDefinitionRequest) (*GetColumnDefinitionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetColumnDefinition not implemented")
@@ -1541,6 +1563,24 @@ func _AgentPublicService_SuggestColumnDefinition_Handler(srv interface{}, ctx co
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AgentPublicServiceServer).SuggestColumnDefinition(ctx, req.(*SuggestColumnDefinitionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentPublicService_EnhanceColumnDefinitionInstructions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EnhanceColumnDefinitionInstructionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).EnhanceColumnDefinitionInstructions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_EnhanceColumnDefinitionInstructions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).EnhanceColumnDefinitionInstructions(ctx, req.(*EnhanceColumnDefinitionInstructionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2060,6 +2100,10 @@ var AgentPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SuggestColumnDefinition",
 			Handler:    _AgentPublicService_SuggestColumnDefinition_Handler,
+		},
+		{
+			MethodName: "EnhanceColumnDefinitionInstructions",
+			Handler:    _AgentPublicService_EnhanceColumnDefinitionInstructions_Handler,
 		},
 		{
 			MethodName: "GetColumnDefinition",
