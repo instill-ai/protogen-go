@@ -1957,7 +1957,9 @@ type Cell struct {
 	// The transparency of the cell.
 	Transparency *Cell_Transparency `protobuf:"bytes,13,opt,name=transparency,proto3" json:"transparency,omitempty"`
 	// The lock state of the cell.
-	LockState     LockState `protobuf:"varint,15,opt,name=lock_state,json=lockState,proto3,enum=agent.agent.v1alpha.LockState" json:"lock_state,omitempty"`
+	LockState LockState `protobuf:"varint,15,opt,name=lock_state,json=lockState,proto3,enum=agent.agent.v1alpha.LockState" json:"lock_state,omitempty"`
+	// The error message of the cell.
+	ErrorMessage  string `protobuf:"bytes,16,opt,name=error_message,json=errorMessage,proto3" json:"error_message,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2112,6 +2114,13 @@ func (x *Cell) GetLockState() LockState {
 		return x.LockState
 	}
 	return LockState_LOCK_STATE_UNSPECIFIED
+}
+
+func (x *Cell) GetErrorMessage() string {
+	if x != nil {
+		return x.ErrorMessage
+	}
+	return ""
 }
 
 type isCell_Value interface {
@@ -6348,7 +6357,7 @@ const file_agent_agent_v1alpha_table_proto_rawDesc = "" +
 	"\ttable_uid\x18\x02 \x01(\tB\x03\xe0A\x02R\btableUid\x12\"\n" +
 	"\n" +
 	"column_uid\x18\x03 \x01(\tB\x03\xe0A\x02R\tcolumnUid\"\x19\n" +
-	"\x17RecomputeColumnResponse\"\xd0\a\n" +
+	"\x17RecomputeColumnResponse\"\xfa\a\n" +
 	"\x04Cell\x12\x15\n" +
 	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\"\n" +
 	"\n" +
@@ -6369,7 +6378,8 @@ const file_agent_agent_v1alpha_table_proto_rawDesc = "" +
 	"\tcitations\x18\x0e \x03(\v2\x1d.agent.agent.v1alpha.CitationB\x03\xe0A\x03R\tcitations\x12O\n" +
 	"\ftransparency\x18\r \x01(\v2&.agent.agent.v1alpha.Cell.TransparencyB\x03\xe0A\x03R\ftransparency\x12B\n" +
 	"\n" +
-	"lock_state\x18\x0f \x01(\x0e2\x1e.agent.agent.v1alpha.LockStateB\x03\xe0A\x03R\tlockState\x1a'\n" +
+	"lock_state\x18\x0f \x01(\x0e2\x1e.agent.agent.v1alpha.LockStateB\x03\xe0A\x03R\tlockState\x12(\n" +
+	"\rerror_message\x18\x10 \x01(\tB\x03\xe0A\x03R\ferrorMessage\x1a'\n" +
 	"\fTransparency\x12\x17\n" +
 	"\x04text\x18\x01 \x01(\tB\x03\xe0A\x03R\x04textB\a\n" +
 	"\x05value\"\n" +
