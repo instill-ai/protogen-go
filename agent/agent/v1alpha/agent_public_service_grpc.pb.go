@@ -28,6 +28,7 @@ const (
 	AgentPublicService_DeleteChat_FullMethodName                          = "/agent.agent.v1alpha.AgentPublicService/DeleteChat"
 	AgentPublicService_ListMessages_FullMethodName                        = "/agent.agent.v1alpha.AgentPublicService/ListMessages"
 	AgentPublicService_ChatWithAgent_FullMethodName                       = "/agent.agent.v1alpha.AgentPublicService/ChatWithAgent"
+	AgentPublicService_ListContextOptions_FullMethodName                  = "/agent.agent.v1alpha.AgentPublicService/ListContextOptions"
 	AgentPublicService_BindChatTable_FullMethodName                       = "/agent.agent.v1alpha.AgentPublicService/BindChatTable"
 	AgentPublicService_UnbindChatTable_FullMethodName                     = "/agent.agent.v1alpha.AgentPublicService/UnbindChatTable"
 	AgentPublicService_ListChatTables_FullMethodName                      = "/agent.agent.v1alpha.AgentPublicService/ListChatTables"
@@ -112,6 +113,10 @@ type AgentPublicServiceClient interface {
 	//
 	// Chat with the agent.
 	ChatWithAgent(ctx context.Context, in *ChatWithAgentRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ChatWithAgentResponse], error)
+	// List context options
+	//
+	// This is a helper endpoint to list context options for chat.
+	ListContextOptions(ctx context.Context, in *ListContextOptionsRequest, opts ...grpc.CallOption) (*ListContextOptionsResponse, error)
 	// Bind table to chat
 	//
 	// Binds a table to a chat.
@@ -381,6 +386,16 @@ func (c *agentPublicServiceClient) ChatWithAgent(ctx context.Context, in *ChatWi
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type AgentPublicService_ChatWithAgentClient = grpc.ServerStreamingClient[ChatWithAgentResponse]
+
+func (c *agentPublicServiceClient) ListContextOptions(ctx context.Context, in *ListContextOptionsRequest, opts ...grpc.CallOption) (*ListContextOptionsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListContextOptionsResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_ListContextOptions_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
 
 func (c *agentPublicServiceClient) BindChatTable(ctx context.Context, in *BindChatTableRequest, opts ...grpc.CallOption) (*BindChatTableResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
@@ -833,6 +848,10 @@ type AgentPublicServiceServer interface {
 	//
 	// Chat with the agent.
 	ChatWithAgent(*ChatWithAgentRequest, grpc.ServerStreamingServer[ChatWithAgentResponse]) error
+	// List context options
+	//
+	// This is a helper endpoint to list context options for chat.
+	ListContextOptions(context.Context, *ListContextOptionsRequest) (*ListContextOptionsResponse, error)
 	// Bind table to chat
 	//
 	// Binds a table to a chat.
@@ -1029,6 +1048,9 @@ func (UnimplementedAgentPublicServiceServer) ListMessages(context.Context, *List
 }
 func (UnimplementedAgentPublicServiceServer) ChatWithAgent(*ChatWithAgentRequest, grpc.ServerStreamingServer[ChatWithAgentResponse]) error {
 	return status.Errorf(codes.Unimplemented, "method ChatWithAgent not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) ListContextOptions(context.Context, *ListContextOptionsRequest) (*ListContextOptionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListContextOptions not implemented")
 }
 func (UnimplementedAgentPublicServiceServer) BindChatTable(context.Context, *BindChatTableRequest) (*BindChatTableResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BindChatTable not implemented")
@@ -1321,6 +1343,24 @@ func _AgentPublicService_ChatWithAgent_Handler(srv interface{}, stream grpc.Serv
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type AgentPublicService_ChatWithAgentServer = grpc.ServerStreamingServer[ChatWithAgentResponse]
+
+func _AgentPublicService_ListContextOptions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListContextOptionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).ListContextOptions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_ListContextOptions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).ListContextOptions(ctx, req.(*ListContextOptionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
 
 func _AgentPublicService_BindChatTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(BindChatTableRequest)
@@ -2048,6 +2088,10 @@ var AgentPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListMessages",
 			Handler:    _AgentPublicService_ListMessages_Handler,
+		},
+		{
+			MethodName: "ListContextOptions",
+			Handler:    _AgentPublicService_ListContextOptions_Handler,
 		},
 		{
 			MethodName: "BindChatTable",
