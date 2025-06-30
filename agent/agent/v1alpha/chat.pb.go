@@ -2522,7 +2522,7 @@ type FileOption struct {
 	// The name of the file.
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	// The file content type.
-	ContentType string `protobuf:"bytes,3,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
+	Type string `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
 	// The file summary.
 	Summary       string `protobuf:"bytes,4,opt,name=summary,proto3" json:"summary,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -2573,9 +2573,9 @@ func (x *FileOption) GetName() string {
 	return ""
 }
 
-func (x *FileOption) GetContentType() string {
+func (x *FileOption) GetType() string {
 	if x != nil {
-		return x.ContentType
+		return x.Type
 	}
 	return ""
 }
@@ -2660,6 +2660,79 @@ func (x *FolderOption) GetFileOptions() []*FileOption {
 	return nil
 }
 
+// TableOption represents a table option.
+type TableOption struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The UID of the table.
+	TableUid string `protobuf:"bytes,1,opt,name=table_uid,json=tableUid,proto3" json:"table_uid,omitempty"`
+	// The table title.
+	Title string `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	// The table description.
+	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	// The UIDs of the files in the table.
+	FileOptions   []*FileOption `protobuf:"bytes,4,rep,name=file_options,json=fileOptions,proto3" json:"file_options,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TableOption) Reset() {
+	*x = TableOption{}
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[38]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TableOption) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TableOption) ProtoMessage() {}
+
+func (x *TableOption) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[38]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TableOption.ProtoReflect.Descriptor instead.
+func (*TableOption) Descriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{38}
+}
+
+func (x *TableOption) GetTableUid() string {
+	if x != nil {
+		return x.TableUid
+	}
+	return ""
+}
+
+func (x *TableOption) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *TableOption) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *TableOption) GetFileOptions() []*FileOption {
+	if x != nil {
+		return x.FileOptions
+	}
+	return nil
+}
+
 // CatalogOption represents a catalog option.
 type CatalogOption struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -2677,7 +2750,7 @@ type CatalogOption struct {
 
 func (x *CatalogOption) Reset() {
 	*x = CatalogOption{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[38]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2689,7 +2762,7 @@ func (x *CatalogOption) String() string {
 func (*CatalogOption) ProtoMessage() {}
 
 func (x *CatalogOption) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[38]
+	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2702,7 +2775,7 @@ func (x *CatalogOption) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CatalogOption.ProtoReflect.Descriptor instead.
 func (*CatalogOption) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{38}
+	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *CatalogOption) GetCatalogUid() string {
@@ -2731,61 +2804,6 @@ func (x *CatalogOption) GetFileOptions() []*FileOption {
 		return x.FileOptions
 	}
 	return nil
-}
-
-// TableOption represents a table option.
-type TableOption struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The UID of the table.
-	TableUid string `protobuf:"bytes,1,opt,name=table_uid,json=tableUid,proto3" json:"table_uid,omitempty"`
-	// The table description.
-	Description   string `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TableOption) Reset() {
-	*x = TableOption{}
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[39]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TableOption) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TableOption) ProtoMessage() {}
-
-func (x *TableOption) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_chat_proto_msgTypes[39]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TableOption.ProtoReflect.Descriptor instead.
-func (*TableOption) Descriptor() ([]byte, []int) {
-	return file_agent_agent_v1alpha_chat_proto_rawDescGZIP(), []int{39}
-}
-
-func (x *TableOption) GetTableUid() string {
-	if x != nil {
-		return x.TableUid
-	}
-	return ""
-}
-
-func (x *TableOption) GetDescription() string {
-	if x != nil {
-		return x.Description
-	}
-	return ""
 }
 
 // ListContextOptionsRequest represents a request to list context options.
@@ -2839,12 +2857,12 @@ type ListContextOptionsResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The folder options.
 	FolderOptions []*FolderOption `protobuf:"bytes,1,rep,name=folder_options,json=folderOptions,proto3" json:"folder_options,omitempty"`
-	// The catalog options.
-	CatalogOptions []*CatalogOption `protobuf:"bytes,2,rep,name=catalog_options,json=catalogOptions,proto3" json:"catalog_options,omitempty"`
 	// The table options.
-	TableOptions  []*TableOption `protobuf:"bytes,3,rep,name=table_options,json=tableOptions,proto3" json:"table_options,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	TableOptions []*TableOption `protobuf:"bytes,2,rep,name=table_options,json=tableOptions,proto3" json:"table_options,omitempty"`
+	// The catalog options.
+	CatalogOptions []*CatalogOption `protobuf:"bytes,3,rep,name=catalog_options,json=catalogOptions,proto3" json:"catalog_options,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *ListContextOptionsResponse) Reset() {
@@ -2884,16 +2902,16 @@ func (x *ListContextOptionsResponse) GetFolderOptions() []*FolderOption {
 	return nil
 }
 
-func (x *ListContextOptionsResponse) GetCatalogOptions() []*CatalogOption {
+func (x *ListContextOptionsResponse) GetTableOptions() []*TableOption {
 	if x != nil {
-		return x.CatalogOptions
+		return x.TableOptions
 	}
 	return nil
 }
 
-func (x *ListContextOptionsResponse) GetTableOptions() []*TableOption {
+func (x *ListContextOptionsResponse) GetCatalogOptions() []*CatalogOption {
 	if x != nil {
-		return x.TableOptions
+		return x.CatalogOptions
 	}
 	return nil
 }
@@ -3092,17 +3110,22 @@ const file_agent_agent_v1alpha_chat_proto_rawDesc = "" +
 	"\fdebug_output\x18\x02 \x01(\tB\x03\xe0A\x03R\vdebugOutput\"R\n" +
 	"\x0eChatEndedEvent\x12@\n" +
 	"\vcreate_time\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
-	"createTime\"\x8c\x01\n" +
+	"createTime\"}\n" +
 	"\n" +
 	"FileOption\x12\x1e\n" +
 	"\bfile_uid\x18\x01 \x01(\tB\x03\xe0A\x03R\afileUid\x12\x17\n" +
-	"\x04name\x18\x02 \x01(\tB\x03\xe0A\x03R\x04name\x12&\n" +
-	"\fcontent_type\x18\x03 \x01(\tB\x03\xe0A\x03R\vcontentType\x12\x1d\n" +
+	"\x04name\x18\x02 \x01(\tB\x03\xe0A\x03R\x04name\x12\x17\n" +
+	"\x04type\x18\x03 \x01(\tB\x03\xe0A\x03R\x04type\x12\x1d\n" +
 	"\asummary\x18\x04 \x01(\tB\x03\xe0A\x03R\asummary\"\xbb\x01\n" +
 	"\fFolderOption\x12\"\n" +
 	"\n" +
 	"folder_uid\x18\x01 \x01(\tB\x03\xe0A\x03R\tfolderUid\x12\x17\n" +
 	"\x04name\x18\x02 \x01(\tB\x03\xe0A\x03R\x04name\x12%\n" +
+	"\vdescription\x18\x03 \x01(\tB\x03\xe0A\x03R\vdescription\x12G\n" +
+	"\ffile_options\x18\x04 \x03(\v2\x1f.agent.agent.v1alpha.FileOptionB\x03\xe0A\x03R\vfileOptions\"\xba\x01\n" +
+	"\vTableOption\x12 \n" +
+	"\ttable_uid\x18\x01 \x01(\tB\x03\xe0A\x03R\btableUid\x12\x19\n" +
+	"\x05title\x18\x02 \x01(\tB\x03\xe0A\x03R\x05title\x12%\n" +
 	"\vdescription\x18\x03 \x01(\tB\x03\xe0A\x03R\vdescription\x12G\n" +
 	"\ffile_options\x18\x04 \x03(\v2\x1f.agent.agent.v1alpha.FileOptionB\x03\xe0A\x03R\vfileOptions\"\xc9\x01\n" +
 	"\rCatalogOption\x12$\n" +
@@ -3111,16 +3134,13 @@ const file_agent_agent_v1alpha_chat_proto_rawDesc = "" +
 	"\n" +
 	"catalog_id\x18\x02 \x01(\tB\x03\xe0A\x03R\tcatalogId\x12%\n" +
 	"\vdescription\x18\x03 \x01(\tB\x03\xe0A\x03R\vdescription\x12G\n" +
-	"\ffile_options\x18\x04 \x03(\v2\x1f.agent.agent.v1alpha.FileOptionB\x03\xe0A\x03R\vfileOptions\"V\n" +
-	"\vTableOption\x12 \n" +
-	"\ttable_uid\x18\x01 \x01(\tB\x03\xe0A\x03R\btableUid\x12%\n" +
-	"\vdescription\x18\x02 \x01(\tB\x03\xe0A\x03R\vdescription\"C\n" +
+	"\ffile_options\x18\x04 \x03(\v2\x1f.agent.agent.v1alpha.FileOptionB\x03\xe0A\x03R\vfileOptions\"C\n" +
 	"\x19ListContextOptionsRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\"\x89\x02\n" +
 	"\x1aListContextOptionsResponse\x12M\n" +
-	"\x0efolder_options\x18\x01 \x03(\v2!.agent.agent.v1alpha.FolderOptionB\x03\xe0A\x03R\rfolderOptions\x12P\n" +
-	"\x0fcatalog_options\x18\x02 \x03(\v2\".agent.agent.v1alpha.CatalogOptionB\x03\xe0A\x03R\x0ecatalogOptions\x12J\n" +
-	"\rtable_options\x18\x03 \x03(\v2 .agent.agent.v1alpha.TableOptionB\x03\xe0A\x03R\ftableOptionsB\xd6\x01\n" +
+	"\x0efolder_options\x18\x01 \x03(\v2!.agent.agent.v1alpha.FolderOptionB\x03\xe0A\x03R\rfolderOptions\x12J\n" +
+	"\rtable_options\x18\x02 \x03(\v2 .agent.agent.v1alpha.TableOptionB\x03\xe0A\x03R\ftableOptions\x12P\n" +
+	"\x0fcatalog_options\x18\x03 \x03(\v2\".agent.agent.v1alpha.CatalogOptionB\x03\xe0A\x03R\x0ecatalogOptionsB\xd6\x01\n" +
 	"\x17com.agent.agent.v1alphaB\tChatProtoP\x01ZBgithub.com/instill-ai/protogen-go/agent/agent/v1alpha;agentv1alpha\xa2\x02\x03AAX\xaa\x02\x13Agent.Agent.V1alpha\xca\x02\x13Agent\\Agent\\V1alpha\xe2\x02\x1fAgent\\Agent\\V1alpha\\GPBMetadata\xea\x02\x15Agent::Agent::V1alphab\x06proto3"
 
 var (
@@ -3175,8 +3195,8 @@ var file_agent_agent_v1alpha_chat_proto_goTypes = []any{
 	(*ChatEndedEvent)(nil),                        // 35: agent.agent.v1alpha.ChatEndedEvent
 	(*FileOption)(nil),                            // 36: agent.agent.v1alpha.FileOption
 	(*FolderOption)(nil),                          // 37: agent.agent.v1alpha.FolderOption
-	(*CatalogOption)(nil),                         // 38: agent.agent.v1alpha.CatalogOption
-	(*TableOption)(nil),                           // 39: agent.agent.v1alpha.TableOption
+	(*TableOption)(nil),                           // 38: agent.agent.v1alpha.TableOption
+	(*CatalogOption)(nil),                         // 39: agent.agent.v1alpha.CatalogOption
 	(*ListContextOptionsRequest)(nil),             // 40: agent.agent.v1alpha.ListContextOptionsRequest
 	(*ListContextOptionsResponse)(nil),            // 41: agent.agent.v1alpha.ListContextOptionsResponse
 	nil,                                           // 42: agent.agent.v1alpha.AgentConfig.ConnectionsEntry
@@ -3244,17 +3264,18 @@ var file_agent_agent_v1alpha_chat_proto_depIdxs = []int32{
 	45, // 49: agent.agent.v1alpha.ChatDebugOutputUpdatedEvent.create_time:type_name -> google.protobuf.Timestamp
 	45, // 50: agent.agent.v1alpha.ChatEndedEvent.create_time:type_name -> google.protobuf.Timestamp
 	36, // 51: agent.agent.v1alpha.FolderOption.file_options:type_name -> agent.agent.v1alpha.FileOption
-	36, // 52: agent.agent.v1alpha.CatalogOption.file_options:type_name -> agent.agent.v1alpha.FileOption
-	37, // 53: agent.agent.v1alpha.ListContextOptionsResponse.folder_options:type_name -> agent.agent.v1alpha.FolderOption
-	38, // 54: agent.agent.v1alpha.ListContextOptionsResponse.catalog_options:type_name -> agent.agent.v1alpha.CatalogOption
-	39, // 55: agent.agent.v1alpha.ListContextOptionsResponse.table_options:type_name -> agent.agent.v1alpha.TableOption
-	52, // 56: agent.agent.v1alpha.ChatTableCreatedEvent.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
-	52, // 57: agent.agent.v1alpha.ChatTableUpdatedEvent.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
-	58, // [58:58] is the sub-list for method output_type
-	58, // [58:58] is the sub-list for method input_type
-	58, // [58:58] is the sub-list for extension type_name
-	58, // [58:58] is the sub-list for extension extendee
-	0,  // [0:58] is the sub-list for field type_name
+	36, // 52: agent.agent.v1alpha.TableOption.file_options:type_name -> agent.agent.v1alpha.FileOption
+	36, // 53: agent.agent.v1alpha.CatalogOption.file_options:type_name -> agent.agent.v1alpha.FileOption
+	37, // 54: agent.agent.v1alpha.ListContextOptionsResponse.folder_options:type_name -> agent.agent.v1alpha.FolderOption
+	38, // 55: agent.agent.v1alpha.ListContextOptionsResponse.table_options:type_name -> agent.agent.v1alpha.TableOption
+	39, // 56: agent.agent.v1alpha.ListContextOptionsResponse.catalog_options:type_name -> agent.agent.v1alpha.CatalogOption
+	52, // 57: agent.agent.v1alpha.ChatTableCreatedEvent.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
+	52, // 58: agent.agent.v1alpha.ChatTableUpdatedEvent.ColumnDefinitionsEntry.value:type_name -> agent.agent.v1alpha.ColumnDefinition
+	59, // [59:59] is the sub-list for method output_type
+	59, // [59:59] is the sub-list for method input_type
+	59, // [59:59] is the sub-list for extension type_name
+	59, // [59:59] is the sub-list for extension extendee
+	0,  // [0:59] is the sub-list for field type_name
 }
 
 func init() { file_agent_agent_v1alpha_chat_proto_init() }
