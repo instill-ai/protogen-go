@@ -488,7 +488,7 @@ func (x *MgmtUsageData) GetOrgUsages() []*v1beta1.Organization {
 	return nil
 }
 
-// Connector service usage data
+// Connector service usage data (Deprecated)
 type ConnectorUsageData struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Usage data of all users in the connector service
@@ -818,7 +818,7 @@ type SessionReport_MgmtUsageData struct {
 }
 
 type SessionReport_ConnectorUsageData struct {
-	// Connector service usage data
+	// Connector service usage data (Deprecated)
 	ConnectorUsageData *ConnectorUsageData `protobuf:"bytes,6,opt,name=connector_usage_data,json=connectorUsageData,proto3,oneof"`
 }
 
