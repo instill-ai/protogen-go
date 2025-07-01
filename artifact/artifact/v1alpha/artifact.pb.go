@@ -1896,9 +1896,40 @@ type UpdateCatalogRequest struct {
 	// The catalog tags.
 	Tags []string `protobuf:"bytes,3,rep,name=tags,proto3" json:"tags,omitempty"`
 	// The catalog owner(namespace).
-	NamespaceId   string `protobuf:"bytes,4,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	NamespaceId string `protobuf:"bytes,4,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
+	// Pipelines used for converting documents (i.e., files with pdf, doc[x] or
+	// ppt[x] extension) to Markdown. The strings in the list identify the
+	// pipelines and MUST have the format `{namespaceID}/{pipelineID}@{version}`.
+	// The pipeline recipes MUST have the following variable and output fields:
+	// ```yaml variable
+	// variable:
+	//
+	//	document_input:
+	//	  title: document-input
+	//	  description: Upload a document (PDF/DOCX/DOC/PPTX/PPT)
+	//	  type: file
+	//
+	// ```
+	// ```yaml output
+	// output:
+	//
+	//	convert_result:
+	//	  title: convert-result
+	//	  value: ${merge-markdown-refinement.output.results[0]}
+	//
+	// ```
+	// Other variable and output fields will be ignored.
+	//
+	// The pipelines will be executed in order until one produces a successful,
+	// non-empty result.
+	//
+	// If no pipelines are provided, a default pipeline will be used. For
+	// non-document catalog files, the conversion pipeline is deterministic (such
+	// files are typically trivial to convert and don't require a dedicated
+	// pipeline to improve the conversion performance).
+	ConvertingPipelines []string `protobuf:"bytes,5,rep,name=converting_pipelines,json=convertingPipelines,proto3" json:"converting_pipelines,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
 func (x *UpdateCatalogRequest) Reset() {
@@ -1957,6 +1988,13 @@ func (x *UpdateCatalogRequest) GetNamespaceId() string {
 		return x.NamespaceId
 	}
 	return ""
+}
+
+func (x *UpdateCatalogRequest) GetConvertingPipelines() []string {
+	if x != nil {
+		return x.ConvertingPipelines
+	}
+	return nil
 }
 
 // UpdateCatalogResponse represents a response for updating a catalog.
@@ -3511,13 +3549,14 @@ const file_artifact_artifact_v1alpha_artifact_proto_rawDesc = "" +
 	"\x13ListCatalogsRequest\x12!\n" +
 	"\fnamespace_id\x18\x01 \x01(\tR\vnamespaceId\"V\n" +
 	"\x14ListCatalogsResponse\x12>\n" +
-	"\bcatalogs\x18\x01 \x03(\v2\".artifact.artifact.v1alpha.CatalogR\bcatalogs\"\x8e\x01\n" +
+	"\bcatalogs\x18\x01 \x03(\v2\".artifact.artifact.v1alpha.CatalogR\bcatalogs\"\xc1\x01\n" +
 	"\x14UpdateCatalogRequest\x12\x1d\n" +
 	"\n" +
 	"catalog_id\x18\x01 \x01(\tR\tcatalogId\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x12\n" +
 	"\x04tags\x18\x03 \x03(\tR\x04tags\x12!\n" +
-	"\fnamespace_id\x18\x04 \x01(\tR\vnamespaceId\"U\n" +
+	"\fnamespace_id\x18\x04 \x01(\tR\vnamespaceId\x121\n" +
+	"\x14converting_pipelines\x18\x05 \x03(\tR\x13convertingPipelines\"U\n" +
 	"\x15UpdateCatalogResponse\x12<\n" +
 	"\acatalog\x18\x01 \x01(\v2\".artifact.artifact.v1alpha.CatalogR\acatalog\"X\n" +
 	"\x14DeleteCatalogRequest\x12!\n" +
