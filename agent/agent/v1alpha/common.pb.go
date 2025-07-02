@@ -626,7 +626,7 @@ func (x *ChatContext_Folder) GetFileUids() []string {
 type ChatContext_Catalog struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The catalog containing the files
-	CatalogId string `protobuf:"bytes,1,opt,name=catalog_id,json=catalogId,proto3" json:"catalog_id,omitempty"`
+	CatalogUid string `protobuf:"bytes,1,opt,name=catalog_uid,json=catalogUid,proto3" json:"catalog_uid,omitempty"`
 	// Specific file UIDs within the catalog, leave empty to include all files in the catalog
 	FileUids      []string `protobuf:"bytes,2,rep,name=file_uids,json=fileUids,proto3" json:"file_uids,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -663,9 +663,9 @@ func (*ChatContext_Catalog) Descriptor() ([]byte, []int) {
 	return file_agent_agent_v1alpha_common_proto_rawDescGZIP(), []int{1, 1}
 }
 
-func (x *ChatContext_Catalog) GetCatalogId() string {
+func (x *ChatContext_Catalog) GetCatalogUid() string {
 	if x != nil {
-		return x.CatalogId
+		return x.CatalogUid
 	}
 	return ""
 }
@@ -827,7 +827,7 @@ const file_agent_agent_v1alpha_common_proto_rawDesc = "" +
 	"\asummary\x18\x05 \x01(\tB\x03\xe0A\x03H\x00R\asummary\x88\x01\x01\x12Z\n" +
 	"\x0eextract_method\x18\x06 \x01(\x0e2..agent.agent.v1alpha.CitationExtractMethodTypeB\x03\xe0A\x03R\rextractMethodB\n" +
 	"\n" +
-	"\b_summary\"\xf9\x03\n" +
+	"\b_summary\"\xfb\x03\n" +
 	"\vChatContext\x12$\n" +
 	"\n" +
 	"table_uids\x18\x01 \x03(\tB\x05\xe0A\x01\x18\x01R\ttableUids\x12F\n" +
@@ -837,10 +837,10 @@ const file_agent_agent_v1alpha_common_proto_rawDesc = "" +
 	"\x06Folder\x12\"\n" +
 	"\n" +
 	"folder_uid\x18\x01 \x01(\tB\x03\xe0A\x02R\tfolderUid\x12 \n" +
-	"\tfile_uids\x18\x02 \x03(\tB\x03\xe0A\x01R\bfileUids\x1aO\n" +
-	"\aCatalog\x12\"\n" +
-	"\n" +
-	"catalog_id\x18\x01 \x01(\tB\x03\xe0A\x02R\tcatalogId\x12 \n" +
+	"\tfile_uids\x18\x02 \x03(\tB\x03\xe0A\x01R\bfileUids\x1aQ\n" +
+	"\aCatalog\x12$\n" +
+	"\vcatalog_uid\x18\x01 \x01(\tB\x03\xe0A\x02R\n" +
+	"catalogUid\x12 \n" +
 	"\tfile_uids\x18\x02 \x03(\tB\x03\xe0A\x01R\bfileUids\x1aK\n" +
 	"\x05Table\x12 \n" +
 	"\ttable_uid\x18\x01 \x01(\tB\x03\xe0A\x02R\btableUid\x12 \n" +
