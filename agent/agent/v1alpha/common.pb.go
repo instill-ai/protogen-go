@@ -286,11 +286,15 @@ func (x *Citation) GetExtractMethod() CitationExtractMethodType {
 type ChatContext struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The table uids to include in the context.
+	//
+	// Deprecated: Marked as deprecated in agent/agent/v1alpha/common.proto.
 	TableUids []string `protobuf:"bytes,1,rep,name=table_uids,json=tableUids,proto3" json:"table_uids,omitempty"`
 	// The folders to include in the context.
 	Folders []*ChatContext_Folder `protobuf:"bytes,2,rep,name=folders,proto3" json:"folders,omitempty"`
 	// The catalogs to include in the context.
-	Catalogs      []*ChatContext_Catalog `protobuf:"bytes,3,rep,name=catalogs,proto3" json:"catalogs,omitempty"`
+	Catalogs []*ChatContext_Catalog `protobuf:"bytes,3,rep,name=catalogs,proto3" json:"catalogs,omitempty"`
+	// The tables to include in the context.
+	Tables        []*ChatContext_Table `protobuf:"bytes,4,rep,name=tables,proto3" json:"tables,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -325,6 +329,7 @@ func (*ChatContext) Descriptor() ([]byte, []int) {
 	return file_agent_agent_v1alpha_common_proto_rawDescGZIP(), []int{1}
 }
 
+// Deprecated: Marked as deprecated in agent/agent/v1alpha/common.proto.
 func (x *ChatContext) GetTableUids() []string {
 	if x != nil {
 		return x.TableUids
@@ -342,6 +347,13 @@ func (x *ChatContext) GetFolders() []*ChatContext_Folder {
 func (x *ChatContext) GetCatalogs() []*ChatContext_Catalog {
 	if x != nil {
 		return x.Catalogs
+	}
+	return nil
+}
+
+func (x *ChatContext) GetTables() []*ChatContext_Table {
+	if x != nil {
+		return x.Tables
 	}
 	return nil
 }
@@ -665,6 +677,61 @@ func (x *ChatContext_Catalog) GetFileUids() []string {
 	return nil
 }
 
+// Represents a table.
+type ChatContext_Table struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The table containing the files
+	TableUid string `protobuf:"bytes,1,opt,name=table_uid,json=tableUid,proto3" json:"table_uid,omitempty"`
+	// Specific file UIDs within the table, leave empty to include all files in the table
+	FileUids      []string `protobuf:"bytes,2,rep,name=file_uids,json=fileUids,proto3" json:"file_uids,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ChatContext_Table) Reset() {
+	*x = ChatContext_Table{}
+	mi := &file_agent_agent_v1alpha_common_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ChatContext_Table) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ChatContext_Table) ProtoMessage() {}
+
+func (x *ChatContext_Table) ProtoReflect() protoreflect.Message {
+	mi := &file_agent_agent_v1alpha_common_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ChatContext_Table.ProtoReflect.Descriptor instead.
+func (*ChatContext_Table) Descriptor() ([]byte, []int) {
+	return file_agent_agent_v1alpha_common_proto_rawDescGZIP(), []int{1, 2}
+}
+
+func (x *ChatContext_Table) GetTableUid() string {
+	if x != nil {
+		return x.TableUid
+	}
+	return ""
+}
+
+func (x *ChatContext_Table) GetFileUids() []string {
+	if x != nil {
+		return x.FileUids
+	}
+	return nil
+}
+
 // FileAttachment represents the file attachment for the message.
 type ChatAttachments_FileAttachment struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -684,7 +751,7 @@ type ChatAttachments_FileAttachment struct {
 
 func (x *ChatAttachments_FileAttachment) Reset() {
 	*x = ChatAttachments_FileAttachment{}
-	mi := &file_agent_agent_v1alpha_common_proto_msgTypes[6]
+	mi := &file_agent_agent_v1alpha_common_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -696,7 +763,7 @@ func (x *ChatAttachments_FileAttachment) String() string {
 func (*ChatAttachments_FileAttachment) ProtoMessage() {}
 
 func (x *ChatAttachments_FileAttachment) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_agent_v1alpha_common_proto_msgTypes[6]
+	mi := &file_agent_agent_v1alpha_common_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -760,12 +827,13 @@ const file_agent_agent_v1alpha_common_proto_rawDesc = "" +
 	"\asummary\x18\x05 \x01(\tB\x03\xe0A\x03H\x00R\asummary\x88\x01\x01\x12Z\n" +
 	"\x0eextract_method\x18\x06 \x01(\x0e2..agent.agent.v1alpha.CitationExtractMethodTypeB\x03\xe0A\x03R\rextractMethodB\n" +
 	"\n" +
-	"\b_summary\"\xe5\x02\n" +
-	"\vChatContext\x12\"\n" +
+	"\b_summary\"\xf9\x03\n" +
+	"\vChatContext\x12$\n" +
 	"\n" +
-	"table_uids\x18\x01 \x03(\tB\x03\xe0A\x01R\ttableUids\x12F\n" +
+	"table_uids\x18\x01 \x03(\tB\x05\xe0A\x01\x18\x01R\ttableUids\x12F\n" +
 	"\afolders\x18\x02 \x03(\v2'.agent.agent.v1alpha.ChatContext.FolderB\x03\xe0A\x01R\afolders\x12I\n" +
-	"\bcatalogs\x18\x03 \x03(\v2(.agent.agent.v1alpha.ChatContext.CatalogB\x03\xe0A\x01R\bcatalogs\x1aN\n" +
+	"\bcatalogs\x18\x03 \x03(\v2(.agent.agent.v1alpha.ChatContext.CatalogB\x03\xe0A\x01R\bcatalogs\x12C\n" +
+	"\x06tables\x18\x04 \x03(\v2&.agent.agent.v1alpha.ChatContext.TableB\x03\xe0A\x01R\x06tables\x1aN\n" +
 	"\x06Folder\x12\"\n" +
 	"\n" +
 	"folder_uid\x18\x01 \x01(\tB\x03\xe0A\x02R\tfolderUid\x12 \n" +
@@ -773,6 +841,9 @@ const file_agent_agent_v1alpha_common_proto_rawDesc = "" +
 	"\aCatalog\x12\"\n" +
 	"\n" +
 	"catalog_id\x18\x01 \x01(\tB\x03\xe0A\x02R\tcatalogId\x12 \n" +
+	"\tfile_uids\x18\x02 \x03(\tB\x03\xe0A\x01R\bfileUids\x1aK\n" +
+	"\x05Table\x12 \n" +
+	"\ttable_uid\x18\x01 \x01(\tB\x03\xe0A\x02R\btableUid\x12 \n" +
 	"\tfile_uids\x18\x02 \x03(\tB\x03\xe0A\x01R\bfileUids\"\xc9\x02\n" +
 	"\x0fChatAttachments\x12c\n" +
 	"\x10file_attachments\x18\x01 \x03(\v23.agent.agent.v1alpha.ChatAttachments.FileAttachmentB\x03\xe0A\x03R\x0ffileAttachments\x1a\xd0\x01\n" +
@@ -831,7 +902,7 @@ func file_agent_agent_v1alpha_common_proto_rawDescGZIP() []byte {
 }
 
 var file_agent_agent_v1alpha_common_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_agent_agent_v1alpha_common_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_agent_agent_v1alpha_common_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_agent_agent_v1alpha_common_proto_goTypes = []any{
 	(CitationType)(0),                      // 0: agent.agent.v1alpha.CitationType
 	(CitationExtractMethodType)(0),         // 1: agent.agent.v1alpha.CitationExtractMethodType
@@ -842,28 +913,30 @@ var file_agent_agent_v1alpha_common_proto_goTypes = []any{
 	(*Message)(nil),                        // 6: agent.agent.v1alpha.Message
 	(*ChatContext_Folder)(nil),             // 7: agent.agent.v1alpha.ChatContext.Folder
 	(*ChatContext_Catalog)(nil),            // 8: agent.agent.v1alpha.ChatContext.Catalog
-	(*ChatAttachments_FileAttachment)(nil), // 9: agent.agent.v1alpha.ChatAttachments.FileAttachment
-	(*timestamppb.Timestamp)(nil),          // 10: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),                // 11: google.protobuf.Struct
+	(*ChatContext_Table)(nil),              // 9: agent.agent.v1alpha.ChatContext.Table
+	(*ChatAttachments_FileAttachment)(nil), // 10: agent.agent.v1alpha.ChatAttachments.FileAttachment
+	(*timestamppb.Timestamp)(nil),          // 11: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),                // 12: google.protobuf.Struct
 }
 var file_agent_agent_v1alpha_common_proto_depIdxs = []int32{
 	0,  // 0: agent.agent.v1alpha.Citation.type:type_name -> agent.agent.v1alpha.CitationType
 	1,  // 1: agent.agent.v1alpha.Citation.extract_method:type_name -> agent.agent.v1alpha.CitationExtractMethodType
 	7,  // 2: agent.agent.v1alpha.ChatContext.folders:type_name -> agent.agent.v1alpha.ChatContext.Folder
 	8,  // 3: agent.agent.v1alpha.ChatContext.catalogs:type_name -> agent.agent.v1alpha.ChatContext.Catalog
-	9,  // 4: agent.agent.v1alpha.ChatAttachments.file_attachments:type_name -> agent.agent.v1alpha.ChatAttachments.FileAttachment
-	2,  // 5: agent.agent.v1alpha.Message.type:type_name -> agent.agent.v1alpha.Message.MessageType
-	10, // 6: agent.agent.v1alpha.Message.create_time:type_name -> google.protobuf.Timestamp
-	10, // 7: agent.agent.v1alpha.Message.update_time:type_name -> google.protobuf.Timestamp
-	3,  // 8: agent.agent.v1alpha.Message.citations:type_name -> agent.agent.v1alpha.Citation
-	4,  // 9: agent.agent.v1alpha.Message.context:type_name -> agent.agent.v1alpha.ChatContext
-	5,  // 10: agent.agent.v1alpha.Message.attachments:type_name -> agent.agent.v1alpha.ChatAttachments
-	11, // 11: agent.agent.v1alpha.Message.raw_message:type_name -> google.protobuf.Struct
-	12, // [12:12] is the sub-list for method output_type
-	12, // [12:12] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	9,  // 4: agent.agent.v1alpha.ChatContext.tables:type_name -> agent.agent.v1alpha.ChatContext.Table
+	10, // 5: agent.agent.v1alpha.ChatAttachments.file_attachments:type_name -> agent.agent.v1alpha.ChatAttachments.FileAttachment
+	2,  // 6: agent.agent.v1alpha.Message.type:type_name -> agent.agent.v1alpha.Message.MessageType
+	11, // 7: agent.agent.v1alpha.Message.create_time:type_name -> google.protobuf.Timestamp
+	11, // 8: agent.agent.v1alpha.Message.update_time:type_name -> google.protobuf.Timestamp
+	3,  // 9: agent.agent.v1alpha.Message.citations:type_name -> agent.agent.v1alpha.Citation
+	4,  // 10: agent.agent.v1alpha.Message.context:type_name -> agent.agent.v1alpha.ChatContext
+	5,  // 11: agent.agent.v1alpha.Message.attachments:type_name -> agent.agent.v1alpha.ChatAttachments
+	12, // 12: agent.agent.v1alpha.Message.raw_message:type_name -> google.protobuf.Struct
+	13, // [13:13] is the sub-list for method output_type
+	13, // [13:13] is the sub-list for method input_type
+	13, // [13:13] is the sub-list for extension type_name
+	13, // [13:13] is the sub-list for extension extendee
+	0,  // [0:13] is the sub-list for field type_name
 }
 
 func init() { file_agent_agent_v1alpha_common_proto_init() }
@@ -879,7 +952,7 @@ func file_agent_agent_v1alpha_common_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_agent_agent_v1alpha_common_proto_rawDesc), len(file_agent_agent_v1alpha_common_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   7,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
