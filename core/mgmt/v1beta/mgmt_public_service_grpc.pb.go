@@ -184,7 +184,8 @@ type MgmtPublicServiceClient interface {
 	ValidateToken(ctx context.Context, in *ValidateTokenRequest, opts ...grpc.CallOption) (*ValidateTokenResponse, error)
 	// Get the remaining Instill Credit
 	//
-	// This endpoint returns the remaining [Instill Credit](https://instill-ai.dev/docs/cloud/credit) of a given user or
+	// This endpoint returns the remaining [Instill
+	// Credit](https://instill-ai.dev/docs/cloud/credit) of a given user or
 	// organization. The requested credit owner must be either the authenticated
 	// user or an organization they belong to.
 	//
@@ -228,7 +229,8 @@ type MgmtPublicServiceClient interface {
 	ListCreditConsumptionChartRecords(ctx context.Context, in *ListCreditConsumptionChartRecordsRequest, opts ...grpc.CallOption) (*ListCreditConsumptionChartRecordsResponse, error)
 	// Get Auth token issuer
 	//
-	// Returns the auth token issuer details. This operation requires admin permissions.
+	// Returns the auth token issuer details. This operation requires admin
+	// permissions.
 	AuthTokenIssuer(ctx context.Context, in *AuthTokenIssuerRequest, opts ...grpc.CallOption) (*AuthTokenIssuerResponse, error)
 	// Log in a user
 	//
@@ -811,7 +813,8 @@ type MgmtPublicServiceServer interface {
 	ValidateToken(context.Context, *ValidateTokenRequest) (*ValidateTokenResponse, error)
 	// Get the remaining Instill Credit
 	//
-	// This endpoint returns the remaining [Instill Credit](https://instill-ai.dev/docs/cloud/credit) of a given user or
+	// This endpoint returns the remaining [Instill
+	// Credit](https://instill-ai.dev/docs/cloud/credit) of a given user or
 	// organization. The requested credit owner must be either the authenticated
 	// user or an organization they belong to.
 	//
@@ -855,7 +858,8 @@ type MgmtPublicServiceServer interface {
 	ListCreditConsumptionChartRecords(context.Context, *ListCreditConsumptionChartRecordsRequest) (*ListCreditConsumptionChartRecordsResponse, error)
 	// Get Auth token issuer
 	//
-	// Returns the auth token issuer details. This operation requires admin permissions.
+	// Returns the auth token issuer details. This operation requires admin
+	// permissions.
 	AuthTokenIssuer(context.Context, *AuthTokenIssuerRequest) (*AuthTokenIssuerResponse, error)
 	// Log in a user
 	//

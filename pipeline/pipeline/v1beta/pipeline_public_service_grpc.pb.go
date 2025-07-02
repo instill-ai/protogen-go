@@ -159,8 +159,8 @@ type PipelinePublicServiceClient interface {
 	// Update a pipeline
 	//
 	// Udpates a pipeline, accessing it by its resource name, which is defined by
-	// the parent namespace and the ID of the pipeline. The authenticated namespace must be
-	// the parent of the pipeline in order to modify it.
+	// the parent namespace and the ID of the pipeline. The authenticated
+	// namespace must be the parent of the pipeline in order to modify it.
 	//
 	// In REST requests, only the supplied pipeline fields will be taken into
 	// account when updating the resource.
@@ -168,15 +168,16 @@ type PipelinePublicServiceClient interface {
 	// Delete a pipeline
 	//
 	// Deletes a pipeline, accesing it by its resource name, which is defined by
-	// the parent namespace and the ID of the pipeline. The authenticated namespace must be
-	// the parent of the pipeline in order to delete it.
+	// the parent namespace and the ID of the pipeline. The authenticated
+	// namespace must be the parent of the pipeline in order to delete it.
 	DeleteNamespacePipeline(ctx context.Context, in *DeleteNamespacePipelineRequest, opts ...grpc.CallOption) (*DeleteNamespacePipelineResponse, error)
 	// Validate a pipeline
 	//
 	// Validates a pipeline by its resource name, which is defined by the parent
 	// namespace and the ID of the pipeline.
 	//
-	// Validation checks the recipe of the pipeline and the status of its components.
+	// Validation checks the recipe of the pipeline and the status of its
+	// components.
 	ValidateNamespacePipeline(ctx context.Context, in *ValidateNamespacePipelineRequest, opts ...grpc.CallOption) (*ValidateNamespacePipelineResponse, error)
 	// Rename a pipeline
 	//
@@ -192,35 +193,37 @@ type PipelinePublicServiceClient interface {
 	RenameNamespacePipeline(ctx context.Context, in *RenameNamespacePipelineRequest, opts ...grpc.CallOption) (*RenameNamespacePipelineResponse, error)
 	// Clone a pipeline
 	//
-	// Clones a pipeline owned by a namespace. The new pipeline may have a different
-	// parent, and this can be either a namespace or an organization.
+	// Clones a pipeline owned by a namespace. The new pipeline may have a
+	// different parent, and this can be either a namespace or an organization.
 	CloneNamespacePipeline(ctx context.Context, in *CloneNamespacePipelineRequest, opts ...grpc.CallOption) (*CloneNamespacePipelineResponse, error)
 	// Dispatch Pipeline Webhook Event
 	//
-	// Handles webhook events by routing them to the appropriate pipeline based on the webhook type and message.
-	// The webhook type determines which component processes the event, while the message payload contains data
-	// that triggers pipeline execution. The pipeline processes the event using configured handlers and returns
-	// a response to the webhook sender.
+	// Handles webhook events by routing them to the appropriate pipeline based on
+	// the webhook type and message. The webhook type determines which component
+	// processes the event, while the message payload contains data that triggers
+	// pipeline execution. The pipeline processes the event using configured
+	// handlers and returns a response to the webhook sender.
 	DispatchPipelineWebhookEvent(ctx context.Context, in *DispatchPipelineWebhookEventRequest, opts ...grpc.CallOption) (*DispatchPipelineWebhookEventResponse, error)
 	// Trigger a pipeline
 	//
 	// Triggers the execution of a pipeline synchronously, i.e., the result is
-	// sent back to the namespace right after the data is processed. This method is
-	// intended for real-time inference when low latency is of concern.
+	// sent back to the namespace right after the data is processed. This method
+	// is intended for real-time inference when low latency is of concern.
 	//
-	// The pipeline is identified by its resource name, formed by the parent namespace
-	// and ID of the pipeline.
+	// The pipeline is identified by its resource name, formed by the parent
+	// namespace and ID of the pipeline.
 	//
-	// For more information, see [Run NamespacePipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
+	// For more information, see [Run
+	// NamespacePipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerNamespacePipeline(ctx context.Context, in *TriggerNamespacePipelineRequest, opts ...grpc.CallOption) (*TriggerNamespacePipelineResponse, error)
 	// Trigger a pipeline via streaming
 	//
-	// Triggers the execution of a pipeline asynchronously and streams back the response.
-	// This method is intended for real-time inference when low latency is of concern
-	// and the response needs to be processed incrementally.
+	// Triggers the execution of a pipeline asynchronously and streams back the
+	// response. This method is intended for real-time inference when low latency
+	// is of concern and the response needs to be processed incrementally.
 	//
-	// The pipeline is identified by its resource name, formed by the parent namespace
-	// and ID of the pipeline.
+	// The pipeline is identified by its resource name, formed by the parent
+	// namespace and ID of the pipeline.
 	TriggerNamespacePipelineWithStream(ctx context.Context, in *TriggerNamespacePipelineWithStreamRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[TriggerNamespacePipelineWithStreamResponse], error)
 	// Trigger a pipeline asynchronously
 	//
@@ -229,10 +232,11 @@ type PipelinePublicServiceClient interface {
 	// operation. This method is intended for cases that require long-running
 	// workloads.
 	//
-	// The pipeline is identified by its resource name, formed by the parent namespace
-	// and ID of the pipeline.
+	// The pipeline is identified by its resource name, formed by the parent
+	// namespace and ID of the pipeline.
 	//
-	// For more information, see [Run NamespacePipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
+	// For more information, see [Run
+	// NamespacePipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerAsyncNamespacePipeline(ctx context.Context, in *TriggerAsyncNamespacePipelineRequest, opts ...grpc.CallOption) (*TriggerAsyncNamespacePipelineResponse, error)
 	// Create a pipeline release
 	//
@@ -270,8 +274,8 @@ type PipelinePublicServiceClient interface {
 	DeleteNamespacePipelineRelease(ctx context.Context, in *DeleteNamespacePipelineReleaseRequest, opts ...grpc.CallOption) (*DeleteNamespacePipelineReleaseResponse, error)
 	// Clone a pipeline release
 	//
-	// Clones a pipeline release owned by a namespace. The new pipeline may have a different
-	// parent, and this can be either a namespace or an organization.
+	// Clones a pipeline release owned by a namespace. The new pipeline may have a
+	// different parent, and this can be either a namespace or an organization.
 	CloneNamespacePipelineRelease(ctx context.Context, in *CloneNamespacePipelineReleaseRequest, opts ...grpc.CallOption) (*CloneNamespacePipelineReleaseResponse, error)
 	// Trigger a pipeline release
 	//
@@ -280,8 +284,8 @@ type PipelinePublicServiceClient interface {
 	// at its latest release, this method allows the client to specified any
 	// committed release.
 	//
-	// The pipeline is identified by its resource name, formed by its parent namespace
-	// and ID.
+	// The pipeline is identified by its resource name, formed by its parent
+	// namespace and ID.
 	TriggerNamespacePipelineRelease(ctx context.Context, in *TriggerNamespacePipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerNamespacePipelineReleaseResponse, error)
 	// Trigger a pipeline release asynchronously
 	//
@@ -290,8 +294,8 @@ type PipelinePublicServiceClient interface {
 	// at its latest release, this method allows the client to specified any
 	// committed release.
 	//
-	// The pipeline is identified by its resource name, formed by its parent namespace
-	// and ID.
+	// The pipeline is identified by its resource name, formed by its parent
+	// namespace and ID.
 	TriggerAsyncNamespacePipelineRelease(ctx context.Context, in *TriggerAsyncNamespacePipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerAsyncNamespacePipelineReleaseResponse, error)
 	// Create a secret
 	//
@@ -348,8 +352,8 @@ type PipelinePublicServiceClient interface {
 	// Deprecated: Do not use.
 	// Get a pipeline owned by a user
 	//
-	// Returns the details of a user-owned pipeline by its resource name, which is defined
-	// by the parent user and the ID of the pipeline.
+	// Returns the details of a user-owned pipeline by its resource name, which is
+	// defined by the parent user and the ID of the pipeline.
 	GetUserPipeline(ctx context.Context, in *GetUserPipelineRequest, opts ...grpc.CallOption) (*GetUserPipelineResponse, error)
 	// Deprecated: Do not use.
 	// Update a pipeline owned by a user
@@ -374,7 +378,8 @@ type PipelinePublicServiceClient interface {
 	// Validates a pipeline by its resource name, which is defined by the parent
 	// user and the ID of the pipeline.
 	//
-	// Validation checks the recipe of the pipeline and the status of its components.
+	// Validation checks the recipe of the pipeline and the status of its
+	// components.
 	ValidateUserPipeline(ctx context.Context, in *ValidateUserPipelineRequest, opts ...grpc.CallOption) (*ValidateUserPipelineResponse, error)
 	// Deprecated: Do not use.
 	// Rename a pipeline owned by a user
@@ -399,14 +404,15 @@ type PipelinePublicServiceClient interface {
 	// The pipeline is identified by its resource name, formed by the parent user
 	// and ID of the pipeline.
 	//
-	// For more information, see [Run Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
+	// For more information, see [Run
+	// Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerUserPipeline(ctx context.Context, in *TriggerUserPipelineRequest, opts ...grpc.CallOption) (*TriggerUserPipelineResponse, error)
 	// Deprecated: Do not use.
 	// Trigger a pipeline owned by a user and stream back the response
 	//
-	// Triggers the execution of a pipeline asynchronously and streams back the response.
-	// This method is intended for real-time inference when low latency is of concern
-	// and the response needs to be processed incrementally.
+	// Triggers the execution of a pipeline asynchronously and streams back the
+	// response. This method is intended for real-time inference when low latency
+	// is of concern and the response needs to be processed incrementally.
 	//
 	// The pipeline is identified by its resource name, formed by the parent user
 	// and ID of the pipeline.
@@ -422,7 +428,8 @@ type PipelinePublicServiceClient interface {
 	// The pipeline is identified by its resource name, formed by the parent user
 	// and ID of the pipeline.
 	//
-	// For more information, see [Run Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
+	// For more information, see [Run
+	// Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerAsyncUserPipeline(ctx context.Context, in *TriggerAsyncUserPipelineRequest, opts ...grpc.CallOption) (*TriggerAsyncUserPipelineResponse, error)
 	// Deprecated: Do not use.
 	// Release a version of a pipeline owned by a user
@@ -563,26 +570,28 @@ type PipelinePublicServiceClient interface {
 	// Deprecated: Do not use.
 	// Trigger a pipeline owned by an organization
 	//
-	// Triggers the execution of a pipeline synchronously, i.e., the result is sent
-	// back to the organization right after the data is processed. This method is
-	// intended for real-time inference when low latency is of concern.
+	// Triggers the execution of a pipeline synchronously, i.e., the result is
+	// sent back to the organization right after the data is processed. This
+	// method is intended for real-time inference when low latency is of concern.
 	//
 	// The pipeline is identified by its resource name, formed by the parent
 	// organization and ID of the pipeline.
 	//
-	// For more information, see [Run Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
+	// For more information, see [Run
+	// Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerOrganizationPipelineStream(ctx context.Context, in *TriggerOrganizationPipelineStreamRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[TriggerOrganizationPipelineStreamResponse], error)
 	// Deprecated: Do not use.
 	// Trigger a pipeline owned by an organization
 	//
-	// Triggers the execution of a pipeline synchronously, i.e., the result is sent
-	// back to the organization right after the data is processed. This method is
-	// intended for real-time inference when low latency is of concern.
+	// Triggers the execution of a pipeline synchronously, i.e., the result is
+	// sent back to the organization right after the data is processed. This
+	// method is intended for real-time inference when low latency is of concern.
 	//
 	// The pipeline is identified by its resource name, formed by the parent
 	// organization and ID of the pipeline.
 	//
-	// For more information, see [Run Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
+	// For more information, see [Run
+	// Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerOrganizationPipeline(ctx context.Context, in *TriggerOrganizationPipelineRequest, opts ...grpc.CallOption) (*TriggerOrganizationPipelineResponse, error)
 	// Deprecated: Do not use.
 	// Trigger a pipeline owned by an organization asynchronously
@@ -595,13 +604,14 @@ type PipelinePublicServiceClient interface {
 	// The pipeline is identified by its resource name, formed by the parent
 	// organization and ID of the pipeline.
 	//
-	// For more information, see [Run Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
+	// For more information, see [Run
+	// Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerAsyncOrganizationPipeline(ctx context.Context, in *TriggerAsyncOrganizationPipelineRequest, opts ...grpc.CallOption) (*TriggerAsyncOrganizationPipelineResponse, error)
 	// Deprecated: Do not use.
 	// Release a version of a pipeline owned by an organization
 	//
-	// Commits the version of a pipeline, identified by its resource name, which is
-	// formed by the parent organization and ID of the pipeline.
+	// Commits the version of a pipeline, identified by its resource name, which
+	// is formed by the parent organization and ID of the pipeline.
 	CreateOrganizationPipelineRelease(ctx context.Context, in *CreateOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*CreateOrganizationPipelineReleaseResponse, error)
 	// Deprecated: Do not use.
 	// List the releases in a pipeline owned by an organization
@@ -624,8 +634,8 @@ type PipelinePublicServiceClient interface {
 	// Deprecated: Do not use.
 	// Delete a release in a pipeline owned by an organization
 	//
-	// Deletes a pipeline release, where the pipeline is identified by its resource
-	// name, formed by its parent organization and ID.
+	// Deletes a pipeline release, where the pipeline is identified by its
+	// resource name, formed by its parent organization and ID.
 	DeleteOrganizationPipelineRelease(ctx context.Context, in *DeleteOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*DeleteOrganizationPipelineReleaseResponse, error)
 	// Deprecated: Do not use.
 	// Set the version of a pipeline owned by an organization to a pinned release
@@ -642,8 +652,8 @@ type PipelinePublicServiceClient interface {
 	// its resource name, formed by the parent organization and ID. Since this is
 	// an output-only field, a custom method is required to modify it.
 	//
-	// The pipeline release name will be updated accordingly, as it is  composed by
-	// the pipeline name and the ID of the release (e.g.
+	// The pipeline release name will be updated accordingly, as it is  composed
+	// by the pipeline name and the ID of the release (e.g.
 	// `organizations/luigi/pipelines/pizza-recipe-generator/releases/v0.2.1`).
 	RenameOrganizationPipelineRelease(ctx context.Context, in *RenameOrganizationPipelineReleaseRequest, opts ...grpc.CallOption) (*RenameOrganizationPipelineReleaseResponse, error)
 	// Deprecated: Do not use.
@@ -1858,8 +1868,8 @@ type PipelinePublicServiceServer interface {
 	// Update a pipeline
 	//
 	// Udpates a pipeline, accessing it by its resource name, which is defined by
-	// the parent namespace and the ID of the pipeline. The authenticated namespace must be
-	// the parent of the pipeline in order to modify it.
+	// the parent namespace and the ID of the pipeline. The authenticated
+	// namespace must be the parent of the pipeline in order to modify it.
 	//
 	// In REST requests, only the supplied pipeline fields will be taken into
 	// account when updating the resource.
@@ -1867,15 +1877,16 @@ type PipelinePublicServiceServer interface {
 	// Delete a pipeline
 	//
 	// Deletes a pipeline, accesing it by its resource name, which is defined by
-	// the parent namespace and the ID of the pipeline. The authenticated namespace must be
-	// the parent of the pipeline in order to delete it.
+	// the parent namespace and the ID of the pipeline. The authenticated
+	// namespace must be the parent of the pipeline in order to delete it.
 	DeleteNamespacePipeline(context.Context, *DeleteNamespacePipelineRequest) (*DeleteNamespacePipelineResponse, error)
 	// Validate a pipeline
 	//
 	// Validates a pipeline by its resource name, which is defined by the parent
 	// namespace and the ID of the pipeline.
 	//
-	// Validation checks the recipe of the pipeline and the status of its components.
+	// Validation checks the recipe of the pipeline and the status of its
+	// components.
 	ValidateNamespacePipeline(context.Context, *ValidateNamespacePipelineRequest) (*ValidateNamespacePipelineResponse, error)
 	// Rename a pipeline
 	//
@@ -1891,35 +1902,37 @@ type PipelinePublicServiceServer interface {
 	RenameNamespacePipeline(context.Context, *RenameNamespacePipelineRequest) (*RenameNamespacePipelineResponse, error)
 	// Clone a pipeline
 	//
-	// Clones a pipeline owned by a namespace. The new pipeline may have a different
-	// parent, and this can be either a namespace or an organization.
+	// Clones a pipeline owned by a namespace. The new pipeline may have a
+	// different parent, and this can be either a namespace or an organization.
 	CloneNamespacePipeline(context.Context, *CloneNamespacePipelineRequest) (*CloneNamespacePipelineResponse, error)
 	// Dispatch Pipeline Webhook Event
 	//
-	// Handles webhook events by routing them to the appropriate pipeline based on the webhook type and message.
-	// The webhook type determines which component processes the event, while the message payload contains data
-	// that triggers pipeline execution. The pipeline processes the event using configured handlers and returns
-	// a response to the webhook sender.
+	// Handles webhook events by routing them to the appropriate pipeline based on
+	// the webhook type and message. The webhook type determines which component
+	// processes the event, while the message payload contains data that triggers
+	// pipeline execution. The pipeline processes the event using configured
+	// handlers and returns a response to the webhook sender.
 	DispatchPipelineWebhookEvent(context.Context, *DispatchPipelineWebhookEventRequest) (*DispatchPipelineWebhookEventResponse, error)
 	// Trigger a pipeline
 	//
 	// Triggers the execution of a pipeline synchronously, i.e., the result is
-	// sent back to the namespace right after the data is processed. This method is
-	// intended for real-time inference when low latency is of concern.
+	// sent back to the namespace right after the data is processed. This method
+	// is intended for real-time inference when low latency is of concern.
 	//
-	// The pipeline is identified by its resource name, formed by the parent namespace
-	// and ID of the pipeline.
+	// The pipeline is identified by its resource name, formed by the parent
+	// namespace and ID of the pipeline.
 	//
-	// For more information, see [Run NamespacePipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
+	// For more information, see [Run
+	// NamespacePipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerNamespacePipeline(context.Context, *TriggerNamespacePipelineRequest) (*TriggerNamespacePipelineResponse, error)
 	// Trigger a pipeline via streaming
 	//
-	// Triggers the execution of a pipeline asynchronously and streams back the response.
-	// This method is intended for real-time inference when low latency is of concern
-	// and the response needs to be processed incrementally.
+	// Triggers the execution of a pipeline asynchronously and streams back the
+	// response. This method is intended for real-time inference when low latency
+	// is of concern and the response needs to be processed incrementally.
 	//
-	// The pipeline is identified by its resource name, formed by the parent namespace
-	// and ID of the pipeline.
+	// The pipeline is identified by its resource name, formed by the parent
+	// namespace and ID of the pipeline.
 	TriggerNamespacePipelineWithStream(*TriggerNamespacePipelineWithStreamRequest, grpc.ServerStreamingServer[TriggerNamespacePipelineWithStreamResponse]) error
 	// Trigger a pipeline asynchronously
 	//
@@ -1928,10 +1941,11 @@ type PipelinePublicServiceServer interface {
 	// operation. This method is intended for cases that require long-running
 	// workloads.
 	//
-	// The pipeline is identified by its resource name, formed by the parent namespace
-	// and ID of the pipeline.
+	// The pipeline is identified by its resource name, formed by the parent
+	// namespace and ID of the pipeline.
 	//
-	// For more information, see [Run NamespacePipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
+	// For more information, see [Run
+	// NamespacePipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerAsyncNamespacePipeline(context.Context, *TriggerAsyncNamespacePipelineRequest) (*TriggerAsyncNamespacePipelineResponse, error)
 	// Create a pipeline release
 	//
@@ -1969,8 +1983,8 @@ type PipelinePublicServiceServer interface {
 	DeleteNamespacePipelineRelease(context.Context, *DeleteNamespacePipelineReleaseRequest) (*DeleteNamespacePipelineReleaseResponse, error)
 	// Clone a pipeline release
 	//
-	// Clones a pipeline release owned by a namespace. The new pipeline may have a different
-	// parent, and this can be either a namespace or an organization.
+	// Clones a pipeline release owned by a namespace. The new pipeline may have a
+	// different parent, and this can be either a namespace or an organization.
 	CloneNamespacePipelineRelease(context.Context, *CloneNamespacePipelineReleaseRequest) (*CloneNamespacePipelineReleaseResponse, error)
 	// Trigger a pipeline release
 	//
@@ -1979,8 +1993,8 @@ type PipelinePublicServiceServer interface {
 	// at its latest release, this method allows the client to specified any
 	// committed release.
 	//
-	// The pipeline is identified by its resource name, formed by its parent namespace
-	// and ID.
+	// The pipeline is identified by its resource name, formed by its parent
+	// namespace and ID.
 	TriggerNamespacePipelineRelease(context.Context, *TriggerNamespacePipelineReleaseRequest) (*TriggerNamespacePipelineReleaseResponse, error)
 	// Trigger a pipeline release asynchronously
 	//
@@ -1989,8 +2003,8 @@ type PipelinePublicServiceServer interface {
 	// at its latest release, this method allows the client to specified any
 	// committed release.
 	//
-	// The pipeline is identified by its resource name, formed by its parent namespace
-	// and ID.
+	// The pipeline is identified by its resource name, formed by its parent
+	// namespace and ID.
 	TriggerAsyncNamespacePipelineRelease(context.Context, *TriggerAsyncNamespacePipelineReleaseRequest) (*TriggerAsyncNamespacePipelineReleaseResponse, error)
 	// Create a secret
 	//
@@ -2047,8 +2061,8 @@ type PipelinePublicServiceServer interface {
 	// Deprecated: Do not use.
 	// Get a pipeline owned by a user
 	//
-	// Returns the details of a user-owned pipeline by its resource name, which is defined
-	// by the parent user and the ID of the pipeline.
+	// Returns the details of a user-owned pipeline by its resource name, which is
+	// defined by the parent user and the ID of the pipeline.
 	GetUserPipeline(context.Context, *GetUserPipelineRequest) (*GetUserPipelineResponse, error)
 	// Deprecated: Do not use.
 	// Update a pipeline owned by a user
@@ -2073,7 +2087,8 @@ type PipelinePublicServiceServer interface {
 	// Validates a pipeline by its resource name, which is defined by the parent
 	// user and the ID of the pipeline.
 	//
-	// Validation checks the recipe of the pipeline and the status of its components.
+	// Validation checks the recipe of the pipeline and the status of its
+	// components.
 	ValidateUserPipeline(context.Context, *ValidateUserPipelineRequest) (*ValidateUserPipelineResponse, error)
 	// Deprecated: Do not use.
 	// Rename a pipeline owned by a user
@@ -2098,14 +2113,15 @@ type PipelinePublicServiceServer interface {
 	// The pipeline is identified by its resource name, formed by the parent user
 	// and ID of the pipeline.
 	//
-	// For more information, see [Run Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
+	// For more information, see [Run
+	// Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerUserPipeline(context.Context, *TriggerUserPipelineRequest) (*TriggerUserPipelineResponse, error)
 	// Deprecated: Do not use.
 	// Trigger a pipeline owned by a user and stream back the response
 	//
-	// Triggers the execution of a pipeline asynchronously and streams back the response.
-	// This method is intended for real-time inference when low latency is of concern
-	// and the response needs to be processed incrementally.
+	// Triggers the execution of a pipeline asynchronously and streams back the
+	// response. This method is intended for real-time inference when low latency
+	// is of concern and the response needs to be processed incrementally.
 	//
 	// The pipeline is identified by its resource name, formed by the parent user
 	// and ID of the pipeline.
@@ -2121,7 +2137,8 @@ type PipelinePublicServiceServer interface {
 	// The pipeline is identified by its resource name, formed by the parent user
 	// and ID of the pipeline.
 	//
-	// For more information, see [Run Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
+	// For more information, see [Run
+	// Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerAsyncUserPipeline(context.Context, *TriggerAsyncUserPipelineRequest) (*TriggerAsyncUserPipelineResponse, error)
 	// Deprecated: Do not use.
 	// Release a version of a pipeline owned by a user
@@ -2262,26 +2279,28 @@ type PipelinePublicServiceServer interface {
 	// Deprecated: Do not use.
 	// Trigger a pipeline owned by an organization
 	//
-	// Triggers the execution of a pipeline synchronously, i.e., the result is sent
-	// back to the organization right after the data is processed. This method is
-	// intended for real-time inference when low latency is of concern.
+	// Triggers the execution of a pipeline synchronously, i.e., the result is
+	// sent back to the organization right after the data is processed. This
+	// method is intended for real-time inference when low latency is of concern.
 	//
 	// The pipeline is identified by its resource name, formed by the parent
 	// organization and ID of the pipeline.
 	//
-	// For more information, see [Run Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
+	// For more information, see [Run
+	// Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerOrganizationPipelineStream(*TriggerOrganizationPipelineStreamRequest, grpc.ServerStreamingServer[TriggerOrganizationPipelineStreamResponse]) error
 	// Deprecated: Do not use.
 	// Trigger a pipeline owned by an organization
 	//
-	// Triggers the execution of a pipeline synchronously, i.e., the result is sent
-	// back to the organization right after the data is processed. This method is
-	// intended for real-time inference when low latency is of concern.
+	// Triggers the execution of a pipeline synchronously, i.e., the result is
+	// sent back to the organization right after the data is processed. This
+	// method is intended for real-time inference when low latency is of concern.
 	//
 	// The pipeline is identified by its resource name, formed by the parent
 	// organization and ID of the pipeline.
 	//
-	// For more information, see [Run Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
+	// For more information, see [Run
+	// Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerOrganizationPipeline(context.Context, *TriggerOrganizationPipelineRequest) (*TriggerOrganizationPipelineResponse, error)
 	// Deprecated: Do not use.
 	// Trigger a pipeline owned by an organization asynchronously
@@ -2294,13 +2313,14 @@ type PipelinePublicServiceServer interface {
 	// The pipeline is identified by its resource name, formed by the parent
 	// organization and ID of the pipeline.
 	//
-	// For more information, see [Run Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
+	// For more information, see [Run
+	// Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
 	TriggerAsyncOrganizationPipeline(context.Context, *TriggerAsyncOrganizationPipelineRequest) (*TriggerAsyncOrganizationPipelineResponse, error)
 	// Deprecated: Do not use.
 	// Release a version of a pipeline owned by an organization
 	//
-	// Commits the version of a pipeline, identified by its resource name, which is
-	// formed by the parent organization and ID of the pipeline.
+	// Commits the version of a pipeline, identified by its resource name, which
+	// is formed by the parent organization and ID of the pipeline.
 	CreateOrganizationPipelineRelease(context.Context, *CreateOrganizationPipelineReleaseRequest) (*CreateOrganizationPipelineReleaseResponse, error)
 	// Deprecated: Do not use.
 	// List the releases in a pipeline owned by an organization
@@ -2323,8 +2343,8 @@ type PipelinePublicServiceServer interface {
 	// Deprecated: Do not use.
 	// Delete a release in a pipeline owned by an organization
 	//
-	// Deletes a pipeline release, where the pipeline is identified by its resource
-	// name, formed by its parent organization and ID.
+	// Deletes a pipeline release, where the pipeline is identified by its
+	// resource name, formed by its parent organization and ID.
 	DeleteOrganizationPipelineRelease(context.Context, *DeleteOrganizationPipelineReleaseRequest) (*DeleteOrganizationPipelineReleaseResponse, error)
 	// Deprecated: Do not use.
 	// Set the version of a pipeline owned by an organization to a pinned release
@@ -2341,8 +2361,8 @@ type PipelinePublicServiceServer interface {
 	// its resource name, formed by the parent organization and ID. Since this is
 	// an output-only field, a custom method is required to modify it.
 	//
-	// The pipeline release name will be updated accordingly, as it is  composed by
-	// the pipeline name and the ID of the release (e.g.
+	// The pipeline release name will be updated accordingly, as it is  composed
+	// by the pipeline name and the ID of the release (e.g.
 	// `organizations/luigi/pipelines/pizza-recipe-generator/releases/v0.2.1`).
 	RenameOrganizationPipelineRelease(context.Context, *RenameOrganizationPipelineReleaseRequest) (*RenameOrganizationPipelineReleaseResponse, error)
 	// Deprecated: Do not use.

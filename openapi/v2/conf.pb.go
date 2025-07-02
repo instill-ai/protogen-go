@@ -26,8 +26,8 @@ var File_openapi_v2_conf_proto protoreflect.FileDescriptor
 const file_openapi_v2_conf_proto_rawDesc = "" +
 	"\n" +
 	"\x15openapi/v2/conf.proto\x12\n" +
-	"openapi.v2\x1a.protoc-gen-openapiv2/options/annotations.protoB\xd4\t\x92A\xb4\b\x12\xeb\x01\n" +
-	"\x13🔮 Instill AI API\x12/Interact with Instill AI through its public API\"A\n" +
+	"openapi.v2\x1a.protoc-gen-openapiv2/options/annotations.protoB\xaa\t\x92A\x8a\b\x12\xea\x01\n" +
+	"\x10Instill Core API\x121Interact with Instill Core through its public API\"A\n" +
 	"\n" +
 	"Instill AI\x12\x1dhttps://github.com/instill-ai\x1a\x14hello@instill-ai.com*W\n" +
 	"\x1aElastic License 2.0 (ELv2)\x129https://github.com/instill-ai/protobufs/blob/main/LICENSE2\av0.51.0\x1a\x12api.instill-ai.com*\x02\x02\x012\x10application/json:\x10application/jsonR<\n" +
@@ -38,18 +38,17 @@ const file_openapi_v2_conf_proto_rawDesc = "" +
 	"\tx-default\x12\x17\x1a\x15Bearer instill_sk_***b\f\n" +
 	"\n" +
 	"\n" +
-	"\x06Bearer\x12\x00j]\n" +
-	"\x0e🪆 Namespace\x12KNamespaces (e.g. User, Organization) that structure the resource hierarchy.j8\n" +
-	"\r💧 Pipeline\x12'Pipeline orchestration in Instill Core.j4\n" +
-	"\f⚗️ Model\x12$AI Model resources for MLOps/LLMOps.jQ\n" +
-	"\r💾 Artifact\x12@Data orchestration for unified unstructured data representation.j%\n" +
-	"\n" +
-	"🍎 Agent\x12\x17Ready-to-use AI agents.j$\n" +
+	"\x06Bearer\x12\x00jX\n" +
+	"\tNamespace\x12KNamespaces (e.g. User, Organization) that structure the resource hierarchy.j3\n" +
+	"\bPipeline\x12'Pipeline orchestration in Instill Core.jL\n" +
+	"\bArtifact\x12@Data orchestration for unified unstructured data representation.j-\n" +
+	"\x05Model\x12$AI Model resources for MLOps/LLMOps.j \n" +
+	"\x05Agent\x12\x17Ready-to-use AI agents.j$\n" +
 	"\x05Table\x12\x1bTable resources for agents.j&\n" +
-	"\x06Folder\x12\x1cFolder resources for agents.j'\n" +
-	"\f📊 Metrics\x12\x17Resource usage metrics.j4\n" +
-	"\x11🤝 Subscription\x12\x1fPricing plans on Instill Cloud.r8\n" +
-	"\x15More about Instill AI\x12\x1fhttps://www.instill-ai.dev/docs\n" +
+	"\x06Folder\x12\x1cFolder resources for agents.j\"\n" +
+	"\aMetrics\x12\x17Resource usage metrics.j/\n" +
+	"\fSubscription\x12\x1fPricing plans on Instill Cloud.r4\n" +
+	"\x15More about Instill AI\x12\x1bhttps://docs.instill-ai.com\n" +
 	"\x0ecom.openapi.v2B\tConfProtoP\x01Z6github.com/instill-ai/protogen-go/openapi/v2;openapiv2\xa2\x02\x03OXX\xaa\x02\n" +
 	"Openapi.V2\xca\x02\n" +
 	"Openapi\\V2\xe2\x02\x16Openapi\\V2\\GPBMetadata\xea\x02\vOpenapi::V2b\x06proto3"

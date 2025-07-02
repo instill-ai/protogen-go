@@ -27,109 +27,109 @@ var File_core_mgmt_v1beta_mgmt_public_service_proto protoreflect.FileDescriptor
 
 const file_core_mgmt_v1beta_mgmt_public_service_proto_rawDesc = "" +
 	"\n" +
-	"*core/mgmt/v1beta/mgmt_public_service.proto\x12\x10core.mgmt.v1beta\x1a\x1dcore/mgmt/v1beta/metric.proto\x1a\x1bcore/mgmt/v1beta/mgmt.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xfb?\n" +
+	"*core/mgmt/v1beta/mgmt_public_service.proto\x12\x10core.mgmt.v1beta\x1a\x1dcore/mgmt/v1beta/metric.proto\x1a\x1bcore/mgmt/v1beta/mgmt.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xd1>\n" +
 	"\x11MgmtPublicService\x12\x94\x01\n" +
 	"\bLiveness\x12!.core.mgmt.v1beta.LivenessRequest\x1a\".core.mgmt.v1beta.LivenessResponse\"A\xfa\xd2\xe4\x93\x02\n" +
 	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02+Z\x15\x12\x13/v1beta/health/mgmt\x12\x12/v1beta/__liveness\x12\x97\x01\n" +
 	"\tReadiness\x12\".core.mgmt.v1beta.ReadinessRequest\x1a#.core.mgmt.v1beta.ReadinessResponse\"A\xfa\xd2\xe4\x93\x02\n" +
-	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02+Z\x14\x12\x12/v1beta/ready/mgmt\x12\x13/v1beta/__readiness\x12\xb1\x01\n" +
-	"\x14GetAuthenticatedUser\x12-.core.mgmt.v1beta.GetAuthenticatedUserRequest\x1a..core.mgmt.v1beta.GetAuthenticatedUserResponse\":\x92A#\n" +
-	"\x0e🪆 Namespacej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x0e\x12\f/v1beta/user\x12\xbd\x01\n" +
-	"\x16PatchAuthenticatedUser\x12/.core.mgmt.v1beta.PatchAuthenticatedUserRequest\x1a0.core.mgmt.v1beta.PatchAuthenticatedUserResponse\"@\x92A#\n" +
-	"\x0e🪆 Namespacej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x14:\x04user2\f/v1beta/user\x12\x91\x01\n" +
-	"\tListUsers\x12\".core.mgmt.v1beta.ListUsersRequest\x1a#.core.mgmt.v1beta.ListUsersResponse\";\x92A#\n" +
-	"\x0e🪆 Namespacej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x0f\x12\r/v1beta/users\x12\x95\x01\n" +
-	"\aGetUser\x12 .core.mgmt.v1beta.GetUserRequest\x1a!.core.mgmt.v1beta.GetUserResponse\"E\x92A#\n" +
-	"\x0e🪆 Namespacej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x19\x12\x17/v1beta/users/{user_id}\x12\xc2\x01\n" +
-	"\x12CreateOrganization\x12+.core.mgmt.v1beta.CreateOrganizationRequest\x1a,.core.mgmt.v1beta.CreateOrganizationResponse\"Q\x92A#\n" +
-	"\x0e🪆 Namespacej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02%:\forganization\"\x15/v1beta/organizations\x12\xb1\x01\n" +
-	"\x11ListOrganizations\x12*.core.mgmt.v1beta.ListOrganizationsRequest\x1a+.core.mgmt.v1beta.ListOrganizationsResponse\"C\x92A#\n" +
-	"\x0e🪆 Namespacej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x17\x12\x15/v1beta/organizations\x12\xbd\x01\n" +
-	"\x0fGetOrganization\x12(.core.mgmt.v1beta.GetOrganizationRequest\x1a).core.mgmt.v1beta.GetOrganizationResponse\"U\x92A#\n" +
-	"\x0e🪆 Namespacej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02)\x12'/v1beta/organizations/{organization_id}\x12\xd4\x01\n" +
-	"\x12UpdateOrganization\x12+.core.mgmt.v1beta.UpdateOrganizationRequest\x1a,.core.mgmt.v1beta.UpdateOrganizationResponse\"c\x92A#\n" +
-	"\x0e🪆 Namespacej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x027:\forganization2'/v1beta/organizations/{organization_id}\x12\xc6\x01\n" +
-	"\x12DeleteOrganization\x12+.core.mgmt.v1beta.DeleteOrganizationRequest\x1a,.core.mgmt.v1beta.DeleteOrganizationResponse\"U\x92A#\n" +
-	"\x0e🪆 Namespacej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02)*'/v1beta/organizations/{organization_id}\x12\xc5\x01\n" +
-	"\x13ListUserMemberships\x12,.core.mgmt.v1beta.ListUserMembershipsRequest\x1a-.core.mgmt.v1beta.ListUserMembershipsResponse\"Q\x92A#\n" +
-	"\x0e🪆 Namespacej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02%\x12#/v1beta/users/{user_id}/memberships\x12\xd1\x01\n" +
-	"\x11GetUserMembership\x12*.core.mgmt.v1beta.GetUserMembershipRequest\x1a+.core.mgmt.v1beta.GetUserMembershipResponse\"c\x92A#\n" +
-	"\x0e🪆 Namespacej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x027\x125/v1beta/users/{user_id}/memberships/{organization_id}\x12\xe6\x01\n" +
-	"\x14UpdateUserMembership\x12-.core.mgmt.v1beta.UpdateUserMembershipRequest\x1a..core.mgmt.v1beta.UpdateUserMembershipResponse\"o\x92A#\n" +
-	"\x0e🪆 Namespacej\x11\n" +
+	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02+Z\x14\x12\x12/v1beta/ready/mgmt\x12\x13/v1beta/__readiness\x12\xac\x01\n" +
+	"\x14GetAuthenticatedUser\x12-.core.mgmt.v1beta.GetAuthenticatedUserRequest\x1a..core.mgmt.v1beta.GetAuthenticatedUserResponse\"5\x92A\x1e\n" +
+	"\tNamespacej\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x0e\x12\f/v1beta/user\x12\xb8\x01\n" +
+	"\x16PatchAuthenticatedUser\x12/.core.mgmt.v1beta.PatchAuthenticatedUserRequest\x1a0.core.mgmt.v1beta.PatchAuthenticatedUserResponse\";\x92A\x1e\n" +
+	"\tNamespacej\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x14:\x04user2\f/v1beta/user\x12\x8c\x01\n" +
+	"\tListUsers\x12\".core.mgmt.v1beta.ListUsersRequest\x1a#.core.mgmt.v1beta.ListUsersResponse\"6\x92A\x1e\n" +
+	"\tNamespacej\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x0f\x12\r/v1beta/users\x12\x90\x01\n" +
+	"\aGetUser\x12 .core.mgmt.v1beta.GetUserRequest\x1a!.core.mgmt.v1beta.GetUserResponse\"@\x92A\x1e\n" +
+	"\tNamespacej\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x19\x12\x17/v1beta/users/{user_id}\x12\xbd\x01\n" +
+	"\x12CreateOrganization\x12+.core.mgmt.v1beta.CreateOrganizationRequest\x1a,.core.mgmt.v1beta.CreateOrganizationResponse\"L\x92A\x1e\n" +
+	"\tNamespacej\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02%:\forganization\"\x15/v1beta/organizations\x12\xac\x01\n" +
+	"\x11ListOrganizations\x12*.core.mgmt.v1beta.ListOrganizationsRequest\x1a+.core.mgmt.v1beta.ListOrganizationsResponse\">\x92A\x1e\n" +
+	"\tNamespacej\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x17\x12\x15/v1beta/organizations\x12\xb8\x01\n" +
+	"\x0fGetOrganization\x12(.core.mgmt.v1beta.GetOrganizationRequest\x1a).core.mgmt.v1beta.GetOrganizationResponse\"P\x92A\x1e\n" +
+	"\tNamespacej\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02)\x12'/v1beta/organizations/{organization_id}\x12\xcf\x01\n" +
+	"\x12UpdateOrganization\x12+.core.mgmt.v1beta.UpdateOrganizationRequest\x1a,.core.mgmt.v1beta.UpdateOrganizationResponse\"^\x92A\x1e\n" +
+	"\tNamespacej\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x027:\forganization2'/v1beta/organizations/{organization_id}\x12\xc1\x01\n" +
+	"\x12DeleteOrganization\x12+.core.mgmt.v1beta.DeleteOrganizationRequest\x1a,.core.mgmt.v1beta.DeleteOrganizationResponse\"P\x92A\x1e\n" +
+	"\tNamespacej\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02)*'/v1beta/organizations/{organization_id}\x12\xc0\x01\n" +
+	"\x13ListUserMemberships\x12,.core.mgmt.v1beta.ListUserMembershipsRequest\x1a-.core.mgmt.v1beta.ListUserMembershipsResponse\"L\x92A\x1e\n" +
+	"\tNamespacej\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02%\x12#/v1beta/users/{user_id}/memberships\x12\xcc\x01\n" +
+	"\x11GetUserMembership\x12*.core.mgmt.v1beta.GetUserMembershipRequest\x1a+.core.mgmt.v1beta.GetUserMembershipResponse\"^\x92A\x1e\n" +
+	"\tNamespacej\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x027\x125/v1beta/users/{user_id}/memberships/{organization_id}\x12\xe1\x01\n" +
+	"\x14UpdateUserMembership\x12-.core.mgmt.v1beta.UpdateUserMembershipRequest\x1a..core.mgmt.v1beta.UpdateUserMembershipResponse\"j\x92A\x1e\n" +
+	"\tNamespacej\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02C:\n" +
-	"membership\x1a5/v1beta/users/{user_id}/memberships/{organization_id}\x12\xda\x01\n" +
-	"\x14DeleteUserMembership\x12-.core.mgmt.v1beta.DeleteUserMembershipRequest\x1a..core.mgmt.v1beta.DeleteUserMembershipResponse\"c\x92A#\n" +
-	"\x0e🪆 Namespacej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x027*5/v1beta/users/{user_id}/memberships/{organization_id}\x12\xed\x01\n" +
-	"\x1bListOrganizationMemberships\x124.core.mgmt.v1beta.ListOrganizationMembershipsRequest\x1a5.core.mgmt.v1beta.ListOrganizationMembershipsResponse\"a\x92A#\n" +
-	"\x0e🪆 Namespacej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x025\x123/v1beta/organizations/{organization_id}/memberships\x12\xf1\x01\n" +
-	"\x19GetOrganizationMembership\x122.core.mgmt.v1beta.GetOrganizationMembershipRequest\x1a3.core.mgmt.v1beta.GetOrganizationMembershipResponse\"k\x92A#\n" +
-	"\x0e🪆 Namespacej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02?\x12=/v1beta/organizations/{organization_id}/memberships/{user_id}\x12\x86\x02\n" +
-	"\x1cUpdateOrganizationMembership\x125.core.mgmt.v1beta.UpdateOrganizationMembershipRequest\x1a6.core.mgmt.v1beta.UpdateOrganizationMembershipResponse\"w\x92A#\n" +
-	"\x0e🪆 Namespacej\x11\n" +
+	"membership\x1a5/v1beta/users/{user_id}/memberships/{organization_id}\x12\xd5\x01\n" +
+	"\x14DeleteUserMembership\x12-.core.mgmt.v1beta.DeleteUserMembershipRequest\x1a..core.mgmt.v1beta.DeleteUserMembershipResponse\"^\x92A\x1e\n" +
+	"\tNamespacej\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x027*5/v1beta/users/{user_id}/memberships/{organization_id}\x12\xe8\x01\n" +
+	"\x1bListOrganizationMemberships\x124.core.mgmt.v1beta.ListOrganizationMembershipsRequest\x1a5.core.mgmt.v1beta.ListOrganizationMembershipsResponse\"\\\x92A\x1e\n" +
+	"\tNamespacej\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x025\x123/v1beta/organizations/{organization_id}/memberships\x12\xec\x01\n" +
+	"\x19GetOrganizationMembership\x122.core.mgmt.v1beta.GetOrganizationMembershipRequest\x1a3.core.mgmt.v1beta.GetOrganizationMembershipResponse\"f\x92A\x1e\n" +
+	"\tNamespacej\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02?\x12=/v1beta/organizations/{organization_id}/memberships/{user_id}\x12\x81\x02\n" +
+	"\x1cUpdateOrganizationMembership\x125.core.mgmt.v1beta.UpdateOrganizationMembershipRequest\x1a6.core.mgmt.v1beta.UpdateOrganizationMembershipResponse\"r\x92A\x1e\n" +
+	"\tNamespacej\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02K:\n" +
-	"membership\x1a=/v1beta/organizations/{organization_id}/memberships/{user_id}\x12\xfa\x01\n" +
-	"\x1cDeleteOrganizationMembership\x125.core.mgmt.v1beta.DeleteOrganizationMembershipRequest\x1a6.core.mgmt.v1beta.DeleteOrganizationMembershipResponse\"k\x92A#\n" +
-	"\x0e🪆 Namespacej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02?*=/v1beta/organizations/{organization_id}/memberships/{user_id}\x12\xe5\x01\n" +
-	" GetAuthenticatedUserSubscription\x129.core.mgmt.v1beta.GetAuthenticatedUserSubscriptionRequest\x1a:.core.mgmt.v1beta.GetAuthenticatedUserSubscriptionResponse\"J\x92A&\n" +
-	"\x11🤝 Subscriptionj\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x1b\x12\x19/v1beta/user/subscription\x12\xf1\x01\n" +
-	"\x1bGetOrganizationSubscription\x124.core.mgmt.v1beta.GetOrganizationSubscriptionRequest\x1a5.core.mgmt.v1beta.GetOrganizationSubscriptionResponse\"e\x92A&\n" +
-	"\x11🤝 Subscriptionj\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x026\x124/v1beta/organizations/{organization_id}/subscription\x12\x9f\x01\n" +
-	"\vCreateToken\x12$.core.mgmt.v1beta.CreateTokenRequest\x1a%.core.mgmt.v1beta.CreateTokenResponse\"C\x92A#\n" +
-	"\x0e🪆 Namespacej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x17:\x05token\"\x0e/v1beta/tokens\x12\x95\x01\n" +
+	"membership\x1a=/v1beta/organizations/{organization_id}/memberships/{user_id}\x12\xf5\x01\n" +
+	"\x1cDeleteOrganizationMembership\x125.core.mgmt.v1beta.DeleteOrganizationMembershipRequest\x1a6.core.mgmt.v1beta.DeleteOrganizationMembershipResponse\"f\x92A\x1e\n" +
+	"\tNamespacej\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02?*=/v1beta/organizations/{organization_id}/memberships/{user_id}\x12\xe0\x01\n" +
+	" GetAuthenticatedUserSubscription\x129.core.mgmt.v1beta.GetAuthenticatedUserSubscriptionRequest\x1a:.core.mgmt.v1beta.GetAuthenticatedUserSubscriptionResponse\"E\x92A!\n" +
+	"\fSubscriptionj\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x1b\x12\x19/v1beta/user/subscription\x12\xec\x01\n" +
+	"\x1bGetOrganizationSubscription\x124.core.mgmt.v1beta.GetOrganizationSubscriptionRequest\x1a5.core.mgmt.v1beta.GetOrganizationSubscriptionResponse\"`\x92A!\n" +
+	"\fSubscriptionj\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x026\x124/v1beta/organizations/{organization_id}/subscription\x12\x9a\x01\n" +
+	"\vCreateToken\x12$.core.mgmt.v1beta.CreateTokenRequest\x1a%.core.mgmt.v1beta.CreateTokenResponse\">\x92A\x1e\n" +
+	"\tNamespacej\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x17:\x05token\"\x0e/v1beta/tokens\x12\x90\x01\n" +
 	"\n" +
-	"ListTokens\x12#.core.mgmt.v1beta.ListTokensRequest\x1a$.core.mgmt.v1beta.ListTokensResponse\"<\x92A#\n" +
-	"\x0e🪆 Namespacej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x10\x12\x0e/v1beta/tokens\x12\x9a\x01\n" +
-	"\bGetToken\x12!.core.mgmt.v1beta.GetTokenRequest\x1a\".core.mgmt.v1beta.GetTokenResponse\"G\x92A#\n" +
-	"\x0e🪆 Namespacej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x1b\x12\x19/v1beta/tokens/{token_id}\x12\xa3\x01\n" +
-	"\vDeleteToken\x12$.core.mgmt.v1beta.DeleteTokenRequest\x1a%.core.mgmt.v1beta.DeleteTokenResponse\"G\x92A#\n" +
-	"\x0e🪆 Namespacej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x1b*\x19/v1beta/tokens/{token_id}\x12\xa6\x01\n" +
-	"\rValidateToken\x12&.core.mgmt.v1beta.ValidateTokenRequest\x1a'.core.mgmt.v1beta.ValidateTokenResponse\"D\x92A#\n" +
-	"\x0e🪆 Namespacej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x18\"\x16/v1beta/validate_token\x12\xca\x01\n" +
-	"\x12GetRemainingCredit\x12+.core.mgmt.v1beta.GetRemainingCreditRequest\x1a,.core.mgmt.v1beta.GetRemainingCreditResponse\"Y\x92A&\n" +
-	"\x11🤝 Subscriptionj\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02*\x12(/v1beta/namespaces/{namespace_id}/credit\x12\xad\x01\n" +
-	"\x0eCheckNamespace\x12'.core.mgmt.v1beta.CheckNamespaceRequest\x1a(.core.mgmt.v1beta.CheckNamespaceResponse\"H\x92A#\n" +
-	"\x0e🪆 Namespacej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/v1beta/check-namespace\x12\xd7\x01\n" +
-	"\x17GetPipelineTriggerCount\x120.core.mgmt.v1beta.GetPipelineTriggerCountRequest\x1a1.core.mgmt.v1beta.GetPipelineTriggerCountResponse\"W\x92A!\n" +
-	"\f📊 Metricsj\x11\n" +
+	"ListTokens\x12#.core.mgmt.v1beta.ListTokensRequest\x1a$.core.mgmt.v1beta.ListTokensResponse\"7\x92A\x1e\n" +
+	"\tNamespacej\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x10\x12\x0e/v1beta/tokens\x12\x95\x01\n" +
+	"\bGetToken\x12!.core.mgmt.v1beta.GetTokenRequest\x1a\".core.mgmt.v1beta.GetTokenResponse\"B\x92A\x1e\n" +
+	"\tNamespacej\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x1b\x12\x19/v1beta/tokens/{token_id}\x12\x9e\x01\n" +
+	"\vDeleteToken\x12$.core.mgmt.v1beta.DeleteTokenRequest\x1a%.core.mgmt.v1beta.DeleteTokenResponse\"B\x92A\x1e\n" +
+	"\tNamespacej\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x1b*\x19/v1beta/tokens/{token_id}\x12\xa1\x01\n" +
+	"\rValidateToken\x12&.core.mgmt.v1beta.ValidateTokenRequest\x1a'.core.mgmt.v1beta.ValidateTokenResponse\"?\x92A\x1e\n" +
+	"\tNamespacej\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x18\"\x16/v1beta/validate_token\x12\xc5\x01\n" +
+	"\x12GetRemainingCredit\x12+.core.mgmt.v1beta.GetRemainingCreditRequest\x1a,.core.mgmt.v1beta.GetRemainingCreditResponse\"T\x92A!\n" +
+	"\fSubscriptionj\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02*\x12(/v1beta/namespaces/{namespace_id}/credit\x12\xa8\x01\n" +
+	"\x0eCheckNamespace\x12'.core.mgmt.v1beta.CheckNamespaceRequest\x1a(.core.mgmt.v1beta.CheckNamespaceResponse\"C\x92A\x1e\n" +
+	"\tNamespacej\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/v1beta/check-namespace\x12\xd2\x01\n" +
+	"\x17GetPipelineTriggerCount\x120.core.mgmt.v1beta.GetPipelineTriggerCountRequest\x1a1.core.mgmt.v1beta.GetPipelineTriggerCountResponse\"R\x92A\x1c\n" +
+	"\aMetricsj\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04beta\xfa\xd2\xe4\x93\x02\n" +
-	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02\x1d\x12\x1b/v1beta/pipeline-runs/count\x12\xcb\x01\n" +
-	"\x14GetModelTriggerCount\x12-.core.mgmt.v1beta.GetModelTriggerCountRequest\x1a..core.mgmt.v1beta.GetModelTriggerCountResponse\"T\x92A!\n" +
-	"\f📊 Metricsj\x11\n" +
+	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02\x1d\x12\x1b/v1beta/pipeline-runs/count\x12\xc6\x01\n" +
+	"\x14GetModelTriggerCount\x12-.core.mgmt.v1beta.GetModelTriggerCountRequest\x1a..core.mgmt.v1beta.GetModelTriggerCountResponse\"O\x92A\x1c\n" +
+	"\aMetricsj\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04beta\xfa\xd2\xe4\x93\x02\n" +
-	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02\x1a\x12\x18/v1beta/model-runs/count\x12\xe6\x01\n" +
-	"\x1fListPipelineTriggerChartRecords\x128.core.mgmt.v1beta.ListPipelineTriggerChartRecordsRequest\x1a9.core.mgmt.v1beta.ListPipelineTriggerChartRecordsResponse\"N\x92A!\n" +
-	"\f📊 Metricsj\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02$\x12\"/v1beta/pipeline-runs/query-charts\x12\xda\x01\n" +
-	"\x1cListModelTriggerChartRecords\x125.core.mgmt.v1beta.ListModelTriggerChartRecordsRequest\x1a6.core.mgmt.v1beta.ListModelTriggerChartRecordsResponse\"K\x92A!\n" +
-	"\f📊 Metricsj\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02!\x12\x1f/v1beta/model-runs/query-charts\x12\xe5\x01\n" +
-	"!ListCreditConsumptionChartRecords\x12:.core.mgmt.v1beta.ListCreditConsumptionChartRecordsRequest\x1a;.core.mgmt.v1beta.ListCreditConsumptionChartRecordsResponse\"G\x92A!\n" +
-	"\f📊 Metricsj\x11\n" +
+	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02\x1a\x12\x18/v1beta/model-runs/count\x12\xe1\x01\n" +
+	"\x1fListPipelineTriggerChartRecords\x128.core.mgmt.v1beta.ListPipelineTriggerChartRecordsRequest\x1a9.core.mgmt.v1beta.ListPipelineTriggerChartRecordsResponse\"I\x92A\x1c\n" +
+	"\aMetricsj\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02$\x12\"/v1beta/pipeline-runs/query-charts\x12\xd5\x01\n" +
+	"\x1cListModelTriggerChartRecords\x125.core.mgmt.v1beta.ListModelTriggerChartRecordsRequest\x1a6.core.mgmt.v1beta.ListModelTriggerChartRecordsResponse\"F\x92A\x1c\n" +
+	"\aMetricsj\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02!\x12\x1f/v1beta/model-runs/query-charts\x12\xe0\x01\n" +
+	"!ListCreditConsumptionChartRecords\x12:.core.mgmt.v1beta.ListCreditConsumptionChartRecordsRequest\x1a;.core.mgmt.v1beta.ListCreditConsumptionChartRecordsResponse\"B\x92A\x1c\n" +
+	"\aMetricsj\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x1d\x12\x1b/v1beta/credit/query-charts\x12\x9c\x01\n" +
 	"\x0fAuthTokenIssuer\x12(.core.mgmt.v1beta.AuthTokenIssuerRequest\x1a).core.mgmt.v1beta.AuthTokenIssuerResponse\"4\xfa\xd2\xe4\x93\x02\n" +
 	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/v1beta/auth/token_issuer\x12\x80\x01\n" +
@@ -141,17 +141,17 @@ const file_core_mgmt_v1beta_mgmt_public_service_proto_rawDesc = "" +
 	"\x12AuthChangePassword\x12+.core.mgmt.v1beta.AuthChangePasswordRequest\x1a,.core.mgmt.v1beta.AuthChangePasswordResponse\"7\xfa\xd2\xe4\x93\x02\n" +
 	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02!:\x01*\"\x1c/v1beta/auth/change_password\x12\xba\x01\n" +
 	"\x17AuthValidateAccessToken\x120.core.mgmt.v1beta.AuthValidateAccessTokenRequest\x1a1.core.mgmt.v1beta.AuthValidateAccessTokenResponse\":\xfa\xd2\xe4\x93\x02\n" +
-	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02$\"\"/v1beta/auth/validate_access_token\x12\xed\x01\n" +
-	"\x1aListPipelineTriggerRecords\x123.core.mgmt.v1beta.ListPipelineTriggerRecordsRequest\x1a4.core.mgmt.v1beta.ListPipelineTriggerRecordsResponse\"d\x92A!\n" +
-	"\f📊 Metricsj\x11\n" +
+	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02$\"\"/v1beta/auth/validate_access_token\x12\xe8\x01\n" +
+	"\x1aListPipelineTriggerRecords\x123.core.mgmt.v1beta.ListPipelineTriggerRecordsRequest\x1a4.core.mgmt.v1beta.ListPipelineTriggerRecordsResponse\"_\x92A\x1c\n" +
+	"\aMetricsj\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04beta\xfa\xd2\xe4\x93\x02\n" +
-	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02'\x12%/v1beta/metrics/vdp/pipeline/triggers\x88\x02\x01\x12\xfa\x01\n" +
-	"\x1fListPipelineTriggerTableRecords\x128.core.mgmt.v1beta.ListPipelineTriggerTableRecordsRequest\x1a9.core.mgmt.v1beta.ListPipelineTriggerTableRecordsResponse\"b\x92A!\n" +
-	"\f📊 Metricsj\x11\n" +
+	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02'\x12%/v1beta/metrics/vdp/pipeline/triggers\x88\x02\x01\x12\xf5\x01\n" +
+	"\x1fListPipelineTriggerTableRecords\x128.core.mgmt.v1beta.ListPipelineTriggerTableRecordsRequest\x1a9.core.mgmt.v1beta.ListPipelineTriggerTableRecordsResponse\"]\x92A\x1c\n" +
+	"\aMetricsj\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04beta\xfa\xd2\xe4\x93\x02\n" +
-	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02%\x12#/v1beta/metrics/vdp/pipeline/tables\x88\x02\x01\x12\x80\x02\n" +
-	"!ListPipelineTriggerChartRecordsV0\x12:.core.mgmt.v1beta.ListPipelineTriggerChartRecordsV0Request\x1a;.core.mgmt.v1beta.ListPipelineTriggerChartRecordsV0Response\"b\x92A!\n" +
-	"\f📊 Metricsj\x11\n" +
+	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02%\x12#/v1beta/metrics/vdp/pipeline/tables\x88\x02\x01\x12\xfb\x01\n" +
+	"!ListPipelineTriggerChartRecordsV0\x12:.core.mgmt.v1beta.ListPipelineTriggerChartRecordsV0Request\x1a;.core.mgmt.v1beta.ListPipelineTriggerChartRecordsV0Response\"]\x92A\x1c\n" +
+	"\aMetricsj\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04beta\xfa\xd2\xe4\x93\x02\n" +
 	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02%\x12#/v1beta/metrics/vdp/pipeline/charts\x88\x02\x01\x1a\x1a\x92A\x17\x12\x15Public Core endpointsB\xcf\x01\n" +
 	"\x14com.core.mgmt.v1betaB\x16MgmtPublicServiceProtoP\x01Z=github.com/instill-ai/protogen-go/core/mgmt/v1beta;mgmtv1beta\xa2\x02\x03CMX\xaa\x02\x10Core.Mgmt.V1beta\xca\x02\x10Core\\Mgmt\\V1beta\xe2\x02\x1cCore\\Mgmt\\V1beta\\GPBMetadata\xea\x02\x12Core::Mgmt::V1betab\x06proto3"

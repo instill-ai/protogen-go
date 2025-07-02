@@ -27,46 +27,38 @@ var File_agent_agent_v1alpha_agent_public_service_proto protoreflect.FileDescrip
 
 const file_agent_agent_v1alpha_agent_public_service_proto_rawDesc = "" +
 	"\n" +
-	".agent/agent/v1alpha/agent_public_service.proto\x12\x13agent.agent.v1alpha\x1a\x1fagent/agent/v1alpha/agent.proto\x1a\x1eagent/agent/v1alpha/chat.proto\x1a agent/agent/v1alpha/folder.proto\x1a\x1fagent/agent/v1alpha/table.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xe0Q\n" +
+	".agent/agent/v1alpha/agent_public_service.proto\x12\x13agent.agent.v1alpha\x1a\x1fagent/agent/v1alpha/agent.proto\x1a\x1eagent/agent/v1alpha/chat.proto\x1a agent/agent/v1alpha/folder.proto\x1a\x1fagent/agent/v1alpha/table.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xb8Q\n" +
 	"\x12AgentPublicService\x12\x9d\x01\n" +
 	"\bLiveness\x12$.agent.agent.v1alpha.LivenessRequest\x1a%.agent.agent.v1alpha.LivenessResponse\"D\xfa\xd2\xe4\x93\x02\n" +
 	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02.Z\x17\x12\x15/v1alpha/health/agent\x12\x13/v1alpha/__liveness\x12\xa0\x01\n" +
 	"\tReadiness\x12%.agent.agent.v1alpha.ReadinessRequest\x1a&.agent.agent.v1alpha.ReadinessResponse\"D\xfa\xd2\xe4\x93\x02\n" +
-	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02.Z\x16\x12\x14/v1alpha/ready/agent\x12\x14/v1alpha/__readiness\x12\xb5\x01\n" +
+	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02.Z\x16\x12\x14/v1alpha/ready/agent\x12\x14/v1alpha/__readiness\x12\xb0\x01\n" +
 	"\n" +
-	"CreateChat\x12&.agent.agent.v1alpha.CreateChatRequest\x1a'.agent.agent.v1alpha.CreateChatResponse\"V\x92A \n" +
+	"CreateChat\x12&.agent.agent.v1alpha.CreateChatRequest\x1a'.agent.agent.v1alpha.CreateChatResponse\"Q\x92A\x1b\n" +
+	"\x05Agentj\x12\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02-:\x01*\"(/v1alpha/namespaces/{namespace_id}/chats\x12\xaa\x01\n" +
+	"\tListChats\x12%.agent.agent.v1alpha.ListChatsRequest\x1a&.agent.agent.v1alpha.ListChatsResponse\"N\x92A\x1b\n" +
+	"\x05Agentj\x12\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02*\x12(/v1alpha/namespaces/{namespace_id}/chats\x12\xbb\x01\n" +
 	"\n" +
-	"🍎 Agentj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02-:\x01*\"(/v1alpha/namespaces/{namespace_id}/chats\x12\xaf\x01\n" +
-	"\tListChats\x12%.agent.agent.v1alpha.ListChatsRequest\x1a&.agent.agent.v1alpha.ListChatsResponse\"S\x92A \n" +
+	"UpdateChat\x12&.agent.agent.v1alpha.UpdateChatRequest\x1a'.agent.agent.v1alpha.UpdateChatResponse\"\\\x92A\x1b\n" +
+	"\x05Agentj\x12\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x028:\x01*\x1a3/v1alpha/namespaces/{namespace_id}/chats/{chat_uid}\x12\xaf\x01\n" +
+	"\aGetChat\x12#.agent.agent.v1alpha.GetChatRequest\x1a$.agent.agent.v1alpha.GetChatResponse\"Y\x92A\x1b\n" +
+	"\x05Agentj\x12\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x025\x123/v1alpha/namespaces/{namespace_id}/chats/{chat_uid}\x12\xb8\x01\n" +
 	"\n" +
-	"🍎 Agentj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02*\x12(/v1alpha/namespaces/{namespace_id}/chats\x12\xc0\x01\n" +
-	"\n" +
-	"UpdateChat\x12&.agent.agent.v1alpha.UpdateChatRequest\x1a'.agent.agent.v1alpha.UpdateChatResponse\"a\x92A \n" +
-	"\n" +
-	"🍎 Agentj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x028:\x01*\x1a3/v1alpha/namespaces/{namespace_id}/chats/{chat_uid}\x12\xb4\x01\n" +
-	"\aGetChat\x12#.agent.agent.v1alpha.GetChatRequest\x1a$.agent.agent.v1alpha.GetChatResponse\"^\x92A \n" +
-	"\n" +
-	"🍎 Agentj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x025\x123/v1alpha/namespaces/{namespace_id}/chats/{chat_uid}\x12\xbd\x01\n" +
-	"\n" +
-	"DeleteChat\x12&.agent.agent.v1alpha.DeleteChatRequest\x1a'.agent.agent.v1alpha.DeleteChatResponse\"^\x92A \n" +
-	"\n" +
-	"🍎 Agentj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x025*3/v1alpha/namespaces/{namespace_id}/chats/{chat_uid}\x12\xcc\x01\n" +
-	"\fListMessages\x12(.agent.agent.v1alpha.ListMessagesRequest\x1a).agent.agent.v1alpha.ListMessagesResponse\"g\x92A \n" +
-	"\n" +
-	"🍎 Agentj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02>\x12</v1alpha/namespaces/{namespace_id}/chats/{chat_uid}/messages\x12\xdb\x01\n" +
-	"\rChatWithAgent\x12).agent.agent.v1alpha.ChatWithAgentRequest\x1a*.agent.agent.v1alpha.ChatWithAgentResponse\"q\x92A \n" +
-	"\n" +
-	"🍎 Agentj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02H:\x01*\"C/v1alpha/namespaces/{namespace_id}/chats/{chat_uid}/chat-with-agent0\x01\x12\xd4\x01\n" +
-	"\x12ListContextOptions\x12..agent.agent.v1alpha.ListContextOptionsRequest\x1a/.agent.agent.v1alpha.ListContextOptionsResponse\"]\x92A \n" +
-	"\n" +
-	"🍎 Agentj\x12\n" +
+	"DeleteChat\x12&.agent.agent.v1alpha.DeleteChatRequest\x1a'.agent.agent.v1alpha.DeleteChatResponse\"Y\x92A\x1b\n" +
+	"\x05Agentj\x12\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x025*3/v1alpha/namespaces/{namespace_id}/chats/{chat_uid}\x12\xc7\x01\n" +
+	"\fListMessages\x12(.agent.agent.v1alpha.ListMessagesRequest\x1a).agent.agent.v1alpha.ListMessagesResponse\"b\x92A\x1b\n" +
+	"\x05Agentj\x12\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02>\x12</v1alpha/namespaces/{namespace_id}/chats/{chat_uid}/messages\x12\xd6\x01\n" +
+	"\rChatWithAgent\x12).agent.agent.v1alpha.ChatWithAgentRequest\x1a*.agent.agent.v1alpha.ChatWithAgentResponse\"l\x92A\x1b\n" +
+	"\x05Agentj\x12\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02H:\x01*\"C/v1alpha/namespaces/{namespace_id}/chats/{chat_uid}/chat-with-agent0\x01\x12\xcf\x01\n" +
+	"\x12ListContextOptions\x12..agent.agent.v1alpha.ListContextOptionsRequest\x1a/.agent.agent.v1alpha.ListContextOptionsResponse\"X\x92A\x1b\n" +
+	"\x05Agentj\x12\n" +
 	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x024\x122/v1alpha/namespaces/{namespace_id}/context-options\x12\xcf\x01\n" +
 	"\rBindChatTable\x12).agent.agent.v1alpha.BindChatTableRequest\x1a*.agent.agent.v1alpha.BindChatTableResponse\"g\x92A\x1b\n" +
 	"\x05Tablej\x12\n" +

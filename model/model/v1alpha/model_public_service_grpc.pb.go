@@ -132,7 +132,8 @@ type ModelPublicServiceClient interface {
 	CreateNamespaceModel(ctx context.Context, in *CreateNamespaceModelRequest, opts ...grpc.CallOption) (*CreateNamespaceModelResponse, error)
 	// Get a model
 	//
-	// Returns the detail of a model, accessing it by the model ID and its parent namespace.
+	// Returns the detail of a model, accessing it by the model ID and its parent
+	// namespace.
 	GetNamespaceModel(ctx context.Context, in *GetNamespaceModelRequest, opts ...grpc.CallOption) (*GetNamespaceModelResponse, error)
 	// Update a model
 	//
@@ -154,25 +155,25 @@ type ModelPublicServiceClient interface {
 	RenameNamespaceModel(ctx context.Context, in *RenameNamespaceModelRequest, opts ...grpc.CallOption) (*RenameNamespaceModelResponse, error)
 	// Watch the state of a model version
 	//
-	// Returns the state of a model. The model resource allocation and scaling actions take some
-	// time, during which a model will be in various state. This endpoint
-	// allows clients to track the state.
+	// Returns the state of a model. The model resource allocation and scaling
+	// actions take some time, during which a model will be in various state. This
+	// endpoint allows clients to track the state.
 	WatchNamespaceModel(ctx context.Context, in *WatchNamespaceModelRequest, opts ...grpc.CallOption) (*WatchNamespaceModelResponse, error)
 	// Watch the state of the latest model version
 	//
-	// Returns the state of the latest model version. The model resource allocation and scaling actions
-	// take some time, during which a model will be in various state. This endpoint
-	// allows clients to track the state.
+	// Returns the state of the latest model version. The model resource
+	// allocation and scaling actions take some time, during which a model will be
+	// in various state. This endpoint allows clients to track the state.
 	WatchNamespaceLatestModel(ctx context.Context, in *WatchNamespaceLatestModelRequest, opts ...grpc.CallOption) (*WatchNamespaceLatestModelResponse, error)
 	// List namespace model versions
 	//
-	// Returns a paginated list of version of a model namespace that belong to the specified namespace.
-	// Contains model version and digest.
+	// Returns a paginated list of version of a model namespace that belong to the
+	// specified namespace. Contains model version and digest.
 	ListNamespaceModelVersions(ctx context.Context, in *ListNamespaceModelVersionsRequest, opts ...grpc.CallOption) (*ListNamespaceModelVersionsResponse, error)
 	// Delete a model version
 	//
-	// Deletes a model version, accesing it by its resource name, which is defined by the
-	// parent namespace and the ID of the model, and version.
+	// Deletes a model version, accesing it by its resource name, which is defined
+	// by the parent namespace and the ID of the model, and version.
 	DeleteNamespaceModelVersion(ctx context.Context, in *DeleteNamespaceModelVersionRequest, opts ...grpc.CallOption) (*DeleteNamespaceModelVersionResponse, error)
 	// Trigger model inference
 	//
@@ -186,13 +187,13 @@ type ModelPublicServiceClient interface {
 	TriggerAsyncNamespaceModel(ctx context.Context, in *TriggerAsyncNamespaceModelRequest, opts ...grpc.CallOption) (*TriggerAsyncNamespaceModelResponse, error)
 	// Trigger model inference
 	//
-	// Triggers the latest deployed model version to infer the result of a set of task or
-	// questions.
+	// Triggers the latest deployed model version to infer the result of a set of
+	// task or questions.
 	TriggerNamespaceLatestModel(ctx context.Context, in *TriggerNamespaceLatestModelRequest, opts ...grpc.CallOption) (*TriggerNamespaceLatestModelResponse, error)
 	// Trigger model inference asynchronously
 	//
-	// Triggers the latest deployed model version to infer the result of a set of task or
-	// questions.
+	// Triggers the latest deployed model version to infer the result of a set of
+	// task or questions.
 	TriggerAsyncNamespaceLatestModel(ctx context.Context, in *TriggerAsyncNamespaceLatestModelRequest, opts ...grpc.CallOption) (*TriggerAsyncNamespaceLatestModelResponse, error)
 	// Trigger model inference with a binary input
 	//
@@ -201,8 +202,8 @@ type ModelPublicServiceClient interface {
 	TriggerNamespaceModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[TriggerNamespaceModelBinaryFileUploadRequest, TriggerNamespaceModelBinaryFileUploadResponse], error)
 	// Trigger model inference with a binary input
 	//
-	// Triggers the latest deployed model version to infer the result of a set of task or
-	// questions, submitted as a binary file.
+	// Triggers the latest deployed model version to infer the result of a set of
+	// task or questions, submitted as a binary file.
 	TriggerNamespaceLatestModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[TriggerNamespaceLatestModelBinaryFileUploadRequest, TriggerNamespaceLatestModelBinaryFileUploadResponse], error)
 	// Get the details of the long-running operation from a namespace model
 	// with a particular version
@@ -239,7 +240,8 @@ type ModelPublicServiceClient interface {
 	// Deprecated: Do not use.
 	// Get a model
 	//
-	// Returns the detail of a model, accessing it by the model ID and its parent user.
+	// Returns the detail of a model, accessing it by the model ID and its parent
+	// user.
 	GetUserModel(ctx context.Context, in *GetUserModelRequest, opts ...grpc.CallOption) (*GetUserModelResponse, error)
 	// Deprecated: Do not use.
 	// Update a model
@@ -265,28 +267,28 @@ type ModelPublicServiceClient interface {
 	// Deprecated: Do not use.
 	// Watch the state of a model version
 	//
-	// Returns the state of a model. The model resource allocation and scaling actions take some
-	// time, during which a model will be in various state. This endpoint
-	// allows clients to track the state.
+	// Returns the state of a model. The model resource allocation and scaling
+	// actions take some time, during which a model will be in various state. This
+	// endpoint allows clients to track the state.
 	WatchUserModel(ctx context.Context, in *WatchUserModelRequest, opts ...grpc.CallOption) (*WatchUserModelResponse, error)
 	// Deprecated: Do not use.
 	// Watch the state of the latest model version
 	//
-	// Returns the state of the latest model version. The model resource allocation and scaling actions
-	// take some time, during which a model will be in various state. This endpoint
-	// allows clients to track the state.
+	// Returns the state of the latest model version. The model resource
+	// allocation and scaling actions take some time, during which a model will be
+	// in various state. This endpoint allows clients to track the state.
 	WatchUserLatestModel(ctx context.Context, in *WatchUserLatestModelRequest, opts ...grpc.CallOption) (*WatchUserLatestModelResponse, error)
 	// Deprecated: Do not use.
 	// List user model versions
 	//
-	// Returns a paginated list of version of a model namespace that belong to the specified user.
-	// Contains model version and digest.
+	// Returns a paginated list of version of a model namespace that belong to the
+	// specified user. Contains model version and digest.
 	ListUserModelVersions(ctx context.Context, in *ListUserModelVersionsRequest, opts ...grpc.CallOption) (*ListUserModelVersionsResponse, error)
 	// Deprecated: Do not use.
 	// Delete a model version
 	//
-	// Deletes a model version, accesing it by its resource name, which is defined by the
-	// parent user and the ID of the model, and version.
+	// Deletes a model version, accesing it by its resource name, which is defined
+	// by the parent user and the ID of the model, and version.
 	DeleteUserModelVersion(ctx context.Context, in *DeleteUserModelVersionRequest, opts ...grpc.CallOption) (*DeleteUserModelVersionResponse, error)
 	// Deprecated: Do not use.
 	// Trigger model inference
@@ -303,14 +305,14 @@ type ModelPublicServiceClient interface {
 	// Deprecated: Do not use.
 	// Trigger model inference
 	//
-	// Triggers the latest deployed model version to infer the result of a set of task or
-	// questions.
+	// Triggers the latest deployed model version to infer the result of a set of
+	// task or questions.
 	TriggerUserLatestModel(ctx context.Context, in *TriggerUserLatestModelRequest, opts ...grpc.CallOption) (*TriggerUserLatestModelResponse, error)
 	// Deprecated: Do not use.
 	// Trigger model inference asynchronously
 	//
-	// Triggers the latest deployed model version to infer the result of a set of task or
-	// questions.
+	// Triggers the latest deployed model version to infer the result of a set of
+	// task or questions.
 	TriggerAsyncUserLatestModel(ctx context.Context, in *TriggerAsyncUserLatestModelRequest, opts ...grpc.CallOption) (*TriggerAsyncUserLatestModelResponse, error)
 	// Deprecated: Do not use.
 	// Trigger model inference with a binary input
@@ -321,9 +323,10 @@ type ModelPublicServiceClient interface {
 	// Deprecated: Do not use.
 	// List organization models
 	//
-	// Returns a paginated list of models that belong to the specified organization. The
-	// parent organization may be different from the authenticated organization, in which case
-	// the results will contain the models that are visible to the latter.
+	// Returns a paginated list of models that belong to the specified
+	// organization. The parent organization may be different from the
+	// authenticated organization, in which case the results will contain the
+	// models that are visible to the latter.
 	ListOrganizationModels(ctx context.Context, in *ListOrganizationModelsRequest, opts ...grpc.CallOption) (*ListOrganizationModelsResponse, error)
 	// Deprecated: Do not use.
 	// Create a new model
@@ -337,7 +340,8 @@ type ModelPublicServiceClient interface {
 	// Deprecated: Do not use.
 	// Get a model
 	//
-	// Returns the detail of a model, accessing it by the model ID and its parent organization.
+	// Returns the detail of a model, accessing it by the model ID and its parent
+	// organization.
 	GetOrganizationModel(ctx context.Context, in *GetOrganizationModelRequest, opts ...grpc.CallOption) (*GetOrganizationModelResponse, error)
 	// Deprecated: Do not use.
 	// Update a model
@@ -363,28 +367,28 @@ type ModelPublicServiceClient interface {
 	// Deprecated: Do not use.
 	// Watch the state of a model version
 	//
-	// Returns the state of a model.  The model resource allocation and scaling actions
-	// take some time, during which a model will be in various state. This endpoint
-	// allows clients to track the state.
+	// Returns the state of a model.  The model resource allocation and scaling
+	// actions take some time, during which a model will be in various state. This
+	// endpoint allows clients to track the state.
 	WatchOrganizationModel(ctx context.Context, in *WatchOrganizationModelRequest, opts ...grpc.CallOption) (*WatchOrganizationModelResponse, error)
 	// Deprecated: Do not use.
 	// Watch the state of the latest model version
 	//
-	// Returns the state of the latest model version.  The model resource allocation and scaling actions
-	// take some time, during which a model will be in various state. This endpoint
-	// allows clients to track the state.
+	// Returns the state of the latest model version.  The model resource
+	// allocation and scaling actions take some time, during which a model will be
+	// in various state. This endpoint allows clients to track the state.
 	WatchOrganizationLatestModel(ctx context.Context, in *WatchOrganizationLatestModelRequest, opts ...grpc.CallOption) (*WatchOrganizationLatestModelResponse, error)
 	// Deprecated: Do not use.
 	// List organization model versions
 	//
-	// Returns a paginated list of version of a model namespace that belong to the specified organization.
-	// Contains model version and digest.
+	// Returns a paginated list of version of a model namespace that belong to the
+	// specified organization. Contains model version and digest.
 	ListOrganizationModelVersions(ctx context.Context, in *ListOrganizationModelVersionsRequest, opts ...grpc.CallOption) (*ListOrganizationModelVersionsResponse, error)
 	// Deprecated: Do not use.
 	// Delete a model version
 	//
-	// Deletes a model version, accesing it by its resource name, which is defined by the
-	// parent organization and the ID of the model, and version.
+	// Deletes a model version, accesing it by its resource name, which is defined
+	// by the parent organization and the ID of the model, and version.
 	DeleteOrganizationModelVersion(ctx context.Context, in *DeleteOrganizationModelVersionRequest, opts ...grpc.CallOption) (*DeleteOrganizationModelVersionResponse, error)
 	// Deprecated: Do not use.
 	// Trigger model inference
@@ -401,14 +405,14 @@ type ModelPublicServiceClient interface {
 	// Deprecated: Do not use.
 	// Trigger model inference
 	//
-	// Triggers the latest deployed model version to infer the result of a set of task or
-	// questions.
+	// Triggers the latest deployed model version to infer the result of a set of
+	// task or questions.
 	TriggerOrganizationLatestModel(ctx context.Context, in *TriggerOrganizationLatestModelRequest, opts ...grpc.CallOption) (*TriggerOrganizationLatestModelResponse, error)
 	// Deprecated: Do not use.
 	// Trigger model inference asynchronously
 	//
-	// Triggers the latest deployed model version to infer the result of a set of task or
-	// questions.
+	// Triggers the latest deployed model version to infer the result of a set of
+	// task or questions.
 	TriggerAsyncOrganizationLatestModel(ctx context.Context, in *TriggerAsyncOrganizationLatestModelRequest, opts ...grpc.CallOption) (*TriggerAsyncOrganizationLatestModelResponse, error)
 	// Deprecated: Do not use.
 	// Trigger model inference with a binary input
@@ -423,7 +427,8 @@ type ModelPublicServiceClient interface {
 	// long-running operations in a model, such as trigger.
 	GetUserLatestModelOperation(ctx context.Context, in *GetUserLatestModelOperationRequest, opts ...grpc.CallOption) (*GetUserLatestModelOperationResponse, error)
 	// Deprecated: Do not use.
-	// Get the details of the latest long-running operation from a organization model
+	// Get the details of the latest long-running operation from a organization
+	// model
 	//
 	// This method allows requesters to request the status and outcome of
 	// long-running operations in a model, such as trigger.
@@ -1146,7 +1151,8 @@ type ModelPublicServiceServer interface {
 	CreateNamespaceModel(context.Context, *CreateNamespaceModelRequest) (*CreateNamespaceModelResponse, error)
 	// Get a model
 	//
-	// Returns the detail of a model, accessing it by the model ID and its parent namespace.
+	// Returns the detail of a model, accessing it by the model ID and its parent
+	// namespace.
 	GetNamespaceModel(context.Context, *GetNamespaceModelRequest) (*GetNamespaceModelResponse, error)
 	// Update a model
 	//
@@ -1168,25 +1174,25 @@ type ModelPublicServiceServer interface {
 	RenameNamespaceModel(context.Context, *RenameNamespaceModelRequest) (*RenameNamespaceModelResponse, error)
 	// Watch the state of a model version
 	//
-	// Returns the state of a model. The model resource allocation and scaling actions take some
-	// time, during which a model will be in various state. This endpoint
-	// allows clients to track the state.
+	// Returns the state of a model. The model resource allocation and scaling
+	// actions take some time, during which a model will be in various state. This
+	// endpoint allows clients to track the state.
 	WatchNamespaceModel(context.Context, *WatchNamespaceModelRequest) (*WatchNamespaceModelResponse, error)
 	// Watch the state of the latest model version
 	//
-	// Returns the state of the latest model version. The model resource allocation and scaling actions
-	// take some time, during which a model will be in various state. This endpoint
-	// allows clients to track the state.
+	// Returns the state of the latest model version. The model resource
+	// allocation and scaling actions take some time, during which a model will be
+	// in various state. This endpoint allows clients to track the state.
 	WatchNamespaceLatestModel(context.Context, *WatchNamespaceLatestModelRequest) (*WatchNamespaceLatestModelResponse, error)
 	// List namespace model versions
 	//
-	// Returns a paginated list of version of a model namespace that belong to the specified namespace.
-	// Contains model version and digest.
+	// Returns a paginated list of version of a model namespace that belong to the
+	// specified namespace. Contains model version and digest.
 	ListNamespaceModelVersions(context.Context, *ListNamespaceModelVersionsRequest) (*ListNamespaceModelVersionsResponse, error)
 	// Delete a model version
 	//
-	// Deletes a model version, accesing it by its resource name, which is defined by the
-	// parent namespace and the ID of the model, and version.
+	// Deletes a model version, accesing it by its resource name, which is defined
+	// by the parent namespace and the ID of the model, and version.
 	DeleteNamespaceModelVersion(context.Context, *DeleteNamespaceModelVersionRequest) (*DeleteNamespaceModelVersionResponse, error)
 	// Trigger model inference
 	//
@@ -1200,13 +1206,13 @@ type ModelPublicServiceServer interface {
 	TriggerAsyncNamespaceModel(context.Context, *TriggerAsyncNamespaceModelRequest) (*TriggerAsyncNamespaceModelResponse, error)
 	// Trigger model inference
 	//
-	// Triggers the latest deployed model version to infer the result of a set of task or
-	// questions.
+	// Triggers the latest deployed model version to infer the result of a set of
+	// task or questions.
 	TriggerNamespaceLatestModel(context.Context, *TriggerNamespaceLatestModelRequest) (*TriggerNamespaceLatestModelResponse, error)
 	// Trigger model inference asynchronously
 	//
-	// Triggers the latest deployed model version to infer the result of a set of task or
-	// questions.
+	// Triggers the latest deployed model version to infer the result of a set of
+	// task or questions.
 	TriggerAsyncNamespaceLatestModel(context.Context, *TriggerAsyncNamespaceLatestModelRequest) (*TriggerAsyncNamespaceLatestModelResponse, error)
 	// Trigger model inference with a binary input
 	//
@@ -1215,8 +1221,8 @@ type ModelPublicServiceServer interface {
 	TriggerNamespaceModelBinaryFileUpload(grpc.ClientStreamingServer[TriggerNamespaceModelBinaryFileUploadRequest, TriggerNamespaceModelBinaryFileUploadResponse]) error
 	// Trigger model inference with a binary input
 	//
-	// Triggers the latest deployed model version to infer the result of a set of task or
-	// questions, submitted as a binary file.
+	// Triggers the latest deployed model version to infer the result of a set of
+	// task or questions, submitted as a binary file.
 	TriggerNamespaceLatestModelBinaryFileUpload(grpc.ClientStreamingServer[TriggerNamespaceLatestModelBinaryFileUploadRequest, TriggerNamespaceLatestModelBinaryFileUploadResponse]) error
 	// Get the details of the long-running operation from a namespace model
 	// with a particular version
@@ -1253,7 +1259,8 @@ type ModelPublicServiceServer interface {
 	// Deprecated: Do not use.
 	// Get a model
 	//
-	// Returns the detail of a model, accessing it by the model ID and its parent user.
+	// Returns the detail of a model, accessing it by the model ID and its parent
+	// user.
 	GetUserModel(context.Context, *GetUserModelRequest) (*GetUserModelResponse, error)
 	// Deprecated: Do not use.
 	// Update a model
@@ -1279,28 +1286,28 @@ type ModelPublicServiceServer interface {
 	// Deprecated: Do not use.
 	// Watch the state of a model version
 	//
-	// Returns the state of a model. The model resource allocation and scaling actions take some
-	// time, during which a model will be in various state. This endpoint
-	// allows clients to track the state.
+	// Returns the state of a model. The model resource allocation and scaling
+	// actions take some time, during which a model will be in various state. This
+	// endpoint allows clients to track the state.
 	WatchUserModel(context.Context, *WatchUserModelRequest) (*WatchUserModelResponse, error)
 	// Deprecated: Do not use.
 	// Watch the state of the latest model version
 	//
-	// Returns the state of the latest model version. The model resource allocation and scaling actions
-	// take some time, during which a model will be in various state. This endpoint
-	// allows clients to track the state.
+	// Returns the state of the latest model version. The model resource
+	// allocation and scaling actions take some time, during which a model will be
+	// in various state. This endpoint allows clients to track the state.
 	WatchUserLatestModel(context.Context, *WatchUserLatestModelRequest) (*WatchUserLatestModelResponse, error)
 	// Deprecated: Do not use.
 	// List user model versions
 	//
-	// Returns a paginated list of version of a model namespace that belong to the specified user.
-	// Contains model version and digest.
+	// Returns a paginated list of version of a model namespace that belong to the
+	// specified user. Contains model version and digest.
 	ListUserModelVersions(context.Context, *ListUserModelVersionsRequest) (*ListUserModelVersionsResponse, error)
 	// Deprecated: Do not use.
 	// Delete a model version
 	//
-	// Deletes a model version, accesing it by its resource name, which is defined by the
-	// parent user and the ID of the model, and version.
+	// Deletes a model version, accesing it by its resource name, which is defined
+	// by the parent user and the ID of the model, and version.
 	DeleteUserModelVersion(context.Context, *DeleteUserModelVersionRequest) (*DeleteUserModelVersionResponse, error)
 	// Deprecated: Do not use.
 	// Trigger model inference
@@ -1317,14 +1324,14 @@ type ModelPublicServiceServer interface {
 	// Deprecated: Do not use.
 	// Trigger model inference
 	//
-	// Triggers the latest deployed model version to infer the result of a set of task or
-	// questions.
+	// Triggers the latest deployed model version to infer the result of a set of
+	// task or questions.
 	TriggerUserLatestModel(context.Context, *TriggerUserLatestModelRequest) (*TriggerUserLatestModelResponse, error)
 	// Deprecated: Do not use.
 	// Trigger model inference asynchronously
 	//
-	// Triggers the latest deployed model version to infer the result of a set of task or
-	// questions.
+	// Triggers the latest deployed model version to infer the result of a set of
+	// task or questions.
 	TriggerAsyncUserLatestModel(context.Context, *TriggerAsyncUserLatestModelRequest) (*TriggerAsyncUserLatestModelResponse, error)
 	// Deprecated: Do not use.
 	// Trigger model inference with a binary input
@@ -1335,9 +1342,10 @@ type ModelPublicServiceServer interface {
 	// Deprecated: Do not use.
 	// List organization models
 	//
-	// Returns a paginated list of models that belong to the specified organization. The
-	// parent organization may be different from the authenticated organization, in which case
-	// the results will contain the models that are visible to the latter.
+	// Returns a paginated list of models that belong to the specified
+	// organization. The parent organization may be different from the
+	// authenticated organization, in which case the results will contain the
+	// models that are visible to the latter.
 	ListOrganizationModels(context.Context, *ListOrganizationModelsRequest) (*ListOrganizationModelsResponse, error)
 	// Deprecated: Do not use.
 	// Create a new model
@@ -1351,7 +1359,8 @@ type ModelPublicServiceServer interface {
 	// Deprecated: Do not use.
 	// Get a model
 	//
-	// Returns the detail of a model, accessing it by the model ID and its parent organization.
+	// Returns the detail of a model, accessing it by the model ID and its parent
+	// organization.
 	GetOrganizationModel(context.Context, *GetOrganizationModelRequest) (*GetOrganizationModelResponse, error)
 	// Deprecated: Do not use.
 	// Update a model
@@ -1377,28 +1386,28 @@ type ModelPublicServiceServer interface {
 	// Deprecated: Do not use.
 	// Watch the state of a model version
 	//
-	// Returns the state of a model.  The model resource allocation and scaling actions
-	// take some time, during which a model will be in various state. This endpoint
-	// allows clients to track the state.
+	// Returns the state of a model.  The model resource allocation and scaling
+	// actions take some time, during which a model will be in various state. This
+	// endpoint allows clients to track the state.
 	WatchOrganizationModel(context.Context, *WatchOrganizationModelRequest) (*WatchOrganizationModelResponse, error)
 	// Deprecated: Do not use.
 	// Watch the state of the latest model version
 	//
-	// Returns the state of the latest model version.  The model resource allocation and scaling actions
-	// take some time, during which a model will be in various state. This endpoint
-	// allows clients to track the state.
+	// Returns the state of the latest model version.  The model resource
+	// allocation and scaling actions take some time, during which a model will be
+	// in various state. This endpoint allows clients to track the state.
 	WatchOrganizationLatestModel(context.Context, *WatchOrganizationLatestModelRequest) (*WatchOrganizationLatestModelResponse, error)
 	// Deprecated: Do not use.
 	// List organization model versions
 	//
-	// Returns a paginated list of version of a model namespace that belong to the specified organization.
-	// Contains model version and digest.
+	// Returns a paginated list of version of a model namespace that belong to the
+	// specified organization. Contains model version and digest.
 	ListOrganizationModelVersions(context.Context, *ListOrganizationModelVersionsRequest) (*ListOrganizationModelVersionsResponse, error)
 	// Deprecated: Do not use.
 	// Delete a model version
 	//
-	// Deletes a model version, accesing it by its resource name, which is defined by the
-	// parent organization and the ID of the model, and version.
+	// Deletes a model version, accesing it by its resource name, which is defined
+	// by the parent organization and the ID of the model, and version.
 	DeleteOrganizationModelVersion(context.Context, *DeleteOrganizationModelVersionRequest) (*DeleteOrganizationModelVersionResponse, error)
 	// Deprecated: Do not use.
 	// Trigger model inference
@@ -1415,14 +1424,14 @@ type ModelPublicServiceServer interface {
 	// Deprecated: Do not use.
 	// Trigger model inference
 	//
-	// Triggers the latest deployed model version to infer the result of a set of task or
-	// questions.
+	// Triggers the latest deployed model version to infer the result of a set of
+	// task or questions.
 	TriggerOrganizationLatestModel(context.Context, *TriggerOrganizationLatestModelRequest) (*TriggerOrganizationLatestModelResponse, error)
 	// Deprecated: Do not use.
 	// Trigger model inference asynchronously
 	//
-	// Triggers the latest deployed model version to infer the result of a set of task or
-	// questions.
+	// Triggers the latest deployed model version to infer the result of a set of
+	// task or questions.
 	TriggerAsyncOrganizationLatestModel(context.Context, *TriggerAsyncOrganizationLatestModelRequest) (*TriggerAsyncOrganizationLatestModelResponse, error)
 	// Deprecated: Do not use.
 	// Trigger model inference with a binary input
@@ -1437,7 +1446,8 @@ type ModelPublicServiceServer interface {
 	// long-running operations in a model, such as trigger.
 	GetUserLatestModelOperation(context.Context, *GetUserLatestModelOperationRequest) (*GetUserLatestModelOperationResponse, error)
 	// Deprecated: Do not use.
-	// Get the details of the latest long-running operation from a organization model
+	// Get the details of the latest long-running operation from a organization
+	// model
 	//
 	// This method allows requesters to request the status and outcome of
 	// long-running operations in a model, such as trigger.

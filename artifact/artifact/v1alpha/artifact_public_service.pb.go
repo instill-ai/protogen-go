@@ -27,84 +27,84 @@ var File_artifact_artifact_v1alpha_artifact_public_service_proto protoreflect.Fi
 
 const file_artifact_artifact_v1alpha_artifact_public_service_proto_rawDesc = "" +
 	"\n" +
-	"7artifact/artifact/v1alpha/artifact_public_service.proto\x12\x19artifact.artifact.v1alpha\x1a(artifact/artifact/v1alpha/artifact.proto\x1a%artifact/artifact/v1alpha/chunk.proto\x1a,artifact/artifact/v1alpha/file_catalog.proto\x1a&artifact/artifact/v1alpha/object.proto\x1a\"artifact/artifact/v1alpha/qa.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\x9d.\n" +
+	"7artifact/artifact/v1alpha/artifact_public_service.proto\x12\x19artifact.artifact.v1alpha\x1a(artifact/artifact/v1alpha/artifact.proto\x1a%artifact/artifact/v1alpha/chunk.proto\x1a,artifact/artifact/v1alpha/file_catalog.proto\x1a&artifact/artifact/v1alpha/object.proto\x1a\"artifact/artifact/v1alpha/qa.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xaf-\n" +
 	"\x15ArtifactPublicService\x12\xac\x01\n" +
 	"\bLiveness\x12*.artifact.artifact.v1alpha.LivenessRequest\x1a+.artifact.artifact.v1alpha.LivenessResponse\"G\xfa\xd2\xe4\x93\x02\n" +
 	"\x12\bINTERNAL\x82\xd3\xe4\x93\x021Z\x1a\x12\x18/v1alpha/health/artifact\x12\x13/v1alpha/__liveness\x12\xaf\x01\n" +
 	"\tReadiness\x12+.artifact.artifact.v1alpha.ReadinessRequest\x1a,.artifact.artifact.v1alpha.ReadinessResponse\"G\xfa\xd2\xe4\x93\x02\n" +
-	"\x12\bINTERNAL\x82\xd3\xe4\x93\x021Z\x19\x12\x17/v1alpha/ready/artifact\x12\x14/v1alpha/__readiness\x12\xd0\x01\n" +
-	"\rCreateCatalog\x12/.artifact.artifact.v1alpha.CreateCatalogRequest\x1a0.artifact.artifact.v1alpha.CreateCatalogResponse\"\\\x92A#\n" +
-	"\r💾 Artifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x020:\x01*\"+/v1alpha/namespaces/{namespace_id}/catalogs\x12\xca\x01\n" +
-	"\fListCatalogs\x12..artifact.artifact.v1alpha.ListCatalogsRequest\x1a/.artifact.artifact.v1alpha.ListCatalogsResponse\"Y\x92A#\n" +
-	"\r💾 Artifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02-\x12+/v1alpha/namespaces/{namespace_id}/catalogs\x12\xdd\x01\n" +
-	"\rUpdateCatalog\x12/.artifact.artifact.v1alpha.UpdateCatalogRequest\x1a0.artifact.artifact.v1alpha.UpdateCatalogResponse\"i\x92A#\n" +
-	"\r💾 Artifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02=:\x01*\x1a8/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}\x12\xda\x01\n" +
-	"\rDeleteCatalog\x12/.artifact.artifact.v1alpha.DeleteCatalogRequest\x1a0.artifact.artifact.v1alpha.DeleteCatalogResponse\"f\x92A#\n" +
-	"\r💾 Artifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02:*8/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}\x12\xf2\x01\n" +
-	"\x11UploadCatalogFile\x123.artifact.artifact.v1alpha.UploadCatalogFileRequest\x1a4.artifact.artifact.v1alpha.UploadCatalogFileResponse\"r\x92A#\n" +
-	"\r💾 Artifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02F:\x04file\">/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files\x12\xc5\x01\n" +
-	"\x11DeleteCatalogFile\x123.artifact.artifact.v1alpha.DeleteCatalogFileRequest\x1a4.artifact.artifact.v1alpha.DeleteCatalogFileResponse\"E\x92A#\n" +
-	"\r💾 Artifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02\x19*\x17/v1alpha/catalogs/files\x12\x80\x03\n" +
-	"\x13ProcessCatalogFiles\x125.artifact.artifact.v1alpha.ProcessCatalogFilesRequest\x1a6.artifact.artifact.v1alpha.ProcessCatalogFilesResponse\"\xf9\x01\x92A\xc6\x01\n" +
-	"\r💾 Artifactj\x12\n" +
+	"\x12\bINTERNAL\x82\xd3\xe4\x93\x021Z\x19\x12\x17/v1alpha/ready/artifact\x12\x14/v1alpha/__readiness\x12\xcb\x01\n" +
+	"\rCreateCatalog\x12/.artifact.artifact.v1alpha.CreateCatalogRequest\x1a0.artifact.artifact.v1alpha.CreateCatalogResponse\"W\x92A\x1e\n" +
+	"\bArtifactj\x12\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x020:\x01*\"+/v1alpha/namespaces/{namespace_id}/catalogs\x12\xc5\x01\n" +
+	"\fListCatalogs\x12..artifact.artifact.v1alpha.ListCatalogsRequest\x1a/.artifact.artifact.v1alpha.ListCatalogsResponse\"T\x92A\x1e\n" +
+	"\bArtifactj\x12\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02-\x12+/v1alpha/namespaces/{namespace_id}/catalogs\x12\xd8\x01\n" +
+	"\rUpdateCatalog\x12/.artifact.artifact.v1alpha.UpdateCatalogRequest\x1a0.artifact.artifact.v1alpha.UpdateCatalogResponse\"d\x92A\x1e\n" +
+	"\bArtifactj\x12\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02=:\x01*\x1a8/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}\x12\xd5\x01\n" +
+	"\rDeleteCatalog\x12/.artifact.artifact.v1alpha.DeleteCatalogRequest\x1a0.artifact.artifact.v1alpha.DeleteCatalogResponse\"a\x92A\x1e\n" +
+	"\bArtifactj\x12\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02:*8/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}\x12\xed\x01\n" +
+	"\x11UploadCatalogFile\x123.artifact.artifact.v1alpha.UploadCatalogFileRequest\x1a4.artifact.artifact.v1alpha.UploadCatalogFileResponse\"m\x92A\x1e\n" +
+	"\bArtifactj\x12\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02F:\x04file\">/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files\x12\xc0\x01\n" +
+	"\x11DeleteCatalogFile\x123.artifact.artifact.v1alpha.DeleteCatalogFileRequest\x1a4.artifact.artifact.v1alpha.DeleteCatalogFileResponse\"@\x92A\x1e\n" +
+	"\bArtifactj\x12\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02\x19*\x17/v1alpha/catalogs/files\x12\xfb\x02\n" +
+	"\x13ProcessCatalogFiles\x125.artifact.artifact.v1alpha.ProcessCatalogFilesRequest\x1a6.artifact.artifact.v1alpha.ProcessCatalogFilesResponse\"\xf4\x01\x92A\xc1\x01\n" +
+	"\bArtifactj\x12\n" +
 	"\ax-stage\x12\a\x1a\x05alphar\xa0\x01\n" +
 	"\x9d\x01\n" +
-	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x02):\x01*\"$/v1alpha/catalogs/files/processAsync\x12\xe9\x01\n" +
-	"\x10ListCatalogFiles\x122.artifact.artifact.v1alpha.ListCatalogFilesRequest\x1a3.artifact.artifact.v1alpha.ListCatalogFilesResponse\"l\x92A#\n" +
-	"\r💾 Artifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02@\x12>/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files\x12\xee\x01\n" +
-	"\x0eGetCatalogFile\x120.artifact.artifact.v1alpha.GetCatalogFileRequest\x1a1.artifact.artifact.v1alpha.GetCatalogFileResponse\"w\x92A#\n" +
-	"\r💾 Artifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02K\x12I/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files/{file_uid}\x12\xd8\x01\n" +
+	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x02):\x01*\"$/v1alpha/catalogs/files/processAsync\x12\xe4\x01\n" +
+	"\x10ListCatalogFiles\x122.artifact.artifact.v1alpha.ListCatalogFilesRequest\x1a3.artifact.artifact.v1alpha.ListCatalogFilesResponse\"g\x92A\x1e\n" +
+	"\bArtifactj\x12\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02@\x12>/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files\x12\xe9\x01\n" +
+	"\x0eGetCatalogFile\x120.artifact.artifact.v1alpha.GetCatalogFileRequest\x1a1.artifact.artifact.v1alpha.GetCatalogFileResponse\"r\x92A\x1e\n" +
+	"\bArtifactj\x12\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02K\x12I/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files/{file_uid}\x12\xd3\x01\n" +
 	"\n" +
-	"ListChunks\x12,.artifact.artifact.v1alpha.ListChunksRequest\x1a-.artifact.artifact.v1alpha.ListChunksResponse\"m\x92A#\n" +
-	"\r💾 Artifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02A\x12?/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/chunks\x12\xc7\x01\n" +
-	"\fSearchChunks\x12..artifact.artifact.v1alpha.SearchChunksRequest\x1a/.artifact.artifact.v1alpha.SearchChunksResponse\"V\x92A\"\n" +
-	"\r💾 Artifactj\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02+\x12)/v1alpha/namespaces/{namespace_id}/chunks\x12\xf2\x01\n" +
-	"\rGetSourceFile\x12/.artifact.artifact.v1alpha.GetSourceFileRequest\x1a0.artifact.artifact.v1alpha.GetSourceFileResponse\"~\x92A#\n" +
-	"\r💾 Artifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02R\x12P/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files/{file_uid}/source\x12\xf6\x01\n" +
-	"\x0eGetFileSummary\x120.artifact.artifact.v1alpha.GetFileSummaryRequest\x1a1.artifact.artifact.v1alpha.GetFileSummaryResponse\"\x7f\x92A#\n" +
-	"\r💾 Artifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02S\x12Q/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files/{file_uid}/summary\x12\xdc\x01\n" +
-	"\x11SearchSourceFiles\x123.artifact.artifact.v1alpha.SearchSourceFilesRequest\x1a4.artifact.artifact.v1alpha.SearchSourceFilesResponse\"\\\x92A\"\n" +
-	"\r💾 Artifactj\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x021\x12//v1alpha/namespaces/{namespace_id}/source-files\x12\xba\x01\n" +
-	"\vUpdateChunk\x12-.artifact.artifact.v1alpha.UpdateChunkRequest\x1a..artifact.artifact.v1alpha.UpdateChunkResponse\"L\x92A#\n" +
-	"\r💾 Artifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02 :\x01*\"\x1b/v1alpha/chunks/{chunk_uid}\x12\xad\x03\n" +
-	"\x16SimilarityChunksSearch\x128.artifact.artifact.v1alpha.SimilarityChunksSearchRequest\x1a9.artifact.artifact.v1alpha.SimilarityChunksSearchResponse\"\x9d\x02\x92A\xc6\x01\n" +
-	"\r💾 Artifactj\x12\n" +
+	"ListChunks\x12,.artifact.artifact.v1alpha.ListChunksRequest\x1a-.artifact.artifact.v1alpha.ListChunksResponse\"h\x92A\x1e\n" +
+	"\bArtifactj\x12\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02A\x12?/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/chunks\x12\xc2\x01\n" +
+	"\fSearchChunks\x12..artifact.artifact.v1alpha.SearchChunksRequest\x1a/.artifact.artifact.v1alpha.SearchChunksResponse\"Q\x92A\x1d\n" +
+	"\bArtifactj\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02+\x12)/v1alpha/namespaces/{namespace_id}/chunks\x12\xed\x01\n" +
+	"\rGetSourceFile\x12/.artifact.artifact.v1alpha.GetSourceFileRequest\x1a0.artifact.artifact.v1alpha.GetSourceFileResponse\"y\x92A\x1e\n" +
+	"\bArtifactj\x12\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02R\x12P/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files/{file_uid}/source\x12\xf1\x01\n" +
+	"\x0eGetFileSummary\x120.artifact.artifact.v1alpha.GetFileSummaryRequest\x1a1.artifact.artifact.v1alpha.GetFileSummaryResponse\"z\x92A\x1e\n" +
+	"\bArtifactj\x12\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02S\x12Q/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files/{file_uid}/summary\x12\xd7\x01\n" +
+	"\x11SearchSourceFiles\x123.artifact.artifact.v1alpha.SearchSourceFilesRequest\x1a4.artifact.artifact.v1alpha.SearchSourceFilesResponse\"W\x92A\x1d\n" +
+	"\bArtifactj\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x021\x12//v1alpha/namespaces/{namespace_id}/source-files\x12\xb5\x01\n" +
+	"\vUpdateChunk\x12-.artifact.artifact.v1alpha.UpdateChunkRequest\x1a..artifact.artifact.v1alpha.UpdateChunkResponse\"G\x92A\x1e\n" +
+	"\bArtifactj\x12\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02 :\x01*\"\x1b/v1alpha/chunks/{chunk_uid}\x12\xa8\x03\n" +
+	"\x16SimilarityChunksSearch\x128.artifact.artifact.v1alpha.SimilarityChunksSearchRequest\x1a9.artifact.artifact.v1alpha.SimilarityChunksSearchResponse\"\x98\x02\x92A\xc1\x01\n" +
+	"\bArtifactj\x12\n" +
 	"\ax-stage\x12\a\x1a\x05alphar\xa0\x01\n" +
 	"\x9d\x01\n" +
-	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x02M:\x01*\"H/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/chunks/retrieve\x12\x92\x03\n" +
-	"\x11QuestionAnswering\x123.artifact.artifact.v1alpha.QuestionAnsweringRequest\x1a4.artifact.artifact.v1alpha.QuestionAnsweringResponse\"\x91\x02\x92A\xc6\x01\n" +
-	"\r💾 Artifactj\x12\n" +
+	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x02M:\x01*\"H/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/chunks/retrieve\x12\x8d\x03\n" +
+	"\x11QuestionAnswering\x123.artifact.artifact.v1alpha.QuestionAnsweringRequest\x1a4.artifact.artifact.v1alpha.QuestionAnsweringResponse\"\x8c\x02\x92A\xc1\x01\n" +
+	"\bArtifactj\x12\n" +
 	"\ax-stage\x12\a\x1a\x05alphar\xa0\x01\n" +
 	"\x9d\x01\n" +
-	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x02A:\x01*\"</v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/ask\x12\xdd\x01\n" +
-	"\x0eGetFileCatalog\x120.artifact.artifact.v1alpha.GetFileCatalogRequest\x1a1.artifact.artifact.v1alpha.GetFileCatalogResponse\"f\x92A#\n" +
-	"\r💾 Artifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02:\x128/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}\x12\xe5\x01\n" +
-	"\x0fListCatalogRuns\x121.artifact.artifact.v1alpha.ListCatalogRunsRequest\x1a2.artifact.artifact.v1alpha.ListCatalogRunsResponse\"k\x92A#\n" +
-	"\r💾 Artifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02?\x12=/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/runs\x12\xe5\x01\n" +
-	"\x12GetObjectUploadURL\x124.artifact.artifact.v1alpha.GetObjectUploadURLRequest\x1a5.artifact.artifact.v1alpha.GetObjectUploadURLResponse\"b\x92A#\n" +
-	"\r💾 Artifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x026\x124/v1alpha/namespaces/{namespace_id}/object-upload-url\x12\xed\x01\n" +
-	"\x14GetObjectDownloadURL\x126.artifact.artifact.v1alpha.GetObjectDownloadURLRequest\x1a7.artifact.artifact.v1alpha.GetObjectDownloadURLResponse\"d\x92A#\n" +
-	"\r💾 Artifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x028\x126/v1alpha/namespaces/{namespace_id}/object-download-url\x12\xf4\x01\n" +
-	"\x11MoveFileToCatalog\x123.artifact.artifact.v1alpha.MoveFileToCatalogRequest\x1a4.artifact.artifact.v1alpha.MoveFileToCatalogResponse\"t\x92A#\n" +
-	"\r💾 Artifactj\x12\n" +
+	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x02A:\x01*\"</v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/ask\x12\xd8\x01\n" +
+	"\x0eGetFileCatalog\x120.artifact.artifact.v1alpha.GetFileCatalogRequest\x1a1.artifact.artifact.v1alpha.GetFileCatalogResponse\"a\x92A\x1e\n" +
+	"\bArtifactj\x12\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02:\x128/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}\x12\xe0\x01\n" +
+	"\x0fListCatalogRuns\x121.artifact.artifact.v1alpha.ListCatalogRunsRequest\x1a2.artifact.artifact.v1alpha.ListCatalogRunsResponse\"f\x92A\x1e\n" +
+	"\bArtifactj\x12\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02?\x12=/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/runs\x12\xe0\x01\n" +
+	"\x12GetObjectUploadURL\x124.artifact.artifact.v1alpha.GetObjectUploadURLRequest\x1a5.artifact.artifact.v1alpha.GetObjectUploadURLResponse\"]\x92A\x1e\n" +
+	"\bArtifactj\x12\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x026\x124/v1alpha/namespaces/{namespace_id}/object-upload-url\x12\xe8\x01\n" +
+	"\x14GetObjectDownloadURL\x126.artifact.artifact.v1alpha.GetObjectDownloadURLRequest\x1a7.artifact.artifact.v1alpha.GetObjectDownloadURLResponse\"_\x92A\x1e\n" +
+	"\bArtifactj\x12\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x028\x126/v1alpha/namespaces/{namespace_id}/object-download-url\x12\xef\x01\n" +
+	"\x11MoveFileToCatalog\x123.artifact.artifact.v1alpha.MoveFileToCatalogRequest\x1a4.artifact.artifact.v1alpha.MoveFileToCatalogResponse\"o\x92A\x1e\n" +
+	"\bArtifactj\x12\n" +
 	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02H:\x01*\"C/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files:move\x1a\x1e\x92A\x1b\x12\x19Public Artifact endpointsB\x8e\x02\n" +
 	"\x1dcom.artifact.artifact.v1alphaB\x1aArtifactPublicServiceProtoP\x01ZKgithub.com/instill-ai/protogen-go/artifact/artifact/v1alpha;artifactv1alpha\xa2\x02\x03AAX\xaa\x02\x19Artifact.Artifact.V1alpha\xca\x02\x19Artifact\\Artifact\\V1alpha\xe2\x02%Artifact\\Artifact\\V1alpha\\GPBMetadata\xea\x02\x1bArtifact::Artifact::V1alphab\x06proto3"
 
