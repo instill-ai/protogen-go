@@ -122,15 +122,16 @@ type ArtifactPublicServiceClient interface {
 	UpdateChunk(ctx context.Context, in *UpdateChunkRequest, opts ...grpc.CallOption) (*UpdateChunkResponse, error)
 	// Retrieve similar chunks
 	//
-	// Returns the similar chunks.
+	// Returns the top-K most similar chunks to a text prompt.
 	SimilarityChunksSearch(ctx context.Context, in *SimilarityChunksSearchRequest, opts ...grpc.CallOption) (*SimilarityChunksSearchResponse, error)
 	// Ask a question
 	//
 	// Asks a question.
 	QuestionAnswering(ctx context.Context, in *QuestionAnsweringRequest, opts ...grpc.CallOption) (*QuestionAnsweringResponse, error)
-	// Get file catalog
-	//
 	// Get the catalog file.
+	//
+	// Returns a view of the file within the catalog, with the text and chunks it
+	// generated after being processed.
 	GetFileCatalog(ctx context.Context, in *GetFileCatalogRequest, opts ...grpc.CallOption) (*GetFileCatalogResponse, error)
 	// List Catalog Runs
 	//
@@ -475,15 +476,16 @@ type ArtifactPublicServiceServer interface {
 	UpdateChunk(context.Context, *UpdateChunkRequest) (*UpdateChunkResponse, error)
 	// Retrieve similar chunks
 	//
-	// Returns the similar chunks.
+	// Returns the top-K most similar chunks to a text prompt.
 	SimilarityChunksSearch(context.Context, *SimilarityChunksSearchRequest) (*SimilarityChunksSearchResponse, error)
 	// Ask a question
 	//
 	// Asks a question.
 	QuestionAnswering(context.Context, *QuestionAnsweringRequest) (*QuestionAnsweringResponse, error)
-	// Get file catalog
-	//
 	// Get the catalog file.
+	//
+	// Returns a view of the file within the catalog, with the text and chunks it
+	// generated after being processed.
 	GetFileCatalog(context.Context, *GetFileCatalogRequest) (*GetFileCatalogResponse, error)
 	// List Catalog Runs
 	//

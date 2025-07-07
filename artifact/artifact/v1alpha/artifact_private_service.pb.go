@@ -24,7 +24,7 @@ var File_artifact_artifact_v1alpha_artifact_private_service_proto protoreflect.F
 
 const file_artifact_artifact_v1alpha_artifact_private_service_proto_rawDesc = "" +
 	"\n" +
-	"8artifact/artifact/v1alpha/artifact_private_service.proto\x12\x19artifact.artifact.v1alpha\x1a(artifact/artifact/v1alpha/artifact.proto\x1a,artifact/artifact/v1alpha/file_catalog.proto2\xdf\a\n" +
+	"8artifact/artifact/v1alpha/artifact_private_service.proto\x12\x19artifact.artifact.v1alpha\x1a(artifact/artifact/v1alpha/artifact.proto\x1a,artifact/artifact/v1alpha/file_catalog.proto2\xe4\b\n" +
 	"\x16ArtifactPrivateService\x12\x81\x01\n" +
 	"\x12ListRepositoryTags\x124.artifact.artifact.v1alpha.ListRepositoryTagsRequest\x1a5.artifact.artifact.v1alpha.ListRepositoryTagsResponse\x12{\n" +
 	"\x10GetRepositoryTag\x122.artifact.artifact.v1alpha.GetRepositoryTagRequest\x1a3.artifact.artifact.v1alpha.GetRepositoryTagResponse\x12\x84\x01\n" +
@@ -32,8 +32,9 @@ const file_artifact_artifact_v1alpha_artifact_private_service_proto_rawDesc = ""
 	"\x13DeleteRepositoryTag\x125.artifact.artifact.v1alpha.DeleteRepositoryTagRequest\x1a6.artifact.artifact.v1alpha.DeleteRepositoryTagResponse\x12f\n" +
 	"\tGetObject\x12+.artifact.artifact.v1alpha.GetObjectRequest\x1a,.artifact.artifact.v1alpha.GetObjectResponse\x12o\n" +
 	"\fGetObjectURL\x12..artifact.artifact.v1alpha.GetObjectURLRequest\x1a/.artifact.artifact.v1alpha.GetObjectURLResponse\x12o\n" +
-	"\fUpdateObject\x12..artifact.artifact.v1alpha.UpdateObjectRequest\x1a/.artifact.artifact.v1alpha.UpdateObjectResponse\x12l\n" +
-	"\vGetChatFile\x12-.artifact.artifact.v1alpha.GetChatFileRequest\x1a..artifact.artifact.v1alpha.GetChatFileResponseB\x8f\x02\n" +
+	"\fUpdateObject\x12..artifact.artifact.v1alpha.UpdateObjectRequest\x1a/.artifact.artifact.v1alpha.UpdateObjectResponse\x12~\n" +
+	"\x11GetFileAsMarkdown\x123.artifact.artifact.v1alpha.GetFileAsMarkdownRequest\x1a4.artifact.artifact.v1alpha.GetFileAsMarkdownResponse\x12q\n" +
+	"\vGetChatFile\x12-.artifact.artifact.v1alpha.GetChatFileRequest\x1a..artifact.artifact.v1alpha.GetChatFileResponse\"\x03\x88\x02\x01B\x8f\x02\n" +
 	"\x1dcom.artifact.artifact.v1alphaB\x1bArtifactPrivateServiceProtoP\x01ZKgithub.com/instill-ai/protogen-go/artifact/artifact/v1alpha;artifactv1alpha\xa2\x02\x03AAX\xaa\x02\x19Artifact.Artifact.V1alpha\xca\x02\x19Artifact\\Artifact\\V1alpha\xe2\x02%Artifact\\Artifact\\V1alpha\\GPBMetadata\xea\x02\x1bArtifact::Artifact::V1alphab\x06proto3"
 
 var file_artifact_artifact_v1alpha_artifact_private_service_proto_goTypes = []any{
@@ -44,15 +45,17 @@ var file_artifact_artifact_v1alpha_artifact_private_service_proto_goTypes = []an
 	(*GetObjectRequest)(nil),            // 4: artifact.artifact.v1alpha.GetObjectRequest
 	(*GetObjectURLRequest)(nil),         // 5: artifact.artifact.v1alpha.GetObjectURLRequest
 	(*UpdateObjectRequest)(nil),         // 6: artifact.artifact.v1alpha.UpdateObjectRequest
-	(*GetChatFileRequest)(nil),          // 7: artifact.artifact.v1alpha.GetChatFileRequest
-	(*ListRepositoryTagsResponse)(nil),  // 8: artifact.artifact.v1alpha.ListRepositoryTagsResponse
-	(*GetRepositoryTagResponse)(nil),    // 9: artifact.artifact.v1alpha.GetRepositoryTagResponse
-	(*CreateRepositoryTagResponse)(nil), // 10: artifact.artifact.v1alpha.CreateRepositoryTagResponse
-	(*DeleteRepositoryTagResponse)(nil), // 11: artifact.artifact.v1alpha.DeleteRepositoryTagResponse
-	(*GetObjectResponse)(nil),           // 12: artifact.artifact.v1alpha.GetObjectResponse
-	(*GetObjectURLResponse)(nil),        // 13: artifact.artifact.v1alpha.GetObjectURLResponse
-	(*UpdateObjectResponse)(nil),        // 14: artifact.artifact.v1alpha.UpdateObjectResponse
-	(*GetChatFileResponse)(nil),         // 15: artifact.artifact.v1alpha.GetChatFileResponse
+	(*GetFileAsMarkdownRequest)(nil),    // 7: artifact.artifact.v1alpha.GetFileAsMarkdownRequest
+	(*GetChatFileRequest)(nil),          // 8: artifact.artifact.v1alpha.GetChatFileRequest
+	(*ListRepositoryTagsResponse)(nil),  // 9: artifact.artifact.v1alpha.ListRepositoryTagsResponse
+	(*GetRepositoryTagResponse)(nil),    // 10: artifact.artifact.v1alpha.GetRepositoryTagResponse
+	(*CreateRepositoryTagResponse)(nil), // 11: artifact.artifact.v1alpha.CreateRepositoryTagResponse
+	(*DeleteRepositoryTagResponse)(nil), // 12: artifact.artifact.v1alpha.DeleteRepositoryTagResponse
+	(*GetObjectResponse)(nil),           // 13: artifact.artifact.v1alpha.GetObjectResponse
+	(*GetObjectURLResponse)(nil),        // 14: artifact.artifact.v1alpha.GetObjectURLResponse
+	(*UpdateObjectResponse)(nil),        // 15: artifact.artifact.v1alpha.UpdateObjectResponse
+	(*GetFileAsMarkdownResponse)(nil),   // 16: artifact.artifact.v1alpha.GetFileAsMarkdownResponse
+	(*GetChatFileResponse)(nil),         // 17: artifact.artifact.v1alpha.GetChatFileResponse
 }
 var file_artifact_artifact_v1alpha_artifact_private_service_proto_depIdxs = []int32{
 	0,  // 0: artifact.artifact.v1alpha.ArtifactPrivateService.ListRepositoryTags:input_type -> artifact.artifact.v1alpha.ListRepositoryTagsRequest
@@ -62,17 +65,19 @@ var file_artifact_artifact_v1alpha_artifact_private_service_proto_depIdxs = []in
 	4,  // 4: artifact.artifact.v1alpha.ArtifactPrivateService.GetObject:input_type -> artifact.artifact.v1alpha.GetObjectRequest
 	5,  // 5: artifact.artifact.v1alpha.ArtifactPrivateService.GetObjectURL:input_type -> artifact.artifact.v1alpha.GetObjectURLRequest
 	6,  // 6: artifact.artifact.v1alpha.ArtifactPrivateService.UpdateObject:input_type -> artifact.artifact.v1alpha.UpdateObjectRequest
-	7,  // 7: artifact.artifact.v1alpha.ArtifactPrivateService.GetChatFile:input_type -> artifact.artifact.v1alpha.GetChatFileRequest
-	8,  // 8: artifact.artifact.v1alpha.ArtifactPrivateService.ListRepositoryTags:output_type -> artifact.artifact.v1alpha.ListRepositoryTagsResponse
-	9,  // 9: artifact.artifact.v1alpha.ArtifactPrivateService.GetRepositoryTag:output_type -> artifact.artifact.v1alpha.GetRepositoryTagResponse
-	10, // 10: artifact.artifact.v1alpha.ArtifactPrivateService.CreateRepositoryTag:output_type -> artifact.artifact.v1alpha.CreateRepositoryTagResponse
-	11, // 11: artifact.artifact.v1alpha.ArtifactPrivateService.DeleteRepositoryTag:output_type -> artifact.artifact.v1alpha.DeleteRepositoryTagResponse
-	12, // 12: artifact.artifact.v1alpha.ArtifactPrivateService.GetObject:output_type -> artifact.artifact.v1alpha.GetObjectResponse
-	13, // 13: artifact.artifact.v1alpha.ArtifactPrivateService.GetObjectURL:output_type -> artifact.artifact.v1alpha.GetObjectURLResponse
-	14, // 14: artifact.artifact.v1alpha.ArtifactPrivateService.UpdateObject:output_type -> artifact.artifact.v1alpha.UpdateObjectResponse
-	15, // 15: artifact.artifact.v1alpha.ArtifactPrivateService.GetChatFile:output_type -> artifact.artifact.v1alpha.GetChatFileResponse
-	8,  // [8:16] is the sub-list for method output_type
-	0,  // [0:8] is the sub-list for method input_type
+	7,  // 7: artifact.artifact.v1alpha.ArtifactPrivateService.GetFileAsMarkdown:input_type -> artifact.artifact.v1alpha.GetFileAsMarkdownRequest
+	8,  // 8: artifact.artifact.v1alpha.ArtifactPrivateService.GetChatFile:input_type -> artifact.artifact.v1alpha.GetChatFileRequest
+	9,  // 9: artifact.artifact.v1alpha.ArtifactPrivateService.ListRepositoryTags:output_type -> artifact.artifact.v1alpha.ListRepositoryTagsResponse
+	10, // 10: artifact.artifact.v1alpha.ArtifactPrivateService.GetRepositoryTag:output_type -> artifact.artifact.v1alpha.GetRepositoryTagResponse
+	11, // 11: artifact.artifact.v1alpha.ArtifactPrivateService.CreateRepositoryTag:output_type -> artifact.artifact.v1alpha.CreateRepositoryTagResponse
+	12, // 12: artifact.artifact.v1alpha.ArtifactPrivateService.DeleteRepositoryTag:output_type -> artifact.artifact.v1alpha.DeleteRepositoryTagResponse
+	13, // 13: artifact.artifact.v1alpha.ArtifactPrivateService.GetObject:output_type -> artifact.artifact.v1alpha.GetObjectResponse
+	14, // 14: artifact.artifact.v1alpha.ArtifactPrivateService.GetObjectURL:output_type -> artifact.artifact.v1alpha.GetObjectURLResponse
+	15, // 15: artifact.artifact.v1alpha.ArtifactPrivateService.UpdateObject:output_type -> artifact.artifact.v1alpha.UpdateObjectResponse
+	16, // 16: artifact.artifact.v1alpha.ArtifactPrivateService.GetFileAsMarkdown:output_type -> artifact.artifact.v1alpha.GetFileAsMarkdownResponse
+	17, // 17: artifact.artifact.v1alpha.ArtifactPrivateService.GetChatFile:output_type -> artifact.artifact.v1alpha.GetChatFileResponse
+	9,  // [9:18] is the sub-list for method output_type
+	0,  // [0:9] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name

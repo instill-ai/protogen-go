@@ -7,6 +7,7 @@
 package artifactv1alpha
 
 import (
+	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -22,19 +23,19 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// chunk type
+// ChunkType contains the different types of a chunk.
 type GetFileCatalogResponse_ChunkType int32
 
 const (
-	// unspecified
+	// Unspecified.
 	GetFileCatalogResponse_CHUNK_TYPE_UNSPECIFIED GetFileCatalogResponse_ChunkType = 0
-	// text
+	// Text.
 	GetFileCatalogResponse_CHUNK_TYPE_TEXT GetFileCatalogResponse_ChunkType = 1
-	// image
+	// Image.
 	GetFileCatalogResponse_CHUNK_TYPE_IMAGE GetFileCatalogResponse_ChunkType = 2
-	// audio
+	// Audio.
 	GetFileCatalogResponse_CHUNK_TYPE_AUDIO GetFileCatalogResponse_ChunkType = 3
-	// video
+	// Video.
 	GetFileCatalogResponse_CHUNK_TYPE_VIDEO GetFileCatalogResponse_ChunkType = 4
 )
 
@@ -83,17 +84,16 @@ func (GetFileCatalogResponse_ChunkType) EnumDescriptor() ([]byte, []int) {
 	return file_artifact_artifact_v1alpha_file_catalog_proto_rawDescGZIP(), []int{1, 0}
 }
 
-// GetFileCatalogRequest
+// GetFileCatalogRequest represents a request to view the processing outputs of
+// a file in a catalog.
 type GetFileCatalogRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// id of the namespace
+	// Namespace ID.
 	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// id of the catalog
+	// Catalog ID.
 	CatalogId string `protobuf:"bytes,2,opt,name=catalog_id,json=catalogId,proto3" json:"catalog_id,omitempty"`
-	// id of the file(i.e. file name)
-	FileId string `protobuf:"bytes,3,opt,name=file_id,json=fileId,proto3" json:"file_id,omitempty"`
-	// Uid of the file
-	FileUid       string `protobuf:"bytes,4,opt,name=file_uid,json=fileUid,proto3" json:"file_uid,omitempty"`
+	// File UID.
+	FileUid       string `protobuf:"bytes,3,opt,name=file_uid,json=fileUid,proto3" json:"file_uid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -142,13 +142,6 @@ func (x *GetFileCatalogRequest) GetCatalogId() string {
 	return ""
 }
 
-func (x *GetFileCatalogRequest) GetFileId() string {
-	if x != nil {
-		return x.FileId
-	}
-	return ""
-}
-
 func (x *GetFileCatalogRequest) GetFileUid() string {
 	if x != nil {
 		return x.FileUid
@@ -156,16 +149,17 @@ func (x *GetFileCatalogRequest) GetFileUid() string {
 	return ""
 }
 
-// GetFileCatalogResponse
+// GetFileCatalogResponse contains the processing outputs of a file in a
+// catalog.
 type GetFileCatalogResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// original data is encoded in base64
+	// Base-64 representation of the original file contents.
 	OriginalData string `protobuf:"bytes,1,opt,name=original_data,json=originalData,proto3" json:"original_data,omitempty"`
-	// file catalog
-	Metadata *GetFileCatalogResponse_Metadata `protobuf:"bytes,2,opt,name=metadata,proto3" json:"metadata,omitempty"`
-	// text
+	// File metadata.
+	FileMetadata *GetFileCatalogResponse_FileMetadata `protobuf:"bytes,2,opt,name=file_metadata,json=fileMetadata,proto3" json:"file_metadata,omitempty"`
+	// Converted text.
 	Text *GetFileCatalogResponse_Text `protobuf:"bytes,3,opt,name=text,proto3" json:"text,omitempty"`
-	// chunks
+	// Chunks.
 	Chunks        []*GetFileCatalogResponse_Chunk `protobuf:"bytes,4,rep,name=chunks,proto3" json:"chunks,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -208,9 +202,9 @@ func (x *GetFileCatalogResponse) GetOriginalData() string {
 	return ""
 }
 
-func (x *GetFileCatalogResponse) GetMetadata() *GetFileCatalogResponse_Metadata {
+func (x *GetFileCatalogResponse) GetFileMetadata() *GetFileCatalogResponse_FileMetadata {
 	if x != nil {
-		return x.Metadata
+		return x.FileMetadata
 	}
 	return nil
 }
@@ -229,7 +223,103 @@ func (x *GetFileCatalogResponse) GetChunks() []*GetFileCatalogResponse_Chunk {
 	return nil
 }
 
-// GetChatFileRequest
+// GetFileAsMarkdownRequest represents a request to fetch the Markdown
+// representation of a file.
+type GetFileAsMarkdownRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// File UID.
+	FileUid       string `protobuf:"bytes,1,opt,name=file_uid,json=fileUid,proto3" json:"file_uid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetFileAsMarkdownRequest) Reset() {
+	*x = GetFileAsMarkdownRequest{}
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetFileAsMarkdownRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFileAsMarkdownRequest) ProtoMessage() {}
+
+func (x *GetFileAsMarkdownRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFileAsMarkdownRequest.ProtoReflect.Descriptor instead.
+func (*GetFileAsMarkdownRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_file_catalog_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *GetFileAsMarkdownRequest) GetFileUid() string {
+	if x != nil {
+		return x.FileUid
+	}
+	return ""
+}
+
+// GetFileAsMarkdownResponse contains a blob with the Markdown representation
+// of a file.
+type GetFileAsMarkdownResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The Markdown representation of a file.
+	Markdown      string `protobuf:"bytes,1,opt,name=markdown,proto3" json:"markdown,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetFileAsMarkdownResponse) Reset() {
+	*x = GetFileAsMarkdownResponse{}
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetFileAsMarkdownResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFileAsMarkdownResponse) ProtoMessage() {}
+
+func (x *GetFileAsMarkdownResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFileAsMarkdownResponse.ProtoReflect.Descriptor instead.
+func (*GetFileAsMarkdownResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_file_catalog_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetFileAsMarkdownResponse) GetMarkdown() string {
+	if x != nil {
+		return x.Markdown
+	}
+	return ""
+}
+
+// GetChatFileRequest ...
+//
+// Deprecated: Marked as deprecated in artifact/artifact/v1alpha/file_catalog.proto.
 type GetChatFileRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// id of the namespace
@@ -244,7 +334,7 @@ type GetChatFileRequest struct {
 
 func (x *GetChatFileRequest) Reset() {
 	*x = GetChatFileRequest{}
-	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[2]
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -256,7 +346,7 @@ func (x *GetChatFileRequest) String() string {
 func (*GetChatFileRequest) ProtoMessage() {}
 
 func (x *GetChatFileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[2]
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -269,7 +359,7 @@ func (x *GetChatFileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetChatFileRequest.ProtoReflect.Descriptor instead.
 func (*GetChatFileRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_file_catalog_proto_rawDescGZIP(), []int{2}
+	return file_artifact_artifact_v1alpha_file_catalog_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetChatFileRequest) GetNamespaceId() string {
@@ -293,7 +383,9 @@ func (x *GetChatFileRequest) GetFileId() string {
 	return ""
 }
 
-// GetChatFileResponse
+// GetChatFileResponse ...
+//
+// Deprecated: Marked as deprecated in artifact/artifact/v1alpha/file_catalog.proto.
 type GetChatFileResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// converted markdown content
@@ -304,7 +396,7 @@ type GetChatFileResponse struct {
 
 func (x *GetChatFileResponse) Reset() {
 	*x = GetChatFileResponse{}
-	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[3]
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -316,7 +408,7 @@ func (x *GetChatFileResponse) String() string {
 func (*GetChatFileResponse) ProtoMessage() {}
 
 func (x *GetChatFileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[3]
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -329,7 +421,7 @@ func (x *GetChatFileResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetChatFileResponse.ProtoReflect.Descriptor instead.
 func (*GetChatFileResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_file_catalog_proto_rawDescGZIP(), []int{3}
+	return file_artifact_artifact_v1alpha_file_catalog_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *GetChatFileResponse) GetMarkdown() []byte {
@@ -339,40 +431,40 @@ func (x *GetChatFileResponse) GetMarkdown() []byte {
 	return nil
 }
 
-// metadata
-type GetFileCatalogResponse_Metadata struct {
+// FileMetadata contains information about the file.
+type GetFileCatalogResponse_FileMetadata struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// file uid
-	FileUid string `protobuf:"bytes,1,opt,name=file_uid,json=fileUid,proto3" json:"file_uid,omitempty"`
-	// file id
-	FileId string `protobuf:"bytes,2,opt,name=file_id,json=fileId,proto3" json:"file_id,omitempty"`
-	// file type
+	// File UID.
+	Uid string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	// Filename
+	Filename string `protobuf:"bytes,2,opt,name=filename,proto3" json:"filename,omitempty"`
+	// File Type.
 	FileType FileType `protobuf:"varint,3,opt,name=file_type,json=fileType,proto3,enum=artifact.artifact.v1alpha.FileType" json:"file_type,omitempty"`
-	// file size in bytes
-	FileSize int64 `protobuf:"varint,4,opt,name=file_size,json=fileSize,proto3" json:"file_size,omitempty"`
-	// upload time
-	FileUploadTime *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=file_upload_time,json=fileUploadTime,proto3" json:"file_upload_time,omitempty"`
-	// file process status
-	FileProcessStatus FileProcessStatus `protobuf:"varint,6,opt,name=file_process_status,json=fileProcessStatus,proto3,enum=artifact.artifact.v1alpha.FileProcessStatus" json:"file_process_status,omitempty"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+	// Size.
+	Size int64 `protobuf:"varint,4,opt,name=size,proto3" json:"size,omitempty"`
+	// Creation timestamp
+	CreateTime *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+	// Processing status of the file.
+	ProcessStatus FileProcessStatus `protobuf:"varint,6,opt,name=process_status,json=processStatus,proto3,enum=artifact.artifact.v1alpha.FileProcessStatus" json:"process_status,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetFileCatalogResponse_Metadata) Reset() {
-	*x = GetFileCatalogResponse_Metadata{}
-	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[4]
+func (x *GetFileCatalogResponse_FileMetadata) Reset() {
+	*x = GetFileCatalogResponse_FileMetadata{}
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetFileCatalogResponse_Metadata) String() string {
+func (x *GetFileCatalogResponse_FileMetadata) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetFileCatalogResponse_Metadata) ProtoMessage() {}
+func (*GetFileCatalogResponse_FileMetadata) ProtoMessage() {}
 
-func (x *GetFileCatalogResponse_Metadata) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[4]
+func (x *GetFileCatalogResponse_FileMetadata) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -383,73 +475,73 @@ func (x *GetFileCatalogResponse_Metadata) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetFileCatalogResponse_Metadata.ProtoReflect.Descriptor instead.
-func (*GetFileCatalogResponse_Metadata) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetFileCatalogResponse_FileMetadata.ProtoReflect.Descriptor instead.
+func (*GetFileCatalogResponse_FileMetadata) Descriptor() ([]byte, []int) {
 	return file_artifact_artifact_v1alpha_file_catalog_proto_rawDescGZIP(), []int{1, 0}
 }
 
-func (x *GetFileCatalogResponse_Metadata) GetFileUid() string {
+func (x *GetFileCatalogResponse_FileMetadata) GetUid() string {
 	if x != nil {
-		return x.FileUid
+		return x.Uid
 	}
 	return ""
 }
 
-func (x *GetFileCatalogResponse_Metadata) GetFileId() string {
+func (x *GetFileCatalogResponse_FileMetadata) GetFilename() string {
 	if x != nil {
-		return x.FileId
+		return x.Filename
 	}
 	return ""
 }
 
-func (x *GetFileCatalogResponse_Metadata) GetFileType() FileType {
+func (x *GetFileCatalogResponse_FileMetadata) GetFileType() FileType {
 	if x != nil {
 		return x.FileType
 	}
 	return FileType_FILE_TYPE_UNSPECIFIED
 }
 
-func (x *GetFileCatalogResponse_Metadata) GetFileSize() int64 {
+func (x *GetFileCatalogResponse_FileMetadata) GetSize() int64 {
 	if x != nil {
-		return x.FileSize
+		return x.Size
 	}
 	return 0
 }
 
-func (x *GetFileCatalogResponse_Metadata) GetFileUploadTime() *timestamppb.Timestamp {
+func (x *GetFileCatalogResponse_FileMetadata) GetCreateTime() *timestamppb.Timestamp {
 	if x != nil {
-		return x.FileUploadTime
+		return x.CreateTime
 	}
 	return nil
 }
 
-func (x *GetFileCatalogResponse_Metadata) GetFileProcessStatus() FileProcessStatus {
+func (x *GetFileCatalogResponse_FileMetadata) GetProcessStatus() FileProcessStatus {
 	if x != nil {
-		return x.FileProcessStatus
+		return x.ProcessStatus
 	}
 	return FileProcessStatus_FILE_PROCESS_STATUS_UNSPECIFIED
 }
 
-// text message
+// Text contains the text representation of the file.
 type GetFileCatalogResponse_Text struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// pipelines
-	PipelineIds []string `protobuf:"bytes,1,rep,name=pipeline_ids,json=pipelineIds,proto3" json:"pipeline_ids,omitempty"`
-	// transformed content
-	TransformedContent string `protobuf:"bytes,2,opt,name=transformed_content,json=transformedContent,proto3" json:"transformed_content,omitempty"`
-	// transformed content chunk number
-	TransformedContentChunkNum int32 `protobuf:"varint,3,opt,name=transformed_content_chunk_num,json=transformedContentChunkNum,proto3" json:"transformed_content_chunk_num,omitempty"`
-	// transformed content token number
-	TransformedContentTokenNum int32 `protobuf:"varint,4,opt,name=transformed_content_token_num,json=transformedContentTokenNum,proto3" json:"transformed_content_token_num,omitempty"`
-	// transformed content update time
-	TransformedContentUpdateTime *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=transformed_content_update_time,json=transformedContentUpdateTime,proto3" json:"transformed_content_update_time,omitempty"`
-	unknownFields                protoimpl.UnknownFields
-	sizeCache                    protoimpl.SizeCache
+	// Pipelines used to process the file.
+	Pipelines []string `protobuf:"bytes,1,rep,name=pipelines,proto3" json:"pipelines,omitempty"`
+	// Text representation of the file.
+	Content string `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
+	// Chunk count in the text.
+	ChunkCount int32 `protobuf:"varint,3,opt,name=chunk_count,json=chunkCount,proto3" json:"chunk_count,omitempty"`
+	// Token count in the text
+	TokenCount int32 `protobuf:"varint,4,opt,name=token_count,json=tokenCount,proto3" json:"token_count,omitempty"`
+	// Last update timestamp for the text.
+	UpdateTime    *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetFileCatalogResponse_Text) Reset() {
 	*x = GetFileCatalogResponse_Text{}
-	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[5]
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -461,7 +553,7 @@ func (x *GetFileCatalogResponse_Text) String() string {
 func (*GetFileCatalogResponse_Text) ProtoMessage() {}
 
 func (x *GetFileCatalogResponse_Text) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[5]
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -477,61 +569,61 @@ func (*GetFileCatalogResponse_Text) Descriptor() ([]byte, []int) {
 	return file_artifact_artifact_v1alpha_file_catalog_proto_rawDescGZIP(), []int{1, 1}
 }
 
-func (x *GetFileCatalogResponse_Text) GetPipelineIds() []string {
+func (x *GetFileCatalogResponse_Text) GetPipelines() []string {
 	if x != nil {
-		return x.PipelineIds
+		return x.Pipelines
 	}
 	return nil
 }
 
-func (x *GetFileCatalogResponse_Text) GetTransformedContent() string {
+func (x *GetFileCatalogResponse_Text) GetContent() string {
 	if x != nil {
-		return x.TransformedContent
+		return x.Content
 	}
 	return ""
 }
 
-func (x *GetFileCatalogResponse_Text) GetTransformedContentChunkNum() int32 {
+func (x *GetFileCatalogResponse_Text) GetChunkCount() int32 {
 	if x != nil {
-		return x.TransformedContentChunkNum
+		return x.ChunkCount
 	}
 	return 0
 }
 
-func (x *GetFileCatalogResponse_Text) GetTransformedContentTokenNum() int32 {
+func (x *GetFileCatalogResponse_Text) GetTokenCount() int32 {
 	if x != nil {
-		return x.TransformedContentTokenNum
+		return x.TokenCount
 	}
 	return 0
 }
 
-func (x *GetFileCatalogResponse_Text) GetTransformedContentUpdateTime() *timestamppb.Timestamp {
+func (x *GetFileCatalogResponse_Text) GetUpdateTime() *timestamppb.Timestamp {
 	if x != nil {
-		return x.TransformedContentUpdateTime
+		return x.UpdateTime
 	}
 	return nil
 }
 
-// chunk message
+// Chunk is a delimited part of the converted text.
 type GetFileCatalogResponse_Chunk struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// chunk uid
+	// Chunk UID.
 	Uid string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
-	// chunk type. i.e. text, image, audio, and video
+	// Chunk type. I.e: text, image, audio, video.
 	Type GetFileCatalogResponse_ChunkType `protobuf:"varint,2,opt,name=type,proto3,enum=artifact.artifact.v1alpha.GetFileCatalogResponse_ChunkType" json:"type,omitempty"`
-	// chunk start position
-	StartPos int32 `protobuf:"varint,3,opt,name=start_pos,json=startPos,proto3" json:"start_pos,omitempty"`
-	// chunk end position
-	EndPos int32 `protobuf:"varint,4,opt,name=end_pos,json=endPos,proto3" json:"end_pos,omitempty"`
-	// chunk content
+	// Start position in the text.
+	StartPosition int32 `protobuf:"varint,3,opt,name=start_position,json=startPosition,proto3" json:"start_position,omitempty"`
+	// End position in the text.
+	EndPosition int32 `protobuf:"varint,4,opt,name=end_position,json=endPosition,proto3" json:"end_position,omitempty"`
+	// Content.
 	Content string `protobuf:"bytes,5,opt,name=content,proto3" json:"content,omitempty"`
-	// chunk tokens num
-	TokensNum int32 `protobuf:"varint,6,opt,name=tokens_num,json=tokensNum,proto3" json:"tokens_num,omitempty"`
-	// embedding. float32 array
+	// Token count in the chunk.
+	TokenCount int32 `protobuf:"varint,6,opt,name=token_count,json=tokenCount,proto3" json:"token_count,omitempty"`
+	// Chunk embedding.
 	Embedding []float32 `protobuf:"fixed32,7,rep,packed,name=embedding,proto3" json:"embedding,omitempty"`
-	// chunk create time
+	// Creation time of the chunk.
 	CreateTime *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
-	// chunk retrievable
+	// Retrievability of the chunk.
 	Retrievable   bool `protobuf:"varint,9,opt,name=retrievable,proto3" json:"retrievable,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -539,7 +631,7 @@ type GetFileCatalogResponse_Chunk struct {
 
 func (x *GetFileCatalogResponse_Chunk) Reset() {
 	*x = GetFileCatalogResponse_Chunk{}
-	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[6]
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -551,7 +643,7 @@ func (x *GetFileCatalogResponse_Chunk) String() string {
 func (*GetFileCatalogResponse_Chunk) ProtoMessage() {}
 
 func (x *GetFileCatalogResponse_Chunk) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[6]
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -581,16 +673,16 @@ func (x *GetFileCatalogResponse_Chunk) GetType() GetFileCatalogResponse_ChunkTyp
 	return GetFileCatalogResponse_CHUNK_TYPE_UNSPECIFIED
 }
 
-func (x *GetFileCatalogResponse_Chunk) GetStartPos() int32 {
+func (x *GetFileCatalogResponse_Chunk) GetStartPosition() int32 {
 	if x != nil {
-		return x.StartPos
+		return x.StartPosition
 	}
 	return 0
 }
 
-func (x *GetFileCatalogResponse_Chunk) GetEndPos() int32 {
+func (x *GetFileCatalogResponse_Chunk) GetEndPosition() int32 {
 	if x != nil {
-		return x.EndPos
+		return x.EndPosition
 	}
 	return 0
 }
@@ -602,9 +694,9 @@ func (x *GetFileCatalogResponse_Chunk) GetContent() string {
 	return ""
 }
 
-func (x *GetFileCatalogResponse_Chunk) GetTokensNum() int32 {
+func (x *GetFileCatalogResponse_Chunk) GetTokenCount() int32 {
 	if x != nil {
-		return x.TokensNum
+		return x.TokenCount
 	}
 	return 0
 }
@@ -634,56 +726,63 @@ var File_artifact_artifact_v1alpha_file_catalog_proto protoreflect.FileDescripto
 
 const file_artifact_artifact_v1alpha_file_catalog_proto_rawDesc = "" +
 	"\n" +
-	",artifact/artifact/v1alpha/file_catalog.proto\x12\x19artifact.artifact.v1alpha\x1a(artifact/artifact/v1alpha/artifact.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x8d\x01\n" +
-	"\x15GetFileCatalogRequest\x12!\n" +
-	"\fnamespace_id\x18\x01 \x01(\tR\vnamespaceId\x12\x1d\n" +
+	",artifact/artifact/v1alpha/file_catalog.proto\x12\x19artifact.artifact.v1alpha\x1a(artifact/artifact/v1alpha/artifact.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x83\x01\n" +
+	"\x15GetFileCatalogRequest\x12&\n" +
+	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\"\n" +
 	"\n" +
-	"catalog_id\x18\x02 \x01(\tR\tcatalogId\x12\x17\n" +
-	"\afile_id\x18\x03 \x01(\tR\x06fileId\x12\x19\n" +
-	"\bfile_uid\x18\x04 \x01(\tR\afileUid\"\x95\v\n" +
-	"\x16GetFileCatalogResponse\x12#\n" +
-	"\roriginal_data\x18\x01 \x01(\tR\foriginalData\x12V\n" +
-	"\bmetadata\x18\x02 \x01(\v2:.artifact.artifact.v1alpha.GetFileCatalogResponse.MetadataR\bmetadata\x12J\n" +
-	"\x04text\x18\x03 \x01(\v26.artifact.artifact.v1alpha.GetFileCatalogResponse.TextR\x04text\x12O\n" +
-	"\x06chunks\x18\x04 \x03(\v27.artifact.artifact.v1alpha.GetFileCatalogResponse.ChunkR\x06chunks\x1a\xc1\x02\n" +
-	"\bMetadata\x12\x19\n" +
-	"\bfile_uid\x18\x01 \x01(\tR\afileUid\x12\x17\n" +
-	"\afile_id\x18\x02 \x01(\tR\x06fileId\x12@\n" +
-	"\tfile_type\x18\x03 \x01(\x0e2#.artifact.artifact.v1alpha.FileTypeR\bfileType\x12\x1b\n" +
-	"\tfile_size\x18\x04 \x01(\x03R\bfileSize\x12D\n" +
-	"\x10file_upload_time\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\x0efileUploadTime\x12\\\n" +
-	"\x13file_process_status\x18\x06 \x01(\x0e2,.artifact.artifact.v1alpha.FileProcessStatusR\x11fileProcessStatus\x1a\xc3\x02\n" +
+	"catalog_id\x18\x02 \x01(\tB\x03\xe0A\x02R\tcatalogId\x12\x1e\n" +
+	"\bfile_uid\x18\x03 \x01(\tB\x03\xe0A\x02R\afileUid\"\x8d\v\n" +
+	"\x16GetFileCatalogResponse\x12(\n" +
+	"\roriginal_data\x18\x01 \x01(\tB\x03\xe0A\x03R\foriginalData\x12h\n" +
+	"\rfile_metadata\x18\x02 \x01(\v2>.artifact.artifact.v1alpha.GetFileCatalogResponse.FileMetadataB\x03\xe0A\x03R\ffileMetadata\x12O\n" +
+	"\x04text\x18\x03 \x01(\v26.artifact.artifact.v1alpha.GetFileCatalogResponse.TextB\x03\xe0A\x03R\x04text\x12T\n" +
+	"\x06chunks\x18\x04 \x03(\v27.artifact.artifact.v1alpha.GetFileCatalogResponse.ChunkB\x03\xe0A\x03R\x06chunks\x1a\xc2\x02\n" +
+	"\fFileMetadata\x12\x15\n" +
+	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x1f\n" +
+	"\bfilename\x18\x02 \x01(\tB\x03\xe0A\x03R\bfilename\x12E\n" +
+	"\tfile_type\x18\x03 \x01(\x0e2#.artifact.artifact.v1alpha.FileTypeB\x03\xe0A\x03R\bfileType\x12\x17\n" +
+	"\x04size\x18\x04 \x01(\x03B\x03\xe0A\x03R\x04size\x12@\n" +
+	"\vcreate_time\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
+	"createTime\x12X\n" +
+	"\x0eprocess_status\x18\x06 \x01(\x0e2,.artifact.artifact.v1alpha.FileProcessStatusB\x03\xe0A\x03R\rprocessStatus\x1a\xd6\x01\n" +
 	"\x04Text\x12!\n" +
-	"\fpipeline_ids\x18\x01 \x03(\tR\vpipelineIds\x12/\n" +
-	"\x13transformed_content\x18\x02 \x01(\tR\x12transformedContent\x12A\n" +
-	"\x1dtransformed_content_chunk_num\x18\x03 \x01(\x05R\x1atransformedContentChunkNum\x12A\n" +
-	"\x1dtransformed_content_token_num\x18\x04 \x01(\x05R\x1atransformedContentTokenNum\x12a\n" +
-	"\x1ftransformed_content_update_time\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\x1ctransformedContentUpdateTime\x1a\xd6\x02\n" +
-	"\x05Chunk\x12\x10\n" +
-	"\x03uid\x18\x01 \x01(\tR\x03uid\x12O\n" +
-	"\x04type\x18\x02 \x01(\x0e2;.artifact.artifact.v1alpha.GetFileCatalogResponse.ChunkTypeR\x04type\x12\x1b\n" +
-	"\tstart_pos\x18\x03 \x01(\x05R\bstartPos\x12\x17\n" +
-	"\aend_pos\x18\x04 \x01(\x05R\x06endPos\x12\x18\n" +
-	"\acontent\x18\x05 \x01(\tR\acontent\x12\x1d\n" +
-	"\n" +
-	"tokens_num\x18\x06 \x01(\x05R\ttokensNum\x12\x1c\n" +
-	"\tembedding\x18\a \x03(\x02R\tembedding\x12;\n" +
-	"\vcreate_time\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\n" +
-	"createTime\x12 \n" +
-	"\vretrievable\x18\t \x01(\bR\vretrievable\"~\n" +
+	"\tpipelines\x18\x01 \x03(\tB\x03\xe0A\x03R\tpipelines\x12\x1d\n" +
+	"\acontent\x18\x02 \x01(\tB\x03\xe0A\x03R\acontent\x12$\n" +
+	"\vchunk_count\x18\x03 \x01(\x05B\x03\xe0A\x03R\n" +
+	"chunkCount\x12$\n" +
+	"\vtoken_count\x18\x04 \x01(\x05B\x03\xe0A\x03R\n" +
+	"tokenCount\x12@\n" +
+	"\vupdate_time\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
+	"updateTime\x1a\x99\x03\n" +
+	"\x05Chunk\x12\x15\n" +
+	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12T\n" +
+	"\x04type\x18\x02 \x01(\x0e2;.artifact.artifact.v1alpha.GetFileCatalogResponse.ChunkTypeB\x03\xe0A\x03R\x04type\x12*\n" +
+	"\x0estart_position\x18\x03 \x01(\x05B\x03\xe0A\x03R\rstartPosition\x12&\n" +
+	"\fend_position\x18\x04 \x01(\x05B\x03\xe0A\x03R\vendPosition\x12\x1d\n" +
+	"\acontent\x18\x05 \x01(\tB\x03\xe0A\x03R\acontent\x12$\n" +
+	"\vtoken_count\x18\x06 \x01(\x05B\x03\xe0A\x03R\n" +
+	"tokenCount\x12!\n" +
+	"\tembedding\x18\a \x03(\x02B\x03\xe0A\x03R\tembedding\x12@\n" +
+	"\vcreate_time\x18\b \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
+	"createTime\x12%\n" +
+	"\vretrievable\x18\t \x01(\bB\x03\xe0A\x03R\vretrievable\"~\n" +
 	"\tChunkType\x12\x1a\n" +
 	"\x16CHUNK_TYPE_UNSPECIFIED\x10\x00\x12\x13\n" +
 	"\x0fCHUNK_TYPE_TEXT\x10\x01\x12\x14\n" +
 	"\x10CHUNK_TYPE_IMAGE\x10\x02\x12\x14\n" +
 	"\x10CHUNK_TYPE_AUDIO\x10\x03\x12\x14\n" +
-	"\x10CHUNK_TYPE_VIDEO\x10\x04\"o\n" +
+	"\x10CHUNK_TYPE_VIDEO\x10\x04\":\n" +
+	"\x18GetFileAsMarkdownRequest\x12\x1e\n" +
+	"\bfile_uid\x18\x01 \x01(\tB\x03\xe0A\x02R\afileUid\"<\n" +
+	"\x19GetFileAsMarkdownResponse\x12\x1f\n" +
+	"\bmarkdown\x18\x01 \x01(\tB\x03\xe0A\x03R\bmarkdown\"s\n" +
 	"\x12GetChatFileRequest\x12!\n" +
 	"\fnamespace_id\x18\x01 \x01(\tR\vnamespaceId\x12\x1d\n" +
 	"\n" +
 	"catalog_id\x18\x02 \x01(\tR\tcatalogId\x12\x17\n" +
-	"\afile_id\x18\x03 \x01(\tR\x06fileId\"1\n" +
+	"\afile_id\x18\x03 \x01(\tR\x06fileId:\x02\x18\x01\"5\n" +
 	"\x13GetChatFileResponse\x12\x1a\n" +
-	"\bmarkdown\x18\x01 \x01(\fR\bmarkdownB\x84\x02\n" +
+	"\bmarkdown\x18\x01 \x01(\fR\bmarkdown:\x02\x18\x01B\x84\x02\n" +
 	"\x1dcom.artifact.artifact.v1alphaB\x10FileCatalogProtoP\x01ZKgithub.com/instill-ai/protogen-go/artifact/artifact/v1alpha;artifactv1alpha\xa2\x02\x03AAX\xaa\x02\x19Artifact.Artifact.V1alpha\xca\x02\x19Artifact\\Artifact\\V1alpha\xe2\x02%Artifact\\Artifact\\V1alpha\\GPBMetadata\xea\x02\x1bArtifact::Artifact::V1alphab\x06proto3"
 
 var (
@@ -699,30 +798,32 @@ func file_artifact_artifact_v1alpha_file_catalog_proto_rawDescGZIP() []byte {
 }
 
 var file_artifact_artifact_v1alpha_file_catalog_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_artifact_artifact_v1alpha_file_catalog_proto_goTypes = []any{
-	(GetFileCatalogResponse_ChunkType)(0),   // 0: artifact.artifact.v1alpha.GetFileCatalogResponse.ChunkType
-	(*GetFileCatalogRequest)(nil),           // 1: artifact.artifact.v1alpha.GetFileCatalogRequest
-	(*GetFileCatalogResponse)(nil),          // 2: artifact.artifact.v1alpha.GetFileCatalogResponse
-	(*GetChatFileRequest)(nil),              // 3: artifact.artifact.v1alpha.GetChatFileRequest
-	(*GetChatFileResponse)(nil),             // 4: artifact.artifact.v1alpha.GetChatFileResponse
-	(*GetFileCatalogResponse_Metadata)(nil), // 5: artifact.artifact.v1alpha.GetFileCatalogResponse.Metadata
-	(*GetFileCatalogResponse_Text)(nil),     // 6: artifact.artifact.v1alpha.GetFileCatalogResponse.Text
-	(*GetFileCatalogResponse_Chunk)(nil),    // 7: artifact.artifact.v1alpha.GetFileCatalogResponse.Chunk
-	(FileType)(0),                           // 8: artifact.artifact.v1alpha.FileType
-	(*timestamppb.Timestamp)(nil),           // 9: google.protobuf.Timestamp
-	(FileProcessStatus)(0),                  // 10: artifact.artifact.v1alpha.FileProcessStatus
+	(GetFileCatalogResponse_ChunkType)(0),       // 0: artifact.artifact.v1alpha.GetFileCatalogResponse.ChunkType
+	(*GetFileCatalogRequest)(nil),               // 1: artifact.artifact.v1alpha.GetFileCatalogRequest
+	(*GetFileCatalogResponse)(nil),              // 2: artifact.artifact.v1alpha.GetFileCatalogResponse
+	(*GetFileAsMarkdownRequest)(nil),            // 3: artifact.artifact.v1alpha.GetFileAsMarkdownRequest
+	(*GetFileAsMarkdownResponse)(nil),           // 4: artifact.artifact.v1alpha.GetFileAsMarkdownResponse
+	(*GetChatFileRequest)(nil),                  // 5: artifact.artifact.v1alpha.GetChatFileRequest
+	(*GetChatFileResponse)(nil),                 // 6: artifact.artifact.v1alpha.GetChatFileResponse
+	(*GetFileCatalogResponse_FileMetadata)(nil), // 7: artifact.artifact.v1alpha.GetFileCatalogResponse.FileMetadata
+	(*GetFileCatalogResponse_Text)(nil),         // 8: artifact.artifact.v1alpha.GetFileCatalogResponse.Text
+	(*GetFileCatalogResponse_Chunk)(nil),        // 9: artifact.artifact.v1alpha.GetFileCatalogResponse.Chunk
+	(FileType)(0),                               // 10: artifact.artifact.v1alpha.FileType
+	(*timestamppb.Timestamp)(nil),               // 11: google.protobuf.Timestamp
+	(FileProcessStatus)(0),                      // 12: artifact.artifact.v1alpha.FileProcessStatus
 }
 var file_artifact_artifact_v1alpha_file_catalog_proto_depIdxs = []int32{
-	5,  // 0: artifact.artifact.v1alpha.GetFileCatalogResponse.metadata:type_name -> artifact.artifact.v1alpha.GetFileCatalogResponse.Metadata
-	6,  // 1: artifact.artifact.v1alpha.GetFileCatalogResponse.text:type_name -> artifact.artifact.v1alpha.GetFileCatalogResponse.Text
-	7,  // 2: artifact.artifact.v1alpha.GetFileCatalogResponse.chunks:type_name -> artifact.artifact.v1alpha.GetFileCatalogResponse.Chunk
-	8,  // 3: artifact.artifact.v1alpha.GetFileCatalogResponse.Metadata.file_type:type_name -> artifact.artifact.v1alpha.FileType
-	9,  // 4: artifact.artifact.v1alpha.GetFileCatalogResponse.Metadata.file_upload_time:type_name -> google.protobuf.Timestamp
-	10, // 5: artifact.artifact.v1alpha.GetFileCatalogResponse.Metadata.file_process_status:type_name -> artifact.artifact.v1alpha.FileProcessStatus
-	9,  // 6: artifact.artifact.v1alpha.GetFileCatalogResponse.Text.transformed_content_update_time:type_name -> google.protobuf.Timestamp
+	7,  // 0: artifact.artifact.v1alpha.GetFileCatalogResponse.file_metadata:type_name -> artifact.artifact.v1alpha.GetFileCatalogResponse.FileMetadata
+	8,  // 1: artifact.artifact.v1alpha.GetFileCatalogResponse.text:type_name -> artifact.artifact.v1alpha.GetFileCatalogResponse.Text
+	9,  // 2: artifact.artifact.v1alpha.GetFileCatalogResponse.chunks:type_name -> artifact.artifact.v1alpha.GetFileCatalogResponse.Chunk
+	10, // 3: artifact.artifact.v1alpha.GetFileCatalogResponse.FileMetadata.file_type:type_name -> artifact.artifact.v1alpha.FileType
+	11, // 4: artifact.artifact.v1alpha.GetFileCatalogResponse.FileMetadata.create_time:type_name -> google.protobuf.Timestamp
+	12, // 5: artifact.artifact.v1alpha.GetFileCatalogResponse.FileMetadata.process_status:type_name -> artifact.artifact.v1alpha.FileProcessStatus
+	11, // 6: artifact.artifact.v1alpha.GetFileCatalogResponse.Text.update_time:type_name -> google.protobuf.Timestamp
 	0,  // 7: artifact.artifact.v1alpha.GetFileCatalogResponse.Chunk.type:type_name -> artifact.artifact.v1alpha.GetFileCatalogResponse.ChunkType
-	9,  // 8: artifact.artifact.v1alpha.GetFileCatalogResponse.Chunk.create_time:type_name -> google.protobuf.Timestamp
+	11, // 8: artifact.artifact.v1alpha.GetFileCatalogResponse.Chunk.create_time:type_name -> google.protobuf.Timestamp
 	9,  // [9:9] is the sub-list for method output_type
 	9,  // [9:9] is the sub-list for method input_type
 	9,  // [9:9] is the sub-list for extension type_name
@@ -742,7 +843,7 @@ func file_artifact_artifact_v1alpha_file_catalog_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_artifact_artifact_v1alpha_file_catalog_proto_rawDesc), len(file_artifact_artifact_v1alpha_file_catalog_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   7,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

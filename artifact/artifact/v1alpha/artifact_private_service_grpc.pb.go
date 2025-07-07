@@ -26,6 +26,7 @@ const (
 	ArtifactPrivateService_GetObject_FullMethodName           = "/artifact.artifact.v1alpha.ArtifactPrivateService/GetObject"
 	ArtifactPrivateService_GetObjectURL_FullMethodName        = "/artifact.artifact.v1alpha.ArtifactPrivateService/GetObjectURL"
 	ArtifactPrivateService_UpdateObject_FullMethodName        = "/artifact.artifact.v1alpha.ArtifactPrivateService/UpdateObject"
+	ArtifactPrivateService_GetFileAsMarkdown_FullMethodName   = "/artifact.artifact.v1alpha.ArtifactPrivateService/GetFileAsMarkdown"
 	ArtifactPrivateService_GetChatFile_FullMethodName         = "/artifact.artifact.v1alpha.ArtifactPrivateService/GetChatFile"
 )
 
@@ -59,7 +60,16 @@ type ArtifactPrivateServiceClient interface {
 	GetObjectURL(ctx context.Context, in *GetObjectURLRequest, opts ...grpc.CallOption) (*GetObjectURLResponse, error)
 	// Update Object
 	UpdateObject(ctx context.Context, in *UpdateObjectRequest, opts ...grpc.CallOption) (*UpdateObjectResponse, error)
-	// Get Chat file
+	// Get file as Markdown
+	//
+	// Returns the Markdown representation of a file.
+	GetFileAsMarkdown(ctx context.Context, in *GetFileAsMarkdownRequest, opts ...grpc.CallOption) (*GetFileAsMarkdownResponse, error)
+	// Deprecated: Do not use.
+	// Get file as Markdown (deprecated)
+	//
+	// Returns the contents of a file conversion to Markdown as a binary blob.
+	// This method is deprecated as it identifies the file by namespace and
+	// filename instead of UID, which isn't a unique identifier anymore.
 	GetChatFile(ctx context.Context, in *GetChatFileRequest, opts ...grpc.CallOption) (*GetChatFileResponse, error)
 }
 
@@ -141,6 +151,17 @@ func (c *artifactPrivateServiceClient) UpdateObject(ctx context.Context, in *Upd
 	return out, nil
 }
 
+func (c *artifactPrivateServiceClient) GetFileAsMarkdown(ctx context.Context, in *GetFileAsMarkdownRequest, opts ...grpc.CallOption) (*GetFileAsMarkdownResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetFileAsMarkdownResponse)
+	err := c.cc.Invoke(ctx, ArtifactPrivateService_GetFileAsMarkdown_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Deprecated: Do not use.
 func (c *artifactPrivateServiceClient) GetChatFile(ctx context.Context, in *GetChatFileRequest, opts ...grpc.CallOption) (*GetChatFileResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetChatFileResponse)
@@ -181,7 +202,16 @@ type ArtifactPrivateServiceServer interface {
 	GetObjectURL(context.Context, *GetObjectURLRequest) (*GetObjectURLResponse, error)
 	// Update Object
 	UpdateObject(context.Context, *UpdateObjectRequest) (*UpdateObjectResponse, error)
-	// Get Chat file
+	// Get file as Markdown
+	//
+	// Returns the Markdown representation of a file.
+	GetFileAsMarkdown(context.Context, *GetFileAsMarkdownRequest) (*GetFileAsMarkdownResponse, error)
+	// Deprecated: Do not use.
+	// Get file as Markdown (deprecated)
+	//
+	// Returns the contents of a file conversion to Markdown as a binary blob.
+	// This method is deprecated as it identifies the file by namespace and
+	// filename instead of UID, which isn't a unique identifier anymore.
 	GetChatFile(context.Context, *GetChatFileRequest) (*GetChatFileResponse, error)
 }
 
@@ -212,6 +242,9 @@ func (UnimplementedArtifactPrivateServiceServer) GetObjectURL(context.Context, *
 }
 func (UnimplementedArtifactPrivateServiceServer) UpdateObject(context.Context, *UpdateObjectRequest) (*UpdateObjectResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateObject not implemented")
+}
+func (UnimplementedArtifactPrivateServiceServer) GetFileAsMarkdown(context.Context, *GetFileAsMarkdownRequest) (*GetFileAsMarkdownResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFileAsMarkdown not implemented")
 }
 func (UnimplementedArtifactPrivateServiceServer) GetChatFile(context.Context, *GetChatFileRequest) (*GetChatFileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetChatFile not implemented")
@@ -362,6 +395,24 @@ func _ArtifactPrivateService_UpdateObject_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArtifactPrivateService_GetFileAsMarkdown_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFileAsMarkdownRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPrivateServiceServer).GetFileAsMarkdown(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPrivateService_GetFileAsMarkdown_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPrivateServiceServer).GetFileAsMarkdown(ctx, req.(*GetFileAsMarkdownRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ArtifactPrivateService_GetChatFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetChatFileRequest)
 	if err := dec(in); err != nil {
@@ -414,6 +465,10 @@ var ArtifactPrivateService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateObject",
 			Handler:    _ArtifactPrivateService_UpdateObject_Handler,
+		},
+		{
+			MethodName: "GetFileAsMarkdown",
+			Handler:    _ArtifactPrivateService_GetFileAsMarkdown_Handler,
 		},
 		{
 			MethodName: "GetChatFile",
