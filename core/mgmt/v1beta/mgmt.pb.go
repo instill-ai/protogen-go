@@ -482,27 +482,35 @@ func (ApiToken_State) EnumDescriptor() ([]byte, []int) {
 	return file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{36, 0}
 }
 
-// Enumerates the status types for the user's subscription.
+// Enumerates the status types for the user's subscription. Please refer to
+// the [Stripe
+// documentation](https://docs.stripe.com/billing/subscriptions/overview#subscription-statuses)
+// for more details.
 type StripeSubscriptionDetail_Status int32
 
 const (
 	// Unspecified status.
 	StripeSubscriptionDetail_STATUS_UNSPECIFIED StripeSubscriptionDetail_Status = 0
-	// Incomplete.
+	// The customer must do a payment-related action to activate the
+	// subscription.
 	StripeSubscriptionDetail_STATUS_INCOMPLETE StripeSubscriptionDetail_Status = 1
-	// Incomplete Expired.
+	// The subscription failed to activate because no successful payments were
+	// registered in time.
 	StripeSubscriptionDetail_STATUS_INCOMPLETE_EXPIRED StripeSubscriptionDetail_Status = 2
-	// Trialing.
+	// The subscription is currently in a trial period.
 	StripeSubscriptionDetail_STATUS_TRIALING StripeSubscriptionDetail_Status = 3
-	// Active.
+	// The subscription is in good standing.
 	StripeSubscriptionDetail_STATUS_ACTIVE StripeSubscriptionDetail_Status = 4
-	// Past due.
+	// Payment on the latest finalised invoice either failed or wasn’t
+	// attempted.
 	StripeSubscriptionDetail_STATUS_PAST_DUE StripeSubscriptionDetail_Status = 5
-	// Canceled.
+	// The subscription was cancelled by either the user or the admins.
 	StripeSubscriptionDetail_STATUS_CANCELED StripeSubscriptionDetail_Status = 6
-	// Unpaid.
+	// The latest invoice hasn’t been paid but the subscription remains in
+	// place.
 	StripeSubscriptionDetail_STATUS_UNPAID StripeSubscriptionDetail_Status = 7
-	// Paused.
+	// The subscription has ended its trial period without a default payment
+	// method.
 	StripeSubscriptionDetail_STATUS_PAUSED StripeSubscriptionDetail_Status = 8
 )
 
@@ -563,11 +571,13 @@ func (StripeSubscriptionDetail_Status) EnumDescriptor() ([]byte, []int) {
 type UserSubscription_Plan int32
 
 const (
-	// Unspecified plan.
+	// Empty value for Plan, it means that the user has no recorded
+	// subscriptions.
 	UserSubscription_PLAN_UNSPECIFIED UserSubscription_Plan = 0
-	// Free plan.
-	UserSubscription_PLAN_FREE UserSubscription_Plan = 1
-	// Starter plan.
+	// The starter plan is an individual plan for developers and early-stage
+	// projects. This plan offers a free trial period that deoesn't require the
+	// customer to have a default payment method. After the free trial period
+	// is over, the subscription state will transition from trialing to paused.
 	UserSubscription_PLAN_STARTER UserSubscription_Plan = 3
 )
 
@@ -575,12 +585,10 @@ const (
 var (
 	UserSubscription_Plan_name = map[int32]string{
 		0: "PLAN_UNSPECIFIED",
-		1: "PLAN_FREE",
 		3: "PLAN_STARTER",
 	}
 	UserSubscription_Plan_value = map[string]int32{
 		"PLAN_UNSPECIFIED": 0,
-		"PLAN_FREE":        1,
 		"PLAN_STARTER":     3,
 	}
 )
@@ -618,11 +626,12 @@ type OrganizationSubscription_Plan int32
 const (
 	// Unspecified plan.
 	OrganizationSubscription_PLAN_UNSPECIFIED OrganizationSubscription_Plan = 0
-	// Free plan.
-	OrganizationSubscription_PLAN_FREE OrganizationSubscription_Plan = 1
-	// Team plan.
+	// The team plan is a subscription that offers collaboration features for
+	// small teams.
 	OrganizationSubscription_PLAN_TEAM OrganizationSubscription_Plan = 2
-	// Enterprise plan.
+	// The enterprise plan is a subscription for large teams and/or high-volume
+	// deployments. This kind of subscription doesn't contain Stripe
+	// subscription details.
 	OrganizationSubscription_PLAN_ENTERPRISE OrganizationSubscription_Plan = 3
 )
 
@@ -630,13 +639,11 @@ const (
 var (
 	OrganizationSubscription_Plan_name = map[int32]string{
 		0: "PLAN_UNSPECIFIED",
-		1: "PLAN_FREE",
 		2: "PLAN_TEAM",
 		3: "PLAN_ENTERPRISE",
 	}
 	OrganizationSubscription_Plan_value = map[string]int32{
 		"PLAN_UNSPECIFIED": 0,
-		"PLAN_FREE":        1,
 		"PLAN_TEAM":        2,
 		"PLAN_ENTERPRISE":  3,
 	}
@@ -6011,7 +6018,7 @@ func (*DeleteOrganizationMembershipResponse) Descriptor() ([]byte, []int) {
 	return file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{91}
 }
 
-// StripeSubscriptionDetail describes the details of a subscription in Stripe.
+// StripeSubscriptionDetail ontains the details of a subscription in Stripe.
 type StripeSubscriptionDetail struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Product name associated with the subscription in Stripe.
@@ -6120,7 +6127,8 @@ func (x *StripeSubscriptionDetail) GetDescription() string {
 	return ""
 }
 
-// UserSubscription details describe the plan (i.e., features) a user has access to.
+// UserSubscription details describe the plan of an individual user (i.e., the
+// features they have access to).
 type UserSubscription struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Plan identifier.
@@ -6175,7 +6183,8 @@ func (x *UserSubscription) GetDetail() *StripeSubscriptionDetail {
 	return nil
 }
 
-// OrganizationSubscription details describe the plan (i.e., features) an organization has access to.
+// OrganizationSubscription details describe the plan of an organization (i.e.
+// the features and purchased seats it has access to).
 type OrganizationSubscription struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Plan identifier.
@@ -6239,8 +6248,8 @@ func (x *OrganizationSubscription) GetUsedSeats() int32 {
 	return 0
 }
 
-// GetAuthenticatedUserSubscriptionRequest represents a query to fetch the subscription
-// details of the authenticated user.
+// GetAuthenticatedUserSubscriptionRequest represents a query to fetch the
+// subscription details of the authenticated user.
 type GetAuthenticatedUserSubscriptionRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -6277,7 +6286,8 @@ func (*GetAuthenticatedUserSubscriptionRequest) Descriptor() ([]byte, []int) {
 	return file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{95}
 }
 
-// GetAuthenticatedUserSubscriptionResponse contains the requested subscription.
+// GetAuthenticatedUserSubscriptionResponse contains the requested
+// subscription.
 type GetAuthenticatedUserSubscriptionResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The subscription resource.
@@ -6416,7 +6426,8 @@ func (x *GetOrganizationSubscriptionResponse) GetSubscription() *OrganizationSub
 	return nil
 }
 
-// GetUserSubscriptionAdminRequest
+// GetUserSubscriptionAdminRequest represents a query to fetch the subscription
+// details of a user.
 type GetUserSubscriptionAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// User ID
@@ -6462,10 +6473,10 @@ func (x *GetUserSubscriptionAdminRequest) GetUserId() string {
 	return ""
 }
 
-// GetUserSubscriptionAdminResponse
+// GetUserSubscriptionAdminResponse contains the requested subscription.
 type GetUserSubscriptionAdminResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Subscription
+	// The subscription resource.
 	Subscription  *UserSubscription `protobuf:"bytes,1,opt,name=subscription,proto3" json:"subscription,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -6508,7 +6519,8 @@ func (x *GetUserSubscriptionAdminResponse) GetSubscription() *UserSubscription {
 	return nil
 }
 
-// GetOrganizationSubscriptionAdminRequest
+// GetOrganizationSubscriptionAdminRequest represents a query to fetch the
+// subscription details of an organization.
 type GetOrganizationSubscriptionAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Oragnization ID
@@ -6554,10 +6566,11 @@ func (x *GetOrganizationSubscriptionAdminRequest) GetOrganizationId() string {
 	return ""
 }
 
-// GetOrganizationSubscriptionAdminResponse
+// GetOrganizationSubscriptionAdminResponse contains the requested
+// subscription.
 type GetOrganizationSubscriptionAdminResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Subscription
+	// The subscription resource.
 	Subscription  *OrganizationSubscription `protobuf:"bytes,1,opt,name=subscription,proto3" json:"subscription,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -7119,24 +7132,22 @@ const file_core_mgmt_v1beta_mgmt_proto_rawDesc = "" +
 	"\rSTATUS_PAUSED\x10\bB\x0e\n" +
 	"\f_canceled_atB\f\n" +
 	"\n" +
-	"_trial_end\"\xe2\x01\n" +
+	"_trial_end\"\xd9\x01\n" +
 	"\x10UserSubscription\x12@\n" +
 	"\x04plan\x18\x01 \x01(\x0e2'.core.mgmt.v1beta.UserSubscription.PlanB\x03\xe0A\x03R\x04plan\x12G\n" +
-	"\x06detail\x18\x02 \x01(\v2*.core.mgmt.v1beta.StripeSubscriptionDetailB\x03\xe0A\x03R\x06detail\"C\n" +
+	"\x06detail\x18\x02 \x01(\v2*.core.mgmt.v1beta.StripeSubscriptionDetailB\x03\xe0A\x03R\x06detail\":\n" +
 	"\x04Plan\x12\x14\n" +
-	"\x10PLAN_UNSPECIFIED\x10\x00\x12\r\n" +
-	"\tPLAN_FREE\x10\x01\x12\x10\n" +
-	"\fPLAN_STARTER\x10\x03\"\x04\b\x02\x10\x02\"\xa8\x02\n" +
+	"\x10PLAN_UNSPECIFIED\x10\x00\x12\x10\n" +
+	"\fPLAN_STARTER\x10\x03\"\x04\b\x01\x10\x01\"\x04\b\x02\x10\x02\"\x9f\x02\n" +
 	"\x18OrganizationSubscription\x12H\n" +
 	"\x04plan\x18\x01 \x01(\x0e2/.core.mgmt.v1beta.OrganizationSubscription.PlanB\x03\xe0A\x03R\x04plan\x12G\n" +
 	"\x06detail\x18\x02 \x01(\v2*.core.mgmt.v1beta.StripeSubscriptionDetailB\x03\xe0A\x03R\x06detail\x12\"\n" +
 	"\n" +
-	"used_seats\x18\x04 \x01(\x05B\x03\xe0A\x03R\tusedSeats\"O\n" +
+	"used_seats\x18\x04 \x01(\x05B\x03\xe0A\x03R\tusedSeats\"F\n" +
 	"\x04Plan\x12\x14\n" +
 	"\x10PLAN_UNSPECIFIED\x10\x00\x12\r\n" +
-	"\tPLAN_FREE\x10\x01\x12\r\n" +
 	"\tPLAN_TEAM\x10\x02\x12\x13\n" +
-	"\x0fPLAN_ENTERPRISE\x10\x03J\x04\b\x03\x10\x04\")\n" +
+	"\x0fPLAN_ENTERPRISE\x10\x03\"\x04\b\x01\x10\x01J\x04\b\x03\x10\x04\")\n" +
 	"'GetAuthenticatedUserSubscriptionRequest\"w\n" +
 	"(GetAuthenticatedUserSubscriptionResponse\x12K\n" +
 	"\fsubscription\x18\x01 \x01(\v2\".core.mgmt.v1beta.UserSubscriptionB\x03\xe0A\x03R\fsubscription\"X\n" +

@@ -156,11 +156,17 @@ type MgmtPublicServiceClient interface {
 	DeleteOrganizationMembership(ctx context.Context, in *DeleteOrganizationMembershipRequest, opts ...grpc.CallOption) (*DeleteOrganizationMembershipResponse, error)
 	// Get the subscription of the authenticated user
 	//
-	// Returns the subscription details of the authenticated user.
+	// Returns the subscription details for the authenticated user's individual
+	// plan. If several subscriptions exist (e.g. if the user upgraded to and
+	// downgraded from a plan several times), the most recent subscription is
+	// returned.
 	GetAuthenticatedUserSubscription(ctx context.Context, in *GetAuthenticatedUserSubscriptionRequest, opts ...grpc.CallOption) (*GetAuthenticatedUserSubscriptionResponse, error)
 	// Get the subscription of an organization
 	//
-	// Returns the subscription details of an organization.
+	// Returns the subscription details for an organization's team plan. If
+	// several subscriptions exist (e.g. if the organization has upgraded to and
+	// downgraded from a plan several times), the most recent subscription is
+	// returned.
 	GetOrganizationSubscription(ctx context.Context, in *GetOrganizationSubscriptionRequest, opts ...grpc.CallOption) (*GetOrganizationSubscriptionResponse, error)
 	// Create an API token
 	//
@@ -785,11 +791,17 @@ type MgmtPublicServiceServer interface {
 	DeleteOrganizationMembership(context.Context, *DeleteOrganizationMembershipRequest) (*DeleteOrganizationMembershipResponse, error)
 	// Get the subscription of the authenticated user
 	//
-	// Returns the subscription details of the authenticated user.
+	// Returns the subscription details for the authenticated user's individual
+	// plan. If several subscriptions exist (e.g. if the user upgraded to and
+	// downgraded from a plan several times), the most recent subscription is
+	// returned.
 	GetAuthenticatedUserSubscription(context.Context, *GetAuthenticatedUserSubscriptionRequest) (*GetAuthenticatedUserSubscriptionResponse, error)
 	// Get the subscription of an organization
 	//
-	// Returns the subscription details of an organization.
+	// Returns the subscription details for an organization's team plan. If
+	// several subscriptions exist (e.g. if the organization has upgraded to and
+	// downgraded from a plan several times), the most recent subscription is
+	// returned.
 	GetOrganizationSubscription(context.Context, *GetOrganizationSubscriptionRequest) (*GetOrganizationSubscriptionResponse, error)
 	// Create an API token
 	//

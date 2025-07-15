@@ -57,9 +57,10 @@ type MgmtPrivateServiceClient interface {
 	// LookUpOrganizationAdmin method receives a LookUpOrganizationAdminRequest message and
 	// returns a LookUpOrganizationAdminResponse
 	LookUpOrganizationAdmin(ctx context.Context, in *LookUpOrganizationAdminRequest, opts ...grpc.CallOption) (*LookUpOrganizationAdminResponse, error)
-	// GetUserSubscriptionAdmin
+	// GetUserSubscriptionAdmin returns the subscription details of a user.
 	GetUserSubscriptionAdmin(ctx context.Context, in *GetUserSubscriptionAdminRequest, opts ...grpc.CallOption) (*GetUserSubscriptionAdminResponse, error)
-	// GetOrganizationSubscriptionAdmin
+	// GetOrganizationSubscriptionAdmin returns the subscription details of an
+	// organization.
 	GetOrganizationSubscriptionAdmin(ctx context.Context, in *GetOrganizationSubscriptionAdminRequest, opts ...grpc.CallOption) (*GetOrganizationSubscriptionAdminResponse, error)
 	// Subtract Instill Credit from a user or organization account.
 	//
@@ -243,9 +244,10 @@ type MgmtPrivateServiceServer interface {
 	// LookUpOrganizationAdmin method receives a LookUpOrganizationAdminRequest message and
 	// returns a LookUpOrganizationAdminResponse
 	LookUpOrganizationAdmin(context.Context, *LookUpOrganizationAdminRequest) (*LookUpOrganizationAdminResponse, error)
-	// GetUserSubscriptionAdmin
+	// GetUserSubscriptionAdmin returns the subscription details of a user.
 	GetUserSubscriptionAdmin(context.Context, *GetUserSubscriptionAdminRequest) (*GetUserSubscriptionAdminResponse, error)
-	// GetOrganizationSubscriptionAdmin
+	// GetOrganizationSubscriptionAdmin returns the subscription details of an
+	// organization.
 	GetOrganizationSubscriptionAdmin(context.Context, *GetOrganizationSubscriptionAdminRequest) (*GetOrganizationSubscriptionAdminResponse, error)
 	// Subtract Instill Credit from a user or organization account.
 	//
