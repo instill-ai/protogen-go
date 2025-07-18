@@ -575,7 +575,7 @@ const (
 	// subscriptions.
 	UserSubscription_PLAN_UNSPECIFIED UserSubscription_Plan = 0
 	// The starter plan is an individual plan for developers and early-stage
-	// projects. This plan offers a free trial period that deoesn't require the
+	// projects. This plan offers a free trial period that doesn't require the
 	// customer to have a default payment method. After the free trial period
 	// is over, the subscription state will transition from trialing to paused.
 	UserSubscription_PLAN_STARTER UserSubscription_Plan = 3
@@ -1915,7 +1915,7 @@ func (x *ListOrganizationsAdminResponse) GetTotalSize() int32 {
 	return 0
 }
 
-// GetOrganizationAdminRequest represents a request to query a organization by admin
+// GetOrganizationAdminRequest represents a request to query an organization by admin
 type GetOrganizationAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// View allows clients to specify the desired resource view in the response.
@@ -1970,10 +1970,10 @@ func (x *GetOrganizationAdminRequest) GetOrganizationId() string {
 	return ""
 }
 
-// GetOrganizationAdminResponse represents a response for a organization resource
+// GetOrganizationAdminResponse represents a response for an organization resource
 type GetOrganizationAdminResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// A organization resource
+	// An organization resource
 	Organization  *Organization `protobuf:"bytes,1,opt,name=organization,proto3" json:"organization,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -2016,7 +2016,7 @@ func (x *GetOrganizationAdminResponse) GetOrganization() *Organization {
 	return nil
 }
 
-// LookUpOrganizationAdminRequest represents a request to query a organization via permalink by
+// LookUpOrganizationAdminRequest represents a request to query an organization via permalink by
 // admin
 type LookUpOrganizationAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -2072,10 +2072,10 @@ func (x *LookUpOrganizationAdminRequest) GetOrganizationUid() string {
 	return ""
 }
 
-// LookUpOrganizationAdminResponse represents a response for a organization resource by admin
+// LookUpOrganizationAdminResponse represents a response for an organization resource by admin
 type LookUpOrganizationAdminResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// A organization resource
+	// An organization resource
 	Organization  *Organization `protobuf:"bytes,1,opt,name=organization,proto3" json:"organization,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -6018,7 +6018,7 @@ func (*DeleteOrganizationMembershipResponse) Descriptor() ([]byte, []int) {
 	return file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{91}
 }
 
-// StripeSubscriptionDetail ontains the details of a subscription in Stripe.
+// StripeSubscriptionDetail contains the details of a subscription in Stripe.
 type StripeSubscriptionDetail struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Product name associated with the subscription in Stripe.
@@ -6036,9 +6036,11 @@ type StripeSubscriptionDetail struct {
 	// Status of the subscription.
 	Status StripeSubscriptionDetail_Status `protobuf:"varint,7,opt,name=status,proto3,enum=core.mgmt.v1beta.StripeSubscriptionDetail_Status" json:"status,omitempty"`
 	// Description of the subscription.
-	Description   string `protobuf:"bytes,8,opt,name=description,proto3" json:"description,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	Description string `protobuf:"bytes,8,opt,name=description,proto3" json:"description,omitempty"`
+	// Timestamp indicating when the end of the current subscription period.
+	CurrentPeriodEnd int32 `protobuf:"varint,9,opt,name=current_period_end,json=currentPeriodEnd,proto3" json:"current_period_end,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *StripeSubscriptionDetail) Reset() {
@@ -6127,6 +6129,13 @@ func (x *StripeSubscriptionDetail) GetDescription() string {
 	return ""
 }
 
+func (x *StripeSubscriptionDetail) GetCurrentPeriodEnd() int32 {
+	if x != nil {
+		return x.CurrentPeriodEnd
+	}
+	return 0
+}
+
 // UserSubscription details describe the plan of an individual user (i.e., the
 // features they have access to).
 type UserSubscription struct {
@@ -6192,9 +6201,11 @@ type OrganizationSubscription struct {
 	// Details of the associated Stripe subscription.
 	Detail *StripeSubscriptionDetail `protobuf:"bytes,2,opt,name=detail,proto3" json:"detail,omitempty"`
 	// Number of used seats within the organization subscription.
-	UsedSeats     int32 `protobuf:"varint,4,opt,name=used_seats,json=usedSeats,proto3" json:"used_seats,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	UsedSeats int32 `protobuf:"varint,4,opt,name=used_seats,json=usedSeats,proto3" json:"used_seats,omitempty"`
+	// Number of available seats within the organization subscription.
+	AvailableSeats int32 `protobuf:"varint,5,opt,name=available_seats,json=availableSeats,proto3" json:"available_seats,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *OrganizationSubscription) Reset() {
@@ -6244,6 +6255,13 @@ func (x *OrganizationSubscription) GetDetail() *StripeSubscriptionDetail {
 func (x *OrganizationSubscription) GetUsedSeats() int32 {
 	if x != nil {
 		return x.UsedSeats
+	}
+	return 0
+}
+
+func (x *OrganizationSubscription) GetAvailableSeats() int32 {
+	if x != nil {
+		return x.AvailableSeats
 	}
 	return 0
 }
@@ -6333,11 +6351,212 @@ func (x *GetAuthenticatedUserSubscriptionResponse) GetSubscription() *UserSubscr
 	return nil
 }
 
+// ListSubscriptionFreeTrialsRequest represents a query to fetch the free
+// trials of the authenticated user.
+type ListSubscriptionFreeTrialsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListSubscriptionFreeTrialsRequest) Reset() {
+	*x = ListSubscriptionFreeTrialsRequest{}
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[97]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListSubscriptionFreeTrialsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListSubscriptionFreeTrialsRequest) ProtoMessage() {}
+
+func (x *ListSubscriptionFreeTrialsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[97]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListSubscriptionFreeTrialsRequest.ProtoReflect.Descriptor instead.
+func (*ListSubscriptionFreeTrialsRequest) Descriptor() ([]byte, []int) {
+	return file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{97}
+}
+
+// SubscriptionFreeTrial represents a free trial for either a user or
+// organization subscription
+type SubscriptionFreeTrial struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The type of subscription this free trial applies to
+	//
+	// Types that are valid to be assigned to Plan:
+	//
+	//	*SubscriptionFreeTrial_UserPlan
+	//	*SubscriptionFreeTrial_OrganizationPlan
+	Plan isSubscriptionFreeTrial_Plan `protobuf_oneof:"plan"`
+	// The owner's unique identifier. This is the user (customer) that ordered
+	// the subscription.
+	OwnerUid string `protobuf:"bytes,3,opt,name=owner_uid,json=ownerUid,proto3" json:"owner_uid,omitempty"`
+	// If the subscription is a team plan, the value of this field will be set to
+	// the organization UID that the subscription is linked to.
+	OrganizationUid *string `protobuf:"bytes,4,opt,name=organization_uid,json=organizationUid,proto3,oneof" json:"organization_uid,omitempty"`
+	// When the trial ends.
+	TrialEnd      *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=trial_end,json=trialEnd,proto3" json:"trial_end,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SubscriptionFreeTrial) Reset() {
+	*x = SubscriptionFreeTrial{}
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[98]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SubscriptionFreeTrial) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SubscriptionFreeTrial) ProtoMessage() {}
+
+func (x *SubscriptionFreeTrial) ProtoReflect() protoreflect.Message {
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[98]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SubscriptionFreeTrial.ProtoReflect.Descriptor instead.
+func (*SubscriptionFreeTrial) Descriptor() ([]byte, []int) {
+	return file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{98}
+}
+
+func (x *SubscriptionFreeTrial) GetPlan() isSubscriptionFreeTrial_Plan {
+	if x != nil {
+		return x.Plan
+	}
+	return nil
+}
+
+func (x *SubscriptionFreeTrial) GetUserPlan() UserSubscription_Plan {
+	if x != nil {
+		if x, ok := x.Plan.(*SubscriptionFreeTrial_UserPlan); ok {
+			return x.UserPlan
+		}
+	}
+	return UserSubscription_PLAN_UNSPECIFIED
+}
+
+func (x *SubscriptionFreeTrial) GetOrganizationPlan() OrganizationSubscription_Plan {
+	if x != nil {
+		if x, ok := x.Plan.(*SubscriptionFreeTrial_OrganizationPlan); ok {
+			return x.OrganizationPlan
+		}
+	}
+	return OrganizationSubscription_PLAN_UNSPECIFIED
+}
+
+func (x *SubscriptionFreeTrial) GetOwnerUid() string {
+	if x != nil {
+		return x.OwnerUid
+	}
+	return ""
+}
+
+func (x *SubscriptionFreeTrial) GetOrganizationUid() string {
+	if x != nil && x.OrganizationUid != nil {
+		return *x.OrganizationUid
+	}
+	return ""
+}
+
+func (x *SubscriptionFreeTrial) GetTrialEnd() *timestamppb.Timestamp {
+	if x != nil {
+		return x.TrialEnd
+	}
+	return nil
+}
+
+type isSubscriptionFreeTrial_Plan interface {
+	isSubscriptionFreeTrial_Plan()
+}
+
+type SubscriptionFreeTrial_UserPlan struct {
+	// User subscription details
+	UserPlan UserSubscription_Plan `protobuf:"varint,1,opt,name=user_plan,json=userPlan,proto3,enum=core.mgmt.v1beta.UserSubscription_Plan,oneof"`
+}
+
+type SubscriptionFreeTrial_OrganizationPlan struct {
+	// Organization subscription details
+	OrganizationPlan OrganizationSubscription_Plan `protobuf:"varint,2,opt,name=organization_plan,json=organizationPlan,proto3,enum=core.mgmt.v1beta.OrganizationSubscription_Plan,oneof"`
+}
+
+func (*SubscriptionFreeTrial_UserPlan) isSubscriptionFreeTrial_Plan() {}
+
+func (*SubscriptionFreeTrial_OrganizationPlan) isSubscriptionFreeTrial_Plan() {}
+
+// ListSubscriptionFreeTrialsResponse contains the requested free trials.
+type ListSubscriptionFreeTrialsResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// A list of subscription free trials.
+	FreeTrials    []*SubscriptionFreeTrial `protobuf:"bytes,1,rep,name=free_trials,json=freeTrials,proto3" json:"free_trials,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListSubscriptionFreeTrialsResponse) Reset() {
+	*x = ListSubscriptionFreeTrialsResponse{}
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[99]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListSubscriptionFreeTrialsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListSubscriptionFreeTrialsResponse) ProtoMessage() {}
+
+func (x *ListSubscriptionFreeTrialsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[99]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListSubscriptionFreeTrialsResponse.ProtoReflect.Descriptor instead.
+func (*ListSubscriptionFreeTrialsResponse) Descriptor() ([]byte, []int) {
+	return file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{99}
+}
+
+func (x *ListSubscriptionFreeTrialsResponse) GetFreeTrials() []*SubscriptionFreeTrial {
+	if x != nil {
+		return x.FreeTrials
+	}
+	return nil
+}
+
 // GetOrganizationSubscriptionRequest represents a query to fetch the
 // subscription details of an organization.
 type GetOrganizationSubscriptionRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Oragnization ID
+	// Organization ID
 	OrganizationId string `protobuf:"bytes,2,opt,name=organization_id,json=organizationId,proto3" json:"organization_id,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
@@ -6345,7 +6564,7 @@ type GetOrganizationSubscriptionRequest struct {
 
 func (x *GetOrganizationSubscriptionRequest) Reset() {
 	*x = GetOrganizationSubscriptionRequest{}
-	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[97]
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[100]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6357,7 +6576,7 @@ func (x *GetOrganizationSubscriptionRequest) String() string {
 func (*GetOrganizationSubscriptionRequest) ProtoMessage() {}
 
 func (x *GetOrganizationSubscriptionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[97]
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[100]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6370,7 +6589,7 @@ func (x *GetOrganizationSubscriptionRequest) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use GetOrganizationSubscriptionRequest.ProtoReflect.Descriptor instead.
 func (*GetOrganizationSubscriptionRequest) Descriptor() ([]byte, []int) {
-	return file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{97}
+	return file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{100}
 }
 
 func (x *GetOrganizationSubscriptionRequest) GetOrganizationId() string {
@@ -6391,7 +6610,7 @@ type GetOrganizationSubscriptionResponse struct {
 
 func (x *GetOrganizationSubscriptionResponse) Reset() {
 	*x = GetOrganizationSubscriptionResponse{}
-	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[98]
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[101]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6403,7 +6622,7 @@ func (x *GetOrganizationSubscriptionResponse) String() string {
 func (*GetOrganizationSubscriptionResponse) ProtoMessage() {}
 
 func (x *GetOrganizationSubscriptionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[98]
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[101]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6416,7 +6635,7 @@ func (x *GetOrganizationSubscriptionResponse) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use GetOrganizationSubscriptionResponse.ProtoReflect.Descriptor instead.
 func (*GetOrganizationSubscriptionResponse) Descriptor() ([]byte, []int) {
-	return file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{98}
+	return file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{101}
 }
 
 func (x *GetOrganizationSubscriptionResponse) GetSubscription() *OrganizationSubscription {
@@ -6438,7 +6657,7 @@ type GetUserSubscriptionAdminRequest struct {
 
 func (x *GetUserSubscriptionAdminRequest) Reset() {
 	*x = GetUserSubscriptionAdminRequest{}
-	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[99]
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[102]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6450,7 +6669,7 @@ func (x *GetUserSubscriptionAdminRequest) String() string {
 func (*GetUserSubscriptionAdminRequest) ProtoMessage() {}
 
 func (x *GetUserSubscriptionAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[99]
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[102]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6463,7 +6682,7 @@ func (x *GetUserSubscriptionAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserSubscriptionAdminRequest.ProtoReflect.Descriptor instead.
 func (*GetUserSubscriptionAdminRequest) Descriptor() ([]byte, []int) {
-	return file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{99}
+	return file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{102}
 }
 
 func (x *GetUserSubscriptionAdminRequest) GetUserId() string {
@@ -6484,7 +6703,7 @@ type GetUserSubscriptionAdminResponse struct {
 
 func (x *GetUserSubscriptionAdminResponse) Reset() {
 	*x = GetUserSubscriptionAdminResponse{}
-	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[100]
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[103]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6496,7 +6715,7 @@ func (x *GetUserSubscriptionAdminResponse) String() string {
 func (*GetUserSubscriptionAdminResponse) ProtoMessage() {}
 
 func (x *GetUserSubscriptionAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[100]
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[103]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6509,7 +6728,7 @@ func (x *GetUserSubscriptionAdminResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserSubscriptionAdminResponse.ProtoReflect.Descriptor instead.
 func (*GetUserSubscriptionAdminResponse) Descriptor() ([]byte, []int) {
-	return file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{100}
+	return file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{103}
 }
 
 func (x *GetUserSubscriptionAdminResponse) GetSubscription() *UserSubscription {
@@ -6523,7 +6742,7 @@ func (x *GetUserSubscriptionAdminResponse) GetSubscription() *UserSubscription {
 // subscription details of an organization.
 type GetOrganizationSubscriptionAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Oragnization ID
+	// Organization ID
 	OrganizationId string `protobuf:"bytes,2,opt,name=organization_id,json=organizationId,proto3" json:"organization_id,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
@@ -6531,7 +6750,7 @@ type GetOrganizationSubscriptionAdminRequest struct {
 
 func (x *GetOrganizationSubscriptionAdminRequest) Reset() {
 	*x = GetOrganizationSubscriptionAdminRequest{}
-	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[101]
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[104]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6543,7 +6762,7 @@ func (x *GetOrganizationSubscriptionAdminRequest) String() string {
 func (*GetOrganizationSubscriptionAdminRequest) ProtoMessage() {}
 
 func (x *GetOrganizationSubscriptionAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[101]
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[104]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6556,7 +6775,7 @@ func (x *GetOrganizationSubscriptionAdminRequest) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use GetOrganizationSubscriptionAdminRequest.ProtoReflect.Descriptor instead.
 func (*GetOrganizationSubscriptionAdminRequest) Descriptor() ([]byte, []int) {
-	return file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{101}
+	return file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{104}
 }
 
 func (x *GetOrganizationSubscriptionAdminRequest) GetOrganizationId() string {
@@ -6578,7 +6797,7 @@ type GetOrganizationSubscriptionAdminResponse struct {
 
 func (x *GetOrganizationSubscriptionAdminResponse) Reset() {
 	*x = GetOrganizationSubscriptionAdminResponse{}
-	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[102]
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[105]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6590,7 +6809,7 @@ func (x *GetOrganizationSubscriptionAdminResponse) String() string {
 func (*GetOrganizationSubscriptionAdminResponse) ProtoMessage() {}
 
 func (x *GetOrganizationSubscriptionAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[102]
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[105]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6603,7 +6822,7 @@ func (x *GetOrganizationSubscriptionAdminResponse) ProtoReflect() protoreflect.M
 
 // Deprecated: Use GetOrganizationSubscriptionAdminResponse.ProtoReflect.Descriptor instead.
 func (*GetOrganizationSubscriptionAdminResponse) Descriptor() ([]byte, []int) {
-	return file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{102}
+	return file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{105}
 }
 
 func (x *GetOrganizationSubscriptionAdminResponse) GetSubscription() *OrganizationSubscription {
@@ -6632,7 +6851,7 @@ type AuthTokenIssuerResponse_UnsignedAccessToken struct {
 
 func (x *AuthTokenIssuerResponse_UnsignedAccessToken) Reset() {
 	*x = AuthTokenIssuerResponse_UnsignedAccessToken{}
-	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[105]
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[108]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6644,7 +6863,7 @@ func (x *AuthTokenIssuerResponse_UnsignedAccessToken) String() string {
 func (*AuthTokenIssuerResponse_UnsignedAccessToken) ProtoMessage() {}
 
 func (x *AuthTokenIssuerResponse_UnsignedAccessToken) ProtoReflect() protoreflect.Message {
-	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[105]
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[108]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7059,7 +7278,7 @@ const file_core_mgmt_v1beta_mgmt_proto_rawDesc = "" +
 	"\x18GetUserMembershipRequest\x124\n" +
 	"\x04view\x18\x02 \x01(\x0e2\x16.core.mgmt.v1beta.ViewB\x03\xe0A\x01H\x00R\x04view\x88\x01\x01\x12\x1c\n" +
 	"\auser_id\x18\x03 \x01(\tB\x03\xe0A\x02R\x06userId\x12,\n" +
-	"\x0forganization_id\x18\x04 \x01(\tB\x03\xe0A\x02R\x0eorganizationIdB\a\n" +
+	"\x0forganization_id\x18\x04 \x01(\tB\x03\xe0A\x03R\x0eorganizationIdB\a\n" +
 	"\x05_viewJ\x04\b\x01\x10\x02\"b\n" +
 	"\x19GetUserMembershipResponse\x12E\n" +
 	"\n" +
@@ -7109,7 +7328,7 @@ const file_core_mgmt_v1beta_mgmt_proto_rawDesc = "" +
 	"#DeleteOrganizationMembershipRequest\x12,\n" +
 	"\x0forganization_id\x18\x02 \x01(\tB\x03\xe0A\x02R\x0eorganizationId\x12\x1c\n" +
 	"\auser_id\x18\x03 \x01(\tB\x03\xe0A\x02R\x06userIdJ\x04\b\x01\x10\x02\"&\n" +
-	"$DeleteOrganizationMembershipResponse\"\xc8\x04\n" +
+	"$DeleteOrganizationMembershipResponse\"\xfb\x04\n" +
 	"\x18StripeSubscriptionDetail\x12&\n" +
 	"\fproduct_name\x18\x01 \x01(\tB\x03\xe0A\x03R\vproductName\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12\x1c\n" +
@@ -7119,7 +7338,8 @@ const file_core_mgmt_v1beta_mgmt_proto_rawDesc = "" +
 	"canceledAt\x88\x01\x01\x12%\n" +
 	"\ttrial_end\x18\x06 \x01(\x05B\x03\xe0A\x03H\x01R\btrialEnd\x88\x01\x01\x12N\n" +
 	"\x06status\x18\a \x01(\x0e21.core.mgmt.v1beta.StripeSubscriptionDetail.StatusB\x03\xe0A\x03R\x06status\x12%\n" +
-	"\vdescription\x18\b \x01(\tB\x03\xe0A\x03R\vdescription\"\xce\x01\n" +
+	"\vdescription\x18\b \x01(\tB\x03\xe0A\x03R\vdescription\x121\n" +
+	"\x12current_period_end\x18\t \x01(\x05B\x03\xe0A\x03R\x10currentPeriodEnd\"\xce\x01\n" +
 	"\x06Status\x12\x16\n" +
 	"\x12STATUS_UNSPECIFIED\x10\x00\x12\x15\n" +
 	"\x11STATUS_INCOMPLETE\x10\x01\x12\x1d\n" +
@@ -7138,19 +7358,32 @@ const file_core_mgmt_v1beta_mgmt_proto_rawDesc = "" +
 	"\x06detail\x18\x02 \x01(\v2*.core.mgmt.v1beta.StripeSubscriptionDetailB\x03\xe0A\x03R\x06detail\":\n" +
 	"\x04Plan\x12\x14\n" +
 	"\x10PLAN_UNSPECIFIED\x10\x00\x12\x10\n" +
-	"\fPLAN_STARTER\x10\x03\"\x04\b\x01\x10\x01\"\x04\b\x02\x10\x02\"\x9f\x02\n" +
+	"\fPLAN_STARTER\x10\x03\"\x04\b\x01\x10\x01\"\x04\b\x02\x10\x02\"\xcd\x02\n" +
 	"\x18OrganizationSubscription\x12H\n" +
 	"\x04plan\x18\x01 \x01(\x0e2/.core.mgmt.v1beta.OrganizationSubscription.PlanB\x03\xe0A\x03R\x04plan\x12G\n" +
 	"\x06detail\x18\x02 \x01(\v2*.core.mgmt.v1beta.StripeSubscriptionDetailB\x03\xe0A\x03R\x06detail\x12\"\n" +
 	"\n" +
-	"used_seats\x18\x04 \x01(\x05B\x03\xe0A\x03R\tusedSeats\"F\n" +
+	"used_seats\x18\x04 \x01(\x05B\x03\xe0A\x03R\tusedSeats\x12,\n" +
+	"\x0favailable_seats\x18\x05 \x01(\x05B\x03\xe0A\x03R\x0eavailableSeats\"F\n" +
 	"\x04Plan\x12\x14\n" +
 	"\x10PLAN_UNSPECIFIED\x10\x00\x12\r\n" +
 	"\tPLAN_TEAM\x10\x02\x12\x13\n" +
 	"\x0fPLAN_ENTERPRISE\x10\x03\"\x04\b\x01\x10\x01J\x04\b\x03\x10\x04\")\n" +
 	"'GetAuthenticatedUserSubscriptionRequest\"w\n" +
 	"(GetAuthenticatedUserSubscriptionResponse\x12K\n" +
-	"\fsubscription\x18\x01 \x01(\v2\".core.mgmt.v1beta.UserSubscriptionB\x03\xe0A\x03R\fsubscription\"X\n" +
+	"\fsubscription\x18\x01 \x01(\v2\".core.mgmt.v1beta.UserSubscriptionB\x03\xe0A\x03R\fsubscription\"#\n" +
+	"!ListSubscriptionFreeTrialsRequest\"\xf1\x02\n" +
+	"\x15SubscriptionFreeTrial\x12F\n" +
+	"\tuser_plan\x18\x01 \x01(\x0e2'.core.mgmt.v1beta.UserSubscription.PlanH\x00R\buserPlan\x12^\n" +
+	"\x11organization_plan\x18\x02 \x01(\x0e2/.core.mgmt.v1beta.OrganizationSubscription.PlanH\x00R\x10organizationPlan\x12 \n" +
+	"\towner_uid\x18\x03 \x01(\tB\x03\xe0A\x03R\bownerUid\x123\n" +
+	"\x10organization_uid\x18\x04 \x01(\tB\x03\xe0A\x03H\x01R\x0forganizationUid\x88\x01\x01\x12<\n" +
+	"\ttrial_end\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\btrialEndB\x06\n" +
+	"\x04planB\x13\n" +
+	"\x11_organization_uid\"s\n" +
+	"\"ListSubscriptionFreeTrialsResponse\x12M\n" +
+	"\vfree_trials\x18\x01 \x03(\v2'.core.mgmt.v1beta.SubscriptionFreeTrialB\x03\xe0A\x03R\n" +
+	"freeTrials\"X\n" +
 	"\"GetOrganizationSubscriptionRequest\x12,\n" +
 	"\x0forganization_id\x18\x02 \x01(\tB\x03\xe0A\x02R\x0eorganizationIdJ\x04\b\x01\x10\x02\"z\n" +
 	"#GetOrganizationSubscriptionResponse\x12S\n" +
@@ -7195,7 +7428,7 @@ func file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP() []byte {
 }
 
 var file_core_mgmt_v1beta_mgmt_proto_enumTypes = make([]protoimpl.EnumInfo, 11)
-var file_core_mgmt_v1beta_mgmt_proto_msgTypes = make([]protoimpl.MessageInfo, 106)
+var file_core_mgmt_v1beta_mgmt_proto_msgTypes = make([]protoimpl.MessageInfo, 109)
 var file_core_mgmt_v1beta_mgmt_proto_goTypes = []any{
 	(View)(0),                                        // 0: core.mgmt.v1beta.View
 	(OwnerType)(0),                                   // 1: core.mgmt.v1beta.OwnerType
@@ -7305,35 +7538,38 @@ var file_core_mgmt_v1beta_mgmt_proto_goTypes = []any{
 	(*OrganizationSubscription)(nil),                 // 105: core.mgmt.v1beta.OrganizationSubscription
 	(*GetAuthenticatedUserSubscriptionRequest)(nil),  // 106: core.mgmt.v1beta.GetAuthenticatedUserSubscriptionRequest
 	(*GetAuthenticatedUserSubscriptionResponse)(nil), // 107: core.mgmt.v1beta.GetAuthenticatedUserSubscriptionResponse
-	(*GetOrganizationSubscriptionRequest)(nil),       // 108: core.mgmt.v1beta.GetOrganizationSubscriptionRequest
-	(*GetOrganizationSubscriptionResponse)(nil),      // 109: core.mgmt.v1beta.GetOrganizationSubscriptionResponse
-	(*GetUserSubscriptionAdminRequest)(nil),          // 110: core.mgmt.v1beta.GetUserSubscriptionAdminRequest
-	(*GetUserSubscriptionAdminResponse)(nil),         // 111: core.mgmt.v1beta.GetUserSubscriptionAdminResponse
-	(*GetOrganizationSubscriptionAdminRequest)(nil),  // 112: core.mgmt.v1beta.GetOrganizationSubscriptionAdminRequest
-	(*GetOrganizationSubscriptionAdminResponse)(nil), // 113: core.mgmt.v1beta.GetOrganizationSubscriptionAdminResponse
-	nil, // 114: core.mgmt.v1beta.UserProfile.SocialProfileLinksEntry
-	nil, // 115: core.mgmt.v1beta.OrganizationProfile.SocialProfileLinksEntry
-	(*AuthTokenIssuerResponse_UnsignedAccessToken)(nil), // 116: core.mgmt.v1beta.AuthTokenIssuerResponse.UnsignedAccessToken
-	(*v1beta.HealthCheckRequest)(nil),                   // 117: common.healthcheck.v1beta.HealthCheckRequest
-	(*v1beta.HealthCheckResponse)(nil),                  // 118: common.healthcheck.v1beta.HealthCheckResponse
-	(*timestamppb.Timestamp)(nil),                       // 119: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil),                       // 120: google.protobuf.FieldMask
+	(*ListSubscriptionFreeTrialsRequest)(nil),        // 108: core.mgmt.v1beta.ListSubscriptionFreeTrialsRequest
+	(*SubscriptionFreeTrial)(nil),                    // 109: core.mgmt.v1beta.SubscriptionFreeTrial
+	(*ListSubscriptionFreeTrialsResponse)(nil),       // 110: core.mgmt.v1beta.ListSubscriptionFreeTrialsResponse
+	(*GetOrganizationSubscriptionRequest)(nil),       // 111: core.mgmt.v1beta.GetOrganizationSubscriptionRequest
+	(*GetOrganizationSubscriptionResponse)(nil),      // 112: core.mgmt.v1beta.GetOrganizationSubscriptionResponse
+	(*GetUserSubscriptionAdminRequest)(nil),          // 113: core.mgmt.v1beta.GetUserSubscriptionAdminRequest
+	(*GetUserSubscriptionAdminResponse)(nil),         // 114: core.mgmt.v1beta.GetUserSubscriptionAdminResponse
+	(*GetOrganizationSubscriptionAdminRequest)(nil),  // 115: core.mgmt.v1beta.GetOrganizationSubscriptionAdminRequest
+	(*GetOrganizationSubscriptionAdminResponse)(nil), // 116: core.mgmt.v1beta.GetOrganizationSubscriptionAdminResponse
+	nil, // 117: core.mgmt.v1beta.UserProfile.SocialProfileLinksEntry
+	nil, // 118: core.mgmt.v1beta.OrganizationProfile.SocialProfileLinksEntry
+	(*AuthTokenIssuerResponse_UnsignedAccessToken)(nil), // 119: core.mgmt.v1beta.AuthTokenIssuerResponse.UnsignedAccessToken
+	(*v1beta.HealthCheckRequest)(nil),                   // 120: common.healthcheck.v1beta.HealthCheckRequest
+	(*v1beta.HealthCheckResponse)(nil),                  // 121: common.healthcheck.v1beta.HealthCheckResponse
+	(*timestamppb.Timestamp)(nil),                       // 122: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil),                       // 123: google.protobuf.FieldMask
 }
 var file_core_mgmt_v1beta_mgmt_proto_depIdxs = []int32{
-	117, // 0: core.mgmt.v1beta.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	118, // 1: core.mgmt.v1beta.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
-	117, // 2: core.mgmt.v1beta.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	118, // 3: core.mgmt.v1beta.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
-	114, // 4: core.mgmt.v1beta.UserProfile.social_profile_links:type_name -> core.mgmt.v1beta.UserProfile.SocialProfileLinksEntry
-	115, // 5: core.mgmt.v1beta.OrganizationProfile.social_profile_links:type_name -> core.mgmt.v1beta.OrganizationProfile.SocialProfileLinksEntry
-	119, // 6: core.mgmt.v1beta.AuthenticatedUser.create_time:type_name -> google.protobuf.Timestamp
-	119, // 7: core.mgmt.v1beta.AuthenticatedUser.update_time:type_name -> google.protobuf.Timestamp
+	120, // 0: core.mgmt.v1beta.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	121, // 1: core.mgmt.v1beta.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	120, // 2: core.mgmt.v1beta.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	121, // 3: core.mgmt.v1beta.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	117, // 4: core.mgmt.v1beta.UserProfile.social_profile_links:type_name -> core.mgmt.v1beta.UserProfile.SocialProfileLinksEntry
+	118, // 5: core.mgmt.v1beta.OrganizationProfile.social_profile_links:type_name -> core.mgmt.v1beta.OrganizationProfile.SocialProfileLinksEntry
+	122, // 6: core.mgmt.v1beta.AuthenticatedUser.create_time:type_name -> google.protobuf.Timestamp
+	122, // 7: core.mgmt.v1beta.AuthenticatedUser.update_time:type_name -> google.protobuf.Timestamp
 	3,   // 8: core.mgmt.v1beta.AuthenticatedUser.onboarding_status:type_name -> core.mgmt.v1beta.OnboardingStatus
 	16,  // 9: core.mgmt.v1beta.AuthenticatedUser.profile:type_name -> core.mgmt.v1beta.UserProfile
 	20,  // 10: core.mgmt.v1beta.Owner.user:type_name -> core.mgmt.v1beta.User
 	74,  // 11: core.mgmt.v1beta.Owner.organization:type_name -> core.mgmt.v1beta.Organization
-	119, // 12: core.mgmt.v1beta.User.create_time:type_name -> google.protobuf.Timestamp
-	119, // 13: core.mgmt.v1beta.User.update_time:type_name -> google.protobuf.Timestamp
+	122, // 12: core.mgmt.v1beta.User.create_time:type_name -> google.protobuf.Timestamp
+	122, // 13: core.mgmt.v1beta.User.update_time:type_name -> google.protobuf.Timestamp
 	16,  // 14: core.mgmt.v1beta.User.profile:type_name -> core.mgmt.v1beta.UserProfile
 	0,   // 15: core.mgmt.v1beta.ListUsersAdminRequest.view:type_name -> core.mgmt.v1beta.View
 	20,  // 16: core.mgmt.v1beta.ListUsersAdminResponse.users:type_name -> core.mgmt.v1beta.User
@@ -7353,7 +7589,7 @@ var file_core_mgmt_v1beta_mgmt_proto_depIdxs = []int32{
 	20,  // 30: core.mgmt.v1beta.GetUserResponse.user:type_name -> core.mgmt.v1beta.User
 	18,  // 31: core.mgmt.v1beta.GetAuthenticatedUserResponse.user:type_name -> core.mgmt.v1beta.AuthenticatedUser
 	18,  // 32: core.mgmt.v1beta.PatchAuthenticatedUserRequest.user:type_name -> core.mgmt.v1beta.AuthenticatedUser
-	120, // 33: core.mgmt.v1beta.PatchAuthenticatedUserRequest.update_mask:type_name -> google.protobuf.FieldMask
+	123, // 33: core.mgmt.v1beta.PatchAuthenticatedUserRequest.update_mask:type_name -> google.protobuf.FieldMask
 	18,  // 34: core.mgmt.v1beta.PatchAuthenticatedUserResponse.user:type_name -> core.mgmt.v1beta.AuthenticatedUser
 	4,   // 35: core.mgmt.v1beta.CheckNamespaceResponse.type:type_name -> core.mgmt.v1beta.CheckNamespaceResponse.Namespace
 	5,   // 36: core.mgmt.v1beta.CheckNamespaceAdminResponse.type:type_name -> core.mgmt.v1beta.CheckNamespaceAdminResponse.Namespace
@@ -7362,18 +7598,18 @@ var file_core_mgmt_v1beta_mgmt_proto_depIdxs = []int32{
 	6,   // 39: core.mgmt.v1beta.CheckNamespaceByUIDAdminResponse.type:type_name -> core.mgmt.v1beta.CheckNamespaceByUIDAdminResponse.Namespace
 	20,  // 40: core.mgmt.v1beta.CheckNamespaceByUIDAdminResponse.user:type_name -> core.mgmt.v1beta.User
 	74,  // 41: core.mgmt.v1beta.CheckNamespaceByUIDAdminResponse.organization:type_name -> core.mgmt.v1beta.Organization
-	119, // 42: core.mgmt.v1beta.ApiToken.last_use_time:type_name -> google.protobuf.Timestamp
-	119, // 43: core.mgmt.v1beta.ApiToken.create_time:type_name -> google.protobuf.Timestamp
-	119, // 44: core.mgmt.v1beta.ApiToken.update_time:type_name -> google.protobuf.Timestamp
+	122, // 42: core.mgmt.v1beta.ApiToken.last_use_time:type_name -> google.protobuf.Timestamp
+	122, // 43: core.mgmt.v1beta.ApiToken.create_time:type_name -> google.protobuf.Timestamp
+	122, // 44: core.mgmt.v1beta.ApiToken.update_time:type_name -> google.protobuf.Timestamp
 	7,   // 45: core.mgmt.v1beta.ApiToken.state:type_name -> core.mgmt.v1beta.ApiToken.State
-	119, // 46: core.mgmt.v1beta.ApiToken.expire_time:type_name -> google.protobuf.Timestamp
+	122, // 46: core.mgmt.v1beta.ApiToken.expire_time:type_name -> google.protobuf.Timestamp
 	47,  // 47: core.mgmt.v1beta.CreateTokenRequest.token:type_name -> core.mgmt.v1beta.ApiToken
 	47,  // 48: core.mgmt.v1beta.CreateTokenResponse.token:type_name -> core.mgmt.v1beta.ApiToken
 	47,  // 49: core.mgmt.v1beta.ListTokensResponse.tokens:type_name -> core.mgmt.v1beta.ApiToken
 	47,  // 50: core.mgmt.v1beta.GetTokenResponse.token:type_name -> core.mgmt.v1beta.ApiToken
-	116, // 51: core.mgmt.v1beta.AuthTokenIssuerResponse.access_token:type_name -> core.mgmt.v1beta.AuthTokenIssuerResponse.UnsignedAccessToken
-	119, // 52: core.mgmt.v1beta.Organization.create_time:type_name -> google.protobuf.Timestamp
-	119, // 53: core.mgmt.v1beta.Organization.update_time:type_name -> google.protobuf.Timestamp
+	119, // 51: core.mgmt.v1beta.AuthTokenIssuerResponse.access_token:type_name -> core.mgmt.v1beta.AuthTokenIssuerResponse.UnsignedAccessToken
+	122, // 52: core.mgmt.v1beta.Organization.create_time:type_name -> google.protobuf.Timestamp
+	122, // 53: core.mgmt.v1beta.Organization.update_time:type_name -> google.protobuf.Timestamp
 	20,  // 54: core.mgmt.v1beta.Organization.owner:type_name -> core.mgmt.v1beta.User
 	17,  // 55: core.mgmt.v1beta.Organization.profile:type_name -> core.mgmt.v1beta.OrganizationProfile
 	15,  // 56: core.mgmt.v1beta.Organization.permission:type_name -> core.mgmt.v1beta.Permission
@@ -7384,7 +7620,7 @@ var file_core_mgmt_v1beta_mgmt_proto_depIdxs = []int32{
 	0,   // 61: core.mgmt.v1beta.GetOrganizationRequest.view:type_name -> core.mgmt.v1beta.View
 	74,  // 62: core.mgmt.v1beta.GetOrganizationResponse.organization:type_name -> core.mgmt.v1beta.Organization
 	74,  // 63: core.mgmt.v1beta.UpdateOrganizationRequest.organization:type_name -> core.mgmt.v1beta.Organization
-	120, // 64: core.mgmt.v1beta.UpdateOrganizationRequest.update_mask:type_name -> google.protobuf.FieldMask
+	123, // 64: core.mgmt.v1beta.UpdateOrganizationRequest.update_mask:type_name -> google.protobuf.FieldMask
 	74,  // 65: core.mgmt.v1beta.UpdateOrganizationResponse.organization:type_name -> core.mgmt.v1beta.Organization
 	2,   // 66: core.mgmt.v1beta.OrganizationMembership.state:type_name -> core.mgmt.v1beta.MembershipState
 	20,  // 67: core.mgmt.v1beta.OrganizationMembership.user:type_name -> core.mgmt.v1beta.User
@@ -7396,13 +7632,13 @@ var file_core_mgmt_v1beta_mgmt_proto_depIdxs = []int32{
 	0,   // 73: core.mgmt.v1beta.GetUserMembershipRequest.view:type_name -> core.mgmt.v1beta.View
 	86,  // 74: core.mgmt.v1beta.GetUserMembershipResponse.membership:type_name -> core.mgmt.v1beta.UserMembership
 	86,  // 75: core.mgmt.v1beta.UpdateUserMembershipRequest.membership:type_name -> core.mgmt.v1beta.UserMembership
-	120, // 76: core.mgmt.v1beta.UpdateUserMembershipRequest.update_mask:type_name -> google.protobuf.FieldMask
+	123, // 76: core.mgmt.v1beta.UpdateUserMembershipRequest.update_mask:type_name -> google.protobuf.FieldMask
 	86,  // 77: core.mgmt.v1beta.UpdateUserMembershipResponse.membership:type_name -> core.mgmt.v1beta.UserMembership
 	85,  // 78: core.mgmt.v1beta.ListOrganizationMembershipsResponse.memberships:type_name -> core.mgmt.v1beta.OrganizationMembership
 	0,   // 79: core.mgmt.v1beta.GetOrganizationMembershipRequest.view:type_name -> core.mgmt.v1beta.View
 	85,  // 80: core.mgmt.v1beta.GetOrganizationMembershipResponse.membership:type_name -> core.mgmt.v1beta.OrganizationMembership
 	85,  // 81: core.mgmt.v1beta.UpdateOrganizationMembershipRequest.membership:type_name -> core.mgmt.v1beta.OrganizationMembership
-	120, // 82: core.mgmt.v1beta.UpdateOrganizationMembershipRequest.update_mask:type_name -> google.protobuf.FieldMask
+	123, // 82: core.mgmt.v1beta.UpdateOrganizationMembershipRequest.update_mask:type_name -> google.protobuf.FieldMask
 	85,  // 83: core.mgmt.v1beta.UpdateOrganizationMembershipResponse.membership:type_name -> core.mgmt.v1beta.OrganizationMembership
 	8,   // 84: core.mgmt.v1beta.StripeSubscriptionDetail.status:type_name -> core.mgmt.v1beta.StripeSubscriptionDetail.Status
 	9,   // 85: core.mgmt.v1beta.UserSubscription.plan:type_name -> core.mgmt.v1beta.UserSubscription.Plan
@@ -7410,14 +7646,18 @@ var file_core_mgmt_v1beta_mgmt_proto_depIdxs = []int32{
 	10,  // 87: core.mgmt.v1beta.OrganizationSubscription.plan:type_name -> core.mgmt.v1beta.OrganizationSubscription.Plan
 	103, // 88: core.mgmt.v1beta.OrganizationSubscription.detail:type_name -> core.mgmt.v1beta.StripeSubscriptionDetail
 	104, // 89: core.mgmt.v1beta.GetAuthenticatedUserSubscriptionResponse.subscription:type_name -> core.mgmt.v1beta.UserSubscription
-	105, // 90: core.mgmt.v1beta.GetOrganizationSubscriptionResponse.subscription:type_name -> core.mgmt.v1beta.OrganizationSubscription
-	104, // 91: core.mgmt.v1beta.GetUserSubscriptionAdminResponse.subscription:type_name -> core.mgmt.v1beta.UserSubscription
-	105, // 92: core.mgmt.v1beta.GetOrganizationSubscriptionAdminResponse.subscription:type_name -> core.mgmt.v1beta.OrganizationSubscription
-	93,  // [93:93] is the sub-list for method output_type
-	93,  // [93:93] is the sub-list for method input_type
-	93,  // [93:93] is the sub-list for extension type_name
-	93,  // [93:93] is the sub-list for extension extendee
-	0,   // [0:93] is the sub-list for field type_name
+	9,   // 90: core.mgmt.v1beta.SubscriptionFreeTrial.user_plan:type_name -> core.mgmt.v1beta.UserSubscription.Plan
+	10,  // 91: core.mgmt.v1beta.SubscriptionFreeTrial.organization_plan:type_name -> core.mgmt.v1beta.OrganizationSubscription.Plan
+	122, // 92: core.mgmt.v1beta.SubscriptionFreeTrial.trial_end:type_name -> google.protobuf.Timestamp
+	109, // 93: core.mgmt.v1beta.ListSubscriptionFreeTrialsResponse.free_trials:type_name -> core.mgmt.v1beta.SubscriptionFreeTrial
+	105, // 94: core.mgmt.v1beta.GetOrganizationSubscriptionResponse.subscription:type_name -> core.mgmt.v1beta.OrganizationSubscription
+	104, // 95: core.mgmt.v1beta.GetUserSubscriptionAdminResponse.subscription:type_name -> core.mgmt.v1beta.UserSubscription
+	105, // 96: core.mgmt.v1beta.GetOrganizationSubscriptionAdminResponse.subscription:type_name -> core.mgmt.v1beta.OrganizationSubscription
+	97,  // [97:97] is the sub-list for method output_type
+	97,  // [97:97] is the sub-list for method input_type
+	97,  // [97:97] is the sub-list for extension type_name
+	97,  // [97:97] is the sub-list for extension extendee
+	0,   // [0:97] is the sub-list for field type_name
 }
 
 func init() { file_core_mgmt_v1beta_mgmt_proto_init() }
@@ -7461,13 +7701,17 @@ func file_core_mgmt_v1beta_mgmt_proto_init() {
 	file_core_mgmt_v1beta_mgmt_proto_msgTypes[78].OneofWrappers = []any{}
 	file_core_mgmt_v1beta_mgmt_proto_msgTypes[86].OneofWrappers = []any{}
 	file_core_mgmt_v1beta_mgmt_proto_msgTypes[92].OneofWrappers = []any{}
+	file_core_mgmt_v1beta_mgmt_proto_msgTypes[98].OneofWrappers = []any{
+		(*SubscriptionFreeTrial_UserPlan)(nil),
+		(*SubscriptionFreeTrial_OrganizationPlan)(nil),
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_core_mgmt_v1beta_mgmt_proto_rawDesc), len(file_core_mgmt_v1beta_mgmt_proto_rawDesc)),
 			NumEnums:      11,
-			NumMessages:   106,
+			NumMessages:   109,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

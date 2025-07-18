@@ -40,6 +40,7 @@ const (
 	MgmtPublicService_DeleteOrganizationMembership_FullMethodName      = "/core.mgmt.v1beta.MgmtPublicService/DeleteOrganizationMembership"
 	MgmtPublicService_GetAuthenticatedUserSubscription_FullMethodName  = "/core.mgmt.v1beta.MgmtPublicService/GetAuthenticatedUserSubscription"
 	MgmtPublicService_GetOrganizationSubscription_FullMethodName       = "/core.mgmt.v1beta.MgmtPublicService/GetOrganizationSubscription"
+	MgmtPublicService_ListSubscriptionFreeTrials_FullMethodName        = "/core.mgmt.v1beta.MgmtPublicService/ListSubscriptionFreeTrials"
 	MgmtPublicService_CreateToken_FullMethodName                       = "/core.mgmt.v1beta.MgmtPublicService/CreateToken"
 	MgmtPublicService_ListTokens_FullMethodName                        = "/core.mgmt.v1beta.MgmtPublicService/ListTokens"
 	MgmtPublicService_GetToken_FullMethodName                          = "/core.mgmt.v1beta.MgmtPublicService/GetToken"
@@ -142,11 +143,11 @@ type MgmtPublicServiceClient interface {
 	//
 	// Returns a paginated list of the user memberships in an organization.
 	ListOrganizationMemberships(ctx context.Context, in *ListOrganizationMembershipsRequest, opts ...grpc.CallOption) (*ListOrganizationMembershipsResponse, error)
-	// Get a an organization membership
+	// Get an organization membership
 	//
 	// Returns the details of a user membership within an organization.
 	GetOrganizationMembership(ctx context.Context, in *GetOrganizationMembershipRequest, opts ...grpc.CallOption) (*GetOrganizationMembershipResponse, error)
-	// Uppdate an organization membership
+	// Update an organization membership
 	//
 	// Updates a user membership within an organization.
 	UpdateOrganizationMembership(ctx context.Context, in *UpdateOrganizationMembershipRequest, opts ...grpc.CallOption) (*UpdateOrganizationMembershipResponse, error)
@@ -168,6 +169,12 @@ type MgmtPublicServiceClient interface {
 	// downgraded from a plan several times), the most recent subscription is
 	// returned.
 	GetOrganizationSubscription(ctx context.Context, in *GetOrganizationSubscriptionRequest, opts ...grpc.CallOption) (*GetOrganizationSubscriptionResponse, error)
+	// List subscription free trials
+	//
+	// Returns a list of the free trials of the authenticated user. The trials
+	// might apply to different plans, including organization plans purchased by
+	// the user.
+	ListSubscriptionFreeTrials(ctx context.Context, in *ListSubscriptionFreeTrialsRequest, opts ...grpc.CallOption) (*ListSubscriptionFreeTrialsResponse, error)
 	// Create an API token
 	//
 	// Creates an API token for the authenticated user.
@@ -214,7 +221,7 @@ type MgmtPublicServiceClient interface {
 	GetModelTriggerCount(ctx context.Context, in *GetModelTriggerCountRequest, opts ...grpc.CallOption) (*GetModelTriggerCountResponse, error)
 	// List pipeline trigger time charts
 	//
-	// Returns a timeline of pipline trigger counts for a given requester. The
+	// Returns a timeline of pipeline trigger counts for a given requester. The
 	// response will contain one set of records (datapoints), representing the
 	// amount of triggers in a time bucket.
 	ListPipelineTriggerChartRecords(ctx context.Context, in *ListPipelineTriggerChartRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerChartRecordsResponse, error)
@@ -269,10 +276,10 @@ type MgmtPublicServiceClient interface {
 	// Deprecated: Do not use.
 	// List pipeline trigger time charts
 	//
-	// Returns a timeline of pipline trigger counts for the pipelines of a given
+	// Returns a timeline of pipeline trigger counts for the pipelines of a given
 	// owner.
 	// NOTE: This method will soon be retired and replaced by
-	// ListPipelineTriggerchartRecords.
+	// ListPipelineTriggerChartRecords.
 	ListPipelineTriggerChartRecordsV0(ctx context.Context, in *ListPipelineTriggerChartRecordsV0Request, opts ...grpc.CallOption) (*ListPipelineTriggerChartRecordsV0Response, error)
 }
 
@@ -488,6 +495,16 @@ func (c *mgmtPublicServiceClient) GetOrganizationSubscription(ctx context.Contex
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetOrganizationSubscriptionResponse)
 	err := c.cc.Invoke(ctx, MgmtPublicService_GetOrganizationSubscription_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mgmtPublicServiceClient) ListSubscriptionFreeTrials(ctx context.Context, in *ListSubscriptionFreeTrialsRequest, opts ...grpc.CallOption) (*ListSubscriptionFreeTrialsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListSubscriptionFreeTrialsResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_ListSubscriptionFreeTrials_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -777,11 +794,11 @@ type MgmtPublicServiceServer interface {
 	//
 	// Returns a paginated list of the user memberships in an organization.
 	ListOrganizationMemberships(context.Context, *ListOrganizationMembershipsRequest) (*ListOrganizationMembershipsResponse, error)
-	// Get a an organization membership
+	// Get an organization membership
 	//
 	// Returns the details of a user membership within an organization.
 	GetOrganizationMembership(context.Context, *GetOrganizationMembershipRequest) (*GetOrganizationMembershipResponse, error)
-	// Uppdate an organization membership
+	// Update an organization membership
 	//
 	// Updates a user membership within an organization.
 	UpdateOrganizationMembership(context.Context, *UpdateOrganizationMembershipRequest) (*UpdateOrganizationMembershipResponse, error)
@@ -803,6 +820,12 @@ type MgmtPublicServiceServer interface {
 	// downgraded from a plan several times), the most recent subscription is
 	// returned.
 	GetOrganizationSubscription(context.Context, *GetOrganizationSubscriptionRequest) (*GetOrganizationSubscriptionResponse, error)
+	// List subscription free trials
+	//
+	// Returns a list of the free trials of the authenticated user. The trials
+	// might apply to different plans, including organization plans purchased by
+	// the user.
+	ListSubscriptionFreeTrials(context.Context, *ListSubscriptionFreeTrialsRequest) (*ListSubscriptionFreeTrialsResponse, error)
 	// Create an API token
 	//
 	// Creates an API token for the authenticated user.
@@ -849,7 +872,7 @@ type MgmtPublicServiceServer interface {
 	GetModelTriggerCount(context.Context, *GetModelTriggerCountRequest) (*GetModelTriggerCountResponse, error)
 	// List pipeline trigger time charts
 	//
-	// Returns a timeline of pipline trigger counts for a given requester. The
+	// Returns a timeline of pipeline trigger counts for a given requester. The
 	// response will contain one set of records (datapoints), representing the
 	// amount of triggers in a time bucket.
 	ListPipelineTriggerChartRecords(context.Context, *ListPipelineTriggerChartRecordsRequest) (*ListPipelineTriggerChartRecordsResponse, error)
@@ -904,10 +927,10 @@ type MgmtPublicServiceServer interface {
 	// Deprecated: Do not use.
 	// List pipeline trigger time charts
 	//
-	// Returns a timeline of pipline trigger counts for the pipelines of a given
+	// Returns a timeline of pipeline trigger counts for the pipelines of a given
 	// owner.
 	// NOTE: This method will soon be retired and replaced by
-	// ListPipelineTriggerchartRecords.
+	// ListPipelineTriggerChartRecords.
 	ListPipelineTriggerChartRecordsV0(context.Context, *ListPipelineTriggerChartRecordsV0Request) (*ListPipelineTriggerChartRecordsV0Response, error)
 }
 
@@ -980,6 +1003,9 @@ func (UnimplementedMgmtPublicServiceServer) GetAuthenticatedUserSubscription(con
 }
 func (UnimplementedMgmtPublicServiceServer) GetOrganizationSubscription(context.Context, *GetOrganizationSubscriptionRequest) (*GetOrganizationSubscriptionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationSubscription not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) ListSubscriptionFreeTrials(context.Context, *ListSubscriptionFreeTrialsRequest) (*ListSubscriptionFreeTrialsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListSubscriptionFreeTrials not implemented")
 }
 func (UnimplementedMgmtPublicServiceServer) CreateToken(context.Context, *CreateTokenRequest) (*CreateTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateToken not implemented")
@@ -1439,6 +1465,24 @@ func _MgmtPublicService_GetOrganizationSubscription_Handler(srv interface{}, ctx
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MgmtPublicService_ListSubscriptionFreeTrials_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListSubscriptionFreeTrialsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).ListSubscriptionFreeTrials(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_ListSubscriptionFreeTrials_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).ListSubscriptionFreeTrials(ctx, req.(*ListSubscriptionFreeTrialsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _MgmtPublicService_CreateToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateTokenRequest)
 	if err := dec(in); err != nil {
@@ -1889,6 +1933,10 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetOrganizationSubscription",
 			Handler:    _MgmtPublicService_GetOrganizationSubscription_Handler,
+		},
+		{
+			MethodName: "ListSubscriptionFreeTrials",
+			Handler:    _MgmtPublicService_ListSubscriptionFreeTrials_Handler,
 		},
 		{
 			MethodName: "CreateToken",

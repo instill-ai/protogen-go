@@ -416,10 +416,9 @@ func (x *GetModelTriggerCountResponse) GetModelTriggerCounts() []*TriggerCount {
 // PipelineTriggerChartRecord represents a timeline of pipeline triggers. It
 // contains a collection of (timestamp, count) pairs that represent the total
 // pipeline triggers in a given time bucket.
-// pipeline ID and time frame.
 type PipelineTriggerChartRecord struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// This field will be present present when the information is grouped by pipeline.
+	// This field will be present when the information is grouped by pipeline.
 	PipelineId *string `protobuf:"bytes,1,opt,name=pipeline_id,json=pipelineId,proto3,oneof" json:"pipeline_id,omitempty"`
 	// Time buckets.
 	TimeBuckets []*timestamppb.Timestamp `protobuf:"bytes,2,rep,name=time_buckets,json=timeBuckets,proto3" json:"time_buckets,omitempty"`
@@ -623,7 +622,7 @@ func (x *ListPipelineTriggerChartRecordsResponse) GetPipelineTriggerChartRecords
 // model triggers in a given time bucket.
 type ModelTriggerChartRecord struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// This field will be present present when the information is grouped by model.
+	// This field will be present when the information is grouped by model.
 	ModelId *string `protobuf:"bytes,1,opt,name=model_id,json=modelId,proto3,oneof" json:"model_id,omitempty"`
 	// Time buckets.
 	TimeBuckets []*timestamppb.Timestamp `protobuf:"bytes,2,rep,name=time_buckets,json=timeBuckets,proto3" json:"time_buckets,omitempty"`
@@ -1596,8 +1595,8 @@ func (x *PipelineTriggerRecord) GetPipelineReleaseUid() string {
 type ListPipelineTriggerRecordsRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The maximum number of triggers to return. If this parameter is unspecified,
-	// at most 100 pipelines will be returned. The cap value for this parameter is
-	// 1000 (i.e. any value above that will be coerced to 100).
+	// at most 100 triggers will be returned. The cap value for this parameter is
+	// 1000 (i.e. any value above that will be coerced to 1000).
 	PageSize *int32 `protobuf:"varint,1,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
 	// Page token.
 	PageToken *string `protobuf:"bytes,2,opt,name=page_token,json=pageToken,proto3,oneof" json:"page_token,omitempty"`
