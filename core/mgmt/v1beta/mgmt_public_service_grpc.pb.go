@@ -38,6 +38,7 @@ const (
 	MgmtPublicService_GetOrganizationMembership_FullMethodName         = "/core.mgmt.v1beta.MgmtPublicService/GetOrganizationMembership"
 	MgmtPublicService_UpdateOrganizationMembership_FullMethodName      = "/core.mgmt.v1beta.MgmtPublicService/UpdateOrganizationMembership"
 	MgmtPublicService_DeleteOrganizationMembership_FullMethodName      = "/core.mgmt.v1beta.MgmtPublicService/DeleteOrganizationMembership"
+	MgmtPublicService_InviteOrganizationMembers_FullMethodName         = "/core.mgmt.v1beta.MgmtPublicService/InviteOrganizationMembers"
 	MgmtPublicService_GetAuthenticatedUserSubscription_FullMethodName  = "/core.mgmt.v1beta.MgmtPublicService/GetAuthenticatedUserSubscription"
 	MgmtPublicService_GetOrganizationSubscription_FullMethodName       = "/core.mgmt.v1beta.MgmtPublicService/GetOrganizationSubscription"
 	MgmtPublicService_ListSubscriptionFreeTrials_FullMethodName        = "/core.mgmt.v1beta.MgmtPublicService/ListSubscriptionFreeTrials"
@@ -155,6 +156,10 @@ type MgmtPublicServiceClient interface {
 	//
 	// Deletes a user membership within an organization.
 	DeleteOrganizationMembership(ctx context.Context, in *DeleteOrganizationMembershipRequest, opts ...grpc.CallOption) (*DeleteOrganizationMembershipResponse, error)
+	// Invite members to an organization
+	//
+	// Invites members to an organization.
+	InviteOrganizationMembers(ctx context.Context, in *InviteOrganizationMembersRequest, opts ...grpc.CallOption) (*InviteOrganizationMembersResponse, error)
 	// Get the subscription of the authenticated user
 	//
 	// Returns the subscription details for the authenticated user's individual
@@ -475,6 +480,16 @@ func (c *mgmtPublicServiceClient) DeleteOrganizationMembership(ctx context.Conte
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteOrganizationMembershipResponse)
 	err := c.cc.Invoke(ctx, MgmtPublicService_DeleteOrganizationMembership_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mgmtPublicServiceClient) InviteOrganizationMembers(ctx context.Context, in *InviteOrganizationMembersRequest, opts ...grpc.CallOption) (*InviteOrganizationMembersResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(InviteOrganizationMembersResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_InviteOrganizationMembers_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -806,6 +821,10 @@ type MgmtPublicServiceServer interface {
 	//
 	// Deletes a user membership within an organization.
 	DeleteOrganizationMembership(context.Context, *DeleteOrganizationMembershipRequest) (*DeleteOrganizationMembershipResponse, error)
+	// Invite members to an organization
+	//
+	// Invites members to an organization.
+	InviteOrganizationMembers(context.Context, *InviteOrganizationMembersRequest) (*InviteOrganizationMembersResponse, error)
 	// Get the subscription of the authenticated user
 	//
 	// Returns the subscription details for the authenticated user's individual
@@ -997,6 +1016,9 @@ func (UnimplementedMgmtPublicServiceServer) UpdateOrganizationMembership(context
 }
 func (UnimplementedMgmtPublicServiceServer) DeleteOrganizationMembership(context.Context, *DeleteOrganizationMembershipRequest) (*DeleteOrganizationMembershipResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganizationMembership not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) InviteOrganizationMembers(context.Context, *InviteOrganizationMembersRequest) (*InviteOrganizationMembersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InviteOrganizationMembers not implemented")
 }
 func (UnimplementedMgmtPublicServiceServer) GetAuthenticatedUserSubscription(context.Context, *GetAuthenticatedUserSubscriptionRequest) (*GetAuthenticatedUserSubscriptionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAuthenticatedUserSubscription not implemented")
@@ -1425,6 +1447,24 @@ func _MgmtPublicService_DeleteOrganizationMembership_Handler(srv interface{}, ct
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MgmtPublicServiceServer).DeleteOrganizationMembership(ctx, req.(*DeleteOrganizationMembershipRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MgmtPublicService_InviteOrganizationMembers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InviteOrganizationMembersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).InviteOrganizationMembers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_InviteOrganizationMembers_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).InviteOrganizationMembers(ctx, req.(*InviteOrganizationMembersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1925,6 +1965,10 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteOrganizationMembership",
 			Handler:    _MgmtPublicService_DeleteOrganizationMembership_Handler,
+		},
+		{
+			MethodName: "InviteOrganizationMembers",
+			Handler:    _MgmtPublicService_InviteOrganizationMembers_Handler,
 		},
 		{
 			MethodName: "GetAuthenticatedUserSubscription",
