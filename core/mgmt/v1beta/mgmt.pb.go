@@ -1353,7 +1353,9 @@ type User struct {
 	// Update time.
 	UpdateTime *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
 	// Profile.
-	Profile       *UserProfile `protobuf:"bytes,11,opt,name=profile,proto3" json:"profile,omitempty"`
+	Profile *UserProfile `protobuf:"bytes,11,opt,name=profile,proto3" json:"profile,omitempty"`
+	// Email.
+	Email         string `protobuf:"bytes,12,opt,name=email,proto3" json:"email,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1428,6 +1430,13 @@ func (x *User) GetProfile() *UserProfile {
 		return x.Profile
 	}
 	return nil
+}
+
+func (x *User) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
 }
 
 // ListUsersAdminRequest represents a request to list all users by admin
@@ -7131,7 +7140,7 @@ const file_core_mgmt_v1beta_mgmt_proto_rawDesc = "" +
 	"\x05Owner\x121\n" +
 	"\x04user\x18\x01 \x01(\v2\x16.core.mgmt.v1beta.UserB\x03\xe0A\x03H\x00R\x04user\x12I\n" +
 	"\forganization\x18\x02 \x01(\v2\x1e.core.mgmt.v1beta.OrganizationB\x03\xe0A\x03H\x00R\forganizationB\a\n" +
-	"\x05owner\"\xbd\x02\n" +
+	"\x05owner\"\xd8\x02\n" +
 	"\x04User\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x1a\n" +
 	"\x03uid\x18\x02 \x01(\tB\x03\xe0A\x03H\x00R\x03uid\x88\x01\x01\x12\x13\n" +
@@ -7140,7 +7149,8 @@ const file_core_mgmt_v1beta_mgmt_proto_rawDesc = "" +
 	"createTime\x12@\n" +
 	"\vupdate_time\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
 	"updateTime\x127\n" +
-	"\aprofile\x18\v \x01(\v2\x1d.core.mgmt.v1beta.UserProfileR\aprofile:&\xeaA#\x12\x0fusers/{user.id}\x12\x10users/{user.uid}B\x06\n" +
+	"\aprofile\x18\v \x01(\v2\x1d.core.mgmt.v1beta.UserProfileR\aprofile\x12\x19\n" +
+	"\x05email\x18\f \x01(\tB\x03\xe0A\x03R\x05email:&\xeaA#\x12\x0fusers/{user.id}\x12\x10users/{user.uid}B\x06\n" +
 	"\x04_uid\"\xf0\x01\n" +
 	"\x15ListUsersAdminRequest\x12%\n" +
 	"\tpage_size\x18\x01 \x01(\x05B\x03\xe0A\x01H\x00R\bpageSize\x88\x01\x01\x12'\n" +
