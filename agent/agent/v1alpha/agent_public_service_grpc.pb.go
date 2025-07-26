@@ -68,6 +68,10 @@ const (
 	AgentPublicService_GetFolder_FullMethodName                           = "/agent.agent.v1alpha.AgentPublicService/GetFolder"
 	AgentPublicService_UpdateFolder_FullMethodName                        = "/agent.agent.v1alpha.AgentPublicService/UpdateFolder"
 	AgentPublicService_DeleteFolder_FullMethodName                        = "/agent.agent.v1alpha.AgentPublicService/DeleteFolder"
+	AgentPublicService_CreateFolderFile_FullMethodName                    = "/agent.agent.v1alpha.AgentPublicService/CreateFolderFile"
+	AgentPublicService_DeleteFolderFile_FullMethodName                    = "/agent.agent.v1alpha.AgentPublicService/DeleteFolderFile"
+	AgentPublicService_ListFolderFiles_FullMethodName                     = "/agent.agent.v1alpha.AgentPublicService/ListFolderFiles"
+	AgentPublicService_GetFolderFile_FullMethodName                       = "/agent.agent.v1alpha.AgentPublicService/GetFolderFile"
 )
 
 // AgentPublicServiceClient is the client API for AgentPublicService service.
@@ -278,6 +282,22 @@ type AgentPublicServiceClient interface {
 	//
 	// Deletes a folder.
 	DeleteFolder(ctx context.Context, in *DeleteFolderRequest, opts ...grpc.CallOption) (*DeleteFolderResponse, error)
+	// Create a file
+	//
+	// Creates a file.
+	CreateFolderFile(ctx context.Context, in *CreateFolderFileRequest, opts ...grpc.CallOption) (*CreateFolderFileResponse, error)
+	// Delete a file
+	//
+	// Deletes a file.
+	DeleteFolderFile(ctx context.Context, in *DeleteFolderFileRequest, opts ...grpc.CallOption) (*DeleteFolderFileResponse, error)
+	// List folder files
+	//
+	// Returns a paginated list of folder files.
+	ListFolderFiles(ctx context.Context, in *ListFolderFilesRequest, opts ...grpc.CallOption) (*ListFolderFilesResponse, error)
+	// Get catalog file
+	//
+	// Gets the file of a catalog.
+	GetFolderFile(ctx context.Context, in *GetFolderFileRequest, opts ...grpc.CallOption) (*GetFolderFileResponse, error)
 }
 
 type agentPublicServiceClient struct {
@@ -805,6 +825,46 @@ func (c *agentPublicServiceClient) DeleteFolder(ctx context.Context, in *DeleteF
 	return out, nil
 }
 
+func (c *agentPublicServiceClient) CreateFolderFile(ctx context.Context, in *CreateFolderFileRequest, opts ...grpc.CallOption) (*CreateFolderFileResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateFolderFileResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_CreateFolderFile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentPublicServiceClient) DeleteFolderFile(ctx context.Context, in *DeleteFolderFileRequest, opts ...grpc.CallOption) (*DeleteFolderFileResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteFolderFileResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_DeleteFolderFile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentPublicServiceClient) ListFolderFiles(ctx context.Context, in *ListFolderFilesRequest, opts ...grpc.CallOption) (*ListFolderFilesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListFolderFilesResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_ListFolderFiles_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agentPublicServiceClient) GetFolderFile(ctx context.Context, in *GetFolderFileRequest, opts ...grpc.CallOption) (*GetFolderFileResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetFolderFileResponse)
+	err := c.cc.Invoke(ctx, AgentPublicService_GetFolderFile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AgentPublicServiceServer is the server API for AgentPublicService service.
 // All implementations should embed UnimplementedAgentPublicServiceServer
 // for forward compatibility.
@@ -1013,6 +1073,22 @@ type AgentPublicServiceServer interface {
 	//
 	// Deletes a folder.
 	DeleteFolder(context.Context, *DeleteFolderRequest) (*DeleteFolderResponse, error)
+	// Create a file
+	//
+	// Creates a file.
+	CreateFolderFile(context.Context, *CreateFolderFileRequest) (*CreateFolderFileResponse, error)
+	// Delete a file
+	//
+	// Deletes a file.
+	DeleteFolderFile(context.Context, *DeleteFolderFileRequest) (*DeleteFolderFileResponse, error)
+	// List folder files
+	//
+	// Returns a paginated list of folder files.
+	ListFolderFiles(context.Context, *ListFolderFilesRequest) (*ListFolderFilesResponse, error)
+	// Get catalog file
+	//
+	// Gets the file of a catalog.
+	GetFolderFile(context.Context, *GetFolderFileRequest) (*GetFolderFileResponse, error)
 }
 
 // UnimplementedAgentPublicServiceServer should be embedded to have
@@ -1168,6 +1244,18 @@ func (UnimplementedAgentPublicServiceServer) UpdateFolder(context.Context, *Upda
 }
 func (UnimplementedAgentPublicServiceServer) DeleteFolder(context.Context, *DeleteFolderRequest) (*DeleteFolderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteFolder not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) CreateFolderFile(context.Context, *CreateFolderFileRequest) (*CreateFolderFileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateFolderFile not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) DeleteFolderFile(context.Context, *DeleteFolderFileRequest) (*DeleteFolderFileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteFolderFile not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) ListFolderFiles(context.Context, *ListFolderFilesRequest) (*ListFolderFilesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListFolderFiles not implemented")
+}
+func (UnimplementedAgentPublicServiceServer) GetFolderFile(context.Context, *GetFolderFileRequest) (*GetFolderFileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFolderFile not implemented")
 }
 func (UnimplementedAgentPublicServiceServer) testEmbeddedByValue() {}
 
@@ -2050,6 +2138,78 @@ func _AgentPublicService_DeleteFolder_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AgentPublicService_CreateFolderFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateFolderFileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).CreateFolderFile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_CreateFolderFile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).CreateFolderFile(ctx, req.(*CreateFolderFileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentPublicService_DeleteFolderFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteFolderFileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).DeleteFolderFile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_DeleteFolderFile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).DeleteFolderFile(ctx, req.(*DeleteFolderFileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentPublicService_ListFolderFiles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListFolderFilesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).ListFolderFiles(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_ListFolderFiles_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).ListFolderFiles(ctx, req.(*ListFolderFilesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AgentPublicService_GetFolderFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFolderFileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentPublicServiceServer).GetFolderFile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AgentPublicService_GetFolderFile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentPublicServiceServer).GetFolderFile(ctx, req.(*GetFolderFileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AgentPublicService_ServiceDesc is the grpc.ServiceDesc for AgentPublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2240,6 +2400,22 @@ var AgentPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteFolder",
 			Handler:    _AgentPublicService_DeleteFolder_Handler,
+		},
+		{
+			MethodName: "CreateFolderFile",
+			Handler:    _AgentPublicService_CreateFolderFile_Handler,
+		},
+		{
+			MethodName: "DeleteFolderFile",
+			Handler:    _AgentPublicService_DeleteFolderFile_Handler,
+		},
+		{
+			MethodName: "ListFolderFiles",
+			Handler:    _AgentPublicService_ListFolderFiles_Handler,
+		},
+		{
+			MethodName: "GetFolderFile",
+			Handler:    _AgentPublicService_GetFolderFile_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
