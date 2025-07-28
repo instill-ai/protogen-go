@@ -6944,6 +6944,167 @@ func (*InviteOrganizationMembersResponse) Descriptor() ([]byte, []int) {
 	return file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{107}
 }
 
+// SyncAuthenticatedUserSubscriptionRequest represents a request to sync the
+// subscription of the authenticated user.
+type SyncAuthenticatedUserSubscriptionRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SyncAuthenticatedUserSubscriptionRequest) Reset() {
+	*x = SyncAuthenticatedUserSubscriptionRequest{}
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[108]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SyncAuthenticatedUserSubscriptionRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SyncAuthenticatedUserSubscriptionRequest) ProtoMessage() {}
+
+func (x *SyncAuthenticatedUserSubscriptionRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[108]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SyncAuthenticatedUserSubscriptionRequest.ProtoReflect.Descriptor instead.
+func (*SyncAuthenticatedUserSubscriptionRequest) Descriptor() ([]byte, []int) {
+	return file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{108}
+}
+
+// SyncAuthenticatedUserSubscriptionResponse represents a response to a request
+// to sync the subscription of the authenticated user.
+type SyncAuthenticatedUserSubscriptionResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SyncAuthenticatedUserSubscriptionResponse) Reset() {
+	*x = SyncAuthenticatedUserSubscriptionResponse{}
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[109]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SyncAuthenticatedUserSubscriptionResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SyncAuthenticatedUserSubscriptionResponse) ProtoMessage() {}
+
+func (x *SyncAuthenticatedUserSubscriptionResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[109]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SyncAuthenticatedUserSubscriptionResponse.ProtoReflect.Descriptor instead.
+func (*SyncAuthenticatedUserSubscriptionResponse) Descriptor() ([]byte, []int) {
+	return file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{109}
+}
+
+// SyncOrganizationSubscriptionRequest represents a request to sync the
+// subscription of an organization.
+type SyncOrganizationSubscriptionRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The organization ID.
+	OrganizationId string `protobuf:"bytes,1,opt,name=organization_id,json=organizationId,proto3" json:"organization_id,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *SyncOrganizationSubscriptionRequest) Reset() {
+	*x = SyncOrganizationSubscriptionRequest{}
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[110]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SyncOrganizationSubscriptionRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SyncOrganizationSubscriptionRequest) ProtoMessage() {}
+
+func (x *SyncOrganizationSubscriptionRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[110]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SyncOrganizationSubscriptionRequest.ProtoReflect.Descriptor instead.
+func (*SyncOrganizationSubscriptionRequest) Descriptor() ([]byte, []int) {
+	return file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{110}
+}
+
+func (x *SyncOrganizationSubscriptionRequest) GetOrganizationId() string {
+	if x != nil {
+		return x.OrganizationId
+	}
+	return ""
+}
+
+// SyncOrganizationSubscriptionResponse represents a response to a request to
+// sync the subscription of an organization.
+type SyncOrganizationSubscriptionResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SyncOrganizationSubscriptionResponse) Reset() {
+	*x = SyncOrganizationSubscriptionResponse{}
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[111]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SyncOrganizationSubscriptionResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SyncOrganizationSubscriptionResponse) ProtoMessage() {}
+
+func (x *SyncOrganizationSubscriptionResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[111]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SyncOrganizationSubscriptionResponse.ProtoReflect.Descriptor instead.
+func (*SyncOrganizationSubscriptionResponse) Descriptor() ([]byte, []int) {
+	return file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{111}
+}
+
 // UnsignedAccessToken contains the token issuer information.
 type AuthTokenIssuerResponse_UnsignedAccessToken struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -6963,7 +7124,7 @@ type AuthTokenIssuerResponse_UnsignedAccessToken struct {
 
 func (x *AuthTokenIssuerResponse_UnsignedAccessToken) Reset() {
 	*x = AuthTokenIssuerResponse_UnsignedAccessToken{}
-	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[110]
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[114]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6975,7 +7136,7 @@ func (x *AuthTokenIssuerResponse_UnsignedAccessToken) String() string {
 func (*AuthTokenIssuerResponse_UnsignedAccessToken) ProtoMessage() {}
 
 func (x *AuthTokenIssuerResponse_UnsignedAccessToken) ProtoReflect() protoreflect.Message {
-	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[110]
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[114]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7037,7 +7198,7 @@ type Organization_Stats struct {
 
 func (x *Organization_Stats) Reset() {
 	*x = Organization_Stats{}
-	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[111]
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[115]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7049,7 +7210,7 @@ func (x *Organization_Stats) String() string {
 func (*Organization_Stats) ProtoMessage() {}
 
 func (x *Organization_Stats) ProtoReflect() protoreflect.Message {
-	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[111]
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[115]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7562,7 +7723,12 @@ const file_core_mgmt_v1beta_mgmt_proto_rawDesc = "" +
 	" InviteOrganizationMembersRequest\x12,\n" +
 	"\x0forganization_id\x18\x01 \x01(\tB\x03\xe0A\x02R\x0eorganizationId\x12\x1b\n" +
 	"\x06emails\x18\x02 \x03(\tB\x03\xe0A\x02R\x06emails\"#\n" +
-	"!InviteOrganizationMembersResponse*;\n" +
+	"!InviteOrganizationMembersResponse\"*\n" +
+	"(SyncAuthenticatedUserSubscriptionRequest\"+\n" +
+	")SyncAuthenticatedUserSubscriptionResponse\"S\n" +
+	"#SyncOrganizationSubscriptionRequest\x12,\n" +
+	"\x0forganization_id\x18\x01 \x01(\tB\x03\xe0A\x02R\x0eorganizationId\"&\n" +
+	"$SyncOrganizationSubscriptionResponse*;\n" +
 	"\x04View\x12\x14\n" +
 	"\x10VIEW_UNSPECIFIED\x10\x00\x12\x0e\n" +
 	"\n" +
@@ -7595,151 +7761,155 @@ func file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP() []byte {
 }
 
 var file_core_mgmt_v1beta_mgmt_proto_enumTypes = make([]protoimpl.EnumInfo, 11)
-var file_core_mgmt_v1beta_mgmt_proto_msgTypes = make([]protoimpl.MessageInfo, 112)
+var file_core_mgmt_v1beta_mgmt_proto_msgTypes = make([]protoimpl.MessageInfo, 116)
 var file_core_mgmt_v1beta_mgmt_proto_goTypes = []any{
-	(View)(0),                                        // 0: core.mgmt.v1beta.View
-	(OwnerType)(0),                                   // 1: core.mgmt.v1beta.OwnerType
-	(MembershipState)(0),                             // 2: core.mgmt.v1beta.MembershipState
-	(OnboardingStatus)(0),                            // 3: core.mgmt.v1beta.OnboardingStatus
-	(CheckNamespaceResponse_Namespace)(0),            // 4: core.mgmt.v1beta.CheckNamespaceResponse.Namespace
-	(CheckNamespaceAdminResponse_Namespace)(0),       // 5: core.mgmt.v1beta.CheckNamespaceAdminResponse.Namespace
-	(CheckNamespaceByUIDAdminResponse_Namespace)(0),  // 6: core.mgmt.v1beta.CheckNamespaceByUIDAdminResponse.Namespace
-	(ApiToken_State)(0),                              // 7: core.mgmt.v1beta.ApiToken.State
-	(StripeSubscriptionDetail_Status)(0),             // 8: core.mgmt.v1beta.StripeSubscriptionDetail.Status
-	(UserSubscription_Plan)(0),                       // 9: core.mgmt.v1beta.UserSubscription.Plan
-	(OrganizationSubscription_Plan)(0),               // 10: core.mgmt.v1beta.OrganizationSubscription.Plan
-	(*LivenessRequest)(nil),                          // 11: core.mgmt.v1beta.LivenessRequest
-	(*LivenessResponse)(nil),                         // 12: core.mgmt.v1beta.LivenessResponse
-	(*ReadinessRequest)(nil),                         // 13: core.mgmt.v1beta.ReadinessRequest
-	(*ReadinessResponse)(nil),                        // 14: core.mgmt.v1beta.ReadinessResponse
-	(*Permission)(nil),                               // 15: core.mgmt.v1beta.Permission
-	(*UserProfile)(nil),                              // 16: core.mgmt.v1beta.UserProfile
-	(*OrganizationProfile)(nil),                      // 17: core.mgmt.v1beta.OrganizationProfile
-	(*AuthenticatedUser)(nil),                        // 18: core.mgmt.v1beta.AuthenticatedUser
-	(*Owner)(nil),                                    // 19: core.mgmt.v1beta.Owner
-	(*User)(nil),                                     // 20: core.mgmt.v1beta.User
-	(*ListUsersAdminRequest)(nil),                    // 21: core.mgmt.v1beta.ListUsersAdminRequest
-	(*ListUsersAdminResponse)(nil),                   // 22: core.mgmt.v1beta.ListUsersAdminResponse
-	(*GetUserAdminRequest)(nil),                      // 23: core.mgmt.v1beta.GetUserAdminRequest
-	(*GetUserAdminResponse)(nil),                     // 24: core.mgmt.v1beta.GetUserAdminResponse
-	(*LookUpUserAdminRequest)(nil),                   // 25: core.mgmt.v1beta.LookUpUserAdminRequest
-	(*LookUpUserAdminResponse)(nil),                  // 26: core.mgmt.v1beta.LookUpUserAdminResponse
-	(*ListOrganizationsAdminRequest)(nil),            // 27: core.mgmt.v1beta.ListOrganizationsAdminRequest
-	(*ListOrganizationsAdminResponse)(nil),           // 28: core.mgmt.v1beta.ListOrganizationsAdminResponse
-	(*GetOrganizationAdminRequest)(nil),              // 29: core.mgmt.v1beta.GetOrganizationAdminRequest
-	(*GetOrganizationAdminResponse)(nil),             // 30: core.mgmt.v1beta.GetOrganizationAdminResponse
-	(*LookUpOrganizationAdminRequest)(nil),           // 31: core.mgmt.v1beta.LookUpOrganizationAdminRequest
-	(*LookUpOrganizationAdminResponse)(nil),          // 32: core.mgmt.v1beta.LookUpOrganizationAdminResponse
-	(*ListUsersRequest)(nil),                         // 33: core.mgmt.v1beta.ListUsersRequest
-	(*ListUsersResponse)(nil),                        // 34: core.mgmt.v1beta.ListUsersResponse
-	(*GetUserRequest)(nil),                           // 35: core.mgmt.v1beta.GetUserRequest
-	(*GetUserResponse)(nil),                          // 36: core.mgmt.v1beta.GetUserResponse
-	(*GetAuthenticatedUserRequest)(nil),              // 37: core.mgmt.v1beta.GetAuthenticatedUserRequest
-	(*GetAuthenticatedUserResponse)(nil),             // 38: core.mgmt.v1beta.GetAuthenticatedUserResponse
-	(*PatchAuthenticatedUserRequest)(nil),            // 39: core.mgmt.v1beta.PatchAuthenticatedUserRequest
-	(*PatchAuthenticatedUserResponse)(nil),           // 40: core.mgmt.v1beta.PatchAuthenticatedUserResponse
-	(*CheckNamespaceRequest)(nil),                    // 41: core.mgmt.v1beta.CheckNamespaceRequest
-	(*CheckNamespaceResponse)(nil),                   // 42: core.mgmt.v1beta.CheckNamespaceResponse
-	(*CheckNamespaceAdminRequest)(nil),               // 43: core.mgmt.v1beta.CheckNamespaceAdminRequest
-	(*CheckNamespaceAdminResponse)(nil),              // 44: core.mgmt.v1beta.CheckNamespaceAdminResponse
-	(*CheckNamespaceByUIDAdminRequest)(nil),          // 45: core.mgmt.v1beta.CheckNamespaceByUIDAdminRequest
-	(*CheckNamespaceByUIDAdminResponse)(nil),         // 46: core.mgmt.v1beta.CheckNamespaceByUIDAdminResponse
-	(*ApiToken)(nil),                                 // 47: core.mgmt.v1beta.ApiToken
-	(*CreateTokenRequest)(nil),                       // 48: core.mgmt.v1beta.CreateTokenRequest
-	(*CreateTokenResponse)(nil),                      // 49: core.mgmt.v1beta.CreateTokenResponse
-	(*ListTokensRequest)(nil),                        // 50: core.mgmt.v1beta.ListTokensRequest
-	(*ListTokensResponse)(nil),                       // 51: core.mgmt.v1beta.ListTokensResponse
-	(*GetTokenRequest)(nil),                          // 52: core.mgmt.v1beta.GetTokenRequest
-	(*GetTokenResponse)(nil),                         // 53: core.mgmt.v1beta.GetTokenResponse
-	(*DeleteTokenRequest)(nil),                       // 54: core.mgmt.v1beta.DeleteTokenRequest
-	(*DeleteTokenResponse)(nil),                      // 55: core.mgmt.v1beta.DeleteTokenResponse
-	(*ValidateTokenRequest)(nil),                     // 56: core.mgmt.v1beta.ValidateTokenRequest
-	(*ValidateTokenResponse)(nil),                    // 57: core.mgmt.v1beta.ValidateTokenResponse
-	(*GetRemainingCreditRequest)(nil),                // 58: core.mgmt.v1beta.GetRemainingCreditRequest
-	(*GetRemainingCreditResponse)(nil),               // 59: core.mgmt.v1beta.GetRemainingCreditResponse
-	(*GetRemainingCreditAdminRequest)(nil),           // 60: core.mgmt.v1beta.GetRemainingCreditAdminRequest
-	(*GetRemainingCreditAdminResponse)(nil),          // 61: core.mgmt.v1beta.GetRemainingCreditAdminResponse
-	(*SubtractCreditAdminRequest)(nil),               // 62: core.mgmt.v1beta.SubtractCreditAdminRequest
-	(*SubtractCreditAdminResponse)(nil),              // 63: core.mgmt.v1beta.SubtractCreditAdminResponse
-	(*AuthTokenIssuerRequest)(nil),                   // 64: core.mgmt.v1beta.AuthTokenIssuerRequest
-	(*AuthTokenIssuerResponse)(nil),                  // 65: core.mgmt.v1beta.AuthTokenIssuerResponse
-	(*AuthLoginRequest)(nil),                         // 66: core.mgmt.v1beta.AuthLoginRequest
-	(*AuthLoginResponse)(nil),                        // 67: core.mgmt.v1beta.AuthLoginResponse
-	(*AuthLogoutRequest)(nil),                        // 68: core.mgmt.v1beta.AuthLogoutRequest
-	(*AuthLogoutResponse)(nil),                       // 69: core.mgmt.v1beta.AuthLogoutResponse
-	(*AuthValidateAccessTokenRequest)(nil),           // 70: core.mgmt.v1beta.AuthValidateAccessTokenRequest
-	(*AuthValidateAccessTokenResponse)(nil),          // 71: core.mgmt.v1beta.AuthValidateAccessTokenResponse
-	(*AuthChangePasswordRequest)(nil),                // 72: core.mgmt.v1beta.AuthChangePasswordRequest
-	(*AuthChangePasswordResponse)(nil),               // 73: core.mgmt.v1beta.AuthChangePasswordResponse
-	(*Organization)(nil),                             // 74: core.mgmt.v1beta.Organization
-	(*ListOrganizationsRequest)(nil),                 // 75: core.mgmt.v1beta.ListOrganizationsRequest
-	(*ListOrganizationsResponse)(nil),                // 76: core.mgmt.v1beta.ListOrganizationsResponse
-	(*CreateOrganizationRequest)(nil),                // 77: core.mgmt.v1beta.CreateOrganizationRequest
-	(*CreateOrganizationResponse)(nil),               // 78: core.mgmt.v1beta.CreateOrganizationResponse
-	(*GetOrganizationRequest)(nil),                   // 79: core.mgmt.v1beta.GetOrganizationRequest
-	(*GetOrganizationResponse)(nil),                  // 80: core.mgmt.v1beta.GetOrganizationResponse
-	(*UpdateOrganizationRequest)(nil),                // 81: core.mgmt.v1beta.UpdateOrganizationRequest
-	(*UpdateOrganizationResponse)(nil),               // 82: core.mgmt.v1beta.UpdateOrganizationResponse
-	(*DeleteOrganizationRequest)(nil),                // 83: core.mgmt.v1beta.DeleteOrganizationRequest
-	(*DeleteOrganizationResponse)(nil),               // 84: core.mgmt.v1beta.DeleteOrganizationResponse
-	(*OrganizationMembership)(nil),                   // 85: core.mgmt.v1beta.OrganizationMembership
-	(*UserMembership)(nil),                           // 86: core.mgmt.v1beta.UserMembership
-	(*ListUserMembershipsRequest)(nil),               // 87: core.mgmt.v1beta.ListUserMembershipsRequest
-	(*ListUserMembershipsResponse)(nil),              // 88: core.mgmt.v1beta.ListUserMembershipsResponse
-	(*GetUserMembershipRequest)(nil),                 // 89: core.mgmt.v1beta.GetUserMembershipRequest
-	(*GetUserMembershipResponse)(nil),                // 90: core.mgmt.v1beta.GetUserMembershipResponse
-	(*UpdateUserMembershipRequest)(nil),              // 91: core.mgmt.v1beta.UpdateUserMembershipRequest
-	(*UpdateUserMembershipResponse)(nil),             // 92: core.mgmt.v1beta.UpdateUserMembershipResponse
-	(*DeleteUserMembershipRequest)(nil),              // 93: core.mgmt.v1beta.DeleteUserMembershipRequest
-	(*DeleteUserMembershipResponse)(nil),             // 94: core.mgmt.v1beta.DeleteUserMembershipResponse
-	(*ListOrganizationMembershipsRequest)(nil),       // 95: core.mgmt.v1beta.ListOrganizationMembershipsRequest
-	(*ListOrganizationMembershipsResponse)(nil),      // 96: core.mgmt.v1beta.ListOrganizationMembershipsResponse
-	(*GetOrganizationMembershipRequest)(nil),         // 97: core.mgmt.v1beta.GetOrganizationMembershipRequest
-	(*GetOrganizationMembershipResponse)(nil),        // 98: core.mgmt.v1beta.GetOrganizationMembershipResponse
-	(*UpdateOrganizationMembershipRequest)(nil),      // 99: core.mgmt.v1beta.UpdateOrganizationMembershipRequest
-	(*UpdateOrganizationMembershipResponse)(nil),     // 100: core.mgmt.v1beta.UpdateOrganizationMembershipResponse
-	(*DeleteOrganizationMembershipRequest)(nil),      // 101: core.mgmt.v1beta.DeleteOrganizationMembershipRequest
-	(*DeleteOrganizationMembershipResponse)(nil),     // 102: core.mgmt.v1beta.DeleteOrganizationMembershipResponse
-	(*StripeSubscriptionDetail)(nil),                 // 103: core.mgmt.v1beta.StripeSubscriptionDetail
-	(*UserSubscription)(nil),                         // 104: core.mgmt.v1beta.UserSubscription
-	(*OrganizationSubscription)(nil),                 // 105: core.mgmt.v1beta.OrganizationSubscription
-	(*GetAuthenticatedUserSubscriptionRequest)(nil),  // 106: core.mgmt.v1beta.GetAuthenticatedUserSubscriptionRequest
-	(*GetAuthenticatedUserSubscriptionResponse)(nil), // 107: core.mgmt.v1beta.GetAuthenticatedUserSubscriptionResponse
-	(*ListSubscriptionFreeTrialsRequest)(nil),        // 108: core.mgmt.v1beta.ListSubscriptionFreeTrialsRequest
-	(*SubscriptionFreeTrial)(nil),                    // 109: core.mgmt.v1beta.SubscriptionFreeTrial
-	(*ListSubscriptionFreeTrialsResponse)(nil),       // 110: core.mgmt.v1beta.ListSubscriptionFreeTrialsResponse
-	(*GetOrganizationSubscriptionRequest)(nil),       // 111: core.mgmt.v1beta.GetOrganizationSubscriptionRequest
-	(*GetOrganizationSubscriptionResponse)(nil),      // 112: core.mgmt.v1beta.GetOrganizationSubscriptionResponse
-	(*GetUserSubscriptionAdminRequest)(nil),          // 113: core.mgmt.v1beta.GetUserSubscriptionAdminRequest
-	(*GetUserSubscriptionAdminResponse)(nil),         // 114: core.mgmt.v1beta.GetUserSubscriptionAdminResponse
-	(*GetOrganizationSubscriptionAdminRequest)(nil),  // 115: core.mgmt.v1beta.GetOrganizationSubscriptionAdminRequest
-	(*GetOrganizationSubscriptionAdminResponse)(nil), // 116: core.mgmt.v1beta.GetOrganizationSubscriptionAdminResponse
-	(*InviteOrganizationMembersRequest)(nil),         // 117: core.mgmt.v1beta.InviteOrganizationMembersRequest
-	(*InviteOrganizationMembersResponse)(nil),        // 118: core.mgmt.v1beta.InviteOrganizationMembersResponse
-	nil, // 119: core.mgmt.v1beta.UserProfile.SocialProfileLinksEntry
-	nil, // 120: core.mgmt.v1beta.OrganizationProfile.SocialProfileLinksEntry
-	(*AuthTokenIssuerResponse_UnsignedAccessToken)(nil), // 121: core.mgmt.v1beta.AuthTokenIssuerResponse.UnsignedAccessToken
-	(*Organization_Stats)(nil),                          // 122: core.mgmt.v1beta.Organization.Stats
-	(*v1beta.HealthCheckRequest)(nil),                   // 123: common.healthcheck.v1beta.HealthCheckRequest
-	(*v1beta.HealthCheckResponse)(nil),                  // 124: common.healthcheck.v1beta.HealthCheckResponse
-	(*timestamppb.Timestamp)(nil),                       // 125: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil),                       // 126: google.protobuf.FieldMask
+	(View)(0),                                         // 0: core.mgmt.v1beta.View
+	(OwnerType)(0),                                    // 1: core.mgmt.v1beta.OwnerType
+	(MembershipState)(0),                              // 2: core.mgmt.v1beta.MembershipState
+	(OnboardingStatus)(0),                             // 3: core.mgmt.v1beta.OnboardingStatus
+	(CheckNamespaceResponse_Namespace)(0),             // 4: core.mgmt.v1beta.CheckNamespaceResponse.Namespace
+	(CheckNamespaceAdminResponse_Namespace)(0),        // 5: core.mgmt.v1beta.CheckNamespaceAdminResponse.Namespace
+	(CheckNamespaceByUIDAdminResponse_Namespace)(0),   // 6: core.mgmt.v1beta.CheckNamespaceByUIDAdminResponse.Namespace
+	(ApiToken_State)(0),                               // 7: core.mgmt.v1beta.ApiToken.State
+	(StripeSubscriptionDetail_Status)(0),              // 8: core.mgmt.v1beta.StripeSubscriptionDetail.Status
+	(UserSubscription_Plan)(0),                        // 9: core.mgmt.v1beta.UserSubscription.Plan
+	(OrganizationSubscription_Plan)(0),                // 10: core.mgmt.v1beta.OrganizationSubscription.Plan
+	(*LivenessRequest)(nil),                           // 11: core.mgmt.v1beta.LivenessRequest
+	(*LivenessResponse)(nil),                          // 12: core.mgmt.v1beta.LivenessResponse
+	(*ReadinessRequest)(nil),                          // 13: core.mgmt.v1beta.ReadinessRequest
+	(*ReadinessResponse)(nil),                         // 14: core.mgmt.v1beta.ReadinessResponse
+	(*Permission)(nil),                                // 15: core.mgmt.v1beta.Permission
+	(*UserProfile)(nil),                               // 16: core.mgmt.v1beta.UserProfile
+	(*OrganizationProfile)(nil),                       // 17: core.mgmt.v1beta.OrganizationProfile
+	(*AuthenticatedUser)(nil),                         // 18: core.mgmt.v1beta.AuthenticatedUser
+	(*Owner)(nil),                                     // 19: core.mgmt.v1beta.Owner
+	(*User)(nil),                                      // 20: core.mgmt.v1beta.User
+	(*ListUsersAdminRequest)(nil),                     // 21: core.mgmt.v1beta.ListUsersAdminRequest
+	(*ListUsersAdminResponse)(nil),                    // 22: core.mgmt.v1beta.ListUsersAdminResponse
+	(*GetUserAdminRequest)(nil),                       // 23: core.mgmt.v1beta.GetUserAdminRequest
+	(*GetUserAdminResponse)(nil),                      // 24: core.mgmt.v1beta.GetUserAdminResponse
+	(*LookUpUserAdminRequest)(nil),                    // 25: core.mgmt.v1beta.LookUpUserAdminRequest
+	(*LookUpUserAdminResponse)(nil),                   // 26: core.mgmt.v1beta.LookUpUserAdminResponse
+	(*ListOrganizationsAdminRequest)(nil),             // 27: core.mgmt.v1beta.ListOrganizationsAdminRequest
+	(*ListOrganizationsAdminResponse)(nil),            // 28: core.mgmt.v1beta.ListOrganizationsAdminResponse
+	(*GetOrganizationAdminRequest)(nil),               // 29: core.mgmt.v1beta.GetOrganizationAdminRequest
+	(*GetOrganizationAdminResponse)(nil),              // 30: core.mgmt.v1beta.GetOrganizationAdminResponse
+	(*LookUpOrganizationAdminRequest)(nil),            // 31: core.mgmt.v1beta.LookUpOrganizationAdminRequest
+	(*LookUpOrganizationAdminResponse)(nil),           // 32: core.mgmt.v1beta.LookUpOrganizationAdminResponse
+	(*ListUsersRequest)(nil),                          // 33: core.mgmt.v1beta.ListUsersRequest
+	(*ListUsersResponse)(nil),                         // 34: core.mgmt.v1beta.ListUsersResponse
+	(*GetUserRequest)(nil),                            // 35: core.mgmt.v1beta.GetUserRequest
+	(*GetUserResponse)(nil),                           // 36: core.mgmt.v1beta.GetUserResponse
+	(*GetAuthenticatedUserRequest)(nil),               // 37: core.mgmt.v1beta.GetAuthenticatedUserRequest
+	(*GetAuthenticatedUserResponse)(nil),              // 38: core.mgmt.v1beta.GetAuthenticatedUserResponse
+	(*PatchAuthenticatedUserRequest)(nil),             // 39: core.mgmt.v1beta.PatchAuthenticatedUserRequest
+	(*PatchAuthenticatedUserResponse)(nil),            // 40: core.mgmt.v1beta.PatchAuthenticatedUserResponse
+	(*CheckNamespaceRequest)(nil),                     // 41: core.mgmt.v1beta.CheckNamespaceRequest
+	(*CheckNamespaceResponse)(nil),                    // 42: core.mgmt.v1beta.CheckNamespaceResponse
+	(*CheckNamespaceAdminRequest)(nil),                // 43: core.mgmt.v1beta.CheckNamespaceAdminRequest
+	(*CheckNamespaceAdminResponse)(nil),               // 44: core.mgmt.v1beta.CheckNamespaceAdminResponse
+	(*CheckNamespaceByUIDAdminRequest)(nil),           // 45: core.mgmt.v1beta.CheckNamespaceByUIDAdminRequest
+	(*CheckNamespaceByUIDAdminResponse)(nil),          // 46: core.mgmt.v1beta.CheckNamespaceByUIDAdminResponse
+	(*ApiToken)(nil),                                  // 47: core.mgmt.v1beta.ApiToken
+	(*CreateTokenRequest)(nil),                        // 48: core.mgmt.v1beta.CreateTokenRequest
+	(*CreateTokenResponse)(nil),                       // 49: core.mgmt.v1beta.CreateTokenResponse
+	(*ListTokensRequest)(nil),                         // 50: core.mgmt.v1beta.ListTokensRequest
+	(*ListTokensResponse)(nil),                        // 51: core.mgmt.v1beta.ListTokensResponse
+	(*GetTokenRequest)(nil),                           // 52: core.mgmt.v1beta.GetTokenRequest
+	(*GetTokenResponse)(nil),                          // 53: core.mgmt.v1beta.GetTokenResponse
+	(*DeleteTokenRequest)(nil),                        // 54: core.mgmt.v1beta.DeleteTokenRequest
+	(*DeleteTokenResponse)(nil),                       // 55: core.mgmt.v1beta.DeleteTokenResponse
+	(*ValidateTokenRequest)(nil),                      // 56: core.mgmt.v1beta.ValidateTokenRequest
+	(*ValidateTokenResponse)(nil),                     // 57: core.mgmt.v1beta.ValidateTokenResponse
+	(*GetRemainingCreditRequest)(nil),                 // 58: core.mgmt.v1beta.GetRemainingCreditRequest
+	(*GetRemainingCreditResponse)(nil),                // 59: core.mgmt.v1beta.GetRemainingCreditResponse
+	(*GetRemainingCreditAdminRequest)(nil),            // 60: core.mgmt.v1beta.GetRemainingCreditAdminRequest
+	(*GetRemainingCreditAdminResponse)(nil),           // 61: core.mgmt.v1beta.GetRemainingCreditAdminResponse
+	(*SubtractCreditAdminRequest)(nil),                // 62: core.mgmt.v1beta.SubtractCreditAdminRequest
+	(*SubtractCreditAdminResponse)(nil),               // 63: core.mgmt.v1beta.SubtractCreditAdminResponse
+	(*AuthTokenIssuerRequest)(nil),                    // 64: core.mgmt.v1beta.AuthTokenIssuerRequest
+	(*AuthTokenIssuerResponse)(nil),                   // 65: core.mgmt.v1beta.AuthTokenIssuerResponse
+	(*AuthLoginRequest)(nil),                          // 66: core.mgmt.v1beta.AuthLoginRequest
+	(*AuthLoginResponse)(nil),                         // 67: core.mgmt.v1beta.AuthLoginResponse
+	(*AuthLogoutRequest)(nil),                         // 68: core.mgmt.v1beta.AuthLogoutRequest
+	(*AuthLogoutResponse)(nil),                        // 69: core.mgmt.v1beta.AuthLogoutResponse
+	(*AuthValidateAccessTokenRequest)(nil),            // 70: core.mgmt.v1beta.AuthValidateAccessTokenRequest
+	(*AuthValidateAccessTokenResponse)(nil),           // 71: core.mgmt.v1beta.AuthValidateAccessTokenResponse
+	(*AuthChangePasswordRequest)(nil),                 // 72: core.mgmt.v1beta.AuthChangePasswordRequest
+	(*AuthChangePasswordResponse)(nil),                // 73: core.mgmt.v1beta.AuthChangePasswordResponse
+	(*Organization)(nil),                              // 74: core.mgmt.v1beta.Organization
+	(*ListOrganizationsRequest)(nil),                  // 75: core.mgmt.v1beta.ListOrganizationsRequest
+	(*ListOrganizationsResponse)(nil),                 // 76: core.mgmt.v1beta.ListOrganizationsResponse
+	(*CreateOrganizationRequest)(nil),                 // 77: core.mgmt.v1beta.CreateOrganizationRequest
+	(*CreateOrganizationResponse)(nil),                // 78: core.mgmt.v1beta.CreateOrganizationResponse
+	(*GetOrganizationRequest)(nil),                    // 79: core.mgmt.v1beta.GetOrganizationRequest
+	(*GetOrganizationResponse)(nil),                   // 80: core.mgmt.v1beta.GetOrganizationResponse
+	(*UpdateOrganizationRequest)(nil),                 // 81: core.mgmt.v1beta.UpdateOrganizationRequest
+	(*UpdateOrganizationResponse)(nil),                // 82: core.mgmt.v1beta.UpdateOrganizationResponse
+	(*DeleteOrganizationRequest)(nil),                 // 83: core.mgmt.v1beta.DeleteOrganizationRequest
+	(*DeleteOrganizationResponse)(nil),                // 84: core.mgmt.v1beta.DeleteOrganizationResponse
+	(*OrganizationMembership)(nil),                    // 85: core.mgmt.v1beta.OrganizationMembership
+	(*UserMembership)(nil),                            // 86: core.mgmt.v1beta.UserMembership
+	(*ListUserMembershipsRequest)(nil),                // 87: core.mgmt.v1beta.ListUserMembershipsRequest
+	(*ListUserMembershipsResponse)(nil),               // 88: core.mgmt.v1beta.ListUserMembershipsResponse
+	(*GetUserMembershipRequest)(nil),                  // 89: core.mgmt.v1beta.GetUserMembershipRequest
+	(*GetUserMembershipResponse)(nil),                 // 90: core.mgmt.v1beta.GetUserMembershipResponse
+	(*UpdateUserMembershipRequest)(nil),               // 91: core.mgmt.v1beta.UpdateUserMembershipRequest
+	(*UpdateUserMembershipResponse)(nil),              // 92: core.mgmt.v1beta.UpdateUserMembershipResponse
+	(*DeleteUserMembershipRequest)(nil),               // 93: core.mgmt.v1beta.DeleteUserMembershipRequest
+	(*DeleteUserMembershipResponse)(nil),              // 94: core.mgmt.v1beta.DeleteUserMembershipResponse
+	(*ListOrganizationMembershipsRequest)(nil),        // 95: core.mgmt.v1beta.ListOrganizationMembershipsRequest
+	(*ListOrganizationMembershipsResponse)(nil),       // 96: core.mgmt.v1beta.ListOrganizationMembershipsResponse
+	(*GetOrganizationMembershipRequest)(nil),          // 97: core.mgmt.v1beta.GetOrganizationMembershipRequest
+	(*GetOrganizationMembershipResponse)(nil),         // 98: core.mgmt.v1beta.GetOrganizationMembershipResponse
+	(*UpdateOrganizationMembershipRequest)(nil),       // 99: core.mgmt.v1beta.UpdateOrganizationMembershipRequest
+	(*UpdateOrganizationMembershipResponse)(nil),      // 100: core.mgmt.v1beta.UpdateOrganizationMembershipResponse
+	(*DeleteOrganizationMembershipRequest)(nil),       // 101: core.mgmt.v1beta.DeleteOrganizationMembershipRequest
+	(*DeleteOrganizationMembershipResponse)(nil),      // 102: core.mgmt.v1beta.DeleteOrganizationMembershipResponse
+	(*StripeSubscriptionDetail)(nil),                  // 103: core.mgmt.v1beta.StripeSubscriptionDetail
+	(*UserSubscription)(nil),                          // 104: core.mgmt.v1beta.UserSubscription
+	(*OrganizationSubscription)(nil),                  // 105: core.mgmt.v1beta.OrganizationSubscription
+	(*GetAuthenticatedUserSubscriptionRequest)(nil),   // 106: core.mgmt.v1beta.GetAuthenticatedUserSubscriptionRequest
+	(*GetAuthenticatedUserSubscriptionResponse)(nil),  // 107: core.mgmt.v1beta.GetAuthenticatedUserSubscriptionResponse
+	(*ListSubscriptionFreeTrialsRequest)(nil),         // 108: core.mgmt.v1beta.ListSubscriptionFreeTrialsRequest
+	(*SubscriptionFreeTrial)(nil),                     // 109: core.mgmt.v1beta.SubscriptionFreeTrial
+	(*ListSubscriptionFreeTrialsResponse)(nil),        // 110: core.mgmt.v1beta.ListSubscriptionFreeTrialsResponse
+	(*GetOrganizationSubscriptionRequest)(nil),        // 111: core.mgmt.v1beta.GetOrganizationSubscriptionRequest
+	(*GetOrganizationSubscriptionResponse)(nil),       // 112: core.mgmt.v1beta.GetOrganizationSubscriptionResponse
+	(*GetUserSubscriptionAdminRequest)(nil),           // 113: core.mgmt.v1beta.GetUserSubscriptionAdminRequest
+	(*GetUserSubscriptionAdminResponse)(nil),          // 114: core.mgmt.v1beta.GetUserSubscriptionAdminResponse
+	(*GetOrganizationSubscriptionAdminRequest)(nil),   // 115: core.mgmt.v1beta.GetOrganizationSubscriptionAdminRequest
+	(*GetOrganizationSubscriptionAdminResponse)(nil),  // 116: core.mgmt.v1beta.GetOrganizationSubscriptionAdminResponse
+	(*InviteOrganizationMembersRequest)(nil),          // 117: core.mgmt.v1beta.InviteOrganizationMembersRequest
+	(*InviteOrganizationMembersResponse)(nil),         // 118: core.mgmt.v1beta.InviteOrganizationMembersResponse
+	(*SyncAuthenticatedUserSubscriptionRequest)(nil),  // 119: core.mgmt.v1beta.SyncAuthenticatedUserSubscriptionRequest
+	(*SyncAuthenticatedUserSubscriptionResponse)(nil), // 120: core.mgmt.v1beta.SyncAuthenticatedUserSubscriptionResponse
+	(*SyncOrganizationSubscriptionRequest)(nil),       // 121: core.mgmt.v1beta.SyncOrganizationSubscriptionRequest
+	(*SyncOrganizationSubscriptionResponse)(nil),      // 122: core.mgmt.v1beta.SyncOrganizationSubscriptionResponse
+	nil, // 123: core.mgmt.v1beta.UserProfile.SocialProfileLinksEntry
+	nil, // 124: core.mgmt.v1beta.OrganizationProfile.SocialProfileLinksEntry
+	(*AuthTokenIssuerResponse_UnsignedAccessToken)(nil), // 125: core.mgmt.v1beta.AuthTokenIssuerResponse.UnsignedAccessToken
+	(*Organization_Stats)(nil),                          // 126: core.mgmt.v1beta.Organization.Stats
+	(*v1beta.HealthCheckRequest)(nil),                   // 127: common.healthcheck.v1beta.HealthCheckRequest
+	(*v1beta.HealthCheckResponse)(nil),                  // 128: common.healthcheck.v1beta.HealthCheckResponse
+	(*timestamppb.Timestamp)(nil),                       // 129: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil),                       // 130: google.protobuf.FieldMask
 }
 var file_core_mgmt_v1beta_mgmt_proto_depIdxs = []int32{
-	123, // 0: core.mgmt.v1beta.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	124, // 1: core.mgmt.v1beta.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
-	123, // 2: core.mgmt.v1beta.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	124, // 3: core.mgmt.v1beta.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
-	119, // 4: core.mgmt.v1beta.UserProfile.social_profile_links:type_name -> core.mgmt.v1beta.UserProfile.SocialProfileLinksEntry
-	120, // 5: core.mgmt.v1beta.OrganizationProfile.social_profile_links:type_name -> core.mgmt.v1beta.OrganizationProfile.SocialProfileLinksEntry
-	125, // 6: core.mgmt.v1beta.AuthenticatedUser.create_time:type_name -> google.protobuf.Timestamp
-	125, // 7: core.mgmt.v1beta.AuthenticatedUser.update_time:type_name -> google.protobuf.Timestamp
+	127, // 0: core.mgmt.v1beta.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	128, // 1: core.mgmt.v1beta.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	127, // 2: core.mgmt.v1beta.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	128, // 3: core.mgmt.v1beta.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	123, // 4: core.mgmt.v1beta.UserProfile.social_profile_links:type_name -> core.mgmt.v1beta.UserProfile.SocialProfileLinksEntry
+	124, // 5: core.mgmt.v1beta.OrganizationProfile.social_profile_links:type_name -> core.mgmt.v1beta.OrganizationProfile.SocialProfileLinksEntry
+	129, // 6: core.mgmt.v1beta.AuthenticatedUser.create_time:type_name -> google.protobuf.Timestamp
+	129, // 7: core.mgmt.v1beta.AuthenticatedUser.update_time:type_name -> google.protobuf.Timestamp
 	3,   // 8: core.mgmt.v1beta.AuthenticatedUser.onboarding_status:type_name -> core.mgmt.v1beta.OnboardingStatus
 	16,  // 9: core.mgmt.v1beta.AuthenticatedUser.profile:type_name -> core.mgmt.v1beta.UserProfile
 	20,  // 10: core.mgmt.v1beta.Owner.user:type_name -> core.mgmt.v1beta.User
 	74,  // 11: core.mgmt.v1beta.Owner.organization:type_name -> core.mgmt.v1beta.Organization
-	125, // 12: core.mgmt.v1beta.User.create_time:type_name -> google.protobuf.Timestamp
-	125, // 13: core.mgmt.v1beta.User.update_time:type_name -> google.protobuf.Timestamp
+	129, // 12: core.mgmt.v1beta.User.create_time:type_name -> google.protobuf.Timestamp
+	129, // 13: core.mgmt.v1beta.User.update_time:type_name -> google.protobuf.Timestamp
 	16,  // 14: core.mgmt.v1beta.User.profile:type_name -> core.mgmt.v1beta.UserProfile
 	0,   // 15: core.mgmt.v1beta.ListUsersAdminRequest.view:type_name -> core.mgmt.v1beta.View
 	20,  // 16: core.mgmt.v1beta.ListUsersAdminResponse.users:type_name -> core.mgmt.v1beta.User
@@ -7759,7 +7929,7 @@ var file_core_mgmt_v1beta_mgmt_proto_depIdxs = []int32{
 	20,  // 30: core.mgmt.v1beta.GetUserResponse.user:type_name -> core.mgmt.v1beta.User
 	18,  // 31: core.mgmt.v1beta.GetAuthenticatedUserResponse.user:type_name -> core.mgmt.v1beta.AuthenticatedUser
 	18,  // 32: core.mgmt.v1beta.PatchAuthenticatedUserRequest.user:type_name -> core.mgmt.v1beta.AuthenticatedUser
-	126, // 33: core.mgmt.v1beta.PatchAuthenticatedUserRequest.update_mask:type_name -> google.protobuf.FieldMask
+	130, // 33: core.mgmt.v1beta.PatchAuthenticatedUserRequest.update_mask:type_name -> google.protobuf.FieldMask
 	18,  // 34: core.mgmt.v1beta.PatchAuthenticatedUserResponse.user:type_name -> core.mgmt.v1beta.AuthenticatedUser
 	4,   // 35: core.mgmt.v1beta.CheckNamespaceResponse.type:type_name -> core.mgmt.v1beta.CheckNamespaceResponse.Namespace
 	5,   // 36: core.mgmt.v1beta.CheckNamespaceAdminResponse.type:type_name -> core.mgmt.v1beta.CheckNamespaceAdminResponse.Namespace
@@ -7768,22 +7938,22 @@ var file_core_mgmt_v1beta_mgmt_proto_depIdxs = []int32{
 	6,   // 39: core.mgmt.v1beta.CheckNamespaceByUIDAdminResponse.type:type_name -> core.mgmt.v1beta.CheckNamespaceByUIDAdminResponse.Namespace
 	20,  // 40: core.mgmt.v1beta.CheckNamespaceByUIDAdminResponse.user:type_name -> core.mgmt.v1beta.User
 	74,  // 41: core.mgmt.v1beta.CheckNamespaceByUIDAdminResponse.organization:type_name -> core.mgmt.v1beta.Organization
-	125, // 42: core.mgmt.v1beta.ApiToken.last_use_time:type_name -> google.protobuf.Timestamp
-	125, // 43: core.mgmt.v1beta.ApiToken.create_time:type_name -> google.protobuf.Timestamp
-	125, // 44: core.mgmt.v1beta.ApiToken.update_time:type_name -> google.protobuf.Timestamp
+	129, // 42: core.mgmt.v1beta.ApiToken.last_use_time:type_name -> google.protobuf.Timestamp
+	129, // 43: core.mgmt.v1beta.ApiToken.create_time:type_name -> google.protobuf.Timestamp
+	129, // 44: core.mgmt.v1beta.ApiToken.update_time:type_name -> google.protobuf.Timestamp
 	7,   // 45: core.mgmt.v1beta.ApiToken.state:type_name -> core.mgmt.v1beta.ApiToken.State
-	125, // 46: core.mgmt.v1beta.ApiToken.expire_time:type_name -> google.protobuf.Timestamp
+	129, // 46: core.mgmt.v1beta.ApiToken.expire_time:type_name -> google.protobuf.Timestamp
 	47,  // 47: core.mgmt.v1beta.CreateTokenRequest.token:type_name -> core.mgmt.v1beta.ApiToken
 	47,  // 48: core.mgmt.v1beta.CreateTokenResponse.token:type_name -> core.mgmt.v1beta.ApiToken
 	47,  // 49: core.mgmt.v1beta.ListTokensResponse.tokens:type_name -> core.mgmt.v1beta.ApiToken
 	47,  // 50: core.mgmt.v1beta.GetTokenResponse.token:type_name -> core.mgmt.v1beta.ApiToken
-	121, // 51: core.mgmt.v1beta.AuthTokenIssuerResponse.access_token:type_name -> core.mgmt.v1beta.AuthTokenIssuerResponse.UnsignedAccessToken
-	125, // 52: core.mgmt.v1beta.Organization.create_time:type_name -> google.protobuf.Timestamp
-	125, // 53: core.mgmt.v1beta.Organization.update_time:type_name -> google.protobuf.Timestamp
+	125, // 51: core.mgmt.v1beta.AuthTokenIssuerResponse.access_token:type_name -> core.mgmt.v1beta.AuthTokenIssuerResponse.UnsignedAccessToken
+	129, // 52: core.mgmt.v1beta.Organization.create_time:type_name -> google.protobuf.Timestamp
+	129, // 53: core.mgmt.v1beta.Organization.update_time:type_name -> google.protobuf.Timestamp
 	20,  // 54: core.mgmt.v1beta.Organization.owner:type_name -> core.mgmt.v1beta.User
 	17,  // 55: core.mgmt.v1beta.Organization.profile:type_name -> core.mgmt.v1beta.OrganizationProfile
 	15,  // 56: core.mgmt.v1beta.Organization.permission:type_name -> core.mgmt.v1beta.Permission
-	122, // 57: core.mgmt.v1beta.Organization.stats:type_name -> core.mgmt.v1beta.Organization.Stats
+	126, // 57: core.mgmt.v1beta.Organization.stats:type_name -> core.mgmt.v1beta.Organization.Stats
 	0,   // 58: core.mgmt.v1beta.ListOrganizationsRequest.view:type_name -> core.mgmt.v1beta.View
 	74,  // 59: core.mgmt.v1beta.ListOrganizationsResponse.organizations:type_name -> core.mgmt.v1beta.Organization
 	74,  // 60: core.mgmt.v1beta.CreateOrganizationRequest.organization:type_name -> core.mgmt.v1beta.Organization
@@ -7791,7 +7961,7 @@ var file_core_mgmt_v1beta_mgmt_proto_depIdxs = []int32{
 	0,   // 62: core.mgmt.v1beta.GetOrganizationRequest.view:type_name -> core.mgmt.v1beta.View
 	74,  // 63: core.mgmt.v1beta.GetOrganizationResponse.organization:type_name -> core.mgmt.v1beta.Organization
 	74,  // 64: core.mgmt.v1beta.UpdateOrganizationRequest.organization:type_name -> core.mgmt.v1beta.Organization
-	126, // 65: core.mgmt.v1beta.UpdateOrganizationRequest.update_mask:type_name -> google.protobuf.FieldMask
+	130, // 65: core.mgmt.v1beta.UpdateOrganizationRequest.update_mask:type_name -> google.protobuf.FieldMask
 	74,  // 66: core.mgmt.v1beta.UpdateOrganizationResponse.organization:type_name -> core.mgmt.v1beta.Organization
 	2,   // 67: core.mgmt.v1beta.OrganizationMembership.state:type_name -> core.mgmt.v1beta.MembershipState
 	20,  // 68: core.mgmt.v1beta.OrganizationMembership.user:type_name -> core.mgmt.v1beta.User
@@ -7803,13 +7973,13 @@ var file_core_mgmt_v1beta_mgmt_proto_depIdxs = []int32{
 	0,   // 74: core.mgmt.v1beta.GetUserMembershipRequest.view:type_name -> core.mgmt.v1beta.View
 	86,  // 75: core.mgmt.v1beta.GetUserMembershipResponse.membership:type_name -> core.mgmt.v1beta.UserMembership
 	86,  // 76: core.mgmt.v1beta.UpdateUserMembershipRequest.membership:type_name -> core.mgmt.v1beta.UserMembership
-	126, // 77: core.mgmt.v1beta.UpdateUserMembershipRequest.update_mask:type_name -> google.protobuf.FieldMask
+	130, // 77: core.mgmt.v1beta.UpdateUserMembershipRequest.update_mask:type_name -> google.protobuf.FieldMask
 	86,  // 78: core.mgmt.v1beta.UpdateUserMembershipResponse.membership:type_name -> core.mgmt.v1beta.UserMembership
 	85,  // 79: core.mgmt.v1beta.ListOrganizationMembershipsResponse.memberships:type_name -> core.mgmt.v1beta.OrganizationMembership
 	0,   // 80: core.mgmt.v1beta.GetOrganizationMembershipRequest.view:type_name -> core.mgmt.v1beta.View
 	85,  // 81: core.mgmt.v1beta.GetOrganizationMembershipResponse.membership:type_name -> core.mgmt.v1beta.OrganizationMembership
 	85,  // 82: core.mgmt.v1beta.UpdateOrganizationMembershipRequest.membership:type_name -> core.mgmt.v1beta.OrganizationMembership
-	126, // 83: core.mgmt.v1beta.UpdateOrganizationMembershipRequest.update_mask:type_name -> google.protobuf.FieldMask
+	130, // 83: core.mgmt.v1beta.UpdateOrganizationMembershipRequest.update_mask:type_name -> google.protobuf.FieldMask
 	85,  // 84: core.mgmt.v1beta.UpdateOrganizationMembershipResponse.membership:type_name -> core.mgmt.v1beta.OrganizationMembership
 	8,   // 85: core.mgmt.v1beta.StripeSubscriptionDetail.status:type_name -> core.mgmt.v1beta.StripeSubscriptionDetail.Status
 	9,   // 86: core.mgmt.v1beta.UserSubscription.plan:type_name -> core.mgmt.v1beta.UserSubscription.Plan
@@ -7819,7 +7989,7 @@ var file_core_mgmt_v1beta_mgmt_proto_depIdxs = []int32{
 	104, // 90: core.mgmt.v1beta.GetAuthenticatedUserSubscriptionResponse.subscription:type_name -> core.mgmt.v1beta.UserSubscription
 	9,   // 91: core.mgmt.v1beta.SubscriptionFreeTrial.user_plan:type_name -> core.mgmt.v1beta.UserSubscription.Plan
 	10,  // 92: core.mgmt.v1beta.SubscriptionFreeTrial.organization_plan:type_name -> core.mgmt.v1beta.OrganizationSubscription.Plan
-	125, // 93: core.mgmt.v1beta.SubscriptionFreeTrial.trial_end:type_name -> google.protobuf.Timestamp
+	129, // 93: core.mgmt.v1beta.SubscriptionFreeTrial.trial_end:type_name -> google.protobuf.Timestamp
 	109, // 94: core.mgmt.v1beta.ListSubscriptionFreeTrialsResponse.free_trials:type_name -> core.mgmt.v1beta.SubscriptionFreeTrial
 	105, // 95: core.mgmt.v1beta.GetOrganizationSubscriptionResponse.subscription:type_name -> core.mgmt.v1beta.OrganizationSubscription
 	104, // 96: core.mgmt.v1beta.GetUserSubscriptionAdminResponse.subscription:type_name -> core.mgmt.v1beta.UserSubscription
@@ -7882,7 +8052,7 @@ func file_core_mgmt_v1beta_mgmt_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_core_mgmt_v1beta_mgmt_proto_rawDesc), len(file_core_mgmt_v1beta_mgmt_proto_rawDesc)),
 			NumEnums:      11,
-			NumMessages:   112,
+			NumMessages:   116,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

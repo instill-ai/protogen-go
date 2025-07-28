@@ -40,7 +40,9 @@ const (
 	MgmtPublicService_DeleteOrganizationMembership_FullMethodName      = "/core.mgmt.v1beta.MgmtPublicService/DeleteOrganizationMembership"
 	MgmtPublicService_InviteOrganizationMembers_FullMethodName         = "/core.mgmt.v1beta.MgmtPublicService/InviteOrganizationMembers"
 	MgmtPublicService_GetAuthenticatedUserSubscription_FullMethodName  = "/core.mgmt.v1beta.MgmtPublicService/GetAuthenticatedUserSubscription"
+	MgmtPublicService_SyncAuthenticatedUserSubscription_FullMethodName = "/core.mgmt.v1beta.MgmtPublicService/SyncAuthenticatedUserSubscription"
 	MgmtPublicService_GetOrganizationSubscription_FullMethodName       = "/core.mgmt.v1beta.MgmtPublicService/GetOrganizationSubscription"
+	MgmtPublicService_SyncOrganizationSubscription_FullMethodName      = "/core.mgmt.v1beta.MgmtPublicService/SyncOrganizationSubscription"
 	MgmtPublicService_ListSubscriptionFreeTrials_FullMethodName        = "/core.mgmt.v1beta.MgmtPublicService/ListSubscriptionFreeTrials"
 	MgmtPublicService_CreateToken_FullMethodName                       = "/core.mgmt.v1beta.MgmtPublicService/CreateToken"
 	MgmtPublicService_ListTokens_FullMethodName                        = "/core.mgmt.v1beta.MgmtPublicService/ListTokens"
@@ -167,6 +169,10 @@ type MgmtPublicServiceClient interface {
 	// downgraded from a plan several times), the most recent subscription is
 	// returned.
 	GetAuthenticatedUserSubscription(ctx context.Context, in *GetAuthenticatedUserSubscriptionRequest, opts ...grpc.CallOption) (*GetAuthenticatedUserSubscriptionResponse, error)
+	// Sync the subscription of the authenticated user
+	//
+	// Syncs the subscription of the authenticated user with Stripe.
+	SyncAuthenticatedUserSubscription(ctx context.Context, in *SyncAuthenticatedUserSubscriptionRequest, opts ...grpc.CallOption) (*SyncAuthenticatedUserSubscriptionResponse, error)
 	// Get the subscription of an organization
 	//
 	// Returns the subscription details for an organization's team plan. If
@@ -174,6 +180,10 @@ type MgmtPublicServiceClient interface {
 	// downgraded from a plan several times), the most recent subscription is
 	// returned.
 	GetOrganizationSubscription(ctx context.Context, in *GetOrganizationSubscriptionRequest, opts ...grpc.CallOption) (*GetOrganizationSubscriptionResponse, error)
+	// Sync the subscription of an organization
+	//
+	// Syncs the subscription of an organization with Stripe.
+	SyncOrganizationSubscription(ctx context.Context, in *SyncOrganizationSubscriptionRequest, opts ...grpc.CallOption) (*SyncOrganizationSubscriptionResponse, error)
 	// List subscription free trials
 	//
 	// Returns a list of the free trials of the authenticated user. The trials
@@ -506,10 +516,30 @@ func (c *mgmtPublicServiceClient) GetAuthenticatedUserSubscription(ctx context.C
 	return out, nil
 }
 
+func (c *mgmtPublicServiceClient) SyncAuthenticatedUserSubscription(ctx context.Context, in *SyncAuthenticatedUserSubscriptionRequest, opts ...grpc.CallOption) (*SyncAuthenticatedUserSubscriptionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SyncAuthenticatedUserSubscriptionResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_SyncAuthenticatedUserSubscription_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *mgmtPublicServiceClient) GetOrganizationSubscription(ctx context.Context, in *GetOrganizationSubscriptionRequest, opts ...grpc.CallOption) (*GetOrganizationSubscriptionResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetOrganizationSubscriptionResponse)
 	err := c.cc.Invoke(ctx, MgmtPublicService_GetOrganizationSubscription_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mgmtPublicServiceClient) SyncOrganizationSubscription(ctx context.Context, in *SyncOrganizationSubscriptionRequest, opts ...grpc.CallOption) (*SyncOrganizationSubscriptionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SyncOrganizationSubscriptionResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_SyncOrganizationSubscription_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -832,6 +862,10 @@ type MgmtPublicServiceServer interface {
 	// downgraded from a plan several times), the most recent subscription is
 	// returned.
 	GetAuthenticatedUserSubscription(context.Context, *GetAuthenticatedUserSubscriptionRequest) (*GetAuthenticatedUserSubscriptionResponse, error)
+	// Sync the subscription of the authenticated user
+	//
+	// Syncs the subscription of the authenticated user with Stripe.
+	SyncAuthenticatedUserSubscription(context.Context, *SyncAuthenticatedUserSubscriptionRequest) (*SyncAuthenticatedUserSubscriptionResponse, error)
 	// Get the subscription of an organization
 	//
 	// Returns the subscription details for an organization's team plan. If
@@ -839,6 +873,10 @@ type MgmtPublicServiceServer interface {
 	// downgraded from a plan several times), the most recent subscription is
 	// returned.
 	GetOrganizationSubscription(context.Context, *GetOrganizationSubscriptionRequest) (*GetOrganizationSubscriptionResponse, error)
+	// Sync the subscription of an organization
+	//
+	// Syncs the subscription of an organization with Stripe.
+	SyncOrganizationSubscription(context.Context, *SyncOrganizationSubscriptionRequest) (*SyncOrganizationSubscriptionResponse, error)
 	// List subscription free trials
 	//
 	// Returns a list of the free trials of the authenticated user. The trials
@@ -1023,8 +1061,14 @@ func (UnimplementedMgmtPublicServiceServer) InviteOrganizationMembers(context.Co
 func (UnimplementedMgmtPublicServiceServer) GetAuthenticatedUserSubscription(context.Context, *GetAuthenticatedUserSubscriptionRequest) (*GetAuthenticatedUserSubscriptionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAuthenticatedUserSubscription not implemented")
 }
+func (UnimplementedMgmtPublicServiceServer) SyncAuthenticatedUserSubscription(context.Context, *SyncAuthenticatedUserSubscriptionRequest) (*SyncAuthenticatedUserSubscriptionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SyncAuthenticatedUserSubscription not implemented")
+}
 func (UnimplementedMgmtPublicServiceServer) GetOrganizationSubscription(context.Context, *GetOrganizationSubscriptionRequest) (*GetOrganizationSubscriptionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationSubscription not implemented")
+}
+func (UnimplementedMgmtPublicServiceServer) SyncOrganizationSubscription(context.Context, *SyncOrganizationSubscriptionRequest) (*SyncOrganizationSubscriptionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SyncOrganizationSubscription not implemented")
 }
 func (UnimplementedMgmtPublicServiceServer) ListSubscriptionFreeTrials(context.Context, *ListSubscriptionFreeTrialsRequest) (*ListSubscriptionFreeTrialsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListSubscriptionFreeTrials not implemented")
@@ -1487,6 +1531,24 @@ func _MgmtPublicService_GetAuthenticatedUserSubscription_Handler(srv interface{}
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MgmtPublicService_SyncAuthenticatedUserSubscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SyncAuthenticatedUserSubscriptionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).SyncAuthenticatedUserSubscription(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_SyncAuthenticatedUserSubscription_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).SyncAuthenticatedUserSubscription(ctx, req.(*SyncAuthenticatedUserSubscriptionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _MgmtPublicService_GetOrganizationSubscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetOrganizationSubscriptionRequest)
 	if err := dec(in); err != nil {
@@ -1501,6 +1563,24 @@ func _MgmtPublicService_GetOrganizationSubscription_Handler(srv interface{}, ctx
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MgmtPublicServiceServer).GetOrganizationSubscription(ctx, req.(*GetOrganizationSubscriptionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MgmtPublicService_SyncOrganizationSubscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SyncOrganizationSubscriptionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).SyncOrganizationSubscription(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_SyncOrganizationSubscription_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).SyncOrganizationSubscription(ctx, req.(*SyncOrganizationSubscriptionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1975,8 +2055,16 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MgmtPublicService_GetAuthenticatedUserSubscription_Handler,
 		},
 		{
+			MethodName: "SyncAuthenticatedUserSubscription",
+			Handler:    _MgmtPublicService_SyncAuthenticatedUserSubscription_Handler,
+		},
+		{
 			MethodName: "GetOrganizationSubscription",
 			Handler:    _MgmtPublicService_GetOrganizationSubscription_Handler,
+		},
+		{
+			MethodName: "SyncOrganizationSubscription",
+			Handler:    _MgmtPublicService_SyncOrganizationSubscription_Handler,
 		},
 		{
 			MethodName: "ListSubscriptionFreeTrials",
