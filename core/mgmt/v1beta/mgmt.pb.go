@@ -1125,9 +1125,11 @@ type AuthenticatedUser struct {
 	// Onboarding Status.
 	OnboardingStatus OnboardingStatus `protobuf:"varint,17,opt,name=onboarding_status,json=onboardingStatus,proto3,enum=core.mgmt.v1beta.OnboardingStatus" json:"onboarding_status,omitempty"`
 	// Profile.
-	Profile       *UserProfile `protobuf:"bytes,18,opt,name=profile,proto3" json:"profile,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	Profile *UserProfile `protobuf:"bytes,18,opt,name=profile,proto3" json:"profile,omitempty"`
+	// Is eligible for organization trial.
+	IsEligibleForOrganizationTrial bool `protobuf:"varint,19,opt,name=is_eligible_for_organization_trial,json=isEligibleForOrganizationTrial,proto3" json:"is_eligible_for_organization_trial,omitempty"`
+	unknownFields                  protoimpl.UnknownFields
+	sizeCache                      protoimpl.SizeCache
 }
 
 func (x *AuthenticatedUser) Reset() {
@@ -1242,6 +1244,13 @@ func (x *AuthenticatedUser) GetProfile() *UserProfile {
 		return x.Profile
 	}
 	return nil
+}
+
+func (x *AuthenticatedUser) GetIsEligibleForOrganizationTrial() bool {
+	if x != nil {
+		return x.IsEligibleForOrganizationTrial
+	}
+	return false
 }
 
 // Owner is a wrapper for User and Organization, used to embed owner information in other resources.
@@ -7278,7 +7287,7 @@ const file_core_mgmt_v1beta_mgmt_proto_rawDesc = "" +
 	"\r_display_nameB\x06\n" +
 	"\x04_bioB\t\n" +
 	"\a_avatarB\x0f\n" +
-	"\r_public_email\"\xe1\x04\n" +
+	"\r_public_email\"\xb2\x05\n" +
 	"\x11AuthenticatedUser\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x1a\n" +
 	"\x03uid\x18\x02 \x01(\tB\x03\xe0A\x05H\x00R\x03uid\x88\x01\x01\x12\x13\n" +
@@ -7294,7 +7303,8 @@ const file_core_mgmt_v1beta_mgmt_proto_rawDesc = "" +
 	"\x17newsletter_subscription\x18\r \x01(\bB\x03\xe0A\x02R\x16newsletterSubscription\x12+\n" +
 	"\fcookie_token\x18\x0e \x01(\tB\x03\xe0A\x01H\x02R\vcookieToken\x88\x01\x01\x12T\n" +
 	"\x11onboarding_status\x18\x11 \x01(\x0e2\".core.mgmt.v1beta.OnboardingStatusB\x03\xe0A\x01R\x10onboardingStatus\x12<\n" +
-	"\aprofile\x18\x12 \x01(\v2\x1d.core.mgmt.v1beta.UserProfileB\x03\xe0A\x03R\aprofileB\x06\n" +
+	"\aprofile\x18\x12 \x01(\v2\x1d.core.mgmt.v1beta.UserProfileB\x03\xe0A\x03R\aprofile\x12O\n" +
+	"\"is_eligible_for_organization_trial\x18\x13 \x01(\bB\x03\xe0A\x03R\x1eisEligibleForOrganizationTrialB\x06\n" +
 	"\x04_uidB\a\n" +
 	"\x05_roleB\x0f\n" +
 	"\r_cookie_token\"\x8e\x01\n" +
