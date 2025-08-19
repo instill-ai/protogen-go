@@ -124,9 +124,10 @@ type ArtifactPublicServiceClient interface {
 	//
 	// Returns the top-K most similar chunks to a text prompt.
 	SimilarityChunksSearch(ctx context.Context, in *SimilarityChunksSearchRequest, opts ...grpc.CallOption) (*SimilarityChunksSearchResponse, error)
-	// Ask a question
+	// Answer a question
 	//
-	// Asks a question.
+	// Provides the response to the prompted question, returning contextual
+	// information like the chunks used to build the answer.
 	QuestionAnswering(ctx context.Context, in *QuestionAnsweringRequest, opts ...grpc.CallOption) (*QuestionAnsweringResponse, error)
 	// Get the catalog file.
 	//
@@ -478,9 +479,10 @@ type ArtifactPublicServiceServer interface {
 	//
 	// Returns the top-K most similar chunks to a text prompt.
 	SimilarityChunksSearch(context.Context, *SimilarityChunksSearchRequest) (*SimilarityChunksSearchResponse, error)
-	// Ask a question
+	// Answer a question
 	//
-	// Asks a question.
+	// Provides the response to the prompted question, returning contextual
+	// information like the chunks used to build the answer.
 	QuestionAnswering(context.Context, *QuestionAnsweringRequest) (*QuestionAnsweringResponse, error)
 	// Get the catalog file.
 	//

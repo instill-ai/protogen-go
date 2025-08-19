@@ -7,6 +7,7 @@
 package artifactv1alpha
 
 import (
+	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -24,14 +25,18 @@ const (
 // QuestionAnsweringRequest
 type QuestionAnsweringRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// id of the namespace
+	// ID of the namespace owning the catalog.
 	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// id of the catalog
+	// ID of the catalog.
 	CatalogId string `protobuf:"bytes,2,opt,name=catalog_id,json=catalogId,proto3" json:"catalog_id,omitempty"`
-	// question to be answered
+	// Text prompt with the question.
 	Question string `protobuf:"bytes,3,opt,name=question,proto3" json:"question,omitempty"`
-	// top k default to 5
-	TopK          int32 `protobuf:"varint,4,opt,name=top_k,json=topK,proto3" json:"top_k,omitempty"`
+	// Top K. Default value: 5.
+	TopK int32 `protobuf:"varint,4,opt,name=top_k,json=topK,proto3" json:"top_k,omitempty"`
+	// File UIDs. When this field is provided, the response will only use the
+	// specified files to build the answer. The UIDs must be UUID-formatted
+	// strings.
+	FileUids      []string `protobuf:"bytes,9,rep,name=file_uids,json=fileUids,proto3" json:"file_uids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -94,6 +99,13 @@ func (x *QuestionAnsweringRequest) GetTopK() int32 {
 	return 0
 }
 
+func (x *QuestionAnsweringRequest) GetFileUids() []string {
+	if x != nil {
+		return x.FileUids
+	}
+	return nil
+}
+
 // QuestionAnsweringResponse
 type QuestionAnsweringResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -153,13 +165,14 @@ var File_artifact_artifact_v1alpha_qa_proto protoreflect.FileDescriptor
 
 const file_artifact_artifact_v1alpha_qa_proto_rawDesc = "" +
 	"\n" +
-	"\"artifact/artifact/v1alpha/qa.proto\x12\x19artifact.artifact.v1alpha\x1a%artifact/artifact/v1alpha/chunk.proto\"\x8d\x01\n" +
+	"\"artifact/artifact/v1alpha/qa.proto\x12\x19artifact.artifact.v1alpha\x1a%artifact/artifact/v1alpha/chunk.proto\x1a\x1fgoogle/api/field_behavior.proto\"\xaf\x01\n" +
 	"\x18QuestionAnsweringRequest\x12!\n" +
 	"\fnamespace_id\x18\x01 \x01(\tR\vnamespaceId\x12\x1d\n" +
 	"\n" +
 	"catalog_id\x18\x02 \x01(\tR\tcatalogId\x12\x1a\n" +
 	"\bquestion\x18\x03 \x01(\tR\bquestion\x12\x13\n" +
-	"\x05top_k\x18\x04 \x01(\x05R\x04topK\"\x86\x01\n" +
+	"\x05top_k\x18\x04 \x01(\x05R\x04topK\x12 \n" +
+	"\tfile_uids\x18\t \x03(\tB\x03\xe0A\x01R\bfileUids\"\x86\x01\n" +
 	"\x19QuestionAnsweringResponse\x12\x16\n" +
 	"\x06answer\x18\x01 \x01(\tR\x06answer\x12Q\n" +
 	"\x0esimilar_chunks\x18\x02 \x03(\v2*.artifact.artifact.v1alpha.SimilarityChunkR\rsimilarChunksB\xfb\x01\n" +

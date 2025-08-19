@@ -980,6 +980,8 @@ type SimilarityChunksSearchRequest struct {
 	TopK uint32 `protobuf:"varint,4,opt,name=top_k,json=topK,proto3" json:"top_k,omitempty"`
 	// File name. This field is deprecated as the file ID isn't a unique
 	// identifier within a catalog. The file UID should be used, instead.
+	// When this file is provided, the service will search a file by UID and
+	// it'll use the UID in the first match.
 	//
 	// Deprecated: Marked as deprecated in artifact/artifact/v1alpha/chunk.proto.
 	FileName string `protobuf:"bytes,5,opt,name=file_name,json=fileName,proto3" json:"file_name,omitempty"`
@@ -987,8 +989,13 @@ type SimilarityChunksSearchRequest struct {
 	ContentType ContentType `protobuf:"varint,6,opt,name=content_type,json=contentType,proto3,enum=artifact.artifact.v1alpha.ContentType" json:"content_type,omitempty"`
 	// File type.
 	FileMediaType FileMediaType `protobuf:"varint,7,opt,name=file_media_type,json=fileMediaType,proto3,enum=artifact.artifact.v1alpha.FileMediaType" json:"file_media_type,omitempty"`
-	// File UID.
-	FileUid       string `protobuf:"bytes,8,opt,name=file_uid,json=fileUid,proto3" json:"file_uid,omitempty"`
+	// File UID. This field is deprecated, the file_uids should be used instead.
+	//
+	// Deprecated: Marked as deprecated in artifact/artifact/v1alpha/chunk.proto.
+	FileUid string `protobuf:"bytes,8,opt,name=file_uid,json=fileUid,proto3" json:"file_uid,omitempty"`
+	// File UIDs. When this field is provided, the response will return only
+	// chunks that belong to the specified file UIDs.
+	FileUids      []string `protobuf:"bytes,9,rep,name=file_uids,json=fileUids,proto3" json:"file_uids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1073,11 +1080,19 @@ func (x *SimilarityChunksSearchRequest) GetFileMediaType() FileMediaType {
 	return FileMediaType_FILE_MEDIA_TYPE_UNSPECIFIED
 }
 
+// Deprecated: Marked as deprecated in artifact/artifact/v1alpha/chunk.proto.
 func (x *SimilarityChunksSearchRequest) GetFileUid() string {
 	if x != nil {
 		return x.FileUid
 	}
 	return ""
+}
+
+func (x *SimilarityChunksSearchRequest) GetFileUids() []string {
+	if x != nil {
+		return x.FileUids
+	}
+	return nil
 }
 
 // Similar chunk search response
@@ -1269,7 +1284,7 @@ const file_artifact_artifact_v1alpha_chunk_proto_rawDesc = "" +
 	"\tchunk_uid\x18\x01 \x01(\tB\x03\xe0A\x02R\bchunkUid\x12%\n" +
 	"\vretrievable\x18\x02 \x01(\bB\x03\xe0A\x02R\vretrievable\"R\n" +
 	"\x13UpdateChunkResponse\x12;\n" +
-	"\x05chunk\x18\x01 \x01(\v2 .artifact.artifact.v1alpha.ChunkB\x03\xe0A\x03R\x05chunk\"\x96\x03\n" +
+	"\x05chunk\x18\x01 \x01(\v2 .artifact.artifact.v1alpha.ChunkB\x03\xe0A\x03R\x05chunk\"\xba\x03\n" +
 	"\x1dSimilarityChunksSearchRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\"\n" +
 	"\n" +
@@ -1279,8 +1294,9 @@ const file_artifact_artifact_v1alpha_chunk_proto_rawDesc = "" +
 	"\x05top_k\x18\x04 \x01(\rB\x03\xe0A\x01R\x04topK\x12\"\n" +
 	"\tfile_name\x18\x05 \x01(\tB\x05\xe0A\x01\x18\x01R\bfileName\x12N\n" +
 	"\fcontent_type\x18\x06 \x01(\x0e2&.artifact.artifact.v1alpha.ContentTypeB\x03\xe0A\x01R\vcontentType\x12U\n" +
-	"\x0ffile_media_type\x18\a \x01(\x0e2(.artifact.artifact.v1alpha.FileMediaTypeB\x03\xe0A\x01R\rfileMediaType\x12\x1e\n" +
-	"\bfile_uid\x18\b \x01(\tB\x03\xe0A\x01R\afileUid\"x\n" +
+	"\x0ffile_media_type\x18\a \x01(\x0e2(.artifact.artifact.v1alpha.FileMediaTypeB\x03\xe0A\x01R\rfileMediaType\x12 \n" +
+	"\bfile_uid\x18\b \x01(\tB\x05\xe0A\x01\x18\x01R\afileUid\x12 \n" +
+	"\tfile_uids\x18\t \x03(\tB\x03\xe0A\x01R\bfileUids\"x\n" +
 	"\x1eSimilarityChunksSearchResponse\x12V\n" +
 	"\x0esimilar_chunks\x18\x01 \x03(\v2*.artifact.artifact.v1alpha.SimilarityChunkB\x03\xe0A\x03R\rsimilarChunks\"\xff\x01\n" +
 	"\x0fSimilarityChunk\x12 \n" +
