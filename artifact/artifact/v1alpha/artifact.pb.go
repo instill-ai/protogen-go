@@ -2187,9 +2187,41 @@ type File struct {
 	// summary of the file
 	Summary string `protobuf:"bytes,19,opt,name=summary,proto3" json:"summary,omitempty"`
 	// download url of the file
-	DownloadUrl   string `protobuf:"bytes,20,opt,name=download_url,json=downloadUrl,proto3" json:"download_url,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	DownloadUrl string `protobuf:"bytes,20,opt,name=download_url,json=downloadUrl,proto3" json:"download_url,omitempty"`
+	// Pipeline used for converting the file to Markdown if the file is a
+	// document (i.e., a file with pdf, doc[x] or ppt[x] extension). The value
+	// identifies the pipeline release and and MUST have the format
+	// `{namespaceID}/{pipelineID}@{version}`.
+	// The pipeline recipe MUST have the following variable and output fields:
+	// ```yaml variable
+	// variable:
+	//
+	//	document_input:
+	//	  title: document-input
+	//	  description: Upload a document (PDF/DOCX/DOC/PPTX/PPT)
+	//	  type: file
+	//
+	// ```
+	// ```yaml output
+	// output:
+	//
+	//	convert_result:
+	//	  title: convert-result
+	//	  value: ${merge-markdown-refinement.output.results[0]}
+	//
+	// ```
+	// Other variable and output fields will be ignored.
+	//
+	// The pipeline will be executed first, falling back to the catalog's
+	// conversion pipelines if the conversion doesn't yield a non-empty result
+	// (see the catalog creation endpoint documentation).
+	//
+	// For non-document catalog files, the conversion pipeline is deterministic
+	// (such files are typically trivial to convert and don't require a dedicated
+	// pipeline to improve the conversion performance).
+	ConvertingPipeline *string `protobuf:"bytes,21,opt,name=converting_pipeline,json=convertingPipeline,proto3,oneof" json:"converting_pipeline,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *File) Reset() {
@@ -2362,6 +2394,13 @@ func (x *File) GetDownloadUrl() string {
 	return ""
 }
 
+func (x *File) GetConvertingPipeline() string {
+	if x != nil && x.ConvertingPipeline != nil {
+		return *x.ConvertingPipeline
+	}
+	return ""
+}
+
 // upload file request
 type UploadCatalogFileRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -2370,41 +2409,9 @@ type UploadCatalogFileRequest struct {
 	// catalog id
 	CatalogId string `protobuf:"bytes,2,opt,name=catalog_id,json=catalogId,proto3" json:"catalog_id,omitempty"`
 	// file
-	File *File `protobuf:"bytes,3,opt,name=file,proto3" json:"file,omitempty"`
-	// Pipeline used for converting the file to Markdown if the file is a
-	// document (i.e., a file with pdf, doc[x] or ppt[x] extension). The value
-	// identifies the pipeline release and and MUST have the format
-	// `{namespaceID}/{pipelineID}@{version}`.
-	// The pipeline recipe MUST have the following variable and output fields:
-	// ```yaml variable
-	// variable:
-	//
-	//	document_input:
-	//	  title: document-input
-	//	  description: Upload a document (PDF/DOCX/DOC/PPTX/PPT)
-	//	  type: file
-	//
-	// ```
-	// ```yaml output
-	// output:
-	//
-	//	convert_result:
-	//	  title: convert-result
-	//	  value: ${merge-markdown-refinement.output.results[0]}
-	//
-	// ```
-	// Other variable and output fields will be ignored.
-	//
-	// The pipeline will be executed first, falling back to the catalog's
-	// conversion pipelines if the conversion doesn't yield a non-empty result
-	// (see the catalog creation endpoint documentation).
-	//
-	// For non-document catalog files, the conversion pipeline is deterministic
-	// (such files are typically trivial to convert and don't require a dedicated
-	// pipeline to improve the conversion performance).
-	ConvertingPipeline string `protobuf:"bytes,4,opt,name=converting_pipeline,json=convertingPipeline,proto3" json:"converting_pipeline,omitempty"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
+	File          *File `protobuf:"bytes,3,opt,name=file,proto3" json:"file,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *UploadCatalogFileRequest) Reset() {
@@ -2456,13 +2463,6 @@ func (x *UploadCatalogFileRequest) GetFile() *File {
 		return x.File
 	}
 	return nil
-}
-
-func (x *UploadCatalogFileRequest) GetConvertingPipeline() string {
-	if x != nil {
-		return x.ConvertingPipeline
-	}
-	return ""
 }
 
 // upload file response
@@ -3603,7 +3603,7 @@ const file_artifact_artifact_v1alpha_artifact_proto_rawDesc = "" +
 	"\n" +
 	"catalog_id\x18\x02 \x01(\tR\tcatalogId\"U\n" +
 	"\x15DeleteCatalogResponse\x12<\n" +
-	"\acatalog\x18\x01 \x01(\v2\".artifact.artifact.v1alpha.CatalogR\acatalog\"\xb9\a\n" +
+	"\acatalog\x18\x01 \x01(\v2\".artifact.artifact.v1alpha.CatalogR\acatalog\"\x87\b\n" +
 	"\x04File\x12\x1e\n" +
 	"\bfile_uid\x18\x01 \x01(\tB\x03\xe0A\x03R\afileUid\x12\x17\n" +
 	"\x04name\x18\x02 \x01(\tB\x03\xe0A\x01R\x04name\x12<\n" +
@@ -3631,14 +3631,15 @@ const file_artifact_artifact_v1alpha_artifact_proto_rawDesc = "" +
 	"\n" +
 	"object_uid\x18\x12 \x01(\tB\x03\xe0A\x01R\tobjectUid\x12\x1d\n" +
 	"\asummary\x18\x13 \x01(\tB\x03\xe0A\x03R\asummary\x12&\n" +
-	"\fdownload_url\x18\x14 \x01(\tB\x03\xe0A\x03R\vdownloadUrlB\x14\n" +
-	"\x12_external_metadata\"\xcc\x01\n" +
+	"\fdownload_url\x18\x14 \x01(\tB\x03\xe0A\x03R\vdownloadUrl\x124\n" +
+	"\x13converting_pipeline\x18\x15 \x01(\tH\x01R\x12convertingPipeline\x88\x01\x01B\x14\n" +
+	"\x12_external_metadataB\x16\n" +
+	"\x14_converting_pipeline\"\x9b\x01\n" +
 	"\x18UploadCatalogFileRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\"\n" +
 	"\n" +
 	"catalog_id\x18\x02 \x01(\tB\x03\xe0A\x02R\tcatalogId\x123\n" +
-	"\x04file\x18\x03 \x01(\v2\x1f.artifact.artifact.v1alpha.FileR\x04file\x12/\n" +
-	"\x13converting_pipeline\x18\x04 \x01(\tR\x12convertingPipeline\"P\n" +
+	"\x04file\x18\x03 \x01(\v2\x1f.artifact.artifact.v1alpha.FileR\x04file\"P\n" +
 	"\x19UploadCatalogFileResponse\x123\n" +
 	"\x04file\x18\x01 \x01(\v2\x1f.artifact.artifact.v1alpha.FileR\x04file\":\n" +
 	"\x18DeleteCatalogFileRequest\x12\x1e\n" +

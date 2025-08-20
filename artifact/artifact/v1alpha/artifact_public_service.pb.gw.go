@@ -357,8 +357,6 @@ func local_request_ArtifactPublicService_DeleteCatalog_0(ctx context.Context, ma
 	return msg, metadata, err
 }
 
-var filter_ArtifactPublicService_UploadCatalogFile_0 = &utilities.DoubleArray{Encoding: map[string]int{"file": 0, "namespace_id": 1, "catalog_id": 2}, Base: []int{1, 1, 2, 3, 0, 0, 0}, Check: []int{0, 1, 1, 1, 2, 3, 4}}
-
 func request_ArtifactPublicService_UploadCatalogFile_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq UploadCatalogFileRequest
@@ -383,12 +381,6 @@ func request_ArtifactPublicService_UploadCatalogFile_0(ctx context.Context, mars
 	protoReq.CatalogId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
-	}
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ArtifactPublicService_UploadCatalogFile_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	msg, err := client.UploadCatalogFile(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
@@ -418,12 +410,6 @@ func local_request_ArtifactPublicService_UploadCatalogFile_0(ctx context.Context
 	protoReq.CatalogId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
-	}
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ArtifactPublicService_UploadCatalogFile_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	msg, err := server.UploadCatalogFile(ctx, &protoReq)
 	return msg, metadata, err
