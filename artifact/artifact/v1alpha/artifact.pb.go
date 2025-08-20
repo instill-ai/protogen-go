@@ -2371,11 +2371,11 @@ type UploadCatalogFileRequest struct {
 	CatalogId string `protobuf:"bytes,2,opt,name=catalog_id,json=catalogId,proto3" json:"catalog_id,omitempty"`
 	// file
 	File *File `protobuf:"bytes,3,opt,name=file,proto3" json:"file,omitempty"`
-	// Pipelines used for converting the document file (i.e., files with pdf,
-	// doc[x] or ppt[x] extension) to Markdown. The strings in the list identify
-	// the pipelines and MUST have the format
+	// Pipeline used for converting the file to Markdown if the file is a
+	// document (i.e., a file with pdf, doc[x] or ppt[x] extension). The value
+	// identifies the pipeline release and and MUST have the format
 	// `{namespaceID}/{pipelineID}@{version}`.
-	// The pipeline recipes MUST have the following variable and output fields:
+	// The pipeline recipe MUST have the following variable and output fields:
 	// ```yaml variable
 	// variable:
 	//
@@ -2395,18 +2395,16 @@ type UploadCatalogFileRequest struct {
 	// ```
 	// Other variable and output fields will be ignored.
 	//
-	// The pipelines will be executed in order until one produces a successful,
-	// non-empty result.
-	//
-	// If no pipelines are provided, the catalog's conversion pipelines will be
-	// used (see the catalog creation request).
+	// The pipeline will be executed first, falling back to the catalog's
+	// conversion pipelines if the conversion doesn't yield a non-empty result
+	// (see the catalog creation endpoint documentation).
 	//
 	// For non-document catalog files, the conversion pipeline is deterministic
 	// (such files are typically trivial to convert and don't require a dedicated
 	// pipeline to improve the conversion performance).
-	ConvertingPipelines []string `protobuf:"bytes,6,rep,name=converting_pipelines,json=convertingPipelines,proto3" json:"converting_pipelines,omitempty"`
-	unknownFields       protoimpl.UnknownFields
-	sizeCache           protoimpl.SizeCache
+	ConvertingPipeline string `protobuf:"bytes,4,opt,name=converting_pipeline,json=convertingPipeline,proto3" json:"converting_pipeline,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *UploadCatalogFileRequest) Reset() {
@@ -2460,11 +2458,11 @@ func (x *UploadCatalogFileRequest) GetFile() *File {
 	return nil
 }
 
-func (x *UploadCatalogFileRequest) GetConvertingPipelines() []string {
+func (x *UploadCatalogFileRequest) GetConvertingPipeline() string {
 	if x != nil {
-		return x.ConvertingPipelines
+		return x.ConvertingPipeline
 	}
-	return nil
+	return ""
 }
 
 // upload file response
@@ -3634,13 +3632,13 @@ const file_artifact_artifact_v1alpha_artifact_proto_rawDesc = "" +
 	"object_uid\x18\x12 \x01(\tB\x03\xe0A\x01R\tobjectUid\x12\x1d\n" +
 	"\asummary\x18\x13 \x01(\tB\x03\xe0A\x03R\asummary\x12&\n" +
 	"\fdownload_url\x18\x14 \x01(\tB\x03\xe0A\x03R\vdownloadUrlB\x14\n" +
-	"\x12_external_metadata\"\xce\x01\n" +
+	"\x12_external_metadata\"\xcc\x01\n" +
 	"\x18UploadCatalogFileRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\"\n" +
 	"\n" +
 	"catalog_id\x18\x02 \x01(\tB\x03\xe0A\x02R\tcatalogId\x123\n" +
-	"\x04file\x18\x03 \x01(\v2\x1f.artifact.artifact.v1alpha.FileR\x04file\x121\n" +
-	"\x14converting_pipelines\x18\x06 \x03(\tR\x13convertingPipelines\"P\n" +
+	"\x04file\x18\x03 \x01(\v2\x1f.artifact.artifact.v1alpha.FileR\x04file\x12/\n" +
+	"\x13converting_pipeline\x18\x04 \x01(\tR\x12convertingPipeline\"P\n" +
 	"\x19UploadCatalogFileResponse\x123\n" +
 	"\x04file\x18\x01 \x01(\v2\x1f.artifact.artifact.v1alpha.FileR\x04file\":\n" +
 	"\x18DeleteCatalogFileRequest\x12\x1e\n" +
