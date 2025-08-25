@@ -286,14 +286,24 @@ func (x *Citation) GetExtractMethod() CitationExtractMethodType {
 type ChatContext struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The table uids to include in the context.
+	TableUids []string `protobuf:"bytes,1,rep,name=table_uids,json=tableUids,proto3" json:"table_uids,omitempty"`
+	// The folder uids to include in the context.
+	FolderUids []string `protobuf:"bytes,5,rep,name=folder_uids,json=folderUids,proto3" json:"folder_uids,omitempty"`
+	// The catalog uids to include in the context.
+	CatalogUids []string `protobuf:"bytes,6,rep,name=catalog_uids,json=catalogUids,proto3" json:"catalog_uids,omitempty"`
+	// The file uids to include in the context.
+	FileUids []string `protobuf:"bytes,7,rep,name=file_uids,json=fileUids,proto3" json:"file_uids,omitempty"`
+	// The folders to include in the context.
 	//
 	// Deprecated: Marked as deprecated in agent/agent/v1alpha/common.proto.
-	TableUids []string `protobuf:"bytes,1,rep,name=table_uids,json=tableUids,proto3" json:"table_uids,omitempty"`
-	// The folders to include in the context.
 	Folders []*ChatContext_Folder `protobuf:"bytes,2,rep,name=folders,proto3" json:"folders,omitempty"`
 	// The catalogs to include in the context.
+	//
+	// Deprecated: Marked as deprecated in agent/agent/v1alpha/common.proto.
 	Catalogs []*ChatContext_Catalog `protobuf:"bytes,3,rep,name=catalogs,proto3" json:"catalogs,omitempty"`
 	// The tables to include in the context.
+	//
+	// Deprecated: Marked as deprecated in agent/agent/v1alpha/common.proto.
 	Tables        []*ChatContext_Table `protobuf:"bytes,4,rep,name=tables,proto3" json:"tables,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -329,7 +339,6 @@ func (*ChatContext) Descriptor() ([]byte, []int) {
 	return file_agent_agent_v1alpha_common_proto_rawDescGZIP(), []int{1}
 }
 
-// Deprecated: Marked as deprecated in agent/agent/v1alpha/common.proto.
 func (x *ChatContext) GetTableUids() []string {
 	if x != nil {
 		return x.TableUids
@@ -337,6 +346,28 @@ func (x *ChatContext) GetTableUids() []string {
 	return nil
 }
 
+func (x *ChatContext) GetFolderUids() []string {
+	if x != nil {
+		return x.FolderUids
+	}
+	return nil
+}
+
+func (x *ChatContext) GetCatalogUids() []string {
+	if x != nil {
+		return x.CatalogUids
+	}
+	return nil
+}
+
+func (x *ChatContext) GetFileUids() []string {
+	if x != nil {
+		return x.FileUids
+	}
+	return nil
+}
+
+// Deprecated: Marked as deprecated in agent/agent/v1alpha/common.proto.
 func (x *ChatContext) GetFolders() []*ChatContext_Folder {
 	if x != nil {
 		return x.Folders
@@ -344,6 +375,7 @@ func (x *ChatContext) GetFolders() []*ChatContext_Folder {
 	return nil
 }
 
+// Deprecated: Marked as deprecated in agent/agent/v1alpha/common.proto.
 func (x *ChatContext) GetCatalogs() []*ChatContext_Catalog {
 	if x != nil {
 		return x.Catalogs
@@ -351,6 +383,7 @@ func (x *ChatContext) GetCatalogs() []*ChatContext_Catalog {
 	return nil
 }
 
+// Deprecated: Marked as deprecated in agent/agent/v1alpha/common.proto.
 func (x *ChatContext) GetTables() []*ChatContext_Table {
 	if x != nil {
 		return x.Tables
@@ -827,13 +860,17 @@ const file_agent_agent_v1alpha_common_proto_rawDesc = "" +
 	"\asummary\x18\x05 \x01(\tB\x03\xe0A\x03H\x00R\asummary\x88\x01\x01\x12Z\n" +
 	"\x0eextract_method\x18\x06 \x01(\x0e2..agent.agent.v1alpha.CitationExtractMethodTypeB\x03\xe0A\x03R\rextractMethodB\n" +
 	"\n" +
-	"\b_summary\"\xfb\x03\n" +
-	"\vChatContext\x12$\n" +
+	"\b_summary\"\xef\x04\n" +
+	"\vChatContext\x12\"\n" +
 	"\n" +
-	"table_uids\x18\x01 \x03(\tB\x05\xe0A\x01\x18\x01R\ttableUids\x12F\n" +
-	"\afolders\x18\x02 \x03(\v2'.agent.agent.v1alpha.ChatContext.FolderB\x03\xe0A\x01R\afolders\x12I\n" +
-	"\bcatalogs\x18\x03 \x03(\v2(.agent.agent.v1alpha.ChatContext.CatalogB\x03\xe0A\x01R\bcatalogs\x12C\n" +
-	"\x06tables\x18\x04 \x03(\v2&.agent.agent.v1alpha.ChatContext.TableB\x03\xe0A\x01R\x06tables\x1aN\n" +
+	"table_uids\x18\x01 \x03(\tB\x03\xe0A\x01R\ttableUids\x12$\n" +
+	"\vfolder_uids\x18\x05 \x03(\tB\x03\xe0A\x01R\n" +
+	"folderUids\x12&\n" +
+	"\fcatalog_uids\x18\x06 \x03(\tB\x03\xe0A\x01R\vcatalogUids\x12 \n" +
+	"\tfile_uids\x18\a \x03(\tB\x03\xe0A\x01R\bfileUids\x12H\n" +
+	"\afolders\x18\x02 \x03(\v2'.agent.agent.v1alpha.ChatContext.FolderB\x05\xe0A\x01\x18\x01R\afolders\x12K\n" +
+	"\bcatalogs\x18\x03 \x03(\v2(.agent.agent.v1alpha.ChatContext.CatalogB\x05\xe0A\x01\x18\x01R\bcatalogs\x12E\n" +
+	"\x06tables\x18\x04 \x03(\v2&.agent.agent.v1alpha.ChatContext.TableB\x05\xe0A\x01\x18\x01R\x06tables\x1aN\n" +
 	"\x06Folder\x12\"\n" +
 	"\n" +
 	"folder_uid\x18\x01 \x01(\tB\x03\xe0A\x02R\tfolderUid\x12 \n" +
