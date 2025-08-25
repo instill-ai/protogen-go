@@ -4,7 +4,7 @@
 // 	protoc        (unknown)
 // source: openapi/v2/conf.proto
 
-package openapiv2
+package v2
 
 import (
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
@@ -25,33 +25,26 @@ var File_openapi_v2_conf_proto protoreflect.FileDescriptor
 
 const file_openapi_v2_conf_proto_rawDesc = "" +
 	"\n" +
-	"\x15openapi/v2/conf.proto\x12\n" +
-	"openapi.v2\x1a.protoc-gen-openapiv2/options/annotations.protoB\xaa\t\x92A\x8a\b\x12\xea\x01\n" +
-	"\x10Instill Core API\x121Interact with Instill Core through its public API\"A\n" +
+	"\x15openapi/v2/conf.proto\x1a.protoc-gen-openapiv2/options/annotations.protoB\xa2\a\x92A\xe3\x06\x12\xca\x01\n" +
+	"\x10Instill Core API\x12&Interact with Instill Core through API\"C\n" +
 	"\n" +
-	"Instill AI\x12\x1dhttps://github.com/instill-ai\x1a\x14hello@instill-ai.com*W\n" +
-	"\x1aElastic License 2.0 (ELv2)\x129https://github.com/instill-ai/protobufs/blob/main/LICENSE2\av0.54.1\x1a\x12api.instill-ai.com*\x02\x02\x012\x10application/json:\x10application/jsonR<\n" +
+	"Instill AI\x12\x1dhttps://github.com/instill-ai\x1a\x16support@instill-ai.com*@\n" +
+	"\x03MIT\x129https://github.com/instill-ai/protobufs/blob/main/LICENSE2\av0.54.1\x1a\x12api.instill-ai.com*\x02\x02\x012\x10application/json:\x10application/jsonR<\n" +
 	"\x03401\x125\n" +
-	"3Returned when the client credentials are not valid.Z\x8b\x01\n" +
-	"\x88\x01\n" +
-	"\x06Bearer\x12~\b\x02\x12CEnter the token with the `Bearer ` prefix, e.g. `Bearer abcde12345`\x1a\rAuthorization \x02J$\n" +
+	"3Returned when the client credentials are not valid.Z\x90\x01\n" +
+	"\x8d\x01\n" +
+	"\x06Bearer\x12\x82\x01\b\x02\x12GEnter the token with the `Bearer ` prefix, e.g. `Bearer instill_sk_***`\x1a\rAuthorization \x02J$\n" +
 	"\tx-default\x12\x17\x1a\x15Bearer instill_sk_***b\f\n" +
 	"\n" +
 	"\n" +
 	"\x06Bearer\x12\x00jX\n" +
-	"\tNamespace\x12KNamespaces (e.g. User, Organization) that structure the resource hierarchy.j3\n" +
-	"\bPipeline\x12'Pipeline orchestration in Instill Core.jL\n" +
-	"\bArtifact\x12@Data orchestration for unified unstructured data representation.j-\n" +
-	"\x05Model\x12$AI Model resources for MLOps/LLMOps.j \n" +
-	"\x05Agent\x12\x17Ready-to-use AI agents.j$\n" +
-	"\x05Table\x12\x1bTable resources for agents.j&\n" +
-	"\x06Folder\x12\x1cFolder resources for agents.j\"\n" +
+	"\tNamespace\x12KNamespaces (e.g. User, Organization) that structure the resource hierarchy.j#\n" +
+	"\bPipeline\x12\x17Pipeline orchestration.jL\n" +
+	"\bArtifact\x12@Data orchestration for unified unstructured data representation.j\x1f\n" +
+	"\x05Model\x12\x16AI Model orchestrationj\"\n" +
 	"\aMetrics\x12\x17Resource usage metrics.j/\n" +
-	"\fSubscription\x12\x1fPricing plans on Instill Cloud.r4\n" +
-	"\x15More about Instill AI\x12\x1bhttps://docs.instill-ai.com\n" +
-	"\x0ecom.openapi.v2B\tConfProtoP\x01Z6github.com/instill-ai/protogen-go/openapi/v2;openapiv2\xa2\x02\x03OXX\xaa\x02\n" +
-	"Openapi.V2\xca\x02\n" +
-	"Openapi\\V2\xe2\x02\x16Openapi\\V2\\GPBMetadata\xea\x02\vOpenapi::V2b\x06proto3"
+	"\fSubscription\x12\x1fPricing plans on Instill Cloud.r6\n" +
+	"\x17More about Instill Core\x12\x1bhttps://docs.instill-ai.comB\tConfProtoP\x01Z,github.com/instill-ai/protogen-go/openapi/v2b\x06proto3"
 
 var file_openapi_v2_conf_proto_goTypes = []any{}
 var file_openapi_v2_conf_proto_depIdxs = []int32{
