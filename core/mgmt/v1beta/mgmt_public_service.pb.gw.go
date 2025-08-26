@@ -1053,137 +1053,6 @@ func local_request_MgmtPublicService_InviteOrganizationMembers_0(ctx context.Con
 	return msg, metadata, err
 }
 
-func request_MgmtPublicService_GetAuthenticatedUserSubscription_0(ctx context.Context, marshaler runtime.Marshaler, client MgmtPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetAuthenticatedUserSubscriptionRequest
-		metadata runtime.ServerMetadata
-	)
-	io.Copy(io.Discard, req.Body)
-	msg, err := client.GetAuthenticatedUserSubscription(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_MgmtPublicService_GetAuthenticatedUserSubscription_0(ctx context.Context, marshaler runtime.Marshaler, server MgmtPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetAuthenticatedUserSubscriptionRequest
-		metadata runtime.ServerMetadata
-	)
-	msg, err := server.GetAuthenticatedUserSubscription(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-func request_MgmtPublicService_SyncAuthenticatedUserSubscription_0(ctx context.Context, marshaler runtime.Marshaler, client MgmtPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq SyncAuthenticatedUserSubscriptionRequest
-		metadata runtime.ServerMetadata
-	)
-	io.Copy(io.Discard, req.Body)
-	msg, err := client.SyncAuthenticatedUserSubscription(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_MgmtPublicService_SyncAuthenticatedUserSubscription_0(ctx context.Context, marshaler runtime.Marshaler, server MgmtPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq SyncAuthenticatedUserSubscriptionRequest
-		metadata runtime.ServerMetadata
-	)
-	msg, err := server.SyncAuthenticatedUserSubscription(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-func request_MgmtPublicService_GetOrganizationSubscription_0(ctx context.Context, marshaler runtime.Marshaler, client MgmtPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetOrganizationSubscriptionRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	io.Copy(io.Discard, req.Body)
-	val, ok := pathParams["organization_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "organization_id")
-	}
-	protoReq.OrganizationId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "organization_id", err)
-	}
-	msg, err := client.GetOrganizationSubscription(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_MgmtPublicService_GetOrganizationSubscription_0(ctx context.Context, marshaler runtime.Marshaler, server MgmtPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetOrganizationSubscriptionRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	val, ok := pathParams["organization_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "organization_id")
-	}
-	protoReq.OrganizationId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "organization_id", err)
-	}
-	msg, err := server.GetOrganizationSubscription(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-func request_MgmtPublicService_SyncOrganizationSubscription_0(ctx context.Context, marshaler runtime.Marshaler, client MgmtPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq SyncOrganizationSubscriptionRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	io.Copy(io.Discard, req.Body)
-	val, ok := pathParams["organization_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "organization_id")
-	}
-	protoReq.OrganizationId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "organization_id", err)
-	}
-	msg, err := client.SyncOrganizationSubscription(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_MgmtPublicService_SyncOrganizationSubscription_0(ctx context.Context, marshaler runtime.Marshaler, server MgmtPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq SyncOrganizationSubscriptionRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	val, ok := pathParams["organization_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "organization_id")
-	}
-	protoReq.OrganizationId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "organization_id", err)
-	}
-	msg, err := server.SyncOrganizationSubscription(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-func request_MgmtPublicService_ListSubscriptionFreeTrials_0(ctx context.Context, marshaler runtime.Marshaler, client MgmtPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq ListSubscriptionFreeTrialsRequest
-		metadata runtime.ServerMetadata
-	)
-	io.Copy(io.Discard, req.Body)
-	msg, err := client.ListSubscriptionFreeTrials(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_MgmtPublicService_ListSubscriptionFreeTrials_0(ctx context.Context, marshaler runtime.Marshaler, server MgmtPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq ListSubscriptionFreeTrialsRequest
-		metadata runtime.ServerMetadata
-	)
-	msg, err := server.ListSubscriptionFreeTrials(ctx, &protoReq)
-	return msg, metadata, err
-}
-
 func request_MgmtPublicService_CreateToken_0(ctx context.Context, marshaler runtime.Marshaler, client MgmtPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq CreateTokenRequest
@@ -1331,43 +1200,6 @@ func local_request_MgmtPublicService_ValidateToken_0(ctx context.Context, marsha
 		metadata runtime.ServerMetadata
 	)
 	msg, err := server.ValidateToken(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-func request_MgmtPublicService_GetRemainingCredit_0(ctx context.Context, marshaler runtime.Marshaler, client MgmtPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetRemainingCreditRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	io.Copy(io.Discard, req.Body)
-	val, ok := pathParams["namespace_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
-	}
-	protoReq.NamespaceId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
-	}
-	msg, err := client.GetRemainingCredit(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_MgmtPublicService_GetRemainingCredit_0(ctx context.Context, marshaler runtime.Marshaler, server MgmtPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetRemainingCreditRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	val, ok := pathParams["namespace_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
-	}
-	protoReq.NamespaceId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
-	}
-	msg, err := server.GetRemainingCredit(ctx, &protoReq)
 	return msg, metadata, err
 }
 
@@ -1524,39 +1356,6 @@ func local_request_MgmtPublicService_ListModelTriggerChartRecords_0(ctx context.
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	msg, err := server.ListModelTriggerChartRecords(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-var filter_MgmtPublicService_ListCreditConsumptionChartRecords_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-
-func request_MgmtPublicService_ListCreditConsumptionChartRecords_0(ctx context.Context, marshaler runtime.Marshaler, client MgmtPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq ListCreditConsumptionChartRecordsRequest
-		metadata runtime.ServerMetadata
-	)
-	io.Copy(io.Discard, req.Body)
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtPublicService_ListCreditConsumptionChartRecords_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := client.ListCreditConsumptionChartRecords(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_MgmtPublicService_ListCreditConsumptionChartRecords_0(ctx context.Context, marshaler runtime.Marshaler, server MgmtPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq ListCreditConsumptionChartRecordsRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MgmtPublicService_ListCreditConsumptionChartRecords_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := server.ListCreditConsumptionChartRecords(ctx, &protoReq)
 	return msg, metadata, err
 }
 
@@ -2224,106 +2023,6 @@ func RegisterMgmtPublicServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		}
 		forward_MgmtPublicService_InviteOrganizationMembers_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_MgmtPublicService_GetAuthenticatedUserSubscription_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/GetAuthenticatedUserSubscription", runtime.WithHTTPPathPattern("/v1beta/user/subscription"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_MgmtPublicService_GetAuthenticatedUserSubscription_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_MgmtPublicService_GetAuthenticatedUserSubscription_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_MgmtPublicService_SyncAuthenticatedUserSubscription_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/SyncAuthenticatedUserSubscription", runtime.WithHTTPPathPattern("/v1beta/user/subscription/sync"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_MgmtPublicService_SyncAuthenticatedUserSubscription_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_MgmtPublicService_SyncAuthenticatedUserSubscription_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodGet, pattern_MgmtPublicService_GetOrganizationSubscription_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/GetOrganizationSubscription", runtime.WithHTTPPathPattern("/v1beta/organizations/{organization_id}/subscription"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_MgmtPublicService_GetOrganizationSubscription_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_MgmtPublicService_GetOrganizationSubscription_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_MgmtPublicService_SyncOrganizationSubscription_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/SyncOrganizationSubscription", runtime.WithHTTPPathPattern("/v1beta/organizations/{organization_id}/subscription/sync"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_MgmtPublicService_SyncOrganizationSubscription_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_MgmtPublicService_SyncOrganizationSubscription_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodGet, pattern_MgmtPublicService_ListSubscriptionFreeTrials_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/ListSubscriptionFreeTrials", runtime.WithHTTPPathPattern("/v1beta/user/subscription-free-trials"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_MgmtPublicService_ListSubscriptionFreeTrials_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_MgmtPublicService_ListSubscriptionFreeTrials_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
 	mux.Handle(http.MethodPost, pattern_MgmtPublicService_CreateToken_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -2424,26 +2123,6 @@ func RegisterMgmtPublicServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		}
 		forward_MgmtPublicService_ValidateToken_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_MgmtPublicService_GetRemainingCredit_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/GetRemainingCredit", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/credit"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_MgmtPublicService_GetRemainingCredit_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_MgmtPublicService_GetRemainingCredit_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
 	mux.Handle(http.MethodPost, pattern_MgmtPublicService_CheckNamespace_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -2543,26 +2222,6 @@ func RegisterMgmtPublicServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			return
 		}
 		forward_MgmtPublicService_ListModelTriggerChartRecords_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodGet, pattern_MgmtPublicService_ListCreditConsumptionChartRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/ListCreditConsumptionChartRecords", runtime.WithHTTPPathPattern("/v1beta/credit/query-charts"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_MgmtPublicService_ListCreditConsumptionChartRecords_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_MgmtPublicService_ListCreditConsumptionChartRecords_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_MgmtPublicService_AuthTokenIssuer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -3138,91 +2797,6 @@ func RegisterMgmtPublicServiceHandlerClient(ctx context.Context, mux *runtime.Se
 		}
 		forward_MgmtPublicService_InviteOrganizationMembers_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_MgmtPublicService_GetAuthenticatedUserSubscription_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/GetAuthenticatedUserSubscription", runtime.WithHTTPPathPattern("/v1beta/user/subscription"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_MgmtPublicService_GetAuthenticatedUserSubscription_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_MgmtPublicService_GetAuthenticatedUserSubscription_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_MgmtPublicService_SyncAuthenticatedUserSubscription_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/SyncAuthenticatedUserSubscription", runtime.WithHTTPPathPattern("/v1beta/user/subscription/sync"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_MgmtPublicService_SyncAuthenticatedUserSubscription_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_MgmtPublicService_SyncAuthenticatedUserSubscription_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodGet, pattern_MgmtPublicService_GetOrganizationSubscription_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/GetOrganizationSubscription", runtime.WithHTTPPathPattern("/v1beta/organizations/{organization_id}/subscription"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_MgmtPublicService_GetOrganizationSubscription_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_MgmtPublicService_GetOrganizationSubscription_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_MgmtPublicService_SyncOrganizationSubscription_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/SyncOrganizationSubscription", runtime.WithHTTPPathPattern("/v1beta/organizations/{organization_id}/subscription/sync"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_MgmtPublicService_SyncOrganizationSubscription_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_MgmtPublicService_SyncOrganizationSubscription_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodGet, pattern_MgmtPublicService_ListSubscriptionFreeTrials_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/ListSubscriptionFreeTrials", runtime.WithHTTPPathPattern("/v1beta/user/subscription-free-trials"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_MgmtPublicService_ListSubscriptionFreeTrials_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_MgmtPublicService_ListSubscriptionFreeTrials_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
 	mux.Handle(http.MethodPost, pattern_MgmtPublicService_CreateToken_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -3308,23 +2882,6 @@ func RegisterMgmtPublicServiceHandlerClient(ctx context.Context, mux *runtime.Se
 		}
 		forward_MgmtPublicService_ValidateToken_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_MgmtPublicService_GetRemainingCredit_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/GetRemainingCredit", runtime.WithHTTPPathPattern("/v1beta/namespaces/{namespace_id}/credit"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_MgmtPublicService_GetRemainingCredit_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_MgmtPublicService_GetRemainingCredit_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
 	mux.Handle(http.MethodPost, pattern_MgmtPublicService_CheckNamespace_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -3409,23 +2966,6 @@ func RegisterMgmtPublicServiceHandlerClient(ctx context.Context, mux *runtime.Se
 			return
 		}
 		forward_MgmtPublicService_ListModelTriggerChartRecords_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodGet, pattern_MgmtPublicService_ListCreditConsumptionChartRecords_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/core.mgmt.v1beta.MgmtPublicService/ListCreditConsumptionChartRecords", runtime.WithHTTPPathPattern("/v1beta/credit/query-charts"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_MgmtPublicService_ListCreditConsumptionChartRecords_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_MgmtPublicService_ListCreditConsumptionChartRecords_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_MgmtPublicService_AuthTokenIssuer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -3589,23 +3129,16 @@ var (
 	pattern_MgmtPublicService_UpdateOrganizationMembership_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1beta", "organizations", "organization_id", "memberships", "user_id"}, ""))
 	pattern_MgmtPublicService_DeleteOrganizationMembership_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1beta", "organizations", "organization_id", "memberships", "user_id"}, ""))
 	pattern_MgmtPublicService_InviteOrganizationMembers_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1beta", "organizations", "organization_id", "invite-members"}, ""))
-	pattern_MgmtPublicService_GetAuthenticatedUserSubscription_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "user", "subscription"}, ""))
-	pattern_MgmtPublicService_SyncAuthenticatedUserSubscription_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"v1beta", "user", "subscription", "sync"}, ""))
-	pattern_MgmtPublicService_GetOrganizationSubscription_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1beta", "organizations", "organization_id", "subscription"}, ""))
-	pattern_MgmtPublicService_SyncOrganizationSubscription_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 2, 4}, []string{"v1beta", "organizations", "organization_id", "subscription", "sync"}, ""))
-	pattern_MgmtPublicService_ListSubscriptionFreeTrials_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "user", "subscription-free-trials"}, ""))
 	pattern_MgmtPublicService_CreateToken_0                       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "tokens"}, ""))
 	pattern_MgmtPublicService_ListTokens_0                        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "tokens"}, ""))
 	pattern_MgmtPublicService_GetToken_0                          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1beta", "tokens", "token_id"}, ""))
 	pattern_MgmtPublicService_DeleteToken_0                       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1beta", "tokens", "token_id"}, ""))
 	pattern_MgmtPublicService_ValidateToken_0                     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "validate_token"}, ""))
-	pattern_MgmtPublicService_GetRemainingCredit_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1beta", "namespaces", "namespace_id", "credit"}, ""))
 	pattern_MgmtPublicService_CheckNamespace_0                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "check-namespace"}, ""))
 	pattern_MgmtPublicService_GetPipelineTriggerCount_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "pipeline-runs", "count"}, ""))
 	pattern_MgmtPublicService_GetModelTriggerCount_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "model-runs", "count"}, ""))
 	pattern_MgmtPublicService_ListPipelineTriggerChartRecords_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "pipeline-runs", "query-charts"}, ""))
 	pattern_MgmtPublicService_ListModelTriggerChartRecords_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "model-runs", "query-charts"}, ""))
-	pattern_MgmtPublicService_ListCreditConsumptionChartRecords_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "credit", "query-charts"}, ""))
 	pattern_MgmtPublicService_AuthTokenIssuer_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "auth", "token_issuer"}, ""))
 	pattern_MgmtPublicService_AuthLogin_0                         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "auth", "login"}, ""))
 	pattern_MgmtPublicService_AuthLogout_0                        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "auth", "logout"}, ""))
@@ -3639,23 +3172,16 @@ var (
 	forward_MgmtPublicService_UpdateOrganizationMembership_0      = runtime.ForwardResponseMessage
 	forward_MgmtPublicService_DeleteOrganizationMembership_0      = runtime.ForwardResponseMessage
 	forward_MgmtPublicService_InviteOrganizationMembers_0         = runtime.ForwardResponseMessage
-	forward_MgmtPublicService_GetAuthenticatedUserSubscription_0  = runtime.ForwardResponseMessage
-	forward_MgmtPublicService_SyncAuthenticatedUserSubscription_0 = runtime.ForwardResponseMessage
-	forward_MgmtPublicService_GetOrganizationSubscription_0       = runtime.ForwardResponseMessage
-	forward_MgmtPublicService_SyncOrganizationSubscription_0      = runtime.ForwardResponseMessage
-	forward_MgmtPublicService_ListSubscriptionFreeTrials_0        = runtime.ForwardResponseMessage
 	forward_MgmtPublicService_CreateToken_0                       = runtime.ForwardResponseMessage
 	forward_MgmtPublicService_ListTokens_0                        = runtime.ForwardResponseMessage
 	forward_MgmtPublicService_GetToken_0                          = runtime.ForwardResponseMessage
 	forward_MgmtPublicService_DeleteToken_0                       = runtime.ForwardResponseMessage
 	forward_MgmtPublicService_ValidateToken_0                     = runtime.ForwardResponseMessage
-	forward_MgmtPublicService_GetRemainingCredit_0                = runtime.ForwardResponseMessage
 	forward_MgmtPublicService_CheckNamespace_0                    = runtime.ForwardResponseMessage
 	forward_MgmtPublicService_GetPipelineTriggerCount_0           = runtime.ForwardResponseMessage
 	forward_MgmtPublicService_GetModelTriggerCount_0              = runtime.ForwardResponseMessage
 	forward_MgmtPublicService_ListPipelineTriggerChartRecords_0   = runtime.ForwardResponseMessage
 	forward_MgmtPublicService_ListModelTriggerChartRecords_0      = runtime.ForwardResponseMessage
-	forward_MgmtPublicService_ListCreditConsumptionChartRecords_0 = runtime.ForwardResponseMessage
 	forward_MgmtPublicService_AuthTokenIssuer_0                   = runtime.ForwardResponseMessage
 	forward_MgmtPublicService_AuthLogin_0                         = runtime.ForwardResponseMessage
 	forward_MgmtPublicService_AuthLogout_0                        = runtime.ForwardResponseMessage

@@ -24,47 +24,35 @@ var File_core_mgmt_v1beta_mgmt_private_service_proto protoreflect.FileDescriptor
 
 const file_core_mgmt_v1beta_mgmt_private_service_proto_rawDesc = "" +
 	"\n" +
-	"+core/mgmt/v1beta/mgmt_private_service.proto\x12\x10core.mgmt.v1beta\x1a\x1bcore/mgmt/v1beta/mgmt.proto2\xda\v\n" +
+	"+core/mgmt/v1beta/mgmt_private_service.proto\x12\x10core.mgmt.v1beta\x1a\x1bcore/mgmt/v1beta/mgmt.proto2\xbd\a\n" +
 	"\x12MgmtPrivateService\x12e\n" +
 	"\x0eListUsersAdmin\x12'.core.mgmt.v1beta.ListUsersAdminRequest\x1a(.core.mgmt.v1beta.ListUsersAdminResponse\"\x00\x12_\n" +
 	"\fGetUserAdmin\x12%.core.mgmt.v1beta.GetUserAdminRequest\x1a&.core.mgmt.v1beta.GetUserAdminResponse\"\x00\x12h\n" +
 	"\x0fLookUpUserAdmin\x12(.core.mgmt.v1beta.LookUpUserAdminRequest\x1a).core.mgmt.v1beta.LookUpUserAdminResponse\"\x00\x12}\n" +
 	"\x16ListOrganizationsAdmin\x12/.core.mgmt.v1beta.ListOrganizationsAdminRequest\x1a0.core.mgmt.v1beta.ListOrganizationsAdminResponse\"\x00\x12w\n" +
 	"\x14GetOrganizationAdmin\x12-.core.mgmt.v1beta.GetOrganizationAdminRequest\x1a..core.mgmt.v1beta.GetOrganizationAdminResponse\"\x00\x12\x80\x01\n" +
-	"\x17LookUpOrganizationAdmin\x120.core.mgmt.v1beta.LookUpOrganizationAdminRequest\x1a1.core.mgmt.v1beta.LookUpOrganizationAdminResponse\"\x00\x12\x83\x01\n" +
-	"\x18GetUserSubscriptionAdmin\x121.core.mgmt.v1beta.GetUserSubscriptionAdminRequest\x1a2.core.mgmt.v1beta.GetUserSubscriptionAdminResponse\"\x00\x12\x9b\x01\n" +
-	" GetOrganizationSubscriptionAdmin\x129.core.mgmt.v1beta.GetOrganizationSubscriptionAdminRequest\x1a:.core.mgmt.v1beta.GetOrganizationSubscriptionAdminResponse\"\x00\x12t\n" +
-	"\x13SubtractCreditAdmin\x12,.core.mgmt.v1beta.SubtractCreditAdminRequest\x1a-.core.mgmt.v1beta.SubtractCreditAdminResponse\"\x00\x12\x80\x01\n" +
-	"\x17GetRemainingCreditAdmin\x120.core.mgmt.v1beta.GetRemainingCreditAdminRequest\x1a1.core.mgmt.v1beta.GetRemainingCreditAdminResponse\"\x00\x12t\n" +
+	"\x17LookUpOrganizationAdmin\x120.core.mgmt.v1beta.LookUpOrganizationAdminRequest\x1a1.core.mgmt.v1beta.LookUpOrganizationAdminResponse\"\x00\x12t\n" +
 	"\x13CheckNamespaceAdmin\x12,.core.mgmt.v1beta.CheckNamespaceAdminRequest\x1a-.core.mgmt.v1beta.CheckNamespaceAdminResponse\"\x00\x12\x83\x01\n" +
 	"\x18CheckNamespaceByUIDAdmin\x121.core.mgmt.v1beta.CheckNamespaceByUIDAdminRequest\x1a2.core.mgmt.v1beta.CheckNamespaceByUIDAdminResponse\"\x00B\xd0\x01\n" +
 	"\x14com.core.mgmt.v1betaB\x17MgmtPrivateServiceProtoP\x01Z=github.com/instill-ai/protogen-go/core/mgmt/v1beta;mgmtv1beta\xa2\x02\x03CMX\xaa\x02\x10Core.Mgmt.V1beta\xca\x02\x10Core\\Mgmt\\V1beta\xe2\x02\x1cCore\\Mgmt\\V1beta\\GPBMetadata\xea\x02\x12Core::Mgmt::V1betab\x06proto3"
 
 var file_core_mgmt_v1beta_mgmt_private_service_proto_goTypes = []any{
-	(*ListUsersAdminRequest)(nil),                    // 0: core.mgmt.v1beta.ListUsersAdminRequest
-	(*GetUserAdminRequest)(nil),                      // 1: core.mgmt.v1beta.GetUserAdminRequest
-	(*LookUpUserAdminRequest)(nil),                   // 2: core.mgmt.v1beta.LookUpUserAdminRequest
-	(*ListOrganizationsAdminRequest)(nil),            // 3: core.mgmt.v1beta.ListOrganizationsAdminRequest
-	(*GetOrganizationAdminRequest)(nil),              // 4: core.mgmt.v1beta.GetOrganizationAdminRequest
-	(*LookUpOrganizationAdminRequest)(nil),           // 5: core.mgmt.v1beta.LookUpOrganizationAdminRequest
-	(*GetUserSubscriptionAdminRequest)(nil),          // 6: core.mgmt.v1beta.GetUserSubscriptionAdminRequest
-	(*GetOrganizationSubscriptionAdminRequest)(nil),  // 7: core.mgmt.v1beta.GetOrganizationSubscriptionAdminRequest
-	(*SubtractCreditAdminRequest)(nil),               // 8: core.mgmt.v1beta.SubtractCreditAdminRequest
-	(*GetRemainingCreditAdminRequest)(nil),           // 9: core.mgmt.v1beta.GetRemainingCreditAdminRequest
-	(*CheckNamespaceAdminRequest)(nil),               // 10: core.mgmt.v1beta.CheckNamespaceAdminRequest
-	(*CheckNamespaceByUIDAdminRequest)(nil),          // 11: core.mgmt.v1beta.CheckNamespaceByUIDAdminRequest
-	(*ListUsersAdminResponse)(nil),                   // 12: core.mgmt.v1beta.ListUsersAdminResponse
-	(*GetUserAdminResponse)(nil),                     // 13: core.mgmt.v1beta.GetUserAdminResponse
-	(*LookUpUserAdminResponse)(nil),                  // 14: core.mgmt.v1beta.LookUpUserAdminResponse
-	(*ListOrganizationsAdminResponse)(nil),           // 15: core.mgmt.v1beta.ListOrganizationsAdminResponse
-	(*GetOrganizationAdminResponse)(nil),             // 16: core.mgmt.v1beta.GetOrganizationAdminResponse
-	(*LookUpOrganizationAdminResponse)(nil),          // 17: core.mgmt.v1beta.LookUpOrganizationAdminResponse
-	(*GetUserSubscriptionAdminResponse)(nil),         // 18: core.mgmt.v1beta.GetUserSubscriptionAdminResponse
-	(*GetOrganizationSubscriptionAdminResponse)(nil), // 19: core.mgmt.v1beta.GetOrganizationSubscriptionAdminResponse
-	(*SubtractCreditAdminResponse)(nil),              // 20: core.mgmt.v1beta.SubtractCreditAdminResponse
-	(*GetRemainingCreditAdminResponse)(nil),          // 21: core.mgmt.v1beta.GetRemainingCreditAdminResponse
-	(*CheckNamespaceAdminResponse)(nil),              // 22: core.mgmt.v1beta.CheckNamespaceAdminResponse
-	(*CheckNamespaceByUIDAdminResponse)(nil),         // 23: core.mgmt.v1beta.CheckNamespaceByUIDAdminResponse
+	(*ListUsersAdminRequest)(nil),            // 0: core.mgmt.v1beta.ListUsersAdminRequest
+	(*GetUserAdminRequest)(nil),              // 1: core.mgmt.v1beta.GetUserAdminRequest
+	(*LookUpUserAdminRequest)(nil),           // 2: core.mgmt.v1beta.LookUpUserAdminRequest
+	(*ListOrganizationsAdminRequest)(nil),    // 3: core.mgmt.v1beta.ListOrganizationsAdminRequest
+	(*GetOrganizationAdminRequest)(nil),      // 4: core.mgmt.v1beta.GetOrganizationAdminRequest
+	(*LookUpOrganizationAdminRequest)(nil),   // 5: core.mgmt.v1beta.LookUpOrganizationAdminRequest
+	(*CheckNamespaceAdminRequest)(nil),       // 6: core.mgmt.v1beta.CheckNamespaceAdminRequest
+	(*CheckNamespaceByUIDAdminRequest)(nil),  // 7: core.mgmt.v1beta.CheckNamespaceByUIDAdminRequest
+	(*ListUsersAdminResponse)(nil),           // 8: core.mgmt.v1beta.ListUsersAdminResponse
+	(*GetUserAdminResponse)(nil),             // 9: core.mgmt.v1beta.GetUserAdminResponse
+	(*LookUpUserAdminResponse)(nil),          // 10: core.mgmt.v1beta.LookUpUserAdminResponse
+	(*ListOrganizationsAdminResponse)(nil),   // 11: core.mgmt.v1beta.ListOrganizationsAdminResponse
+	(*GetOrganizationAdminResponse)(nil),     // 12: core.mgmt.v1beta.GetOrganizationAdminResponse
+	(*LookUpOrganizationAdminResponse)(nil),  // 13: core.mgmt.v1beta.LookUpOrganizationAdminResponse
+	(*CheckNamespaceAdminResponse)(nil),      // 14: core.mgmt.v1beta.CheckNamespaceAdminResponse
+	(*CheckNamespaceByUIDAdminResponse)(nil), // 15: core.mgmt.v1beta.CheckNamespaceByUIDAdminResponse
 }
 var file_core_mgmt_v1beta_mgmt_private_service_proto_depIdxs = []int32{
 	0,  // 0: core.mgmt.v1beta.MgmtPrivateService.ListUsersAdmin:input_type -> core.mgmt.v1beta.ListUsersAdminRequest
@@ -73,26 +61,18 @@ var file_core_mgmt_v1beta_mgmt_private_service_proto_depIdxs = []int32{
 	3,  // 3: core.mgmt.v1beta.MgmtPrivateService.ListOrganizationsAdmin:input_type -> core.mgmt.v1beta.ListOrganizationsAdminRequest
 	4,  // 4: core.mgmt.v1beta.MgmtPrivateService.GetOrganizationAdmin:input_type -> core.mgmt.v1beta.GetOrganizationAdminRequest
 	5,  // 5: core.mgmt.v1beta.MgmtPrivateService.LookUpOrganizationAdmin:input_type -> core.mgmt.v1beta.LookUpOrganizationAdminRequest
-	6,  // 6: core.mgmt.v1beta.MgmtPrivateService.GetUserSubscriptionAdmin:input_type -> core.mgmt.v1beta.GetUserSubscriptionAdminRequest
-	7,  // 7: core.mgmt.v1beta.MgmtPrivateService.GetOrganizationSubscriptionAdmin:input_type -> core.mgmt.v1beta.GetOrganizationSubscriptionAdminRequest
-	8,  // 8: core.mgmt.v1beta.MgmtPrivateService.SubtractCreditAdmin:input_type -> core.mgmt.v1beta.SubtractCreditAdminRequest
-	9,  // 9: core.mgmt.v1beta.MgmtPrivateService.GetRemainingCreditAdmin:input_type -> core.mgmt.v1beta.GetRemainingCreditAdminRequest
-	10, // 10: core.mgmt.v1beta.MgmtPrivateService.CheckNamespaceAdmin:input_type -> core.mgmt.v1beta.CheckNamespaceAdminRequest
-	11, // 11: core.mgmt.v1beta.MgmtPrivateService.CheckNamespaceByUIDAdmin:input_type -> core.mgmt.v1beta.CheckNamespaceByUIDAdminRequest
-	12, // 12: core.mgmt.v1beta.MgmtPrivateService.ListUsersAdmin:output_type -> core.mgmt.v1beta.ListUsersAdminResponse
-	13, // 13: core.mgmt.v1beta.MgmtPrivateService.GetUserAdmin:output_type -> core.mgmt.v1beta.GetUserAdminResponse
-	14, // 14: core.mgmt.v1beta.MgmtPrivateService.LookUpUserAdmin:output_type -> core.mgmt.v1beta.LookUpUserAdminResponse
-	15, // 15: core.mgmt.v1beta.MgmtPrivateService.ListOrganizationsAdmin:output_type -> core.mgmt.v1beta.ListOrganizationsAdminResponse
-	16, // 16: core.mgmt.v1beta.MgmtPrivateService.GetOrganizationAdmin:output_type -> core.mgmt.v1beta.GetOrganizationAdminResponse
-	17, // 17: core.mgmt.v1beta.MgmtPrivateService.LookUpOrganizationAdmin:output_type -> core.mgmt.v1beta.LookUpOrganizationAdminResponse
-	18, // 18: core.mgmt.v1beta.MgmtPrivateService.GetUserSubscriptionAdmin:output_type -> core.mgmt.v1beta.GetUserSubscriptionAdminResponse
-	19, // 19: core.mgmt.v1beta.MgmtPrivateService.GetOrganizationSubscriptionAdmin:output_type -> core.mgmt.v1beta.GetOrganizationSubscriptionAdminResponse
-	20, // 20: core.mgmt.v1beta.MgmtPrivateService.SubtractCreditAdmin:output_type -> core.mgmt.v1beta.SubtractCreditAdminResponse
-	21, // 21: core.mgmt.v1beta.MgmtPrivateService.GetRemainingCreditAdmin:output_type -> core.mgmt.v1beta.GetRemainingCreditAdminResponse
-	22, // 22: core.mgmt.v1beta.MgmtPrivateService.CheckNamespaceAdmin:output_type -> core.mgmt.v1beta.CheckNamespaceAdminResponse
-	23, // 23: core.mgmt.v1beta.MgmtPrivateService.CheckNamespaceByUIDAdmin:output_type -> core.mgmt.v1beta.CheckNamespaceByUIDAdminResponse
-	12, // [12:24] is the sub-list for method output_type
-	0,  // [0:12] is the sub-list for method input_type
+	6,  // 6: core.mgmt.v1beta.MgmtPrivateService.CheckNamespaceAdmin:input_type -> core.mgmt.v1beta.CheckNamespaceAdminRequest
+	7,  // 7: core.mgmt.v1beta.MgmtPrivateService.CheckNamespaceByUIDAdmin:input_type -> core.mgmt.v1beta.CheckNamespaceByUIDAdminRequest
+	8,  // 8: core.mgmt.v1beta.MgmtPrivateService.ListUsersAdmin:output_type -> core.mgmt.v1beta.ListUsersAdminResponse
+	9,  // 9: core.mgmt.v1beta.MgmtPrivateService.GetUserAdmin:output_type -> core.mgmt.v1beta.GetUserAdminResponse
+	10, // 10: core.mgmt.v1beta.MgmtPrivateService.LookUpUserAdmin:output_type -> core.mgmt.v1beta.LookUpUserAdminResponse
+	11, // 11: core.mgmt.v1beta.MgmtPrivateService.ListOrganizationsAdmin:output_type -> core.mgmt.v1beta.ListOrganizationsAdminResponse
+	12, // 12: core.mgmt.v1beta.MgmtPrivateService.GetOrganizationAdmin:output_type -> core.mgmt.v1beta.GetOrganizationAdminResponse
+	13, // 13: core.mgmt.v1beta.MgmtPrivateService.LookUpOrganizationAdmin:output_type -> core.mgmt.v1beta.LookUpOrganizationAdminResponse
+	14, // 14: core.mgmt.v1beta.MgmtPrivateService.CheckNamespaceAdmin:output_type -> core.mgmt.v1beta.CheckNamespaceAdminResponse
+	15, // 15: core.mgmt.v1beta.MgmtPrivateService.CheckNamespaceByUIDAdmin:output_type -> core.mgmt.v1beta.CheckNamespaceByUIDAdminResponse
+	8,  // [8:16] is the sub-list for method output_type
+	0,  // [0:8] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name

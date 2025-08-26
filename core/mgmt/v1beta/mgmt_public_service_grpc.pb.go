@@ -39,23 +39,16 @@ const (
 	MgmtPublicService_UpdateOrganizationMembership_FullMethodName      = "/core.mgmt.v1beta.MgmtPublicService/UpdateOrganizationMembership"
 	MgmtPublicService_DeleteOrganizationMembership_FullMethodName      = "/core.mgmt.v1beta.MgmtPublicService/DeleteOrganizationMembership"
 	MgmtPublicService_InviteOrganizationMembers_FullMethodName         = "/core.mgmt.v1beta.MgmtPublicService/InviteOrganizationMembers"
-	MgmtPublicService_GetAuthenticatedUserSubscription_FullMethodName  = "/core.mgmt.v1beta.MgmtPublicService/GetAuthenticatedUserSubscription"
-	MgmtPublicService_SyncAuthenticatedUserSubscription_FullMethodName = "/core.mgmt.v1beta.MgmtPublicService/SyncAuthenticatedUserSubscription"
-	MgmtPublicService_GetOrganizationSubscription_FullMethodName       = "/core.mgmt.v1beta.MgmtPublicService/GetOrganizationSubscription"
-	MgmtPublicService_SyncOrganizationSubscription_FullMethodName      = "/core.mgmt.v1beta.MgmtPublicService/SyncOrganizationSubscription"
-	MgmtPublicService_ListSubscriptionFreeTrials_FullMethodName        = "/core.mgmt.v1beta.MgmtPublicService/ListSubscriptionFreeTrials"
 	MgmtPublicService_CreateToken_FullMethodName                       = "/core.mgmt.v1beta.MgmtPublicService/CreateToken"
 	MgmtPublicService_ListTokens_FullMethodName                        = "/core.mgmt.v1beta.MgmtPublicService/ListTokens"
 	MgmtPublicService_GetToken_FullMethodName                          = "/core.mgmt.v1beta.MgmtPublicService/GetToken"
 	MgmtPublicService_DeleteToken_FullMethodName                       = "/core.mgmt.v1beta.MgmtPublicService/DeleteToken"
 	MgmtPublicService_ValidateToken_FullMethodName                     = "/core.mgmt.v1beta.MgmtPublicService/ValidateToken"
-	MgmtPublicService_GetRemainingCredit_FullMethodName                = "/core.mgmt.v1beta.MgmtPublicService/GetRemainingCredit"
 	MgmtPublicService_CheckNamespace_FullMethodName                    = "/core.mgmt.v1beta.MgmtPublicService/CheckNamespace"
 	MgmtPublicService_GetPipelineTriggerCount_FullMethodName           = "/core.mgmt.v1beta.MgmtPublicService/GetPipelineTriggerCount"
 	MgmtPublicService_GetModelTriggerCount_FullMethodName              = "/core.mgmt.v1beta.MgmtPublicService/GetModelTriggerCount"
 	MgmtPublicService_ListPipelineTriggerChartRecords_FullMethodName   = "/core.mgmt.v1beta.MgmtPublicService/ListPipelineTriggerChartRecords"
 	MgmtPublicService_ListModelTriggerChartRecords_FullMethodName      = "/core.mgmt.v1beta.MgmtPublicService/ListModelTriggerChartRecords"
-	MgmtPublicService_ListCreditConsumptionChartRecords_FullMethodName = "/core.mgmt.v1beta.MgmtPublicService/ListCreditConsumptionChartRecords"
 	MgmtPublicService_AuthTokenIssuer_FullMethodName                   = "/core.mgmt.v1beta.MgmtPublicService/AuthTokenIssuer"
 	MgmtPublicService_AuthLogin_FullMethodName                         = "/core.mgmt.v1beta.MgmtPublicService/AuthLogin"
 	MgmtPublicService_AuthLogout_FullMethodName                        = "/core.mgmt.v1beta.MgmtPublicService/AuthLogout"
@@ -162,34 +155,6 @@ type MgmtPublicServiceClient interface {
 	//
 	// Invites members to an organization.
 	InviteOrganizationMembers(ctx context.Context, in *InviteOrganizationMembersRequest, opts ...grpc.CallOption) (*InviteOrganizationMembersResponse, error)
-	// Get the subscription of the authenticated user
-	//
-	// Returns the subscription details for the authenticated user's individual
-	// plan. If several subscriptions exist (e.g. if the user upgraded to and
-	// downgraded from a plan several times), the most recent subscription is
-	// returned.
-	GetAuthenticatedUserSubscription(ctx context.Context, in *GetAuthenticatedUserSubscriptionRequest, opts ...grpc.CallOption) (*GetAuthenticatedUserSubscriptionResponse, error)
-	// Sync the subscription of the authenticated user
-	//
-	// Syncs the subscription of the authenticated user with Stripe.
-	SyncAuthenticatedUserSubscription(ctx context.Context, in *SyncAuthenticatedUserSubscriptionRequest, opts ...grpc.CallOption) (*SyncAuthenticatedUserSubscriptionResponse, error)
-	// Get the subscription of an organization
-	//
-	// Returns the subscription details for an organization's team plan. If
-	// several subscriptions exist (e.g. if the organization has upgraded to and
-	// downgraded from a plan several times), the most recent subscription is
-	// returned.
-	GetOrganizationSubscription(ctx context.Context, in *GetOrganizationSubscriptionRequest, opts ...grpc.CallOption) (*GetOrganizationSubscriptionResponse, error)
-	// Sync the subscription of an organization
-	//
-	// Syncs the subscription of an organization with Stripe.
-	SyncOrganizationSubscription(ctx context.Context, in *SyncOrganizationSubscriptionRequest, opts ...grpc.CallOption) (*SyncOrganizationSubscriptionResponse, error)
-	// List subscription free trials
-	//
-	// Returns a list of the free trials of the authenticated user. The trials
-	// might apply to different plans, including organization plans purchased by
-	// the user.
-	ListSubscriptionFreeTrials(ctx context.Context, in *ListSubscriptionFreeTrialsRequest, opts ...grpc.CallOption) (*ListSubscriptionFreeTrialsResponse, error)
 	// Create an API token
 	//
 	// Creates an API token for the authenticated user.
@@ -210,15 +175,6 @@ type MgmtPublicServiceClient interface {
 	//
 	// Validates an API token.
 	ValidateToken(ctx context.Context, in *ValidateTokenRequest, opts ...grpc.CallOption) (*ValidateTokenResponse, error)
-	// Get the remaining Instill Credit
-	//
-	// This endpoint returns the remaining [Instill
-	// Credit](https://instill-ai.dev/docs/cloud/credit) of a given user or
-	// organization. The requested credit owner must be either the authenticated
-	// user or an organization they belong to.
-	//
-	// On Instill Core, this endpoint will return a 404 Not Found status.
-	GetRemainingCredit(ctx context.Context, in *GetRemainingCreditRequest, opts ...grpc.CallOption) (*GetRemainingCreditResponse, error)
 	// Check if a namespace is in use
 	//
 	// Returns the availability of a namespace or, alternatively, the type of
@@ -246,15 +202,6 @@ type MgmtPublicServiceClient interface {
 	// response will contain one set of records (datapoints), representing the
 	// amount of triggers in a time bucket.
 	ListModelTriggerChartRecords(ctx context.Context, in *ListModelTriggerChartRecordsRequest, opts ...grpc.CallOption) (*ListModelTriggerChartRecordsResponse, error)
-	// List Instill Credit consumption time charts
-	//
-	// Returns a timeline of Instill Credit consumption for a given owner. The
-	// response will contain one set of records (datapoints) per consumption
-	// source (e.g. "pipeline", "model"). Each datapoint represents the amount
-	// consumed in a time bucket.
-	//
-	// This endpoint is only exposed on Instill Cloud.
-	ListCreditConsumptionChartRecords(ctx context.Context, in *ListCreditConsumptionChartRecordsRequest, opts ...grpc.CallOption) (*ListCreditConsumptionChartRecordsResponse, error)
 	// Get Auth token issuer
 	//
 	// Returns the auth token issuer details. This operation requires admin
@@ -506,56 +453,6 @@ func (c *mgmtPublicServiceClient) InviteOrganizationMembers(ctx context.Context,
 	return out, nil
 }
 
-func (c *mgmtPublicServiceClient) GetAuthenticatedUserSubscription(ctx context.Context, in *GetAuthenticatedUserSubscriptionRequest, opts ...grpc.CallOption) (*GetAuthenticatedUserSubscriptionResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetAuthenticatedUserSubscriptionResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_GetAuthenticatedUserSubscription_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mgmtPublicServiceClient) SyncAuthenticatedUserSubscription(ctx context.Context, in *SyncAuthenticatedUserSubscriptionRequest, opts ...grpc.CallOption) (*SyncAuthenticatedUserSubscriptionResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SyncAuthenticatedUserSubscriptionResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_SyncAuthenticatedUserSubscription_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mgmtPublicServiceClient) GetOrganizationSubscription(ctx context.Context, in *GetOrganizationSubscriptionRequest, opts ...grpc.CallOption) (*GetOrganizationSubscriptionResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetOrganizationSubscriptionResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_GetOrganizationSubscription_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mgmtPublicServiceClient) SyncOrganizationSubscription(ctx context.Context, in *SyncOrganizationSubscriptionRequest, opts ...grpc.CallOption) (*SyncOrganizationSubscriptionResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SyncOrganizationSubscriptionResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_SyncOrganizationSubscription_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mgmtPublicServiceClient) ListSubscriptionFreeTrials(ctx context.Context, in *ListSubscriptionFreeTrialsRequest, opts ...grpc.CallOption) (*ListSubscriptionFreeTrialsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListSubscriptionFreeTrialsResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_ListSubscriptionFreeTrials_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *mgmtPublicServiceClient) CreateToken(ctx context.Context, in *CreateTokenRequest, opts ...grpc.CallOption) (*CreateTokenResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CreateTokenResponse)
@@ -606,16 +503,6 @@ func (c *mgmtPublicServiceClient) ValidateToken(ctx context.Context, in *Validat
 	return out, nil
 }
 
-func (c *mgmtPublicServiceClient) GetRemainingCredit(ctx context.Context, in *GetRemainingCreditRequest, opts ...grpc.CallOption) (*GetRemainingCreditResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetRemainingCreditResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_GetRemainingCredit_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *mgmtPublicServiceClient) CheckNamespace(ctx context.Context, in *CheckNamespaceRequest, opts ...grpc.CallOption) (*CheckNamespaceResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CheckNamespaceResponse)
@@ -660,16 +547,6 @@ func (c *mgmtPublicServiceClient) ListModelTriggerChartRecords(ctx context.Conte
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListModelTriggerChartRecordsResponse)
 	err := c.cc.Invoke(ctx, MgmtPublicService_ListModelTriggerChartRecords_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mgmtPublicServiceClient) ListCreditConsumptionChartRecords(ctx context.Context, in *ListCreditConsumptionChartRecordsRequest, opts ...grpc.CallOption) (*ListCreditConsumptionChartRecordsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListCreditConsumptionChartRecordsResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_ListCreditConsumptionChartRecords_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -855,34 +732,6 @@ type MgmtPublicServiceServer interface {
 	//
 	// Invites members to an organization.
 	InviteOrganizationMembers(context.Context, *InviteOrganizationMembersRequest) (*InviteOrganizationMembersResponse, error)
-	// Get the subscription of the authenticated user
-	//
-	// Returns the subscription details for the authenticated user's individual
-	// plan. If several subscriptions exist (e.g. if the user upgraded to and
-	// downgraded from a plan several times), the most recent subscription is
-	// returned.
-	GetAuthenticatedUserSubscription(context.Context, *GetAuthenticatedUserSubscriptionRequest) (*GetAuthenticatedUserSubscriptionResponse, error)
-	// Sync the subscription of the authenticated user
-	//
-	// Syncs the subscription of the authenticated user with Stripe.
-	SyncAuthenticatedUserSubscription(context.Context, *SyncAuthenticatedUserSubscriptionRequest) (*SyncAuthenticatedUserSubscriptionResponse, error)
-	// Get the subscription of an organization
-	//
-	// Returns the subscription details for an organization's team plan. If
-	// several subscriptions exist (e.g. if the organization has upgraded to and
-	// downgraded from a plan several times), the most recent subscription is
-	// returned.
-	GetOrganizationSubscription(context.Context, *GetOrganizationSubscriptionRequest) (*GetOrganizationSubscriptionResponse, error)
-	// Sync the subscription of an organization
-	//
-	// Syncs the subscription of an organization with Stripe.
-	SyncOrganizationSubscription(context.Context, *SyncOrganizationSubscriptionRequest) (*SyncOrganizationSubscriptionResponse, error)
-	// List subscription free trials
-	//
-	// Returns a list of the free trials of the authenticated user. The trials
-	// might apply to different plans, including organization plans purchased by
-	// the user.
-	ListSubscriptionFreeTrials(context.Context, *ListSubscriptionFreeTrialsRequest) (*ListSubscriptionFreeTrialsResponse, error)
 	// Create an API token
 	//
 	// Creates an API token for the authenticated user.
@@ -903,15 +752,6 @@ type MgmtPublicServiceServer interface {
 	//
 	// Validates an API token.
 	ValidateToken(context.Context, *ValidateTokenRequest) (*ValidateTokenResponse, error)
-	// Get the remaining Instill Credit
-	//
-	// This endpoint returns the remaining [Instill
-	// Credit](https://instill-ai.dev/docs/cloud/credit) of a given user or
-	// organization. The requested credit owner must be either the authenticated
-	// user or an organization they belong to.
-	//
-	// On Instill Core, this endpoint will return a 404 Not Found status.
-	GetRemainingCredit(context.Context, *GetRemainingCreditRequest) (*GetRemainingCreditResponse, error)
 	// Check if a namespace is in use
 	//
 	// Returns the availability of a namespace or, alternatively, the type of
@@ -939,15 +779,6 @@ type MgmtPublicServiceServer interface {
 	// response will contain one set of records (datapoints), representing the
 	// amount of triggers in a time bucket.
 	ListModelTriggerChartRecords(context.Context, *ListModelTriggerChartRecordsRequest) (*ListModelTriggerChartRecordsResponse, error)
-	// List Instill Credit consumption time charts
-	//
-	// Returns a timeline of Instill Credit consumption for a given owner. The
-	// response will contain one set of records (datapoints) per consumption
-	// source (e.g. "pipeline", "model"). Each datapoint represents the amount
-	// consumed in a time bucket.
-	//
-	// This endpoint is only exposed on Instill Cloud.
-	ListCreditConsumptionChartRecords(context.Context, *ListCreditConsumptionChartRecordsRequest) (*ListCreditConsumptionChartRecordsResponse, error)
 	// Get Auth token issuer
 	//
 	// Returns the auth token issuer details. This operation requires admin
@@ -1058,21 +889,6 @@ func (UnimplementedMgmtPublicServiceServer) DeleteOrganizationMembership(context
 func (UnimplementedMgmtPublicServiceServer) InviteOrganizationMembers(context.Context, *InviteOrganizationMembersRequest) (*InviteOrganizationMembersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InviteOrganizationMembers not implemented")
 }
-func (UnimplementedMgmtPublicServiceServer) GetAuthenticatedUserSubscription(context.Context, *GetAuthenticatedUserSubscriptionRequest) (*GetAuthenticatedUserSubscriptionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAuthenticatedUserSubscription not implemented")
-}
-func (UnimplementedMgmtPublicServiceServer) SyncAuthenticatedUserSubscription(context.Context, *SyncAuthenticatedUserSubscriptionRequest) (*SyncAuthenticatedUserSubscriptionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SyncAuthenticatedUserSubscription not implemented")
-}
-func (UnimplementedMgmtPublicServiceServer) GetOrganizationSubscription(context.Context, *GetOrganizationSubscriptionRequest) (*GetOrganizationSubscriptionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationSubscription not implemented")
-}
-func (UnimplementedMgmtPublicServiceServer) SyncOrganizationSubscription(context.Context, *SyncOrganizationSubscriptionRequest) (*SyncOrganizationSubscriptionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SyncOrganizationSubscription not implemented")
-}
-func (UnimplementedMgmtPublicServiceServer) ListSubscriptionFreeTrials(context.Context, *ListSubscriptionFreeTrialsRequest) (*ListSubscriptionFreeTrialsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListSubscriptionFreeTrials not implemented")
-}
 func (UnimplementedMgmtPublicServiceServer) CreateToken(context.Context, *CreateTokenRequest) (*CreateTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateToken not implemented")
 }
@@ -1088,9 +904,6 @@ func (UnimplementedMgmtPublicServiceServer) DeleteToken(context.Context, *Delete
 func (UnimplementedMgmtPublicServiceServer) ValidateToken(context.Context, *ValidateTokenRequest) (*ValidateTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ValidateToken not implemented")
 }
-func (UnimplementedMgmtPublicServiceServer) GetRemainingCredit(context.Context, *GetRemainingCreditRequest) (*GetRemainingCreditResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetRemainingCredit not implemented")
-}
 func (UnimplementedMgmtPublicServiceServer) CheckNamespace(context.Context, *CheckNamespaceRequest) (*CheckNamespaceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckNamespace not implemented")
 }
@@ -1105,9 +918,6 @@ func (UnimplementedMgmtPublicServiceServer) ListPipelineTriggerChartRecords(cont
 }
 func (UnimplementedMgmtPublicServiceServer) ListModelTriggerChartRecords(context.Context, *ListModelTriggerChartRecordsRequest) (*ListModelTriggerChartRecordsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListModelTriggerChartRecords not implemented")
-}
-func (UnimplementedMgmtPublicServiceServer) ListCreditConsumptionChartRecords(context.Context, *ListCreditConsumptionChartRecordsRequest) (*ListCreditConsumptionChartRecordsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListCreditConsumptionChartRecords not implemented")
 }
 func (UnimplementedMgmtPublicServiceServer) AuthTokenIssuer(context.Context, *AuthTokenIssuerRequest) (*AuthTokenIssuerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AuthTokenIssuer not implemented")
@@ -1513,96 +1323,6 @@ func _MgmtPublicService_InviteOrganizationMembers_Handler(srv interface{}, ctx c
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MgmtPublicService_GetAuthenticatedUserSubscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetAuthenticatedUserSubscriptionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).GetAuthenticatedUserSubscription(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_GetAuthenticatedUserSubscription_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).GetAuthenticatedUserSubscription(ctx, req.(*GetAuthenticatedUserSubscriptionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MgmtPublicService_SyncAuthenticatedUserSubscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SyncAuthenticatedUserSubscriptionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).SyncAuthenticatedUserSubscription(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_SyncAuthenticatedUserSubscription_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).SyncAuthenticatedUserSubscription(ctx, req.(*SyncAuthenticatedUserSubscriptionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MgmtPublicService_GetOrganizationSubscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetOrganizationSubscriptionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).GetOrganizationSubscription(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_GetOrganizationSubscription_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).GetOrganizationSubscription(ctx, req.(*GetOrganizationSubscriptionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MgmtPublicService_SyncOrganizationSubscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SyncOrganizationSubscriptionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).SyncOrganizationSubscription(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_SyncOrganizationSubscription_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).SyncOrganizationSubscription(ctx, req.(*SyncOrganizationSubscriptionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MgmtPublicService_ListSubscriptionFreeTrials_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListSubscriptionFreeTrialsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).ListSubscriptionFreeTrials(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_ListSubscriptionFreeTrials_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).ListSubscriptionFreeTrials(ctx, req.(*ListSubscriptionFreeTrialsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _MgmtPublicService_CreateToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateTokenRequest)
 	if err := dec(in); err != nil {
@@ -1693,24 +1413,6 @@ func _MgmtPublicService_ValidateToken_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MgmtPublicService_GetRemainingCredit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetRemainingCreditRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).GetRemainingCredit(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_GetRemainingCredit_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).GetRemainingCredit(ctx, req.(*GetRemainingCreditRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _MgmtPublicService_CheckNamespace_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CheckNamespaceRequest)
 	if err := dec(in); err != nil {
@@ -1797,24 +1499,6 @@ func _MgmtPublicService_ListModelTriggerChartRecords_Handler(srv interface{}, ct
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MgmtPublicServiceServer).ListModelTriggerChartRecords(ctx, req.(*ListModelTriggerChartRecordsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MgmtPublicService_ListCreditConsumptionChartRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListCreditConsumptionChartRecordsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).ListCreditConsumptionChartRecords(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_ListCreditConsumptionChartRecords_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).ListCreditConsumptionChartRecords(ctx, req.(*ListCreditConsumptionChartRecordsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2051,26 +1735,6 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MgmtPublicService_InviteOrganizationMembers_Handler,
 		},
 		{
-			MethodName: "GetAuthenticatedUserSubscription",
-			Handler:    _MgmtPublicService_GetAuthenticatedUserSubscription_Handler,
-		},
-		{
-			MethodName: "SyncAuthenticatedUserSubscription",
-			Handler:    _MgmtPublicService_SyncAuthenticatedUserSubscription_Handler,
-		},
-		{
-			MethodName: "GetOrganizationSubscription",
-			Handler:    _MgmtPublicService_GetOrganizationSubscription_Handler,
-		},
-		{
-			MethodName: "SyncOrganizationSubscription",
-			Handler:    _MgmtPublicService_SyncOrganizationSubscription_Handler,
-		},
-		{
-			MethodName: "ListSubscriptionFreeTrials",
-			Handler:    _MgmtPublicService_ListSubscriptionFreeTrials_Handler,
-		},
-		{
 			MethodName: "CreateToken",
 			Handler:    _MgmtPublicService_CreateToken_Handler,
 		},
@@ -2091,10 +1755,6 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MgmtPublicService_ValidateToken_Handler,
 		},
 		{
-			MethodName: "GetRemainingCredit",
-			Handler:    _MgmtPublicService_GetRemainingCredit_Handler,
-		},
-		{
 			MethodName: "CheckNamespace",
 			Handler:    _MgmtPublicService_CheckNamespace_Handler,
 		},
@@ -2113,10 +1773,6 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListModelTriggerChartRecords",
 			Handler:    _MgmtPublicService_ListModelTriggerChartRecords_Handler,
-		},
-		{
-			MethodName: "ListCreditConsumptionChartRecords",
-			Handler:    _MgmtPublicService_ListCreditConsumptionChartRecords_Handler,
 		},
 		{
 			MethodName: "AuthTokenIssuer",

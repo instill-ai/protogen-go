@@ -27,7 +27,7 @@ var File_core_mgmt_v1beta_mgmt_public_service_proto protoreflect.FileDescriptor
 
 const file_core_mgmt_v1beta_mgmt_public_service_proto_rawDesc = "" +
 	"\n" +
-	"*core/mgmt/v1beta/mgmt_public_service.proto\x12\x10core.mgmt.v1beta\x1a\x1dcore/mgmt/v1beta/metric.proto\x1a\x1bcore/mgmt/v1beta/mgmt.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xfbE\n" +
+	"*core/mgmt/v1beta/mgmt_public_service.proto\x12\x10core.mgmt.v1beta\x1a\x1dcore/mgmt/v1beta/metric.proto\x1a\x1bcore/mgmt/v1beta/mgmt.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xbf9\n" +
 	"\x11MgmtPublicService\x12\x94\x01\n" +
 	"\bLiveness\x12!.core.mgmt.v1beta.LivenessRequest\x1a\".core.mgmt.v1beta.LivenessResponse\"A\xfa\xd2\xe4\x93\x02\n" +
 	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02+Z\x15\x12\x13/v1beta/health/mgmt\x12\x12/v1beta/__liveness\x12\x97\x01\n" +
@@ -88,22 +88,7 @@ const file_core_mgmt_v1beta_mgmt_public_service_proto_rawDesc = "" +
 	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02?*=/v1beta/organizations/{organization_id}/memberships/{user_id}\x12\xe8\x01\n" +
 	"\x19InviteOrganizationMembers\x122.core.mgmt.v1beta.InviteOrganizationMembersRequest\x1a3.core.mgmt.v1beta.InviteOrganizationMembersResponse\"b\x92A\x1e\n" +
 	"\tNamespacej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02;:\x01*\"6/v1beta/organizations/{organization_id}/invite-members\x12\xe0\x01\n" +
-	" GetAuthenticatedUserSubscription\x129.core.mgmt.v1beta.GetAuthenticatedUserSubscriptionRequest\x1a:.core.mgmt.v1beta.GetAuthenticatedUserSubscriptionResponse\"E\x92A!\n" +
-	"\fSubscriptionj\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x1b\x12\x19/v1beta/user/subscription\x12\xe8\x01\n" +
-	"!SyncAuthenticatedUserSubscription\x12:.core.mgmt.v1beta.SyncAuthenticatedUserSubscriptionRequest\x1a;.core.mgmt.v1beta.SyncAuthenticatedUserSubscriptionResponse\"J\x92A!\n" +
-	"\fSubscriptionj\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02 \"\x1e/v1beta/user/subscription/sync\x12\xec\x01\n" +
-	"\x1bGetOrganizationSubscription\x124.core.mgmt.v1beta.GetOrganizationSubscriptionRequest\x1a5.core.mgmt.v1beta.GetOrganizationSubscriptionResponse\"`\x92A!\n" +
-	"\fSubscriptionj\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x026\x124/v1beta/organizations/{organization_id}/subscription\x12\xf4\x01\n" +
-	"\x1cSyncOrganizationSubscription\x125.core.mgmt.v1beta.SyncOrganizationSubscriptionRequest\x1a6.core.mgmt.v1beta.SyncOrganizationSubscriptionResponse\"e\x92A!\n" +
-	"\fSubscriptionj\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02;\"9/v1beta/organizations/{organization_id}/subscription/sync\x12\xda\x01\n" +
-	"\x1aListSubscriptionFreeTrials\x123.core.mgmt.v1beta.ListSubscriptionFreeTrialsRequest\x1a4.core.mgmt.v1beta.ListSubscriptionFreeTrialsResponse\"Q\x92A!\n" +
-	"\fSubscriptionj\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02'\x12%/v1beta/user/subscription-free-trials\x12\x9a\x01\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02;:\x01*\"6/v1beta/organizations/{organization_id}/invite-members\x12\x9a\x01\n" +
 	"\vCreateToken\x12$.core.mgmt.v1beta.CreateTokenRequest\x1a%.core.mgmt.v1beta.CreateTokenResponse\">\x92A\x1e\n" +
 	"\tNamespacej\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x17:\x05token\"\x0e/v1beta/tokens\x12\x90\x01\n" +
@@ -119,10 +104,7 @@ const file_core_mgmt_v1beta_mgmt_public_service_proto_rawDesc = "" +
 	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x1b*\x19/v1beta/tokens/{token_id}\x12\xa1\x01\n" +
 	"\rValidateToken\x12&.core.mgmt.v1beta.ValidateTokenRequest\x1a'.core.mgmt.v1beta.ValidateTokenResponse\"?\x92A\x1e\n" +
 	"\tNamespacej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x18\"\x16/v1beta/validate_token\x12\xc5\x01\n" +
-	"\x12GetRemainingCredit\x12+.core.mgmt.v1beta.GetRemainingCreditRequest\x1a,.core.mgmt.v1beta.GetRemainingCreditResponse\"T\x92A!\n" +
-	"\fSubscriptionj\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02*\x12(/v1beta/namespaces/{namespace_id}/credit\x12\xa8\x01\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x18\"\x16/v1beta/validate_token\x12\xa8\x01\n" +
 	"\x0eCheckNamespace\x12'.core.mgmt.v1beta.CheckNamespaceRequest\x1a(.core.mgmt.v1beta.CheckNamespaceResponse\"C\x92A\x1e\n" +
 	"\tNamespacej\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/v1beta/check-namespace\x12\xd2\x01\n" +
@@ -139,10 +121,7 @@ const file_core_mgmt_v1beta_mgmt_public_service_proto_rawDesc = "" +
 	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02$\x12\"/v1beta/pipeline-runs/query-charts\x12\xd5\x01\n" +
 	"\x1cListModelTriggerChartRecords\x125.core.mgmt.v1beta.ListModelTriggerChartRecordsRequest\x1a6.core.mgmt.v1beta.ListModelTriggerChartRecordsResponse\"F\x92A\x1c\n" +
 	"\aMetricsj\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02!\x12\x1f/v1beta/model-runs/query-charts\x12\xe0\x01\n" +
-	"!ListCreditConsumptionChartRecords\x12:.core.mgmt.v1beta.ListCreditConsumptionChartRecordsRequest\x1a;.core.mgmt.v1beta.ListCreditConsumptionChartRecordsResponse\"B\x92A\x1c\n" +
-	"\aMetricsj\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x1d\x12\x1b/v1beta/credit/query-charts\x12\x9c\x01\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02!\x12\x1f/v1beta/model-runs/query-charts\x12\x9c\x01\n" +
 	"\x0fAuthTokenIssuer\x12(.core.mgmt.v1beta.AuthTokenIssuerRequest\x1a).core.mgmt.v1beta.AuthTokenIssuerResponse\"4\xfa\xd2\xe4\x93\x02\n" +
 	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/v1beta/auth/token_issuer\x12\x80\x01\n" +
 	"\tAuthLogin\x12\".core.mgmt.v1beta.AuthLoginRequest\x1a#.core.mgmt.v1beta.AuthLoginResponse\"*\xfa\xd2\xe4\x93\x02\n" +
@@ -165,7 +144,7 @@ const file_core_mgmt_v1beta_mgmt_public_service_proto_rawDesc = "" +
 	"!ListPipelineTriggerChartRecordsV0\x12:.core.mgmt.v1beta.ListPipelineTriggerChartRecordsV0Request\x1a;.core.mgmt.v1beta.ListPipelineTriggerChartRecordsV0Response\"]\x92A\x1c\n" +
 	"\aMetricsj\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04beta\xfa\xd2\xe4\x93\x02\n" +
-	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02%\x12#/v1beta/metrics/vdp/pipeline/charts\x88\x02\x01\x1a\x1a\x92A\x17\x12\x15Public Core endpointsB\xcf\x01\n" +
+	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02%\x12#/v1beta/metrics/vdp/pipeline/charts\x88\x02\x01\x1a\x1a\x92A\x17\x12\x15Public Mgmt endpointsB\xcf\x01\n" +
 	"\x14com.core.mgmt.v1betaB\x16MgmtPublicServiceProtoP\x01Z=github.com/instill-ai/protogen-go/core/mgmt/v1beta;mgmtv1beta\xa2\x02\x03CMX\xaa\x02\x10Core.Mgmt.V1beta\xca\x02\x10Core\\Mgmt\\V1beta\xe2\x02\x1cCore\\Mgmt\\V1beta\\GPBMetadata\xea\x02\x12Core::Mgmt::V1betab\x06proto3"
 
 var file_core_mgmt_v1beta_mgmt_public_service_proto_goTypes = []any{
@@ -189,76 +168,62 @@ var file_core_mgmt_v1beta_mgmt_public_service_proto_goTypes = []any{
 	(*UpdateOrganizationMembershipRequest)(nil),       // 17: core.mgmt.v1beta.UpdateOrganizationMembershipRequest
 	(*DeleteOrganizationMembershipRequest)(nil),       // 18: core.mgmt.v1beta.DeleteOrganizationMembershipRequest
 	(*InviteOrganizationMembersRequest)(nil),          // 19: core.mgmt.v1beta.InviteOrganizationMembersRequest
-	(*GetAuthenticatedUserSubscriptionRequest)(nil),   // 20: core.mgmt.v1beta.GetAuthenticatedUserSubscriptionRequest
-	(*SyncAuthenticatedUserSubscriptionRequest)(nil),  // 21: core.mgmt.v1beta.SyncAuthenticatedUserSubscriptionRequest
-	(*GetOrganizationSubscriptionRequest)(nil),        // 22: core.mgmt.v1beta.GetOrganizationSubscriptionRequest
-	(*SyncOrganizationSubscriptionRequest)(nil),       // 23: core.mgmt.v1beta.SyncOrganizationSubscriptionRequest
-	(*ListSubscriptionFreeTrialsRequest)(nil),         // 24: core.mgmt.v1beta.ListSubscriptionFreeTrialsRequest
-	(*CreateTokenRequest)(nil),                        // 25: core.mgmt.v1beta.CreateTokenRequest
-	(*ListTokensRequest)(nil),                         // 26: core.mgmt.v1beta.ListTokensRequest
-	(*GetTokenRequest)(nil),                           // 27: core.mgmt.v1beta.GetTokenRequest
-	(*DeleteTokenRequest)(nil),                        // 28: core.mgmt.v1beta.DeleteTokenRequest
-	(*ValidateTokenRequest)(nil),                      // 29: core.mgmt.v1beta.ValidateTokenRequest
-	(*GetRemainingCreditRequest)(nil),                 // 30: core.mgmt.v1beta.GetRemainingCreditRequest
-	(*CheckNamespaceRequest)(nil),                     // 31: core.mgmt.v1beta.CheckNamespaceRequest
-	(*GetPipelineTriggerCountRequest)(nil),            // 32: core.mgmt.v1beta.GetPipelineTriggerCountRequest
-	(*GetModelTriggerCountRequest)(nil),               // 33: core.mgmt.v1beta.GetModelTriggerCountRequest
-	(*ListPipelineTriggerChartRecordsRequest)(nil),    // 34: core.mgmt.v1beta.ListPipelineTriggerChartRecordsRequest
-	(*ListModelTriggerChartRecordsRequest)(nil),       // 35: core.mgmt.v1beta.ListModelTriggerChartRecordsRequest
-	(*ListCreditConsumptionChartRecordsRequest)(nil),  // 36: core.mgmt.v1beta.ListCreditConsumptionChartRecordsRequest
-	(*AuthTokenIssuerRequest)(nil),                    // 37: core.mgmt.v1beta.AuthTokenIssuerRequest
-	(*AuthLoginRequest)(nil),                          // 38: core.mgmt.v1beta.AuthLoginRequest
-	(*AuthLogoutRequest)(nil),                         // 39: core.mgmt.v1beta.AuthLogoutRequest
-	(*AuthChangePasswordRequest)(nil),                 // 40: core.mgmt.v1beta.AuthChangePasswordRequest
-	(*AuthValidateAccessTokenRequest)(nil),            // 41: core.mgmt.v1beta.AuthValidateAccessTokenRequest
-	(*ListPipelineTriggerRecordsRequest)(nil),         // 42: core.mgmt.v1beta.ListPipelineTriggerRecordsRequest
-	(*ListPipelineTriggerTableRecordsRequest)(nil),    // 43: core.mgmt.v1beta.ListPipelineTriggerTableRecordsRequest
-	(*ListPipelineTriggerChartRecordsV0Request)(nil),  // 44: core.mgmt.v1beta.ListPipelineTriggerChartRecordsV0Request
-	(*LivenessResponse)(nil),                          // 45: core.mgmt.v1beta.LivenessResponse
-	(*ReadinessResponse)(nil),                         // 46: core.mgmt.v1beta.ReadinessResponse
-	(*GetAuthenticatedUserResponse)(nil),              // 47: core.mgmt.v1beta.GetAuthenticatedUserResponse
-	(*PatchAuthenticatedUserResponse)(nil),            // 48: core.mgmt.v1beta.PatchAuthenticatedUserResponse
-	(*ListUsersResponse)(nil),                         // 49: core.mgmt.v1beta.ListUsersResponse
-	(*GetUserResponse)(nil),                           // 50: core.mgmt.v1beta.GetUserResponse
-	(*CreateOrganizationResponse)(nil),                // 51: core.mgmt.v1beta.CreateOrganizationResponse
-	(*ListOrganizationsResponse)(nil),                 // 52: core.mgmt.v1beta.ListOrganizationsResponse
-	(*GetOrganizationResponse)(nil),                   // 53: core.mgmt.v1beta.GetOrganizationResponse
-	(*UpdateOrganizationResponse)(nil),                // 54: core.mgmt.v1beta.UpdateOrganizationResponse
-	(*DeleteOrganizationResponse)(nil),                // 55: core.mgmt.v1beta.DeleteOrganizationResponse
-	(*ListUserMembershipsResponse)(nil),               // 56: core.mgmt.v1beta.ListUserMembershipsResponse
-	(*GetUserMembershipResponse)(nil),                 // 57: core.mgmt.v1beta.GetUserMembershipResponse
-	(*UpdateUserMembershipResponse)(nil),              // 58: core.mgmt.v1beta.UpdateUserMembershipResponse
-	(*DeleteUserMembershipResponse)(nil),              // 59: core.mgmt.v1beta.DeleteUserMembershipResponse
-	(*ListOrganizationMembershipsResponse)(nil),       // 60: core.mgmt.v1beta.ListOrganizationMembershipsResponse
-	(*GetOrganizationMembershipResponse)(nil),         // 61: core.mgmt.v1beta.GetOrganizationMembershipResponse
-	(*UpdateOrganizationMembershipResponse)(nil),      // 62: core.mgmt.v1beta.UpdateOrganizationMembershipResponse
-	(*DeleteOrganizationMembershipResponse)(nil),      // 63: core.mgmt.v1beta.DeleteOrganizationMembershipResponse
-	(*InviteOrganizationMembersResponse)(nil),         // 64: core.mgmt.v1beta.InviteOrganizationMembersResponse
-	(*GetAuthenticatedUserSubscriptionResponse)(nil),  // 65: core.mgmt.v1beta.GetAuthenticatedUserSubscriptionResponse
-	(*SyncAuthenticatedUserSubscriptionResponse)(nil), // 66: core.mgmt.v1beta.SyncAuthenticatedUserSubscriptionResponse
-	(*GetOrganizationSubscriptionResponse)(nil),       // 67: core.mgmt.v1beta.GetOrganizationSubscriptionResponse
-	(*SyncOrganizationSubscriptionResponse)(nil),      // 68: core.mgmt.v1beta.SyncOrganizationSubscriptionResponse
-	(*ListSubscriptionFreeTrialsResponse)(nil),        // 69: core.mgmt.v1beta.ListSubscriptionFreeTrialsResponse
-	(*CreateTokenResponse)(nil),                       // 70: core.mgmt.v1beta.CreateTokenResponse
-	(*ListTokensResponse)(nil),                        // 71: core.mgmt.v1beta.ListTokensResponse
-	(*GetTokenResponse)(nil),                          // 72: core.mgmt.v1beta.GetTokenResponse
-	(*DeleteTokenResponse)(nil),                       // 73: core.mgmt.v1beta.DeleteTokenResponse
-	(*ValidateTokenResponse)(nil),                     // 74: core.mgmt.v1beta.ValidateTokenResponse
-	(*GetRemainingCreditResponse)(nil),                // 75: core.mgmt.v1beta.GetRemainingCreditResponse
-	(*CheckNamespaceResponse)(nil),                    // 76: core.mgmt.v1beta.CheckNamespaceResponse
-	(*GetPipelineTriggerCountResponse)(nil),           // 77: core.mgmt.v1beta.GetPipelineTriggerCountResponse
-	(*GetModelTriggerCountResponse)(nil),              // 78: core.mgmt.v1beta.GetModelTriggerCountResponse
-	(*ListPipelineTriggerChartRecordsResponse)(nil),   // 79: core.mgmt.v1beta.ListPipelineTriggerChartRecordsResponse
-	(*ListModelTriggerChartRecordsResponse)(nil),      // 80: core.mgmt.v1beta.ListModelTriggerChartRecordsResponse
-	(*ListCreditConsumptionChartRecordsResponse)(nil), // 81: core.mgmt.v1beta.ListCreditConsumptionChartRecordsResponse
-	(*AuthTokenIssuerResponse)(nil),                   // 82: core.mgmt.v1beta.AuthTokenIssuerResponse
-	(*AuthLoginResponse)(nil),                         // 83: core.mgmt.v1beta.AuthLoginResponse
-	(*AuthLogoutResponse)(nil),                        // 84: core.mgmt.v1beta.AuthLogoutResponse
-	(*AuthChangePasswordResponse)(nil),                // 85: core.mgmt.v1beta.AuthChangePasswordResponse
-	(*AuthValidateAccessTokenResponse)(nil),           // 86: core.mgmt.v1beta.AuthValidateAccessTokenResponse
-	(*ListPipelineTriggerRecordsResponse)(nil),        // 87: core.mgmt.v1beta.ListPipelineTriggerRecordsResponse
-	(*ListPipelineTriggerTableRecordsResponse)(nil),   // 88: core.mgmt.v1beta.ListPipelineTriggerTableRecordsResponse
-	(*ListPipelineTriggerChartRecordsV0Response)(nil), // 89: core.mgmt.v1beta.ListPipelineTriggerChartRecordsV0Response
+	(*CreateTokenRequest)(nil),                        // 20: core.mgmt.v1beta.CreateTokenRequest
+	(*ListTokensRequest)(nil),                         // 21: core.mgmt.v1beta.ListTokensRequest
+	(*GetTokenRequest)(nil),                           // 22: core.mgmt.v1beta.GetTokenRequest
+	(*DeleteTokenRequest)(nil),                        // 23: core.mgmt.v1beta.DeleteTokenRequest
+	(*ValidateTokenRequest)(nil),                      // 24: core.mgmt.v1beta.ValidateTokenRequest
+	(*CheckNamespaceRequest)(nil),                     // 25: core.mgmt.v1beta.CheckNamespaceRequest
+	(*GetPipelineTriggerCountRequest)(nil),            // 26: core.mgmt.v1beta.GetPipelineTriggerCountRequest
+	(*GetModelTriggerCountRequest)(nil),               // 27: core.mgmt.v1beta.GetModelTriggerCountRequest
+	(*ListPipelineTriggerChartRecordsRequest)(nil),    // 28: core.mgmt.v1beta.ListPipelineTriggerChartRecordsRequest
+	(*ListModelTriggerChartRecordsRequest)(nil),       // 29: core.mgmt.v1beta.ListModelTriggerChartRecordsRequest
+	(*AuthTokenIssuerRequest)(nil),                    // 30: core.mgmt.v1beta.AuthTokenIssuerRequest
+	(*AuthLoginRequest)(nil),                          // 31: core.mgmt.v1beta.AuthLoginRequest
+	(*AuthLogoutRequest)(nil),                         // 32: core.mgmt.v1beta.AuthLogoutRequest
+	(*AuthChangePasswordRequest)(nil),                 // 33: core.mgmt.v1beta.AuthChangePasswordRequest
+	(*AuthValidateAccessTokenRequest)(nil),            // 34: core.mgmt.v1beta.AuthValidateAccessTokenRequest
+	(*ListPipelineTriggerRecordsRequest)(nil),         // 35: core.mgmt.v1beta.ListPipelineTriggerRecordsRequest
+	(*ListPipelineTriggerTableRecordsRequest)(nil),    // 36: core.mgmt.v1beta.ListPipelineTriggerTableRecordsRequest
+	(*ListPipelineTriggerChartRecordsV0Request)(nil),  // 37: core.mgmt.v1beta.ListPipelineTriggerChartRecordsV0Request
+	(*LivenessResponse)(nil),                          // 38: core.mgmt.v1beta.LivenessResponse
+	(*ReadinessResponse)(nil),                         // 39: core.mgmt.v1beta.ReadinessResponse
+	(*GetAuthenticatedUserResponse)(nil),              // 40: core.mgmt.v1beta.GetAuthenticatedUserResponse
+	(*PatchAuthenticatedUserResponse)(nil),            // 41: core.mgmt.v1beta.PatchAuthenticatedUserResponse
+	(*ListUsersResponse)(nil),                         // 42: core.mgmt.v1beta.ListUsersResponse
+	(*GetUserResponse)(nil),                           // 43: core.mgmt.v1beta.GetUserResponse
+	(*CreateOrganizationResponse)(nil),                // 44: core.mgmt.v1beta.CreateOrganizationResponse
+	(*ListOrganizationsResponse)(nil),                 // 45: core.mgmt.v1beta.ListOrganizationsResponse
+	(*GetOrganizationResponse)(nil),                   // 46: core.mgmt.v1beta.GetOrganizationResponse
+	(*UpdateOrganizationResponse)(nil),                // 47: core.mgmt.v1beta.UpdateOrganizationResponse
+	(*DeleteOrganizationResponse)(nil),                // 48: core.mgmt.v1beta.DeleteOrganizationResponse
+	(*ListUserMembershipsResponse)(nil),               // 49: core.mgmt.v1beta.ListUserMembershipsResponse
+	(*GetUserMembershipResponse)(nil),                 // 50: core.mgmt.v1beta.GetUserMembershipResponse
+	(*UpdateUserMembershipResponse)(nil),              // 51: core.mgmt.v1beta.UpdateUserMembershipResponse
+	(*DeleteUserMembershipResponse)(nil),              // 52: core.mgmt.v1beta.DeleteUserMembershipResponse
+	(*ListOrganizationMembershipsResponse)(nil),       // 53: core.mgmt.v1beta.ListOrganizationMembershipsResponse
+	(*GetOrganizationMembershipResponse)(nil),         // 54: core.mgmt.v1beta.GetOrganizationMembershipResponse
+	(*UpdateOrganizationMembershipResponse)(nil),      // 55: core.mgmt.v1beta.UpdateOrganizationMembershipResponse
+	(*DeleteOrganizationMembershipResponse)(nil),      // 56: core.mgmt.v1beta.DeleteOrganizationMembershipResponse
+	(*InviteOrganizationMembersResponse)(nil),         // 57: core.mgmt.v1beta.InviteOrganizationMembersResponse
+	(*CreateTokenResponse)(nil),                       // 58: core.mgmt.v1beta.CreateTokenResponse
+	(*ListTokensResponse)(nil),                        // 59: core.mgmt.v1beta.ListTokensResponse
+	(*GetTokenResponse)(nil),                          // 60: core.mgmt.v1beta.GetTokenResponse
+	(*DeleteTokenResponse)(nil),                       // 61: core.mgmt.v1beta.DeleteTokenResponse
+	(*ValidateTokenResponse)(nil),                     // 62: core.mgmt.v1beta.ValidateTokenResponse
+	(*CheckNamespaceResponse)(nil),                    // 63: core.mgmt.v1beta.CheckNamespaceResponse
+	(*GetPipelineTriggerCountResponse)(nil),           // 64: core.mgmt.v1beta.GetPipelineTriggerCountResponse
+	(*GetModelTriggerCountResponse)(nil),              // 65: core.mgmt.v1beta.GetModelTriggerCountResponse
+	(*ListPipelineTriggerChartRecordsResponse)(nil),   // 66: core.mgmt.v1beta.ListPipelineTriggerChartRecordsResponse
+	(*ListModelTriggerChartRecordsResponse)(nil),      // 67: core.mgmt.v1beta.ListModelTriggerChartRecordsResponse
+	(*AuthTokenIssuerResponse)(nil),                   // 68: core.mgmt.v1beta.AuthTokenIssuerResponse
+	(*AuthLoginResponse)(nil),                         // 69: core.mgmt.v1beta.AuthLoginResponse
+	(*AuthLogoutResponse)(nil),                        // 70: core.mgmt.v1beta.AuthLogoutResponse
+	(*AuthChangePasswordResponse)(nil),                // 71: core.mgmt.v1beta.AuthChangePasswordResponse
+	(*AuthValidateAccessTokenResponse)(nil),           // 72: core.mgmt.v1beta.AuthValidateAccessTokenResponse
+	(*ListPipelineTriggerRecordsResponse)(nil),        // 73: core.mgmt.v1beta.ListPipelineTriggerRecordsResponse
+	(*ListPipelineTriggerTableRecordsResponse)(nil),   // 74: core.mgmt.v1beta.ListPipelineTriggerTableRecordsResponse
+	(*ListPipelineTriggerChartRecordsV0Response)(nil), // 75: core.mgmt.v1beta.ListPipelineTriggerChartRecordsV0Response
 }
 var file_core_mgmt_v1beta_mgmt_public_service_proto_depIdxs = []int32{
 	0,  // 0: core.mgmt.v1beta.MgmtPublicService.Liveness:input_type -> core.mgmt.v1beta.LivenessRequest
@@ -281,78 +246,64 @@ var file_core_mgmt_v1beta_mgmt_public_service_proto_depIdxs = []int32{
 	17, // 17: core.mgmt.v1beta.MgmtPublicService.UpdateOrganizationMembership:input_type -> core.mgmt.v1beta.UpdateOrganizationMembershipRequest
 	18, // 18: core.mgmt.v1beta.MgmtPublicService.DeleteOrganizationMembership:input_type -> core.mgmt.v1beta.DeleteOrganizationMembershipRequest
 	19, // 19: core.mgmt.v1beta.MgmtPublicService.InviteOrganizationMembers:input_type -> core.mgmt.v1beta.InviteOrganizationMembersRequest
-	20, // 20: core.mgmt.v1beta.MgmtPublicService.GetAuthenticatedUserSubscription:input_type -> core.mgmt.v1beta.GetAuthenticatedUserSubscriptionRequest
-	21, // 21: core.mgmt.v1beta.MgmtPublicService.SyncAuthenticatedUserSubscription:input_type -> core.mgmt.v1beta.SyncAuthenticatedUserSubscriptionRequest
-	22, // 22: core.mgmt.v1beta.MgmtPublicService.GetOrganizationSubscription:input_type -> core.mgmt.v1beta.GetOrganizationSubscriptionRequest
-	23, // 23: core.mgmt.v1beta.MgmtPublicService.SyncOrganizationSubscription:input_type -> core.mgmt.v1beta.SyncOrganizationSubscriptionRequest
-	24, // 24: core.mgmt.v1beta.MgmtPublicService.ListSubscriptionFreeTrials:input_type -> core.mgmt.v1beta.ListSubscriptionFreeTrialsRequest
-	25, // 25: core.mgmt.v1beta.MgmtPublicService.CreateToken:input_type -> core.mgmt.v1beta.CreateTokenRequest
-	26, // 26: core.mgmt.v1beta.MgmtPublicService.ListTokens:input_type -> core.mgmt.v1beta.ListTokensRequest
-	27, // 27: core.mgmt.v1beta.MgmtPublicService.GetToken:input_type -> core.mgmt.v1beta.GetTokenRequest
-	28, // 28: core.mgmt.v1beta.MgmtPublicService.DeleteToken:input_type -> core.mgmt.v1beta.DeleteTokenRequest
-	29, // 29: core.mgmt.v1beta.MgmtPublicService.ValidateToken:input_type -> core.mgmt.v1beta.ValidateTokenRequest
-	30, // 30: core.mgmt.v1beta.MgmtPublicService.GetRemainingCredit:input_type -> core.mgmt.v1beta.GetRemainingCreditRequest
-	31, // 31: core.mgmt.v1beta.MgmtPublicService.CheckNamespace:input_type -> core.mgmt.v1beta.CheckNamespaceRequest
-	32, // 32: core.mgmt.v1beta.MgmtPublicService.GetPipelineTriggerCount:input_type -> core.mgmt.v1beta.GetPipelineTriggerCountRequest
-	33, // 33: core.mgmt.v1beta.MgmtPublicService.GetModelTriggerCount:input_type -> core.mgmt.v1beta.GetModelTriggerCountRequest
-	34, // 34: core.mgmt.v1beta.MgmtPublicService.ListPipelineTriggerChartRecords:input_type -> core.mgmt.v1beta.ListPipelineTriggerChartRecordsRequest
-	35, // 35: core.mgmt.v1beta.MgmtPublicService.ListModelTriggerChartRecords:input_type -> core.mgmt.v1beta.ListModelTriggerChartRecordsRequest
-	36, // 36: core.mgmt.v1beta.MgmtPublicService.ListCreditConsumptionChartRecords:input_type -> core.mgmt.v1beta.ListCreditConsumptionChartRecordsRequest
-	37, // 37: core.mgmt.v1beta.MgmtPublicService.AuthTokenIssuer:input_type -> core.mgmt.v1beta.AuthTokenIssuerRequest
-	38, // 38: core.mgmt.v1beta.MgmtPublicService.AuthLogin:input_type -> core.mgmt.v1beta.AuthLoginRequest
-	39, // 39: core.mgmt.v1beta.MgmtPublicService.AuthLogout:input_type -> core.mgmt.v1beta.AuthLogoutRequest
-	40, // 40: core.mgmt.v1beta.MgmtPublicService.AuthChangePassword:input_type -> core.mgmt.v1beta.AuthChangePasswordRequest
-	41, // 41: core.mgmt.v1beta.MgmtPublicService.AuthValidateAccessToken:input_type -> core.mgmt.v1beta.AuthValidateAccessTokenRequest
-	42, // 42: core.mgmt.v1beta.MgmtPublicService.ListPipelineTriggerRecords:input_type -> core.mgmt.v1beta.ListPipelineTriggerRecordsRequest
-	43, // 43: core.mgmt.v1beta.MgmtPublicService.ListPipelineTriggerTableRecords:input_type -> core.mgmt.v1beta.ListPipelineTriggerTableRecordsRequest
-	44, // 44: core.mgmt.v1beta.MgmtPublicService.ListPipelineTriggerChartRecordsV0:input_type -> core.mgmt.v1beta.ListPipelineTriggerChartRecordsV0Request
-	45, // 45: core.mgmt.v1beta.MgmtPublicService.Liveness:output_type -> core.mgmt.v1beta.LivenessResponse
-	46, // 46: core.mgmt.v1beta.MgmtPublicService.Readiness:output_type -> core.mgmt.v1beta.ReadinessResponse
-	47, // 47: core.mgmt.v1beta.MgmtPublicService.GetAuthenticatedUser:output_type -> core.mgmt.v1beta.GetAuthenticatedUserResponse
-	48, // 48: core.mgmt.v1beta.MgmtPublicService.PatchAuthenticatedUser:output_type -> core.mgmt.v1beta.PatchAuthenticatedUserResponse
-	49, // 49: core.mgmt.v1beta.MgmtPublicService.ListUsers:output_type -> core.mgmt.v1beta.ListUsersResponse
-	50, // 50: core.mgmt.v1beta.MgmtPublicService.GetUser:output_type -> core.mgmt.v1beta.GetUserResponse
-	51, // 51: core.mgmt.v1beta.MgmtPublicService.CreateOrganization:output_type -> core.mgmt.v1beta.CreateOrganizationResponse
-	52, // 52: core.mgmt.v1beta.MgmtPublicService.ListOrganizations:output_type -> core.mgmt.v1beta.ListOrganizationsResponse
-	53, // 53: core.mgmt.v1beta.MgmtPublicService.GetOrganization:output_type -> core.mgmt.v1beta.GetOrganizationResponse
-	54, // 54: core.mgmt.v1beta.MgmtPublicService.UpdateOrganization:output_type -> core.mgmt.v1beta.UpdateOrganizationResponse
-	55, // 55: core.mgmt.v1beta.MgmtPublicService.DeleteOrganization:output_type -> core.mgmt.v1beta.DeleteOrganizationResponse
-	56, // 56: core.mgmt.v1beta.MgmtPublicService.ListUserMemberships:output_type -> core.mgmt.v1beta.ListUserMembershipsResponse
-	57, // 57: core.mgmt.v1beta.MgmtPublicService.GetUserMembership:output_type -> core.mgmt.v1beta.GetUserMembershipResponse
-	58, // 58: core.mgmt.v1beta.MgmtPublicService.UpdateUserMembership:output_type -> core.mgmt.v1beta.UpdateUserMembershipResponse
-	59, // 59: core.mgmt.v1beta.MgmtPublicService.DeleteUserMembership:output_type -> core.mgmt.v1beta.DeleteUserMembershipResponse
-	60, // 60: core.mgmt.v1beta.MgmtPublicService.ListOrganizationMemberships:output_type -> core.mgmt.v1beta.ListOrganizationMembershipsResponse
-	61, // 61: core.mgmt.v1beta.MgmtPublicService.GetOrganizationMembership:output_type -> core.mgmt.v1beta.GetOrganizationMembershipResponse
-	62, // 62: core.mgmt.v1beta.MgmtPublicService.UpdateOrganizationMembership:output_type -> core.mgmt.v1beta.UpdateOrganizationMembershipResponse
-	63, // 63: core.mgmt.v1beta.MgmtPublicService.DeleteOrganizationMembership:output_type -> core.mgmt.v1beta.DeleteOrganizationMembershipResponse
-	64, // 64: core.mgmt.v1beta.MgmtPublicService.InviteOrganizationMembers:output_type -> core.mgmt.v1beta.InviteOrganizationMembersResponse
-	65, // 65: core.mgmt.v1beta.MgmtPublicService.GetAuthenticatedUserSubscription:output_type -> core.mgmt.v1beta.GetAuthenticatedUserSubscriptionResponse
-	66, // 66: core.mgmt.v1beta.MgmtPublicService.SyncAuthenticatedUserSubscription:output_type -> core.mgmt.v1beta.SyncAuthenticatedUserSubscriptionResponse
-	67, // 67: core.mgmt.v1beta.MgmtPublicService.GetOrganizationSubscription:output_type -> core.mgmt.v1beta.GetOrganizationSubscriptionResponse
-	68, // 68: core.mgmt.v1beta.MgmtPublicService.SyncOrganizationSubscription:output_type -> core.mgmt.v1beta.SyncOrganizationSubscriptionResponse
-	69, // 69: core.mgmt.v1beta.MgmtPublicService.ListSubscriptionFreeTrials:output_type -> core.mgmt.v1beta.ListSubscriptionFreeTrialsResponse
-	70, // 70: core.mgmt.v1beta.MgmtPublicService.CreateToken:output_type -> core.mgmt.v1beta.CreateTokenResponse
-	71, // 71: core.mgmt.v1beta.MgmtPublicService.ListTokens:output_type -> core.mgmt.v1beta.ListTokensResponse
-	72, // 72: core.mgmt.v1beta.MgmtPublicService.GetToken:output_type -> core.mgmt.v1beta.GetTokenResponse
-	73, // 73: core.mgmt.v1beta.MgmtPublicService.DeleteToken:output_type -> core.mgmt.v1beta.DeleteTokenResponse
-	74, // 74: core.mgmt.v1beta.MgmtPublicService.ValidateToken:output_type -> core.mgmt.v1beta.ValidateTokenResponse
-	75, // 75: core.mgmt.v1beta.MgmtPublicService.GetRemainingCredit:output_type -> core.mgmt.v1beta.GetRemainingCreditResponse
-	76, // 76: core.mgmt.v1beta.MgmtPublicService.CheckNamespace:output_type -> core.mgmt.v1beta.CheckNamespaceResponse
-	77, // 77: core.mgmt.v1beta.MgmtPublicService.GetPipelineTriggerCount:output_type -> core.mgmt.v1beta.GetPipelineTriggerCountResponse
-	78, // 78: core.mgmt.v1beta.MgmtPublicService.GetModelTriggerCount:output_type -> core.mgmt.v1beta.GetModelTriggerCountResponse
-	79, // 79: core.mgmt.v1beta.MgmtPublicService.ListPipelineTriggerChartRecords:output_type -> core.mgmt.v1beta.ListPipelineTriggerChartRecordsResponse
-	80, // 80: core.mgmt.v1beta.MgmtPublicService.ListModelTriggerChartRecords:output_type -> core.mgmt.v1beta.ListModelTriggerChartRecordsResponse
-	81, // 81: core.mgmt.v1beta.MgmtPublicService.ListCreditConsumptionChartRecords:output_type -> core.mgmt.v1beta.ListCreditConsumptionChartRecordsResponse
-	82, // 82: core.mgmt.v1beta.MgmtPublicService.AuthTokenIssuer:output_type -> core.mgmt.v1beta.AuthTokenIssuerResponse
-	83, // 83: core.mgmt.v1beta.MgmtPublicService.AuthLogin:output_type -> core.mgmt.v1beta.AuthLoginResponse
-	84, // 84: core.mgmt.v1beta.MgmtPublicService.AuthLogout:output_type -> core.mgmt.v1beta.AuthLogoutResponse
-	85, // 85: core.mgmt.v1beta.MgmtPublicService.AuthChangePassword:output_type -> core.mgmt.v1beta.AuthChangePasswordResponse
-	86, // 86: core.mgmt.v1beta.MgmtPublicService.AuthValidateAccessToken:output_type -> core.mgmt.v1beta.AuthValidateAccessTokenResponse
-	87, // 87: core.mgmt.v1beta.MgmtPublicService.ListPipelineTriggerRecords:output_type -> core.mgmt.v1beta.ListPipelineTriggerRecordsResponse
-	88, // 88: core.mgmt.v1beta.MgmtPublicService.ListPipelineTriggerTableRecords:output_type -> core.mgmt.v1beta.ListPipelineTriggerTableRecordsResponse
-	89, // 89: core.mgmt.v1beta.MgmtPublicService.ListPipelineTriggerChartRecordsV0:output_type -> core.mgmt.v1beta.ListPipelineTriggerChartRecordsV0Response
-	45, // [45:90] is the sub-list for method output_type
-	0,  // [0:45] is the sub-list for method input_type
+	20, // 20: core.mgmt.v1beta.MgmtPublicService.CreateToken:input_type -> core.mgmt.v1beta.CreateTokenRequest
+	21, // 21: core.mgmt.v1beta.MgmtPublicService.ListTokens:input_type -> core.mgmt.v1beta.ListTokensRequest
+	22, // 22: core.mgmt.v1beta.MgmtPublicService.GetToken:input_type -> core.mgmt.v1beta.GetTokenRequest
+	23, // 23: core.mgmt.v1beta.MgmtPublicService.DeleteToken:input_type -> core.mgmt.v1beta.DeleteTokenRequest
+	24, // 24: core.mgmt.v1beta.MgmtPublicService.ValidateToken:input_type -> core.mgmt.v1beta.ValidateTokenRequest
+	25, // 25: core.mgmt.v1beta.MgmtPublicService.CheckNamespace:input_type -> core.mgmt.v1beta.CheckNamespaceRequest
+	26, // 26: core.mgmt.v1beta.MgmtPublicService.GetPipelineTriggerCount:input_type -> core.mgmt.v1beta.GetPipelineTriggerCountRequest
+	27, // 27: core.mgmt.v1beta.MgmtPublicService.GetModelTriggerCount:input_type -> core.mgmt.v1beta.GetModelTriggerCountRequest
+	28, // 28: core.mgmt.v1beta.MgmtPublicService.ListPipelineTriggerChartRecords:input_type -> core.mgmt.v1beta.ListPipelineTriggerChartRecordsRequest
+	29, // 29: core.mgmt.v1beta.MgmtPublicService.ListModelTriggerChartRecords:input_type -> core.mgmt.v1beta.ListModelTriggerChartRecordsRequest
+	30, // 30: core.mgmt.v1beta.MgmtPublicService.AuthTokenIssuer:input_type -> core.mgmt.v1beta.AuthTokenIssuerRequest
+	31, // 31: core.mgmt.v1beta.MgmtPublicService.AuthLogin:input_type -> core.mgmt.v1beta.AuthLoginRequest
+	32, // 32: core.mgmt.v1beta.MgmtPublicService.AuthLogout:input_type -> core.mgmt.v1beta.AuthLogoutRequest
+	33, // 33: core.mgmt.v1beta.MgmtPublicService.AuthChangePassword:input_type -> core.mgmt.v1beta.AuthChangePasswordRequest
+	34, // 34: core.mgmt.v1beta.MgmtPublicService.AuthValidateAccessToken:input_type -> core.mgmt.v1beta.AuthValidateAccessTokenRequest
+	35, // 35: core.mgmt.v1beta.MgmtPublicService.ListPipelineTriggerRecords:input_type -> core.mgmt.v1beta.ListPipelineTriggerRecordsRequest
+	36, // 36: core.mgmt.v1beta.MgmtPublicService.ListPipelineTriggerTableRecords:input_type -> core.mgmt.v1beta.ListPipelineTriggerTableRecordsRequest
+	37, // 37: core.mgmt.v1beta.MgmtPublicService.ListPipelineTriggerChartRecordsV0:input_type -> core.mgmt.v1beta.ListPipelineTriggerChartRecordsV0Request
+	38, // 38: core.mgmt.v1beta.MgmtPublicService.Liveness:output_type -> core.mgmt.v1beta.LivenessResponse
+	39, // 39: core.mgmt.v1beta.MgmtPublicService.Readiness:output_type -> core.mgmt.v1beta.ReadinessResponse
+	40, // 40: core.mgmt.v1beta.MgmtPublicService.GetAuthenticatedUser:output_type -> core.mgmt.v1beta.GetAuthenticatedUserResponse
+	41, // 41: core.mgmt.v1beta.MgmtPublicService.PatchAuthenticatedUser:output_type -> core.mgmt.v1beta.PatchAuthenticatedUserResponse
+	42, // 42: core.mgmt.v1beta.MgmtPublicService.ListUsers:output_type -> core.mgmt.v1beta.ListUsersResponse
+	43, // 43: core.mgmt.v1beta.MgmtPublicService.GetUser:output_type -> core.mgmt.v1beta.GetUserResponse
+	44, // 44: core.mgmt.v1beta.MgmtPublicService.CreateOrganization:output_type -> core.mgmt.v1beta.CreateOrganizationResponse
+	45, // 45: core.mgmt.v1beta.MgmtPublicService.ListOrganizations:output_type -> core.mgmt.v1beta.ListOrganizationsResponse
+	46, // 46: core.mgmt.v1beta.MgmtPublicService.GetOrganization:output_type -> core.mgmt.v1beta.GetOrganizationResponse
+	47, // 47: core.mgmt.v1beta.MgmtPublicService.UpdateOrganization:output_type -> core.mgmt.v1beta.UpdateOrganizationResponse
+	48, // 48: core.mgmt.v1beta.MgmtPublicService.DeleteOrganization:output_type -> core.mgmt.v1beta.DeleteOrganizationResponse
+	49, // 49: core.mgmt.v1beta.MgmtPublicService.ListUserMemberships:output_type -> core.mgmt.v1beta.ListUserMembershipsResponse
+	50, // 50: core.mgmt.v1beta.MgmtPublicService.GetUserMembership:output_type -> core.mgmt.v1beta.GetUserMembershipResponse
+	51, // 51: core.mgmt.v1beta.MgmtPublicService.UpdateUserMembership:output_type -> core.mgmt.v1beta.UpdateUserMembershipResponse
+	52, // 52: core.mgmt.v1beta.MgmtPublicService.DeleteUserMembership:output_type -> core.mgmt.v1beta.DeleteUserMembershipResponse
+	53, // 53: core.mgmt.v1beta.MgmtPublicService.ListOrganizationMemberships:output_type -> core.mgmt.v1beta.ListOrganizationMembershipsResponse
+	54, // 54: core.mgmt.v1beta.MgmtPublicService.GetOrganizationMembership:output_type -> core.mgmt.v1beta.GetOrganizationMembershipResponse
+	55, // 55: core.mgmt.v1beta.MgmtPublicService.UpdateOrganizationMembership:output_type -> core.mgmt.v1beta.UpdateOrganizationMembershipResponse
+	56, // 56: core.mgmt.v1beta.MgmtPublicService.DeleteOrganizationMembership:output_type -> core.mgmt.v1beta.DeleteOrganizationMembershipResponse
+	57, // 57: core.mgmt.v1beta.MgmtPublicService.InviteOrganizationMembers:output_type -> core.mgmt.v1beta.InviteOrganizationMembersResponse
+	58, // 58: core.mgmt.v1beta.MgmtPublicService.CreateToken:output_type -> core.mgmt.v1beta.CreateTokenResponse
+	59, // 59: core.mgmt.v1beta.MgmtPublicService.ListTokens:output_type -> core.mgmt.v1beta.ListTokensResponse
+	60, // 60: core.mgmt.v1beta.MgmtPublicService.GetToken:output_type -> core.mgmt.v1beta.GetTokenResponse
+	61, // 61: core.mgmt.v1beta.MgmtPublicService.DeleteToken:output_type -> core.mgmt.v1beta.DeleteTokenResponse
+	62, // 62: core.mgmt.v1beta.MgmtPublicService.ValidateToken:output_type -> core.mgmt.v1beta.ValidateTokenResponse
+	63, // 63: core.mgmt.v1beta.MgmtPublicService.CheckNamespace:output_type -> core.mgmt.v1beta.CheckNamespaceResponse
+	64, // 64: core.mgmt.v1beta.MgmtPublicService.GetPipelineTriggerCount:output_type -> core.mgmt.v1beta.GetPipelineTriggerCountResponse
+	65, // 65: core.mgmt.v1beta.MgmtPublicService.GetModelTriggerCount:output_type -> core.mgmt.v1beta.GetModelTriggerCountResponse
+	66, // 66: core.mgmt.v1beta.MgmtPublicService.ListPipelineTriggerChartRecords:output_type -> core.mgmt.v1beta.ListPipelineTriggerChartRecordsResponse
+	67, // 67: core.mgmt.v1beta.MgmtPublicService.ListModelTriggerChartRecords:output_type -> core.mgmt.v1beta.ListModelTriggerChartRecordsResponse
+	68, // 68: core.mgmt.v1beta.MgmtPublicService.AuthTokenIssuer:output_type -> core.mgmt.v1beta.AuthTokenIssuerResponse
+	69, // 69: core.mgmt.v1beta.MgmtPublicService.AuthLogin:output_type -> core.mgmt.v1beta.AuthLoginResponse
+	70, // 70: core.mgmt.v1beta.MgmtPublicService.AuthLogout:output_type -> core.mgmt.v1beta.AuthLogoutResponse
+	71, // 71: core.mgmt.v1beta.MgmtPublicService.AuthChangePassword:output_type -> core.mgmt.v1beta.AuthChangePasswordResponse
+	72, // 72: core.mgmt.v1beta.MgmtPublicService.AuthValidateAccessToken:output_type -> core.mgmt.v1beta.AuthValidateAccessTokenResponse
+	73, // 73: core.mgmt.v1beta.MgmtPublicService.ListPipelineTriggerRecords:output_type -> core.mgmt.v1beta.ListPipelineTriggerRecordsResponse
+	74, // 74: core.mgmt.v1beta.MgmtPublicService.ListPipelineTriggerTableRecords:output_type -> core.mgmt.v1beta.ListPipelineTriggerTableRecordsResponse
+	75, // 75: core.mgmt.v1beta.MgmtPublicService.ListPipelineTriggerChartRecordsV0:output_type -> core.mgmt.v1beta.ListPipelineTriggerChartRecordsV0Response
+	38, // [38:76] is the sub-list for method output_type
+	0,  // [0:38] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name

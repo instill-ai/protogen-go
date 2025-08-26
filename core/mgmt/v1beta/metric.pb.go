@@ -821,208 +821,6 @@ func (x *ListModelTriggerChartRecordsResponse) GetModelTriggerChartRecords() []*
 	return nil
 }
 
-// CreditConsumptionChartRecord represents a timeline of Instill Credit
-// consumption. It contains a collection of (timestamp, amount) pairs that
-// represent the total credit consumption in a given time bucket.
-type CreditConsumptionChartRecord struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The ID of the namespace that owns the credit.
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Time buckets.
-	TimeBuckets []*timestamppb.Timestamp `protobuf:"bytes,2,rep,name=time_buckets,json=timeBuckets,proto3" json:"time_buckets,omitempty"`
-	// Total credit consumed in each time bucket.
-	Amount []float32 `protobuf:"fixed32,3,rep,packed,name=amount,proto3" json:"amount,omitempty"`
-	// Credit consumption source (e.g. "pipeline", "model").
-	Source        string `protobuf:"bytes,4,opt,name=source,proto3" json:"source,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CreditConsumptionChartRecord) Reset() {
-	*x = CreditConsumptionChartRecord{}
-	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[11]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreditConsumptionChartRecord) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreditConsumptionChartRecord) ProtoMessage() {}
-
-func (x *CreditConsumptionChartRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[11]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreditConsumptionChartRecord.ProtoReflect.Descriptor instead.
-func (*CreditConsumptionChartRecord) Descriptor() ([]byte, []int) {
-	return file_core_mgmt_v1beta_metric_proto_rawDescGZIP(), []int{11}
-}
-
-func (x *CreditConsumptionChartRecord) GetNamespaceId() string {
-	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *CreditConsumptionChartRecord) GetTimeBuckets() []*timestamppb.Timestamp {
-	if x != nil {
-		return x.TimeBuckets
-	}
-	return nil
-}
-
-func (x *CreditConsumptionChartRecord) GetAmount() []float32 {
-	if x != nil {
-		return x.Amount
-	}
-	return nil
-}
-
-func (x *CreditConsumptionChartRecord) GetSource() string {
-	if x != nil {
-		return x.Source
-	}
-	return ""
-}
-
-// ListCreditConsumptionChartRecordsRequest represents a request to list credit
-// consumption chart records for a given owner, grouped by time buckets and
-// consumption sources.
-type ListCreditConsumptionChartRecordsRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The ID of the namespace that owns the credit.
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Aggregation window. The value is a positive duration string, i.e. a
-	// sequence of decimal numbers, each with optional fraction and a unit
-	// suffix, such as "300ms", "1.5h" or "2h45m".
-	// The minimum (and default) window is 1h.
-	AggregationWindow *string `protobuf:"bytes,2,opt,name=aggregation_window,json=aggregationWindow,proto3,oneof" json:"aggregation_window,omitempty"`
-	// Beginning of the time range from which the records will be fetched.
-	// The default value is the beginning of the current day, in UTC.
-	Start *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=start,proto3,oneof" json:"start,omitempty"`
-	// End of the time range from which the records will be fetched.
-	// The default value is the current timestamp.
-	Stop          *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=stop,proto3,oneof" json:"stop,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListCreditConsumptionChartRecordsRequest) Reset() {
-	*x = ListCreditConsumptionChartRecordsRequest{}
-	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[12]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListCreditConsumptionChartRecordsRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListCreditConsumptionChartRecordsRequest) ProtoMessage() {}
-
-func (x *ListCreditConsumptionChartRecordsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[12]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListCreditConsumptionChartRecordsRequest.ProtoReflect.Descriptor instead.
-func (*ListCreditConsumptionChartRecordsRequest) Descriptor() ([]byte, []int) {
-	return file_core_mgmt_v1beta_metric_proto_rawDescGZIP(), []int{12}
-}
-
-func (x *ListCreditConsumptionChartRecordsRequest) GetNamespaceId() string {
-	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *ListCreditConsumptionChartRecordsRequest) GetAggregationWindow() string {
-	if x != nil && x.AggregationWindow != nil {
-		return *x.AggregationWindow
-	}
-	return ""
-}
-
-func (x *ListCreditConsumptionChartRecordsRequest) GetStart() *timestamppb.Timestamp {
-	if x != nil {
-		return x.Start
-	}
-	return nil
-}
-
-func (x *ListCreditConsumptionChartRecordsRequest) GetStop() *timestamppb.Timestamp {
-	if x != nil {
-		return x.Stop
-	}
-	return nil
-}
-
-// ListCreditConsumptionChartRecordsResponse contains a list of credit consumption
-// chart records.
-type ListCreditConsumptionChartRecordsResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Credit consumption timelines, aggregated by source.
-	CreditConsumptionChartRecords []*CreditConsumptionChartRecord `protobuf:"bytes,1,rep,name=credit_consumption_chart_records,json=creditConsumptionChartRecords,proto3" json:"credit_consumption_chart_records,omitempty"`
-	unknownFields                 protoimpl.UnknownFields
-	sizeCache                     protoimpl.SizeCache
-}
-
-func (x *ListCreditConsumptionChartRecordsResponse) Reset() {
-	*x = ListCreditConsumptionChartRecordsResponse{}
-	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[13]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListCreditConsumptionChartRecordsResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListCreditConsumptionChartRecordsResponse) ProtoMessage() {}
-
-func (x *ListCreditConsumptionChartRecordsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[13]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListCreditConsumptionChartRecordsResponse.ProtoReflect.Descriptor instead.
-func (*ListCreditConsumptionChartRecordsResponse) Descriptor() ([]byte, []int) {
-	return file_core_mgmt_v1beta_metric_proto_rawDescGZIP(), []int{13}
-}
-
-func (x *ListCreditConsumptionChartRecordsResponse) GetCreditConsumptionChartRecords() []*CreditConsumptionChartRecord {
-	if x != nil {
-		return x.CreditConsumptionChartRecords
-	}
-	return nil
-}
-
 // PipelineTriggerTableRecord contains pipeline trigger metrics, aggregated by
 // pipeline ID.
 type PipelineTriggerTableRecord struct {
@@ -1045,7 +843,7 @@ type PipelineTriggerTableRecord struct {
 
 func (x *PipelineTriggerTableRecord) Reset() {
 	*x = PipelineTriggerTableRecord{}
-	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[14]
+	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1057,7 +855,7 @@ func (x *PipelineTriggerTableRecord) String() string {
 func (*PipelineTriggerTableRecord) ProtoMessage() {}
 
 func (x *PipelineTriggerTableRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[14]
+	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1070,7 +868,7 @@ func (x *PipelineTriggerTableRecord) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PipelineTriggerTableRecord.ProtoReflect.Descriptor instead.
 func (*PipelineTriggerTableRecord) Descriptor() ([]byte, []int) {
-	return file_core_mgmt_v1beta_metric_proto_rawDescGZIP(), []int{14}
+	return file_core_mgmt_v1beta_metric_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *PipelineTriggerTableRecord) GetPipelineId() string {
@@ -1135,7 +933,7 @@ type ListPipelineTriggerTableRecordsRequest struct {
 
 func (x *ListPipelineTriggerTableRecordsRequest) Reset() {
 	*x = ListPipelineTriggerTableRecordsRequest{}
-	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[15]
+	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1147,7 +945,7 @@ func (x *ListPipelineTriggerTableRecordsRequest) String() string {
 func (*ListPipelineTriggerTableRecordsRequest) ProtoMessage() {}
 
 func (x *ListPipelineTriggerTableRecordsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[15]
+	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1160,7 +958,7 @@ func (x *ListPipelineTriggerTableRecordsRequest) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use ListPipelineTriggerTableRecordsRequest.ProtoReflect.Descriptor instead.
 func (*ListPipelineTriggerTableRecordsRequest) Descriptor() ([]byte, []int) {
-	return file_core_mgmt_v1beta_metric_proto_rawDescGZIP(), []int{15}
+	return file_core_mgmt_v1beta_metric_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ListPipelineTriggerTableRecordsRequest) GetPageSize() int32 {
@@ -1199,7 +997,7 @@ type ListPipelineTriggerTableRecordsResponse struct {
 
 func (x *ListPipelineTriggerTableRecordsResponse) Reset() {
 	*x = ListPipelineTriggerTableRecordsResponse{}
-	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[16]
+	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1211,7 +1009,7 @@ func (x *ListPipelineTriggerTableRecordsResponse) String() string {
 func (*ListPipelineTriggerTableRecordsResponse) ProtoMessage() {}
 
 func (x *ListPipelineTriggerTableRecordsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[16]
+	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1224,7 +1022,7 @@ func (x *ListPipelineTriggerTableRecordsResponse) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use ListPipelineTriggerTableRecordsResponse.ProtoReflect.Descriptor instead.
 func (*ListPipelineTriggerTableRecordsResponse) Descriptor() ([]byte, []int) {
-	return file_core_mgmt_v1beta_metric_proto_rawDescGZIP(), []int{16}
+	return file_core_mgmt_v1beta_metric_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *ListPipelineTriggerTableRecordsResponse) GetPipelineTriggerTableRecords() []*PipelineTriggerTableRecord {
@@ -1264,7 +1062,7 @@ type ListPipelineTriggerChartRecordsV0Request struct {
 
 func (x *ListPipelineTriggerChartRecordsV0Request) Reset() {
 	*x = ListPipelineTriggerChartRecordsV0Request{}
-	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[17]
+	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1276,7 +1074,7 @@ func (x *ListPipelineTriggerChartRecordsV0Request) String() string {
 func (*ListPipelineTriggerChartRecordsV0Request) ProtoMessage() {}
 
 func (x *ListPipelineTriggerChartRecordsV0Request) ProtoReflect() protoreflect.Message {
-	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[17]
+	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1289,7 +1087,7 @@ func (x *ListPipelineTriggerChartRecordsV0Request) ProtoReflect() protoreflect.M
 
 // Deprecated: Use ListPipelineTriggerChartRecordsV0Request.ProtoReflect.Descriptor instead.
 func (*ListPipelineTriggerChartRecordsV0Request) Descriptor() ([]byte, []int) {
-	return file_core_mgmt_v1beta_metric_proto_rawDescGZIP(), []int{17}
+	return file_core_mgmt_v1beta_metric_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *ListPipelineTriggerChartRecordsV0Request) GetAggregationWindow() int32 {
@@ -1318,7 +1116,7 @@ type ListPipelineTriggerChartRecordsV0Response struct {
 
 func (x *ListPipelineTriggerChartRecordsV0Response) Reset() {
 	*x = ListPipelineTriggerChartRecordsV0Response{}
-	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[18]
+	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1330,7 +1128,7 @@ func (x *ListPipelineTriggerChartRecordsV0Response) String() string {
 func (*ListPipelineTriggerChartRecordsV0Response) ProtoMessage() {}
 
 func (x *ListPipelineTriggerChartRecordsV0Response) ProtoReflect() protoreflect.Message {
-	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[18]
+	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1343,7 +1141,7 @@ func (x *ListPipelineTriggerChartRecordsV0Response) ProtoReflect() protoreflect.
 
 // Deprecated: Use ListPipelineTriggerChartRecordsV0Response.ProtoReflect.Descriptor instead.
 func (*ListPipelineTriggerChartRecordsV0Response) Descriptor() ([]byte, []int) {
-	return file_core_mgmt_v1beta_metric_proto_rawDescGZIP(), []int{18}
+	return file_core_mgmt_v1beta_metric_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *ListPipelineTriggerChartRecordsV0Response) GetPipelineTriggerChartRecords() []*PipelineTriggerChartRecordV0 {
@@ -1381,7 +1179,7 @@ type PipelineTriggerChartRecordV0 struct {
 
 func (x *PipelineTriggerChartRecordV0) Reset() {
 	*x = PipelineTriggerChartRecordV0{}
-	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[19]
+	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1393,7 +1191,7 @@ func (x *PipelineTriggerChartRecordV0) String() string {
 func (*PipelineTriggerChartRecordV0) ProtoMessage() {}
 
 func (x *PipelineTriggerChartRecordV0) ProtoReflect() protoreflect.Message {
-	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[19]
+	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1406,7 +1204,7 @@ func (x *PipelineTriggerChartRecordV0) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PipelineTriggerChartRecordV0.ProtoReflect.Descriptor instead.
 func (*PipelineTriggerChartRecordV0) Descriptor() ([]byte, []int) {
-	return file_core_mgmt_v1beta_metric_proto_rawDescGZIP(), []int{19}
+	return file_core_mgmt_v1beta_metric_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *PipelineTriggerChartRecordV0) GetPipelineId() string {
@@ -1499,7 +1297,7 @@ type PipelineTriggerRecord struct {
 
 func (x *PipelineTriggerRecord) Reset() {
 	*x = PipelineTriggerRecord{}
-	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[20]
+	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1511,7 +1309,7 @@ func (x *PipelineTriggerRecord) String() string {
 func (*PipelineTriggerRecord) ProtoMessage() {}
 
 func (x *PipelineTriggerRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[20]
+	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1524,7 +1322,7 @@ func (x *PipelineTriggerRecord) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PipelineTriggerRecord.ProtoReflect.Descriptor instead.
 func (*PipelineTriggerRecord) Descriptor() ([]byte, []int) {
-	return file_core_mgmt_v1beta_metric_proto_rawDescGZIP(), []int{20}
+	return file_core_mgmt_v1beta_metric_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *PipelineTriggerRecord) GetTriggerTime() *timestamppb.Timestamp {
@@ -1610,7 +1408,7 @@ type ListPipelineTriggerRecordsRequest struct {
 
 func (x *ListPipelineTriggerRecordsRequest) Reset() {
 	*x = ListPipelineTriggerRecordsRequest{}
-	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[21]
+	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1622,7 +1420,7 @@ func (x *ListPipelineTriggerRecordsRequest) String() string {
 func (*ListPipelineTriggerRecordsRequest) ProtoMessage() {}
 
 func (x *ListPipelineTriggerRecordsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[21]
+	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1635,7 +1433,7 @@ func (x *ListPipelineTriggerRecordsRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use ListPipelineTriggerRecordsRequest.ProtoReflect.Descriptor instead.
 func (*ListPipelineTriggerRecordsRequest) Descriptor() ([]byte, []int) {
-	return file_core_mgmt_v1beta_metric_proto_rawDescGZIP(), []int{21}
+	return file_core_mgmt_v1beta_metric_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *ListPipelineTriggerRecordsRequest) GetPageSize() int32 {
@@ -1674,7 +1472,7 @@ type ListPipelineTriggerRecordsResponse struct {
 
 func (x *ListPipelineTriggerRecordsResponse) Reset() {
 	*x = ListPipelineTriggerRecordsResponse{}
-	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[22]
+	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1686,7 +1484,7 @@ func (x *ListPipelineTriggerRecordsResponse) String() string {
 func (*ListPipelineTriggerRecordsResponse) ProtoMessage() {}
 
 func (x *ListPipelineTriggerRecordsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[22]
+	mi := &file_core_mgmt_v1beta_metric_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1699,7 +1497,7 @@ func (x *ListPipelineTriggerRecordsResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use ListPipelineTriggerRecordsResponse.ProtoReflect.Descriptor instead.
 func (*ListPipelineTriggerRecordsResponse) Descriptor() ([]byte, []int) {
-	return file_core_mgmt_v1beta_metric_proto_rawDescGZIP(), []int{22}
+	return file_core_mgmt_v1beta_metric_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *ListPipelineTriggerRecordsResponse) GetPipelineTriggerRecords() []*PipelineTriggerRecord {
@@ -1780,22 +1578,7 @@ const file_core_mgmt_v1beta_metric_proto_rawDesc = "" +
 	"\x06_startB\a\n" +
 	"\x05_stop\"\x90\x01\n" +
 	"$ListModelTriggerChartRecordsResponse\x12h\n" +
-	"\x1bmodel_trigger_chart_records\x18\x01 \x03(\v2).core.mgmt.v1beta.ModelTriggerChartRecordR\x18modelTriggerChartRecords\"\xc4\x01\n" +
-	"\x1cCreditConsumptionChartRecord\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12B\n" +
-	"\ftime_buckets\x18\x02 \x03(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\vtimeBuckets\x12\x1b\n" +
-	"\x06amount\x18\x03 \x03(\x02B\x03\xe0A\x03R\x06amount\x12\x1b\n" +
-	"\x06source\x18\x04 \x01(\tB\x03\xe0A\x03R\x06source\"\x9c\x02\n" +
-	"(ListCreditConsumptionChartRecordsRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x122\n" +
-	"\x12aggregation_window\x18\x02 \x01(\tH\x00R\x11aggregationWindow\x88\x01\x01\x125\n" +
-	"\x05start\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampH\x01R\x05start\x88\x01\x01\x123\n" +
-	"\x04stop\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampH\x02R\x04stop\x88\x01\x01B\x15\n" +
-	"\x13_aggregation_windowB\b\n" +
-	"\x06_startB\a\n" +
-	"\x05_stop\"\xaa\x01\n" +
-	")ListCreditConsumptionChartRecordsResponse\x12w\n" +
-	" credit_consumption_chart_records\x18\x01 \x03(\v2..core.mgmt.v1beta.CreditConsumptionChartRecordR\x1dcreditConsumptionChartRecordsJ\x04\b\x02\x10\x03\"\xc2\x02\n" +
+	"\x1bmodel_trigger_chart_records\x18\x01 \x03(\v2).core.mgmt.v1beta.ModelTriggerChartRecordR\x18modelTriggerChartRecords\"\xc2\x02\n" +
 	"\x1aPipelineTriggerTableRecord\x12\x1f\n" +
 	"\vpipeline_id\x18\x01 \x01(\tR\n" +
 	"pipelineId\x12!\n" +
@@ -1884,7 +1667,7 @@ func file_core_mgmt_v1beta_metric_proto_rawDescGZIP() []byte {
 }
 
 var file_core_mgmt_v1beta_metric_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_core_mgmt_v1beta_metric_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
+var file_core_mgmt_v1beta_metric_proto_msgTypes = make([]protoimpl.MessageInfo, 20)
 var file_core_mgmt_v1beta_metric_proto_goTypes = []any{
 	(Mode)(0),                                         // 0: core.mgmt.v1beta.Mode
 	(Status)(0),                                       // 1: core.mgmt.v1beta.Status
@@ -1899,54 +1682,47 @@ var file_core_mgmt_v1beta_metric_proto_goTypes = []any{
 	(*ModelTriggerChartRecord)(nil),                   // 10: core.mgmt.v1beta.ModelTriggerChartRecord
 	(*ListModelTriggerChartRecordsRequest)(nil),       // 11: core.mgmt.v1beta.ListModelTriggerChartRecordsRequest
 	(*ListModelTriggerChartRecordsResponse)(nil),      // 12: core.mgmt.v1beta.ListModelTriggerChartRecordsResponse
-	(*CreditConsumptionChartRecord)(nil),              // 13: core.mgmt.v1beta.CreditConsumptionChartRecord
-	(*ListCreditConsumptionChartRecordsRequest)(nil),  // 14: core.mgmt.v1beta.ListCreditConsumptionChartRecordsRequest
-	(*ListCreditConsumptionChartRecordsResponse)(nil), // 15: core.mgmt.v1beta.ListCreditConsumptionChartRecordsResponse
-	(*PipelineTriggerTableRecord)(nil),                // 16: core.mgmt.v1beta.PipelineTriggerTableRecord
-	(*ListPipelineTriggerTableRecordsRequest)(nil),    // 17: core.mgmt.v1beta.ListPipelineTriggerTableRecordsRequest
-	(*ListPipelineTriggerTableRecordsResponse)(nil),   // 18: core.mgmt.v1beta.ListPipelineTriggerTableRecordsResponse
-	(*ListPipelineTriggerChartRecordsV0Request)(nil),  // 19: core.mgmt.v1beta.ListPipelineTriggerChartRecordsV0Request
-	(*ListPipelineTriggerChartRecordsV0Response)(nil), // 20: core.mgmt.v1beta.ListPipelineTriggerChartRecordsV0Response
-	(*PipelineTriggerChartRecordV0)(nil),              // 21: core.mgmt.v1beta.PipelineTriggerChartRecordV0
-	(*PipelineTriggerRecord)(nil),                     // 22: core.mgmt.v1beta.PipelineTriggerRecord
-	(*ListPipelineTriggerRecordsRequest)(nil),         // 23: core.mgmt.v1beta.ListPipelineTriggerRecordsRequest
-	(*ListPipelineTriggerRecordsResponse)(nil),        // 24: core.mgmt.v1beta.ListPipelineTriggerRecordsResponse
-	(*timestamppb.Timestamp)(nil),                     // 25: google.protobuf.Timestamp
+	(*PipelineTriggerTableRecord)(nil),                // 13: core.mgmt.v1beta.PipelineTriggerTableRecord
+	(*ListPipelineTriggerTableRecordsRequest)(nil),    // 14: core.mgmt.v1beta.ListPipelineTriggerTableRecordsRequest
+	(*ListPipelineTriggerTableRecordsResponse)(nil),   // 15: core.mgmt.v1beta.ListPipelineTriggerTableRecordsResponse
+	(*ListPipelineTriggerChartRecordsV0Request)(nil),  // 16: core.mgmt.v1beta.ListPipelineTriggerChartRecordsV0Request
+	(*ListPipelineTriggerChartRecordsV0Response)(nil), // 17: core.mgmt.v1beta.ListPipelineTriggerChartRecordsV0Response
+	(*PipelineTriggerChartRecordV0)(nil),              // 18: core.mgmt.v1beta.PipelineTriggerChartRecordV0
+	(*PipelineTriggerRecord)(nil),                     // 19: core.mgmt.v1beta.PipelineTriggerRecord
+	(*ListPipelineTriggerRecordsRequest)(nil),         // 20: core.mgmt.v1beta.ListPipelineTriggerRecordsRequest
+	(*ListPipelineTriggerRecordsResponse)(nil),        // 21: core.mgmt.v1beta.ListPipelineTriggerRecordsResponse
+	(*timestamppb.Timestamp)(nil),                     // 22: google.protobuf.Timestamp
 }
 var file_core_mgmt_v1beta_metric_proto_depIdxs = []int32{
 	1,  // 0: core.mgmt.v1beta.TriggerCount.status:type_name -> core.mgmt.v1beta.Status
-	25, // 1: core.mgmt.v1beta.GetPipelineTriggerCountRequest.start:type_name -> google.protobuf.Timestamp
-	25, // 2: core.mgmt.v1beta.GetPipelineTriggerCountRequest.stop:type_name -> google.protobuf.Timestamp
+	22, // 1: core.mgmt.v1beta.GetPipelineTriggerCountRequest.start:type_name -> google.protobuf.Timestamp
+	22, // 2: core.mgmt.v1beta.GetPipelineTriggerCountRequest.stop:type_name -> google.protobuf.Timestamp
 	2,  // 3: core.mgmt.v1beta.GetPipelineTriggerCountResponse.pipeline_trigger_counts:type_name -> core.mgmt.v1beta.TriggerCount
-	25, // 4: core.mgmt.v1beta.GetModelTriggerCountRequest.start:type_name -> google.protobuf.Timestamp
-	25, // 5: core.mgmt.v1beta.GetModelTriggerCountRequest.stop:type_name -> google.protobuf.Timestamp
+	22, // 4: core.mgmt.v1beta.GetModelTriggerCountRequest.start:type_name -> google.protobuf.Timestamp
+	22, // 5: core.mgmt.v1beta.GetModelTriggerCountRequest.stop:type_name -> google.protobuf.Timestamp
 	2,  // 6: core.mgmt.v1beta.GetModelTriggerCountResponse.model_trigger_counts:type_name -> core.mgmt.v1beta.TriggerCount
-	25, // 7: core.mgmt.v1beta.PipelineTriggerChartRecord.time_buckets:type_name -> google.protobuf.Timestamp
-	25, // 8: core.mgmt.v1beta.ListPipelineTriggerChartRecordsRequest.start:type_name -> google.protobuf.Timestamp
-	25, // 9: core.mgmt.v1beta.ListPipelineTriggerChartRecordsRequest.stop:type_name -> google.protobuf.Timestamp
+	22, // 7: core.mgmt.v1beta.PipelineTriggerChartRecord.time_buckets:type_name -> google.protobuf.Timestamp
+	22, // 8: core.mgmt.v1beta.ListPipelineTriggerChartRecordsRequest.start:type_name -> google.protobuf.Timestamp
+	22, // 9: core.mgmt.v1beta.ListPipelineTriggerChartRecordsRequest.stop:type_name -> google.protobuf.Timestamp
 	7,  // 10: core.mgmt.v1beta.ListPipelineTriggerChartRecordsResponse.pipeline_trigger_chart_records:type_name -> core.mgmt.v1beta.PipelineTriggerChartRecord
-	25, // 11: core.mgmt.v1beta.ModelTriggerChartRecord.time_buckets:type_name -> google.protobuf.Timestamp
-	25, // 12: core.mgmt.v1beta.ListModelTriggerChartRecordsRequest.start:type_name -> google.protobuf.Timestamp
-	25, // 13: core.mgmt.v1beta.ListModelTriggerChartRecordsRequest.stop:type_name -> google.protobuf.Timestamp
+	22, // 11: core.mgmt.v1beta.ModelTriggerChartRecord.time_buckets:type_name -> google.protobuf.Timestamp
+	22, // 12: core.mgmt.v1beta.ListModelTriggerChartRecordsRequest.start:type_name -> google.protobuf.Timestamp
+	22, // 13: core.mgmt.v1beta.ListModelTriggerChartRecordsRequest.stop:type_name -> google.protobuf.Timestamp
 	10, // 14: core.mgmt.v1beta.ListModelTriggerChartRecordsResponse.model_trigger_chart_records:type_name -> core.mgmt.v1beta.ModelTriggerChartRecord
-	25, // 15: core.mgmt.v1beta.CreditConsumptionChartRecord.time_buckets:type_name -> google.protobuf.Timestamp
-	25, // 16: core.mgmt.v1beta.ListCreditConsumptionChartRecordsRequest.start:type_name -> google.protobuf.Timestamp
-	25, // 17: core.mgmt.v1beta.ListCreditConsumptionChartRecordsRequest.stop:type_name -> google.protobuf.Timestamp
-	13, // 18: core.mgmt.v1beta.ListCreditConsumptionChartRecordsResponse.credit_consumption_chart_records:type_name -> core.mgmt.v1beta.CreditConsumptionChartRecord
-	16, // 19: core.mgmt.v1beta.ListPipelineTriggerTableRecordsResponse.pipeline_trigger_table_records:type_name -> core.mgmt.v1beta.PipelineTriggerTableRecord
-	21, // 20: core.mgmt.v1beta.ListPipelineTriggerChartRecordsV0Response.pipeline_trigger_chart_records:type_name -> core.mgmt.v1beta.PipelineTriggerChartRecordV0
-	0,  // 21: core.mgmt.v1beta.PipelineTriggerChartRecordV0.trigger_mode:type_name -> core.mgmt.v1beta.Mode
-	1,  // 22: core.mgmt.v1beta.PipelineTriggerChartRecordV0.status:type_name -> core.mgmt.v1beta.Status
-	25, // 23: core.mgmt.v1beta.PipelineTriggerChartRecordV0.time_buckets:type_name -> google.protobuf.Timestamp
-	25, // 24: core.mgmt.v1beta.PipelineTriggerRecord.trigger_time:type_name -> google.protobuf.Timestamp
-	0,  // 25: core.mgmt.v1beta.PipelineTriggerRecord.trigger_mode:type_name -> core.mgmt.v1beta.Mode
-	1,  // 26: core.mgmt.v1beta.PipelineTriggerRecord.status:type_name -> core.mgmt.v1beta.Status
-	22, // 27: core.mgmt.v1beta.ListPipelineTriggerRecordsResponse.pipeline_trigger_records:type_name -> core.mgmt.v1beta.PipelineTriggerRecord
-	28, // [28:28] is the sub-list for method output_type
-	28, // [28:28] is the sub-list for method input_type
-	28, // [28:28] is the sub-list for extension type_name
-	28, // [28:28] is the sub-list for extension extendee
-	0,  // [0:28] is the sub-list for field type_name
+	13, // 15: core.mgmt.v1beta.ListPipelineTriggerTableRecordsResponse.pipeline_trigger_table_records:type_name -> core.mgmt.v1beta.PipelineTriggerTableRecord
+	18, // 16: core.mgmt.v1beta.ListPipelineTriggerChartRecordsV0Response.pipeline_trigger_chart_records:type_name -> core.mgmt.v1beta.PipelineTriggerChartRecordV0
+	0,  // 17: core.mgmt.v1beta.PipelineTriggerChartRecordV0.trigger_mode:type_name -> core.mgmt.v1beta.Mode
+	1,  // 18: core.mgmt.v1beta.PipelineTriggerChartRecordV0.status:type_name -> core.mgmt.v1beta.Status
+	22, // 19: core.mgmt.v1beta.PipelineTriggerChartRecordV0.time_buckets:type_name -> google.protobuf.Timestamp
+	22, // 20: core.mgmt.v1beta.PipelineTriggerRecord.trigger_time:type_name -> google.protobuf.Timestamp
+	0,  // 21: core.mgmt.v1beta.PipelineTriggerRecord.trigger_mode:type_name -> core.mgmt.v1beta.Mode
+	1,  // 22: core.mgmt.v1beta.PipelineTriggerRecord.status:type_name -> core.mgmt.v1beta.Status
+	19, // 23: core.mgmt.v1beta.ListPipelineTriggerRecordsResponse.pipeline_trigger_records:type_name -> core.mgmt.v1beta.PipelineTriggerRecord
+	24, // [24:24] is the sub-list for method output_type
+	24, // [24:24] is the sub-list for method input_type
+	24, // [24:24] is the sub-list for extension type_name
+	24, // [24:24] is the sub-list for extension extendee
+	0,  // [0:24] is the sub-list for field type_name
 }
 
 func init() { file_core_mgmt_v1beta_metric_proto_init() }
@@ -1962,16 +1738,15 @@ func file_core_mgmt_v1beta_metric_proto_init() {
 	file_core_mgmt_v1beta_metric_proto_msgTypes[8].OneofWrappers = []any{}
 	file_core_mgmt_v1beta_metric_proto_msgTypes[9].OneofWrappers = []any{}
 	file_core_mgmt_v1beta_metric_proto_msgTypes[12].OneofWrappers = []any{}
-	file_core_mgmt_v1beta_metric_proto_msgTypes[15].OneofWrappers = []any{}
-	file_core_mgmt_v1beta_metric_proto_msgTypes[17].OneofWrappers = []any{}
-	file_core_mgmt_v1beta_metric_proto_msgTypes[21].OneofWrappers = []any{}
+	file_core_mgmt_v1beta_metric_proto_msgTypes[14].OneofWrappers = []any{}
+	file_core_mgmt_v1beta_metric_proto_msgTypes[18].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_core_mgmt_v1beta_metric_proto_rawDesc), len(file_core_mgmt_v1beta_metric_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   23,
+			NumMessages:   20,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
