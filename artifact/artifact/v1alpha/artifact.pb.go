@@ -2695,12 +2695,14 @@ func (x *ProcessCatalogFilesResponse) GetFiles() []*File {
 	return nil
 }
 
-// list file filter
-// todo: support more parameters
+// ListCatalogFilesFilter contains a set of properties to filter a catalog file
+// list by.
 type ListCatalogFilesFilter struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The file uids.
-	FileUids      []string `protobuf:"bytes,2,rep,name=file_uids,json=fileUids,proto3" json:"file_uids,omitempty"`
+	// File UIDs.
+	FileUids []string `protobuf:"bytes,1,rep,name=file_uids,json=fileUids,proto3" json:"file_uids,omitempty"`
+	// Processing status of the files.
+	ProcessStatus FileProcessStatus `protobuf:"varint,2,opt,name=process_status,json=processStatus,proto3,enum=artifact.artifact.v1alpha.FileProcessStatus" json:"process_status,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2740,6 +2742,13 @@ func (x *ListCatalogFilesFilter) GetFileUids() []string {
 		return x.FileUids
 	}
 	return nil
+}
+
+func (x *ListCatalogFilesFilter) GetProcessStatus() FileProcessStatus {
+	if x != nil {
+		return x.ProcessStatus
+	}
+	return FileProcessStatus_FILE_PROCESS_STATUS_UNSPECIFIED
 }
 
 // list files request
@@ -3649,9 +3658,10 @@ const file_artifact_artifact_v1alpha_artifact_proto_rawDesc = "" +
 	"\x1aProcessCatalogFilesRequest\x12 \n" +
 	"\tfile_uids\x18\x01 \x03(\tB\x03\xe0A\x02R\bfileUids\"T\n" +
 	"\x1bProcessCatalogFilesResponse\x125\n" +
-	"\x05files\x18\x01 \x03(\v2\x1f.artifact.artifact.v1alpha.FileR\x05files\":\n" +
+	"\x05files\x18\x01 \x03(\v2\x1f.artifact.artifact.v1alpha.FileR\x05files\"\x94\x01\n" +
 	"\x16ListCatalogFilesFilter\x12 \n" +
-	"\tfile_uids\x18\x02 \x03(\tB\x03\xe0A\x01R\bfileUids\"\xf1\x01\n" +
+	"\tfile_uids\x18\x01 \x03(\tB\x03\xe0A\x01R\bfileUids\x12X\n" +
+	"\x0eprocess_status\x18\x02 \x01(\x0e2,.artifact.artifact.v1alpha.FileProcessStatusB\x03\xe0A\x01R\rprocessStatus\"\xf1\x01\n" +
 	"\x17ListCatalogFilesRequest\x12!\n" +
 	"\fnamespace_id\x18\x01 \x01(\tR\vnamespaceId\x12\x1d\n" +
 	"\n" +
@@ -3871,22 +3881,23 @@ var file_artifact_artifact_v1alpha_artifact_proto_depIdxs = []int32{
 	33, // 28: artifact.artifact.v1alpha.UploadCatalogFileRequest.file:type_name -> artifact.artifact.v1alpha.File
 	33, // 29: artifact.artifact.v1alpha.UploadCatalogFileResponse.file:type_name -> artifact.artifact.v1alpha.File
 	33, // 30: artifact.artifact.v1alpha.ProcessCatalogFilesResponse.files:type_name -> artifact.artifact.v1alpha.File
-	40, // 31: artifact.artifact.v1alpha.ListCatalogFilesRequest.filter:type_name -> artifact.artifact.v1alpha.ListCatalogFilesFilter
-	33, // 32: artifact.artifact.v1alpha.ListCatalogFilesResponse.files:type_name -> artifact.artifact.v1alpha.File
-	40, // 33: artifact.artifact.v1alpha.ListCatalogFilesResponse.filter:type_name -> artifact.artifact.v1alpha.ListCatalogFilesFilter
-	33, // 34: artifact.artifact.v1alpha.GetCatalogFileResponse.file:type_name -> artifact.artifact.v1alpha.File
-	3,  // 35: artifact.artifact.v1alpha.CatalogRun.action:type_name -> artifact.artifact.v1alpha.CatalogRunAction
-	55, // 36: artifact.artifact.v1alpha.CatalogRun.status:type_name -> common.run.v1alpha.RunStatus
-	56, // 37: artifact.artifact.v1alpha.CatalogRun.source:type_name -> common.run.v1alpha.RunSource
-	54, // 38: artifact.artifact.v1alpha.CatalogRun.payload:type_name -> google.protobuf.Struct
-	52, // 39: artifact.artifact.v1alpha.CatalogRun.start_time:type_name -> google.protobuf.Timestamp
-	52, // 40: artifact.artifact.v1alpha.CatalogRun.complete_time:type_name -> google.protobuf.Timestamp
-	45, // 41: artifact.artifact.v1alpha.ListCatalogRunsResponse.catalog_runs:type_name -> artifact.artifact.v1alpha.CatalogRun
-	42, // [42:42] is the sub-list for method output_type
-	42, // [42:42] is the sub-list for method input_type
-	42, // [42:42] is the sub-list for extension type_name
-	42, // [42:42] is the sub-list for extension extendee
-	0,  // [0:42] is the sub-list for field type_name
+	1,  // 31: artifact.artifact.v1alpha.ListCatalogFilesFilter.process_status:type_name -> artifact.artifact.v1alpha.FileProcessStatus
+	40, // 32: artifact.artifact.v1alpha.ListCatalogFilesRequest.filter:type_name -> artifact.artifact.v1alpha.ListCatalogFilesFilter
+	33, // 33: artifact.artifact.v1alpha.ListCatalogFilesResponse.files:type_name -> artifact.artifact.v1alpha.File
+	40, // 34: artifact.artifact.v1alpha.ListCatalogFilesResponse.filter:type_name -> artifact.artifact.v1alpha.ListCatalogFilesFilter
+	33, // 35: artifact.artifact.v1alpha.GetCatalogFileResponse.file:type_name -> artifact.artifact.v1alpha.File
+	3,  // 36: artifact.artifact.v1alpha.CatalogRun.action:type_name -> artifact.artifact.v1alpha.CatalogRunAction
+	55, // 37: artifact.artifact.v1alpha.CatalogRun.status:type_name -> common.run.v1alpha.RunStatus
+	56, // 38: artifact.artifact.v1alpha.CatalogRun.source:type_name -> common.run.v1alpha.RunSource
+	54, // 39: artifact.artifact.v1alpha.CatalogRun.payload:type_name -> google.protobuf.Struct
+	52, // 40: artifact.artifact.v1alpha.CatalogRun.start_time:type_name -> google.protobuf.Timestamp
+	52, // 41: artifact.artifact.v1alpha.CatalogRun.complete_time:type_name -> google.protobuf.Timestamp
+	45, // 42: artifact.artifact.v1alpha.ListCatalogRunsResponse.catalog_runs:type_name -> artifact.artifact.v1alpha.CatalogRun
+	43, // [43:43] is the sub-list for method output_type
+	43, // [43:43] is the sub-list for method input_type
+	43, // [43:43] is the sub-list for extension type_name
+	43, // [43:43] is the sub-list for extension extendee
+	0,  // [0:43] is the sub-list for field type_name
 }
 
 func init() { file_artifact_artifact_v1alpha_artifact_proto_init() }
