@@ -148,10 +148,6 @@ type Chunk struct {
 	ChunkUid string `protobuf:"bytes,1,opt,name=chunk_uid,json=chunkUid,proto3" json:"chunk_uid,omitempty"`
 	// whether the chunk is retrievable
 	Retrievable bool `protobuf:"varint,2,opt,name=retrievable,proto3" json:"retrievable,omitempty"`
-	// start position of the chunk in the source file
-	StartPos uint32 `protobuf:"varint,4,opt,name=start_pos,json=startPos,proto3" json:"start_pos,omitempty"`
-	// end position of the chunk in the source file
-	EndPos uint32 `protobuf:"varint,5,opt,name=end_pos,json=endPos,proto3" json:"end_pos,omitempty"`
 	// tokens of the chunk
 	Tokens uint32 `protobuf:"varint,6,opt,name=tokens,proto3" json:"tokens,omitempty"`
 	// creation time of the chunk
@@ -159,7 +155,21 @@ type Chunk struct {
 	// original file unique identifier
 	OriginalFileUid string `protobuf:"bytes,8,opt,name=original_file_uid,json=originalFileUid,proto3" json:"original_file_uid,omitempty"`
 	// content type
-	ContentType   ContentType `protobuf:"varint,9,opt,name=content_type,json=contentType,proto3,enum=artifact.artifact.v1alpha.ContentType" json:"content_type,omitempty"`
+	ContentType ContentType `protobuf:"varint,9,opt,name=content_type,json=contentType,proto3,enum=artifact.artifact.v1alpha.ContentType" json:"content_type,omitempty"`
+	// Reference to the position of the chunk within the original file.
+	Reference *Chunk_Reference `protobuf:"bytes,10,opt,name=reference,proto3" json:"reference,omitempty"`
+	// Reference to the position of the chunk within the Markdown (source) file.
+	MarkdownReference *Chunk_Reference `protobuf:"bytes,11,opt,name=markdown_reference,json=markdownReference,proto3" json:"markdown_reference,omitempty"`
+	// start position of the chunk in the source file
+	// Deprecated: use markdown_reference instead
+	//
+	// Deprecated: Marked as deprecated in artifact/artifact/v1alpha/chunk.proto.
+	StartPos uint32 `protobuf:"varint,4,opt,name=start_pos,json=startPos,proto3" json:"start_pos,omitempty"`
+	// end position of the chunk in the source file
+	// Deprecated: use markdown_reference instead
+	//
+	// Deprecated: Marked as deprecated in artifact/artifact/v1alpha/chunk.proto.
+	EndPos        uint32 `protobuf:"varint,5,opt,name=end_pos,json=endPos,proto3" json:"end_pos,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -208,20 +218,6 @@ func (x *Chunk) GetRetrievable() bool {
 	return false
 }
 
-func (x *Chunk) GetStartPos() uint32 {
-	if x != nil {
-		return x.StartPos
-	}
-	return 0
-}
-
-func (x *Chunk) GetEndPos() uint32 {
-	if x != nil {
-		return x.EndPos
-	}
-	return 0
-}
-
 func (x *Chunk) GetTokens() uint32 {
 	if x != nil {
 		return x.Tokens
@@ -248,6 +244,36 @@ func (x *Chunk) GetContentType() ContentType {
 		return x.ContentType
 	}
 	return ContentType_CONTENT_TYPE_UNSPECIFIED
+}
+
+func (x *Chunk) GetReference() *Chunk_Reference {
+	if x != nil {
+		return x.Reference
+	}
+	return nil
+}
+
+func (x *Chunk) GetMarkdownReference() *Chunk_Reference {
+	if x != nil {
+		return x.MarkdownReference
+	}
+	return nil
+}
+
+// Deprecated: Marked as deprecated in artifact/artifact/v1alpha/chunk.proto.
+func (x *Chunk) GetStartPos() uint32 {
+	if x != nil {
+		return x.StartPos
+	}
+	return 0
+}
+
+// Deprecated: Marked as deprecated in artifact/artifact/v1alpha/chunk.proto.
+func (x *Chunk) GetEndPos() uint32 {
+	if x != nil {
+		return x.EndPos
+	}
+	return 0
 }
 
 // The ListChunksRequest message represents a request to list chunks in the artifact system.
@@ -1196,21 +1222,82 @@ func (x *SimilarityChunk) GetChunkMetadata() *Chunk {
 	return nil
 }
 
+// Reference represents the position of a chunk within its source file.
+type Chunk_Reference struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Start position of the chunk within the file.
+	Start *FilePosition `protobuf:"bytes,1,opt,name=start,proto3" json:"start,omitempty"`
+	// End position of the chunk within the file.
+	End           *FilePosition `protobuf:"bytes,2,opt,name=end,proto3" json:"end,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Chunk_Reference) Reset() {
+	*x = Chunk_Reference{}
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Chunk_Reference) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Chunk_Reference) ProtoMessage() {}
+
+func (x *Chunk_Reference) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Chunk_Reference.ProtoReflect.Descriptor instead.
+func (*Chunk_Reference) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{0, 0}
+}
+
+func (x *Chunk_Reference) GetStart() *FilePosition {
+	if x != nil {
+		return x.Start
+	}
+	return nil
+}
+
+func (x *Chunk_Reference) GetEnd() *FilePosition {
+	if x != nil {
+		return x.End
+	}
+	return nil
+}
+
 var File_artifact_artifact_v1alpha_chunk_proto protoreflect.FileDescriptor
 
 const file_artifact_artifact_v1alpha_chunk_proto_rawDesc = "" +
 	"\n" +
-	"%artifact/artifact/v1alpha/chunk.proto\x12\x19artifact.artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xf0\x02\n" +
+	"%artifact/artifact/v1alpha/chunk.proto\x12\x19artifact.artifact.v1alpha\x1a(artifact/artifact/v1alpha/artifact.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb5\x05\n" +
 	"\x05Chunk\x12 \n" +
 	"\tchunk_uid\x18\x01 \x01(\tB\x03\xe0A\x03R\bchunkUid\x12%\n" +
-	"\vretrievable\x18\x02 \x01(\bB\x03\xe0A\x03R\vretrievable\x12 \n" +
-	"\tstart_pos\x18\x04 \x01(\rB\x03\xe0A\x03R\bstartPos\x12\x1c\n" +
-	"\aend_pos\x18\x05 \x01(\rB\x03\xe0A\x03R\x06endPos\x12\x1b\n" +
+	"\vretrievable\x18\x02 \x01(\bB\x03\xe0A\x03R\vretrievable\x12\x1b\n" +
 	"\x06tokens\x18\x06 \x01(\rB\x03\xe0A\x03R\x06tokens\x12@\n" +
 	"\vcreate_time\x18\a \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
 	"createTime\x12/\n" +
 	"\x11original_file_uid\x18\b \x01(\tB\x03\xe0A\x03R\x0foriginalFileUid\x12N\n" +
-	"\fcontent_type\x18\t \x01(\x0e2&.artifact.artifact.v1alpha.ContentTypeB\x03\xe0A\x03R\vcontentType\"\x7f\n" +
+	"\fcontent_type\x18\t \x01(\x0e2&.artifact.artifact.v1alpha.ContentTypeB\x03\xe0A\x03R\vcontentType\x12M\n" +
+	"\treference\x18\n" +
+	" \x01(\v2*.artifact.artifact.v1alpha.Chunk.ReferenceB\x03\xe0A\x03R\treference\x12^\n" +
+	"\x12markdown_reference\x18\v \x01(\v2*.artifact.artifact.v1alpha.Chunk.ReferenceB\x03\xe0A\x03R\x11markdownReference\x12\"\n" +
+	"\tstart_pos\x18\x04 \x01(\rB\x05\xe0A\x03\x18\x01R\bstartPos\x12\x1e\n" +
+	"\aend_pos\x18\x05 \x01(\rB\x05\xe0A\x03\x18\x01R\x06endPos\x1a\x8f\x01\n" +
+	"\tReference\x12B\n" +
+	"\x05start\x18\x01 \x01(\v2'.artifact.artifact.v1alpha.FilePositionB\x03\xe0A\x03R\x05start\x12>\n" +
+	"\x03end\x18\x02 \x01(\v2'.artifact.artifact.v1alpha.FilePositionB\x03\xe0A\x03R\x03end\"\x7f\n" +
 	"\x11ListChunksRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\"\n" +
 	"\n" +
@@ -1304,7 +1391,7 @@ func file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP() []byte {
 }
 
 var file_artifact_artifact_v1alpha_chunk_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_artifact_artifact_v1alpha_chunk_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
+var file_artifact_artifact_v1alpha_chunk_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
 var file_artifact_artifact_v1alpha_chunk_proto_goTypes = []any{
 	(FileMediaType)(0),                     // 0: artifact.artifact.v1alpha.FileMediaType
 	(ContentType)(0),                       // 1: artifact.artifact.v1alpha.ContentType
@@ -1325,27 +1412,33 @@ var file_artifact_artifact_v1alpha_chunk_proto_goTypes = []any{
 	(*SimilarityChunksSearchRequest)(nil),  // 16: artifact.artifact.v1alpha.SimilarityChunksSearchRequest
 	(*SimilarityChunksSearchResponse)(nil), // 17: artifact.artifact.v1alpha.SimilarityChunksSearchResponse
 	(*SimilarityChunk)(nil),                // 18: artifact.artifact.v1alpha.SimilarityChunk
-	(*timestamppb.Timestamp)(nil),          // 19: google.protobuf.Timestamp
+	(*Chunk_Reference)(nil),                // 19: artifact.artifact.v1alpha.Chunk.Reference
+	(*timestamppb.Timestamp)(nil),          // 20: google.protobuf.Timestamp
+	(*FilePosition)(nil),                   // 21: artifact.artifact.v1alpha.FilePosition
 }
 var file_artifact_artifact_v1alpha_chunk_proto_depIdxs = []int32{
-	19, // 0: artifact.artifact.v1alpha.Chunk.create_time:type_name -> google.protobuf.Timestamp
+	20, // 0: artifact.artifact.v1alpha.Chunk.create_time:type_name -> google.protobuf.Timestamp
 	1,  // 1: artifact.artifact.v1alpha.Chunk.content_type:type_name -> artifact.artifact.v1alpha.ContentType
-	2,  // 2: artifact.artifact.v1alpha.ListChunksResponse.chunks:type_name -> artifact.artifact.v1alpha.Chunk
-	2,  // 3: artifact.artifact.v1alpha.SearchChunksResponse.chunks:type_name -> artifact.artifact.v1alpha.Chunk
-	19, // 4: artifact.artifact.v1alpha.SourceFile.create_time:type_name -> google.protobuf.Timestamp
-	19, // 5: artifact.artifact.v1alpha.SourceFile.update_time:type_name -> google.protobuf.Timestamp
-	7,  // 6: artifact.artifact.v1alpha.GetSourceFileResponse.source_file:type_name -> artifact.artifact.v1alpha.SourceFile
-	7,  // 7: artifact.artifact.v1alpha.SearchSourceFilesResponse.source_files:type_name -> artifact.artifact.v1alpha.SourceFile
-	2,  // 8: artifact.artifact.v1alpha.UpdateChunkResponse.chunk:type_name -> artifact.artifact.v1alpha.Chunk
-	1,  // 9: artifact.artifact.v1alpha.SimilarityChunksSearchRequest.content_type:type_name -> artifact.artifact.v1alpha.ContentType
-	0,  // 10: artifact.artifact.v1alpha.SimilarityChunksSearchRequest.file_media_type:type_name -> artifact.artifact.v1alpha.FileMediaType
-	18, // 11: artifact.artifact.v1alpha.SimilarityChunksSearchResponse.similar_chunks:type_name -> artifact.artifact.v1alpha.SimilarityChunk
-	2,  // 12: artifact.artifact.v1alpha.SimilarityChunk.chunk_metadata:type_name -> artifact.artifact.v1alpha.Chunk
-	13, // [13:13] is the sub-list for method output_type
-	13, // [13:13] is the sub-list for method input_type
-	13, // [13:13] is the sub-list for extension type_name
-	13, // [13:13] is the sub-list for extension extendee
-	0,  // [0:13] is the sub-list for field type_name
+	19, // 2: artifact.artifact.v1alpha.Chunk.reference:type_name -> artifact.artifact.v1alpha.Chunk.Reference
+	19, // 3: artifact.artifact.v1alpha.Chunk.markdown_reference:type_name -> artifact.artifact.v1alpha.Chunk.Reference
+	2,  // 4: artifact.artifact.v1alpha.ListChunksResponse.chunks:type_name -> artifact.artifact.v1alpha.Chunk
+	2,  // 5: artifact.artifact.v1alpha.SearchChunksResponse.chunks:type_name -> artifact.artifact.v1alpha.Chunk
+	20, // 6: artifact.artifact.v1alpha.SourceFile.create_time:type_name -> google.protobuf.Timestamp
+	20, // 7: artifact.artifact.v1alpha.SourceFile.update_time:type_name -> google.protobuf.Timestamp
+	7,  // 8: artifact.artifact.v1alpha.GetSourceFileResponse.source_file:type_name -> artifact.artifact.v1alpha.SourceFile
+	7,  // 9: artifact.artifact.v1alpha.SearchSourceFilesResponse.source_files:type_name -> artifact.artifact.v1alpha.SourceFile
+	2,  // 10: artifact.artifact.v1alpha.UpdateChunkResponse.chunk:type_name -> artifact.artifact.v1alpha.Chunk
+	1,  // 11: artifact.artifact.v1alpha.SimilarityChunksSearchRequest.content_type:type_name -> artifact.artifact.v1alpha.ContentType
+	0,  // 12: artifact.artifact.v1alpha.SimilarityChunksSearchRequest.file_media_type:type_name -> artifact.artifact.v1alpha.FileMediaType
+	18, // 13: artifact.artifact.v1alpha.SimilarityChunksSearchResponse.similar_chunks:type_name -> artifact.artifact.v1alpha.SimilarityChunk
+	2,  // 14: artifact.artifact.v1alpha.SimilarityChunk.chunk_metadata:type_name -> artifact.artifact.v1alpha.Chunk
+	21, // 15: artifact.artifact.v1alpha.Chunk.Reference.start:type_name -> artifact.artifact.v1alpha.FilePosition
+	21, // 16: artifact.artifact.v1alpha.Chunk.Reference.end:type_name -> artifact.artifact.v1alpha.FilePosition
+	17, // [17:17] is the sub-list for method output_type
+	17, // [17:17] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
 func init() { file_artifact_artifact_v1alpha_chunk_proto_init() }
@@ -1353,13 +1446,14 @@ func file_artifact_artifact_v1alpha_chunk_proto_init() {
 	if File_artifact_artifact_v1alpha_chunk_proto != nil {
 		return
 	}
+	file_artifact_artifact_v1alpha_artifact_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_artifact_artifact_v1alpha_chunk_proto_rawDesc), len(file_artifact_artifact_v1alpha_chunk_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   17,
+			NumMessages:   18,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
