@@ -1222,13 +1222,13 @@ func (x *SimilarityChunk) GetChunkMetadata() *Chunk {
 	return nil
 }
 
-// Reference represents the position of a chunk within its source file.
+// Reference represents the position of a chunk within a file.
 type Chunk_Reference struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Start position of the chunk within the file.
-	Start *FilePosition `protobuf:"bytes,1,opt,name=start,proto3" json:"start,omitempty"`
+	Start *File_Position `protobuf:"bytes,1,opt,name=start,proto3" json:"start,omitempty"`
 	// End position of the chunk within the file.
-	End           *FilePosition `protobuf:"bytes,2,opt,name=end,proto3" json:"end,omitempty"`
+	End           *File_Position `protobuf:"bytes,2,opt,name=end,proto3" json:"end,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1263,14 +1263,14 @@ func (*Chunk_Reference) Descriptor() ([]byte, []int) {
 	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{0, 0}
 }
 
-func (x *Chunk_Reference) GetStart() *FilePosition {
+func (x *Chunk_Reference) GetStart() *File_Position {
 	if x != nil {
 		return x.Start
 	}
 	return nil
 }
 
-func (x *Chunk_Reference) GetEnd() *FilePosition {
+func (x *Chunk_Reference) GetEnd() *File_Position {
 	if x != nil {
 		return x.End
 	}
@@ -1281,7 +1281,7 @@ var File_artifact_artifact_v1alpha_chunk_proto protoreflect.FileDescriptor
 
 const file_artifact_artifact_v1alpha_chunk_proto_rawDesc = "" +
 	"\n" +
-	"%artifact/artifact/v1alpha/chunk.proto\x12\x19artifact.artifact.v1alpha\x1a(artifact/artifact/v1alpha/artifact.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb5\x05\n" +
+	"%artifact/artifact/v1alpha/chunk.proto\x12\x19artifact.artifact.v1alpha\x1a(artifact/artifact/v1alpha/artifact.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb7\x05\n" +
 	"\x05Chunk\x12 \n" +
 	"\tchunk_uid\x18\x01 \x01(\tB\x03\xe0A\x03R\bchunkUid\x12%\n" +
 	"\vretrievable\x18\x02 \x01(\bB\x03\xe0A\x03R\vretrievable\x12\x1b\n" +
@@ -1294,10 +1294,10 @@ const file_artifact_artifact_v1alpha_chunk_proto_rawDesc = "" +
 	" \x01(\v2*.artifact.artifact.v1alpha.Chunk.ReferenceB\x03\xe0A\x03R\treference\x12^\n" +
 	"\x12markdown_reference\x18\v \x01(\v2*.artifact.artifact.v1alpha.Chunk.ReferenceB\x03\xe0A\x03R\x11markdownReference\x12\"\n" +
 	"\tstart_pos\x18\x04 \x01(\rB\x05\xe0A\x03\x18\x01R\bstartPos\x12\x1e\n" +
-	"\aend_pos\x18\x05 \x01(\rB\x05\xe0A\x03\x18\x01R\x06endPos\x1a\x8f\x01\n" +
-	"\tReference\x12B\n" +
-	"\x05start\x18\x01 \x01(\v2'.artifact.artifact.v1alpha.FilePositionB\x03\xe0A\x03R\x05start\x12>\n" +
-	"\x03end\x18\x02 \x01(\v2'.artifact.artifact.v1alpha.FilePositionB\x03\xe0A\x03R\x03end\"\x7f\n" +
+	"\aend_pos\x18\x05 \x01(\rB\x05\xe0A\x03\x18\x01R\x06endPos\x1a\x91\x01\n" +
+	"\tReference\x12C\n" +
+	"\x05start\x18\x01 \x01(\v2(.artifact.artifact.v1alpha.File.PositionB\x03\xe0A\x03R\x05start\x12?\n" +
+	"\x03end\x18\x02 \x01(\v2(.artifact.artifact.v1alpha.File.PositionB\x03\xe0A\x03R\x03end\"\x7f\n" +
 	"\x11ListChunksRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\"\n" +
 	"\n" +
@@ -1414,7 +1414,7 @@ var file_artifact_artifact_v1alpha_chunk_proto_goTypes = []any{
 	(*SimilarityChunk)(nil),                // 18: artifact.artifact.v1alpha.SimilarityChunk
 	(*Chunk_Reference)(nil),                // 19: artifact.artifact.v1alpha.Chunk.Reference
 	(*timestamppb.Timestamp)(nil),          // 20: google.protobuf.Timestamp
-	(*FilePosition)(nil),                   // 21: artifact.artifact.v1alpha.FilePosition
+	(*File_Position)(nil),                  // 21: artifact.artifact.v1alpha.File.Position
 }
 var file_artifact_artifact_v1alpha_chunk_proto_depIdxs = []int32{
 	20, // 0: artifact.artifact.v1alpha.Chunk.create_time:type_name -> google.protobuf.Timestamp
@@ -1432,8 +1432,8 @@ var file_artifact_artifact_v1alpha_chunk_proto_depIdxs = []int32{
 	0,  // 12: artifact.artifact.v1alpha.SimilarityChunksSearchRequest.file_media_type:type_name -> artifact.artifact.v1alpha.FileMediaType
 	18, // 13: artifact.artifact.v1alpha.SimilarityChunksSearchResponse.similar_chunks:type_name -> artifact.artifact.v1alpha.SimilarityChunk
 	2,  // 14: artifact.artifact.v1alpha.SimilarityChunk.chunk_metadata:type_name -> artifact.artifact.v1alpha.Chunk
-	21, // 15: artifact.artifact.v1alpha.Chunk.Reference.start:type_name -> artifact.artifact.v1alpha.FilePosition
-	21, // 16: artifact.artifact.v1alpha.Chunk.Reference.end:type_name -> artifact.artifact.v1alpha.FilePosition
+	21, // 15: artifact.artifact.v1alpha.Chunk.Reference.start:type_name -> artifact.artifact.v1alpha.File.Position
+	21, // 16: artifact.artifact.v1alpha.Chunk.Reference.end:type_name -> artifact.artifact.v1alpha.File.Position
 	17, // [17:17] is the sub-list for method output_type
 	17, // [17:17] is the sub-list for method input_type
 	17, // [17:17] is the sub-list for extension type_name
