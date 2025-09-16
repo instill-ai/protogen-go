@@ -334,7 +334,8 @@ const (
 	File_Position_UNIT_UNSPECIFIED File_Position_Unit = 0
 	// Character positions (for Markdown and other text files).
 	File_Position_UNIT_CHARACTER File_Position_Unit = 1
-	// Page positions (for documents).
+	// Page positions (for documents). For pages, positions are 1-indexed
+	// (e.g., page 4 of 4) to align with document visualization standards.
 	File_Position_UNIT_PAGE File_Position_Unit = 2
 	// Time positions in milliseconds (for audio/video files).
 	File_Position_UNIT_TIME_MS File_Position_Unit = 3
@@ -3547,8 +3548,8 @@ func (x *MoveFileToCatalogResponse) GetFileUid() string {
 	return ""
 }
 
-// Position represents a position within a file using a specific unit. The
-// number of dimensions of the position value depends on the unit type.
+// Position within a file, as coordinates in a a specific unit. The
+// number of dimensions of the coordinate depends on the unit type.
 type File_Position struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Unit of measurement for the position.
