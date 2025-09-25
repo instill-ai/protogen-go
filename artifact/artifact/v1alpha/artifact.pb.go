@@ -1703,10 +1703,11 @@ type CreateCatalogRequest struct {
 	Tags []string `protobuf:"bytes,4,rep,name=tags,proto3" json:"tags,omitempty"`
 	// The catalog type. default is PERSISTENT
 	Type CatalogType `protobuf:"varint,5,opt,name=type,proto3,enum=artifact.artifact.v1alpha.CatalogType" json:"type,omitempty"`
-	// Pipelines used for converting documents (i.e., files with pdf, doc[x] or
-	// ppt[x] extension) to Markdown. The strings in the list identify the
-	// pipelines and MUST have the format `{namespaceID}/{pipelineID}@{version}`.
-	// The pipeline recipes MUST have the following variable and output fields:
+	// Pipelines used for converting page-based documents (i.e., files with pdf,
+	// doc[x] or ppt[x] extension) to Markdown. The strings in the list identify
+	// the pipelines and MUST have the format
+	// `{namespaceID}/{pipelineID}@{version}`. The pipeline recipes MUST have the
+	// following variable and output fields:
 	// ```yaml variable
 	// variable:
 	//
@@ -1716,6 +1717,7 @@ type CreateCatalogRequest struct {
 	//	  type: file
 	//
 	// ```
+	// The `convert_result` output should be a list of strings, one per page.
 	// ```yaml output
 	// output:
 	//
@@ -1959,10 +1961,11 @@ type UpdateCatalogRequest struct {
 	Tags []string `protobuf:"bytes,3,rep,name=tags,proto3" json:"tags,omitempty"`
 	// The catalog owner(namespace).
 	NamespaceId string `protobuf:"bytes,4,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Pipelines used for converting documents (i.e., files with pdf, doc[x] or
-	// ppt[x] extension) to Markdown. The strings in the list identify the
-	// pipelines and MUST have the format `{namespaceID}/{pipelineID}@{version}`.
-	// The pipeline recipes MUST have the following variable and output fields:
+	// Pipelines used for converting page-based documents (i.e., files with pdf,
+	// doc[x] or ppt[x] extension) to Markdown. The strings in the list identify
+	// the pipelines and MUST have the format
+	// `{namespaceID}/{pipelineID}@{version}`. The pipeline recipes MUST have the
+	// following variable and output fields:
 	// ```yaml variable
 	// variable:
 	//
@@ -1972,6 +1975,7 @@ type UpdateCatalogRequest struct {
 	//	  type: file
 	//
 	// ```
+	// The `convert_result` output should be a list of strings, one per page.
 	// ```yaml output
 	// output:
 	//
@@ -2264,6 +2268,7 @@ type File struct {
 	//	  type: file
 	//
 	// ```
+	// The `convert_result` output should be a list of strings, one per page.
 	// ```yaml output
 	// output:
 	//
