@@ -2290,7 +2290,9 @@ type File struct {
 	// Length of the file in the specified unit type. It is defined as the number
 	// of positions (the unit will depend on the file type) that can be accessed
 	// in the file.
-	Length        *File_Position `protobuf:"bytes,22,opt,name=length,proto3" json:"length,omitempty"`
+	Length *File_Position `protobuf:"bytes,22,opt,name=length,proto3" json:"length,omitempty"`
+	// Array of tags associated with the file
+	Tags          []string `protobuf:"bytes,23,rep,name=tags,proto3" json:"tags,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2475,6 +2477,13 @@ func (x *File) GetConvertingPipeline() string {
 func (x *File) GetLength() *File_Position {
 	if x != nil {
 		return x.Length
+	}
+	return nil
+}
+
+func (x *File) GetTags() []string {
+	if x != nil {
+		return x.Tags
 	}
 	return nil
 }
@@ -3553,6 +3562,125 @@ func (x *MoveFileToCatalogResponse) GetFileUid() string {
 	return ""
 }
 
+// Update catalog file tags request
+type UpdateCatalogFileTagsRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// ID of the namespace owning the catalog.
+	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
+	// ID of the catalog.
+	CatalogId string `protobuf:"bytes,2,opt,name=catalog_id,json=catalogId,proto3" json:"catalog_id,omitempty"`
+	// Unique identifier of the file.
+	FileUid string `protobuf:"bytes,3,opt,name=file_uid,json=fileUid,proto3" json:"file_uid,omitempty"`
+	// Array of tags to associate with the file.
+	Tags          []string `protobuf:"bytes,4,rep,name=tags,proto3" json:"tags,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateCatalogFileTagsRequest) Reset() {
+	*x = UpdateCatalogFileTagsRequest{}
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[46]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateCatalogFileTagsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateCatalogFileTagsRequest) ProtoMessage() {}
+
+func (x *UpdateCatalogFileTagsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[46]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateCatalogFileTagsRequest.ProtoReflect.Descriptor instead.
+func (*UpdateCatalogFileTagsRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{46}
+}
+
+func (x *UpdateCatalogFileTagsRequest) GetNamespaceId() string {
+	if x != nil {
+		return x.NamespaceId
+	}
+	return ""
+}
+
+func (x *UpdateCatalogFileTagsRequest) GetCatalogId() string {
+	if x != nil {
+		return x.CatalogId
+	}
+	return ""
+}
+
+func (x *UpdateCatalogFileTagsRequest) GetFileUid() string {
+	if x != nil {
+		return x.FileUid
+	}
+	return ""
+}
+
+func (x *UpdateCatalogFileTagsRequest) GetTags() []string {
+	if x != nil {
+		return x.Tags
+	}
+	return nil
+}
+
+// Update catalog file tags response
+type UpdateCatalogFileTagsResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Updated file with tags.
+	File          *File `protobuf:"bytes,1,opt,name=file,proto3" json:"file,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateCatalogFileTagsResponse) Reset() {
+	*x = UpdateCatalogFileTagsResponse{}
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[47]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateCatalogFileTagsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateCatalogFileTagsResponse) ProtoMessage() {}
+
+func (x *UpdateCatalogFileTagsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[47]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateCatalogFileTagsResponse.ProtoReflect.Descriptor instead.
+func (*UpdateCatalogFileTagsResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{47}
+}
+
+func (x *UpdateCatalogFileTagsResponse) GetFile() *File {
+	if x != nil {
+		return x.File
+	}
+	return nil
+}
+
 // Position within a file, as coordinates in a a specific unit. The
 // number of dimensions of the coordinate depends on the unit type.
 type File_Position struct {
@@ -3567,7 +3695,7 @@ type File_Position struct {
 
 func (x *File_Position) Reset() {
 	*x = File_Position{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[46]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3579,7 +3707,7 @@ func (x *File_Position) String() string {
 func (*File_Position) ProtoMessage() {}
 
 func (x *File_Position) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[46]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3746,7 +3874,7 @@ const file_artifact_artifact_v1alpha_artifact_proto_rawDesc = "" +
 	"\n" +
 	"catalog_id\x18\x02 \x01(\tR\tcatalogId\"U\n" +
 	"\x15DeleteCatalogResponse\x12<\n" +
-	"\acatalog\x18\x01 \x01(\v2\".artifact.artifact.v1alpha.CatalogR\acatalog\"\xad\n" +
+	"\acatalog\x18\x01 \x01(\v2\".artifact.artifact.v1alpha.CatalogR\acatalog\"\xc6\n" +
 	"\n" +
 	"\x04File\x12\x1e\n" +
 	"\bfile_uid\x18\x01 \x01(\tB\x03\xe0A\x03R\afileUid\x12\x17\n" +
@@ -3777,7 +3905,8 @@ const file_artifact_artifact_v1alpha_artifact_proto_rawDesc = "" +
 	"\asummary\x18\x13 \x01(\tB\x03\xe0A\x03R\asummary\x12&\n" +
 	"\fdownload_url\x18\x14 \x01(\tB\x03\xe0A\x03R\vdownloadUrl\x124\n" +
 	"\x13converting_pipeline\x18\x15 \x01(\tH\x01R\x12convertingPipeline\x88\x01\x01\x12E\n" +
-	"\x06length\x18\x16 \x01(\v2(.artifact.artifact.v1alpha.File.PositionB\x03\xe0A\x03R\x06length\x1a\xdc\x01\n" +
+	"\x06length\x18\x16 \x01(\v2(.artifact.artifact.v1alpha.File.PositionB\x03\xe0A\x03R\x06length\x12\x17\n" +
+	"\x04tags\x18\x17 \x03(\tB\x03\xe0A\x01R\x04tags\x1a\xdc\x01\n" +
 	"\bPosition\x12F\n" +
 	"\x04unit\x18\x01 \x01(\x0e2-.artifact.artifact.v1alpha.File.Position.UnitB\x03\xe0A\x03R\x04unit\x12%\n" +
 	"\vcoordinates\x18\x02 \x03(\rB\x03\xe0A\x03R\vcoordinates\"a\n" +
@@ -3880,7 +4009,15 @@ const file_artifact_artifact_v1alpha_artifact_proto_rawDesc = "" +
 	"catalog_id\x18\x03 \x01(\tB\x03\xe0A\x02R\tcatalogId\x12'\n" +
 	"\rto_catalog_id\x18\x04 \x01(\tB\x03\xe0A\x02R\vtoCatalogId\"6\n" +
 	"\x19MoveFileToCatalogResponse\x12\x19\n" +
-	"\bfile_uid\x18\x01 \x01(\tR\afileUid*d\n" +
+	"\bfile_uid\x18\x01 \x01(\tR\afileUid\"\xa3\x01\n" +
+	"\x1cUpdateCatalogFileTagsRequest\x12&\n" +
+	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\"\n" +
+	"\n" +
+	"catalog_id\x18\x02 \x01(\tB\x03\xe0A\x02R\tcatalogId\x12\x1e\n" +
+	"\bfile_uid\x18\x03 \x01(\tB\x03\xe0A\x02R\afileUid\x12\x17\n" +
+	"\x04tags\x18\x04 \x03(\tB\x03\xe0A\x02R\x04tags\"Y\n" +
+	"\x1dUpdateCatalogFileTagsResponse\x128\n" +
+	"\x04file\x18\x01 \x01(\v2\x1f.artifact.artifact.v1alpha.FileB\x03\xe0A\x03R\x04file*d\n" +
 	"\vCatalogType\x12\x1c\n" +
 	"\x18CATALOG_TYPE_UNSPECIFIED\x10\x00\x12\x1b\n" +
 	"\x17CATALOG_TYPE_PERSISTENT\x10\x01\x12\x1a\n" +
@@ -3935,86 +4072,88 @@ func file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP() []byte {
 }
 
 var file_artifact_artifact_v1alpha_artifact_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
-var file_artifact_artifact_v1alpha_artifact_proto_msgTypes = make([]protoimpl.MessageInfo, 47)
+var file_artifact_artifact_v1alpha_artifact_proto_msgTypes = make([]protoimpl.MessageInfo, 49)
 var file_artifact_artifact_v1alpha_artifact_proto_goTypes = []any{
-	(CatalogType)(0),                    // 0: artifact.artifact.v1alpha.CatalogType
-	(FileProcessStatus)(0),              // 1: artifact.artifact.v1alpha.FileProcessStatus
-	(FileType)(0),                       // 2: artifact.artifact.v1alpha.FileType
-	(CatalogRunAction)(0),               // 3: artifact.artifact.v1alpha.CatalogRunAction
-	(File_Position_Unit)(0),             // 4: artifact.artifact.v1alpha.File.Position.Unit
-	(*LivenessRequest)(nil),             // 5: artifact.artifact.v1alpha.LivenessRequest
-	(*LivenessResponse)(nil),            // 6: artifact.artifact.v1alpha.LivenessResponse
-	(*ReadinessRequest)(nil),            // 7: artifact.artifact.v1alpha.ReadinessRequest
-	(*ReadinessResponse)(nil),           // 8: artifact.artifact.v1alpha.ReadinessResponse
-	(*RepositoryTag)(nil),               // 9: artifact.artifact.v1alpha.RepositoryTag
-	(*ListRepositoryTagsRequest)(nil),   // 10: artifact.artifact.v1alpha.ListRepositoryTagsRequest
-	(*ListRepositoryTagsResponse)(nil),  // 11: artifact.artifact.v1alpha.ListRepositoryTagsResponse
-	(*CreateRepositoryTagRequest)(nil),  // 12: artifact.artifact.v1alpha.CreateRepositoryTagRequest
-	(*CreateRepositoryTagResponse)(nil), // 13: artifact.artifact.v1alpha.CreateRepositoryTagResponse
-	(*GetRepositoryTagRequest)(nil),     // 14: artifact.artifact.v1alpha.GetRepositoryTagRequest
-	(*GetRepositoryTagResponse)(nil),    // 15: artifact.artifact.v1alpha.GetRepositoryTagResponse
-	(*DeleteRepositoryTagRequest)(nil),  // 16: artifact.artifact.v1alpha.DeleteRepositoryTagRequest
-	(*DeleteRepositoryTagResponse)(nil), // 17: artifact.artifact.v1alpha.DeleteRepositoryTagResponse
-	(*ObjectURL)(nil),                   // 18: artifact.artifact.v1alpha.ObjectURL
-	(*GetObjectRequest)(nil),            // 19: artifact.artifact.v1alpha.GetObjectRequest
-	(*GetObjectResponse)(nil),           // 20: artifact.artifact.v1alpha.GetObjectResponse
-	(*GetObjectURLRequest)(nil),         // 21: artifact.artifact.v1alpha.GetObjectURLRequest
-	(*GetObjectURLResponse)(nil),        // 22: artifact.artifact.v1alpha.GetObjectURLResponse
-	(*UpdateObjectRequest)(nil),         // 23: artifact.artifact.v1alpha.UpdateObjectRequest
-	(*UpdateObjectResponse)(nil),        // 24: artifact.artifact.v1alpha.UpdateObjectResponse
-	(*Catalog)(nil),                     // 25: artifact.artifact.v1alpha.Catalog
-	(*CreateCatalogRequest)(nil),        // 26: artifact.artifact.v1alpha.CreateCatalogRequest
-	(*CreateCatalogResponse)(nil),       // 27: artifact.artifact.v1alpha.CreateCatalogResponse
-	(*ListCatalogsRequest)(nil),         // 28: artifact.artifact.v1alpha.ListCatalogsRequest
-	(*ListCatalogsResponse)(nil),        // 29: artifact.artifact.v1alpha.ListCatalogsResponse
-	(*UpdateCatalogRequest)(nil),        // 30: artifact.artifact.v1alpha.UpdateCatalogRequest
-	(*UpdateCatalogResponse)(nil),       // 31: artifact.artifact.v1alpha.UpdateCatalogResponse
-	(*DeleteCatalogRequest)(nil),        // 32: artifact.artifact.v1alpha.DeleteCatalogRequest
-	(*DeleteCatalogResponse)(nil),       // 33: artifact.artifact.v1alpha.DeleteCatalogResponse
-	(*File)(nil),                        // 34: artifact.artifact.v1alpha.File
-	(*UploadCatalogFileRequest)(nil),    // 35: artifact.artifact.v1alpha.UploadCatalogFileRequest
-	(*UploadCatalogFileResponse)(nil),   // 36: artifact.artifact.v1alpha.UploadCatalogFileResponse
-	(*DeleteCatalogFileRequest)(nil),    // 37: artifact.artifact.v1alpha.DeleteCatalogFileRequest
-	(*DeleteCatalogFileResponse)(nil),   // 38: artifact.artifact.v1alpha.DeleteCatalogFileResponse
-	(*ProcessCatalogFilesRequest)(nil),  // 39: artifact.artifact.v1alpha.ProcessCatalogFilesRequest
-	(*ProcessCatalogFilesResponse)(nil), // 40: artifact.artifact.v1alpha.ProcessCatalogFilesResponse
-	(*ListCatalogFilesFilter)(nil),      // 41: artifact.artifact.v1alpha.ListCatalogFilesFilter
-	(*ListCatalogFilesRequest)(nil),     // 42: artifact.artifact.v1alpha.ListCatalogFilesRequest
-	(*ListCatalogFilesResponse)(nil),    // 43: artifact.artifact.v1alpha.ListCatalogFilesResponse
-	(*GetCatalogFileRequest)(nil),       // 44: artifact.artifact.v1alpha.GetCatalogFileRequest
-	(*GetCatalogFileResponse)(nil),      // 45: artifact.artifact.v1alpha.GetCatalogFileResponse
-	(*CatalogRun)(nil),                  // 46: artifact.artifact.v1alpha.CatalogRun
-	(*ListCatalogRunsResponse)(nil),     // 47: artifact.artifact.v1alpha.ListCatalogRunsResponse
-	(*ListCatalogRunsRequest)(nil),      // 48: artifact.artifact.v1alpha.ListCatalogRunsRequest
-	(*MoveFileToCatalogRequest)(nil),    // 49: artifact.artifact.v1alpha.MoveFileToCatalogRequest
-	(*MoveFileToCatalogResponse)(nil),   // 50: artifact.artifact.v1alpha.MoveFileToCatalogResponse
-	(*File_Position)(nil),               // 51: artifact.artifact.v1alpha.File.Position
-	(*v1beta.HealthCheckRequest)(nil),   // 52: common.healthcheck.v1beta.HealthCheckRequest
-	(*v1beta.HealthCheckResponse)(nil),  // 53: common.healthcheck.v1beta.HealthCheckResponse
-	(*timestamppb.Timestamp)(nil),       // 54: google.protobuf.Timestamp
-	(*Object)(nil),                      // 55: artifact.artifact.v1alpha.Object
-	(*structpb.Struct)(nil),             // 56: google.protobuf.Struct
-	(v1alpha.RunStatus)(0),              // 57: common.run.v1alpha.RunStatus
-	(v1alpha.RunSource)(0),              // 58: common.run.v1alpha.RunSource
+	(CatalogType)(0),                      // 0: artifact.artifact.v1alpha.CatalogType
+	(FileProcessStatus)(0),                // 1: artifact.artifact.v1alpha.FileProcessStatus
+	(FileType)(0),                         // 2: artifact.artifact.v1alpha.FileType
+	(CatalogRunAction)(0),                 // 3: artifact.artifact.v1alpha.CatalogRunAction
+	(File_Position_Unit)(0),               // 4: artifact.artifact.v1alpha.File.Position.Unit
+	(*LivenessRequest)(nil),               // 5: artifact.artifact.v1alpha.LivenessRequest
+	(*LivenessResponse)(nil),              // 6: artifact.artifact.v1alpha.LivenessResponse
+	(*ReadinessRequest)(nil),              // 7: artifact.artifact.v1alpha.ReadinessRequest
+	(*ReadinessResponse)(nil),             // 8: artifact.artifact.v1alpha.ReadinessResponse
+	(*RepositoryTag)(nil),                 // 9: artifact.artifact.v1alpha.RepositoryTag
+	(*ListRepositoryTagsRequest)(nil),     // 10: artifact.artifact.v1alpha.ListRepositoryTagsRequest
+	(*ListRepositoryTagsResponse)(nil),    // 11: artifact.artifact.v1alpha.ListRepositoryTagsResponse
+	(*CreateRepositoryTagRequest)(nil),    // 12: artifact.artifact.v1alpha.CreateRepositoryTagRequest
+	(*CreateRepositoryTagResponse)(nil),   // 13: artifact.artifact.v1alpha.CreateRepositoryTagResponse
+	(*GetRepositoryTagRequest)(nil),       // 14: artifact.artifact.v1alpha.GetRepositoryTagRequest
+	(*GetRepositoryTagResponse)(nil),      // 15: artifact.artifact.v1alpha.GetRepositoryTagResponse
+	(*DeleteRepositoryTagRequest)(nil),    // 16: artifact.artifact.v1alpha.DeleteRepositoryTagRequest
+	(*DeleteRepositoryTagResponse)(nil),   // 17: artifact.artifact.v1alpha.DeleteRepositoryTagResponse
+	(*ObjectURL)(nil),                     // 18: artifact.artifact.v1alpha.ObjectURL
+	(*GetObjectRequest)(nil),              // 19: artifact.artifact.v1alpha.GetObjectRequest
+	(*GetObjectResponse)(nil),             // 20: artifact.artifact.v1alpha.GetObjectResponse
+	(*GetObjectURLRequest)(nil),           // 21: artifact.artifact.v1alpha.GetObjectURLRequest
+	(*GetObjectURLResponse)(nil),          // 22: artifact.artifact.v1alpha.GetObjectURLResponse
+	(*UpdateObjectRequest)(nil),           // 23: artifact.artifact.v1alpha.UpdateObjectRequest
+	(*UpdateObjectResponse)(nil),          // 24: artifact.artifact.v1alpha.UpdateObjectResponse
+	(*Catalog)(nil),                       // 25: artifact.artifact.v1alpha.Catalog
+	(*CreateCatalogRequest)(nil),          // 26: artifact.artifact.v1alpha.CreateCatalogRequest
+	(*CreateCatalogResponse)(nil),         // 27: artifact.artifact.v1alpha.CreateCatalogResponse
+	(*ListCatalogsRequest)(nil),           // 28: artifact.artifact.v1alpha.ListCatalogsRequest
+	(*ListCatalogsResponse)(nil),          // 29: artifact.artifact.v1alpha.ListCatalogsResponse
+	(*UpdateCatalogRequest)(nil),          // 30: artifact.artifact.v1alpha.UpdateCatalogRequest
+	(*UpdateCatalogResponse)(nil),         // 31: artifact.artifact.v1alpha.UpdateCatalogResponse
+	(*DeleteCatalogRequest)(nil),          // 32: artifact.artifact.v1alpha.DeleteCatalogRequest
+	(*DeleteCatalogResponse)(nil),         // 33: artifact.artifact.v1alpha.DeleteCatalogResponse
+	(*File)(nil),                          // 34: artifact.artifact.v1alpha.File
+	(*UploadCatalogFileRequest)(nil),      // 35: artifact.artifact.v1alpha.UploadCatalogFileRequest
+	(*UploadCatalogFileResponse)(nil),     // 36: artifact.artifact.v1alpha.UploadCatalogFileResponse
+	(*DeleteCatalogFileRequest)(nil),      // 37: artifact.artifact.v1alpha.DeleteCatalogFileRequest
+	(*DeleteCatalogFileResponse)(nil),     // 38: artifact.artifact.v1alpha.DeleteCatalogFileResponse
+	(*ProcessCatalogFilesRequest)(nil),    // 39: artifact.artifact.v1alpha.ProcessCatalogFilesRequest
+	(*ProcessCatalogFilesResponse)(nil),   // 40: artifact.artifact.v1alpha.ProcessCatalogFilesResponse
+	(*ListCatalogFilesFilter)(nil),        // 41: artifact.artifact.v1alpha.ListCatalogFilesFilter
+	(*ListCatalogFilesRequest)(nil),       // 42: artifact.artifact.v1alpha.ListCatalogFilesRequest
+	(*ListCatalogFilesResponse)(nil),      // 43: artifact.artifact.v1alpha.ListCatalogFilesResponse
+	(*GetCatalogFileRequest)(nil),         // 44: artifact.artifact.v1alpha.GetCatalogFileRequest
+	(*GetCatalogFileResponse)(nil),        // 45: artifact.artifact.v1alpha.GetCatalogFileResponse
+	(*CatalogRun)(nil),                    // 46: artifact.artifact.v1alpha.CatalogRun
+	(*ListCatalogRunsResponse)(nil),       // 47: artifact.artifact.v1alpha.ListCatalogRunsResponse
+	(*ListCatalogRunsRequest)(nil),        // 48: artifact.artifact.v1alpha.ListCatalogRunsRequest
+	(*MoveFileToCatalogRequest)(nil),      // 49: artifact.artifact.v1alpha.MoveFileToCatalogRequest
+	(*MoveFileToCatalogResponse)(nil),     // 50: artifact.artifact.v1alpha.MoveFileToCatalogResponse
+	(*UpdateCatalogFileTagsRequest)(nil),  // 51: artifact.artifact.v1alpha.UpdateCatalogFileTagsRequest
+	(*UpdateCatalogFileTagsResponse)(nil), // 52: artifact.artifact.v1alpha.UpdateCatalogFileTagsResponse
+	(*File_Position)(nil),                 // 53: artifact.artifact.v1alpha.File.Position
+	(*v1beta.HealthCheckRequest)(nil),     // 54: common.healthcheck.v1beta.HealthCheckRequest
+	(*v1beta.HealthCheckResponse)(nil),    // 55: common.healthcheck.v1beta.HealthCheckResponse
+	(*timestamppb.Timestamp)(nil),         // 56: google.protobuf.Timestamp
+	(*Object)(nil),                        // 57: artifact.artifact.v1alpha.Object
+	(*structpb.Struct)(nil),               // 58: google.protobuf.Struct
+	(v1alpha.RunStatus)(0),                // 59: common.run.v1alpha.RunStatus
+	(v1alpha.RunSource)(0),                // 60: common.run.v1alpha.RunSource
 }
 var file_artifact_artifact_v1alpha_artifact_proto_depIdxs = []int32{
-	52, // 0: artifact.artifact.v1alpha.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	53, // 1: artifact.artifact.v1alpha.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
-	52, // 2: artifact.artifact.v1alpha.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	53, // 3: artifact.artifact.v1alpha.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
-	54, // 4: artifact.artifact.v1alpha.RepositoryTag.update_time:type_name -> google.protobuf.Timestamp
+	54, // 0: artifact.artifact.v1alpha.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	55, // 1: artifact.artifact.v1alpha.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	54, // 2: artifact.artifact.v1alpha.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	55, // 3: artifact.artifact.v1alpha.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	56, // 4: artifact.artifact.v1alpha.RepositoryTag.update_time:type_name -> google.protobuf.Timestamp
 	9,  // 5: artifact.artifact.v1alpha.ListRepositoryTagsResponse.tags:type_name -> artifact.artifact.v1alpha.RepositoryTag
 	9,  // 6: artifact.artifact.v1alpha.CreateRepositoryTagRequest.tag:type_name -> artifact.artifact.v1alpha.RepositoryTag
 	9,  // 7: artifact.artifact.v1alpha.CreateRepositoryTagResponse.tag:type_name -> artifact.artifact.v1alpha.RepositoryTag
 	9,  // 8: artifact.artifact.v1alpha.GetRepositoryTagResponse.tag:type_name -> artifact.artifact.v1alpha.RepositoryTag
-	54, // 9: artifact.artifact.v1alpha.ObjectURL.url_expire_at:type_name -> google.protobuf.Timestamp
-	54, // 10: artifact.artifact.v1alpha.ObjectURL.create_time:type_name -> google.protobuf.Timestamp
-	54, // 11: artifact.artifact.v1alpha.ObjectURL.update_time:type_name -> google.protobuf.Timestamp
-	54, // 12: artifact.artifact.v1alpha.ObjectURL.delete_time:type_name -> google.protobuf.Timestamp
-	55, // 13: artifact.artifact.v1alpha.GetObjectResponse.object:type_name -> artifact.artifact.v1alpha.Object
+	56, // 9: artifact.artifact.v1alpha.ObjectURL.url_expire_at:type_name -> google.protobuf.Timestamp
+	56, // 10: artifact.artifact.v1alpha.ObjectURL.create_time:type_name -> google.protobuf.Timestamp
+	56, // 11: artifact.artifact.v1alpha.ObjectURL.update_time:type_name -> google.protobuf.Timestamp
+	56, // 12: artifact.artifact.v1alpha.ObjectURL.delete_time:type_name -> google.protobuf.Timestamp
+	57, // 13: artifact.artifact.v1alpha.GetObjectResponse.object:type_name -> artifact.artifact.v1alpha.Object
 	18, // 14: artifact.artifact.v1alpha.GetObjectURLResponse.object_url:type_name -> artifact.artifact.v1alpha.ObjectURL
-	54, // 15: artifact.artifact.v1alpha.UpdateObjectRequest.last_modified_time:type_name -> google.protobuf.Timestamp
-	55, // 16: artifact.artifact.v1alpha.UpdateObjectResponse.object:type_name -> artifact.artifact.v1alpha.Object
+	56, // 15: artifact.artifact.v1alpha.UpdateObjectRequest.last_modified_time:type_name -> google.protobuf.Timestamp
+	57, // 16: artifact.artifact.v1alpha.UpdateObjectResponse.object:type_name -> artifact.artifact.v1alpha.Object
 	0,  // 17: artifact.artifact.v1alpha.CreateCatalogRequest.type:type_name -> artifact.artifact.v1alpha.CatalogType
 	25, // 18: artifact.artifact.v1alpha.CreateCatalogResponse.catalog:type_name -> artifact.artifact.v1alpha.Catalog
 	25, // 19: artifact.artifact.v1alpha.ListCatalogsResponse.catalogs:type_name -> artifact.artifact.v1alpha.Catalog
@@ -4022,11 +4161,11 @@ var file_artifact_artifact_v1alpha_artifact_proto_depIdxs = []int32{
 	25, // 21: artifact.artifact.v1alpha.DeleteCatalogResponse.catalog:type_name -> artifact.artifact.v1alpha.Catalog
 	2,  // 22: artifact.artifact.v1alpha.File.type:type_name -> artifact.artifact.v1alpha.FileType
 	1,  // 23: artifact.artifact.v1alpha.File.process_status:type_name -> artifact.artifact.v1alpha.FileProcessStatus
-	54, // 24: artifact.artifact.v1alpha.File.create_time:type_name -> google.protobuf.Timestamp
-	54, // 25: artifact.artifact.v1alpha.File.update_time:type_name -> google.protobuf.Timestamp
-	54, // 26: artifact.artifact.v1alpha.File.delete_time:type_name -> google.protobuf.Timestamp
-	56, // 27: artifact.artifact.v1alpha.File.external_metadata:type_name -> google.protobuf.Struct
-	51, // 28: artifact.artifact.v1alpha.File.length:type_name -> artifact.artifact.v1alpha.File.Position
+	56, // 24: artifact.artifact.v1alpha.File.create_time:type_name -> google.protobuf.Timestamp
+	56, // 25: artifact.artifact.v1alpha.File.update_time:type_name -> google.protobuf.Timestamp
+	56, // 26: artifact.artifact.v1alpha.File.delete_time:type_name -> google.protobuf.Timestamp
+	58, // 27: artifact.artifact.v1alpha.File.external_metadata:type_name -> google.protobuf.Struct
+	53, // 28: artifact.artifact.v1alpha.File.length:type_name -> artifact.artifact.v1alpha.File.Position
 	34, // 29: artifact.artifact.v1alpha.UploadCatalogFileRequest.file:type_name -> artifact.artifact.v1alpha.File
 	34, // 30: artifact.artifact.v1alpha.UploadCatalogFileResponse.file:type_name -> artifact.artifact.v1alpha.File
 	34, // 31: artifact.artifact.v1alpha.ProcessCatalogFilesResponse.files:type_name -> artifact.artifact.v1alpha.File
@@ -4036,18 +4175,19 @@ var file_artifact_artifact_v1alpha_artifact_proto_depIdxs = []int32{
 	41, // 35: artifact.artifact.v1alpha.ListCatalogFilesResponse.filter:type_name -> artifact.artifact.v1alpha.ListCatalogFilesFilter
 	34, // 36: artifact.artifact.v1alpha.GetCatalogFileResponse.file:type_name -> artifact.artifact.v1alpha.File
 	3,  // 37: artifact.artifact.v1alpha.CatalogRun.action:type_name -> artifact.artifact.v1alpha.CatalogRunAction
-	57, // 38: artifact.artifact.v1alpha.CatalogRun.status:type_name -> common.run.v1alpha.RunStatus
-	58, // 39: artifact.artifact.v1alpha.CatalogRun.source:type_name -> common.run.v1alpha.RunSource
-	56, // 40: artifact.artifact.v1alpha.CatalogRun.payload:type_name -> google.protobuf.Struct
-	54, // 41: artifact.artifact.v1alpha.CatalogRun.start_time:type_name -> google.protobuf.Timestamp
-	54, // 42: artifact.artifact.v1alpha.CatalogRun.complete_time:type_name -> google.protobuf.Timestamp
+	59, // 38: artifact.artifact.v1alpha.CatalogRun.status:type_name -> common.run.v1alpha.RunStatus
+	60, // 39: artifact.artifact.v1alpha.CatalogRun.source:type_name -> common.run.v1alpha.RunSource
+	58, // 40: artifact.artifact.v1alpha.CatalogRun.payload:type_name -> google.protobuf.Struct
+	56, // 41: artifact.artifact.v1alpha.CatalogRun.start_time:type_name -> google.protobuf.Timestamp
+	56, // 42: artifact.artifact.v1alpha.CatalogRun.complete_time:type_name -> google.protobuf.Timestamp
 	46, // 43: artifact.artifact.v1alpha.ListCatalogRunsResponse.catalog_runs:type_name -> artifact.artifact.v1alpha.CatalogRun
-	4,  // 44: artifact.artifact.v1alpha.File.Position.unit:type_name -> artifact.artifact.v1alpha.File.Position.Unit
-	45, // [45:45] is the sub-list for method output_type
-	45, // [45:45] is the sub-list for method input_type
-	45, // [45:45] is the sub-list for extension type_name
-	45, // [45:45] is the sub-list for extension extendee
-	0,  // [0:45] is the sub-list for field type_name
+	34, // 44: artifact.artifact.v1alpha.UpdateCatalogFileTagsResponse.file:type_name -> artifact.artifact.v1alpha.File
+	4,  // 45: artifact.artifact.v1alpha.File.Position.unit:type_name -> artifact.artifact.v1alpha.File.Position.Unit
+	46, // [46:46] is the sub-list for method output_type
+	46, // [46:46] is the sub-list for method input_type
+	46, // [46:46] is the sub-list for extension type_name
+	46, // [46:46] is the sub-list for extension extendee
+	0,  // [0:46] is the sub-list for field type_name
 }
 
 func init() { file_artifact_artifact_v1alpha_artifact_proto_init() }
@@ -4071,7 +4211,7 @@ func file_artifact_artifact_v1alpha_artifact_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_artifact_artifact_v1alpha_artifact_proto_rawDesc), len(file_artifact_artifact_v1alpha_artifact_proto_rawDesc)),
 			NumEnums:      5,
-			NumMessages:   47,
+			NumMessages:   49,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

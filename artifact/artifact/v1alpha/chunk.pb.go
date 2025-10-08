@@ -1010,7 +1010,10 @@ type SimilarityChunksSearchRequest struct {
 	FileMediaType FileMediaType `protobuf:"varint,7,opt,name=file_media_type,json=fileMediaType,proto3,enum=artifact.artifact.v1alpha.FileMediaType" json:"file_media_type,omitempty"`
 	// File UIDs. When this field is provided, the response will return only
 	// chunks that belong to the specified file UIDs.
-	FileUids      []string `protobuf:"bytes,9,rep,name=file_uids,json=fileUids,proto3" json:"file_uids,omitempty"`
+	FileUids []string `protobuf:"bytes,9,rep,name=file_uids,json=fileUids,proto3" json:"file_uids,omitempty"`
+	// Tags to filter by. When multiple tags are provided, OR logic is applied.
+	// Note: File UID filter takes precedence over tags, as tags apply to files.
+	Tags          []string `protobuf:"bytes,10,rep,name=tags,proto3" json:"tags,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1090,6 +1093,13 @@ func (x *SimilarityChunksSearchRequest) GetFileMediaType() FileMediaType {
 func (x *SimilarityChunksSearchRequest) GetFileUids() []string {
 	if x != nil {
 		return x.FileUids
+	}
+	return nil
+}
+
+func (x *SimilarityChunksSearchRequest) GetTags() []string {
+	if x != nil {
+		return x.Tags
 	}
 	return nil
 }
@@ -1344,7 +1354,7 @@ const file_artifact_artifact_v1alpha_chunk_proto_rawDesc = "" +
 	"\tchunk_uid\x18\x01 \x01(\tB\x03\xe0A\x02R\bchunkUid\x12%\n" +
 	"\vretrievable\x18\x02 \x01(\bB\x03\xe0A\x02R\vretrievable\"R\n" +
 	"\x13UpdateChunkResponse\x12;\n" +
-	"\x05chunk\x18\x01 \x01(\v2 .artifact.artifact.v1alpha.ChunkB\x03\xe0A\x03R\x05chunk\"\x80\x03\n" +
+	"\x05chunk\x18\x01 \x01(\v2 .artifact.artifact.v1alpha.ChunkB\x03\xe0A\x03R\x05chunk\"\x99\x03\n" +
 	"\x1dSimilarityChunksSearchRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\"\n" +
 	"\n" +
@@ -1354,7 +1364,9 @@ const file_artifact_artifact_v1alpha_chunk_proto_rawDesc = "" +
 	"\x05top_k\x18\x04 \x01(\rB\x03\xe0A\x01R\x04topK\x12N\n" +
 	"\fcontent_type\x18\x06 \x01(\x0e2&.artifact.artifact.v1alpha.ContentTypeB\x03\xe0A\x01R\vcontentType\x12U\n" +
 	"\x0ffile_media_type\x18\a \x01(\x0e2(.artifact.artifact.v1alpha.FileMediaTypeB\x03\xe0A\x01R\rfileMediaType\x12 \n" +
-	"\tfile_uids\x18\t \x03(\tB\x03\xe0A\x01R\bfileUidsJ\x04\b\x05\x10\x06J\x04\b\b\x10\t\"x\n" +
+	"\tfile_uids\x18\t \x03(\tB\x03\xe0A\x01R\bfileUids\x12\x17\n" +
+	"\x04tags\x18\n" +
+	" \x03(\tB\x03\xe0A\x01R\x04tagsJ\x04\b\x05\x10\x06J\x04\b\b\x10\t\"x\n" +
 	"\x1eSimilarityChunksSearchResponse\x12V\n" +
 	"\x0esimilar_chunks\x18\x01 \x03(\v2*.artifact.artifact.v1alpha.SimilarityChunkB\x03\xe0A\x03R\rsimilarChunks\"\xff\x01\n" +
 	"\x0fSimilarityChunk\x12 \n" +
