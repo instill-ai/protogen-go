@@ -439,7 +439,7 @@ type GetFileCatalogResponse_FileMetadata struct {
 	// Filename
 	Filename string `protobuf:"bytes,2,opt,name=filename,proto3" json:"filename,omitempty"`
 	// File Type.
-	FileType FileType `protobuf:"varint,3,opt,name=file_type,json=fileType,proto3,enum=artifact.artifact.v1alpha.FileType" json:"file_type,omitempty"`
+	FileType File_Type `protobuf:"varint,3,opt,name=file_type,json=fileType,proto3,enum=artifact.artifact.v1alpha.File_Type" json:"file_type,omitempty"`
 	// Size.
 	Size int64 `protobuf:"varint,4,opt,name=size,proto3" json:"size,omitempty"`
 	// Creation timestamp
@@ -494,11 +494,11 @@ func (x *GetFileCatalogResponse_FileMetadata) GetFilename() string {
 	return ""
 }
 
-func (x *GetFileCatalogResponse_FileMetadata) GetFileType() FileType {
+func (x *GetFileCatalogResponse_FileMetadata) GetFileType() File_Type {
 	if x != nil {
 		return x.FileType
 	}
-	return FileType_FILE_TYPE_UNSPECIFIED
+	return File_TYPE_UNSPECIFIED
 }
 
 func (x *GetFileCatalogResponse_FileMetadata) GetSize() int64 {
@@ -731,16 +731,16 @@ const file_artifact_artifact_v1alpha_file_catalog_proto_rawDesc = "" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\"\n" +
 	"\n" +
 	"catalog_id\x18\x02 \x01(\tB\x03\xe0A\x02R\tcatalogId\x12\x1e\n" +
-	"\bfile_uid\x18\x03 \x01(\tB\x03\xe0A\x02R\afileUid\"\x8d\v\n" +
+	"\bfile_uid\x18\x03 \x01(\tB\x03\xe0A\x02R\afileUid\"\x8e\v\n" +
 	"\x16GetFileCatalogResponse\x12(\n" +
 	"\roriginal_data\x18\x01 \x01(\tB\x03\xe0A\x03R\foriginalData\x12h\n" +
 	"\rfile_metadata\x18\x02 \x01(\v2>.artifact.artifact.v1alpha.GetFileCatalogResponse.FileMetadataB\x03\xe0A\x03R\ffileMetadata\x12O\n" +
 	"\x04text\x18\x03 \x01(\v26.artifact.artifact.v1alpha.GetFileCatalogResponse.TextB\x03\xe0A\x03R\x04text\x12T\n" +
-	"\x06chunks\x18\x04 \x03(\v27.artifact.artifact.v1alpha.GetFileCatalogResponse.ChunkB\x03\xe0A\x03R\x06chunks\x1a\xc2\x02\n" +
+	"\x06chunks\x18\x04 \x03(\v27.artifact.artifact.v1alpha.GetFileCatalogResponse.ChunkB\x03\xe0A\x03R\x06chunks\x1a\xc3\x02\n" +
 	"\fFileMetadata\x12\x15\n" +
 	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x1f\n" +
-	"\bfilename\x18\x02 \x01(\tB\x03\xe0A\x03R\bfilename\x12E\n" +
-	"\tfile_type\x18\x03 \x01(\x0e2#.artifact.artifact.v1alpha.FileTypeB\x03\xe0A\x03R\bfileType\x12\x17\n" +
+	"\bfilename\x18\x02 \x01(\tB\x03\xe0A\x03R\bfilename\x12F\n" +
+	"\tfile_type\x18\x03 \x01(\x0e2$.artifact.artifact.v1alpha.File.TypeB\x03\xe0A\x03R\bfileType\x12\x17\n" +
 	"\x04size\x18\x04 \x01(\x03B\x03\xe0A\x03R\x04size\x12@\n" +
 	"\vcreate_time\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
 	"createTime\x12X\n" +
@@ -810,7 +810,7 @@ var file_artifact_artifact_v1alpha_file_catalog_proto_goTypes = []any{
 	(*GetFileCatalogResponse_FileMetadata)(nil), // 7: artifact.artifact.v1alpha.GetFileCatalogResponse.FileMetadata
 	(*GetFileCatalogResponse_Text)(nil),         // 8: artifact.artifact.v1alpha.GetFileCatalogResponse.Text
 	(*GetFileCatalogResponse_Chunk)(nil),        // 9: artifact.artifact.v1alpha.GetFileCatalogResponse.Chunk
-	(FileType)(0),                               // 10: artifact.artifact.v1alpha.FileType
+	(File_Type)(0),                              // 10: artifact.artifact.v1alpha.File.Type
 	(*timestamppb.Timestamp)(nil),               // 11: google.protobuf.Timestamp
 	(FileProcessStatus)(0),                      // 12: artifact.artifact.v1alpha.FileProcessStatus
 }
@@ -818,7 +818,7 @@ var file_artifact_artifact_v1alpha_file_catalog_proto_depIdxs = []int32{
 	7,  // 0: artifact.artifact.v1alpha.GetFileCatalogResponse.file_metadata:type_name -> artifact.artifact.v1alpha.GetFileCatalogResponse.FileMetadata
 	8,  // 1: artifact.artifact.v1alpha.GetFileCatalogResponse.text:type_name -> artifact.artifact.v1alpha.GetFileCatalogResponse.Text
 	9,  // 2: artifact.artifact.v1alpha.GetFileCatalogResponse.chunks:type_name -> artifact.artifact.v1alpha.GetFileCatalogResponse.Chunk
-	10, // 3: artifact.artifact.v1alpha.GetFileCatalogResponse.FileMetadata.file_type:type_name -> artifact.artifact.v1alpha.FileType
+	10, // 3: artifact.artifact.v1alpha.GetFileCatalogResponse.FileMetadata.file_type:type_name -> artifact.artifact.v1alpha.File.Type
 	11, // 4: artifact.artifact.v1alpha.GetFileCatalogResponse.FileMetadata.create_time:type_name -> google.protobuf.Timestamp
 	12, // 5: artifact.artifact.v1alpha.GetFileCatalogResponse.FileMetadata.process_status:type_name -> artifact.artifact.v1alpha.FileProcessStatus
 	11, // 6: artifact.artifact.v1alpha.GetFileCatalogResponse.Text.update_time:type_name -> google.protobuf.Timestamp

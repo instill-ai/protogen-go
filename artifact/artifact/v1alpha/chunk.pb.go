@@ -84,61 +84,61 @@ func (FileMediaType) EnumDescriptor() ([]byte, []int) {
 	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{0}
 }
 
-// ContentType describes the type of a chunk content.
-type ContentType int32
+// Type describes the type of a chunk content.
+type Chunk_Type int32
 
 const (
 	// Unspecified.
-	ContentType_CONTENT_TYPE_UNSPECIFIED ContentType = 0
-	// Chunk.
-	ContentType_CONTENT_TYPE_CHUNK ContentType = 1
+	Chunk_TYPE_UNSPECIFIED Chunk_Type = 0
+	// Content.
+	Chunk_TYPE_CONTENT Chunk_Type = 1
 	// Summary.
-	ContentType_CONTENT_TYPE_SUMMARY ContentType = 2
+	Chunk_TYPE_SUMMARY Chunk_Type = 2
 	// Augmented.
-	ContentType_CONTENT_TYPE_AUGMENTED ContentType = 3
+	Chunk_TYPE_AUGMENTED Chunk_Type = 3
 )
 
-// Enum value maps for ContentType.
+// Enum value maps for Chunk_Type.
 var (
-	ContentType_name = map[int32]string{
-		0: "CONTENT_TYPE_UNSPECIFIED",
-		1: "CONTENT_TYPE_CHUNK",
-		2: "CONTENT_TYPE_SUMMARY",
-		3: "CONTENT_TYPE_AUGMENTED",
+	Chunk_Type_name = map[int32]string{
+		0: "TYPE_UNSPECIFIED",
+		1: "TYPE_CONTENT",
+		2: "TYPE_SUMMARY",
+		3: "TYPE_AUGMENTED",
 	}
-	ContentType_value = map[string]int32{
-		"CONTENT_TYPE_UNSPECIFIED": 0,
-		"CONTENT_TYPE_CHUNK":       1,
-		"CONTENT_TYPE_SUMMARY":     2,
-		"CONTENT_TYPE_AUGMENTED":   3,
+	Chunk_Type_value = map[string]int32{
+		"TYPE_UNSPECIFIED": 0,
+		"TYPE_CONTENT":     1,
+		"TYPE_SUMMARY":     2,
+		"TYPE_AUGMENTED":   3,
 	}
 )
 
-func (x ContentType) Enum() *ContentType {
-	p := new(ContentType)
+func (x Chunk_Type) Enum() *Chunk_Type {
+	p := new(Chunk_Type)
 	*p = x
 	return p
 }
 
-func (x ContentType) String() string {
+func (x Chunk_Type) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (ContentType) Descriptor() protoreflect.EnumDescriptor {
+func (Chunk_Type) Descriptor() protoreflect.EnumDescriptor {
 	return file_artifact_artifact_v1alpha_chunk_proto_enumTypes[1].Descriptor()
 }
 
-func (ContentType) Type() protoreflect.EnumType {
+func (Chunk_Type) Type() protoreflect.EnumType {
 	return &file_artifact_artifact_v1alpha_chunk_proto_enumTypes[1]
 }
 
-func (x ContentType) Number() protoreflect.EnumNumber {
+func (x Chunk_Type) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use ContentType.Descriptor instead.
-func (ContentType) EnumDescriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{1}
+// Deprecated: Use Chunk_Type.Descriptor instead.
+func (Chunk_Type) EnumDescriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{0, 0}
 }
 
 // The Chunk message represents a chunk of data in the artifact system.
@@ -154,8 +154,8 @@ type Chunk struct {
 	CreateTime *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
 	// original file unique identifier
 	OriginalFileUid string `protobuf:"bytes,8,opt,name=original_file_uid,json=originalFileUid,proto3" json:"original_file_uid,omitempty"`
-	// content type
-	ContentType ContentType `protobuf:"varint,9,opt,name=content_type,json=contentType,proto3,enum=artifact.artifact.v1alpha.ContentType" json:"content_type,omitempty"`
+	// chunk type
+	Type Chunk_Type `protobuf:"varint,9,opt,name=type,proto3,enum=artifact.artifact.v1alpha.Chunk_Type" json:"type,omitempty"`
 	// Reference to the position of the chunk within the original file.
 	Reference *Chunk_Reference `protobuf:"bytes,10,opt,name=reference,proto3" json:"reference,omitempty"`
 	// Reference to the position of the chunk within the Markdown (source) file.
@@ -239,11 +239,11 @@ func (x *Chunk) GetOriginalFileUid() string {
 	return ""
 }
 
-func (x *Chunk) GetContentType() ContentType {
+func (x *Chunk) GetType() Chunk_Type {
 	if x != nil {
-		return x.ContentType
+		return x.Type
 	}
-	return ContentType_CONTENT_TYPE_UNSPECIFIED
+	return Chunk_TYPE_UNSPECIFIED
 }
 
 func (x *Chunk) GetReference() *Chunk_Reference {
@@ -903,8 +903,8 @@ type SimilarityChunksSearchRequest struct {
 	TextPrompt string `protobuf:"bytes,3,opt,name=text_prompt,json=textPrompt,proto3" json:"text_prompt,omitempty"`
 	// Top K. Default value: 5.
 	TopK uint32 `protobuf:"varint,4,opt,name=top_k,json=topK,proto3" json:"top_k,omitempty"`
-	// Content type.
-	ContentType ContentType `protobuf:"varint,6,opt,name=content_type,json=contentType,proto3,enum=artifact.artifact.v1alpha.ContentType" json:"content_type,omitempty"`
+	// Chunk type.
+	Type Chunk_Type `protobuf:"varint,6,opt,name=type,proto3,enum=artifact.artifact.v1alpha.Chunk_Type" json:"type,omitempty"`
 	// File type.
 	FileMediaType FileMediaType `protobuf:"varint,7,opt,name=file_media_type,json=fileMediaType,proto3,enum=artifact.artifact.v1alpha.FileMediaType" json:"file_media_type,omitempty"`
 	// File UIDs. When this field is provided, the response will return only
@@ -975,11 +975,11 @@ func (x *SimilarityChunksSearchRequest) GetTopK() uint32 {
 	return 0
 }
 
-func (x *SimilarityChunksSearchRequest) GetContentType() ContentType {
+func (x *SimilarityChunksSearchRequest) GetType() Chunk_Type {
 	if x != nil {
-		return x.ContentType
+		return x.Type
 	}
-	return ContentType_CONTENT_TYPE_UNSPECIFIED
+	return Chunk_TYPE_UNSPECIFIED
 }
 
 func (x *SimilarityChunksSearchRequest) GetFileMediaType() FileMediaType {
@@ -1190,15 +1190,15 @@ var File_artifact_artifact_v1alpha_chunk_proto protoreflect.FileDescriptor
 
 const file_artifact_artifact_v1alpha_chunk_proto_rawDesc = "" +
 	"\n" +
-	"%artifact/artifact/v1alpha/chunk.proto\x12\x19artifact.artifact.v1alpha\x1a(artifact/artifact/v1alpha/artifact.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb7\x05\n" +
+	"%artifact/artifact/v1alpha/chunk.proto\x12\x19artifact.artifact.v1alpha\x1a(artifact/artifact/v1alpha/artifact.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xfd\x05\n" +
 	"\x05Chunk\x12 \n" +
 	"\tchunk_uid\x18\x01 \x01(\tB\x03\xe0A\x03R\bchunkUid\x12%\n" +
 	"\vretrievable\x18\x02 \x01(\bB\x03\xe0A\x03R\vretrievable\x12\x1b\n" +
 	"\x06tokens\x18\x06 \x01(\rB\x03\xe0A\x03R\x06tokens\x12@\n" +
 	"\vcreate_time\x18\a \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
 	"createTime\x12/\n" +
-	"\x11original_file_uid\x18\b \x01(\tB\x03\xe0A\x03R\x0foriginalFileUid\x12N\n" +
-	"\fcontent_type\x18\t \x01(\x0e2&.artifact.artifact.v1alpha.ContentTypeB\x03\xe0A\x03R\vcontentType\x12M\n" +
+	"\x11original_file_uid\x18\b \x01(\tB\x03\xe0A\x03R\x0foriginalFileUid\x12>\n" +
+	"\x04type\x18\t \x01(\x0e2%.artifact.artifact.v1alpha.Chunk.TypeB\x03\xe0A\x03R\x04type\x12M\n" +
 	"\treference\x18\n" +
 	" \x01(\v2*.artifact.artifact.v1alpha.Chunk.ReferenceB\x03\xe0A\x03R\treference\x12^\n" +
 	"\x12markdown_reference\x18\v \x01(\v2*.artifact.artifact.v1alpha.Chunk.ReferenceB\x03\xe0A\x03R\x11markdownReference\x12\"\n" +
@@ -1206,7 +1206,12 @@ const file_artifact_artifact_v1alpha_chunk_proto_rawDesc = "" +
 	"\aend_pos\x18\x05 \x01(\rB\x05\xe0A\x03\x18\x01R\x06endPos\x1a\x91\x01\n" +
 	"\tReference\x12C\n" +
 	"\x05start\x18\x01 \x01(\v2(.artifact.artifact.v1alpha.File.PositionB\x03\xe0A\x03R\x05start\x12?\n" +
-	"\x03end\x18\x02 \x01(\v2(.artifact.artifact.v1alpha.File.PositionB\x03\xe0A\x03R\x03end\"\x7f\n" +
+	"\x03end\x18\x02 \x01(\v2(.artifact.artifact.v1alpha.File.PositionB\x03\xe0A\x03R\x03end\"T\n" +
+	"\x04Type\x12\x14\n" +
+	"\x10TYPE_UNSPECIFIED\x10\x00\x12\x10\n" +
+	"\fTYPE_CONTENT\x10\x01\x12\x10\n" +
+	"\fTYPE_SUMMARY\x10\x02\x12\x12\n" +
+	"\x0eTYPE_AUGMENTED\x10\x03\"\x7f\n" +
 	"\x11ListChunksRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\"\n" +
 	"\n" +
@@ -1247,15 +1252,15 @@ const file_artifact_artifact_v1alpha_chunk_proto_rawDesc = "" +
 	"\tchunk_uid\x18\x01 \x01(\tB\x03\xe0A\x02R\bchunkUid\x12%\n" +
 	"\vretrievable\x18\x02 \x01(\bB\x03\xe0A\x02R\vretrievable\"R\n" +
 	"\x13UpdateChunkResponse\x12;\n" +
-	"\x05chunk\x18\x01 \x01(\v2 .artifact.artifact.v1alpha.ChunkB\x03\xe0A\x03R\x05chunk\"\x99\x03\n" +
+	"\x05chunk\x18\x01 \x01(\v2 .artifact.artifact.v1alpha.ChunkB\x03\xe0A\x03R\x05chunk\"\x89\x03\n" +
 	"\x1dSimilarityChunksSearchRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\"\n" +
 	"\n" +
 	"catalog_id\x18\x02 \x01(\tB\x03\xe0A\x02R\tcatalogId\x12$\n" +
 	"\vtext_prompt\x18\x03 \x01(\tB\x03\xe0A\x02R\n" +
 	"textPrompt\x12\x18\n" +
-	"\x05top_k\x18\x04 \x01(\rB\x03\xe0A\x01R\x04topK\x12N\n" +
-	"\fcontent_type\x18\x06 \x01(\x0e2&.artifact.artifact.v1alpha.ContentTypeB\x03\xe0A\x01R\vcontentType\x12U\n" +
+	"\x05top_k\x18\x04 \x01(\rB\x03\xe0A\x01R\x04topK\x12>\n" +
+	"\x04type\x18\x06 \x01(\x0e2%.artifact.artifact.v1alpha.Chunk.TypeB\x03\xe0A\x01R\x04type\x12U\n" +
 	"\x0ffile_media_type\x18\a \x01(\x0e2(.artifact.artifact.v1alpha.FileMediaTypeB\x03\xe0A\x01R\rfileMediaType\x12 \n" +
 	"\tfile_uids\x18\t \x03(\tB\x03\xe0A\x01R\bfileUids\x12\x17\n" +
 	"\x04tags\x18\n" +
@@ -1274,12 +1279,7 @@ const file_artifact_artifact_v1alpha_chunk_proto_rawDesc = "" +
 	"\x18FILE_MEDIA_TYPE_DOCUMENT\x10\x01\x12\x19\n" +
 	"\x15FILE_MEDIA_TYPE_IMAGE\x10\x02\x12\x19\n" +
 	"\x15FILE_MEDIA_TYPE_AUDIO\x10\x03\x12\x19\n" +
-	"\x15FILE_MEDIA_TYPE_VIDEO\x10\x04*y\n" +
-	"\vContentType\x12\x1c\n" +
-	"\x18CONTENT_TYPE_UNSPECIFIED\x10\x00\x12\x16\n" +
-	"\x12CONTENT_TYPE_CHUNK\x10\x01\x12\x18\n" +
-	"\x14CONTENT_TYPE_SUMMARY\x10\x02\x12\x1a\n" +
-	"\x16CONTENT_TYPE_AUGMENTED\x10\x03B\xfe\x01\n" +
+	"\x15FILE_MEDIA_TYPE_VIDEO\x10\x04B\xfe\x01\n" +
 	"\x1dcom.artifact.artifact.v1alphaB\n" +
 	"ChunkProtoP\x01ZKgithub.com/instill-ai/protogen-go/artifact/artifact/v1alpha;artifactv1alpha\xa2\x02\x03AAX\xaa\x02\x19Artifact.Artifact.V1alpha\xca\x02\x19Artifact\\Artifact\\V1alpha\xe2\x02%Artifact\\Artifact\\V1alpha\\GPBMetadata\xea\x02\x1bArtifact::Artifact::V1alphab\x06proto3"
 
@@ -1299,7 +1299,7 @@ var file_artifact_artifact_v1alpha_chunk_proto_enumTypes = make([]protoimpl.Enum
 var file_artifact_artifact_v1alpha_chunk_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_artifact_artifact_v1alpha_chunk_proto_goTypes = []any{
 	(FileMediaType)(0),                     // 0: artifact.artifact.v1alpha.FileMediaType
-	(ContentType)(0),                       // 1: artifact.artifact.v1alpha.ContentType
+	(Chunk_Type)(0),                        // 1: artifact.artifact.v1alpha.Chunk.Type
 	(*Chunk)(nil),                          // 2: artifact.artifact.v1alpha.Chunk
 	(*ListChunksRequest)(nil),              // 3: artifact.artifact.v1alpha.ListChunksRequest
 	(*ListChunksResponse)(nil),             // 4: artifact.artifact.v1alpha.ListChunksResponse
@@ -1321,7 +1321,7 @@ var file_artifact_artifact_v1alpha_chunk_proto_goTypes = []any{
 }
 var file_artifact_artifact_v1alpha_chunk_proto_depIdxs = []int32{
 	18, // 0: artifact.artifact.v1alpha.Chunk.create_time:type_name -> google.protobuf.Timestamp
-	1,  // 1: artifact.artifact.v1alpha.Chunk.content_type:type_name -> artifact.artifact.v1alpha.ContentType
+	1,  // 1: artifact.artifact.v1alpha.Chunk.type:type_name -> artifact.artifact.v1alpha.Chunk.Type
 	17, // 2: artifact.artifact.v1alpha.Chunk.reference:type_name -> artifact.artifact.v1alpha.Chunk.Reference
 	17, // 3: artifact.artifact.v1alpha.Chunk.markdown_reference:type_name -> artifact.artifact.v1alpha.Chunk.Reference
 	2,  // 4: artifact.artifact.v1alpha.ListChunksResponse.chunks:type_name -> artifact.artifact.v1alpha.Chunk
@@ -1330,7 +1330,7 @@ var file_artifact_artifact_v1alpha_chunk_proto_depIdxs = []int32{
 	5,  // 7: artifact.artifact.v1alpha.GetSourceFileResponse.source_file:type_name -> artifact.artifact.v1alpha.SourceFile
 	5,  // 8: artifact.artifact.v1alpha.SearchSourceFilesResponse.source_files:type_name -> artifact.artifact.v1alpha.SourceFile
 	2,  // 9: artifact.artifact.v1alpha.UpdateChunkResponse.chunk:type_name -> artifact.artifact.v1alpha.Chunk
-	1,  // 10: artifact.artifact.v1alpha.SimilarityChunksSearchRequest.content_type:type_name -> artifact.artifact.v1alpha.ContentType
+	1,  // 10: artifact.artifact.v1alpha.SimilarityChunksSearchRequest.type:type_name -> artifact.artifact.v1alpha.Chunk.Type
 	0,  // 11: artifact.artifact.v1alpha.SimilarityChunksSearchRequest.file_media_type:type_name -> artifact.artifact.v1alpha.FileMediaType
 	16, // 12: artifact.artifact.v1alpha.SimilarityChunksSearchResponse.similar_chunks:type_name -> artifact.artifact.v1alpha.SimilarityChunk
 	2,  // 13: artifact.artifact.v1alpha.SimilarityChunk.chunk_metadata:type_name -> artifact.artifact.v1alpha.Chunk

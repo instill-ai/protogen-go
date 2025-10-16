@@ -166,201 +166,56 @@ func (FileProcessStatus) EnumDescriptor() ([]byte, []int) {
 	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{1}
 }
 
-// file type
-type FileType int32
+// converted file type
+type ConvertedFileType int32
 
 const (
 	// unspecified
-	FileType_FILE_TYPE_UNSPECIFIED FileType = 0
-	// Text-based document types
-	// text
-	FileType_FILE_TYPE_TEXT FileType = 1
-	// PDF
-	FileType_FILE_TYPE_PDF FileType = 2
-	// MARKDOWN
-	FileType_FILE_TYPE_MARKDOWN FileType = 3
-	// HTML
-	FileType_FILE_TYPE_HTML FileType = 7
-	// CSV
-	FileType_FILE_TYPE_CSV FileType = 14
-	// Microsoft Office document types
-	// DOCX
-	FileType_FILE_TYPE_DOCX FileType = 8
-	// DOC
-	FileType_FILE_TYPE_DOC FileType = 9
-	// PPT
-	FileType_FILE_TYPE_PPT FileType = 10
-	// PPTX
-	FileType_FILE_TYPE_PPTX FileType = 11
-	// XLS
-	FileType_FILE_TYPE_XLS FileType = 12
-	// XLSX
-	FileType_FILE_TYPE_XLSX FileType = 13
-	// Image types (supported by pipeline-backend/pkg/data/image.go)
-	// PNG
-	FileType_FILE_TYPE_PNG FileType = 4
-	// JPEG
-	FileType_FILE_TYPE_JPEG FileType = 5
-	// JPG
-	FileType_FILE_TYPE_JPG FileType = 6
-	// GIF
-	FileType_FILE_TYPE_GIF FileType = 15
-	// WEBP
-	FileType_FILE_TYPE_WEBP FileType = 16
-	// TIFF
-	FileType_FILE_TYPE_TIFF FileType = 17
-	// BMP
-	FileType_FILE_TYPE_BMP FileType = 18
-	// HEIC
-	FileType_FILE_TYPE_HEIC FileType = 19
-	// HEIF
-	FileType_FILE_TYPE_HEIF FileType = 20
-	// AVIF
-	FileType_FILE_TYPE_AVIF FileType = 21
-	// Audio types (supported by pipeline-backend/pkg/data/audio.go)
-	// MP3
-	FileType_FILE_TYPE_MP3 FileType = 22
-	// WAV
-	FileType_FILE_TYPE_WAV FileType = 23
-	// AAC
-	FileType_FILE_TYPE_AAC FileType = 24
-	// OGG
-	FileType_FILE_TYPE_OGG FileType = 25
-	// FLAC
-	FileType_FILE_TYPE_FLAC FileType = 26
-	// M4A
-	FileType_FILE_TYPE_M4A FileType = 27
-	// WMA
-	FileType_FILE_TYPE_WMA FileType = 28
-	// AIFF
-	FileType_FILE_TYPE_AIFF FileType = 29
-	// Video types (supported by pipeline-backend/pkg/data/video.go)
-	// MP4
-	FileType_FILE_TYPE_MP4 FileType = 30
-	// AVI
-	FileType_FILE_TYPE_AVI FileType = 31
-	// MOV
-	FileType_FILE_TYPE_MOV FileType = 32
-	// WEBM (video)
-	FileType_FILE_TYPE_WEBM_VIDEO FileType = 33
-	// MKV
-	FileType_FILE_TYPE_MKV FileType = 34
-	// FLV
-	FileType_FILE_TYPE_FLV FileType = 35
-	// WMV
-	FileType_FILE_TYPE_WMV FileType = 36
-	// MPEG
-	FileType_FILE_TYPE_MPEG FileType = 37
+	ConvertedFileType_CONVERTED_FILE_TYPE_UNSPECIFIED ConvertedFileType = 0
+	// content
+	ConvertedFileType_CONVERTED_FILE_TYPE_CONTENT ConvertedFileType = 1
+	// summary
+	ConvertedFileType_CONVERTED_FILE_TYPE_SUMMARY ConvertedFileType = 2
 )
 
-// Enum value maps for FileType.
+// Enum value maps for ConvertedFileType.
 var (
-	FileType_name = map[int32]string{
-		0:  "FILE_TYPE_UNSPECIFIED",
-		1:  "FILE_TYPE_TEXT",
-		2:  "FILE_TYPE_PDF",
-		3:  "FILE_TYPE_MARKDOWN",
-		7:  "FILE_TYPE_HTML",
-		14: "FILE_TYPE_CSV",
-		8:  "FILE_TYPE_DOCX",
-		9:  "FILE_TYPE_DOC",
-		10: "FILE_TYPE_PPT",
-		11: "FILE_TYPE_PPTX",
-		12: "FILE_TYPE_XLS",
-		13: "FILE_TYPE_XLSX",
-		4:  "FILE_TYPE_PNG",
-		5:  "FILE_TYPE_JPEG",
-		6:  "FILE_TYPE_JPG",
-		15: "FILE_TYPE_GIF",
-		16: "FILE_TYPE_WEBP",
-		17: "FILE_TYPE_TIFF",
-		18: "FILE_TYPE_BMP",
-		19: "FILE_TYPE_HEIC",
-		20: "FILE_TYPE_HEIF",
-		21: "FILE_TYPE_AVIF",
-		22: "FILE_TYPE_MP3",
-		23: "FILE_TYPE_WAV",
-		24: "FILE_TYPE_AAC",
-		25: "FILE_TYPE_OGG",
-		26: "FILE_TYPE_FLAC",
-		27: "FILE_TYPE_M4A",
-		28: "FILE_TYPE_WMA",
-		29: "FILE_TYPE_AIFF",
-		30: "FILE_TYPE_MP4",
-		31: "FILE_TYPE_AVI",
-		32: "FILE_TYPE_MOV",
-		33: "FILE_TYPE_WEBM_VIDEO",
-		34: "FILE_TYPE_MKV",
-		35: "FILE_TYPE_FLV",
-		36: "FILE_TYPE_WMV",
-		37: "FILE_TYPE_MPEG",
+	ConvertedFileType_name = map[int32]string{
+		0: "CONVERTED_FILE_TYPE_UNSPECIFIED",
+		1: "CONVERTED_FILE_TYPE_CONTENT",
+		2: "CONVERTED_FILE_TYPE_SUMMARY",
 	}
-	FileType_value = map[string]int32{
-		"FILE_TYPE_UNSPECIFIED": 0,
-		"FILE_TYPE_TEXT":        1,
-		"FILE_TYPE_PDF":         2,
-		"FILE_TYPE_MARKDOWN":    3,
-		"FILE_TYPE_HTML":        7,
-		"FILE_TYPE_CSV":         14,
-		"FILE_TYPE_DOCX":        8,
-		"FILE_TYPE_DOC":         9,
-		"FILE_TYPE_PPT":         10,
-		"FILE_TYPE_PPTX":        11,
-		"FILE_TYPE_XLS":         12,
-		"FILE_TYPE_XLSX":        13,
-		"FILE_TYPE_PNG":         4,
-		"FILE_TYPE_JPEG":        5,
-		"FILE_TYPE_JPG":         6,
-		"FILE_TYPE_GIF":         15,
-		"FILE_TYPE_WEBP":        16,
-		"FILE_TYPE_TIFF":        17,
-		"FILE_TYPE_BMP":         18,
-		"FILE_TYPE_HEIC":        19,
-		"FILE_TYPE_HEIF":        20,
-		"FILE_TYPE_AVIF":        21,
-		"FILE_TYPE_MP3":         22,
-		"FILE_TYPE_WAV":         23,
-		"FILE_TYPE_AAC":         24,
-		"FILE_TYPE_OGG":         25,
-		"FILE_TYPE_FLAC":        26,
-		"FILE_TYPE_M4A":         27,
-		"FILE_TYPE_WMA":         28,
-		"FILE_TYPE_AIFF":        29,
-		"FILE_TYPE_MP4":         30,
-		"FILE_TYPE_AVI":         31,
-		"FILE_TYPE_MOV":         32,
-		"FILE_TYPE_WEBM_VIDEO":  33,
-		"FILE_TYPE_MKV":         34,
-		"FILE_TYPE_FLV":         35,
-		"FILE_TYPE_WMV":         36,
-		"FILE_TYPE_MPEG":        37,
+	ConvertedFileType_value = map[string]int32{
+		"CONVERTED_FILE_TYPE_UNSPECIFIED": 0,
+		"CONVERTED_FILE_TYPE_CONTENT":     1,
+		"CONVERTED_FILE_TYPE_SUMMARY":     2,
 	}
 )
 
-func (x FileType) Enum() *FileType {
-	p := new(FileType)
+func (x ConvertedFileType) Enum() *ConvertedFileType {
+	p := new(ConvertedFileType)
 	*p = x
 	return p
 }
 
-func (x FileType) String() string {
+func (x ConvertedFileType) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (FileType) Descriptor() protoreflect.EnumDescriptor {
+func (ConvertedFileType) Descriptor() protoreflect.EnumDescriptor {
 	return file_artifact_artifact_v1alpha_artifact_proto_enumTypes[2].Descriptor()
 }
 
-func (FileType) Type() protoreflect.EnumType {
+func (ConvertedFileType) Type() protoreflect.EnumType {
 	return &file_artifact_artifact_v1alpha_artifact_proto_enumTypes[2]
 }
 
-func (x FileType) Number() protoreflect.EnumNumber {
+func (x ConvertedFileType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use FileType.Descriptor instead.
-func (FileType) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use ConvertedFileType.Descriptor instead.
+func (ConvertedFileType) EnumDescriptor() ([]byte, []int) {
 	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{2}
 }
 
@@ -433,6 +288,204 @@ func (CatalogRunAction) EnumDescriptor() ([]byte, []int) {
 	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{3}
 }
 
+// Supported file types by the pipeline-backend.
+type File_Type int32
+
+const (
+	// unspecified
+	File_TYPE_UNSPECIFIED File_Type = 0
+	// Text-based document types
+	// text
+	File_TYPE_TEXT File_Type = 1
+	// PDF
+	File_TYPE_PDF File_Type = 2
+	// MARKDOWN
+	File_TYPE_MARKDOWN File_Type = 3
+	// HTML
+	File_TYPE_HTML File_Type = 7
+	// CSV
+	File_TYPE_CSV File_Type = 14
+	// Microsoft Office document types
+	// DOCX
+	File_TYPE_DOCX File_Type = 8
+	// DOC
+	File_TYPE_DOC File_Type = 9
+	// PPT
+	File_TYPE_PPT File_Type = 10
+	// PPTX
+	File_TYPE_PPTX File_Type = 11
+	// XLS
+	File_TYPE_XLS File_Type = 12
+	// XLSX
+	File_TYPE_XLSX File_Type = 13
+	// Image types (supported by pipeline-backend/pkg/data/image.go)
+	// PNG
+	File_TYPE_PNG File_Type = 4
+	// JPEG
+	File_TYPE_JPEG File_Type = 5
+	// JPG
+	File_TYPE_JPG File_Type = 6
+	// GIF
+	File_TYPE_GIF File_Type = 15
+	// WEBP
+	File_TYPE_WEBP File_Type = 16
+	// TIFF
+	File_TYPE_TIFF File_Type = 17
+	// BMP
+	File_TYPE_BMP File_Type = 18
+	// HEIC
+	File_TYPE_HEIC File_Type = 19
+	// HEIF
+	File_TYPE_HEIF File_Type = 20
+	// AVIF
+	File_TYPE_AVIF File_Type = 21
+	// Audio types (supported by pipeline-backend/pkg/data/audio.go)
+	// MP3
+	File_TYPE_MP3 File_Type = 22
+	// WAV
+	File_TYPE_WAV File_Type = 23
+	// AAC
+	File_TYPE_AAC File_Type = 24
+	// OGG
+	File_TYPE_OGG File_Type = 25
+	// FLAC
+	File_TYPE_FLAC File_Type = 26
+	// M4A
+	File_TYPE_M4A File_Type = 27
+	// WMA
+	File_TYPE_WMA File_Type = 28
+	// AIFF
+	File_TYPE_AIFF File_Type = 29
+	// Video types (supported by pipeline-backend/pkg/data/video.go)
+	// MP4
+	File_TYPE_MP4 File_Type = 30
+	// AVI
+	File_TYPE_AVI File_Type = 31
+	// MOV
+	File_TYPE_MOV File_Type = 32
+	// WEBM (video)
+	File_TYPE_WEBM_VIDEO File_Type = 33
+	// MKV
+	File_TYPE_MKV File_Type = 34
+	// FLV
+	File_TYPE_FLV File_Type = 35
+	// WMV
+	File_TYPE_WMV File_Type = 36
+	// MPEG
+	File_TYPE_MPEG File_Type = 37
+)
+
+// Enum value maps for File_Type.
+var (
+	File_Type_name = map[int32]string{
+		0:  "TYPE_UNSPECIFIED",
+		1:  "TYPE_TEXT",
+		2:  "TYPE_PDF",
+		3:  "TYPE_MARKDOWN",
+		7:  "TYPE_HTML",
+		14: "TYPE_CSV",
+		8:  "TYPE_DOCX",
+		9:  "TYPE_DOC",
+		10: "TYPE_PPT",
+		11: "TYPE_PPTX",
+		12: "TYPE_XLS",
+		13: "TYPE_XLSX",
+		4:  "TYPE_PNG",
+		5:  "TYPE_JPEG",
+		6:  "TYPE_JPG",
+		15: "TYPE_GIF",
+		16: "TYPE_WEBP",
+		17: "TYPE_TIFF",
+		18: "TYPE_BMP",
+		19: "TYPE_HEIC",
+		20: "TYPE_HEIF",
+		21: "TYPE_AVIF",
+		22: "TYPE_MP3",
+		23: "TYPE_WAV",
+		24: "TYPE_AAC",
+		25: "TYPE_OGG",
+		26: "TYPE_FLAC",
+		27: "TYPE_M4A",
+		28: "TYPE_WMA",
+		29: "TYPE_AIFF",
+		30: "TYPE_MP4",
+		31: "TYPE_AVI",
+		32: "TYPE_MOV",
+		33: "TYPE_WEBM_VIDEO",
+		34: "TYPE_MKV",
+		35: "TYPE_FLV",
+		36: "TYPE_WMV",
+		37: "TYPE_MPEG",
+	}
+	File_Type_value = map[string]int32{
+		"TYPE_UNSPECIFIED": 0,
+		"TYPE_TEXT":        1,
+		"TYPE_PDF":         2,
+		"TYPE_MARKDOWN":    3,
+		"TYPE_HTML":        7,
+		"TYPE_CSV":         14,
+		"TYPE_DOCX":        8,
+		"TYPE_DOC":         9,
+		"TYPE_PPT":         10,
+		"TYPE_PPTX":        11,
+		"TYPE_XLS":         12,
+		"TYPE_XLSX":        13,
+		"TYPE_PNG":         4,
+		"TYPE_JPEG":        5,
+		"TYPE_JPG":         6,
+		"TYPE_GIF":         15,
+		"TYPE_WEBP":        16,
+		"TYPE_TIFF":        17,
+		"TYPE_BMP":         18,
+		"TYPE_HEIC":        19,
+		"TYPE_HEIF":        20,
+		"TYPE_AVIF":        21,
+		"TYPE_MP3":         22,
+		"TYPE_WAV":         23,
+		"TYPE_AAC":         24,
+		"TYPE_OGG":         25,
+		"TYPE_FLAC":        26,
+		"TYPE_M4A":         27,
+		"TYPE_WMA":         28,
+		"TYPE_AIFF":        29,
+		"TYPE_MP4":         30,
+		"TYPE_AVI":         31,
+		"TYPE_MOV":         32,
+		"TYPE_WEBM_VIDEO":  33,
+		"TYPE_MKV":         34,
+		"TYPE_FLV":         35,
+		"TYPE_WMV":         36,
+		"TYPE_MPEG":        37,
+	}
+)
+
+func (x File_Type) Enum() *File_Type {
+	p := new(File_Type)
+	*p = x
+	return p
+}
+
+func (x File_Type) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (File_Type) Descriptor() protoreflect.EnumDescriptor {
+	return file_artifact_artifact_v1alpha_artifact_proto_enumTypes[4].Descriptor()
+}
+
+func (File_Type) Type() protoreflect.EnumType {
+	return &file_artifact_artifact_v1alpha_artifact_proto_enumTypes[4]
+}
+
+func (x File_Type) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use File_Type.Descriptor instead.
+func (File_Type) EnumDescriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{29, 0}
+}
+
 // Unit of measurement for a position within a file.
 type File_Position_Unit int32
 
@@ -479,11 +532,11 @@ func (x File_Position_Unit) String() string {
 }
 
 func (File_Position_Unit) Descriptor() protoreflect.EnumDescriptor {
-	return file_artifact_artifact_v1alpha_artifact_proto_enumTypes[4].Descriptor()
+	return file_artifact_artifact_v1alpha_artifact_proto_enumTypes[5].Descriptor()
 }
 
 func (File_Position_Unit) Type() protoreflect.EnumType {
-	return &file_artifact_artifact_v1alpha_artifact_proto_enumTypes[4]
+	return &file_artifact_artifact_v1alpha_artifact_proto_enumTypes[5]
 }
 
 func (x File_Position_Unit) Number() protoreflect.EnumNumber {
@@ -2342,7 +2395,7 @@ func (x *DeleteCatalogResponse) GetCatalog() *Catalog {
 	return nil
 }
 
-// file
+// File represents a file in a catalog.
 type File struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// file uid
@@ -2350,7 +2403,7 @@ type File struct {
 	// file name
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	// file type
-	Type FileType `protobuf:"varint,3,opt,name=type,proto3,enum=artifact.artifact.v1alpha.FileType" json:"type,omitempty"`
+	Type File_Type `protobuf:"varint,3,opt,name=type,proto3,enum=artifact.artifact.v1alpha.File_Type" json:"type,omitempty"`
 	// file process status
 	ProcessStatus FileProcessStatus `protobuf:"varint,4,opt,name=process_status,json=processStatus,proto3,enum=artifact.artifact.v1alpha.FileProcessStatus" json:"process_status,omitempty"`
 	// file process message
@@ -2477,11 +2530,11 @@ func (x *File) GetName() string {
 	return ""
 }
 
-func (x *File) GetType() FileType {
+func (x *File) GetType() File_Type {
 	if x != nil {
 		return x.Type
 	}
-	return FileType_FILE_TYPE_UNSPECIFIED
+	return File_TYPE_UNSPECIFIED
 }
 
 func (x *File) GetProcessStatus() FileProcessStatus {
@@ -4070,12 +4123,11 @@ const file_artifact_artifact_v1alpha_artifact_proto_rawDesc = "" +
 	"\n" +
 	"catalog_id\x18\x02 \x01(\tR\tcatalogId\"U\n" +
 	"\x15DeleteCatalogResponse\x12<\n" +
-	"\acatalog\x18\x01 \x01(\v2\".artifact.artifact.v1alpha.CatalogR\acatalog\"\xc8\n" +
-	"\n" +
+	"\acatalog\x18\x01 \x01(\v2\".artifact.artifact.v1alpha.CatalogR\acatalog\"\x88\x0f\n" +
 	"\x04File\x12\x1e\n" +
 	"\bfile_uid\x18\x01 \x01(\tB\x03\xe0A\x03R\afileUid\x12\x17\n" +
-	"\x04name\x18\x02 \x01(\tB\x03\xe0A\x01R\x04name\x12<\n" +
-	"\x04type\x18\x03 \x01(\x0e2#.artifact.artifact.v1alpha.FileTypeB\x03\xe0A\x01R\x04type\x12X\n" +
+	"\x04name\x18\x02 \x01(\tB\x03\xe0A\x01R\x04name\x12=\n" +
+	"\x04type\x18\x03 \x01(\x0e2$.artifact.artifact.v1alpha.File.TypeB\x03\xe0A\x01R\x04type\x12X\n" +
 	"\x0eprocess_status\x18\x04 \x01(\x0e2,.artifact.artifact.v1alpha.FileProcessStatusB\x03\xe0A\x03R\rprocessStatus\x12,\n" +
 	"\x0fprocess_outcome\x18\x05 \x01(\tB\x03\xe0A\x03R\x0eprocessOutcome\x12%\n" +
 	"\vretrievable\x18\x06 \x01(\bB\x03\xe0A\x03R\vretrievable\x12\x1d\n" +
@@ -4112,7 +4164,47 @@ const file_artifact_artifact_v1alpha_artifact_proto_rawDesc = "" +
 	"\tUNIT_PAGE\x10\x02\x12\x10\n" +
 	"\fUNIT_TIME_MS\x10\x03\x12\x0e\n" +
 	"\n" +
-	"UNIT_PIXEL\x10\x04B\x14\n" +
+	"UNIT_PIXEL\x10\x04\"\xbc\x04\n" +
+	"\x04Type\x12\x14\n" +
+	"\x10TYPE_UNSPECIFIED\x10\x00\x12\r\n" +
+	"\tTYPE_TEXT\x10\x01\x12\f\n" +
+	"\bTYPE_PDF\x10\x02\x12\x11\n" +
+	"\rTYPE_MARKDOWN\x10\x03\x12\r\n" +
+	"\tTYPE_HTML\x10\a\x12\f\n" +
+	"\bTYPE_CSV\x10\x0e\x12\r\n" +
+	"\tTYPE_DOCX\x10\b\x12\f\n" +
+	"\bTYPE_DOC\x10\t\x12\f\n" +
+	"\bTYPE_PPT\x10\n" +
+	"\x12\r\n" +
+	"\tTYPE_PPTX\x10\v\x12\f\n" +
+	"\bTYPE_XLS\x10\f\x12\r\n" +
+	"\tTYPE_XLSX\x10\r\x12\f\n" +
+	"\bTYPE_PNG\x10\x04\x12\r\n" +
+	"\tTYPE_JPEG\x10\x05\x12\f\n" +
+	"\bTYPE_JPG\x10\x06\x12\f\n" +
+	"\bTYPE_GIF\x10\x0f\x12\r\n" +
+	"\tTYPE_WEBP\x10\x10\x12\r\n" +
+	"\tTYPE_TIFF\x10\x11\x12\f\n" +
+	"\bTYPE_BMP\x10\x12\x12\r\n" +
+	"\tTYPE_HEIC\x10\x13\x12\r\n" +
+	"\tTYPE_HEIF\x10\x14\x12\r\n" +
+	"\tTYPE_AVIF\x10\x15\x12\f\n" +
+	"\bTYPE_MP3\x10\x16\x12\f\n" +
+	"\bTYPE_WAV\x10\x17\x12\f\n" +
+	"\bTYPE_AAC\x10\x18\x12\f\n" +
+	"\bTYPE_OGG\x10\x19\x12\r\n" +
+	"\tTYPE_FLAC\x10\x1a\x12\f\n" +
+	"\bTYPE_M4A\x10\x1b\x12\f\n" +
+	"\bTYPE_WMA\x10\x1c\x12\r\n" +
+	"\tTYPE_AIFF\x10\x1d\x12\f\n" +
+	"\bTYPE_MP4\x10\x1e\x12\f\n" +
+	"\bTYPE_AVI\x10\x1f\x12\f\n" +
+	"\bTYPE_MOV\x10 \x12\x13\n" +
+	"\x0fTYPE_WEBM_VIDEO\x10!\x12\f\n" +
+	"\bTYPE_MKV\x10\"\x12\f\n" +
+	"\bTYPE_FLV\x10#\x12\f\n" +
+	"\bTYPE_WMV\x10$\x12\r\n" +
+	"\tTYPE_MPEG\x10%B\x14\n" +
 	"\x12_external_metadataB\x16\n" +
 	"\x14_converting_pipeline\"\x9b\x01\n" +
 	"\x18UploadCatalogFileRequest\x12&\n" +
@@ -4228,47 +4320,11 @@ const file_artifact_artifact_v1alpha_artifact_proto_rawDesc = "" +
 	"\x1dFILE_PROCESS_STATUS_COMPLETED\x10\x06\x12\x1e\n" +
 	"\x1aFILE_PROCESS_STATUS_FAILED\x10\a\x12'\n" +
 	"\x1fFILE_PROCESS_STATUS_SUMMARIZING\x10\b\x1a\x02\b\x01\x12\"\n" +
-	"\x1eFILE_PROCESS_STATUS_PROCESSING\x10\t*\xfe\x05\n" +
-	"\bFileType\x12\x19\n" +
-	"\x15FILE_TYPE_UNSPECIFIED\x10\x00\x12\x12\n" +
-	"\x0eFILE_TYPE_TEXT\x10\x01\x12\x11\n" +
-	"\rFILE_TYPE_PDF\x10\x02\x12\x16\n" +
-	"\x12FILE_TYPE_MARKDOWN\x10\x03\x12\x12\n" +
-	"\x0eFILE_TYPE_HTML\x10\a\x12\x11\n" +
-	"\rFILE_TYPE_CSV\x10\x0e\x12\x12\n" +
-	"\x0eFILE_TYPE_DOCX\x10\b\x12\x11\n" +
-	"\rFILE_TYPE_DOC\x10\t\x12\x11\n" +
-	"\rFILE_TYPE_PPT\x10\n" +
-	"\x12\x12\n" +
-	"\x0eFILE_TYPE_PPTX\x10\v\x12\x11\n" +
-	"\rFILE_TYPE_XLS\x10\f\x12\x12\n" +
-	"\x0eFILE_TYPE_XLSX\x10\r\x12\x11\n" +
-	"\rFILE_TYPE_PNG\x10\x04\x12\x12\n" +
-	"\x0eFILE_TYPE_JPEG\x10\x05\x12\x11\n" +
-	"\rFILE_TYPE_JPG\x10\x06\x12\x11\n" +
-	"\rFILE_TYPE_GIF\x10\x0f\x12\x12\n" +
-	"\x0eFILE_TYPE_WEBP\x10\x10\x12\x12\n" +
-	"\x0eFILE_TYPE_TIFF\x10\x11\x12\x11\n" +
-	"\rFILE_TYPE_BMP\x10\x12\x12\x12\n" +
-	"\x0eFILE_TYPE_HEIC\x10\x13\x12\x12\n" +
-	"\x0eFILE_TYPE_HEIF\x10\x14\x12\x12\n" +
-	"\x0eFILE_TYPE_AVIF\x10\x15\x12\x11\n" +
-	"\rFILE_TYPE_MP3\x10\x16\x12\x11\n" +
-	"\rFILE_TYPE_WAV\x10\x17\x12\x11\n" +
-	"\rFILE_TYPE_AAC\x10\x18\x12\x11\n" +
-	"\rFILE_TYPE_OGG\x10\x19\x12\x12\n" +
-	"\x0eFILE_TYPE_FLAC\x10\x1a\x12\x11\n" +
-	"\rFILE_TYPE_M4A\x10\x1b\x12\x11\n" +
-	"\rFILE_TYPE_WMA\x10\x1c\x12\x12\n" +
-	"\x0eFILE_TYPE_AIFF\x10\x1d\x12\x11\n" +
-	"\rFILE_TYPE_MP4\x10\x1e\x12\x11\n" +
-	"\rFILE_TYPE_AVI\x10\x1f\x12\x11\n" +
-	"\rFILE_TYPE_MOV\x10 \x12\x18\n" +
-	"\x14FILE_TYPE_WEBM_VIDEO\x10!\x12\x11\n" +
-	"\rFILE_TYPE_MKV\x10\"\x12\x11\n" +
-	"\rFILE_TYPE_FLV\x10#\x12\x11\n" +
-	"\rFILE_TYPE_WMV\x10$\x12\x12\n" +
-	"\x0eFILE_TYPE_MPEG\x10%*\x80\x02\n" +
+	"\x1eFILE_PROCESS_STATUS_PROCESSING\x10\t*z\n" +
+	"\x11ConvertedFileType\x12#\n" +
+	"\x1fCONVERTED_FILE_TYPE_UNSPECIFIED\x10\x00\x12\x1f\n" +
+	"\x1bCONVERTED_FILE_TYPE_CONTENT\x10\x01\x12\x1f\n" +
+	"\x1bCONVERTED_FILE_TYPE_SUMMARY\x10\x02*\x80\x02\n" +
 	"\x10CatalogRunAction\x12\"\n" +
 	"\x1eCATALOG_RUN_ACTION_UNSPECIFIED\x10\x00\x12\x1d\n" +
 	"\x19CATALOG_RUN_ACTION_CREATE\x10\x01\x12\x1d\n" +
@@ -4291,120 +4347,121 @@ func file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP() []byte {
 	return file_artifact_artifact_v1alpha_artifact_proto_rawDescData
 }
 
-var file_artifact_artifact_v1alpha_artifact_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
+var file_artifact_artifact_v1alpha_artifact_proto_enumTypes = make([]protoimpl.EnumInfo, 6)
 var file_artifact_artifact_v1alpha_artifact_proto_msgTypes = make([]protoimpl.MessageInfo, 50)
 var file_artifact_artifact_v1alpha_artifact_proto_goTypes = []any{
 	(CatalogType)(0),                      // 0: artifact.artifact.v1alpha.CatalogType
 	(FileProcessStatus)(0),                // 1: artifact.artifact.v1alpha.FileProcessStatus
-	(FileType)(0),                         // 2: artifact.artifact.v1alpha.FileType
+	(ConvertedFileType)(0),                // 2: artifact.artifact.v1alpha.ConvertedFileType
 	(CatalogRunAction)(0),                 // 3: artifact.artifact.v1alpha.CatalogRunAction
-	(File_Position_Unit)(0),               // 4: artifact.artifact.v1alpha.File.Position.Unit
-	(*LivenessRequest)(nil),               // 5: artifact.artifact.v1alpha.LivenessRequest
-	(*LivenessResponse)(nil),              // 6: artifact.artifact.v1alpha.LivenessResponse
-	(*ReadinessRequest)(nil),              // 7: artifact.artifact.v1alpha.ReadinessRequest
-	(*ReadinessResponse)(nil),             // 8: artifact.artifact.v1alpha.ReadinessResponse
-	(*RepositoryTag)(nil),                 // 9: artifact.artifact.v1alpha.RepositoryTag
-	(*ListRepositoryTagsRequest)(nil),     // 10: artifact.artifact.v1alpha.ListRepositoryTagsRequest
-	(*ListRepositoryTagsResponse)(nil),    // 11: artifact.artifact.v1alpha.ListRepositoryTagsResponse
-	(*CreateRepositoryTagRequest)(nil),    // 12: artifact.artifact.v1alpha.CreateRepositoryTagRequest
-	(*CreateRepositoryTagResponse)(nil),   // 13: artifact.artifact.v1alpha.CreateRepositoryTagResponse
-	(*GetRepositoryTagRequest)(nil),       // 14: artifact.artifact.v1alpha.GetRepositoryTagRequest
-	(*GetRepositoryTagResponse)(nil),      // 15: artifact.artifact.v1alpha.GetRepositoryTagResponse
-	(*DeleteRepositoryTagRequest)(nil),    // 16: artifact.artifact.v1alpha.DeleteRepositoryTagRequest
-	(*DeleteRepositoryTagResponse)(nil),   // 17: artifact.artifact.v1alpha.DeleteRepositoryTagResponse
-	(*ObjectURL)(nil),                     // 18: artifact.artifact.v1alpha.ObjectURL
-	(*GetObjectRequest)(nil),              // 19: artifact.artifact.v1alpha.GetObjectRequest
-	(*GetObjectResponse)(nil),             // 20: artifact.artifact.v1alpha.GetObjectResponse
-	(*GetObjectURLRequest)(nil),           // 21: artifact.artifact.v1alpha.GetObjectURLRequest
-	(*GetObjectURLResponse)(nil),          // 22: artifact.artifact.v1alpha.GetObjectURLResponse
-	(*UpdateObjectRequest)(nil),           // 23: artifact.artifact.v1alpha.UpdateObjectRequest
-	(*UpdateObjectResponse)(nil),          // 24: artifact.artifact.v1alpha.UpdateObjectResponse
-	(*Catalog)(nil),                       // 25: artifact.artifact.v1alpha.Catalog
-	(*CreateCatalogRequest)(nil),          // 26: artifact.artifact.v1alpha.CreateCatalogRequest
-	(*CreateCatalogResponse)(nil),         // 27: artifact.artifact.v1alpha.CreateCatalogResponse
-	(*ListCatalogsRequest)(nil),           // 28: artifact.artifact.v1alpha.ListCatalogsRequest
-	(*ListCatalogsResponse)(nil),          // 29: artifact.artifact.v1alpha.ListCatalogsResponse
-	(*UpdateCatalogRequest)(nil),          // 30: artifact.artifact.v1alpha.UpdateCatalogRequest
-	(*UpdateCatalogResponse)(nil),         // 31: artifact.artifact.v1alpha.UpdateCatalogResponse
-	(*DeleteCatalogRequest)(nil),          // 32: artifact.artifact.v1alpha.DeleteCatalogRequest
-	(*DeleteCatalogResponse)(nil),         // 33: artifact.artifact.v1alpha.DeleteCatalogResponse
-	(*File)(nil),                          // 34: artifact.artifact.v1alpha.File
-	(*UploadCatalogFileRequest)(nil),      // 35: artifact.artifact.v1alpha.UploadCatalogFileRequest
-	(*UploadCatalogFileResponse)(nil),     // 36: artifact.artifact.v1alpha.UploadCatalogFileResponse
-	(*DeleteCatalogFileRequest)(nil),      // 37: artifact.artifact.v1alpha.DeleteCatalogFileRequest
-	(*DeleteCatalogFileResponse)(nil),     // 38: artifact.artifact.v1alpha.DeleteCatalogFileResponse
-	(*ProcessCatalogFilesRequest)(nil),    // 39: artifact.artifact.v1alpha.ProcessCatalogFilesRequest
-	(*ProcessCatalogFilesResponse)(nil),   // 40: artifact.artifact.v1alpha.ProcessCatalogFilesResponse
-	(*ListCatalogFilesFilter)(nil),        // 41: artifact.artifact.v1alpha.ListCatalogFilesFilter
-	(*ListCatalogFilesRequest)(nil),       // 42: artifact.artifact.v1alpha.ListCatalogFilesRequest
-	(*ListCatalogFilesResponse)(nil),      // 43: artifact.artifact.v1alpha.ListCatalogFilesResponse
-	(*GetCatalogFileRequest)(nil),         // 44: artifact.artifact.v1alpha.GetCatalogFileRequest
-	(*GetCatalogFileResponse)(nil),        // 45: artifact.artifact.v1alpha.GetCatalogFileResponse
-	(*CatalogRun)(nil),                    // 46: artifact.artifact.v1alpha.CatalogRun
-	(*ListCatalogRunsResponse)(nil),       // 47: artifact.artifact.v1alpha.ListCatalogRunsResponse
-	(*ListCatalogRunsRequest)(nil),        // 48: artifact.artifact.v1alpha.ListCatalogRunsRequest
-	(*MoveFileToCatalogRequest)(nil),      // 49: artifact.artifact.v1alpha.MoveFileToCatalogRequest
-	(*MoveFileToCatalogResponse)(nil),     // 50: artifact.artifact.v1alpha.MoveFileToCatalogResponse
-	(*UpdateCatalogFileTagsRequest)(nil),  // 51: artifact.artifact.v1alpha.UpdateCatalogFileTagsRequest
-	(*UpdateCatalogFileTagsResponse)(nil), // 52: artifact.artifact.v1alpha.UpdateCatalogFileTagsResponse
-	(*Catalog_EmbeddingConfig)(nil),       // 53: artifact.artifact.v1alpha.Catalog.EmbeddingConfig
-	(*File_Position)(nil),                 // 54: artifact.artifact.v1alpha.File.Position
-	(*v1beta.HealthCheckRequest)(nil),     // 55: common.healthcheck.v1beta.HealthCheckRequest
-	(*v1beta.HealthCheckResponse)(nil),    // 56: common.healthcheck.v1beta.HealthCheckResponse
-	(*timestamppb.Timestamp)(nil),         // 57: google.protobuf.Timestamp
-	(*Object)(nil),                        // 58: artifact.artifact.v1alpha.Object
-	(*structpb.Struct)(nil),               // 59: google.protobuf.Struct
-	(v1alpha.RunStatus)(0),                // 60: common.run.v1alpha.RunStatus
-	(v1alpha.RunSource)(0),                // 61: common.run.v1alpha.RunSource
+	(File_Type)(0),                        // 4: artifact.artifact.v1alpha.File.Type
+	(File_Position_Unit)(0),               // 5: artifact.artifact.v1alpha.File.Position.Unit
+	(*LivenessRequest)(nil),               // 6: artifact.artifact.v1alpha.LivenessRequest
+	(*LivenessResponse)(nil),              // 7: artifact.artifact.v1alpha.LivenessResponse
+	(*ReadinessRequest)(nil),              // 8: artifact.artifact.v1alpha.ReadinessRequest
+	(*ReadinessResponse)(nil),             // 9: artifact.artifact.v1alpha.ReadinessResponse
+	(*RepositoryTag)(nil),                 // 10: artifact.artifact.v1alpha.RepositoryTag
+	(*ListRepositoryTagsRequest)(nil),     // 11: artifact.artifact.v1alpha.ListRepositoryTagsRequest
+	(*ListRepositoryTagsResponse)(nil),    // 12: artifact.artifact.v1alpha.ListRepositoryTagsResponse
+	(*CreateRepositoryTagRequest)(nil),    // 13: artifact.artifact.v1alpha.CreateRepositoryTagRequest
+	(*CreateRepositoryTagResponse)(nil),   // 14: artifact.artifact.v1alpha.CreateRepositoryTagResponse
+	(*GetRepositoryTagRequest)(nil),       // 15: artifact.artifact.v1alpha.GetRepositoryTagRequest
+	(*GetRepositoryTagResponse)(nil),      // 16: artifact.artifact.v1alpha.GetRepositoryTagResponse
+	(*DeleteRepositoryTagRequest)(nil),    // 17: artifact.artifact.v1alpha.DeleteRepositoryTagRequest
+	(*DeleteRepositoryTagResponse)(nil),   // 18: artifact.artifact.v1alpha.DeleteRepositoryTagResponse
+	(*ObjectURL)(nil),                     // 19: artifact.artifact.v1alpha.ObjectURL
+	(*GetObjectRequest)(nil),              // 20: artifact.artifact.v1alpha.GetObjectRequest
+	(*GetObjectResponse)(nil),             // 21: artifact.artifact.v1alpha.GetObjectResponse
+	(*GetObjectURLRequest)(nil),           // 22: artifact.artifact.v1alpha.GetObjectURLRequest
+	(*GetObjectURLResponse)(nil),          // 23: artifact.artifact.v1alpha.GetObjectURLResponse
+	(*UpdateObjectRequest)(nil),           // 24: artifact.artifact.v1alpha.UpdateObjectRequest
+	(*UpdateObjectResponse)(nil),          // 25: artifact.artifact.v1alpha.UpdateObjectResponse
+	(*Catalog)(nil),                       // 26: artifact.artifact.v1alpha.Catalog
+	(*CreateCatalogRequest)(nil),          // 27: artifact.artifact.v1alpha.CreateCatalogRequest
+	(*CreateCatalogResponse)(nil),         // 28: artifact.artifact.v1alpha.CreateCatalogResponse
+	(*ListCatalogsRequest)(nil),           // 29: artifact.artifact.v1alpha.ListCatalogsRequest
+	(*ListCatalogsResponse)(nil),          // 30: artifact.artifact.v1alpha.ListCatalogsResponse
+	(*UpdateCatalogRequest)(nil),          // 31: artifact.artifact.v1alpha.UpdateCatalogRequest
+	(*UpdateCatalogResponse)(nil),         // 32: artifact.artifact.v1alpha.UpdateCatalogResponse
+	(*DeleteCatalogRequest)(nil),          // 33: artifact.artifact.v1alpha.DeleteCatalogRequest
+	(*DeleteCatalogResponse)(nil),         // 34: artifact.artifact.v1alpha.DeleteCatalogResponse
+	(*File)(nil),                          // 35: artifact.artifact.v1alpha.File
+	(*UploadCatalogFileRequest)(nil),      // 36: artifact.artifact.v1alpha.UploadCatalogFileRequest
+	(*UploadCatalogFileResponse)(nil),     // 37: artifact.artifact.v1alpha.UploadCatalogFileResponse
+	(*DeleteCatalogFileRequest)(nil),      // 38: artifact.artifact.v1alpha.DeleteCatalogFileRequest
+	(*DeleteCatalogFileResponse)(nil),     // 39: artifact.artifact.v1alpha.DeleteCatalogFileResponse
+	(*ProcessCatalogFilesRequest)(nil),    // 40: artifact.artifact.v1alpha.ProcessCatalogFilesRequest
+	(*ProcessCatalogFilesResponse)(nil),   // 41: artifact.artifact.v1alpha.ProcessCatalogFilesResponse
+	(*ListCatalogFilesFilter)(nil),        // 42: artifact.artifact.v1alpha.ListCatalogFilesFilter
+	(*ListCatalogFilesRequest)(nil),       // 43: artifact.artifact.v1alpha.ListCatalogFilesRequest
+	(*ListCatalogFilesResponse)(nil),      // 44: artifact.artifact.v1alpha.ListCatalogFilesResponse
+	(*GetCatalogFileRequest)(nil),         // 45: artifact.artifact.v1alpha.GetCatalogFileRequest
+	(*GetCatalogFileResponse)(nil),        // 46: artifact.artifact.v1alpha.GetCatalogFileResponse
+	(*CatalogRun)(nil),                    // 47: artifact.artifact.v1alpha.CatalogRun
+	(*ListCatalogRunsResponse)(nil),       // 48: artifact.artifact.v1alpha.ListCatalogRunsResponse
+	(*ListCatalogRunsRequest)(nil),        // 49: artifact.artifact.v1alpha.ListCatalogRunsRequest
+	(*MoveFileToCatalogRequest)(nil),      // 50: artifact.artifact.v1alpha.MoveFileToCatalogRequest
+	(*MoveFileToCatalogResponse)(nil),     // 51: artifact.artifact.v1alpha.MoveFileToCatalogResponse
+	(*UpdateCatalogFileTagsRequest)(nil),  // 52: artifact.artifact.v1alpha.UpdateCatalogFileTagsRequest
+	(*UpdateCatalogFileTagsResponse)(nil), // 53: artifact.artifact.v1alpha.UpdateCatalogFileTagsResponse
+	(*Catalog_EmbeddingConfig)(nil),       // 54: artifact.artifact.v1alpha.Catalog.EmbeddingConfig
+	(*File_Position)(nil),                 // 55: artifact.artifact.v1alpha.File.Position
+	(*v1beta.HealthCheckRequest)(nil),     // 56: common.healthcheck.v1beta.HealthCheckRequest
+	(*v1beta.HealthCheckResponse)(nil),    // 57: common.healthcheck.v1beta.HealthCheckResponse
+	(*timestamppb.Timestamp)(nil),         // 58: google.protobuf.Timestamp
+	(*Object)(nil),                        // 59: artifact.artifact.v1alpha.Object
+	(*structpb.Struct)(nil),               // 60: google.protobuf.Struct
+	(v1alpha.RunStatus)(0),                // 61: common.run.v1alpha.RunStatus
+	(v1alpha.RunSource)(0),                // 62: common.run.v1alpha.RunSource
 }
 var file_artifact_artifact_v1alpha_artifact_proto_depIdxs = []int32{
-	55, // 0: artifact.artifact.v1alpha.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	56, // 1: artifact.artifact.v1alpha.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
-	55, // 2: artifact.artifact.v1alpha.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	56, // 3: artifact.artifact.v1alpha.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
-	57, // 4: artifact.artifact.v1alpha.RepositoryTag.update_time:type_name -> google.protobuf.Timestamp
-	9,  // 5: artifact.artifact.v1alpha.ListRepositoryTagsResponse.tags:type_name -> artifact.artifact.v1alpha.RepositoryTag
-	9,  // 6: artifact.artifact.v1alpha.CreateRepositoryTagRequest.tag:type_name -> artifact.artifact.v1alpha.RepositoryTag
-	9,  // 7: artifact.artifact.v1alpha.CreateRepositoryTagResponse.tag:type_name -> artifact.artifact.v1alpha.RepositoryTag
-	9,  // 8: artifact.artifact.v1alpha.GetRepositoryTagResponse.tag:type_name -> artifact.artifact.v1alpha.RepositoryTag
-	57, // 9: artifact.artifact.v1alpha.ObjectURL.url_expire_at:type_name -> google.protobuf.Timestamp
-	57, // 10: artifact.artifact.v1alpha.ObjectURL.create_time:type_name -> google.protobuf.Timestamp
-	57, // 11: artifact.artifact.v1alpha.ObjectURL.update_time:type_name -> google.protobuf.Timestamp
-	57, // 12: artifact.artifact.v1alpha.ObjectURL.delete_time:type_name -> google.protobuf.Timestamp
-	58, // 13: artifact.artifact.v1alpha.GetObjectResponse.object:type_name -> artifact.artifact.v1alpha.Object
-	18, // 14: artifact.artifact.v1alpha.GetObjectURLResponse.object_url:type_name -> artifact.artifact.v1alpha.ObjectURL
-	57, // 15: artifact.artifact.v1alpha.UpdateObjectRequest.last_modified_time:type_name -> google.protobuf.Timestamp
-	58, // 16: artifact.artifact.v1alpha.UpdateObjectResponse.object:type_name -> artifact.artifact.v1alpha.Object
-	53, // 17: artifact.artifact.v1alpha.Catalog.embedding_config:type_name -> artifact.artifact.v1alpha.Catalog.EmbeddingConfig
+	56, // 0: artifact.artifact.v1alpha.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	57, // 1: artifact.artifact.v1alpha.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	56, // 2: artifact.artifact.v1alpha.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	57, // 3: artifact.artifact.v1alpha.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	58, // 4: artifact.artifact.v1alpha.RepositoryTag.update_time:type_name -> google.protobuf.Timestamp
+	10, // 5: artifact.artifact.v1alpha.ListRepositoryTagsResponse.tags:type_name -> artifact.artifact.v1alpha.RepositoryTag
+	10, // 6: artifact.artifact.v1alpha.CreateRepositoryTagRequest.tag:type_name -> artifact.artifact.v1alpha.RepositoryTag
+	10, // 7: artifact.artifact.v1alpha.CreateRepositoryTagResponse.tag:type_name -> artifact.artifact.v1alpha.RepositoryTag
+	10, // 8: artifact.artifact.v1alpha.GetRepositoryTagResponse.tag:type_name -> artifact.artifact.v1alpha.RepositoryTag
+	58, // 9: artifact.artifact.v1alpha.ObjectURL.url_expire_at:type_name -> google.protobuf.Timestamp
+	58, // 10: artifact.artifact.v1alpha.ObjectURL.create_time:type_name -> google.protobuf.Timestamp
+	58, // 11: artifact.artifact.v1alpha.ObjectURL.update_time:type_name -> google.protobuf.Timestamp
+	58, // 12: artifact.artifact.v1alpha.ObjectURL.delete_time:type_name -> google.protobuf.Timestamp
+	59, // 13: artifact.artifact.v1alpha.GetObjectResponse.object:type_name -> artifact.artifact.v1alpha.Object
+	19, // 14: artifact.artifact.v1alpha.GetObjectURLResponse.object_url:type_name -> artifact.artifact.v1alpha.ObjectURL
+	58, // 15: artifact.artifact.v1alpha.UpdateObjectRequest.last_modified_time:type_name -> google.protobuf.Timestamp
+	59, // 16: artifact.artifact.v1alpha.UpdateObjectResponse.object:type_name -> artifact.artifact.v1alpha.Object
+	54, // 17: artifact.artifact.v1alpha.Catalog.embedding_config:type_name -> artifact.artifact.v1alpha.Catalog.EmbeddingConfig
 	0,  // 18: artifact.artifact.v1alpha.CreateCatalogRequest.type:type_name -> artifact.artifact.v1alpha.CatalogType
-	25, // 19: artifact.artifact.v1alpha.CreateCatalogResponse.catalog:type_name -> artifact.artifact.v1alpha.Catalog
-	25, // 20: artifact.artifact.v1alpha.ListCatalogsResponse.catalogs:type_name -> artifact.artifact.v1alpha.Catalog
-	25, // 21: artifact.artifact.v1alpha.UpdateCatalogResponse.catalog:type_name -> artifact.artifact.v1alpha.Catalog
-	25, // 22: artifact.artifact.v1alpha.DeleteCatalogResponse.catalog:type_name -> artifact.artifact.v1alpha.Catalog
-	2,  // 23: artifact.artifact.v1alpha.File.type:type_name -> artifact.artifact.v1alpha.FileType
+	26, // 19: artifact.artifact.v1alpha.CreateCatalogResponse.catalog:type_name -> artifact.artifact.v1alpha.Catalog
+	26, // 20: artifact.artifact.v1alpha.ListCatalogsResponse.catalogs:type_name -> artifact.artifact.v1alpha.Catalog
+	26, // 21: artifact.artifact.v1alpha.UpdateCatalogResponse.catalog:type_name -> artifact.artifact.v1alpha.Catalog
+	26, // 22: artifact.artifact.v1alpha.DeleteCatalogResponse.catalog:type_name -> artifact.artifact.v1alpha.Catalog
+	4,  // 23: artifact.artifact.v1alpha.File.type:type_name -> artifact.artifact.v1alpha.File.Type
 	1,  // 24: artifact.artifact.v1alpha.File.process_status:type_name -> artifact.artifact.v1alpha.FileProcessStatus
-	57, // 25: artifact.artifact.v1alpha.File.create_time:type_name -> google.protobuf.Timestamp
-	57, // 26: artifact.artifact.v1alpha.File.update_time:type_name -> google.protobuf.Timestamp
-	57, // 27: artifact.artifact.v1alpha.File.delete_time:type_name -> google.protobuf.Timestamp
-	59, // 28: artifact.artifact.v1alpha.File.external_metadata:type_name -> google.protobuf.Struct
-	54, // 29: artifact.artifact.v1alpha.File.length:type_name -> artifact.artifact.v1alpha.File.Position
-	34, // 30: artifact.artifact.v1alpha.UploadCatalogFileRequest.file:type_name -> artifact.artifact.v1alpha.File
-	34, // 31: artifact.artifact.v1alpha.UploadCatalogFileResponse.file:type_name -> artifact.artifact.v1alpha.File
-	34, // 32: artifact.artifact.v1alpha.ProcessCatalogFilesResponse.files:type_name -> artifact.artifact.v1alpha.File
+	58, // 25: artifact.artifact.v1alpha.File.create_time:type_name -> google.protobuf.Timestamp
+	58, // 26: artifact.artifact.v1alpha.File.update_time:type_name -> google.protobuf.Timestamp
+	58, // 27: artifact.artifact.v1alpha.File.delete_time:type_name -> google.protobuf.Timestamp
+	60, // 28: artifact.artifact.v1alpha.File.external_metadata:type_name -> google.protobuf.Struct
+	55, // 29: artifact.artifact.v1alpha.File.length:type_name -> artifact.artifact.v1alpha.File.Position
+	35, // 30: artifact.artifact.v1alpha.UploadCatalogFileRequest.file:type_name -> artifact.artifact.v1alpha.File
+	35, // 31: artifact.artifact.v1alpha.UploadCatalogFileResponse.file:type_name -> artifact.artifact.v1alpha.File
+	35, // 32: artifact.artifact.v1alpha.ProcessCatalogFilesResponse.files:type_name -> artifact.artifact.v1alpha.File
 	1,  // 33: artifact.artifact.v1alpha.ListCatalogFilesFilter.process_status:type_name -> artifact.artifact.v1alpha.FileProcessStatus
-	41, // 34: artifact.artifact.v1alpha.ListCatalogFilesRequest.filter:type_name -> artifact.artifact.v1alpha.ListCatalogFilesFilter
-	34, // 35: artifact.artifact.v1alpha.ListCatalogFilesResponse.files:type_name -> artifact.artifact.v1alpha.File
-	41, // 36: artifact.artifact.v1alpha.ListCatalogFilesResponse.filter:type_name -> artifact.artifact.v1alpha.ListCatalogFilesFilter
-	34, // 37: artifact.artifact.v1alpha.GetCatalogFileResponse.file:type_name -> artifact.artifact.v1alpha.File
+	42, // 34: artifact.artifact.v1alpha.ListCatalogFilesRequest.filter:type_name -> artifact.artifact.v1alpha.ListCatalogFilesFilter
+	35, // 35: artifact.artifact.v1alpha.ListCatalogFilesResponse.files:type_name -> artifact.artifact.v1alpha.File
+	42, // 36: artifact.artifact.v1alpha.ListCatalogFilesResponse.filter:type_name -> artifact.artifact.v1alpha.ListCatalogFilesFilter
+	35, // 37: artifact.artifact.v1alpha.GetCatalogFileResponse.file:type_name -> artifact.artifact.v1alpha.File
 	3,  // 38: artifact.artifact.v1alpha.CatalogRun.action:type_name -> artifact.artifact.v1alpha.CatalogRunAction
-	60, // 39: artifact.artifact.v1alpha.CatalogRun.status:type_name -> common.run.v1alpha.RunStatus
-	61, // 40: artifact.artifact.v1alpha.CatalogRun.source:type_name -> common.run.v1alpha.RunSource
-	59, // 41: artifact.artifact.v1alpha.CatalogRun.payload:type_name -> google.protobuf.Struct
-	57, // 42: artifact.artifact.v1alpha.CatalogRun.start_time:type_name -> google.protobuf.Timestamp
-	57, // 43: artifact.artifact.v1alpha.CatalogRun.complete_time:type_name -> google.protobuf.Timestamp
-	46, // 44: artifact.artifact.v1alpha.ListCatalogRunsResponse.catalog_runs:type_name -> artifact.artifact.v1alpha.CatalogRun
-	34, // 45: artifact.artifact.v1alpha.UpdateCatalogFileTagsResponse.file:type_name -> artifact.artifact.v1alpha.File
-	4,  // 46: artifact.artifact.v1alpha.File.Position.unit:type_name -> artifact.artifact.v1alpha.File.Position.Unit
+	61, // 39: artifact.artifact.v1alpha.CatalogRun.status:type_name -> common.run.v1alpha.RunStatus
+	62, // 40: artifact.artifact.v1alpha.CatalogRun.source:type_name -> common.run.v1alpha.RunSource
+	60, // 41: artifact.artifact.v1alpha.CatalogRun.payload:type_name -> google.protobuf.Struct
+	58, // 42: artifact.artifact.v1alpha.CatalogRun.start_time:type_name -> google.protobuf.Timestamp
+	58, // 43: artifact.artifact.v1alpha.CatalogRun.complete_time:type_name -> google.protobuf.Timestamp
+	47, // 44: artifact.artifact.v1alpha.ListCatalogRunsResponse.catalog_runs:type_name -> artifact.artifact.v1alpha.CatalogRun
+	35, // 45: artifact.artifact.v1alpha.UpdateCatalogFileTagsResponse.file:type_name -> artifact.artifact.v1alpha.File
+	5,  // 46: artifact.artifact.v1alpha.File.Position.unit:type_name -> artifact.artifact.v1alpha.File.Position.Unit
 	47, // [47:47] is the sub-list for method output_type
 	47, // [47:47] is the sub-list for method input_type
 	47, // [47:47] is the sub-list for extension type_name
@@ -4432,7 +4489,7 @@ func file_artifact_artifact_v1alpha_artifact_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_artifact_artifact_v1alpha_artifact_proto_rawDesc), len(file_artifact_artifact_v1alpha_artifact_proto_rawDesc)),
-			NumEnums:      5,
+			NumEnums:      6,
 			NumMessages:   50,
 			NumExtensions: 0,
 			NumServices:   0,
