@@ -2382,7 +2382,11 @@ type File struct {
 	// objectUid in blob storage. user can upload to blob storage directly, then put objectUid here.
 	// then no need the base64 encoding for the file content.
 	ObjectUid string `protobuf:"bytes,18,opt,name=object_uid,json=objectUid,proto3" json:"object_uid,omitempty"`
-	// summary of the file
+	// Summary of the file.
+	// Deprecated: Use the GetFileSummary API endpoint to retrieve file summaries.
+	// This field now returns an empty string as summaries are stored separately in MinIO.
+	//
+	// Deprecated: Marked as deprecated in artifact/artifact/v1alpha/artifact.proto.
 	Summary string `protobuf:"bytes,19,opt,name=summary,proto3" json:"summary,omitempty"`
 	// download url of the file
 	DownloadUrl string `protobuf:"bytes,20,opt,name=download_url,json=downloadUrl,proto3" json:"download_url,omitempty"`
@@ -2585,6 +2589,7 @@ func (x *File) GetObjectUid() string {
 	return ""
 }
 
+// Deprecated: Marked as deprecated in artifact/artifact/v1alpha/artifact.proto.
 func (x *File) GetSummary() string {
 	if x != nil {
 		return x.Summary
@@ -4065,7 +4070,7 @@ const file_artifact_artifact_v1alpha_artifact_proto_rawDesc = "" +
 	"\n" +
 	"catalog_id\x18\x02 \x01(\tR\tcatalogId\"U\n" +
 	"\x15DeleteCatalogResponse\x12<\n" +
-	"\acatalog\x18\x01 \x01(\v2\".artifact.artifact.v1alpha.CatalogR\acatalog\"\xc6\n" +
+	"\acatalog\x18\x01 \x01(\v2\".artifact.artifact.v1alpha.CatalogR\acatalog\"\xc8\n" +
 	"\n" +
 	"\x04File\x12\x1e\n" +
 	"\bfile_uid\x18\x01 \x01(\tB\x03\xe0A\x03R\afileUid\x12\x17\n" +
@@ -4092,8 +4097,8 @@ const file_artifact_artifact_v1alpha_artifact_proto_rawDesc = "" +
 	"\ftotal_tokens\x18\x10 \x01(\x05B\x03\xe0A\x03R\vtotalTokens\x12N\n" +
 	"\x11external_metadata\x18\x11 \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x01H\x00R\x10externalMetadata\x88\x01\x01\x12\"\n" +
 	"\n" +
-	"object_uid\x18\x12 \x01(\tB\x03\xe0A\x01R\tobjectUid\x12\x1d\n" +
-	"\asummary\x18\x13 \x01(\tB\x03\xe0A\x03R\asummary\x12&\n" +
+	"object_uid\x18\x12 \x01(\tB\x03\xe0A\x01R\tobjectUid\x12\x1f\n" +
+	"\asummary\x18\x13 \x01(\tB\x05\xe0A\x03\x18\x01R\asummary\x12&\n" +
 	"\fdownload_url\x18\x14 \x01(\tB\x03\xe0A\x03R\vdownloadUrl\x124\n" +
 	"\x13converting_pipeline\x18\x15 \x01(\tH\x01R\x12convertingPipeline\x88\x01\x01\x12E\n" +
 	"\x06length\x18\x16 \x01(\v2(.artifact.artifact.v1alpha.File.PositionB\x03\xe0A\x03R\x06length\x12\x17\n" +
