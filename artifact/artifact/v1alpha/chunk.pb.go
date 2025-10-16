@@ -388,107 +388,6 @@ func (x *ListChunksResponse) GetChunks() []*Chunk {
 	return nil
 }
 
-// Search chunks request
-type SearchChunksRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// owner/namespace id (not uid)
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// chunk uids
-	ChunkUids     []string `protobuf:"bytes,2,rep,name=chunk_uids,json=chunkUids,proto3" json:"chunk_uids,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SearchChunksRequest) Reset() {
-	*x = SearchChunksRequest{}
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SearchChunksRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SearchChunksRequest) ProtoMessage() {}
-
-func (x *SearchChunksRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SearchChunksRequest.ProtoReflect.Descriptor instead.
-func (*SearchChunksRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *SearchChunksRequest) GetNamespaceId() string {
-	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *SearchChunksRequest) GetChunkUids() []string {
-	if x != nil {
-		return x.ChunkUids
-	}
-	return nil
-}
-
-// Search chunks response
-type SearchChunksResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// repeated chunks
-	Chunks        []*Chunk `protobuf:"bytes,1,rep,name=chunks,proto3" json:"chunks,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SearchChunksResponse) Reset() {
-	*x = SearchChunksResponse{}
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SearchChunksResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SearchChunksResponse) ProtoMessage() {}
-
-func (x *SearchChunksResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SearchChunksResponse.ProtoReflect.Descriptor instead.
-func (*SearchChunksResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *SearchChunksResponse) GetChunks() []*Chunk {
-	if x != nil {
-		return x.Chunks
-	}
-	return nil
-}
-
 // The SourceFile message represents a source file in the artifact system.
 type SourceFile struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -508,7 +407,7 @@ type SourceFile struct {
 
 func (x *SourceFile) Reset() {
 	*x = SourceFile{}
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[5]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -520,7 +419,7 @@ func (x *SourceFile) String() string {
 func (*SourceFile) ProtoMessage() {}
 
 func (x *SourceFile) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[5]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -533,7 +432,7 @@ func (x *SourceFile) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SourceFile.ProtoReflect.Descriptor instead.
 func (*SourceFile) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{5}
+	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *SourceFile) GetOriginalFileUid() string {
@@ -586,7 +485,7 @@ type GetSourceFileRequest struct {
 
 func (x *GetSourceFileRequest) Reset() {
 	*x = GetSourceFileRequest{}
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[6]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -598,7 +497,7 @@ func (x *GetSourceFileRequest) String() string {
 func (*GetSourceFileRequest) ProtoMessage() {}
 
 func (x *GetSourceFileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[6]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -611,7 +510,7 @@ func (x *GetSourceFileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSourceFileRequest.ProtoReflect.Descriptor instead.
 func (*GetSourceFileRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{6}
+	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetSourceFileRequest) GetNamespaceId() string {
@@ -646,7 +545,7 @@ type GetSourceFileResponse struct {
 
 func (x *GetSourceFileResponse) Reset() {
 	*x = GetSourceFileResponse{}
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[7]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -658,7 +557,7 @@ func (x *GetSourceFileResponse) String() string {
 func (*GetSourceFileResponse) ProtoMessage() {}
 
 func (x *GetSourceFileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[7]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -671,7 +570,7 @@ func (x *GetSourceFileResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSourceFileResponse.ProtoReflect.Descriptor instead.
 func (*GetSourceFileResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{7}
+	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *GetSourceFileResponse) GetSourceFile() *SourceFile {
@@ -696,7 +595,7 @@ type GetFileSummaryRequest struct {
 
 func (x *GetFileSummaryRequest) Reset() {
 	*x = GetFileSummaryRequest{}
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[8]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -708,7 +607,7 @@ func (x *GetFileSummaryRequest) String() string {
 func (*GetFileSummaryRequest) ProtoMessage() {}
 
 func (x *GetFileSummaryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[8]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -721,7 +620,7 @@ func (x *GetFileSummaryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFileSummaryRequest.ProtoReflect.Descriptor instead.
 func (*GetFileSummaryRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{8}
+	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *GetFileSummaryRequest) GetNamespaceId() string {
@@ -756,7 +655,7 @@ type GetFileSummaryResponse struct {
 
 func (x *GetFileSummaryResponse) Reset() {
 	*x = GetFileSummaryResponse{}
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[9]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -768,7 +667,7 @@ func (x *GetFileSummaryResponse) String() string {
 func (*GetFileSummaryResponse) ProtoMessage() {}
 
 func (x *GetFileSummaryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[9]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -781,7 +680,7 @@ func (x *GetFileSummaryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFileSummaryResponse.ProtoReflect.Descriptor instead.
 func (*GetFileSummaryResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{9}
+	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GetFileSummaryResponse) GetSummary() string {
@@ -804,7 +703,7 @@ type SearchSourceFilesRequest struct {
 
 func (x *SearchSourceFilesRequest) Reset() {
 	*x = SearchSourceFilesRequest{}
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[10]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -816,7 +715,7 @@ func (x *SearchSourceFilesRequest) String() string {
 func (*SearchSourceFilesRequest) ProtoMessage() {}
 
 func (x *SearchSourceFilesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[10]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -829,7 +728,7 @@ func (x *SearchSourceFilesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchSourceFilesRequest.ProtoReflect.Descriptor instead.
 func (*SearchSourceFilesRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{10}
+	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *SearchSourceFilesRequest) GetNamespaceId() string {
@@ -857,7 +756,7 @@ type SearchSourceFilesResponse struct {
 
 func (x *SearchSourceFilesResponse) Reset() {
 	*x = SearchSourceFilesResponse{}
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[11]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -869,7 +768,7 @@ func (x *SearchSourceFilesResponse) String() string {
 func (*SearchSourceFilesResponse) ProtoMessage() {}
 
 func (x *SearchSourceFilesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[11]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -882,7 +781,7 @@ func (x *SearchSourceFilesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchSourceFilesResponse.ProtoReflect.Descriptor instead.
 func (*SearchSourceFilesResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{11}
+	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *SearchSourceFilesResponse) GetSourceFiles() []*SourceFile {
@@ -905,7 +804,7 @@ type UpdateChunkRequest struct {
 
 func (x *UpdateChunkRequest) Reset() {
 	*x = UpdateChunkRequest{}
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[12]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -917,7 +816,7 @@ func (x *UpdateChunkRequest) String() string {
 func (*UpdateChunkRequest) ProtoMessage() {}
 
 func (x *UpdateChunkRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[12]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -930,7 +829,7 @@ func (x *UpdateChunkRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateChunkRequest.ProtoReflect.Descriptor instead.
 func (*UpdateChunkRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{12}
+	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *UpdateChunkRequest) GetChunkUid() string {
@@ -958,7 +857,7 @@ type UpdateChunkResponse struct {
 
 func (x *UpdateChunkResponse) Reset() {
 	*x = UpdateChunkResponse{}
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[13]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -970,7 +869,7 @@ func (x *UpdateChunkResponse) String() string {
 func (*UpdateChunkResponse) ProtoMessage() {}
 
 func (x *UpdateChunkResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[13]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -983,7 +882,7 @@ func (x *UpdateChunkResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateChunkResponse.ProtoReflect.Descriptor instead.
 func (*UpdateChunkResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{13}
+	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *UpdateChunkResponse) GetChunk() *Chunk {
@@ -1020,7 +919,7 @@ type SimilarityChunksSearchRequest struct {
 
 func (x *SimilarityChunksSearchRequest) Reset() {
 	*x = SimilarityChunksSearchRequest{}
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[14]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1032,7 +931,7 @@ func (x *SimilarityChunksSearchRequest) String() string {
 func (*SimilarityChunksSearchRequest) ProtoMessage() {}
 
 func (x *SimilarityChunksSearchRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[14]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1045,7 +944,7 @@ func (x *SimilarityChunksSearchRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimilarityChunksSearchRequest.ProtoReflect.Descriptor instead.
 func (*SimilarityChunksSearchRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{14}
+	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *SimilarityChunksSearchRequest) GetNamespaceId() string {
@@ -1115,7 +1014,7 @@ type SimilarityChunksSearchResponse struct {
 
 func (x *SimilarityChunksSearchResponse) Reset() {
 	*x = SimilarityChunksSearchResponse{}
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[15]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1127,7 +1026,7 @@ func (x *SimilarityChunksSearchResponse) String() string {
 func (*SimilarityChunksSearchResponse) ProtoMessage() {}
 
 func (x *SimilarityChunksSearchResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[15]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1140,7 +1039,7 @@ func (x *SimilarityChunksSearchResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimilarityChunksSearchResponse.ProtoReflect.Descriptor instead.
 func (*SimilarityChunksSearchResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{15}
+	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *SimilarityChunksSearchResponse) GetSimilarChunks() []*SimilarityChunk {
@@ -1169,7 +1068,7 @@ type SimilarityChunk struct {
 
 func (x *SimilarityChunk) Reset() {
 	*x = SimilarityChunk{}
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[16]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1181,7 +1080,7 @@ func (x *SimilarityChunk) String() string {
 func (*SimilarityChunk) ProtoMessage() {}
 
 func (x *SimilarityChunk) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[16]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1194,7 +1093,7 @@ func (x *SimilarityChunk) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimilarityChunk.ProtoReflect.Descriptor instead.
 func (*SimilarityChunk) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{16}
+	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *SimilarityChunk) GetChunkUid() string {
@@ -1245,7 +1144,7 @@ type Chunk_Reference struct {
 
 func (x *Chunk_Reference) Reset() {
 	*x = Chunk_Reference{}
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[17]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1257,7 +1156,7 @@ func (x *Chunk_Reference) String() string {
 func (*Chunk_Reference) ProtoMessage() {}
 
 func (x *Chunk_Reference) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[17]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1314,12 +1213,6 @@ const file_artifact_artifact_v1alpha_chunk_proto_rawDesc = "" +
 	"catalog_id\x18\x02 \x01(\tB\x03\xe0A\x02R\tcatalogId\x12\x1e\n" +
 	"\bfile_uid\x18\x03 \x01(\tB\x03\xe0A\x02R\afileUid\"S\n" +
 	"\x12ListChunksResponse\x12=\n" +
-	"\x06chunks\x18\x01 \x03(\v2 .artifact.artifact.v1alpha.ChunkB\x03\xe0A\x03R\x06chunks\"a\n" +
-	"\x13SearchChunksRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\"\n" +
-	"\n" +
-	"chunk_uids\x18\x02 \x03(\tB\x03\xe0A\x02R\tchunkUids\"U\n" +
-	"\x14SearchChunksResponse\x12=\n" +
 	"\x06chunks\x18\x01 \x03(\v2 .artifact.artifact.v1alpha.ChunkB\x03\xe0A\x03R\x06chunks\"\x93\x02\n" +
 	"\n" +
 	"SourceFile\x12/\n" +
@@ -1403,54 +1296,51 @@ func file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP() []byte {
 }
 
 var file_artifact_artifact_v1alpha_chunk_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_artifact_artifact_v1alpha_chunk_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
+var file_artifact_artifact_v1alpha_chunk_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_artifact_artifact_v1alpha_chunk_proto_goTypes = []any{
 	(FileMediaType)(0),                     // 0: artifact.artifact.v1alpha.FileMediaType
 	(ContentType)(0),                       // 1: artifact.artifact.v1alpha.ContentType
 	(*Chunk)(nil),                          // 2: artifact.artifact.v1alpha.Chunk
 	(*ListChunksRequest)(nil),              // 3: artifact.artifact.v1alpha.ListChunksRequest
 	(*ListChunksResponse)(nil),             // 4: artifact.artifact.v1alpha.ListChunksResponse
-	(*SearchChunksRequest)(nil),            // 5: artifact.artifact.v1alpha.SearchChunksRequest
-	(*SearchChunksResponse)(nil),           // 6: artifact.artifact.v1alpha.SearchChunksResponse
-	(*SourceFile)(nil),                     // 7: artifact.artifact.v1alpha.SourceFile
-	(*GetSourceFileRequest)(nil),           // 8: artifact.artifact.v1alpha.GetSourceFileRequest
-	(*GetSourceFileResponse)(nil),          // 9: artifact.artifact.v1alpha.GetSourceFileResponse
-	(*GetFileSummaryRequest)(nil),          // 10: artifact.artifact.v1alpha.GetFileSummaryRequest
-	(*GetFileSummaryResponse)(nil),         // 11: artifact.artifact.v1alpha.GetFileSummaryResponse
-	(*SearchSourceFilesRequest)(nil),       // 12: artifact.artifact.v1alpha.SearchSourceFilesRequest
-	(*SearchSourceFilesResponse)(nil),      // 13: artifact.artifact.v1alpha.SearchSourceFilesResponse
-	(*UpdateChunkRequest)(nil),             // 14: artifact.artifact.v1alpha.UpdateChunkRequest
-	(*UpdateChunkResponse)(nil),            // 15: artifact.artifact.v1alpha.UpdateChunkResponse
-	(*SimilarityChunksSearchRequest)(nil),  // 16: artifact.artifact.v1alpha.SimilarityChunksSearchRequest
-	(*SimilarityChunksSearchResponse)(nil), // 17: artifact.artifact.v1alpha.SimilarityChunksSearchResponse
-	(*SimilarityChunk)(nil),                // 18: artifact.artifact.v1alpha.SimilarityChunk
-	(*Chunk_Reference)(nil),                // 19: artifact.artifact.v1alpha.Chunk.Reference
-	(*timestamppb.Timestamp)(nil),          // 20: google.protobuf.Timestamp
-	(*File_Position)(nil),                  // 21: artifact.artifact.v1alpha.File.Position
+	(*SourceFile)(nil),                     // 5: artifact.artifact.v1alpha.SourceFile
+	(*GetSourceFileRequest)(nil),           // 6: artifact.artifact.v1alpha.GetSourceFileRequest
+	(*GetSourceFileResponse)(nil),          // 7: artifact.artifact.v1alpha.GetSourceFileResponse
+	(*GetFileSummaryRequest)(nil),          // 8: artifact.artifact.v1alpha.GetFileSummaryRequest
+	(*GetFileSummaryResponse)(nil),         // 9: artifact.artifact.v1alpha.GetFileSummaryResponse
+	(*SearchSourceFilesRequest)(nil),       // 10: artifact.artifact.v1alpha.SearchSourceFilesRequest
+	(*SearchSourceFilesResponse)(nil),      // 11: artifact.artifact.v1alpha.SearchSourceFilesResponse
+	(*UpdateChunkRequest)(nil),             // 12: artifact.artifact.v1alpha.UpdateChunkRequest
+	(*UpdateChunkResponse)(nil),            // 13: artifact.artifact.v1alpha.UpdateChunkResponse
+	(*SimilarityChunksSearchRequest)(nil),  // 14: artifact.artifact.v1alpha.SimilarityChunksSearchRequest
+	(*SimilarityChunksSearchResponse)(nil), // 15: artifact.artifact.v1alpha.SimilarityChunksSearchResponse
+	(*SimilarityChunk)(nil),                // 16: artifact.artifact.v1alpha.SimilarityChunk
+	(*Chunk_Reference)(nil),                // 17: artifact.artifact.v1alpha.Chunk.Reference
+	(*timestamppb.Timestamp)(nil),          // 18: google.protobuf.Timestamp
+	(*File_Position)(nil),                  // 19: artifact.artifact.v1alpha.File.Position
 }
 var file_artifact_artifact_v1alpha_chunk_proto_depIdxs = []int32{
-	20, // 0: artifact.artifact.v1alpha.Chunk.create_time:type_name -> google.protobuf.Timestamp
+	18, // 0: artifact.artifact.v1alpha.Chunk.create_time:type_name -> google.protobuf.Timestamp
 	1,  // 1: artifact.artifact.v1alpha.Chunk.content_type:type_name -> artifact.artifact.v1alpha.ContentType
-	19, // 2: artifact.artifact.v1alpha.Chunk.reference:type_name -> artifact.artifact.v1alpha.Chunk.Reference
-	19, // 3: artifact.artifact.v1alpha.Chunk.markdown_reference:type_name -> artifact.artifact.v1alpha.Chunk.Reference
+	17, // 2: artifact.artifact.v1alpha.Chunk.reference:type_name -> artifact.artifact.v1alpha.Chunk.Reference
+	17, // 3: artifact.artifact.v1alpha.Chunk.markdown_reference:type_name -> artifact.artifact.v1alpha.Chunk.Reference
 	2,  // 4: artifact.artifact.v1alpha.ListChunksResponse.chunks:type_name -> artifact.artifact.v1alpha.Chunk
-	2,  // 5: artifact.artifact.v1alpha.SearchChunksResponse.chunks:type_name -> artifact.artifact.v1alpha.Chunk
-	20, // 6: artifact.artifact.v1alpha.SourceFile.create_time:type_name -> google.protobuf.Timestamp
-	20, // 7: artifact.artifact.v1alpha.SourceFile.update_time:type_name -> google.protobuf.Timestamp
-	7,  // 8: artifact.artifact.v1alpha.GetSourceFileResponse.source_file:type_name -> artifact.artifact.v1alpha.SourceFile
-	7,  // 9: artifact.artifact.v1alpha.SearchSourceFilesResponse.source_files:type_name -> artifact.artifact.v1alpha.SourceFile
-	2,  // 10: artifact.artifact.v1alpha.UpdateChunkResponse.chunk:type_name -> artifact.artifact.v1alpha.Chunk
-	1,  // 11: artifact.artifact.v1alpha.SimilarityChunksSearchRequest.content_type:type_name -> artifact.artifact.v1alpha.ContentType
-	0,  // 12: artifact.artifact.v1alpha.SimilarityChunksSearchRequest.file_media_type:type_name -> artifact.artifact.v1alpha.FileMediaType
-	18, // 13: artifact.artifact.v1alpha.SimilarityChunksSearchResponse.similar_chunks:type_name -> artifact.artifact.v1alpha.SimilarityChunk
-	2,  // 14: artifact.artifact.v1alpha.SimilarityChunk.chunk_metadata:type_name -> artifact.artifact.v1alpha.Chunk
-	21, // 15: artifact.artifact.v1alpha.Chunk.Reference.start:type_name -> artifact.artifact.v1alpha.File.Position
-	21, // 16: artifact.artifact.v1alpha.Chunk.Reference.end:type_name -> artifact.artifact.v1alpha.File.Position
-	17, // [17:17] is the sub-list for method output_type
-	17, // [17:17] is the sub-list for method input_type
-	17, // [17:17] is the sub-list for extension type_name
-	17, // [17:17] is the sub-list for extension extendee
-	0,  // [0:17] is the sub-list for field type_name
+	18, // 5: artifact.artifact.v1alpha.SourceFile.create_time:type_name -> google.protobuf.Timestamp
+	18, // 6: artifact.artifact.v1alpha.SourceFile.update_time:type_name -> google.protobuf.Timestamp
+	5,  // 7: artifact.artifact.v1alpha.GetSourceFileResponse.source_file:type_name -> artifact.artifact.v1alpha.SourceFile
+	5,  // 8: artifact.artifact.v1alpha.SearchSourceFilesResponse.source_files:type_name -> artifact.artifact.v1alpha.SourceFile
+	2,  // 9: artifact.artifact.v1alpha.UpdateChunkResponse.chunk:type_name -> artifact.artifact.v1alpha.Chunk
+	1,  // 10: artifact.artifact.v1alpha.SimilarityChunksSearchRequest.content_type:type_name -> artifact.artifact.v1alpha.ContentType
+	0,  // 11: artifact.artifact.v1alpha.SimilarityChunksSearchRequest.file_media_type:type_name -> artifact.artifact.v1alpha.FileMediaType
+	16, // 12: artifact.artifact.v1alpha.SimilarityChunksSearchResponse.similar_chunks:type_name -> artifact.artifact.v1alpha.SimilarityChunk
+	2,  // 13: artifact.artifact.v1alpha.SimilarityChunk.chunk_metadata:type_name -> artifact.artifact.v1alpha.Chunk
+	19, // 14: artifact.artifact.v1alpha.Chunk.Reference.start:type_name -> artifact.artifact.v1alpha.File.Position
+	19, // 15: artifact.artifact.v1alpha.Chunk.Reference.end:type_name -> artifact.artifact.v1alpha.File.Position
+	16, // [16:16] is the sub-list for method output_type
+	16, // [16:16] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
 func init() { file_artifact_artifact_v1alpha_chunk_proto_init() }
@@ -1465,7 +1355,7 @@ func file_artifact_artifact_v1alpha_chunk_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_artifact_artifact_v1alpha_chunk_proto_rawDesc), len(file_artifact_artifact_v1alpha_chunk_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   18,
+			NumMessages:   16,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
