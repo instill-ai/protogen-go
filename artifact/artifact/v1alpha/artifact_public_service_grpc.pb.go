@@ -36,7 +36,6 @@ const (
 	ArtifactPublicService_SearchSourceFiles_FullMethodName      = "/artifact.artifact.v1alpha.ArtifactPublicService/SearchSourceFiles"
 	ArtifactPublicService_UpdateChunk_FullMethodName            = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateChunk"
 	ArtifactPublicService_SimilarityChunksSearch_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPublicService/SimilarityChunksSearch"
-	ArtifactPublicService_QuestionAnswering_FullMethodName      = "/artifact.artifact.v1alpha.ArtifactPublicService/QuestionAnswering"
 	ArtifactPublicService_GetFileCatalog_FullMethodName         = "/artifact.artifact.v1alpha.ArtifactPublicService/GetFileCatalog"
 	ArtifactPublicService_ListCatalogRuns_FullMethodName        = "/artifact.artifact.v1alpha.ArtifactPublicService/ListCatalogRuns"
 	ArtifactPublicService_GetObjectUploadURL_FullMethodName     = "/artifact.artifact.v1alpha.ArtifactPublicService/GetObjectUploadURL"
@@ -120,11 +119,6 @@ type ArtifactPublicServiceClient interface {
 	//
 	// Returns the top-K most similar chunks to a text prompt.
 	SimilarityChunksSearch(ctx context.Context, in *SimilarityChunksSearchRequest, opts ...grpc.CallOption) (*SimilarityChunksSearchResponse, error)
-	// Answer a question
-	//
-	// Provides the response to the prompted question, returning contextual
-	// information like the chunks used to build the answer.
-	QuestionAnswering(ctx context.Context, in *QuestionAnsweringRequest, opts ...grpc.CallOption) (*QuestionAnsweringResponse, error)
 	// Get the catalog file.
 	//
 	// Returns a view of the file within the catalog, with the text and chunks it
@@ -330,16 +324,6 @@ func (c *artifactPublicServiceClient) SimilarityChunksSearch(ctx context.Context
 	return out, nil
 }
 
-func (c *artifactPublicServiceClient) QuestionAnswering(ctx context.Context, in *QuestionAnsweringRequest, opts ...grpc.CallOption) (*QuestionAnsweringResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(QuestionAnsweringResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_QuestionAnswering_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *artifactPublicServiceClient) GetFileCatalog(ctx context.Context, in *GetFileCatalogRequest, opts ...grpc.CallOption) (*GetFileCatalogResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetFileCatalogResponse)
@@ -475,11 +459,6 @@ type ArtifactPublicServiceServer interface {
 	//
 	// Returns the top-K most similar chunks to a text prompt.
 	SimilarityChunksSearch(context.Context, *SimilarityChunksSearchRequest) (*SimilarityChunksSearchResponse, error)
-	// Answer a question
-	//
-	// Provides the response to the prompted question, returning contextual
-	// information like the chunks used to build the answer.
-	QuestionAnswering(context.Context, *QuestionAnsweringRequest) (*QuestionAnsweringResponse, error)
 	// Get the catalog file.
 	//
 	// Returns a view of the file within the catalog, with the text and chunks it
@@ -564,9 +543,6 @@ func (UnimplementedArtifactPublicServiceServer) UpdateChunk(context.Context, *Up
 }
 func (UnimplementedArtifactPublicServiceServer) SimilarityChunksSearch(context.Context, *SimilarityChunksSearchRequest) (*SimilarityChunksSearchResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SimilarityChunksSearch not implemented")
-}
-func (UnimplementedArtifactPublicServiceServer) QuestionAnswering(context.Context, *QuestionAnsweringRequest) (*QuestionAnsweringResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method QuestionAnswering not implemented")
 }
 func (UnimplementedArtifactPublicServiceServer) GetFileCatalog(context.Context, *GetFileCatalogRequest) (*GetFileCatalogResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFileCatalog not implemented")
@@ -912,24 +888,6 @@ func _ArtifactPublicService_SimilarityChunksSearch_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPublicService_QuestionAnswering_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QuestionAnsweringRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).QuestionAnswering(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ArtifactPublicService_QuestionAnswering_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).QuestionAnswering(ctx, req.(*QuestionAnsweringRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _ArtifactPublicService_GetFileCatalog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetFileCatalogRequest)
 	if err := dec(in); err != nil {
@@ -1112,10 +1070,6 @@ var ArtifactPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SimilarityChunksSearch",
 			Handler:    _ArtifactPublicService_SimilarityChunksSearch_Handler,
-		},
-		{
-			MethodName: "QuestionAnswering",
-			Handler:    _ArtifactPublicService_QuestionAnswering_Handler,
 		},
 		{
 			MethodName: "GetFileCatalog",

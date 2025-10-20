@@ -483,7 +483,7 @@ func (x File_Type) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use File_Type.Descriptor instead.
 func (File_Type) EnumDescriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{29, 0}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{43, 0}
 }
 
 // Unit of measurement for a position within a file.
@@ -545,7 +545,7 @@ func (x File_Position_Unit) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use File_Position_Unit.Descriptor instead.
 func (File_Position_Unit) EnumDescriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{29, 0, 0}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{43, 0, 0}
 }
 
 // LivenessRequest represents a request to check a service liveness status
@@ -1220,6 +1220,415 @@ func (*DeleteRepositoryTagResponse) Descriptor() ([]byte, []int) {
 	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{12}
 }
 
+// ListRepositoryTagsAdminRequest represents a request to list repository tags (admin only).
+type ListRepositoryTagsAdminRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The maximum number of tags to return. The default and cap values are 10
+	// and 100, respectively.
+	PageSize *int32 `protobuf:"varint,1,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
+	// Page number.
+	Page *int32 `protobuf:"varint,2,opt,name=page,proto3,oneof" json:"page,omitempty"`
+	// The repository holding the different versions of a given content.
+	// - Format: `repositories/{repository.id}`.
+	// - Example: `repositories/flaming-wombat/llama-2-7b`.
+	Parent        string `protobuf:"bytes,3,opt,name=parent,proto3" json:"parent,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListRepositoryTagsAdminRequest) Reset() {
+	*x = ListRepositoryTagsAdminRequest{}
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListRepositoryTagsAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListRepositoryTagsAdminRequest) ProtoMessage() {}
+
+func (x *ListRepositoryTagsAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListRepositoryTagsAdminRequest.ProtoReflect.Descriptor instead.
+func (*ListRepositoryTagsAdminRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *ListRepositoryTagsAdminRequest) GetPageSize() int32 {
+	if x != nil && x.PageSize != nil {
+		return *x.PageSize
+	}
+	return 0
+}
+
+func (x *ListRepositoryTagsAdminRequest) GetPage() int32 {
+	if x != nil && x.Page != nil {
+		return *x.Page
+	}
+	return 0
+}
+
+func (x *ListRepositoryTagsAdminRequest) GetParent() string {
+	if x != nil {
+		return x.Parent
+	}
+	return ""
+}
+
+// ListRepositoryTagsAdminResponse contains a list of repository tags (admin only).
+type ListRepositoryTagsAdminResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// A list of repository tags.
+	Tags []*RepositoryTag `protobuf:"bytes,1,rep,name=tags,proto3" json:"tags,omitempty"`
+	// Total number of tags.
+	TotalSize int32 `protobuf:"varint,2,opt,name=total_size,json=totalSize,proto3" json:"total_size,omitempty"`
+	// The requested page size.
+	PageSize int32 `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	// The requested page offset.
+	Page          int32 `protobuf:"varint,4,opt,name=page,proto3" json:"page,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListRepositoryTagsAdminResponse) Reset() {
+	*x = ListRepositoryTagsAdminResponse{}
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListRepositoryTagsAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListRepositoryTagsAdminResponse) ProtoMessage() {}
+
+func (x *ListRepositoryTagsAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListRepositoryTagsAdminResponse.ProtoReflect.Descriptor instead.
+func (*ListRepositoryTagsAdminResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *ListRepositoryTagsAdminResponse) GetTags() []*RepositoryTag {
+	if x != nil {
+		return x.Tags
+	}
+	return nil
+}
+
+func (x *ListRepositoryTagsAdminResponse) GetTotalSize() int32 {
+	if x != nil {
+		return x.TotalSize
+	}
+	return 0
+}
+
+func (x *ListRepositoryTagsAdminResponse) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+func (x *ListRepositoryTagsAdminResponse) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+// GetRepositoryTagAdminRequest represents a request to get repository tag details (admin only).
+type GetRepositoryTagAdminRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The name of the tag, defined by its parent repository and ID.
+	// - Format: `repositories/{repository.id}/tags/{tag.id}`.
+	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetRepositoryTagAdminRequest) Reset() {
+	*x = GetRepositoryTagAdminRequest{}
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetRepositoryTagAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetRepositoryTagAdminRequest) ProtoMessage() {}
+
+func (x *GetRepositoryTagAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetRepositoryTagAdminRequest.ProtoReflect.Descriptor instead.
+func (*GetRepositoryTagAdminRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *GetRepositoryTagAdminRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+// GetRepositoryTagAdminResponse contains the requested tag (admin only).
+type GetRepositoryTagAdminResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The requested tag.
+	Tag           *RepositoryTag `protobuf:"bytes,1,opt,name=tag,proto3" json:"tag,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetRepositoryTagAdminResponse) Reset() {
+	*x = GetRepositoryTagAdminResponse{}
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetRepositoryTagAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetRepositoryTagAdminResponse) ProtoMessage() {}
+
+func (x *GetRepositoryTagAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetRepositoryTagAdminResponse.ProtoReflect.Descriptor instead.
+func (*GetRepositoryTagAdminResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *GetRepositoryTagAdminResponse) GetTag() *RepositoryTag {
+	if x != nil {
+		return x.Tag
+	}
+	return nil
+}
+
+// CreateRepositoryTagAdminRequest represents a request to create a repository tag (admin only).
+type CreateRepositoryTagAdminRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The tag information.
+	Tag           *RepositoryTag `protobuf:"bytes,1,opt,name=tag,proto3" json:"tag,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateRepositoryTagAdminRequest) Reset() {
+	*x = CreateRepositoryTagAdminRequest{}
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateRepositoryTagAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateRepositoryTagAdminRequest) ProtoMessage() {}
+
+func (x *CreateRepositoryTagAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateRepositoryTagAdminRequest.ProtoReflect.Descriptor instead.
+func (*CreateRepositoryTagAdminRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *CreateRepositoryTagAdminRequest) GetTag() *RepositoryTag {
+	if x != nil {
+		return x.Tag
+	}
+	return nil
+}
+
+// CreateRepositoryTagAdminResponse contains the created tag (admin only).
+type CreateRepositoryTagAdminResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The created tag.
+	Tag           *RepositoryTag `protobuf:"bytes,1,opt,name=tag,proto3" json:"tag,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateRepositoryTagAdminResponse) Reset() {
+	*x = CreateRepositoryTagAdminResponse{}
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateRepositoryTagAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateRepositoryTagAdminResponse) ProtoMessage() {}
+
+func (x *CreateRepositoryTagAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateRepositoryTagAdminResponse.ProtoReflect.Descriptor instead.
+func (*CreateRepositoryTagAdminResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *CreateRepositoryTagAdminResponse) GetTag() *RepositoryTag {
+	if x != nil {
+		return x.Tag
+	}
+	return nil
+}
+
+// DeleteRepositoryTagAdminRequest represents a request to delete a repository tag (admin only).
+type DeleteRepositoryTagAdminRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The name of the tag, defined by its parent repository and ID.
+	// - Format: `repositories/{repository.id}/tags/{tag.id}`.
+	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteRepositoryTagAdminRequest) Reset() {
+	*x = DeleteRepositoryTagAdminRequest{}
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteRepositoryTagAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteRepositoryTagAdminRequest) ProtoMessage() {}
+
+func (x *DeleteRepositoryTagAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteRepositoryTagAdminRequest.ProtoReflect.Descriptor instead.
+func (*DeleteRepositoryTagAdminRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *DeleteRepositoryTagAdminRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+// DeleteRepositoryTagAdminResponse is an empty response (admin only).
+type DeleteRepositoryTagAdminResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteRepositoryTagAdminResponse) Reset() {
+	*x = DeleteRepositoryTagAdminResponse{}
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteRepositoryTagAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteRepositoryTagAdminResponse) ProtoMessage() {}
+
+func (x *DeleteRepositoryTagAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteRepositoryTagAdminResponse.ProtoReflect.Descriptor instead.
+func (*DeleteRepositoryTagAdminResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{20}
+}
+
 // ObjectUploadURL
 type ObjectURL struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -1249,7 +1658,7 @@ type ObjectURL struct {
 
 func (x *ObjectURL) Reset() {
 	*x = ObjectURL{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[13]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1261,7 +1670,7 @@ func (x *ObjectURL) String() string {
 func (*ObjectURL) ProtoMessage() {}
 
 func (x *ObjectURL) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[13]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1274,7 +1683,7 @@ func (x *ObjectURL) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ObjectURL.ProtoReflect.Descriptor instead.
 func (*ObjectURL) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{13}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *ObjectURL) GetUid() string {
@@ -1358,7 +1767,7 @@ type GetObjectRequest struct {
 
 func (x *GetObjectRequest) Reset() {
 	*x = GetObjectRequest{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[14]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1370,7 +1779,7 @@ func (x *GetObjectRequest) String() string {
 func (*GetObjectRequest) ProtoMessage() {}
 
 func (x *GetObjectRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[14]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1383,7 +1792,7 @@ func (x *GetObjectRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetObjectRequest.ProtoReflect.Descriptor instead.
 func (*GetObjectRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{14}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *GetObjectRequest) GetUid() string {
@@ -1404,7 +1813,7 @@ type GetObjectResponse struct {
 
 func (x *GetObjectResponse) Reset() {
 	*x = GetObjectResponse{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[15]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1416,7 +1825,7 @@ func (x *GetObjectResponse) String() string {
 func (*GetObjectResponse) ProtoMessage() {}
 
 func (x *GetObjectResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[15]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1429,7 +1838,7 @@ func (x *GetObjectResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetObjectResponse.ProtoReflect.Descriptor instead.
 func (*GetObjectResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{15}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *GetObjectResponse) GetObject() *Object {
@@ -1453,7 +1862,7 @@ type GetObjectURLRequest struct {
 
 func (x *GetObjectURLRequest) Reset() {
 	*x = GetObjectURLRequest{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[16]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1465,7 +1874,7 @@ func (x *GetObjectURLRequest) String() string {
 func (*GetObjectURLRequest) ProtoMessage() {}
 
 func (x *GetObjectURLRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[16]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1478,7 +1887,7 @@ func (x *GetObjectURLRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetObjectURLRequest.ProtoReflect.Descriptor instead.
 func (*GetObjectURLRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{16}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *GetObjectURLRequest) GetUid() string {
@@ -1506,7 +1915,7 @@ type GetObjectURLResponse struct {
 
 func (x *GetObjectURLResponse) Reset() {
 	*x = GetObjectURLResponse{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[17]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1518,7 +1927,7 @@ func (x *GetObjectURLResponse) String() string {
 func (*GetObjectURLResponse) ProtoMessage() {}
 
 func (x *GetObjectURLResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[17]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1531,7 +1940,7 @@ func (x *GetObjectURLResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetObjectURLResponse.ProtoReflect.Descriptor instead.
 func (*GetObjectURLResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{17}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *GetObjectURLResponse) GetObjectUrl() *ObjectURL {
@@ -1560,7 +1969,7 @@ type UpdateObjectRequest struct {
 
 func (x *UpdateObjectRequest) Reset() {
 	*x = UpdateObjectRequest{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[18]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1572,7 +1981,7 @@ func (x *UpdateObjectRequest) String() string {
 func (*UpdateObjectRequest) ProtoMessage() {}
 
 func (x *UpdateObjectRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[18]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1585,7 +1994,7 @@ func (x *UpdateObjectRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateObjectRequest.ProtoReflect.Descriptor instead.
 func (*UpdateObjectRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{18}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *UpdateObjectRequest) GetUid() string {
@@ -1634,7 +2043,7 @@ type UpdateObjectResponse struct {
 
 func (x *UpdateObjectResponse) Reset() {
 	*x = UpdateObjectResponse{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[19]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1646,7 +2055,7 @@ func (x *UpdateObjectResponse) String() string {
 func (*UpdateObjectResponse) ProtoMessage() {}
 
 func (x *UpdateObjectResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[19]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1659,10 +2068,332 @@ func (x *UpdateObjectResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateObjectResponse.ProtoReflect.Descriptor instead.
 func (*UpdateObjectResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{19}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *UpdateObjectResponse) GetObject() *Object {
+	if x != nil {
+		return x.Object
+	}
+	return nil
+}
+
+// GetObjectAdminRequest represents a request to get an object (admin only).
+type GetObjectAdminRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// object uid
+	Uid           string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetObjectAdminRequest) Reset() {
+	*x = GetObjectAdminRequest{}
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[28]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetObjectAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetObjectAdminRequest) ProtoMessage() {}
+
+func (x *GetObjectAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[28]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetObjectAdminRequest.ProtoReflect.Descriptor instead.
+func (*GetObjectAdminRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *GetObjectAdminRequest) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
+// GetObjectAdminResponse contains the requested object (admin only).
+type GetObjectAdminResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// object
+	Object        *Object `protobuf:"bytes,1,opt,name=object,proto3" json:"object,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetObjectAdminResponse) Reset() {
+	*x = GetObjectAdminResponse{}
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[29]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetObjectAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetObjectAdminResponse) ProtoMessage() {}
+
+func (x *GetObjectAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[29]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetObjectAdminResponse.ProtoReflect.Descriptor instead.
+func (*GetObjectAdminResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *GetObjectAdminResponse) GetObject() *Object {
+	if x != nil {
+		return x.Object
+	}
+	return nil
+}
+
+// GetObjectURLAdminRequest represents a request to get an object URL (admin only).
+type GetObjectURLAdminRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// object url uid
+	Uid string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	// encoded url path. artifact first use uid to get object url,
+	// if not exist, then use encoded url path to get object url
+	EncodedUrlPath *string `protobuf:"bytes,2,opt,name=encoded_url_path,json=encodedUrlPath,proto3,oneof" json:"encoded_url_path,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *GetObjectURLAdminRequest) Reset() {
+	*x = GetObjectURLAdminRequest{}
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[30]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetObjectURLAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetObjectURLAdminRequest) ProtoMessage() {}
+
+func (x *GetObjectURLAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[30]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetObjectURLAdminRequest.ProtoReflect.Descriptor instead.
+func (*GetObjectURLAdminRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *GetObjectURLAdminRequest) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
+func (x *GetObjectURLAdminRequest) GetEncodedUrlPath() string {
+	if x != nil && x.EncodedUrlPath != nil {
+		return *x.EncodedUrlPath
+	}
+	return ""
+}
+
+// GetObjectURLAdminResponse contains the requested object URL (admin only).
+type GetObjectURLAdminResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// object url
+	ObjectUrl     *ObjectURL `protobuf:"bytes,1,opt,name=object_url,json=objectUrl,proto3" json:"object_url,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetObjectURLAdminResponse) Reset() {
+	*x = GetObjectURLAdminResponse{}
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[31]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetObjectURLAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetObjectURLAdminResponse) ProtoMessage() {}
+
+func (x *GetObjectURLAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[31]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetObjectURLAdminResponse.ProtoReflect.Descriptor instead.
+func (*GetObjectURLAdminResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{31}
+}
+
+func (x *GetObjectURLAdminResponse) GetObjectUrl() *ObjectURL {
+	if x != nil {
+		return x.ObjectUrl
+	}
+	return nil
+}
+
+// UpdateObjectAdminRequest represents a request to update an object (admin only).
+type UpdateObjectAdminRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// object uid
+	Uid string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	// size
+	Size *int64 `protobuf:"varint,2,opt,name=size,proto3,oneof" json:"size,omitempty"`
+	// type
+	Type *string `protobuf:"bytes,3,opt,name=type,proto3,oneof" json:"type,omitempty"`
+	// is upload
+	IsUploaded *bool `protobuf:"varint,4,opt,name=is_uploaded,json=isUploaded,proto3,oneof" json:"is_uploaded,omitempty"`
+	// last modified time
+	LastModifiedTime *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=last_modified_time,json=lastModifiedTime,proto3,oneof" json:"last_modified_time,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *UpdateObjectAdminRequest) Reset() {
+	*x = UpdateObjectAdminRequest{}
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[32]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateObjectAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateObjectAdminRequest) ProtoMessage() {}
+
+func (x *UpdateObjectAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[32]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateObjectAdminRequest.ProtoReflect.Descriptor instead.
+func (*UpdateObjectAdminRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{32}
+}
+
+func (x *UpdateObjectAdminRequest) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
+func (x *UpdateObjectAdminRequest) GetSize() int64 {
+	if x != nil && x.Size != nil {
+		return *x.Size
+	}
+	return 0
+}
+
+func (x *UpdateObjectAdminRequest) GetType() string {
+	if x != nil && x.Type != nil {
+		return *x.Type
+	}
+	return ""
+}
+
+func (x *UpdateObjectAdminRequest) GetIsUploaded() bool {
+	if x != nil && x.IsUploaded != nil {
+		return *x.IsUploaded
+	}
+	return false
+}
+
+func (x *UpdateObjectAdminRequest) GetLastModifiedTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.LastModifiedTime
+	}
+	return nil
+}
+
+// UpdateObjectAdminResponse contains the updated object (admin only).
+type UpdateObjectAdminResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// object
+	Object        *Object `protobuf:"bytes,1,opt,name=object,proto3" json:"object,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateObjectAdminResponse) Reset() {
+	*x = UpdateObjectAdminResponse{}
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[33]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateObjectAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateObjectAdminResponse) ProtoMessage() {}
+
+func (x *UpdateObjectAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[33]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateObjectAdminResponse.ProtoReflect.Descriptor instead.
+func (*UpdateObjectAdminResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *UpdateObjectAdminResponse) GetObject() *Object {
 	if x != nil {
 		return x.Object
 	}
@@ -1718,13 +2449,16 @@ type Catalog struct {
 	SummarizingPipelines []string `protobuf:"bytes,16,rep,name=summarizing_pipelines,json=summarizingPipelines,proto3" json:"summarizing_pipelines,omitempty"`
 	// The embedding configuration for the catalog.
 	EmbeddingConfig *Catalog_EmbeddingConfig `protobuf:"bytes,17,opt,name=embedding_config,json=embeddingConfig,proto3" json:"embedding_config,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	// The UID of the active Milvus collection for this catalog.
+	// This supports collection versioning for embedding dimension changes.
+	ActiveCollectionUid string `protobuf:"bytes,18,opt,name=active_collection_uid,json=activeCollectionUid,proto3" json:"active_collection_uid,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
 func (x *Catalog) Reset() {
 	*x = Catalog{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[20]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1736,7 +2470,7 @@ func (x *Catalog) String() string {
 func (*Catalog) ProtoMessage() {}
 
 func (x *Catalog) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[20]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1749,7 +2483,7 @@ func (x *Catalog) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Catalog.ProtoReflect.Descriptor instead.
 func (*Catalog) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{20}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *Catalog) GetCatalogUid() string {
@@ -1875,6 +2609,13 @@ func (x *Catalog) GetEmbeddingConfig() *Catalog_EmbeddingConfig {
 	return nil
 }
 
+func (x *Catalog) GetActiveCollectionUid() string {
+	if x != nil {
+		return x.ActiveCollectionUid
+	}
+	return ""
+}
+
 // CreateCatalogRequest represents a request to create a catalog.
 type CreateCatalogRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -1927,7 +2668,7 @@ type CreateCatalogRequest struct {
 
 func (x *CreateCatalogRequest) Reset() {
 	*x = CreateCatalogRequest{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[21]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1939,7 +2680,7 @@ func (x *CreateCatalogRequest) String() string {
 func (*CreateCatalogRequest) ProtoMessage() {}
 
 func (x *CreateCatalogRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[21]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1952,7 +2693,7 @@ func (x *CreateCatalogRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateCatalogRequest.ProtoReflect.Descriptor instead.
 func (*CreateCatalogRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{21}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *CreateCatalogRequest) GetNamespaceId() string {
@@ -2008,7 +2749,7 @@ type CreateCatalogResponse struct {
 
 func (x *CreateCatalogResponse) Reset() {
 	*x = CreateCatalogResponse{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[22]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2020,7 +2761,7 @@ func (x *CreateCatalogResponse) String() string {
 func (*CreateCatalogResponse) ProtoMessage() {}
 
 func (x *CreateCatalogResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[22]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2033,7 +2774,7 @@ func (x *CreateCatalogResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateCatalogResponse.ProtoReflect.Descriptor instead.
 func (*CreateCatalogResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{22}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *CreateCatalogResponse) GetCatalog() *Catalog {
@@ -2054,7 +2795,7 @@ type ListCatalogsRequest struct {
 
 func (x *ListCatalogsRequest) Reset() {
 	*x = ListCatalogsRequest{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[23]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2066,7 +2807,7 @@ func (x *ListCatalogsRequest) String() string {
 func (*ListCatalogsRequest) ProtoMessage() {}
 
 func (x *ListCatalogsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[23]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2079,7 +2820,7 @@ func (x *ListCatalogsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListCatalogsRequest.ProtoReflect.Descriptor instead.
 func (*ListCatalogsRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{23}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *ListCatalogsRequest) GetNamespaceId() string {
@@ -2100,7 +2841,7 @@ type ListCatalogsResponse struct {
 
 func (x *ListCatalogsResponse) Reset() {
 	*x = ListCatalogsResponse{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[24]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2112,7 +2853,7 @@ func (x *ListCatalogsResponse) String() string {
 func (*ListCatalogsResponse) ProtoMessage() {}
 
 func (x *ListCatalogsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[24]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2125,7 +2866,7 @@ func (x *ListCatalogsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListCatalogsResponse.ProtoReflect.Descriptor instead.
 func (*ListCatalogsResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{24}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *ListCatalogsResponse) GetCatalogs() []*Catalog {
@@ -2185,7 +2926,7 @@ type UpdateCatalogRequest struct {
 
 func (x *UpdateCatalogRequest) Reset() {
 	*x = UpdateCatalogRequest{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[25]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2197,7 +2938,7 @@ func (x *UpdateCatalogRequest) String() string {
 func (*UpdateCatalogRequest) ProtoMessage() {}
 
 func (x *UpdateCatalogRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[25]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2210,7 +2951,7 @@ func (x *UpdateCatalogRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateCatalogRequest.ProtoReflect.Descriptor instead.
 func (*UpdateCatalogRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{25}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *UpdateCatalogRequest) GetCatalogId() string {
@@ -2259,7 +3000,7 @@ type UpdateCatalogResponse struct {
 
 func (x *UpdateCatalogResponse) Reset() {
 	*x = UpdateCatalogResponse{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[26]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2271,7 +3012,7 @@ func (x *UpdateCatalogResponse) String() string {
 func (*UpdateCatalogResponse) ProtoMessage() {}
 
 func (x *UpdateCatalogResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[26]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2284,7 +3025,7 @@ func (x *UpdateCatalogResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateCatalogResponse.ProtoReflect.Descriptor instead.
 func (*UpdateCatalogResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{26}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *UpdateCatalogResponse) GetCatalog() *Catalog {
@@ -2307,7 +3048,7 @@ type DeleteCatalogRequest struct {
 
 func (x *DeleteCatalogRequest) Reset() {
 	*x = DeleteCatalogRequest{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[27]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2319,7 +3060,7 @@ func (x *DeleteCatalogRequest) String() string {
 func (*DeleteCatalogRequest) ProtoMessage() {}
 
 func (x *DeleteCatalogRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[27]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2332,7 +3073,7 @@ func (x *DeleteCatalogRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteCatalogRequest.ProtoReflect.Descriptor instead.
 func (*DeleteCatalogRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{27}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *DeleteCatalogRequest) GetNamespaceId() string {
@@ -2360,7 +3101,7 @@ type DeleteCatalogResponse struct {
 
 func (x *DeleteCatalogResponse) Reset() {
 	*x = DeleteCatalogResponse{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[28]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2372,7 +3113,7 @@ func (x *DeleteCatalogResponse) String() string {
 func (*DeleteCatalogResponse) ProtoMessage() {}
 
 func (x *DeleteCatalogResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[28]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2385,7 +3126,7 @@ func (x *DeleteCatalogResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteCatalogResponse.ProtoReflect.Descriptor instead.
 func (*DeleteCatalogResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{28}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *DeleteCatalogResponse) GetCatalog() *Catalog {
@@ -2488,7 +3229,7 @@ type File struct {
 
 func (x *File) Reset() {
 	*x = File{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[29]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2500,7 +3241,7 @@ func (x *File) String() string {
 func (*File) ProtoMessage() {}
 
 func (x *File) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[29]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2513,7 +3254,7 @@ func (x *File) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use File.ProtoReflect.Descriptor instead.
 func (*File) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{29}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *File) GetFileUid() string {
@@ -2693,7 +3434,7 @@ type UploadCatalogFileRequest struct {
 
 func (x *UploadCatalogFileRequest) Reset() {
 	*x = UploadCatalogFileRequest{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[30]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2705,7 +3446,7 @@ func (x *UploadCatalogFileRequest) String() string {
 func (*UploadCatalogFileRequest) ProtoMessage() {}
 
 func (x *UploadCatalogFileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[30]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2718,7 +3459,7 @@ func (x *UploadCatalogFileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UploadCatalogFileRequest.ProtoReflect.Descriptor instead.
 func (*UploadCatalogFileRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{30}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *UploadCatalogFileRequest) GetNamespaceId() string {
@@ -2753,7 +3494,7 @@ type UploadCatalogFileResponse struct {
 
 func (x *UploadCatalogFileResponse) Reset() {
 	*x = UploadCatalogFileResponse{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[31]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2765,7 +3506,7 @@ func (x *UploadCatalogFileResponse) String() string {
 func (*UploadCatalogFileResponse) ProtoMessage() {}
 
 func (x *UploadCatalogFileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[31]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2778,7 +3519,7 @@ func (x *UploadCatalogFileResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UploadCatalogFileResponse.ProtoReflect.Descriptor instead.
 func (*UploadCatalogFileResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{31}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *UploadCatalogFileResponse) GetFile() *File {
@@ -2791,15 +3532,19 @@ func (x *UploadCatalogFileResponse) GetFile() *File {
 // delete file request
 type DeleteCatalogFileRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
+	// The namespace id.
+	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
+	// The catalog id.
+	CatalogId string `protobuf:"bytes,2,opt,name=catalog_id,json=catalogId,proto3" json:"catalog_id,omitempty"`
 	// The file uid.
-	FileUid       string `protobuf:"bytes,1,opt,name=file_uid,json=fileUid,proto3" json:"file_uid,omitempty"`
+	FileUid       string `protobuf:"bytes,3,opt,name=file_uid,json=fileUid,proto3" json:"file_uid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *DeleteCatalogFileRequest) Reset() {
 	*x = DeleteCatalogFileRequest{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[32]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2811,7 +3556,7 @@ func (x *DeleteCatalogFileRequest) String() string {
 func (*DeleteCatalogFileRequest) ProtoMessage() {}
 
 func (x *DeleteCatalogFileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[32]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2824,7 +3569,21 @@ func (x *DeleteCatalogFileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteCatalogFileRequest.ProtoReflect.Descriptor instead.
 func (*DeleteCatalogFileRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{32}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{46}
+}
+
+func (x *DeleteCatalogFileRequest) GetNamespaceId() string {
+	if x != nil {
+		return x.NamespaceId
+	}
+	return ""
+}
+
+func (x *DeleteCatalogFileRequest) GetCatalogId() string {
+	if x != nil {
+		return x.CatalogId
+	}
+	return ""
 }
 
 func (x *DeleteCatalogFileRequest) GetFileUid() string {
@@ -2845,7 +3604,7 @@ type DeleteCatalogFileResponse struct {
 
 func (x *DeleteCatalogFileResponse) Reset() {
 	*x = DeleteCatalogFileResponse{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[33]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2857,7 +3616,7 @@ func (x *DeleteCatalogFileResponse) String() string {
 func (*DeleteCatalogFileResponse) ProtoMessage() {}
 
 func (x *DeleteCatalogFileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[33]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2870,10 +3629,102 @@ func (x *DeleteCatalogFileResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteCatalogFileResponse.ProtoReflect.Descriptor instead.
 func (*DeleteCatalogFileResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{33}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *DeleteCatalogFileResponse) GetFileUid() string {
+	if x != nil {
+		return x.FileUid
+	}
+	return ""
+}
+
+// DeleteCatalogFileAdminRequest represents a request to delete a file (admin only).
+type DeleteCatalogFileAdminRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The file uid.
+	FileUid       string `protobuf:"bytes,1,opt,name=file_uid,json=fileUid,proto3" json:"file_uid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteCatalogFileAdminRequest) Reset() {
+	*x = DeleteCatalogFileAdminRequest{}
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[48]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteCatalogFileAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteCatalogFileAdminRequest) ProtoMessage() {}
+
+func (x *DeleteCatalogFileAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[48]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteCatalogFileAdminRequest.ProtoReflect.Descriptor instead.
+func (*DeleteCatalogFileAdminRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{48}
+}
+
+func (x *DeleteCatalogFileAdminRequest) GetFileUid() string {
+	if x != nil {
+		return x.FileUid
+	}
+	return ""
+}
+
+// DeleteCatalogFileAdminResponse represents a response for deleting a file (admin only).
+type DeleteCatalogFileAdminResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The file uid.
+	FileUid       string `protobuf:"bytes,1,opt,name=file_uid,json=fileUid,proto3" json:"file_uid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteCatalogFileAdminResponse) Reset() {
+	*x = DeleteCatalogFileAdminResponse{}
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[49]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteCatalogFileAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteCatalogFileAdminResponse) ProtoMessage() {}
+
+func (x *DeleteCatalogFileAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[49]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteCatalogFileAdminResponse.ProtoReflect.Descriptor instead.
+func (*DeleteCatalogFileAdminResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{49}
+}
+
+func (x *DeleteCatalogFileAdminResponse) GetFileUid() string {
 	if x != nil {
 		return x.FileUid
 	}
@@ -2891,7 +3742,7 @@ type ProcessCatalogFilesRequest struct {
 
 func (x *ProcessCatalogFilesRequest) Reset() {
 	*x = ProcessCatalogFilesRequest{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[34]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2903,7 +3754,7 @@ func (x *ProcessCatalogFilesRequest) String() string {
 func (*ProcessCatalogFilesRequest) ProtoMessage() {}
 
 func (x *ProcessCatalogFilesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[34]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2916,7 +3767,7 @@ func (x *ProcessCatalogFilesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProcessCatalogFilesRequest.ProtoReflect.Descriptor instead.
 func (*ProcessCatalogFilesRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{34}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *ProcessCatalogFilesRequest) GetFileUids() []string {
@@ -2937,7 +3788,7 @@ type ProcessCatalogFilesResponse struct {
 
 func (x *ProcessCatalogFilesResponse) Reset() {
 	*x = ProcessCatalogFilesResponse{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[35]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2949,7 +3800,7 @@ func (x *ProcessCatalogFilesResponse) String() string {
 func (*ProcessCatalogFilesResponse) ProtoMessage() {}
 
 func (x *ProcessCatalogFilesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[35]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2962,7 +3813,7 @@ func (x *ProcessCatalogFilesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProcessCatalogFilesResponse.ProtoReflect.Descriptor instead.
 func (*ProcessCatalogFilesResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{35}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *ProcessCatalogFilesResponse) GetFiles() []*File {
@@ -2986,7 +3837,7 @@ type ListCatalogFilesFilter struct {
 
 func (x *ListCatalogFilesFilter) Reset() {
 	*x = ListCatalogFilesFilter{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[36]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2998,7 +3849,7 @@ func (x *ListCatalogFilesFilter) String() string {
 func (*ListCatalogFilesFilter) ProtoMessage() {}
 
 func (x *ListCatalogFilesFilter) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[36]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3011,7 +3862,7 @@ func (x *ListCatalogFilesFilter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListCatalogFilesFilter.ProtoReflect.Descriptor instead.
 func (*ListCatalogFilesFilter) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{36}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *ListCatalogFilesFilter) GetFileUids() []string {
@@ -3047,7 +3898,7 @@ type ListCatalogFilesRequest struct {
 
 func (x *ListCatalogFilesRequest) Reset() {
 	*x = ListCatalogFilesRequest{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[37]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3059,7 +3910,7 @@ func (x *ListCatalogFilesRequest) String() string {
 func (*ListCatalogFilesRequest) ProtoMessage() {}
 
 func (x *ListCatalogFilesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[37]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3072,7 +3923,7 @@ func (x *ListCatalogFilesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListCatalogFilesRequest.ProtoReflect.Descriptor instead.
 func (*ListCatalogFilesRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{37}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *ListCatalogFilesRequest) GetNamespaceId() string {
@@ -3129,7 +3980,7 @@ type ListCatalogFilesResponse struct {
 
 func (x *ListCatalogFilesResponse) Reset() {
 	*x = ListCatalogFilesResponse{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[38]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3141,7 +3992,7 @@ func (x *ListCatalogFilesResponse) String() string {
 func (*ListCatalogFilesResponse) ProtoMessage() {}
 
 func (x *ListCatalogFilesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[38]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3154,7 +4005,7 @@ func (x *ListCatalogFilesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListCatalogFilesResponse.ProtoReflect.Descriptor instead.
 func (*ListCatalogFilesResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{38}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *ListCatalogFilesResponse) GetFiles() []*File {
@@ -3207,7 +4058,7 @@ type GetCatalogFileRequest struct {
 
 func (x *GetCatalogFileRequest) Reset() {
 	*x = GetCatalogFileRequest{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[39]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3219,7 +4070,7 @@ func (x *GetCatalogFileRequest) String() string {
 func (*GetCatalogFileRequest) ProtoMessage() {}
 
 func (x *GetCatalogFileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[39]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3232,7 +4083,7 @@ func (x *GetCatalogFileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCatalogFileRequest.ProtoReflect.Descriptor instead.
 func (*GetCatalogFileRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{39}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *GetCatalogFileRequest) GetNamespaceId() string {
@@ -3267,7 +4118,7 @@ type GetCatalogFileResponse struct {
 
 func (x *GetCatalogFileResponse) Reset() {
 	*x = GetCatalogFileResponse{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[40]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3279,7 +4130,7 @@ func (x *GetCatalogFileResponse) String() string {
 func (*GetCatalogFileResponse) ProtoMessage() {}
 
 func (x *GetCatalogFileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[40]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3292,7 +4143,7 @@ func (x *GetCatalogFileResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCatalogFileResponse.ProtoReflect.Descriptor instead.
 func (*GetCatalogFileResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{40}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *GetCatalogFileResponse) GetFile() *File {
@@ -3339,7 +4190,7 @@ type CatalogRun struct {
 
 func (x *CatalogRun) Reset() {
 	*x = CatalogRun{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[41]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3351,7 +4202,7 @@ func (x *CatalogRun) String() string {
 func (*CatalogRun) ProtoMessage() {}
 
 func (x *CatalogRun) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[41]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3364,7 +4215,7 @@ func (x *CatalogRun) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CatalogRun.ProtoReflect.Descriptor instead.
 func (*CatalogRun) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{41}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *CatalogRun) GetUid() string {
@@ -3482,7 +4333,7 @@ type ListCatalogRunsResponse struct {
 
 func (x *ListCatalogRunsResponse) Reset() {
 	*x = ListCatalogRunsResponse{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[42]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3494,7 +4345,7 @@ func (x *ListCatalogRunsResponse) String() string {
 func (*ListCatalogRunsResponse) ProtoMessage() {}
 
 func (x *ListCatalogRunsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[42]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3507,7 +4358,7 @@ func (x *ListCatalogRunsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListCatalogRunsResponse.ProtoReflect.Descriptor instead.
 func (*ListCatalogRunsResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{42}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *ListCatalogRunsResponse) GetCatalogRuns() []*CatalogRun {
@@ -3563,7 +4414,7 @@ type ListCatalogRunsRequest struct {
 
 func (x *ListCatalogRunsRequest) Reset() {
 	*x = ListCatalogRunsRequest{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[43]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3575,7 +4426,7 @@ func (x *ListCatalogRunsRequest) String() string {
 func (*ListCatalogRunsRequest) ProtoMessage() {}
 
 func (x *ListCatalogRunsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[43]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3588,7 +4439,7 @@ func (x *ListCatalogRunsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListCatalogRunsRequest.ProtoReflect.Descriptor instead.
 func (*ListCatalogRunsRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{43}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{59}
 }
 
 func (x *ListCatalogRunsRequest) GetNamespaceId() string {
@@ -3650,7 +4501,7 @@ type MoveFileToCatalogRequest struct {
 
 func (x *MoveFileToCatalogRequest) Reset() {
 	*x = MoveFileToCatalogRequest{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[44]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3662,7 +4513,7 @@ func (x *MoveFileToCatalogRequest) String() string {
 func (*MoveFileToCatalogRequest) ProtoMessage() {}
 
 func (x *MoveFileToCatalogRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[44]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3675,7 +4526,7 @@ func (x *MoveFileToCatalogRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MoveFileToCatalogRequest.ProtoReflect.Descriptor instead.
 func (*MoveFileToCatalogRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{44}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{60}
 }
 
 func (x *MoveFileToCatalogRequest) GetFileUid() string {
@@ -3717,7 +4568,7 @@ type MoveFileToCatalogResponse struct {
 
 func (x *MoveFileToCatalogResponse) Reset() {
 	*x = MoveFileToCatalogResponse{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[45]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3729,7 +4580,7 @@ func (x *MoveFileToCatalogResponse) String() string {
 func (*MoveFileToCatalogResponse) ProtoMessage() {}
 
 func (x *MoveFileToCatalogResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[45]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3742,7 +4593,7 @@ func (x *MoveFileToCatalogResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MoveFileToCatalogResponse.ProtoReflect.Descriptor instead.
 func (*MoveFileToCatalogResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{45}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{61}
 }
 
 func (x *MoveFileToCatalogResponse) GetFileUid() string {
@@ -3769,7 +4620,7 @@ type UpdateCatalogFileTagsRequest struct {
 
 func (x *UpdateCatalogFileTagsRequest) Reset() {
 	*x = UpdateCatalogFileTagsRequest{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[46]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3781,7 +4632,7 @@ func (x *UpdateCatalogFileTagsRequest) String() string {
 func (*UpdateCatalogFileTagsRequest) ProtoMessage() {}
 
 func (x *UpdateCatalogFileTagsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[46]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3794,7 +4645,7 @@ func (x *UpdateCatalogFileTagsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateCatalogFileTagsRequest.ProtoReflect.Descriptor instead.
 func (*UpdateCatalogFileTagsRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{46}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{62}
 }
 
 func (x *UpdateCatalogFileTagsRequest) GetNamespaceId() string {
@@ -3836,7 +4687,7 @@ type UpdateCatalogFileTagsResponse struct {
 
 func (x *UpdateCatalogFileTagsResponse) Reset() {
 	*x = UpdateCatalogFileTagsResponse{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[47]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3848,7 +4699,7 @@ func (x *UpdateCatalogFileTagsResponse) String() string {
 func (*UpdateCatalogFileTagsResponse) ProtoMessage() {}
 
 func (x *UpdateCatalogFileTagsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[47]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3861,7 +4712,7 @@ func (x *UpdateCatalogFileTagsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateCatalogFileTagsResponse.ProtoReflect.Descriptor instead.
 func (*UpdateCatalogFileTagsResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{47}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{63}
 }
 
 func (x *UpdateCatalogFileTagsResponse) GetFile() *File {
@@ -3884,7 +4735,7 @@ type Catalog_EmbeddingConfig struct {
 
 func (x *Catalog_EmbeddingConfig) Reset() {
 	*x = Catalog_EmbeddingConfig{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[48]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3896,7 +4747,7 @@ func (x *Catalog_EmbeddingConfig) String() string {
 func (*Catalog_EmbeddingConfig) ProtoMessage() {}
 
 func (x *Catalog_EmbeddingConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[48]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3909,7 +4760,7 @@ func (x *Catalog_EmbeddingConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Catalog_EmbeddingConfig.ProtoReflect.Descriptor instead.
 func (*Catalog_EmbeddingConfig) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{20, 0}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{34, 0}
 }
 
 func (x *Catalog_EmbeddingConfig) GetModelFamily() string {
@@ -3940,7 +4791,7 @@ type File_Position struct {
 
 func (x *File_Position) Reset() {
 	*x = File_Position{}
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[49]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3952,7 +4803,7 @@ func (x *File_Position) String() string {
 func (*File_Position) ProtoMessage() {}
 
 func (x *File_Position) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[49]
+	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3965,7 +4816,7 @@ func (x *File_Position) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use File_Position.ProtoReflect.Descriptor instead.
 func (*File_Position) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{29, 0}
+	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{43, 0}
 }
 
 func (x *File_Position) GetUnit() File_Position_Unit {
@@ -4026,7 +4877,31 @@ const file_artifact_artifact_v1alpha_artifact_proto_rawDesc = "" +
 	"\x03tag\x18\x01 \x01(\v2(.artifact.artifact.v1alpha.RepositoryTagR\x03tag\"5\n" +
 	"\x1aDeleteRepositoryTagRequest\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"\x1d\n" +
-	"\x1bDeleteRepositoryTagResponse\"\xd1\x03\n" +
+	"\x1bDeleteRepositoryTagResponse\"\x99\x01\n" +
+	"\x1eListRepositoryTagsAdminRequest\x12%\n" +
+	"\tpage_size\x18\x01 \x01(\x05B\x03\xe0A\x01H\x00R\bpageSize\x88\x01\x01\x12\x1c\n" +
+	"\x04page\x18\x02 \x01(\x05B\x03\xe0A\x01H\x01R\x04page\x88\x01\x01\x12\x1b\n" +
+	"\x06parent\x18\x03 \x01(\tB\x03\xe0A\x02R\x06parentB\f\n" +
+	"\n" +
+	"_page_sizeB\a\n" +
+	"\x05_page\"\xaf\x01\n" +
+	"\x1fListRepositoryTagsAdminResponse\x12<\n" +
+	"\x04tags\x18\x01 \x03(\v2(.artifact.artifact.v1alpha.RepositoryTagR\x04tags\x12\x1d\n" +
+	"\n" +
+	"total_size\x18\x02 \x01(\x05R\ttotalSize\x12\x1b\n" +
+	"\tpage_size\x18\x03 \x01(\x05R\bpageSize\x12\x12\n" +
+	"\x04page\x18\x04 \x01(\x05R\x04page\"7\n" +
+	"\x1cGetRepositoryTagAdminRequest\x12\x17\n" +
+	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"[\n" +
+	"\x1dGetRepositoryTagAdminResponse\x12:\n" +
+	"\x03tag\x18\x01 \x01(\v2(.artifact.artifact.v1alpha.RepositoryTagR\x03tag\"]\n" +
+	"\x1fCreateRepositoryTagAdminRequest\x12:\n" +
+	"\x03tag\x18\x01 \x01(\v2(.artifact.artifact.v1alpha.RepositoryTagR\x03tag\"^\n" +
+	" CreateRepositoryTagAdminResponse\x12:\n" +
+	"\x03tag\x18\x01 \x01(\v2(.artifact.artifact.v1alpha.RepositoryTagR\x03tag\":\n" +
+	"\x1fDeleteRepositoryTagAdminRequest\x12\x17\n" +
+	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"\"\n" +
+	" DeleteRepositoryTagAdminResponse\"\xd1\x03\n" +
 	"\tObjectURL\x12\x10\n" +
 	"\x03uid\x18\x01 \x01(\tR\x03uid\x12#\n" +
 	"\rnamespace_uid\x18\x02 \x01(\tR\fnamespaceUid\x12\x1d\n" +
@@ -4067,7 +4942,31 @@ const file_artifact_artifact_v1alpha_artifact_proto_rawDesc = "" +
 	"\f_is_uploadedB\x15\n" +
 	"\x13_last_modified_time\"Q\n" +
 	"\x14UpdateObjectResponse\x129\n" +
-	"\x06object\x18\x01 \x01(\v2!.artifact.artifact.v1alpha.ObjectR\x06object\"\x9b\x06\n" +
+	"\x06object\x18\x01 \x01(\v2!.artifact.artifact.v1alpha.ObjectR\x06object\")\n" +
+	"\x15GetObjectAdminRequest\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\"S\n" +
+	"\x16GetObjectAdminResponse\x129\n" +
+	"\x06object\x18\x01 \x01(\v2!.artifact.artifact.v1alpha.ObjectR\x06object\"p\n" +
+	"\x18GetObjectURLAdminRequest\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\x12-\n" +
+	"\x10encoded_url_path\x18\x02 \x01(\tH\x00R\x0eencodedUrlPath\x88\x01\x01B\x13\n" +
+	"\x11_encoded_url_path\"`\n" +
+	"\x19GetObjectURLAdminResponse\x12C\n" +
+	"\n" +
+	"object_url\x18\x01 \x01(\v2$.artifact.artifact.v1alpha.ObjectURLR\tobjectUrl\"\x8c\x02\n" +
+	"\x18UpdateObjectAdminRequest\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x17\n" +
+	"\x04size\x18\x02 \x01(\x03H\x00R\x04size\x88\x01\x01\x12\x17\n" +
+	"\x04type\x18\x03 \x01(\tH\x01R\x04type\x88\x01\x01\x12$\n" +
+	"\vis_uploaded\x18\x04 \x01(\bH\x02R\n" +
+	"isUploaded\x88\x01\x01\x12M\n" +
+	"\x12last_modified_time\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampH\x03R\x10lastModifiedTime\x88\x01\x01B\a\n" +
+	"\x05_sizeB\a\n" +
+	"\x05_typeB\x0e\n" +
+	"\f_is_uploadedB\x15\n" +
+	"\x13_last_modified_time\"V\n" +
+	"\x19UpdateObjectAdminResponse\x129\n" +
+	"\x06object\x18\x01 \x01(\v2!.artifact.artifact.v1alpha.ObjectR\x06object\"\xcf\x06\n" +
 	"\aCatalog\x12\x1f\n" +
 	"\vcatalog_uid\x18\x01 \x01(\tR\n" +
 	"catalogUid\x12\x1d\n" +
@@ -4092,7 +4991,8 @@ const file_artifact_artifact_v1alpha_artifact_proto_rawDesc = "" +
 	"\ftotal_tokens\x18\x0e \x01(\rR\vtotalTokens\x12!\n" +
 	"\fused_storage\x18\x0f \x01(\x04R\vusedStorage\x127\n" +
 	"\x15summarizing_pipelines\x18\x10 \x03(\tB\x02\x18\x01R\x14summarizingPipelines\x12]\n" +
-	"\x10embedding_config\x18\x11 \x01(\v22.artifact.artifact.v1alpha.Catalog.EmbeddingConfigR\x0fembeddingConfig\x1a\\\n" +
+	"\x10embedding_config\x18\x11 \x01(\v22.artifact.artifact.v1alpha.Catalog.EmbeddingConfigR\x0fembeddingConfig\x122\n" +
+	"\x15active_collection_uid\x18\x12 \x01(\tR\x13activeCollectionUid\x1a\\\n" +
 	"\x0fEmbeddingConfig\x12!\n" +
 	"\fmodel_family\x18\x01 \x01(\tR\vmodelFamily\x12&\n" +
 	"\x0edimensionality\x18\x02 \x01(\rR\x0edimensionality\"\xf2\x01\n" +
@@ -4213,10 +5113,17 @@ const file_artifact_artifact_v1alpha_artifact_proto_rawDesc = "" +
 	"catalog_id\x18\x02 \x01(\tB\x03\xe0A\x02R\tcatalogId\x123\n" +
 	"\x04file\x18\x03 \x01(\v2\x1f.artifact.artifact.v1alpha.FileR\x04file\"P\n" +
 	"\x19UploadCatalogFileResponse\x123\n" +
-	"\x04file\x18\x01 \x01(\v2\x1f.artifact.artifact.v1alpha.FileR\x04file\":\n" +
-	"\x18DeleteCatalogFileRequest\x12\x1e\n" +
-	"\bfile_uid\x18\x01 \x01(\tB\x03\xe0A\x02R\afileUid\"6\n" +
+	"\x04file\x18\x01 \x01(\v2\x1f.artifact.artifact.v1alpha.FileR\x04file\"\x86\x01\n" +
+	"\x18DeleteCatalogFileRequest\x12&\n" +
+	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\"\n" +
+	"\n" +
+	"catalog_id\x18\x02 \x01(\tB\x03\xe0A\x02R\tcatalogId\x12\x1e\n" +
+	"\bfile_uid\x18\x03 \x01(\tB\x03\xe0A\x02R\afileUid\"6\n" +
 	"\x19DeleteCatalogFileResponse\x12\x19\n" +
+	"\bfile_uid\x18\x01 \x01(\tR\afileUid\"?\n" +
+	"\x1dDeleteCatalogFileAdminRequest\x12\x1e\n" +
+	"\bfile_uid\x18\x01 \x01(\tB\x03\xe0A\x02R\afileUid\";\n" +
+	"\x1eDeleteCatalogFileAdminResponse\x12\x19\n" +
 	"\bfile_uid\x18\x01 \x01(\tR\afileUid\">\n" +
 	"\x1aProcessCatalogFilesRequest\x12 \n" +
 	"\tfile_uids\x18\x01 \x03(\tB\x03\xe0A\x02R\bfileUids\"T\n" +
@@ -4348,125 +5255,149 @@ func file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP() []byte {
 }
 
 var file_artifact_artifact_v1alpha_artifact_proto_enumTypes = make([]protoimpl.EnumInfo, 6)
-var file_artifact_artifact_v1alpha_artifact_proto_msgTypes = make([]protoimpl.MessageInfo, 50)
+var file_artifact_artifact_v1alpha_artifact_proto_msgTypes = make([]protoimpl.MessageInfo, 66)
 var file_artifact_artifact_v1alpha_artifact_proto_goTypes = []any{
-	(CatalogType)(0),                      // 0: artifact.artifact.v1alpha.CatalogType
-	(FileProcessStatus)(0),                // 1: artifact.artifact.v1alpha.FileProcessStatus
-	(ConvertedFileType)(0),                // 2: artifact.artifact.v1alpha.ConvertedFileType
-	(CatalogRunAction)(0),                 // 3: artifact.artifact.v1alpha.CatalogRunAction
-	(File_Type)(0),                        // 4: artifact.artifact.v1alpha.File.Type
-	(File_Position_Unit)(0),               // 5: artifact.artifact.v1alpha.File.Position.Unit
-	(*LivenessRequest)(nil),               // 6: artifact.artifact.v1alpha.LivenessRequest
-	(*LivenessResponse)(nil),              // 7: artifact.artifact.v1alpha.LivenessResponse
-	(*ReadinessRequest)(nil),              // 8: artifact.artifact.v1alpha.ReadinessRequest
-	(*ReadinessResponse)(nil),             // 9: artifact.artifact.v1alpha.ReadinessResponse
-	(*RepositoryTag)(nil),                 // 10: artifact.artifact.v1alpha.RepositoryTag
-	(*ListRepositoryTagsRequest)(nil),     // 11: artifact.artifact.v1alpha.ListRepositoryTagsRequest
-	(*ListRepositoryTagsResponse)(nil),    // 12: artifact.artifact.v1alpha.ListRepositoryTagsResponse
-	(*CreateRepositoryTagRequest)(nil),    // 13: artifact.artifact.v1alpha.CreateRepositoryTagRequest
-	(*CreateRepositoryTagResponse)(nil),   // 14: artifact.artifact.v1alpha.CreateRepositoryTagResponse
-	(*GetRepositoryTagRequest)(nil),       // 15: artifact.artifact.v1alpha.GetRepositoryTagRequest
-	(*GetRepositoryTagResponse)(nil),      // 16: artifact.artifact.v1alpha.GetRepositoryTagResponse
-	(*DeleteRepositoryTagRequest)(nil),    // 17: artifact.artifact.v1alpha.DeleteRepositoryTagRequest
-	(*DeleteRepositoryTagResponse)(nil),   // 18: artifact.artifact.v1alpha.DeleteRepositoryTagResponse
-	(*ObjectURL)(nil),                     // 19: artifact.artifact.v1alpha.ObjectURL
-	(*GetObjectRequest)(nil),              // 20: artifact.artifact.v1alpha.GetObjectRequest
-	(*GetObjectResponse)(nil),             // 21: artifact.artifact.v1alpha.GetObjectResponse
-	(*GetObjectURLRequest)(nil),           // 22: artifact.artifact.v1alpha.GetObjectURLRequest
-	(*GetObjectURLResponse)(nil),          // 23: artifact.artifact.v1alpha.GetObjectURLResponse
-	(*UpdateObjectRequest)(nil),           // 24: artifact.artifact.v1alpha.UpdateObjectRequest
-	(*UpdateObjectResponse)(nil),          // 25: artifact.artifact.v1alpha.UpdateObjectResponse
-	(*Catalog)(nil),                       // 26: artifact.artifact.v1alpha.Catalog
-	(*CreateCatalogRequest)(nil),          // 27: artifact.artifact.v1alpha.CreateCatalogRequest
-	(*CreateCatalogResponse)(nil),         // 28: artifact.artifact.v1alpha.CreateCatalogResponse
-	(*ListCatalogsRequest)(nil),           // 29: artifact.artifact.v1alpha.ListCatalogsRequest
-	(*ListCatalogsResponse)(nil),          // 30: artifact.artifact.v1alpha.ListCatalogsResponse
-	(*UpdateCatalogRequest)(nil),          // 31: artifact.artifact.v1alpha.UpdateCatalogRequest
-	(*UpdateCatalogResponse)(nil),         // 32: artifact.artifact.v1alpha.UpdateCatalogResponse
-	(*DeleteCatalogRequest)(nil),          // 33: artifact.artifact.v1alpha.DeleteCatalogRequest
-	(*DeleteCatalogResponse)(nil),         // 34: artifact.artifact.v1alpha.DeleteCatalogResponse
-	(*File)(nil),                          // 35: artifact.artifact.v1alpha.File
-	(*UploadCatalogFileRequest)(nil),      // 36: artifact.artifact.v1alpha.UploadCatalogFileRequest
-	(*UploadCatalogFileResponse)(nil),     // 37: artifact.artifact.v1alpha.UploadCatalogFileResponse
-	(*DeleteCatalogFileRequest)(nil),      // 38: artifact.artifact.v1alpha.DeleteCatalogFileRequest
-	(*DeleteCatalogFileResponse)(nil),     // 39: artifact.artifact.v1alpha.DeleteCatalogFileResponse
-	(*ProcessCatalogFilesRequest)(nil),    // 40: artifact.artifact.v1alpha.ProcessCatalogFilesRequest
-	(*ProcessCatalogFilesResponse)(nil),   // 41: artifact.artifact.v1alpha.ProcessCatalogFilesResponse
-	(*ListCatalogFilesFilter)(nil),        // 42: artifact.artifact.v1alpha.ListCatalogFilesFilter
-	(*ListCatalogFilesRequest)(nil),       // 43: artifact.artifact.v1alpha.ListCatalogFilesRequest
-	(*ListCatalogFilesResponse)(nil),      // 44: artifact.artifact.v1alpha.ListCatalogFilesResponse
-	(*GetCatalogFileRequest)(nil),         // 45: artifact.artifact.v1alpha.GetCatalogFileRequest
-	(*GetCatalogFileResponse)(nil),        // 46: artifact.artifact.v1alpha.GetCatalogFileResponse
-	(*CatalogRun)(nil),                    // 47: artifact.artifact.v1alpha.CatalogRun
-	(*ListCatalogRunsResponse)(nil),       // 48: artifact.artifact.v1alpha.ListCatalogRunsResponse
-	(*ListCatalogRunsRequest)(nil),        // 49: artifact.artifact.v1alpha.ListCatalogRunsRequest
-	(*MoveFileToCatalogRequest)(nil),      // 50: artifact.artifact.v1alpha.MoveFileToCatalogRequest
-	(*MoveFileToCatalogResponse)(nil),     // 51: artifact.artifact.v1alpha.MoveFileToCatalogResponse
-	(*UpdateCatalogFileTagsRequest)(nil),  // 52: artifact.artifact.v1alpha.UpdateCatalogFileTagsRequest
-	(*UpdateCatalogFileTagsResponse)(nil), // 53: artifact.artifact.v1alpha.UpdateCatalogFileTagsResponse
-	(*Catalog_EmbeddingConfig)(nil),       // 54: artifact.artifact.v1alpha.Catalog.EmbeddingConfig
-	(*File_Position)(nil),                 // 55: artifact.artifact.v1alpha.File.Position
-	(*v1beta.HealthCheckRequest)(nil),     // 56: common.healthcheck.v1beta.HealthCheckRequest
-	(*v1beta.HealthCheckResponse)(nil),    // 57: common.healthcheck.v1beta.HealthCheckResponse
-	(*timestamppb.Timestamp)(nil),         // 58: google.protobuf.Timestamp
-	(*Object)(nil),                        // 59: artifact.artifact.v1alpha.Object
-	(*structpb.Struct)(nil),               // 60: google.protobuf.Struct
-	(v1alpha.RunStatus)(0),                // 61: common.run.v1alpha.RunStatus
-	(v1alpha.RunSource)(0),                // 62: common.run.v1alpha.RunSource
+	(CatalogType)(0),                         // 0: artifact.artifact.v1alpha.CatalogType
+	(FileProcessStatus)(0),                   // 1: artifact.artifact.v1alpha.FileProcessStatus
+	(ConvertedFileType)(0),                   // 2: artifact.artifact.v1alpha.ConvertedFileType
+	(CatalogRunAction)(0),                    // 3: artifact.artifact.v1alpha.CatalogRunAction
+	(File_Type)(0),                           // 4: artifact.artifact.v1alpha.File.Type
+	(File_Position_Unit)(0),                  // 5: artifact.artifact.v1alpha.File.Position.Unit
+	(*LivenessRequest)(nil),                  // 6: artifact.artifact.v1alpha.LivenessRequest
+	(*LivenessResponse)(nil),                 // 7: artifact.artifact.v1alpha.LivenessResponse
+	(*ReadinessRequest)(nil),                 // 8: artifact.artifact.v1alpha.ReadinessRequest
+	(*ReadinessResponse)(nil),                // 9: artifact.artifact.v1alpha.ReadinessResponse
+	(*RepositoryTag)(nil),                    // 10: artifact.artifact.v1alpha.RepositoryTag
+	(*ListRepositoryTagsRequest)(nil),        // 11: artifact.artifact.v1alpha.ListRepositoryTagsRequest
+	(*ListRepositoryTagsResponse)(nil),       // 12: artifact.artifact.v1alpha.ListRepositoryTagsResponse
+	(*CreateRepositoryTagRequest)(nil),       // 13: artifact.artifact.v1alpha.CreateRepositoryTagRequest
+	(*CreateRepositoryTagResponse)(nil),      // 14: artifact.artifact.v1alpha.CreateRepositoryTagResponse
+	(*GetRepositoryTagRequest)(nil),          // 15: artifact.artifact.v1alpha.GetRepositoryTagRequest
+	(*GetRepositoryTagResponse)(nil),         // 16: artifact.artifact.v1alpha.GetRepositoryTagResponse
+	(*DeleteRepositoryTagRequest)(nil),       // 17: artifact.artifact.v1alpha.DeleteRepositoryTagRequest
+	(*DeleteRepositoryTagResponse)(nil),      // 18: artifact.artifact.v1alpha.DeleteRepositoryTagResponse
+	(*ListRepositoryTagsAdminRequest)(nil),   // 19: artifact.artifact.v1alpha.ListRepositoryTagsAdminRequest
+	(*ListRepositoryTagsAdminResponse)(nil),  // 20: artifact.artifact.v1alpha.ListRepositoryTagsAdminResponse
+	(*GetRepositoryTagAdminRequest)(nil),     // 21: artifact.artifact.v1alpha.GetRepositoryTagAdminRequest
+	(*GetRepositoryTagAdminResponse)(nil),    // 22: artifact.artifact.v1alpha.GetRepositoryTagAdminResponse
+	(*CreateRepositoryTagAdminRequest)(nil),  // 23: artifact.artifact.v1alpha.CreateRepositoryTagAdminRequest
+	(*CreateRepositoryTagAdminResponse)(nil), // 24: artifact.artifact.v1alpha.CreateRepositoryTagAdminResponse
+	(*DeleteRepositoryTagAdminRequest)(nil),  // 25: artifact.artifact.v1alpha.DeleteRepositoryTagAdminRequest
+	(*DeleteRepositoryTagAdminResponse)(nil), // 26: artifact.artifact.v1alpha.DeleteRepositoryTagAdminResponse
+	(*ObjectURL)(nil),                        // 27: artifact.artifact.v1alpha.ObjectURL
+	(*GetObjectRequest)(nil),                 // 28: artifact.artifact.v1alpha.GetObjectRequest
+	(*GetObjectResponse)(nil),                // 29: artifact.artifact.v1alpha.GetObjectResponse
+	(*GetObjectURLRequest)(nil),              // 30: artifact.artifact.v1alpha.GetObjectURLRequest
+	(*GetObjectURLResponse)(nil),             // 31: artifact.artifact.v1alpha.GetObjectURLResponse
+	(*UpdateObjectRequest)(nil),              // 32: artifact.artifact.v1alpha.UpdateObjectRequest
+	(*UpdateObjectResponse)(nil),             // 33: artifact.artifact.v1alpha.UpdateObjectResponse
+	(*GetObjectAdminRequest)(nil),            // 34: artifact.artifact.v1alpha.GetObjectAdminRequest
+	(*GetObjectAdminResponse)(nil),           // 35: artifact.artifact.v1alpha.GetObjectAdminResponse
+	(*GetObjectURLAdminRequest)(nil),         // 36: artifact.artifact.v1alpha.GetObjectURLAdminRequest
+	(*GetObjectURLAdminResponse)(nil),        // 37: artifact.artifact.v1alpha.GetObjectURLAdminResponse
+	(*UpdateObjectAdminRequest)(nil),         // 38: artifact.artifact.v1alpha.UpdateObjectAdminRequest
+	(*UpdateObjectAdminResponse)(nil),        // 39: artifact.artifact.v1alpha.UpdateObjectAdminResponse
+	(*Catalog)(nil),                          // 40: artifact.artifact.v1alpha.Catalog
+	(*CreateCatalogRequest)(nil),             // 41: artifact.artifact.v1alpha.CreateCatalogRequest
+	(*CreateCatalogResponse)(nil),            // 42: artifact.artifact.v1alpha.CreateCatalogResponse
+	(*ListCatalogsRequest)(nil),              // 43: artifact.artifact.v1alpha.ListCatalogsRequest
+	(*ListCatalogsResponse)(nil),             // 44: artifact.artifact.v1alpha.ListCatalogsResponse
+	(*UpdateCatalogRequest)(nil),             // 45: artifact.artifact.v1alpha.UpdateCatalogRequest
+	(*UpdateCatalogResponse)(nil),            // 46: artifact.artifact.v1alpha.UpdateCatalogResponse
+	(*DeleteCatalogRequest)(nil),             // 47: artifact.artifact.v1alpha.DeleteCatalogRequest
+	(*DeleteCatalogResponse)(nil),            // 48: artifact.artifact.v1alpha.DeleteCatalogResponse
+	(*File)(nil),                             // 49: artifact.artifact.v1alpha.File
+	(*UploadCatalogFileRequest)(nil),         // 50: artifact.artifact.v1alpha.UploadCatalogFileRequest
+	(*UploadCatalogFileResponse)(nil),        // 51: artifact.artifact.v1alpha.UploadCatalogFileResponse
+	(*DeleteCatalogFileRequest)(nil),         // 52: artifact.artifact.v1alpha.DeleteCatalogFileRequest
+	(*DeleteCatalogFileResponse)(nil),        // 53: artifact.artifact.v1alpha.DeleteCatalogFileResponse
+	(*DeleteCatalogFileAdminRequest)(nil),    // 54: artifact.artifact.v1alpha.DeleteCatalogFileAdminRequest
+	(*DeleteCatalogFileAdminResponse)(nil),   // 55: artifact.artifact.v1alpha.DeleteCatalogFileAdminResponse
+	(*ProcessCatalogFilesRequest)(nil),       // 56: artifact.artifact.v1alpha.ProcessCatalogFilesRequest
+	(*ProcessCatalogFilesResponse)(nil),      // 57: artifact.artifact.v1alpha.ProcessCatalogFilesResponse
+	(*ListCatalogFilesFilter)(nil),           // 58: artifact.artifact.v1alpha.ListCatalogFilesFilter
+	(*ListCatalogFilesRequest)(nil),          // 59: artifact.artifact.v1alpha.ListCatalogFilesRequest
+	(*ListCatalogFilesResponse)(nil),         // 60: artifact.artifact.v1alpha.ListCatalogFilesResponse
+	(*GetCatalogFileRequest)(nil),            // 61: artifact.artifact.v1alpha.GetCatalogFileRequest
+	(*GetCatalogFileResponse)(nil),           // 62: artifact.artifact.v1alpha.GetCatalogFileResponse
+	(*CatalogRun)(nil),                       // 63: artifact.artifact.v1alpha.CatalogRun
+	(*ListCatalogRunsResponse)(nil),          // 64: artifact.artifact.v1alpha.ListCatalogRunsResponse
+	(*ListCatalogRunsRequest)(nil),           // 65: artifact.artifact.v1alpha.ListCatalogRunsRequest
+	(*MoveFileToCatalogRequest)(nil),         // 66: artifact.artifact.v1alpha.MoveFileToCatalogRequest
+	(*MoveFileToCatalogResponse)(nil),        // 67: artifact.artifact.v1alpha.MoveFileToCatalogResponse
+	(*UpdateCatalogFileTagsRequest)(nil),     // 68: artifact.artifact.v1alpha.UpdateCatalogFileTagsRequest
+	(*UpdateCatalogFileTagsResponse)(nil),    // 69: artifact.artifact.v1alpha.UpdateCatalogFileTagsResponse
+	(*Catalog_EmbeddingConfig)(nil),          // 70: artifact.artifact.v1alpha.Catalog.EmbeddingConfig
+	(*File_Position)(nil),                    // 71: artifact.artifact.v1alpha.File.Position
+	(*v1beta.HealthCheckRequest)(nil),        // 72: common.healthcheck.v1beta.HealthCheckRequest
+	(*v1beta.HealthCheckResponse)(nil),       // 73: common.healthcheck.v1beta.HealthCheckResponse
+	(*timestamppb.Timestamp)(nil),            // 74: google.protobuf.Timestamp
+	(*Object)(nil),                           // 75: artifact.artifact.v1alpha.Object
+	(*structpb.Struct)(nil),                  // 76: google.protobuf.Struct
+	(v1alpha.RunStatus)(0),                   // 77: common.run.v1alpha.RunStatus
+	(v1alpha.RunSource)(0),                   // 78: common.run.v1alpha.RunSource
 }
 var file_artifact_artifact_v1alpha_artifact_proto_depIdxs = []int32{
-	56, // 0: artifact.artifact.v1alpha.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	57, // 1: artifact.artifact.v1alpha.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
-	56, // 2: artifact.artifact.v1alpha.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	57, // 3: artifact.artifact.v1alpha.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
-	58, // 4: artifact.artifact.v1alpha.RepositoryTag.update_time:type_name -> google.protobuf.Timestamp
+	72, // 0: artifact.artifact.v1alpha.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	73, // 1: artifact.artifact.v1alpha.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	72, // 2: artifact.artifact.v1alpha.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	73, // 3: artifact.artifact.v1alpha.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	74, // 4: artifact.artifact.v1alpha.RepositoryTag.update_time:type_name -> google.protobuf.Timestamp
 	10, // 5: artifact.artifact.v1alpha.ListRepositoryTagsResponse.tags:type_name -> artifact.artifact.v1alpha.RepositoryTag
 	10, // 6: artifact.artifact.v1alpha.CreateRepositoryTagRequest.tag:type_name -> artifact.artifact.v1alpha.RepositoryTag
 	10, // 7: artifact.artifact.v1alpha.CreateRepositoryTagResponse.tag:type_name -> artifact.artifact.v1alpha.RepositoryTag
 	10, // 8: artifact.artifact.v1alpha.GetRepositoryTagResponse.tag:type_name -> artifact.artifact.v1alpha.RepositoryTag
-	58, // 9: artifact.artifact.v1alpha.ObjectURL.url_expire_at:type_name -> google.protobuf.Timestamp
-	58, // 10: artifact.artifact.v1alpha.ObjectURL.create_time:type_name -> google.protobuf.Timestamp
-	58, // 11: artifact.artifact.v1alpha.ObjectURL.update_time:type_name -> google.protobuf.Timestamp
-	58, // 12: artifact.artifact.v1alpha.ObjectURL.delete_time:type_name -> google.protobuf.Timestamp
-	59, // 13: artifact.artifact.v1alpha.GetObjectResponse.object:type_name -> artifact.artifact.v1alpha.Object
-	19, // 14: artifact.artifact.v1alpha.GetObjectURLResponse.object_url:type_name -> artifact.artifact.v1alpha.ObjectURL
-	58, // 15: artifact.artifact.v1alpha.UpdateObjectRequest.last_modified_time:type_name -> google.protobuf.Timestamp
-	59, // 16: artifact.artifact.v1alpha.UpdateObjectResponse.object:type_name -> artifact.artifact.v1alpha.Object
-	54, // 17: artifact.artifact.v1alpha.Catalog.embedding_config:type_name -> artifact.artifact.v1alpha.Catalog.EmbeddingConfig
-	0,  // 18: artifact.artifact.v1alpha.CreateCatalogRequest.type:type_name -> artifact.artifact.v1alpha.CatalogType
-	26, // 19: artifact.artifact.v1alpha.CreateCatalogResponse.catalog:type_name -> artifact.artifact.v1alpha.Catalog
-	26, // 20: artifact.artifact.v1alpha.ListCatalogsResponse.catalogs:type_name -> artifact.artifact.v1alpha.Catalog
-	26, // 21: artifact.artifact.v1alpha.UpdateCatalogResponse.catalog:type_name -> artifact.artifact.v1alpha.Catalog
-	26, // 22: artifact.artifact.v1alpha.DeleteCatalogResponse.catalog:type_name -> artifact.artifact.v1alpha.Catalog
-	4,  // 23: artifact.artifact.v1alpha.File.type:type_name -> artifact.artifact.v1alpha.File.Type
-	1,  // 24: artifact.artifact.v1alpha.File.process_status:type_name -> artifact.artifact.v1alpha.FileProcessStatus
-	58, // 25: artifact.artifact.v1alpha.File.create_time:type_name -> google.protobuf.Timestamp
-	58, // 26: artifact.artifact.v1alpha.File.update_time:type_name -> google.protobuf.Timestamp
-	58, // 27: artifact.artifact.v1alpha.File.delete_time:type_name -> google.protobuf.Timestamp
-	60, // 28: artifact.artifact.v1alpha.File.external_metadata:type_name -> google.protobuf.Struct
-	55, // 29: artifact.artifact.v1alpha.File.length:type_name -> artifact.artifact.v1alpha.File.Position
-	35, // 30: artifact.artifact.v1alpha.UploadCatalogFileRequest.file:type_name -> artifact.artifact.v1alpha.File
-	35, // 31: artifact.artifact.v1alpha.UploadCatalogFileResponse.file:type_name -> artifact.artifact.v1alpha.File
-	35, // 32: artifact.artifact.v1alpha.ProcessCatalogFilesResponse.files:type_name -> artifact.artifact.v1alpha.File
-	1,  // 33: artifact.artifact.v1alpha.ListCatalogFilesFilter.process_status:type_name -> artifact.artifact.v1alpha.FileProcessStatus
-	42, // 34: artifact.artifact.v1alpha.ListCatalogFilesRequest.filter:type_name -> artifact.artifact.v1alpha.ListCatalogFilesFilter
-	35, // 35: artifact.artifact.v1alpha.ListCatalogFilesResponse.files:type_name -> artifact.artifact.v1alpha.File
-	42, // 36: artifact.artifact.v1alpha.ListCatalogFilesResponse.filter:type_name -> artifact.artifact.v1alpha.ListCatalogFilesFilter
-	35, // 37: artifact.artifact.v1alpha.GetCatalogFileResponse.file:type_name -> artifact.artifact.v1alpha.File
-	3,  // 38: artifact.artifact.v1alpha.CatalogRun.action:type_name -> artifact.artifact.v1alpha.CatalogRunAction
-	61, // 39: artifact.artifact.v1alpha.CatalogRun.status:type_name -> common.run.v1alpha.RunStatus
-	62, // 40: artifact.artifact.v1alpha.CatalogRun.source:type_name -> common.run.v1alpha.RunSource
-	60, // 41: artifact.artifact.v1alpha.CatalogRun.payload:type_name -> google.protobuf.Struct
-	58, // 42: artifact.artifact.v1alpha.CatalogRun.start_time:type_name -> google.protobuf.Timestamp
-	58, // 43: artifact.artifact.v1alpha.CatalogRun.complete_time:type_name -> google.protobuf.Timestamp
-	47, // 44: artifact.artifact.v1alpha.ListCatalogRunsResponse.catalog_runs:type_name -> artifact.artifact.v1alpha.CatalogRun
-	35, // 45: artifact.artifact.v1alpha.UpdateCatalogFileTagsResponse.file:type_name -> artifact.artifact.v1alpha.File
-	5,  // 46: artifact.artifact.v1alpha.File.Position.unit:type_name -> artifact.artifact.v1alpha.File.Position.Unit
-	47, // [47:47] is the sub-list for method output_type
-	47, // [47:47] is the sub-list for method input_type
-	47, // [47:47] is the sub-list for extension type_name
-	47, // [47:47] is the sub-list for extension extendee
-	0,  // [0:47] is the sub-list for field type_name
+	10, // 9: artifact.artifact.v1alpha.ListRepositoryTagsAdminResponse.tags:type_name -> artifact.artifact.v1alpha.RepositoryTag
+	10, // 10: artifact.artifact.v1alpha.GetRepositoryTagAdminResponse.tag:type_name -> artifact.artifact.v1alpha.RepositoryTag
+	10, // 11: artifact.artifact.v1alpha.CreateRepositoryTagAdminRequest.tag:type_name -> artifact.artifact.v1alpha.RepositoryTag
+	10, // 12: artifact.artifact.v1alpha.CreateRepositoryTagAdminResponse.tag:type_name -> artifact.artifact.v1alpha.RepositoryTag
+	74, // 13: artifact.artifact.v1alpha.ObjectURL.url_expire_at:type_name -> google.protobuf.Timestamp
+	74, // 14: artifact.artifact.v1alpha.ObjectURL.create_time:type_name -> google.protobuf.Timestamp
+	74, // 15: artifact.artifact.v1alpha.ObjectURL.update_time:type_name -> google.protobuf.Timestamp
+	74, // 16: artifact.artifact.v1alpha.ObjectURL.delete_time:type_name -> google.protobuf.Timestamp
+	75, // 17: artifact.artifact.v1alpha.GetObjectResponse.object:type_name -> artifact.artifact.v1alpha.Object
+	27, // 18: artifact.artifact.v1alpha.GetObjectURLResponse.object_url:type_name -> artifact.artifact.v1alpha.ObjectURL
+	74, // 19: artifact.artifact.v1alpha.UpdateObjectRequest.last_modified_time:type_name -> google.protobuf.Timestamp
+	75, // 20: artifact.artifact.v1alpha.UpdateObjectResponse.object:type_name -> artifact.artifact.v1alpha.Object
+	75, // 21: artifact.artifact.v1alpha.GetObjectAdminResponse.object:type_name -> artifact.artifact.v1alpha.Object
+	27, // 22: artifact.artifact.v1alpha.GetObjectURLAdminResponse.object_url:type_name -> artifact.artifact.v1alpha.ObjectURL
+	74, // 23: artifact.artifact.v1alpha.UpdateObjectAdminRequest.last_modified_time:type_name -> google.protobuf.Timestamp
+	75, // 24: artifact.artifact.v1alpha.UpdateObjectAdminResponse.object:type_name -> artifact.artifact.v1alpha.Object
+	70, // 25: artifact.artifact.v1alpha.Catalog.embedding_config:type_name -> artifact.artifact.v1alpha.Catalog.EmbeddingConfig
+	0,  // 26: artifact.artifact.v1alpha.CreateCatalogRequest.type:type_name -> artifact.artifact.v1alpha.CatalogType
+	40, // 27: artifact.artifact.v1alpha.CreateCatalogResponse.catalog:type_name -> artifact.artifact.v1alpha.Catalog
+	40, // 28: artifact.artifact.v1alpha.ListCatalogsResponse.catalogs:type_name -> artifact.artifact.v1alpha.Catalog
+	40, // 29: artifact.artifact.v1alpha.UpdateCatalogResponse.catalog:type_name -> artifact.artifact.v1alpha.Catalog
+	40, // 30: artifact.artifact.v1alpha.DeleteCatalogResponse.catalog:type_name -> artifact.artifact.v1alpha.Catalog
+	4,  // 31: artifact.artifact.v1alpha.File.type:type_name -> artifact.artifact.v1alpha.File.Type
+	1,  // 32: artifact.artifact.v1alpha.File.process_status:type_name -> artifact.artifact.v1alpha.FileProcessStatus
+	74, // 33: artifact.artifact.v1alpha.File.create_time:type_name -> google.protobuf.Timestamp
+	74, // 34: artifact.artifact.v1alpha.File.update_time:type_name -> google.protobuf.Timestamp
+	74, // 35: artifact.artifact.v1alpha.File.delete_time:type_name -> google.protobuf.Timestamp
+	76, // 36: artifact.artifact.v1alpha.File.external_metadata:type_name -> google.protobuf.Struct
+	71, // 37: artifact.artifact.v1alpha.File.length:type_name -> artifact.artifact.v1alpha.File.Position
+	49, // 38: artifact.artifact.v1alpha.UploadCatalogFileRequest.file:type_name -> artifact.artifact.v1alpha.File
+	49, // 39: artifact.artifact.v1alpha.UploadCatalogFileResponse.file:type_name -> artifact.artifact.v1alpha.File
+	49, // 40: artifact.artifact.v1alpha.ProcessCatalogFilesResponse.files:type_name -> artifact.artifact.v1alpha.File
+	1,  // 41: artifact.artifact.v1alpha.ListCatalogFilesFilter.process_status:type_name -> artifact.artifact.v1alpha.FileProcessStatus
+	58, // 42: artifact.artifact.v1alpha.ListCatalogFilesRequest.filter:type_name -> artifact.artifact.v1alpha.ListCatalogFilesFilter
+	49, // 43: artifact.artifact.v1alpha.ListCatalogFilesResponse.files:type_name -> artifact.artifact.v1alpha.File
+	58, // 44: artifact.artifact.v1alpha.ListCatalogFilesResponse.filter:type_name -> artifact.artifact.v1alpha.ListCatalogFilesFilter
+	49, // 45: artifact.artifact.v1alpha.GetCatalogFileResponse.file:type_name -> artifact.artifact.v1alpha.File
+	3,  // 46: artifact.artifact.v1alpha.CatalogRun.action:type_name -> artifact.artifact.v1alpha.CatalogRunAction
+	77, // 47: artifact.artifact.v1alpha.CatalogRun.status:type_name -> common.run.v1alpha.RunStatus
+	78, // 48: artifact.artifact.v1alpha.CatalogRun.source:type_name -> common.run.v1alpha.RunSource
+	76, // 49: artifact.artifact.v1alpha.CatalogRun.payload:type_name -> google.protobuf.Struct
+	74, // 50: artifact.artifact.v1alpha.CatalogRun.start_time:type_name -> google.protobuf.Timestamp
+	74, // 51: artifact.artifact.v1alpha.CatalogRun.complete_time:type_name -> google.protobuf.Timestamp
+	63, // 52: artifact.artifact.v1alpha.ListCatalogRunsResponse.catalog_runs:type_name -> artifact.artifact.v1alpha.CatalogRun
+	49, // 53: artifact.artifact.v1alpha.UpdateCatalogFileTagsResponse.file:type_name -> artifact.artifact.v1alpha.File
+	5,  // 54: artifact.artifact.v1alpha.File.Position.unit:type_name -> artifact.artifact.v1alpha.File.Position.Unit
+	55, // [55:55] is the sub-list for method output_type
+	55, // [55:55] is the sub-list for method input_type
+	55, // [55:55] is the sub-list for extension type_name
+	55, // [55:55] is the sub-list for extension extendee
+	0,  // [0:55] is the sub-list for field type_name
 }
 
 func init() { file_artifact_artifact_v1alpha_artifact_proto_init() }
@@ -4479,18 +5410,21 @@ func file_artifact_artifact_v1alpha_artifact_proto_init() {
 	file_artifact_artifact_v1alpha_artifact_proto_msgTypes[2].OneofWrappers = []any{}
 	file_artifact_artifact_v1alpha_artifact_proto_msgTypes[5].OneofWrappers = []any{}
 	file_artifact_artifact_v1alpha_artifact_proto_msgTypes[13].OneofWrappers = []any{}
-	file_artifact_artifact_v1alpha_artifact_proto_msgTypes[16].OneofWrappers = []any{}
-	file_artifact_artifact_v1alpha_artifact_proto_msgTypes[18].OneofWrappers = []any{}
-	file_artifact_artifact_v1alpha_artifact_proto_msgTypes[29].OneofWrappers = []any{}
-	file_artifact_artifact_v1alpha_artifact_proto_msgTypes[41].OneofWrappers = []any{}
+	file_artifact_artifact_v1alpha_artifact_proto_msgTypes[21].OneofWrappers = []any{}
+	file_artifact_artifact_v1alpha_artifact_proto_msgTypes[24].OneofWrappers = []any{}
+	file_artifact_artifact_v1alpha_artifact_proto_msgTypes[26].OneofWrappers = []any{}
+	file_artifact_artifact_v1alpha_artifact_proto_msgTypes[30].OneofWrappers = []any{}
+	file_artifact_artifact_v1alpha_artifact_proto_msgTypes[32].OneofWrappers = []any{}
 	file_artifact_artifact_v1alpha_artifact_proto_msgTypes[43].OneofWrappers = []any{}
+	file_artifact_artifact_v1alpha_artifact_proto_msgTypes[57].OneofWrappers = []any{}
+	file_artifact_artifact_v1alpha_artifact_proto_msgTypes[59].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_artifact_artifact_v1alpha_artifact_proto_rawDesc), len(file_artifact_artifact_v1alpha_artifact_proto_rawDesc)),
 			NumEnums:      6,
-			NumMessages:   50,
+			NumMessages:   66,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

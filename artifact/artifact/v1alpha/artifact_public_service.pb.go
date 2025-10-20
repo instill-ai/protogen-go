@@ -27,7 +27,7 @@ var File_artifact_artifact_v1alpha_artifact_public_service_proto protoreflect.Fi
 
 const file_artifact_artifact_v1alpha_artifact_public_service_proto_rawDesc = "" +
 	"\n" +
-	"7artifact/artifact/v1alpha/artifact_public_service.proto\x12\x19artifact.artifact.v1alpha\x1a(artifact/artifact/v1alpha/artifact.proto\x1a%artifact/artifact/v1alpha/chunk.proto\x1a,artifact/artifact/v1alpha/file_catalog.proto\x1a&artifact/artifact/v1alpha/object.proto\x1a\"artifact/artifact/v1alpha/qa.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xf3-\n" +
+	"7artifact/artifact/v1alpha/artifact_public_service.proto\x12\x19artifact.artifact.v1alpha\x1a(artifact/artifact/v1alpha/artifact.proto\x1a%artifact/artifact/v1alpha/chunk.proto\x1a,artifact/artifact/v1alpha/file_catalog.proto\x1a&artifact/artifact/v1alpha/object.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\x95+\n" +
 	"\x15ArtifactPublicService\x12\xac\x01\n" +
 	"\bLiveness\x12*.artifact.artifact.v1alpha.LivenessRequest\x1a+.artifact.artifact.v1alpha.LivenessResponse\"G\xfa\xd2\xe4\x93\x02\n" +
 	"\x12\bINTERNAL\x82\xd3\xe4\x93\x021Z\x1a\x12\x18/v1alpha/health/artifact\x12\x13/v1alpha/__liveness\x12\xaf\x01\n" +
@@ -47,10 +47,10 @@ const file_artifact_artifact_v1alpha_artifact_public_service_proto_rawDesc = "" 
 	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02:*8/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}\x12\xed\x01\n" +
 	"\x11UploadCatalogFile\x123.artifact.artifact.v1alpha.UploadCatalogFileRequest\x1a4.artifact.artifact.v1alpha.UploadCatalogFileResponse\"m\x92A\x1e\n" +
 	"\bArtifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02F:\x04file\">/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files\x12\xc0\x01\n" +
-	"\x11DeleteCatalogFile\x123.artifact.artifact.v1alpha.DeleteCatalogFileRequest\x1a4.artifact.artifact.v1alpha.DeleteCatalogFileResponse\"@\x92A\x1e\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02F:\x04file\">/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files\x12\xf2\x01\n" +
+	"\x11DeleteCatalogFile\x123.artifact.artifact.v1alpha.DeleteCatalogFileRequest\x1a4.artifact.artifact.v1alpha.DeleteCatalogFileResponse\"r\x92A\x1e\n" +
 	"\bArtifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02\x19*\x17/v1alpha/catalogs/files\x12\xfb\x02\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02K*I/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files/{file_uid}\x12\xfb\x02\n" +
 	"\x13ProcessCatalogFiles\x125.artifact.artifact.v1alpha.ProcessCatalogFilesRequest\x1a6.artifact.artifact.v1alpha.ProcessCatalogFilesResponse\"\xf4\x01\x92A\xc1\x01\n" +
 	"\bArtifactj\x12\n" +
 	"\ax-stage\x12\a\x1a\x05alphar\xa0\x01\n" +
@@ -82,12 +82,7 @@ const file_artifact_artifact_v1alpha_artifact_public_service_proto_rawDesc = "" 
 	"\bArtifactj\x12\n" +
 	"\ax-stage\x12\a\x1a\x05alphar\xa0\x01\n" +
 	"\x9d\x01\n" +
-	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x02M:\x01*\"H/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/chunks/retrieve\x12\x8d\x03\n" +
-	"\x11QuestionAnswering\x123.artifact.artifact.v1alpha.QuestionAnsweringRequest\x1a4.artifact.artifact.v1alpha.QuestionAnsweringResponse\"\x8c\x02\x92A\xc1\x01\n" +
-	"\bArtifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alphar\xa0\x01\n" +
-	"\x9d\x01\n" +
-	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x02A:\x01*\"</v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/ask\x12\xd8\x01\n" +
+	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x02M:\x01*\"H/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/chunks/retrieve\x12\xd8\x01\n" +
 	"\x0eGetFileCatalog\x120.artifact.artifact.v1alpha.GetFileCatalogRequest\x1a1.artifact.artifact.v1alpha.GetFileCatalogResponse\"a\x92A\x1e\n" +
 	"\bArtifactj\x12\n" +
 	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02:\x128/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}\x12\xe0\x01\n" +
@@ -126,37 +121,35 @@ var file_artifact_artifact_v1alpha_artifact_public_service_proto_goTypes = []any
 	(*SearchSourceFilesRequest)(nil),       // 14: artifact.artifact.v1alpha.SearchSourceFilesRequest
 	(*UpdateChunkRequest)(nil),             // 15: artifact.artifact.v1alpha.UpdateChunkRequest
 	(*SimilarityChunksSearchRequest)(nil),  // 16: artifact.artifact.v1alpha.SimilarityChunksSearchRequest
-	(*QuestionAnsweringRequest)(nil),       // 17: artifact.artifact.v1alpha.QuestionAnsweringRequest
-	(*GetFileCatalogRequest)(nil),          // 18: artifact.artifact.v1alpha.GetFileCatalogRequest
-	(*ListCatalogRunsRequest)(nil),         // 19: artifact.artifact.v1alpha.ListCatalogRunsRequest
-	(*GetObjectUploadURLRequest)(nil),      // 20: artifact.artifact.v1alpha.GetObjectUploadURLRequest
-	(*GetObjectDownloadURLRequest)(nil),    // 21: artifact.artifact.v1alpha.GetObjectDownloadURLRequest
-	(*MoveFileToCatalogRequest)(nil),       // 22: artifact.artifact.v1alpha.MoveFileToCatalogRequest
-	(*UpdateCatalogFileTagsRequest)(nil),   // 23: artifact.artifact.v1alpha.UpdateCatalogFileTagsRequest
-	(*LivenessResponse)(nil),               // 24: artifact.artifact.v1alpha.LivenessResponse
-	(*ReadinessResponse)(nil),              // 25: artifact.artifact.v1alpha.ReadinessResponse
-	(*CreateCatalogResponse)(nil),          // 26: artifact.artifact.v1alpha.CreateCatalogResponse
-	(*ListCatalogsResponse)(nil),           // 27: artifact.artifact.v1alpha.ListCatalogsResponse
-	(*UpdateCatalogResponse)(nil),          // 28: artifact.artifact.v1alpha.UpdateCatalogResponse
-	(*DeleteCatalogResponse)(nil),          // 29: artifact.artifact.v1alpha.DeleteCatalogResponse
-	(*UploadCatalogFileResponse)(nil),      // 30: artifact.artifact.v1alpha.UploadCatalogFileResponse
-	(*DeleteCatalogFileResponse)(nil),      // 31: artifact.artifact.v1alpha.DeleteCatalogFileResponse
-	(*ProcessCatalogFilesResponse)(nil),    // 32: artifact.artifact.v1alpha.ProcessCatalogFilesResponse
-	(*ListCatalogFilesResponse)(nil),       // 33: artifact.artifact.v1alpha.ListCatalogFilesResponse
-	(*GetCatalogFileResponse)(nil),         // 34: artifact.artifact.v1alpha.GetCatalogFileResponse
-	(*ListChunksResponse)(nil),             // 35: artifact.artifact.v1alpha.ListChunksResponse
-	(*GetSourceFileResponse)(nil),          // 36: artifact.artifact.v1alpha.GetSourceFileResponse
-	(*GetFileSummaryResponse)(nil),         // 37: artifact.artifact.v1alpha.GetFileSummaryResponse
-	(*SearchSourceFilesResponse)(nil),      // 38: artifact.artifact.v1alpha.SearchSourceFilesResponse
-	(*UpdateChunkResponse)(nil),            // 39: artifact.artifact.v1alpha.UpdateChunkResponse
-	(*SimilarityChunksSearchResponse)(nil), // 40: artifact.artifact.v1alpha.SimilarityChunksSearchResponse
-	(*QuestionAnsweringResponse)(nil),      // 41: artifact.artifact.v1alpha.QuestionAnsweringResponse
-	(*GetFileCatalogResponse)(nil),         // 42: artifact.artifact.v1alpha.GetFileCatalogResponse
-	(*ListCatalogRunsResponse)(nil),        // 43: artifact.artifact.v1alpha.ListCatalogRunsResponse
-	(*GetObjectUploadURLResponse)(nil),     // 44: artifact.artifact.v1alpha.GetObjectUploadURLResponse
-	(*GetObjectDownloadURLResponse)(nil),   // 45: artifact.artifact.v1alpha.GetObjectDownloadURLResponse
-	(*MoveFileToCatalogResponse)(nil),      // 46: artifact.artifact.v1alpha.MoveFileToCatalogResponse
-	(*UpdateCatalogFileTagsResponse)(nil),  // 47: artifact.artifact.v1alpha.UpdateCatalogFileTagsResponse
+	(*GetFileCatalogRequest)(nil),          // 17: artifact.artifact.v1alpha.GetFileCatalogRequest
+	(*ListCatalogRunsRequest)(nil),         // 18: artifact.artifact.v1alpha.ListCatalogRunsRequest
+	(*GetObjectUploadURLRequest)(nil),      // 19: artifact.artifact.v1alpha.GetObjectUploadURLRequest
+	(*GetObjectDownloadURLRequest)(nil),    // 20: artifact.artifact.v1alpha.GetObjectDownloadURLRequest
+	(*MoveFileToCatalogRequest)(nil),       // 21: artifact.artifact.v1alpha.MoveFileToCatalogRequest
+	(*UpdateCatalogFileTagsRequest)(nil),   // 22: artifact.artifact.v1alpha.UpdateCatalogFileTagsRequest
+	(*LivenessResponse)(nil),               // 23: artifact.artifact.v1alpha.LivenessResponse
+	(*ReadinessResponse)(nil),              // 24: artifact.artifact.v1alpha.ReadinessResponse
+	(*CreateCatalogResponse)(nil),          // 25: artifact.artifact.v1alpha.CreateCatalogResponse
+	(*ListCatalogsResponse)(nil),           // 26: artifact.artifact.v1alpha.ListCatalogsResponse
+	(*UpdateCatalogResponse)(nil),          // 27: artifact.artifact.v1alpha.UpdateCatalogResponse
+	(*DeleteCatalogResponse)(nil),          // 28: artifact.artifact.v1alpha.DeleteCatalogResponse
+	(*UploadCatalogFileResponse)(nil),      // 29: artifact.artifact.v1alpha.UploadCatalogFileResponse
+	(*DeleteCatalogFileResponse)(nil),      // 30: artifact.artifact.v1alpha.DeleteCatalogFileResponse
+	(*ProcessCatalogFilesResponse)(nil),    // 31: artifact.artifact.v1alpha.ProcessCatalogFilesResponse
+	(*ListCatalogFilesResponse)(nil),       // 32: artifact.artifact.v1alpha.ListCatalogFilesResponse
+	(*GetCatalogFileResponse)(nil),         // 33: artifact.artifact.v1alpha.GetCatalogFileResponse
+	(*ListChunksResponse)(nil),             // 34: artifact.artifact.v1alpha.ListChunksResponse
+	(*GetSourceFileResponse)(nil),          // 35: artifact.artifact.v1alpha.GetSourceFileResponse
+	(*GetFileSummaryResponse)(nil),         // 36: artifact.artifact.v1alpha.GetFileSummaryResponse
+	(*SearchSourceFilesResponse)(nil),      // 37: artifact.artifact.v1alpha.SearchSourceFilesResponse
+	(*UpdateChunkResponse)(nil),            // 38: artifact.artifact.v1alpha.UpdateChunkResponse
+	(*SimilarityChunksSearchResponse)(nil), // 39: artifact.artifact.v1alpha.SimilarityChunksSearchResponse
+	(*GetFileCatalogResponse)(nil),         // 40: artifact.artifact.v1alpha.GetFileCatalogResponse
+	(*ListCatalogRunsResponse)(nil),        // 41: artifact.artifact.v1alpha.ListCatalogRunsResponse
+	(*GetObjectUploadURLResponse)(nil),     // 42: artifact.artifact.v1alpha.GetObjectUploadURLResponse
+	(*GetObjectDownloadURLResponse)(nil),   // 43: artifact.artifact.v1alpha.GetObjectDownloadURLResponse
+	(*MoveFileToCatalogResponse)(nil),      // 44: artifact.artifact.v1alpha.MoveFileToCatalogResponse
+	(*UpdateCatalogFileTagsResponse)(nil),  // 45: artifact.artifact.v1alpha.UpdateCatalogFileTagsResponse
 }
 var file_artifact_artifact_v1alpha_artifact_public_service_proto_depIdxs = []int32{
 	0,  // 0: artifact.artifact.v1alpha.ArtifactPublicService.Liveness:input_type -> artifact.artifact.v1alpha.LivenessRequest
@@ -176,39 +169,37 @@ var file_artifact_artifact_v1alpha_artifact_public_service_proto_depIdxs = []int
 	14, // 14: artifact.artifact.v1alpha.ArtifactPublicService.SearchSourceFiles:input_type -> artifact.artifact.v1alpha.SearchSourceFilesRequest
 	15, // 15: artifact.artifact.v1alpha.ArtifactPublicService.UpdateChunk:input_type -> artifact.artifact.v1alpha.UpdateChunkRequest
 	16, // 16: artifact.artifact.v1alpha.ArtifactPublicService.SimilarityChunksSearch:input_type -> artifact.artifact.v1alpha.SimilarityChunksSearchRequest
-	17, // 17: artifact.artifact.v1alpha.ArtifactPublicService.QuestionAnswering:input_type -> artifact.artifact.v1alpha.QuestionAnsweringRequest
-	18, // 18: artifact.artifact.v1alpha.ArtifactPublicService.GetFileCatalog:input_type -> artifact.artifact.v1alpha.GetFileCatalogRequest
-	19, // 19: artifact.artifact.v1alpha.ArtifactPublicService.ListCatalogRuns:input_type -> artifact.artifact.v1alpha.ListCatalogRunsRequest
-	20, // 20: artifact.artifact.v1alpha.ArtifactPublicService.GetObjectUploadURL:input_type -> artifact.artifact.v1alpha.GetObjectUploadURLRequest
-	21, // 21: artifact.artifact.v1alpha.ArtifactPublicService.GetObjectDownloadURL:input_type -> artifact.artifact.v1alpha.GetObjectDownloadURLRequest
-	22, // 22: artifact.artifact.v1alpha.ArtifactPublicService.MoveFileToCatalog:input_type -> artifact.artifact.v1alpha.MoveFileToCatalogRequest
-	23, // 23: artifact.artifact.v1alpha.ArtifactPublicService.UpdateCatalogFileTags:input_type -> artifact.artifact.v1alpha.UpdateCatalogFileTagsRequest
-	24, // 24: artifact.artifact.v1alpha.ArtifactPublicService.Liveness:output_type -> artifact.artifact.v1alpha.LivenessResponse
-	25, // 25: artifact.artifact.v1alpha.ArtifactPublicService.Readiness:output_type -> artifact.artifact.v1alpha.ReadinessResponse
-	26, // 26: artifact.artifact.v1alpha.ArtifactPublicService.CreateCatalog:output_type -> artifact.artifact.v1alpha.CreateCatalogResponse
-	27, // 27: artifact.artifact.v1alpha.ArtifactPublicService.ListCatalogs:output_type -> artifact.artifact.v1alpha.ListCatalogsResponse
-	28, // 28: artifact.artifact.v1alpha.ArtifactPublicService.UpdateCatalog:output_type -> artifact.artifact.v1alpha.UpdateCatalogResponse
-	29, // 29: artifact.artifact.v1alpha.ArtifactPublicService.DeleteCatalog:output_type -> artifact.artifact.v1alpha.DeleteCatalogResponse
-	30, // 30: artifact.artifact.v1alpha.ArtifactPublicService.UploadCatalogFile:output_type -> artifact.artifact.v1alpha.UploadCatalogFileResponse
-	31, // 31: artifact.artifact.v1alpha.ArtifactPublicService.DeleteCatalogFile:output_type -> artifact.artifact.v1alpha.DeleteCatalogFileResponse
-	32, // 32: artifact.artifact.v1alpha.ArtifactPublicService.ProcessCatalogFiles:output_type -> artifact.artifact.v1alpha.ProcessCatalogFilesResponse
-	33, // 33: artifact.artifact.v1alpha.ArtifactPublicService.ListCatalogFiles:output_type -> artifact.artifact.v1alpha.ListCatalogFilesResponse
-	34, // 34: artifact.artifact.v1alpha.ArtifactPublicService.GetCatalogFile:output_type -> artifact.artifact.v1alpha.GetCatalogFileResponse
-	35, // 35: artifact.artifact.v1alpha.ArtifactPublicService.ListChunks:output_type -> artifact.artifact.v1alpha.ListChunksResponse
-	36, // 36: artifact.artifact.v1alpha.ArtifactPublicService.GetSourceFile:output_type -> artifact.artifact.v1alpha.GetSourceFileResponse
-	37, // 37: artifact.artifact.v1alpha.ArtifactPublicService.GetFileSummary:output_type -> artifact.artifact.v1alpha.GetFileSummaryResponse
-	38, // 38: artifact.artifact.v1alpha.ArtifactPublicService.SearchSourceFiles:output_type -> artifact.artifact.v1alpha.SearchSourceFilesResponse
-	39, // 39: artifact.artifact.v1alpha.ArtifactPublicService.UpdateChunk:output_type -> artifact.artifact.v1alpha.UpdateChunkResponse
-	40, // 40: artifact.artifact.v1alpha.ArtifactPublicService.SimilarityChunksSearch:output_type -> artifact.artifact.v1alpha.SimilarityChunksSearchResponse
-	41, // 41: artifact.artifact.v1alpha.ArtifactPublicService.QuestionAnswering:output_type -> artifact.artifact.v1alpha.QuestionAnsweringResponse
-	42, // 42: artifact.artifact.v1alpha.ArtifactPublicService.GetFileCatalog:output_type -> artifact.artifact.v1alpha.GetFileCatalogResponse
-	43, // 43: artifact.artifact.v1alpha.ArtifactPublicService.ListCatalogRuns:output_type -> artifact.artifact.v1alpha.ListCatalogRunsResponse
-	44, // 44: artifact.artifact.v1alpha.ArtifactPublicService.GetObjectUploadURL:output_type -> artifact.artifact.v1alpha.GetObjectUploadURLResponse
-	45, // 45: artifact.artifact.v1alpha.ArtifactPublicService.GetObjectDownloadURL:output_type -> artifact.artifact.v1alpha.GetObjectDownloadURLResponse
-	46, // 46: artifact.artifact.v1alpha.ArtifactPublicService.MoveFileToCatalog:output_type -> artifact.artifact.v1alpha.MoveFileToCatalogResponse
-	47, // 47: artifact.artifact.v1alpha.ArtifactPublicService.UpdateCatalogFileTags:output_type -> artifact.artifact.v1alpha.UpdateCatalogFileTagsResponse
-	24, // [24:48] is the sub-list for method output_type
-	0,  // [0:24] is the sub-list for method input_type
+	17, // 17: artifact.artifact.v1alpha.ArtifactPublicService.GetFileCatalog:input_type -> artifact.artifact.v1alpha.GetFileCatalogRequest
+	18, // 18: artifact.artifact.v1alpha.ArtifactPublicService.ListCatalogRuns:input_type -> artifact.artifact.v1alpha.ListCatalogRunsRequest
+	19, // 19: artifact.artifact.v1alpha.ArtifactPublicService.GetObjectUploadURL:input_type -> artifact.artifact.v1alpha.GetObjectUploadURLRequest
+	20, // 20: artifact.artifact.v1alpha.ArtifactPublicService.GetObjectDownloadURL:input_type -> artifact.artifact.v1alpha.GetObjectDownloadURLRequest
+	21, // 21: artifact.artifact.v1alpha.ArtifactPublicService.MoveFileToCatalog:input_type -> artifact.artifact.v1alpha.MoveFileToCatalogRequest
+	22, // 22: artifact.artifact.v1alpha.ArtifactPublicService.UpdateCatalogFileTags:input_type -> artifact.artifact.v1alpha.UpdateCatalogFileTagsRequest
+	23, // 23: artifact.artifact.v1alpha.ArtifactPublicService.Liveness:output_type -> artifact.artifact.v1alpha.LivenessResponse
+	24, // 24: artifact.artifact.v1alpha.ArtifactPublicService.Readiness:output_type -> artifact.artifact.v1alpha.ReadinessResponse
+	25, // 25: artifact.artifact.v1alpha.ArtifactPublicService.CreateCatalog:output_type -> artifact.artifact.v1alpha.CreateCatalogResponse
+	26, // 26: artifact.artifact.v1alpha.ArtifactPublicService.ListCatalogs:output_type -> artifact.artifact.v1alpha.ListCatalogsResponse
+	27, // 27: artifact.artifact.v1alpha.ArtifactPublicService.UpdateCatalog:output_type -> artifact.artifact.v1alpha.UpdateCatalogResponse
+	28, // 28: artifact.artifact.v1alpha.ArtifactPublicService.DeleteCatalog:output_type -> artifact.artifact.v1alpha.DeleteCatalogResponse
+	29, // 29: artifact.artifact.v1alpha.ArtifactPublicService.UploadCatalogFile:output_type -> artifact.artifact.v1alpha.UploadCatalogFileResponse
+	30, // 30: artifact.artifact.v1alpha.ArtifactPublicService.DeleteCatalogFile:output_type -> artifact.artifact.v1alpha.DeleteCatalogFileResponse
+	31, // 31: artifact.artifact.v1alpha.ArtifactPublicService.ProcessCatalogFiles:output_type -> artifact.artifact.v1alpha.ProcessCatalogFilesResponse
+	32, // 32: artifact.artifact.v1alpha.ArtifactPublicService.ListCatalogFiles:output_type -> artifact.artifact.v1alpha.ListCatalogFilesResponse
+	33, // 33: artifact.artifact.v1alpha.ArtifactPublicService.GetCatalogFile:output_type -> artifact.artifact.v1alpha.GetCatalogFileResponse
+	34, // 34: artifact.artifact.v1alpha.ArtifactPublicService.ListChunks:output_type -> artifact.artifact.v1alpha.ListChunksResponse
+	35, // 35: artifact.artifact.v1alpha.ArtifactPublicService.GetSourceFile:output_type -> artifact.artifact.v1alpha.GetSourceFileResponse
+	36, // 36: artifact.artifact.v1alpha.ArtifactPublicService.GetFileSummary:output_type -> artifact.artifact.v1alpha.GetFileSummaryResponse
+	37, // 37: artifact.artifact.v1alpha.ArtifactPublicService.SearchSourceFiles:output_type -> artifact.artifact.v1alpha.SearchSourceFilesResponse
+	38, // 38: artifact.artifact.v1alpha.ArtifactPublicService.UpdateChunk:output_type -> artifact.artifact.v1alpha.UpdateChunkResponse
+	39, // 39: artifact.artifact.v1alpha.ArtifactPublicService.SimilarityChunksSearch:output_type -> artifact.artifact.v1alpha.SimilarityChunksSearchResponse
+	40, // 40: artifact.artifact.v1alpha.ArtifactPublicService.GetFileCatalog:output_type -> artifact.artifact.v1alpha.GetFileCatalogResponse
+	41, // 41: artifact.artifact.v1alpha.ArtifactPublicService.ListCatalogRuns:output_type -> artifact.artifact.v1alpha.ListCatalogRunsResponse
+	42, // 42: artifact.artifact.v1alpha.ArtifactPublicService.GetObjectUploadURL:output_type -> artifact.artifact.v1alpha.GetObjectUploadURLResponse
+	43, // 43: artifact.artifact.v1alpha.ArtifactPublicService.GetObjectDownloadURL:output_type -> artifact.artifact.v1alpha.GetObjectDownloadURLResponse
+	44, // 44: artifact.artifact.v1alpha.ArtifactPublicService.MoveFileToCatalog:output_type -> artifact.artifact.v1alpha.MoveFileToCatalogResponse
+	45, // 45: artifact.artifact.v1alpha.ArtifactPublicService.UpdateCatalogFileTags:output_type -> artifact.artifact.v1alpha.UpdateCatalogFileTagsResponse
+	23, // [23:46] is the sub-list for method output_type
+	0,  // [0:23] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
@@ -223,7 +214,6 @@ func file_artifact_artifact_v1alpha_artifact_public_service_proto_init() {
 	file_artifact_artifact_v1alpha_chunk_proto_init()
 	file_artifact_artifact_v1alpha_file_catalog_proto_init()
 	file_artifact_artifact_v1alpha_object_proto_init()
-	file_artifact_artifact_v1alpha_qa_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

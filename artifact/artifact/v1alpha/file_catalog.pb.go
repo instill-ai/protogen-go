@@ -431,6 +431,214 @@ func (x *GetChatFileResponse) GetMarkdown() []byte {
 	return nil
 }
 
+// GetFileAsMarkdownAdminRequest represents a request to fetch the Markdown
+// representation of a file (admin only).
+type GetFileAsMarkdownAdminRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// File UID.
+	FileUid       string `protobuf:"bytes,1,opt,name=file_uid,json=fileUid,proto3" json:"file_uid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetFileAsMarkdownAdminRequest) Reset() {
+	*x = GetFileAsMarkdownAdminRequest{}
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetFileAsMarkdownAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFileAsMarkdownAdminRequest) ProtoMessage() {}
+
+func (x *GetFileAsMarkdownAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFileAsMarkdownAdminRequest.ProtoReflect.Descriptor instead.
+func (*GetFileAsMarkdownAdminRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_file_catalog_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *GetFileAsMarkdownAdminRequest) GetFileUid() string {
+	if x != nil {
+		return x.FileUid
+	}
+	return ""
+}
+
+// GetFileAsMarkdownAdminResponse contains a blob with the Markdown representation
+// of a file (admin only).
+type GetFileAsMarkdownAdminResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The Markdown representation of a file.
+	Markdown      string `protobuf:"bytes,1,opt,name=markdown,proto3" json:"markdown,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetFileAsMarkdownAdminResponse) Reset() {
+	*x = GetFileAsMarkdownAdminResponse{}
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetFileAsMarkdownAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFileAsMarkdownAdminResponse) ProtoMessage() {}
+
+func (x *GetFileAsMarkdownAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFileAsMarkdownAdminResponse.ProtoReflect.Descriptor instead.
+func (*GetFileAsMarkdownAdminResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_file_catalog_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *GetFileAsMarkdownAdminResponse) GetMarkdown() string {
+	if x != nil {
+		return x.Markdown
+	}
+	return ""
+}
+
+// GetChatFileAdminRequest (admin only, deprecated)
+//
+// Deprecated: Marked as deprecated in artifact/artifact/v1alpha/file_catalog.proto.
+type GetChatFileAdminRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// id of the namespace
+	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
+	// id of the catalog
+	CatalogId string `protobuf:"bytes,2,opt,name=catalog_id,json=catalogId,proto3" json:"catalog_id,omitempty"`
+	// id of the file
+	FileId        string `protobuf:"bytes,3,opt,name=file_id,json=fileId,proto3" json:"file_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetChatFileAdminRequest) Reset() {
+	*x = GetChatFileAdminRequest{}
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetChatFileAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetChatFileAdminRequest) ProtoMessage() {}
+
+func (x *GetChatFileAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetChatFileAdminRequest.ProtoReflect.Descriptor instead.
+func (*GetChatFileAdminRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_file_catalog_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *GetChatFileAdminRequest) GetNamespaceId() string {
+	if x != nil {
+		return x.NamespaceId
+	}
+	return ""
+}
+
+func (x *GetChatFileAdminRequest) GetCatalogId() string {
+	if x != nil {
+		return x.CatalogId
+	}
+	return ""
+}
+
+func (x *GetChatFileAdminRequest) GetFileId() string {
+	if x != nil {
+		return x.FileId
+	}
+	return ""
+}
+
+// GetChatFileAdminResponse (admin only, deprecated)
+//
+// Deprecated: Marked as deprecated in artifact/artifact/v1alpha/file_catalog.proto.
+type GetChatFileAdminResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// converted markdown content
+	Markdown      []byte `protobuf:"bytes,1,opt,name=markdown,proto3" json:"markdown,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetChatFileAdminResponse) Reset() {
+	*x = GetChatFileAdminResponse{}
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetChatFileAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetChatFileAdminResponse) ProtoMessage() {}
+
+func (x *GetChatFileAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetChatFileAdminResponse.ProtoReflect.Descriptor instead.
+func (*GetChatFileAdminResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_file_catalog_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *GetChatFileAdminResponse) GetMarkdown() []byte {
+	if x != nil {
+		return x.Markdown
+	}
+	return nil
+}
+
 // FileMetadata contains information about the file.
 type GetFileCatalogResponse_FileMetadata struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -452,7 +660,7 @@ type GetFileCatalogResponse_FileMetadata struct {
 
 func (x *GetFileCatalogResponse_FileMetadata) Reset() {
 	*x = GetFileCatalogResponse_FileMetadata{}
-	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[6]
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -464,7 +672,7 @@ func (x *GetFileCatalogResponse_FileMetadata) String() string {
 func (*GetFileCatalogResponse_FileMetadata) ProtoMessage() {}
 
 func (x *GetFileCatalogResponse_FileMetadata) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[6]
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -541,7 +749,7 @@ type GetFileCatalogResponse_Text struct {
 
 func (x *GetFileCatalogResponse_Text) Reset() {
 	*x = GetFileCatalogResponse_Text{}
-	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[7]
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -553,7 +761,7 @@ func (x *GetFileCatalogResponse_Text) String() string {
 func (*GetFileCatalogResponse_Text) ProtoMessage() {}
 
 func (x *GetFileCatalogResponse_Text) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[7]
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -631,7 +839,7 @@ type GetFileCatalogResponse_Chunk struct {
 
 func (x *GetFileCatalogResponse_Chunk) Reset() {
 	*x = GetFileCatalogResponse_Chunk{}
-	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[8]
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -643,7 +851,7 @@ func (x *GetFileCatalogResponse_Chunk) String() string {
 func (*GetFileCatalogResponse_Chunk) ProtoMessage() {}
 
 func (x *GetFileCatalogResponse_Chunk) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[8]
+	mi := &file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -782,6 +990,17 @@ const file_artifact_artifact_v1alpha_file_catalog_proto_rawDesc = "" +
 	"catalog_id\x18\x02 \x01(\tR\tcatalogId\x12\x17\n" +
 	"\afile_id\x18\x03 \x01(\tR\x06fileId:\x02\x18\x01\"5\n" +
 	"\x13GetChatFileResponse\x12\x1a\n" +
+	"\bmarkdown\x18\x01 \x01(\fR\bmarkdown:\x02\x18\x01\"?\n" +
+	"\x1dGetFileAsMarkdownAdminRequest\x12\x1e\n" +
+	"\bfile_uid\x18\x01 \x01(\tB\x03\xe0A\x02R\afileUid\"A\n" +
+	"\x1eGetFileAsMarkdownAdminResponse\x12\x1f\n" +
+	"\bmarkdown\x18\x01 \x01(\tB\x03\xe0A\x03R\bmarkdown\"x\n" +
+	"\x17GetChatFileAdminRequest\x12!\n" +
+	"\fnamespace_id\x18\x01 \x01(\tR\vnamespaceId\x12\x1d\n" +
+	"\n" +
+	"catalog_id\x18\x02 \x01(\tR\tcatalogId\x12\x17\n" +
+	"\afile_id\x18\x03 \x01(\tR\x06fileId:\x02\x18\x01\":\n" +
+	"\x18GetChatFileAdminResponse\x12\x1a\n" +
 	"\bmarkdown\x18\x01 \x01(\fR\bmarkdown:\x02\x18\x01B\x84\x02\n" +
 	"\x1dcom.artifact.artifact.v1alphaB\x10FileCatalogProtoP\x01ZKgithub.com/instill-ai/protogen-go/artifact/artifact/v1alpha;artifactv1alpha\xa2\x02\x03AAX\xaa\x02\x19Artifact.Artifact.V1alpha\xca\x02\x19Artifact\\Artifact\\V1alpha\xe2\x02%Artifact\\Artifact\\V1alpha\\GPBMetadata\xea\x02\x1bArtifact::Artifact::V1alphab\x06proto3"
 
@@ -798,7 +1017,7 @@ func file_artifact_artifact_v1alpha_file_catalog_proto_rawDescGZIP() []byte {
 }
 
 var file_artifact_artifact_v1alpha_file_catalog_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_artifact_artifact_v1alpha_file_catalog_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_artifact_artifact_v1alpha_file_catalog_proto_goTypes = []any{
 	(GetFileCatalogResponse_ChunkType)(0),       // 0: artifact.artifact.v1alpha.GetFileCatalogResponse.ChunkType
 	(*GetFileCatalogRequest)(nil),               // 1: artifact.artifact.v1alpha.GetFileCatalogRequest
@@ -807,23 +1026,27 @@ var file_artifact_artifact_v1alpha_file_catalog_proto_goTypes = []any{
 	(*GetFileAsMarkdownResponse)(nil),           // 4: artifact.artifact.v1alpha.GetFileAsMarkdownResponse
 	(*GetChatFileRequest)(nil),                  // 5: artifact.artifact.v1alpha.GetChatFileRequest
 	(*GetChatFileResponse)(nil),                 // 6: artifact.artifact.v1alpha.GetChatFileResponse
-	(*GetFileCatalogResponse_FileMetadata)(nil), // 7: artifact.artifact.v1alpha.GetFileCatalogResponse.FileMetadata
-	(*GetFileCatalogResponse_Text)(nil),         // 8: artifact.artifact.v1alpha.GetFileCatalogResponse.Text
-	(*GetFileCatalogResponse_Chunk)(nil),        // 9: artifact.artifact.v1alpha.GetFileCatalogResponse.Chunk
-	(File_Type)(0),                              // 10: artifact.artifact.v1alpha.File.Type
-	(*timestamppb.Timestamp)(nil),               // 11: google.protobuf.Timestamp
-	(FileProcessStatus)(0),                      // 12: artifact.artifact.v1alpha.FileProcessStatus
+	(*GetFileAsMarkdownAdminRequest)(nil),       // 7: artifact.artifact.v1alpha.GetFileAsMarkdownAdminRequest
+	(*GetFileAsMarkdownAdminResponse)(nil),      // 8: artifact.artifact.v1alpha.GetFileAsMarkdownAdminResponse
+	(*GetChatFileAdminRequest)(nil),             // 9: artifact.artifact.v1alpha.GetChatFileAdminRequest
+	(*GetChatFileAdminResponse)(nil),            // 10: artifact.artifact.v1alpha.GetChatFileAdminResponse
+	(*GetFileCatalogResponse_FileMetadata)(nil), // 11: artifact.artifact.v1alpha.GetFileCatalogResponse.FileMetadata
+	(*GetFileCatalogResponse_Text)(nil),         // 12: artifact.artifact.v1alpha.GetFileCatalogResponse.Text
+	(*GetFileCatalogResponse_Chunk)(nil),        // 13: artifact.artifact.v1alpha.GetFileCatalogResponse.Chunk
+	(File_Type)(0),                              // 14: artifact.artifact.v1alpha.File.Type
+	(*timestamppb.Timestamp)(nil),               // 15: google.protobuf.Timestamp
+	(FileProcessStatus)(0),                      // 16: artifact.artifact.v1alpha.FileProcessStatus
 }
 var file_artifact_artifact_v1alpha_file_catalog_proto_depIdxs = []int32{
-	7,  // 0: artifact.artifact.v1alpha.GetFileCatalogResponse.file_metadata:type_name -> artifact.artifact.v1alpha.GetFileCatalogResponse.FileMetadata
-	8,  // 1: artifact.artifact.v1alpha.GetFileCatalogResponse.text:type_name -> artifact.artifact.v1alpha.GetFileCatalogResponse.Text
-	9,  // 2: artifact.artifact.v1alpha.GetFileCatalogResponse.chunks:type_name -> artifact.artifact.v1alpha.GetFileCatalogResponse.Chunk
-	10, // 3: artifact.artifact.v1alpha.GetFileCatalogResponse.FileMetadata.file_type:type_name -> artifact.artifact.v1alpha.File.Type
-	11, // 4: artifact.artifact.v1alpha.GetFileCatalogResponse.FileMetadata.create_time:type_name -> google.protobuf.Timestamp
-	12, // 5: artifact.artifact.v1alpha.GetFileCatalogResponse.FileMetadata.process_status:type_name -> artifact.artifact.v1alpha.FileProcessStatus
-	11, // 6: artifact.artifact.v1alpha.GetFileCatalogResponse.Text.update_time:type_name -> google.protobuf.Timestamp
+	11, // 0: artifact.artifact.v1alpha.GetFileCatalogResponse.file_metadata:type_name -> artifact.artifact.v1alpha.GetFileCatalogResponse.FileMetadata
+	12, // 1: artifact.artifact.v1alpha.GetFileCatalogResponse.text:type_name -> artifact.artifact.v1alpha.GetFileCatalogResponse.Text
+	13, // 2: artifact.artifact.v1alpha.GetFileCatalogResponse.chunks:type_name -> artifact.artifact.v1alpha.GetFileCatalogResponse.Chunk
+	14, // 3: artifact.artifact.v1alpha.GetFileCatalogResponse.FileMetadata.file_type:type_name -> artifact.artifact.v1alpha.File.Type
+	15, // 4: artifact.artifact.v1alpha.GetFileCatalogResponse.FileMetadata.create_time:type_name -> google.protobuf.Timestamp
+	16, // 5: artifact.artifact.v1alpha.GetFileCatalogResponse.FileMetadata.process_status:type_name -> artifact.artifact.v1alpha.FileProcessStatus
+	15, // 6: artifact.artifact.v1alpha.GetFileCatalogResponse.Text.update_time:type_name -> google.protobuf.Timestamp
 	0,  // 7: artifact.artifact.v1alpha.GetFileCatalogResponse.Chunk.type:type_name -> artifact.artifact.v1alpha.GetFileCatalogResponse.ChunkType
-	11, // 8: artifact.artifact.v1alpha.GetFileCatalogResponse.Chunk.create_time:type_name -> google.protobuf.Timestamp
+	15, // 8: artifact.artifact.v1alpha.GetFileCatalogResponse.Chunk.create_time:type_name -> google.protobuf.Timestamp
 	9,  // [9:9] is the sub-list for method output_type
 	9,  // [9:9] is the sub-list for method input_type
 	9,  // [9:9] is the sub-list for extension type_name
@@ -843,7 +1066,7 @@ func file_artifact_artifact_v1alpha_file_catalog_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_artifact_artifact_v1alpha_file_catalog_proto_rawDesc), len(file_artifact_artifact_v1alpha_file_catalog_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   9,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
