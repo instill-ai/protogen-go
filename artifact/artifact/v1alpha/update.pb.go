@@ -21,6 +21,95 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// KnowledgeBaseUpdateStatus represents the various states of a Knowledge Base update lifecycle
+type KnowledgeBaseUpdateStatus int32
+
+const (
+	// KNOWLEDGE_BASE_UPDATE_STATUS_UNSPECIFIED - Invalid/unknown state
+	KnowledgeBaseUpdateStatus_KNOWLEDGE_BASE_UPDATE_STATUS_UNSPECIFIED KnowledgeBaseUpdateStatus = 0
+	// KNOWLEDGE_BASE_UPDATE_STATUS_NONE - KB has never been updated (default state for new KBs)
+	KnowledgeBaseUpdateStatus_KNOWLEDGE_BASE_UPDATE_STATUS_NONE KnowledgeBaseUpdateStatus = 1
+	// KNOWLEDGE_BASE_UPDATE_STATUS_UPDATING - Phase 1-2: Preparing and reprocessing
+	// The staging KB is being created and populated by reprocessing all files with new configuration
+	KnowledgeBaseUpdateStatus_KNOWLEDGE_BASE_UPDATE_STATUS_UPDATING KnowledgeBaseUpdateStatus = 2
+	// KNOWLEDGE_BASE_UPDATE_STATUS_SYNCING - Phase 3: Synchronization
+	// Locking KB and waiting for all dual-processed files to complete
+	KnowledgeBaseUpdateStatus_KNOWLEDGE_BASE_UPDATE_STATUS_SYNCING KnowledgeBaseUpdateStatus = 3
+	// KNOWLEDGE_BASE_UPDATE_STATUS_VALIDATING - Phase 4: Validation
+	// Validating data integrity (file counts, embeddings, chunks)
+	KnowledgeBaseUpdateStatus_KNOWLEDGE_BASE_UPDATE_STATUS_VALIDATING KnowledgeBaseUpdateStatus = 4
+	// KNOWLEDGE_BASE_UPDATE_STATUS_SWAPPING - Phase 5: Atomic Swap
+	// Performing atomic pointer swap of collections and metadata
+	KnowledgeBaseUpdateStatus_KNOWLEDGE_BASE_UPDATE_STATUS_SWAPPING KnowledgeBaseUpdateStatus = 5
+	// KNOWLEDGE_BASE_UPDATE_STATUS_COMPLETED - Phase 6: Cleanup/Retention
+	// Update completed successfully, rollback KB retained for configured period
+	KnowledgeBaseUpdateStatus_KNOWLEDGE_BASE_UPDATE_STATUS_COMPLETED KnowledgeBaseUpdateStatus = 6
+	// KNOWLEDGE_BASE_UPDATE_STATUS_FAILED - Update failed at some point
+	// Production KB remains unchanged and can be used normally
+	KnowledgeBaseUpdateStatus_KNOWLEDGE_BASE_UPDATE_STATUS_FAILED KnowledgeBaseUpdateStatus = 7
+	// KNOWLEDGE_BASE_UPDATE_STATUS_ROLLED_BACK - Update was rolled back
+	// Previous version has been restored from the rollback KB
+	KnowledgeBaseUpdateStatus_KNOWLEDGE_BASE_UPDATE_STATUS_ROLLED_BACK KnowledgeBaseUpdateStatus = 8
+	// KNOWLEDGE_BASE_UPDATE_STATUS_ABORTED - Update was manually aborted
+	// Production KB remains unchanged and can be updated again
+	KnowledgeBaseUpdateStatus_KNOWLEDGE_BASE_UPDATE_STATUS_ABORTED KnowledgeBaseUpdateStatus = 9
+)
+
+// Enum value maps for KnowledgeBaseUpdateStatus.
+var (
+	KnowledgeBaseUpdateStatus_name = map[int32]string{
+		0: "KNOWLEDGE_BASE_UPDATE_STATUS_UNSPECIFIED",
+		1: "KNOWLEDGE_BASE_UPDATE_STATUS_NONE",
+		2: "KNOWLEDGE_BASE_UPDATE_STATUS_UPDATING",
+		3: "KNOWLEDGE_BASE_UPDATE_STATUS_SYNCING",
+		4: "KNOWLEDGE_BASE_UPDATE_STATUS_VALIDATING",
+		5: "KNOWLEDGE_BASE_UPDATE_STATUS_SWAPPING",
+		6: "KNOWLEDGE_BASE_UPDATE_STATUS_COMPLETED",
+		7: "KNOWLEDGE_BASE_UPDATE_STATUS_FAILED",
+		8: "KNOWLEDGE_BASE_UPDATE_STATUS_ROLLED_BACK",
+		9: "KNOWLEDGE_BASE_UPDATE_STATUS_ABORTED",
+	}
+	KnowledgeBaseUpdateStatus_value = map[string]int32{
+		"KNOWLEDGE_BASE_UPDATE_STATUS_UNSPECIFIED": 0,
+		"KNOWLEDGE_BASE_UPDATE_STATUS_NONE":        1,
+		"KNOWLEDGE_BASE_UPDATE_STATUS_UPDATING":    2,
+		"KNOWLEDGE_BASE_UPDATE_STATUS_SYNCING":     3,
+		"KNOWLEDGE_BASE_UPDATE_STATUS_VALIDATING":  4,
+		"KNOWLEDGE_BASE_UPDATE_STATUS_SWAPPING":    5,
+		"KNOWLEDGE_BASE_UPDATE_STATUS_COMPLETED":   6,
+		"KNOWLEDGE_BASE_UPDATE_STATUS_FAILED":      7,
+		"KNOWLEDGE_BASE_UPDATE_STATUS_ROLLED_BACK": 8,
+		"KNOWLEDGE_BASE_UPDATE_STATUS_ABORTED":     9,
+	}
+)
+
+func (x KnowledgeBaseUpdateStatus) Enum() *KnowledgeBaseUpdateStatus {
+	p := new(KnowledgeBaseUpdateStatus)
+	*p = x
+	return p
+}
+
+func (x KnowledgeBaseUpdateStatus) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (KnowledgeBaseUpdateStatus) Descriptor() protoreflect.EnumDescriptor {
+	return file_artifact_artifact_v1alpha_update_proto_enumTypes[0].Descriptor()
+}
+
+func (KnowledgeBaseUpdateStatus) Type() protoreflect.EnumType {
+	return &file_artifact_artifact_v1alpha_update_proto_enumTypes[0]
+}
+
+func (x KnowledgeBaseUpdateStatus) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use KnowledgeBaseUpdateStatus.Descriptor instead.
+func (KnowledgeBaseUpdateStatus) EnumDescriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_update_proto_rawDescGZIP(), []int{0}
+}
+
 // TimeUnit specifies the unit of time for retention duration
 type SetRollbackRetentionAdminRequest_TimeUnit int32
 
@@ -66,11 +155,11 @@ func (x SetRollbackRetentionAdminRequest_TimeUnit) String() string {
 }
 
 func (SetRollbackRetentionAdminRequest_TimeUnit) Descriptor() protoreflect.EnumDescriptor {
-	return file_artifact_artifact_v1alpha_update_proto_enumTypes[0].Descriptor()
+	return file_artifact_artifact_v1alpha_update_proto_enumTypes[1].Descriptor()
 }
 
 func (SetRollbackRetentionAdminRequest_TimeUnit) Type() protoreflect.EnumType {
-	return &file_artifact_artifact_v1alpha_update_proto_enumTypes[0]
+	return &file_artifact_artifact_v1alpha_update_proto_enumTypes[1]
 }
 
 func (x SetRollbackRetentionAdminRequest_TimeUnit) Number() protoreflect.EnumNumber {
@@ -82,13 +171,13 @@ func (SetRollbackRetentionAdminRequest_TimeUnit) EnumDescriptor() ([]byte, []int
 	return file_artifact_artifact_v1alpha_update_proto_rawDescGZIP(), []int{5, 0}
 }
 
-// CatalogUpdateStatus messages
-type CatalogUpdateStatus struct {
+// KnowledgeBaseUpdateDetails provides detailed information about a knowledge base update
+type KnowledgeBaseUpdateDetails struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// UID of the catalog
 	CatalogUid string `protobuf:"bytes,1,opt,name=catalog_uid,json=catalogUid,proto3" json:"catalog_uid,omitempty"`
 	// Status of the catalog update
-	Status string `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
+	Status KnowledgeBaseUpdateStatus `protobuf:"varint,2,opt,name=status,proto3,enum=artifact.artifact.v1alpha.KnowledgeBaseUpdateStatus" json:"status,omitempty"`
 	// Workflow ID of the catalog update
 	WorkflowId string `protobuf:"bytes,3,opt,name=workflow_id,json=workflowId,proto3" json:"workflow_id,omitempty"`
 	// Started at time of the catalog update
@@ -103,20 +192,20 @@ type CatalogUpdateStatus struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CatalogUpdateStatus) Reset() {
-	*x = CatalogUpdateStatus{}
+func (x *KnowledgeBaseUpdateDetails) Reset() {
+	*x = KnowledgeBaseUpdateDetails{}
 	mi := &file_artifact_artifact_v1alpha_update_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CatalogUpdateStatus) String() string {
+func (x *KnowledgeBaseUpdateDetails) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CatalogUpdateStatus) ProtoMessage() {}
+func (*KnowledgeBaseUpdateDetails) ProtoMessage() {}
 
-func (x *CatalogUpdateStatus) ProtoReflect() protoreflect.Message {
+func (x *KnowledgeBaseUpdateDetails) ProtoReflect() protoreflect.Message {
 	mi := &file_artifact_artifact_v1alpha_update_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -128,54 +217,54 @@ func (x *CatalogUpdateStatus) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CatalogUpdateStatus.ProtoReflect.Descriptor instead.
-func (*CatalogUpdateStatus) Descriptor() ([]byte, []int) {
+// Deprecated: Use KnowledgeBaseUpdateDetails.ProtoReflect.Descriptor instead.
+func (*KnowledgeBaseUpdateDetails) Descriptor() ([]byte, []int) {
 	return file_artifact_artifact_v1alpha_update_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *CatalogUpdateStatus) GetCatalogUid() string {
+func (x *KnowledgeBaseUpdateDetails) GetCatalogUid() string {
 	if x != nil {
 		return x.CatalogUid
 	}
 	return ""
 }
 
-func (x *CatalogUpdateStatus) GetStatus() string {
+func (x *KnowledgeBaseUpdateDetails) GetStatus() KnowledgeBaseUpdateStatus {
 	if x != nil {
 		return x.Status
 	}
-	return ""
+	return KnowledgeBaseUpdateStatus_KNOWLEDGE_BASE_UPDATE_STATUS_UNSPECIFIED
 }
 
-func (x *CatalogUpdateStatus) GetWorkflowId() string {
+func (x *KnowledgeBaseUpdateDetails) GetWorkflowId() string {
 	if x != nil {
 		return x.WorkflowId
 	}
 	return ""
 }
 
-func (x *CatalogUpdateStatus) GetStartedAt() string {
+func (x *KnowledgeBaseUpdateDetails) GetStartedAt() string {
 	if x != nil {
 		return x.StartedAt
 	}
 	return ""
 }
 
-func (x *CatalogUpdateStatus) GetCompletedAt() string {
+func (x *KnowledgeBaseUpdateDetails) GetCompletedAt() string {
 	if x != nil {
 		return x.CompletedAt
 	}
 	return ""
 }
 
-func (x *CatalogUpdateStatus) GetFilesProcessed() int32 {
+func (x *KnowledgeBaseUpdateDetails) GetFilesProcessed() int32 {
 	if x != nil {
 		return x.FilesProcessed
 	}
 	return 0
 }
 
-func (x *CatalogUpdateStatus) GetTotalFiles() int32 {
+func (x *KnowledgeBaseUpdateDetails) GetTotalFiles() int32 {
 	if x != nil {
 		return x.TotalFiles
 	}
@@ -572,8 +661,8 @@ type GetKnowledgeBaseUpdateStatusAdminResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Whether update is in progress
 	UpdateInProgress bool `protobuf:"varint,1,opt,name=update_in_progress,json=updateInProgress,proto3" json:"update_in_progress,omitempty"`
-	// List of catalog update statuses
-	CatalogStatuses []*CatalogUpdateStatus `protobuf:"bytes,2,rep,name=catalog_statuses,json=catalogStatuses,proto3" json:"catalog_statuses,omitempty"`
+	// List of knowledge base update details
+	Details []*KnowledgeBaseUpdateDetails `protobuf:"bytes,2,rep,name=details,proto3" json:"details,omitempty"`
 	// Status message
 	Message       string `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -617,9 +706,9 @@ func (x *GetKnowledgeBaseUpdateStatusAdminResponse) GetUpdateInProgress() bool {
 	return false
 }
 
-func (x *GetKnowledgeBaseUpdateStatusAdminResponse) GetCatalogStatuses() []*CatalogUpdateStatus {
+func (x *GetKnowledgeBaseUpdateStatusAdminResponse) GetDetails() []*KnowledgeBaseUpdateDetails {
 	if x != nil {
-		return x.CatalogStatuses
+		return x.Details
 	}
 	return nil
 }
@@ -704,10 +793,10 @@ type ExecuteKnowledgeBaseUpdateAdminResponse struct {
 	Started bool `protobuf:"varint,1,opt,name=started,proto3" json:"started,omitempty"`
 	// Human-readable status message explaining the result
 	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	// List of catalog update statuses (populated when update already in progress)
-	CatalogStatuses []*CatalogUpdateStatus `protobuf:"bytes,3,rep,name=catalog_statuses,json=catalogStatuses,proto3" json:"catalog_statuses,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	// List of knowledge base update details (populated when update already in progress)
+	Details       []*KnowledgeBaseUpdateDetails `protobuf:"bytes,3,rep,name=details,proto3" json:"details,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ExecuteKnowledgeBaseUpdateAdminResponse) Reset() {
@@ -754,9 +843,9 @@ func (x *ExecuteKnowledgeBaseUpdateAdminResponse) GetMessage() string {
 	return ""
 }
 
-func (x *ExecuteKnowledgeBaseUpdateAdminResponse) GetCatalogStatuses() []*CatalogUpdateStatus {
+func (x *ExecuteKnowledgeBaseUpdateAdminResponse) GetDetails() []*KnowledgeBaseUpdateDetails {
 	if x != nil {
-		return x.CatalogStatuses
+		return x.Details
 	}
 	return nil
 }
@@ -814,10 +903,10 @@ type AbortKnowledgeBaseUpdateAdminResponse struct {
 	Success bool `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	// Human-readable status message explaining the result
 	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	// List of catalog update statuses that were aborted
-	CatalogStatuses []*CatalogUpdateStatus `protobuf:"bytes,3,rep,name=catalog_statuses,json=catalogStatuses,proto3" json:"catalog_statuses,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	// List of knowledge base update details that were aborted
+	Details       []*KnowledgeBaseUpdateDetails `protobuf:"bytes,3,rep,name=details,proto3" json:"details,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *AbortKnowledgeBaseUpdateAdminResponse) Reset() {
@@ -864,9 +953,9 @@ func (x *AbortKnowledgeBaseUpdateAdminResponse) GetMessage() string {
 	return ""
 }
 
-func (x *AbortKnowledgeBaseUpdateAdminResponse) GetCatalogStatuses() []*CatalogUpdateStatus {
+func (x *AbortKnowledgeBaseUpdateAdminResponse) GetDetails() []*KnowledgeBaseUpdateDetails {
 	if x != nil {
-		return x.CatalogStatuses
+		return x.Details
 	}
 	return nil
 }
@@ -875,11 +964,11 @@ var File_artifact_artifact_v1alpha_update_proto protoreflect.FileDescriptor
 
 const file_artifact_artifact_v1alpha_update_proto_rawDesc = "" +
 	"\n" +
-	"&artifact/artifact/v1alpha/update.proto\x12\x19artifact.artifact.v1alpha\x1a(artifact/artifact/v1alpha/artifact.proto\"\xfb\x01\n" +
-	"\x13CatalogUpdateStatus\x12\x1f\n" +
+	"&artifact/artifact/v1alpha/update.proto\x12\x19artifact.artifact.v1alpha\x1a(artifact/artifact/v1alpha/artifact.proto\"\xb8\x02\n" +
+	"\x1aKnowledgeBaseUpdateDetails\x12\x1f\n" +
 	"\vcatalog_uid\x18\x01 \x01(\tR\n" +
-	"catalogUid\x12\x16\n" +
-	"\x06status\x18\x02 \x01(\tR\x06status\x12\x1f\n" +
+	"catalogUid\x12L\n" +
+	"\x06status\x18\x02 \x01(\x0e24.artifact.artifact.v1alpha.KnowledgeBaseUpdateStatusR\x06status\x12\x1f\n" +
 	"\vworkflow_id\x18\x03 \x01(\tR\n" +
 	"workflowId\x12\x1d\n" +
 	"\n" +
@@ -914,28 +1003,39 @@ const file_artifact_artifact_v1alpha_update_proto_rawDesc = "" +
 	"\x18previous_retention_until\x18\x01 \x01(\tR\x16previousRetentionUntil\x12.\n" +
 	"\x13new_retention_until\x18\x02 \x01(\tR\x11newRetentionUntil\x126\n" +
 	"\x17total_retention_seconds\x18\x03 \x01(\x03R\x15totalRetentionSeconds\"*\n" +
-	"(GetKnowledgeBaseUpdateStatusAdminRequest\"\xce\x01\n" +
+	"(GetKnowledgeBaseUpdateStatusAdminRequest\"\xc4\x01\n" +
 	")GetKnowledgeBaseUpdateStatusAdminResponse\x12,\n" +
-	"\x12update_in_progress\x18\x01 \x01(\bR\x10updateInProgress\x12Y\n" +
-	"\x10catalog_statuses\x18\x02 \x03(\v2..artifact.artifact.v1alpha.CatalogUpdateStatusR\x0fcatalogStatuses\x12\x18\n" +
+	"\x12update_in_progress\x18\x01 \x01(\bR\x10updateInProgress\x12O\n" +
+	"\adetails\x18\x02 \x03(\v25.artifact.artifact.v1alpha.KnowledgeBaseUpdateDetailsR\adetails\x12\x18\n" +
 	"\amessage\x18\x03 \x01(\tR\amessage\"\x9c\x01\n" +
 	"&ExecuteKnowledgeBaseUpdateAdminRequest\x12\x1f\n" +
 	"\vcatalog_ids\x18\x01 \x03(\tR\n" +
 	"catalogIds\x12*\n" +
 	"\x0esystem_profile\x18\x02 \x01(\tH\x00R\rsystemProfile\x88\x01\x01\x12\x12\n" +
 	"\x04tags\x18\x03 \x03(\tR\x04tagsB\x11\n" +
-	"\x0f_system_profile\"\xb8\x01\n" +
+	"\x0f_system_profile\"\xae\x01\n" +
 	"'ExecuteKnowledgeBaseUpdateAdminResponse\x12\x18\n" +
 	"\astarted\x18\x01 \x01(\bR\astarted\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\x12Y\n" +
-	"\x10catalog_statuses\x18\x03 \x03(\v2..artifact.artifact.v1alpha.CatalogUpdateStatusR\x0fcatalogStatuses\"G\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12O\n" +
+	"\adetails\x18\x03 \x03(\v25.artifact.artifact.v1alpha.KnowledgeBaseUpdateDetailsR\adetails\"G\n" +
 	"$AbortKnowledgeBaseUpdateAdminRequest\x12\x1f\n" +
 	"\vcatalog_ids\x18\x01 \x03(\tR\n" +
-	"catalogIds\"\xb6\x01\n" +
+	"catalogIds\"\xac\x01\n" +
 	"%AbortKnowledgeBaseUpdateAdminResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\x12Y\n" +
-	"\x10catalog_statuses\x18\x03 \x03(\v2..artifact.artifact.v1alpha.CatalogUpdateStatusR\x0fcatalogStatusesB\xff\x01\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12O\n" +
+	"\adetails\x18\x03 \x03(\v25.artifact.artifact.v1alpha.KnowledgeBaseUpdateDetailsR\adetails*\xca\x03\n" +
+	"\x19KnowledgeBaseUpdateStatus\x12,\n" +
+	"(KNOWLEDGE_BASE_UPDATE_STATUS_UNSPECIFIED\x10\x00\x12%\n" +
+	"!KNOWLEDGE_BASE_UPDATE_STATUS_NONE\x10\x01\x12)\n" +
+	"%KNOWLEDGE_BASE_UPDATE_STATUS_UPDATING\x10\x02\x12(\n" +
+	"$KNOWLEDGE_BASE_UPDATE_STATUS_SYNCING\x10\x03\x12+\n" +
+	"'KNOWLEDGE_BASE_UPDATE_STATUS_VALIDATING\x10\x04\x12)\n" +
+	"%KNOWLEDGE_BASE_UPDATE_STATUS_SWAPPING\x10\x05\x12*\n" +
+	"&KNOWLEDGE_BASE_UPDATE_STATUS_COMPLETED\x10\x06\x12'\n" +
+	"#KNOWLEDGE_BASE_UPDATE_STATUS_FAILED\x10\a\x12,\n" +
+	"(KNOWLEDGE_BASE_UPDATE_STATUS_ROLLED_BACK\x10\b\x12(\n" +
+	"$KNOWLEDGE_BASE_UPDATE_STATUS_ABORTED\x10\tB\xff\x01\n" +
 	"\x1dcom.artifact.artifact.v1alphaB\vUpdateProtoP\x01ZKgithub.com/instill-ai/protogen-go/artifact/artifact/v1alpha;artifactv1alpha\xa2\x02\x03AAX\xaa\x02\x19Artifact.Artifact.V1alpha\xca\x02\x19Artifact\\Artifact\\V1alpha\xe2\x02%Artifact\\Artifact\\V1alpha\\GPBMetadata\xea\x02\x1bArtifact::Artifact::V1alphab\x06proto3"
 
 var (
@@ -950,36 +1050,38 @@ func file_artifact_artifact_v1alpha_update_proto_rawDescGZIP() []byte {
 	return file_artifact_artifact_v1alpha_update_proto_rawDescData
 }
 
-var file_artifact_artifact_v1alpha_update_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_artifact_artifact_v1alpha_update_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
 var file_artifact_artifact_v1alpha_update_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_artifact_artifact_v1alpha_update_proto_goTypes = []any{
-	(SetRollbackRetentionAdminRequest_TimeUnit)(0),    // 0: artifact.artifact.v1alpha.SetRollbackRetentionAdminRequest.TimeUnit
-	(*CatalogUpdateStatus)(nil),                       // 1: artifact.artifact.v1alpha.CatalogUpdateStatus
-	(*RollbackAdminRequest)(nil),                      // 2: artifact.artifact.v1alpha.RollbackAdminRequest
-	(*RollbackAdminResponse)(nil),                     // 3: artifact.artifact.v1alpha.RollbackAdminResponse
-	(*PurgeRollbackAdminRequest)(nil),                 // 4: artifact.artifact.v1alpha.PurgeRollbackAdminRequest
-	(*PurgeRollbackAdminResponse)(nil),                // 5: artifact.artifact.v1alpha.PurgeRollbackAdminResponse
-	(*SetRollbackRetentionAdminRequest)(nil),          // 6: artifact.artifact.v1alpha.SetRollbackRetentionAdminRequest
-	(*SetRollbackRetentionAdminResponse)(nil),         // 7: artifact.artifact.v1alpha.SetRollbackRetentionAdminResponse
-	(*GetKnowledgeBaseUpdateStatusAdminRequest)(nil),  // 8: artifact.artifact.v1alpha.GetKnowledgeBaseUpdateStatusAdminRequest
-	(*GetKnowledgeBaseUpdateStatusAdminResponse)(nil), // 9: artifact.artifact.v1alpha.GetKnowledgeBaseUpdateStatusAdminResponse
-	(*ExecuteKnowledgeBaseUpdateAdminRequest)(nil),    // 10: artifact.artifact.v1alpha.ExecuteKnowledgeBaseUpdateAdminRequest
-	(*ExecuteKnowledgeBaseUpdateAdminResponse)(nil),   // 11: artifact.artifact.v1alpha.ExecuteKnowledgeBaseUpdateAdminResponse
-	(*AbortKnowledgeBaseUpdateAdminRequest)(nil),      // 12: artifact.artifact.v1alpha.AbortKnowledgeBaseUpdateAdminRequest
-	(*AbortKnowledgeBaseUpdateAdminResponse)(nil),     // 13: artifact.artifact.v1alpha.AbortKnowledgeBaseUpdateAdminResponse
-	(*Catalog)(nil), // 14: artifact.artifact.v1alpha.Catalog
+	(KnowledgeBaseUpdateStatus)(0),                    // 0: artifact.artifact.v1alpha.KnowledgeBaseUpdateStatus
+	(SetRollbackRetentionAdminRequest_TimeUnit)(0),    // 1: artifact.artifact.v1alpha.SetRollbackRetentionAdminRequest.TimeUnit
+	(*KnowledgeBaseUpdateDetails)(nil),                // 2: artifact.artifact.v1alpha.KnowledgeBaseUpdateDetails
+	(*RollbackAdminRequest)(nil),                      // 3: artifact.artifact.v1alpha.RollbackAdminRequest
+	(*RollbackAdminResponse)(nil),                     // 4: artifact.artifact.v1alpha.RollbackAdminResponse
+	(*PurgeRollbackAdminRequest)(nil),                 // 5: artifact.artifact.v1alpha.PurgeRollbackAdminRequest
+	(*PurgeRollbackAdminResponse)(nil),                // 6: artifact.artifact.v1alpha.PurgeRollbackAdminResponse
+	(*SetRollbackRetentionAdminRequest)(nil),          // 7: artifact.artifact.v1alpha.SetRollbackRetentionAdminRequest
+	(*SetRollbackRetentionAdminResponse)(nil),         // 8: artifact.artifact.v1alpha.SetRollbackRetentionAdminResponse
+	(*GetKnowledgeBaseUpdateStatusAdminRequest)(nil),  // 9: artifact.artifact.v1alpha.GetKnowledgeBaseUpdateStatusAdminRequest
+	(*GetKnowledgeBaseUpdateStatusAdminResponse)(nil), // 10: artifact.artifact.v1alpha.GetKnowledgeBaseUpdateStatusAdminResponse
+	(*ExecuteKnowledgeBaseUpdateAdminRequest)(nil),    // 11: artifact.artifact.v1alpha.ExecuteKnowledgeBaseUpdateAdminRequest
+	(*ExecuteKnowledgeBaseUpdateAdminResponse)(nil),   // 12: artifact.artifact.v1alpha.ExecuteKnowledgeBaseUpdateAdminResponse
+	(*AbortKnowledgeBaseUpdateAdminRequest)(nil),      // 13: artifact.artifact.v1alpha.AbortKnowledgeBaseUpdateAdminRequest
+	(*AbortKnowledgeBaseUpdateAdminResponse)(nil),     // 14: artifact.artifact.v1alpha.AbortKnowledgeBaseUpdateAdminResponse
+	(*Catalog)(nil), // 15: artifact.artifact.v1alpha.Catalog
 }
 var file_artifact_artifact_v1alpha_update_proto_depIdxs = []int32{
-	14, // 0: artifact.artifact.v1alpha.RollbackAdminResponse.catalog:type_name -> artifact.artifact.v1alpha.Catalog
-	0,  // 1: artifact.artifact.v1alpha.SetRollbackRetentionAdminRequest.time_unit:type_name -> artifact.artifact.v1alpha.SetRollbackRetentionAdminRequest.TimeUnit
-	1,  // 2: artifact.artifact.v1alpha.GetKnowledgeBaseUpdateStatusAdminResponse.catalog_statuses:type_name -> artifact.artifact.v1alpha.CatalogUpdateStatus
-	1,  // 3: artifact.artifact.v1alpha.ExecuteKnowledgeBaseUpdateAdminResponse.catalog_statuses:type_name -> artifact.artifact.v1alpha.CatalogUpdateStatus
-	1,  // 4: artifact.artifact.v1alpha.AbortKnowledgeBaseUpdateAdminResponse.catalog_statuses:type_name -> artifact.artifact.v1alpha.CatalogUpdateStatus
-	5,  // [5:5] is the sub-list for method output_type
-	5,  // [5:5] is the sub-list for method input_type
-	5,  // [5:5] is the sub-list for extension type_name
-	5,  // [5:5] is the sub-list for extension extendee
-	0,  // [0:5] is the sub-list for field type_name
+	0,  // 0: artifact.artifact.v1alpha.KnowledgeBaseUpdateDetails.status:type_name -> artifact.artifact.v1alpha.KnowledgeBaseUpdateStatus
+	15, // 1: artifact.artifact.v1alpha.RollbackAdminResponse.catalog:type_name -> artifact.artifact.v1alpha.Catalog
+	1,  // 2: artifact.artifact.v1alpha.SetRollbackRetentionAdminRequest.time_unit:type_name -> artifact.artifact.v1alpha.SetRollbackRetentionAdminRequest.TimeUnit
+	2,  // 3: artifact.artifact.v1alpha.GetKnowledgeBaseUpdateStatusAdminResponse.details:type_name -> artifact.artifact.v1alpha.KnowledgeBaseUpdateDetails
+	2,  // 4: artifact.artifact.v1alpha.ExecuteKnowledgeBaseUpdateAdminResponse.details:type_name -> artifact.artifact.v1alpha.KnowledgeBaseUpdateDetails
+	2,  // 5: artifact.artifact.v1alpha.AbortKnowledgeBaseUpdateAdminResponse.details:type_name -> artifact.artifact.v1alpha.KnowledgeBaseUpdateDetails
+	6,  // [6:6] is the sub-list for method output_type
+	6,  // [6:6] is the sub-list for method input_type
+	6,  // [6:6] is the sub-list for extension type_name
+	6,  // [6:6] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_artifact_artifact_v1alpha_update_proto_init() }
@@ -994,7 +1096,7 @@ func file_artifact_artifact_v1alpha_update_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_artifact_artifact_v1alpha_update_proto_rawDesc), len(file_artifact_artifact_v1alpha_update_proto_rawDesc)),
-			NumEnums:      1,
+			NumEnums:      2,
 			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   0,
