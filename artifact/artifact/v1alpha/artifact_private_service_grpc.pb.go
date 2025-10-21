@@ -29,10 +29,11 @@ const (
 	ArtifactPrivateService_GetFileAsMarkdownAdmin_FullMethodName            = "/artifact.artifact.v1alpha.ArtifactPrivateService/GetFileAsMarkdownAdmin"
 	ArtifactPrivateService_GetChatFileAdmin_FullMethodName                  = "/artifact.artifact.v1alpha.ArtifactPrivateService/GetChatFileAdmin"
 	ArtifactPrivateService_DeleteCatalogFileAdmin_FullMethodName            = "/artifact.artifact.v1alpha.ArtifactPrivateService/DeleteCatalogFileAdmin"
+	ArtifactPrivateService_ExecuteKnowledgeBaseUpdateAdmin_FullMethodName   = "/artifact.artifact.v1alpha.ArtifactPrivateService/ExecuteKnowledgeBaseUpdateAdmin"
+	ArtifactPrivateService_AbortKnowledgeBaseUpdateAdmin_FullMethodName     = "/artifact.artifact.v1alpha.ArtifactPrivateService/AbortKnowledgeBaseUpdateAdmin"
 	ArtifactPrivateService_RollbackAdmin_FullMethodName                     = "/artifact.artifact.v1alpha.ArtifactPrivateService/RollbackAdmin"
 	ArtifactPrivateService_PurgeRollbackAdmin_FullMethodName                = "/artifact.artifact.v1alpha.ArtifactPrivateService/PurgeRollbackAdmin"
 	ArtifactPrivateService_SetRollbackRetentionAdmin_FullMethodName         = "/artifact.artifact.v1alpha.ArtifactPrivateService/SetRollbackRetentionAdmin"
-	ArtifactPrivateService_ExecuteKnowledgeBaseUpdateAdmin_FullMethodName   = "/artifact.artifact.v1alpha.ArtifactPrivateService/ExecuteKnowledgeBaseUpdateAdmin"
 	ArtifactPrivateService_GetKnowledgeBaseUpdateStatusAdmin_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPrivateService/GetKnowledgeBaseUpdateStatusAdmin"
 	ArtifactPrivateService_GetSystemProfileAdmin_FullMethodName             = "/artifact.artifact.v1alpha.ArtifactPrivateService/GetSystemProfileAdmin"
 	ArtifactPrivateService_UpdateSystemProfileAdmin_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPrivateService/UpdateSystemProfileAdmin"
@@ -83,16 +84,28 @@ type ArtifactPrivateServiceClient interface {
 	GetChatFileAdmin(ctx context.Context, in *GetChatFileAdminRequest, opts ...grpc.CallOption) (*GetChatFileAdminResponse, error)
 	// Delete a catalog file (admin only)
 	//
-	// Deletes a file from a catalog. This is the private endpoint for internal operations.
+	// Deletes a file from a catalog using only the file UID. Unlike the public
+	// DeleteCatalogFile endpoint which requires namespace and catalog IDs, this
+	// admin endpoint automatically looks up the file's catalog and owner to
+	// perform the deletion. Primarily used for integration testing and internal
+	// operations where the caller has a file UID but not the full resource path.
+	// Authentication metadata is injected automatically based on the file owner.
 	DeleteCatalogFileAdmin(ctx context.Context, in *DeleteCatalogFileAdminRequest, opts ...grpc.CallOption) (*DeleteCatalogFileAdminResponse, error)
+	// Execute knowledge base update (admin only)
+	ExecuteKnowledgeBaseUpdateAdmin(ctx context.Context, in *ExecuteKnowledgeBaseUpdateAdminRequest, opts ...grpc.CallOption) (*ExecuteKnowledgeBaseUpdateAdminResponse, error)
+	// Abort knowledge base update (admin only)
+	//
+	// Cancels ongoing update workflows and cleans up staging KB resources
+	// (both finished and unfinished). Can abort specific catalogs by ID or
+	// all currently updating catalogs if no IDs provided. Sets catalog status
+	// to 'aborted'.
+	AbortKnowledgeBaseUpdateAdmin(ctx context.Context, in *AbortKnowledgeBaseUpdateAdminRequest, opts ...grpc.CallOption) (*AbortKnowledgeBaseUpdateAdminResponse, error)
 	// Rollback a specific catalog to previous version (admin only)
 	RollbackAdmin(ctx context.Context, in *RollbackAdminRequest, opts ...grpc.CallOption) (*RollbackAdminResponse, error)
 	// Purge rollback immediately (admin only)
 	PurgeRollbackAdmin(ctx context.Context, in *PurgeRollbackAdminRequest, opts ...grpc.CallOption) (*PurgeRollbackAdminResponse, error)
 	// Set rollback retention period (admin only)
 	SetRollbackRetentionAdmin(ctx context.Context, in *SetRollbackRetentionAdminRequest, opts ...grpc.CallOption) (*SetRollbackRetentionAdminResponse, error)
-	// Execute knowledge base update (admin only)
-	ExecuteKnowledgeBaseUpdateAdmin(ctx context.Context, in *ExecuteKnowledgeBaseUpdateAdminRequest, opts ...grpc.CallOption) (*ExecuteKnowledgeBaseUpdateAdminResponse, error)
 	// Get knowledge base update status (admin only)
 	GetKnowledgeBaseUpdateStatusAdmin(ctx context.Context, in *GetKnowledgeBaseUpdateStatusAdminRequest, opts ...grpc.CallOption) (*GetKnowledgeBaseUpdateStatusAdminResponse, error)
 	// Get a system configuration profile (admin only)
@@ -214,6 +227,26 @@ func (c *artifactPrivateServiceClient) DeleteCatalogFileAdmin(ctx context.Contex
 	return out, nil
 }
 
+func (c *artifactPrivateServiceClient) ExecuteKnowledgeBaseUpdateAdmin(ctx context.Context, in *ExecuteKnowledgeBaseUpdateAdminRequest, opts ...grpc.CallOption) (*ExecuteKnowledgeBaseUpdateAdminResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ExecuteKnowledgeBaseUpdateAdminResponse)
+	err := c.cc.Invoke(ctx, ArtifactPrivateService_ExecuteKnowledgeBaseUpdateAdmin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPrivateServiceClient) AbortKnowledgeBaseUpdateAdmin(ctx context.Context, in *AbortKnowledgeBaseUpdateAdminRequest, opts ...grpc.CallOption) (*AbortKnowledgeBaseUpdateAdminResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AbortKnowledgeBaseUpdateAdminResponse)
+	err := c.cc.Invoke(ctx, ArtifactPrivateService_AbortKnowledgeBaseUpdateAdmin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *artifactPrivateServiceClient) RollbackAdmin(ctx context.Context, in *RollbackAdminRequest, opts ...grpc.CallOption) (*RollbackAdminResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(RollbackAdminResponse)
@@ -238,16 +271,6 @@ func (c *artifactPrivateServiceClient) SetRollbackRetentionAdmin(ctx context.Con
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SetRollbackRetentionAdminResponse)
 	err := c.cc.Invoke(ctx, ArtifactPrivateService_SetRollbackRetentionAdmin_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *artifactPrivateServiceClient) ExecuteKnowledgeBaseUpdateAdmin(ctx context.Context, in *ExecuteKnowledgeBaseUpdateAdminRequest, opts ...grpc.CallOption) (*ExecuteKnowledgeBaseUpdateAdminResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ExecuteKnowledgeBaseUpdateAdminResponse)
-	err := c.cc.Invoke(ctx, ArtifactPrivateService_ExecuteKnowledgeBaseUpdateAdmin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -347,16 +370,28 @@ type ArtifactPrivateServiceServer interface {
 	GetChatFileAdmin(context.Context, *GetChatFileAdminRequest) (*GetChatFileAdminResponse, error)
 	// Delete a catalog file (admin only)
 	//
-	// Deletes a file from a catalog. This is the private endpoint for internal operations.
+	// Deletes a file from a catalog using only the file UID. Unlike the public
+	// DeleteCatalogFile endpoint which requires namespace and catalog IDs, this
+	// admin endpoint automatically looks up the file's catalog and owner to
+	// perform the deletion. Primarily used for integration testing and internal
+	// operations where the caller has a file UID but not the full resource path.
+	// Authentication metadata is injected automatically based on the file owner.
 	DeleteCatalogFileAdmin(context.Context, *DeleteCatalogFileAdminRequest) (*DeleteCatalogFileAdminResponse, error)
+	// Execute knowledge base update (admin only)
+	ExecuteKnowledgeBaseUpdateAdmin(context.Context, *ExecuteKnowledgeBaseUpdateAdminRequest) (*ExecuteKnowledgeBaseUpdateAdminResponse, error)
+	// Abort knowledge base update (admin only)
+	//
+	// Cancels ongoing update workflows and cleans up staging KB resources
+	// (both finished and unfinished). Can abort specific catalogs by ID or
+	// all currently updating catalogs if no IDs provided. Sets catalog status
+	// to 'aborted'.
+	AbortKnowledgeBaseUpdateAdmin(context.Context, *AbortKnowledgeBaseUpdateAdminRequest) (*AbortKnowledgeBaseUpdateAdminResponse, error)
 	// Rollback a specific catalog to previous version (admin only)
 	RollbackAdmin(context.Context, *RollbackAdminRequest) (*RollbackAdminResponse, error)
 	// Purge rollback immediately (admin only)
 	PurgeRollbackAdmin(context.Context, *PurgeRollbackAdminRequest) (*PurgeRollbackAdminResponse, error)
 	// Set rollback retention period (admin only)
 	SetRollbackRetentionAdmin(context.Context, *SetRollbackRetentionAdminRequest) (*SetRollbackRetentionAdminResponse, error)
-	// Execute knowledge base update (admin only)
-	ExecuteKnowledgeBaseUpdateAdmin(context.Context, *ExecuteKnowledgeBaseUpdateAdminRequest) (*ExecuteKnowledgeBaseUpdateAdminResponse, error)
 	// Get knowledge base update status (admin only)
 	GetKnowledgeBaseUpdateStatusAdmin(context.Context, *GetKnowledgeBaseUpdateStatusAdminRequest) (*GetKnowledgeBaseUpdateStatusAdminResponse, error)
 	// Get a system configuration profile (admin only)
@@ -406,6 +441,12 @@ func (UnimplementedArtifactPrivateServiceServer) GetChatFileAdmin(context.Contex
 func (UnimplementedArtifactPrivateServiceServer) DeleteCatalogFileAdmin(context.Context, *DeleteCatalogFileAdminRequest) (*DeleteCatalogFileAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteCatalogFileAdmin not implemented")
 }
+func (UnimplementedArtifactPrivateServiceServer) ExecuteKnowledgeBaseUpdateAdmin(context.Context, *ExecuteKnowledgeBaseUpdateAdminRequest) (*ExecuteKnowledgeBaseUpdateAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExecuteKnowledgeBaseUpdateAdmin not implemented")
+}
+func (UnimplementedArtifactPrivateServiceServer) AbortKnowledgeBaseUpdateAdmin(context.Context, *AbortKnowledgeBaseUpdateAdminRequest) (*AbortKnowledgeBaseUpdateAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AbortKnowledgeBaseUpdateAdmin not implemented")
+}
 func (UnimplementedArtifactPrivateServiceServer) RollbackAdmin(context.Context, *RollbackAdminRequest) (*RollbackAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RollbackAdmin not implemented")
 }
@@ -414,9 +455,6 @@ func (UnimplementedArtifactPrivateServiceServer) PurgeRollbackAdmin(context.Cont
 }
 func (UnimplementedArtifactPrivateServiceServer) SetRollbackRetentionAdmin(context.Context, *SetRollbackRetentionAdminRequest) (*SetRollbackRetentionAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetRollbackRetentionAdmin not implemented")
-}
-func (UnimplementedArtifactPrivateServiceServer) ExecuteKnowledgeBaseUpdateAdmin(context.Context, *ExecuteKnowledgeBaseUpdateAdminRequest) (*ExecuteKnowledgeBaseUpdateAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ExecuteKnowledgeBaseUpdateAdmin not implemented")
 }
 func (UnimplementedArtifactPrivateServiceServer) GetKnowledgeBaseUpdateStatusAdmin(context.Context, *GetKnowledgeBaseUpdateStatusAdminRequest) (*GetKnowledgeBaseUpdateStatusAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetKnowledgeBaseUpdateStatusAdmin not implemented")
@@ -633,6 +671,42 @@ func _ArtifactPrivateService_DeleteCatalogFileAdmin_Handler(srv interface{}, ctx
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArtifactPrivateService_ExecuteKnowledgeBaseUpdateAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExecuteKnowledgeBaseUpdateAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPrivateServiceServer).ExecuteKnowledgeBaseUpdateAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPrivateService_ExecuteKnowledgeBaseUpdateAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPrivateServiceServer).ExecuteKnowledgeBaseUpdateAdmin(ctx, req.(*ExecuteKnowledgeBaseUpdateAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPrivateService_AbortKnowledgeBaseUpdateAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AbortKnowledgeBaseUpdateAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPrivateServiceServer).AbortKnowledgeBaseUpdateAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPrivateService_AbortKnowledgeBaseUpdateAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPrivateServiceServer).AbortKnowledgeBaseUpdateAdmin(ctx, req.(*AbortKnowledgeBaseUpdateAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ArtifactPrivateService_RollbackAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RollbackAdminRequest)
 	if err := dec(in); err != nil {
@@ -683,24 +757,6 @@ func _ArtifactPrivateService_SetRollbackRetentionAdmin_Handler(srv interface{}, 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ArtifactPrivateServiceServer).SetRollbackRetentionAdmin(ctx, req.(*SetRollbackRetentionAdminRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ArtifactPrivateService_ExecuteKnowledgeBaseUpdateAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ExecuteKnowledgeBaseUpdateAdminRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactPrivateServiceServer).ExecuteKnowledgeBaseUpdateAdmin(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ArtifactPrivateService_ExecuteKnowledgeBaseUpdateAdmin_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPrivateServiceServer).ExecuteKnowledgeBaseUpdateAdmin(ctx, req.(*ExecuteKnowledgeBaseUpdateAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -843,6 +899,14 @@ var ArtifactPrivateService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ArtifactPrivateService_DeleteCatalogFileAdmin_Handler,
 		},
 		{
+			MethodName: "ExecuteKnowledgeBaseUpdateAdmin",
+			Handler:    _ArtifactPrivateService_ExecuteKnowledgeBaseUpdateAdmin_Handler,
+		},
+		{
+			MethodName: "AbortKnowledgeBaseUpdateAdmin",
+			Handler:    _ArtifactPrivateService_AbortKnowledgeBaseUpdateAdmin_Handler,
+		},
+		{
 			MethodName: "RollbackAdmin",
 			Handler:    _ArtifactPrivateService_RollbackAdmin_Handler,
 		},
@@ -853,10 +917,6 @@ var ArtifactPrivateService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetRollbackRetentionAdmin",
 			Handler:    _ArtifactPrivateService_SetRollbackRetentionAdmin_Handler,
-		},
-		{
-			MethodName: "ExecuteKnowledgeBaseUpdateAdmin",
-			Handler:    _ArtifactPrivateService_ExecuteKnowledgeBaseUpdateAdmin_Handler,
 		},
 		{
 			MethodName: "GetKnowledgeBaseUpdateStatusAdmin",

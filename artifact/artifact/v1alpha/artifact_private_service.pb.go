@@ -24,7 +24,7 @@ var File_artifact_artifact_v1alpha_artifact_private_service_proto protoreflect.F
 
 const file_artifact_artifact_v1alpha_artifact_private_service_proto_rawDesc = "" +
 	"\n" +
-	"8artifact/artifact/v1alpha/artifact_private_service.proto\x12\x19artifact.artifact.v1alpha\x1a(artifact/artifact/v1alpha/artifact.proto\x1a,artifact/artifact/v1alpha/file_catalog.proto\x1a.artifact/artifact/v1alpha/system_profile.proto\x1a&artifact/artifact/v1alpha/update.proto2\xb7\x15\n" +
+	"8artifact/artifact/v1alpha/artifact_private_service.proto\x12\x19artifact.artifact.v1alpha\x1a(artifact/artifact/v1alpha/artifact.proto\x1a,artifact/artifact/v1alpha/file_catalog.proto\x1a.artifact/artifact/v1alpha/system_profile.proto\x1a&artifact/artifact/v1alpha/update.proto2\xdc\x16\n" +
 	"\x16ArtifactPrivateService\x12\x90\x01\n" +
 	"\x17ListRepositoryTagsAdmin\x129.artifact.artifact.v1alpha.ListRepositoryTagsAdminRequest\x1a:.artifact.artifact.v1alpha.ListRepositoryTagsAdminResponse\x12\x8a\x01\n" +
 	"\x15GetRepositoryTagAdmin\x127.artifact.artifact.v1alpha.GetRepositoryTagAdminRequest\x1a8.artifact.artifact.v1alpha.GetRepositoryTagAdminResponse\x12\x93\x01\n" +
@@ -35,11 +35,12 @@ const file_artifact_artifact_v1alpha_artifact_private_service_proto_rawDesc = ""
 	"\x11UpdateObjectAdmin\x123.artifact.artifact.v1alpha.UpdateObjectAdminRequest\x1a4.artifact.artifact.v1alpha.UpdateObjectAdminResponse\x12\x8d\x01\n" +
 	"\x16GetFileAsMarkdownAdmin\x128.artifact.artifact.v1alpha.GetFileAsMarkdownAdminRequest\x1a9.artifact.artifact.v1alpha.GetFileAsMarkdownAdminResponse\x12\x80\x01\n" +
 	"\x10GetChatFileAdmin\x122.artifact.artifact.v1alpha.GetChatFileAdminRequest\x1a3.artifact.artifact.v1alpha.GetChatFileAdminResponse\"\x03\x88\x02\x01\x12\x8d\x01\n" +
-	"\x16DeleteCatalogFileAdmin\x128.artifact.artifact.v1alpha.DeleteCatalogFileAdminRequest\x1a9.artifact.artifact.v1alpha.DeleteCatalogFileAdminResponse\x12r\n" +
+	"\x16DeleteCatalogFileAdmin\x128.artifact.artifact.v1alpha.DeleteCatalogFileAdminRequest\x1a9.artifact.artifact.v1alpha.DeleteCatalogFileAdminResponse\x12\xa8\x01\n" +
+	"\x1fExecuteKnowledgeBaseUpdateAdmin\x12A.artifact.artifact.v1alpha.ExecuteKnowledgeBaseUpdateAdminRequest\x1aB.artifact.artifact.v1alpha.ExecuteKnowledgeBaseUpdateAdminResponse\x12\xa2\x01\n" +
+	"\x1dAbortKnowledgeBaseUpdateAdmin\x12?.artifact.artifact.v1alpha.AbortKnowledgeBaseUpdateAdminRequest\x1a@.artifact.artifact.v1alpha.AbortKnowledgeBaseUpdateAdminResponse\x12r\n" +
 	"\rRollbackAdmin\x12/.artifact.artifact.v1alpha.RollbackAdminRequest\x1a0.artifact.artifact.v1alpha.RollbackAdminResponse\x12\x81\x01\n" +
 	"\x12PurgeRollbackAdmin\x124.artifact.artifact.v1alpha.PurgeRollbackAdminRequest\x1a5.artifact.artifact.v1alpha.PurgeRollbackAdminResponse\x12\x96\x01\n" +
-	"\x19SetRollbackRetentionAdmin\x12;.artifact.artifact.v1alpha.SetRollbackRetentionAdminRequest\x1a<.artifact.artifact.v1alpha.SetRollbackRetentionAdminResponse\x12\xa8\x01\n" +
-	"\x1fExecuteKnowledgeBaseUpdateAdmin\x12A.artifact.artifact.v1alpha.ExecuteKnowledgeBaseUpdateAdminRequest\x1aB.artifact.artifact.v1alpha.ExecuteKnowledgeBaseUpdateAdminResponse\x12\xae\x01\n" +
+	"\x19SetRollbackRetentionAdmin\x12;.artifact.artifact.v1alpha.SetRollbackRetentionAdminRequest\x1a<.artifact.artifact.v1alpha.SetRollbackRetentionAdminResponse\x12\xae\x01\n" +
 	"!GetKnowledgeBaseUpdateStatusAdmin\x12C.artifact.artifact.v1alpha.GetKnowledgeBaseUpdateStatusAdminRequest\x1aD.artifact.artifact.v1alpha.GetKnowledgeBaseUpdateStatusAdminResponse\x12\x8a\x01\n" +
 	"\x15GetSystemProfileAdmin\x127.artifact.artifact.v1alpha.GetSystemProfileAdminRequest\x1a8.artifact.artifact.v1alpha.GetSystemProfileAdminResponse\x12\x93\x01\n" +
 	"\x18UpdateSystemProfileAdmin\x12:.artifact.artifact.v1alpha.UpdateSystemProfileAdminRequest\x1a;.artifact.artifact.v1alpha.UpdateSystemProfileAdminResponse\x12\x90\x01\n" +
@@ -58,34 +59,36 @@ var file_artifact_artifact_v1alpha_artifact_private_service_proto_goTypes = []an
 	(*GetFileAsMarkdownAdminRequest)(nil),             // 7: artifact.artifact.v1alpha.GetFileAsMarkdownAdminRequest
 	(*GetChatFileAdminRequest)(nil),                   // 8: artifact.artifact.v1alpha.GetChatFileAdminRequest
 	(*DeleteCatalogFileAdminRequest)(nil),             // 9: artifact.artifact.v1alpha.DeleteCatalogFileAdminRequest
-	(*RollbackAdminRequest)(nil),                      // 10: artifact.artifact.v1alpha.RollbackAdminRequest
-	(*PurgeRollbackAdminRequest)(nil),                 // 11: artifact.artifact.v1alpha.PurgeRollbackAdminRequest
-	(*SetRollbackRetentionAdminRequest)(nil),          // 12: artifact.artifact.v1alpha.SetRollbackRetentionAdminRequest
-	(*ExecuteKnowledgeBaseUpdateAdminRequest)(nil),    // 13: artifact.artifact.v1alpha.ExecuteKnowledgeBaseUpdateAdminRequest
-	(*GetKnowledgeBaseUpdateStatusAdminRequest)(nil),  // 14: artifact.artifact.v1alpha.GetKnowledgeBaseUpdateStatusAdminRequest
-	(*GetSystemProfileAdminRequest)(nil),              // 15: artifact.artifact.v1alpha.GetSystemProfileAdminRequest
-	(*UpdateSystemProfileAdminRequest)(nil),           // 16: artifact.artifact.v1alpha.UpdateSystemProfileAdminRequest
-	(*ListSystemProfilesAdminRequest)(nil),            // 17: artifact.artifact.v1alpha.ListSystemProfilesAdminRequest
-	(*DeleteSystemProfileAdminRequest)(nil),           // 18: artifact.artifact.v1alpha.DeleteSystemProfileAdminRequest
-	(*ListRepositoryTagsAdminResponse)(nil),           // 19: artifact.artifact.v1alpha.ListRepositoryTagsAdminResponse
-	(*GetRepositoryTagAdminResponse)(nil),             // 20: artifact.artifact.v1alpha.GetRepositoryTagAdminResponse
-	(*CreateRepositoryTagAdminResponse)(nil),          // 21: artifact.artifact.v1alpha.CreateRepositoryTagAdminResponse
-	(*DeleteRepositoryTagAdminResponse)(nil),          // 22: artifact.artifact.v1alpha.DeleteRepositoryTagAdminResponse
-	(*GetObjectAdminResponse)(nil),                    // 23: artifact.artifact.v1alpha.GetObjectAdminResponse
-	(*GetObjectURLAdminResponse)(nil),                 // 24: artifact.artifact.v1alpha.GetObjectURLAdminResponse
-	(*UpdateObjectAdminResponse)(nil),                 // 25: artifact.artifact.v1alpha.UpdateObjectAdminResponse
-	(*GetFileAsMarkdownAdminResponse)(nil),            // 26: artifact.artifact.v1alpha.GetFileAsMarkdownAdminResponse
-	(*GetChatFileAdminResponse)(nil),                  // 27: artifact.artifact.v1alpha.GetChatFileAdminResponse
-	(*DeleteCatalogFileAdminResponse)(nil),            // 28: artifact.artifact.v1alpha.DeleteCatalogFileAdminResponse
-	(*RollbackAdminResponse)(nil),                     // 29: artifact.artifact.v1alpha.RollbackAdminResponse
-	(*PurgeRollbackAdminResponse)(nil),                // 30: artifact.artifact.v1alpha.PurgeRollbackAdminResponse
-	(*SetRollbackRetentionAdminResponse)(nil),         // 31: artifact.artifact.v1alpha.SetRollbackRetentionAdminResponse
-	(*ExecuteKnowledgeBaseUpdateAdminResponse)(nil),   // 32: artifact.artifact.v1alpha.ExecuteKnowledgeBaseUpdateAdminResponse
-	(*GetKnowledgeBaseUpdateStatusAdminResponse)(nil), // 33: artifact.artifact.v1alpha.GetKnowledgeBaseUpdateStatusAdminResponse
-	(*GetSystemProfileAdminResponse)(nil),             // 34: artifact.artifact.v1alpha.GetSystemProfileAdminResponse
-	(*UpdateSystemProfileAdminResponse)(nil),          // 35: artifact.artifact.v1alpha.UpdateSystemProfileAdminResponse
-	(*ListSystemProfilesAdminResponse)(nil),           // 36: artifact.artifact.v1alpha.ListSystemProfilesAdminResponse
-	(*DeleteSystemProfileAdminResponse)(nil),          // 37: artifact.artifact.v1alpha.DeleteSystemProfileAdminResponse
+	(*ExecuteKnowledgeBaseUpdateAdminRequest)(nil),    // 10: artifact.artifact.v1alpha.ExecuteKnowledgeBaseUpdateAdminRequest
+	(*AbortKnowledgeBaseUpdateAdminRequest)(nil),      // 11: artifact.artifact.v1alpha.AbortKnowledgeBaseUpdateAdminRequest
+	(*RollbackAdminRequest)(nil),                      // 12: artifact.artifact.v1alpha.RollbackAdminRequest
+	(*PurgeRollbackAdminRequest)(nil),                 // 13: artifact.artifact.v1alpha.PurgeRollbackAdminRequest
+	(*SetRollbackRetentionAdminRequest)(nil),          // 14: artifact.artifact.v1alpha.SetRollbackRetentionAdminRequest
+	(*GetKnowledgeBaseUpdateStatusAdminRequest)(nil),  // 15: artifact.artifact.v1alpha.GetKnowledgeBaseUpdateStatusAdminRequest
+	(*GetSystemProfileAdminRequest)(nil),              // 16: artifact.artifact.v1alpha.GetSystemProfileAdminRequest
+	(*UpdateSystemProfileAdminRequest)(nil),           // 17: artifact.artifact.v1alpha.UpdateSystemProfileAdminRequest
+	(*ListSystemProfilesAdminRequest)(nil),            // 18: artifact.artifact.v1alpha.ListSystemProfilesAdminRequest
+	(*DeleteSystemProfileAdminRequest)(nil),           // 19: artifact.artifact.v1alpha.DeleteSystemProfileAdminRequest
+	(*ListRepositoryTagsAdminResponse)(nil),           // 20: artifact.artifact.v1alpha.ListRepositoryTagsAdminResponse
+	(*GetRepositoryTagAdminResponse)(nil),             // 21: artifact.artifact.v1alpha.GetRepositoryTagAdminResponse
+	(*CreateRepositoryTagAdminResponse)(nil),          // 22: artifact.artifact.v1alpha.CreateRepositoryTagAdminResponse
+	(*DeleteRepositoryTagAdminResponse)(nil),          // 23: artifact.artifact.v1alpha.DeleteRepositoryTagAdminResponse
+	(*GetObjectAdminResponse)(nil),                    // 24: artifact.artifact.v1alpha.GetObjectAdminResponse
+	(*GetObjectURLAdminResponse)(nil),                 // 25: artifact.artifact.v1alpha.GetObjectURLAdminResponse
+	(*UpdateObjectAdminResponse)(nil),                 // 26: artifact.artifact.v1alpha.UpdateObjectAdminResponse
+	(*GetFileAsMarkdownAdminResponse)(nil),            // 27: artifact.artifact.v1alpha.GetFileAsMarkdownAdminResponse
+	(*GetChatFileAdminResponse)(nil),                  // 28: artifact.artifact.v1alpha.GetChatFileAdminResponse
+	(*DeleteCatalogFileAdminResponse)(nil),            // 29: artifact.artifact.v1alpha.DeleteCatalogFileAdminResponse
+	(*ExecuteKnowledgeBaseUpdateAdminResponse)(nil),   // 30: artifact.artifact.v1alpha.ExecuteKnowledgeBaseUpdateAdminResponse
+	(*AbortKnowledgeBaseUpdateAdminResponse)(nil),     // 31: artifact.artifact.v1alpha.AbortKnowledgeBaseUpdateAdminResponse
+	(*RollbackAdminResponse)(nil),                     // 32: artifact.artifact.v1alpha.RollbackAdminResponse
+	(*PurgeRollbackAdminResponse)(nil),                // 33: artifact.artifact.v1alpha.PurgeRollbackAdminResponse
+	(*SetRollbackRetentionAdminResponse)(nil),         // 34: artifact.artifact.v1alpha.SetRollbackRetentionAdminResponse
+	(*GetKnowledgeBaseUpdateStatusAdminResponse)(nil), // 35: artifact.artifact.v1alpha.GetKnowledgeBaseUpdateStatusAdminResponse
+	(*GetSystemProfileAdminResponse)(nil),             // 36: artifact.artifact.v1alpha.GetSystemProfileAdminResponse
+	(*UpdateSystemProfileAdminResponse)(nil),          // 37: artifact.artifact.v1alpha.UpdateSystemProfileAdminResponse
+	(*ListSystemProfilesAdminResponse)(nil),           // 38: artifact.artifact.v1alpha.ListSystemProfilesAdminResponse
+	(*DeleteSystemProfileAdminResponse)(nil),          // 39: artifact.artifact.v1alpha.DeleteSystemProfileAdminResponse
 }
 var file_artifact_artifact_v1alpha_artifact_private_service_proto_depIdxs = []int32{
 	0,  // 0: artifact.artifact.v1alpha.ArtifactPrivateService.ListRepositoryTagsAdmin:input_type -> artifact.artifact.v1alpha.ListRepositoryTagsAdminRequest
@@ -98,36 +101,38 @@ var file_artifact_artifact_v1alpha_artifact_private_service_proto_depIdxs = []in
 	7,  // 7: artifact.artifact.v1alpha.ArtifactPrivateService.GetFileAsMarkdownAdmin:input_type -> artifact.artifact.v1alpha.GetFileAsMarkdownAdminRequest
 	8,  // 8: artifact.artifact.v1alpha.ArtifactPrivateService.GetChatFileAdmin:input_type -> artifact.artifact.v1alpha.GetChatFileAdminRequest
 	9,  // 9: artifact.artifact.v1alpha.ArtifactPrivateService.DeleteCatalogFileAdmin:input_type -> artifact.artifact.v1alpha.DeleteCatalogFileAdminRequest
-	10, // 10: artifact.artifact.v1alpha.ArtifactPrivateService.RollbackAdmin:input_type -> artifact.artifact.v1alpha.RollbackAdminRequest
-	11, // 11: artifact.artifact.v1alpha.ArtifactPrivateService.PurgeRollbackAdmin:input_type -> artifact.artifact.v1alpha.PurgeRollbackAdminRequest
-	12, // 12: artifact.artifact.v1alpha.ArtifactPrivateService.SetRollbackRetentionAdmin:input_type -> artifact.artifact.v1alpha.SetRollbackRetentionAdminRequest
-	13, // 13: artifact.artifact.v1alpha.ArtifactPrivateService.ExecuteKnowledgeBaseUpdateAdmin:input_type -> artifact.artifact.v1alpha.ExecuteKnowledgeBaseUpdateAdminRequest
-	14, // 14: artifact.artifact.v1alpha.ArtifactPrivateService.GetKnowledgeBaseUpdateStatusAdmin:input_type -> artifact.artifact.v1alpha.GetKnowledgeBaseUpdateStatusAdminRequest
-	15, // 15: artifact.artifact.v1alpha.ArtifactPrivateService.GetSystemProfileAdmin:input_type -> artifact.artifact.v1alpha.GetSystemProfileAdminRequest
-	16, // 16: artifact.artifact.v1alpha.ArtifactPrivateService.UpdateSystemProfileAdmin:input_type -> artifact.artifact.v1alpha.UpdateSystemProfileAdminRequest
-	17, // 17: artifact.artifact.v1alpha.ArtifactPrivateService.ListSystemProfilesAdmin:input_type -> artifact.artifact.v1alpha.ListSystemProfilesAdminRequest
-	18, // 18: artifact.artifact.v1alpha.ArtifactPrivateService.DeleteSystemProfileAdmin:input_type -> artifact.artifact.v1alpha.DeleteSystemProfileAdminRequest
-	19, // 19: artifact.artifact.v1alpha.ArtifactPrivateService.ListRepositoryTagsAdmin:output_type -> artifact.artifact.v1alpha.ListRepositoryTagsAdminResponse
-	20, // 20: artifact.artifact.v1alpha.ArtifactPrivateService.GetRepositoryTagAdmin:output_type -> artifact.artifact.v1alpha.GetRepositoryTagAdminResponse
-	21, // 21: artifact.artifact.v1alpha.ArtifactPrivateService.CreateRepositoryTagAdmin:output_type -> artifact.artifact.v1alpha.CreateRepositoryTagAdminResponse
-	22, // 22: artifact.artifact.v1alpha.ArtifactPrivateService.DeleteRepositoryTagAdmin:output_type -> artifact.artifact.v1alpha.DeleteRepositoryTagAdminResponse
-	23, // 23: artifact.artifact.v1alpha.ArtifactPrivateService.GetObjectAdmin:output_type -> artifact.artifact.v1alpha.GetObjectAdminResponse
-	24, // 24: artifact.artifact.v1alpha.ArtifactPrivateService.GetObjectURLAdmin:output_type -> artifact.artifact.v1alpha.GetObjectURLAdminResponse
-	25, // 25: artifact.artifact.v1alpha.ArtifactPrivateService.UpdateObjectAdmin:output_type -> artifact.artifact.v1alpha.UpdateObjectAdminResponse
-	26, // 26: artifact.artifact.v1alpha.ArtifactPrivateService.GetFileAsMarkdownAdmin:output_type -> artifact.artifact.v1alpha.GetFileAsMarkdownAdminResponse
-	27, // 27: artifact.artifact.v1alpha.ArtifactPrivateService.GetChatFileAdmin:output_type -> artifact.artifact.v1alpha.GetChatFileAdminResponse
-	28, // 28: artifact.artifact.v1alpha.ArtifactPrivateService.DeleteCatalogFileAdmin:output_type -> artifact.artifact.v1alpha.DeleteCatalogFileAdminResponse
-	29, // 29: artifact.artifact.v1alpha.ArtifactPrivateService.RollbackAdmin:output_type -> artifact.artifact.v1alpha.RollbackAdminResponse
-	30, // 30: artifact.artifact.v1alpha.ArtifactPrivateService.PurgeRollbackAdmin:output_type -> artifact.artifact.v1alpha.PurgeRollbackAdminResponse
-	31, // 31: artifact.artifact.v1alpha.ArtifactPrivateService.SetRollbackRetentionAdmin:output_type -> artifact.artifact.v1alpha.SetRollbackRetentionAdminResponse
-	32, // 32: artifact.artifact.v1alpha.ArtifactPrivateService.ExecuteKnowledgeBaseUpdateAdmin:output_type -> artifact.artifact.v1alpha.ExecuteKnowledgeBaseUpdateAdminResponse
-	33, // 33: artifact.artifact.v1alpha.ArtifactPrivateService.GetKnowledgeBaseUpdateStatusAdmin:output_type -> artifact.artifact.v1alpha.GetKnowledgeBaseUpdateStatusAdminResponse
-	34, // 34: artifact.artifact.v1alpha.ArtifactPrivateService.GetSystemProfileAdmin:output_type -> artifact.artifact.v1alpha.GetSystemProfileAdminResponse
-	35, // 35: artifact.artifact.v1alpha.ArtifactPrivateService.UpdateSystemProfileAdmin:output_type -> artifact.artifact.v1alpha.UpdateSystemProfileAdminResponse
-	36, // 36: artifact.artifact.v1alpha.ArtifactPrivateService.ListSystemProfilesAdmin:output_type -> artifact.artifact.v1alpha.ListSystemProfilesAdminResponse
-	37, // 37: artifact.artifact.v1alpha.ArtifactPrivateService.DeleteSystemProfileAdmin:output_type -> artifact.artifact.v1alpha.DeleteSystemProfileAdminResponse
-	19, // [19:38] is the sub-list for method output_type
-	0,  // [0:19] is the sub-list for method input_type
+	10, // 10: artifact.artifact.v1alpha.ArtifactPrivateService.ExecuteKnowledgeBaseUpdateAdmin:input_type -> artifact.artifact.v1alpha.ExecuteKnowledgeBaseUpdateAdminRequest
+	11, // 11: artifact.artifact.v1alpha.ArtifactPrivateService.AbortKnowledgeBaseUpdateAdmin:input_type -> artifact.artifact.v1alpha.AbortKnowledgeBaseUpdateAdminRequest
+	12, // 12: artifact.artifact.v1alpha.ArtifactPrivateService.RollbackAdmin:input_type -> artifact.artifact.v1alpha.RollbackAdminRequest
+	13, // 13: artifact.artifact.v1alpha.ArtifactPrivateService.PurgeRollbackAdmin:input_type -> artifact.artifact.v1alpha.PurgeRollbackAdminRequest
+	14, // 14: artifact.artifact.v1alpha.ArtifactPrivateService.SetRollbackRetentionAdmin:input_type -> artifact.artifact.v1alpha.SetRollbackRetentionAdminRequest
+	15, // 15: artifact.artifact.v1alpha.ArtifactPrivateService.GetKnowledgeBaseUpdateStatusAdmin:input_type -> artifact.artifact.v1alpha.GetKnowledgeBaseUpdateStatusAdminRequest
+	16, // 16: artifact.artifact.v1alpha.ArtifactPrivateService.GetSystemProfileAdmin:input_type -> artifact.artifact.v1alpha.GetSystemProfileAdminRequest
+	17, // 17: artifact.artifact.v1alpha.ArtifactPrivateService.UpdateSystemProfileAdmin:input_type -> artifact.artifact.v1alpha.UpdateSystemProfileAdminRequest
+	18, // 18: artifact.artifact.v1alpha.ArtifactPrivateService.ListSystemProfilesAdmin:input_type -> artifact.artifact.v1alpha.ListSystemProfilesAdminRequest
+	19, // 19: artifact.artifact.v1alpha.ArtifactPrivateService.DeleteSystemProfileAdmin:input_type -> artifact.artifact.v1alpha.DeleteSystemProfileAdminRequest
+	20, // 20: artifact.artifact.v1alpha.ArtifactPrivateService.ListRepositoryTagsAdmin:output_type -> artifact.artifact.v1alpha.ListRepositoryTagsAdminResponse
+	21, // 21: artifact.artifact.v1alpha.ArtifactPrivateService.GetRepositoryTagAdmin:output_type -> artifact.artifact.v1alpha.GetRepositoryTagAdminResponse
+	22, // 22: artifact.artifact.v1alpha.ArtifactPrivateService.CreateRepositoryTagAdmin:output_type -> artifact.artifact.v1alpha.CreateRepositoryTagAdminResponse
+	23, // 23: artifact.artifact.v1alpha.ArtifactPrivateService.DeleteRepositoryTagAdmin:output_type -> artifact.artifact.v1alpha.DeleteRepositoryTagAdminResponse
+	24, // 24: artifact.artifact.v1alpha.ArtifactPrivateService.GetObjectAdmin:output_type -> artifact.artifact.v1alpha.GetObjectAdminResponse
+	25, // 25: artifact.artifact.v1alpha.ArtifactPrivateService.GetObjectURLAdmin:output_type -> artifact.artifact.v1alpha.GetObjectURLAdminResponse
+	26, // 26: artifact.artifact.v1alpha.ArtifactPrivateService.UpdateObjectAdmin:output_type -> artifact.artifact.v1alpha.UpdateObjectAdminResponse
+	27, // 27: artifact.artifact.v1alpha.ArtifactPrivateService.GetFileAsMarkdownAdmin:output_type -> artifact.artifact.v1alpha.GetFileAsMarkdownAdminResponse
+	28, // 28: artifact.artifact.v1alpha.ArtifactPrivateService.GetChatFileAdmin:output_type -> artifact.artifact.v1alpha.GetChatFileAdminResponse
+	29, // 29: artifact.artifact.v1alpha.ArtifactPrivateService.DeleteCatalogFileAdmin:output_type -> artifact.artifact.v1alpha.DeleteCatalogFileAdminResponse
+	30, // 30: artifact.artifact.v1alpha.ArtifactPrivateService.ExecuteKnowledgeBaseUpdateAdmin:output_type -> artifact.artifact.v1alpha.ExecuteKnowledgeBaseUpdateAdminResponse
+	31, // 31: artifact.artifact.v1alpha.ArtifactPrivateService.AbortKnowledgeBaseUpdateAdmin:output_type -> artifact.artifact.v1alpha.AbortKnowledgeBaseUpdateAdminResponse
+	32, // 32: artifact.artifact.v1alpha.ArtifactPrivateService.RollbackAdmin:output_type -> artifact.artifact.v1alpha.RollbackAdminResponse
+	33, // 33: artifact.artifact.v1alpha.ArtifactPrivateService.PurgeRollbackAdmin:output_type -> artifact.artifact.v1alpha.PurgeRollbackAdminResponse
+	34, // 34: artifact.artifact.v1alpha.ArtifactPrivateService.SetRollbackRetentionAdmin:output_type -> artifact.artifact.v1alpha.SetRollbackRetentionAdminResponse
+	35, // 35: artifact.artifact.v1alpha.ArtifactPrivateService.GetKnowledgeBaseUpdateStatusAdmin:output_type -> artifact.artifact.v1alpha.GetKnowledgeBaseUpdateStatusAdminResponse
+	36, // 36: artifact.artifact.v1alpha.ArtifactPrivateService.GetSystemProfileAdmin:output_type -> artifact.artifact.v1alpha.GetSystemProfileAdminResponse
+	37, // 37: artifact.artifact.v1alpha.ArtifactPrivateService.UpdateSystemProfileAdmin:output_type -> artifact.artifact.v1alpha.UpdateSystemProfileAdminResponse
+	38, // 38: artifact.artifact.v1alpha.ArtifactPrivateService.ListSystemProfilesAdmin:output_type -> artifact.artifact.v1alpha.ListSystemProfilesAdminResponse
+	39, // 39: artifact.artifact.v1alpha.ArtifactPrivateService.DeleteSystemProfileAdmin:output_type -> artifact.artifact.v1alpha.DeleteSystemProfileAdminResponse
+	20, // [20:40] is the sub-list for method output_type
+	0,  // [0:20] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
