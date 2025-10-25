@@ -187,9 +187,27 @@ type KnowledgeBaseUpdateDetails struct {
 	// Number of files processed
 	FilesProcessed int32 `protobuf:"varint,6,opt,name=files_processed,json=filesProcessed,proto3" json:"files_processed,omitempty"`
 	// Total number of files to process
-	TotalFiles    int32 `protobuf:"varint,7,opt,name=total_files,json=totalFiles,proto3" json:"total_files,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	TotalFiles int32 `protobuf:"varint,7,opt,name=total_files,json=totalFiles,proto3" json:"total_files,omitempty"`
+	// Error message explaining why the update failed
+	// Populated ONLY when status is KNOWLEDGE_BASE_UPDATE_STATUS_FAILED
+	// Empty for all other statuses (NONE, UPDATING, SYNCING, VALIDATING, SWAPPING, COMPLETED, ROLLED_BACK, ABORTED)
+	ErrorMessage string `protobuf:"bytes,8,opt,name=error_message,json=errorMessage,proto3" json:"error_message,omitempty"`
+	// Current system ID (e.g., "openai", "gemini")
+	// The system configuration currently active in the production KB
+	// - For UPDATING: The system being updated to (from staging KB - will become current after swap)
+	// - For COMPLETED/FAILED/ROLLED_BACK/ABORTED/NONE: The current production system ID
+	// Always reflects the KB's current state
+	CurrentSystemId string `protobuf:"bytes,9,opt,name=current_system_id,json=currentSystemId,proto3" json:"current_system_id,omitempty"`
+	// Previous system ID before the update (e.g., "openai", "gemini")
+	// Captured at update start for historical audit trail
+	// - For UPDATING: The system before update started
+	// - For COMPLETED: The system before successful update (what was replaced)
+	// - For FAILED/ABORTED: The system before failed attempt (same as current, since update didn't complete)
+	// - For ROLLED_BACK: The system that was rolled back FROM (before rollback)
+	// - For NONE: Empty (never been updated)
+	PreviousSystemId string `protobuf:"bytes,10,opt,name=previous_system_id,json=previousSystemId,proto3" json:"previous_system_id,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *KnowledgeBaseUpdateDetails) Reset() {
@@ -269,6 +287,27 @@ func (x *KnowledgeBaseUpdateDetails) GetTotalFiles() int32 {
 		return x.TotalFiles
 	}
 	return 0
+}
+
+func (x *KnowledgeBaseUpdateDetails) GetErrorMessage() string {
+	if x != nil {
+		return x.ErrorMessage
+	}
+	return ""
+}
+
+func (x *KnowledgeBaseUpdateDetails) GetCurrentSystemId() string {
+	if x != nil {
+		return x.CurrentSystemId
+	}
+	return ""
+}
+
+func (x *KnowledgeBaseUpdateDetails) GetPreviousSystemId() string {
+	if x != nil {
+		return x.PreviousSystemId
+	}
+	return ""
 }
 
 // RollbackAdminRequest (admin only)
@@ -725,10 +764,10 @@ type ExecuteKnowledgeBaseUpdateAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Optional: Specific catalog IDs to update. If empty, updates all eligible catalogs.
 	CatalogIds []string `protobuf:"bytes,1,rep,name=catalog_ids,json=catalogIds,proto3" json:"catalog_ids,omitempty"`
-	// Optional: System profile name containing configuration to apply.
-	// If specified, uses config from system table where profile=<this value>
+	// Optional: System ID containing configuration to apply.
+	// If specified, uses config from system table where id=<this value>
 	// If not specified, KBs keep their current config (useful for reprocessing).
-	SystemProfile *string `protobuf:"bytes,2,opt,name=system_profile,json=systemProfile,proto3,oneof" json:"system_profile,omitempty"`
+	SystemId *string `protobuf:"bytes,2,opt,name=system_id,json=systemId,proto3,oneof" json:"system_id,omitempty"`
 	// Optional: Tags to filter which catalogs to update (OR logic - match any tag).
 	Tags          []string `protobuf:"bytes,3,rep,name=tags,proto3" json:"tags,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -772,9 +811,9 @@ func (x *ExecuteKnowledgeBaseUpdateAdminRequest) GetCatalogIds() []string {
 	return nil
 }
 
-func (x *ExecuteKnowledgeBaseUpdateAdminRequest) GetSystemProfile() string {
-	if x != nil && x.SystemProfile != nil {
-		return *x.SystemProfile
+func (x *ExecuteKnowledgeBaseUpdateAdminRequest) GetSystemId() string {
+	if x != nil && x.SystemId != nil {
+		return *x.SystemId
 	}
 	return ""
 }
@@ -964,7 +1003,7 @@ var File_artifact_artifact_v1alpha_update_proto protoreflect.FileDescriptor
 
 const file_artifact_artifact_v1alpha_update_proto_rawDesc = "" +
 	"\n" +
-	"&artifact/artifact/v1alpha/update.proto\x12\x19artifact.artifact.v1alpha\x1a(artifact/artifact/v1alpha/artifact.proto\"\xb8\x02\n" +
+	"&artifact/artifact/v1alpha/update.proto\x12\x19artifact.artifact.v1alpha\x1a(artifact/artifact/v1alpha/artifact.proto\"\xb7\x03\n" +
 	"\x1aKnowledgeBaseUpdateDetails\x12\x1f\n" +
 	"\vcatalog_uid\x18\x01 \x01(\tR\n" +
 	"catalogUid\x12L\n" +
@@ -976,7 +1015,11 @@ const file_artifact_artifact_v1alpha_update_proto_rawDesc = "" +
 	"\fcompleted_at\x18\x05 \x01(\tR\vcompletedAt\x12'\n" +
 	"\x0ffiles_processed\x18\x06 \x01(\x05R\x0efilesProcessed\x12\x1f\n" +
 	"\vtotal_files\x18\a \x01(\x05R\n" +
-	"totalFiles\"*\n" +
+	"totalFiles\x12#\n" +
+	"\rerror_message\x18\b \x01(\tR\ferrorMessage\x12*\n" +
+	"\x11current_system_id\x18\t \x01(\tR\x0fcurrentSystemId\x12,\n" +
+	"\x12previous_system_id\x18\n" +
+	" \x01(\tR\x10previousSystemId\"*\n" +
 	"\x14RollbackAdminRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\"o\n" +
 	"\x15RollbackAdminResponse\x12<\n" +
@@ -1007,13 +1050,14 @@ const file_artifact_artifact_v1alpha_update_proto_rawDesc = "" +
 	")GetKnowledgeBaseUpdateStatusAdminResponse\x12,\n" +
 	"\x12update_in_progress\x18\x01 \x01(\bR\x10updateInProgress\x12O\n" +
 	"\adetails\x18\x02 \x03(\v25.artifact.artifact.v1alpha.KnowledgeBaseUpdateDetailsR\adetails\x12\x18\n" +
-	"\amessage\x18\x03 \x01(\tR\amessage\"\x9c\x01\n" +
+	"\amessage\x18\x03 \x01(\tR\amessage\"\x8d\x01\n" +
 	"&ExecuteKnowledgeBaseUpdateAdminRequest\x12\x1f\n" +
 	"\vcatalog_ids\x18\x01 \x03(\tR\n" +
-	"catalogIds\x12*\n" +
-	"\x0esystem_profile\x18\x02 \x01(\tH\x00R\rsystemProfile\x88\x01\x01\x12\x12\n" +
-	"\x04tags\x18\x03 \x03(\tR\x04tagsB\x11\n" +
-	"\x0f_system_profile\"\xae\x01\n" +
+	"catalogIds\x12 \n" +
+	"\tsystem_id\x18\x02 \x01(\tH\x00R\bsystemId\x88\x01\x01\x12\x12\n" +
+	"\x04tags\x18\x03 \x03(\tR\x04tagsB\f\n" +
+	"\n" +
+	"_system_id\"\xae\x01\n" +
 	"'ExecuteKnowledgeBaseUpdateAdminResponse\x12\x18\n" +
 	"\astarted\x18\x01 \x01(\bR\astarted\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12O\n" +

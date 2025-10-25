@@ -35,10 +35,14 @@ const (
 	ArtifactPrivateService_PurgeRollbackAdmin_FullMethodName                = "/artifact.artifact.v1alpha.ArtifactPrivateService/PurgeRollbackAdmin"
 	ArtifactPrivateService_SetRollbackRetentionAdmin_FullMethodName         = "/artifact.artifact.v1alpha.ArtifactPrivateService/SetRollbackRetentionAdmin"
 	ArtifactPrivateService_GetKnowledgeBaseUpdateStatusAdmin_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPrivateService/GetKnowledgeBaseUpdateStatusAdmin"
-	ArtifactPrivateService_GetSystemProfileAdmin_FullMethodName             = "/artifact.artifact.v1alpha.ArtifactPrivateService/GetSystemProfileAdmin"
-	ArtifactPrivateService_UpdateSystemProfileAdmin_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPrivateService/UpdateSystemProfileAdmin"
-	ArtifactPrivateService_ListSystemProfilesAdmin_FullMethodName           = "/artifact.artifact.v1alpha.ArtifactPrivateService/ListSystemProfilesAdmin"
-	ArtifactPrivateService_DeleteSystemProfileAdmin_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPrivateService/DeleteSystemProfileAdmin"
+	ArtifactPrivateService_CreateSystemAdmin_FullMethodName                 = "/artifact.artifact.v1alpha.ArtifactPrivateService/CreateSystemAdmin"
+	ArtifactPrivateService_GetSystemAdmin_FullMethodName                    = "/artifact.artifact.v1alpha.ArtifactPrivateService/GetSystemAdmin"
+	ArtifactPrivateService_UpdateSystemAdmin_FullMethodName                 = "/artifact.artifact.v1alpha.ArtifactPrivateService/UpdateSystemAdmin"
+	ArtifactPrivateService_DeleteSystemAdmin_FullMethodName                 = "/artifact.artifact.v1alpha.ArtifactPrivateService/DeleteSystemAdmin"
+	ArtifactPrivateService_ListSystemsAdmin_FullMethodName                  = "/artifact.artifact.v1alpha.ArtifactPrivateService/ListSystemsAdmin"
+	ArtifactPrivateService_RenameSystemAdmin_FullMethodName                 = "/artifact.artifact.v1alpha.ArtifactPrivateService/RenameSystemAdmin"
+	ArtifactPrivateService_SetDefaultSystemAdmin_FullMethodName             = "/artifact.artifact.v1alpha.ArtifactPrivateService/SetDefaultSystemAdmin"
+	ArtifactPrivateService_GetDefaultSystemAdmin_FullMethodName             = "/artifact.artifact.v1alpha.ArtifactPrivateService/GetDefaultSystemAdmin"
 )
 
 // ArtifactPrivateServiceClient is the client API for ArtifactPrivateService service.
@@ -108,14 +112,22 @@ type ArtifactPrivateServiceClient interface {
 	SetRollbackRetentionAdmin(ctx context.Context, in *SetRollbackRetentionAdminRequest, opts ...grpc.CallOption) (*SetRollbackRetentionAdminResponse, error)
 	// Get knowledge base update status (admin only)
 	GetKnowledgeBaseUpdateStatusAdmin(ctx context.Context, in *GetKnowledgeBaseUpdateStatusAdminRequest, opts ...grpc.CallOption) (*GetKnowledgeBaseUpdateStatusAdminResponse, error)
-	// Get a system configuration profile (admin only)
-	GetSystemProfileAdmin(ctx context.Context, in *GetSystemProfileAdminRequest, opts ...grpc.CallOption) (*GetSystemProfileAdminResponse, error)
-	// Update (create or update) a system configuration profile (admin only)
-	UpdateSystemProfileAdmin(ctx context.Context, in *UpdateSystemProfileAdminRequest, opts ...grpc.CallOption) (*UpdateSystemProfileAdminResponse, error)
-	// List all system configuration profiles (admin only)
-	ListSystemProfilesAdmin(ctx context.Context, in *ListSystemProfilesAdminRequest, opts ...grpc.CallOption) (*ListSystemProfilesAdminResponse, error)
-	// Delete a system configuration profile (admin only)
-	DeleteSystemProfileAdmin(ctx context.Context, in *DeleteSystemProfileAdminRequest, opts ...grpc.CallOption) (*DeleteSystemProfileAdminResponse, error)
+	// Create a new system configuration (admin only)
+	CreateSystemAdmin(ctx context.Context, in *CreateSystemAdminRequest, opts ...grpc.CallOption) (*CreateSystemAdminResponse, error)
+	// Get a system configuration (admin only)
+	GetSystemAdmin(ctx context.Context, in *GetSystemAdminRequest, opts ...grpc.CallOption) (*GetSystemAdminResponse, error)
+	// Update an existing system configuration (admin only)
+	UpdateSystemAdmin(ctx context.Context, in *UpdateSystemAdminRequest, opts ...grpc.CallOption) (*UpdateSystemAdminResponse, error)
+	// Delete a system configuration (admin only)
+	DeleteSystemAdmin(ctx context.Context, in *DeleteSystemAdminRequest, opts ...grpc.CallOption) (*DeleteSystemAdminResponse, error)
+	// List all system configurations (admin only)
+	ListSystemsAdmin(ctx context.Context, in *ListSystemsAdminRequest, opts ...grpc.CallOption) (*ListSystemsAdminResponse, error)
+	// Rename a system configuration (admin only)
+	RenameSystemAdmin(ctx context.Context, in *RenameSystemAdminRequest, opts ...grpc.CallOption) (*RenameSystemAdminResponse, error)
+	// Set the default system configuration (admin only)
+	SetDefaultSystemAdmin(ctx context.Context, in *SetDefaultSystemAdminRequest, opts ...grpc.CallOption) (*SetDefaultSystemAdminResponse, error)
+	// Get the current default system configuration (admin only)
+	GetDefaultSystemAdmin(ctx context.Context, in *GetDefaultSystemAdminRequest, opts ...grpc.CallOption) (*GetDefaultSystemAdminResponse, error)
 }
 
 type artifactPrivateServiceClient struct {
@@ -287,40 +299,80 @@ func (c *artifactPrivateServiceClient) GetKnowledgeBaseUpdateStatusAdmin(ctx con
 	return out, nil
 }
 
-func (c *artifactPrivateServiceClient) GetSystemProfileAdmin(ctx context.Context, in *GetSystemProfileAdminRequest, opts ...grpc.CallOption) (*GetSystemProfileAdminResponse, error) {
+func (c *artifactPrivateServiceClient) CreateSystemAdmin(ctx context.Context, in *CreateSystemAdminRequest, opts ...grpc.CallOption) (*CreateSystemAdminResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetSystemProfileAdminResponse)
-	err := c.cc.Invoke(ctx, ArtifactPrivateService_GetSystemProfileAdmin_FullMethodName, in, out, cOpts...)
+	out := new(CreateSystemAdminResponse)
+	err := c.cc.Invoke(ctx, ArtifactPrivateService_CreateSystemAdmin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *artifactPrivateServiceClient) UpdateSystemProfileAdmin(ctx context.Context, in *UpdateSystemProfileAdminRequest, opts ...grpc.CallOption) (*UpdateSystemProfileAdminResponse, error) {
+func (c *artifactPrivateServiceClient) GetSystemAdmin(ctx context.Context, in *GetSystemAdminRequest, opts ...grpc.CallOption) (*GetSystemAdminResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateSystemProfileAdminResponse)
-	err := c.cc.Invoke(ctx, ArtifactPrivateService_UpdateSystemProfileAdmin_FullMethodName, in, out, cOpts...)
+	out := new(GetSystemAdminResponse)
+	err := c.cc.Invoke(ctx, ArtifactPrivateService_GetSystemAdmin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *artifactPrivateServiceClient) ListSystemProfilesAdmin(ctx context.Context, in *ListSystemProfilesAdminRequest, opts ...grpc.CallOption) (*ListSystemProfilesAdminResponse, error) {
+func (c *artifactPrivateServiceClient) UpdateSystemAdmin(ctx context.Context, in *UpdateSystemAdminRequest, opts ...grpc.CallOption) (*UpdateSystemAdminResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListSystemProfilesAdminResponse)
-	err := c.cc.Invoke(ctx, ArtifactPrivateService_ListSystemProfilesAdmin_FullMethodName, in, out, cOpts...)
+	out := new(UpdateSystemAdminResponse)
+	err := c.cc.Invoke(ctx, ArtifactPrivateService_UpdateSystemAdmin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *artifactPrivateServiceClient) DeleteSystemProfileAdmin(ctx context.Context, in *DeleteSystemProfileAdminRequest, opts ...grpc.CallOption) (*DeleteSystemProfileAdminResponse, error) {
+func (c *artifactPrivateServiceClient) DeleteSystemAdmin(ctx context.Context, in *DeleteSystemAdminRequest, opts ...grpc.CallOption) (*DeleteSystemAdminResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteSystemProfileAdminResponse)
-	err := c.cc.Invoke(ctx, ArtifactPrivateService_DeleteSystemProfileAdmin_FullMethodName, in, out, cOpts...)
+	out := new(DeleteSystemAdminResponse)
+	err := c.cc.Invoke(ctx, ArtifactPrivateService_DeleteSystemAdmin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPrivateServiceClient) ListSystemsAdmin(ctx context.Context, in *ListSystemsAdminRequest, opts ...grpc.CallOption) (*ListSystemsAdminResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListSystemsAdminResponse)
+	err := c.cc.Invoke(ctx, ArtifactPrivateService_ListSystemsAdmin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPrivateServiceClient) RenameSystemAdmin(ctx context.Context, in *RenameSystemAdminRequest, opts ...grpc.CallOption) (*RenameSystemAdminResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RenameSystemAdminResponse)
+	err := c.cc.Invoke(ctx, ArtifactPrivateService_RenameSystemAdmin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPrivateServiceClient) SetDefaultSystemAdmin(ctx context.Context, in *SetDefaultSystemAdminRequest, opts ...grpc.CallOption) (*SetDefaultSystemAdminResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetDefaultSystemAdminResponse)
+	err := c.cc.Invoke(ctx, ArtifactPrivateService_SetDefaultSystemAdmin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPrivateServiceClient) GetDefaultSystemAdmin(ctx context.Context, in *GetDefaultSystemAdminRequest, opts ...grpc.CallOption) (*GetDefaultSystemAdminResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetDefaultSystemAdminResponse)
+	err := c.cc.Invoke(ctx, ArtifactPrivateService_GetDefaultSystemAdmin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -394,14 +446,22 @@ type ArtifactPrivateServiceServer interface {
 	SetRollbackRetentionAdmin(context.Context, *SetRollbackRetentionAdminRequest) (*SetRollbackRetentionAdminResponse, error)
 	// Get knowledge base update status (admin only)
 	GetKnowledgeBaseUpdateStatusAdmin(context.Context, *GetKnowledgeBaseUpdateStatusAdminRequest) (*GetKnowledgeBaseUpdateStatusAdminResponse, error)
-	// Get a system configuration profile (admin only)
-	GetSystemProfileAdmin(context.Context, *GetSystemProfileAdminRequest) (*GetSystemProfileAdminResponse, error)
-	// Update (create or update) a system configuration profile (admin only)
-	UpdateSystemProfileAdmin(context.Context, *UpdateSystemProfileAdminRequest) (*UpdateSystemProfileAdminResponse, error)
-	// List all system configuration profiles (admin only)
-	ListSystemProfilesAdmin(context.Context, *ListSystemProfilesAdminRequest) (*ListSystemProfilesAdminResponse, error)
-	// Delete a system configuration profile (admin only)
-	DeleteSystemProfileAdmin(context.Context, *DeleteSystemProfileAdminRequest) (*DeleteSystemProfileAdminResponse, error)
+	// Create a new system configuration (admin only)
+	CreateSystemAdmin(context.Context, *CreateSystemAdminRequest) (*CreateSystemAdminResponse, error)
+	// Get a system configuration (admin only)
+	GetSystemAdmin(context.Context, *GetSystemAdminRequest) (*GetSystemAdminResponse, error)
+	// Update an existing system configuration (admin only)
+	UpdateSystemAdmin(context.Context, *UpdateSystemAdminRequest) (*UpdateSystemAdminResponse, error)
+	// Delete a system configuration (admin only)
+	DeleteSystemAdmin(context.Context, *DeleteSystemAdminRequest) (*DeleteSystemAdminResponse, error)
+	// List all system configurations (admin only)
+	ListSystemsAdmin(context.Context, *ListSystemsAdminRequest) (*ListSystemsAdminResponse, error)
+	// Rename a system configuration (admin only)
+	RenameSystemAdmin(context.Context, *RenameSystemAdminRequest) (*RenameSystemAdminResponse, error)
+	// Set the default system configuration (admin only)
+	SetDefaultSystemAdmin(context.Context, *SetDefaultSystemAdminRequest) (*SetDefaultSystemAdminResponse, error)
+	// Get the current default system configuration (admin only)
+	GetDefaultSystemAdmin(context.Context, *GetDefaultSystemAdminRequest) (*GetDefaultSystemAdminResponse, error)
 }
 
 // UnimplementedArtifactPrivateServiceServer should be embedded to have
@@ -459,17 +519,29 @@ func (UnimplementedArtifactPrivateServiceServer) SetRollbackRetentionAdmin(conte
 func (UnimplementedArtifactPrivateServiceServer) GetKnowledgeBaseUpdateStatusAdmin(context.Context, *GetKnowledgeBaseUpdateStatusAdminRequest) (*GetKnowledgeBaseUpdateStatusAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetKnowledgeBaseUpdateStatusAdmin not implemented")
 }
-func (UnimplementedArtifactPrivateServiceServer) GetSystemProfileAdmin(context.Context, *GetSystemProfileAdminRequest) (*GetSystemProfileAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetSystemProfileAdmin not implemented")
+func (UnimplementedArtifactPrivateServiceServer) CreateSystemAdmin(context.Context, *CreateSystemAdminRequest) (*CreateSystemAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateSystemAdmin not implemented")
 }
-func (UnimplementedArtifactPrivateServiceServer) UpdateSystemProfileAdmin(context.Context, *UpdateSystemProfileAdminRequest) (*UpdateSystemProfileAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateSystemProfileAdmin not implemented")
+func (UnimplementedArtifactPrivateServiceServer) GetSystemAdmin(context.Context, *GetSystemAdminRequest) (*GetSystemAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSystemAdmin not implemented")
 }
-func (UnimplementedArtifactPrivateServiceServer) ListSystemProfilesAdmin(context.Context, *ListSystemProfilesAdminRequest) (*ListSystemProfilesAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListSystemProfilesAdmin not implemented")
+func (UnimplementedArtifactPrivateServiceServer) UpdateSystemAdmin(context.Context, *UpdateSystemAdminRequest) (*UpdateSystemAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateSystemAdmin not implemented")
 }
-func (UnimplementedArtifactPrivateServiceServer) DeleteSystemProfileAdmin(context.Context, *DeleteSystemProfileAdminRequest) (*DeleteSystemProfileAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteSystemProfileAdmin not implemented")
+func (UnimplementedArtifactPrivateServiceServer) DeleteSystemAdmin(context.Context, *DeleteSystemAdminRequest) (*DeleteSystemAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteSystemAdmin not implemented")
+}
+func (UnimplementedArtifactPrivateServiceServer) ListSystemsAdmin(context.Context, *ListSystemsAdminRequest) (*ListSystemsAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListSystemsAdmin not implemented")
+}
+func (UnimplementedArtifactPrivateServiceServer) RenameSystemAdmin(context.Context, *RenameSystemAdminRequest) (*RenameSystemAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RenameSystemAdmin not implemented")
+}
+func (UnimplementedArtifactPrivateServiceServer) SetDefaultSystemAdmin(context.Context, *SetDefaultSystemAdminRequest) (*SetDefaultSystemAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetDefaultSystemAdmin not implemented")
+}
+func (UnimplementedArtifactPrivateServiceServer) GetDefaultSystemAdmin(context.Context, *GetDefaultSystemAdminRequest) (*GetDefaultSystemAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDefaultSystemAdmin not implemented")
 }
 func (UnimplementedArtifactPrivateServiceServer) testEmbeddedByValue() {}
 
@@ -779,74 +851,146 @@ func _ArtifactPrivateService_GetKnowledgeBaseUpdateStatusAdmin_Handler(srv inter
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPrivateService_GetSystemProfileAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetSystemProfileAdminRequest)
+func _ArtifactPrivateService_CreateSystemAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateSystemAdminRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPrivateServiceServer).GetSystemProfileAdmin(ctx, in)
+		return srv.(ArtifactPrivateServiceServer).CreateSystemAdmin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPrivateService_GetSystemProfileAdmin_FullMethodName,
+		FullMethod: ArtifactPrivateService_CreateSystemAdmin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPrivateServiceServer).GetSystemProfileAdmin(ctx, req.(*GetSystemProfileAdminRequest))
+		return srv.(ArtifactPrivateServiceServer).CreateSystemAdmin(ctx, req.(*CreateSystemAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPrivateService_UpdateSystemProfileAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateSystemProfileAdminRequest)
+func _ArtifactPrivateService_GetSystemAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSystemAdminRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPrivateServiceServer).UpdateSystemProfileAdmin(ctx, in)
+		return srv.(ArtifactPrivateServiceServer).GetSystemAdmin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPrivateService_UpdateSystemProfileAdmin_FullMethodName,
+		FullMethod: ArtifactPrivateService_GetSystemAdmin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPrivateServiceServer).UpdateSystemProfileAdmin(ctx, req.(*UpdateSystemProfileAdminRequest))
+		return srv.(ArtifactPrivateServiceServer).GetSystemAdmin(ctx, req.(*GetSystemAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPrivateService_ListSystemProfilesAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListSystemProfilesAdminRequest)
+func _ArtifactPrivateService_UpdateSystemAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateSystemAdminRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPrivateServiceServer).ListSystemProfilesAdmin(ctx, in)
+		return srv.(ArtifactPrivateServiceServer).UpdateSystemAdmin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPrivateService_ListSystemProfilesAdmin_FullMethodName,
+		FullMethod: ArtifactPrivateService_UpdateSystemAdmin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPrivateServiceServer).ListSystemProfilesAdmin(ctx, req.(*ListSystemProfilesAdminRequest))
+		return srv.(ArtifactPrivateServiceServer).UpdateSystemAdmin(ctx, req.(*UpdateSystemAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPrivateService_DeleteSystemProfileAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteSystemProfileAdminRequest)
+func _ArtifactPrivateService_DeleteSystemAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteSystemAdminRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPrivateServiceServer).DeleteSystemProfileAdmin(ctx, in)
+		return srv.(ArtifactPrivateServiceServer).DeleteSystemAdmin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPrivateService_DeleteSystemProfileAdmin_FullMethodName,
+		FullMethod: ArtifactPrivateService_DeleteSystemAdmin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPrivateServiceServer).DeleteSystemProfileAdmin(ctx, req.(*DeleteSystemProfileAdminRequest))
+		return srv.(ArtifactPrivateServiceServer).DeleteSystemAdmin(ctx, req.(*DeleteSystemAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPrivateService_ListSystemsAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListSystemsAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPrivateServiceServer).ListSystemsAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPrivateService_ListSystemsAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPrivateServiceServer).ListSystemsAdmin(ctx, req.(*ListSystemsAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPrivateService_RenameSystemAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RenameSystemAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPrivateServiceServer).RenameSystemAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPrivateService_RenameSystemAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPrivateServiceServer).RenameSystemAdmin(ctx, req.(*RenameSystemAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPrivateService_SetDefaultSystemAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetDefaultSystemAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPrivateServiceServer).SetDefaultSystemAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPrivateService_SetDefaultSystemAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPrivateServiceServer).SetDefaultSystemAdmin(ctx, req.(*SetDefaultSystemAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPrivateService_GetDefaultSystemAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDefaultSystemAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPrivateServiceServer).GetDefaultSystemAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPrivateService_GetDefaultSystemAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPrivateServiceServer).GetDefaultSystemAdmin(ctx, req.(*GetDefaultSystemAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -923,20 +1067,36 @@ var ArtifactPrivateService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ArtifactPrivateService_GetKnowledgeBaseUpdateStatusAdmin_Handler,
 		},
 		{
-			MethodName: "GetSystemProfileAdmin",
-			Handler:    _ArtifactPrivateService_GetSystemProfileAdmin_Handler,
+			MethodName: "CreateSystemAdmin",
+			Handler:    _ArtifactPrivateService_CreateSystemAdmin_Handler,
 		},
 		{
-			MethodName: "UpdateSystemProfileAdmin",
-			Handler:    _ArtifactPrivateService_UpdateSystemProfileAdmin_Handler,
+			MethodName: "GetSystemAdmin",
+			Handler:    _ArtifactPrivateService_GetSystemAdmin_Handler,
 		},
 		{
-			MethodName: "ListSystemProfilesAdmin",
-			Handler:    _ArtifactPrivateService_ListSystemProfilesAdmin_Handler,
+			MethodName: "UpdateSystemAdmin",
+			Handler:    _ArtifactPrivateService_UpdateSystemAdmin_Handler,
 		},
 		{
-			MethodName: "DeleteSystemProfileAdmin",
-			Handler:    _ArtifactPrivateService_DeleteSystemProfileAdmin_Handler,
+			MethodName: "DeleteSystemAdmin",
+			Handler:    _ArtifactPrivateService_DeleteSystemAdmin_Handler,
+		},
+		{
+			MethodName: "ListSystemsAdmin",
+			Handler:    _ArtifactPrivateService_ListSystemsAdmin_Handler,
+		},
+		{
+			MethodName: "RenameSystemAdmin",
+			Handler:    _ArtifactPrivateService_RenameSystemAdmin_Handler,
+		},
+		{
+			MethodName: "SetDefaultSystemAdmin",
+			Handler:    _ArtifactPrivateService_SetDefaultSystemAdmin_Handler,
+		},
+		{
+			MethodName: "GetDefaultSystemAdmin",
+			Handler:    _ArtifactPrivateService_GetDefaultSystemAdmin_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

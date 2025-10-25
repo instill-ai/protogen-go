@@ -2662,8 +2662,19 @@ type CreateCatalogRequest struct {
 	// files are typically trivial to convert and don't require a dedicated
 	// pipeline to improve the conversion performance).
 	ConvertingPipelines []string `protobuf:"bytes,6,rep,name=converting_pipelines,json=convertingPipelines,proto3" json:"converting_pipelines,omitempty"`
-	unknownFields       protoimpl.UnknownFields
-	sizeCache           protoimpl.SizeCache
+	// System ID to use for this catalog.
+	// References a system configuration in the system table that defines how the knowledge base
+	// will be created based on the system's RAG configurations including:
+	// - AI model family (e.g., "openai", "gemini")
+	// - Embedding vector dimensionality (e.g., 1536 for OpenAI, 3072 for Gemini)
+	// - Chunking method
+	// - Other RAG-related settings
+	//
+	// Available systems: "openai", "gemini", or custom systems defined in the system table.
+	// If not specified, defaults to "openai" system.
+	SystemId      *string `protobuf:"bytes,7,opt,name=system_id,json=systemId,proto3,oneof" json:"system_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CreateCatalogRequest) Reset() {
@@ -2736,6 +2747,13 @@ func (x *CreateCatalogRequest) GetConvertingPipelines() []string {
 		return x.ConvertingPipelines
 	}
 	return nil
+}
+
+func (x *CreateCatalogRequest) GetSystemId() string {
+	if x != nil && x.SystemId != nil {
+		return *x.SystemId
+	}
+	return ""
 }
 
 // CreateCatalogResponse represents a response for creating a catalog.
@@ -4995,14 +5013,17 @@ const file_artifact_artifact_v1alpha_artifact_proto_rawDesc = "" +
 	"\x15active_collection_uid\x18\x12 \x01(\tR\x13activeCollectionUid\x1a\\\n" +
 	"\x0fEmbeddingConfig\x12!\n" +
 	"\fmodel_family\x18\x01 \x01(\tR\vmodelFamily\x12&\n" +
-	"\x0edimensionality\x18\x02 \x01(\rR\x0edimensionality\"\xf2\x01\n" +
+	"\x0edimensionality\x18\x02 \x01(\rR\x0edimensionality\"\xa7\x02\n" +
 	"\x14CreateCatalogRequest\x12!\n" +
 	"\fnamespace_id\x18\x01 \x01(\tR\vnamespaceId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\x12\n" +
 	"\x04tags\x18\x04 \x03(\tR\x04tags\x12:\n" +
 	"\x04type\x18\x05 \x01(\x0e2&.artifact.artifact.v1alpha.CatalogTypeR\x04type\x121\n" +
-	"\x14converting_pipelines\x18\x06 \x03(\tR\x13convertingPipelines\"U\n" +
+	"\x14converting_pipelines\x18\x06 \x03(\tR\x13convertingPipelines\x12%\n" +
+	"\tsystem_id\x18\a \x01(\tB\x03\xe0A\x01H\x00R\bsystemId\x88\x01\x01B\f\n" +
+	"\n" +
+	"_system_id\"U\n" +
 	"\x15CreateCatalogResponse\x12<\n" +
 	"\acatalog\x18\x01 \x01(\v2\".artifact.artifact.v1alpha.CatalogR\acatalog\"8\n" +
 	"\x13ListCatalogsRequest\x12!\n" +
@@ -5415,6 +5436,7 @@ func file_artifact_artifact_v1alpha_artifact_proto_init() {
 	file_artifact_artifact_v1alpha_artifact_proto_msgTypes[26].OneofWrappers = []any{}
 	file_artifact_artifact_v1alpha_artifact_proto_msgTypes[30].OneofWrappers = []any{}
 	file_artifact_artifact_v1alpha_artifact_proto_msgTypes[32].OneofWrappers = []any{}
+	file_artifact_artifact_v1alpha_artifact_proto_msgTypes[35].OneofWrappers = []any{}
 	file_artifact_artifact_v1alpha_artifact_proto_msgTypes[43].OneofWrappers = []any{}
 	file_artifact_artifact_v1alpha_artifact_proto_msgTypes[57].OneofWrappers = []any{}
 	file_artifact_artifact_v1alpha_artifact_proto_msgTypes[59].OneofWrappers = []any{}
