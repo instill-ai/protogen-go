@@ -209,6 +209,61 @@ func local_request_ArtifactPublicService_CreateCatalog_0(ctx context.Context, ma
 	return msg, metadata, err
 }
 
+func request_ArtifactPublicService_GetCatalog_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetCatalogRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	io.Copy(io.Discard, req.Body)
+	val, ok := pathParams["namespace_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
+	}
+	protoReq.NamespaceId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
+	}
+	val, ok = pathParams["catalog_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "catalog_id")
+	}
+	protoReq.CatalogId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
+	}
+	msg, err := client.GetCatalog(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ArtifactPublicService_GetCatalog_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetCatalogRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["namespace_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
+	}
+	protoReq.NamespaceId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
+	}
+	val, ok = pathParams["catalog_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "catalog_id")
+	}
+	protoReq.CatalogId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
+	}
+	msg, err := server.GetCatalog(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+var filter_ArtifactPublicService_ListCatalogs_0 = &utilities.DoubleArray{Encoding: map[string]int{"namespace_id": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+
 func request_ArtifactPublicService_ListCatalogs_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq ListCatalogsRequest
@@ -223,6 +278,12 @@ func request_ArtifactPublicService_ListCatalogs_0(ctx context.Context, marshaler
 	protoReq.NamespaceId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
+	}
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ArtifactPublicService_ListCatalogs_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	msg, err := client.ListCatalogs(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
@@ -241,6 +302,12 @@ func local_request_ArtifactPublicService_ListCatalogs_0(ctx context.Context, mar
 	protoReq.NamespaceId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
+	}
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ArtifactPublicService_ListCatalogs_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	msg, err := server.ListCatalogs(ctx, &protoReq)
 	return msg, metadata, err
@@ -357,9 +424,9 @@ func local_request_ArtifactPublicService_DeleteCatalog_0(ctx context.Context, ma
 	return msg, metadata, err
 }
 
-func request_ArtifactPublicService_UploadCatalogFile_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_ArtifactPublicService_CreateFile_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq UploadCatalogFileRequest
+		protoReq CreateFileRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -382,13 +449,13 @@ func request_ArtifactPublicService_UploadCatalogFile_0(ctx context.Context, mars
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
 	}
-	msg, err := client.UploadCatalogFile(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.CreateFile(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_ArtifactPublicService_UploadCatalogFile_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_ArtifactPublicService_CreateFile_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq UploadCatalogFileRequest
+		protoReq CreateFileRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -411,13 +478,15 @@ func local_request_ArtifactPublicService_UploadCatalogFile_0(ctx context.Context
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
 	}
-	msg, err := server.UploadCatalogFile(ctx, &protoReq)
+	msg, err := server.CreateFile(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func request_ArtifactPublicService_DeleteCatalogFile_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+var filter_ArtifactPublicService_GetFile_0 = &utilities.DoubleArray{Encoding: map[string]int{"namespace_id": 0, "catalog_id": 1, "file_id": 2}, Base: []int{1, 1, 2, 3, 0, 0, 0}, Check: []int{0, 1, 1, 1, 2, 3, 4}}
+
+func request_ArtifactPublicService_GetFile_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq DeleteCatalogFileRequest
+		protoReq GetFileRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -438,21 +507,27 @@ func request_ArtifactPublicService_DeleteCatalogFile_0(ctx context.Context, mars
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
 	}
-	val, ok = pathParams["file_uid"]
+	val, ok = pathParams["file_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "file_uid")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "file_id")
 	}
-	protoReq.FileUid, err = runtime.String(val)
+	protoReq.FileId, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "file_uid", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "file_id", err)
 	}
-	msg, err := client.DeleteCatalogFile(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ArtifactPublicService_GetFile_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.GetFile(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_ArtifactPublicService_DeleteCatalogFile_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_ArtifactPublicService_GetFile_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq DeleteCatalogFileRequest
+		protoReq GetFileRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -472,47 +547,29 @@ func local_request_ArtifactPublicService_DeleteCatalogFile_0(ctx context.Context
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
 	}
-	val, ok = pathParams["file_uid"]
+	val, ok = pathParams["file_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "file_uid")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "file_id")
 	}
-	protoReq.FileUid, err = runtime.String(val)
+	protoReq.FileId, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "file_uid", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "file_id", err)
 	}
-	msg, err := server.DeleteCatalogFile(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-func request_ArtifactPublicService_ProcessCatalogFiles_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq ProcessCatalogFilesRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := client.ProcessCatalogFiles(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_ArtifactPublicService_ProcessCatalogFiles_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq ProcessCatalogFilesRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ArtifactPublicService_GetFile_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := server.ProcessCatalogFiles(ctx, &protoReq)
+	msg, err := server.GetFile(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-var filter_ArtifactPublicService_ListCatalogFiles_0 = &utilities.DoubleArray{Encoding: map[string]int{"namespace_id": 0, "catalog_id": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
+var filter_ArtifactPublicService_ListFiles_0 = &utilities.DoubleArray{Encoding: map[string]int{"namespace_id": 0, "catalog_id": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
 
-func request_ArtifactPublicService_ListCatalogFiles_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_ArtifactPublicService_ListFiles_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq ListCatalogFilesRequest
+		protoReq ListFilesRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -536,16 +593,16 @@ func request_ArtifactPublicService_ListCatalogFiles_0(ctx context.Context, marsh
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ArtifactPublicService_ListCatalogFiles_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ArtifactPublicService_ListFiles_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := client.ListCatalogFiles(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.ListFiles(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_ArtifactPublicService_ListCatalogFiles_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_ArtifactPublicService_ListFiles_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq ListCatalogFilesRequest
+		protoReq ListFilesRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -568,16 +625,126 @@ func local_request_ArtifactPublicService_ListCatalogFiles_0(ctx context.Context,
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ArtifactPublicService_ListCatalogFiles_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ArtifactPublicService_ListFiles_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := server.ListCatalogFiles(ctx, &protoReq)
+	msg, err := server.ListFiles(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func request_ArtifactPublicService_GetCatalogFile_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+var filter_ArtifactPublicService_UpdateFile_0 = &utilities.DoubleArray{Encoding: map[string]int{"file": 0, "namespace_id": 1, "catalog_id": 2, "file_id": 3}, Base: []int{1, 1, 2, 3, 4, 0, 0, 0, 0}, Check: []int{0, 1, 1, 1, 1, 2, 3, 4, 5}}
+
+func request_ArtifactPublicService_UpdateFile_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq GetCatalogFileRequest
+		protoReq UpdateFileRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.File); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if protoReq.UpdateMask == nil || len(protoReq.UpdateMask.GetPaths()) == 0 {
+		if fieldMask, err := runtime.FieldMaskFromRequestBody(newReader(), protoReq.File); err != nil {
+			return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+		} else {
+			protoReq.UpdateMask = fieldMask
+		}
+	}
+	val, ok := pathParams["namespace_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
+	}
+	protoReq.NamespaceId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
+	}
+	val, ok = pathParams["catalog_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "catalog_id")
+	}
+	protoReq.CatalogId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
+	}
+	val, ok = pathParams["file_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "file_id")
+	}
+	protoReq.FileId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "file_id", err)
+	}
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ArtifactPublicService_UpdateFile_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.UpdateFile(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ArtifactPublicService_UpdateFile_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq UpdateFileRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.File); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if protoReq.UpdateMask == nil || len(protoReq.UpdateMask.GetPaths()) == 0 {
+		if fieldMask, err := runtime.FieldMaskFromRequestBody(newReader(), protoReq.File); err != nil {
+			return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+		} else {
+			protoReq.UpdateMask = fieldMask
+		}
+	}
+	val, ok := pathParams["namespace_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
+	}
+	protoReq.NamespaceId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
+	}
+	val, ok = pathParams["catalog_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "catalog_id")
+	}
+	protoReq.CatalogId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
+	}
+	val, ok = pathParams["file_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "file_id")
+	}
+	protoReq.FileId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "file_id", err)
+	}
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ArtifactPublicService_UpdateFile_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.UpdateFile(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ArtifactPublicService_DeleteFile_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DeleteFileRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -598,21 +765,21 @@ func request_ArtifactPublicService_GetCatalogFile_0(ctx context.Context, marshal
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
 	}
-	val, ok = pathParams["file_uid"]
+	val, ok = pathParams["file_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "file_uid")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "file_id")
 	}
-	protoReq.FileUid, err = runtime.String(val)
+	protoReq.FileId, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "file_uid", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "file_id", err)
 	}
-	msg, err := client.GetCatalogFile(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.DeleteFile(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_ArtifactPublicService_GetCatalogFile_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_ArtifactPublicService_DeleteFile_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq GetCatalogFileRequest
+		protoReq DeleteFileRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -632,19 +799,104 @@ func local_request_ArtifactPublicService_GetCatalogFile_0(ctx context.Context, m
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
 	}
-	val, ok = pathParams["file_uid"]
+	val, ok = pathParams["file_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "file_uid")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "file_id")
 	}
-	protoReq.FileUid, err = runtime.String(val)
+	protoReq.FileId, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "file_uid", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "file_id", err)
 	}
-	msg, err := server.GetCatalogFile(ctx, &protoReq)
+	msg, err := server.DeleteFile(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-var filter_ArtifactPublicService_ListChunks_0 = &utilities.DoubleArray{Encoding: map[string]int{"namespace_id": 0, "catalog_id": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
+func request_ArtifactPublicService_GetChunk_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetChunkRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	io.Copy(io.Discard, req.Body)
+	val, ok := pathParams["namespace_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
+	}
+	protoReq.NamespaceId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
+	}
+	val, ok = pathParams["catalog_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "catalog_id")
+	}
+	protoReq.CatalogId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
+	}
+	val, ok = pathParams["file_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "file_id")
+	}
+	protoReq.FileId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "file_id", err)
+	}
+	val, ok = pathParams["chunk_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "chunk_id")
+	}
+	protoReq.ChunkId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "chunk_id", err)
+	}
+	msg, err := client.GetChunk(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ArtifactPublicService_GetChunk_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetChunkRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["namespace_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
+	}
+	protoReq.NamespaceId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
+	}
+	val, ok = pathParams["catalog_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "catalog_id")
+	}
+	protoReq.CatalogId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
+	}
+	val, ok = pathParams["file_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "file_id")
+	}
+	protoReq.FileId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "file_id", err)
+	}
+	val, ok = pathParams["chunk_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "chunk_id")
+	}
+	protoReq.ChunkId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "chunk_id", err)
+	}
+	msg, err := server.GetChunk(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+var filter_ArtifactPublicService_ListChunks_0 = &utilities.DoubleArray{Encoding: map[string]int{"namespace_id": 0, "catalog_id": 1, "file_id": 2}, Base: []int{1, 1, 2, 3, 0, 0, 0}, Check: []int{0, 1, 1, 1, 2, 3, 4}}
 
 func request_ArtifactPublicService_ListChunks_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
@@ -668,6 +920,14 @@ func request_ArtifactPublicService_ListChunks_0(ctx context.Context, marshaler r
 	protoReq.CatalogId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
+	}
+	val, ok = pathParams["file_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "file_id")
+	}
+	protoReq.FileId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "file_id", err)
 	}
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
@@ -701,6 +961,14 @@ func local_request_ArtifactPublicService_ListChunks_0(ctx context.Context, marsh
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
 	}
+	val, ok = pathParams["file_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "file_id")
+	}
+	protoReq.FileId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "file_id", err)
+	}
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
@@ -708,195 +976,6 @@ func local_request_ArtifactPublicService_ListChunks_0(ctx context.Context, marsh
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	msg, err := server.ListChunks(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-func request_ArtifactPublicService_GetSourceFile_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetSourceFileRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	io.Copy(io.Discard, req.Body)
-	val, ok := pathParams["namespace_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
-	}
-	protoReq.NamespaceId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
-	}
-	val, ok = pathParams["catalog_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "catalog_id")
-	}
-	protoReq.CatalogId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
-	}
-	val, ok = pathParams["file_uid"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "file_uid")
-	}
-	protoReq.FileUid, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "file_uid", err)
-	}
-	msg, err := client.GetSourceFile(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_ArtifactPublicService_GetSourceFile_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetSourceFileRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	val, ok := pathParams["namespace_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
-	}
-	protoReq.NamespaceId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
-	}
-	val, ok = pathParams["catalog_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "catalog_id")
-	}
-	protoReq.CatalogId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
-	}
-	val, ok = pathParams["file_uid"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "file_uid")
-	}
-	protoReq.FileUid, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "file_uid", err)
-	}
-	msg, err := server.GetSourceFile(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-func request_ArtifactPublicService_GetFileSummary_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetFileSummaryRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	io.Copy(io.Discard, req.Body)
-	val, ok := pathParams["namespace_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
-	}
-	protoReq.NamespaceId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
-	}
-	val, ok = pathParams["catalog_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "catalog_id")
-	}
-	protoReq.CatalogId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
-	}
-	val, ok = pathParams["file_uid"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "file_uid")
-	}
-	protoReq.FileUid, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "file_uid", err)
-	}
-	msg, err := client.GetFileSummary(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_ArtifactPublicService_GetFileSummary_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetFileSummaryRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	val, ok := pathParams["namespace_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
-	}
-	protoReq.NamespaceId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
-	}
-	val, ok = pathParams["catalog_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "catalog_id")
-	}
-	protoReq.CatalogId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
-	}
-	val, ok = pathParams["file_uid"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "file_uid")
-	}
-	protoReq.FileUid, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "file_uid", err)
-	}
-	msg, err := server.GetFileSummary(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-var filter_ArtifactPublicService_SearchSourceFiles_0 = &utilities.DoubleArray{Encoding: map[string]int{"namespace_id": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
-
-func request_ArtifactPublicService_SearchSourceFiles_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq SearchSourceFilesRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	io.Copy(io.Discard, req.Body)
-	val, ok := pathParams["namespace_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
-	}
-	protoReq.NamespaceId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
-	}
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ArtifactPublicService_SearchSourceFiles_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := client.SearchSourceFiles(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_ArtifactPublicService_SearchSourceFiles_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq SearchSourceFilesRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	val, ok := pathParams["namespace_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
-	}
-	protoReq.NamespaceId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
-	}
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ArtifactPublicService_SearchSourceFiles_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := server.SearchSourceFiles(ctx, &protoReq)
 	return msg, metadata, err
 }
 
@@ -909,13 +988,29 @@ func request_ArtifactPublicService_UpdateChunk_0(ctx context.Context, marshaler 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	val, ok := pathParams["chunk_uid"]
+	val, ok := pathParams["namespace_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "chunk_uid")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
 	}
-	protoReq.ChunkUid, err = runtime.String(val)
+	protoReq.NamespaceId, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "chunk_uid", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
+	}
+	val, ok = pathParams["catalog_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "catalog_id")
+	}
+	protoReq.CatalogId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
+	}
+	val, ok = pathParams["chunk_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "chunk_id")
+	}
+	protoReq.ChunkId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "chunk_id", err)
 	}
 	msg, err := client.UpdateChunk(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
@@ -930,21 +1025,37 @@ func local_request_ArtifactPublicService_UpdateChunk_0(ctx context.Context, mars
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	val, ok := pathParams["chunk_uid"]
+	val, ok := pathParams["namespace_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "chunk_uid")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
 	}
-	protoReq.ChunkUid, err = runtime.String(val)
+	protoReq.NamespaceId, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "chunk_uid", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
+	}
+	val, ok = pathParams["catalog_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "catalog_id")
+	}
+	protoReq.CatalogId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
+	}
+	val, ok = pathParams["chunk_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "chunk_id")
+	}
+	protoReq.ChunkId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "chunk_id", err)
 	}
 	msg, err := server.UpdateChunk(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func request_ArtifactPublicService_SimilarityChunksSearch_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_ArtifactPublicService_SearchChunks_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq SimilarityChunksSearchRequest
+		protoReq SearchChunksRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -967,13 +1078,13 @@ func request_ArtifactPublicService_SimilarityChunksSearch_0(ctx context.Context,
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
 	}
-	msg, err := client.SimilarityChunksSearch(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.SearchChunks(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_ArtifactPublicService_SimilarityChunksSearch_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_ArtifactPublicService_SearchChunks_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq SimilarityChunksSearchRequest
+		protoReq SearchChunksRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -996,74 +1107,7 @@ func local_request_ArtifactPublicService_SimilarityChunksSearch_0(ctx context.Co
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
 	}
-	msg, err := server.SimilarityChunksSearch(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-var filter_ArtifactPublicService_GetFileCatalog_0 = &utilities.DoubleArray{Encoding: map[string]int{"namespace_id": 0, "catalog_id": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
-
-func request_ArtifactPublicService_GetFileCatalog_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetFileCatalogRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	io.Copy(io.Discard, req.Body)
-	val, ok := pathParams["namespace_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
-	}
-	protoReq.NamespaceId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
-	}
-	val, ok = pathParams["catalog_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "catalog_id")
-	}
-	protoReq.CatalogId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
-	}
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ArtifactPublicService_GetFileCatalog_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := client.GetFileCatalog(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_ArtifactPublicService_GetFileCatalog_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetFileCatalogRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	val, ok := pathParams["namespace_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
-	}
-	protoReq.NamespaceId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
-	}
-	val, ok = pathParams["catalog_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "catalog_id")
-	}
-	protoReq.CatalogId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
-	}
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ArtifactPublicService_GetFileCatalog_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := server.GetFileCatalog(ctx, &protoReq)
+	msg, err := server.SearchChunks(ctx, &protoReq)
 	return msg, metadata, err
 }
 
@@ -1236,138 +1280,6 @@ func local_request_ArtifactPublicService_GetObjectDownloadURL_0(ctx context.Cont
 	return msg, metadata, err
 }
 
-func request_ArtifactPublicService_MoveFileToCatalog_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq MoveFileToCatalogRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	val, ok := pathParams["namespace_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
-	}
-	protoReq.NamespaceId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
-	}
-	val, ok = pathParams["catalog_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "catalog_id")
-	}
-	protoReq.CatalogId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
-	}
-	msg, err := client.MoveFileToCatalog(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_ArtifactPublicService_MoveFileToCatalog_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq MoveFileToCatalogRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	val, ok := pathParams["namespace_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
-	}
-	protoReq.NamespaceId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
-	}
-	val, ok = pathParams["catalog_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "catalog_id")
-	}
-	protoReq.CatalogId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
-	}
-	msg, err := server.MoveFileToCatalog(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-func request_ArtifactPublicService_UpdateCatalogFileTags_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq UpdateCatalogFileTagsRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	val, ok := pathParams["namespace_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
-	}
-	protoReq.NamespaceId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
-	}
-	val, ok = pathParams["catalog_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "catalog_id")
-	}
-	protoReq.CatalogId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
-	}
-	val, ok = pathParams["file_uid"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "file_uid")
-	}
-	protoReq.FileUid, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "file_uid", err)
-	}
-	msg, err := client.UpdateCatalogFileTags(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_ArtifactPublicService_UpdateCatalogFileTags_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq UpdateCatalogFileTagsRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	val, ok := pathParams["namespace_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "namespace_id")
-	}
-	protoReq.NamespaceId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace_id", err)
-	}
-	val, ok = pathParams["catalog_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "catalog_id")
-	}
-	protoReq.CatalogId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "catalog_id", err)
-	}
-	val, ok = pathParams["file_uid"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "file_uid")
-	}
-	protoReq.FileUid, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "file_uid", err)
-	}
-	msg, err := server.UpdateCatalogFileTags(ctx, &protoReq)
-	return msg, metadata, err
-}
-
 // RegisterArtifactPublicServiceHandlerServer registers the http handlers for service ArtifactPublicService to "mux".
 // UnaryRPC     :call ArtifactPublicServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -1474,6 +1386,26 @@ func RegisterArtifactPublicServiceHandlerServer(ctx context.Context, mux *runtim
 		}
 		forward_ArtifactPublicService_CreateCatalog_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_GetCatalog_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/GetCatalog", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ArtifactPublicService_GetCatalog_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ArtifactPublicService_GetCatalog_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_ListCatalogs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -1534,105 +1466,125 @@ func RegisterArtifactPublicServiceHandlerServer(ctx context.Context, mux *runtim
 		}
 		forward_ArtifactPublicService_DeleteCatalog_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_ArtifactPublicService_UploadCatalogFile_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ArtifactPublicService_CreateFile_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/UploadCatalogFile", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/CreateFile", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ArtifactPublicService_UploadCatalogFile_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ArtifactPublicService_CreateFile_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ArtifactPublicService_UploadCatalogFile_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ArtifactPublicService_CreateFile_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodDelete, pattern_ArtifactPublicService_DeleteCatalogFile_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_GetFile_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteCatalogFile", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files/{file_uid}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/GetFile", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files/{file_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ArtifactPublicService_DeleteCatalogFile_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ArtifactPublicService_GetFile_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ArtifactPublicService_DeleteCatalogFile_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ArtifactPublicService_GetFile_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_ArtifactPublicService_ProcessCatalogFiles_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_ListFiles_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ProcessCatalogFiles", runtime.WithHTTPPathPattern("/v1alpha/catalogs/files/processAsync"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListFiles", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ArtifactPublicService_ProcessCatalogFiles_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ArtifactPublicService_ListFiles_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ArtifactPublicService_ProcessCatalogFiles_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ArtifactPublicService_ListFiles_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_ListCatalogFiles_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPatch, pattern_ArtifactPublicService_UpdateFile_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListCatalogFiles", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateFile", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files/{file_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ArtifactPublicService_ListCatalogFiles_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ArtifactPublicService_UpdateFile_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ArtifactPublicService_ListCatalogFiles_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ArtifactPublicService_UpdateFile_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_GetCatalogFile_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_ArtifactPublicService_DeleteFile_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/GetCatalogFile", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files/{file_uid}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteFile", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files/{file_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ArtifactPublicService_GetCatalogFile_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ArtifactPublicService_DeleteFile_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ArtifactPublicService_GetCatalogFile_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ArtifactPublicService_DeleteFile_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_GetChunk_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/GetChunk", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files/{file_id}/chunks/{chunk_id}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ArtifactPublicService_GetChunk_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ArtifactPublicService_GetChunk_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_ListChunks_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -1640,7 +1592,7 @@ func RegisterArtifactPublicServiceHandlerServer(ctx context.Context, mux *runtim
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListChunks", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/chunks"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListChunks", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files/{file_id}/chunks"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1654,73 +1606,13 @@ func RegisterArtifactPublicServiceHandlerServer(ctx context.Context, mux *runtim
 		}
 		forward_ArtifactPublicService_ListChunks_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_GetSourceFile_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPatch, pattern_ArtifactPublicService_UpdateChunk_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/GetSourceFile", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files/{file_uid}/source"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_ArtifactPublicService_GetSourceFile_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ArtifactPublicService_GetSourceFile_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_GetFileSummary_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/GetFileSummary", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files/{file_uid}/summary"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_ArtifactPublicService_GetFileSummary_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ArtifactPublicService_GetFileSummary_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_SearchSourceFiles_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/SearchSourceFiles", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/source-files"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_ArtifactPublicService_SearchSourceFiles_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ArtifactPublicService_SearchSourceFiles_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_ArtifactPublicService_UpdateChunk_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateChunk", runtime.WithHTTPPathPattern("/v1alpha/chunks/{chunk_uid}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateChunk", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/chunks/{chunk_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1734,45 +1626,25 @@ func RegisterArtifactPublicServiceHandlerServer(ctx context.Context, mux *runtim
 		}
 		forward_ArtifactPublicService_UpdateChunk_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_ArtifactPublicService_SimilarityChunksSearch_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ArtifactPublicService_SearchChunks_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/SimilarityChunksSearch", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/chunks/retrieve"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/SearchChunks", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/searchChunks"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ArtifactPublicService_SimilarityChunksSearch_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ArtifactPublicService_SearchChunks_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ArtifactPublicService_SimilarityChunksSearch_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_GetFileCatalog_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/GetFileCatalog", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_ArtifactPublicService_GetFileCatalog_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ArtifactPublicService_GetFileCatalog_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ArtifactPublicService_SearchChunks_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_ListCatalogRuns_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -1833,46 +1705,6 @@ func RegisterArtifactPublicServiceHandlerServer(ctx context.Context, mux *runtim
 			return
 		}
 		forward_ArtifactPublicService_GetObjectDownloadURL_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_ArtifactPublicService_MoveFileToCatalog_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/MoveFileToCatalog", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files:move"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_ArtifactPublicService_MoveFileToCatalog_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ArtifactPublicService_MoveFileToCatalog_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPut, pattern_ArtifactPublicService_UpdateCatalogFileTags_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateCatalogFileTags", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files/{file_uid}/tags"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_ArtifactPublicService_UpdateCatalogFileTags_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ArtifactPublicService_UpdateCatalogFileTags_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
 	return nil
@@ -1999,6 +1831,23 @@ func RegisterArtifactPublicServiceHandlerClient(ctx context.Context, mux *runtim
 		}
 		forward_ArtifactPublicService_CreateCatalog_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_GetCatalog_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/GetCatalog", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ArtifactPublicService_GetCatalog_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ArtifactPublicService_GetCatalog_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_ListCatalogs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -2050,96 +1899,113 @@ func RegisterArtifactPublicServiceHandlerClient(ctx context.Context, mux *runtim
 		}
 		forward_ArtifactPublicService_DeleteCatalog_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_ArtifactPublicService_UploadCatalogFile_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ArtifactPublicService_CreateFile_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/UploadCatalogFile", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/CreateFile", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ArtifactPublicService_UploadCatalogFile_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ArtifactPublicService_CreateFile_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ArtifactPublicService_UploadCatalogFile_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ArtifactPublicService_CreateFile_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodDelete, pattern_ArtifactPublicService_DeleteCatalogFile_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_GetFile_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteCatalogFile", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files/{file_uid}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/GetFile", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files/{file_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ArtifactPublicService_DeleteCatalogFile_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ArtifactPublicService_GetFile_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ArtifactPublicService_DeleteCatalogFile_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ArtifactPublicService_GetFile_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_ArtifactPublicService_ProcessCatalogFiles_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_ListFiles_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ProcessCatalogFiles", runtime.WithHTTPPathPattern("/v1alpha/catalogs/files/processAsync"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListFiles", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ArtifactPublicService_ProcessCatalogFiles_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ArtifactPublicService_ListFiles_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ArtifactPublicService_ProcessCatalogFiles_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ArtifactPublicService_ListFiles_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_ListCatalogFiles_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPatch, pattern_ArtifactPublicService_UpdateFile_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListCatalogFiles", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateFile", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files/{file_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ArtifactPublicService_ListCatalogFiles_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ArtifactPublicService_UpdateFile_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ArtifactPublicService_ListCatalogFiles_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ArtifactPublicService_UpdateFile_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_GetCatalogFile_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_ArtifactPublicService_DeleteFile_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/GetCatalogFile", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files/{file_uid}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteFile", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files/{file_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ArtifactPublicService_GetCatalogFile_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ArtifactPublicService_DeleteFile_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ArtifactPublicService_GetCatalogFile_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ArtifactPublicService_DeleteFile_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_GetChunk_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/GetChunk", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files/{file_id}/chunks/{chunk_id}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ArtifactPublicService_GetChunk_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ArtifactPublicService_GetChunk_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_ListChunks_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListChunks", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/chunks"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/ListChunks", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files/{file_id}/chunks"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2152,62 +2018,11 @@ func RegisterArtifactPublicServiceHandlerClient(ctx context.Context, mux *runtim
 		}
 		forward_ArtifactPublicService_ListChunks_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_GetSourceFile_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPatch, pattern_ArtifactPublicService_UpdateChunk_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/GetSourceFile", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files/{file_uid}/source"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ArtifactPublicService_GetSourceFile_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ArtifactPublicService_GetSourceFile_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_GetFileSummary_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/GetFileSummary", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files/{file_uid}/summary"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ArtifactPublicService_GetFileSummary_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ArtifactPublicService_GetFileSummary_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_SearchSourceFiles_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/SearchSourceFiles", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/source-files"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ArtifactPublicService_SearchSourceFiles_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ArtifactPublicService_SearchSourceFiles_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_ArtifactPublicService_UpdateChunk_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateChunk", runtime.WithHTTPPathPattern("/v1alpha/chunks/{chunk_uid}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateChunk", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/chunks/{chunk_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2220,39 +2035,22 @@ func RegisterArtifactPublicServiceHandlerClient(ctx context.Context, mux *runtim
 		}
 		forward_ArtifactPublicService_UpdateChunk_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_ArtifactPublicService_SimilarityChunksSearch_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ArtifactPublicService_SearchChunks_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/SimilarityChunksSearch", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/chunks/retrieve"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/SearchChunks", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/searchChunks"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ArtifactPublicService_SimilarityChunksSearch_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ArtifactPublicService_SearchChunks_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ArtifactPublicService_SimilarityChunksSearch_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_GetFileCatalog_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/GetFileCatalog", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ArtifactPublicService_GetFileCatalog_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ArtifactPublicService_GetFileCatalog_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ArtifactPublicService_SearchChunks_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_ListCatalogRuns_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -2305,95 +2103,53 @@ func RegisterArtifactPublicServiceHandlerClient(ctx context.Context, mux *runtim
 		}
 		forward_ArtifactPublicService_GetObjectDownloadURL_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_ArtifactPublicService_MoveFileToCatalog_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/MoveFileToCatalog", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files:move"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ArtifactPublicService_MoveFileToCatalog_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ArtifactPublicService_MoveFileToCatalog_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPut, pattern_ArtifactPublicService_UpdateCatalogFileTags_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateCatalogFileTags", runtime.WithHTTPPathPattern("/v1alpha/namespaces/{namespace_id}/catalogs/{catalog_id}/files/{file_uid}/tags"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ArtifactPublicService_UpdateCatalogFileTags_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ArtifactPublicService_UpdateCatalogFileTags_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
 	return nil
 }
 
 var (
-	pattern_ArtifactPublicService_Liveness_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "__liveness"}, ""))
-	pattern_ArtifactPublicService_Liveness_1               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "health", "artifact"}, ""))
-	pattern_ArtifactPublicService_Readiness_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "__readiness"}, ""))
-	pattern_ArtifactPublicService_Readiness_1              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "ready", "artifact"}, ""))
-	pattern_ArtifactPublicService_CreateCatalog_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs"}, ""))
-	pattern_ArtifactPublicService_ListCatalogs_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs"}, ""))
-	pattern_ArtifactPublicService_UpdateCatalog_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id"}, ""))
-	pattern_ArtifactPublicService_DeleteCatalog_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id"}, ""))
-	pattern_ArtifactPublicService_UploadCatalogFile_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id", "files"}, ""))
-	pattern_ArtifactPublicService_DeleteCatalogFile_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id", "files", "file_uid"}, ""))
-	pattern_ArtifactPublicService_ProcessCatalogFiles_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"v1alpha", "catalogs", "files", "processAsync"}, ""))
-	pattern_ArtifactPublicService_ListCatalogFiles_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id", "files"}, ""))
-	pattern_ArtifactPublicService_GetCatalogFile_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id", "files", "file_uid"}, ""))
-	pattern_ArtifactPublicService_ListChunks_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id", "chunks"}, ""))
-	pattern_ArtifactPublicService_GetSourceFile_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6, 2, 7}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id", "files", "file_uid", "source"}, ""))
-	pattern_ArtifactPublicService_GetFileSummary_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6, 2, 7}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id", "files", "file_uid", "summary"}, ""))
-	pattern_ArtifactPublicService_SearchSourceFiles_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "namespace_id", "source-files"}, ""))
-	pattern_ArtifactPublicService_UpdateChunk_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1alpha", "chunks", "chunk_uid"}, ""))
-	pattern_ArtifactPublicService_SimilarityChunksSearch_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 2, 6}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id", "chunks", "retrieve"}, ""))
-	pattern_ArtifactPublicService_GetFileCatalog_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id"}, ""))
-	pattern_ArtifactPublicService_ListCatalogRuns_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id", "runs"}, ""))
-	pattern_ArtifactPublicService_GetObjectUploadURL_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "namespace_id", "object-upload-url"}, ""))
-	pattern_ArtifactPublicService_GetObjectDownloadURL_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "namespace_id", "object-download-url"}, ""))
-	pattern_ArtifactPublicService_MoveFileToCatalog_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id", "files"}, "move"))
-	pattern_ArtifactPublicService_UpdateCatalogFileTags_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6, 2, 7}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id", "files", "file_uid", "tags"}, ""))
+	pattern_ArtifactPublicService_Liveness_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "__liveness"}, ""))
+	pattern_ArtifactPublicService_Liveness_1             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "health", "artifact"}, ""))
+	pattern_ArtifactPublicService_Readiness_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "__readiness"}, ""))
+	pattern_ArtifactPublicService_Readiness_1            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "ready", "artifact"}, ""))
+	pattern_ArtifactPublicService_CreateCatalog_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs"}, ""))
+	pattern_ArtifactPublicService_GetCatalog_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id"}, ""))
+	pattern_ArtifactPublicService_ListCatalogs_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs"}, ""))
+	pattern_ArtifactPublicService_UpdateCatalog_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id"}, ""))
+	pattern_ArtifactPublicService_DeleteCatalog_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id"}, ""))
+	pattern_ArtifactPublicService_CreateFile_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id", "files"}, ""))
+	pattern_ArtifactPublicService_GetFile_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id", "files", "file_id"}, ""))
+	pattern_ArtifactPublicService_ListFiles_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id", "files"}, ""))
+	pattern_ArtifactPublicService_UpdateFile_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id", "files", "file_id"}, ""))
+	pattern_ArtifactPublicService_DeleteFile_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id", "files", "file_id"}, ""))
+	pattern_ArtifactPublicService_GetChunk_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6, 2, 7, 1, 0, 4, 1, 5, 8}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id", "files", "file_id", "chunks", "chunk_id"}, ""))
+	pattern_ArtifactPublicService_ListChunks_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6, 2, 7}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id", "files", "file_id", "chunks"}, ""))
+	pattern_ArtifactPublicService_UpdateChunk_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id", "chunks", "chunk_id"}, ""))
+	pattern_ArtifactPublicService_SearchChunks_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id", "searchChunks"}, ""))
+	pattern_ArtifactPublicService_ListCatalogRuns_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "namespace_id", "catalogs", "catalog_id", "runs"}, ""))
+	pattern_ArtifactPublicService_GetObjectUploadURL_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "namespace_id", "object-upload-url"}, ""))
+	pattern_ArtifactPublicService_GetObjectDownloadURL_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "namespace_id", "object-download-url"}, ""))
 )
 
 var (
-	forward_ArtifactPublicService_Liveness_0               = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_Liveness_1               = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_Readiness_0              = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_Readiness_1              = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_CreateCatalog_0          = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_ListCatalogs_0           = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_UpdateCatalog_0          = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_DeleteCatalog_0          = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_UploadCatalogFile_0      = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_DeleteCatalogFile_0      = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_ProcessCatalogFiles_0    = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_ListCatalogFiles_0       = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_GetCatalogFile_0         = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_ListChunks_0             = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_GetSourceFile_0          = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_GetFileSummary_0         = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_SearchSourceFiles_0      = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_UpdateChunk_0            = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_SimilarityChunksSearch_0 = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_GetFileCatalog_0         = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_ListCatalogRuns_0        = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_GetObjectUploadURL_0     = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_GetObjectDownloadURL_0   = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_MoveFileToCatalog_0      = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_UpdateCatalogFileTags_0  = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_Liveness_0             = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_Liveness_1             = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_Readiness_0            = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_Readiness_1            = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_CreateCatalog_0        = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_GetCatalog_0           = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_ListCatalogs_0         = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_UpdateCatalog_0        = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_DeleteCatalog_0        = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_CreateFile_0           = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_GetFile_0              = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_ListFiles_0            = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_UpdateFile_0           = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_DeleteFile_0           = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_GetChunk_0             = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_ListChunks_0           = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_UpdateChunk_0          = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_SearchChunks_0         = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_ListCatalogRuns_0      = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_GetObjectUploadURL_0   = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_GetObjectDownloadURL_0 = runtime.ForwardResponseMessage
 )

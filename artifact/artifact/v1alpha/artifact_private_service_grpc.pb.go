@@ -19,16 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ArtifactPrivateService_ListRepositoryTagsAdmin_FullMethodName           = "/artifact.artifact.v1alpha.ArtifactPrivateService/ListRepositoryTagsAdmin"
-	ArtifactPrivateService_GetRepositoryTagAdmin_FullMethodName             = "/artifact.artifact.v1alpha.ArtifactPrivateService/GetRepositoryTagAdmin"
-	ArtifactPrivateService_CreateRepositoryTagAdmin_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPrivateService/CreateRepositoryTagAdmin"
-	ArtifactPrivateService_DeleteRepositoryTagAdmin_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPrivateService/DeleteRepositoryTagAdmin"
 	ArtifactPrivateService_GetObjectAdmin_FullMethodName                    = "/artifact.artifact.v1alpha.ArtifactPrivateService/GetObjectAdmin"
 	ArtifactPrivateService_GetObjectURLAdmin_FullMethodName                 = "/artifact.artifact.v1alpha.ArtifactPrivateService/GetObjectURLAdmin"
 	ArtifactPrivateService_UpdateObjectAdmin_FullMethodName                 = "/artifact.artifact.v1alpha.ArtifactPrivateService/UpdateObjectAdmin"
-	ArtifactPrivateService_GetFileAsMarkdownAdmin_FullMethodName            = "/artifact.artifact.v1alpha.ArtifactPrivateService/GetFileAsMarkdownAdmin"
-	ArtifactPrivateService_GetChatFileAdmin_FullMethodName                  = "/artifact.artifact.v1alpha.ArtifactPrivateService/GetChatFileAdmin"
-	ArtifactPrivateService_DeleteCatalogFileAdmin_FullMethodName            = "/artifact.artifact.v1alpha.ArtifactPrivateService/DeleteCatalogFileAdmin"
+	ArtifactPrivateService_DeleteFileAdmin_FullMethodName                   = "/artifact.artifact.v1alpha.ArtifactPrivateService/DeleteFileAdmin"
 	ArtifactPrivateService_ExecuteKnowledgeBaseUpdateAdmin_FullMethodName   = "/artifact.artifact.v1alpha.ArtifactPrivateService/ExecuteKnowledgeBaseUpdateAdmin"
 	ArtifactPrivateService_AbortKnowledgeBaseUpdateAdmin_FullMethodName     = "/artifact.artifact.v1alpha.ArtifactPrivateService/AbortKnowledgeBaseUpdateAdmin"
 	ArtifactPrivateService_RollbackAdmin_FullMethodName                     = "/artifact.artifact.v1alpha.ArtifactPrivateService/RollbackAdmin"
@@ -52,49 +46,21 @@ const (
 // ArtifactPrivateService exposes the private endpoints that allow clients to
 // manage artifacts.
 type ArtifactPrivateServiceClient interface {
-	// List the tags in a repository (admin only)
-	//
-	// Returns a portion of the versions that the specified repository holds.
-	ListRepositoryTagsAdmin(ctx context.Context, in *ListRepositoryTagsAdminRequest, opts ...grpc.CallOption) (*ListRepositoryTagsAdminResponse, error)
-	// Get details of repository tag (admin only)
-	GetRepositoryTagAdmin(ctx context.Context, in *GetRepositoryTagAdminRequest, opts ...grpc.CallOption) (*GetRepositoryTagAdminResponse, error)
-	// Create a new repository tag (admin only)
-	//
-	// Adds a tag to a given repository. Note that this operation is only
-	// intended to register the information of an *already created* tag. This
-	// method should be called as part of the content push operation, right after
-	// the [PUT Manifest](https://distribution.github.io/distribution/#put-manifest) has
-	// succeeded. The distribution registry won't hold data such as the push time
-	// or the tag digest, so `artifact-backend` will hold this information locally.
-	CreateRepositoryTagAdmin(ctx context.Context, in *CreateRepositoryTagAdminRequest, opts ...grpc.CallOption) (*CreateRepositoryTagAdminResponse, error)
-	// Delete a repository tag (admin only)
-	DeleteRepositoryTagAdmin(ctx context.Context, in *DeleteRepositoryTagAdminRequest, opts ...grpc.CallOption) (*DeleteRepositoryTagAdminResponse, error)
 	// Get Object (admin only)
 	GetObjectAdmin(ctx context.Context, in *GetObjectAdminRequest, opts ...grpc.CallOption) (*GetObjectAdminResponse, error)
 	// Get Object URL (admin only)
 	GetObjectURLAdmin(ctx context.Context, in *GetObjectURLAdminRequest, opts ...grpc.CallOption) (*GetObjectURLAdminResponse, error)
 	// Update Object (admin only)
 	UpdateObjectAdmin(ctx context.Context, in *UpdateObjectAdminRequest, opts ...grpc.CallOption) (*UpdateObjectAdminResponse, error)
-	// Get file as Markdown (admin only)
-	//
-	// Returns the Markdown representation of a file.
-	GetFileAsMarkdownAdmin(ctx context.Context, in *GetFileAsMarkdownAdminRequest, opts ...grpc.CallOption) (*GetFileAsMarkdownAdminResponse, error)
-	// Deprecated: Do not use.
-	// Get file as Markdown (deprecated, admin only)
-	//
-	// Returns the contents of a file conversion to Markdown as a binary blob.
-	// This method is deprecated as it identifies the file by namespace and
-	// filename instead of UID, which isn't a unique identifier anymore.
-	GetChatFileAdmin(ctx context.Context, in *GetChatFileAdminRequest, opts ...grpc.CallOption) (*GetChatFileAdminResponse, error)
 	// Delete a catalog file (admin only)
 	//
-	// Deletes a file from a catalog using only the file UID. Unlike the public
-	// DeleteCatalogFile endpoint which requires namespace and catalog IDs, this
+	// Deletes a file from a catalog using only the file ID. Unlike the public
+	// DeleteFile endpoint which requires namespace and catalog IDs, this
 	// admin endpoint automatically looks up the file's catalog and owner to
 	// perform the deletion. Primarily used for integration testing and internal
-	// operations where the caller has a file UID but not the full resource path.
+	// operations where the caller has a file ID but not the full resource path.
 	// Authentication metadata is injected automatically based on the file owner.
-	DeleteCatalogFileAdmin(ctx context.Context, in *DeleteCatalogFileAdminRequest, opts ...grpc.CallOption) (*DeleteCatalogFileAdminResponse, error)
+	DeleteFileAdmin(ctx context.Context, in *DeleteFileAdminRequest, opts ...grpc.CallOption) (*DeleteFileAdminResponse, error)
 	// Execute knowledge base update (admin only)
 	ExecuteKnowledgeBaseUpdateAdmin(ctx context.Context, in *ExecuteKnowledgeBaseUpdateAdminRequest, opts ...grpc.CallOption) (*ExecuteKnowledgeBaseUpdateAdminResponse, error)
 	// Abort knowledge base update (admin only)
@@ -138,46 +104,6 @@ func NewArtifactPrivateServiceClient(cc grpc.ClientConnInterface) ArtifactPrivat
 	return &artifactPrivateServiceClient{cc}
 }
 
-func (c *artifactPrivateServiceClient) ListRepositoryTagsAdmin(ctx context.Context, in *ListRepositoryTagsAdminRequest, opts ...grpc.CallOption) (*ListRepositoryTagsAdminResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListRepositoryTagsAdminResponse)
-	err := c.cc.Invoke(ctx, ArtifactPrivateService_ListRepositoryTagsAdmin_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *artifactPrivateServiceClient) GetRepositoryTagAdmin(ctx context.Context, in *GetRepositoryTagAdminRequest, opts ...grpc.CallOption) (*GetRepositoryTagAdminResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetRepositoryTagAdminResponse)
-	err := c.cc.Invoke(ctx, ArtifactPrivateService_GetRepositoryTagAdmin_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *artifactPrivateServiceClient) CreateRepositoryTagAdmin(ctx context.Context, in *CreateRepositoryTagAdminRequest, opts ...grpc.CallOption) (*CreateRepositoryTagAdminResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateRepositoryTagAdminResponse)
-	err := c.cc.Invoke(ctx, ArtifactPrivateService_CreateRepositoryTagAdmin_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *artifactPrivateServiceClient) DeleteRepositoryTagAdmin(ctx context.Context, in *DeleteRepositoryTagAdminRequest, opts ...grpc.CallOption) (*DeleteRepositoryTagAdminResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteRepositoryTagAdminResponse)
-	err := c.cc.Invoke(ctx, ArtifactPrivateService_DeleteRepositoryTagAdmin_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *artifactPrivateServiceClient) GetObjectAdmin(ctx context.Context, in *GetObjectAdminRequest, opts ...grpc.CallOption) (*GetObjectAdminResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetObjectAdminResponse)
@@ -208,31 +134,10 @@ func (c *artifactPrivateServiceClient) UpdateObjectAdmin(ctx context.Context, in
 	return out, nil
 }
 
-func (c *artifactPrivateServiceClient) GetFileAsMarkdownAdmin(ctx context.Context, in *GetFileAsMarkdownAdminRequest, opts ...grpc.CallOption) (*GetFileAsMarkdownAdminResponse, error) {
+func (c *artifactPrivateServiceClient) DeleteFileAdmin(ctx context.Context, in *DeleteFileAdminRequest, opts ...grpc.CallOption) (*DeleteFileAdminResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetFileAsMarkdownAdminResponse)
-	err := c.cc.Invoke(ctx, ArtifactPrivateService_GetFileAsMarkdownAdmin_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// Deprecated: Do not use.
-func (c *artifactPrivateServiceClient) GetChatFileAdmin(ctx context.Context, in *GetChatFileAdminRequest, opts ...grpc.CallOption) (*GetChatFileAdminResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetChatFileAdminResponse)
-	err := c.cc.Invoke(ctx, ArtifactPrivateService_GetChatFileAdmin_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *artifactPrivateServiceClient) DeleteCatalogFileAdmin(ctx context.Context, in *DeleteCatalogFileAdminRequest, opts ...grpc.CallOption) (*DeleteCatalogFileAdminResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteCatalogFileAdminResponse)
-	err := c.cc.Invoke(ctx, ArtifactPrivateService_DeleteCatalogFileAdmin_FullMethodName, in, out, cOpts...)
+	out := new(DeleteFileAdminResponse)
+	err := c.cc.Invoke(ctx, ArtifactPrivateService_DeleteFileAdmin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -386,49 +291,21 @@ func (c *artifactPrivateServiceClient) GetDefaultSystemAdmin(ctx context.Context
 // ArtifactPrivateService exposes the private endpoints that allow clients to
 // manage artifacts.
 type ArtifactPrivateServiceServer interface {
-	// List the tags in a repository (admin only)
-	//
-	// Returns a portion of the versions that the specified repository holds.
-	ListRepositoryTagsAdmin(context.Context, *ListRepositoryTagsAdminRequest) (*ListRepositoryTagsAdminResponse, error)
-	// Get details of repository tag (admin only)
-	GetRepositoryTagAdmin(context.Context, *GetRepositoryTagAdminRequest) (*GetRepositoryTagAdminResponse, error)
-	// Create a new repository tag (admin only)
-	//
-	// Adds a tag to a given repository. Note that this operation is only
-	// intended to register the information of an *already created* tag. This
-	// method should be called as part of the content push operation, right after
-	// the [PUT Manifest](https://distribution.github.io/distribution/#put-manifest) has
-	// succeeded. The distribution registry won't hold data such as the push time
-	// or the tag digest, so `artifact-backend` will hold this information locally.
-	CreateRepositoryTagAdmin(context.Context, *CreateRepositoryTagAdminRequest) (*CreateRepositoryTagAdminResponse, error)
-	// Delete a repository tag (admin only)
-	DeleteRepositoryTagAdmin(context.Context, *DeleteRepositoryTagAdminRequest) (*DeleteRepositoryTagAdminResponse, error)
 	// Get Object (admin only)
 	GetObjectAdmin(context.Context, *GetObjectAdminRequest) (*GetObjectAdminResponse, error)
 	// Get Object URL (admin only)
 	GetObjectURLAdmin(context.Context, *GetObjectURLAdminRequest) (*GetObjectURLAdminResponse, error)
 	// Update Object (admin only)
 	UpdateObjectAdmin(context.Context, *UpdateObjectAdminRequest) (*UpdateObjectAdminResponse, error)
-	// Get file as Markdown (admin only)
-	//
-	// Returns the Markdown representation of a file.
-	GetFileAsMarkdownAdmin(context.Context, *GetFileAsMarkdownAdminRequest) (*GetFileAsMarkdownAdminResponse, error)
-	// Deprecated: Do not use.
-	// Get file as Markdown (deprecated, admin only)
-	//
-	// Returns the contents of a file conversion to Markdown as a binary blob.
-	// This method is deprecated as it identifies the file by namespace and
-	// filename instead of UID, which isn't a unique identifier anymore.
-	GetChatFileAdmin(context.Context, *GetChatFileAdminRequest) (*GetChatFileAdminResponse, error)
 	// Delete a catalog file (admin only)
 	//
-	// Deletes a file from a catalog using only the file UID. Unlike the public
-	// DeleteCatalogFile endpoint which requires namespace and catalog IDs, this
+	// Deletes a file from a catalog using only the file ID. Unlike the public
+	// DeleteFile endpoint which requires namespace and catalog IDs, this
 	// admin endpoint automatically looks up the file's catalog and owner to
 	// perform the deletion. Primarily used for integration testing and internal
-	// operations where the caller has a file UID but not the full resource path.
+	// operations where the caller has a file ID but not the full resource path.
 	// Authentication metadata is injected automatically based on the file owner.
-	DeleteCatalogFileAdmin(context.Context, *DeleteCatalogFileAdminRequest) (*DeleteCatalogFileAdminResponse, error)
+	DeleteFileAdmin(context.Context, *DeleteFileAdminRequest) (*DeleteFileAdminResponse, error)
 	// Execute knowledge base update (admin only)
 	ExecuteKnowledgeBaseUpdateAdmin(context.Context, *ExecuteKnowledgeBaseUpdateAdminRequest) (*ExecuteKnowledgeBaseUpdateAdminResponse, error)
 	// Abort knowledge base update (admin only)
@@ -471,18 +348,6 @@ type ArtifactPrivateServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedArtifactPrivateServiceServer struct{}
 
-func (UnimplementedArtifactPrivateServiceServer) ListRepositoryTagsAdmin(context.Context, *ListRepositoryTagsAdminRequest) (*ListRepositoryTagsAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListRepositoryTagsAdmin not implemented")
-}
-func (UnimplementedArtifactPrivateServiceServer) GetRepositoryTagAdmin(context.Context, *GetRepositoryTagAdminRequest) (*GetRepositoryTagAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetRepositoryTagAdmin not implemented")
-}
-func (UnimplementedArtifactPrivateServiceServer) CreateRepositoryTagAdmin(context.Context, *CreateRepositoryTagAdminRequest) (*CreateRepositoryTagAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateRepositoryTagAdmin not implemented")
-}
-func (UnimplementedArtifactPrivateServiceServer) DeleteRepositoryTagAdmin(context.Context, *DeleteRepositoryTagAdminRequest) (*DeleteRepositoryTagAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteRepositoryTagAdmin not implemented")
-}
 func (UnimplementedArtifactPrivateServiceServer) GetObjectAdmin(context.Context, *GetObjectAdminRequest) (*GetObjectAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetObjectAdmin not implemented")
 }
@@ -492,14 +357,8 @@ func (UnimplementedArtifactPrivateServiceServer) GetObjectURLAdmin(context.Conte
 func (UnimplementedArtifactPrivateServiceServer) UpdateObjectAdmin(context.Context, *UpdateObjectAdminRequest) (*UpdateObjectAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateObjectAdmin not implemented")
 }
-func (UnimplementedArtifactPrivateServiceServer) GetFileAsMarkdownAdmin(context.Context, *GetFileAsMarkdownAdminRequest) (*GetFileAsMarkdownAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetFileAsMarkdownAdmin not implemented")
-}
-func (UnimplementedArtifactPrivateServiceServer) GetChatFileAdmin(context.Context, *GetChatFileAdminRequest) (*GetChatFileAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetChatFileAdmin not implemented")
-}
-func (UnimplementedArtifactPrivateServiceServer) DeleteCatalogFileAdmin(context.Context, *DeleteCatalogFileAdminRequest) (*DeleteCatalogFileAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteCatalogFileAdmin not implemented")
+func (UnimplementedArtifactPrivateServiceServer) DeleteFileAdmin(context.Context, *DeleteFileAdminRequest) (*DeleteFileAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteFileAdmin not implemented")
 }
 func (UnimplementedArtifactPrivateServiceServer) ExecuteKnowledgeBaseUpdateAdmin(context.Context, *ExecuteKnowledgeBaseUpdateAdminRequest) (*ExecuteKnowledgeBaseUpdateAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ExecuteKnowledgeBaseUpdateAdmin not implemented")
@@ -563,78 +422,6 @@ func RegisterArtifactPrivateServiceServer(s grpc.ServiceRegistrar, srv ArtifactP
 	s.RegisterService(&ArtifactPrivateService_ServiceDesc, srv)
 }
 
-func _ArtifactPrivateService_ListRepositoryTagsAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListRepositoryTagsAdminRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactPrivateServiceServer).ListRepositoryTagsAdmin(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ArtifactPrivateService_ListRepositoryTagsAdmin_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPrivateServiceServer).ListRepositoryTagsAdmin(ctx, req.(*ListRepositoryTagsAdminRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ArtifactPrivateService_GetRepositoryTagAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetRepositoryTagAdminRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactPrivateServiceServer).GetRepositoryTagAdmin(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ArtifactPrivateService_GetRepositoryTagAdmin_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPrivateServiceServer).GetRepositoryTagAdmin(ctx, req.(*GetRepositoryTagAdminRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ArtifactPrivateService_CreateRepositoryTagAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateRepositoryTagAdminRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactPrivateServiceServer).CreateRepositoryTagAdmin(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ArtifactPrivateService_CreateRepositoryTagAdmin_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPrivateServiceServer).CreateRepositoryTagAdmin(ctx, req.(*CreateRepositoryTagAdminRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ArtifactPrivateService_DeleteRepositoryTagAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteRepositoryTagAdminRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactPrivateServiceServer).DeleteRepositoryTagAdmin(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ArtifactPrivateService_DeleteRepositoryTagAdmin_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPrivateServiceServer).DeleteRepositoryTagAdmin(ctx, req.(*DeleteRepositoryTagAdminRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _ArtifactPrivateService_GetObjectAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetObjectAdminRequest)
 	if err := dec(in); err != nil {
@@ -689,56 +476,20 @@ func _ArtifactPrivateService_UpdateObjectAdmin_Handler(srv interface{}, ctx cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPrivateService_GetFileAsMarkdownAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetFileAsMarkdownAdminRequest)
+func _ArtifactPrivateService_DeleteFileAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteFileAdminRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPrivateServiceServer).GetFileAsMarkdownAdmin(ctx, in)
+		return srv.(ArtifactPrivateServiceServer).DeleteFileAdmin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPrivateService_GetFileAsMarkdownAdmin_FullMethodName,
+		FullMethod: ArtifactPrivateService_DeleteFileAdmin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPrivateServiceServer).GetFileAsMarkdownAdmin(ctx, req.(*GetFileAsMarkdownAdminRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ArtifactPrivateService_GetChatFileAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetChatFileAdminRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactPrivateServiceServer).GetChatFileAdmin(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ArtifactPrivateService_GetChatFileAdmin_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPrivateServiceServer).GetChatFileAdmin(ctx, req.(*GetChatFileAdminRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ArtifactPrivateService_DeleteCatalogFileAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteCatalogFileAdminRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactPrivateServiceServer).DeleteCatalogFileAdmin(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ArtifactPrivateService_DeleteCatalogFileAdmin_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPrivateServiceServer).DeleteCatalogFileAdmin(ctx, req.(*DeleteCatalogFileAdminRequest))
+		return srv.(ArtifactPrivateServiceServer).DeleteFileAdmin(ctx, req.(*DeleteFileAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1003,22 +754,6 @@ var ArtifactPrivateService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*ArtifactPrivateServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "ListRepositoryTagsAdmin",
-			Handler:    _ArtifactPrivateService_ListRepositoryTagsAdmin_Handler,
-		},
-		{
-			MethodName: "GetRepositoryTagAdmin",
-			Handler:    _ArtifactPrivateService_GetRepositoryTagAdmin_Handler,
-		},
-		{
-			MethodName: "CreateRepositoryTagAdmin",
-			Handler:    _ArtifactPrivateService_CreateRepositoryTagAdmin_Handler,
-		},
-		{
-			MethodName: "DeleteRepositoryTagAdmin",
-			Handler:    _ArtifactPrivateService_DeleteRepositoryTagAdmin_Handler,
-		},
-		{
 			MethodName: "GetObjectAdmin",
 			Handler:    _ArtifactPrivateService_GetObjectAdmin_Handler,
 		},
@@ -1031,16 +766,8 @@ var ArtifactPrivateService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ArtifactPrivateService_UpdateObjectAdmin_Handler,
 		},
 		{
-			MethodName: "GetFileAsMarkdownAdmin",
-			Handler:    _ArtifactPrivateService_GetFileAsMarkdownAdmin_Handler,
-		},
-		{
-			MethodName: "GetChatFileAdmin",
-			Handler:    _ArtifactPrivateService_GetChatFileAdmin_Handler,
-		},
-		{
-			MethodName: "DeleteCatalogFileAdmin",
-			Handler:    _ArtifactPrivateService_DeleteCatalogFileAdmin_Handler,
+			MethodName: "DeleteFileAdmin",
+			Handler:    _ArtifactPrivateService_DeleteFileAdmin_Handler,
 		},
 		{
 			MethodName: "ExecuteKnowledgeBaseUpdateAdmin",

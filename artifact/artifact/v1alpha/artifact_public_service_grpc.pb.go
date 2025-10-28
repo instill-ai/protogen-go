@@ -19,29 +19,25 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ArtifactPublicService_Liveness_FullMethodName               = "/artifact.artifact.v1alpha.ArtifactPublicService/Liveness"
-	ArtifactPublicService_Readiness_FullMethodName              = "/artifact.artifact.v1alpha.ArtifactPublicService/Readiness"
-	ArtifactPublicService_CreateCatalog_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPublicService/CreateCatalog"
-	ArtifactPublicService_ListCatalogs_FullMethodName           = "/artifact.artifact.v1alpha.ArtifactPublicService/ListCatalogs"
-	ArtifactPublicService_UpdateCatalog_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateCatalog"
-	ArtifactPublicService_DeleteCatalog_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteCatalog"
-	ArtifactPublicService_UploadCatalogFile_FullMethodName      = "/artifact.artifact.v1alpha.ArtifactPublicService/UploadCatalogFile"
-	ArtifactPublicService_DeleteCatalogFile_FullMethodName      = "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteCatalogFile"
-	ArtifactPublicService_ProcessCatalogFiles_FullMethodName    = "/artifact.artifact.v1alpha.ArtifactPublicService/ProcessCatalogFiles"
-	ArtifactPublicService_ListCatalogFiles_FullMethodName       = "/artifact.artifact.v1alpha.ArtifactPublicService/ListCatalogFiles"
-	ArtifactPublicService_GetCatalogFile_FullMethodName         = "/artifact.artifact.v1alpha.ArtifactPublicService/GetCatalogFile"
-	ArtifactPublicService_ListChunks_FullMethodName             = "/artifact.artifact.v1alpha.ArtifactPublicService/ListChunks"
-	ArtifactPublicService_GetSourceFile_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPublicService/GetSourceFile"
-	ArtifactPublicService_GetFileSummary_FullMethodName         = "/artifact.artifact.v1alpha.ArtifactPublicService/GetFileSummary"
-	ArtifactPublicService_SearchSourceFiles_FullMethodName      = "/artifact.artifact.v1alpha.ArtifactPublicService/SearchSourceFiles"
-	ArtifactPublicService_UpdateChunk_FullMethodName            = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateChunk"
-	ArtifactPublicService_SimilarityChunksSearch_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPublicService/SimilarityChunksSearch"
-	ArtifactPublicService_GetFileCatalog_FullMethodName         = "/artifact.artifact.v1alpha.ArtifactPublicService/GetFileCatalog"
-	ArtifactPublicService_ListCatalogRuns_FullMethodName        = "/artifact.artifact.v1alpha.ArtifactPublicService/ListCatalogRuns"
-	ArtifactPublicService_GetObjectUploadURL_FullMethodName     = "/artifact.artifact.v1alpha.ArtifactPublicService/GetObjectUploadURL"
-	ArtifactPublicService_GetObjectDownloadURL_FullMethodName   = "/artifact.artifact.v1alpha.ArtifactPublicService/GetObjectDownloadURL"
-	ArtifactPublicService_MoveFileToCatalog_FullMethodName      = "/artifact.artifact.v1alpha.ArtifactPublicService/MoveFileToCatalog"
-	ArtifactPublicService_UpdateCatalogFileTags_FullMethodName  = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateCatalogFileTags"
+	ArtifactPublicService_Liveness_FullMethodName             = "/artifact.artifact.v1alpha.ArtifactPublicService/Liveness"
+	ArtifactPublicService_Readiness_FullMethodName            = "/artifact.artifact.v1alpha.ArtifactPublicService/Readiness"
+	ArtifactPublicService_CreateCatalog_FullMethodName        = "/artifact.artifact.v1alpha.ArtifactPublicService/CreateCatalog"
+	ArtifactPublicService_GetCatalog_FullMethodName           = "/artifact.artifact.v1alpha.ArtifactPublicService/GetCatalog"
+	ArtifactPublicService_ListCatalogs_FullMethodName         = "/artifact.artifact.v1alpha.ArtifactPublicService/ListCatalogs"
+	ArtifactPublicService_UpdateCatalog_FullMethodName        = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateCatalog"
+	ArtifactPublicService_DeleteCatalog_FullMethodName        = "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteCatalog"
+	ArtifactPublicService_CreateFile_FullMethodName           = "/artifact.artifact.v1alpha.ArtifactPublicService/CreateFile"
+	ArtifactPublicService_GetFile_FullMethodName              = "/artifact.artifact.v1alpha.ArtifactPublicService/GetFile"
+	ArtifactPublicService_ListFiles_FullMethodName            = "/artifact.artifact.v1alpha.ArtifactPublicService/ListFiles"
+	ArtifactPublicService_UpdateFile_FullMethodName           = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateFile"
+	ArtifactPublicService_DeleteFile_FullMethodName           = "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteFile"
+	ArtifactPublicService_GetChunk_FullMethodName             = "/artifact.artifact.v1alpha.ArtifactPublicService/GetChunk"
+	ArtifactPublicService_ListChunks_FullMethodName           = "/artifact.artifact.v1alpha.ArtifactPublicService/ListChunks"
+	ArtifactPublicService_UpdateChunk_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateChunk"
+	ArtifactPublicService_SearchChunks_FullMethodName         = "/artifact.artifact.v1alpha.ArtifactPublicService/SearchChunks"
+	ArtifactPublicService_ListCatalogRuns_FullMethodName      = "/artifact.artifact.v1alpha.ArtifactPublicService/ListCatalogRuns"
+	ArtifactPublicService_GetObjectUploadURL_FullMethodName   = "/artifact.artifact.v1alpha.ArtifactPublicService/GetObjectUploadURL"
+	ArtifactPublicService_GetObjectDownloadURL_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPublicService/GetObjectDownloadURL"
 )
 
 // ArtifactPublicServiceClient is the client API for ArtifactPublicService service.
@@ -63,6 +59,10 @@ type ArtifactPublicServiceClient interface {
 	//
 	// Creates a catalog.
 	CreateCatalog(ctx context.Context, in *CreateCatalogRequest, opts ...grpc.CallOption) (*CreateCatalogResponse, error)
+	// Get a catalog
+	//
+	// Returns the details of a catalog.
+	GetCatalog(ctx context.Context, in *GetCatalogRequest, opts ...grpc.CallOption) (*GetCatalogResponse, error)
 	// Get all catalogs info
 	//
 	// Returns a paginated list of catalogs.
@@ -77,53 +77,40 @@ type ArtifactPublicServiceClient interface {
 	DeleteCatalog(ctx context.Context, in *DeleteCatalogRequest, opts ...grpc.CallOption) (*DeleteCatalogResponse, error)
 	// Create a file
 	//
-	// Creates a file.
-	UploadCatalogFile(ctx context.Context, in *UploadCatalogFileRequest, opts ...grpc.CallOption) (*UploadCatalogFileResponse, error)
+	// Uploads and converts a file to a catalog.
+	CreateFile(ctx context.Context, in *CreateFileRequest, opts ...grpc.CallOption) (*CreateFileResponse, error)
+	// Get a file
+	//
+	// Returns the details of a file.
+	GetFile(ctx context.Context, in *GetFileRequest, opts ...grpc.CallOption) (*GetFileResponse, error)
+	// List files
+	//
+	// Returns a paginated list of files.
+	ListFiles(ctx context.Context, in *ListFilesRequest, opts ...grpc.CallOption) (*ListFilesResponse, error)
+	// Update a file
+	//
+	// Updates a file.
+	UpdateFile(ctx context.Context, in *UpdateFileRequest, opts ...grpc.CallOption) (*UpdateFileResponse, error)
 	// Delete a file
 	//
 	// Deletes a file.
-	DeleteCatalogFile(ctx context.Context, in *DeleteCatalogFileRequest, opts ...grpc.CallOption) (*DeleteCatalogFileResponse, error)
-	// Process catalog files
+	DeleteFile(ctx context.Context, in *DeleteFileRequest, opts ...grpc.CallOption) (*DeleteFileResponse, error)
+	// Get a chunk
 	//
-	// Processes catalog files.
-	ProcessCatalogFiles(ctx context.Context, in *ProcessCatalogFilesRequest, opts ...grpc.CallOption) (*ProcessCatalogFilesResponse, error)
-	// List catalog files
+	// Returns the details of a chunk.
+	GetChunk(ctx context.Context, in *GetChunkRequest, opts ...grpc.CallOption) (*GetChunkResponse, error)
+	// List chunks
 	//
-	// Returns a paginated list of catalog files.
-	ListCatalogFiles(ctx context.Context, in *ListCatalogFilesRequest, opts ...grpc.CallOption) (*ListCatalogFilesResponse, error)
-	// Get catalog file
-	//
-	// Gets the file of a catalog.
-	GetCatalogFile(ctx context.Context, in *GetCatalogFileRequest, opts ...grpc.CallOption) (*GetCatalogFileResponse, error)
-	// List catalog chunks
-	//
-	// Returns a paginated list of catalog chunks.
+	// Returns a paginated list of chunks.
 	ListChunks(ctx context.Context, in *ListChunksRequest, opts ...grpc.CallOption) (*ListChunksResponse, error)
-	// Get catalog single-source-of-truth file
+	// Update a chunk
 	//
-	// Gets the single-source-of-truth file of a catalog.
-	GetSourceFile(ctx context.Context, in *GetSourceFileRequest, opts ...grpc.CallOption) (*GetSourceFileResponse, error)
-	// Get summary from a catalog file
-	//
-	// Gets summary from a catalog file
-	GetFileSummary(ctx context.Context, in *GetFileSummaryRequest, opts ...grpc.CallOption) (*GetFileSummaryResponse, error)
-	// Search single-source-of-truth files
-	//
-	// Searches the single-source-of-truth files of a catalog.
-	SearchSourceFiles(ctx context.Context, in *SearchSourceFilesRequest, opts ...grpc.CallOption) (*SearchSourceFilesResponse, error)
-	// Update catalog chunk
-	//
-	// Updates a catalog chunk.
+	// Updates a chunk.
 	UpdateChunk(ctx context.Context, in *UpdateChunkRequest, opts ...grpc.CallOption) (*UpdateChunkResponse, error)
-	// Retrieve similar chunks
+	// Search chunks
 	//
 	// Returns the top-K most similar chunks to a text prompt.
-	SimilarityChunksSearch(ctx context.Context, in *SimilarityChunksSearchRequest, opts ...grpc.CallOption) (*SimilarityChunksSearchResponse, error)
-	// Get the catalog file.
-	//
-	// Returns a view of the file within the catalog, with the text and chunks it
-	// generated after being processed.
-	GetFileCatalog(ctx context.Context, in *GetFileCatalogRequest, opts ...grpc.CallOption) (*GetFileCatalogResponse, error)
+	SearchChunks(ctx context.Context, in *SearchChunksRequest, opts ...grpc.CallOption) (*SearchChunksResponse, error)
 	// List Catalog Runs
 	//
 	// Returns a paginated list of catalog runs.
@@ -136,14 +123,6 @@ type ArtifactPublicServiceClient interface {
 	//
 	// Returns the download URL of an object.
 	GetObjectDownloadURL(ctx context.Context, in *GetObjectDownloadURLRequest, opts ...grpc.CallOption) (*GetObjectDownloadURLResponse, error)
-	// Move file to another catalog
-	//
-	// Moves a file to another catalog.
-	MoveFileToCatalog(ctx context.Context, in *MoveFileToCatalogRequest, opts ...grpc.CallOption) (*MoveFileToCatalogResponse, error)
-	// Update catalog file tags
-	//
-	// Updates the tags associated with a catalog file.
-	UpdateCatalogFileTags(ctx context.Context, in *UpdateCatalogFileTagsRequest, opts ...grpc.CallOption) (*UpdateCatalogFileTagsResponse, error)
 }
 
 type artifactPublicServiceClient struct {
@@ -184,6 +163,16 @@ func (c *artifactPublicServiceClient) CreateCatalog(ctx context.Context, in *Cre
 	return out, nil
 }
 
+func (c *artifactPublicServiceClient) GetCatalog(ctx context.Context, in *GetCatalogRequest, opts ...grpc.CallOption) (*GetCatalogResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetCatalogResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_GetCatalog_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *artifactPublicServiceClient) ListCatalogs(ctx context.Context, in *ListCatalogsRequest, opts ...grpc.CallOption) (*ListCatalogsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListCatalogsResponse)
@@ -214,50 +203,60 @@ func (c *artifactPublicServiceClient) DeleteCatalog(ctx context.Context, in *Del
 	return out, nil
 }
 
-func (c *artifactPublicServiceClient) UploadCatalogFile(ctx context.Context, in *UploadCatalogFileRequest, opts ...grpc.CallOption) (*UploadCatalogFileResponse, error) {
+func (c *artifactPublicServiceClient) CreateFile(ctx context.Context, in *CreateFileRequest, opts ...grpc.CallOption) (*CreateFileResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UploadCatalogFileResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_UploadCatalogFile_FullMethodName, in, out, cOpts...)
+	out := new(CreateFileResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_CreateFile_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *artifactPublicServiceClient) DeleteCatalogFile(ctx context.Context, in *DeleteCatalogFileRequest, opts ...grpc.CallOption) (*DeleteCatalogFileResponse, error) {
+func (c *artifactPublicServiceClient) GetFile(ctx context.Context, in *GetFileRequest, opts ...grpc.CallOption) (*GetFileResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteCatalogFileResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_DeleteCatalogFile_FullMethodName, in, out, cOpts...)
+	out := new(GetFileResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_GetFile_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *artifactPublicServiceClient) ProcessCatalogFiles(ctx context.Context, in *ProcessCatalogFilesRequest, opts ...grpc.CallOption) (*ProcessCatalogFilesResponse, error) {
+func (c *artifactPublicServiceClient) ListFiles(ctx context.Context, in *ListFilesRequest, opts ...grpc.CallOption) (*ListFilesResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ProcessCatalogFilesResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_ProcessCatalogFiles_FullMethodName, in, out, cOpts...)
+	out := new(ListFilesResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_ListFiles_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *artifactPublicServiceClient) ListCatalogFiles(ctx context.Context, in *ListCatalogFilesRequest, opts ...grpc.CallOption) (*ListCatalogFilesResponse, error) {
+func (c *artifactPublicServiceClient) UpdateFile(ctx context.Context, in *UpdateFileRequest, opts ...grpc.CallOption) (*UpdateFileResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListCatalogFilesResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_ListCatalogFiles_FullMethodName, in, out, cOpts...)
+	out := new(UpdateFileResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_UpdateFile_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *artifactPublicServiceClient) GetCatalogFile(ctx context.Context, in *GetCatalogFileRequest, opts ...grpc.CallOption) (*GetCatalogFileResponse, error) {
+func (c *artifactPublicServiceClient) DeleteFile(ctx context.Context, in *DeleteFileRequest, opts ...grpc.CallOption) (*DeleteFileResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetCatalogFileResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_GetCatalogFile_FullMethodName, in, out, cOpts...)
+	out := new(DeleteFileResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_DeleteFile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPublicServiceClient) GetChunk(ctx context.Context, in *GetChunkRequest, opts ...grpc.CallOption) (*GetChunkResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetChunkResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_GetChunk_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -274,36 +273,6 @@ func (c *artifactPublicServiceClient) ListChunks(ctx context.Context, in *ListCh
 	return out, nil
 }
 
-func (c *artifactPublicServiceClient) GetSourceFile(ctx context.Context, in *GetSourceFileRequest, opts ...grpc.CallOption) (*GetSourceFileResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetSourceFileResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_GetSourceFile_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *artifactPublicServiceClient) GetFileSummary(ctx context.Context, in *GetFileSummaryRequest, opts ...grpc.CallOption) (*GetFileSummaryResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetFileSummaryResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_GetFileSummary_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *artifactPublicServiceClient) SearchSourceFiles(ctx context.Context, in *SearchSourceFilesRequest, opts ...grpc.CallOption) (*SearchSourceFilesResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SearchSourceFilesResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_SearchSourceFiles_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *artifactPublicServiceClient) UpdateChunk(ctx context.Context, in *UpdateChunkRequest, opts ...grpc.CallOption) (*UpdateChunkResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UpdateChunkResponse)
@@ -314,20 +283,10 @@ func (c *artifactPublicServiceClient) UpdateChunk(ctx context.Context, in *Updat
 	return out, nil
 }
 
-func (c *artifactPublicServiceClient) SimilarityChunksSearch(ctx context.Context, in *SimilarityChunksSearchRequest, opts ...grpc.CallOption) (*SimilarityChunksSearchResponse, error) {
+func (c *artifactPublicServiceClient) SearchChunks(ctx context.Context, in *SearchChunksRequest, opts ...grpc.CallOption) (*SearchChunksResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SimilarityChunksSearchResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_SimilarityChunksSearch_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *artifactPublicServiceClient) GetFileCatalog(ctx context.Context, in *GetFileCatalogRequest, opts ...grpc.CallOption) (*GetFileCatalogResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetFileCatalogResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_GetFileCatalog_FullMethodName, in, out, cOpts...)
+	out := new(SearchChunksResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_SearchChunks_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -364,26 +323,6 @@ func (c *artifactPublicServiceClient) GetObjectDownloadURL(ctx context.Context, 
 	return out, nil
 }
 
-func (c *artifactPublicServiceClient) MoveFileToCatalog(ctx context.Context, in *MoveFileToCatalogRequest, opts ...grpc.CallOption) (*MoveFileToCatalogResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(MoveFileToCatalogResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_MoveFileToCatalog_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *artifactPublicServiceClient) UpdateCatalogFileTags(ctx context.Context, in *UpdateCatalogFileTagsRequest, opts ...grpc.CallOption) (*UpdateCatalogFileTagsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateCatalogFileTagsResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_UpdateCatalogFileTags_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // ArtifactPublicServiceServer is the server API for ArtifactPublicService service.
 // All implementations should embed UnimplementedArtifactPublicServiceServer
 // for forward compatibility.
@@ -403,6 +342,10 @@ type ArtifactPublicServiceServer interface {
 	//
 	// Creates a catalog.
 	CreateCatalog(context.Context, *CreateCatalogRequest) (*CreateCatalogResponse, error)
+	// Get a catalog
+	//
+	// Returns the details of a catalog.
+	GetCatalog(context.Context, *GetCatalogRequest) (*GetCatalogResponse, error)
 	// Get all catalogs info
 	//
 	// Returns a paginated list of catalogs.
@@ -417,53 +360,40 @@ type ArtifactPublicServiceServer interface {
 	DeleteCatalog(context.Context, *DeleteCatalogRequest) (*DeleteCatalogResponse, error)
 	// Create a file
 	//
-	// Creates a file.
-	UploadCatalogFile(context.Context, *UploadCatalogFileRequest) (*UploadCatalogFileResponse, error)
+	// Uploads and converts a file to a catalog.
+	CreateFile(context.Context, *CreateFileRequest) (*CreateFileResponse, error)
+	// Get a file
+	//
+	// Returns the details of a file.
+	GetFile(context.Context, *GetFileRequest) (*GetFileResponse, error)
+	// List files
+	//
+	// Returns a paginated list of files.
+	ListFiles(context.Context, *ListFilesRequest) (*ListFilesResponse, error)
+	// Update a file
+	//
+	// Updates a file.
+	UpdateFile(context.Context, *UpdateFileRequest) (*UpdateFileResponse, error)
 	// Delete a file
 	//
 	// Deletes a file.
-	DeleteCatalogFile(context.Context, *DeleteCatalogFileRequest) (*DeleteCatalogFileResponse, error)
-	// Process catalog files
+	DeleteFile(context.Context, *DeleteFileRequest) (*DeleteFileResponse, error)
+	// Get a chunk
 	//
-	// Processes catalog files.
-	ProcessCatalogFiles(context.Context, *ProcessCatalogFilesRequest) (*ProcessCatalogFilesResponse, error)
-	// List catalog files
+	// Returns the details of a chunk.
+	GetChunk(context.Context, *GetChunkRequest) (*GetChunkResponse, error)
+	// List chunks
 	//
-	// Returns a paginated list of catalog files.
-	ListCatalogFiles(context.Context, *ListCatalogFilesRequest) (*ListCatalogFilesResponse, error)
-	// Get catalog file
-	//
-	// Gets the file of a catalog.
-	GetCatalogFile(context.Context, *GetCatalogFileRequest) (*GetCatalogFileResponse, error)
-	// List catalog chunks
-	//
-	// Returns a paginated list of catalog chunks.
+	// Returns a paginated list of chunks.
 	ListChunks(context.Context, *ListChunksRequest) (*ListChunksResponse, error)
-	// Get catalog single-source-of-truth file
+	// Update a chunk
 	//
-	// Gets the single-source-of-truth file of a catalog.
-	GetSourceFile(context.Context, *GetSourceFileRequest) (*GetSourceFileResponse, error)
-	// Get summary from a catalog file
-	//
-	// Gets summary from a catalog file
-	GetFileSummary(context.Context, *GetFileSummaryRequest) (*GetFileSummaryResponse, error)
-	// Search single-source-of-truth files
-	//
-	// Searches the single-source-of-truth files of a catalog.
-	SearchSourceFiles(context.Context, *SearchSourceFilesRequest) (*SearchSourceFilesResponse, error)
-	// Update catalog chunk
-	//
-	// Updates a catalog chunk.
+	// Updates a chunk.
 	UpdateChunk(context.Context, *UpdateChunkRequest) (*UpdateChunkResponse, error)
-	// Retrieve similar chunks
+	// Search chunks
 	//
 	// Returns the top-K most similar chunks to a text prompt.
-	SimilarityChunksSearch(context.Context, *SimilarityChunksSearchRequest) (*SimilarityChunksSearchResponse, error)
-	// Get the catalog file.
-	//
-	// Returns a view of the file within the catalog, with the text and chunks it
-	// generated after being processed.
-	GetFileCatalog(context.Context, *GetFileCatalogRequest) (*GetFileCatalogResponse, error)
+	SearchChunks(context.Context, *SearchChunksRequest) (*SearchChunksResponse, error)
 	// List Catalog Runs
 	//
 	// Returns a paginated list of catalog runs.
@@ -476,14 +406,6 @@ type ArtifactPublicServiceServer interface {
 	//
 	// Returns the download URL of an object.
 	GetObjectDownloadURL(context.Context, *GetObjectDownloadURLRequest) (*GetObjectDownloadURLResponse, error)
-	// Move file to another catalog
-	//
-	// Moves a file to another catalog.
-	MoveFileToCatalog(context.Context, *MoveFileToCatalogRequest) (*MoveFileToCatalogResponse, error)
-	// Update catalog file tags
-	//
-	// Updates the tags associated with a catalog file.
-	UpdateCatalogFileTags(context.Context, *UpdateCatalogFileTagsRequest) (*UpdateCatalogFileTagsResponse, error)
 }
 
 // UnimplementedArtifactPublicServiceServer should be embedded to have
@@ -502,6 +424,9 @@ func (UnimplementedArtifactPublicServiceServer) Readiness(context.Context, *Read
 func (UnimplementedArtifactPublicServiceServer) CreateCatalog(context.Context, *CreateCatalogRequest) (*CreateCatalogResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCatalog not implemented")
 }
+func (UnimplementedArtifactPublicServiceServer) GetCatalog(context.Context, *GetCatalogRequest) (*GetCatalogResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCatalog not implemented")
+}
 func (UnimplementedArtifactPublicServiceServer) ListCatalogs(context.Context, *ListCatalogsRequest) (*ListCatalogsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListCatalogs not implemented")
 }
@@ -511,41 +436,32 @@ func (UnimplementedArtifactPublicServiceServer) UpdateCatalog(context.Context, *
 func (UnimplementedArtifactPublicServiceServer) DeleteCatalog(context.Context, *DeleteCatalogRequest) (*DeleteCatalogResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteCatalog not implemented")
 }
-func (UnimplementedArtifactPublicServiceServer) UploadCatalogFile(context.Context, *UploadCatalogFileRequest) (*UploadCatalogFileResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UploadCatalogFile not implemented")
+func (UnimplementedArtifactPublicServiceServer) CreateFile(context.Context, *CreateFileRequest) (*CreateFileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateFile not implemented")
 }
-func (UnimplementedArtifactPublicServiceServer) DeleteCatalogFile(context.Context, *DeleteCatalogFileRequest) (*DeleteCatalogFileResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteCatalogFile not implemented")
+func (UnimplementedArtifactPublicServiceServer) GetFile(context.Context, *GetFileRequest) (*GetFileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFile not implemented")
 }
-func (UnimplementedArtifactPublicServiceServer) ProcessCatalogFiles(context.Context, *ProcessCatalogFilesRequest) (*ProcessCatalogFilesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ProcessCatalogFiles not implemented")
+func (UnimplementedArtifactPublicServiceServer) ListFiles(context.Context, *ListFilesRequest) (*ListFilesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListFiles not implemented")
 }
-func (UnimplementedArtifactPublicServiceServer) ListCatalogFiles(context.Context, *ListCatalogFilesRequest) (*ListCatalogFilesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListCatalogFiles not implemented")
+func (UnimplementedArtifactPublicServiceServer) UpdateFile(context.Context, *UpdateFileRequest) (*UpdateFileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateFile not implemented")
 }
-func (UnimplementedArtifactPublicServiceServer) GetCatalogFile(context.Context, *GetCatalogFileRequest) (*GetCatalogFileResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCatalogFile not implemented")
+func (UnimplementedArtifactPublicServiceServer) DeleteFile(context.Context, *DeleteFileRequest) (*DeleteFileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteFile not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) GetChunk(context.Context, *GetChunkRequest) (*GetChunkResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetChunk not implemented")
 }
 func (UnimplementedArtifactPublicServiceServer) ListChunks(context.Context, *ListChunksRequest) (*ListChunksResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListChunks not implemented")
 }
-func (UnimplementedArtifactPublicServiceServer) GetSourceFile(context.Context, *GetSourceFileRequest) (*GetSourceFileResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetSourceFile not implemented")
-}
-func (UnimplementedArtifactPublicServiceServer) GetFileSummary(context.Context, *GetFileSummaryRequest) (*GetFileSummaryResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetFileSummary not implemented")
-}
-func (UnimplementedArtifactPublicServiceServer) SearchSourceFiles(context.Context, *SearchSourceFilesRequest) (*SearchSourceFilesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SearchSourceFiles not implemented")
-}
 func (UnimplementedArtifactPublicServiceServer) UpdateChunk(context.Context, *UpdateChunkRequest) (*UpdateChunkResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateChunk not implemented")
 }
-func (UnimplementedArtifactPublicServiceServer) SimilarityChunksSearch(context.Context, *SimilarityChunksSearchRequest) (*SimilarityChunksSearchResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SimilarityChunksSearch not implemented")
-}
-func (UnimplementedArtifactPublicServiceServer) GetFileCatalog(context.Context, *GetFileCatalogRequest) (*GetFileCatalogResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetFileCatalog not implemented")
+func (UnimplementedArtifactPublicServiceServer) SearchChunks(context.Context, *SearchChunksRequest) (*SearchChunksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SearchChunks not implemented")
 }
 func (UnimplementedArtifactPublicServiceServer) ListCatalogRuns(context.Context, *ListCatalogRunsRequest) (*ListCatalogRunsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListCatalogRuns not implemented")
@@ -555,12 +471,6 @@ func (UnimplementedArtifactPublicServiceServer) GetObjectUploadURL(context.Conte
 }
 func (UnimplementedArtifactPublicServiceServer) GetObjectDownloadURL(context.Context, *GetObjectDownloadURLRequest) (*GetObjectDownloadURLResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetObjectDownloadURL not implemented")
-}
-func (UnimplementedArtifactPublicServiceServer) MoveFileToCatalog(context.Context, *MoveFileToCatalogRequest) (*MoveFileToCatalogResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method MoveFileToCatalog not implemented")
-}
-func (UnimplementedArtifactPublicServiceServer) UpdateCatalogFileTags(context.Context, *UpdateCatalogFileTagsRequest) (*UpdateCatalogFileTagsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateCatalogFileTags not implemented")
 }
 func (UnimplementedArtifactPublicServiceServer) testEmbeddedByValue() {}
 
@@ -636,6 +546,24 @@ func _ArtifactPublicService_CreateCatalog_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArtifactPublicService_GetCatalog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCatalogRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).GetCatalog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_GetCatalog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).GetCatalog(ctx, req.(*GetCatalogRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ArtifactPublicService_ListCatalogs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListCatalogsRequest)
 	if err := dec(in); err != nil {
@@ -690,92 +618,110 @@ func _ArtifactPublicService_DeleteCatalog_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPublicService_UploadCatalogFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UploadCatalogFileRequest)
+func _ArtifactPublicService_CreateFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateFileRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).UploadCatalogFile(ctx, in)
+		return srv.(ArtifactPublicServiceServer).CreateFile(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPublicService_UploadCatalogFile_FullMethodName,
+		FullMethod: ArtifactPublicService_CreateFile_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).UploadCatalogFile(ctx, req.(*UploadCatalogFileRequest))
+		return srv.(ArtifactPublicServiceServer).CreateFile(ctx, req.(*CreateFileRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPublicService_DeleteCatalogFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteCatalogFileRequest)
+func _ArtifactPublicService_GetFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFileRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).DeleteCatalogFile(ctx, in)
+		return srv.(ArtifactPublicServiceServer).GetFile(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPublicService_DeleteCatalogFile_FullMethodName,
+		FullMethod: ArtifactPublicService_GetFile_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).DeleteCatalogFile(ctx, req.(*DeleteCatalogFileRequest))
+		return srv.(ArtifactPublicServiceServer).GetFile(ctx, req.(*GetFileRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPublicService_ProcessCatalogFiles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ProcessCatalogFilesRequest)
+func _ArtifactPublicService_ListFiles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListFilesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).ProcessCatalogFiles(ctx, in)
+		return srv.(ArtifactPublicServiceServer).ListFiles(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPublicService_ProcessCatalogFiles_FullMethodName,
+		FullMethod: ArtifactPublicService_ListFiles_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).ProcessCatalogFiles(ctx, req.(*ProcessCatalogFilesRequest))
+		return srv.(ArtifactPublicServiceServer).ListFiles(ctx, req.(*ListFilesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPublicService_ListCatalogFiles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListCatalogFilesRequest)
+func _ArtifactPublicService_UpdateFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateFileRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).ListCatalogFiles(ctx, in)
+		return srv.(ArtifactPublicServiceServer).UpdateFile(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPublicService_ListCatalogFiles_FullMethodName,
+		FullMethod: ArtifactPublicService_UpdateFile_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).ListCatalogFiles(ctx, req.(*ListCatalogFilesRequest))
+		return srv.(ArtifactPublicServiceServer).UpdateFile(ctx, req.(*UpdateFileRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPublicService_GetCatalogFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCatalogFileRequest)
+func _ArtifactPublicService_DeleteFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteFileRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).GetCatalogFile(ctx, in)
+		return srv.(ArtifactPublicServiceServer).DeleteFile(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPublicService_GetCatalogFile_FullMethodName,
+		FullMethod: ArtifactPublicService_DeleteFile_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).GetCatalogFile(ctx, req.(*GetCatalogFileRequest))
+		return srv.(ArtifactPublicServiceServer).DeleteFile(ctx, req.(*DeleteFileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPublicService_GetChunk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetChunkRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).GetChunk(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_GetChunk_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).GetChunk(ctx, req.(*GetChunkRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -798,60 +744,6 @@ func _ArtifactPublicService_ListChunks_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPublicService_GetSourceFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetSourceFileRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).GetSourceFile(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ArtifactPublicService_GetSourceFile_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).GetSourceFile(ctx, req.(*GetSourceFileRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ArtifactPublicService_GetFileSummary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetFileSummaryRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).GetFileSummary(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ArtifactPublicService_GetFileSummary_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).GetFileSummary(ctx, req.(*GetFileSummaryRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ArtifactPublicService_SearchSourceFiles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SearchSourceFilesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).SearchSourceFiles(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ArtifactPublicService_SearchSourceFiles_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).SearchSourceFiles(ctx, req.(*SearchSourceFilesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _ArtifactPublicService_UpdateChunk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateChunkRequest)
 	if err := dec(in); err != nil {
@@ -870,38 +762,20 @@ func _ArtifactPublicService_UpdateChunk_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPublicService_SimilarityChunksSearch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SimilarityChunksSearchRequest)
+func _ArtifactPublicService_SearchChunks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SearchChunksRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).SimilarityChunksSearch(ctx, in)
+		return srv.(ArtifactPublicServiceServer).SearchChunks(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPublicService_SimilarityChunksSearch_FullMethodName,
+		FullMethod: ArtifactPublicService_SearchChunks_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).SimilarityChunksSearch(ctx, req.(*SimilarityChunksSearchRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ArtifactPublicService_GetFileCatalog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetFileCatalogRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).GetFileCatalog(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ArtifactPublicService_GetFileCatalog_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).GetFileCatalog(ctx, req.(*GetFileCatalogRequest))
+		return srv.(ArtifactPublicServiceServer).SearchChunks(ctx, req.(*SearchChunksRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -960,42 +834,6 @@ func _ArtifactPublicService_GetObjectDownloadURL_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPublicService_MoveFileToCatalog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MoveFileToCatalogRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).MoveFileToCatalog(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ArtifactPublicService_MoveFileToCatalog_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).MoveFileToCatalog(ctx, req.(*MoveFileToCatalogRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ArtifactPublicService_UpdateCatalogFileTags_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateCatalogFileTagsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).UpdateCatalogFileTags(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ArtifactPublicService_UpdateCatalogFileTags_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).UpdateCatalogFileTags(ctx, req.(*UpdateCatalogFileTagsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // ArtifactPublicService_ServiceDesc is the grpc.ServiceDesc for ArtifactPublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1016,6 +854,10 @@ var ArtifactPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ArtifactPublicService_CreateCatalog_Handler,
 		},
 		{
+			MethodName: "GetCatalog",
+			Handler:    _ArtifactPublicService_GetCatalog_Handler,
+		},
+		{
 			MethodName: "ListCatalogs",
 			Handler:    _ArtifactPublicService_ListCatalogs_Handler,
 		},
@@ -1028,52 +870,40 @@ var ArtifactPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ArtifactPublicService_DeleteCatalog_Handler,
 		},
 		{
-			MethodName: "UploadCatalogFile",
-			Handler:    _ArtifactPublicService_UploadCatalogFile_Handler,
+			MethodName: "CreateFile",
+			Handler:    _ArtifactPublicService_CreateFile_Handler,
 		},
 		{
-			MethodName: "DeleteCatalogFile",
-			Handler:    _ArtifactPublicService_DeleteCatalogFile_Handler,
+			MethodName: "GetFile",
+			Handler:    _ArtifactPublicService_GetFile_Handler,
 		},
 		{
-			MethodName: "ProcessCatalogFiles",
-			Handler:    _ArtifactPublicService_ProcessCatalogFiles_Handler,
+			MethodName: "ListFiles",
+			Handler:    _ArtifactPublicService_ListFiles_Handler,
 		},
 		{
-			MethodName: "ListCatalogFiles",
-			Handler:    _ArtifactPublicService_ListCatalogFiles_Handler,
+			MethodName: "UpdateFile",
+			Handler:    _ArtifactPublicService_UpdateFile_Handler,
 		},
 		{
-			MethodName: "GetCatalogFile",
-			Handler:    _ArtifactPublicService_GetCatalogFile_Handler,
+			MethodName: "DeleteFile",
+			Handler:    _ArtifactPublicService_DeleteFile_Handler,
+		},
+		{
+			MethodName: "GetChunk",
+			Handler:    _ArtifactPublicService_GetChunk_Handler,
 		},
 		{
 			MethodName: "ListChunks",
 			Handler:    _ArtifactPublicService_ListChunks_Handler,
 		},
 		{
-			MethodName: "GetSourceFile",
-			Handler:    _ArtifactPublicService_GetSourceFile_Handler,
-		},
-		{
-			MethodName: "GetFileSummary",
-			Handler:    _ArtifactPublicService_GetFileSummary_Handler,
-		},
-		{
-			MethodName: "SearchSourceFiles",
-			Handler:    _ArtifactPublicService_SearchSourceFiles_Handler,
-		},
-		{
 			MethodName: "UpdateChunk",
 			Handler:    _ArtifactPublicService_UpdateChunk_Handler,
 		},
 		{
-			MethodName: "SimilarityChunksSearch",
-			Handler:    _ArtifactPublicService_SimilarityChunksSearch_Handler,
-		},
-		{
-			MethodName: "GetFileCatalog",
-			Handler:    _ArtifactPublicService_GetFileCatalog_Handler,
+			MethodName: "SearchChunks",
+			Handler:    _ArtifactPublicService_SearchChunks_Handler,
 		},
 		{
 			MethodName: "ListCatalogRuns",
@@ -1086,14 +916,6 @@ var ArtifactPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetObjectDownloadURL",
 			Handler:    _ArtifactPublicService_GetObjectDownloadURL_Handler,
-		},
-		{
-			MethodName: "MoveFileToCatalog",
-			Handler:    _ArtifactPublicService_MoveFileToCatalog_Handler,
-		},
-		{
-			MethodName: "UpdateCatalogFileTags",
-			Handler:    _ArtifactPublicService_UpdateCatalogFileTags_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

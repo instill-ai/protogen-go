@@ -1003,7 +1003,7 @@ var File_artifact_artifact_v1alpha_update_proto protoreflect.FileDescriptor
 
 const file_artifact_artifact_v1alpha_update_proto_rawDesc = "" +
 	"\n" +
-	"&artifact/artifact/v1alpha/update.proto\x12\x19artifact.artifact.v1alpha\x1a(artifact/artifact/v1alpha/artifact.proto\"\xb7\x03\n" +
+	"&artifact/artifact/v1alpha/update.proto\x12\x19artifact.artifact.v1alpha\x1a'artifact/artifact/v1alpha/catalog.proto\"\xb7\x03\n" +
 	"\x1aKnowledgeBaseUpdateDetails\x12\x1f\n" +
 	"\vcatalog_uid\x18\x01 \x01(\tR\n" +
 	"catalogUid\x12L\n" +
@@ -1133,7 +1133,7 @@ func file_artifact_artifact_v1alpha_update_proto_init() {
 	if File_artifact_artifact_v1alpha_update_proto != nil {
 		return
 	}
-	file_artifact_artifact_v1alpha_artifact_proto_init()
+	file_artifact_artifact_v1alpha_catalog_proto_init()
 	file_artifact_artifact_v1alpha_update_proto_msgTypes[9].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{

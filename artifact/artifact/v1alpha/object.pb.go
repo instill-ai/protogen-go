@@ -449,6 +449,777 @@ func (x *GetObjectDownloadURLResponse) GetObject() *Object {
 	return nil
 }
 
+// ObjectUploadURL
+type ObjectURL struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The unique identifier of the ObjectURL
+	Uid string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	// The namespace UID associated with this ObjectURL
+	NamespaceUid string `protobuf:"bytes,2,opt,name=namespace_uid,json=namespaceUid,proto3" json:"namespace_uid,omitempty"`
+	// The object UID associated with this ObjectURL
+	ObjectUid string `protobuf:"bytes,3,opt,name=object_uid,json=objectUid,proto3" json:"object_uid,omitempty"`
+	// The expiration time of the URL
+	UrlExpireAt *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=url_expire_at,json=urlExpireAt,proto3" json:"url_expire_at,omitempty"`
+	// The MinIO URL path
+	MinioUrlPath string `protobuf:"bytes,5,opt,name=minio_url_path,json=minioUrlPath,proto3" json:"minio_url_path,omitempty"`
+	// The encoded URL path
+	EncodedUrlPath string `protobuf:"bytes,6,opt,name=encoded_url_path,json=encodedUrlPath,proto3" json:"encoded_url_path,omitempty"`
+	// The type of URL (download or upload)
+	Type string `protobuf:"bytes,7,opt,name=type,proto3" json:"type,omitempty"`
+	// The creation time of the ObjectURL
+	CreateTime *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+	// The last update time of the ObjectURL
+	UpdateTime *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
+	// The deletion time of the ObjectURL, if applicable
+	DeleteTime    *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=delete_time,json=deleteTime,proto3,oneof" json:"delete_time,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ObjectURL) Reset() {
+	*x = ObjectURL{}
+	mi := &file_artifact_artifact_v1alpha_object_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ObjectURL) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ObjectURL) ProtoMessage() {}
+
+func (x *ObjectURL) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_object_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ObjectURL.ProtoReflect.Descriptor instead.
+func (*ObjectURL) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_object_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *ObjectURL) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
+func (x *ObjectURL) GetNamespaceUid() string {
+	if x != nil {
+		return x.NamespaceUid
+	}
+	return ""
+}
+
+func (x *ObjectURL) GetObjectUid() string {
+	if x != nil {
+		return x.ObjectUid
+	}
+	return ""
+}
+
+func (x *ObjectURL) GetUrlExpireAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UrlExpireAt
+	}
+	return nil
+}
+
+func (x *ObjectURL) GetMinioUrlPath() string {
+	if x != nil {
+		return x.MinioUrlPath
+	}
+	return ""
+}
+
+func (x *ObjectURL) GetEncodedUrlPath() string {
+	if x != nil {
+		return x.EncodedUrlPath
+	}
+	return ""
+}
+
+func (x *ObjectURL) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *ObjectURL) GetCreateTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreateTime
+	}
+	return nil
+}
+
+func (x *ObjectURL) GetUpdateTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdateTime
+	}
+	return nil
+}
+
+func (x *ObjectURL) GetDeleteTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.DeleteTime
+	}
+	return nil
+}
+
+// GetObjectRequest
+type GetObjectRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// object uid
+	Uid           string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetObjectRequest) Reset() {
+	*x = GetObjectRequest{}
+	mi := &file_artifact_artifact_v1alpha_object_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetObjectRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetObjectRequest) ProtoMessage() {}
+
+func (x *GetObjectRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_object_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetObjectRequest.ProtoReflect.Descriptor instead.
+func (*GetObjectRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_object_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *GetObjectRequest) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
+// GetObjectResponse
+type GetObjectResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// object
+	Object        *Object `protobuf:"bytes,1,opt,name=object,proto3" json:"object,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetObjectResponse) Reset() {
+	*x = GetObjectResponse{}
+	mi := &file_artifact_artifact_v1alpha_object_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetObjectResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetObjectResponse) ProtoMessage() {}
+
+func (x *GetObjectResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_object_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetObjectResponse.ProtoReflect.Descriptor instead.
+func (*GetObjectResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_object_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *GetObjectResponse) GetObject() *Object {
+	if x != nil {
+		return x.Object
+	}
+	return nil
+}
+
+// GetObjectURLRequest
+type GetObjectURLRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// object url uid
+	Uid string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	// encoded url path. artifact first use uid to get object url,
+	// if not exist, then use encoded url path to get object url
+	EncodedUrlPath *string `protobuf:"bytes,2,opt,name=encoded_url_path,json=encodedUrlPath,proto3,oneof" json:"encoded_url_path,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *GetObjectURLRequest) Reset() {
+	*x = GetObjectURLRequest{}
+	mi := &file_artifact_artifact_v1alpha_object_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetObjectURLRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetObjectURLRequest) ProtoMessage() {}
+
+func (x *GetObjectURLRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_object_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetObjectURLRequest.ProtoReflect.Descriptor instead.
+func (*GetObjectURLRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_object_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *GetObjectURLRequest) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
+func (x *GetObjectURLRequest) GetEncodedUrlPath() string {
+	if x != nil && x.EncodedUrlPath != nil {
+		return *x.EncodedUrlPath
+	}
+	return ""
+}
+
+// GetObjectURLResponse
+type GetObjectURLResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// object url
+	ObjectUrl     *ObjectURL `protobuf:"bytes,1,opt,name=object_url,json=objectUrl,proto3" json:"object_url,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetObjectURLResponse) Reset() {
+	*x = GetObjectURLResponse{}
+	mi := &file_artifact_artifact_v1alpha_object_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetObjectURLResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetObjectURLResponse) ProtoMessage() {}
+
+func (x *GetObjectURLResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_object_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetObjectURLResponse.ProtoReflect.Descriptor instead.
+func (*GetObjectURLResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_object_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *GetObjectURLResponse) GetObjectUrl() *ObjectURL {
+	if x != nil {
+		return x.ObjectUrl
+	}
+	return nil
+}
+
+// UpdateObjectRequest
+type UpdateObjectRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// object uid
+	Uid string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	// size
+	Size *int64 `protobuf:"varint,2,opt,name=size,proto3,oneof" json:"size,omitempty"`
+	// type
+	Type *string `protobuf:"bytes,3,opt,name=type,proto3,oneof" json:"type,omitempty"`
+	// is upload
+	IsUploaded *bool `protobuf:"varint,4,opt,name=is_uploaded,json=isUploaded,proto3,oneof" json:"is_uploaded,omitempty"`
+	// last modified time
+	LastModifiedTime *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=last_modified_time,json=lastModifiedTime,proto3,oneof" json:"last_modified_time,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *UpdateObjectRequest) Reset() {
+	*x = UpdateObjectRequest{}
+	mi := &file_artifact_artifact_v1alpha_object_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateObjectRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateObjectRequest) ProtoMessage() {}
+
+func (x *UpdateObjectRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_object_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateObjectRequest.ProtoReflect.Descriptor instead.
+func (*UpdateObjectRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_object_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *UpdateObjectRequest) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
+func (x *UpdateObjectRequest) GetSize() int64 {
+	if x != nil && x.Size != nil {
+		return *x.Size
+	}
+	return 0
+}
+
+func (x *UpdateObjectRequest) GetType() string {
+	if x != nil && x.Type != nil {
+		return *x.Type
+	}
+	return ""
+}
+
+func (x *UpdateObjectRequest) GetIsUploaded() bool {
+	if x != nil && x.IsUploaded != nil {
+		return *x.IsUploaded
+	}
+	return false
+}
+
+func (x *UpdateObjectRequest) GetLastModifiedTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.LastModifiedTime
+	}
+	return nil
+}
+
+// UpdateObjectResponse
+type UpdateObjectResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// object
+	Object        *Object `protobuf:"bytes,1,opt,name=object,proto3" json:"object,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateObjectResponse) Reset() {
+	*x = UpdateObjectResponse{}
+	mi := &file_artifact_artifact_v1alpha_object_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateObjectResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateObjectResponse) ProtoMessage() {}
+
+func (x *UpdateObjectResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_object_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateObjectResponse.ProtoReflect.Descriptor instead.
+func (*UpdateObjectResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_object_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *UpdateObjectResponse) GetObject() *Object {
+	if x != nil {
+		return x.Object
+	}
+	return nil
+}
+
+// GetObjectAdminRequest represents a request to get an object (admin only).
+type GetObjectAdminRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// object uid
+	Uid           string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetObjectAdminRequest) Reset() {
+	*x = GetObjectAdminRequest{}
+	mi := &file_artifact_artifact_v1alpha_object_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetObjectAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetObjectAdminRequest) ProtoMessage() {}
+
+func (x *GetObjectAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_object_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetObjectAdminRequest.ProtoReflect.Descriptor instead.
+func (*GetObjectAdminRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_object_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *GetObjectAdminRequest) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
+// GetObjectAdminResponse contains the requested object (admin only).
+type GetObjectAdminResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// object
+	Object        *Object `protobuf:"bytes,1,opt,name=object,proto3" json:"object,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetObjectAdminResponse) Reset() {
+	*x = GetObjectAdminResponse{}
+	mi := &file_artifact_artifact_v1alpha_object_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetObjectAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetObjectAdminResponse) ProtoMessage() {}
+
+func (x *GetObjectAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_object_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetObjectAdminResponse.ProtoReflect.Descriptor instead.
+func (*GetObjectAdminResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_object_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *GetObjectAdminResponse) GetObject() *Object {
+	if x != nil {
+		return x.Object
+	}
+	return nil
+}
+
+// GetObjectURLAdminRequest represents a request to get an object URL (admin only).
+type GetObjectURLAdminRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// object url uid
+	Uid string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	// encoded url path. artifact first use uid to get object url,
+	// if not exist, then use encoded url path to get object url
+	EncodedUrlPath *string `protobuf:"bytes,2,opt,name=encoded_url_path,json=encodedUrlPath,proto3,oneof" json:"encoded_url_path,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *GetObjectURLAdminRequest) Reset() {
+	*x = GetObjectURLAdminRequest{}
+	mi := &file_artifact_artifact_v1alpha_object_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetObjectURLAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetObjectURLAdminRequest) ProtoMessage() {}
+
+func (x *GetObjectURLAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_object_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetObjectURLAdminRequest.ProtoReflect.Descriptor instead.
+func (*GetObjectURLAdminRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_object_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *GetObjectURLAdminRequest) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
+func (x *GetObjectURLAdminRequest) GetEncodedUrlPath() string {
+	if x != nil && x.EncodedUrlPath != nil {
+		return *x.EncodedUrlPath
+	}
+	return ""
+}
+
+// GetObjectURLAdminResponse contains the requested object URL (admin only).
+type GetObjectURLAdminResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// object url
+	ObjectUrl     *ObjectURL `protobuf:"bytes,1,opt,name=object_url,json=objectUrl,proto3" json:"object_url,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetObjectURLAdminResponse) Reset() {
+	*x = GetObjectURLAdminResponse{}
+	mi := &file_artifact_artifact_v1alpha_object_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetObjectURLAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetObjectURLAdminResponse) ProtoMessage() {}
+
+func (x *GetObjectURLAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_object_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetObjectURLAdminResponse.ProtoReflect.Descriptor instead.
+func (*GetObjectURLAdminResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_object_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *GetObjectURLAdminResponse) GetObjectUrl() *ObjectURL {
+	if x != nil {
+		return x.ObjectUrl
+	}
+	return nil
+}
+
+// UpdateObjectAdminRequest represents a request to update an object (admin only).
+type UpdateObjectAdminRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// object uid
+	Uid string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	// size
+	Size *int64 `protobuf:"varint,2,opt,name=size,proto3,oneof" json:"size,omitempty"`
+	// type
+	Type *string `protobuf:"bytes,3,opt,name=type,proto3,oneof" json:"type,omitempty"`
+	// is upload
+	IsUploaded *bool `protobuf:"varint,4,opt,name=is_uploaded,json=isUploaded,proto3,oneof" json:"is_uploaded,omitempty"`
+	// last modified time
+	LastModifiedTime *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=last_modified_time,json=lastModifiedTime,proto3,oneof" json:"last_modified_time,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *UpdateObjectAdminRequest) Reset() {
+	*x = UpdateObjectAdminRequest{}
+	mi := &file_artifact_artifact_v1alpha_object_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateObjectAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateObjectAdminRequest) ProtoMessage() {}
+
+func (x *UpdateObjectAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_object_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateObjectAdminRequest.ProtoReflect.Descriptor instead.
+func (*UpdateObjectAdminRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_object_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *UpdateObjectAdminRequest) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
+func (x *UpdateObjectAdminRequest) GetSize() int64 {
+	if x != nil && x.Size != nil {
+		return *x.Size
+	}
+	return 0
+}
+
+func (x *UpdateObjectAdminRequest) GetType() string {
+	if x != nil && x.Type != nil {
+		return *x.Type
+	}
+	return ""
+}
+
+func (x *UpdateObjectAdminRequest) GetIsUploaded() bool {
+	if x != nil && x.IsUploaded != nil {
+		return *x.IsUploaded
+	}
+	return false
+}
+
+func (x *UpdateObjectAdminRequest) GetLastModifiedTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.LastModifiedTime
+	}
+	return nil
+}
+
+// UpdateObjectAdminResponse contains the updated object (admin only).
+type UpdateObjectAdminResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// object
+	Object        *Object `protobuf:"bytes,1,opt,name=object,proto3" json:"object,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateObjectAdminResponse) Reset() {
+	*x = UpdateObjectAdminResponse{}
+	mi := &file_artifact_artifact_v1alpha_object_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateObjectAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateObjectAdminResponse) ProtoMessage() {}
+
+func (x *UpdateObjectAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_object_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateObjectAdminResponse.ProtoReflect.Descriptor instead.
+func (*UpdateObjectAdminResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_object_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *UpdateObjectAdminResponse) GetObject() *Object {
+	if x != nil {
+		return x.Object
+	}
+	return nil
+}
+
 var File_artifact_artifact_v1alpha_object_proto protoreflect.FileDescriptor
 
 const file_artifact_artifact_v1alpha_object_proto_rawDesc = "" +
@@ -491,7 +1262,72 @@ const file_artifact_artifact_v1alpha_object_proto_rawDesc = "" +
 	"\x1cGetObjectDownloadURLResponse\x12!\n" +
 	"\fdownload_url\x18\x01 \x01(\tR\vdownloadUrl\x12>\n" +
 	"\rurl_expire_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\vurlExpireAt\x129\n" +
-	"\x06object\x18\x03 \x01(\v2!.artifact.artifact.v1alpha.ObjectR\x06objectB\xff\x01\n" +
+	"\x06object\x18\x03 \x01(\v2!.artifact.artifact.v1alpha.ObjectR\x06object\"\xd1\x03\n" +
+	"\tObjectURL\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\x12#\n" +
+	"\rnamespace_uid\x18\x02 \x01(\tR\fnamespaceUid\x12\x1d\n" +
+	"\n" +
+	"object_uid\x18\x03 \x01(\tR\tobjectUid\x12>\n" +
+	"\rurl_expire_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\vurlExpireAt\x12$\n" +
+	"\x0eminio_url_path\x18\x05 \x01(\tR\fminioUrlPath\x12(\n" +
+	"\x10encoded_url_path\x18\x06 \x01(\tR\x0eencodedUrlPath\x12\x12\n" +
+	"\x04type\x18\a \x01(\tR\x04type\x12;\n" +
+	"\vcreate_time\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\n" +
+	"createTime\x12;\n" +
+	"\vupdate_time\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\n" +
+	"updateTime\x12@\n" +
+	"\vdelete_time\x18\n" +
+	" \x01(\v2\x1a.google.protobuf.TimestampH\x00R\n" +
+	"deleteTime\x88\x01\x01B\x0e\n" +
+	"\f_delete_time\"$\n" +
+	"\x10GetObjectRequest\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\"N\n" +
+	"\x11GetObjectResponse\x129\n" +
+	"\x06object\x18\x01 \x01(\v2!.artifact.artifact.v1alpha.ObjectR\x06object\"k\n" +
+	"\x13GetObjectURLRequest\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\x12-\n" +
+	"\x10encoded_url_path\x18\x02 \x01(\tH\x00R\x0eencodedUrlPath\x88\x01\x01B\x13\n" +
+	"\x11_encoded_url_path\"[\n" +
+	"\x14GetObjectURLResponse\x12C\n" +
+	"\n" +
+	"object_url\x18\x01 \x01(\v2$.artifact.artifact.v1alpha.ObjectURLR\tobjectUrl\"\x87\x02\n" +
+	"\x13UpdateObjectRequest\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x17\n" +
+	"\x04size\x18\x02 \x01(\x03H\x00R\x04size\x88\x01\x01\x12\x17\n" +
+	"\x04type\x18\x03 \x01(\tH\x01R\x04type\x88\x01\x01\x12$\n" +
+	"\vis_uploaded\x18\x04 \x01(\bH\x02R\n" +
+	"isUploaded\x88\x01\x01\x12M\n" +
+	"\x12last_modified_time\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampH\x03R\x10lastModifiedTime\x88\x01\x01B\a\n" +
+	"\x05_sizeB\a\n" +
+	"\x05_typeB\x0e\n" +
+	"\f_is_uploadedB\x15\n" +
+	"\x13_last_modified_time\"Q\n" +
+	"\x14UpdateObjectResponse\x129\n" +
+	"\x06object\x18\x01 \x01(\v2!.artifact.artifact.v1alpha.ObjectR\x06object\")\n" +
+	"\x15GetObjectAdminRequest\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\"S\n" +
+	"\x16GetObjectAdminResponse\x129\n" +
+	"\x06object\x18\x01 \x01(\v2!.artifact.artifact.v1alpha.ObjectR\x06object\"p\n" +
+	"\x18GetObjectURLAdminRequest\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\x12-\n" +
+	"\x10encoded_url_path\x18\x02 \x01(\tH\x00R\x0eencodedUrlPath\x88\x01\x01B\x13\n" +
+	"\x11_encoded_url_path\"`\n" +
+	"\x19GetObjectURLAdminResponse\x12C\n" +
+	"\n" +
+	"object_url\x18\x01 \x01(\v2$.artifact.artifact.v1alpha.ObjectURLR\tobjectUrl\"\x8c\x02\n" +
+	"\x18UpdateObjectAdminRequest\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x17\n" +
+	"\x04size\x18\x02 \x01(\x03H\x00R\x04size\x88\x01\x01\x12\x17\n" +
+	"\x04type\x18\x03 \x01(\tH\x01R\x04type\x88\x01\x01\x12$\n" +
+	"\vis_uploaded\x18\x04 \x01(\bH\x02R\n" +
+	"isUploaded\x88\x01\x01\x12M\n" +
+	"\x12last_modified_time\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampH\x03R\x10lastModifiedTime\x88\x01\x01B\a\n" +
+	"\x05_sizeB\a\n" +
+	"\x05_typeB\x0e\n" +
+	"\f_is_uploadedB\x15\n" +
+	"\x13_last_modified_time\"V\n" +
+	"\x19UpdateObjectAdminResponse\x129\n" +
+	"\x06object\x18\x01 \x01(\v2!.artifact.artifact.v1alpha.ObjectR\x06objectB\xff\x01\n" +
 	"\x1dcom.artifact.artifact.v1alphaB\vObjectProtoP\x01ZKgithub.com/instill-ai/protogen-go/artifact/artifact/v1alpha;artifactv1alpha\xa2\x02\x03AAX\xaa\x02\x19Artifact.Artifact.V1alpha\xca\x02\x19Artifact\\Artifact\\V1alpha\xe2\x02%Artifact\\Artifact\\V1alpha\\GPBMetadata\xea\x02\x1bArtifact::Artifact::V1alphab\x06proto3"
 
 var (
@@ -506,29 +1342,54 @@ func file_artifact_artifact_v1alpha_object_proto_rawDescGZIP() []byte {
 	return file_artifact_artifact_v1alpha_object_proto_rawDescData
 }
 
-var file_artifact_artifact_v1alpha_object_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_artifact_artifact_v1alpha_object_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
 var file_artifact_artifact_v1alpha_object_proto_goTypes = []any{
 	(*Object)(nil),                       // 0: artifact.artifact.v1alpha.Object
 	(*GetObjectUploadURLRequest)(nil),    // 1: artifact.artifact.v1alpha.GetObjectUploadURLRequest
 	(*GetObjectUploadURLResponse)(nil),   // 2: artifact.artifact.v1alpha.GetObjectUploadURLResponse
 	(*GetObjectDownloadURLRequest)(nil),  // 3: artifact.artifact.v1alpha.GetObjectDownloadURLRequest
 	(*GetObjectDownloadURLResponse)(nil), // 4: artifact.artifact.v1alpha.GetObjectDownloadURLResponse
-	(*timestamppb.Timestamp)(nil),        // 5: google.protobuf.Timestamp
+	(*ObjectURL)(nil),                    // 5: artifact.artifact.v1alpha.ObjectURL
+	(*GetObjectRequest)(nil),             // 6: artifact.artifact.v1alpha.GetObjectRequest
+	(*GetObjectResponse)(nil),            // 7: artifact.artifact.v1alpha.GetObjectResponse
+	(*GetObjectURLRequest)(nil),          // 8: artifact.artifact.v1alpha.GetObjectURLRequest
+	(*GetObjectURLResponse)(nil),         // 9: artifact.artifact.v1alpha.GetObjectURLResponse
+	(*UpdateObjectRequest)(nil),          // 10: artifact.artifact.v1alpha.UpdateObjectRequest
+	(*UpdateObjectResponse)(nil),         // 11: artifact.artifact.v1alpha.UpdateObjectResponse
+	(*GetObjectAdminRequest)(nil),        // 12: artifact.artifact.v1alpha.GetObjectAdminRequest
+	(*GetObjectAdminResponse)(nil),       // 13: artifact.artifact.v1alpha.GetObjectAdminResponse
+	(*GetObjectURLAdminRequest)(nil),     // 14: artifact.artifact.v1alpha.GetObjectURLAdminRequest
+	(*GetObjectURLAdminResponse)(nil),    // 15: artifact.artifact.v1alpha.GetObjectURLAdminResponse
+	(*UpdateObjectAdminRequest)(nil),     // 16: artifact.artifact.v1alpha.UpdateObjectAdminRequest
+	(*UpdateObjectAdminResponse)(nil),    // 17: artifact.artifact.v1alpha.UpdateObjectAdminResponse
+	(*timestamppb.Timestamp)(nil),        // 18: google.protobuf.Timestamp
 }
 var file_artifact_artifact_v1alpha_object_proto_depIdxs = []int32{
-	5, // 0: artifact.artifact.v1alpha.Object.last_modified_time:type_name -> google.protobuf.Timestamp
-	5, // 1: artifact.artifact.v1alpha.Object.created_time:type_name -> google.protobuf.Timestamp
-	5, // 2: artifact.artifact.v1alpha.Object.updated_time:type_name -> google.protobuf.Timestamp
-	5, // 3: artifact.artifact.v1alpha.GetObjectUploadURLRequest.last_modified_time:type_name -> google.protobuf.Timestamp
-	5, // 4: artifact.artifact.v1alpha.GetObjectUploadURLResponse.url_expire_at:type_name -> google.protobuf.Timestamp
-	0, // 5: artifact.artifact.v1alpha.GetObjectUploadURLResponse.object:type_name -> artifact.artifact.v1alpha.Object
-	5, // 6: artifact.artifact.v1alpha.GetObjectDownloadURLResponse.url_expire_at:type_name -> google.protobuf.Timestamp
-	0, // 7: artifact.artifact.v1alpha.GetObjectDownloadURLResponse.object:type_name -> artifact.artifact.v1alpha.Object
-	8, // [8:8] is the sub-list for method output_type
-	8, // [8:8] is the sub-list for method input_type
-	8, // [8:8] is the sub-list for extension type_name
-	8, // [8:8] is the sub-list for extension extendee
-	0, // [0:8] is the sub-list for field type_name
+	18, // 0: artifact.artifact.v1alpha.Object.last_modified_time:type_name -> google.protobuf.Timestamp
+	18, // 1: artifact.artifact.v1alpha.Object.created_time:type_name -> google.protobuf.Timestamp
+	18, // 2: artifact.artifact.v1alpha.Object.updated_time:type_name -> google.protobuf.Timestamp
+	18, // 3: artifact.artifact.v1alpha.GetObjectUploadURLRequest.last_modified_time:type_name -> google.protobuf.Timestamp
+	18, // 4: artifact.artifact.v1alpha.GetObjectUploadURLResponse.url_expire_at:type_name -> google.protobuf.Timestamp
+	0,  // 5: artifact.artifact.v1alpha.GetObjectUploadURLResponse.object:type_name -> artifact.artifact.v1alpha.Object
+	18, // 6: artifact.artifact.v1alpha.GetObjectDownloadURLResponse.url_expire_at:type_name -> google.protobuf.Timestamp
+	0,  // 7: artifact.artifact.v1alpha.GetObjectDownloadURLResponse.object:type_name -> artifact.artifact.v1alpha.Object
+	18, // 8: artifact.artifact.v1alpha.ObjectURL.url_expire_at:type_name -> google.protobuf.Timestamp
+	18, // 9: artifact.artifact.v1alpha.ObjectURL.create_time:type_name -> google.protobuf.Timestamp
+	18, // 10: artifact.artifact.v1alpha.ObjectURL.update_time:type_name -> google.protobuf.Timestamp
+	18, // 11: artifact.artifact.v1alpha.ObjectURL.delete_time:type_name -> google.protobuf.Timestamp
+	0,  // 12: artifact.artifact.v1alpha.GetObjectResponse.object:type_name -> artifact.artifact.v1alpha.Object
+	5,  // 13: artifact.artifact.v1alpha.GetObjectURLResponse.object_url:type_name -> artifact.artifact.v1alpha.ObjectURL
+	18, // 14: artifact.artifact.v1alpha.UpdateObjectRequest.last_modified_time:type_name -> google.protobuf.Timestamp
+	0,  // 15: artifact.artifact.v1alpha.UpdateObjectResponse.object:type_name -> artifact.artifact.v1alpha.Object
+	0,  // 16: artifact.artifact.v1alpha.GetObjectAdminResponse.object:type_name -> artifact.artifact.v1alpha.Object
+	5,  // 17: artifact.artifact.v1alpha.GetObjectURLAdminResponse.object_url:type_name -> artifact.artifact.v1alpha.ObjectURL
+	18, // 18: artifact.artifact.v1alpha.UpdateObjectAdminRequest.last_modified_time:type_name -> google.protobuf.Timestamp
+	0,  // 19: artifact.artifact.v1alpha.UpdateObjectAdminResponse.object:type_name -> artifact.artifact.v1alpha.Object
+	20, // [20:20] is the sub-list for method output_type
+	20, // [20:20] is the sub-list for method input_type
+	20, // [20:20] is the sub-list for extension type_name
+	20, // [20:20] is the sub-list for extension extendee
+	0,  // [0:20] is the sub-list for field type_name
 }
 
 func init() { file_artifact_artifact_v1alpha_object_proto_init() }
@@ -537,13 +1398,18 @@ func file_artifact_artifact_v1alpha_object_proto_init() {
 		return
 	}
 	file_artifact_artifact_v1alpha_object_proto_msgTypes[0].OneofWrappers = []any{}
+	file_artifact_artifact_v1alpha_object_proto_msgTypes[5].OneofWrappers = []any{}
+	file_artifact_artifact_v1alpha_object_proto_msgTypes[8].OneofWrappers = []any{}
+	file_artifact_artifact_v1alpha_object_proto_msgTypes[10].OneofWrappers = []any{}
+	file_artifact_artifact_v1alpha_object_proto_msgTypes[14].OneofWrappers = []any{}
+	file_artifact_artifact_v1alpha_object_proto_msgTypes[16].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_artifact_artifact_v1alpha_object_proto_rawDesc), len(file_artifact_artifact_v1alpha_object_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   18,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

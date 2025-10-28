@@ -35,102 +35,6 @@ var (
 	_ = metadata.Join
 )
 
-func request_ArtifactPrivateService_ListRepositoryTagsAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq ListRepositoryTagsAdminRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := client.ListRepositoryTagsAdmin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_ArtifactPrivateService_ListRepositoryTagsAdmin_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq ListRepositoryTagsAdminRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := server.ListRepositoryTagsAdmin(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-func request_ArtifactPrivateService_GetRepositoryTagAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetRepositoryTagAdminRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := client.GetRepositoryTagAdmin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_ArtifactPrivateService_GetRepositoryTagAdmin_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetRepositoryTagAdminRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := server.GetRepositoryTagAdmin(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-func request_ArtifactPrivateService_CreateRepositoryTagAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq CreateRepositoryTagAdminRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := client.CreateRepositoryTagAdmin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_ArtifactPrivateService_CreateRepositoryTagAdmin_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq CreateRepositoryTagAdminRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := server.CreateRepositoryTagAdmin(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-func request_ArtifactPrivateService_DeleteRepositoryTagAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq DeleteRepositoryTagAdminRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := client.DeleteRepositoryTagAdmin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_ArtifactPrivateService_DeleteRepositoryTagAdmin_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq DeleteRepositoryTagAdminRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := server.DeleteRepositoryTagAdmin(ctx, &protoReq)
-	return msg, metadata, err
-}
-
 func request_ArtifactPrivateService_GetObjectAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq GetObjectAdminRequest
@@ -203,75 +107,27 @@ func local_request_ArtifactPrivateService_UpdateObjectAdmin_0(ctx context.Contex
 	return msg, metadata, err
 }
 
-func request_ArtifactPrivateService_GetFileAsMarkdownAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_ArtifactPrivateService_DeleteFileAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq GetFileAsMarkdownAdminRequest
+		protoReq DeleteFileAdminRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := client.GetFileAsMarkdownAdmin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.DeleteFileAdmin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_ArtifactPrivateService_GetFileAsMarkdownAdmin_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_ArtifactPrivateService_DeleteFileAdmin_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq GetFileAsMarkdownAdminRequest
+		protoReq DeleteFileAdminRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := server.GetFileAsMarkdownAdmin(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-func request_ArtifactPrivateService_GetChatFileAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetChatFileAdminRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := client.GetChatFileAdmin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_ArtifactPrivateService_GetChatFileAdmin_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetChatFileAdminRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := server.GetChatFileAdmin(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-func request_ArtifactPrivateService_DeleteCatalogFileAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq DeleteCatalogFileAdminRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := client.DeleteCatalogFileAdmin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_ArtifactPrivateService_DeleteCatalogFileAdmin_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq DeleteCatalogFileAdminRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := server.DeleteCatalogFileAdmin(ctx, &protoReq)
+	msg, err := server.DeleteFileAdmin(ctx, &protoReq)
 	return msg, metadata, err
 }
 
@@ -617,86 +473,6 @@ func local_request_ArtifactPrivateService_GetDefaultSystemAdmin_0(ctx context.Co
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterArtifactPrivateServiceHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterArtifactPrivateServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ArtifactPrivateServiceServer) error {
-	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_ListRepositoryTagsAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPrivateService/ListRepositoryTagsAdmin", runtime.WithHTTPPathPattern("/artifact.artifact.v1alpha.ArtifactPrivateService/ListRepositoryTagsAdmin"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_ArtifactPrivateService_ListRepositoryTagsAdmin_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ArtifactPrivateService_ListRepositoryTagsAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_GetRepositoryTagAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPrivateService/GetRepositoryTagAdmin", runtime.WithHTTPPathPattern("/artifact.artifact.v1alpha.ArtifactPrivateService/GetRepositoryTagAdmin"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_ArtifactPrivateService_GetRepositoryTagAdmin_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ArtifactPrivateService_GetRepositoryTagAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_CreateRepositoryTagAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPrivateService/CreateRepositoryTagAdmin", runtime.WithHTTPPathPattern("/artifact.artifact.v1alpha.ArtifactPrivateService/CreateRepositoryTagAdmin"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_ArtifactPrivateService_CreateRepositoryTagAdmin_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ArtifactPrivateService_CreateRepositoryTagAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_DeleteRepositoryTagAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPrivateService/DeleteRepositoryTagAdmin", runtime.WithHTTPPathPattern("/artifact.artifact.v1alpha.ArtifactPrivateService/DeleteRepositoryTagAdmin"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_ArtifactPrivateService_DeleteRepositoryTagAdmin_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ArtifactPrivateService_DeleteRepositoryTagAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
 	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_GetObjectAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -757,65 +533,25 @@ func RegisterArtifactPrivateServiceHandlerServer(ctx context.Context, mux *runti
 		}
 		forward_ArtifactPrivateService_UpdateObjectAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_GetFileAsMarkdownAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_DeleteFileAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPrivateService/GetFileAsMarkdownAdmin", runtime.WithHTTPPathPattern("/artifact.artifact.v1alpha.ArtifactPrivateService/GetFileAsMarkdownAdmin"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPrivateService/DeleteFileAdmin", runtime.WithHTTPPathPattern("/artifact.artifact.v1alpha.ArtifactPrivateService/DeleteFileAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ArtifactPrivateService_GetFileAsMarkdownAdmin_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ArtifactPrivateService_DeleteFileAdmin_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ArtifactPrivateService_GetFileAsMarkdownAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_GetChatFileAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPrivateService/GetChatFileAdmin", runtime.WithHTTPPathPattern("/artifact.artifact.v1alpha.ArtifactPrivateService/GetChatFileAdmin"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_ArtifactPrivateService_GetChatFileAdmin_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ArtifactPrivateService_GetChatFileAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_DeleteCatalogFileAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPrivateService/DeleteCatalogFileAdmin", runtime.WithHTTPPathPattern("/artifact.artifact.v1alpha.ArtifactPrivateService/DeleteCatalogFileAdmin"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_ArtifactPrivateService_DeleteCatalogFileAdmin_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ArtifactPrivateService_DeleteCatalogFileAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ArtifactPrivateService_DeleteFileAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_ExecuteKnowledgeBaseUpdateAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -1137,74 +873,6 @@ func RegisterArtifactPrivateServiceHandler(ctx context.Context, mux *runtime.Ser
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "ArtifactPrivateServiceClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterArtifactPrivateServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ArtifactPrivateServiceClient) error {
-	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_ListRepositoryTagsAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPrivateService/ListRepositoryTagsAdmin", runtime.WithHTTPPathPattern("/artifact.artifact.v1alpha.ArtifactPrivateService/ListRepositoryTagsAdmin"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ArtifactPrivateService_ListRepositoryTagsAdmin_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ArtifactPrivateService_ListRepositoryTagsAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_GetRepositoryTagAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPrivateService/GetRepositoryTagAdmin", runtime.WithHTTPPathPattern("/artifact.artifact.v1alpha.ArtifactPrivateService/GetRepositoryTagAdmin"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ArtifactPrivateService_GetRepositoryTagAdmin_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ArtifactPrivateService_GetRepositoryTagAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_CreateRepositoryTagAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPrivateService/CreateRepositoryTagAdmin", runtime.WithHTTPPathPattern("/artifact.artifact.v1alpha.ArtifactPrivateService/CreateRepositoryTagAdmin"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ArtifactPrivateService_CreateRepositoryTagAdmin_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ArtifactPrivateService_CreateRepositoryTagAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_DeleteRepositoryTagAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPrivateService/DeleteRepositoryTagAdmin", runtime.WithHTTPPathPattern("/artifact.artifact.v1alpha.ArtifactPrivateService/DeleteRepositoryTagAdmin"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ArtifactPrivateService_DeleteRepositoryTagAdmin_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ArtifactPrivateService_DeleteRepositoryTagAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
 	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_GetObjectAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -1256,56 +924,22 @@ func RegisterArtifactPrivateServiceHandlerClient(ctx context.Context, mux *runti
 		}
 		forward_ArtifactPrivateService_UpdateObjectAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_GetFileAsMarkdownAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_DeleteFileAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPrivateService/GetFileAsMarkdownAdmin", runtime.WithHTTPPathPattern("/artifact.artifact.v1alpha.ArtifactPrivateService/GetFileAsMarkdownAdmin"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPrivateService/DeleteFileAdmin", runtime.WithHTTPPathPattern("/artifact.artifact.v1alpha.ArtifactPrivateService/DeleteFileAdmin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ArtifactPrivateService_GetFileAsMarkdownAdmin_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ArtifactPrivateService_DeleteFileAdmin_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ArtifactPrivateService_GetFileAsMarkdownAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_GetChatFileAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPrivateService/GetChatFileAdmin", runtime.WithHTTPPathPattern("/artifact.artifact.v1alpha.ArtifactPrivateService/GetChatFileAdmin"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ArtifactPrivateService_GetChatFileAdmin_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ArtifactPrivateService_GetChatFileAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_DeleteCatalogFileAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.artifact.v1alpha.ArtifactPrivateService/DeleteCatalogFileAdmin", runtime.WithHTTPPathPattern("/artifact.artifact.v1alpha.ArtifactPrivateService/DeleteCatalogFileAdmin"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ArtifactPrivateService_DeleteCatalogFileAdmin_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ArtifactPrivateService_DeleteCatalogFileAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ArtifactPrivateService_DeleteFileAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_ExecuteKnowledgeBaseUpdateAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -1549,16 +1183,10 @@ func RegisterArtifactPrivateServiceHandlerClient(ctx context.Context, mux *runti
 }
 
 var (
-	pattern_ArtifactPrivateService_ListRepositoryTagsAdmin_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.artifact.v1alpha.ArtifactPrivateService", "ListRepositoryTagsAdmin"}, ""))
-	pattern_ArtifactPrivateService_GetRepositoryTagAdmin_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.artifact.v1alpha.ArtifactPrivateService", "GetRepositoryTagAdmin"}, ""))
-	pattern_ArtifactPrivateService_CreateRepositoryTagAdmin_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.artifact.v1alpha.ArtifactPrivateService", "CreateRepositoryTagAdmin"}, ""))
-	pattern_ArtifactPrivateService_DeleteRepositoryTagAdmin_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.artifact.v1alpha.ArtifactPrivateService", "DeleteRepositoryTagAdmin"}, ""))
 	pattern_ArtifactPrivateService_GetObjectAdmin_0                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.artifact.v1alpha.ArtifactPrivateService", "GetObjectAdmin"}, ""))
 	pattern_ArtifactPrivateService_GetObjectURLAdmin_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.artifact.v1alpha.ArtifactPrivateService", "GetObjectURLAdmin"}, ""))
 	pattern_ArtifactPrivateService_UpdateObjectAdmin_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.artifact.v1alpha.ArtifactPrivateService", "UpdateObjectAdmin"}, ""))
-	pattern_ArtifactPrivateService_GetFileAsMarkdownAdmin_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.artifact.v1alpha.ArtifactPrivateService", "GetFileAsMarkdownAdmin"}, ""))
-	pattern_ArtifactPrivateService_GetChatFileAdmin_0                  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.artifact.v1alpha.ArtifactPrivateService", "GetChatFileAdmin"}, ""))
-	pattern_ArtifactPrivateService_DeleteCatalogFileAdmin_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.artifact.v1alpha.ArtifactPrivateService", "DeleteCatalogFileAdmin"}, ""))
+	pattern_ArtifactPrivateService_DeleteFileAdmin_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.artifact.v1alpha.ArtifactPrivateService", "DeleteFileAdmin"}, ""))
 	pattern_ArtifactPrivateService_ExecuteKnowledgeBaseUpdateAdmin_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.artifact.v1alpha.ArtifactPrivateService", "ExecuteKnowledgeBaseUpdateAdmin"}, ""))
 	pattern_ArtifactPrivateService_AbortKnowledgeBaseUpdateAdmin_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.artifact.v1alpha.ArtifactPrivateService", "AbortKnowledgeBaseUpdateAdmin"}, ""))
 	pattern_ArtifactPrivateService_RollbackAdmin_0                     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.artifact.v1alpha.ArtifactPrivateService", "RollbackAdmin"}, ""))
@@ -1576,16 +1204,10 @@ var (
 )
 
 var (
-	forward_ArtifactPrivateService_ListRepositoryTagsAdmin_0           = runtime.ForwardResponseMessage
-	forward_ArtifactPrivateService_GetRepositoryTagAdmin_0             = runtime.ForwardResponseMessage
-	forward_ArtifactPrivateService_CreateRepositoryTagAdmin_0          = runtime.ForwardResponseMessage
-	forward_ArtifactPrivateService_DeleteRepositoryTagAdmin_0          = runtime.ForwardResponseMessage
 	forward_ArtifactPrivateService_GetObjectAdmin_0                    = runtime.ForwardResponseMessage
 	forward_ArtifactPrivateService_GetObjectURLAdmin_0                 = runtime.ForwardResponseMessage
 	forward_ArtifactPrivateService_UpdateObjectAdmin_0                 = runtime.ForwardResponseMessage
-	forward_ArtifactPrivateService_GetFileAsMarkdownAdmin_0            = runtime.ForwardResponseMessage
-	forward_ArtifactPrivateService_GetChatFileAdmin_0                  = runtime.ForwardResponseMessage
-	forward_ArtifactPrivateService_DeleteCatalogFileAdmin_0            = runtime.ForwardResponseMessage
+	forward_ArtifactPrivateService_DeleteFileAdmin_0                   = runtime.ForwardResponseMessage
 	forward_ArtifactPrivateService_ExecuteKnowledgeBaseUpdateAdmin_0   = runtime.ForwardResponseMessage
 	forward_ArtifactPrivateService_AbortKnowledgeBaseUpdateAdmin_0     = runtime.ForwardResponseMessage
 	forward_ArtifactPrivateService_RollbackAdmin_0                     = runtime.ForwardResponseMessage

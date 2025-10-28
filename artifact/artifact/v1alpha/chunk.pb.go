@@ -23,67 +23,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// FileMediaType describes the type of a catalog file.
-type FileMediaType int32
-
-const (
-	// Unspecified.
-	FileMediaType_FILE_MEDIA_TYPE_UNSPECIFIED FileMediaType = 0
-	// Document.
-	FileMediaType_FILE_MEDIA_TYPE_DOCUMENT FileMediaType = 1
-	// Image.
-	FileMediaType_FILE_MEDIA_TYPE_IMAGE FileMediaType = 2
-	// Audio.
-	FileMediaType_FILE_MEDIA_TYPE_AUDIO FileMediaType = 3
-	// Video.
-	FileMediaType_FILE_MEDIA_TYPE_VIDEO FileMediaType = 4
-)
-
-// Enum value maps for FileMediaType.
-var (
-	FileMediaType_name = map[int32]string{
-		0: "FILE_MEDIA_TYPE_UNSPECIFIED",
-		1: "FILE_MEDIA_TYPE_DOCUMENT",
-		2: "FILE_MEDIA_TYPE_IMAGE",
-		3: "FILE_MEDIA_TYPE_AUDIO",
-		4: "FILE_MEDIA_TYPE_VIDEO",
-	}
-	FileMediaType_value = map[string]int32{
-		"FILE_MEDIA_TYPE_UNSPECIFIED": 0,
-		"FILE_MEDIA_TYPE_DOCUMENT":    1,
-		"FILE_MEDIA_TYPE_IMAGE":       2,
-		"FILE_MEDIA_TYPE_AUDIO":       3,
-		"FILE_MEDIA_TYPE_VIDEO":       4,
-	}
-)
-
-func (x FileMediaType) Enum() *FileMediaType {
-	p := new(FileMediaType)
-	*p = x
-	return p
-}
-
-func (x FileMediaType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (FileMediaType) Descriptor() protoreflect.EnumDescriptor {
-	return file_artifact_artifact_v1alpha_chunk_proto_enumTypes[0].Descriptor()
-}
-
-func (FileMediaType) Type() protoreflect.EnumType {
-	return &file_artifact_artifact_v1alpha_chunk_proto_enumTypes[0]
-}
-
-func (x FileMediaType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use FileMediaType.Descriptor instead.
-func (FileMediaType) EnumDescriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{0}
-}
-
 // Type describes the type of a chunk content.
 type Chunk_Type int32
 
@@ -125,11 +64,11 @@ func (x Chunk_Type) String() string {
 }
 
 func (Chunk_Type) Descriptor() protoreflect.EnumDescriptor {
-	return file_artifact_artifact_v1alpha_chunk_proto_enumTypes[1].Descriptor()
+	return file_artifact_artifact_v1alpha_chunk_proto_enumTypes[0].Descriptor()
 }
 
 func (Chunk_Type) Type() protoreflect.EnumType {
-	return &file_artifact_artifact_v1alpha_chunk_proto_enumTypes[1]
+	return &file_artifact_artifact_v1alpha_chunk_proto_enumTypes[0]
 }
 
 func (x Chunk_Type) Number() protoreflect.EnumNumber {
@@ -144,32 +83,37 @@ func (Chunk_Type) EnumDescriptor() ([]byte, []int) {
 // The Chunk message represents a chunk of data in the artifact system.
 type Chunk struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// unique identifier of the chunk
-	ChunkUid string `protobuf:"bytes,1,opt,name=chunk_uid,json=chunkUid,proto3" json:"chunk_uid,omitempty"`
+	// The chunk uid (internal UUID, also used as id).
+	Uid string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	// The chunk id (same as uid).
+	Id string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	// The resource name of the chunk.
+	// Format: `namespaces/{namespace}/catalogs/{catalog}/files/{file}/chunks/{chunk}`.
+	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
 	// whether the chunk is retrievable
-	Retrievable bool `protobuf:"varint,2,opt,name=retrievable,proto3" json:"retrievable,omitempty"`
+	Retrievable bool `protobuf:"varint,4,opt,name=retrievable,proto3" json:"retrievable,omitempty"`
 	// tokens of the chunk
-	Tokens uint32 `protobuf:"varint,6,opt,name=tokens,proto3" json:"tokens,omitempty"`
+	Tokens uint32 `protobuf:"varint,5,opt,name=tokens,proto3" json:"tokens,omitempty"`
 	// creation time of the chunk
-	CreateTime *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+	CreateTime *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
 	// original file unique identifier
-	OriginalFileUid string `protobuf:"bytes,8,opt,name=original_file_uid,json=originalFileUid,proto3" json:"original_file_uid,omitempty"`
+	OriginalFileId string `protobuf:"bytes,7,opt,name=original_file_id,json=originalFileId,proto3" json:"original_file_id,omitempty"`
 	// chunk type
-	Type Chunk_Type `protobuf:"varint,9,opt,name=type,proto3,enum=artifact.artifact.v1alpha.Chunk_Type" json:"type,omitempty"`
+	Type Chunk_Type `protobuf:"varint,8,opt,name=type,proto3,enum=artifact.artifact.v1alpha.Chunk_Type" json:"type,omitempty"`
 	// Reference to the position of the chunk within the original file.
-	Reference *Chunk_Reference `protobuf:"bytes,10,opt,name=reference,proto3" json:"reference,omitempty"`
+	Reference *Chunk_Reference `protobuf:"bytes,9,opt,name=reference,proto3" json:"reference,omitempty"`
 	// Reference to the position of the chunk within the Markdown (source) file.
-	MarkdownReference *Chunk_Reference `protobuf:"bytes,11,opt,name=markdown_reference,json=markdownReference,proto3" json:"markdown_reference,omitempty"`
+	MarkdownReference *Chunk_Reference `protobuf:"bytes,10,opt,name=markdown_reference,json=markdownReference,proto3" json:"markdown_reference,omitempty"`
 	// start position of the chunk in the source file
 	// Deprecated: use markdown_reference instead
 	//
 	// Deprecated: Marked as deprecated in artifact/artifact/v1alpha/chunk.proto.
-	StartPos uint32 `protobuf:"varint,4,opt,name=start_pos,json=startPos,proto3" json:"start_pos,omitempty"`
+	StartPos uint32 `protobuf:"varint,11,opt,name=start_pos,json=startPos,proto3" json:"start_pos,omitempty"`
 	// end position of the chunk in the source file
 	// Deprecated: use markdown_reference instead
 	//
 	// Deprecated: Marked as deprecated in artifact/artifact/v1alpha/chunk.proto.
-	EndPos        uint32 `protobuf:"varint,5,opt,name=end_pos,json=endPos,proto3" json:"end_pos,omitempty"`
+	EndPos        uint32 `protobuf:"varint,12,opt,name=end_pos,json=endPos,proto3" json:"end_pos,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -204,9 +148,23 @@ func (*Chunk) Descriptor() ([]byte, []int) {
 	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Chunk) GetChunkUid() string {
+func (x *Chunk) GetUid() string {
 	if x != nil {
-		return x.ChunkUid
+		return x.Uid
+	}
+	return ""
+}
+
+func (x *Chunk) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Chunk) GetName() string {
+	if x != nil {
+		return x.Name
 	}
 	return ""
 }
@@ -232,9 +190,9 @@ func (x *Chunk) GetCreateTime() *timestamppb.Timestamp {
 	return nil
 }
 
-func (x *Chunk) GetOriginalFileUid() string {
+func (x *Chunk) GetOriginalFileId() string {
 	if x != nil {
-		return x.OriginalFileUid
+		return x.OriginalFileId
 	}
 	return ""
 }
@@ -276,17 +234,33 @@ func (x *Chunk) GetEndPos() uint32 {
 	return 0
 }
 
-// The ListChunksRequest message represents a request to list chunks in the artifact system.
+// ListChunksRequest represents a request to list chunks in the artifact system.
 // The response will be a list of chunks based on the request, i.e., response will
-// have chunks of the file with file_uid and chunks specified in chunk_uids.
+// have chunks of the file with file_id and chunks specified in chunk_ids.
 type ListChunksRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// owner/namespace id (not uid)
+	// owner/namespace id
 	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// catalog id (not uid)
+	// catalog id
 	CatalogId string `protobuf:"bytes,2,opt,name=catalog_id,json=catalogId,proto3" json:"catalog_id,omitempty"`
-	// unique identifier of the file
-	FileUid       string `protobuf:"bytes,3,opt,name=file_uid,json=fileUid,proto3" json:"file_uid,omitempty"`
+	// file id
+	FileId string `protobuf:"bytes,3,opt,name=file_id,json=fileId,proto3" json:"file_id,omitempty"`
+	// The maximum number of chunks to return. If this parameter is unspecified,
+	// at most 100 chunks will be returned. The cap value for this parameter
+	// is 1000 (i.e. any value above that will be coerced to 1000).
+	PageSize *int32 `protobuf:"varint,4,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
+	// Page token.
+	PageToken *string `protobuf:"bytes,5,opt,name=page_token,json=pageToken,proto3,oneof" json:"page_token,omitempty"`
+	// Filter can hold an [AIP-160](https://google.aip.dev/160)-compliant filter expression.
+	// - `id="<uuid>"` or `uid="<uuid>"` - Filter by specific chunk ID/UID
+	// - `chunk_type="CHUNK_TYPE_TEXT"` - Filter by chunk type
+	// - `retrievable=true` - Filter by retrievable status
+	//
+	// **Examples**:
+	// - List specific chunks: `id="uuid1" OR id="uuid2"`
+	// - List text chunks: `chunk_type="CHUNK_TYPE_TEXT"`
+	// - List retrievable chunks: `retrievable=true`
+	Filter        *string `protobuf:"bytes,6,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -335,14 +309,35 @@ func (x *ListChunksRequest) GetCatalogId() string {
 	return ""
 }
 
-func (x *ListChunksRequest) GetFileUid() string {
+func (x *ListChunksRequest) GetFileId() string {
 	if x != nil {
-		return x.FileUid
+		return x.FileId
 	}
 	return ""
 }
 
-// The ListChunksResponse message represents a response containing a list of chunks in the artifact system.
+func (x *ListChunksRequest) GetPageSize() int32 {
+	if x != nil && x.PageSize != nil {
+		return *x.PageSize
+	}
+	return 0
+}
+
+func (x *ListChunksRequest) GetPageToken() string {
+	if x != nil && x.PageToken != nil {
+		return *x.PageToken
+	}
+	return ""
+}
+
+func (x *ListChunksRequest) GetFilter() string {
+	if x != nil && x.Filter != nil {
+		return *x.Filter
+	}
+	return ""
+}
+
+// ListChunksResponse represents a response containing a list of chunks in the artifact system.
 type ListChunksResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// repeated chunks
@@ -388,37 +383,35 @@ func (x *ListChunksResponse) GetChunks() []*Chunk {
 	return nil
 }
 
-// The SourceFile message represents a source file in the artifact system.
-type SourceFile struct {
+// GetChunkRequest represents a request to get a chunk.
+type GetChunkRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// original file unique identifier
-	OriginalFileUid string `protobuf:"bytes,1,opt,name=original_file_uid,json=originalFileUid,proto3" json:"original_file_uid,omitempty"`
-	// content
-	Content string `protobuf:"bytes,3,opt,name=content,proto3" json:"content,omitempty"`
-	// creation time of the source file
-	CreateTime *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
-	// update time of the source file
-	UpdateTime *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
-	// original file name
-	OriginalFileName string `protobuf:"bytes,7,opt,name=original_file_name,json=originalFileName,proto3" json:"original_file_name,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	// Namespace ID.
+	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
+	// Catalog ID.
+	CatalogId string `protobuf:"bytes,2,opt,name=catalog_id,json=catalogId,proto3" json:"catalog_id,omitempty"`
+	// File ID.
+	FileId string `protobuf:"bytes,3,opt,name=file_id,json=fileId,proto3" json:"file_id,omitempty"`
+	// Chunk ID.
+	ChunkId       string `protobuf:"bytes,4,opt,name=chunk_id,json=chunkId,proto3" json:"chunk_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
-func (x *SourceFile) Reset() {
-	*x = SourceFile{}
+func (x *GetChunkRequest) Reset() {
+	*x = GetChunkRequest{}
 	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *SourceFile) String() string {
+func (x *GetChunkRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SourceFile) ProtoMessage() {}
+func (*GetChunkRequest) ProtoMessage() {}
 
-func (x *SourceFile) ProtoReflect() protoreflect.Message {
+func (x *GetChunkRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -430,73 +423,62 @@ func (x *SourceFile) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SourceFile.ProtoReflect.Descriptor instead.
-func (*SourceFile) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetChunkRequest.ProtoReflect.Descriptor instead.
+func (*GetChunkRequest) Descriptor() ([]byte, []int) {
 	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *SourceFile) GetOriginalFileUid() string {
+func (x *GetChunkRequest) GetNamespaceId() string {
 	if x != nil {
-		return x.OriginalFileUid
+		return x.NamespaceId
 	}
 	return ""
 }
 
-func (x *SourceFile) GetContent() string {
+func (x *GetChunkRequest) GetCatalogId() string {
 	if x != nil {
-		return x.Content
+		return x.CatalogId
 	}
 	return ""
 }
 
-func (x *SourceFile) GetCreateTime() *timestamppb.Timestamp {
+func (x *GetChunkRequest) GetFileId() string {
 	if x != nil {
-		return x.CreateTime
-	}
-	return nil
-}
-
-func (x *SourceFile) GetUpdateTime() *timestamppb.Timestamp {
-	if x != nil {
-		return x.UpdateTime
-	}
-	return nil
-}
-
-func (x *SourceFile) GetOriginalFileName() string {
-	if x != nil {
-		return x.OriginalFileName
+		return x.FileId
 	}
 	return ""
 }
 
-// get source file request
-type GetSourceFileRequest struct {
+func (x *GetChunkRequest) GetChunkId() string {
+	if x != nil {
+		return x.ChunkId
+	}
+	return ""
+}
+
+// GetChunkResponse represents a response for getting a chunk.
+type GetChunkResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// owner/namespace id
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// catalog id
-	CatalogId string `protobuf:"bytes,2,opt,name=catalog_id,json=catalogId,proto3" json:"catalog_id,omitempty"`
-	// unique identifier of the original uploaded file
-	FileUid       string `protobuf:"bytes,3,opt,name=file_uid,json=fileUid,proto3" json:"file_uid,omitempty"`
+	// The chunk resource.
+	Chunk         *Chunk `protobuf:"bytes,1,opt,name=chunk,proto3" json:"chunk,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetSourceFileRequest) Reset() {
-	*x = GetSourceFileRequest{}
+func (x *GetChunkResponse) Reset() {
+	*x = GetChunkResponse{}
 	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetSourceFileRequest) String() string {
+func (x *GetChunkResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetSourceFileRequest) ProtoMessage() {}
+func (*GetChunkResponse) ProtoMessage() {}
 
-func (x *GetSourceFileRequest) ProtoReflect() protoreflect.Message {
+func (x *GetChunkResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -508,303 +490,36 @@ func (x *GetSourceFileRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetSourceFileRequest.ProtoReflect.Descriptor instead.
-func (*GetSourceFileRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetChunkResponse.ProtoReflect.Descriptor instead.
+func (*GetChunkResponse) Descriptor() ([]byte, []int) {
 	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *GetSourceFileRequest) GetNamespaceId() string {
+func (x *GetChunkResponse) GetChunk() *Chunk {
 	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *GetSourceFileRequest) GetCatalogId() string {
-	if x != nil {
-		return x.CatalogId
-	}
-	return ""
-}
-
-func (x *GetSourceFileRequest) GetFileUid() string {
-	if x != nil {
-		return x.FileUid
-	}
-	return ""
-}
-
-// get source file response
-type GetSourceFileResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// source file(either original file or converted file)
-	SourceFile    *SourceFile `protobuf:"bytes,1,opt,name=source_file,json=sourceFile,proto3" json:"source_file,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetSourceFileResponse) Reset() {
-	*x = GetSourceFileResponse{}
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[5]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetSourceFileResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetSourceFileResponse) ProtoMessage() {}
-
-func (x *GetSourceFileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[5]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetSourceFileResponse.ProtoReflect.Descriptor instead.
-func (*GetSourceFileResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *GetSourceFileResponse) GetSourceFile() *SourceFile {
-	if x != nil {
-		return x.SourceFile
+		return x.Chunk
 	}
 	return nil
 }
 
-// get file summary request
-type GetFileSummaryRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// owner/namespace id
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// catalog id
-	CatalogId string `protobuf:"bytes,2,opt,name=catalog_id,json=catalogId,proto3" json:"catalog_id,omitempty"`
-	// unique identifier of the original uploaded file
-	FileUid       string `protobuf:"bytes,3,opt,name=file_uid,json=fileUid,proto3" json:"file_uid,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetFileSummaryRequest) Reset() {
-	*x = GetFileSummaryRequest{}
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetFileSummaryRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetFileSummaryRequest) ProtoMessage() {}
-
-func (x *GetFileSummaryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetFileSummaryRequest.ProtoReflect.Descriptor instead.
-func (*GetFileSummaryRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *GetFileSummaryRequest) GetNamespaceId() string {
-	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *GetFileSummaryRequest) GetCatalogId() string {
-	if x != nil {
-		return x.CatalogId
-	}
-	return ""
-}
-
-func (x *GetFileSummaryRequest) GetFileUid() string {
-	if x != nil {
-		return x.FileUid
-	}
-	return ""
-}
-
-// get file summary response
-type GetFileSummaryResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// summary of the file
-	Summary       string `protobuf:"bytes,1,opt,name=summary,proto3" json:"summary,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetFileSummaryResponse) Reset() {
-	*x = GetFileSummaryResponse{}
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetFileSummaryResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetFileSummaryResponse) ProtoMessage() {}
-
-func (x *GetFileSummaryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetFileSummaryResponse.ProtoReflect.Descriptor instead.
-func (*GetFileSummaryResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *GetFileSummaryResponse) GetSummary() string {
-	if x != nil {
-		return x.Summary
-	}
-	return ""
-}
-
-// search source file request
-type SearchSourceFilesRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// owner/namespace id
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// search file uid
-	FileUids      []string `protobuf:"bytes,2,rep,name=file_uids,json=fileUids,proto3" json:"file_uids,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SearchSourceFilesRequest) Reset() {
-	*x = SearchSourceFilesRequest{}
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SearchSourceFilesRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SearchSourceFilesRequest) ProtoMessage() {}
-
-func (x *SearchSourceFilesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SearchSourceFilesRequest.ProtoReflect.Descriptor instead.
-func (*SearchSourceFilesRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *SearchSourceFilesRequest) GetNamespaceId() string {
-	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *SearchSourceFilesRequest) GetFileUids() []string {
-	if x != nil {
-		return x.FileUids
-	}
-	return nil
-}
-
-// search source file response
-type SearchSourceFilesResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// source files
-	SourceFiles   []*SourceFile `protobuf:"bytes,1,rep,name=source_files,json=sourceFiles,proto3" json:"source_files,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SearchSourceFilesResponse) Reset() {
-	*x = SearchSourceFilesResponse{}
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[9]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SearchSourceFilesResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SearchSourceFilesResponse) ProtoMessage() {}
-
-func (x *SearchSourceFilesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[9]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SearchSourceFilesResponse.ProtoReflect.Descriptor instead.
-func (*SearchSourceFilesResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *SearchSourceFilesResponse) GetSourceFiles() []*SourceFile {
-	if x != nil {
-		return x.SourceFiles
-	}
-	return nil
-}
-
-// Create chunk response
+// UpdateChunkRequest represents a request to update a chunk.
 type UpdateChunkRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// chunk uid
-	ChunkUid string `protobuf:"bytes,1,opt,name=chunk_uid,json=chunkUid,proto3" json:"chunk_uid,omitempty"`
+	// Namespace ID.
+	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
+	// Catalog ID.
+	CatalogId string `protobuf:"bytes,2,opt,name=catalog_id,json=catalogId,proto3" json:"catalog_id,omitempty"`
+	// Chunk ID.
+	ChunkId string `protobuf:"bytes,3,opt,name=chunk_id,json=chunkId,proto3" json:"chunk_id,omitempty"`
 	// whether the chunk is retrievable
-	Retrievable   bool `protobuf:"varint,2,opt,name=retrievable,proto3" json:"retrievable,omitempty"`
+	Retrievable   bool `protobuf:"varint,4,opt,name=retrievable,proto3" json:"retrievable,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *UpdateChunkRequest) Reset() {
 	*x = UpdateChunkRequest{}
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[10]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -816,7 +531,7 @@ func (x *UpdateChunkRequest) String() string {
 func (*UpdateChunkRequest) ProtoMessage() {}
 
 func (x *UpdateChunkRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[10]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -829,12 +544,26 @@ func (x *UpdateChunkRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateChunkRequest.ProtoReflect.Descriptor instead.
 func (*UpdateChunkRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{10}
+	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *UpdateChunkRequest) GetChunkUid() string {
+func (x *UpdateChunkRequest) GetNamespaceId() string {
 	if x != nil {
-		return x.ChunkUid
+		return x.NamespaceId
+	}
+	return ""
+}
+
+func (x *UpdateChunkRequest) GetCatalogId() string {
+	if x != nil {
+		return x.CatalogId
+	}
+	return ""
+}
+
+func (x *UpdateChunkRequest) GetChunkId() string {
+	if x != nil {
+		return x.ChunkId
 	}
 	return ""
 }
@@ -846,7 +575,7 @@ func (x *UpdateChunkRequest) GetRetrievable() bool {
 	return false
 }
 
-// update chunk response
+// UpdateChunkResponse represents a response for updating a chunk.
 type UpdateChunkResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// chunk
@@ -857,7 +586,7 @@ type UpdateChunkResponse struct {
 
 func (x *UpdateChunkResponse) Reset() {
 	*x = UpdateChunkResponse{}
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[11]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -869,7 +598,7 @@ func (x *UpdateChunkResponse) String() string {
 func (*UpdateChunkResponse) ProtoMessage() {}
 
 func (x *UpdateChunkResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[11]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -882,7 +611,7 @@ func (x *UpdateChunkResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateChunkResponse.ProtoReflect.Descriptor instead.
 func (*UpdateChunkResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{11}
+	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *UpdateChunkResponse) GetChunk() *Chunk {
@@ -892,8 +621,8 @@ func (x *UpdateChunkResponse) GetChunk() *Chunk {
 	return nil
 }
 
-// Similar chunk search request
-type SimilarityChunksSearchRequest struct {
+// SearchChunksRequest represents a request to search for similar chunks.
+type SearchChunksRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// ID of the namespace owning the catalog.
 	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
@@ -905,33 +634,33 @@ type SimilarityChunksSearchRequest struct {
 	TopK uint32 `protobuf:"varint,4,opt,name=top_k,json=topK,proto3" json:"top_k,omitempty"`
 	// Chunk type.
 	Type Chunk_Type `protobuf:"varint,6,opt,name=type,proto3,enum=artifact.artifact.v1alpha.Chunk_Type" json:"type,omitempty"`
-	// File type.
-	FileMediaType FileMediaType `protobuf:"varint,7,opt,name=file_media_type,json=fileMediaType,proto3,enum=artifact.artifact.v1alpha.FileMediaType" json:"file_media_type,omitempty"`
-	// File UIDs. When this field is provided, the response will return only
-	// chunks that belong to the specified file UIDs.
-	FileUids []string `protobuf:"bytes,9,rep,name=file_uids,json=fileUids,proto3" json:"file_uids,omitempty"`
+	// File media type.
+	FileMediaType File_FileMediaType `protobuf:"varint,7,opt,name=file_media_type,json=fileMediaType,proto3,enum=artifact.artifact.v1alpha.File_FileMediaType" json:"file_media_type,omitempty"`
+	// File IDs. When this field is provided, the response will return only
+	// chunks that belong to the specified file IDs.
+	FileIds []string `protobuf:"bytes,9,rep,name=file_ids,json=fileIds,proto3" json:"file_ids,omitempty"`
 	// Tags to filter by. When multiple tags are provided, OR logic is applied.
-	// Note: File UID filter takes precedence over tags, as tags apply to files.
+	// Note: File ID filter takes precedence over tags, as tags apply to files.
 	Tags          []string `protobuf:"bytes,10,rep,name=tags,proto3" json:"tags,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *SimilarityChunksSearchRequest) Reset() {
-	*x = SimilarityChunksSearchRequest{}
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[12]
+func (x *SearchChunksRequest) Reset() {
+	*x = SearchChunksRequest{}
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *SimilarityChunksSearchRequest) String() string {
+func (x *SearchChunksRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SimilarityChunksSearchRequest) ProtoMessage() {}
+func (*SearchChunksRequest) ProtoMessage() {}
 
-func (x *SimilarityChunksSearchRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[12]
+func (x *SearchChunksRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -942,69 +671,69 @@ func (x *SimilarityChunksSearchRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SimilarityChunksSearchRequest.ProtoReflect.Descriptor instead.
-func (*SimilarityChunksSearchRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{12}
+// Deprecated: Use SearchChunksRequest.ProtoReflect.Descriptor instead.
+func (*SearchChunksRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *SimilarityChunksSearchRequest) GetNamespaceId() string {
+func (x *SearchChunksRequest) GetNamespaceId() string {
 	if x != nil {
 		return x.NamespaceId
 	}
 	return ""
 }
 
-func (x *SimilarityChunksSearchRequest) GetCatalogId() string {
+func (x *SearchChunksRequest) GetCatalogId() string {
 	if x != nil {
 		return x.CatalogId
 	}
 	return ""
 }
 
-func (x *SimilarityChunksSearchRequest) GetTextPrompt() string {
+func (x *SearchChunksRequest) GetTextPrompt() string {
 	if x != nil {
 		return x.TextPrompt
 	}
 	return ""
 }
 
-func (x *SimilarityChunksSearchRequest) GetTopK() uint32 {
+func (x *SearchChunksRequest) GetTopK() uint32 {
 	if x != nil {
 		return x.TopK
 	}
 	return 0
 }
 
-func (x *SimilarityChunksSearchRequest) GetType() Chunk_Type {
+func (x *SearchChunksRequest) GetType() Chunk_Type {
 	if x != nil {
 		return x.Type
 	}
 	return Chunk_TYPE_UNSPECIFIED
 }
 
-func (x *SimilarityChunksSearchRequest) GetFileMediaType() FileMediaType {
+func (x *SearchChunksRequest) GetFileMediaType() File_FileMediaType {
 	if x != nil {
 		return x.FileMediaType
 	}
-	return FileMediaType_FILE_MEDIA_TYPE_UNSPECIFIED
+	return File_FILE_MEDIA_TYPE_UNSPECIFIED
 }
 
-func (x *SimilarityChunksSearchRequest) GetFileUids() []string {
+func (x *SearchChunksRequest) GetFileIds() []string {
 	if x != nil {
-		return x.FileUids
+		return x.FileIds
 	}
 	return nil
 }
 
-func (x *SimilarityChunksSearchRequest) GetTags() []string {
+func (x *SearchChunksRequest) GetTags() []string {
 	if x != nil {
 		return x.Tags
 	}
 	return nil
 }
 
-// Similar chunk search response
-type SimilarityChunksSearchResponse struct {
+// SearchChunksResponse represents a response for searching similar chunks.
+type SearchChunksResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// chunks
 	SimilarChunks []*SimilarityChunk `protobuf:"bytes,1,rep,name=similar_chunks,json=similarChunks,proto3" json:"similar_chunks,omitempty"`
@@ -1012,21 +741,21 @@ type SimilarityChunksSearchResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *SimilarityChunksSearchResponse) Reset() {
-	*x = SimilarityChunksSearchResponse{}
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[13]
+func (x *SearchChunksResponse) Reset() {
+	*x = SearchChunksResponse{}
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *SimilarityChunksSearchResponse) String() string {
+func (x *SearchChunksResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SimilarityChunksSearchResponse) ProtoMessage() {}
+func (*SearchChunksResponse) ProtoMessage() {}
 
-func (x *SimilarityChunksSearchResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[13]
+func (x *SearchChunksResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1037,30 +766,30 @@ func (x *SimilarityChunksSearchResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SimilarityChunksSearchResponse.ProtoReflect.Descriptor instead.
-func (*SimilarityChunksSearchResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{13}
+// Deprecated: Use SearchChunksResponse.ProtoReflect.Descriptor instead.
+func (*SearchChunksResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *SimilarityChunksSearchResponse) GetSimilarChunks() []*SimilarityChunk {
+func (x *SearchChunksResponse) GetSimilarChunks() []*SimilarityChunk {
 	if x != nil {
 		return x.SimilarChunks
 	}
 	return nil
 }
 
-// similarity chunks
+// SimilarityChunk represents a chunk with similarity score.
 type SimilarityChunk struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// chunk uid
-	ChunkUid string `protobuf:"bytes,1,opt,name=chunk_uid,json=chunkUid,proto3" json:"chunk_uid,omitempty"`
+	// chunk id
+	ChunkId string `protobuf:"bytes,1,opt,name=chunk_id,json=chunkId,proto3" json:"chunk_id,omitempty"`
 	// similarity score
 	SimilarityScore float32 `protobuf:"fixed32,2,opt,name=similarity_score,json=similarityScore,proto3" json:"similarity_score,omitempty"`
 	// content
 	TextContent string `protobuf:"bytes,3,opt,name=text_content,json=textContent,proto3" json:"text_content,omitempty"`
 	// source file's name
 	SourceFile string `protobuf:"bytes,4,opt,name=source_file,json=sourceFile,proto3" json:"source_file,omitempty"`
-	// chunk
+	// chunk metadata
 	ChunkMetadata *Chunk `protobuf:"bytes,5,opt,name=chunk_metadata,json=chunkMetadata,proto3" json:"chunk_metadata,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1068,7 +797,7 @@ type SimilarityChunk struct {
 
 func (x *SimilarityChunk) Reset() {
 	*x = SimilarityChunk{}
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[14]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1080,7 +809,7 @@ func (x *SimilarityChunk) String() string {
 func (*SimilarityChunk) ProtoMessage() {}
 
 func (x *SimilarityChunk) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[14]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1093,12 +822,12 @@ func (x *SimilarityChunk) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimilarityChunk.ProtoReflect.Descriptor instead.
 func (*SimilarityChunk) Descriptor() ([]byte, []int) {
-	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{14}
+	return file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *SimilarityChunk) GetChunkUid() string {
+func (x *SimilarityChunk) GetChunkId() string {
 	if x != nil {
-		return x.ChunkUid
+		return x.ChunkId
 	}
 	return ""
 }
@@ -1144,7 +873,7 @@ type Chunk_Reference struct {
 
 func (x *Chunk_Reference) Reset() {
 	*x = Chunk_Reference{}
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[15]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1156,7 +885,7 @@ func (x *Chunk_Reference) String() string {
 func (*Chunk_Reference) ProtoMessage() {}
 
 func (x *Chunk_Reference) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[15]
+	mi := &file_artifact_artifact_v1alpha_chunk_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1190,20 +919,22 @@ var File_artifact_artifact_v1alpha_chunk_proto protoreflect.FileDescriptor
 
 const file_artifact_artifact_v1alpha_chunk_proto_rawDesc = "" +
 	"\n" +
-	"%artifact/artifact/v1alpha/chunk.proto\x12\x19artifact.artifact.v1alpha\x1a(artifact/artifact/v1alpha/artifact.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xfd\x05\n" +
-	"\x05Chunk\x12 \n" +
-	"\tchunk_uid\x18\x01 \x01(\tB\x03\xe0A\x03R\bchunkUid\x12%\n" +
-	"\vretrievable\x18\x02 \x01(\bB\x03\xe0A\x03R\vretrievable\x12\x1b\n" +
-	"\x06tokens\x18\x06 \x01(\rB\x03\xe0A\x03R\x06tokens\x12@\n" +
-	"\vcreate_time\x18\a \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
-	"createTime\x12/\n" +
-	"\x11original_file_uid\x18\b \x01(\tB\x03\xe0A\x03R\x0foriginalFileUid\x12>\n" +
-	"\x04type\x18\t \x01(\x0e2%.artifact.artifact.v1alpha.Chunk.TypeB\x03\xe0A\x03R\x04type\x12M\n" +
-	"\treference\x18\n" +
-	" \x01(\v2*.artifact.artifact.v1alpha.Chunk.ReferenceB\x03\xe0A\x03R\treference\x12^\n" +
-	"\x12markdown_reference\x18\v \x01(\v2*.artifact.artifact.v1alpha.Chunk.ReferenceB\x03\xe0A\x03R\x11markdownReference\x12\"\n" +
-	"\tstart_pos\x18\x04 \x01(\rB\x05\xe0A\x03\x18\x01R\bstartPos\x12\x1e\n" +
-	"\aend_pos\x18\x05 \x01(\rB\x05\xe0A\x03\x18\x01R\x06endPos\x1a\x91\x01\n" +
+	"%artifact/artifact/v1alpha/chunk.proto\x12\x19artifact.artifact.v1alpha\x1a$artifact/artifact/v1alpha/file.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xea\x06\n" +
+	"\x05Chunk\x12\x15\n" +
+	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x13\n" +
+	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12\x17\n" +
+	"\x04name\x18\x03 \x01(\tB\x03\xe0A\x03R\x04name\x12%\n" +
+	"\vretrievable\x18\x04 \x01(\bB\x03\xe0A\x03R\vretrievable\x12\x1b\n" +
+	"\x06tokens\x18\x05 \x01(\rB\x03\xe0A\x03R\x06tokens\x12@\n" +
+	"\vcreate_time\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
+	"createTime\x12-\n" +
+	"\x10original_file_id\x18\a \x01(\tB\x03\xe0A\x03R\x0eoriginalFileId\x12>\n" +
+	"\x04type\x18\b \x01(\x0e2%.artifact.artifact.v1alpha.Chunk.TypeB\x03\xe0A\x03R\x04type\x12M\n" +
+	"\treference\x18\t \x01(\v2*.artifact.artifact.v1alpha.Chunk.ReferenceB\x03\xe0A\x03R\treference\x12^\n" +
+	"\x12markdown_reference\x18\n" +
+	" \x01(\v2*.artifact.artifact.v1alpha.Chunk.ReferenceB\x03\xe0A\x03R\x11markdownReference\x12\"\n" +
+	"\tstart_pos\x18\v \x01(\rB\x05\xe0A\x03\x18\x01R\bstartPos\x12\x1e\n" +
+	"\aend_pos\x18\f \x01(\rB\x05\xe0A\x03\x18\x01R\x06endPos\x1a\x91\x01\n" +
 	"\tReference\x12C\n" +
 	"\x05start\x18\x01 \x01(\v2(.artifact.artifact.v1alpha.File.PositionB\x03\xe0A\x03R\x05start\x12?\n" +
 	"\x03end\x18\x02 \x01(\v2(.artifact.artifact.v1alpha.File.PositionB\x03\xe0A\x03R\x03end\"T\n" +
@@ -1211,75 +942,59 @@ const file_artifact_artifact_v1alpha_chunk_proto_rawDesc = "" +
 	"\x10TYPE_UNSPECIFIED\x10\x00\x12\x10\n" +
 	"\fTYPE_CONTENT\x10\x01\x12\x10\n" +
 	"\fTYPE_SUMMARY\x10\x02\x12\x12\n" +
-	"\x0eTYPE_AUGMENTED\x10\x03\"\x7f\n" +
+	"\x0eTYPE_AUGMENTED\x10\x03:J\xeaAG\x12Enamespaces/{namespace}/catalogs/{catalog}/files/{file}/chunks/{chunk}\"\x97\x02\n" +
 	"\x11ListChunksRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\"\n" +
 	"\n" +
-	"catalog_id\x18\x02 \x01(\tB\x03\xe0A\x02R\tcatalogId\x12\x1e\n" +
-	"\bfile_uid\x18\x03 \x01(\tB\x03\xe0A\x02R\afileUid\"S\n" +
+	"catalog_id\x18\x02 \x01(\tB\x03\xe0A\x02R\tcatalogId\x12\x1c\n" +
+	"\afile_id\x18\x03 \x01(\tB\x03\xe0A\x02R\x06fileId\x12%\n" +
+	"\tpage_size\x18\x04 \x01(\x05B\x03\xe0A\x01H\x00R\bpageSize\x88\x01\x01\x12'\n" +
+	"\n" +
+	"page_token\x18\x05 \x01(\tB\x03\xe0A\x01H\x01R\tpageToken\x88\x01\x01\x12 \n" +
+	"\x06filter\x18\x06 \x01(\tB\x03\xe0A\x01H\x02R\x06filter\x88\x01\x01B\f\n" +
+	"\n" +
+	"_page_sizeB\r\n" +
+	"\v_page_tokenB\t\n" +
+	"\a_filter\"S\n" +
 	"\x12ListChunksResponse\x12=\n" +
-	"\x06chunks\x18\x01 \x03(\v2 .artifact.artifact.v1alpha.ChunkB\x03\xe0A\x03R\x06chunks\"\x93\x02\n" +
+	"\x06chunks\x18\x01 \x03(\v2 .artifact.artifact.v1alpha.ChunkB\x03\xe0A\x03R\x06chunks\"\x9b\x01\n" +
+	"\x0fGetChunkRequest\x12&\n" +
+	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\"\n" +
 	"\n" +
-	"SourceFile\x12/\n" +
-	"\x11original_file_uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x0foriginalFileUid\x12\x1d\n" +
-	"\acontent\x18\x03 \x01(\tB\x03\xe0A\x03R\acontent\x12@\n" +
-	"\vcreate_time\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
-	"createTime\x12@\n" +
-	"\vupdate_time\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
-	"updateTime\x121\n" +
-	"\x12original_file_name\x18\a \x01(\tB\x03\xe0A\x03R\x10originalFileName\"\x82\x01\n" +
-	"\x14GetSourceFileRequest\x12&\n" +
+	"catalog_id\x18\x02 \x01(\tB\x03\xe0A\x02R\tcatalogId\x12\x1c\n" +
+	"\afile_id\x18\x03 \x01(\tB\x03\xe0A\x02R\x06fileId\x12\x1e\n" +
+	"\bchunk_id\x18\x04 \x01(\tB\x03\xe0A\x02R\achunkId\"O\n" +
+	"\x10GetChunkResponse\x12;\n" +
+	"\x05chunk\x18\x01 \x01(\v2 .artifact.artifact.v1alpha.ChunkB\x03\xe0A\x03R\x05chunk\"\xa7\x01\n" +
+	"\x12UpdateChunkRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\"\n" +
 	"\n" +
 	"catalog_id\x18\x02 \x01(\tB\x03\xe0A\x02R\tcatalogId\x12\x1e\n" +
-	"\bfile_uid\x18\x03 \x01(\tB\x03\xe0A\x02R\afileUid\"d\n" +
-	"\x15GetSourceFileResponse\x12K\n" +
-	"\vsource_file\x18\x01 \x01(\v2%.artifact.artifact.v1alpha.SourceFileB\x03\xe0A\x03R\n" +
-	"sourceFile\"\x83\x01\n" +
-	"\x15GetFileSummaryRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\"\n" +
-	"\n" +
-	"catalog_id\x18\x02 \x01(\tB\x03\xe0A\x02R\tcatalogId\x12\x1e\n" +
-	"\bfile_uid\x18\x03 \x01(\tB\x03\xe0A\x02R\afileUid\"7\n" +
-	"\x16GetFileSummaryResponse\x12\x1d\n" +
-	"\asummary\x18\x01 \x01(\tB\x03\xe0A\x03R\asummary\"d\n" +
-	"\x18SearchSourceFilesRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12 \n" +
-	"\tfile_uids\x18\x02 \x03(\tB\x03\xe0A\x02R\bfileUids\"j\n" +
-	"\x19SearchSourceFilesResponse\x12M\n" +
-	"\fsource_files\x18\x01 \x03(\v2%.artifact.artifact.v1alpha.SourceFileB\x03\xe0A\x03R\vsourceFiles\"]\n" +
-	"\x12UpdateChunkRequest\x12 \n" +
-	"\tchunk_uid\x18\x01 \x01(\tB\x03\xe0A\x02R\bchunkUid\x12%\n" +
-	"\vretrievable\x18\x02 \x01(\bB\x03\xe0A\x02R\vretrievable\"R\n" +
+	"\bchunk_id\x18\x03 \x01(\tB\x03\xe0A\x02R\achunkId\x12%\n" +
+	"\vretrievable\x18\x04 \x01(\bB\x03\xe0A\x02R\vretrievable\"R\n" +
 	"\x13UpdateChunkResponse\x12;\n" +
-	"\x05chunk\x18\x01 \x01(\v2 .artifact.artifact.v1alpha.ChunkB\x03\xe0A\x03R\x05chunk\"\x89\x03\n" +
-	"\x1dSimilarityChunksSearchRequest\x12&\n" +
+	"\x05chunk\x18\x01 \x01(\v2 .artifact.artifact.v1alpha.ChunkB\x03\xe0A\x03R\x05chunk\"\x82\x03\n" +
+	"\x13SearchChunksRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\"\n" +
 	"\n" +
 	"catalog_id\x18\x02 \x01(\tB\x03\xe0A\x02R\tcatalogId\x12$\n" +
 	"\vtext_prompt\x18\x03 \x01(\tB\x03\xe0A\x02R\n" +
 	"textPrompt\x12\x18\n" +
 	"\x05top_k\x18\x04 \x01(\rB\x03\xe0A\x01R\x04topK\x12>\n" +
-	"\x04type\x18\x06 \x01(\x0e2%.artifact.artifact.v1alpha.Chunk.TypeB\x03\xe0A\x01R\x04type\x12U\n" +
-	"\x0ffile_media_type\x18\a \x01(\x0e2(.artifact.artifact.v1alpha.FileMediaTypeB\x03\xe0A\x01R\rfileMediaType\x12 \n" +
-	"\tfile_uids\x18\t \x03(\tB\x03\xe0A\x01R\bfileUids\x12\x17\n" +
+	"\x04type\x18\x06 \x01(\x0e2%.artifact.artifact.v1alpha.Chunk.TypeB\x03\xe0A\x01R\x04type\x12Z\n" +
+	"\x0ffile_media_type\x18\a \x01(\x0e2-.artifact.artifact.v1alpha.File.FileMediaTypeB\x03\xe0A\x01R\rfileMediaType\x12\x1e\n" +
+	"\bfile_ids\x18\t \x03(\tB\x03\xe0A\x01R\afileIds\x12\x17\n" +
 	"\x04tags\x18\n" +
-	" \x03(\tB\x03\xe0A\x01R\x04tagsJ\x04\b\x05\x10\x06J\x04\b\b\x10\t\"x\n" +
-	"\x1eSimilarityChunksSearchResponse\x12V\n" +
-	"\x0esimilar_chunks\x18\x01 \x03(\v2*.artifact.artifact.v1alpha.SimilarityChunkB\x03\xe0A\x03R\rsimilarChunks\"\xff\x01\n" +
-	"\x0fSimilarityChunk\x12 \n" +
-	"\tchunk_uid\x18\x01 \x01(\tB\x03\xe0A\x03R\bchunkUid\x12.\n" +
+	" \x03(\tB\x03\xe0A\x01R\x04tagsJ\x04\b\x05\x10\x06J\x04\b\b\x10\t\"n\n" +
+	"\x14SearchChunksResponse\x12V\n" +
+	"\x0esimilar_chunks\x18\x01 \x03(\v2*.artifact.artifact.v1alpha.SimilarityChunkB\x03\xe0A\x03R\rsimilarChunks\"\xfd\x01\n" +
+	"\x0fSimilarityChunk\x12\x1e\n" +
+	"\bchunk_id\x18\x01 \x01(\tB\x03\xe0A\x03R\achunkId\x12.\n" +
 	"\x10similarity_score\x18\x02 \x01(\x02B\x03\xe0A\x03R\x0fsimilarityScore\x12&\n" +
 	"\ftext_content\x18\x03 \x01(\tB\x03\xe0A\x03R\vtextContent\x12$\n" +
 	"\vsource_file\x18\x04 \x01(\tB\x03\xe0A\x03R\n" +
 	"sourceFile\x12L\n" +
-	"\x0echunk_metadata\x18\x05 \x01(\v2 .artifact.artifact.v1alpha.ChunkB\x03\xe0A\x03R\rchunkMetadata*\x9f\x01\n" +
-	"\rFileMediaType\x12\x1f\n" +
-	"\x1bFILE_MEDIA_TYPE_UNSPECIFIED\x10\x00\x12\x1c\n" +
-	"\x18FILE_MEDIA_TYPE_DOCUMENT\x10\x01\x12\x19\n" +
-	"\x15FILE_MEDIA_TYPE_IMAGE\x10\x02\x12\x19\n" +
-	"\x15FILE_MEDIA_TYPE_AUDIO\x10\x03\x12\x19\n" +
-	"\x15FILE_MEDIA_TYPE_VIDEO\x10\x04B\xfe\x01\n" +
+	"\x0echunk_metadata\x18\x05 \x01(\v2 .artifact.artifact.v1alpha.ChunkB\x03\xe0A\x03R\rchunkMetadataB\xfe\x01\n" +
 	"\x1dcom.artifact.artifact.v1alphaB\n" +
 	"ChunkProtoP\x01ZKgithub.com/instill-ai/protogen-go/artifact/artifact/v1alpha;artifactv1alpha\xa2\x02\x03AAX\xaa\x02\x19Artifact.Artifact.V1alpha\xca\x02\x19Artifact\\Artifact\\V1alpha\xe2\x02%Artifact\\Artifact\\V1alpha\\GPBMetadata\xea\x02\x1bArtifact::Artifact::V1alphab\x06proto3"
 
@@ -1295,52 +1010,44 @@ func file_artifact_artifact_v1alpha_chunk_proto_rawDescGZIP() []byte {
 	return file_artifact_artifact_v1alpha_chunk_proto_rawDescData
 }
 
-var file_artifact_artifact_v1alpha_chunk_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_artifact_artifact_v1alpha_chunk_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
+var file_artifact_artifact_v1alpha_chunk_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_artifact_artifact_v1alpha_chunk_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_artifact_artifact_v1alpha_chunk_proto_goTypes = []any{
-	(FileMediaType)(0),                     // 0: artifact.artifact.v1alpha.FileMediaType
-	(Chunk_Type)(0),                        // 1: artifact.artifact.v1alpha.Chunk.Type
-	(*Chunk)(nil),                          // 2: artifact.artifact.v1alpha.Chunk
-	(*ListChunksRequest)(nil),              // 3: artifact.artifact.v1alpha.ListChunksRequest
-	(*ListChunksResponse)(nil),             // 4: artifact.artifact.v1alpha.ListChunksResponse
-	(*SourceFile)(nil),                     // 5: artifact.artifact.v1alpha.SourceFile
-	(*GetSourceFileRequest)(nil),           // 6: artifact.artifact.v1alpha.GetSourceFileRequest
-	(*GetSourceFileResponse)(nil),          // 7: artifact.artifact.v1alpha.GetSourceFileResponse
-	(*GetFileSummaryRequest)(nil),          // 8: artifact.artifact.v1alpha.GetFileSummaryRequest
-	(*GetFileSummaryResponse)(nil),         // 9: artifact.artifact.v1alpha.GetFileSummaryResponse
-	(*SearchSourceFilesRequest)(nil),       // 10: artifact.artifact.v1alpha.SearchSourceFilesRequest
-	(*SearchSourceFilesResponse)(nil),      // 11: artifact.artifact.v1alpha.SearchSourceFilesResponse
-	(*UpdateChunkRequest)(nil),             // 12: artifact.artifact.v1alpha.UpdateChunkRequest
-	(*UpdateChunkResponse)(nil),            // 13: artifact.artifact.v1alpha.UpdateChunkResponse
-	(*SimilarityChunksSearchRequest)(nil),  // 14: artifact.artifact.v1alpha.SimilarityChunksSearchRequest
-	(*SimilarityChunksSearchResponse)(nil), // 15: artifact.artifact.v1alpha.SimilarityChunksSearchResponse
-	(*SimilarityChunk)(nil),                // 16: artifact.artifact.v1alpha.SimilarityChunk
-	(*Chunk_Reference)(nil),                // 17: artifact.artifact.v1alpha.Chunk.Reference
-	(*timestamppb.Timestamp)(nil),          // 18: google.protobuf.Timestamp
-	(*File_Position)(nil),                  // 19: artifact.artifact.v1alpha.File.Position
+	(Chunk_Type)(0),               // 0: artifact.artifact.v1alpha.Chunk.Type
+	(*Chunk)(nil),                 // 1: artifact.artifact.v1alpha.Chunk
+	(*ListChunksRequest)(nil),     // 2: artifact.artifact.v1alpha.ListChunksRequest
+	(*ListChunksResponse)(nil),    // 3: artifact.artifact.v1alpha.ListChunksResponse
+	(*GetChunkRequest)(nil),       // 4: artifact.artifact.v1alpha.GetChunkRequest
+	(*GetChunkResponse)(nil),      // 5: artifact.artifact.v1alpha.GetChunkResponse
+	(*UpdateChunkRequest)(nil),    // 6: artifact.artifact.v1alpha.UpdateChunkRequest
+	(*UpdateChunkResponse)(nil),   // 7: artifact.artifact.v1alpha.UpdateChunkResponse
+	(*SearchChunksRequest)(nil),   // 8: artifact.artifact.v1alpha.SearchChunksRequest
+	(*SearchChunksResponse)(nil),  // 9: artifact.artifact.v1alpha.SearchChunksResponse
+	(*SimilarityChunk)(nil),       // 10: artifact.artifact.v1alpha.SimilarityChunk
+	(*Chunk_Reference)(nil),       // 11: artifact.artifact.v1alpha.Chunk.Reference
+	(*timestamppb.Timestamp)(nil), // 12: google.protobuf.Timestamp
+	(File_FileMediaType)(0),       // 13: artifact.artifact.v1alpha.File.FileMediaType
+	(*File_Position)(nil),         // 14: artifact.artifact.v1alpha.File.Position
 }
 var file_artifact_artifact_v1alpha_chunk_proto_depIdxs = []int32{
-	18, // 0: artifact.artifact.v1alpha.Chunk.create_time:type_name -> google.protobuf.Timestamp
-	1,  // 1: artifact.artifact.v1alpha.Chunk.type:type_name -> artifact.artifact.v1alpha.Chunk.Type
-	17, // 2: artifact.artifact.v1alpha.Chunk.reference:type_name -> artifact.artifact.v1alpha.Chunk.Reference
-	17, // 3: artifact.artifact.v1alpha.Chunk.markdown_reference:type_name -> artifact.artifact.v1alpha.Chunk.Reference
-	2,  // 4: artifact.artifact.v1alpha.ListChunksResponse.chunks:type_name -> artifact.artifact.v1alpha.Chunk
-	18, // 5: artifact.artifact.v1alpha.SourceFile.create_time:type_name -> google.protobuf.Timestamp
-	18, // 6: artifact.artifact.v1alpha.SourceFile.update_time:type_name -> google.protobuf.Timestamp
-	5,  // 7: artifact.artifact.v1alpha.GetSourceFileResponse.source_file:type_name -> artifact.artifact.v1alpha.SourceFile
-	5,  // 8: artifact.artifact.v1alpha.SearchSourceFilesResponse.source_files:type_name -> artifact.artifact.v1alpha.SourceFile
-	2,  // 9: artifact.artifact.v1alpha.UpdateChunkResponse.chunk:type_name -> artifact.artifact.v1alpha.Chunk
-	1,  // 10: artifact.artifact.v1alpha.SimilarityChunksSearchRequest.type:type_name -> artifact.artifact.v1alpha.Chunk.Type
-	0,  // 11: artifact.artifact.v1alpha.SimilarityChunksSearchRequest.file_media_type:type_name -> artifact.artifact.v1alpha.FileMediaType
-	16, // 12: artifact.artifact.v1alpha.SimilarityChunksSearchResponse.similar_chunks:type_name -> artifact.artifact.v1alpha.SimilarityChunk
-	2,  // 13: artifact.artifact.v1alpha.SimilarityChunk.chunk_metadata:type_name -> artifact.artifact.v1alpha.Chunk
-	19, // 14: artifact.artifact.v1alpha.Chunk.Reference.start:type_name -> artifact.artifact.v1alpha.File.Position
-	19, // 15: artifact.artifact.v1alpha.Chunk.Reference.end:type_name -> artifact.artifact.v1alpha.File.Position
-	16, // [16:16] is the sub-list for method output_type
-	16, // [16:16] is the sub-list for method input_type
-	16, // [16:16] is the sub-list for extension type_name
-	16, // [16:16] is the sub-list for extension extendee
-	0,  // [0:16] is the sub-list for field type_name
+	12, // 0: artifact.artifact.v1alpha.Chunk.create_time:type_name -> google.protobuf.Timestamp
+	0,  // 1: artifact.artifact.v1alpha.Chunk.type:type_name -> artifact.artifact.v1alpha.Chunk.Type
+	11, // 2: artifact.artifact.v1alpha.Chunk.reference:type_name -> artifact.artifact.v1alpha.Chunk.Reference
+	11, // 3: artifact.artifact.v1alpha.Chunk.markdown_reference:type_name -> artifact.artifact.v1alpha.Chunk.Reference
+	1,  // 4: artifact.artifact.v1alpha.ListChunksResponse.chunks:type_name -> artifact.artifact.v1alpha.Chunk
+	1,  // 5: artifact.artifact.v1alpha.GetChunkResponse.chunk:type_name -> artifact.artifact.v1alpha.Chunk
+	1,  // 6: artifact.artifact.v1alpha.UpdateChunkResponse.chunk:type_name -> artifact.artifact.v1alpha.Chunk
+	0,  // 7: artifact.artifact.v1alpha.SearchChunksRequest.type:type_name -> artifact.artifact.v1alpha.Chunk.Type
+	13, // 8: artifact.artifact.v1alpha.SearchChunksRequest.file_media_type:type_name -> artifact.artifact.v1alpha.File.FileMediaType
+	10, // 9: artifact.artifact.v1alpha.SearchChunksResponse.similar_chunks:type_name -> artifact.artifact.v1alpha.SimilarityChunk
+	1,  // 10: artifact.artifact.v1alpha.SimilarityChunk.chunk_metadata:type_name -> artifact.artifact.v1alpha.Chunk
+	14, // 11: artifact.artifact.v1alpha.Chunk.Reference.start:type_name -> artifact.artifact.v1alpha.File.Position
+	14, // 12: artifact.artifact.v1alpha.Chunk.Reference.end:type_name -> artifact.artifact.v1alpha.File.Position
+	13, // [13:13] is the sub-list for method output_type
+	13, // [13:13] is the sub-list for method input_type
+	13, // [13:13] is the sub-list for extension type_name
+	13, // [13:13] is the sub-list for extension extendee
+	0,  // [0:13] is the sub-list for field type_name
 }
 
 func init() { file_artifact_artifact_v1alpha_chunk_proto_init() }
@@ -1348,14 +1055,15 @@ func file_artifact_artifact_v1alpha_chunk_proto_init() {
 	if File_artifact_artifact_v1alpha_chunk_proto != nil {
 		return
 	}
-	file_artifact_artifact_v1alpha_artifact_proto_init()
+	file_artifact_artifact_v1alpha_file_proto_init()
+	file_artifact_artifact_v1alpha_chunk_proto_msgTypes[1].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_artifact_artifact_v1alpha_chunk_proto_rawDesc), len(file_artifact_artifact_v1alpha_chunk_proto_rawDesc)),
-			NumEnums:      2,
-			NumMessages:   16,
+			NumEnums:      1,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
