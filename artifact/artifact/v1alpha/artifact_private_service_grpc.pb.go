@@ -52,11 +52,11 @@ type ArtifactPrivateServiceClient interface {
 	GetObjectURLAdmin(ctx context.Context, in *GetObjectURLAdminRequest, opts ...grpc.CallOption) (*GetObjectURLAdminResponse, error)
 	// Update Object (admin only)
 	UpdateObjectAdmin(ctx context.Context, in *UpdateObjectAdminRequest, opts ...grpc.CallOption) (*UpdateObjectAdminResponse, error)
-	// Delete a catalog file (admin only)
+	// Delete a knowledge base file (admin only)
 	//
-	// Deletes a file from a catalog using only the file ID. Unlike the public
-	// DeleteFile endpoint which requires namespace and catalog IDs, this
-	// admin endpoint automatically looks up the file's catalog and owner to
+	// Deletes a file from a knowledge base using only the file ID. Unlike the public
+	// DeleteFile endpoint which requires namespace and knowledge base IDs, this
+	// admin endpoint automatically looks up the file's knowledge base and owner to
 	// perform the deletion. Primarily used for integration testing and internal
 	// operations where the caller has a file ID but not the full resource path.
 	// Authentication metadata is injected automatically based on the file owner.
@@ -66,11 +66,11 @@ type ArtifactPrivateServiceClient interface {
 	// Abort knowledge base update (admin only)
 	//
 	// Cancels ongoing update workflows and cleans up staging KB resources
-	// (both finished and unfinished). Can abort specific catalogs by ID or
-	// all currently updating catalogs if no IDs provided. Sets catalog status
+	// (both finished and unfinished). Can abort specific knowledge bases by ID or
+	// all currently updating knowledge bases if no IDs provided. Sets knowledge base status
 	// to 'aborted'.
 	AbortKnowledgeBaseUpdateAdmin(ctx context.Context, in *AbortKnowledgeBaseUpdateAdminRequest, opts ...grpc.CallOption) (*AbortKnowledgeBaseUpdateAdminResponse, error)
-	// Rollback a specific catalog to previous version (admin only)
+	// Rollback a specific knowledge base to previous version (admin only)
 	RollbackAdmin(ctx context.Context, in *RollbackAdminRequest, opts ...grpc.CallOption) (*RollbackAdminResponse, error)
 	// Purge rollback immediately (admin only)
 	PurgeRollbackAdmin(ctx context.Context, in *PurgeRollbackAdminRequest, opts ...grpc.CallOption) (*PurgeRollbackAdminResponse, error)
@@ -297,11 +297,11 @@ type ArtifactPrivateServiceServer interface {
 	GetObjectURLAdmin(context.Context, *GetObjectURLAdminRequest) (*GetObjectURLAdminResponse, error)
 	// Update Object (admin only)
 	UpdateObjectAdmin(context.Context, *UpdateObjectAdminRequest) (*UpdateObjectAdminResponse, error)
-	// Delete a catalog file (admin only)
+	// Delete a knowledge base file (admin only)
 	//
-	// Deletes a file from a catalog using only the file ID. Unlike the public
-	// DeleteFile endpoint which requires namespace and catalog IDs, this
-	// admin endpoint automatically looks up the file's catalog and owner to
+	// Deletes a file from a knowledge base using only the file ID. Unlike the public
+	// DeleteFile endpoint which requires namespace and knowledge base IDs, this
+	// admin endpoint automatically looks up the file's knowledge base and owner to
 	// perform the deletion. Primarily used for integration testing and internal
 	// operations where the caller has a file ID but not the full resource path.
 	// Authentication metadata is injected automatically based on the file owner.
@@ -311,11 +311,11 @@ type ArtifactPrivateServiceServer interface {
 	// Abort knowledge base update (admin only)
 	//
 	// Cancels ongoing update workflows and cleans up staging KB resources
-	// (both finished and unfinished). Can abort specific catalogs by ID or
-	// all currently updating catalogs if no IDs provided. Sets catalog status
+	// (both finished and unfinished). Can abort specific knowledge bases by ID or
+	// all currently updating knowledge bases if no IDs provided. Sets knowledge base status
 	// to 'aborted'.
 	AbortKnowledgeBaseUpdateAdmin(context.Context, *AbortKnowledgeBaseUpdateAdminRequest) (*AbortKnowledgeBaseUpdateAdminResponse, error)
-	// Rollback a specific catalog to previous version (admin only)
+	// Rollback a specific knowledge base to previous version (admin only)
 	RollbackAdmin(context.Context, *RollbackAdminRequest) (*RollbackAdminResponse, error)
 	// Purge rollback immediately (admin only)
 	PurgeRollbackAdmin(context.Context, *PurgeRollbackAdminRequest) (*PurgeRollbackAdminResponse, error)

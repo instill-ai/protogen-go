@@ -88,7 +88,7 @@ type Chunk struct {
 	// The chunk id (same as uid).
 	Id string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
 	// The resource name of the chunk.
-	// Format: `namespaces/{namespace}/catalogs/{catalog}/files/{file}/chunks/{chunk}`.
+	// Format: `namespaces/{namespace}/knowledge-bases/{knowledge_base}/files/{file}/chunks/{chunk}`.
 	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
 	// whether the chunk is retrievable
 	Retrievable bool `protobuf:"varint,4,opt,name=retrievable,proto3" json:"retrievable,omitempty"`
@@ -241,8 +241,8 @@ type ListChunksRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// owner/namespace id
 	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// catalog id
-	CatalogId string `protobuf:"bytes,2,opt,name=catalog_id,json=catalogId,proto3" json:"catalog_id,omitempty"`
+	// knowledge base id
+	KnowledgeBaseId string `protobuf:"bytes,2,opt,name=knowledge_base_id,json=knowledgeBaseId,proto3" json:"knowledge_base_id,omitempty"`
 	// file id
 	FileId string `protobuf:"bytes,3,opt,name=file_id,json=fileId,proto3" json:"file_id,omitempty"`
 	// The maximum number of chunks to return. If this parameter is unspecified,
@@ -302,9 +302,9 @@ func (x *ListChunksRequest) GetNamespaceId() string {
 	return ""
 }
 
-func (x *ListChunksRequest) GetCatalogId() string {
+func (x *ListChunksRequest) GetKnowledgeBaseId() string {
 	if x != nil {
-		return x.CatalogId
+		return x.KnowledgeBaseId
 	}
 	return ""
 }
@@ -388,8 +388,8 @@ type GetChunkRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Namespace ID.
 	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Catalog ID.
-	CatalogId string `protobuf:"bytes,2,opt,name=catalog_id,json=catalogId,proto3" json:"catalog_id,omitempty"`
+	// Knowledge Base ID.
+	KnowledgeBaseId string `protobuf:"bytes,2,opt,name=knowledge_base_id,json=knowledgeBaseId,proto3" json:"knowledge_base_id,omitempty"`
 	// File ID.
 	FileId string `protobuf:"bytes,3,opt,name=file_id,json=fileId,proto3" json:"file_id,omitempty"`
 	// Chunk ID.
@@ -435,9 +435,9 @@ func (x *GetChunkRequest) GetNamespaceId() string {
 	return ""
 }
 
-func (x *GetChunkRequest) GetCatalogId() string {
+func (x *GetChunkRequest) GetKnowledgeBaseId() string {
 	if x != nil {
-		return x.CatalogId
+		return x.KnowledgeBaseId
 	}
 	return ""
 }
@@ -507,8 +507,8 @@ type UpdateChunkRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Namespace ID.
 	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Catalog ID.
-	CatalogId string `protobuf:"bytes,2,opt,name=catalog_id,json=catalogId,proto3" json:"catalog_id,omitempty"`
+	// Knowledge Base ID.
+	KnowledgeBaseId string `protobuf:"bytes,2,opt,name=knowledge_base_id,json=knowledgeBaseId,proto3" json:"knowledge_base_id,omitempty"`
 	// Chunk ID.
 	ChunkId string `protobuf:"bytes,3,opt,name=chunk_id,json=chunkId,proto3" json:"chunk_id,omitempty"`
 	// whether the chunk is retrievable
@@ -554,9 +554,9 @@ func (x *UpdateChunkRequest) GetNamespaceId() string {
 	return ""
 }
 
-func (x *UpdateChunkRequest) GetCatalogId() string {
+func (x *UpdateChunkRequest) GetKnowledgeBaseId() string {
 	if x != nil {
-		return x.CatalogId
+		return x.KnowledgeBaseId
 	}
 	return ""
 }
@@ -624,10 +624,10 @@ func (x *UpdateChunkResponse) GetChunk() *Chunk {
 // SearchChunksRequest represents a request to search for similar chunks.
 type SearchChunksRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// ID of the namespace owning the catalog.
+	// ID of the namespace owning the knowledge base.
 	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// ID of the catalog.
-	CatalogId string `protobuf:"bytes,2,opt,name=catalog_id,json=catalogId,proto3" json:"catalog_id,omitempty"`
+	// ID of the knowledge base.
+	KnowledgeBaseId string `protobuf:"bytes,2,opt,name=knowledge_base_id,json=knowledgeBaseId,proto3" json:"knowledge_base_id,omitempty"`
 	// Text prompt to look for similarities.
 	TextPrompt string `protobuf:"bytes,3,opt,name=text_prompt,json=textPrompt,proto3" json:"text_prompt,omitempty"`
 	// Top K. Default value: 5.
@@ -683,9 +683,9 @@ func (x *SearchChunksRequest) GetNamespaceId() string {
 	return ""
 }
 
-func (x *SearchChunksRequest) GetCatalogId() string {
+func (x *SearchChunksRequest) GetKnowledgeBaseId() string {
 	if x != nil {
-		return x.CatalogId
+		return x.KnowledgeBaseId
 	}
 	return ""
 }
@@ -919,7 +919,7 @@ var File_artifact_artifact_v1alpha_chunk_proto protoreflect.FileDescriptor
 
 const file_artifact_artifact_v1alpha_chunk_proto_rawDesc = "" +
 	"\n" +
-	"%artifact/artifact/v1alpha/chunk.proto\x12\x19artifact.artifact.v1alpha\x1a$artifact/artifact/v1alpha/file.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xea\x06\n" +
+	"%artifact/artifact/v1alpha/chunk.proto\x12\x19artifact.artifact.v1alpha\x1a$artifact/artifact/v1alpha/file.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xf8\x06\n" +
 	"\x05Chunk\x12\x15\n" +
 	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12\x17\n" +
@@ -942,11 +942,10 @@ const file_artifact_artifact_v1alpha_chunk_proto_rawDesc = "" +
 	"\x10TYPE_UNSPECIFIED\x10\x00\x12\x10\n" +
 	"\fTYPE_CONTENT\x10\x01\x12\x10\n" +
 	"\fTYPE_SUMMARY\x10\x02\x12\x12\n" +
-	"\x0eTYPE_AUGMENTED\x10\x03:J\xeaAG\x12Enamespaces/{namespace}/catalogs/{catalog}/files/{file}/chunks/{chunk}\"\x97\x02\n" +
+	"\x0eTYPE_AUGMENTED\x10\x03:X\xeaAU\x12Snamespaces/{namespace}/knowledge-bases/{knowledge_base}/files/{file}/chunks/{chunk}\"\xa4\x02\n" +
 	"\x11ListChunksRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\"\n" +
-	"\n" +
-	"catalog_id\x18\x02 \x01(\tB\x03\xe0A\x02R\tcatalogId\x12\x1c\n" +
+	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12/\n" +
+	"\x11knowledge_base_id\x18\x02 \x01(\tB\x03\xe0A\x02R\x0fknowledgeBaseId\x12\x1c\n" +
 	"\afile_id\x18\x03 \x01(\tB\x03\xe0A\x02R\x06fileId\x12%\n" +
 	"\tpage_size\x18\x04 \x01(\x05B\x03\xe0A\x01H\x00R\bpageSize\x88\x01\x01\x12'\n" +
 	"\n" +
@@ -957,27 +956,24 @@ const file_artifact_artifact_v1alpha_chunk_proto_rawDesc = "" +
 	"\v_page_tokenB\t\n" +
 	"\a_filter\"S\n" +
 	"\x12ListChunksResponse\x12=\n" +
-	"\x06chunks\x18\x01 \x03(\v2 .artifact.artifact.v1alpha.ChunkB\x03\xe0A\x03R\x06chunks\"\x9b\x01\n" +
+	"\x06chunks\x18\x01 \x03(\v2 .artifact.artifact.v1alpha.ChunkB\x03\xe0A\x03R\x06chunks\"\xa8\x01\n" +
 	"\x0fGetChunkRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\"\n" +
-	"\n" +
-	"catalog_id\x18\x02 \x01(\tB\x03\xe0A\x02R\tcatalogId\x12\x1c\n" +
+	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12/\n" +
+	"\x11knowledge_base_id\x18\x02 \x01(\tB\x03\xe0A\x02R\x0fknowledgeBaseId\x12\x1c\n" +
 	"\afile_id\x18\x03 \x01(\tB\x03\xe0A\x02R\x06fileId\x12\x1e\n" +
 	"\bchunk_id\x18\x04 \x01(\tB\x03\xe0A\x02R\achunkId\"O\n" +
 	"\x10GetChunkResponse\x12;\n" +
-	"\x05chunk\x18\x01 \x01(\v2 .artifact.artifact.v1alpha.ChunkB\x03\xe0A\x03R\x05chunk\"\xa7\x01\n" +
+	"\x05chunk\x18\x01 \x01(\v2 .artifact.artifact.v1alpha.ChunkB\x03\xe0A\x03R\x05chunk\"\xb4\x01\n" +
 	"\x12UpdateChunkRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\"\n" +
-	"\n" +
-	"catalog_id\x18\x02 \x01(\tB\x03\xe0A\x02R\tcatalogId\x12\x1e\n" +
+	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12/\n" +
+	"\x11knowledge_base_id\x18\x02 \x01(\tB\x03\xe0A\x02R\x0fknowledgeBaseId\x12\x1e\n" +
 	"\bchunk_id\x18\x03 \x01(\tB\x03\xe0A\x02R\achunkId\x12%\n" +
 	"\vretrievable\x18\x04 \x01(\bB\x03\xe0A\x02R\vretrievable\"R\n" +
 	"\x13UpdateChunkResponse\x12;\n" +
-	"\x05chunk\x18\x01 \x01(\v2 .artifact.artifact.v1alpha.ChunkB\x03\xe0A\x03R\x05chunk\"\x82\x03\n" +
+	"\x05chunk\x18\x01 \x01(\v2 .artifact.artifact.v1alpha.ChunkB\x03\xe0A\x03R\x05chunk\"\x8f\x03\n" +
 	"\x13SearchChunksRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\"\n" +
-	"\n" +
-	"catalog_id\x18\x02 \x01(\tB\x03\xe0A\x02R\tcatalogId\x12$\n" +
+	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12/\n" +
+	"\x11knowledge_base_id\x18\x02 \x01(\tB\x03\xe0A\x02R\x0fknowledgeBaseId\x12$\n" +
 	"\vtext_prompt\x18\x03 \x01(\tB\x03\xe0A\x02R\n" +
 	"textPrompt\x12\x18\n" +
 	"\x05top_k\x18\x04 \x01(\rB\x03\xe0A\x01R\x04topK\x12>\n" +

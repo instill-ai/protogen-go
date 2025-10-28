@@ -174,15 +174,15 @@ func (SetRollbackRetentionAdminRequest_TimeUnit) EnumDescriptor() ([]byte, []int
 // KnowledgeBaseUpdateDetails provides detailed information about a knowledge base update
 type KnowledgeBaseUpdateDetails struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// UID of the catalog
-	CatalogUid string `protobuf:"bytes,1,opt,name=catalog_uid,json=catalogUid,proto3" json:"catalog_uid,omitempty"`
-	// Status of the catalog update
+	// UID of the knowledge base
+	KnowledgeBaseUid string `protobuf:"bytes,1,opt,name=knowledge_base_uid,json=knowledgeBaseUid,proto3" json:"knowledge_base_uid,omitempty"`
+	// Status of the knowledge base update
 	Status KnowledgeBaseUpdateStatus `protobuf:"varint,2,opt,name=status,proto3,enum=artifact.artifact.v1alpha.KnowledgeBaseUpdateStatus" json:"status,omitempty"`
-	// Workflow ID of the catalog update
+	// Workflow ID of the knowledge base update
 	WorkflowId string `protobuf:"bytes,3,opt,name=workflow_id,json=workflowId,proto3" json:"workflow_id,omitempty"`
-	// Started at time of the catalog update
+	// Started at time of the knowledge base update
 	StartedAt string `protobuf:"bytes,4,opt,name=started_at,json=startedAt,proto3" json:"started_at,omitempty"`
-	// Completed at time of the catalog update
+	// Completed at time of the knowledge base update
 	CompletedAt string `protobuf:"bytes,5,opt,name=completed_at,json=completedAt,proto3" json:"completed_at,omitempty"`
 	// Number of files processed
 	FilesProcessed int32 `protobuf:"varint,6,opt,name=files_processed,json=filesProcessed,proto3" json:"files_processed,omitempty"`
@@ -240,9 +240,9 @@ func (*KnowledgeBaseUpdateDetails) Descriptor() ([]byte, []int) {
 	return file_artifact_artifact_v1alpha_update_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *KnowledgeBaseUpdateDetails) GetCatalogUid() string {
+func (x *KnowledgeBaseUpdateDetails) GetKnowledgeBaseUid() string {
 	if x != nil {
-		return x.CatalogUid
+		return x.KnowledgeBaseUid
 	}
 	return ""
 }
@@ -313,7 +313,7 @@ func (x *KnowledgeBaseUpdateDetails) GetPreviousSystemId() string {
 // RollbackAdminRequest (admin only)
 type RollbackAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Format: users/{user}/catalogs/{catalog}
+	// Format: users/{user}/knowledge-bases/{knowledge_base}
 	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -359,8 +359,8 @@ func (x *RollbackAdminRequest) GetName() string {
 // RollbackAdminResponse (admin only)
 type RollbackAdminResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The rolled-back catalog
-	Catalog *Catalog `protobuf:"bytes,1,opt,name=catalog,proto3" json:"catalog,omitempty"`
+	// The rolled-back knowledge base
+	KnowledgeBase *KnowledgeBase `protobuf:"bytes,1,opt,name=knowledge_base,json=knowledgeBase,proto3" json:"knowledge_base,omitempty"`
 	// Status message
 	Message       string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -397,9 +397,9 @@ func (*RollbackAdminResponse) Descriptor() ([]byte, []int) {
 	return file_artifact_artifact_v1alpha_update_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *RollbackAdminResponse) GetCatalog() *Catalog {
+func (x *RollbackAdminResponse) GetKnowledgeBase() *KnowledgeBase {
 	if x != nil {
-		return x.Catalog
+		return x.KnowledgeBase
 	}
 	return nil
 }
@@ -414,7 +414,7 @@ func (x *RollbackAdminResponse) GetMessage() string {
 // PurgeRollbackAdminRequest (admin only)
 type PurgeRollbackAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Format: users/{user}/catalogs/{catalog}
+	// Format: users/{user}/knowledge-bases/{knowledge_base}
 	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -462,8 +462,8 @@ type PurgeRollbackAdminResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Whether the purge was successful
 	Success bool `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	// UID of the purged catalog
-	PurgedCatalogUid string `protobuf:"bytes,2,opt,name=purged_catalog_uid,json=purgedCatalogUid,proto3" json:"purged_catalog_uid,omitempty"`
+	// UID of the purged knowledge base
+	PurgedKnowledgeBaseUid string `protobuf:"bytes,2,opt,name=purged_knowledge_base_uid,json=purgedKnowledgeBaseUid,proto3" json:"purged_knowledge_base_uid,omitempty"`
 	// Number of files deleted
 	DeletedFiles int32 `protobuf:"varint,3,opt,name=deleted_files,json=deletedFiles,proto3" json:"deleted_files,omitempty"`
 	// Status message
@@ -509,9 +509,9 @@ func (x *PurgeRollbackAdminResponse) GetSuccess() bool {
 	return false
 }
 
-func (x *PurgeRollbackAdminResponse) GetPurgedCatalogUid() string {
+func (x *PurgeRollbackAdminResponse) GetPurgedKnowledgeBaseUid() string {
 	if x != nil {
-		return x.PurgedCatalogUid
+		return x.PurgedKnowledgeBaseUid
 	}
 	return ""
 }
@@ -533,7 +533,7 @@ func (x *PurgeRollbackAdminResponse) GetMessage() string {
 // SetRollbackRetentionAdminRequest (admin only)
 type SetRollbackRetentionAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Format: users/{user}/catalogs/{catalog}
+	// Format: users/{user}/knowledge-bases/{knowledge_base}
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Duration value (e.g., 5, 30, 24, 7)
 	Duration int32 `protobuf:"varint,2,opt,name=duration,proto3" json:"duration,omitempty"`
@@ -762,13 +762,13 @@ func (x *GetKnowledgeBaseUpdateStatusAdminResponse) GetMessage() string {
 // ExecuteKnowledgeBaseUpdateAdminRequest (admin only)
 type ExecuteKnowledgeBaseUpdateAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Optional: Specific catalog IDs to update. If empty, updates all eligible catalogs.
-	CatalogIds []string `protobuf:"bytes,1,rep,name=catalog_ids,json=catalogIds,proto3" json:"catalog_ids,omitempty"`
+	// Optional: Specific knowledge base IDs to update. If empty, updates all eligible knowledge bases.
+	KnowledgeBaseIds []string `protobuf:"bytes,1,rep,name=knowledge_base_ids,json=knowledgeBaseIds,proto3" json:"knowledge_base_ids,omitempty"`
 	// Optional: System ID containing configuration to apply.
 	// If specified, uses config from system table where id=<this value>
 	// If not specified, KBs keep their current config (useful for reprocessing).
 	SystemId *string `protobuf:"bytes,2,opt,name=system_id,json=systemId,proto3,oneof" json:"system_id,omitempty"`
-	// Optional: Tags to filter which catalogs to update (OR logic - match any tag).
+	// Optional: Tags to filter which knowledge bases to update (OR logic - match any tag).
 	Tags          []string `protobuf:"bytes,3,rep,name=tags,proto3" json:"tags,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -804,9 +804,9 @@ func (*ExecuteKnowledgeBaseUpdateAdminRequest) Descriptor() ([]byte, []int) {
 	return file_artifact_artifact_v1alpha_update_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *ExecuteKnowledgeBaseUpdateAdminRequest) GetCatalogIds() []string {
+func (x *ExecuteKnowledgeBaseUpdateAdminRequest) GetKnowledgeBaseIds() []string {
 	if x != nil {
-		return x.CatalogIds
+		return x.KnowledgeBaseIds
 	}
 	return nil
 }
@@ -892,10 +892,10 @@ func (x *ExecuteKnowledgeBaseUpdateAdminResponse) GetDetails() []*KnowledgeBaseU
 // AbortKnowledgeBaseUpdateAdminRequest (admin only)
 type AbortKnowledgeBaseUpdateAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Optional: Specific catalog IDs to abort. If empty, aborts all currently updating catalogs.
-	CatalogIds    []string `protobuf:"bytes,1,rep,name=catalog_ids,json=catalogIds,proto3" json:"catalog_ids,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	// Optional: Specific knowledge base IDs to abort. If empty, aborts all currently updating knowledge bases.
+	KnowledgeBaseIds []string `protobuf:"bytes,1,rep,name=knowledge_base_ids,json=knowledgeBaseIds,proto3" json:"knowledge_base_ids,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *AbortKnowledgeBaseUpdateAdminRequest) Reset() {
@@ -928,9 +928,9 @@ func (*AbortKnowledgeBaseUpdateAdminRequest) Descriptor() ([]byte, []int) {
 	return file_artifact_artifact_v1alpha_update_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *AbortKnowledgeBaseUpdateAdminRequest) GetCatalogIds() []string {
+func (x *AbortKnowledgeBaseUpdateAdminRequest) GetKnowledgeBaseIds() []string {
 	if x != nil {
-		return x.CatalogIds
+		return x.KnowledgeBaseIds
 	}
 	return nil
 }
@@ -1003,10 +1003,9 @@ var File_artifact_artifact_v1alpha_update_proto protoreflect.FileDescriptor
 
 const file_artifact_artifact_v1alpha_update_proto_rawDesc = "" +
 	"\n" +
-	"&artifact/artifact/v1alpha/update.proto\x12\x19artifact.artifact.v1alpha\x1a'artifact/artifact/v1alpha/catalog.proto\"\xb7\x03\n" +
-	"\x1aKnowledgeBaseUpdateDetails\x12\x1f\n" +
-	"\vcatalog_uid\x18\x01 \x01(\tR\n" +
-	"catalogUid\x12L\n" +
+	"&artifact/artifact/v1alpha/update.proto\x12\x19artifact.artifact.v1alpha\x1a.artifact/artifact/v1alpha/knowledge_base.proto\"\xc4\x03\n" +
+	"\x1aKnowledgeBaseUpdateDetails\x12,\n" +
+	"\x12knowledge_base_uid\x18\x01 \x01(\tR\x10knowledgeBaseUid\x12L\n" +
 	"\x06status\x18\x02 \x01(\x0e24.artifact.artifact.v1alpha.KnowledgeBaseUpdateStatusR\x06status\x12\x1f\n" +
 	"\vworkflow_id\x18\x03 \x01(\tR\n" +
 	"workflowId\x12\x1d\n" +
@@ -1021,15 +1020,15 @@ const file_artifact_artifact_v1alpha_update_proto_rawDesc = "" +
 	"\x12previous_system_id\x18\n" +
 	" \x01(\tR\x10previousSystemId\"*\n" +
 	"\x14RollbackAdminRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\"o\n" +
-	"\x15RollbackAdminResponse\x12<\n" +
-	"\acatalog\x18\x01 \x01(\v2\".artifact.artifact.v1alpha.CatalogR\acatalog\x12\x18\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\"\x82\x01\n" +
+	"\x15RollbackAdminResponse\x12O\n" +
+	"\x0eknowledge_base\x18\x01 \x01(\v2(.artifact.artifact.v1alpha.KnowledgeBaseR\rknowledgeBase\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"/\n" +
 	"\x19PurgeRollbackAdminRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\"\xa3\x01\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\"\xb0\x01\n" +
 	"\x1aPurgeRollbackAdminResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\x12,\n" +
-	"\x12purged_catalog_uid\x18\x02 \x01(\tR\x10purgedCatalogUid\x12#\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x129\n" +
+	"\x19purged_knowledge_base_uid\x18\x02 \x01(\tR\x16purgedKnowledgeBaseUid\x12#\n" +
 	"\rdeleted_files\x18\x03 \x01(\x05R\fdeletedFiles\x12\x18\n" +
 	"\amessage\x18\x04 \x01(\tR\amessage\"\xaf\x02\n" +
 	" SetRollbackRetentionAdminRequest\x12\x12\n" +
@@ -1050,10 +1049,9 @@ const file_artifact_artifact_v1alpha_update_proto_rawDesc = "" +
 	")GetKnowledgeBaseUpdateStatusAdminResponse\x12,\n" +
 	"\x12update_in_progress\x18\x01 \x01(\bR\x10updateInProgress\x12O\n" +
 	"\adetails\x18\x02 \x03(\v25.artifact.artifact.v1alpha.KnowledgeBaseUpdateDetailsR\adetails\x12\x18\n" +
-	"\amessage\x18\x03 \x01(\tR\amessage\"\x8d\x01\n" +
-	"&ExecuteKnowledgeBaseUpdateAdminRequest\x12\x1f\n" +
-	"\vcatalog_ids\x18\x01 \x03(\tR\n" +
-	"catalogIds\x12 \n" +
+	"\amessage\x18\x03 \x01(\tR\amessage\"\x9a\x01\n" +
+	"&ExecuteKnowledgeBaseUpdateAdminRequest\x12,\n" +
+	"\x12knowledge_base_ids\x18\x01 \x03(\tR\x10knowledgeBaseIds\x12 \n" +
 	"\tsystem_id\x18\x02 \x01(\tH\x00R\bsystemId\x88\x01\x01\x12\x12\n" +
 	"\x04tags\x18\x03 \x03(\tR\x04tagsB\f\n" +
 	"\n" +
@@ -1061,10 +1059,9 @@ const file_artifact_artifact_v1alpha_update_proto_rawDesc = "" +
 	"'ExecuteKnowledgeBaseUpdateAdminResponse\x12\x18\n" +
 	"\astarted\x18\x01 \x01(\bR\astarted\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12O\n" +
-	"\adetails\x18\x03 \x03(\v25.artifact.artifact.v1alpha.KnowledgeBaseUpdateDetailsR\adetails\"G\n" +
-	"$AbortKnowledgeBaseUpdateAdminRequest\x12\x1f\n" +
-	"\vcatalog_ids\x18\x01 \x03(\tR\n" +
-	"catalogIds\"\xac\x01\n" +
+	"\adetails\x18\x03 \x03(\v25.artifact.artifact.v1alpha.KnowledgeBaseUpdateDetailsR\adetails\"T\n" +
+	"$AbortKnowledgeBaseUpdateAdminRequest\x12,\n" +
+	"\x12knowledge_base_ids\x18\x01 \x03(\tR\x10knowledgeBaseIds\"\xac\x01\n" +
 	"%AbortKnowledgeBaseUpdateAdminResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12O\n" +
@@ -1112,11 +1109,11 @@ var file_artifact_artifact_v1alpha_update_proto_goTypes = []any{
 	(*ExecuteKnowledgeBaseUpdateAdminResponse)(nil),   // 12: artifact.artifact.v1alpha.ExecuteKnowledgeBaseUpdateAdminResponse
 	(*AbortKnowledgeBaseUpdateAdminRequest)(nil),      // 13: artifact.artifact.v1alpha.AbortKnowledgeBaseUpdateAdminRequest
 	(*AbortKnowledgeBaseUpdateAdminResponse)(nil),     // 14: artifact.artifact.v1alpha.AbortKnowledgeBaseUpdateAdminResponse
-	(*Catalog)(nil), // 15: artifact.artifact.v1alpha.Catalog
+	(*KnowledgeBase)(nil),                             // 15: artifact.artifact.v1alpha.KnowledgeBase
 }
 var file_artifact_artifact_v1alpha_update_proto_depIdxs = []int32{
 	0,  // 0: artifact.artifact.v1alpha.KnowledgeBaseUpdateDetails.status:type_name -> artifact.artifact.v1alpha.KnowledgeBaseUpdateStatus
-	15, // 1: artifact.artifact.v1alpha.RollbackAdminResponse.catalog:type_name -> artifact.artifact.v1alpha.Catalog
+	15, // 1: artifact.artifact.v1alpha.RollbackAdminResponse.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
 	1,  // 2: artifact.artifact.v1alpha.SetRollbackRetentionAdminRequest.time_unit:type_name -> artifact.artifact.v1alpha.SetRollbackRetentionAdminRequest.TimeUnit
 	2,  // 3: artifact.artifact.v1alpha.GetKnowledgeBaseUpdateStatusAdminResponse.details:type_name -> artifact.artifact.v1alpha.KnowledgeBaseUpdateDetails
 	2,  // 4: artifact.artifact.v1alpha.ExecuteKnowledgeBaseUpdateAdminResponse.details:type_name -> artifact.artifact.v1alpha.KnowledgeBaseUpdateDetails
@@ -1133,7 +1130,7 @@ func file_artifact_artifact_v1alpha_update_proto_init() {
 	if File_artifact_artifact_v1alpha_update_proto != nil {
 		return
 	}
-	file_artifact_artifact_v1alpha_catalog_proto_init()
+	file_artifact_artifact_v1alpha_knowledge_base_proto_init()
 	file_artifact_artifact_v1alpha_update_proto_msgTypes[9].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{

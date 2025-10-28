@@ -26,72 +26,72 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// CatalogRunAction describes the actions a user has over a catalog.
-type CatalogRunAction int32
+// KnowledgeBaseRunAction describes the actions a user has over a knowledge base.
+type KnowledgeBaseRunAction int32
 
 const (
 	// Unspecified.
-	CatalogRunAction_CATALOG_RUN_ACTION_UNSPECIFIED CatalogRunAction = 0
-	// Create catalog.
-	CatalogRunAction_CATALOG_RUN_ACTION_CREATE CatalogRunAction = 1
-	// Update catalog.
-	CatalogRunAction_CATALOG_RUN_ACTION_UPDATE CatalogRunAction = 2
-	// Delete catalog.
-	CatalogRunAction_CATALOG_RUN_ACTION_DELETE CatalogRunAction = 3
-	// Upload catalog file.
-	CatalogRunAction_CATALOG_RUN_ACTION_CREATE_FILE CatalogRunAction = 4
-	// Process catalog file.
-	CatalogRunAction_CATALOG_RUN_ACTION_PROCESS_FILE CatalogRunAction = 5
-	// Delete catalog file.
-	CatalogRunAction_CATALOG_RUN_ACTION_DELETE_FILE CatalogRunAction = 6
+	KnowledgeBaseRunAction_KNOWLEDGE_BASE_RUN_ACTION_UNSPECIFIED KnowledgeBaseRunAction = 0
+	// Create knowledge base.
+	KnowledgeBaseRunAction_KNOWLEDGE_BASE_RUN_ACTION_CREATE KnowledgeBaseRunAction = 1
+	// Update knowledge base.
+	KnowledgeBaseRunAction_KNOWLEDGE_BASE_RUN_ACTION_UPDATE KnowledgeBaseRunAction = 2
+	// Delete knowledge base.
+	KnowledgeBaseRunAction_KNOWLEDGE_BASE_RUN_ACTION_DELETE KnowledgeBaseRunAction = 3
+	// Upload knowledge base file.
+	KnowledgeBaseRunAction_KNOWLEDGE_BASE_RUN_ACTION_CREATE_FILE KnowledgeBaseRunAction = 4
+	// Process knowledge base file.
+	KnowledgeBaseRunAction_KNOWLEDGE_BASE_RUN_ACTION_PROCESS_FILE KnowledgeBaseRunAction = 5
+	// Delete knowledge base file.
+	KnowledgeBaseRunAction_KNOWLEDGE_BASE_RUN_ACTION_DELETE_FILE KnowledgeBaseRunAction = 6
 )
 
-// Enum value maps for CatalogRunAction.
+// Enum value maps for KnowledgeBaseRunAction.
 var (
-	CatalogRunAction_name = map[int32]string{
-		0: "CATALOG_RUN_ACTION_UNSPECIFIED",
-		1: "CATALOG_RUN_ACTION_CREATE",
-		2: "CATALOG_RUN_ACTION_UPDATE",
-		3: "CATALOG_RUN_ACTION_DELETE",
-		4: "CATALOG_RUN_ACTION_CREATE_FILE",
-		5: "CATALOG_RUN_ACTION_PROCESS_FILE",
-		6: "CATALOG_RUN_ACTION_DELETE_FILE",
+	KnowledgeBaseRunAction_name = map[int32]string{
+		0: "KNOWLEDGE_BASE_RUN_ACTION_UNSPECIFIED",
+		1: "KNOWLEDGE_BASE_RUN_ACTION_CREATE",
+		2: "KNOWLEDGE_BASE_RUN_ACTION_UPDATE",
+		3: "KNOWLEDGE_BASE_RUN_ACTION_DELETE",
+		4: "KNOWLEDGE_BASE_RUN_ACTION_CREATE_FILE",
+		5: "KNOWLEDGE_BASE_RUN_ACTION_PROCESS_FILE",
+		6: "KNOWLEDGE_BASE_RUN_ACTION_DELETE_FILE",
 	}
-	CatalogRunAction_value = map[string]int32{
-		"CATALOG_RUN_ACTION_UNSPECIFIED":  0,
-		"CATALOG_RUN_ACTION_CREATE":       1,
-		"CATALOG_RUN_ACTION_UPDATE":       2,
-		"CATALOG_RUN_ACTION_DELETE":       3,
-		"CATALOG_RUN_ACTION_CREATE_FILE":  4,
-		"CATALOG_RUN_ACTION_PROCESS_FILE": 5,
-		"CATALOG_RUN_ACTION_DELETE_FILE":  6,
+	KnowledgeBaseRunAction_value = map[string]int32{
+		"KNOWLEDGE_BASE_RUN_ACTION_UNSPECIFIED":  0,
+		"KNOWLEDGE_BASE_RUN_ACTION_CREATE":       1,
+		"KNOWLEDGE_BASE_RUN_ACTION_UPDATE":       2,
+		"KNOWLEDGE_BASE_RUN_ACTION_DELETE":       3,
+		"KNOWLEDGE_BASE_RUN_ACTION_CREATE_FILE":  4,
+		"KNOWLEDGE_BASE_RUN_ACTION_PROCESS_FILE": 5,
+		"KNOWLEDGE_BASE_RUN_ACTION_DELETE_FILE":  6,
 	}
 )
 
-func (x CatalogRunAction) Enum() *CatalogRunAction {
-	p := new(CatalogRunAction)
+func (x KnowledgeBaseRunAction) Enum() *KnowledgeBaseRunAction {
+	p := new(KnowledgeBaseRunAction)
 	*p = x
 	return p
 }
 
-func (x CatalogRunAction) String() string {
+func (x KnowledgeBaseRunAction) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (CatalogRunAction) Descriptor() protoreflect.EnumDescriptor {
+func (KnowledgeBaseRunAction) Descriptor() protoreflect.EnumDescriptor {
 	return file_artifact_artifact_v1alpha_artifact_proto_enumTypes[0].Descriptor()
 }
 
-func (CatalogRunAction) Type() protoreflect.EnumType {
+func (KnowledgeBaseRunAction) Type() protoreflect.EnumType {
 	return &file_artifact_artifact_v1alpha_artifact_proto_enumTypes[0]
 }
 
-func (x CatalogRunAction) Number() protoreflect.EnumNumber {
+func (x KnowledgeBaseRunAction) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use CatalogRunAction.Descriptor instead.
-func (CatalogRunAction) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use KnowledgeBaseRunAction.Descriptor instead.
+func (KnowledgeBaseRunAction) EnumDescriptor() ([]byte, []int) {
 	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{0}
 }
 
@@ -279,17 +279,17 @@ func (x *ReadinessResponse) GetHealthCheckResponse() *v1beta.HealthCheckResponse
 	return nil
 }
 
-// CatalogRun represents a single execution of a catalog action.
-type CatalogRun struct {
+// KnowledgeBaseRun represents a single execution of a knowledge base action.
+type KnowledgeBaseRun struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Unique identifier for each run.
 	Uid string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
-	// catalog uid
-	CatalogUid string `protobuf:"bytes,2,opt,name=catalog_uid,json=catalogUid,proto3" json:"catalog_uid,omitempty"`
+	// knowledge base uid
+	KnowledgeBaseUid string `protobuf:"bytes,2,opt,name=knowledge_base_uid,json=knowledgeBaseUid,proto3" json:"knowledge_base_uid,omitempty"`
 	// The file uids.
 	FileUids []string `protobuf:"bytes,3,rep,name=file_uids,json=fileUids,proto3" json:"file_uids,omitempty"`
-	// Action of the catalog run.
-	Action CatalogRunAction `protobuf:"varint,4,opt,name=action,proto3,enum=artifact.artifact.v1alpha.CatalogRunAction" json:"action,omitempty"`
+	// Action of the knowledge base run.
+	Action KnowledgeBaseRunAction `protobuf:"varint,4,opt,name=action,proto3,enum=artifact.artifact.v1alpha.KnowledgeBaseRunAction" json:"action,omitempty"`
 	// Current status of the run.
 	Status v1alpha.RunStatus `protobuf:"varint,5,opt,name=status,proto3,enum=common.run.v1alpha.RunStatus" json:"status,omitempty"`
 	// Origin of the run.
@@ -314,20 +314,20 @@ type CatalogRun struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CatalogRun) Reset() {
-	*x = CatalogRun{}
+func (x *KnowledgeBaseRun) Reset() {
+	*x = KnowledgeBaseRun{}
 	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CatalogRun) String() string {
+func (x *KnowledgeBaseRun) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CatalogRun) ProtoMessage() {}
+func (*KnowledgeBaseRun) ProtoMessage() {}
 
-func (x *CatalogRun) ProtoReflect() protoreflect.Message {
+func (x *KnowledgeBaseRun) ProtoReflect() protoreflect.Message {
 	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -339,114 +339,114 @@ func (x *CatalogRun) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CatalogRun.ProtoReflect.Descriptor instead.
-func (*CatalogRun) Descriptor() ([]byte, []int) {
+// Deprecated: Use KnowledgeBaseRun.ProtoReflect.Descriptor instead.
+func (*KnowledgeBaseRun) Descriptor() ([]byte, []int) {
 	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *CatalogRun) GetUid() string {
+func (x *KnowledgeBaseRun) GetUid() string {
 	if x != nil {
 		return x.Uid
 	}
 	return ""
 }
 
-func (x *CatalogRun) GetCatalogUid() string {
+func (x *KnowledgeBaseRun) GetKnowledgeBaseUid() string {
 	if x != nil {
-		return x.CatalogUid
+		return x.KnowledgeBaseUid
 	}
 	return ""
 }
 
-func (x *CatalogRun) GetFileUids() []string {
+func (x *KnowledgeBaseRun) GetFileUids() []string {
 	if x != nil {
 		return x.FileUids
 	}
 	return nil
 }
 
-func (x *CatalogRun) GetAction() CatalogRunAction {
+func (x *KnowledgeBaseRun) GetAction() KnowledgeBaseRunAction {
 	if x != nil {
 		return x.Action
 	}
-	return CatalogRunAction_CATALOG_RUN_ACTION_UNSPECIFIED
+	return KnowledgeBaseRunAction_KNOWLEDGE_BASE_RUN_ACTION_UNSPECIFIED
 }
 
-func (x *CatalogRun) GetStatus() v1alpha.RunStatus {
+func (x *KnowledgeBaseRun) GetStatus() v1alpha.RunStatus {
 	if x != nil {
 		return x.Status
 	}
 	return v1alpha.RunStatus(0)
 }
 
-func (x *CatalogRun) GetSource() v1alpha.RunSource {
+func (x *KnowledgeBaseRun) GetSource() v1alpha.RunSource {
 	if x != nil {
 		return x.Source
 	}
 	return v1alpha.RunSource(0)
 }
 
-func (x *CatalogRun) GetTotalDuration() int32 {
+func (x *KnowledgeBaseRun) GetTotalDuration() int32 {
 	if x != nil && x.TotalDuration != nil {
 		return *x.TotalDuration
 	}
 	return 0
 }
 
-func (x *CatalogRun) GetRunnerId() string {
+func (x *KnowledgeBaseRun) GetRunnerId() string {
 	if x != nil && x.RunnerId != nil {
 		return *x.RunnerId
 	}
 	return ""
 }
 
-func (x *CatalogRun) GetNamespaceId() string {
+func (x *KnowledgeBaseRun) GetNamespaceId() string {
 	if x != nil && x.NamespaceId != nil {
 		return *x.NamespaceId
 	}
 	return ""
 }
 
-func (x *CatalogRun) GetPayload() *structpb.Struct {
+func (x *KnowledgeBaseRun) GetPayload() *structpb.Struct {
 	if x != nil {
 		return x.Payload
 	}
 	return nil
 }
 
-func (x *CatalogRun) GetStartTime() *timestamppb.Timestamp {
+func (x *KnowledgeBaseRun) GetStartTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.StartTime
 	}
 	return nil
 }
 
-func (x *CatalogRun) GetCompleteTime() *timestamppb.Timestamp {
+func (x *KnowledgeBaseRun) GetCompleteTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CompleteTime
 	}
 	return nil
 }
 
-func (x *CatalogRun) GetError() string {
+func (x *KnowledgeBaseRun) GetError() string {
 	if x != nil && x.Error != nil {
 		return *x.Error
 	}
 	return ""
 }
 
-func (x *CatalogRun) GetCreditAmount() float32 {
+func (x *KnowledgeBaseRun) GetCreditAmount() float32 {
 	if x != nil && x.CreditAmount != nil {
 		return *x.CreditAmount
 	}
 	return 0
 }
 
-// ListCatalogRunsResponse is the response message for ListCatalogRuns.
-type ListCatalogRunsResponse struct {
+// ListKnowledgeBaseRunsResponse is the response message for ListKnowledgeBaseRuns.
+type ListKnowledgeBaseRunsResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The list of runs.
-	CatalogRuns []*CatalogRun `protobuf:"bytes,1,rep,name=catalog_runs,json=catalogRuns,proto3" json:"catalog_runs,omitempty"`
+	KnowledgeBaseRuns []*KnowledgeBaseRun `protobuf:"bytes,1,rep,name=knowledge_base_runs,json=knowledgeBaseRuns,proto3" json:"knowledge_base_runs,omitempty"`
 	// The total number of runs matching the request.
 	TotalSize int32 `protobuf:"varint,2,opt,name=total_size,json=totalSize,proto3" json:"total_size,omitempty"`
 	// The current page number.
@@ -457,20 +457,20 @@ type ListCatalogRunsResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ListCatalogRunsResponse) Reset() {
-	*x = ListCatalogRunsResponse{}
+func (x *ListKnowledgeBaseRunsResponse) Reset() {
+	*x = ListKnowledgeBaseRunsResponse{}
 	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ListCatalogRunsResponse) String() string {
+func (x *ListKnowledgeBaseRunsResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListCatalogRunsResponse) ProtoMessage() {}
+func (*ListKnowledgeBaseRunsResponse) ProtoMessage() {}
 
-func (x *ListCatalogRunsResponse) ProtoReflect() protoreflect.Message {
+func (x *ListKnowledgeBaseRunsResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -482,46 +482,46 @@ func (x *ListCatalogRunsResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListCatalogRunsResponse.ProtoReflect.Descriptor instead.
-func (*ListCatalogRunsResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListKnowledgeBaseRunsResponse.ProtoReflect.Descriptor instead.
+func (*ListKnowledgeBaseRunsResponse) Descriptor() ([]byte, []int) {
 	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *ListCatalogRunsResponse) GetCatalogRuns() []*CatalogRun {
+func (x *ListKnowledgeBaseRunsResponse) GetKnowledgeBaseRuns() []*KnowledgeBaseRun {
 	if x != nil {
-		return x.CatalogRuns
+		return x.KnowledgeBaseRuns
 	}
 	return nil
 }
 
-func (x *ListCatalogRunsResponse) GetTotalSize() int32 {
+func (x *ListKnowledgeBaseRunsResponse) GetTotalSize() int32 {
 	if x != nil {
 		return x.TotalSize
 	}
 	return 0
 }
 
-func (x *ListCatalogRunsResponse) GetPage() int32 {
+func (x *ListKnowledgeBaseRunsResponse) GetPage() int32 {
 	if x != nil {
 		return x.Page
 	}
 	return 0
 }
 
-func (x *ListCatalogRunsResponse) GetPageSize() int32 {
+func (x *ListKnowledgeBaseRunsResponse) GetPageSize() int32 {
 	if x != nil {
 		return x.PageSize
 	}
 	return 0
 }
 
-// ListCatalogRunsRequest is the request message for ListCatalogRuns.
-type ListCatalogRunsRequest struct {
+// ListKnowledgeBaseRunsRequest is the request message for ListKnowledgeBaseRuns.
+type ListKnowledgeBaseRunsRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The ID of the owner of the catalog.
+	// The ID of the owner of the knowledge base.
 	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// The ID of the catalog for which the runs will be listed.
-	CatalogId string `protobuf:"bytes,2,opt,name=catalog_id,json=catalogId,proto3" json:"catalog_id,omitempty"`
+	// The ID of the knowledge base for which the runs will be listed.
+	KnowledgeBaseId string `protobuf:"bytes,2,opt,name=knowledge_base_id,json=knowledgeBaseId,proto3" json:"knowledge_base_id,omitempty"`
 	// The page number to retrieve.
 	Page int32 `protobuf:"varint,3,opt,name=page,proto3" json:"page,omitempty"`
 	// The maximum number of items per page to return. The default and cap values
@@ -538,20 +538,20 @@ type ListCatalogRunsRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ListCatalogRunsRequest) Reset() {
-	*x = ListCatalogRunsRequest{}
+func (x *ListKnowledgeBaseRunsRequest) Reset() {
+	*x = ListKnowledgeBaseRunsRequest{}
 	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ListCatalogRunsRequest) String() string {
+func (x *ListKnowledgeBaseRunsRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListCatalogRunsRequest) ProtoMessage() {}
+func (*ListKnowledgeBaseRunsRequest) ProtoMessage() {}
 
-func (x *ListCatalogRunsRequest) ProtoReflect() protoreflect.Message {
+func (x *ListKnowledgeBaseRunsRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_artifact_artifact_v1alpha_artifact_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -563,47 +563,47 @@ func (x *ListCatalogRunsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListCatalogRunsRequest.ProtoReflect.Descriptor instead.
-func (*ListCatalogRunsRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListKnowledgeBaseRunsRequest.ProtoReflect.Descriptor instead.
+func (*ListKnowledgeBaseRunsRequest) Descriptor() ([]byte, []int) {
 	return file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *ListCatalogRunsRequest) GetNamespaceId() string {
+func (x *ListKnowledgeBaseRunsRequest) GetNamespaceId() string {
 	if x != nil {
 		return x.NamespaceId
 	}
 	return ""
 }
 
-func (x *ListCatalogRunsRequest) GetCatalogId() string {
+func (x *ListKnowledgeBaseRunsRequest) GetKnowledgeBaseId() string {
 	if x != nil {
-		return x.CatalogId
+		return x.KnowledgeBaseId
 	}
 	return ""
 }
 
-func (x *ListCatalogRunsRequest) GetPage() int32 {
+func (x *ListKnowledgeBaseRunsRequest) GetPage() int32 {
 	if x != nil {
 		return x.Page
 	}
 	return 0
 }
 
-func (x *ListCatalogRunsRequest) GetPageSize() int32 {
+func (x *ListKnowledgeBaseRunsRequest) GetPageSize() int32 {
 	if x != nil {
 		return x.PageSize
 	}
 	return 0
 }
 
-func (x *ListCatalogRunsRequest) GetFilter() string {
+func (x *ListKnowledgeBaseRunsRequest) GetFilter() string {
 	if x != nil && x.Filter != nil {
 		return *x.Filter
 	}
 	return ""
 }
 
-func (x *ListCatalogRunsRequest) GetOrderBy() string {
+func (x *ListKnowledgeBaseRunsRequest) GetOrderBy() string {
 	if x != nil && x.OrderBy != nil {
 		return *x.OrderBy
 	}
@@ -624,14 +624,12 @@ const file_artifact_artifact_v1alpha_artifact_proto_rawDesc = "" +
 	"\x14health_check_request\x18\x01 \x01(\v2-.common.healthcheck.v1beta.HealthCheckRequestB\x03\xe0A\x01H\x00R\x12healthCheckRequest\x88\x01\x01B\x17\n" +
 	"\x15_health_check_request\"w\n" +
 	"\x11ReadinessResponse\x12b\n" +
-	"\x15health_check_response\x18\x01 \x01(\v2..common.healthcheck.v1beta.HealthCheckResponseR\x13healthCheckResponse\"\xcd\x06\n" +
-	"\n" +
-	"CatalogRun\x12\x15\n" +
-	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12$\n" +
-	"\vcatalog_uid\x18\x02 \x01(\tB\x03\xe0A\x03R\n" +
-	"catalogUid\x12#\n" +
-	"\tfile_uids\x18\x03 \x03(\tB\x06\xe0A\x03\xe0A\x01R\bfileUids\x12H\n" +
-	"\x06action\x18\x04 \x01(\x0e2+.artifact.artifact.v1alpha.CatalogRunActionB\x03\xe0A\x03R\x06action\x12:\n" +
+	"\x15health_check_response\x18\x01 \x01(\v2..common.healthcheck.v1beta.HealthCheckResponseR\x13healthCheckResponse\"\xe6\x06\n" +
+	"\x10KnowledgeBaseRun\x12\x15\n" +
+	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x121\n" +
+	"\x12knowledge_base_uid\x18\x02 \x01(\tB\x03\xe0A\x03R\x10knowledgeBaseUid\x12#\n" +
+	"\tfile_uids\x18\x03 \x03(\tB\x06\xe0A\x03\xe0A\x01R\bfileUids\x12N\n" +
+	"\x06action\x18\x04 \x01(\x0e21.artifact.artifact.v1alpha.KnowledgeBaseRunActionB\x03\xe0A\x03R\x06action\x12:\n" +
 	"\x06status\x18\x05 \x01(\x0e2\x1d.common.run.v1alpha.RunStatusB\x03\xe0A\x03R\x06status\x12:\n" +
 	"\x06source\x18\x06 \x01(\x0e2\x1d.common.run.v1alpha.RunSourceB\x03\xe0A\x03R\x06source\x122\n" +
 	"\x0etotal_duration\x18\a \x01(\x05B\x06\xe0A\x03\xe0A\x01H\x00R\rtotalDuration\x88\x01\x01\x12(\n" +
@@ -651,31 +649,30 @@ const file_artifact_artifact_v1alpha_artifact_proto_rawDesc = "" +
 	"\b_payloadB\x10\n" +
 	"\x0e_complete_timeB\b\n" +
 	"\x06_errorB\x10\n" +
-	"\x0e_credit_amount\"\xc7\x01\n" +
-	"\x17ListCatalogRunsResponse\x12M\n" +
-	"\fcatalog_runs\x18\x01 \x03(\v2%.artifact.artifact.v1alpha.CatalogRunB\x03\xe0A\x03R\vcatalogRuns\x12\"\n" +
+	"\x0e_credit_amount\"\xe0\x01\n" +
+	"\x1dListKnowledgeBaseRunsResponse\x12`\n" +
+	"\x13knowledge_base_runs\x18\x01 \x03(\v2+.artifact.artifact.v1alpha.KnowledgeBaseRunB\x03\xe0A\x03R\x11knowledgeBaseRuns\x12\"\n" +
 	"\n" +
 	"total_size\x18\x02 \x01(\x05B\x03\xe0A\x03R\ttotalSize\x12\x17\n" +
 	"\x04page\x18\x03 \x01(\x05B\x03\xe0A\x03R\x04page\x12 \n" +
-	"\tpage_size\x18\x04 \x01(\x05B\x03\xe0A\x03R\bpageSize\"\xfe\x01\n" +
-	"\x16ListCatalogRunsRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\"\n" +
-	"\n" +
-	"catalog_id\x18\x02 \x01(\tB\x03\xe0A\x02R\tcatalogId\x12\x17\n" +
+	"\tpage_size\x18\x04 \x01(\x05B\x03\xe0A\x03R\bpageSize\"\x91\x02\n" +
+	"\x1cListKnowledgeBaseRunsRequest\x12&\n" +
+	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12/\n" +
+	"\x11knowledge_base_id\x18\x02 \x01(\tB\x03\xe0A\x02R\x0fknowledgeBaseId\x12\x17\n" +
 	"\x04page\x18\x03 \x01(\x05B\x03\xe0A\x01R\x04page\x12 \n" +
 	"\tpage_size\x18\x04 \x01(\x05B\x03\xe0A\x01R\bpageSize\x12 \n" +
 	"\x06filter\x18\x06 \x01(\tB\x03\xe0A\x01H\x00R\x06filter\x88\x01\x01\x12#\n" +
 	"\border_by\x18\a \x01(\tB\x03\xe0A\x01H\x01R\aorderBy\x88\x01\x01B\t\n" +
 	"\a_filterB\v\n" +
-	"\t_order_by*\x80\x02\n" +
-	"\x10CatalogRunAction\x12\"\n" +
-	"\x1eCATALOG_RUN_ACTION_UNSPECIFIED\x10\x00\x12\x1d\n" +
-	"\x19CATALOG_RUN_ACTION_CREATE\x10\x01\x12\x1d\n" +
-	"\x19CATALOG_RUN_ACTION_UPDATE\x10\x02\x12\x1d\n" +
-	"\x19CATALOG_RUN_ACTION_DELETE\x10\x03\x12\"\n" +
-	"\x1eCATALOG_RUN_ACTION_CREATE_FILE\x10\x04\x12#\n" +
-	"\x1fCATALOG_RUN_ACTION_PROCESS_FILE\x10\x05\x12\"\n" +
-	"\x1eCATALOG_RUN_ACTION_DELETE_FILE\x10\x06B\x81\x02\n" +
+	"\t_order_by*\xb7\x02\n" +
+	"\x16KnowledgeBaseRunAction\x12)\n" +
+	"%KNOWLEDGE_BASE_RUN_ACTION_UNSPECIFIED\x10\x00\x12$\n" +
+	" KNOWLEDGE_BASE_RUN_ACTION_CREATE\x10\x01\x12$\n" +
+	" KNOWLEDGE_BASE_RUN_ACTION_UPDATE\x10\x02\x12$\n" +
+	" KNOWLEDGE_BASE_RUN_ACTION_DELETE\x10\x03\x12)\n" +
+	"%KNOWLEDGE_BASE_RUN_ACTION_CREATE_FILE\x10\x04\x12*\n" +
+	"&KNOWLEDGE_BASE_RUN_ACTION_PROCESS_FILE\x10\x05\x12)\n" +
+	"%KNOWLEDGE_BASE_RUN_ACTION_DELETE_FILE\x10\x06B\x81\x02\n" +
 	"\x1dcom.artifact.artifact.v1alphaB\rArtifactProtoP\x01ZKgithub.com/instill-ai/protogen-go/artifact/artifact/v1alpha;artifactv1alpha\xa2\x02\x03AAX\xaa\x02\x19Artifact.Artifact.V1alpha\xca\x02\x19Artifact\\Artifact\\V1alpha\xe2\x02%Artifact\\Artifact\\V1alpha\\GPBMetadata\xea\x02\x1bArtifact::Artifact::V1alphab\x06proto3"
 
 var (
@@ -693,33 +690,33 @@ func file_artifact_artifact_v1alpha_artifact_proto_rawDescGZIP() []byte {
 var file_artifact_artifact_v1alpha_artifact_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_artifact_artifact_v1alpha_artifact_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_artifact_artifact_v1alpha_artifact_proto_goTypes = []any{
-	(CatalogRunAction)(0),              // 0: artifact.artifact.v1alpha.CatalogRunAction
-	(*LivenessRequest)(nil),            // 1: artifact.artifact.v1alpha.LivenessRequest
-	(*LivenessResponse)(nil),           // 2: artifact.artifact.v1alpha.LivenessResponse
-	(*ReadinessRequest)(nil),           // 3: artifact.artifact.v1alpha.ReadinessRequest
-	(*ReadinessResponse)(nil),          // 4: artifact.artifact.v1alpha.ReadinessResponse
-	(*CatalogRun)(nil),                 // 5: artifact.artifact.v1alpha.CatalogRun
-	(*ListCatalogRunsResponse)(nil),    // 6: artifact.artifact.v1alpha.ListCatalogRunsResponse
-	(*ListCatalogRunsRequest)(nil),     // 7: artifact.artifact.v1alpha.ListCatalogRunsRequest
-	(*v1beta.HealthCheckRequest)(nil),  // 8: common.healthcheck.v1beta.HealthCheckRequest
-	(*v1beta.HealthCheckResponse)(nil), // 9: common.healthcheck.v1beta.HealthCheckResponse
-	(v1alpha.RunStatus)(0),             // 10: common.run.v1alpha.RunStatus
-	(v1alpha.RunSource)(0),             // 11: common.run.v1alpha.RunSource
-	(*structpb.Struct)(nil),            // 12: google.protobuf.Struct
-	(*timestamppb.Timestamp)(nil),      // 13: google.protobuf.Timestamp
+	(KnowledgeBaseRunAction)(0),           // 0: artifact.artifact.v1alpha.KnowledgeBaseRunAction
+	(*LivenessRequest)(nil),               // 1: artifact.artifact.v1alpha.LivenessRequest
+	(*LivenessResponse)(nil),              // 2: artifact.artifact.v1alpha.LivenessResponse
+	(*ReadinessRequest)(nil),              // 3: artifact.artifact.v1alpha.ReadinessRequest
+	(*ReadinessResponse)(nil),             // 4: artifact.artifact.v1alpha.ReadinessResponse
+	(*KnowledgeBaseRun)(nil),              // 5: artifact.artifact.v1alpha.KnowledgeBaseRun
+	(*ListKnowledgeBaseRunsResponse)(nil), // 6: artifact.artifact.v1alpha.ListKnowledgeBaseRunsResponse
+	(*ListKnowledgeBaseRunsRequest)(nil),  // 7: artifact.artifact.v1alpha.ListKnowledgeBaseRunsRequest
+	(*v1beta.HealthCheckRequest)(nil),     // 8: common.healthcheck.v1beta.HealthCheckRequest
+	(*v1beta.HealthCheckResponse)(nil),    // 9: common.healthcheck.v1beta.HealthCheckResponse
+	(v1alpha.RunStatus)(0),                // 10: common.run.v1alpha.RunStatus
+	(v1alpha.RunSource)(0),                // 11: common.run.v1alpha.RunSource
+	(*structpb.Struct)(nil),               // 12: google.protobuf.Struct
+	(*timestamppb.Timestamp)(nil),         // 13: google.protobuf.Timestamp
 }
 var file_artifact_artifact_v1alpha_artifact_proto_depIdxs = []int32{
 	8,  // 0: artifact.artifact.v1alpha.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
 	9,  // 1: artifact.artifact.v1alpha.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
 	8,  // 2: artifact.artifact.v1alpha.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
 	9,  // 3: artifact.artifact.v1alpha.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
-	0,  // 4: artifact.artifact.v1alpha.CatalogRun.action:type_name -> artifact.artifact.v1alpha.CatalogRunAction
-	10, // 5: artifact.artifact.v1alpha.CatalogRun.status:type_name -> common.run.v1alpha.RunStatus
-	11, // 6: artifact.artifact.v1alpha.CatalogRun.source:type_name -> common.run.v1alpha.RunSource
-	12, // 7: artifact.artifact.v1alpha.CatalogRun.payload:type_name -> google.protobuf.Struct
-	13, // 8: artifact.artifact.v1alpha.CatalogRun.start_time:type_name -> google.protobuf.Timestamp
-	13, // 9: artifact.artifact.v1alpha.CatalogRun.complete_time:type_name -> google.protobuf.Timestamp
-	5,  // 10: artifact.artifact.v1alpha.ListCatalogRunsResponse.catalog_runs:type_name -> artifact.artifact.v1alpha.CatalogRun
+	0,  // 4: artifact.artifact.v1alpha.KnowledgeBaseRun.action:type_name -> artifact.artifact.v1alpha.KnowledgeBaseRunAction
+	10, // 5: artifact.artifact.v1alpha.KnowledgeBaseRun.status:type_name -> common.run.v1alpha.RunStatus
+	11, // 6: artifact.artifact.v1alpha.KnowledgeBaseRun.source:type_name -> common.run.v1alpha.RunSource
+	12, // 7: artifact.artifact.v1alpha.KnowledgeBaseRun.payload:type_name -> google.protobuf.Struct
+	13, // 8: artifact.artifact.v1alpha.KnowledgeBaseRun.start_time:type_name -> google.protobuf.Timestamp
+	13, // 9: artifact.artifact.v1alpha.KnowledgeBaseRun.complete_time:type_name -> google.protobuf.Timestamp
+	5,  // 10: artifact.artifact.v1alpha.ListKnowledgeBaseRunsResponse.knowledge_base_runs:type_name -> artifact.artifact.v1alpha.KnowledgeBaseRun
 	11, // [11:11] is the sub-list for method output_type
 	11, // [11:11] is the sub-list for method input_type
 	11, // [11:11] is the sub-list for extension type_name

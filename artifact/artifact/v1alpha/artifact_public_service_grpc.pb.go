@@ -19,25 +19,25 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ArtifactPublicService_Liveness_FullMethodName             = "/artifact.artifact.v1alpha.ArtifactPublicService/Liveness"
-	ArtifactPublicService_Readiness_FullMethodName            = "/artifact.artifact.v1alpha.ArtifactPublicService/Readiness"
-	ArtifactPublicService_CreateCatalog_FullMethodName        = "/artifact.artifact.v1alpha.ArtifactPublicService/CreateCatalog"
-	ArtifactPublicService_GetCatalog_FullMethodName           = "/artifact.artifact.v1alpha.ArtifactPublicService/GetCatalog"
-	ArtifactPublicService_ListCatalogs_FullMethodName         = "/artifact.artifact.v1alpha.ArtifactPublicService/ListCatalogs"
-	ArtifactPublicService_UpdateCatalog_FullMethodName        = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateCatalog"
-	ArtifactPublicService_DeleteCatalog_FullMethodName        = "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteCatalog"
-	ArtifactPublicService_CreateFile_FullMethodName           = "/artifact.artifact.v1alpha.ArtifactPublicService/CreateFile"
-	ArtifactPublicService_GetFile_FullMethodName              = "/artifact.artifact.v1alpha.ArtifactPublicService/GetFile"
-	ArtifactPublicService_ListFiles_FullMethodName            = "/artifact.artifact.v1alpha.ArtifactPublicService/ListFiles"
-	ArtifactPublicService_UpdateFile_FullMethodName           = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateFile"
-	ArtifactPublicService_DeleteFile_FullMethodName           = "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteFile"
-	ArtifactPublicService_GetChunk_FullMethodName             = "/artifact.artifact.v1alpha.ArtifactPublicService/GetChunk"
-	ArtifactPublicService_ListChunks_FullMethodName           = "/artifact.artifact.v1alpha.ArtifactPublicService/ListChunks"
-	ArtifactPublicService_UpdateChunk_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateChunk"
-	ArtifactPublicService_SearchChunks_FullMethodName         = "/artifact.artifact.v1alpha.ArtifactPublicService/SearchChunks"
-	ArtifactPublicService_ListCatalogRuns_FullMethodName      = "/artifact.artifact.v1alpha.ArtifactPublicService/ListCatalogRuns"
-	ArtifactPublicService_GetObjectUploadURL_FullMethodName   = "/artifact.artifact.v1alpha.ArtifactPublicService/GetObjectUploadURL"
-	ArtifactPublicService_GetObjectDownloadURL_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPublicService/GetObjectDownloadURL"
+	ArtifactPublicService_Liveness_FullMethodName              = "/artifact.artifact.v1alpha.ArtifactPublicService/Liveness"
+	ArtifactPublicService_Readiness_FullMethodName             = "/artifact.artifact.v1alpha.ArtifactPublicService/Readiness"
+	ArtifactPublicService_CreateKnowledgeBase_FullMethodName   = "/artifact.artifact.v1alpha.ArtifactPublicService/CreateKnowledgeBase"
+	ArtifactPublicService_GetKnowledgeBase_FullMethodName      = "/artifact.artifact.v1alpha.ArtifactPublicService/GetKnowledgeBase"
+	ArtifactPublicService_ListKnowledgeBases_FullMethodName    = "/artifact.artifact.v1alpha.ArtifactPublicService/ListKnowledgeBases"
+	ArtifactPublicService_UpdateKnowledgeBase_FullMethodName   = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateKnowledgeBase"
+	ArtifactPublicService_DeleteKnowledgeBase_FullMethodName   = "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteKnowledgeBase"
+	ArtifactPublicService_CreateFile_FullMethodName            = "/artifact.artifact.v1alpha.ArtifactPublicService/CreateFile"
+	ArtifactPublicService_GetFile_FullMethodName               = "/artifact.artifact.v1alpha.ArtifactPublicService/GetFile"
+	ArtifactPublicService_ListFiles_FullMethodName             = "/artifact.artifact.v1alpha.ArtifactPublicService/ListFiles"
+	ArtifactPublicService_UpdateFile_FullMethodName            = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateFile"
+	ArtifactPublicService_DeleteFile_FullMethodName            = "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteFile"
+	ArtifactPublicService_GetChunk_FullMethodName              = "/artifact.artifact.v1alpha.ArtifactPublicService/GetChunk"
+	ArtifactPublicService_ListChunks_FullMethodName            = "/artifact.artifact.v1alpha.ArtifactPublicService/ListChunks"
+	ArtifactPublicService_UpdateChunk_FullMethodName           = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateChunk"
+	ArtifactPublicService_SearchChunks_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPublicService/SearchChunks"
+	ArtifactPublicService_ListKnowledgeBaseRuns_FullMethodName = "/artifact.artifact.v1alpha.ArtifactPublicService/ListKnowledgeBaseRuns"
+	ArtifactPublicService_GetObjectUploadURL_FullMethodName    = "/artifact.artifact.v1alpha.ArtifactPublicService/GetObjectUploadURL"
+	ArtifactPublicService_GetObjectDownloadURL_FullMethodName  = "/artifact.artifact.v1alpha.ArtifactPublicService/GetObjectDownloadURL"
 )
 
 // ArtifactPublicServiceClient is the client API for ArtifactPublicService service.
@@ -55,29 +55,29 @@ type ArtifactPublicServiceClient interface {
 	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error)
-	// Create a catalog
+	// Create a knowledge base
 	//
-	// Creates a catalog.
-	CreateCatalog(ctx context.Context, in *CreateCatalogRequest, opts ...grpc.CallOption) (*CreateCatalogResponse, error)
-	// Get a catalog
+	// Creates a knowledge base.
+	CreateKnowledgeBase(ctx context.Context, in *CreateKnowledgeBaseRequest, opts ...grpc.CallOption) (*CreateKnowledgeBaseResponse, error)
+	// Get a knowledge base
 	//
-	// Returns the details of a catalog.
-	GetCatalog(ctx context.Context, in *GetCatalogRequest, opts ...grpc.CallOption) (*GetCatalogResponse, error)
-	// Get all catalogs info
+	// Returns the details of a knowledge base.
+	GetKnowledgeBase(ctx context.Context, in *GetKnowledgeBaseRequest, opts ...grpc.CallOption) (*GetKnowledgeBaseResponse, error)
+	// Get all knowledge bases info
 	//
-	// Returns a paginated list of catalogs.
-	ListCatalogs(ctx context.Context, in *ListCatalogsRequest, opts ...grpc.CallOption) (*ListCatalogsResponse, error)
-	// Update a catalog info
+	// Returns a paginated list of knowledge bases.
+	ListKnowledgeBases(ctx context.Context, in *ListKnowledgeBasesRequest, opts ...grpc.CallOption) (*ListKnowledgeBasesResponse, error)
+	// Update a knowledge base info
 	//
-	// Updates the information of a catalog.
-	UpdateCatalog(ctx context.Context, in *UpdateCatalogRequest, opts ...grpc.CallOption) (*UpdateCatalogResponse, error)
-	// Delete a catalog
+	// Updates the information of a knowledge base.
+	UpdateKnowledgeBase(ctx context.Context, in *UpdateKnowledgeBaseRequest, opts ...grpc.CallOption) (*UpdateKnowledgeBaseResponse, error)
+	// Delete a knowledge base
 	//
-	// Deletes a catalog.
-	DeleteCatalog(ctx context.Context, in *DeleteCatalogRequest, opts ...grpc.CallOption) (*DeleteCatalogResponse, error)
+	// Deletes a knowledge base.
+	DeleteKnowledgeBase(ctx context.Context, in *DeleteKnowledgeBaseRequest, opts ...grpc.CallOption) (*DeleteKnowledgeBaseResponse, error)
 	// Create a file
 	//
-	// Uploads and converts a file to a catalog.
+	// Uploads and converts a file to a knowledge base.
 	CreateFile(ctx context.Context, in *CreateFileRequest, opts ...grpc.CallOption) (*CreateFileResponse, error)
 	// Get a file
 	//
@@ -111,10 +111,10 @@ type ArtifactPublicServiceClient interface {
 	//
 	// Returns the top-K most similar chunks to a text prompt.
 	SearchChunks(ctx context.Context, in *SearchChunksRequest, opts ...grpc.CallOption) (*SearchChunksResponse, error)
-	// List Catalog Runs
+	// List Knowledge Base Runs
 	//
-	// Returns a paginated list of catalog runs.
-	ListCatalogRuns(ctx context.Context, in *ListCatalogRunsRequest, opts ...grpc.CallOption) (*ListCatalogRunsResponse, error)
+	// Returns a paginated list of knowledge base runs.
+	ListKnowledgeBaseRuns(ctx context.Context, in *ListKnowledgeBaseRunsRequest, opts ...grpc.CallOption) (*ListKnowledgeBaseRunsResponse, error)
 	// Get Object Upload URL
 	//
 	// Returns the upload URL of an object.
@@ -153,50 +153,50 @@ func (c *artifactPublicServiceClient) Readiness(ctx context.Context, in *Readine
 	return out, nil
 }
 
-func (c *artifactPublicServiceClient) CreateCatalog(ctx context.Context, in *CreateCatalogRequest, opts ...grpc.CallOption) (*CreateCatalogResponse, error) {
+func (c *artifactPublicServiceClient) CreateKnowledgeBase(ctx context.Context, in *CreateKnowledgeBaseRequest, opts ...grpc.CallOption) (*CreateKnowledgeBaseResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateCatalogResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_CreateCatalog_FullMethodName, in, out, cOpts...)
+	out := new(CreateKnowledgeBaseResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_CreateKnowledgeBase_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *artifactPublicServiceClient) GetCatalog(ctx context.Context, in *GetCatalogRequest, opts ...grpc.CallOption) (*GetCatalogResponse, error) {
+func (c *artifactPublicServiceClient) GetKnowledgeBase(ctx context.Context, in *GetKnowledgeBaseRequest, opts ...grpc.CallOption) (*GetKnowledgeBaseResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetCatalogResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_GetCatalog_FullMethodName, in, out, cOpts...)
+	out := new(GetKnowledgeBaseResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_GetKnowledgeBase_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *artifactPublicServiceClient) ListCatalogs(ctx context.Context, in *ListCatalogsRequest, opts ...grpc.CallOption) (*ListCatalogsResponse, error) {
+func (c *artifactPublicServiceClient) ListKnowledgeBases(ctx context.Context, in *ListKnowledgeBasesRequest, opts ...grpc.CallOption) (*ListKnowledgeBasesResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListCatalogsResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_ListCatalogs_FullMethodName, in, out, cOpts...)
+	out := new(ListKnowledgeBasesResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_ListKnowledgeBases_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *artifactPublicServiceClient) UpdateCatalog(ctx context.Context, in *UpdateCatalogRequest, opts ...grpc.CallOption) (*UpdateCatalogResponse, error) {
+func (c *artifactPublicServiceClient) UpdateKnowledgeBase(ctx context.Context, in *UpdateKnowledgeBaseRequest, opts ...grpc.CallOption) (*UpdateKnowledgeBaseResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateCatalogResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_UpdateCatalog_FullMethodName, in, out, cOpts...)
+	out := new(UpdateKnowledgeBaseResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_UpdateKnowledgeBase_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *artifactPublicServiceClient) DeleteCatalog(ctx context.Context, in *DeleteCatalogRequest, opts ...grpc.CallOption) (*DeleteCatalogResponse, error) {
+func (c *artifactPublicServiceClient) DeleteKnowledgeBase(ctx context.Context, in *DeleteKnowledgeBaseRequest, opts ...grpc.CallOption) (*DeleteKnowledgeBaseResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteCatalogResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_DeleteCatalog_FullMethodName, in, out, cOpts...)
+	out := new(DeleteKnowledgeBaseResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_DeleteKnowledgeBase_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -293,10 +293,10 @@ func (c *artifactPublicServiceClient) SearchChunks(ctx context.Context, in *Sear
 	return out, nil
 }
 
-func (c *artifactPublicServiceClient) ListCatalogRuns(ctx context.Context, in *ListCatalogRunsRequest, opts ...grpc.CallOption) (*ListCatalogRunsResponse, error) {
+func (c *artifactPublicServiceClient) ListKnowledgeBaseRuns(ctx context.Context, in *ListKnowledgeBaseRunsRequest, opts ...grpc.CallOption) (*ListKnowledgeBaseRunsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListCatalogRunsResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_ListCatalogRuns_FullMethodName, in, out, cOpts...)
+	out := new(ListKnowledgeBaseRunsResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_ListKnowledgeBaseRuns_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -338,29 +338,29 @@ type ArtifactPublicServiceServer interface {
 	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error)
-	// Create a catalog
+	// Create a knowledge base
 	//
-	// Creates a catalog.
-	CreateCatalog(context.Context, *CreateCatalogRequest) (*CreateCatalogResponse, error)
-	// Get a catalog
+	// Creates a knowledge base.
+	CreateKnowledgeBase(context.Context, *CreateKnowledgeBaseRequest) (*CreateKnowledgeBaseResponse, error)
+	// Get a knowledge base
 	//
-	// Returns the details of a catalog.
-	GetCatalog(context.Context, *GetCatalogRequest) (*GetCatalogResponse, error)
-	// Get all catalogs info
+	// Returns the details of a knowledge base.
+	GetKnowledgeBase(context.Context, *GetKnowledgeBaseRequest) (*GetKnowledgeBaseResponse, error)
+	// Get all knowledge bases info
 	//
-	// Returns a paginated list of catalogs.
-	ListCatalogs(context.Context, *ListCatalogsRequest) (*ListCatalogsResponse, error)
-	// Update a catalog info
+	// Returns a paginated list of knowledge bases.
+	ListKnowledgeBases(context.Context, *ListKnowledgeBasesRequest) (*ListKnowledgeBasesResponse, error)
+	// Update a knowledge base info
 	//
-	// Updates the information of a catalog.
-	UpdateCatalog(context.Context, *UpdateCatalogRequest) (*UpdateCatalogResponse, error)
-	// Delete a catalog
+	// Updates the information of a knowledge base.
+	UpdateKnowledgeBase(context.Context, *UpdateKnowledgeBaseRequest) (*UpdateKnowledgeBaseResponse, error)
+	// Delete a knowledge base
 	//
-	// Deletes a catalog.
-	DeleteCatalog(context.Context, *DeleteCatalogRequest) (*DeleteCatalogResponse, error)
+	// Deletes a knowledge base.
+	DeleteKnowledgeBase(context.Context, *DeleteKnowledgeBaseRequest) (*DeleteKnowledgeBaseResponse, error)
 	// Create a file
 	//
-	// Uploads and converts a file to a catalog.
+	// Uploads and converts a file to a knowledge base.
 	CreateFile(context.Context, *CreateFileRequest) (*CreateFileResponse, error)
 	// Get a file
 	//
@@ -394,10 +394,10 @@ type ArtifactPublicServiceServer interface {
 	//
 	// Returns the top-K most similar chunks to a text prompt.
 	SearchChunks(context.Context, *SearchChunksRequest) (*SearchChunksResponse, error)
-	// List Catalog Runs
+	// List Knowledge Base Runs
 	//
-	// Returns a paginated list of catalog runs.
-	ListCatalogRuns(context.Context, *ListCatalogRunsRequest) (*ListCatalogRunsResponse, error)
+	// Returns a paginated list of knowledge base runs.
+	ListKnowledgeBaseRuns(context.Context, *ListKnowledgeBaseRunsRequest) (*ListKnowledgeBaseRunsResponse, error)
 	// Get Object Upload URL
 	//
 	// Returns the upload URL of an object.
@@ -421,20 +421,20 @@ func (UnimplementedArtifactPublicServiceServer) Liveness(context.Context, *Liven
 func (UnimplementedArtifactPublicServiceServer) Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Readiness not implemented")
 }
-func (UnimplementedArtifactPublicServiceServer) CreateCatalog(context.Context, *CreateCatalogRequest) (*CreateCatalogResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateCatalog not implemented")
+func (UnimplementedArtifactPublicServiceServer) CreateKnowledgeBase(context.Context, *CreateKnowledgeBaseRequest) (*CreateKnowledgeBaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateKnowledgeBase not implemented")
 }
-func (UnimplementedArtifactPublicServiceServer) GetCatalog(context.Context, *GetCatalogRequest) (*GetCatalogResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCatalog not implemented")
+func (UnimplementedArtifactPublicServiceServer) GetKnowledgeBase(context.Context, *GetKnowledgeBaseRequest) (*GetKnowledgeBaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetKnowledgeBase not implemented")
 }
-func (UnimplementedArtifactPublicServiceServer) ListCatalogs(context.Context, *ListCatalogsRequest) (*ListCatalogsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListCatalogs not implemented")
+func (UnimplementedArtifactPublicServiceServer) ListKnowledgeBases(context.Context, *ListKnowledgeBasesRequest) (*ListKnowledgeBasesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListKnowledgeBases not implemented")
 }
-func (UnimplementedArtifactPublicServiceServer) UpdateCatalog(context.Context, *UpdateCatalogRequest) (*UpdateCatalogResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateCatalog not implemented")
+func (UnimplementedArtifactPublicServiceServer) UpdateKnowledgeBase(context.Context, *UpdateKnowledgeBaseRequest) (*UpdateKnowledgeBaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateKnowledgeBase not implemented")
 }
-func (UnimplementedArtifactPublicServiceServer) DeleteCatalog(context.Context, *DeleteCatalogRequest) (*DeleteCatalogResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteCatalog not implemented")
+func (UnimplementedArtifactPublicServiceServer) DeleteKnowledgeBase(context.Context, *DeleteKnowledgeBaseRequest) (*DeleteKnowledgeBaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteKnowledgeBase not implemented")
 }
 func (UnimplementedArtifactPublicServiceServer) CreateFile(context.Context, *CreateFileRequest) (*CreateFileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateFile not implemented")
@@ -463,8 +463,8 @@ func (UnimplementedArtifactPublicServiceServer) UpdateChunk(context.Context, *Up
 func (UnimplementedArtifactPublicServiceServer) SearchChunks(context.Context, *SearchChunksRequest) (*SearchChunksResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SearchChunks not implemented")
 }
-func (UnimplementedArtifactPublicServiceServer) ListCatalogRuns(context.Context, *ListCatalogRunsRequest) (*ListCatalogRunsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListCatalogRuns not implemented")
+func (UnimplementedArtifactPublicServiceServer) ListKnowledgeBaseRuns(context.Context, *ListKnowledgeBaseRunsRequest) (*ListKnowledgeBaseRunsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListKnowledgeBaseRuns not implemented")
 }
 func (UnimplementedArtifactPublicServiceServer) GetObjectUploadURL(context.Context, *GetObjectUploadURLRequest) (*GetObjectUploadURLResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetObjectUploadURL not implemented")
@@ -528,92 +528,92 @@ func _ArtifactPublicService_Readiness_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPublicService_CreateCatalog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateCatalogRequest)
+func _ArtifactPublicService_CreateKnowledgeBase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateKnowledgeBaseRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).CreateCatalog(ctx, in)
+		return srv.(ArtifactPublicServiceServer).CreateKnowledgeBase(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPublicService_CreateCatalog_FullMethodName,
+		FullMethod: ArtifactPublicService_CreateKnowledgeBase_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).CreateCatalog(ctx, req.(*CreateCatalogRequest))
+		return srv.(ArtifactPublicServiceServer).CreateKnowledgeBase(ctx, req.(*CreateKnowledgeBaseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPublicService_GetCatalog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCatalogRequest)
+func _ArtifactPublicService_GetKnowledgeBase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetKnowledgeBaseRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).GetCatalog(ctx, in)
+		return srv.(ArtifactPublicServiceServer).GetKnowledgeBase(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPublicService_GetCatalog_FullMethodName,
+		FullMethod: ArtifactPublicService_GetKnowledgeBase_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).GetCatalog(ctx, req.(*GetCatalogRequest))
+		return srv.(ArtifactPublicServiceServer).GetKnowledgeBase(ctx, req.(*GetKnowledgeBaseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPublicService_ListCatalogs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListCatalogsRequest)
+func _ArtifactPublicService_ListKnowledgeBases_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListKnowledgeBasesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).ListCatalogs(ctx, in)
+		return srv.(ArtifactPublicServiceServer).ListKnowledgeBases(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPublicService_ListCatalogs_FullMethodName,
+		FullMethod: ArtifactPublicService_ListKnowledgeBases_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).ListCatalogs(ctx, req.(*ListCatalogsRequest))
+		return srv.(ArtifactPublicServiceServer).ListKnowledgeBases(ctx, req.(*ListKnowledgeBasesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPublicService_UpdateCatalog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateCatalogRequest)
+func _ArtifactPublicService_UpdateKnowledgeBase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateKnowledgeBaseRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).UpdateCatalog(ctx, in)
+		return srv.(ArtifactPublicServiceServer).UpdateKnowledgeBase(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPublicService_UpdateCatalog_FullMethodName,
+		FullMethod: ArtifactPublicService_UpdateKnowledgeBase_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).UpdateCatalog(ctx, req.(*UpdateCatalogRequest))
+		return srv.(ArtifactPublicServiceServer).UpdateKnowledgeBase(ctx, req.(*UpdateKnowledgeBaseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPublicService_DeleteCatalog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteCatalogRequest)
+func _ArtifactPublicService_DeleteKnowledgeBase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteKnowledgeBaseRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).DeleteCatalog(ctx, in)
+		return srv.(ArtifactPublicServiceServer).DeleteKnowledgeBase(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPublicService_DeleteCatalog_FullMethodName,
+		FullMethod: ArtifactPublicService_DeleteKnowledgeBase_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).DeleteCatalog(ctx, req.(*DeleteCatalogRequest))
+		return srv.(ArtifactPublicServiceServer).DeleteKnowledgeBase(ctx, req.(*DeleteKnowledgeBaseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -780,20 +780,20 @@ func _ArtifactPublicService_SearchChunks_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPublicService_ListCatalogRuns_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListCatalogRunsRequest)
+func _ArtifactPublicService_ListKnowledgeBaseRuns_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListKnowledgeBaseRunsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).ListCatalogRuns(ctx, in)
+		return srv.(ArtifactPublicServiceServer).ListKnowledgeBaseRuns(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPublicService_ListCatalogRuns_FullMethodName,
+		FullMethod: ArtifactPublicService_ListKnowledgeBaseRuns_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).ListCatalogRuns(ctx, req.(*ListCatalogRunsRequest))
+		return srv.(ArtifactPublicServiceServer).ListKnowledgeBaseRuns(ctx, req.(*ListKnowledgeBaseRunsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -850,24 +850,24 @@ var ArtifactPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ArtifactPublicService_Readiness_Handler,
 		},
 		{
-			MethodName: "CreateCatalog",
-			Handler:    _ArtifactPublicService_CreateCatalog_Handler,
+			MethodName: "CreateKnowledgeBase",
+			Handler:    _ArtifactPublicService_CreateKnowledgeBase_Handler,
 		},
 		{
-			MethodName: "GetCatalog",
-			Handler:    _ArtifactPublicService_GetCatalog_Handler,
+			MethodName: "GetKnowledgeBase",
+			Handler:    _ArtifactPublicService_GetKnowledgeBase_Handler,
 		},
 		{
-			MethodName: "ListCatalogs",
-			Handler:    _ArtifactPublicService_ListCatalogs_Handler,
+			MethodName: "ListKnowledgeBases",
+			Handler:    _ArtifactPublicService_ListKnowledgeBases_Handler,
 		},
 		{
-			MethodName: "UpdateCatalog",
-			Handler:    _ArtifactPublicService_UpdateCatalog_Handler,
+			MethodName: "UpdateKnowledgeBase",
+			Handler:    _ArtifactPublicService_UpdateKnowledgeBase_Handler,
 		},
 		{
-			MethodName: "DeleteCatalog",
-			Handler:    _ArtifactPublicService_DeleteCatalog_Handler,
+			MethodName: "DeleteKnowledgeBase",
+			Handler:    _ArtifactPublicService_DeleteKnowledgeBase_Handler,
 		},
 		{
 			MethodName: "CreateFile",
@@ -906,8 +906,8 @@ var ArtifactPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ArtifactPublicService_SearchChunks_Handler,
 		},
 		{
-			MethodName: "ListCatalogRuns",
-			Handler:    _ArtifactPublicService_ListCatalogRuns_Handler,
+			MethodName: "ListKnowledgeBaseRuns",
+			Handler:    _ArtifactPublicService_ListKnowledgeBaseRuns_Handler,
 		},
 		{
 			MethodName: "GetObjectUploadURL",
