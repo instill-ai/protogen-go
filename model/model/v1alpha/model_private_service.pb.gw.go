@@ -227,6 +227,102 @@ func local_request_ModelPrivateService_UndeployOrganizationModelAdmin_0(ctx cont
 	return msg, metadata, err
 }
 
+func request_ModelPrivateService_ListRepositoryTags_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListRepositoryTagsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.ListRepositoryTags(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ModelPrivateService_ListRepositoryTags_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListRepositoryTagsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.ListRepositoryTags(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ModelPrivateService_GetRepositoryTag_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetRepositoryTagRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.GetRepositoryTag(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ModelPrivateService_GetRepositoryTag_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetRepositoryTagRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.GetRepositoryTag(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ModelPrivateService_CreateRepositoryTag_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq CreateRepositoryTagRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.CreateRepositoryTag(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ModelPrivateService_CreateRepositoryTag_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq CreateRepositoryTagRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.CreateRepositoryTag(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ModelPrivateService_DeleteRepositoryTag_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DeleteRepositoryTagRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.DeleteRepositoryTag(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ModelPrivateService_DeleteRepositoryTag_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DeleteRepositoryTagRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.DeleteRepositoryTag(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 // RegisterModelPrivateServiceHandlerServer registers the http handlers for service ModelPrivateService to "mux".
 // UnaryRPC     :call ModelPrivateServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -392,6 +488,86 @@ func RegisterModelPrivateServiceHandlerServer(ctx context.Context, mux *runtime.
 			return
 		}
 		forward_ModelPrivateService_UndeployOrganizationModelAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ModelPrivateService_ListRepositoryTags_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/ListRepositoryTags", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/ListRepositoryTags"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ModelPrivateService_ListRepositoryTags_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ModelPrivateService_ListRepositoryTags_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ModelPrivateService_GetRepositoryTag_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/GetRepositoryTag", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/GetRepositoryTag"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ModelPrivateService_GetRepositoryTag_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ModelPrivateService_GetRepositoryTag_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ModelPrivateService_CreateRepositoryTag_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/CreateRepositoryTag", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/CreateRepositoryTag"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ModelPrivateService_CreateRepositoryTag_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ModelPrivateService_CreateRepositoryTag_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ModelPrivateService_DeleteRepositoryTag_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/DeleteRepositoryTag", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/DeleteRepositoryTag"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ModelPrivateService_DeleteRepositoryTag_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ModelPrivateService_DeleteRepositoryTag_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
 	return nil
@@ -569,6 +745,74 @@ func RegisterModelPrivateServiceHandlerClient(ctx context.Context, mux *runtime.
 		}
 		forward_ModelPrivateService_UndeployOrganizationModelAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_ModelPrivateService_ListRepositoryTags_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/ListRepositoryTags", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/ListRepositoryTags"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ModelPrivateService_ListRepositoryTags_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ModelPrivateService_ListRepositoryTags_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ModelPrivateService_GetRepositoryTag_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/GetRepositoryTag", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/GetRepositoryTag"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ModelPrivateService_GetRepositoryTag_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ModelPrivateService_GetRepositoryTag_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ModelPrivateService_CreateRepositoryTag_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/CreateRepositoryTag", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/CreateRepositoryTag"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ModelPrivateService_CreateRepositoryTag_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ModelPrivateService_CreateRepositoryTag_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ModelPrivateService_DeleteRepositoryTag_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.model.v1alpha.ModelPrivateService/DeleteRepositoryTag", runtime.WithHTTPPathPattern("/model.model.v1alpha.ModelPrivateService/DeleteRepositoryTag"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ModelPrivateService_DeleteRepositoryTag_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ModelPrivateService_DeleteRepositoryTag_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	return nil
 }
 
@@ -581,6 +825,10 @@ var (
 	pattern_ModelPrivateService_UndeployUserModelAdmin_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.model.v1alpha.ModelPrivateService", "UndeployUserModelAdmin"}, ""))
 	pattern_ModelPrivateService_UndeployNamespaceModelAdmin_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.model.v1alpha.ModelPrivateService", "UndeployNamespaceModelAdmin"}, ""))
 	pattern_ModelPrivateService_UndeployOrganizationModelAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.model.v1alpha.ModelPrivateService", "UndeployOrganizationModelAdmin"}, ""))
+	pattern_ModelPrivateService_ListRepositoryTags_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.model.v1alpha.ModelPrivateService", "ListRepositoryTags"}, ""))
+	pattern_ModelPrivateService_GetRepositoryTag_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.model.v1alpha.ModelPrivateService", "GetRepositoryTag"}, ""))
+	pattern_ModelPrivateService_CreateRepositoryTag_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.model.v1alpha.ModelPrivateService", "CreateRepositoryTag"}, ""))
+	pattern_ModelPrivateService_DeleteRepositoryTag_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.model.v1alpha.ModelPrivateService", "DeleteRepositoryTag"}, ""))
 )
 
 var (
@@ -592,4 +840,8 @@ var (
 	forward_ModelPrivateService_UndeployUserModelAdmin_0         = runtime.ForwardResponseMessage
 	forward_ModelPrivateService_UndeployNamespaceModelAdmin_0    = runtime.ForwardResponseMessage
 	forward_ModelPrivateService_UndeployOrganizationModelAdmin_0 = runtime.ForwardResponseMessage
+	forward_ModelPrivateService_ListRepositoryTags_0             = runtime.ForwardResponseMessage
+	forward_ModelPrivateService_GetRepositoryTag_0               = runtime.ForwardResponseMessage
+	forward_ModelPrivateService_CreateRepositoryTag_0            = runtime.ForwardResponseMessage
+	forward_ModelPrivateService_DeleteRepositoryTag_0            = runtime.ForwardResponseMessage
 )

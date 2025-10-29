@@ -27,6 +27,10 @@ const (
 	ModelPrivateService_UndeployUserModelAdmin_FullMethodName         = "/model.model.v1alpha.ModelPrivateService/UndeployUserModelAdmin"
 	ModelPrivateService_UndeployNamespaceModelAdmin_FullMethodName    = "/model.model.v1alpha.ModelPrivateService/UndeployNamespaceModelAdmin"
 	ModelPrivateService_UndeployOrganizationModelAdmin_FullMethodName = "/model.model.v1alpha.ModelPrivateService/UndeployOrganizationModelAdmin"
+	ModelPrivateService_ListRepositoryTags_FullMethodName             = "/model.model.v1alpha.ModelPrivateService/ListRepositoryTags"
+	ModelPrivateService_GetRepositoryTag_FullMethodName               = "/model.model.v1alpha.ModelPrivateService/GetRepositoryTag"
+	ModelPrivateService_CreateRepositoryTag_FullMethodName            = "/model.model.v1alpha.ModelPrivateService/CreateRepositoryTag"
+	ModelPrivateService_DeleteRepositoryTag_FullMethodName            = "/model.model.v1alpha.ModelPrivateService/DeleteRepositoryTag"
 )
 
 // ModelPrivateServiceClient is the client API for ModelPrivateService service.
@@ -53,6 +57,23 @@ type ModelPrivateServiceClient interface {
 	UndeployNamespaceModelAdmin(ctx context.Context, in *UndeployNamespaceModelAdminRequest, opts ...grpc.CallOption) (*UndeployNamespaceModelAdminResponse, error)
 	// UndeployOrganizationModelAdmin undeploy a model to offline state
 	UndeployOrganizationModelAdmin(ctx context.Context, in *UndeployOrganizationModelAdminRequest, opts ...grpc.CallOption) (*UndeployOrganizationModelAdminResponse, error)
+	// List the tags in a repository.
+	//
+	// Returns a portion of the versions that the specified repository holds.
+	ListRepositoryTags(ctx context.Context, in *ListRepositoryTagsRequest, opts ...grpc.CallOption) (*ListRepositoryTagsResponse, error)
+	// Get details of repository tag.
+	GetRepositoryTag(ctx context.Context, in *GetRepositoryTagRequest, opts ...grpc.CallOption) (*GetRepositoryTagResponse, error)
+	// Create a new repository tag.
+	//
+	// Adds a tag to a given repository. Note that this operation is only
+	// intended to register the information of an *already created* tag. This
+	// method should be called as part of the content push operation, right after
+	// the [PUT Manifest](https://distribution.github.io/distribution/#put-manifest) has
+	// succeeded. The distribution registry won't hold data such as the push time
+	// or the tag digest, so `model-backend` will hold this information locally.
+	CreateRepositoryTag(ctx context.Context, in *CreateRepositoryTagRequest, opts ...grpc.CallOption) (*CreateRepositoryTagResponse, error)
+	// Delete a repository tag.
+	DeleteRepositoryTag(ctx context.Context, in *DeleteRepositoryTagRequest, opts ...grpc.CallOption) (*DeleteRepositoryTagResponse, error)
 }
 
 type modelPrivateServiceClient struct {
@@ -143,6 +164,46 @@ func (c *modelPrivateServiceClient) UndeployOrganizationModelAdmin(ctx context.C
 	return out, nil
 }
 
+func (c *modelPrivateServiceClient) ListRepositoryTags(ctx context.Context, in *ListRepositoryTagsRequest, opts ...grpc.CallOption) (*ListRepositoryTagsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListRepositoryTagsResponse)
+	err := c.cc.Invoke(ctx, ModelPrivateService_ListRepositoryTags_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *modelPrivateServiceClient) GetRepositoryTag(ctx context.Context, in *GetRepositoryTagRequest, opts ...grpc.CallOption) (*GetRepositoryTagResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetRepositoryTagResponse)
+	err := c.cc.Invoke(ctx, ModelPrivateService_GetRepositoryTag_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *modelPrivateServiceClient) CreateRepositoryTag(ctx context.Context, in *CreateRepositoryTagRequest, opts ...grpc.CallOption) (*CreateRepositoryTagResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateRepositoryTagResponse)
+	err := c.cc.Invoke(ctx, ModelPrivateService_CreateRepositoryTag_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *modelPrivateServiceClient) DeleteRepositoryTag(ctx context.Context, in *DeleteRepositoryTagRequest, opts ...grpc.CallOption) (*DeleteRepositoryTagResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteRepositoryTagResponse)
+	err := c.cc.Invoke(ctx, ModelPrivateService_DeleteRepositoryTag_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ModelPrivateServiceServer is the server API for ModelPrivateService service.
 // All implementations should embed UnimplementedModelPrivateServiceServer
 // for forward compatibility.
@@ -167,6 +228,23 @@ type ModelPrivateServiceServer interface {
 	UndeployNamespaceModelAdmin(context.Context, *UndeployNamespaceModelAdminRequest) (*UndeployNamespaceModelAdminResponse, error)
 	// UndeployOrganizationModelAdmin undeploy a model to offline state
 	UndeployOrganizationModelAdmin(context.Context, *UndeployOrganizationModelAdminRequest) (*UndeployOrganizationModelAdminResponse, error)
+	// List the tags in a repository.
+	//
+	// Returns a portion of the versions that the specified repository holds.
+	ListRepositoryTags(context.Context, *ListRepositoryTagsRequest) (*ListRepositoryTagsResponse, error)
+	// Get details of repository tag.
+	GetRepositoryTag(context.Context, *GetRepositoryTagRequest) (*GetRepositoryTagResponse, error)
+	// Create a new repository tag.
+	//
+	// Adds a tag to a given repository. Note that this operation is only
+	// intended to register the information of an *already created* tag. This
+	// method should be called as part of the content push operation, right after
+	// the [PUT Manifest](https://distribution.github.io/distribution/#put-manifest) has
+	// succeeded. The distribution registry won't hold data such as the push time
+	// or the tag digest, so `model-backend` will hold this information locally.
+	CreateRepositoryTag(context.Context, *CreateRepositoryTagRequest) (*CreateRepositoryTagResponse, error)
+	// Delete a repository tag.
+	DeleteRepositoryTag(context.Context, *DeleteRepositoryTagRequest) (*DeleteRepositoryTagResponse, error)
 }
 
 // UnimplementedModelPrivateServiceServer should be embedded to have
@@ -199,6 +277,18 @@ func (UnimplementedModelPrivateServiceServer) UndeployNamespaceModelAdmin(contex
 }
 func (UnimplementedModelPrivateServiceServer) UndeployOrganizationModelAdmin(context.Context, *UndeployOrganizationModelAdminRequest) (*UndeployOrganizationModelAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UndeployOrganizationModelAdmin not implemented")
+}
+func (UnimplementedModelPrivateServiceServer) ListRepositoryTags(context.Context, *ListRepositoryTagsRequest) (*ListRepositoryTagsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListRepositoryTags not implemented")
+}
+func (UnimplementedModelPrivateServiceServer) GetRepositoryTag(context.Context, *GetRepositoryTagRequest) (*GetRepositoryTagResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRepositoryTag not implemented")
+}
+func (UnimplementedModelPrivateServiceServer) CreateRepositoryTag(context.Context, *CreateRepositoryTagRequest) (*CreateRepositoryTagResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateRepositoryTag not implemented")
+}
+func (UnimplementedModelPrivateServiceServer) DeleteRepositoryTag(context.Context, *DeleteRepositoryTagRequest) (*DeleteRepositoryTagResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteRepositoryTag not implemented")
 }
 func (UnimplementedModelPrivateServiceServer) testEmbeddedByValue() {}
 
@@ -364,6 +454,78 @@ func _ModelPrivateService_UndeployOrganizationModelAdmin_Handler(srv interface{}
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ModelPrivateService_ListRepositoryTags_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRepositoryTagsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPrivateServiceServer).ListRepositoryTags(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPrivateService_ListRepositoryTags_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPrivateServiceServer).ListRepositoryTags(ctx, req.(*ListRepositoryTagsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ModelPrivateService_GetRepositoryTag_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRepositoryTagRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPrivateServiceServer).GetRepositoryTag(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPrivateService_GetRepositoryTag_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPrivateServiceServer).GetRepositoryTag(ctx, req.(*GetRepositoryTagRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ModelPrivateService_CreateRepositoryTag_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateRepositoryTagRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPrivateServiceServer).CreateRepositoryTag(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPrivateService_CreateRepositoryTag_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPrivateServiceServer).CreateRepositoryTag(ctx, req.(*CreateRepositoryTagRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ModelPrivateService_DeleteRepositoryTag_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteRepositoryTagRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPrivateServiceServer).DeleteRepositoryTag(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPrivateService_DeleteRepositoryTag_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPrivateServiceServer).DeleteRepositoryTag(ctx, req.(*DeleteRepositoryTagRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ModelPrivateService_ServiceDesc is the grpc.ServiceDesc for ModelPrivateService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -402,6 +564,22 @@ var ModelPrivateService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UndeployOrganizationModelAdmin",
 			Handler:    _ModelPrivateService_UndeployOrganizationModelAdmin_Handler,
+		},
+		{
+			MethodName: "ListRepositoryTags",
+			Handler:    _ModelPrivateService_ListRepositoryTags_Handler,
+		},
+		{
+			MethodName: "GetRepositoryTag",
+			Handler:    _ModelPrivateService_GetRepositoryTag_Handler,
+		},
+		{
+			MethodName: "CreateRepositoryTag",
+			Handler:    _ModelPrivateService_CreateRepositoryTag_Handler,
+		},
+		{
+			MethodName: "DeleteRepositoryTag",
+			Handler:    _ModelPrivateService_DeleteRepositoryTag_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

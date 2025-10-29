@@ -8603,6 +8603,494 @@ func (x *ListModelRunsByRequesterResponse) GetPage() int32 {
 	return 0
 }
 
+// RepositoryTag contains information about the version of some content in a
+// repository (e.g., Docker registry for model images).
+type RepositoryTag struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The name of the tag, defined by its parent repository and ID.
+	// - Format: `repositories/{repository.id}/tags/{tag.id}`.
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// The tag identifier.
+	Id string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	// Unique identifier, computed from the manifest the tag refers to.
+	Digest string `protobuf:"bytes,3,opt,name=digest,proto3" json:"digest,omitempty"`
+	// Tag update time, i.e. timestamp of the last push.
+	UpdateTime    *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RepositoryTag) Reset() {
+	*x = RepositoryTag{}
+	mi := &file_model_model_v1alpha_model_proto_msgTypes[138]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RepositoryTag) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RepositoryTag) ProtoMessage() {}
+
+func (x *RepositoryTag) ProtoReflect() protoreflect.Message {
+	mi := &file_model_model_v1alpha_model_proto_msgTypes[138]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RepositoryTag.ProtoReflect.Descriptor instead.
+func (*RepositoryTag) Descriptor() ([]byte, []int) {
+	return file_model_model_v1alpha_model_proto_rawDescGZIP(), []int{138}
+}
+
+func (x *RepositoryTag) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *RepositoryTag) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *RepositoryTag) GetDigest() string {
+	if x != nil {
+		return x.Digest
+	}
+	return ""
+}
+
+func (x *RepositoryTag) GetUpdateTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdateTime
+	}
+	return nil
+}
+
+// ListRepositoryTagsRequest represents a request to list the tags of a
+// repository.
+type ListRepositoryTagsRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The maximum number of tags to return. The default and cap values are 10
+	// and 100, respectively.
+	PageSize *int32 `protobuf:"varint,1,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
+	// Page number.
+	Page *int32 `protobuf:"varint,2,opt,name=page,proto3,oneof" json:"page,omitempty"`
+	// The repository holding the different versions of a given content.
+	// - Format: `repositories/{repository.id}`.
+	// - Example: `repositories/flaming-wombat/llama-2-7b`.
+	Parent        string `protobuf:"bytes,3,opt,name=parent,proto3" json:"parent,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListRepositoryTagsRequest) Reset() {
+	*x = ListRepositoryTagsRequest{}
+	mi := &file_model_model_v1alpha_model_proto_msgTypes[139]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListRepositoryTagsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListRepositoryTagsRequest) ProtoMessage() {}
+
+func (x *ListRepositoryTagsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_model_model_v1alpha_model_proto_msgTypes[139]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListRepositoryTagsRequest.ProtoReflect.Descriptor instead.
+func (*ListRepositoryTagsRequest) Descriptor() ([]byte, []int) {
+	return file_model_model_v1alpha_model_proto_rawDescGZIP(), []int{139}
+}
+
+func (x *ListRepositoryTagsRequest) GetPageSize() int32 {
+	if x != nil && x.PageSize != nil {
+		return *x.PageSize
+	}
+	return 0
+}
+
+func (x *ListRepositoryTagsRequest) GetPage() int32 {
+	if x != nil && x.Page != nil {
+		return *x.Page
+	}
+	return 0
+}
+
+func (x *ListRepositoryTagsRequest) GetParent() string {
+	if x != nil {
+		return x.Parent
+	}
+	return ""
+}
+
+// ListRepositoryTagsResponse contains a list of container image tags.
+type ListRepositoryTagsResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// A list of repository tags.
+	Tags []*RepositoryTag `protobuf:"bytes,1,rep,name=tags,proto3" json:"tags,omitempty"`
+	// Total number of tags.
+	TotalSize int32 `protobuf:"varint,2,opt,name=total_size,json=totalSize,proto3" json:"total_size,omitempty"`
+	// The requested page size.
+	PageSize int32 `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	// The requested page offset.
+	Page          int32 `protobuf:"varint,4,opt,name=page,proto3" json:"page,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListRepositoryTagsResponse) Reset() {
+	*x = ListRepositoryTagsResponse{}
+	mi := &file_model_model_v1alpha_model_proto_msgTypes[140]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListRepositoryTagsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListRepositoryTagsResponse) ProtoMessage() {}
+
+func (x *ListRepositoryTagsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_model_model_v1alpha_model_proto_msgTypes[140]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListRepositoryTagsResponse.ProtoReflect.Descriptor instead.
+func (*ListRepositoryTagsResponse) Descriptor() ([]byte, []int) {
+	return file_model_model_v1alpha_model_proto_rawDescGZIP(), []int{140}
+}
+
+func (x *ListRepositoryTagsResponse) GetTags() []*RepositoryTag {
+	if x != nil {
+		return x.Tags
+	}
+	return nil
+}
+
+func (x *ListRepositoryTagsResponse) GetTotalSize() int32 {
+	if x != nil {
+		return x.TotalSize
+	}
+	return 0
+}
+
+func (x *ListRepositoryTagsResponse) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+func (x *ListRepositoryTagsResponse) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+// CreateRepositoryTagRequest represents a request to add a tag to a given
+// repository.
+type CreateRepositoryTagRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The tag information.
+	Tag           *RepositoryTag `protobuf:"bytes,1,opt,name=tag,proto3" json:"tag,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateRepositoryTagRequest) Reset() {
+	*x = CreateRepositoryTagRequest{}
+	mi := &file_model_model_v1alpha_model_proto_msgTypes[141]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateRepositoryTagRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateRepositoryTagRequest) ProtoMessage() {}
+
+func (x *CreateRepositoryTagRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_model_model_v1alpha_model_proto_msgTypes[141]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateRepositoryTagRequest.ProtoReflect.Descriptor instead.
+func (*CreateRepositoryTagRequest) Descriptor() ([]byte, []int) {
+	return file_model_model_v1alpha_model_proto_rawDescGZIP(), []int{141}
+}
+
+func (x *CreateRepositoryTagRequest) GetTag() *RepositoryTag {
+	if x != nil {
+		return x.Tag
+	}
+	return nil
+}
+
+// CreateRepositoryTagResponse contains the created tag.
+type CreateRepositoryTagResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The created tag.
+	Tag           *RepositoryTag `protobuf:"bytes,1,opt,name=tag,proto3" json:"tag,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateRepositoryTagResponse) Reset() {
+	*x = CreateRepositoryTagResponse{}
+	mi := &file_model_model_v1alpha_model_proto_msgTypes[142]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateRepositoryTagResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateRepositoryTagResponse) ProtoMessage() {}
+
+func (x *CreateRepositoryTagResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_model_model_v1alpha_model_proto_msgTypes[142]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateRepositoryTagResponse.ProtoReflect.Descriptor instead.
+func (*CreateRepositoryTagResponse) Descriptor() ([]byte, []int) {
+	return file_model_model_v1alpha_model_proto_rawDescGZIP(), []int{142}
+}
+
+func (x *CreateRepositoryTagResponse) GetTag() *RepositoryTag {
+	if x != nil {
+		return x.Tag
+	}
+	return nil
+}
+
+// GetRepositoryTagRequest represents a request to get a tag from a given
+// repository.
+type GetRepositoryTagRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The name of the tag, defined by its parent repository and ID.
+	// - Format: `repositories/{repository.id}/tags/{tag.id}`.
+	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetRepositoryTagRequest) Reset() {
+	*x = GetRepositoryTagRequest{}
+	mi := &file_model_model_v1alpha_model_proto_msgTypes[143]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetRepositoryTagRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetRepositoryTagRequest) ProtoMessage() {}
+
+func (x *GetRepositoryTagRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_model_model_v1alpha_model_proto_msgTypes[143]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetRepositoryTagRequest.ProtoReflect.Descriptor instead.
+func (*GetRepositoryTagRequest) Descriptor() ([]byte, []int) {
+	return file_model_model_v1alpha_model_proto_rawDescGZIP(), []int{143}
+}
+
+func (x *GetRepositoryTagRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+// GetRepositoryTagResponse contains the requested tag.
+type GetRepositoryTagResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The requested tag.
+	Tag           *RepositoryTag `protobuf:"bytes,1,opt,name=tag,proto3" json:"tag,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetRepositoryTagResponse) Reset() {
+	*x = GetRepositoryTagResponse{}
+	mi := &file_model_model_v1alpha_model_proto_msgTypes[144]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetRepositoryTagResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetRepositoryTagResponse) ProtoMessage() {}
+
+func (x *GetRepositoryTagResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_model_model_v1alpha_model_proto_msgTypes[144]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetRepositoryTagResponse.ProtoReflect.Descriptor instead.
+func (*GetRepositoryTagResponse) Descriptor() ([]byte, []int) {
+	return file_model_model_v1alpha_model_proto_rawDescGZIP(), []int{144}
+}
+
+func (x *GetRepositoryTagResponse) GetTag() *RepositoryTag {
+	if x != nil {
+		return x.Tag
+	}
+	return nil
+}
+
+// DeleteRepositoryTagRequest represents a request to delete a tag from a given
+// repository.
+type DeleteRepositoryTagRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The name of the tag, defined by its parent repository and ID.
+	// - Format: `repositories/{repository.id}/tags/{tag.id}`.
+	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteRepositoryTagRequest) Reset() {
+	*x = DeleteRepositoryTagRequest{}
+	mi := &file_model_model_v1alpha_model_proto_msgTypes[145]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteRepositoryTagRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteRepositoryTagRequest) ProtoMessage() {}
+
+func (x *DeleteRepositoryTagRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_model_model_v1alpha_model_proto_msgTypes[145]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteRepositoryTagRequest.ProtoReflect.Descriptor instead.
+func (*DeleteRepositoryTagRequest) Descriptor() ([]byte, []int) {
+	return file_model_model_v1alpha_model_proto_rawDescGZIP(), []int{145}
+}
+
+func (x *DeleteRepositoryTagRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+// DeleteRepositoryTagResponse represent an empty response.
+type DeleteRepositoryTagResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteRepositoryTagResponse) Reset() {
+	*x = DeleteRepositoryTagResponse{}
+	mi := &file_model_model_v1alpha_model_proto_msgTypes[146]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteRepositoryTagResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteRepositoryTagResponse) ProtoMessage() {}
+
+func (x *DeleteRepositoryTagResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_model_model_v1alpha_model_proto_msgTypes[146]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteRepositoryTagResponse.ProtoReflect.Descriptor instead.
+func (*DeleteRepositoryTagResponse) Descriptor() ([]byte, []int) {
+	return file_model_model_v1alpha_model_proto_rawDescGZIP(), []int{146}
+}
+
 // Statistic data
 type Model_Stats struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -8616,7 +9104,7 @@ type Model_Stats struct {
 
 func (x *Model_Stats) Reset() {
 	*x = Model_Stats{}
-	mi := &file_model_model_v1alpha_model_proto_msgTypes[138]
+	mi := &file_model_model_v1alpha_model_proto_msgTypes[147]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8628,7 +9116,7 @@ func (x *Model_Stats) String() string {
 func (*Model_Stats) ProtoMessage() {}
 
 func (x *Model_Stats) ProtoReflect() protoreflect.Message {
-	mi := &file_model_model_v1alpha_model_proto_msgTypes[138]
+	mi := &file_model_model_v1alpha_model_proto_msgTypes[147]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9298,7 +9786,37 @@ const file_model_model_v1alpha_model_proto_rawDesc = "" +
 	"\n" +
 	"total_size\x18\x02 \x01(\x05B\x03\xe0A\x03R\ttotalSize\x12 \n" +
 	"\tpage_size\x18\x03 \x01(\x05B\x03\xe0A\x03R\bpageSize\x12\x17\n" +
-	"\x04page\x18\x04 \x01(\x05B\x03\xe0A\x03R\x04page*\xac\x01\n" +
+	"\x04page\x18\x04 \x01(\x05B\x03\xe0A\x03R\x04page\"\x9f\x01\n" +
+	"\rRepositoryTag\x12\x17\n" +
+	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x05R\x04name\x12\x13\n" +
+	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x05R\x02id\x12\x1b\n" +
+	"\x06digest\x18\x03 \x01(\tB\x03\xe0A\x01R\x06digest\x12C\n" +
+	"\vupdate_time\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampB\x06\xe0A\x03\xe0A\x01R\n" +
+	"updateTime\"\x94\x01\n" +
+	"\x19ListRepositoryTagsRequest\x12%\n" +
+	"\tpage_size\x18\x01 \x01(\x05B\x03\xe0A\x01H\x00R\bpageSize\x88\x01\x01\x12\x1c\n" +
+	"\x04page\x18\x02 \x01(\x05B\x03\xe0A\x01H\x01R\x04page\x88\x01\x01\x12\x1b\n" +
+	"\x06parent\x18\x03 \x01(\tB\x03\xe0A\x02R\x06parentB\f\n" +
+	"\n" +
+	"_page_sizeB\a\n" +
+	"\x05_page\"\xa4\x01\n" +
+	"\x1aListRepositoryTagsResponse\x126\n" +
+	"\x04tags\x18\x01 \x03(\v2\".model.model.v1alpha.RepositoryTagR\x04tags\x12\x1d\n" +
+	"\n" +
+	"total_size\x18\x02 \x01(\x05R\ttotalSize\x12\x1b\n" +
+	"\tpage_size\x18\x03 \x01(\x05R\bpageSize\x12\x12\n" +
+	"\x04page\x18\x04 \x01(\x05R\x04page\"R\n" +
+	"\x1aCreateRepositoryTagRequest\x124\n" +
+	"\x03tag\x18\x01 \x01(\v2\".model.model.v1alpha.RepositoryTagR\x03tag\"S\n" +
+	"\x1bCreateRepositoryTagResponse\x124\n" +
+	"\x03tag\x18\x01 \x01(\v2\".model.model.v1alpha.RepositoryTagR\x03tag\"2\n" +
+	"\x17GetRepositoryTagRequest\x12\x17\n" +
+	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"P\n" +
+	"\x18GetRepositoryTagResponse\x124\n" +
+	"\x03tag\x18\x01 \x01(\v2\".model.model.v1alpha.RepositoryTagR\x03tag\"5\n" +
+	"\x1aDeleteRepositoryTagRequest\x12\x17\n" +
+	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"\x1d\n" +
+	"\x1bDeleteRepositoryTagResponse*\xac\x01\n" +
 	"\x05State\x12\x15\n" +
 	"\x11STATE_UNSPECIFIED\x10\x00\x12\x11\n" +
 	"\rSTATE_OFFLINE\x10\x01\x12\x10\n" +
@@ -9325,7 +9843,7 @@ func file_model_model_v1alpha_model_proto_rawDescGZIP() []byte {
 }
 
 var file_model_model_v1alpha_model_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_model_model_v1alpha_model_proto_msgTypes = make([]protoimpl.MessageInfo, 139)
+var file_model_model_v1alpha_model_proto_msgTypes = make([]protoimpl.MessageInfo, 148)
 var file_model_model_v1alpha_model_proto_goTypes = []any{
 	(State)(0),                                                  // 0: model.model.v1alpha.State
 	(Model_Visibility)(0),                                       // 1: model.model.v1alpha.Model.Visibility
@@ -9467,162 +9985,176 @@ var file_model_model_v1alpha_model_proto_goTypes = []any{
 	(*ListModelRunsByRequesterRequest)(nil),                     // 137: model.model.v1alpha.ListModelRunsByRequesterRequest
 	(*ListModelRunsResponse)(nil),                               // 138: model.model.v1alpha.ListModelRunsResponse
 	(*ListModelRunsByRequesterResponse)(nil),                    // 139: model.model.v1alpha.ListModelRunsByRequesterResponse
-	(*Model_Stats)(nil),                                         // 140: model.model.v1alpha.Model.Stats
-	(*v1beta.HealthCheckRequest)(nil),                           // 141: common.healthcheck.v1beta.HealthCheckRequest
-	(*v1beta.HealthCheckResponse)(nil),                          // 142: common.healthcheck.v1beta.HealthCheckResponse
-	(*timestamppb.Timestamp)(nil),                               // 143: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),                                     // 144: google.protobuf.Struct
-	(v1alpha.Task)(0),                                           // 145: common.task.v1alpha.Task
-	(*v1beta1.Owner)(nil),                                       // 146: core.mgmt.v1beta.Owner
-	(*Permission)(nil),                                          // 147: model.model.v1alpha.Permission
-	(View)(0),                                                   // 148: model.model.v1alpha.View
-	(*fieldmaskpb.FieldMask)(nil),                               // 149: google.protobuf.FieldMask
-	(*longrunningpb.Operation)(nil),                             // 150: google.longrunning.Operation
-	(v1alpha1.RunStatus)(0),                                     // 151: common.run.v1alpha.RunStatus
-	(v1alpha1.RunSource)(0),                                     // 152: common.run.v1alpha.RunSource
+	(*RepositoryTag)(nil),                                       // 140: model.model.v1alpha.RepositoryTag
+	(*ListRepositoryTagsRequest)(nil),                           // 141: model.model.v1alpha.ListRepositoryTagsRequest
+	(*ListRepositoryTagsResponse)(nil),                          // 142: model.model.v1alpha.ListRepositoryTagsResponse
+	(*CreateRepositoryTagRequest)(nil),                          // 143: model.model.v1alpha.CreateRepositoryTagRequest
+	(*CreateRepositoryTagResponse)(nil),                         // 144: model.model.v1alpha.CreateRepositoryTagResponse
+	(*GetRepositoryTagRequest)(nil),                             // 145: model.model.v1alpha.GetRepositoryTagRequest
+	(*GetRepositoryTagResponse)(nil),                            // 146: model.model.v1alpha.GetRepositoryTagResponse
+	(*DeleteRepositoryTagRequest)(nil),                          // 147: model.model.v1alpha.DeleteRepositoryTagRequest
+	(*DeleteRepositoryTagResponse)(nil),                         // 148: model.model.v1alpha.DeleteRepositoryTagResponse
+	(*Model_Stats)(nil),                                         // 149: model.model.v1alpha.Model.Stats
+	(*v1beta.HealthCheckRequest)(nil),                           // 150: common.healthcheck.v1beta.HealthCheckRequest
+	(*v1beta.HealthCheckResponse)(nil),                          // 151: common.healthcheck.v1beta.HealthCheckResponse
+	(*timestamppb.Timestamp)(nil),                               // 152: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),                                     // 153: google.protobuf.Struct
+	(v1alpha.Task)(0),                                           // 154: common.task.v1alpha.Task
+	(*v1beta1.Owner)(nil),                                       // 155: core.mgmt.v1beta.Owner
+	(*Permission)(nil),                                          // 156: model.model.v1alpha.Permission
+	(View)(0),                                                   // 157: model.model.v1alpha.View
+	(*fieldmaskpb.FieldMask)(nil),                               // 158: google.protobuf.FieldMask
+	(*longrunningpb.Operation)(nil),                             // 159: google.longrunning.Operation
+	(v1alpha1.RunStatus)(0),                                     // 160: common.run.v1alpha.RunStatus
+	(v1alpha1.RunSource)(0),                                     // 161: common.run.v1alpha.RunSource
 }
 var file_model_model_v1alpha_model_proto_depIdxs = []int32{
-	141, // 0: model.model.v1alpha.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	142, // 1: model.model.v1alpha.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
-	141, // 2: model.model.v1alpha.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	142, // 3: model.model.v1alpha.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	150, // 0: model.model.v1alpha.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	151, // 1: model.model.v1alpha.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	150, // 2: model.model.v1alpha.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	151, // 3: model.model.v1alpha.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
 	7,   // 4: model.model.v1alpha.Region.hardware:type_name -> model.model.v1alpha.Hardware
 	0,   // 5: model.model.v1alpha.ModelVersion.state:type_name -> model.model.v1alpha.State
-	143, // 6: model.model.v1alpha.ModelVersion.update_time:type_name -> google.protobuf.Timestamp
-	144, // 7: model.model.v1alpha.Model.configuration:type_name -> google.protobuf.Struct
-	145, // 8: model.model.v1alpha.Model.task:type_name -> common.task.v1alpha.Task
+	152, // 6: model.model.v1alpha.ModelVersion.update_time:type_name -> google.protobuf.Timestamp
+	153, // 7: model.model.v1alpha.Model.configuration:type_name -> google.protobuf.Struct
+	154, // 8: model.model.v1alpha.Model.task:type_name -> common.task.v1alpha.Task
 	1,   // 9: model.model.v1alpha.Model.visibility:type_name -> model.model.v1alpha.Model.Visibility
-	143, // 10: model.model.v1alpha.Model.create_time:type_name -> google.protobuf.Timestamp
-	143, // 11: model.model.v1alpha.Model.update_time:type_name -> google.protobuf.Timestamp
-	143, // 12: model.model.v1alpha.Model.delete_time:type_name -> google.protobuf.Timestamp
-	146, // 13: model.model.v1alpha.Model.owner:type_name -> core.mgmt.v1beta.Owner
-	147, // 14: model.model.v1alpha.Model.permission:type_name -> model.model.v1alpha.Permission
-	144, // 15: model.model.v1alpha.Model.input_schema:type_name -> google.protobuf.Struct
-	144, // 16: model.model.v1alpha.Model.output_schema:type_name -> google.protobuf.Struct
-	140, // 17: model.model.v1alpha.Model.stats:type_name -> model.model.v1alpha.Model.Stats
-	148, // 18: model.model.v1alpha.ListModelsRequest.view:type_name -> model.model.v1alpha.View
+	152, // 10: model.model.v1alpha.Model.create_time:type_name -> google.protobuf.Timestamp
+	152, // 11: model.model.v1alpha.Model.update_time:type_name -> google.protobuf.Timestamp
+	152, // 12: model.model.v1alpha.Model.delete_time:type_name -> google.protobuf.Timestamp
+	155, // 13: model.model.v1alpha.Model.owner:type_name -> core.mgmt.v1beta.Owner
+	156, // 14: model.model.v1alpha.Model.permission:type_name -> model.model.v1alpha.Permission
+	153, // 15: model.model.v1alpha.Model.input_schema:type_name -> google.protobuf.Struct
+	153, // 16: model.model.v1alpha.Model.output_schema:type_name -> google.protobuf.Struct
+	149, // 17: model.model.v1alpha.Model.stats:type_name -> model.model.v1alpha.Model.Stats
+	157, // 18: model.model.v1alpha.ListModelsRequest.view:type_name -> model.model.v1alpha.View
 	1,   // 19: model.model.v1alpha.ListModelsRequest.visibility:type_name -> model.model.v1alpha.Model.Visibility
 	9,   // 20: model.model.v1alpha.ListModelsResponse.models:type_name -> model.model.v1alpha.Model
-	148, // 21: model.model.v1alpha.LookUpModelRequest.view:type_name -> model.model.v1alpha.View
+	157, // 21: model.model.v1alpha.LookUpModelRequest.view:type_name -> model.model.v1alpha.View
 	9,   // 22: model.model.v1alpha.LookUpModelResponse.model:type_name -> model.model.v1alpha.Model
-	148, // 23: model.model.v1alpha.ListNamespaceModelsRequest.view:type_name -> model.model.v1alpha.View
+	157, // 23: model.model.v1alpha.ListNamespaceModelsRequest.view:type_name -> model.model.v1alpha.View
 	1,   // 24: model.model.v1alpha.ListNamespaceModelsRequest.visibility:type_name -> model.model.v1alpha.Model.Visibility
 	9,   // 25: model.model.v1alpha.ListNamespaceModelsResponse.models:type_name -> model.model.v1alpha.Model
 	9,   // 26: model.model.v1alpha.CreateNamespaceModelRequest.model:type_name -> model.model.v1alpha.Model
 	9,   // 27: model.model.v1alpha.CreateNamespaceModelResponse.model:type_name -> model.model.v1alpha.Model
-	148, // 28: model.model.v1alpha.GetNamespaceModelRequest.view:type_name -> model.model.v1alpha.View
+	157, // 28: model.model.v1alpha.GetNamespaceModelRequest.view:type_name -> model.model.v1alpha.View
 	9,   // 29: model.model.v1alpha.GetNamespaceModelResponse.model:type_name -> model.model.v1alpha.Model
 	9,   // 30: model.model.v1alpha.UpdateNamespaceModelRequest.model:type_name -> model.model.v1alpha.Model
-	149, // 31: model.model.v1alpha.UpdateNamespaceModelRequest.update_mask:type_name -> google.protobuf.FieldMask
+	158, // 31: model.model.v1alpha.UpdateNamespaceModelRequest.update_mask:type_name -> google.protobuf.FieldMask
 	9,   // 32: model.model.v1alpha.UpdateNamespaceModelResponse.model:type_name -> model.model.v1alpha.Model
 	9,   // 33: model.model.v1alpha.RenameNamespaceModelResponse.model:type_name -> model.model.v1alpha.Model
 	0,   // 34: model.model.v1alpha.WatchNamespaceModelResponse.state:type_name -> model.model.v1alpha.State
 	0,   // 35: model.model.v1alpha.WatchNamespaceLatestModelResponse.state:type_name -> model.model.v1alpha.State
 	8,   // 36: model.model.v1alpha.ListNamespaceModelVersionsResponse.versions:type_name -> model.model.v1alpha.ModelVersion
-	144, // 37: model.model.v1alpha.TriggerNamespaceModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	145, // 38: model.model.v1alpha.TriggerNamespaceModelResponse.task:type_name -> common.task.v1alpha.Task
-	144, // 39: model.model.v1alpha.TriggerNamespaceModelResponse.task_outputs:type_name -> google.protobuf.Struct
-	144, // 40: model.model.v1alpha.TriggerAsyncNamespaceModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	150, // 41: model.model.v1alpha.TriggerAsyncNamespaceModelResponse.operation:type_name -> google.longrunning.Operation
-	144, // 42: model.model.v1alpha.TriggerNamespaceLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	145, // 43: model.model.v1alpha.TriggerNamespaceLatestModelResponse.task:type_name -> common.task.v1alpha.Task
-	144, // 44: model.model.v1alpha.TriggerNamespaceLatestModelResponse.task_outputs:type_name -> google.protobuf.Struct
-	144, // 45: model.model.v1alpha.TriggerAsyncNamespaceLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	150, // 46: model.model.v1alpha.TriggerAsyncNamespaceLatestModelResponse.operation:type_name -> google.longrunning.Operation
-	144, // 47: model.model.v1alpha.TriggerNamespaceModelBinaryFileUploadRequest.task_input:type_name -> google.protobuf.Struct
-	145, // 48: model.model.v1alpha.TriggerNamespaceModelBinaryFileUploadResponse.task:type_name -> common.task.v1alpha.Task
-	144, // 49: model.model.v1alpha.TriggerNamespaceModelBinaryFileUploadResponse.task_outputs:type_name -> google.protobuf.Struct
-	144, // 50: model.model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadRequest.task_input:type_name -> google.protobuf.Struct
-	145, // 51: model.model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadResponse.task:type_name -> common.task.v1alpha.Task
-	144, // 52: model.model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadResponse.task_outputs:type_name -> google.protobuf.Struct
-	148, // 53: model.model.v1alpha.GetNamespaceLatestModelOperationRequest.view:type_name -> model.model.v1alpha.View
-	150, // 54: model.model.v1alpha.GetNamespaceLatestModelOperationResponse.operation:type_name -> google.longrunning.Operation
-	148, // 55: model.model.v1alpha.GetNamespaceModelOperationRequest.view:type_name -> model.model.v1alpha.View
-	150, // 56: model.model.v1alpha.GetNamespaceModelOperationResponse.operation:type_name -> google.longrunning.Operation
+	153, // 37: model.model.v1alpha.TriggerNamespaceModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	154, // 38: model.model.v1alpha.TriggerNamespaceModelResponse.task:type_name -> common.task.v1alpha.Task
+	153, // 39: model.model.v1alpha.TriggerNamespaceModelResponse.task_outputs:type_name -> google.protobuf.Struct
+	153, // 40: model.model.v1alpha.TriggerAsyncNamespaceModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	159, // 41: model.model.v1alpha.TriggerAsyncNamespaceModelResponse.operation:type_name -> google.longrunning.Operation
+	153, // 42: model.model.v1alpha.TriggerNamespaceLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	154, // 43: model.model.v1alpha.TriggerNamespaceLatestModelResponse.task:type_name -> common.task.v1alpha.Task
+	153, // 44: model.model.v1alpha.TriggerNamespaceLatestModelResponse.task_outputs:type_name -> google.protobuf.Struct
+	153, // 45: model.model.v1alpha.TriggerAsyncNamespaceLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	159, // 46: model.model.v1alpha.TriggerAsyncNamespaceLatestModelResponse.operation:type_name -> google.longrunning.Operation
+	153, // 47: model.model.v1alpha.TriggerNamespaceModelBinaryFileUploadRequest.task_input:type_name -> google.protobuf.Struct
+	154, // 48: model.model.v1alpha.TriggerNamespaceModelBinaryFileUploadResponse.task:type_name -> common.task.v1alpha.Task
+	153, // 49: model.model.v1alpha.TriggerNamespaceModelBinaryFileUploadResponse.task_outputs:type_name -> google.protobuf.Struct
+	153, // 50: model.model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadRequest.task_input:type_name -> google.protobuf.Struct
+	154, // 51: model.model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadResponse.task:type_name -> common.task.v1alpha.Task
+	153, // 52: model.model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadResponse.task_outputs:type_name -> google.protobuf.Struct
+	157, // 53: model.model.v1alpha.GetNamespaceLatestModelOperationRequest.view:type_name -> model.model.v1alpha.View
+	159, // 54: model.model.v1alpha.GetNamespaceLatestModelOperationResponse.operation:type_name -> google.longrunning.Operation
+	157, // 55: model.model.v1alpha.GetNamespaceModelOperationRequest.view:type_name -> model.model.v1alpha.View
+	159, // 56: model.model.v1alpha.GetNamespaceModelOperationResponse.operation:type_name -> google.longrunning.Operation
 	9,   // 57: model.model.v1alpha.CreateUserModelRequest.model:type_name -> model.model.v1alpha.Model
 	9,   // 58: model.model.v1alpha.CreateUserModelResponse.model:type_name -> model.model.v1alpha.Model
-	148, // 59: model.model.v1alpha.ListUserModelsRequest.view:type_name -> model.model.v1alpha.View
+	157, // 59: model.model.v1alpha.ListUserModelsRequest.view:type_name -> model.model.v1alpha.View
 	1,   // 60: model.model.v1alpha.ListUserModelsRequest.visibility:type_name -> model.model.v1alpha.Model.Visibility
 	9,   // 61: model.model.v1alpha.ListUserModelsResponse.models:type_name -> model.model.v1alpha.Model
-	148, // 62: model.model.v1alpha.GetUserModelRequest.view:type_name -> model.model.v1alpha.View
+	157, // 62: model.model.v1alpha.GetUserModelRequest.view:type_name -> model.model.v1alpha.View
 	9,   // 63: model.model.v1alpha.GetUserModelResponse.model:type_name -> model.model.v1alpha.Model
 	9,   // 64: model.model.v1alpha.UpdateUserModelRequest.model:type_name -> model.model.v1alpha.Model
-	149, // 65: model.model.v1alpha.UpdateUserModelRequest.update_mask:type_name -> google.protobuf.FieldMask
+	158, // 65: model.model.v1alpha.UpdateUserModelRequest.update_mask:type_name -> google.protobuf.FieldMask
 	9,   // 66: model.model.v1alpha.UpdateUserModelResponse.model:type_name -> model.model.v1alpha.Model
 	9,   // 67: model.model.v1alpha.RenameUserModelResponse.model:type_name -> model.model.v1alpha.Model
 	0,   // 68: model.model.v1alpha.WatchUserModelResponse.state:type_name -> model.model.v1alpha.State
 	0,   // 69: model.model.v1alpha.WatchUserLatestModelResponse.state:type_name -> model.model.v1alpha.State
 	8,   // 70: model.model.v1alpha.ListUserModelVersionsResponse.versions:type_name -> model.model.v1alpha.ModelVersion
-	144, // 71: model.model.v1alpha.TriggerUserModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	145, // 72: model.model.v1alpha.TriggerUserModelResponse.task:type_name -> common.task.v1alpha.Task
-	144, // 73: model.model.v1alpha.TriggerUserModelResponse.task_outputs:type_name -> google.protobuf.Struct
-	144, // 74: model.model.v1alpha.TriggerAsyncUserModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	150, // 75: model.model.v1alpha.TriggerAsyncUserModelResponse.operation:type_name -> google.longrunning.Operation
-	144, // 76: model.model.v1alpha.TriggerUserLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	145, // 77: model.model.v1alpha.TriggerUserLatestModelResponse.task:type_name -> common.task.v1alpha.Task
-	144, // 78: model.model.v1alpha.TriggerUserLatestModelResponse.task_outputs:type_name -> google.protobuf.Struct
-	144, // 79: model.model.v1alpha.TriggerAsyncUserLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	150, // 80: model.model.v1alpha.TriggerAsyncUserLatestModelResponse.operation:type_name -> google.longrunning.Operation
-	144, // 81: model.model.v1alpha.TriggerUserModelBinaryFileUploadRequest.task_inputs:type_name -> google.protobuf.Struct
-	145, // 82: model.model.v1alpha.TriggerUserModelBinaryFileUploadResponse.task:type_name -> common.task.v1alpha.Task
-	144, // 83: model.model.v1alpha.TriggerUserModelBinaryFileUploadResponse.task_outputs:type_name -> google.protobuf.Struct
+	153, // 71: model.model.v1alpha.TriggerUserModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	154, // 72: model.model.v1alpha.TriggerUserModelResponse.task:type_name -> common.task.v1alpha.Task
+	153, // 73: model.model.v1alpha.TriggerUserModelResponse.task_outputs:type_name -> google.protobuf.Struct
+	153, // 74: model.model.v1alpha.TriggerAsyncUserModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	159, // 75: model.model.v1alpha.TriggerAsyncUserModelResponse.operation:type_name -> google.longrunning.Operation
+	153, // 76: model.model.v1alpha.TriggerUserLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	154, // 77: model.model.v1alpha.TriggerUserLatestModelResponse.task:type_name -> common.task.v1alpha.Task
+	153, // 78: model.model.v1alpha.TriggerUserLatestModelResponse.task_outputs:type_name -> google.protobuf.Struct
+	153, // 79: model.model.v1alpha.TriggerAsyncUserLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	159, // 80: model.model.v1alpha.TriggerAsyncUserLatestModelResponse.operation:type_name -> google.longrunning.Operation
+	153, // 81: model.model.v1alpha.TriggerUserModelBinaryFileUploadRequest.task_inputs:type_name -> google.protobuf.Struct
+	154, // 82: model.model.v1alpha.TriggerUserModelBinaryFileUploadResponse.task:type_name -> common.task.v1alpha.Task
+	153, // 83: model.model.v1alpha.TriggerUserModelBinaryFileUploadResponse.task_outputs:type_name -> google.protobuf.Struct
 	9,   // 84: model.model.v1alpha.CreateOrganizationModelRequest.model:type_name -> model.model.v1alpha.Model
 	9,   // 85: model.model.v1alpha.CreateOrganizationModelResponse.model:type_name -> model.model.v1alpha.Model
-	148, // 86: model.model.v1alpha.ListOrganizationModelsRequest.view:type_name -> model.model.v1alpha.View
+	157, // 86: model.model.v1alpha.ListOrganizationModelsRequest.view:type_name -> model.model.v1alpha.View
 	1,   // 87: model.model.v1alpha.ListOrganizationModelsRequest.visibility:type_name -> model.model.v1alpha.Model.Visibility
 	9,   // 88: model.model.v1alpha.ListOrganizationModelsResponse.models:type_name -> model.model.v1alpha.Model
-	148, // 89: model.model.v1alpha.GetOrganizationModelRequest.view:type_name -> model.model.v1alpha.View
+	157, // 89: model.model.v1alpha.GetOrganizationModelRequest.view:type_name -> model.model.v1alpha.View
 	9,   // 90: model.model.v1alpha.GetOrganizationModelResponse.model:type_name -> model.model.v1alpha.Model
 	9,   // 91: model.model.v1alpha.UpdateOrganizationModelRequest.model:type_name -> model.model.v1alpha.Model
-	149, // 92: model.model.v1alpha.UpdateOrganizationModelRequest.update_mask:type_name -> google.protobuf.FieldMask
+	158, // 92: model.model.v1alpha.UpdateOrganizationModelRequest.update_mask:type_name -> google.protobuf.FieldMask
 	9,   // 93: model.model.v1alpha.UpdateOrganizationModelResponse.model:type_name -> model.model.v1alpha.Model
 	9,   // 94: model.model.v1alpha.RenameOrganizationModelResponse.model:type_name -> model.model.v1alpha.Model
 	0,   // 95: model.model.v1alpha.WatchOrganizationModelResponse.state:type_name -> model.model.v1alpha.State
 	0,   // 96: model.model.v1alpha.WatchOrganizationLatestModelResponse.state:type_name -> model.model.v1alpha.State
 	8,   // 97: model.model.v1alpha.ListOrganizationModelVersionsResponse.versions:type_name -> model.model.v1alpha.ModelVersion
-	144, // 98: model.model.v1alpha.TriggerOrganizationModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	145, // 99: model.model.v1alpha.TriggerOrganizationModelResponse.task:type_name -> common.task.v1alpha.Task
-	144, // 100: model.model.v1alpha.TriggerOrganizationModelResponse.task_outputs:type_name -> google.protobuf.Struct
-	144, // 101: model.model.v1alpha.TriggerAsyncOrganizationModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	150, // 102: model.model.v1alpha.TriggerAsyncOrganizationModelResponse.operation:type_name -> google.longrunning.Operation
-	144, // 103: model.model.v1alpha.TriggerOrganizationLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	145, // 104: model.model.v1alpha.TriggerOrganizationLatestModelResponse.task:type_name -> common.task.v1alpha.Task
-	144, // 105: model.model.v1alpha.TriggerOrganizationLatestModelResponse.task_outputs:type_name -> google.protobuf.Struct
-	144, // 106: model.model.v1alpha.TriggerAsyncOrganizationLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	150, // 107: model.model.v1alpha.TriggerAsyncOrganizationLatestModelResponse.operation:type_name -> google.longrunning.Operation
-	144, // 108: model.model.v1alpha.TriggerOrganizationModelBinaryFileUploadRequest.task_inputs:type_name -> google.protobuf.Struct
-	145, // 109: model.model.v1alpha.TriggerOrganizationModelBinaryFileUploadResponse.task:type_name -> common.task.v1alpha.Task
-	144, // 110: model.model.v1alpha.TriggerOrganizationModelBinaryFileUploadResponse.task_outputs:type_name -> google.protobuf.Struct
-	148, // 111: model.model.v1alpha.GetModelOperationRequest.view:type_name -> model.model.v1alpha.View
-	150, // 112: model.model.v1alpha.GetModelOperationResponse.operation:type_name -> google.longrunning.Operation
+	153, // 98: model.model.v1alpha.TriggerOrganizationModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	154, // 99: model.model.v1alpha.TriggerOrganizationModelResponse.task:type_name -> common.task.v1alpha.Task
+	153, // 100: model.model.v1alpha.TriggerOrganizationModelResponse.task_outputs:type_name -> google.protobuf.Struct
+	153, // 101: model.model.v1alpha.TriggerAsyncOrganizationModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	159, // 102: model.model.v1alpha.TriggerAsyncOrganizationModelResponse.operation:type_name -> google.longrunning.Operation
+	153, // 103: model.model.v1alpha.TriggerOrganizationLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	154, // 104: model.model.v1alpha.TriggerOrganizationLatestModelResponse.task:type_name -> common.task.v1alpha.Task
+	153, // 105: model.model.v1alpha.TriggerOrganizationLatestModelResponse.task_outputs:type_name -> google.protobuf.Struct
+	153, // 106: model.model.v1alpha.TriggerAsyncOrganizationLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	159, // 107: model.model.v1alpha.TriggerAsyncOrganizationLatestModelResponse.operation:type_name -> google.longrunning.Operation
+	153, // 108: model.model.v1alpha.TriggerOrganizationModelBinaryFileUploadRequest.task_inputs:type_name -> google.protobuf.Struct
+	154, // 109: model.model.v1alpha.TriggerOrganizationModelBinaryFileUploadResponse.task:type_name -> common.task.v1alpha.Task
+	153, // 110: model.model.v1alpha.TriggerOrganizationModelBinaryFileUploadResponse.task_outputs:type_name -> google.protobuf.Struct
+	157, // 111: model.model.v1alpha.GetModelOperationRequest.view:type_name -> model.model.v1alpha.View
+	159, // 112: model.model.v1alpha.GetModelOperationResponse.operation:type_name -> google.longrunning.Operation
 	34,  // 113: model.model.v1alpha.LatestOperation.request:type_name -> model.model.v1alpha.TriggerNamespaceModelRequest
 	35,  // 114: model.model.v1alpha.LatestOperation.response:type_name -> model.model.v1alpha.TriggerNamespaceModelResponse
-	148, // 115: model.model.v1alpha.GetUserLatestModelOperationRequest.view:type_name -> model.model.v1alpha.View
-	150, // 116: model.model.v1alpha.GetUserLatestModelOperationResponse.operation:type_name -> google.longrunning.Operation
-	148, // 117: model.model.v1alpha.GetOrganizationLatestModelOperationRequest.view:type_name -> model.model.v1alpha.View
-	150, // 118: model.model.v1alpha.GetOrganizationLatestModelOperationResponse.operation:type_name -> google.longrunning.Operation
+	157, // 115: model.model.v1alpha.GetUserLatestModelOperationRequest.view:type_name -> model.model.v1alpha.View
+	159, // 116: model.model.v1alpha.GetUserLatestModelOperationResponse.operation:type_name -> google.longrunning.Operation
+	157, // 117: model.model.v1alpha.GetOrganizationLatestModelOperationRequest.view:type_name -> model.model.v1alpha.View
+	159, // 118: model.model.v1alpha.GetOrganizationLatestModelOperationResponse.operation:type_name -> google.longrunning.Operation
 	6,   // 119: model.model.v1alpha.ListAvailableRegionsResponse.regions:type_name -> model.model.v1alpha.Region
-	148, // 120: model.model.v1alpha.ListModelsAdminRequest.view:type_name -> model.model.v1alpha.View
+	157, // 120: model.model.v1alpha.ListModelsAdminRequest.view:type_name -> model.model.v1alpha.View
 	9,   // 121: model.model.v1alpha.ListModelsAdminResponse.models:type_name -> model.model.v1alpha.Model
-	148, // 122: model.model.v1alpha.LookUpModelAdminRequest.view:type_name -> model.model.v1alpha.View
+	157, // 122: model.model.v1alpha.LookUpModelAdminRequest.view:type_name -> model.model.v1alpha.View
 	9,   // 123: model.model.v1alpha.LookUpModelAdminResponse.model:type_name -> model.model.v1alpha.Model
-	151, // 124: model.model.v1alpha.ModelRun.status:type_name -> common.run.v1alpha.RunStatus
-	152, // 125: model.model.v1alpha.ModelRun.source:type_name -> common.run.v1alpha.RunSource
-	143, // 126: model.model.v1alpha.ModelRun.end_time:type_name -> google.protobuf.Timestamp
-	143, // 127: model.model.v1alpha.ModelRun.create_time:type_name -> google.protobuf.Timestamp
-	143, // 128: model.model.v1alpha.ModelRun.update_time:type_name -> google.protobuf.Timestamp
-	144, // 129: model.model.v1alpha.ModelRun.task_inputs:type_name -> google.protobuf.Struct
-	144, // 130: model.model.v1alpha.ModelRun.task_outputs:type_name -> google.protobuf.Struct
-	143, // 131: model.model.v1alpha.ListModelRunsByRequesterRequest.start:type_name -> google.protobuf.Timestamp
-	143, // 132: model.model.v1alpha.ListModelRunsByRequesterRequest.stop:type_name -> google.protobuf.Timestamp
+	160, // 124: model.model.v1alpha.ModelRun.status:type_name -> common.run.v1alpha.RunStatus
+	161, // 125: model.model.v1alpha.ModelRun.source:type_name -> common.run.v1alpha.RunSource
+	152, // 126: model.model.v1alpha.ModelRun.end_time:type_name -> google.protobuf.Timestamp
+	152, // 127: model.model.v1alpha.ModelRun.create_time:type_name -> google.protobuf.Timestamp
+	152, // 128: model.model.v1alpha.ModelRun.update_time:type_name -> google.protobuf.Timestamp
+	153, // 129: model.model.v1alpha.ModelRun.task_inputs:type_name -> google.protobuf.Struct
+	153, // 130: model.model.v1alpha.ModelRun.task_outputs:type_name -> google.protobuf.Struct
+	152, // 131: model.model.v1alpha.ListModelRunsByRequesterRequest.start:type_name -> google.protobuf.Timestamp
+	152, // 132: model.model.v1alpha.ListModelRunsByRequesterRequest.stop:type_name -> google.protobuf.Timestamp
 	135, // 133: model.model.v1alpha.ListModelRunsResponse.runs:type_name -> model.model.v1alpha.ModelRun
 	135, // 134: model.model.v1alpha.ListModelRunsByRequesterResponse.runs:type_name -> model.model.v1alpha.ModelRun
-	143, // 135: model.model.v1alpha.Model.Stats.last_run_time:type_name -> google.protobuf.Timestamp
-	136, // [136:136] is the sub-list for method output_type
-	136, // [136:136] is the sub-list for method input_type
-	136, // [136:136] is the sub-list for extension type_name
-	136, // [136:136] is the sub-list for extension extendee
-	0,   // [0:136] is the sub-list for field type_name
+	152, // 135: model.model.v1alpha.RepositoryTag.update_time:type_name -> google.protobuf.Timestamp
+	140, // 136: model.model.v1alpha.ListRepositoryTagsResponse.tags:type_name -> model.model.v1alpha.RepositoryTag
+	140, // 137: model.model.v1alpha.CreateRepositoryTagRequest.tag:type_name -> model.model.v1alpha.RepositoryTag
+	140, // 138: model.model.v1alpha.CreateRepositoryTagResponse.tag:type_name -> model.model.v1alpha.RepositoryTag
+	140, // 139: model.model.v1alpha.GetRepositoryTagResponse.tag:type_name -> model.model.v1alpha.RepositoryTag
+	152, // 140: model.model.v1alpha.Model.Stats.last_run_time:type_name -> google.protobuf.Timestamp
+	141, // [141:141] is the sub-list for method output_type
+	141, // [141:141] is the sub-list for method input_type
+	141, // [141:141] is the sub-list for extension type_name
+	141, // [141:141] is the sub-list for extension extendee
+	0,   // [0:141] is the sub-list for field type_name
 }
 
 func init() { file_model_model_v1alpha_model_proto_init() }
@@ -9656,13 +10188,14 @@ func file_model_model_v1alpha_model_proto_init() {
 	file_model_model_v1alpha_model_proto_msgTypes[133].OneofWrappers = []any{}
 	file_model_model_v1alpha_model_proto_msgTypes[134].OneofWrappers = []any{}
 	file_model_model_v1alpha_model_proto_msgTypes[135].OneofWrappers = []any{}
+	file_model_model_v1alpha_model_proto_msgTypes[139].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_model_model_v1alpha_model_proto_rawDesc), len(file_model_model_v1alpha_model_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   139,
+			NumMessages:   148,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
