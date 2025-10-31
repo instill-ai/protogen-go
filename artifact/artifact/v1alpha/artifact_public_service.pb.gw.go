@@ -811,6 +811,8 @@ func local_request_ArtifactPublicService_DeleteFile_0(ctx context.Context, marsh
 	return msg, metadata, err
 }
 
+var filter_ArtifactPublicService_GetChunk_0 = &utilities.DoubleArray{Encoding: map[string]int{"namespace_id": 0, "knowledge_base_id": 1, "file_id": 2, "chunk_id": 3}, Base: []int{1, 1, 2, 3, 4, 0, 0, 0, 0}, Check: []int{0, 1, 1, 1, 1, 2, 3, 4, 5}}
+
 func request_ArtifactPublicService_GetChunk_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq GetChunkRequest
@@ -849,6 +851,12 @@ func request_ArtifactPublicService_GetChunk_0(ctx context.Context, marshaler run
 	protoReq.ChunkId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "chunk_id", err)
+	}
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ArtifactPublicService_GetChunk_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	msg, err := client.GetChunk(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
@@ -891,6 +899,12 @@ func local_request_ArtifactPublicService_GetChunk_0(ctx context.Context, marshal
 	protoReq.ChunkId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "chunk_id", err)
+	}
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ArtifactPublicService_GetChunk_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	msg, err := server.GetChunk(ctx, &protoReq)
 	return msg, metadata, err
