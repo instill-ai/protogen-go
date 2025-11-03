@@ -30,6 +30,7 @@ const (
 	ArtifactPublicService_GetFile_FullMethodName               = "/artifact.artifact.v1alpha.ArtifactPublicService/GetFile"
 	ArtifactPublicService_ListFiles_FullMethodName             = "/artifact.artifact.v1alpha.ArtifactPublicService/ListFiles"
 	ArtifactPublicService_UpdateFile_FullMethodName            = "/artifact.artifact.v1alpha.ArtifactPublicService/UpdateFile"
+	ArtifactPublicService_ReprocessFile_FullMethodName         = "/artifact.artifact.v1alpha.ArtifactPublicService/ReprocessFile"
 	ArtifactPublicService_DeleteFile_FullMethodName            = "/artifact.artifact.v1alpha.ArtifactPublicService/DeleteFile"
 	ArtifactPublicService_GetChunk_FullMethodName              = "/artifact.artifact.v1alpha.ArtifactPublicService/GetChunk"
 	ArtifactPublicService_ListChunks_FullMethodName            = "/artifact.artifact.v1alpha.ArtifactPublicService/ListChunks"
@@ -91,6 +92,11 @@ type ArtifactPublicServiceClient interface {
 	//
 	// Updates a file.
 	UpdateFile(ctx context.Context, in *UpdateFileRequest, opts ...grpc.CallOption) (*UpdateFileResponse, error)
+	// Reprocess a file
+	//
+	// Triggers reprocessing of a file with its current configuration.
+	// This will regenerate embeddings, chunks, and summaries.
+	ReprocessFile(ctx context.Context, in *ReprocessFileRequest, opts ...grpc.CallOption) (*ReprocessFileResponse, error)
 	// Delete a file
 	//
 	// Deletes a file.
@@ -243,6 +249,16 @@ func (c *artifactPublicServiceClient) UpdateFile(ctx context.Context, in *Update
 	return out, nil
 }
 
+func (c *artifactPublicServiceClient) ReprocessFile(ctx context.Context, in *ReprocessFileRequest, opts ...grpc.CallOption) (*ReprocessFileResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ReprocessFileResponse)
+	err := c.cc.Invoke(ctx, ArtifactPublicService_ReprocessFile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *artifactPublicServiceClient) DeleteFile(ctx context.Context, in *DeleteFileRequest, opts ...grpc.CallOption) (*DeleteFileResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteFileResponse)
@@ -374,6 +390,11 @@ type ArtifactPublicServiceServer interface {
 	//
 	// Updates a file.
 	UpdateFile(context.Context, *UpdateFileRequest) (*UpdateFileResponse, error)
+	// Reprocess a file
+	//
+	// Triggers reprocessing of a file with its current configuration.
+	// This will regenerate embeddings, chunks, and summaries.
+	ReprocessFile(context.Context, *ReprocessFileRequest) (*ReprocessFileResponse, error)
 	// Delete a file
 	//
 	// Deletes a file.
@@ -447,6 +468,9 @@ func (UnimplementedArtifactPublicServiceServer) ListFiles(context.Context, *List
 }
 func (UnimplementedArtifactPublicServiceServer) UpdateFile(context.Context, *UpdateFileRequest) (*UpdateFileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateFile not implemented")
+}
+func (UnimplementedArtifactPublicServiceServer) ReprocessFile(context.Context, *ReprocessFileRequest) (*ReprocessFileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReprocessFile not implemented")
 }
 func (UnimplementedArtifactPublicServiceServer) DeleteFile(context.Context, *DeleteFileRequest) (*DeleteFileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteFile not implemented")
@@ -690,6 +714,24 @@ func _ArtifactPublicService_UpdateFile_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArtifactPublicService_ReprocessFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReprocessFileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPublicServiceServer).ReprocessFile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPublicService_ReprocessFile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPublicServiceServer).ReprocessFile(ctx, req.(*ReprocessFileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ArtifactPublicService_DeleteFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteFileRequest)
 	if err := dec(in); err != nil {
@@ -884,6 +926,10 @@ var ArtifactPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateFile",
 			Handler:    _ArtifactPublicService_UpdateFile_Handler,
+		},
+		{
+			MethodName: "ReprocessFile",
+			Handler:    _ArtifactPublicService_ReprocessFile_Handler,
 		},
 		{
 			MethodName: "DeleteFile",

@@ -27,7 +27,7 @@ var File_artifact_artifact_v1alpha_artifact_public_service_proto protoreflect.Fi
 
 const file_artifact_artifact_v1alpha_artifact_public_service_proto_rawDesc = "" +
 	"\n" +
-	"7artifact/artifact/v1alpha/artifact_public_service.proto\x12\x19artifact.artifact.v1alpha\x1a(artifact/artifact/v1alpha/artifact.proto\x1a%artifact/artifact/v1alpha/chunk.proto\x1a$artifact/artifact/v1alpha/file.proto\x1a.artifact/artifact/v1alpha/knowledge_base.proto\x1a&artifact/artifact/v1alpha/object.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\x9e$\n" +
+	"7artifact/artifact/v1alpha/artifact_public_service.proto\x12\x19artifact.artifact.v1alpha\x1a(artifact/artifact/v1alpha/artifact.proto\x1a%artifact/artifact/v1alpha/chunk.proto\x1a$artifact/artifact/v1alpha/file.proto\x1a.artifact/artifact/v1alpha/knowledge_base.proto\x1a&artifact/artifact/v1alpha/object.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xa2&\n" +
 	"\x15ArtifactPublicService\x12\xac\x01\n" +
 	"\bLiveness\x12*.artifact.artifact.v1alpha.LivenessRequest\x1a+.artifact.artifact.v1alpha.LivenessResponse\"G\xfa\xd2\xe4\x93\x02\n" +
 	"\x12\bINTERNAL\x82\xd3\xe4\x93\x021Z\x1a\x12\x18/v1alpha/health/artifact\x12\x13/v1alpha/__liveness\x12\xaf\x01\n" +
@@ -61,7 +61,10 @@ const file_artifact_artifact_v1alpha_artifact_public_service_proto_rawDesc = "" 
 	"\n" +
 	"UpdateFile\x12,.artifact.artifact.v1alpha.UpdateFileRequest\x1a-.artifact.artifact.v1alpha.UpdateFileResponse\"\x85\x01\x92A\x1e\n" +
 	"\bArtifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02^:\x04file2V/v1alpha/namespaces/{namespace_id}/knowledge-bases/{knowledge_base_id}/files/{file_id}\x12\xea\x01\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02^:\x04file2V/v1alpha/namespaces/{namespace_id}/knowledge-bases/{knowledge_base_id}/files/{file_id}\x12\x81\x02\n" +
+	"\rReprocessFile\x12/.artifact.artifact.v1alpha.ReprocessFileRequest\x1a0.artifact.artifact.v1alpha.ReprocessFileResponse\"\x8c\x01\x92A\x1e\n" +
+	"\bArtifactj\x12\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02e:\x01*\"`/v1alpha/namespaces/{namespace_id}/knowledge-bases/{knowledge_base_id}/files/{file_id}/reprocess\x12\xea\x01\n" +
 	"\n" +
 	"DeleteFile\x12,.artifact.artifact.v1alpha.DeleteFileRequest\x1a-.artifact.artifact.v1alpha.DeleteFileResponse\"\x7f\x92A\x1e\n" +
 	"\bArtifactj\x12\n" +
@@ -104,33 +107,35 @@ var file_artifact_artifact_v1alpha_artifact_public_service_proto_goTypes = []any
 	(*GetFileRequest)(nil),                // 8: artifact.artifact.v1alpha.GetFileRequest
 	(*ListFilesRequest)(nil),              // 9: artifact.artifact.v1alpha.ListFilesRequest
 	(*UpdateFileRequest)(nil),             // 10: artifact.artifact.v1alpha.UpdateFileRequest
-	(*DeleteFileRequest)(nil),             // 11: artifact.artifact.v1alpha.DeleteFileRequest
-	(*GetChunkRequest)(nil),               // 12: artifact.artifact.v1alpha.GetChunkRequest
-	(*ListChunksRequest)(nil),             // 13: artifact.artifact.v1alpha.ListChunksRequest
-	(*UpdateChunkRequest)(nil),            // 14: artifact.artifact.v1alpha.UpdateChunkRequest
-	(*SearchChunksRequest)(nil),           // 15: artifact.artifact.v1alpha.SearchChunksRequest
-	(*ListKnowledgeBaseRunsRequest)(nil),  // 16: artifact.artifact.v1alpha.ListKnowledgeBaseRunsRequest
-	(*GetObjectUploadURLRequest)(nil),     // 17: artifact.artifact.v1alpha.GetObjectUploadURLRequest
-	(*GetObjectDownloadURLRequest)(nil),   // 18: artifact.artifact.v1alpha.GetObjectDownloadURLRequest
-	(*LivenessResponse)(nil),              // 19: artifact.artifact.v1alpha.LivenessResponse
-	(*ReadinessResponse)(nil),             // 20: artifact.artifact.v1alpha.ReadinessResponse
-	(*CreateKnowledgeBaseResponse)(nil),   // 21: artifact.artifact.v1alpha.CreateKnowledgeBaseResponse
-	(*GetKnowledgeBaseResponse)(nil),      // 22: artifact.artifact.v1alpha.GetKnowledgeBaseResponse
-	(*ListKnowledgeBasesResponse)(nil),    // 23: artifact.artifact.v1alpha.ListKnowledgeBasesResponse
-	(*UpdateKnowledgeBaseResponse)(nil),   // 24: artifact.artifact.v1alpha.UpdateKnowledgeBaseResponse
-	(*DeleteKnowledgeBaseResponse)(nil),   // 25: artifact.artifact.v1alpha.DeleteKnowledgeBaseResponse
-	(*CreateFileResponse)(nil),            // 26: artifact.artifact.v1alpha.CreateFileResponse
-	(*GetFileResponse)(nil),               // 27: artifact.artifact.v1alpha.GetFileResponse
-	(*ListFilesResponse)(nil),             // 28: artifact.artifact.v1alpha.ListFilesResponse
-	(*UpdateFileResponse)(nil),            // 29: artifact.artifact.v1alpha.UpdateFileResponse
-	(*DeleteFileResponse)(nil),            // 30: artifact.artifact.v1alpha.DeleteFileResponse
-	(*GetChunkResponse)(nil),              // 31: artifact.artifact.v1alpha.GetChunkResponse
-	(*ListChunksResponse)(nil),            // 32: artifact.artifact.v1alpha.ListChunksResponse
-	(*UpdateChunkResponse)(nil),           // 33: artifact.artifact.v1alpha.UpdateChunkResponse
-	(*SearchChunksResponse)(nil),          // 34: artifact.artifact.v1alpha.SearchChunksResponse
-	(*ListKnowledgeBaseRunsResponse)(nil), // 35: artifact.artifact.v1alpha.ListKnowledgeBaseRunsResponse
-	(*GetObjectUploadURLResponse)(nil),    // 36: artifact.artifact.v1alpha.GetObjectUploadURLResponse
-	(*GetObjectDownloadURLResponse)(nil),  // 37: artifact.artifact.v1alpha.GetObjectDownloadURLResponse
+	(*ReprocessFileRequest)(nil),          // 11: artifact.artifact.v1alpha.ReprocessFileRequest
+	(*DeleteFileRequest)(nil),             // 12: artifact.artifact.v1alpha.DeleteFileRequest
+	(*GetChunkRequest)(nil),               // 13: artifact.artifact.v1alpha.GetChunkRequest
+	(*ListChunksRequest)(nil),             // 14: artifact.artifact.v1alpha.ListChunksRequest
+	(*UpdateChunkRequest)(nil),            // 15: artifact.artifact.v1alpha.UpdateChunkRequest
+	(*SearchChunksRequest)(nil),           // 16: artifact.artifact.v1alpha.SearchChunksRequest
+	(*ListKnowledgeBaseRunsRequest)(nil),  // 17: artifact.artifact.v1alpha.ListKnowledgeBaseRunsRequest
+	(*GetObjectUploadURLRequest)(nil),     // 18: artifact.artifact.v1alpha.GetObjectUploadURLRequest
+	(*GetObjectDownloadURLRequest)(nil),   // 19: artifact.artifact.v1alpha.GetObjectDownloadURLRequest
+	(*LivenessResponse)(nil),              // 20: artifact.artifact.v1alpha.LivenessResponse
+	(*ReadinessResponse)(nil),             // 21: artifact.artifact.v1alpha.ReadinessResponse
+	(*CreateKnowledgeBaseResponse)(nil),   // 22: artifact.artifact.v1alpha.CreateKnowledgeBaseResponse
+	(*GetKnowledgeBaseResponse)(nil),      // 23: artifact.artifact.v1alpha.GetKnowledgeBaseResponse
+	(*ListKnowledgeBasesResponse)(nil),    // 24: artifact.artifact.v1alpha.ListKnowledgeBasesResponse
+	(*UpdateKnowledgeBaseResponse)(nil),   // 25: artifact.artifact.v1alpha.UpdateKnowledgeBaseResponse
+	(*DeleteKnowledgeBaseResponse)(nil),   // 26: artifact.artifact.v1alpha.DeleteKnowledgeBaseResponse
+	(*CreateFileResponse)(nil),            // 27: artifact.artifact.v1alpha.CreateFileResponse
+	(*GetFileResponse)(nil),               // 28: artifact.artifact.v1alpha.GetFileResponse
+	(*ListFilesResponse)(nil),             // 29: artifact.artifact.v1alpha.ListFilesResponse
+	(*UpdateFileResponse)(nil),            // 30: artifact.artifact.v1alpha.UpdateFileResponse
+	(*ReprocessFileResponse)(nil),         // 31: artifact.artifact.v1alpha.ReprocessFileResponse
+	(*DeleteFileResponse)(nil),            // 32: artifact.artifact.v1alpha.DeleteFileResponse
+	(*GetChunkResponse)(nil),              // 33: artifact.artifact.v1alpha.GetChunkResponse
+	(*ListChunksResponse)(nil),            // 34: artifact.artifact.v1alpha.ListChunksResponse
+	(*UpdateChunkResponse)(nil),           // 35: artifact.artifact.v1alpha.UpdateChunkResponse
+	(*SearchChunksResponse)(nil),          // 36: artifact.artifact.v1alpha.SearchChunksResponse
+	(*ListKnowledgeBaseRunsResponse)(nil), // 37: artifact.artifact.v1alpha.ListKnowledgeBaseRunsResponse
+	(*GetObjectUploadURLResponse)(nil),    // 38: artifact.artifact.v1alpha.GetObjectUploadURLResponse
+	(*GetObjectDownloadURLResponse)(nil),  // 39: artifact.artifact.v1alpha.GetObjectDownloadURLResponse
 }
 var file_artifact_artifact_v1alpha_artifact_public_service_proto_depIdxs = []int32{
 	0,  // 0: artifact.artifact.v1alpha.ArtifactPublicService.Liveness:input_type -> artifact.artifact.v1alpha.LivenessRequest
@@ -144,35 +149,37 @@ var file_artifact_artifact_v1alpha_artifact_public_service_proto_depIdxs = []int
 	8,  // 8: artifact.artifact.v1alpha.ArtifactPublicService.GetFile:input_type -> artifact.artifact.v1alpha.GetFileRequest
 	9,  // 9: artifact.artifact.v1alpha.ArtifactPublicService.ListFiles:input_type -> artifact.artifact.v1alpha.ListFilesRequest
 	10, // 10: artifact.artifact.v1alpha.ArtifactPublicService.UpdateFile:input_type -> artifact.artifact.v1alpha.UpdateFileRequest
-	11, // 11: artifact.artifact.v1alpha.ArtifactPublicService.DeleteFile:input_type -> artifact.artifact.v1alpha.DeleteFileRequest
-	12, // 12: artifact.artifact.v1alpha.ArtifactPublicService.GetChunk:input_type -> artifact.artifact.v1alpha.GetChunkRequest
-	13, // 13: artifact.artifact.v1alpha.ArtifactPublicService.ListChunks:input_type -> artifact.artifact.v1alpha.ListChunksRequest
-	14, // 14: artifact.artifact.v1alpha.ArtifactPublicService.UpdateChunk:input_type -> artifact.artifact.v1alpha.UpdateChunkRequest
-	15, // 15: artifact.artifact.v1alpha.ArtifactPublicService.SearchChunks:input_type -> artifact.artifact.v1alpha.SearchChunksRequest
-	16, // 16: artifact.artifact.v1alpha.ArtifactPublicService.ListKnowledgeBaseRuns:input_type -> artifact.artifact.v1alpha.ListKnowledgeBaseRunsRequest
-	17, // 17: artifact.artifact.v1alpha.ArtifactPublicService.GetObjectUploadURL:input_type -> artifact.artifact.v1alpha.GetObjectUploadURLRequest
-	18, // 18: artifact.artifact.v1alpha.ArtifactPublicService.GetObjectDownloadURL:input_type -> artifact.artifact.v1alpha.GetObjectDownloadURLRequest
-	19, // 19: artifact.artifact.v1alpha.ArtifactPublicService.Liveness:output_type -> artifact.artifact.v1alpha.LivenessResponse
-	20, // 20: artifact.artifact.v1alpha.ArtifactPublicService.Readiness:output_type -> artifact.artifact.v1alpha.ReadinessResponse
-	21, // 21: artifact.artifact.v1alpha.ArtifactPublicService.CreateKnowledgeBase:output_type -> artifact.artifact.v1alpha.CreateKnowledgeBaseResponse
-	22, // 22: artifact.artifact.v1alpha.ArtifactPublicService.GetKnowledgeBase:output_type -> artifact.artifact.v1alpha.GetKnowledgeBaseResponse
-	23, // 23: artifact.artifact.v1alpha.ArtifactPublicService.ListKnowledgeBases:output_type -> artifact.artifact.v1alpha.ListKnowledgeBasesResponse
-	24, // 24: artifact.artifact.v1alpha.ArtifactPublicService.UpdateKnowledgeBase:output_type -> artifact.artifact.v1alpha.UpdateKnowledgeBaseResponse
-	25, // 25: artifact.artifact.v1alpha.ArtifactPublicService.DeleteKnowledgeBase:output_type -> artifact.artifact.v1alpha.DeleteKnowledgeBaseResponse
-	26, // 26: artifact.artifact.v1alpha.ArtifactPublicService.CreateFile:output_type -> artifact.artifact.v1alpha.CreateFileResponse
-	27, // 27: artifact.artifact.v1alpha.ArtifactPublicService.GetFile:output_type -> artifact.artifact.v1alpha.GetFileResponse
-	28, // 28: artifact.artifact.v1alpha.ArtifactPublicService.ListFiles:output_type -> artifact.artifact.v1alpha.ListFilesResponse
-	29, // 29: artifact.artifact.v1alpha.ArtifactPublicService.UpdateFile:output_type -> artifact.artifact.v1alpha.UpdateFileResponse
-	30, // 30: artifact.artifact.v1alpha.ArtifactPublicService.DeleteFile:output_type -> artifact.artifact.v1alpha.DeleteFileResponse
-	31, // 31: artifact.artifact.v1alpha.ArtifactPublicService.GetChunk:output_type -> artifact.artifact.v1alpha.GetChunkResponse
-	32, // 32: artifact.artifact.v1alpha.ArtifactPublicService.ListChunks:output_type -> artifact.artifact.v1alpha.ListChunksResponse
-	33, // 33: artifact.artifact.v1alpha.ArtifactPublicService.UpdateChunk:output_type -> artifact.artifact.v1alpha.UpdateChunkResponse
-	34, // 34: artifact.artifact.v1alpha.ArtifactPublicService.SearchChunks:output_type -> artifact.artifact.v1alpha.SearchChunksResponse
-	35, // 35: artifact.artifact.v1alpha.ArtifactPublicService.ListKnowledgeBaseRuns:output_type -> artifact.artifact.v1alpha.ListKnowledgeBaseRunsResponse
-	36, // 36: artifact.artifact.v1alpha.ArtifactPublicService.GetObjectUploadURL:output_type -> artifact.artifact.v1alpha.GetObjectUploadURLResponse
-	37, // 37: artifact.artifact.v1alpha.ArtifactPublicService.GetObjectDownloadURL:output_type -> artifact.artifact.v1alpha.GetObjectDownloadURLResponse
-	19, // [19:38] is the sub-list for method output_type
-	0,  // [0:19] is the sub-list for method input_type
+	11, // 11: artifact.artifact.v1alpha.ArtifactPublicService.ReprocessFile:input_type -> artifact.artifact.v1alpha.ReprocessFileRequest
+	12, // 12: artifact.artifact.v1alpha.ArtifactPublicService.DeleteFile:input_type -> artifact.artifact.v1alpha.DeleteFileRequest
+	13, // 13: artifact.artifact.v1alpha.ArtifactPublicService.GetChunk:input_type -> artifact.artifact.v1alpha.GetChunkRequest
+	14, // 14: artifact.artifact.v1alpha.ArtifactPublicService.ListChunks:input_type -> artifact.artifact.v1alpha.ListChunksRequest
+	15, // 15: artifact.artifact.v1alpha.ArtifactPublicService.UpdateChunk:input_type -> artifact.artifact.v1alpha.UpdateChunkRequest
+	16, // 16: artifact.artifact.v1alpha.ArtifactPublicService.SearchChunks:input_type -> artifact.artifact.v1alpha.SearchChunksRequest
+	17, // 17: artifact.artifact.v1alpha.ArtifactPublicService.ListKnowledgeBaseRuns:input_type -> artifact.artifact.v1alpha.ListKnowledgeBaseRunsRequest
+	18, // 18: artifact.artifact.v1alpha.ArtifactPublicService.GetObjectUploadURL:input_type -> artifact.artifact.v1alpha.GetObjectUploadURLRequest
+	19, // 19: artifact.artifact.v1alpha.ArtifactPublicService.GetObjectDownloadURL:input_type -> artifact.artifact.v1alpha.GetObjectDownloadURLRequest
+	20, // 20: artifact.artifact.v1alpha.ArtifactPublicService.Liveness:output_type -> artifact.artifact.v1alpha.LivenessResponse
+	21, // 21: artifact.artifact.v1alpha.ArtifactPublicService.Readiness:output_type -> artifact.artifact.v1alpha.ReadinessResponse
+	22, // 22: artifact.artifact.v1alpha.ArtifactPublicService.CreateKnowledgeBase:output_type -> artifact.artifact.v1alpha.CreateKnowledgeBaseResponse
+	23, // 23: artifact.artifact.v1alpha.ArtifactPublicService.GetKnowledgeBase:output_type -> artifact.artifact.v1alpha.GetKnowledgeBaseResponse
+	24, // 24: artifact.artifact.v1alpha.ArtifactPublicService.ListKnowledgeBases:output_type -> artifact.artifact.v1alpha.ListKnowledgeBasesResponse
+	25, // 25: artifact.artifact.v1alpha.ArtifactPublicService.UpdateKnowledgeBase:output_type -> artifact.artifact.v1alpha.UpdateKnowledgeBaseResponse
+	26, // 26: artifact.artifact.v1alpha.ArtifactPublicService.DeleteKnowledgeBase:output_type -> artifact.artifact.v1alpha.DeleteKnowledgeBaseResponse
+	27, // 27: artifact.artifact.v1alpha.ArtifactPublicService.CreateFile:output_type -> artifact.artifact.v1alpha.CreateFileResponse
+	28, // 28: artifact.artifact.v1alpha.ArtifactPublicService.GetFile:output_type -> artifact.artifact.v1alpha.GetFileResponse
+	29, // 29: artifact.artifact.v1alpha.ArtifactPublicService.ListFiles:output_type -> artifact.artifact.v1alpha.ListFilesResponse
+	30, // 30: artifact.artifact.v1alpha.ArtifactPublicService.UpdateFile:output_type -> artifact.artifact.v1alpha.UpdateFileResponse
+	31, // 31: artifact.artifact.v1alpha.ArtifactPublicService.ReprocessFile:output_type -> artifact.artifact.v1alpha.ReprocessFileResponse
+	32, // 32: artifact.artifact.v1alpha.ArtifactPublicService.DeleteFile:output_type -> artifact.artifact.v1alpha.DeleteFileResponse
+	33, // 33: artifact.artifact.v1alpha.ArtifactPublicService.GetChunk:output_type -> artifact.artifact.v1alpha.GetChunkResponse
+	34, // 34: artifact.artifact.v1alpha.ArtifactPublicService.ListChunks:output_type -> artifact.artifact.v1alpha.ListChunksResponse
+	35, // 35: artifact.artifact.v1alpha.ArtifactPublicService.UpdateChunk:output_type -> artifact.artifact.v1alpha.UpdateChunkResponse
+	36, // 36: artifact.artifact.v1alpha.ArtifactPublicService.SearchChunks:output_type -> artifact.artifact.v1alpha.SearchChunksResponse
+	37, // 37: artifact.artifact.v1alpha.ArtifactPublicService.ListKnowledgeBaseRuns:output_type -> artifact.artifact.v1alpha.ListKnowledgeBaseRunsResponse
+	38, // 38: artifact.artifact.v1alpha.ArtifactPublicService.GetObjectUploadURL:output_type -> artifact.artifact.v1alpha.GetObjectUploadURLResponse
+	39, // 39: artifact.artifact.v1alpha.ArtifactPublicService.GetObjectDownloadURL:output_type -> artifact.artifact.v1alpha.GetObjectDownloadURLResponse
+	20, // [20:40] is the sub-list for method output_type
+	0,  // [0:20] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name

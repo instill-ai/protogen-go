@@ -603,8 +603,14 @@ type File struct {
 	TotalTokens int32 `protobuf:"varint,18,opt,name=total_tokens,json=totalTokens,proto3" json:"total_tokens,omitempty"`
 	// Custom metadata provided by the user during file upload
 	ExternalMetadata *structpb.Struct `protobuf:"bytes,19,opt,name=external_metadata,json=externalMetadata,proto3,oneof" json:"external_metadata,omitempty"`
-	// objectUid in blob storage. user can upload to blob storage directly, then put objectUid here.
-	// then no need the base64 encoding for the file content.
+	// Object UID referencing a file already uploaded to blob storage.
+	// Two upload approaches are supported:
+	//  1. Direct upload: Upload file directly to MinIO via GetObjectUploadURL, then provide the object_uid here.
+	//     This avoids base64 encoding overhead and is preferred for large files.
+	//  2. Inline content: Provide base64-encoded file content in the 'content' field (field 9).
+	//     The system will handle the blob storage upload internally.
+	//
+	// When object_uid is provided, the 'content' field is ignored.
 	ObjectUid string `protobuf:"bytes,20,opt,name=object_uid,json=objectUid,proto3" json:"object_uid,omitempty"`
 	// Summary of the file.
 	// Deprecated: Use GetFile with VIEW_SUMMARY to retrieve file summaries.
@@ -1468,7 +1474,6 @@ func (x *GetFileResponse) GetDerivedResourceUri() string {
 }
 
 // UpdateFileRequest represents a request to update a file.
-// Deprecated: Use UpdateFile with field_mask to update file properties including tags.
 type UpdateFileRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Namespace ID.
@@ -1599,6 +1604,125 @@ func (x *UpdateFileResponse) GetFile() *File {
 	return nil
 }
 
+// ReprocessFileRequest represents a request to reprocess a file.
+type ReprocessFileRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The namespace id.
+	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
+	// The knowledge base id.
+	KnowledgeBaseId string `protobuf:"bytes,2,opt,name=knowledge_base_id,json=knowledgeBaseId,proto3" json:"knowledge_base_id,omitempty"`
+	// The file id to reprocess.
+	FileId        string `protobuf:"bytes,3,opt,name=file_id,json=fileId,proto3" json:"file_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ReprocessFileRequest) Reset() {
+	*x = ReprocessFileRequest{}
+	mi := &file_artifact_artifact_v1alpha_file_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ReprocessFileRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReprocessFileRequest) ProtoMessage() {}
+
+func (x *ReprocessFileRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_file_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReprocessFileRequest.ProtoReflect.Descriptor instead.
+func (*ReprocessFileRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_file_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *ReprocessFileRequest) GetNamespaceId() string {
+	if x != nil {
+		return x.NamespaceId
+	}
+	return ""
+}
+
+func (x *ReprocessFileRequest) GetKnowledgeBaseId() string {
+	if x != nil {
+		return x.KnowledgeBaseId
+	}
+	return ""
+}
+
+func (x *ReprocessFileRequest) GetFileId() string {
+	if x != nil {
+		return x.FileId
+	}
+	return ""
+}
+
+// ReprocessFileResponse represents a response for reprocessing a file.
+type ReprocessFileResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The file being reprocessed.
+	File *File `protobuf:"bytes,1,opt,name=file,proto3" json:"file,omitempty"`
+	// Status message.
+	Message       string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ReprocessFileResponse) Reset() {
+	*x = ReprocessFileResponse{}
+	mi := &file_artifact_artifact_v1alpha_file_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ReprocessFileResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReprocessFileResponse) ProtoMessage() {}
+
+func (x *ReprocessFileResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_artifact_v1alpha_file_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReprocessFileResponse.ProtoReflect.Descriptor instead.
+func (*ReprocessFileResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_artifact_v1alpha_file_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *ReprocessFileResponse) GetFile() *File {
+	if x != nil {
+		return x.File
+	}
+	return nil
+}
+
+func (x *ReprocessFileResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
 // Position within a file, as coordinates in a a specific unit. The
 // number of dimensions of the coordinate depends on the unit type.
 type File_Position struct {
@@ -1613,7 +1737,7 @@ type File_Position struct {
 
 func (x *File_Position) Reset() {
 	*x = File_Position{}
-	mi := &file_artifact_artifact_v1alpha_file_proto_msgTypes[13]
+	mi := &file_artifact_artifact_v1alpha_file_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1625,7 +1749,7 @@ func (x *File_Position) String() string {
 func (*File_Position) ProtoMessage() {}
 
 func (x *File_Position) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_artifact_v1alpha_file_proto_msgTypes[13]
+	mi := &file_artifact_artifact_v1alpha_file_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1812,7 +1936,14 @@ const file_artifact_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\vupdate_mask\x18\x05 \x01(\v2\x1a.google.protobuf.FieldMaskB\x03\xe0A\x02R\n" +
 	"updateMask\"N\n" +
 	"\x12UpdateFileResponse\x128\n" +
-	"\x04file\x18\x01 \x01(\v2\x1f.artifact.artifact.v1alpha.FileB\x03\xe0A\x03R\x04file*\x88\x02\n" +
+	"\x04file\x18\x01 \x01(\v2\x1f.artifact.artifact.v1alpha.FileB\x03\xe0A\x03R\x04file\"\x8d\x01\n" +
+	"\x14ReprocessFileRequest\x12&\n" +
+	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12/\n" +
+	"\x11knowledge_base_id\x18\x02 \x01(\tB\x03\xe0A\x02R\x0fknowledgeBaseId\x12\x1c\n" +
+	"\afile_id\x18\x03 \x01(\tB\x03\xe0A\x02R\x06fileId\"p\n" +
+	"\x15ReprocessFileResponse\x128\n" +
+	"\x04file\x18\x01 \x01(\v2\x1f.artifact.artifact.v1alpha.FileB\x03\xe0A\x03R\x04file\x12\x1d\n" +
+	"\amessage\x18\x02 \x01(\tB\x03\xe0A\x03R\amessage*\x88\x02\n" +
 	"\x11FileProcessStatus\x12#\n" +
 	"\x1fFILE_PROCESS_STATUS_UNSPECIFIED\x10\x00\x12\"\n" +
 	"\x1eFILE_PROCESS_STATUS_NOTSTARTED\x10\x01\x12\"\n" +
@@ -1844,7 +1975,7 @@ func file_artifact_artifact_v1alpha_file_proto_rawDescGZIP() []byte {
 }
 
 var file_artifact_artifact_v1alpha_file_proto_enumTypes = make([]protoimpl.EnumInfo, 6)
-var file_artifact_artifact_v1alpha_file_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
+var file_artifact_artifact_v1alpha_file_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_artifact_artifact_v1alpha_file_proto_goTypes = []any{
 	(FileProcessStatus)(0),          // 0: artifact.artifact.v1alpha.FileProcessStatus
 	(ConvertedFileType)(0),          // 1: artifact.artifact.v1alpha.ConvertedFileType
@@ -1865,33 +1996,36 @@ var file_artifact_artifact_v1alpha_file_proto_goTypes = []any{
 	(*GetFileResponse)(nil),         // 16: artifact.artifact.v1alpha.GetFileResponse
 	(*UpdateFileRequest)(nil),       // 17: artifact.artifact.v1alpha.UpdateFileRequest
 	(*UpdateFileResponse)(nil),      // 18: artifact.artifact.v1alpha.UpdateFileResponse
-	(*File_Position)(nil),           // 19: artifact.artifact.v1alpha.File.Position
-	(*timestamppb.Timestamp)(nil),   // 20: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),         // 21: google.protobuf.Struct
-	(*fieldmaskpb.FieldMask)(nil),   // 22: google.protobuf.FieldMask
+	(*ReprocessFileRequest)(nil),    // 19: artifact.artifact.v1alpha.ReprocessFileRequest
+	(*ReprocessFileResponse)(nil),   // 20: artifact.artifact.v1alpha.ReprocessFileResponse
+	(*File_Position)(nil),           // 21: artifact.artifact.v1alpha.File.Position
+	(*timestamppb.Timestamp)(nil),   // 22: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),         // 23: google.protobuf.Struct
+	(*fieldmaskpb.FieldMask)(nil),   // 24: google.protobuf.FieldMask
 }
 var file_artifact_artifact_v1alpha_file_proto_depIdxs = []int32{
 	3,  // 0: artifact.artifact.v1alpha.File.type:type_name -> artifact.artifact.v1alpha.File.Type
 	0,  // 1: artifact.artifact.v1alpha.File.process_status:type_name -> artifact.artifact.v1alpha.FileProcessStatus
-	20, // 2: artifact.artifact.v1alpha.File.create_time:type_name -> google.protobuf.Timestamp
-	20, // 3: artifact.artifact.v1alpha.File.update_time:type_name -> google.protobuf.Timestamp
-	20, // 4: artifact.artifact.v1alpha.File.delete_time:type_name -> google.protobuf.Timestamp
-	21, // 5: artifact.artifact.v1alpha.File.external_metadata:type_name -> google.protobuf.Struct
-	19, // 6: artifact.artifact.v1alpha.File.length:type_name -> artifact.artifact.v1alpha.File.Position
+	22, // 2: artifact.artifact.v1alpha.File.create_time:type_name -> google.protobuf.Timestamp
+	22, // 3: artifact.artifact.v1alpha.File.update_time:type_name -> google.protobuf.Timestamp
+	22, // 4: artifact.artifact.v1alpha.File.delete_time:type_name -> google.protobuf.Timestamp
+	23, // 5: artifact.artifact.v1alpha.File.external_metadata:type_name -> google.protobuf.Struct
+	21, // 6: artifact.artifact.v1alpha.File.length:type_name -> artifact.artifact.v1alpha.File.Position
 	6,  // 7: artifact.artifact.v1alpha.CreateFileRequest.file:type_name -> artifact.artifact.v1alpha.File
 	6,  // 8: artifact.artifact.v1alpha.CreateFileResponse.file:type_name -> artifact.artifact.v1alpha.File
 	6,  // 9: artifact.artifact.v1alpha.ListFilesResponse.files:type_name -> artifact.artifact.v1alpha.File
 	2,  // 10: artifact.artifact.v1alpha.GetFileRequest.view:type_name -> artifact.artifact.v1alpha.File.View
 	6,  // 11: artifact.artifact.v1alpha.GetFileResponse.file:type_name -> artifact.artifact.v1alpha.File
 	6,  // 12: artifact.artifact.v1alpha.UpdateFileRequest.file:type_name -> artifact.artifact.v1alpha.File
-	22, // 13: artifact.artifact.v1alpha.UpdateFileRequest.update_mask:type_name -> google.protobuf.FieldMask
+	24, // 13: artifact.artifact.v1alpha.UpdateFileRequest.update_mask:type_name -> google.protobuf.FieldMask
 	6,  // 14: artifact.artifact.v1alpha.UpdateFileResponse.file:type_name -> artifact.artifact.v1alpha.File
-	5,  // 15: artifact.artifact.v1alpha.File.Position.unit:type_name -> artifact.artifact.v1alpha.File.Position.Unit
-	16, // [16:16] is the sub-list for method output_type
-	16, // [16:16] is the sub-list for method input_type
-	16, // [16:16] is the sub-list for extension type_name
-	16, // [16:16] is the sub-list for extension extendee
-	0,  // [0:16] is the sub-list for field type_name
+	6,  // 15: artifact.artifact.v1alpha.ReprocessFileResponse.file:type_name -> artifact.artifact.v1alpha.File
+	5,  // 16: artifact.artifact.v1alpha.File.Position.unit:type_name -> artifact.artifact.v1alpha.File.Position.Unit
+	17, // [17:17] is the sub-list for method output_type
+	17, // [17:17] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
 func init() { file_artifact_artifact_v1alpha_file_proto_init() }
@@ -1909,7 +2043,7 @@ func file_artifact_artifact_v1alpha_file_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_artifact_artifact_v1alpha_file_proto_rawDesc), len(file_artifact_artifact_v1alpha_file_proto_rawDesc)),
 			NumEnums:      6,
-			NumMessages:   14,
+			NumMessages:   16,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
