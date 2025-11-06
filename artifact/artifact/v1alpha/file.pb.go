@@ -240,7 +240,7 @@ func (File_View) EnumDescriptor() ([]byte, []int) {
 	return file_artifact_artifact_v1alpha_file_proto_rawDescGZIP(), []int{0, 0}
 }
 
-// Supported file types by the pipeline-backend.
+// Supported file types
 type File_Type int32
 
 const (
@@ -249,82 +249,82 @@ const (
 	// Text-based document types
 	// text
 	File_TYPE_TEXT File_Type = 1
-	// PDF
-	File_TYPE_PDF File_Type = 2
 	// MARKDOWN
-	File_TYPE_MARKDOWN File_Type = 3
+	File_TYPE_MARKDOWN File_Type = 2
 	// HTML
-	File_TYPE_HTML File_Type = 7
+	File_TYPE_HTML File_Type = 3
 	// CSV
-	File_TYPE_CSV File_Type = 14
-	// Microsoft Office document types
-	// DOCX
-	File_TYPE_DOCX File_Type = 8
+	File_TYPE_CSV File_Type = 4
+	// Container-based document types
+	// PDF
+	File_TYPE_PDF File_Type = 5
 	// DOC
-	File_TYPE_DOC File_Type = 9
+	File_TYPE_DOC File_Type = 6
+	// DOCX
+	File_TYPE_DOCX File_Type = 7
 	// PPT
-	File_TYPE_PPT File_Type = 10
+	File_TYPE_PPT File_Type = 8
 	// PPTX
-	File_TYPE_PPTX File_Type = 11
+	File_TYPE_PPTX File_Type = 9
 	// XLS
-	File_TYPE_XLS File_Type = 12
+	File_TYPE_XLS File_Type = 10
 	// XLSX
-	File_TYPE_XLSX File_Type = 13
-	// Image types (supported by pipeline-backend/pkg/data/image.go)
+	File_TYPE_XLSX File_Type = 11
+	// Image types
 	// PNG
-	File_TYPE_PNG File_Type = 4
+	File_TYPE_PNG File_Type = 12
 	// JPEG
-	File_TYPE_JPEG File_Type = 5
-	// JPG
-	File_TYPE_JPG File_Type = 6
+	File_TYPE_JPEG File_Type = 13
 	// GIF
-	File_TYPE_GIF File_Type = 15
+	File_TYPE_GIF File_Type = 14
 	// WEBP
-	File_TYPE_WEBP File_Type = 16
+	File_TYPE_WEBP File_Type = 15
 	// TIFF
-	File_TYPE_TIFF File_Type = 17
+	File_TYPE_TIFF File_Type = 16
 	// BMP
-	File_TYPE_BMP File_Type = 18
+	File_TYPE_BMP File_Type = 17
 	// HEIC
-	File_TYPE_HEIC File_Type = 19
+	File_TYPE_HEIC File_Type = 18
 	// HEIF
-	File_TYPE_HEIF File_Type = 20
+	File_TYPE_HEIF File_Type = 19
 	// AVIF
-	File_TYPE_AVIF File_Type = 21
-	// Audio types (supported by pipeline-backend/pkg/data/audio.go)
+	File_TYPE_AVIF File_Type = 20
+	// Audio types
 	// MP3
-	File_TYPE_MP3 File_Type = 22
+	File_TYPE_MP3 File_Type = 21
 	// WAV
-	File_TYPE_WAV File_Type = 23
+	File_TYPE_WAV File_Type = 22
 	// AAC
-	File_TYPE_AAC File_Type = 24
+	File_TYPE_AAC File_Type = 23
 	// OGG
-	File_TYPE_OGG File_Type = 25
+	File_TYPE_OGG File_Type = 24
 	// FLAC
-	File_TYPE_FLAC File_Type = 26
+	File_TYPE_FLAC File_Type = 25
 	// M4A
-	File_TYPE_M4A File_Type = 27
+	File_TYPE_M4A File_Type = 26
 	// WMA
-	File_TYPE_WMA File_Type = 28
+	File_TYPE_WMA File_Type = 27
 	// AIFF
-	File_TYPE_AIFF File_Type = 29
-	// Video types (supported by pipeline-backend/pkg/data/video.go)
+	File_TYPE_AIFF File_Type = 28
+	// WEBM (audio)
+	File_TYPE_WEBM_AUDIO File_Type = 29
+	// Video types
 	// MP4
 	File_TYPE_MP4 File_Type = 30
 	// AVI
 	File_TYPE_AVI File_Type = 31
 	// MOV
 	File_TYPE_MOV File_Type = 32
-	// WEBM (video)
-	File_TYPE_WEBM_VIDEO File_Type = 33
 	// MKV
-	File_TYPE_MKV File_Type = 34
+	File_TYPE_MKV File_Type = 33
 	// FLV
-	File_TYPE_FLV File_Type = 35
+	File_TYPE_FLV File_Type = 34
 	// WMV
-	File_TYPE_WMV File_Type = 36
+	File_TYPE_WMV File_Type = 35
 	// MPEG
-	File_TYPE_MPEG File_Type = 37
+	File_TYPE_MPEG File_Type = 36
+	// WEBM (video)
+	File_TYPE_WEBM_VIDEO File_Type = 37
 )
 
 // Enum value maps for File_Type.
@@ -332,82 +332,82 @@ var (
 	File_Type_name = map[int32]string{
 		0:  "TYPE_UNSPECIFIED",
 		1:  "TYPE_TEXT",
-		2:  "TYPE_PDF",
-		3:  "TYPE_MARKDOWN",
-		7:  "TYPE_HTML",
-		14: "TYPE_CSV",
-		8:  "TYPE_DOCX",
-		9:  "TYPE_DOC",
-		10: "TYPE_PPT",
-		11: "TYPE_PPTX",
-		12: "TYPE_XLS",
-		13: "TYPE_XLSX",
-		4:  "TYPE_PNG",
-		5:  "TYPE_JPEG",
-		6:  "TYPE_JPG",
-		15: "TYPE_GIF",
-		16: "TYPE_WEBP",
-		17: "TYPE_TIFF",
-		18: "TYPE_BMP",
-		19: "TYPE_HEIC",
-		20: "TYPE_HEIF",
-		21: "TYPE_AVIF",
-		22: "TYPE_MP3",
-		23: "TYPE_WAV",
-		24: "TYPE_AAC",
-		25: "TYPE_OGG",
-		26: "TYPE_FLAC",
-		27: "TYPE_M4A",
-		28: "TYPE_WMA",
-		29: "TYPE_AIFF",
+		2:  "TYPE_MARKDOWN",
+		3:  "TYPE_HTML",
+		4:  "TYPE_CSV",
+		5:  "TYPE_PDF",
+		6:  "TYPE_DOC",
+		7:  "TYPE_DOCX",
+		8:  "TYPE_PPT",
+		9:  "TYPE_PPTX",
+		10: "TYPE_XLS",
+		11: "TYPE_XLSX",
+		12: "TYPE_PNG",
+		13: "TYPE_JPEG",
+		14: "TYPE_GIF",
+		15: "TYPE_WEBP",
+		16: "TYPE_TIFF",
+		17: "TYPE_BMP",
+		18: "TYPE_HEIC",
+		19: "TYPE_HEIF",
+		20: "TYPE_AVIF",
+		21: "TYPE_MP3",
+		22: "TYPE_WAV",
+		23: "TYPE_AAC",
+		24: "TYPE_OGG",
+		25: "TYPE_FLAC",
+		26: "TYPE_M4A",
+		27: "TYPE_WMA",
+		28: "TYPE_AIFF",
+		29: "TYPE_WEBM_AUDIO",
 		30: "TYPE_MP4",
 		31: "TYPE_AVI",
 		32: "TYPE_MOV",
-		33: "TYPE_WEBM_VIDEO",
-		34: "TYPE_MKV",
-		35: "TYPE_FLV",
-		36: "TYPE_WMV",
-		37: "TYPE_MPEG",
+		33: "TYPE_MKV",
+		34: "TYPE_FLV",
+		35: "TYPE_WMV",
+		36: "TYPE_MPEG",
+		37: "TYPE_WEBM_VIDEO",
 	}
 	File_Type_value = map[string]int32{
 		"TYPE_UNSPECIFIED": 0,
 		"TYPE_TEXT":        1,
-		"TYPE_PDF":         2,
-		"TYPE_MARKDOWN":    3,
-		"TYPE_HTML":        7,
-		"TYPE_CSV":         14,
-		"TYPE_DOCX":        8,
-		"TYPE_DOC":         9,
-		"TYPE_PPT":         10,
-		"TYPE_PPTX":        11,
-		"TYPE_XLS":         12,
-		"TYPE_XLSX":        13,
-		"TYPE_PNG":         4,
-		"TYPE_JPEG":        5,
-		"TYPE_JPG":         6,
-		"TYPE_GIF":         15,
-		"TYPE_WEBP":        16,
-		"TYPE_TIFF":        17,
-		"TYPE_BMP":         18,
-		"TYPE_HEIC":        19,
-		"TYPE_HEIF":        20,
-		"TYPE_AVIF":        21,
-		"TYPE_MP3":         22,
-		"TYPE_WAV":         23,
-		"TYPE_AAC":         24,
-		"TYPE_OGG":         25,
-		"TYPE_FLAC":        26,
-		"TYPE_M4A":         27,
-		"TYPE_WMA":         28,
-		"TYPE_AIFF":        29,
+		"TYPE_MARKDOWN":    2,
+		"TYPE_HTML":        3,
+		"TYPE_CSV":         4,
+		"TYPE_PDF":         5,
+		"TYPE_DOC":         6,
+		"TYPE_DOCX":        7,
+		"TYPE_PPT":         8,
+		"TYPE_PPTX":        9,
+		"TYPE_XLS":         10,
+		"TYPE_XLSX":        11,
+		"TYPE_PNG":         12,
+		"TYPE_JPEG":        13,
+		"TYPE_GIF":         14,
+		"TYPE_WEBP":        15,
+		"TYPE_TIFF":        16,
+		"TYPE_BMP":         17,
+		"TYPE_HEIC":        18,
+		"TYPE_HEIF":        19,
+		"TYPE_AVIF":        20,
+		"TYPE_MP3":         21,
+		"TYPE_WAV":         22,
+		"TYPE_AAC":         23,
+		"TYPE_OGG":         24,
+		"TYPE_FLAC":        25,
+		"TYPE_M4A":         26,
+		"TYPE_WMA":         27,
+		"TYPE_AIFF":        28,
+		"TYPE_WEBM_AUDIO":  29,
 		"TYPE_MP4":         30,
 		"TYPE_AVI":         31,
 		"TYPE_MOV":         32,
-		"TYPE_WEBM_VIDEO":  33,
-		"TYPE_MKV":         34,
-		"TYPE_FLV":         35,
-		"TYPE_WMV":         36,
-		"TYPE_MPEG":        37,
+		"TYPE_MKV":         33,
+		"TYPE_FLV":         34,
+		"TYPE_WMV":         35,
+		"TYPE_MPEG":        36,
+		"TYPE_WEBM_VIDEO":  37,
 	}
 )
 
@@ -1783,7 +1783,7 @@ var File_artifact_artifact_v1alpha_file_proto protoreflect.FileDescriptor
 
 const file_artifact_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\n" +
-	"$artifact/artifact/v1alpha/file.proto\x12\x19artifact.artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe0\x12\n" +
+	"$artifact/artifact/v1alpha/file.proto\x12\x19artifact.artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe7\x12\n" +
 	"\x04File\x12\x15\n" +
 	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12\x17\n" +
@@ -1836,47 +1836,47 @@ const file_artifact_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\x17VIEW_STANDARD_FILE_TYPE\x10\x05\x12\x1b\n" +
 	"\x17VIEW_ORIGINAL_FILE_TYPE\x10\x06\x12\x0e\n" +
 	"\n" +
-	"VIEW_CACHE\x10\a\"\xbc\x04\n" +
+	"VIEW_CACHE\x10\a\"\xc3\x04\n" +
 	"\x04Type\x12\x14\n" +
 	"\x10TYPE_UNSPECIFIED\x10\x00\x12\r\n" +
-	"\tTYPE_TEXT\x10\x01\x12\f\n" +
-	"\bTYPE_PDF\x10\x02\x12\x11\n" +
-	"\rTYPE_MARKDOWN\x10\x03\x12\r\n" +
-	"\tTYPE_HTML\x10\a\x12\f\n" +
-	"\bTYPE_CSV\x10\x0e\x12\r\n" +
-	"\tTYPE_DOCX\x10\b\x12\f\n" +
-	"\bTYPE_DOC\x10\t\x12\f\n" +
-	"\bTYPE_PPT\x10\n" +
+	"\tTYPE_TEXT\x10\x01\x12\x11\n" +
+	"\rTYPE_MARKDOWN\x10\x02\x12\r\n" +
+	"\tTYPE_HTML\x10\x03\x12\f\n" +
+	"\bTYPE_CSV\x10\x04\x12\f\n" +
+	"\bTYPE_PDF\x10\x05\x12\f\n" +
+	"\bTYPE_DOC\x10\x06\x12\r\n" +
+	"\tTYPE_DOCX\x10\a\x12\f\n" +
+	"\bTYPE_PPT\x10\b\x12\r\n" +
+	"\tTYPE_PPTX\x10\t\x12\f\n" +
+	"\bTYPE_XLS\x10\n" +
 	"\x12\r\n" +
-	"\tTYPE_PPTX\x10\v\x12\f\n" +
-	"\bTYPE_XLS\x10\f\x12\r\n" +
-	"\tTYPE_XLSX\x10\r\x12\f\n" +
-	"\bTYPE_PNG\x10\x04\x12\r\n" +
-	"\tTYPE_JPEG\x10\x05\x12\f\n" +
-	"\bTYPE_JPG\x10\x06\x12\f\n" +
-	"\bTYPE_GIF\x10\x0f\x12\r\n" +
-	"\tTYPE_WEBP\x10\x10\x12\r\n" +
-	"\tTYPE_TIFF\x10\x11\x12\f\n" +
-	"\bTYPE_BMP\x10\x12\x12\r\n" +
-	"\tTYPE_HEIC\x10\x13\x12\r\n" +
-	"\tTYPE_HEIF\x10\x14\x12\r\n" +
-	"\tTYPE_AVIF\x10\x15\x12\f\n" +
-	"\bTYPE_MP3\x10\x16\x12\f\n" +
-	"\bTYPE_WAV\x10\x17\x12\f\n" +
-	"\bTYPE_AAC\x10\x18\x12\f\n" +
-	"\bTYPE_OGG\x10\x19\x12\r\n" +
-	"\tTYPE_FLAC\x10\x1a\x12\f\n" +
-	"\bTYPE_M4A\x10\x1b\x12\f\n" +
-	"\bTYPE_WMA\x10\x1c\x12\r\n" +
-	"\tTYPE_AIFF\x10\x1d\x12\f\n" +
+	"\tTYPE_XLSX\x10\v\x12\f\n" +
+	"\bTYPE_PNG\x10\f\x12\r\n" +
+	"\tTYPE_JPEG\x10\r\x12\f\n" +
+	"\bTYPE_GIF\x10\x0e\x12\r\n" +
+	"\tTYPE_WEBP\x10\x0f\x12\r\n" +
+	"\tTYPE_TIFF\x10\x10\x12\f\n" +
+	"\bTYPE_BMP\x10\x11\x12\r\n" +
+	"\tTYPE_HEIC\x10\x12\x12\r\n" +
+	"\tTYPE_HEIF\x10\x13\x12\r\n" +
+	"\tTYPE_AVIF\x10\x14\x12\f\n" +
+	"\bTYPE_MP3\x10\x15\x12\f\n" +
+	"\bTYPE_WAV\x10\x16\x12\f\n" +
+	"\bTYPE_AAC\x10\x17\x12\f\n" +
+	"\bTYPE_OGG\x10\x18\x12\r\n" +
+	"\tTYPE_FLAC\x10\x19\x12\f\n" +
+	"\bTYPE_M4A\x10\x1a\x12\f\n" +
+	"\bTYPE_WMA\x10\x1b\x12\r\n" +
+	"\tTYPE_AIFF\x10\x1c\x12\x13\n" +
+	"\x0fTYPE_WEBM_AUDIO\x10\x1d\x12\f\n" +
 	"\bTYPE_MP4\x10\x1e\x12\f\n" +
 	"\bTYPE_AVI\x10\x1f\x12\f\n" +
-	"\bTYPE_MOV\x10 \x12\x13\n" +
-	"\x0fTYPE_WEBM_VIDEO\x10!\x12\f\n" +
-	"\bTYPE_MKV\x10\"\x12\f\n" +
-	"\bTYPE_FLV\x10#\x12\f\n" +
-	"\bTYPE_WMV\x10$\x12\r\n" +
-	"\tTYPE_MPEG\x10%\"\x9f\x01\n" +
+	"\bTYPE_MOV\x10 \x12\f\n" +
+	"\bTYPE_MKV\x10!\x12\f\n" +
+	"\bTYPE_FLV\x10\"\x12\f\n" +
+	"\bTYPE_WMV\x10#\x12\r\n" +
+	"\tTYPE_MPEG\x10$\x12\x13\n" +
+	"\x0fTYPE_WEBM_VIDEO\x10%\"\x9f\x01\n" +
 	"\rFileMediaType\x12\x1f\n" +
 	"\x1bFILE_MEDIA_TYPE_UNSPECIFIED\x10\x00\x12\x1c\n" +
 	"\x18FILE_MEDIA_TYPE_DOCUMENT\x10\x01\x12\x19\n" +
