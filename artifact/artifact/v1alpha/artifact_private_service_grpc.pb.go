@@ -20,7 +20,6 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	ArtifactPrivateService_GetObjectAdmin_FullMethodName                    = "/artifact.artifact.v1alpha.ArtifactPrivateService/GetObjectAdmin"
-	ArtifactPrivateService_GetObjectURLAdmin_FullMethodName                 = "/artifact.artifact.v1alpha.ArtifactPrivateService/GetObjectURLAdmin"
 	ArtifactPrivateService_UpdateObjectAdmin_FullMethodName                 = "/artifact.artifact.v1alpha.ArtifactPrivateService/UpdateObjectAdmin"
 	ArtifactPrivateService_DeleteFileAdmin_FullMethodName                   = "/artifact.artifact.v1alpha.ArtifactPrivateService/DeleteFileAdmin"
 	ArtifactPrivateService_ExecuteKnowledgeBaseUpdateAdmin_FullMethodName   = "/artifact.artifact.v1alpha.ArtifactPrivateService/ExecuteKnowledgeBaseUpdateAdmin"
@@ -48,8 +47,6 @@ const (
 type ArtifactPrivateServiceClient interface {
 	// Get Object (admin only)
 	GetObjectAdmin(ctx context.Context, in *GetObjectAdminRequest, opts ...grpc.CallOption) (*GetObjectAdminResponse, error)
-	// Get Object URL (admin only)
-	GetObjectURLAdmin(ctx context.Context, in *GetObjectURLAdminRequest, opts ...grpc.CallOption) (*GetObjectURLAdminResponse, error)
 	// Update Object (admin only)
 	UpdateObjectAdmin(ctx context.Context, in *UpdateObjectAdminRequest, opts ...grpc.CallOption) (*UpdateObjectAdminResponse, error)
 	// Delete a knowledge base file (admin only)
@@ -108,16 +105,6 @@ func (c *artifactPrivateServiceClient) GetObjectAdmin(ctx context.Context, in *G
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetObjectAdminResponse)
 	err := c.cc.Invoke(ctx, ArtifactPrivateService_GetObjectAdmin_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *artifactPrivateServiceClient) GetObjectURLAdmin(ctx context.Context, in *GetObjectURLAdminRequest, opts ...grpc.CallOption) (*GetObjectURLAdminResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetObjectURLAdminResponse)
-	err := c.cc.Invoke(ctx, ArtifactPrivateService_GetObjectURLAdmin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -293,8 +280,6 @@ func (c *artifactPrivateServiceClient) GetDefaultSystemAdmin(ctx context.Context
 type ArtifactPrivateServiceServer interface {
 	// Get Object (admin only)
 	GetObjectAdmin(context.Context, *GetObjectAdminRequest) (*GetObjectAdminResponse, error)
-	// Get Object URL (admin only)
-	GetObjectURLAdmin(context.Context, *GetObjectURLAdminRequest) (*GetObjectURLAdminResponse, error)
 	// Update Object (admin only)
 	UpdateObjectAdmin(context.Context, *UpdateObjectAdminRequest) (*UpdateObjectAdminResponse, error)
 	// Delete a knowledge base file (admin only)
@@ -350,9 +335,6 @@ type UnimplementedArtifactPrivateServiceServer struct{}
 
 func (UnimplementedArtifactPrivateServiceServer) GetObjectAdmin(context.Context, *GetObjectAdminRequest) (*GetObjectAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetObjectAdmin not implemented")
-}
-func (UnimplementedArtifactPrivateServiceServer) GetObjectURLAdmin(context.Context, *GetObjectURLAdminRequest) (*GetObjectURLAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetObjectURLAdmin not implemented")
 }
 func (UnimplementedArtifactPrivateServiceServer) UpdateObjectAdmin(context.Context, *UpdateObjectAdminRequest) (*UpdateObjectAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateObjectAdmin not implemented")
@@ -436,24 +418,6 @@ func _ArtifactPrivateService_GetObjectAdmin_Handler(srv interface{}, ctx context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ArtifactPrivateServiceServer).GetObjectAdmin(ctx, req.(*GetObjectAdminRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ArtifactPrivateService_GetObjectURLAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetObjectURLAdminRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactPrivateServiceServer).GetObjectURLAdmin(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ArtifactPrivateService_GetObjectURLAdmin_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPrivateServiceServer).GetObjectURLAdmin(ctx, req.(*GetObjectURLAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -756,10 +720,6 @@ var ArtifactPrivateService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetObjectAdmin",
 			Handler:    _ArtifactPrivateService_GetObjectAdmin_Handler,
-		},
-		{
-			MethodName: "GetObjectURLAdmin",
-			Handler:    _ArtifactPrivateService_GetObjectURLAdmin_Handler,
 		},
 		{
 			MethodName: "UpdateObjectAdmin",
