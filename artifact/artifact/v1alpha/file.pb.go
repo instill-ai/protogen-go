@@ -665,12 +665,6 @@ type File struct {
 	//
 	// When object_uid is provided, the 'content' field is ignored.
 	ObjectUid string `protobuf:"bytes,20,opt,name=object_uid,json=objectUid,proto3" json:"object_uid,omitempty"`
-	// Summary of the file.
-	// Deprecated: Use GetFile with VIEW_SUMMARY to retrieve file summaries.
-	// This field now returns an empty string as summaries are stored separately in MinIO.
-	//
-	// Deprecated: Marked as deprecated in artifact/artifact/v1alpha/file.proto.
-	Summary string `protobuf:"bytes,21,opt,name=summary,proto3" json:"summary,omitempty"`
 	// download url of the file
 	DownloadUrl string `protobuf:"bytes,22,opt,name=download_url,json=downloadUrl,proto3" json:"download_url,omitempty"`
 	// Pipeline used for converting the file to Markdown if the file is a
@@ -882,14 +876,6 @@ func (x *File) GetExternalMetadata() *structpb.Struct {
 func (x *File) GetObjectUid() string {
 	if x != nil {
 		return x.ObjectUid
-	}
-	return ""
-}
-
-// Deprecated: Marked as deprecated in artifact/artifact/v1alpha/file.proto.
-func (x *File) GetSummary() string {
-	if x != nil {
-		return x.Summary
 	}
 	return ""
 }
@@ -1853,7 +1839,7 @@ var File_artifact_artifact_v1alpha_file_proto protoreflect.FileDescriptor
 
 const file_artifact_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\n" +
-	"$artifact/artifact/v1alpha/file.proto\x12\x19artifact.artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd2\x13\n" +
+	"$artifact/artifact/v1alpha/file.proto\x12\x19artifact.artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb7\x13\n" +
 	"\x04File\x12\x15\n" +
 	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12\x17\n" +
@@ -1880,8 +1866,7 @@ const file_artifact_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\ftotal_tokens\x18\x12 \x01(\x05B\x03\xe0A\x03R\vtotalTokens\x12N\n" +
 	"\x11external_metadata\x18\x13 \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x01H\x00R\x10externalMetadata\x88\x01\x01\x12\"\n" +
 	"\n" +
-	"object_uid\x18\x14 \x01(\tB\x03\xe0A\x01R\tobjectUid\x12\x1f\n" +
-	"\asummary\x18\x15 \x01(\tB\x05\xe0A\x03\x18\x01R\asummary\x12&\n" +
+	"object_uid\x18\x14 \x01(\tB\x03\xe0A\x01R\tobjectUid\x12&\n" +
 	"\fdownload_url\x18\x16 \x01(\tB\x03\xe0A\x03R\vdownloadUrl\x129\n" +
 	"\x13converting_pipeline\x18\x17 \x01(\tB\x03\xe0A\x01H\x01R\x12convertingPipeline\x88\x01\x01\x12E\n" +
 	"\x06length\x18\x18 \x01(\v2(.artifact.artifact.v1alpha.File.PositionB\x03\xe0A\x03R\x06length\x12\x17\n" +
@@ -1958,7 +1943,7 @@ const file_artifact_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\x15FILE_MEDIA_TYPE_AUDIO\x10\x03\x12\x19\n" +
 	"\x15FILE_MEDIA_TYPE_VIDEO\x10\x04:I\xeaAF\x12Dnamespaces/{namespace}/knowledge-bases/{knowledge_base}/files/{file}B\x14\n" +
 	"\x12_external_metadataB\x16\n" +
-	"\x14_converting_pipeline\"\xa6\x01\n" +
+	"\x14_converting_pipelineJ\x04\b\x15\x10\x16\"\xa6\x01\n" +
 	"\x11CreateFileRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12/\n" +
 	"\x11knowledge_base_id\x18\x02 \x01(\tB\x03\xe0A\x02R\x0fknowledgeBaseId\x128\n" +
