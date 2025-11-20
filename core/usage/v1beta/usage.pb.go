@@ -42,6 +42,8 @@ const (
 	Session_SERVICE_PIPELINE Session_Service = 4
 	// Service: ARTIFACT
 	Session_SERVICE_ARTIFACT Session_Service = 5
+	// Service: AGENT
+	Session_SERVICE_AGENT Session_Service = 6
 )
 
 // Enum value maps for Session_Service.
@@ -53,6 +55,7 @@ var (
 		3: "SERVICE_MODEL",
 		4: "SERVICE_PIPELINE",
 		5: "SERVICE_ARTIFACT",
+		6: "SERVICE_AGENT",
 	}
 	Session_Service_value = map[string]int32{
 		"SERVICE_UNSPECIFIED": 0,
@@ -61,6 +64,7 @@ var (
 		"SERVICE_MODEL":       3,
 		"SERVICE_PIPELINE":    4,
 		"SERVICE_ARTIFACT":    5,
+		"SERVICE_AGENT":       6,
 	}
 )
 
@@ -672,6 +676,52 @@ func (x *ArtifactUsageData) GetUsages() []*ArtifactUsageData_UserUsageData {
 	return nil
 }
 
+// Agent service usage data
+type AgentUsageData struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Usage data of all users in the agent service
+	Usages        []*AgentUsageData_UserUsageData `protobuf:"bytes,1,rep,name=usages,proto3" json:"usages,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AgentUsageData) Reset() {
+	*x = AgentUsageData{}
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AgentUsageData) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AgentUsageData) ProtoMessage() {}
+
+func (x *AgentUsageData) ProtoReflect() protoreflect.Message {
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AgentUsageData.ProtoReflect.Descriptor instead.
+func (*AgentUsageData) Descriptor() ([]byte, []int) {
+	return file_core_usage_v1beta_usage_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *AgentUsageData) GetUsages() []*AgentUsageData_UserUsageData {
+	if x != nil {
+		return x.Usages
+	}
+	return nil
+}
+
 // SessionReport represents a report to be sent to the server that includes the
 // usage data of a session
 type SessionReport struct {
@@ -693,6 +743,7 @@ type SessionReport struct {
 	//	*SessionReport_ModelUsageData
 	//	*SessionReport_PipelineUsageData
 	//	*SessionReport_ArtifactUsageData
+	//	*SessionReport_AgentUsageData
 	UsageData     isSessionReport_UsageData `protobuf_oneof:"usage_data"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -700,7 +751,7 @@ type SessionReport struct {
 
 func (x *SessionReport) Reset() {
 	*x = SessionReport{}
-	mi := &file_core_usage_v1beta_usage_proto_msgTypes[10]
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -712,7 +763,7 @@ func (x *SessionReport) String() string {
 func (*SessionReport) ProtoMessage() {}
 
 func (x *SessionReport) ProtoReflect() protoreflect.Message {
-	mi := &file_core_usage_v1beta_usage_proto_msgTypes[10]
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -725,7 +776,7 @@ func (x *SessionReport) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SessionReport.ProtoReflect.Descriptor instead.
 func (*SessionReport) Descriptor() ([]byte, []int) {
-	return file_core_usage_v1beta_usage_proto_rawDescGZIP(), []int{10}
+	return file_core_usage_v1beta_usage_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *SessionReport) GetSessionUid() string {
@@ -808,6 +859,15 @@ func (x *SessionReport) GetArtifactUsageData() *ArtifactUsageData {
 	return nil
 }
 
+func (x *SessionReport) GetAgentUsageData() *AgentUsageData {
+	if x != nil {
+		if x, ok := x.UsageData.(*SessionReport_AgentUsageData); ok {
+			return x.AgentUsageData
+		}
+	}
+	return nil
+}
+
 type isSessionReport_UsageData interface {
 	isSessionReport_UsageData()
 }
@@ -837,6 +897,11 @@ type SessionReport_ArtifactUsageData struct {
 	ArtifactUsageData *ArtifactUsageData `protobuf:"bytes,9,opt,name=artifact_usage_data,json=artifactUsageData,proto3,oneof"`
 }
 
+type SessionReport_AgentUsageData struct {
+	// Agent service usage data
+	AgentUsageData *AgentUsageData `protobuf:"bytes,10,opt,name=agent_usage_data,json=agentUsageData,proto3,oneof"`
+}
+
 func (*SessionReport_MgmtUsageData) isSessionReport_UsageData() {}
 
 func (*SessionReport_ConnectorUsageData) isSessionReport_UsageData() {}
@@ -846,6 +911,8 @@ func (*SessionReport_ModelUsageData) isSessionReport_UsageData() {}
 func (*SessionReport_PipelineUsageData) isSessionReport_UsageData() {}
 
 func (*SessionReport_ArtifactUsageData) isSessionReport_UsageData() {}
+
+func (*SessionReport_AgentUsageData) isSessionReport_UsageData() {}
 
 // CreateSessionRequest represents a request to create a new session
 type CreateSessionRequest struct {
@@ -858,7 +925,7 @@ type CreateSessionRequest struct {
 
 func (x *CreateSessionRequest) Reset() {
 	*x = CreateSessionRequest{}
-	mi := &file_core_usage_v1beta_usage_proto_msgTypes[11]
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -870,7 +937,7 @@ func (x *CreateSessionRequest) String() string {
 func (*CreateSessionRequest) ProtoMessage() {}
 
 func (x *CreateSessionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_core_usage_v1beta_usage_proto_msgTypes[11]
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -883,7 +950,7 @@ func (x *CreateSessionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateSessionRequest.ProtoReflect.Descriptor instead.
 func (*CreateSessionRequest) Descriptor() ([]byte, []int) {
-	return file_core_usage_v1beta_usage_proto_rawDescGZIP(), []int{11}
+	return file_core_usage_v1beta_usage_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *CreateSessionRequest) GetSession() *Session {
@@ -904,7 +971,7 @@ type CreateSessionResponse struct {
 
 func (x *CreateSessionResponse) Reset() {
 	*x = CreateSessionResponse{}
-	mi := &file_core_usage_v1beta_usage_proto_msgTypes[12]
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -916,7 +983,7 @@ func (x *CreateSessionResponse) String() string {
 func (*CreateSessionResponse) ProtoMessage() {}
 
 func (x *CreateSessionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_core_usage_v1beta_usage_proto_msgTypes[12]
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -929,7 +996,7 @@ func (x *CreateSessionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateSessionResponse.ProtoReflect.Descriptor instead.
 func (*CreateSessionResponse) Descriptor() ([]byte, []int) {
-	return file_core_usage_v1beta_usage_proto_rawDescGZIP(), []int{12}
+	return file_core_usage_v1beta_usage_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *CreateSessionResponse) GetSession() *Session {
@@ -950,7 +1017,7 @@ type SendSessionReportRequest struct {
 
 func (x *SendSessionReportRequest) Reset() {
 	*x = SendSessionReportRequest{}
-	mi := &file_core_usage_v1beta_usage_proto_msgTypes[13]
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -962,7 +1029,7 @@ func (x *SendSessionReportRequest) String() string {
 func (*SendSessionReportRequest) ProtoMessage() {}
 
 func (x *SendSessionReportRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_core_usage_v1beta_usage_proto_msgTypes[13]
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -975,7 +1042,7 @@ func (x *SendSessionReportRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SendSessionReportRequest.ProtoReflect.Descriptor instead.
 func (*SendSessionReportRequest) Descriptor() ([]byte, []int) {
-	return file_core_usage_v1beta_usage_proto_rawDescGZIP(), []int{13}
+	return file_core_usage_v1beta_usage_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *SendSessionReportRequest) GetReport() *SessionReport {
@@ -994,7 +1061,7 @@ type SendSessionReportResponse struct {
 
 func (x *SendSessionReportResponse) Reset() {
 	*x = SendSessionReportResponse{}
-	mi := &file_core_usage_v1beta_usage_proto_msgTypes[14]
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1006,7 +1073,7 @@ func (x *SendSessionReportResponse) String() string {
 func (*SendSessionReportResponse) ProtoMessage() {}
 
 func (x *SendSessionReportResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_core_usage_v1beta_usage_proto_msgTypes[14]
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1019,7 +1086,7 @@ func (x *SendSessionReportResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SendSessionReportResponse.ProtoReflect.Descriptor instead.
 func (*SendSessionReportResponse) Descriptor() ([]byte, []int) {
-	return file_core_usage_v1beta_usage_proto_rawDescGZIP(), []int{14}
+	return file_core_usage_v1beta_usage_proto_rawDescGZIP(), []int{15}
 }
 
 // Per user usage data in the connector service
@@ -1037,7 +1104,7 @@ type ConnectorUsageData_UserUsageData struct {
 
 func (x *ConnectorUsageData_UserUsageData) Reset() {
 	*x = ConnectorUsageData_UserUsageData{}
-	mi := &file_core_usage_v1beta_usage_proto_msgTypes[15]
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1049,7 +1116,7 @@ func (x *ConnectorUsageData_UserUsageData) String() string {
 func (*ConnectorUsageData_UserUsageData) ProtoMessage() {}
 
 func (x *ConnectorUsageData_UserUsageData) ProtoReflect() protoreflect.Message {
-	mi := &file_core_usage_v1beta_usage_proto_msgTypes[15]
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1109,7 +1176,7 @@ type ConnectorUsageData_UserUsageData_ConnectorExecuteData struct {
 
 func (x *ConnectorUsageData_UserUsageData_ConnectorExecuteData) Reset() {
 	*x = ConnectorUsageData_UserUsageData_ConnectorExecuteData{}
-	mi := &file_core_usage_v1beta_usage_proto_msgTypes[16]
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1121,7 +1188,7 @@ func (x *ConnectorUsageData_UserUsageData_ConnectorExecuteData) String() string 
 func (*ConnectorUsageData_UserUsageData_ConnectorExecuteData) ProtoMessage() {}
 
 func (x *ConnectorUsageData_UserUsageData_ConnectorExecuteData) ProtoReflect() protoreflect.Message {
-	mi := &file_core_usage_v1beta_usage_proto_msgTypes[16]
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1201,7 +1268,7 @@ type ModelUsageData_UserUsageData struct {
 
 func (x *ModelUsageData_UserUsageData) Reset() {
 	*x = ModelUsageData_UserUsageData{}
-	mi := &file_core_usage_v1beta_usage_proto_msgTypes[17]
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1213,7 +1280,7 @@ func (x *ModelUsageData_UserUsageData) String() string {
 func (*ModelUsageData_UserUsageData) ProtoMessage() {}
 
 func (x *ModelUsageData_UserUsageData) ProtoReflect() protoreflect.Message {
-	mi := &file_core_usage_v1beta_usage_proto_msgTypes[17]
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1275,7 +1342,7 @@ type ModelUsageData_UserUsageData_ModelTriggerData struct {
 
 func (x *ModelUsageData_UserUsageData_ModelTriggerData) Reset() {
 	*x = ModelUsageData_UserUsageData_ModelTriggerData{}
-	mi := &file_core_usage_v1beta_usage_proto_msgTypes[18]
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1287,7 +1354,7 @@ func (x *ModelUsageData_UserUsageData_ModelTriggerData) String() string {
 func (*ModelUsageData_UserUsageData_ModelTriggerData) ProtoMessage() {}
 
 func (x *ModelUsageData_UserUsageData_ModelTriggerData) ProtoReflect() protoreflect.Message {
-	mi := &file_core_usage_v1beta_usage_proto_msgTypes[18]
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1374,7 +1441,7 @@ type PipelineUsageData_UserUsageData struct {
 
 func (x *PipelineUsageData_UserUsageData) Reset() {
 	*x = PipelineUsageData_UserUsageData{}
-	mi := &file_core_usage_v1beta_usage_proto_msgTypes[19]
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1386,7 +1453,7 @@ func (x *PipelineUsageData_UserUsageData) String() string {
 func (*PipelineUsageData_UserUsageData) ProtoMessage() {}
 
 func (x *PipelineUsageData_UserUsageData) ProtoReflect() protoreflect.Message {
-	mi := &file_core_usage_v1beta_usage_proto_msgTypes[19]
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1452,7 +1519,7 @@ type PipelineUsageData_UserUsageData_PipelineTriggerData struct {
 
 func (x *PipelineUsageData_UserUsageData_PipelineTriggerData) Reset() {
 	*x = PipelineUsageData_UserUsageData_PipelineTriggerData{}
-	mi := &file_core_usage_v1beta_usage_proto_msgTypes[20]
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1464,7 +1531,7 @@ func (x *PipelineUsageData_UserUsageData_PipelineTriggerData) String() string {
 func (*PipelineUsageData_UserUsageData_PipelineTriggerData) ProtoMessage() {}
 
 func (x *PipelineUsageData_UserUsageData_PipelineTriggerData) ProtoReflect() protoreflect.Message {
-	mi := &file_core_usage_v1beta_usage_proto_msgTypes[20]
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1563,7 +1630,7 @@ type ArtifactUsageData_UserUsageData struct {
 
 func (x *ArtifactUsageData_UserUsageData) Reset() {
 	*x = ArtifactUsageData_UserUsageData{}
-	mi := &file_core_usage_v1beta_usage_proto_msgTypes[21]
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1575,7 +1642,7 @@ func (x *ArtifactUsageData_UserUsageData) String() string {
 func (*ArtifactUsageData_UserUsageData) ProtoMessage() {}
 
 func (x *ArtifactUsageData_UserUsageData) ProtoReflect() protoreflect.Message {
-	mi := &file_core_usage_v1beta_usage_proto_msgTypes[21]
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1605,6 +1672,61 @@ func (x *ArtifactUsageData_UserUsageData) GetOwnerType() v1beta1.OwnerType {
 	return v1beta1.OwnerType(0)
 }
 
+// Per user usage data in the agent service
+type AgentUsageData_UserUsageData struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Owner UUID
+	OwnerUid string `protobuf:"bytes,1,opt,name=owner_uid,json=ownerUid,proto3" json:"owner_uid,omitempty"`
+	// Owner type
+	OwnerType     v1beta1.OwnerType `protobuf:"varint,2,opt,name=owner_type,json=ownerType,proto3,enum=core.mgmt.v1beta.OwnerType" json:"owner_type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AgentUsageData_UserUsageData) Reset() {
+	*x = AgentUsageData_UserUsageData{}
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AgentUsageData_UserUsageData) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AgentUsageData_UserUsageData) ProtoMessage() {}
+
+func (x *AgentUsageData_UserUsageData) ProtoReflect() protoreflect.Message {
+	mi := &file_core_usage_v1beta_usage_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AgentUsageData_UserUsageData.ProtoReflect.Descriptor instead.
+func (*AgentUsageData_UserUsageData) Descriptor() ([]byte, []int) {
+	return file_core_usage_v1beta_usage_proto_rawDescGZIP(), []int{10, 0}
+}
+
+func (x *AgentUsageData_UserUsageData) GetOwnerUid() string {
+	if x != nil {
+		return x.OwnerUid
+	}
+	return ""
+}
+
+func (x *AgentUsageData_UserUsageData) GetOwnerType() v1beta1.OwnerType {
+	if x != nil {
+		return x.OwnerType
+	}
+	return v1beta1.OwnerType(0)
+}
+
 var File_core_usage_v1beta_usage_proto protoreflect.FileDescriptor
 
 const file_core_usage_v1beta_usage_proto_rawDesc = "" +
@@ -1619,7 +1741,7 @@ const file_core_usage_v1beta_usage_proto_rawDesc = "" +
 	"\x14health_check_request\x18\x01 \x01(\v2-.common.healthcheck.v1beta.HealthCheckRequestB\x03\xe0A\x01H\x00R\x12healthCheckRequest\x88\x01\x01B\x17\n" +
 	"\x15_health_check_request\"w\n" +
 	"\x11ReadinessResponse\x12b\n" +
-	"\x15health_check_response\x18\x01 \x01(\v2..common.healthcheck.v1beta.HealthCheckResponseR\x13healthCheckResponse\"\xae\x05\n" +
+	"\x15health_check_response\x18\x01 \x01(\v2..common.healthcheck.v1beta.HealthCheckResponseR\x13healthCheckResponse\"\xc1\x05\n" +
 	"\aSession\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x15\n" +
 	"\x03uid\x18\x02 \x01(\tB\x03\xe0A\x03R\x03uid\x12A\n" +
@@ -1637,14 +1759,15 @@ const file_core_usage_v1beta_usage_proto_rawDesc = "" +
 	"createTime\x12@\n" +
 	"\vupdate_time\x18\f \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
 	"updateTime\x12 \n" +
-	"\towner_uid\x18\r \x01(\tB\x03\xe0A\x02R\bownerUid\"\x8a\x01\n" +
+	"\towner_uid\x18\r \x01(\tB\x03\xe0A\x02R\bownerUid\"\x9d\x01\n" +
 	"\aService\x12\x17\n" +
 	"\x13SERVICE_UNSPECIFIED\x10\x00\x12\x10\n" +
 	"\fSERVICE_MGMT\x10\x01\x12\x15\n" +
 	"\x11SERVICE_CONNECTOR\x10\x02\x12\x11\n" +
 	"\rSERVICE_MODEL\x10\x03\x12\x14\n" +
 	"\x10SERVICE_PIPELINE\x10\x04\x12\x14\n" +
-	"\x10SERVICE_ARTIFACT\x10\x05:\x17\xeaA\x14\x12\x12sessions/{session}\"\x94\x01\n" +
+	"\x10SERVICE_ARTIFACT\x10\x05\x12\x11\n" +
+	"\rSERVICE_AGENT\x10\x06:\x17\xeaA\x14\x12\x12sessions/{session}\"\x94\x01\n" +
 	"\rMgmtUsageData\x12D\n" +
 	"\vuser_usages\x18\x01 \x03(\v2#.core.mgmt.v1beta.AuthenticatedUserR\n" +
 	"userUsages\x12=\n" +
@@ -1710,7 +1833,13 @@ const file_core_usage_v1beta_usage_proto_rawDesc = "" +
 	"\rUserUsageData\x12 \n" +
 	"\towner_uid\x18\x01 \x01(\tB\x03\xe0A\x02R\bownerUid\x12?\n" +
 	"\n" +
-	"owner_type\x18\x02 \x01(\x0e2\x1b.core.mgmt.v1beta.OwnerTypeB\x03\xe0A\x02R\townerType\"\xd6\x04\n" +
+	"owner_type\x18\x02 \x01(\x0e2\x1b.core.mgmt.v1beta.OwnerTypeB\x03\xe0A\x02R\townerType\"\xcd\x01\n" +
+	"\x0eAgentUsageData\x12G\n" +
+	"\x06usages\x18\x01 \x03(\v2/.core.usage.v1beta.AgentUsageData.UserUsageDataR\x06usages\x1ar\n" +
+	"\rUserUsageData\x12 \n" +
+	"\towner_uid\x18\x01 \x01(\tB\x03\xe0A\x02R\bownerUid\x12?\n" +
+	"\n" +
+	"owner_type\x18\x02 \x01(\x0e2\x1b.core.mgmt.v1beta.OwnerTypeB\x03\xe0A\x02R\townerType\"\xa5\x05\n" +
 	"\rSessionReport\x12$\n" +
 	"\vsession_uid\x18\x01 \x01(\tB\x03\xe0A\x02R\n" +
 	"sessionUid\x12\x19\n" +
@@ -1721,7 +1850,9 @@ const file_core_usage_v1beta_usage_proto_rawDesc = "" +
 	"\x14connector_usage_data\x18\x06 \x01(\v2%.core.usage.v1beta.ConnectorUsageDataH\x00R\x12connectorUsageData\x12M\n" +
 	"\x10model_usage_data\x18\a \x01(\v2!.core.usage.v1beta.ModelUsageDataH\x00R\x0emodelUsageData\x12V\n" +
 	"\x13pipeline_usage_data\x18\b \x01(\v2$.core.usage.v1beta.PipelineUsageDataH\x00R\x11pipelineUsageData\x12V\n" +
-	"\x13artifact_usage_data\x18\t \x01(\v2$.core.usage.v1beta.ArtifactUsageDataH\x00R\x11artifactUsageDataB\f\n" +
+	"\x13artifact_usage_data\x18\t \x01(\v2$.core.usage.v1beta.ArtifactUsageDataH\x00R\x11artifactUsageData\x12M\n" +
+	"\x10agent_usage_data\x18\n" +
+	" \x01(\v2!.core.usage.v1beta.AgentUsageDataH\x00R\x0eagentUsageDataB\f\n" +
 	"\n" +
 	"usage_data\"Q\n" +
 	"\x14CreateSessionRequest\x129\n" +
@@ -1747,7 +1878,7 @@ func file_core_usage_v1beta_usage_proto_rawDescGZIP() []byte {
 }
 
 var file_core_usage_v1beta_usage_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_core_usage_v1beta_usage_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
+var file_core_usage_v1beta_usage_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
 var file_core_usage_v1beta_usage_proto_goTypes = []any{
 	(Session_Service)(0),                                          // 0: core.usage.v1beta.Session.Service
 	(*LivenessRequest)(nil),                                       // 1: core.usage.v1beta.LivenessRequest
@@ -1760,75 +1891,80 @@ var file_core_usage_v1beta_usage_proto_goTypes = []any{
 	(*ModelUsageData)(nil),                                        // 8: core.usage.v1beta.ModelUsageData
 	(*PipelineUsageData)(nil),                                     // 9: core.usage.v1beta.PipelineUsageData
 	(*ArtifactUsageData)(nil),                                     // 10: core.usage.v1beta.ArtifactUsageData
-	(*SessionReport)(nil),                                         // 11: core.usage.v1beta.SessionReport
-	(*CreateSessionRequest)(nil),                                  // 12: core.usage.v1beta.CreateSessionRequest
-	(*CreateSessionResponse)(nil),                                 // 13: core.usage.v1beta.CreateSessionResponse
-	(*SendSessionReportRequest)(nil),                              // 14: core.usage.v1beta.SendSessionReportRequest
-	(*SendSessionReportResponse)(nil),                             // 15: core.usage.v1beta.SendSessionReportResponse
-	(*ConnectorUsageData_UserUsageData)(nil),                      // 16: core.usage.v1beta.ConnectorUsageData.UserUsageData
-	(*ConnectorUsageData_UserUsageData_ConnectorExecuteData)(nil), // 17: core.usage.v1beta.ConnectorUsageData.UserUsageData.ConnectorExecuteData
-	(*ModelUsageData_UserUsageData)(nil),                          // 18: core.usage.v1beta.ModelUsageData.UserUsageData
-	(*ModelUsageData_UserUsageData_ModelTriggerData)(nil),         // 19: core.usage.v1beta.ModelUsageData.UserUsageData.ModelTriggerData
-	(*PipelineUsageData_UserUsageData)(nil),                       // 20: core.usage.v1beta.PipelineUsageData.UserUsageData
-	(*PipelineUsageData_UserUsageData_PipelineTriggerData)(nil),   // 21: core.usage.v1beta.PipelineUsageData.UserUsageData.PipelineTriggerData
-	(*ArtifactUsageData_UserUsageData)(nil),                       // 22: core.usage.v1beta.ArtifactUsageData.UserUsageData
-	(*v1beta.HealthCheckRequest)(nil),                             // 23: common.healthcheck.v1beta.HealthCheckRequest
-	(*v1beta.HealthCheckResponse)(nil),                            // 24: common.healthcheck.v1beta.HealthCheckResponse
-	(*timestamppb.Timestamp)(nil),                                 // 25: google.protobuf.Timestamp
-	(*v1beta1.AuthenticatedUser)(nil),                             // 26: core.mgmt.v1beta.AuthenticatedUser
-	(*v1beta1.Organization)(nil),                                  // 27: core.mgmt.v1beta.Organization
-	(v1beta1.OwnerType)(0),                                        // 28: core.mgmt.v1beta.OwnerType
-	(v1beta1.Status)(0),                                           // 29: core.mgmt.v1beta.Status
-	(v1alpha.Task)(0),                                             // 30: common.task.v1alpha.Task
-	(v1beta1.Mode)(0),                                             // 31: core.mgmt.v1beta.Mode
+	(*AgentUsageData)(nil),                                        // 11: core.usage.v1beta.AgentUsageData
+	(*SessionReport)(nil),                                         // 12: core.usage.v1beta.SessionReport
+	(*CreateSessionRequest)(nil),                                  // 13: core.usage.v1beta.CreateSessionRequest
+	(*CreateSessionResponse)(nil),                                 // 14: core.usage.v1beta.CreateSessionResponse
+	(*SendSessionReportRequest)(nil),                              // 15: core.usage.v1beta.SendSessionReportRequest
+	(*SendSessionReportResponse)(nil),                             // 16: core.usage.v1beta.SendSessionReportResponse
+	(*ConnectorUsageData_UserUsageData)(nil),                      // 17: core.usage.v1beta.ConnectorUsageData.UserUsageData
+	(*ConnectorUsageData_UserUsageData_ConnectorExecuteData)(nil), // 18: core.usage.v1beta.ConnectorUsageData.UserUsageData.ConnectorExecuteData
+	(*ModelUsageData_UserUsageData)(nil),                          // 19: core.usage.v1beta.ModelUsageData.UserUsageData
+	(*ModelUsageData_UserUsageData_ModelTriggerData)(nil),         // 20: core.usage.v1beta.ModelUsageData.UserUsageData.ModelTriggerData
+	(*PipelineUsageData_UserUsageData)(nil),                       // 21: core.usage.v1beta.PipelineUsageData.UserUsageData
+	(*PipelineUsageData_UserUsageData_PipelineTriggerData)(nil),   // 22: core.usage.v1beta.PipelineUsageData.UserUsageData.PipelineTriggerData
+	(*ArtifactUsageData_UserUsageData)(nil),                       // 23: core.usage.v1beta.ArtifactUsageData.UserUsageData
+	(*AgentUsageData_UserUsageData)(nil),                          // 24: core.usage.v1beta.AgentUsageData.UserUsageData
+	(*v1beta.HealthCheckRequest)(nil),                             // 25: common.healthcheck.v1beta.HealthCheckRequest
+	(*v1beta.HealthCheckResponse)(nil),                            // 26: common.healthcheck.v1beta.HealthCheckResponse
+	(*timestamppb.Timestamp)(nil),                                 // 27: google.protobuf.Timestamp
+	(*v1beta1.AuthenticatedUser)(nil),                             // 28: core.mgmt.v1beta.AuthenticatedUser
+	(*v1beta1.Organization)(nil),                                  // 29: core.mgmt.v1beta.Organization
+	(v1beta1.OwnerType)(0),                                        // 30: core.mgmt.v1beta.OwnerType
+	(v1beta1.Status)(0),                                           // 31: core.mgmt.v1beta.Status
+	(v1alpha.Task)(0),                                             // 32: common.task.v1alpha.Task
+	(v1beta1.Mode)(0),                                             // 33: core.mgmt.v1beta.Mode
 }
 var file_core_usage_v1beta_usage_proto_depIdxs = []int32{
-	23, // 0: core.usage.v1beta.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	24, // 1: core.usage.v1beta.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
-	23, // 2: core.usage.v1beta.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	24, // 3: core.usage.v1beta.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	25, // 0: core.usage.v1beta.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	26, // 1: core.usage.v1beta.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	25, // 2: core.usage.v1beta.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	26, // 3: core.usage.v1beta.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
 	0,  // 4: core.usage.v1beta.Session.service:type_name -> core.usage.v1beta.Session.Service
-	25, // 5: core.usage.v1beta.Session.report_time:type_name -> google.protobuf.Timestamp
-	25, // 6: core.usage.v1beta.Session.create_time:type_name -> google.protobuf.Timestamp
-	25, // 7: core.usage.v1beta.Session.update_time:type_name -> google.protobuf.Timestamp
-	26, // 8: core.usage.v1beta.MgmtUsageData.user_usages:type_name -> core.mgmt.v1beta.AuthenticatedUser
-	27, // 9: core.usage.v1beta.MgmtUsageData.org_usages:type_name -> core.mgmt.v1beta.Organization
-	16, // 10: core.usage.v1beta.ConnectorUsageData.usages:type_name -> core.usage.v1beta.ConnectorUsageData.UserUsageData
-	18, // 11: core.usage.v1beta.ModelUsageData.usages:type_name -> core.usage.v1beta.ModelUsageData.UserUsageData
-	20, // 12: core.usage.v1beta.PipelineUsageData.usages:type_name -> core.usage.v1beta.PipelineUsageData.UserUsageData
-	22, // 13: core.usage.v1beta.ArtifactUsageData.usages:type_name -> core.usage.v1beta.ArtifactUsageData.UserUsageData
-	5,  // 14: core.usage.v1beta.SessionReport.session:type_name -> core.usage.v1beta.Session
-	6,  // 15: core.usage.v1beta.SessionReport.mgmt_usage_data:type_name -> core.usage.v1beta.MgmtUsageData
-	7,  // 16: core.usage.v1beta.SessionReport.connector_usage_data:type_name -> core.usage.v1beta.ConnectorUsageData
-	8,  // 17: core.usage.v1beta.SessionReport.model_usage_data:type_name -> core.usage.v1beta.ModelUsageData
-	9,  // 18: core.usage.v1beta.SessionReport.pipeline_usage_data:type_name -> core.usage.v1beta.PipelineUsageData
-	10, // 19: core.usage.v1beta.SessionReport.artifact_usage_data:type_name -> core.usage.v1beta.ArtifactUsageData
-	5,  // 20: core.usage.v1beta.CreateSessionRequest.session:type_name -> core.usage.v1beta.Session
-	5,  // 21: core.usage.v1beta.CreateSessionResponse.session:type_name -> core.usage.v1beta.Session
-	11, // 22: core.usage.v1beta.SendSessionReportRequest.report:type_name -> core.usage.v1beta.SessionReport
-	17, // 23: core.usage.v1beta.ConnectorUsageData.UserUsageData.connector_execute_data:type_name -> core.usage.v1beta.ConnectorUsageData.UserUsageData.ConnectorExecuteData
-	28, // 24: core.usage.v1beta.ConnectorUsageData.UserUsageData.owner_type:type_name -> core.mgmt.v1beta.OwnerType
-	25, // 25: core.usage.v1beta.ConnectorUsageData.UserUsageData.ConnectorExecuteData.execute_time:type_name -> google.protobuf.Timestamp
-	29, // 26: core.usage.v1beta.ConnectorUsageData.UserUsageData.ConnectorExecuteData.status:type_name -> core.mgmt.v1beta.Status
-	28, // 27: core.usage.v1beta.ConnectorUsageData.UserUsageData.ConnectorExecuteData.user_type:type_name -> core.mgmt.v1beta.OwnerType
-	19, // 28: core.usage.v1beta.ModelUsageData.UserUsageData.model_trigger_data:type_name -> core.usage.v1beta.ModelUsageData.UserUsageData.ModelTriggerData
-	28, // 29: core.usage.v1beta.ModelUsageData.UserUsageData.owner_type:type_name -> core.mgmt.v1beta.OwnerType
-	25, // 30: core.usage.v1beta.ModelUsageData.UserUsageData.ModelTriggerData.trigger_time:type_name -> google.protobuf.Timestamp
-	30, // 31: core.usage.v1beta.ModelUsageData.UserUsageData.ModelTriggerData.model_task:type_name -> common.task.v1alpha.Task
-	29, // 32: core.usage.v1beta.ModelUsageData.UserUsageData.ModelTriggerData.status:type_name -> core.mgmt.v1beta.Status
-	28, // 33: core.usage.v1beta.ModelUsageData.UserUsageData.ModelTriggerData.user_type:type_name -> core.mgmt.v1beta.OwnerType
-	21, // 34: core.usage.v1beta.PipelineUsageData.UserUsageData.pipeline_trigger_data:type_name -> core.usage.v1beta.PipelineUsageData.UserUsageData.PipelineTriggerData
-	28, // 35: core.usage.v1beta.PipelineUsageData.UserUsageData.owner_type:type_name -> core.mgmt.v1beta.OwnerType
-	25, // 36: core.usage.v1beta.PipelineUsageData.UserUsageData.PipelineTriggerData.trigger_time:type_name -> google.protobuf.Timestamp
-	31, // 37: core.usage.v1beta.PipelineUsageData.UserUsageData.PipelineTriggerData.trigger_mode:type_name -> core.mgmt.v1beta.Mode
-	29, // 38: core.usage.v1beta.PipelineUsageData.UserUsageData.PipelineTriggerData.status:type_name -> core.mgmt.v1beta.Status
-	28, // 39: core.usage.v1beta.PipelineUsageData.UserUsageData.PipelineTriggerData.user_type:type_name -> core.mgmt.v1beta.OwnerType
-	28, // 40: core.usage.v1beta.ArtifactUsageData.UserUsageData.owner_type:type_name -> core.mgmt.v1beta.OwnerType
-	41, // [41:41] is the sub-list for method output_type
-	41, // [41:41] is the sub-list for method input_type
-	41, // [41:41] is the sub-list for extension type_name
-	41, // [41:41] is the sub-list for extension extendee
-	0,  // [0:41] is the sub-list for field type_name
+	27, // 5: core.usage.v1beta.Session.report_time:type_name -> google.protobuf.Timestamp
+	27, // 6: core.usage.v1beta.Session.create_time:type_name -> google.protobuf.Timestamp
+	27, // 7: core.usage.v1beta.Session.update_time:type_name -> google.protobuf.Timestamp
+	28, // 8: core.usage.v1beta.MgmtUsageData.user_usages:type_name -> core.mgmt.v1beta.AuthenticatedUser
+	29, // 9: core.usage.v1beta.MgmtUsageData.org_usages:type_name -> core.mgmt.v1beta.Organization
+	17, // 10: core.usage.v1beta.ConnectorUsageData.usages:type_name -> core.usage.v1beta.ConnectorUsageData.UserUsageData
+	19, // 11: core.usage.v1beta.ModelUsageData.usages:type_name -> core.usage.v1beta.ModelUsageData.UserUsageData
+	21, // 12: core.usage.v1beta.PipelineUsageData.usages:type_name -> core.usage.v1beta.PipelineUsageData.UserUsageData
+	23, // 13: core.usage.v1beta.ArtifactUsageData.usages:type_name -> core.usage.v1beta.ArtifactUsageData.UserUsageData
+	24, // 14: core.usage.v1beta.AgentUsageData.usages:type_name -> core.usage.v1beta.AgentUsageData.UserUsageData
+	5,  // 15: core.usage.v1beta.SessionReport.session:type_name -> core.usage.v1beta.Session
+	6,  // 16: core.usage.v1beta.SessionReport.mgmt_usage_data:type_name -> core.usage.v1beta.MgmtUsageData
+	7,  // 17: core.usage.v1beta.SessionReport.connector_usage_data:type_name -> core.usage.v1beta.ConnectorUsageData
+	8,  // 18: core.usage.v1beta.SessionReport.model_usage_data:type_name -> core.usage.v1beta.ModelUsageData
+	9,  // 19: core.usage.v1beta.SessionReport.pipeline_usage_data:type_name -> core.usage.v1beta.PipelineUsageData
+	10, // 20: core.usage.v1beta.SessionReport.artifact_usage_data:type_name -> core.usage.v1beta.ArtifactUsageData
+	11, // 21: core.usage.v1beta.SessionReport.agent_usage_data:type_name -> core.usage.v1beta.AgentUsageData
+	5,  // 22: core.usage.v1beta.CreateSessionRequest.session:type_name -> core.usage.v1beta.Session
+	5,  // 23: core.usage.v1beta.CreateSessionResponse.session:type_name -> core.usage.v1beta.Session
+	12, // 24: core.usage.v1beta.SendSessionReportRequest.report:type_name -> core.usage.v1beta.SessionReport
+	18, // 25: core.usage.v1beta.ConnectorUsageData.UserUsageData.connector_execute_data:type_name -> core.usage.v1beta.ConnectorUsageData.UserUsageData.ConnectorExecuteData
+	30, // 26: core.usage.v1beta.ConnectorUsageData.UserUsageData.owner_type:type_name -> core.mgmt.v1beta.OwnerType
+	27, // 27: core.usage.v1beta.ConnectorUsageData.UserUsageData.ConnectorExecuteData.execute_time:type_name -> google.protobuf.Timestamp
+	31, // 28: core.usage.v1beta.ConnectorUsageData.UserUsageData.ConnectorExecuteData.status:type_name -> core.mgmt.v1beta.Status
+	30, // 29: core.usage.v1beta.ConnectorUsageData.UserUsageData.ConnectorExecuteData.user_type:type_name -> core.mgmt.v1beta.OwnerType
+	20, // 30: core.usage.v1beta.ModelUsageData.UserUsageData.model_trigger_data:type_name -> core.usage.v1beta.ModelUsageData.UserUsageData.ModelTriggerData
+	30, // 31: core.usage.v1beta.ModelUsageData.UserUsageData.owner_type:type_name -> core.mgmt.v1beta.OwnerType
+	27, // 32: core.usage.v1beta.ModelUsageData.UserUsageData.ModelTriggerData.trigger_time:type_name -> google.protobuf.Timestamp
+	32, // 33: core.usage.v1beta.ModelUsageData.UserUsageData.ModelTriggerData.model_task:type_name -> common.task.v1alpha.Task
+	31, // 34: core.usage.v1beta.ModelUsageData.UserUsageData.ModelTriggerData.status:type_name -> core.mgmt.v1beta.Status
+	30, // 35: core.usage.v1beta.ModelUsageData.UserUsageData.ModelTriggerData.user_type:type_name -> core.mgmt.v1beta.OwnerType
+	22, // 36: core.usage.v1beta.PipelineUsageData.UserUsageData.pipeline_trigger_data:type_name -> core.usage.v1beta.PipelineUsageData.UserUsageData.PipelineTriggerData
+	30, // 37: core.usage.v1beta.PipelineUsageData.UserUsageData.owner_type:type_name -> core.mgmt.v1beta.OwnerType
+	27, // 38: core.usage.v1beta.PipelineUsageData.UserUsageData.PipelineTriggerData.trigger_time:type_name -> google.protobuf.Timestamp
+	33, // 39: core.usage.v1beta.PipelineUsageData.UserUsageData.PipelineTriggerData.trigger_mode:type_name -> core.mgmt.v1beta.Mode
+	31, // 40: core.usage.v1beta.PipelineUsageData.UserUsageData.PipelineTriggerData.status:type_name -> core.mgmt.v1beta.Status
+	30, // 41: core.usage.v1beta.PipelineUsageData.UserUsageData.PipelineTriggerData.user_type:type_name -> core.mgmt.v1beta.OwnerType
+	30, // 42: core.usage.v1beta.ArtifactUsageData.UserUsageData.owner_type:type_name -> core.mgmt.v1beta.OwnerType
+	30, // 43: core.usage.v1beta.AgentUsageData.UserUsageData.owner_type:type_name -> core.mgmt.v1beta.OwnerType
+	44, // [44:44] is the sub-list for method output_type
+	44, // [44:44] is the sub-list for method input_type
+	44, // [44:44] is the sub-list for extension type_name
+	44, // [44:44] is the sub-list for extension extendee
+	0,  // [0:44] is the sub-list for field type_name
 }
 
 func init() { file_core_usage_v1beta_usage_proto_init() }
@@ -1838,12 +1974,13 @@ func file_core_usage_v1beta_usage_proto_init() {
 	}
 	file_core_usage_v1beta_usage_proto_msgTypes[0].OneofWrappers = []any{}
 	file_core_usage_v1beta_usage_proto_msgTypes[2].OneofWrappers = []any{}
-	file_core_usage_v1beta_usage_proto_msgTypes[10].OneofWrappers = []any{
+	file_core_usage_v1beta_usage_proto_msgTypes[11].OneofWrappers = []any{
 		(*SessionReport_MgmtUsageData)(nil),
 		(*SessionReport_ConnectorUsageData)(nil),
 		(*SessionReport_ModelUsageData)(nil),
 		(*SessionReport_PipelineUsageData)(nil),
 		(*SessionReport_ArtifactUsageData)(nil),
+		(*SessionReport_AgentUsageData)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -1851,7 +1988,7 @@ func file_core_usage_v1beta_usage_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_core_usage_v1beta_usage_proto_rawDesc), len(file_core_usage_v1beta_usage_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   22,
+			NumMessages:   24,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
