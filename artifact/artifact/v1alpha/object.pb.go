@@ -330,8 +330,11 @@ type GetObjectDownloadURLRequest struct {
 	// expiration time in days for the URL.
 	// maximum is 7 days. if set to 0, URL will not expire.
 	UrlExpireDays int32 `protobuf:"varint,3,opt,name=url_expire_days,json=urlExpireDays,proto3" json:"url_expire_days,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	// Optional custom filename for the download.
+	// If provided, this filename will be used in the Content-Disposition header.
+	DownloadFilename string `protobuf:"bytes,4,opt,name=download_filename,json=downloadFilename,proto3" json:"download_filename,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *GetObjectDownloadURLRequest) Reset() {
@@ -383,6 +386,13 @@ func (x *GetObjectDownloadURLRequest) GetUrlExpireDays() int32 {
 		return x.UrlExpireDays
 	}
 	return 0
+}
+
+func (x *GetObjectDownloadURLRequest) GetDownloadFilename() string {
+	if x != nil {
+		return x.DownloadFilename
+	}
+	return ""
 }
 
 // GetObjectDownloadURLResponse
@@ -922,12 +932,13 @@ const file_artifact_artifact_v1alpha_object_proto_rawDesc = "" +
 	"\n" +
 	"upload_url\x18\x01 \x01(\tR\tuploadUrl\x12>\n" +
 	"\rurl_expire_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\vurlExpireAt\x129\n" +
-	"\x06object\x18\x03 \x01(\v2!.artifact.artifact.v1alpha.ObjectR\x06object\"\x96\x01\n" +
+	"\x06object\x18\x03 \x01(\v2!.artifact.artifact.v1alpha.ObjectR\x06object\"\xc8\x01\n" +
 	"\x1bGetObjectDownloadURLRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\"\n" +
 	"\n" +
 	"object_uid\x18\x02 \x01(\tB\x03\xe0A\x02R\tobjectUid\x12+\n" +
-	"\x0furl_expire_days\x18\x03 \x01(\x05B\x03\xe0A\x01R\rurlExpireDays\"\xbc\x01\n" +
+	"\x0furl_expire_days\x18\x03 \x01(\x05B\x03\xe0A\x01R\rurlExpireDays\x120\n" +
+	"\x11download_filename\x18\x04 \x01(\tB\x03\xe0A\x01R\x10downloadFilename\"\xbc\x01\n" +
 	"\x1cGetObjectDownloadURLResponse\x12!\n" +
 	"\fdownload_url\x18\x01 \x01(\tR\vdownloadUrl\x12>\n" +
 	"\rurl_expire_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\vurlExpireAt\x129\n" +
