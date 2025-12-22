@@ -213,7 +213,7 @@ func (x *Chunk) GetMarkdownReference() *Chunk_Reference {
 // have chunks of the file with file_id and chunks specified in chunk_ids.
 type ListChunksRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// owner/namespace id
+	// The namespace ID.
 	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
 	// knowledge base id
 	KnowledgeBaseId string `protobuf:"bytes,2,opt,name=knowledge_base_id,json=knowledgeBaseId,proto3" json:"knowledge_base_id,omitempty"`

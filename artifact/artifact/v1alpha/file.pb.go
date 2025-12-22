@@ -636,8 +636,8 @@ type File struct {
 	Retrievable bool `protobuf:"varint,8,opt,name=retrievable,proto3" json:"retrievable,omitempty"`
 	// content(this is reserved for future use)
 	Content string `protobuf:"bytes,9,opt,name=content,proto3" json:"content,omitempty"`
-	// owner/namespace uid
-	OwnerUid string `protobuf:"bytes,10,opt,name=owner_uid,json=ownerUid,proto3" json:"owner_uid,omitempty"`
+	// Namespace UID that owns this file
+	NamespaceUid string `protobuf:"bytes,10,opt,name=namespace_uid,json=namespaceUid,proto3" json:"namespace_uid,omitempty"`
 	// creator uid from authn token
 	CreatorUid string `protobuf:"bytes,11,opt,name=creator_uid,json=creatorUid,proto3" json:"creator_uid,omitempty"`
 	// knowledge base uid
@@ -803,9 +803,9 @@ func (x *File) GetContent() string {
 	return ""
 }
 
-func (x *File) GetOwnerUid() string {
+func (x *File) GetNamespaceUid() string {
 	if x != nil {
-		return x.OwnerUid
+		return x.NamespaceUid
 	}
 	return ""
 }
@@ -911,7 +911,7 @@ func (x *File) GetTags() []string {
 // CreateFileRequest represents a request to create a file.
 type CreateFileRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// owner/namespace id
+	// The namespace ID.
 	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
 	// knowledge base id
 	KnowledgeBaseId string `protobuf:"bytes,2,opt,name=knowledge_base_id,json=knowledgeBaseId,proto3" json:"knowledge_base_id,omitempty"`
@@ -1223,7 +1223,7 @@ func (x *DeleteFileAdminResponse) GetFileId() string {
 // ListFilesRequest represents a request to list files.
 type ListFilesRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The owner/namespace id.
+	// The namespace ID.
 	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
 	// The knowledge base id.
 	KnowledgeBaseId string `protobuf:"bytes,2,opt,name=knowledge_base_id,json=knowledgeBaseId,proto3" json:"knowledge_base_id,omitempty"`
@@ -1839,7 +1839,7 @@ var File_artifact_artifact_v1alpha_file_proto protoreflect.FileDescriptor
 
 const file_artifact_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\n" +
-	"$artifact/artifact/v1alpha/file.proto\x12\x19artifact.artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb7\x13\n" +
+	"$artifact/artifact/v1alpha/file.proto\x12\x19artifact.artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xbf\x13\n" +
 	"\x04File\x12\x15\n" +
 	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12\x17\n" +
@@ -1849,9 +1849,9 @@ const file_artifact_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\x0eprocess_status\x18\x06 \x01(\x0e2,.artifact.artifact.v1alpha.FileProcessStatusB\x03\xe0A\x03R\rprocessStatus\x12,\n" +
 	"\x0fprocess_outcome\x18\a \x01(\tB\x03\xe0A\x03R\x0eprocessOutcome\x12%\n" +
 	"\vretrievable\x18\b \x01(\bB\x03\xe0A\x03R\vretrievable\x12\x1d\n" +
-	"\acontent\x18\t \x01(\tB\x03\xe0A\x01R\acontent\x12 \n" +
-	"\towner_uid\x18\n" +
-	" \x01(\tB\x03\xe0A\x03R\bownerUid\x12$\n" +
+	"\acontent\x18\t \x01(\tB\x03\xe0A\x01R\acontent\x12(\n" +
+	"\rnamespace_uid\x18\n" +
+	" \x01(\tB\x03\xe0A\x03R\fnamespaceUid\x12$\n" +
 	"\vcreator_uid\x18\v \x01(\tB\x03\xe0A\x03R\n" +
 	"creatorUid\x121\n" +
 	"\x12knowledge_base_uid\x18\f \x01(\tB\x03\xe0A\x03R\x10knowledgeBaseUid\x12@\n" +
