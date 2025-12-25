@@ -7,6 +7,7 @@
 package artifactv1alpha
 
 import (
+	v1beta "github.com/instill-ai/protogen-go/core/mgmt/v1beta"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -640,6 +641,13 @@ type File struct {
 	NamespaceUid string `protobuf:"bytes,10,opt,name=namespace_uid,json=namespaceUid,proto3" json:"namespace_uid,omitempty"`
 	// creator uid from authn token
 	CreatorUid string `protobuf:"bytes,11,opt,name=creator_uid,json=creatorUid,proto3" json:"creator_uid,omitempty"`
+	// The user who created this file.
+	// Populated when creator_uid is present.
+	Creator *v1beta.User `protobuf:"bytes,26,opt,name=creator,proto3,oneof" json:"creator,omitempty"`
+	// Resource name of the owner namespace.
+	OwnerName string `protobuf:"bytes,27,opt,name=owner_name,json=ownerName,proto3" json:"owner_name,omitempty"`
+	// File owner (User or Organization).
+	Owner *v1beta.Owner `protobuf:"bytes,28,opt,name=owner,proto3,oneof" json:"owner,omitempty"`
 	// knowledge base uid
 	KnowledgeBaseUid string `protobuf:"bytes,12,opt,name=knowledge_base_uid,json=knowledgeBaseUid,proto3" json:"knowledge_base_uid,omitempty"`
 	// create time
@@ -815,6 +823,27 @@ func (x *File) GetCreatorUid() string {
 		return x.CreatorUid
 	}
 	return ""
+}
+
+func (x *File) GetCreator() *v1beta.User {
+	if x != nil {
+		return x.Creator
+	}
+	return nil
+}
+
+func (x *File) GetOwnerName() string {
+	if x != nil {
+		return x.OwnerName
+	}
+	return ""
+}
+
+func (x *File) GetOwner() *v1beta.Owner {
+	if x != nil {
+		return x.Owner
+	}
+	return nil
 }
 
 func (x *File) GetKnowledgeBaseUid() string {
@@ -1839,7 +1868,7 @@ var File_artifact_artifact_v1alpha_file_proto protoreflect.FileDescriptor
 
 const file_artifact_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\n" +
-	"$artifact/artifact/v1alpha/file.proto\x12\x19artifact.artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xbf\x13\n" +
+	"$artifact/artifact/v1alpha/file.proto\x12\x19artifact.artifact.v1alpha\x1a\x1bcore/mgmt/v1beta/mgmt.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xf1\x14\n" +
 	"\x04File\x12\x15\n" +
 	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12\x17\n" +
@@ -1853,7 +1882,11 @@ const file_artifact_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\rnamespace_uid\x18\n" +
 	" \x01(\tB\x03\xe0A\x03R\fnamespaceUid\x12$\n" +
 	"\vcreator_uid\x18\v \x01(\tB\x03\xe0A\x03R\n" +
-	"creatorUid\x121\n" +
+	"creatorUid\x12:\n" +
+	"\acreator\x18\x1a \x01(\v2\x16.core.mgmt.v1beta.UserB\x03\xe0A\x03H\x00R\acreator\x88\x01\x01\x12\"\n" +
+	"\n" +
+	"owner_name\x18\x1b \x01(\tB\x03\xe0A\x03R\townerName\x12:\n" +
+	"\x05owner\x18\x1c \x01(\v2\x17.core.mgmt.v1beta.OwnerB\x06\xe0A\x01\xe0A\x03H\x01R\x05owner\x88\x01\x01\x121\n" +
 	"\x12knowledge_base_uid\x18\f \x01(\tB\x03\xe0A\x03R\x10knowledgeBaseUid\x12@\n" +
 	"\vcreate_time\x18\r \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
 	"createTime\x12@\n" +
@@ -1864,11 +1897,11 @@ const file_artifact_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\x04size\x18\x10 \x01(\x03B\x03\xe0A\x03R\x04size\x12&\n" +
 	"\ftotal_chunks\x18\x11 \x01(\x05B\x03\xe0A\x03R\vtotalChunks\x12&\n" +
 	"\ftotal_tokens\x18\x12 \x01(\x05B\x03\xe0A\x03R\vtotalTokens\x12N\n" +
-	"\x11external_metadata\x18\x13 \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x01H\x00R\x10externalMetadata\x88\x01\x01\x12\"\n" +
+	"\x11external_metadata\x18\x13 \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x01H\x02R\x10externalMetadata\x88\x01\x01\x12\"\n" +
 	"\n" +
 	"object_uid\x18\x14 \x01(\tB\x03\xe0A\x01R\tobjectUid\x12&\n" +
 	"\fdownload_url\x18\x16 \x01(\tB\x03\xe0A\x03R\vdownloadUrl\x129\n" +
-	"\x13converting_pipeline\x18\x17 \x01(\tB\x03\xe0A\x01H\x01R\x12convertingPipeline\x88\x01\x01\x12E\n" +
+	"\x13converting_pipeline\x18\x17 \x01(\tB\x03\xe0A\x01H\x03R\x12convertingPipeline\x88\x01\x01\x12E\n" +
 	"\x06length\x18\x18 \x01(\v2(.artifact.artifact.v1alpha.File.PositionB\x03\xe0A\x03R\x06length\x12\x17\n" +
 	"\x04tags\x18\x19 \x03(\tB\x03\xe0A\x01R\x04tags\x1a\xdc\x01\n" +
 	"\bPosition\x12F\n" +
@@ -1941,7 +1974,10 @@ const file_artifact_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\x18FILE_MEDIA_TYPE_DOCUMENT\x10\x01\x12\x19\n" +
 	"\x15FILE_MEDIA_TYPE_IMAGE\x10\x02\x12\x19\n" +
 	"\x15FILE_MEDIA_TYPE_AUDIO\x10\x03\x12\x19\n" +
-	"\x15FILE_MEDIA_TYPE_VIDEO\x10\x04:I\xeaAF\x12Dnamespaces/{namespace}/knowledge-bases/{knowledge_base}/files/{file}B\x14\n" +
+	"\x15FILE_MEDIA_TYPE_VIDEO\x10\x04:I\xeaAF\x12Dnamespaces/{namespace}/knowledge-bases/{knowledge_base}/files/{file}B\n" +
+	"\n" +
+	"\b_creatorB\b\n" +
+	"\x06_ownerB\x14\n" +
 	"\x12_external_metadataB\x16\n" +
 	"\x14_converting_pipelineJ\x04\b\x15\x10\x16\"\xa6\x01\n" +
 	"\x11CreateFileRequest\x12&\n" +
@@ -2061,34 +2097,38 @@ var file_artifact_artifact_v1alpha_file_proto_goTypes = []any{
 	(*ReprocessFileRequest)(nil),    // 20: artifact.artifact.v1alpha.ReprocessFileRequest
 	(*ReprocessFileResponse)(nil),   // 21: artifact.artifact.v1alpha.ReprocessFileResponse
 	(*File_Position)(nil),           // 22: artifact.artifact.v1alpha.File.Position
-	(*timestamppb.Timestamp)(nil),   // 23: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),         // 24: google.protobuf.Struct
-	(*fieldmaskpb.FieldMask)(nil),   // 25: google.protobuf.FieldMask
+	(*v1beta.User)(nil),             // 23: core.mgmt.v1beta.User
+	(*v1beta.Owner)(nil),            // 24: core.mgmt.v1beta.Owner
+	(*timestamppb.Timestamp)(nil),   // 25: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),         // 26: google.protobuf.Struct
+	(*fieldmaskpb.FieldMask)(nil),   // 27: google.protobuf.FieldMask
 }
 var file_artifact_artifact_v1alpha_file_proto_depIdxs = []int32{
 	4,  // 0: artifact.artifact.v1alpha.File.type:type_name -> artifact.artifact.v1alpha.File.Type
 	0,  // 1: artifact.artifact.v1alpha.File.process_status:type_name -> artifact.artifact.v1alpha.FileProcessStatus
-	23, // 2: artifact.artifact.v1alpha.File.create_time:type_name -> google.protobuf.Timestamp
-	23, // 3: artifact.artifact.v1alpha.File.update_time:type_name -> google.protobuf.Timestamp
-	23, // 4: artifact.artifact.v1alpha.File.delete_time:type_name -> google.protobuf.Timestamp
-	24, // 5: artifact.artifact.v1alpha.File.external_metadata:type_name -> google.protobuf.Struct
-	22, // 6: artifact.artifact.v1alpha.File.length:type_name -> artifact.artifact.v1alpha.File.Position
-	7,  // 7: artifact.artifact.v1alpha.CreateFileRequest.file:type_name -> artifact.artifact.v1alpha.File
-	7,  // 8: artifact.artifact.v1alpha.CreateFileResponse.file:type_name -> artifact.artifact.v1alpha.File
-	7,  // 9: artifact.artifact.v1alpha.ListFilesResponse.files:type_name -> artifact.artifact.v1alpha.File
-	2,  // 10: artifact.artifact.v1alpha.GetFileRequest.view:type_name -> artifact.artifact.v1alpha.File.View
-	3,  // 11: artifact.artifact.v1alpha.GetFileRequest.storage_provider:type_name -> artifact.artifact.v1alpha.File.StorageProvider
-	7,  // 12: artifact.artifact.v1alpha.GetFileResponse.file:type_name -> artifact.artifact.v1alpha.File
-	7,  // 13: artifact.artifact.v1alpha.UpdateFileRequest.file:type_name -> artifact.artifact.v1alpha.File
-	25, // 14: artifact.artifact.v1alpha.UpdateFileRequest.update_mask:type_name -> google.protobuf.FieldMask
-	7,  // 15: artifact.artifact.v1alpha.UpdateFileResponse.file:type_name -> artifact.artifact.v1alpha.File
-	7,  // 16: artifact.artifact.v1alpha.ReprocessFileResponse.file:type_name -> artifact.artifact.v1alpha.File
-	6,  // 17: artifact.artifact.v1alpha.File.Position.unit:type_name -> artifact.artifact.v1alpha.File.Position.Unit
-	18, // [18:18] is the sub-list for method output_type
-	18, // [18:18] is the sub-list for method input_type
-	18, // [18:18] is the sub-list for extension type_name
-	18, // [18:18] is the sub-list for extension extendee
-	0,  // [0:18] is the sub-list for field type_name
+	23, // 2: artifact.artifact.v1alpha.File.creator:type_name -> core.mgmt.v1beta.User
+	24, // 3: artifact.artifact.v1alpha.File.owner:type_name -> core.mgmt.v1beta.Owner
+	25, // 4: artifact.artifact.v1alpha.File.create_time:type_name -> google.protobuf.Timestamp
+	25, // 5: artifact.artifact.v1alpha.File.update_time:type_name -> google.protobuf.Timestamp
+	25, // 6: artifact.artifact.v1alpha.File.delete_time:type_name -> google.protobuf.Timestamp
+	26, // 7: artifact.artifact.v1alpha.File.external_metadata:type_name -> google.protobuf.Struct
+	22, // 8: artifact.artifact.v1alpha.File.length:type_name -> artifact.artifact.v1alpha.File.Position
+	7,  // 9: artifact.artifact.v1alpha.CreateFileRequest.file:type_name -> artifact.artifact.v1alpha.File
+	7,  // 10: artifact.artifact.v1alpha.CreateFileResponse.file:type_name -> artifact.artifact.v1alpha.File
+	7,  // 11: artifact.artifact.v1alpha.ListFilesResponse.files:type_name -> artifact.artifact.v1alpha.File
+	2,  // 12: artifact.artifact.v1alpha.GetFileRequest.view:type_name -> artifact.artifact.v1alpha.File.View
+	3,  // 13: artifact.artifact.v1alpha.GetFileRequest.storage_provider:type_name -> artifact.artifact.v1alpha.File.StorageProvider
+	7,  // 14: artifact.artifact.v1alpha.GetFileResponse.file:type_name -> artifact.artifact.v1alpha.File
+	7,  // 15: artifact.artifact.v1alpha.UpdateFileRequest.file:type_name -> artifact.artifact.v1alpha.File
+	27, // 16: artifact.artifact.v1alpha.UpdateFileRequest.update_mask:type_name -> google.protobuf.FieldMask
+	7,  // 17: artifact.artifact.v1alpha.UpdateFileResponse.file:type_name -> artifact.artifact.v1alpha.File
+	7,  // 18: artifact.artifact.v1alpha.ReprocessFileResponse.file:type_name -> artifact.artifact.v1alpha.File
+	6,  // 19: artifact.artifact.v1alpha.File.Position.unit:type_name -> artifact.artifact.v1alpha.File.Position.Unit
+	20, // [20:20] is the sub-list for method output_type
+	20, // [20:20] is the sub-list for method input_type
+	20, // [20:20] is the sub-list for extension type_name
+	20, // [20:20] is the sub-list for extension extendee
+	0,  // [0:20] is the sub-list for field type_name
 }
 
 func init() { file_artifact_artifact_v1alpha_file_proto_init() }

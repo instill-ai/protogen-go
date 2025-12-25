@@ -581,6 +581,13 @@ type Model struct {
 	OwnerName string `protobuf:"bytes,15,opt,name=owner_name,json=ownerName,proto3" json:"owner_name,omitempty"`
 	// Model owner.
 	Owner *v1beta1.Owner `protobuf:"bytes,17,opt,name=owner,proto3,oneof" json:"owner,omitempty"`
+	// The UID of the user who created this model.
+	// This field is optional for system-created models or legacy models
+	// created before this field was introduced.
+	CreatorUid *string `protobuf:"bytes,33,opt,name=creator_uid,json=creatorUid,proto3,oneof" json:"creator_uid,omitempty"`
+	// The user who created this model.
+	// Populated when creator_uid is present.
+	Creator *v1beta1.User `protobuf:"bytes,34,opt,name=creator,proto3,oneof" json:"creator,omitempty"`
 	// Region of choice for the particular provider to host the model.
 	Region string `protobuf:"bytes,18,opt,name=region,proto3" json:"region,omitempty"`
 	// Hardware of choice to serve the model.
@@ -728,6 +735,20 @@ func (x *Model) GetOwnerName() string {
 func (x *Model) GetOwner() *v1beta1.Owner {
 	if x != nil {
 		return x.Owner
+	}
+	return nil
+}
+
+func (x *Model) GetCreatorUid() string {
+	if x != nil && x.CreatorUid != nil {
+		return *x.CreatorUid
+	}
+	return ""
+}
+
+func (x *Model) GetCreator() *v1beta1.User {
+	if x != nil {
+		return x.Creator
 	}
 	return nil
 }
@@ -9174,7 +9195,7 @@ const file_model_model_v1alpha_model_proto_rawDesc = "" +
 	"\x06digest\x18\x03 \x01(\tB\x03\xe0A\x01R\x06digest\x125\n" +
 	"\x05state\x18\x04 \x01(\x0e2\x1a.model.model.v1alpha.StateB\x03\xe0A\x03R\x05state\x12C\n" +
 	"\vupdate_time\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampB\x06\xe0A\x03\xe0A\x01R\n" +
-	"updateTime\"\x96\r\n" +
+	"updateTime\"\x99\x0e\n" +
 	"\x05Model\x12*\n" +
 	"\x04name\x18\x01 \x01(\tB\x16\x92A\x10\xca>\r\xfa\x02\n" +
 	"model_name\xe0A\x03R\x04name\x12\x15\n" +
@@ -9195,15 +9216,18 @@ const file_model_model_v1alpha_model_proto_rawDesc = "" +
 	"deleteTime\x12\"\n" +
 	"\n" +
 	"owner_name\x18\x0f \x01(\tB\x03\xe0A\x03R\townerName\x12:\n" +
-	"\x05owner\x18\x11 \x01(\v2\x17.core.mgmt.v1beta.OwnerB\x06\xe0A\x01\xe0A\x03H\x01R\x05owner\x88\x01\x01\x12\x1e\n" +
+	"\x05owner\x18\x11 \x01(\v2\x17.core.mgmt.v1beta.OwnerB\x06\xe0A\x01\xe0A\x03H\x01R\x05owner\x88\x01\x01\x12)\n" +
+	"\vcreator_uid\x18! \x01(\tB\x03\xe0A\x03H\x02R\n" +
+	"creatorUid\x88\x01\x01\x12:\n" +
+	"\acreator\x18\" \x01(\v2\x16.core.mgmt.v1beta.UserB\x03\xe0A\x03H\x03R\acreator\x88\x01\x01\x12\x1e\n" +
 	"\x06region\x18\x12 \x01(\tB\x06\xe0A\x02\xe0A\x05R\x06region\x12\x1f\n" +
 	"\bhardware\x18\x13 \x01(\tB\x03\xe0A\x02R\bhardware\x12 \n" +
-	"\x06readme\x18\x14 \x01(\tB\x03\xe0A\x01H\x02R\x06readme\x88\x01\x01\x12'\n" +
+	"\x06readme\x18\x14 \x01(\tB\x03\xe0A\x01H\x04R\x06readme\x88\x01\x01\x12'\n" +
 	"\n" +
-	"source_url\x18\x15 \x01(\tB\x03\xe0A\x01H\x03R\tsourceUrl\x88\x01\x01\x125\n" +
-	"\x11documentation_url\x18\x16 \x01(\tB\x03\xe0A\x01H\x04R\x10documentationUrl\x88\x01\x01\x12\"\n" +
-	"\alicense\x18\x17 \x01(\tB\x03\xe0A\x01H\x05R\alicense\x88\x01\x01\x12-\n" +
-	"\rprofile_image\x18\x1a \x01(\tB\x03\xe0A\x01H\x06R\fprofileImage\x88\x01\x01\x12D\n" +
+	"source_url\x18\x15 \x01(\tB\x03\xe0A\x01H\x05R\tsourceUrl\x88\x01\x01\x125\n" +
+	"\x11documentation_url\x18\x16 \x01(\tB\x03\xe0A\x01H\x06R\x10documentationUrl\x88\x01\x01\x12\"\n" +
+	"\alicense\x18\x17 \x01(\tB\x03\xe0A\x01H\aR\alicense\x88\x01\x01\x12-\n" +
+	"\rprofile_image\x18\x1a \x01(\tB\x03\xe0A\x01H\bR\fprofileImage\x88\x01\x01\x12D\n" +
 	"\n" +
 	"permission\x18\x1b \x01(\v2\x1f.model.model.v1alpha.PermissionB\x03\xe0A\x03R\n" +
 	"permission\x12?\n" +
@@ -9221,7 +9245,10 @@ const file_model_model_v1alpha_model_proto_rawDesc = "" +
 	"\x12VISIBILITY_PRIVATE\x10\x01\x12\x15\n" +
 	"\x11VISIBILITY_PUBLIC\x10\x02::\xeaA7\x12!users/{user.id}/models/{model.id}\x12\x12models/{model.uid}B\x0e\n" +
 	"\f_descriptionB\b\n" +
-	"\x06_ownerB\t\n" +
+	"\x06_ownerB\x0e\n" +
+	"\f_creator_uidB\n" +
+	"\n" +
+	"\b_creatorB\t\n" +
 	"\a_readmeB\r\n" +
 	"\v_source_urlB\x14\n" +
 	"\x12_documentation_urlB\n" +
@@ -10001,12 +10028,13 @@ var file_model_model_v1alpha_model_proto_goTypes = []any{
 	(*structpb.Struct)(nil),                                     // 153: google.protobuf.Struct
 	(v1alpha.Task)(0),                                           // 154: common.task.v1alpha.Task
 	(*v1beta1.Owner)(nil),                                       // 155: core.mgmt.v1beta.Owner
-	(*Permission)(nil),                                          // 156: model.model.v1alpha.Permission
-	(View)(0),                                                   // 157: model.model.v1alpha.View
-	(*fieldmaskpb.FieldMask)(nil),                               // 158: google.protobuf.FieldMask
-	(*longrunningpb.Operation)(nil),                             // 159: google.longrunning.Operation
-	(v1alpha1.RunStatus)(0),                                     // 160: common.run.v1alpha.RunStatus
-	(v1alpha1.RunSource)(0),                                     // 161: common.run.v1alpha.RunSource
+	(*v1beta1.User)(nil),                                        // 156: core.mgmt.v1beta.User
+	(*Permission)(nil),                                          // 157: model.model.v1alpha.Permission
+	(View)(0),                                                   // 158: model.model.v1alpha.View
+	(*fieldmaskpb.FieldMask)(nil),                               // 159: google.protobuf.FieldMask
+	(*longrunningpb.Operation)(nil),                             // 160: google.longrunning.Operation
+	(v1alpha1.RunStatus)(0),                                     // 161: common.run.v1alpha.RunStatus
+	(v1alpha1.RunSource)(0),                                     // 162: common.run.v1alpha.RunSource
 }
 var file_model_model_v1alpha_model_proto_depIdxs = []int32{
 	150, // 0: model.model.v1alpha.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
@@ -10023,138 +10051,139 @@ var file_model_model_v1alpha_model_proto_depIdxs = []int32{
 	152, // 11: model.model.v1alpha.Model.update_time:type_name -> google.protobuf.Timestamp
 	152, // 12: model.model.v1alpha.Model.delete_time:type_name -> google.protobuf.Timestamp
 	155, // 13: model.model.v1alpha.Model.owner:type_name -> core.mgmt.v1beta.Owner
-	156, // 14: model.model.v1alpha.Model.permission:type_name -> model.model.v1alpha.Permission
-	153, // 15: model.model.v1alpha.Model.input_schema:type_name -> google.protobuf.Struct
-	153, // 16: model.model.v1alpha.Model.output_schema:type_name -> google.protobuf.Struct
-	149, // 17: model.model.v1alpha.Model.stats:type_name -> model.model.v1alpha.Model.Stats
-	157, // 18: model.model.v1alpha.ListModelsRequest.view:type_name -> model.model.v1alpha.View
-	1,   // 19: model.model.v1alpha.ListModelsRequest.visibility:type_name -> model.model.v1alpha.Model.Visibility
-	9,   // 20: model.model.v1alpha.ListModelsResponse.models:type_name -> model.model.v1alpha.Model
-	157, // 21: model.model.v1alpha.LookUpModelRequest.view:type_name -> model.model.v1alpha.View
-	9,   // 22: model.model.v1alpha.LookUpModelResponse.model:type_name -> model.model.v1alpha.Model
-	157, // 23: model.model.v1alpha.ListNamespaceModelsRequest.view:type_name -> model.model.v1alpha.View
-	1,   // 24: model.model.v1alpha.ListNamespaceModelsRequest.visibility:type_name -> model.model.v1alpha.Model.Visibility
-	9,   // 25: model.model.v1alpha.ListNamespaceModelsResponse.models:type_name -> model.model.v1alpha.Model
-	9,   // 26: model.model.v1alpha.CreateNamespaceModelRequest.model:type_name -> model.model.v1alpha.Model
-	9,   // 27: model.model.v1alpha.CreateNamespaceModelResponse.model:type_name -> model.model.v1alpha.Model
-	157, // 28: model.model.v1alpha.GetNamespaceModelRequest.view:type_name -> model.model.v1alpha.View
-	9,   // 29: model.model.v1alpha.GetNamespaceModelResponse.model:type_name -> model.model.v1alpha.Model
-	9,   // 30: model.model.v1alpha.UpdateNamespaceModelRequest.model:type_name -> model.model.v1alpha.Model
-	158, // 31: model.model.v1alpha.UpdateNamespaceModelRequest.update_mask:type_name -> google.protobuf.FieldMask
-	9,   // 32: model.model.v1alpha.UpdateNamespaceModelResponse.model:type_name -> model.model.v1alpha.Model
-	9,   // 33: model.model.v1alpha.RenameNamespaceModelResponse.model:type_name -> model.model.v1alpha.Model
-	0,   // 34: model.model.v1alpha.WatchNamespaceModelResponse.state:type_name -> model.model.v1alpha.State
-	0,   // 35: model.model.v1alpha.WatchNamespaceLatestModelResponse.state:type_name -> model.model.v1alpha.State
-	8,   // 36: model.model.v1alpha.ListNamespaceModelVersionsResponse.versions:type_name -> model.model.v1alpha.ModelVersion
-	153, // 37: model.model.v1alpha.TriggerNamespaceModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	154, // 38: model.model.v1alpha.TriggerNamespaceModelResponse.task:type_name -> common.task.v1alpha.Task
-	153, // 39: model.model.v1alpha.TriggerNamespaceModelResponse.task_outputs:type_name -> google.protobuf.Struct
-	153, // 40: model.model.v1alpha.TriggerAsyncNamespaceModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	159, // 41: model.model.v1alpha.TriggerAsyncNamespaceModelResponse.operation:type_name -> google.longrunning.Operation
-	153, // 42: model.model.v1alpha.TriggerNamespaceLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	154, // 43: model.model.v1alpha.TriggerNamespaceLatestModelResponse.task:type_name -> common.task.v1alpha.Task
-	153, // 44: model.model.v1alpha.TriggerNamespaceLatestModelResponse.task_outputs:type_name -> google.protobuf.Struct
-	153, // 45: model.model.v1alpha.TriggerAsyncNamespaceLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	159, // 46: model.model.v1alpha.TriggerAsyncNamespaceLatestModelResponse.operation:type_name -> google.longrunning.Operation
-	153, // 47: model.model.v1alpha.TriggerNamespaceModelBinaryFileUploadRequest.task_input:type_name -> google.protobuf.Struct
-	154, // 48: model.model.v1alpha.TriggerNamespaceModelBinaryFileUploadResponse.task:type_name -> common.task.v1alpha.Task
-	153, // 49: model.model.v1alpha.TriggerNamespaceModelBinaryFileUploadResponse.task_outputs:type_name -> google.protobuf.Struct
-	153, // 50: model.model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadRequest.task_input:type_name -> google.protobuf.Struct
-	154, // 51: model.model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadResponse.task:type_name -> common.task.v1alpha.Task
-	153, // 52: model.model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadResponse.task_outputs:type_name -> google.protobuf.Struct
-	157, // 53: model.model.v1alpha.GetNamespaceLatestModelOperationRequest.view:type_name -> model.model.v1alpha.View
-	159, // 54: model.model.v1alpha.GetNamespaceLatestModelOperationResponse.operation:type_name -> google.longrunning.Operation
-	157, // 55: model.model.v1alpha.GetNamespaceModelOperationRequest.view:type_name -> model.model.v1alpha.View
-	159, // 56: model.model.v1alpha.GetNamespaceModelOperationResponse.operation:type_name -> google.longrunning.Operation
-	9,   // 57: model.model.v1alpha.CreateUserModelRequest.model:type_name -> model.model.v1alpha.Model
-	9,   // 58: model.model.v1alpha.CreateUserModelResponse.model:type_name -> model.model.v1alpha.Model
-	157, // 59: model.model.v1alpha.ListUserModelsRequest.view:type_name -> model.model.v1alpha.View
-	1,   // 60: model.model.v1alpha.ListUserModelsRequest.visibility:type_name -> model.model.v1alpha.Model.Visibility
-	9,   // 61: model.model.v1alpha.ListUserModelsResponse.models:type_name -> model.model.v1alpha.Model
-	157, // 62: model.model.v1alpha.GetUserModelRequest.view:type_name -> model.model.v1alpha.View
-	9,   // 63: model.model.v1alpha.GetUserModelResponse.model:type_name -> model.model.v1alpha.Model
-	9,   // 64: model.model.v1alpha.UpdateUserModelRequest.model:type_name -> model.model.v1alpha.Model
-	158, // 65: model.model.v1alpha.UpdateUserModelRequest.update_mask:type_name -> google.protobuf.FieldMask
-	9,   // 66: model.model.v1alpha.UpdateUserModelResponse.model:type_name -> model.model.v1alpha.Model
-	9,   // 67: model.model.v1alpha.RenameUserModelResponse.model:type_name -> model.model.v1alpha.Model
-	0,   // 68: model.model.v1alpha.WatchUserModelResponse.state:type_name -> model.model.v1alpha.State
-	0,   // 69: model.model.v1alpha.WatchUserLatestModelResponse.state:type_name -> model.model.v1alpha.State
-	8,   // 70: model.model.v1alpha.ListUserModelVersionsResponse.versions:type_name -> model.model.v1alpha.ModelVersion
-	153, // 71: model.model.v1alpha.TriggerUserModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	154, // 72: model.model.v1alpha.TriggerUserModelResponse.task:type_name -> common.task.v1alpha.Task
-	153, // 73: model.model.v1alpha.TriggerUserModelResponse.task_outputs:type_name -> google.protobuf.Struct
-	153, // 74: model.model.v1alpha.TriggerAsyncUserModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	159, // 75: model.model.v1alpha.TriggerAsyncUserModelResponse.operation:type_name -> google.longrunning.Operation
-	153, // 76: model.model.v1alpha.TriggerUserLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	154, // 77: model.model.v1alpha.TriggerUserLatestModelResponse.task:type_name -> common.task.v1alpha.Task
-	153, // 78: model.model.v1alpha.TriggerUserLatestModelResponse.task_outputs:type_name -> google.protobuf.Struct
-	153, // 79: model.model.v1alpha.TriggerAsyncUserLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	159, // 80: model.model.v1alpha.TriggerAsyncUserLatestModelResponse.operation:type_name -> google.longrunning.Operation
-	153, // 81: model.model.v1alpha.TriggerUserModelBinaryFileUploadRequest.task_inputs:type_name -> google.protobuf.Struct
-	154, // 82: model.model.v1alpha.TriggerUserModelBinaryFileUploadResponse.task:type_name -> common.task.v1alpha.Task
-	153, // 83: model.model.v1alpha.TriggerUserModelBinaryFileUploadResponse.task_outputs:type_name -> google.protobuf.Struct
-	9,   // 84: model.model.v1alpha.CreateOrganizationModelRequest.model:type_name -> model.model.v1alpha.Model
-	9,   // 85: model.model.v1alpha.CreateOrganizationModelResponse.model:type_name -> model.model.v1alpha.Model
-	157, // 86: model.model.v1alpha.ListOrganizationModelsRequest.view:type_name -> model.model.v1alpha.View
-	1,   // 87: model.model.v1alpha.ListOrganizationModelsRequest.visibility:type_name -> model.model.v1alpha.Model.Visibility
-	9,   // 88: model.model.v1alpha.ListOrganizationModelsResponse.models:type_name -> model.model.v1alpha.Model
-	157, // 89: model.model.v1alpha.GetOrganizationModelRequest.view:type_name -> model.model.v1alpha.View
-	9,   // 90: model.model.v1alpha.GetOrganizationModelResponse.model:type_name -> model.model.v1alpha.Model
-	9,   // 91: model.model.v1alpha.UpdateOrganizationModelRequest.model:type_name -> model.model.v1alpha.Model
-	158, // 92: model.model.v1alpha.UpdateOrganizationModelRequest.update_mask:type_name -> google.protobuf.FieldMask
-	9,   // 93: model.model.v1alpha.UpdateOrganizationModelResponse.model:type_name -> model.model.v1alpha.Model
-	9,   // 94: model.model.v1alpha.RenameOrganizationModelResponse.model:type_name -> model.model.v1alpha.Model
-	0,   // 95: model.model.v1alpha.WatchOrganizationModelResponse.state:type_name -> model.model.v1alpha.State
-	0,   // 96: model.model.v1alpha.WatchOrganizationLatestModelResponse.state:type_name -> model.model.v1alpha.State
-	8,   // 97: model.model.v1alpha.ListOrganizationModelVersionsResponse.versions:type_name -> model.model.v1alpha.ModelVersion
-	153, // 98: model.model.v1alpha.TriggerOrganizationModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	154, // 99: model.model.v1alpha.TriggerOrganizationModelResponse.task:type_name -> common.task.v1alpha.Task
-	153, // 100: model.model.v1alpha.TriggerOrganizationModelResponse.task_outputs:type_name -> google.protobuf.Struct
-	153, // 101: model.model.v1alpha.TriggerAsyncOrganizationModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	159, // 102: model.model.v1alpha.TriggerAsyncOrganizationModelResponse.operation:type_name -> google.longrunning.Operation
-	153, // 103: model.model.v1alpha.TriggerOrganizationLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	154, // 104: model.model.v1alpha.TriggerOrganizationLatestModelResponse.task:type_name -> common.task.v1alpha.Task
-	153, // 105: model.model.v1alpha.TriggerOrganizationLatestModelResponse.task_outputs:type_name -> google.protobuf.Struct
-	153, // 106: model.model.v1alpha.TriggerAsyncOrganizationLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	159, // 107: model.model.v1alpha.TriggerAsyncOrganizationLatestModelResponse.operation:type_name -> google.longrunning.Operation
-	153, // 108: model.model.v1alpha.TriggerOrganizationModelBinaryFileUploadRequest.task_inputs:type_name -> google.protobuf.Struct
-	154, // 109: model.model.v1alpha.TriggerOrganizationModelBinaryFileUploadResponse.task:type_name -> common.task.v1alpha.Task
-	153, // 110: model.model.v1alpha.TriggerOrganizationModelBinaryFileUploadResponse.task_outputs:type_name -> google.protobuf.Struct
-	157, // 111: model.model.v1alpha.GetModelOperationRequest.view:type_name -> model.model.v1alpha.View
-	159, // 112: model.model.v1alpha.GetModelOperationResponse.operation:type_name -> google.longrunning.Operation
-	34,  // 113: model.model.v1alpha.LatestOperation.request:type_name -> model.model.v1alpha.TriggerNamespaceModelRequest
-	35,  // 114: model.model.v1alpha.LatestOperation.response:type_name -> model.model.v1alpha.TriggerNamespaceModelResponse
-	157, // 115: model.model.v1alpha.GetUserLatestModelOperationRequest.view:type_name -> model.model.v1alpha.View
-	159, // 116: model.model.v1alpha.GetUserLatestModelOperationResponse.operation:type_name -> google.longrunning.Operation
-	157, // 117: model.model.v1alpha.GetOrganizationLatestModelOperationRequest.view:type_name -> model.model.v1alpha.View
-	159, // 118: model.model.v1alpha.GetOrganizationLatestModelOperationResponse.operation:type_name -> google.longrunning.Operation
-	6,   // 119: model.model.v1alpha.ListAvailableRegionsResponse.regions:type_name -> model.model.v1alpha.Region
-	157, // 120: model.model.v1alpha.ListModelsAdminRequest.view:type_name -> model.model.v1alpha.View
-	9,   // 121: model.model.v1alpha.ListModelsAdminResponse.models:type_name -> model.model.v1alpha.Model
-	157, // 122: model.model.v1alpha.LookUpModelAdminRequest.view:type_name -> model.model.v1alpha.View
-	9,   // 123: model.model.v1alpha.LookUpModelAdminResponse.model:type_name -> model.model.v1alpha.Model
-	160, // 124: model.model.v1alpha.ModelRun.status:type_name -> common.run.v1alpha.RunStatus
-	161, // 125: model.model.v1alpha.ModelRun.source:type_name -> common.run.v1alpha.RunSource
-	152, // 126: model.model.v1alpha.ModelRun.end_time:type_name -> google.protobuf.Timestamp
-	152, // 127: model.model.v1alpha.ModelRun.create_time:type_name -> google.protobuf.Timestamp
-	152, // 128: model.model.v1alpha.ModelRun.update_time:type_name -> google.protobuf.Timestamp
-	153, // 129: model.model.v1alpha.ModelRun.task_inputs:type_name -> google.protobuf.Struct
-	153, // 130: model.model.v1alpha.ModelRun.task_outputs:type_name -> google.protobuf.Struct
-	152, // 131: model.model.v1alpha.ListModelRunsByRequesterRequest.start:type_name -> google.protobuf.Timestamp
-	152, // 132: model.model.v1alpha.ListModelRunsByRequesterRequest.stop:type_name -> google.protobuf.Timestamp
-	135, // 133: model.model.v1alpha.ListModelRunsResponse.runs:type_name -> model.model.v1alpha.ModelRun
-	135, // 134: model.model.v1alpha.ListModelRunsByRequesterResponse.runs:type_name -> model.model.v1alpha.ModelRun
-	152, // 135: model.model.v1alpha.RepositoryTag.update_time:type_name -> google.protobuf.Timestamp
-	140, // 136: model.model.v1alpha.ListRepositoryTagsResponse.tags:type_name -> model.model.v1alpha.RepositoryTag
-	140, // 137: model.model.v1alpha.CreateRepositoryTagRequest.tag:type_name -> model.model.v1alpha.RepositoryTag
-	140, // 138: model.model.v1alpha.CreateRepositoryTagResponse.tag:type_name -> model.model.v1alpha.RepositoryTag
-	140, // 139: model.model.v1alpha.GetRepositoryTagResponse.tag:type_name -> model.model.v1alpha.RepositoryTag
-	152, // 140: model.model.v1alpha.Model.Stats.last_run_time:type_name -> google.protobuf.Timestamp
-	141, // [141:141] is the sub-list for method output_type
-	141, // [141:141] is the sub-list for method input_type
-	141, // [141:141] is the sub-list for extension type_name
-	141, // [141:141] is the sub-list for extension extendee
-	0,   // [0:141] is the sub-list for field type_name
+	156, // 14: model.model.v1alpha.Model.creator:type_name -> core.mgmt.v1beta.User
+	157, // 15: model.model.v1alpha.Model.permission:type_name -> model.model.v1alpha.Permission
+	153, // 16: model.model.v1alpha.Model.input_schema:type_name -> google.protobuf.Struct
+	153, // 17: model.model.v1alpha.Model.output_schema:type_name -> google.protobuf.Struct
+	149, // 18: model.model.v1alpha.Model.stats:type_name -> model.model.v1alpha.Model.Stats
+	158, // 19: model.model.v1alpha.ListModelsRequest.view:type_name -> model.model.v1alpha.View
+	1,   // 20: model.model.v1alpha.ListModelsRequest.visibility:type_name -> model.model.v1alpha.Model.Visibility
+	9,   // 21: model.model.v1alpha.ListModelsResponse.models:type_name -> model.model.v1alpha.Model
+	158, // 22: model.model.v1alpha.LookUpModelRequest.view:type_name -> model.model.v1alpha.View
+	9,   // 23: model.model.v1alpha.LookUpModelResponse.model:type_name -> model.model.v1alpha.Model
+	158, // 24: model.model.v1alpha.ListNamespaceModelsRequest.view:type_name -> model.model.v1alpha.View
+	1,   // 25: model.model.v1alpha.ListNamespaceModelsRequest.visibility:type_name -> model.model.v1alpha.Model.Visibility
+	9,   // 26: model.model.v1alpha.ListNamespaceModelsResponse.models:type_name -> model.model.v1alpha.Model
+	9,   // 27: model.model.v1alpha.CreateNamespaceModelRequest.model:type_name -> model.model.v1alpha.Model
+	9,   // 28: model.model.v1alpha.CreateNamespaceModelResponse.model:type_name -> model.model.v1alpha.Model
+	158, // 29: model.model.v1alpha.GetNamespaceModelRequest.view:type_name -> model.model.v1alpha.View
+	9,   // 30: model.model.v1alpha.GetNamespaceModelResponse.model:type_name -> model.model.v1alpha.Model
+	9,   // 31: model.model.v1alpha.UpdateNamespaceModelRequest.model:type_name -> model.model.v1alpha.Model
+	159, // 32: model.model.v1alpha.UpdateNamespaceModelRequest.update_mask:type_name -> google.protobuf.FieldMask
+	9,   // 33: model.model.v1alpha.UpdateNamespaceModelResponse.model:type_name -> model.model.v1alpha.Model
+	9,   // 34: model.model.v1alpha.RenameNamespaceModelResponse.model:type_name -> model.model.v1alpha.Model
+	0,   // 35: model.model.v1alpha.WatchNamespaceModelResponse.state:type_name -> model.model.v1alpha.State
+	0,   // 36: model.model.v1alpha.WatchNamespaceLatestModelResponse.state:type_name -> model.model.v1alpha.State
+	8,   // 37: model.model.v1alpha.ListNamespaceModelVersionsResponse.versions:type_name -> model.model.v1alpha.ModelVersion
+	153, // 38: model.model.v1alpha.TriggerNamespaceModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	154, // 39: model.model.v1alpha.TriggerNamespaceModelResponse.task:type_name -> common.task.v1alpha.Task
+	153, // 40: model.model.v1alpha.TriggerNamespaceModelResponse.task_outputs:type_name -> google.protobuf.Struct
+	153, // 41: model.model.v1alpha.TriggerAsyncNamespaceModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	160, // 42: model.model.v1alpha.TriggerAsyncNamespaceModelResponse.operation:type_name -> google.longrunning.Operation
+	153, // 43: model.model.v1alpha.TriggerNamespaceLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	154, // 44: model.model.v1alpha.TriggerNamespaceLatestModelResponse.task:type_name -> common.task.v1alpha.Task
+	153, // 45: model.model.v1alpha.TriggerNamespaceLatestModelResponse.task_outputs:type_name -> google.protobuf.Struct
+	153, // 46: model.model.v1alpha.TriggerAsyncNamespaceLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	160, // 47: model.model.v1alpha.TriggerAsyncNamespaceLatestModelResponse.operation:type_name -> google.longrunning.Operation
+	153, // 48: model.model.v1alpha.TriggerNamespaceModelBinaryFileUploadRequest.task_input:type_name -> google.protobuf.Struct
+	154, // 49: model.model.v1alpha.TriggerNamespaceModelBinaryFileUploadResponse.task:type_name -> common.task.v1alpha.Task
+	153, // 50: model.model.v1alpha.TriggerNamespaceModelBinaryFileUploadResponse.task_outputs:type_name -> google.protobuf.Struct
+	153, // 51: model.model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadRequest.task_input:type_name -> google.protobuf.Struct
+	154, // 52: model.model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadResponse.task:type_name -> common.task.v1alpha.Task
+	153, // 53: model.model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadResponse.task_outputs:type_name -> google.protobuf.Struct
+	158, // 54: model.model.v1alpha.GetNamespaceLatestModelOperationRequest.view:type_name -> model.model.v1alpha.View
+	160, // 55: model.model.v1alpha.GetNamespaceLatestModelOperationResponse.operation:type_name -> google.longrunning.Operation
+	158, // 56: model.model.v1alpha.GetNamespaceModelOperationRequest.view:type_name -> model.model.v1alpha.View
+	160, // 57: model.model.v1alpha.GetNamespaceModelOperationResponse.operation:type_name -> google.longrunning.Operation
+	9,   // 58: model.model.v1alpha.CreateUserModelRequest.model:type_name -> model.model.v1alpha.Model
+	9,   // 59: model.model.v1alpha.CreateUserModelResponse.model:type_name -> model.model.v1alpha.Model
+	158, // 60: model.model.v1alpha.ListUserModelsRequest.view:type_name -> model.model.v1alpha.View
+	1,   // 61: model.model.v1alpha.ListUserModelsRequest.visibility:type_name -> model.model.v1alpha.Model.Visibility
+	9,   // 62: model.model.v1alpha.ListUserModelsResponse.models:type_name -> model.model.v1alpha.Model
+	158, // 63: model.model.v1alpha.GetUserModelRequest.view:type_name -> model.model.v1alpha.View
+	9,   // 64: model.model.v1alpha.GetUserModelResponse.model:type_name -> model.model.v1alpha.Model
+	9,   // 65: model.model.v1alpha.UpdateUserModelRequest.model:type_name -> model.model.v1alpha.Model
+	159, // 66: model.model.v1alpha.UpdateUserModelRequest.update_mask:type_name -> google.protobuf.FieldMask
+	9,   // 67: model.model.v1alpha.UpdateUserModelResponse.model:type_name -> model.model.v1alpha.Model
+	9,   // 68: model.model.v1alpha.RenameUserModelResponse.model:type_name -> model.model.v1alpha.Model
+	0,   // 69: model.model.v1alpha.WatchUserModelResponse.state:type_name -> model.model.v1alpha.State
+	0,   // 70: model.model.v1alpha.WatchUserLatestModelResponse.state:type_name -> model.model.v1alpha.State
+	8,   // 71: model.model.v1alpha.ListUserModelVersionsResponse.versions:type_name -> model.model.v1alpha.ModelVersion
+	153, // 72: model.model.v1alpha.TriggerUserModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	154, // 73: model.model.v1alpha.TriggerUserModelResponse.task:type_name -> common.task.v1alpha.Task
+	153, // 74: model.model.v1alpha.TriggerUserModelResponse.task_outputs:type_name -> google.protobuf.Struct
+	153, // 75: model.model.v1alpha.TriggerAsyncUserModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	160, // 76: model.model.v1alpha.TriggerAsyncUserModelResponse.operation:type_name -> google.longrunning.Operation
+	153, // 77: model.model.v1alpha.TriggerUserLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	154, // 78: model.model.v1alpha.TriggerUserLatestModelResponse.task:type_name -> common.task.v1alpha.Task
+	153, // 79: model.model.v1alpha.TriggerUserLatestModelResponse.task_outputs:type_name -> google.protobuf.Struct
+	153, // 80: model.model.v1alpha.TriggerAsyncUserLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	160, // 81: model.model.v1alpha.TriggerAsyncUserLatestModelResponse.operation:type_name -> google.longrunning.Operation
+	153, // 82: model.model.v1alpha.TriggerUserModelBinaryFileUploadRequest.task_inputs:type_name -> google.protobuf.Struct
+	154, // 83: model.model.v1alpha.TriggerUserModelBinaryFileUploadResponse.task:type_name -> common.task.v1alpha.Task
+	153, // 84: model.model.v1alpha.TriggerUserModelBinaryFileUploadResponse.task_outputs:type_name -> google.protobuf.Struct
+	9,   // 85: model.model.v1alpha.CreateOrganizationModelRequest.model:type_name -> model.model.v1alpha.Model
+	9,   // 86: model.model.v1alpha.CreateOrganizationModelResponse.model:type_name -> model.model.v1alpha.Model
+	158, // 87: model.model.v1alpha.ListOrganizationModelsRequest.view:type_name -> model.model.v1alpha.View
+	1,   // 88: model.model.v1alpha.ListOrganizationModelsRequest.visibility:type_name -> model.model.v1alpha.Model.Visibility
+	9,   // 89: model.model.v1alpha.ListOrganizationModelsResponse.models:type_name -> model.model.v1alpha.Model
+	158, // 90: model.model.v1alpha.GetOrganizationModelRequest.view:type_name -> model.model.v1alpha.View
+	9,   // 91: model.model.v1alpha.GetOrganizationModelResponse.model:type_name -> model.model.v1alpha.Model
+	9,   // 92: model.model.v1alpha.UpdateOrganizationModelRequest.model:type_name -> model.model.v1alpha.Model
+	159, // 93: model.model.v1alpha.UpdateOrganizationModelRequest.update_mask:type_name -> google.protobuf.FieldMask
+	9,   // 94: model.model.v1alpha.UpdateOrganizationModelResponse.model:type_name -> model.model.v1alpha.Model
+	9,   // 95: model.model.v1alpha.RenameOrganizationModelResponse.model:type_name -> model.model.v1alpha.Model
+	0,   // 96: model.model.v1alpha.WatchOrganizationModelResponse.state:type_name -> model.model.v1alpha.State
+	0,   // 97: model.model.v1alpha.WatchOrganizationLatestModelResponse.state:type_name -> model.model.v1alpha.State
+	8,   // 98: model.model.v1alpha.ListOrganizationModelVersionsResponse.versions:type_name -> model.model.v1alpha.ModelVersion
+	153, // 99: model.model.v1alpha.TriggerOrganizationModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	154, // 100: model.model.v1alpha.TriggerOrganizationModelResponse.task:type_name -> common.task.v1alpha.Task
+	153, // 101: model.model.v1alpha.TriggerOrganizationModelResponse.task_outputs:type_name -> google.protobuf.Struct
+	153, // 102: model.model.v1alpha.TriggerAsyncOrganizationModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	160, // 103: model.model.v1alpha.TriggerAsyncOrganizationModelResponse.operation:type_name -> google.longrunning.Operation
+	153, // 104: model.model.v1alpha.TriggerOrganizationLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	154, // 105: model.model.v1alpha.TriggerOrganizationLatestModelResponse.task:type_name -> common.task.v1alpha.Task
+	153, // 106: model.model.v1alpha.TriggerOrganizationLatestModelResponse.task_outputs:type_name -> google.protobuf.Struct
+	153, // 107: model.model.v1alpha.TriggerAsyncOrganizationLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	160, // 108: model.model.v1alpha.TriggerAsyncOrganizationLatestModelResponse.operation:type_name -> google.longrunning.Operation
+	153, // 109: model.model.v1alpha.TriggerOrganizationModelBinaryFileUploadRequest.task_inputs:type_name -> google.protobuf.Struct
+	154, // 110: model.model.v1alpha.TriggerOrganizationModelBinaryFileUploadResponse.task:type_name -> common.task.v1alpha.Task
+	153, // 111: model.model.v1alpha.TriggerOrganizationModelBinaryFileUploadResponse.task_outputs:type_name -> google.protobuf.Struct
+	158, // 112: model.model.v1alpha.GetModelOperationRequest.view:type_name -> model.model.v1alpha.View
+	160, // 113: model.model.v1alpha.GetModelOperationResponse.operation:type_name -> google.longrunning.Operation
+	34,  // 114: model.model.v1alpha.LatestOperation.request:type_name -> model.model.v1alpha.TriggerNamespaceModelRequest
+	35,  // 115: model.model.v1alpha.LatestOperation.response:type_name -> model.model.v1alpha.TriggerNamespaceModelResponse
+	158, // 116: model.model.v1alpha.GetUserLatestModelOperationRequest.view:type_name -> model.model.v1alpha.View
+	160, // 117: model.model.v1alpha.GetUserLatestModelOperationResponse.operation:type_name -> google.longrunning.Operation
+	158, // 118: model.model.v1alpha.GetOrganizationLatestModelOperationRequest.view:type_name -> model.model.v1alpha.View
+	160, // 119: model.model.v1alpha.GetOrganizationLatestModelOperationResponse.operation:type_name -> google.longrunning.Operation
+	6,   // 120: model.model.v1alpha.ListAvailableRegionsResponse.regions:type_name -> model.model.v1alpha.Region
+	158, // 121: model.model.v1alpha.ListModelsAdminRequest.view:type_name -> model.model.v1alpha.View
+	9,   // 122: model.model.v1alpha.ListModelsAdminResponse.models:type_name -> model.model.v1alpha.Model
+	158, // 123: model.model.v1alpha.LookUpModelAdminRequest.view:type_name -> model.model.v1alpha.View
+	9,   // 124: model.model.v1alpha.LookUpModelAdminResponse.model:type_name -> model.model.v1alpha.Model
+	161, // 125: model.model.v1alpha.ModelRun.status:type_name -> common.run.v1alpha.RunStatus
+	162, // 126: model.model.v1alpha.ModelRun.source:type_name -> common.run.v1alpha.RunSource
+	152, // 127: model.model.v1alpha.ModelRun.end_time:type_name -> google.protobuf.Timestamp
+	152, // 128: model.model.v1alpha.ModelRun.create_time:type_name -> google.protobuf.Timestamp
+	152, // 129: model.model.v1alpha.ModelRun.update_time:type_name -> google.protobuf.Timestamp
+	153, // 130: model.model.v1alpha.ModelRun.task_inputs:type_name -> google.protobuf.Struct
+	153, // 131: model.model.v1alpha.ModelRun.task_outputs:type_name -> google.protobuf.Struct
+	152, // 132: model.model.v1alpha.ListModelRunsByRequesterRequest.start:type_name -> google.protobuf.Timestamp
+	152, // 133: model.model.v1alpha.ListModelRunsByRequesterRequest.stop:type_name -> google.protobuf.Timestamp
+	135, // 134: model.model.v1alpha.ListModelRunsResponse.runs:type_name -> model.model.v1alpha.ModelRun
+	135, // 135: model.model.v1alpha.ListModelRunsByRequesterResponse.runs:type_name -> model.model.v1alpha.ModelRun
+	152, // 136: model.model.v1alpha.RepositoryTag.update_time:type_name -> google.protobuf.Timestamp
+	140, // 137: model.model.v1alpha.ListRepositoryTagsResponse.tags:type_name -> model.model.v1alpha.RepositoryTag
+	140, // 138: model.model.v1alpha.CreateRepositoryTagRequest.tag:type_name -> model.model.v1alpha.RepositoryTag
+	140, // 139: model.model.v1alpha.CreateRepositoryTagResponse.tag:type_name -> model.model.v1alpha.RepositoryTag
+	140, // 140: model.model.v1alpha.GetRepositoryTagResponse.tag:type_name -> model.model.v1alpha.RepositoryTag
+	152, // 141: model.model.v1alpha.Model.Stats.last_run_time:type_name -> google.protobuf.Timestamp
+	142, // [142:142] is the sub-list for method output_type
+	142, // [142:142] is the sub-list for method input_type
+	142, // [142:142] is the sub-list for extension type_name
+	142, // [142:142] is the sub-list for extension extendee
+	0,   // [0:142] is the sub-list for field type_name
 }
 
 func init() { file_model_model_v1alpha_model_proto_init() }

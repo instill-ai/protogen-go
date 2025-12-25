@@ -7,6 +7,7 @@
 package artifactv1alpha
 
 import (
+	v1beta "github.com/instill-ai/protogen-go/core/mgmt/v1beta"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -130,8 +131,17 @@ type KnowledgeBase struct {
 	// The UID of the active Milvus collection for this knowledge base.
 	// This supports collection versioning for embedding dimension changes.
 	ActiveCollectionUid string `protobuf:"bytes,18,opt,name=active_collection_uid,json=activeCollectionUid,proto3" json:"active_collection_uid,omitempty"`
-	unknownFields       protoimpl.UnknownFields
-	sizeCache           protoimpl.SizeCache
+	// Knowledge base owner.
+	Owner *v1beta.Owner `protobuf:"bytes,19,opt,name=owner,proto3,oneof" json:"owner,omitempty"`
+	// The UID of the user who created this knowledge base.
+	// This field is optional for system-created knowledge bases (e.g., instill-agent)
+	// or legacy knowledge bases created before this field was introduced.
+	CreatorUid *string `protobuf:"bytes,20,opt,name=creator_uid,json=creatorUid,proto3,oneof" json:"creator_uid,omitempty"`
+	// The user who created this knowledge base.
+	// Populated when creator_uid is present.
+	Creator       *v1beta.User `protobuf:"bytes,21,opt,name=creator,proto3,oneof" json:"creator,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *KnowledgeBase) Reset() {
@@ -292,6 +302,27 @@ func (x *KnowledgeBase) GetActiveCollectionUid() string {
 		return x.ActiveCollectionUid
 	}
 	return ""
+}
+
+func (x *KnowledgeBase) GetOwner() *v1beta.Owner {
+	if x != nil {
+		return x.Owner
+	}
+	return nil
+}
+
+func (x *KnowledgeBase) GetCreatorUid() string {
+	if x != nil && x.CreatorUid != nil {
+		return *x.CreatorUid
+	}
+	return ""
+}
+
+func (x *KnowledgeBase) GetCreator() *v1beta.User {
+	if x != nil {
+		return x.Creator
+	}
+	return nil
 }
 
 // CreateKnowledgeBaseRequest represents a request to create a knowledge base.
@@ -1008,7 +1039,7 @@ var File_artifact_artifact_v1alpha_knowledge_base_proto protoreflect.FileDescrip
 
 const file_artifact_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"\n" +
-	".artifact/artifact/v1alpha/knowledge_base.proto\x12\x19artifact.artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x85\b\n" +
+	".artifact/artifact/v1alpha/knowledge_base.proto\x12\x19artifact.artifact.v1alpha\x1a\x1bcore/mgmt/v1beta/mgmt.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xcb\t\n" +
 	"\rKnowledgeBase\x12\x15\n" +
 	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x05R\x02id\x12\x17\n" +
@@ -1032,10 +1063,18 @@ const file_artifact_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"\fused_storage\x18\x0f \x01(\x04B\x03\xe0A\x03R\vusedStorage\x12:\n" +
 	"\x15summarizing_pipelines\x18\x10 \x03(\tB\x05\xe0A\x01\x18\x01R\x14summarizingPipelines\x12h\n" +
 	"\x10embedding_config\x18\x11 \x01(\v28.artifact.artifact.v1alpha.KnowledgeBase.EmbeddingConfigB\x03\xe0A\x01R\x0fembeddingConfig\x127\n" +
-	"\x15active_collection_uid\x18\x12 \x01(\tB\x03\xe0A\x03R\x13activeCollectionUid\x1a\\\n" +
+	"\x15active_collection_uid\x18\x12 \x01(\tB\x03\xe0A\x03R\x13activeCollectionUid\x127\n" +
+	"\x05owner\x18\x13 \x01(\v2\x17.core.mgmt.v1beta.OwnerB\x03\xe0A\x03H\x00R\x05owner\x88\x01\x01\x12)\n" +
+	"\vcreator_uid\x18\x14 \x01(\tB\x03\xe0A\x03H\x01R\n" +
+	"creatorUid\x88\x01\x01\x12:\n" +
+	"\acreator\x18\x15 \x01(\v2\x16.core.mgmt.v1beta.UserB\x03\xe0A\x03H\x02R\acreator\x88\x01\x01\x1a\\\n" +
 	"\x0fEmbeddingConfig\x12!\n" +
 	"\fmodel_family\x18\x01 \x01(\tR\vmodelFamily\x12&\n" +
-	"\x0edimensionality\x18\x02 \x01(\rR\x0edimensionality:<\xeaA9\x127namespaces/{namespace}/knowledge-bases/{knowledge_base}\"\xcd\x02\n" +
+	"\x0edimensionality\x18\x02 \x01(\rR\x0edimensionality:<\xeaA9\x127namespaces/{namespace}/knowledge-bases/{knowledge_base}B\b\n" +
+	"\x06_ownerB\x0e\n" +
+	"\f_creator_uidB\n" +
+	"\n" +
+	"\b_creator\"\xcd\x02\n" +
 	"\x1aCreateKnowledgeBaseRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x01R\x02id\x12%\n" +
@@ -1116,25 +1155,29 @@ var file_artifact_artifact_v1alpha_knowledge_base_proto_goTypes = []any{
 	(*DeleteKnowledgeBaseResponse)(nil),   // 11: artifact.artifact.v1alpha.DeleteKnowledgeBaseResponse
 	(*KnowledgeBase_EmbeddingConfig)(nil), // 12: artifact.artifact.v1alpha.KnowledgeBase.EmbeddingConfig
 	(*timestamppb.Timestamp)(nil),         // 13: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil),         // 14: google.protobuf.FieldMask
+	(*v1beta.Owner)(nil),                  // 14: core.mgmt.v1beta.Owner
+	(*v1beta.User)(nil),                   // 15: core.mgmt.v1beta.User
+	(*fieldmaskpb.FieldMask)(nil),         // 16: google.protobuf.FieldMask
 }
 var file_artifact_artifact_v1alpha_knowledge_base_proto_depIdxs = []int32{
 	13, // 0: artifact.artifact.v1alpha.KnowledgeBase.create_time:type_name -> google.protobuf.Timestamp
 	13, // 1: artifact.artifact.v1alpha.KnowledgeBase.update_time:type_name -> google.protobuf.Timestamp
 	12, // 2: artifact.artifact.v1alpha.KnowledgeBase.embedding_config:type_name -> artifact.artifact.v1alpha.KnowledgeBase.EmbeddingConfig
-	0,  // 3: artifact.artifact.v1alpha.CreateKnowledgeBaseRequest.type:type_name -> artifact.artifact.v1alpha.KnowledgeBaseType
-	1,  // 4: artifact.artifact.v1alpha.CreateKnowledgeBaseResponse.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
-	1,  // 5: artifact.artifact.v1alpha.GetKnowledgeBaseResponse.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
-	1,  // 6: artifact.artifact.v1alpha.ListKnowledgeBasesResponse.knowledge_bases:type_name -> artifact.artifact.v1alpha.KnowledgeBase
-	1,  // 7: artifact.artifact.v1alpha.UpdateKnowledgeBaseRequest.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
-	14, // 8: artifact.artifact.v1alpha.UpdateKnowledgeBaseRequest.update_mask:type_name -> google.protobuf.FieldMask
-	1,  // 9: artifact.artifact.v1alpha.UpdateKnowledgeBaseResponse.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
-	1,  // 10: artifact.artifact.v1alpha.DeleteKnowledgeBaseResponse.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
-	11, // [11:11] is the sub-list for method output_type
-	11, // [11:11] is the sub-list for method input_type
-	11, // [11:11] is the sub-list for extension type_name
-	11, // [11:11] is the sub-list for extension extendee
-	0,  // [0:11] is the sub-list for field type_name
+	14, // 3: artifact.artifact.v1alpha.KnowledgeBase.owner:type_name -> core.mgmt.v1beta.Owner
+	15, // 4: artifact.artifact.v1alpha.KnowledgeBase.creator:type_name -> core.mgmt.v1beta.User
+	0,  // 5: artifact.artifact.v1alpha.CreateKnowledgeBaseRequest.type:type_name -> artifact.artifact.v1alpha.KnowledgeBaseType
+	1,  // 6: artifact.artifact.v1alpha.CreateKnowledgeBaseResponse.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
+	1,  // 7: artifact.artifact.v1alpha.GetKnowledgeBaseResponse.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
+	1,  // 8: artifact.artifact.v1alpha.ListKnowledgeBasesResponse.knowledge_bases:type_name -> artifact.artifact.v1alpha.KnowledgeBase
+	1,  // 9: artifact.artifact.v1alpha.UpdateKnowledgeBaseRequest.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
+	16, // 10: artifact.artifact.v1alpha.UpdateKnowledgeBaseRequest.update_mask:type_name -> google.protobuf.FieldMask
+	1,  // 11: artifact.artifact.v1alpha.UpdateKnowledgeBaseResponse.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
+	1,  // 12: artifact.artifact.v1alpha.DeleteKnowledgeBaseResponse.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
+	13, // [13:13] is the sub-list for method output_type
+	13, // [13:13] is the sub-list for method input_type
+	13, // [13:13] is the sub-list for extension type_name
+	13, // [13:13] is the sub-list for extension extendee
+	0,  // [0:13] is the sub-list for field type_name
 }
 
 func init() { file_artifact_artifact_v1alpha_knowledge_base_proto_init() }
@@ -1142,6 +1185,7 @@ func file_artifact_artifact_v1alpha_knowledge_base_proto_init() {
 	if File_artifact_artifact_v1alpha_knowledge_base_proto != nil {
 		return
 	}
+	file_artifact_artifact_v1alpha_knowledge_base_proto_msgTypes[0].OneofWrappers = []any{}
 	file_artifact_artifact_v1alpha_knowledge_base_proto_msgTypes[1].OneofWrappers = []any{}
 	file_artifact_artifact_v1alpha_knowledge_base_proto_msgTypes[5].OneofWrappers = []any{}
 	type x struct{}

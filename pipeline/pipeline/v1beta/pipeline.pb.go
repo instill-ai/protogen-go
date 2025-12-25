@@ -527,6 +527,13 @@ type Pipeline struct {
 	Visibility Pipeline_Visibility `protobuf:"varint,22,opt,name=visibility,proto3,enum=pipeline.pipeline.v1beta.Pipeline_Visibility" json:"visibility,omitempty"`
 	// Pipeline owner.
 	Owner *v1beta1.Owner `protobuf:"bytes,23,opt,name=owner,proto3,oneof" json:"owner,omitempty"`
+	// The UID of the user who created this pipeline.
+	// This field is optional for system-created pipelines or legacy pipelines
+	// created before this field was introduced.
+	CreatorUid *string `protobuf:"bytes,33,opt,name=creator_uid,json=creatorUid,proto3,oneof" json:"creator_uid,omitempty"`
+	// The user who created this pipeline.
+	// Populated when creator_uid is present.
+	Creator *v1beta1.User `protobuf:"bytes,34,opt,name=creator,proto3,oneof" json:"creator,omitempty"`
 	// Data specifications.
 	DataSpecification *DataSpecification `protobuf:"bytes,24,opt,name=data_specification,json=dataSpecification,proto3" json:"data_specification,omitempty"`
 	// Tags.
@@ -688,6 +695,20 @@ func (x *Pipeline) GetVisibility() Pipeline_Visibility {
 func (x *Pipeline) GetOwner() *v1beta1.Owner {
 	if x != nil {
 		return x.Owner
+	}
+	return nil
+}
+
+func (x *Pipeline) GetCreatorUid() string {
+	if x != nil && x.CreatorUid != nil {
+		return *x.CreatorUid
+	}
+	return ""
+}
+
+func (x *Pipeline) GetCreator() *v1beta1.User {
+	if x != nil {
+		return x.Creator
 	}
 	return nil
 }
@@ -10210,7 +10231,7 @@ const file_pipeline_pipeline_v1beta_pipeline_proto_rawDesc = "" +
 	"\vdescription\x18\x02 \x01(\tB\x03\xe0A\x03R\vdescription\x1ap\n" +
 	"\rWebhooksEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12I\n" +
-	"\x05value\x18\x02 \x01(\v23.pipeline.pipeline.v1beta.Endpoints.WebhookEndpointR\x05value:\x028\x01\"\xef\r\n" +
+	"\x05value\x18\x02 \x01(\v23.pipeline.pipeline.v1beta.Endpoints.WebhookEndpointR\x05value:\x028\x01\"\xf2\x0e\n" +
 	"\bPipeline\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x15\n" +
 	"\x03uid\x18\x02 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x13\n" +
@@ -10236,17 +10257,20 @@ const file_pipeline_pipeline_v1beta_pipeline_proto_rawDesc = "" +
 	"\n" +
 	"visibility\x18\x16 \x01(\x0e2-.pipeline.pipeline.v1beta.Pipeline.VisibilityB\x03\xe0A\x03R\n" +
 	"visibility\x127\n" +
-	"\x05owner\x18\x17 \x01(\v2\x17.core.mgmt.v1beta.OwnerB\x03\xe0A\x03H\x01R\x05owner\x88\x01\x01\x12_\n" +
+	"\x05owner\x18\x17 \x01(\v2\x17.core.mgmt.v1beta.OwnerB\x03\xe0A\x03H\x01R\x05owner\x88\x01\x01\x12)\n" +
+	"\vcreator_uid\x18! \x01(\tB\x03\xe0A\x03H\x02R\n" +
+	"creatorUid\x88\x01\x01\x12:\n" +
+	"\acreator\x18\" \x01(\v2\x16.core.mgmt.v1beta.UserB\x03\xe0A\x03H\x03R\acreator\x88\x01\x01\x12_\n" +
 	"\x12data_specification\x18\x18 \x01(\v2+.pipeline.pipeline.v1beta.DataSpecificationB\x03\xe0A\x03R\x11dataSpecification\x12\x17\n" +
 	"\x04tags\x18\x19 \x03(\tB\x03\xe0A\x01R\x04tags\x12C\n" +
 	"\x05stats\x18\x1a \x01(\v2(.pipeline.pipeline.v1beta.Pipeline.StatsB\x03\xe0A\x03R\x05stats\x12\"\n" +
 	"\n" +
 	"raw_recipe\x18\x1b \x01(\tB\x03\xe0A\x01R\trawRecipe\x12'\n" +
 	"\n" +
-	"source_url\x18\x1c \x01(\tB\x03\xe0A\x01H\x02R\tsourceUrl\x88\x01\x01\x125\n" +
-	"\x11documentation_url\x18\x1d \x01(\tB\x03\xe0A\x01H\x03R\x10documentationUrl\x88\x01\x01\x12\"\n" +
-	"\alicense\x18\x1e \x01(\tB\x03\xe0A\x01H\x04R\alicense\x88\x01\x01\x12-\n" +
-	"\rprofile_image\x18\x1f \x01(\tB\x03\xe0A\x01H\x05R\fprofileImage\x88\x01\x01\x12F\n" +
+	"source_url\x18\x1c \x01(\tB\x03\xe0A\x01H\x04R\tsourceUrl\x88\x01\x01\x125\n" +
+	"\x11documentation_url\x18\x1d \x01(\tB\x03\xe0A\x01H\x05R\x10documentationUrl\x88\x01\x01\x12\"\n" +
+	"\alicense\x18\x1e \x01(\tB\x03\xe0A\x01H\x06R\alicense\x88\x01\x01\x12-\n" +
+	"\rprofile_image\x18\x1f \x01(\tB\x03\xe0A\x01H\aR\fprofileImage\x88\x01\x01\x12F\n" +
 	"\tendpoints\x18  \x01(\v2#.pipeline.pipeline.v1beta.EndpointsB\x03\xe0A\x03R\tendpoints\x1a\xa6\x01\n" +
 	"\x05Stats\x12)\n" +
 	"\x0enumber_of_runs\x18\x01 \x01(\x05B\x03\xe0A\x03R\fnumberOfRuns\x12C\n" +
@@ -10264,7 +10288,10 @@ const file_pipeline_pipeline_v1beta_pipeline_proto_rawDesc = "" +
 	"\x12VISIBILITY_PRIVATE\x10\x01\x12\x15\n" +
 	"\x11VISIBILITY_PUBLIC\x10\x02B\x0e\n" +
 	"\f_descriptionB\b\n" +
-	"\x06_ownerB\r\n" +
+	"\x06_ownerB\x0e\n" +
+	"\f_creator_uidB\n" +
+	"\n" +
+	"\b_creatorB\r\n" +
 	"\v_source_urlB\x14\n" +
 	"\x12_documentation_urlB\n" +
 	"\n" +
@@ -11190,11 +11217,12 @@ var file_pipeline_pipeline_v1beta_pipeline_proto_goTypes = []any{
 	(*Sharing)(nil),                                            // 168: pipeline.pipeline.v1beta.Sharing
 	(*Permission)(nil),                                         // 169: pipeline.pipeline.v1beta.Permission
 	(*v1beta1.Owner)(nil),                                      // 170: core.mgmt.v1beta.Owner
-	(*DataSpecification)(nil),                                  // 171: pipeline.pipeline.v1beta.DataSpecification
-	(*fieldmaskpb.FieldMask)(nil),                              // 172: google.protobuf.FieldMask
-	(*longrunningpb.Operation)(nil),                            // 173: google.longrunning.Operation
-	(v1alpha.RunStatus)(0),                                     // 174: common.run.v1alpha.RunStatus
-	(v1alpha.RunSource)(0),                                     // 175: common.run.v1alpha.RunSource
+	(*v1beta1.User)(nil),                                       // 171: core.mgmt.v1beta.User
+	(*DataSpecification)(nil),                                  // 172: pipeline.pipeline.v1beta.DataSpecification
+	(*fieldmaskpb.FieldMask)(nil),                              // 173: google.protobuf.FieldMask
+	(*longrunningpb.Operation)(nil),                            // 174: google.longrunning.Operation
+	(v1alpha.RunStatus)(0),                                     // 175: common.run.v1alpha.RunStatus
+	(v1alpha.RunSource)(0),                                     // 176: common.run.v1alpha.RunSource
 }
 var file_pipeline_pipeline_v1beta_pipeline_proto_depIdxs = []int32{
 	164, // 0: pipeline.pipeline.v1beta.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
@@ -11212,196 +11240,197 @@ var file_pipeline_pipeline_v1beta_pipeline_proto_depIdxs = []int32{
 	169, // 12: pipeline.pipeline.v1beta.Pipeline.permission:type_name -> pipeline.pipeline.v1beta.Permission
 	2,   // 13: pipeline.pipeline.v1beta.Pipeline.visibility:type_name -> pipeline.pipeline.v1beta.Pipeline.Visibility
 	170, // 14: pipeline.pipeline.v1beta.Pipeline.owner:type_name -> core.mgmt.v1beta.Owner
-	171, // 15: pipeline.pipeline.v1beta.Pipeline.data_specification:type_name -> pipeline.pipeline.v1beta.DataSpecification
-	160, // 16: pipeline.pipeline.v1beta.Pipeline.stats:type_name -> pipeline.pipeline.v1beta.Pipeline.Stats
-	8,   // 17: pipeline.pipeline.v1beta.Pipeline.endpoints:type_name -> pipeline.pipeline.v1beta.Endpoints
-	161, // 18: pipeline.pipeline.v1beta.TriggerMetadata.traces:type_name -> pipeline.pipeline.v1beta.TriggerMetadata.TracesEntry
-	3,   // 19: pipeline.pipeline.v1beta.Trace.statuses:type_name -> pipeline.pipeline.v1beta.Trace.Status
-	166, // 20: pipeline.pipeline.v1beta.Trace.inputs:type_name -> google.protobuf.Struct
-	166, // 21: pipeline.pipeline.v1beta.Trace.outputs:type_name -> google.protobuf.Struct
-	166, // 22: pipeline.pipeline.v1beta.Trace.error:type_name -> google.protobuf.Struct
-	166, // 23: pipeline.pipeline.v1beta.PipelineRelease.recipe:type_name -> google.protobuf.Struct
-	167, // 24: pipeline.pipeline.v1beta.PipelineRelease.create_time:type_name -> google.protobuf.Timestamp
-	167, // 25: pipeline.pipeline.v1beta.PipelineRelease.update_time:type_name -> google.protobuf.Timestamp
-	167, // 26: pipeline.pipeline.v1beta.PipelineRelease.delete_time:type_name -> google.protobuf.Timestamp
-	166, // 27: pipeline.pipeline.v1beta.PipelineRelease.metadata:type_name -> google.protobuf.Struct
-	171, // 28: pipeline.pipeline.v1beta.PipelineRelease.data_specification:type_name -> pipeline.pipeline.v1beta.DataSpecification
-	8,   // 29: pipeline.pipeline.v1beta.PipelineRelease.endpoints:type_name -> pipeline.pipeline.v1beta.Endpoints
-	1,   // 30: pipeline.pipeline.v1beta.ListPipelinesRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
-	2,   // 31: pipeline.pipeline.v1beta.ListPipelinesRequest.visibility:type_name -> pipeline.pipeline.v1beta.Pipeline.Visibility
-	9,   // 32: pipeline.pipeline.v1beta.ListPipelinesResponse.pipelines:type_name -> pipeline.pipeline.v1beta.Pipeline
-	1,   // 33: pipeline.pipeline.v1beta.ListNamespacePipelinesRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
-	2,   // 34: pipeline.pipeline.v1beta.ListNamespacePipelinesRequest.visibility:type_name -> pipeline.pipeline.v1beta.Pipeline.Visibility
-	9,   // 35: pipeline.pipeline.v1beta.ListNamespacePipelinesResponse.pipelines:type_name -> pipeline.pipeline.v1beta.Pipeline
-	1,   // 36: pipeline.pipeline.v1beta.LookUpPipelineRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
-	9,   // 37: pipeline.pipeline.v1beta.LookUpPipelineResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
-	9,   // 38: pipeline.pipeline.v1beta.CreateNamespacePipelineRequest.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
-	9,   // 39: pipeline.pipeline.v1beta.CreateNamespacePipelineResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
-	1,   // 40: pipeline.pipeline.v1beta.GetNamespacePipelineRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
-	9,   // 41: pipeline.pipeline.v1beta.GetNamespacePipelineResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
-	9,   // 42: pipeline.pipeline.v1beta.UpdateNamespacePipelineRequest.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
-	172, // 43: pipeline.pipeline.v1beta.UpdateNamespacePipelineRequest.update_mask:type_name -> google.protobuf.FieldMask
-	9,   // 44: pipeline.pipeline.v1beta.UpdateNamespacePipelineResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
-	73,  // 45: pipeline.pipeline.v1beta.ValidateNamespacePipelineResponse.errors:type_name -> pipeline.pipeline.v1beta.ErrPipelineValidation
-	9,   // 46: pipeline.pipeline.v1beta.RenameNamespacePipelineResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
-	168, // 47: pipeline.pipeline.v1beta.CloneNamespacePipelineRequest.sharing:type_name -> pipeline.pipeline.v1beta.Sharing
-	168, // 48: pipeline.pipeline.v1beta.CloneNamespacePipelineReleaseRequest.sharing:type_name -> pipeline.pipeline.v1beta.Sharing
-	166, // 49: pipeline.pipeline.v1beta.HandleNamespacePipelineWebhookEventRequest.data:type_name -> google.protobuf.Struct
-	166, // 50: pipeline.pipeline.v1beta.HandleNamespacePipelineWebhookEventResponse.data:type_name -> google.protobuf.Struct
-	166, // 51: pipeline.pipeline.v1beta.HandleNamespacePipelineReleaseWebhookEventRequest.data:type_name -> google.protobuf.Struct
-	166, // 52: pipeline.pipeline.v1beta.HandleNamespacePipelineReleaseWebhookEventResponse.data:type_name -> google.protobuf.Struct
-	166, // 53: pipeline.pipeline.v1beta.DispatchPipelineWebhookEventRequest.message:type_name -> google.protobuf.Struct
-	166, // 54: pipeline.pipeline.v1beta.DispatchPipelineWebhookEventResponse.response:type_name -> google.protobuf.Struct
-	166, // 55: pipeline.pipeline.v1beta.TriggerNamespacePipelineRequest.inputs:type_name -> google.protobuf.Struct
-	82,  // 56: pipeline.pipeline.v1beta.TriggerNamespacePipelineRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
-	166, // 57: pipeline.pipeline.v1beta.TriggerNamespacePipelineResponse.outputs:type_name -> google.protobuf.Struct
-	10,  // 58: pipeline.pipeline.v1beta.TriggerNamespacePipelineResponse.metadata:type_name -> pipeline.pipeline.v1beta.TriggerMetadata
-	166, // 59: pipeline.pipeline.v1beta.TriggerNamespacePipelineWithStreamRequest.inputs:type_name -> google.protobuf.Struct
-	82,  // 60: pipeline.pipeline.v1beta.TriggerNamespacePipelineWithStreamRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
-	166, // 61: pipeline.pipeline.v1beta.TriggerNamespacePipelineWithStreamResponse.outputs:type_name -> google.protobuf.Struct
-	10,  // 62: pipeline.pipeline.v1beta.TriggerNamespacePipelineWithStreamResponse.metadata:type_name -> pipeline.pipeline.v1beta.TriggerMetadata
-	166, // 63: pipeline.pipeline.v1beta.TriggerAsyncNamespacePipelineRequest.inputs:type_name -> google.protobuf.Struct
-	82,  // 64: pipeline.pipeline.v1beta.TriggerAsyncNamespacePipelineRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
-	173, // 65: pipeline.pipeline.v1beta.TriggerAsyncNamespacePipelineResponse.operation:type_name -> google.longrunning.Operation
-	14,  // 66: pipeline.pipeline.v1beta.CreateNamespacePipelineReleaseRequest.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
-	14,  // 67: pipeline.pipeline.v1beta.CreateNamespacePipelineReleaseResponse.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
-	1,   // 68: pipeline.pipeline.v1beta.ListNamespacePipelineReleasesRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
-	14,  // 69: pipeline.pipeline.v1beta.ListNamespacePipelineReleasesResponse.releases:type_name -> pipeline.pipeline.v1beta.PipelineRelease
-	1,   // 70: pipeline.pipeline.v1beta.GetNamespacePipelineReleaseRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
-	14,  // 71: pipeline.pipeline.v1beta.GetNamespacePipelineReleaseResponse.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
-	14,  // 72: pipeline.pipeline.v1beta.UpdateNamespacePipelineReleaseRequest.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
-	172, // 73: pipeline.pipeline.v1beta.UpdateNamespacePipelineReleaseRequest.update_mask:type_name -> google.protobuf.FieldMask
-	14,  // 74: pipeline.pipeline.v1beta.UpdateNamespacePipelineReleaseResponse.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
-	166, // 75: pipeline.pipeline.v1beta.TriggerNamespacePipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
-	82,  // 76: pipeline.pipeline.v1beta.TriggerNamespacePipelineReleaseRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
-	166, // 77: pipeline.pipeline.v1beta.TriggerNamespacePipelineReleaseResponse.outputs:type_name -> google.protobuf.Struct
-	10,  // 78: pipeline.pipeline.v1beta.TriggerNamespacePipelineReleaseResponse.metadata:type_name -> pipeline.pipeline.v1beta.TriggerMetadata
-	166, // 79: pipeline.pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
-	82,  // 80: pipeline.pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
-	173, // 81: pipeline.pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseResponse.operation:type_name -> google.longrunning.Operation
-	9,   // 82: pipeline.pipeline.v1beta.CreateUserPipelineRequest.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
-	9,   // 83: pipeline.pipeline.v1beta.CreateUserPipelineResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
-	1,   // 84: pipeline.pipeline.v1beta.ListUserPipelinesRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
-	2,   // 85: pipeline.pipeline.v1beta.ListUserPipelinesRequest.visibility:type_name -> pipeline.pipeline.v1beta.Pipeline.Visibility
-	9,   // 86: pipeline.pipeline.v1beta.ListUserPipelinesResponse.pipelines:type_name -> pipeline.pipeline.v1beta.Pipeline
-	1,   // 87: pipeline.pipeline.v1beta.GetUserPipelineRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
-	9,   // 88: pipeline.pipeline.v1beta.GetUserPipelineResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
-	9,   // 89: pipeline.pipeline.v1beta.UpdateUserPipelineRequest.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
-	172, // 90: pipeline.pipeline.v1beta.UpdateUserPipelineRequest.update_mask:type_name -> google.protobuf.FieldMask
-	9,   // 91: pipeline.pipeline.v1beta.UpdateUserPipelineResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
-	73,  // 92: pipeline.pipeline.v1beta.ValidateUserPipelineResponse.errors:type_name -> pipeline.pipeline.v1beta.ErrPipelineValidation
-	9,   // 93: pipeline.pipeline.v1beta.RenameUserPipelineResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
-	166, // 94: pipeline.pipeline.v1beta.TriggerUserPipelineRequest.inputs:type_name -> google.protobuf.Struct
-	82,  // 95: pipeline.pipeline.v1beta.TriggerUserPipelineRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
-	166, // 96: pipeline.pipeline.v1beta.TriggerUserPipelineResponse.outputs:type_name -> google.protobuf.Struct
-	10,  // 97: pipeline.pipeline.v1beta.TriggerUserPipelineResponse.metadata:type_name -> pipeline.pipeline.v1beta.TriggerMetadata
-	166, // 98: pipeline.pipeline.v1beta.TriggerUserPipelineWithStreamRequest.inputs:type_name -> google.protobuf.Struct
-	82,  // 99: pipeline.pipeline.v1beta.TriggerUserPipelineWithStreamRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
-	166, // 100: pipeline.pipeline.v1beta.TriggerUserPipelineWithStreamResponse.outputs:type_name -> google.protobuf.Struct
-	10,  // 101: pipeline.pipeline.v1beta.TriggerUserPipelineWithStreamResponse.metadata:type_name -> pipeline.pipeline.v1beta.TriggerMetadata
-	166, // 102: pipeline.pipeline.v1beta.TriggerData.variable:type_name -> google.protobuf.Struct
-	162, // 103: pipeline.pipeline.v1beta.TriggerData.secret:type_name -> pipeline.pipeline.v1beta.TriggerData.SecretEntry
-	163, // 104: pipeline.pipeline.v1beta.TriggerData.connection_references:type_name -> pipeline.pipeline.v1beta.TriggerData.ConnectionReferencesEntry
-	166, // 105: pipeline.pipeline.v1beta.TriggerAsyncUserPipelineRequest.inputs:type_name -> google.protobuf.Struct
-	82,  // 106: pipeline.pipeline.v1beta.TriggerAsyncUserPipelineRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
-	173, // 107: pipeline.pipeline.v1beta.TriggerAsyncUserPipelineResponse.operation:type_name -> google.longrunning.Operation
-	14,  // 108: pipeline.pipeline.v1beta.CreateUserPipelineReleaseRequest.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
-	14,  // 109: pipeline.pipeline.v1beta.CreateUserPipelineReleaseResponse.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
-	1,   // 110: pipeline.pipeline.v1beta.ListUserPipelineReleasesRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
-	14,  // 111: pipeline.pipeline.v1beta.ListUserPipelineReleasesResponse.releases:type_name -> pipeline.pipeline.v1beta.PipelineRelease
-	1,   // 112: pipeline.pipeline.v1beta.GetUserPipelineReleaseRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
-	14,  // 113: pipeline.pipeline.v1beta.GetUserPipelineReleaseResponse.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
-	14,  // 114: pipeline.pipeline.v1beta.UpdateUserPipelineReleaseRequest.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
-	172, // 115: pipeline.pipeline.v1beta.UpdateUserPipelineReleaseRequest.update_mask:type_name -> google.protobuf.FieldMask
-	14,  // 116: pipeline.pipeline.v1beta.UpdateUserPipelineReleaseResponse.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
-	14,  // 117: pipeline.pipeline.v1beta.RestoreUserPipelineReleaseResponse.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
-	14,  // 118: pipeline.pipeline.v1beta.RenameUserPipelineReleaseResponse.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
-	166, // 119: pipeline.pipeline.v1beta.TriggerUserPipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
-	82,  // 120: pipeline.pipeline.v1beta.TriggerUserPipelineReleaseRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
-	166, // 121: pipeline.pipeline.v1beta.TriggerUserPipelineReleaseResponse.outputs:type_name -> google.protobuf.Struct
-	10,  // 122: pipeline.pipeline.v1beta.TriggerUserPipelineReleaseResponse.metadata:type_name -> pipeline.pipeline.v1beta.TriggerMetadata
-	166, // 123: pipeline.pipeline.v1beta.TriggerAsyncUserPipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
-	82,  // 124: pipeline.pipeline.v1beta.TriggerAsyncUserPipelineReleaseRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
-	173, // 125: pipeline.pipeline.v1beta.TriggerAsyncUserPipelineReleaseResponse.operation:type_name -> google.longrunning.Operation
-	9,   // 126: pipeline.pipeline.v1beta.CreateOrganizationPipelineRequest.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
-	9,   // 127: pipeline.pipeline.v1beta.CreateOrganizationPipelineResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
-	1,   // 128: pipeline.pipeline.v1beta.ListOrganizationPipelinesRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
-	2,   // 129: pipeline.pipeline.v1beta.ListOrganizationPipelinesRequest.visibility:type_name -> pipeline.pipeline.v1beta.Pipeline.Visibility
-	9,   // 130: pipeline.pipeline.v1beta.ListOrganizationPipelinesResponse.pipelines:type_name -> pipeline.pipeline.v1beta.Pipeline
-	1,   // 131: pipeline.pipeline.v1beta.GetOrganizationPipelineRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
-	9,   // 132: pipeline.pipeline.v1beta.GetOrganizationPipelineResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
-	9,   // 133: pipeline.pipeline.v1beta.UpdateOrganizationPipelineRequest.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
-	172, // 134: pipeline.pipeline.v1beta.UpdateOrganizationPipelineRequest.update_mask:type_name -> google.protobuf.FieldMask
-	9,   // 135: pipeline.pipeline.v1beta.UpdateOrganizationPipelineResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
-	73,  // 136: pipeline.pipeline.v1beta.ValidateOrganizationPipelineResponse.errors:type_name -> pipeline.pipeline.v1beta.ErrPipelineValidation
-	9,   // 137: pipeline.pipeline.v1beta.RenameOrganizationPipelineResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
-	166, // 138: pipeline.pipeline.v1beta.TriggerOrganizationPipelineRequest.inputs:type_name -> google.protobuf.Struct
-	82,  // 139: pipeline.pipeline.v1beta.TriggerOrganizationPipelineRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
-	166, // 140: pipeline.pipeline.v1beta.TriggerOrganizationPipelineResponse.outputs:type_name -> google.protobuf.Struct
-	10,  // 141: pipeline.pipeline.v1beta.TriggerOrganizationPipelineResponse.metadata:type_name -> pipeline.pipeline.v1beta.TriggerMetadata
-	166, // 142: pipeline.pipeline.v1beta.TriggerOrganizationPipelineStreamRequest.inputs:type_name -> google.protobuf.Struct
-	82,  // 143: pipeline.pipeline.v1beta.TriggerOrganizationPipelineStreamRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
-	166, // 144: pipeline.pipeline.v1beta.TriggerOrganizationPipelineStreamResponse.outputs:type_name -> google.protobuf.Struct
-	10,  // 145: pipeline.pipeline.v1beta.TriggerOrganizationPipelineStreamResponse.metadata:type_name -> pipeline.pipeline.v1beta.TriggerMetadata
-	166, // 146: pipeline.pipeline.v1beta.TriggerAsyncOrganizationPipelineRequest.inputs:type_name -> google.protobuf.Struct
-	82,  // 147: pipeline.pipeline.v1beta.TriggerAsyncOrganizationPipelineRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
-	173, // 148: pipeline.pipeline.v1beta.TriggerAsyncOrganizationPipelineResponse.operation:type_name -> google.longrunning.Operation
-	14,  // 149: pipeline.pipeline.v1beta.CreateOrganizationPipelineReleaseRequest.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
-	14,  // 150: pipeline.pipeline.v1beta.CreateOrganizationPipelineReleaseResponse.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
-	1,   // 151: pipeline.pipeline.v1beta.ListOrganizationPipelineReleasesRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
-	14,  // 152: pipeline.pipeline.v1beta.ListOrganizationPipelineReleasesResponse.releases:type_name -> pipeline.pipeline.v1beta.PipelineRelease
-	1,   // 153: pipeline.pipeline.v1beta.GetOrganizationPipelineReleaseRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
-	14,  // 154: pipeline.pipeline.v1beta.GetOrganizationPipelineReleaseResponse.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
-	14,  // 155: pipeline.pipeline.v1beta.UpdateOrganizationPipelineReleaseRequest.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
-	172, // 156: pipeline.pipeline.v1beta.UpdateOrganizationPipelineReleaseRequest.update_mask:type_name -> google.protobuf.FieldMask
-	14,  // 157: pipeline.pipeline.v1beta.UpdateOrganizationPipelineReleaseResponse.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
-	14,  // 158: pipeline.pipeline.v1beta.RestoreOrganizationPipelineReleaseResponse.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
-	14,  // 159: pipeline.pipeline.v1beta.RenameOrganizationPipelineReleaseResponse.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
-	166, // 160: pipeline.pipeline.v1beta.TriggerOrganizationPipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
-	82,  // 161: pipeline.pipeline.v1beta.TriggerOrganizationPipelineReleaseRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
-	166, // 162: pipeline.pipeline.v1beta.TriggerOrganizationPipelineReleaseResponse.outputs:type_name -> google.protobuf.Struct
-	10,  // 163: pipeline.pipeline.v1beta.TriggerOrganizationPipelineReleaseResponse.metadata:type_name -> pipeline.pipeline.v1beta.TriggerMetadata
-	166, // 164: pipeline.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
-	82,  // 165: pipeline.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
-	173, // 166: pipeline.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseResponse.operation:type_name -> google.longrunning.Operation
-	173, // 167: pipeline.pipeline.v1beta.GetOperationResponse.operation:type_name -> google.longrunning.Operation
-	1,   // 168: pipeline.pipeline.v1beta.ListPipelinesAdminRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
-	9,   // 169: pipeline.pipeline.v1beta.ListPipelinesAdminResponse.pipelines:type_name -> pipeline.pipeline.v1beta.Pipeline
-	1,   // 170: pipeline.pipeline.v1beta.ListPipelineReleasesAdminRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
-	14,  // 171: pipeline.pipeline.v1beta.ListPipelineReleasesAdminResponse.releases:type_name -> pipeline.pipeline.v1beta.PipelineRelease
-	1,   // 172: pipeline.pipeline.v1beta.LookUpPipelineAdminRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
-	9,   // 173: pipeline.pipeline.v1beta.LookUpPipelineAdminResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
-	167, // 174: pipeline.pipeline.v1beta.ListPipelineRunsByRequesterRequest.start:type_name -> google.protobuf.Timestamp
-	167, // 175: pipeline.pipeline.v1beta.ListPipelineRunsByRequesterRequest.stop:type_name -> google.protobuf.Timestamp
-	156, // 176: pipeline.pipeline.v1beta.ListPipelineRunsResponse.pipeline_runs:type_name -> pipeline.pipeline.v1beta.PipelineRun
-	156, // 177: pipeline.pipeline.v1beta.ListPipelineRunsByRequesterResponse.pipeline_runs:type_name -> pipeline.pipeline.v1beta.PipelineRun
-	1,   // 178: pipeline.pipeline.v1beta.ListComponentRunsRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
-	157, // 179: pipeline.pipeline.v1beta.ListComponentRunsResponse.component_runs:type_name -> pipeline.pipeline.v1beta.ComponentRun
-	174, // 180: pipeline.pipeline.v1beta.PipelineRun.status:type_name -> common.run.v1alpha.RunStatus
-	175, // 181: pipeline.pipeline.v1beta.PipelineRun.source:type_name -> common.run.v1alpha.RunSource
-	166, // 182: pipeline.pipeline.v1beta.PipelineRun.inputs:type_name -> google.protobuf.Struct
-	166, // 183: pipeline.pipeline.v1beta.PipelineRun.outputs:type_name -> google.protobuf.Struct
-	166, // 184: pipeline.pipeline.v1beta.PipelineRun.recipe_snapshot:type_name -> google.protobuf.Struct
-	167, // 185: pipeline.pipeline.v1beta.PipelineRun.start_time:type_name -> google.protobuf.Timestamp
-	167, // 186: pipeline.pipeline.v1beta.PipelineRun.complete_time:type_name -> google.protobuf.Timestamp
-	171, // 187: pipeline.pipeline.v1beta.PipelineRun.data_specification:type_name -> pipeline.pipeline.v1beta.DataSpecification
-	167, // 188: pipeline.pipeline.v1beta.PipelineRun.blob_data_expiration_time:type_name -> google.protobuf.Timestamp
-	174, // 189: pipeline.pipeline.v1beta.ComponentRun.status:type_name -> common.run.v1alpha.RunStatus
-	167, // 190: pipeline.pipeline.v1beta.ComponentRun.start_time:type_name -> google.protobuf.Timestamp
-	167, // 191: pipeline.pipeline.v1beta.ComponentRun.complete_time:type_name -> google.protobuf.Timestamp
-	155, // 192: pipeline.pipeline.v1beta.ComponentRun.inputs_reference:type_name -> pipeline.pipeline.v1beta.FileReference
-	166, // 193: pipeline.pipeline.v1beta.ComponentRun.inputs:type_name -> google.protobuf.Struct
-	155, // 194: pipeline.pipeline.v1beta.ComponentRun.outputs_reference:type_name -> pipeline.pipeline.v1beta.FileReference
-	166, // 195: pipeline.pipeline.v1beta.ComponentRun.outputs:type_name -> google.protobuf.Struct
-	167, // 196: pipeline.pipeline.v1beta.ComponentRun.blob_data_expiration_time:type_name -> google.protobuf.Timestamp
-	158, // 197: pipeline.pipeline.v1beta.Endpoints.WebhooksEntry.value:type_name -> pipeline.pipeline.v1beta.Endpoints.WebhookEndpoint
-	167, // 198: pipeline.pipeline.v1beta.Pipeline.Stats.last_run_time:type_name -> google.protobuf.Timestamp
-	11,  // 199: pipeline.pipeline.v1beta.TriggerMetadata.TracesEntry.value:type_name -> pipeline.pipeline.v1beta.Trace
-	200, // [200:200] is the sub-list for method output_type
-	200, // [200:200] is the sub-list for method input_type
-	200, // [200:200] is the sub-list for extension type_name
-	200, // [200:200] is the sub-list for extension extendee
-	0,   // [0:200] is the sub-list for field type_name
+	171, // 15: pipeline.pipeline.v1beta.Pipeline.creator:type_name -> core.mgmt.v1beta.User
+	172, // 16: pipeline.pipeline.v1beta.Pipeline.data_specification:type_name -> pipeline.pipeline.v1beta.DataSpecification
+	160, // 17: pipeline.pipeline.v1beta.Pipeline.stats:type_name -> pipeline.pipeline.v1beta.Pipeline.Stats
+	8,   // 18: pipeline.pipeline.v1beta.Pipeline.endpoints:type_name -> pipeline.pipeline.v1beta.Endpoints
+	161, // 19: pipeline.pipeline.v1beta.TriggerMetadata.traces:type_name -> pipeline.pipeline.v1beta.TriggerMetadata.TracesEntry
+	3,   // 20: pipeline.pipeline.v1beta.Trace.statuses:type_name -> pipeline.pipeline.v1beta.Trace.Status
+	166, // 21: pipeline.pipeline.v1beta.Trace.inputs:type_name -> google.protobuf.Struct
+	166, // 22: pipeline.pipeline.v1beta.Trace.outputs:type_name -> google.protobuf.Struct
+	166, // 23: pipeline.pipeline.v1beta.Trace.error:type_name -> google.protobuf.Struct
+	166, // 24: pipeline.pipeline.v1beta.PipelineRelease.recipe:type_name -> google.protobuf.Struct
+	167, // 25: pipeline.pipeline.v1beta.PipelineRelease.create_time:type_name -> google.protobuf.Timestamp
+	167, // 26: pipeline.pipeline.v1beta.PipelineRelease.update_time:type_name -> google.protobuf.Timestamp
+	167, // 27: pipeline.pipeline.v1beta.PipelineRelease.delete_time:type_name -> google.protobuf.Timestamp
+	166, // 28: pipeline.pipeline.v1beta.PipelineRelease.metadata:type_name -> google.protobuf.Struct
+	172, // 29: pipeline.pipeline.v1beta.PipelineRelease.data_specification:type_name -> pipeline.pipeline.v1beta.DataSpecification
+	8,   // 30: pipeline.pipeline.v1beta.PipelineRelease.endpoints:type_name -> pipeline.pipeline.v1beta.Endpoints
+	1,   // 31: pipeline.pipeline.v1beta.ListPipelinesRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
+	2,   // 32: pipeline.pipeline.v1beta.ListPipelinesRequest.visibility:type_name -> pipeline.pipeline.v1beta.Pipeline.Visibility
+	9,   // 33: pipeline.pipeline.v1beta.ListPipelinesResponse.pipelines:type_name -> pipeline.pipeline.v1beta.Pipeline
+	1,   // 34: pipeline.pipeline.v1beta.ListNamespacePipelinesRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
+	2,   // 35: pipeline.pipeline.v1beta.ListNamespacePipelinesRequest.visibility:type_name -> pipeline.pipeline.v1beta.Pipeline.Visibility
+	9,   // 36: pipeline.pipeline.v1beta.ListNamespacePipelinesResponse.pipelines:type_name -> pipeline.pipeline.v1beta.Pipeline
+	1,   // 37: pipeline.pipeline.v1beta.LookUpPipelineRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
+	9,   // 38: pipeline.pipeline.v1beta.LookUpPipelineResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
+	9,   // 39: pipeline.pipeline.v1beta.CreateNamespacePipelineRequest.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
+	9,   // 40: pipeline.pipeline.v1beta.CreateNamespacePipelineResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
+	1,   // 41: pipeline.pipeline.v1beta.GetNamespacePipelineRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
+	9,   // 42: pipeline.pipeline.v1beta.GetNamespacePipelineResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
+	9,   // 43: pipeline.pipeline.v1beta.UpdateNamespacePipelineRequest.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
+	173, // 44: pipeline.pipeline.v1beta.UpdateNamespacePipelineRequest.update_mask:type_name -> google.protobuf.FieldMask
+	9,   // 45: pipeline.pipeline.v1beta.UpdateNamespacePipelineResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
+	73,  // 46: pipeline.pipeline.v1beta.ValidateNamespacePipelineResponse.errors:type_name -> pipeline.pipeline.v1beta.ErrPipelineValidation
+	9,   // 47: pipeline.pipeline.v1beta.RenameNamespacePipelineResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
+	168, // 48: pipeline.pipeline.v1beta.CloneNamespacePipelineRequest.sharing:type_name -> pipeline.pipeline.v1beta.Sharing
+	168, // 49: pipeline.pipeline.v1beta.CloneNamespacePipelineReleaseRequest.sharing:type_name -> pipeline.pipeline.v1beta.Sharing
+	166, // 50: pipeline.pipeline.v1beta.HandleNamespacePipelineWebhookEventRequest.data:type_name -> google.protobuf.Struct
+	166, // 51: pipeline.pipeline.v1beta.HandleNamespacePipelineWebhookEventResponse.data:type_name -> google.protobuf.Struct
+	166, // 52: pipeline.pipeline.v1beta.HandleNamespacePipelineReleaseWebhookEventRequest.data:type_name -> google.protobuf.Struct
+	166, // 53: pipeline.pipeline.v1beta.HandleNamespacePipelineReleaseWebhookEventResponse.data:type_name -> google.protobuf.Struct
+	166, // 54: pipeline.pipeline.v1beta.DispatchPipelineWebhookEventRequest.message:type_name -> google.protobuf.Struct
+	166, // 55: pipeline.pipeline.v1beta.DispatchPipelineWebhookEventResponse.response:type_name -> google.protobuf.Struct
+	166, // 56: pipeline.pipeline.v1beta.TriggerNamespacePipelineRequest.inputs:type_name -> google.protobuf.Struct
+	82,  // 57: pipeline.pipeline.v1beta.TriggerNamespacePipelineRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
+	166, // 58: pipeline.pipeline.v1beta.TriggerNamespacePipelineResponse.outputs:type_name -> google.protobuf.Struct
+	10,  // 59: pipeline.pipeline.v1beta.TriggerNamespacePipelineResponse.metadata:type_name -> pipeline.pipeline.v1beta.TriggerMetadata
+	166, // 60: pipeline.pipeline.v1beta.TriggerNamespacePipelineWithStreamRequest.inputs:type_name -> google.protobuf.Struct
+	82,  // 61: pipeline.pipeline.v1beta.TriggerNamespacePipelineWithStreamRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
+	166, // 62: pipeline.pipeline.v1beta.TriggerNamespacePipelineWithStreamResponse.outputs:type_name -> google.protobuf.Struct
+	10,  // 63: pipeline.pipeline.v1beta.TriggerNamespacePipelineWithStreamResponse.metadata:type_name -> pipeline.pipeline.v1beta.TriggerMetadata
+	166, // 64: pipeline.pipeline.v1beta.TriggerAsyncNamespacePipelineRequest.inputs:type_name -> google.protobuf.Struct
+	82,  // 65: pipeline.pipeline.v1beta.TriggerAsyncNamespacePipelineRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
+	174, // 66: pipeline.pipeline.v1beta.TriggerAsyncNamespacePipelineResponse.operation:type_name -> google.longrunning.Operation
+	14,  // 67: pipeline.pipeline.v1beta.CreateNamespacePipelineReleaseRequest.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
+	14,  // 68: pipeline.pipeline.v1beta.CreateNamespacePipelineReleaseResponse.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
+	1,   // 69: pipeline.pipeline.v1beta.ListNamespacePipelineReleasesRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
+	14,  // 70: pipeline.pipeline.v1beta.ListNamespacePipelineReleasesResponse.releases:type_name -> pipeline.pipeline.v1beta.PipelineRelease
+	1,   // 71: pipeline.pipeline.v1beta.GetNamespacePipelineReleaseRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
+	14,  // 72: pipeline.pipeline.v1beta.GetNamespacePipelineReleaseResponse.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
+	14,  // 73: pipeline.pipeline.v1beta.UpdateNamespacePipelineReleaseRequest.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
+	173, // 74: pipeline.pipeline.v1beta.UpdateNamespacePipelineReleaseRequest.update_mask:type_name -> google.protobuf.FieldMask
+	14,  // 75: pipeline.pipeline.v1beta.UpdateNamespacePipelineReleaseResponse.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
+	166, // 76: pipeline.pipeline.v1beta.TriggerNamespacePipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
+	82,  // 77: pipeline.pipeline.v1beta.TriggerNamespacePipelineReleaseRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
+	166, // 78: pipeline.pipeline.v1beta.TriggerNamespacePipelineReleaseResponse.outputs:type_name -> google.protobuf.Struct
+	10,  // 79: pipeline.pipeline.v1beta.TriggerNamespacePipelineReleaseResponse.metadata:type_name -> pipeline.pipeline.v1beta.TriggerMetadata
+	166, // 80: pipeline.pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
+	82,  // 81: pipeline.pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
+	174, // 82: pipeline.pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseResponse.operation:type_name -> google.longrunning.Operation
+	9,   // 83: pipeline.pipeline.v1beta.CreateUserPipelineRequest.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
+	9,   // 84: pipeline.pipeline.v1beta.CreateUserPipelineResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
+	1,   // 85: pipeline.pipeline.v1beta.ListUserPipelinesRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
+	2,   // 86: pipeline.pipeline.v1beta.ListUserPipelinesRequest.visibility:type_name -> pipeline.pipeline.v1beta.Pipeline.Visibility
+	9,   // 87: pipeline.pipeline.v1beta.ListUserPipelinesResponse.pipelines:type_name -> pipeline.pipeline.v1beta.Pipeline
+	1,   // 88: pipeline.pipeline.v1beta.GetUserPipelineRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
+	9,   // 89: pipeline.pipeline.v1beta.GetUserPipelineResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
+	9,   // 90: pipeline.pipeline.v1beta.UpdateUserPipelineRequest.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
+	173, // 91: pipeline.pipeline.v1beta.UpdateUserPipelineRequest.update_mask:type_name -> google.protobuf.FieldMask
+	9,   // 92: pipeline.pipeline.v1beta.UpdateUserPipelineResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
+	73,  // 93: pipeline.pipeline.v1beta.ValidateUserPipelineResponse.errors:type_name -> pipeline.pipeline.v1beta.ErrPipelineValidation
+	9,   // 94: pipeline.pipeline.v1beta.RenameUserPipelineResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
+	166, // 95: pipeline.pipeline.v1beta.TriggerUserPipelineRequest.inputs:type_name -> google.protobuf.Struct
+	82,  // 96: pipeline.pipeline.v1beta.TriggerUserPipelineRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
+	166, // 97: pipeline.pipeline.v1beta.TriggerUserPipelineResponse.outputs:type_name -> google.protobuf.Struct
+	10,  // 98: pipeline.pipeline.v1beta.TriggerUserPipelineResponse.metadata:type_name -> pipeline.pipeline.v1beta.TriggerMetadata
+	166, // 99: pipeline.pipeline.v1beta.TriggerUserPipelineWithStreamRequest.inputs:type_name -> google.protobuf.Struct
+	82,  // 100: pipeline.pipeline.v1beta.TriggerUserPipelineWithStreamRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
+	166, // 101: pipeline.pipeline.v1beta.TriggerUserPipelineWithStreamResponse.outputs:type_name -> google.protobuf.Struct
+	10,  // 102: pipeline.pipeline.v1beta.TriggerUserPipelineWithStreamResponse.metadata:type_name -> pipeline.pipeline.v1beta.TriggerMetadata
+	166, // 103: pipeline.pipeline.v1beta.TriggerData.variable:type_name -> google.protobuf.Struct
+	162, // 104: pipeline.pipeline.v1beta.TriggerData.secret:type_name -> pipeline.pipeline.v1beta.TriggerData.SecretEntry
+	163, // 105: pipeline.pipeline.v1beta.TriggerData.connection_references:type_name -> pipeline.pipeline.v1beta.TriggerData.ConnectionReferencesEntry
+	166, // 106: pipeline.pipeline.v1beta.TriggerAsyncUserPipelineRequest.inputs:type_name -> google.protobuf.Struct
+	82,  // 107: pipeline.pipeline.v1beta.TriggerAsyncUserPipelineRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
+	174, // 108: pipeline.pipeline.v1beta.TriggerAsyncUserPipelineResponse.operation:type_name -> google.longrunning.Operation
+	14,  // 109: pipeline.pipeline.v1beta.CreateUserPipelineReleaseRequest.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
+	14,  // 110: pipeline.pipeline.v1beta.CreateUserPipelineReleaseResponse.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
+	1,   // 111: pipeline.pipeline.v1beta.ListUserPipelineReleasesRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
+	14,  // 112: pipeline.pipeline.v1beta.ListUserPipelineReleasesResponse.releases:type_name -> pipeline.pipeline.v1beta.PipelineRelease
+	1,   // 113: pipeline.pipeline.v1beta.GetUserPipelineReleaseRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
+	14,  // 114: pipeline.pipeline.v1beta.GetUserPipelineReleaseResponse.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
+	14,  // 115: pipeline.pipeline.v1beta.UpdateUserPipelineReleaseRequest.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
+	173, // 116: pipeline.pipeline.v1beta.UpdateUserPipelineReleaseRequest.update_mask:type_name -> google.protobuf.FieldMask
+	14,  // 117: pipeline.pipeline.v1beta.UpdateUserPipelineReleaseResponse.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
+	14,  // 118: pipeline.pipeline.v1beta.RestoreUserPipelineReleaseResponse.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
+	14,  // 119: pipeline.pipeline.v1beta.RenameUserPipelineReleaseResponse.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
+	166, // 120: pipeline.pipeline.v1beta.TriggerUserPipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
+	82,  // 121: pipeline.pipeline.v1beta.TriggerUserPipelineReleaseRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
+	166, // 122: pipeline.pipeline.v1beta.TriggerUserPipelineReleaseResponse.outputs:type_name -> google.protobuf.Struct
+	10,  // 123: pipeline.pipeline.v1beta.TriggerUserPipelineReleaseResponse.metadata:type_name -> pipeline.pipeline.v1beta.TriggerMetadata
+	166, // 124: pipeline.pipeline.v1beta.TriggerAsyncUserPipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
+	82,  // 125: pipeline.pipeline.v1beta.TriggerAsyncUserPipelineReleaseRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
+	174, // 126: pipeline.pipeline.v1beta.TriggerAsyncUserPipelineReleaseResponse.operation:type_name -> google.longrunning.Operation
+	9,   // 127: pipeline.pipeline.v1beta.CreateOrganizationPipelineRequest.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
+	9,   // 128: pipeline.pipeline.v1beta.CreateOrganizationPipelineResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
+	1,   // 129: pipeline.pipeline.v1beta.ListOrganizationPipelinesRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
+	2,   // 130: pipeline.pipeline.v1beta.ListOrganizationPipelinesRequest.visibility:type_name -> pipeline.pipeline.v1beta.Pipeline.Visibility
+	9,   // 131: pipeline.pipeline.v1beta.ListOrganizationPipelinesResponse.pipelines:type_name -> pipeline.pipeline.v1beta.Pipeline
+	1,   // 132: pipeline.pipeline.v1beta.GetOrganizationPipelineRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
+	9,   // 133: pipeline.pipeline.v1beta.GetOrganizationPipelineResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
+	9,   // 134: pipeline.pipeline.v1beta.UpdateOrganizationPipelineRequest.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
+	173, // 135: pipeline.pipeline.v1beta.UpdateOrganizationPipelineRequest.update_mask:type_name -> google.protobuf.FieldMask
+	9,   // 136: pipeline.pipeline.v1beta.UpdateOrganizationPipelineResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
+	73,  // 137: pipeline.pipeline.v1beta.ValidateOrganizationPipelineResponse.errors:type_name -> pipeline.pipeline.v1beta.ErrPipelineValidation
+	9,   // 138: pipeline.pipeline.v1beta.RenameOrganizationPipelineResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
+	166, // 139: pipeline.pipeline.v1beta.TriggerOrganizationPipelineRequest.inputs:type_name -> google.protobuf.Struct
+	82,  // 140: pipeline.pipeline.v1beta.TriggerOrganizationPipelineRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
+	166, // 141: pipeline.pipeline.v1beta.TriggerOrganizationPipelineResponse.outputs:type_name -> google.protobuf.Struct
+	10,  // 142: pipeline.pipeline.v1beta.TriggerOrganizationPipelineResponse.metadata:type_name -> pipeline.pipeline.v1beta.TriggerMetadata
+	166, // 143: pipeline.pipeline.v1beta.TriggerOrganizationPipelineStreamRequest.inputs:type_name -> google.protobuf.Struct
+	82,  // 144: pipeline.pipeline.v1beta.TriggerOrganizationPipelineStreamRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
+	166, // 145: pipeline.pipeline.v1beta.TriggerOrganizationPipelineStreamResponse.outputs:type_name -> google.protobuf.Struct
+	10,  // 146: pipeline.pipeline.v1beta.TriggerOrganizationPipelineStreamResponse.metadata:type_name -> pipeline.pipeline.v1beta.TriggerMetadata
+	166, // 147: pipeline.pipeline.v1beta.TriggerAsyncOrganizationPipelineRequest.inputs:type_name -> google.protobuf.Struct
+	82,  // 148: pipeline.pipeline.v1beta.TriggerAsyncOrganizationPipelineRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
+	174, // 149: pipeline.pipeline.v1beta.TriggerAsyncOrganizationPipelineResponse.operation:type_name -> google.longrunning.Operation
+	14,  // 150: pipeline.pipeline.v1beta.CreateOrganizationPipelineReleaseRequest.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
+	14,  // 151: pipeline.pipeline.v1beta.CreateOrganizationPipelineReleaseResponse.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
+	1,   // 152: pipeline.pipeline.v1beta.ListOrganizationPipelineReleasesRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
+	14,  // 153: pipeline.pipeline.v1beta.ListOrganizationPipelineReleasesResponse.releases:type_name -> pipeline.pipeline.v1beta.PipelineRelease
+	1,   // 154: pipeline.pipeline.v1beta.GetOrganizationPipelineReleaseRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
+	14,  // 155: pipeline.pipeline.v1beta.GetOrganizationPipelineReleaseResponse.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
+	14,  // 156: pipeline.pipeline.v1beta.UpdateOrganizationPipelineReleaseRequest.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
+	173, // 157: pipeline.pipeline.v1beta.UpdateOrganizationPipelineReleaseRequest.update_mask:type_name -> google.protobuf.FieldMask
+	14,  // 158: pipeline.pipeline.v1beta.UpdateOrganizationPipelineReleaseResponse.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
+	14,  // 159: pipeline.pipeline.v1beta.RestoreOrganizationPipelineReleaseResponse.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
+	14,  // 160: pipeline.pipeline.v1beta.RenameOrganizationPipelineReleaseResponse.release:type_name -> pipeline.pipeline.v1beta.PipelineRelease
+	166, // 161: pipeline.pipeline.v1beta.TriggerOrganizationPipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
+	82,  // 162: pipeline.pipeline.v1beta.TriggerOrganizationPipelineReleaseRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
+	166, // 163: pipeline.pipeline.v1beta.TriggerOrganizationPipelineReleaseResponse.outputs:type_name -> google.protobuf.Struct
+	10,  // 164: pipeline.pipeline.v1beta.TriggerOrganizationPipelineReleaseResponse.metadata:type_name -> pipeline.pipeline.v1beta.TriggerMetadata
+	166, // 165: pipeline.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
+	82,  // 166: pipeline.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseRequest.data:type_name -> pipeline.pipeline.v1beta.TriggerData
+	174, // 167: pipeline.pipeline.v1beta.TriggerAsyncOrganizationPipelineReleaseResponse.operation:type_name -> google.longrunning.Operation
+	174, // 168: pipeline.pipeline.v1beta.GetOperationResponse.operation:type_name -> google.longrunning.Operation
+	1,   // 169: pipeline.pipeline.v1beta.ListPipelinesAdminRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
+	9,   // 170: pipeline.pipeline.v1beta.ListPipelinesAdminResponse.pipelines:type_name -> pipeline.pipeline.v1beta.Pipeline
+	1,   // 171: pipeline.pipeline.v1beta.ListPipelineReleasesAdminRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
+	14,  // 172: pipeline.pipeline.v1beta.ListPipelineReleasesAdminResponse.releases:type_name -> pipeline.pipeline.v1beta.PipelineRelease
+	1,   // 173: pipeline.pipeline.v1beta.LookUpPipelineAdminRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
+	9,   // 174: pipeline.pipeline.v1beta.LookUpPipelineAdminResponse.pipeline:type_name -> pipeline.pipeline.v1beta.Pipeline
+	167, // 175: pipeline.pipeline.v1beta.ListPipelineRunsByRequesterRequest.start:type_name -> google.protobuf.Timestamp
+	167, // 176: pipeline.pipeline.v1beta.ListPipelineRunsByRequesterRequest.stop:type_name -> google.protobuf.Timestamp
+	156, // 177: pipeline.pipeline.v1beta.ListPipelineRunsResponse.pipeline_runs:type_name -> pipeline.pipeline.v1beta.PipelineRun
+	156, // 178: pipeline.pipeline.v1beta.ListPipelineRunsByRequesterResponse.pipeline_runs:type_name -> pipeline.pipeline.v1beta.PipelineRun
+	1,   // 179: pipeline.pipeline.v1beta.ListComponentRunsRequest.view:type_name -> pipeline.pipeline.v1beta.Pipeline.View
+	157, // 180: pipeline.pipeline.v1beta.ListComponentRunsResponse.component_runs:type_name -> pipeline.pipeline.v1beta.ComponentRun
+	175, // 181: pipeline.pipeline.v1beta.PipelineRun.status:type_name -> common.run.v1alpha.RunStatus
+	176, // 182: pipeline.pipeline.v1beta.PipelineRun.source:type_name -> common.run.v1alpha.RunSource
+	166, // 183: pipeline.pipeline.v1beta.PipelineRun.inputs:type_name -> google.protobuf.Struct
+	166, // 184: pipeline.pipeline.v1beta.PipelineRun.outputs:type_name -> google.protobuf.Struct
+	166, // 185: pipeline.pipeline.v1beta.PipelineRun.recipe_snapshot:type_name -> google.protobuf.Struct
+	167, // 186: pipeline.pipeline.v1beta.PipelineRun.start_time:type_name -> google.protobuf.Timestamp
+	167, // 187: pipeline.pipeline.v1beta.PipelineRun.complete_time:type_name -> google.protobuf.Timestamp
+	172, // 188: pipeline.pipeline.v1beta.PipelineRun.data_specification:type_name -> pipeline.pipeline.v1beta.DataSpecification
+	167, // 189: pipeline.pipeline.v1beta.PipelineRun.blob_data_expiration_time:type_name -> google.protobuf.Timestamp
+	175, // 190: pipeline.pipeline.v1beta.ComponentRun.status:type_name -> common.run.v1alpha.RunStatus
+	167, // 191: pipeline.pipeline.v1beta.ComponentRun.start_time:type_name -> google.protobuf.Timestamp
+	167, // 192: pipeline.pipeline.v1beta.ComponentRun.complete_time:type_name -> google.protobuf.Timestamp
+	155, // 193: pipeline.pipeline.v1beta.ComponentRun.inputs_reference:type_name -> pipeline.pipeline.v1beta.FileReference
+	166, // 194: pipeline.pipeline.v1beta.ComponentRun.inputs:type_name -> google.protobuf.Struct
+	155, // 195: pipeline.pipeline.v1beta.ComponentRun.outputs_reference:type_name -> pipeline.pipeline.v1beta.FileReference
+	166, // 196: pipeline.pipeline.v1beta.ComponentRun.outputs:type_name -> google.protobuf.Struct
+	167, // 197: pipeline.pipeline.v1beta.ComponentRun.blob_data_expiration_time:type_name -> google.protobuf.Timestamp
+	158, // 198: pipeline.pipeline.v1beta.Endpoints.WebhooksEntry.value:type_name -> pipeline.pipeline.v1beta.Endpoints.WebhookEndpoint
+	167, // 199: pipeline.pipeline.v1beta.Pipeline.Stats.last_run_time:type_name -> google.protobuf.Timestamp
+	11,  // 200: pipeline.pipeline.v1beta.TriggerMetadata.TracesEntry.value:type_name -> pipeline.pipeline.v1beta.Trace
+	201, // [201:201] is the sub-list for method output_type
+	201, // [201:201] is the sub-list for method input_type
+	201, // [201:201] is the sub-list for extension type_name
+	201, // [201:201] is the sub-list for extension extendee
+	0,   // [0:201] is the sub-list for field type_name
 }
 
 func init() { file_pipeline_pipeline_v1beta_pipeline_proto_init() }
