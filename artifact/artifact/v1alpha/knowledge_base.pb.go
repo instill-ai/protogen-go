@@ -139,7 +139,10 @@ type KnowledgeBase struct {
 	CreatorUid *string `protobuf:"bytes,20,opt,name=creator_uid,json=creatorUid,proto3,oneof" json:"creator_uid,omitempty"`
 	// The user who created this knowledge base.
 	// Populated when creator_uid is present.
-	Creator       *v1beta.User `protobuf:"bytes,21,opt,name=creator,proto3,oneof" json:"creator,omitempty"`
+	Creator *v1beta.User `protobuf:"bytes,21,opt,name=creator,proto3,oneof" json:"creator,omitempty"`
+	// The UID of the owner namespace (User or Organization) of this knowledge base.
+	// This is an immutable identifier, unlike owner_name which may change.
+	OwnerUid      string `protobuf:"bytes,22,opt,name=owner_uid,json=ownerUid,proto3" json:"owner_uid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -323,6 +326,13 @@ func (x *KnowledgeBase) GetCreator() *v1beta.User {
 		return x.Creator
 	}
 	return nil
+}
+
+func (x *KnowledgeBase) GetOwnerUid() string {
+	if x != nil {
+		return x.OwnerUid
+	}
+	return ""
 }
 
 // CreateKnowledgeBaseRequest represents a request to create a knowledge base.
@@ -1039,7 +1049,7 @@ var File_artifact_artifact_v1alpha_knowledge_base_proto protoreflect.FileDescrip
 
 const file_artifact_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"\n" +
-	".artifact/artifact/v1alpha/knowledge_base.proto\x12\x19artifact.artifact.v1alpha\x1a\x1bcore/mgmt/v1beta/mgmt.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xcb\t\n" +
+	".artifact/artifact/v1alpha/knowledge_base.proto\x12\x19artifact.artifact.v1alpha\x1a\x1bcore/mgmt/v1beta/mgmt.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xed\t\n" +
 	"\rKnowledgeBase\x12\x15\n" +
 	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x05R\x02id\x12\x17\n" +
@@ -1067,7 +1077,8 @@ const file_artifact_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"\x05owner\x18\x13 \x01(\v2\x17.core.mgmt.v1beta.OwnerB\x03\xe0A\x03H\x00R\x05owner\x88\x01\x01\x12)\n" +
 	"\vcreator_uid\x18\x14 \x01(\tB\x03\xe0A\x03H\x01R\n" +
 	"creatorUid\x88\x01\x01\x12:\n" +
-	"\acreator\x18\x15 \x01(\v2\x16.core.mgmt.v1beta.UserB\x03\xe0A\x03H\x02R\acreator\x88\x01\x01\x1a\\\n" +
+	"\acreator\x18\x15 \x01(\v2\x16.core.mgmt.v1beta.UserB\x03\xe0A\x03H\x02R\acreator\x88\x01\x01\x12 \n" +
+	"\towner_uid\x18\x16 \x01(\tB\x03\xe0A\x03R\bownerUid\x1a\\\n" +
 	"\x0fEmbeddingConfig\x12!\n" +
 	"\fmodel_family\x18\x01 \x01(\tR\vmodelFamily\x12&\n" +
 	"\x0edimensionality\x18\x02 \x01(\rR\x0edimensionality:<\xeaA9\x127namespaces/{namespace}/knowledge-bases/{knowledge_base}B\b\n" +

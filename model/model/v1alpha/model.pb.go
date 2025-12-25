@@ -588,6 +588,9 @@ type Model struct {
 	// The user who created this model.
 	// Populated when creator_uid is present.
 	Creator *v1beta1.User `protobuf:"bytes,34,opt,name=creator,proto3,oneof" json:"creator,omitempty"`
+	// The UID of the owner namespace (User or Organization) of this model.
+	// This is an immutable identifier, unlike owner_name which may change.
+	OwnerUid string `protobuf:"bytes,35,opt,name=owner_uid,json=ownerUid,proto3" json:"owner_uid,omitempty"`
 	// Region of choice for the particular provider to host the model.
 	Region string `protobuf:"bytes,18,opt,name=region,proto3" json:"region,omitempty"`
 	// Hardware of choice to serve the model.
@@ -751,6 +754,13 @@ func (x *Model) GetCreator() *v1beta1.User {
 		return x.Creator
 	}
 	return nil
+}
+
+func (x *Model) GetOwnerUid() string {
+	if x != nil {
+		return x.OwnerUid
+	}
+	return ""
 }
 
 func (x *Model) GetRegion() string {
@@ -9195,7 +9205,7 @@ const file_model_model_v1alpha_model_proto_rawDesc = "" +
 	"\x06digest\x18\x03 \x01(\tB\x03\xe0A\x01R\x06digest\x125\n" +
 	"\x05state\x18\x04 \x01(\x0e2\x1a.model.model.v1alpha.StateB\x03\xe0A\x03R\x05state\x12C\n" +
 	"\vupdate_time\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampB\x06\xe0A\x03\xe0A\x01R\n" +
-	"updateTime\"\x99\x0e\n" +
+	"updateTime\"\xbb\x0e\n" +
 	"\x05Model\x12*\n" +
 	"\x04name\x18\x01 \x01(\tB\x16\x92A\x10\xca>\r\xfa\x02\n" +
 	"model_name\xe0A\x03R\x04name\x12\x15\n" +
@@ -9219,7 +9229,8 @@ const file_model_model_v1alpha_model_proto_rawDesc = "" +
 	"\x05owner\x18\x11 \x01(\v2\x17.core.mgmt.v1beta.OwnerB\x06\xe0A\x01\xe0A\x03H\x01R\x05owner\x88\x01\x01\x12)\n" +
 	"\vcreator_uid\x18! \x01(\tB\x03\xe0A\x03H\x02R\n" +
 	"creatorUid\x88\x01\x01\x12:\n" +
-	"\acreator\x18\" \x01(\v2\x16.core.mgmt.v1beta.UserB\x03\xe0A\x03H\x03R\acreator\x88\x01\x01\x12\x1e\n" +
+	"\acreator\x18\" \x01(\v2\x16.core.mgmt.v1beta.UserB\x03\xe0A\x03H\x03R\acreator\x88\x01\x01\x12 \n" +
+	"\towner_uid\x18# \x01(\tB\x03\xe0A\x03R\bownerUid\x12\x1e\n" +
 	"\x06region\x18\x12 \x01(\tB\x06\xe0A\x02\xe0A\x05R\x06region\x12\x1f\n" +
 	"\bhardware\x18\x13 \x01(\tB\x03\xe0A\x02R\bhardware\x12 \n" +
 	"\x06readme\x18\x14 \x01(\tB\x03\xe0A\x01H\x04R\x06readme\x88\x01\x01\x12'\n" +

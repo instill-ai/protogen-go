@@ -534,6 +534,9 @@ type Pipeline struct {
 	// The user who created this pipeline.
 	// Populated when creator_uid is present.
 	Creator *v1beta1.User `protobuf:"bytes,34,opt,name=creator,proto3,oneof" json:"creator,omitempty"`
+	// The UID of the owner namespace (User or Organization) of this pipeline.
+	// This is an immutable identifier, unlike owner_name which may change.
+	OwnerUid string `protobuf:"bytes,35,opt,name=owner_uid,json=ownerUid,proto3" json:"owner_uid,omitempty"`
 	// Data specifications.
 	DataSpecification *DataSpecification `protobuf:"bytes,24,opt,name=data_specification,json=dataSpecification,proto3" json:"data_specification,omitempty"`
 	// Tags.
@@ -711,6 +714,13 @@ func (x *Pipeline) GetCreator() *v1beta1.User {
 		return x.Creator
 	}
 	return nil
+}
+
+func (x *Pipeline) GetOwnerUid() string {
+	if x != nil {
+		return x.OwnerUid
+	}
+	return ""
 }
 
 func (x *Pipeline) GetDataSpecification() *DataSpecification {
@@ -10231,7 +10241,7 @@ const file_pipeline_pipeline_v1beta_pipeline_proto_rawDesc = "" +
 	"\vdescription\x18\x02 \x01(\tB\x03\xe0A\x03R\vdescription\x1ap\n" +
 	"\rWebhooksEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12I\n" +
-	"\x05value\x18\x02 \x01(\v23.pipeline.pipeline.v1beta.Endpoints.WebhookEndpointR\x05value:\x028\x01\"\xf2\x0e\n" +
+	"\x05value\x18\x02 \x01(\v23.pipeline.pipeline.v1beta.Endpoints.WebhookEndpointR\x05value:\x028\x01\"\x94\x0f\n" +
 	"\bPipeline\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x15\n" +
 	"\x03uid\x18\x02 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x13\n" +
@@ -10260,7 +10270,8 @@ const file_pipeline_pipeline_v1beta_pipeline_proto_rawDesc = "" +
 	"\x05owner\x18\x17 \x01(\v2\x17.core.mgmt.v1beta.OwnerB\x03\xe0A\x03H\x01R\x05owner\x88\x01\x01\x12)\n" +
 	"\vcreator_uid\x18! \x01(\tB\x03\xe0A\x03H\x02R\n" +
 	"creatorUid\x88\x01\x01\x12:\n" +
-	"\acreator\x18\" \x01(\v2\x16.core.mgmt.v1beta.UserB\x03\xe0A\x03H\x03R\acreator\x88\x01\x01\x12_\n" +
+	"\acreator\x18\" \x01(\v2\x16.core.mgmt.v1beta.UserB\x03\xe0A\x03H\x03R\acreator\x88\x01\x01\x12 \n" +
+	"\towner_uid\x18# \x01(\tB\x03\xe0A\x03R\bownerUid\x12_\n" +
 	"\x12data_specification\x18\x18 \x01(\v2+.pipeline.pipeline.v1beta.DataSpecificationB\x03\xe0A\x03R\x11dataSpecification\x12\x17\n" +
 	"\x04tags\x18\x19 \x03(\tB\x03\xe0A\x01R\x04tags\x12C\n" +
 	"\x05stats\x18\x1a \x01(\v2(.pipeline.pipeline.v1beta.Pipeline.StatsB\x03\xe0A\x03R\x05stats\x12\"\n" +

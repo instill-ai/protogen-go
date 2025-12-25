@@ -637,8 +637,9 @@ type File struct {
 	Retrievable bool `protobuf:"varint,8,opt,name=retrievable,proto3" json:"retrievable,omitempty"`
 	// content(this is reserved for future use)
 	Content string `protobuf:"bytes,9,opt,name=content,proto3" json:"content,omitempty"`
-	// Namespace UID that owns this file
-	NamespaceUid string `protobuf:"bytes,10,opt,name=namespace_uid,json=namespaceUid,proto3" json:"namespace_uid,omitempty"`
+	// The UID of the owner namespace (User or Organization) of this file.
+	// This is an immutable identifier, unlike owner_name which may change.
+	OwnerUid string `protobuf:"bytes,10,opt,name=owner_uid,json=ownerUid,proto3" json:"owner_uid,omitempty"`
 	// creator uid from authn token
 	CreatorUid string `protobuf:"bytes,11,opt,name=creator_uid,json=creatorUid,proto3" json:"creator_uid,omitempty"`
 	// The user who created this file.
@@ -814,9 +815,9 @@ func (x *File) GetContent() string {
 	return ""
 }
 
-func (x *File) GetNamespaceUid() string {
+func (x *File) GetOwnerUid() string {
 	if x != nil {
-		return x.NamespaceUid
+		return x.OwnerUid
 	}
 	return ""
 }
@@ -1878,7 +1879,7 @@ var File_artifact_artifact_v1alpha_file_proto protoreflect.FileDescriptor
 
 const file_artifact_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\n" +
-	"$artifact/artifact/v1alpha/file.proto\x12\x19artifact.artifact.v1alpha\x1a\x1bcore/mgmt/v1beta/mgmt.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9f\x15\n" +
+	"$artifact/artifact/v1alpha/file.proto\x12\x19artifact.artifact.v1alpha\x1a\x1bcore/mgmt/v1beta/mgmt.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x97\x15\n" +
 	"\x04File\x12\x15\n" +
 	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12\x17\n" +
@@ -1888,9 +1889,9 @@ const file_artifact_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\x0eprocess_status\x18\x06 \x01(\x0e2,.artifact.artifact.v1alpha.FileProcessStatusB\x03\xe0A\x03R\rprocessStatus\x12,\n" +
 	"\x0fprocess_outcome\x18\a \x01(\tB\x03\xe0A\x03R\x0eprocessOutcome\x12%\n" +
 	"\vretrievable\x18\b \x01(\bB\x03\xe0A\x03R\vretrievable\x12\x1d\n" +
-	"\acontent\x18\t \x01(\tB\x03\xe0A\x01R\acontent\x12(\n" +
-	"\rnamespace_uid\x18\n" +
-	" \x01(\tB\x03\xe0A\x03R\fnamespaceUid\x12$\n" +
+	"\acontent\x18\t \x01(\tB\x03\xe0A\x01R\acontent\x12 \n" +
+	"\towner_uid\x18\n" +
+	" \x01(\tB\x03\xe0A\x03R\bownerUid\x12$\n" +
 	"\vcreator_uid\x18\v \x01(\tB\x03\xe0A\x03R\n" +
 	"creatorUid\x12:\n" +
 	"\acreator\x18\x1a \x01(\v2\x16.core.mgmt.v1beta.UserB\x03\xe0A\x03H\x00R\acreator\x88\x01\x01\x12\"\n" +
