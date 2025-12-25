@@ -19,6 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
+	ArtifactPrivateService_CreateKnowledgeBaseAdmin_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPrivateService/CreateKnowledgeBaseAdmin"
 	ArtifactPrivateService_GetObjectAdmin_FullMethodName                    = "/artifact.artifact.v1alpha.ArtifactPrivateService/GetObjectAdmin"
 	ArtifactPrivateService_UpdateObjectAdmin_FullMethodName                 = "/artifact.artifact.v1alpha.ArtifactPrivateService/UpdateObjectAdmin"
 	ArtifactPrivateService_DeleteFileAdmin_FullMethodName                   = "/artifact.artifact.v1alpha.ArtifactPrivateService/DeleteFileAdmin"
@@ -45,6 +46,12 @@ const (
 // ArtifactPrivateService exposes the private endpoints that allow clients to
 // manage artifacts.
 type ArtifactPrivateServiceClient interface {
+	// Create a knowledge base without setting a creator (admin only)
+	//
+	// Creates a system-level knowledge base that has no creator. Used by internal
+	// services (e.g., agent-backend) to create shared knowledge bases like
+	// "instill-agent" that are not owned by any specific user.
+	CreateKnowledgeBaseAdmin(ctx context.Context, in *CreateKnowledgeBaseAdminRequest, opts ...grpc.CallOption) (*CreateKnowledgeBaseAdminResponse, error)
 	// Get Object (admin only)
 	GetObjectAdmin(ctx context.Context, in *GetObjectAdminRequest, opts ...grpc.CallOption) (*GetObjectAdminResponse, error)
 	// Update Object (admin only)
@@ -99,6 +106,16 @@ type artifactPrivateServiceClient struct {
 
 func NewArtifactPrivateServiceClient(cc grpc.ClientConnInterface) ArtifactPrivateServiceClient {
 	return &artifactPrivateServiceClient{cc}
+}
+
+func (c *artifactPrivateServiceClient) CreateKnowledgeBaseAdmin(ctx context.Context, in *CreateKnowledgeBaseAdminRequest, opts ...grpc.CallOption) (*CreateKnowledgeBaseAdminResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateKnowledgeBaseAdminResponse)
+	err := c.cc.Invoke(ctx, ArtifactPrivateService_CreateKnowledgeBaseAdmin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *artifactPrivateServiceClient) GetObjectAdmin(ctx context.Context, in *GetObjectAdminRequest, opts ...grpc.CallOption) (*GetObjectAdminResponse, error) {
@@ -278,6 +295,12 @@ func (c *artifactPrivateServiceClient) GetDefaultSystemAdmin(ctx context.Context
 // ArtifactPrivateService exposes the private endpoints that allow clients to
 // manage artifacts.
 type ArtifactPrivateServiceServer interface {
+	// Create a knowledge base without setting a creator (admin only)
+	//
+	// Creates a system-level knowledge base that has no creator. Used by internal
+	// services (e.g., agent-backend) to create shared knowledge bases like
+	// "instill-agent" that are not owned by any specific user.
+	CreateKnowledgeBaseAdmin(context.Context, *CreateKnowledgeBaseAdminRequest) (*CreateKnowledgeBaseAdminResponse, error)
 	// Get Object (admin only)
 	GetObjectAdmin(context.Context, *GetObjectAdminRequest) (*GetObjectAdminResponse, error)
 	// Update Object (admin only)
@@ -333,6 +356,9 @@ type ArtifactPrivateServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedArtifactPrivateServiceServer struct{}
 
+func (UnimplementedArtifactPrivateServiceServer) CreateKnowledgeBaseAdmin(context.Context, *CreateKnowledgeBaseAdminRequest) (*CreateKnowledgeBaseAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateKnowledgeBaseAdmin not implemented")
+}
 func (UnimplementedArtifactPrivateServiceServer) GetObjectAdmin(context.Context, *GetObjectAdminRequest) (*GetObjectAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetObjectAdmin not implemented")
 }
@@ -402,6 +428,24 @@ func RegisterArtifactPrivateServiceServer(s grpc.ServiceRegistrar, srv ArtifactP
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&ArtifactPrivateService_ServiceDesc, srv)
+}
+
+func _ArtifactPrivateService_CreateKnowledgeBaseAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateKnowledgeBaseAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPrivateServiceServer).CreateKnowledgeBaseAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPrivateService_CreateKnowledgeBaseAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPrivateServiceServer).CreateKnowledgeBaseAdmin(ctx, req.(*CreateKnowledgeBaseAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _ArtifactPrivateService_GetObjectAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -717,6 +761,10 @@ var ArtifactPrivateService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "artifact.artifact.v1alpha.ArtifactPrivateService",
 	HandlerType: (*ArtifactPrivateServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "CreateKnowledgeBaseAdmin",
+			Handler:    _ArtifactPrivateService_CreateKnowledgeBaseAdmin_Handler,
+		},
 		{
 			MethodName: "GetObjectAdmin",
 			Handler:    _ArtifactPrivateService_GetObjectAdmin_Handler,
