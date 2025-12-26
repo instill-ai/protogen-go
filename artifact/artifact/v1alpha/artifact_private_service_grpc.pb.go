@@ -20,6 +20,8 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	ArtifactPrivateService_CreateKnowledgeBaseAdmin_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPrivateService/CreateKnowledgeBaseAdmin"
+	ArtifactPrivateService_UpdateKnowledgeBaseAdmin_FullMethodName          = "/artifact.artifact.v1alpha.ArtifactPrivateService/UpdateKnowledgeBaseAdmin"
+	ArtifactPrivateService_UpdateFileAdmin_FullMethodName                   = "/artifact.artifact.v1alpha.ArtifactPrivateService/UpdateFileAdmin"
 	ArtifactPrivateService_GetObjectAdmin_FullMethodName                    = "/artifact.artifact.v1alpha.ArtifactPrivateService/GetObjectAdmin"
 	ArtifactPrivateService_UpdateObjectAdmin_FullMethodName                 = "/artifact.artifact.v1alpha.ArtifactPrivateService/UpdateObjectAdmin"
 	ArtifactPrivateService_DeleteFileAdmin_FullMethodName                   = "/artifact.artifact.v1alpha.ArtifactPrivateService/DeleteFileAdmin"
@@ -52,6 +54,16 @@ type ArtifactPrivateServiceClient interface {
 	// services (e.g., agent-backend) to create shared knowledge bases like
 	// "instill-agent" that are not owned by any specific user.
 	CreateKnowledgeBaseAdmin(ctx context.Context, in *CreateKnowledgeBaseAdminRequest, opts ...grpc.CallOption) (*CreateKnowledgeBaseAdminResponse, error)
+	// Update a knowledge base with system-reserved tags (admin only)
+	//
+	// Updates a knowledge base allowing system-reserved tag prefixes like "instill-".
+	// Used by internal services to manage system-level knowledge base metadata.
+	UpdateKnowledgeBaseAdmin(ctx context.Context, in *UpdateKnowledgeBaseAdminRequest, opts ...grpc.CallOption) (*UpdateKnowledgeBaseAdminResponse, error)
+	// Update a file with system-reserved tags (admin only)
+	//
+	// Updates a file allowing system-reserved tag prefixes like "agent:".
+	// Used by agent-backend to set collection association tags (e.g., "agent:collection:{uid}").
+	UpdateFileAdmin(ctx context.Context, in *UpdateFileAdminRequest, opts ...grpc.CallOption) (*UpdateFileAdminResponse, error)
 	// Get Object (admin only)
 	GetObjectAdmin(ctx context.Context, in *GetObjectAdminRequest, opts ...grpc.CallOption) (*GetObjectAdminResponse, error)
 	// Update Object (admin only)
@@ -112,6 +124,26 @@ func (c *artifactPrivateServiceClient) CreateKnowledgeBaseAdmin(ctx context.Cont
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CreateKnowledgeBaseAdminResponse)
 	err := c.cc.Invoke(ctx, ArtifactPrivateService_CreateKnowledgeBaseAdmin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPrivateServiceClient) UpdateKnowledgeBaseAdmin(ctx context.Context, in *UpdateKnowledgeBaseAdminRequest, opts ...grpc.CallOption) (*UpdateKnowledgeBaseAdminResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateKnowledgeBaseAdminResponse)
+	err := c.cc.Invoke(ctx, ArtifactPrivateService_UpdateKnowledgeBaseAdmin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPrivateServiceClient) UpdateFileAdmin(ctx context.Context, in *UpdateFileAdminRequest, opts ...grpc.CallOption) (*UpdateFileAdminResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateFileAdminResponse)
+	err := c.cc.Invoke(ctx, ArtifactPrivateService_UpdateFileAdmin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -301,6 +333,16 @@ type ArtifactPrivateServiceServer interface {
 	// services (e.g., agent-backend) to create shared knowledge bases like
 	// "instill-agent" that are not owned by any specific user.
 	CreateKnowledgeBaseAdmin(context.Context, *CreateKnowledgeBaseAdminRequest) (*CreateKnowledgeBaseAdminResponse, error)
+	// Update a knowledge base with system-reserved tags (admin only)
+	//
+	// Updates a knowledge base allowing system-reserved tag prefixes like "instill-".
+	// Used by internal services to manage system-level knowledge base metadata.
+	UpdateKnowledgeBaseAdmin(context.Context, *UpdateKnowledgeBaseAdminRequest) (*UpdateKnowledgeBaseAdminResponse, error)
+	// Update a file with system-reserved tags (admin only)
+	//
+	// Updates a file allowing system-reserved tag prefixes like "agent:".
+	// Used by agent-backend to set collection association tags (e.g., "agent:collection:{uid}").
+	UpdateFileAdmin(context.Context, *UpdateFileAdminRequest) (*UpdateFileAdminResponse, error)
 	// Get Object (admin only)
 	GetObjectAdmin(context.Context, *GetObjectAdminRequest) (*GetObjectAdminResponse, error)
 	// Update Object (admin only)
@@ -358,6 +400,12 @@ type UnimplementedArtifactPrivateServiceServer struct{}
 
 func (UnimplementedArtifactPrivateServiceServer) CreateKnowledgeBaseAdmin(context.Context, *CreateKnowledgeBaseAdminRequest) (*CreateKnowledgeBaseAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateKnowledgeBaseAdmin not implemented")
+}
+func (UnimplementedArtifactPrivateServiceServer) UpdateKnowledgeBaseAdmin(context.Context, *UpdateKnowledgeBaseAdminRequest) (*UpdateKnowledgeBaseAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateKnowledgeBaseAdmin not implemented")
+}
+func (UnimplementedArtifactPrivateServiceServer) UpdateFileAdmin(context.Context, *UpdateFileAdminRequest) (*UpdateFileAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateFileAdmin not implemented")
 }
 func (UnimplementedArtifactPrivateServiceServer) GetObjectAdmin(context.Context, *GetObjectAdminRequest) (*GetObjectAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetObjectAdmin not implemented")
@@ -444,6 +492,42 @@ func _ArtifactPrivateService_CreateKnowledgeBaseAdmin_Handler(srv interface{}, c
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ArtifactPrivateServiceServer).CreateKnowledgeBaseAdmin(ctx, req.(*CreateKnowledgeBaseAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPrivateService_UpdateKnowledgeBaseAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateKnowledgeBaseAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPrivateServiceServer).UpdateKnowledgeBaseAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPrivateService_UpdateKnowledgeBaseAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPrivateServiceServer).UpdateKnowledgeBaseAdmin(ctx, req.(*UpdateKnowledgeBaseAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPrivateService_UpdateFileAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateFileAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPrivateServiceServer).UpdateFileAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPrivateService_UpdateFileAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPrivateServiceServer).UpdateFileAdmin(ctx, req.(*UpdateFileAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -764,6 +848,14 @@ var ArtifactPrivateService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateKnowledgeBaseAdmin",
 			Handler:    _ArtifactPrivateService_CreateKnowledgeBaseAdmin_Handler,
+		},
+		{
+			MethodName: "UpdateKnowledgeBaseAdmin",
+			Handler:    _ArtifactPrivateService_UpdateKnowledgeBaseAdmin_Handler,
+		},
+		{
+			MethodName: "UpdateFileAdmin",
+			Handler:    _ArtifactPrivateService_UpdateFileAdmin_Handler,
 		},
 		{
 			MethodName: "GetObjectAdmin",
