@@ -27,7 +27,7 @@ var File_artifact_artifact_v1alpha_artifact_public_service_proto protoreflect.Fi
 
 const file_artifact_artifact_v1alpha_artifact_public_service_proto_rawDesc = "" +
 	"\n" +
-	"7artifact/artifact/v1alpha/artifact_public_service.proto\x12\x19artifact.artifact.v1alpha\x1a(artifact/artifact/v1alpha/artifact.proto\x1a%artifact/artifact/v1alpha/chunk.proto\x1a$artifact/artifact/v1alpha/file.proto\x1a.artifact/artifact/v1alpha/knowledge_base.proto\x1a&artifact/artifact/v1alpha/object.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xa2&\n" +
+	"7artifact/artifact/v1alpha/artifact_public_service.proto\x12\x19artifact.artifact.v1alpha\x1a(artifact/artifact/v1alpha/artifact.proto\x1a%artifact/artifact/v1alpha/chunk.proto\x1a$artifact/artifact/v1alpha/file.proto\x1a.artifact/artifact/v1alpha/knowledge_base.proto\x1a&artifact/artifact/v1alpha/object.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xaf&\n" +
 	"\x15ArtifactPublicService\x12\xac\x01\n" +
 	"\bLiveness\x12*.artifact.artifact.v1alpha.LivenessRequest\x1a+.artifact.artifact.v1alpha.LivenessResponse\"G\xfa\xd2\xe4\x93\x02\n" +
 	"\x12\bINTERNAL\x82\xd3\xe4\x93\x021Z\x1a\x12\x18/v1alpha/health/artifact\x12\x13/v1alpha/__liveness\x12\xaf\x01\n" +
@@ -41,10 +41,10 @@ const file_artifact_artifact_v1alpha_artifact_public_service_proto_rawDesc = "" 
 	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02H\x12F/v1alpha/namespaces/{namespace_id}/knowledge-bases/{knowledge_base_id}\x12\xde\x01\n" +
 	"\x12ListKnowledgeBases\x124.artifact.artifact.v1alpha.ListKnowledgeBasesRequest\x1a5.artifact.artifact.v1alpha.ListKnowledgeBasesResponse\"[\x92A\x1e\n" +
 	"\bArtifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x024\x122/v1alpha/namespaces/{namespace_id}/knowledge-bases\x12\xf8\x01\n" +
-	"\x13UpdateKnowledgeBase\x125.artifact.artifact.v1alpha.UpdateKnowledgeBaseRequest\x1a6.artifact.artifact.v1alpha.UpdateKnowledgeBaseResponse\"r\x92A\x1e\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x024\x122/v1alpha/namespaces/{namespace_id}/knowledge-bases\x12\x85\x02\n" +
+	"\x13UpdateKnowledgeBase\x125.artifact.artifact.v1alpha.UpdateKnowledgeBaseRequest\x1a6.artifact.artifact.v1alpha.UpdateKnowledgeBaseResponse\"\x7f\x92A\x1e\n" +
 	"\bArtifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02K:\x01*\x1aF/v1alpha/namespaces/{namespace_id}/knowledge-bases/{knowledge_base_id}\x12\xf5\x01\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02X:\x0eknowledge_base2F/v1alpha/namespaces/{namespace_id}/knowledge-bases/{knowledge_base_id}\x12\xf5\x01\n" +
 	"\x13DeleteKnowledgeBase\x125.artifact.artifact.v1alpha.DeleteKnowledgeBaseRequest\x1a6.artifact.artifact.v1alpha.DeleteKnowledgeBaseResponse\"o\x92A\x1e\n" +
 	"\bArtifactj\x12\n" +
 	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02H*F/v1alpha/namespaces/{namespace_id}/knowledge-bases/{knowledge_base_id}\x12\xe6\x01\n" +

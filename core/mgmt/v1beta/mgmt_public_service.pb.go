@@ -69,7 +69,7 @@ const file_core_mgmt_v1beta_mgmt_public_service_proto_rawDesc = "" +
 	"\x14UpdateUserMembership\x12-.core.mgmt.v1beta.UpdateUserMembershipRequest\x1a..core.mgmt.v1beta.UpdateUserMembershipResponse\"j\x92A\x1e\n" +
 	"\tNamespacej\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02C:\n" +
-	"membership\x1a5/v1beta/users/{user_id}/memberships/{organization_id}\x12\xd5\x01\n" +
+	"membership25/v1beta/users/{user_id}/memberships/{organization_id}\x12\xd5\x01\n" +
 	"\x14DeleteUserMembership\x12-.core.mgmt.v1beta.DeleteUserMembershipRequest\x1a..core.mgmt.v1beta.DeleteUserMembershipResponse\"^\x92A\x1e\n" +
 	"\tNamespacej\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x027*5/v1beta/users/{user_id}/memberships/{organization_id}\x12\xe8\x01\n" +
@@ -82,7 +82,7 @@ const file_core_mgmt_v1beta_mgmt_public_service_proto_rawDesc = "" +
 	"\x1cUpdateOrganizationMembership\x125.core.mgmt.v1beta.UpdateOrganizationMembershipRequest\x1a6.core.mgmt.v1beta.UpdateOrganizationMembershipResponse\"r\x92A\x1e\n" +
 	"\tNamespacej\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02K:\n" +
-	"membership\x1a=/v1beta/organizations/{organization_id}/memberships/{user_id}\x12\xf5\x01\n" +
+	"membership2=/v1beta/organizations/{organization_id}/memberships/{user_id}\x12\xf5\x01\n" +
 	"\x1cDeleteOrganizationMembership\x125.core.mgmt.v1beta.DeleteOrganizationMembershipRequest\x1a6.core.mgmt.v1beta.DeleteOrganizationMembershipResponse\"f\x92A\x1e\n" +
 	"\tNamespacej\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02?*=/v1beta/organizations/{organization_id}/memberships/{user_id}\x12\xe8\x01\n" +
