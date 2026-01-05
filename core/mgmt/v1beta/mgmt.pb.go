@@ -5532,100 +5532,6 @@ func (*DeleteOrganizationMembershipResponse) Descriptor() ([]byte, []int) {
 	return file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{85}
 }
 
-// InviteOrganizationMembersRequest represents a request to invite members to an
-// organization.
-type InviteOrganizationMembersRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The organization ID.
-	OrganizationId string `protobuf:"bytes,1,opt,name=organization_id,json=organizationId,proto3" json:"organization_id,omitempty"`
-	// The members to invite.
-	Emails        []string `protobuf:"bytes,2,rep,name=emails,proto3" json:"emails,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *InviteOrganizationMembersRequest) Reset() {
-	*x = InviteOrganizationMembersRequest{}
-	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[86]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *InviteOrganizationMembersRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*InviteOrganizationMembersRequest) ProtoMessage() {}
-
-func (x *InviteOrganizationMembersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[86]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use InviteOrganizationMembersRequest.ProtoReflect.Descriptor instead.
-func (*InviteOrganizationMembersRequest) Descriptor() ([]byte, []int) {
-	return file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{86}
-}
-
-func (x *InviteOrganizationMembersRequest) GetOrganizationId() string {
-	if x != nil {
-		return x.OrganizationId
-	}
-	return ""
-}
-
-func (x *InviteOrganizationMembersRequest) GetEmails() []string {
-	if x != nil {
-		return x.Emails
-	}
-	return nil
-}
-
-// InviteOrganizationMembersResponse represents a response to a request to invite
-// members to an organization.
-type InviteOrganizationMembersResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *InviteOrganizationMembersResponse) Reset() {
-	*x = InviteOrganizationMembersResponse{}
-	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[87]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *InviteOrganizationMembersResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*InviteOrganizationMembersResponse) ProtoMessage() {}
-
-func (x *InviteOrganizationMembersResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[87]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use InviteOrganizationMembersResponse.ProtoReflect.Descriptor instead.
-func (*InviteOrganizationMembersResponse) Descriptor() ([]byte, []int) {
-	return file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{87}
-}
-
 // UnsignedAccessToken contains the token issuer information.
 type AuthTokenIssuerResponse_UnsignedAccessToken struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -5645,7 +5551,7 @@ type AuthTokenIssuerResponse_UnsignedAccessToken struct {
 
 func (x *AuthTokenIssuerResponse_UnsignedAccessToken) Reset() {
 	*x = AuthTokenIssuerResponse_UnsignedAccessToken{}
-	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[90]
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[88]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5657,7 +5563,7 @@ func (x *AuthTokenIssuerResponse_UnsignedAccessToken) String() string {
 func (*AuthTokenIssuerResponse_UnsignedAccessToken) ProtoMessage() {}
 
 func (x *AuthTokenIssuerResponse_UnsignedAccessToken) ProtoReflect() protoreflect.Message {
-	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[90]
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[88]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5719,7 +5625,7 @@ type Organization_Stats struct {
 
 func (x *Organization_Stats) Reset() {
 	*x = Organization_Stats{}
-	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[91]
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[89]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5731,7 +5637,7 @@ func (x *Organization_Stats) String() string {
 func (*Organization_Stats) ProtoMessage() {}
 
 func (x *Organization_Stats) ProtoReflect() protoreflect.Message {
-	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[91]
+	mi := &file_core_mgmt_v1beta_mgmt_proto_msgTypes[89]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6156,11 +6062,7 @@ const file_core_mgmt_v1beta_mgmt_proto_rawDesc = "" +
 	"#DeleteOrganizationMembershipRequest\x12,\n" +
 	"\x0forganization_id\x18\x02 \x01(\tB\x03\xe0A\x02R\x0eorganizationId\x12\x1c\n" +
 	"\auser_id\x18\x03 \x01(\tB\x03\xe0A\x02R\x06userIdJ\x04\b\x01\x10\x02\"&\n" +
-	"$DeleteOrganizationMembershipResponse\"m\n" +
-	" InviteOrganizationMembersRequest\x12,\n" +
-	"\x0forganization_id\x18\x01 \x01(\tB\x03\xe0A\x02R\x0eorganizationId\x12\x1b\n" +
-	"\x06emails\x18\x02 \x03(\tB\x03\xe0A\x02R\x06emails\"#\n" +
-	"!InviteOrganizationMembersResponse*;\n" +
+	"$DeleteOrganizationMembershipResponse*;\n" +
 	"\x04View\x12\x14\n" +
 	"\x10VIEW_UNSPECIFIED\x10\x00\x12\x0e\n" +
 	"\n" +
@@ -6193,7 +6095,7 @@ func file_core_mgmt_v1beta_mgmt_proto_rawDescGZIP() []byte {
 }
 
 var file_core_mgmt_v1beta_mgmt_proto_enumTypes = make([]protoimpl.EnumInfo, 8)
-var file_core_mgmt_v1beta_mgmt_proto_msgTypes = make([]protoimpl.MessageInfo, 92)
+var file_core_mgmt_v1beta_mgmt_proto_msgTypes = make([]protoimpl.MessageInfo, 90)
 var file_core_mgmt_v1beta_mgmt_proto_goTypes = []any{
 	(View)(0),                                       // 0: core.mgmt.v1beta.View
 	(OwnerType)(0),                                  // 1: core.mgmt.v1beta.OwnerType
@@ -6289,32 +6191,30 @@ var file_core_mgmt_v1beta_mgmt_proto_goTypes = []any{
 	(*UpdateOrganizationMembershipResponse)(nil),    // 91: core.mgmt.v1beta.UpdateOrganizationMembershipResponse
 	(*DeleteOrganizationMembershipRequest)(nil),     // 92: core.mgmt.v1beta.DeleteOrganizationMembershipRequest
 	(*DeleteOrganizationMembershipResponse)(nil),    // 93: core.mgmt.v1beta.DeleteOrganizationMembershipResponse
-	(*InviteOrganizationMembersRequest)(nil),        // 94: core.mgmt.v1beta.InviteOrganizationMembersRequest
-	(*InviteOrganizationMembersResponse)(nil),       // 95: core.mgmt.v1beta.InviteOrganizationMembersResponse
-	nil, // 96: core.mgmt.v1beta.UserProfile.SocialProfileLinksEntry
-	nil, // 97: core.mgmt.v1beta.OrganizationProfile.SocialProfileLinksEntry
-	(*AuthTokenIssuerResponse_UnsignedAccessToken)(nil), // 98: core.mgmt.v1beta.AuthTokenIssuerResponse.UnsignedAccessToken
-	(*Organization_Stats)(nil),                          // 99: core.mgmt.v1beta.Organization.Stats
-	(*v1beta.HealthCheckRequest)(nil),                   // 100: common.healthcheck.v1beta.HealthCheckRequest
-	(*v1beta.HealthCheckResponse)(nil),                  // 101: common.healthcheck.v1beta.HealthCheckResponse
-	(*timestamppb.Timestamp)(nil),                       // 102: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil),                       // 103: google.protobuf.FieldMask
+	nil, // 94: core.mgmt.v1beta.UserProfile.SocialProfileLinksEntry
+	nil, // 95: core.mgmt.v1beta.OrganizationProfile.SocialProfileLinksEntry
+	(*AuthTokenIssuerResponse_UnsignedAccessToken)(nil), // 96: core.mgmt.v1beta.AuthTokenIssuerResponse.UnsignedAccessToken
+	(*Organization_Stats)(nil),                          // 97: core.mgmt.v1beta.Organization.Stats
+	(*v1beta.HealthCheckRequest)(nil),                   // 98: common.healthcheck.v1beta.HealthCheckRequest
+	(*v1beta.HealthCheckResponse)(nil),                  // 99: common.healthcheck.v1beta.HealthCheckResponse
+	(*timestamppb.Timestamp)(nil),                       // 100: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil),                       // 101: google.protobuf.FieldMask
 }
 var file_core_mgmt_v1beta_mgmt_proto_depIdxs = []int32{
-	100, // 0: core.mgmt.v1beta.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	101, // 1: core.mgmt.v1beta.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
-	100, // 2: core.mgmt.v1beta.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	101, // 3: core.mgmt.v1beta.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
-	96,  // 4: core.mgmt.v1beta.UserProfile.social_profile_links:type_name -> core.mgmt.v1beta.UserProfile.SocialProfileLinksEntry
-	97,  // 5: core.mgmt.v1beta.OrganizationProfile.social_profile_links:type_name -> core.mgmt.v1beta.OrganizationProfile.SocialProfileLinksEntry
-	102, // 6: core.mgmt.v1beta.AuthenticatedUser.create_time:type_name -> google.protobuf.Timestamp
-	102, // 7: core.mgmt.v1beta.AuthenticatedUser.update_time:type_name -> google.protobuf.Timestamp
+	98,  // 0: core.mgmt.v1beta.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	99,  // 1: core.mgmt.v1beta.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	98,  // 2: core.mgmt.v1beta.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	99,  // 3: core.mgmt.v1beta.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	94,  // 4: core.mgmt.v1beta.UserProfile.social_profile_links:type_name -> core.mgmt.v1beta.UserProfile.SocialProfileLinksEntry
+	95,  // 5: core.mgmt.v1beta.OrganizationProfile.social_profile_links:type_name -> core.mgmt.v1beta.OrganizationProfile.SocialProfileLinksEntry
+	100, // 6: core.mgmt.v1beta.AuthenticatedUser.create_time:type_name -> google.protobuf.Timestamp
+	100, // 7: core.mgmt.v1beta.AuthenticatedUser.update_time:type_name -> google.protobuf.Timestamp
 	3,   // 8: core.mgmt.v1beta.AuthenticatedUser.onboarding_status:type_name -> core.mgmt.v1beta.OnboardingStatus
 	13,  // 9: core.mgmt.v1beta.AuthenticatedUser.profile:type_name -> core.mgmt.v1beta.UserProfile
 	17,  // 10: core.mgmt.v1beta.Owner.user:type_name -> core.mgmt.v1beta.User
 	65,  // 11: core.mgmt.v1beta.Owner.organization:type_name -> core.mgmt.v1beta.Organization
-	102, // 12: core.mgmt.v1beta.User.create_time:type_name -> google.protobuf.Timestamp
-	102, // 13: core.mgmt.v1beta.User.update_time:type_name -> google.protobuf.Timestamp
+	100, // 12: core.mgmt.v1beta.User.create_time:type_name -> google.protobuf.Timestamp
+	100, // 13: core.mgmt.v1beta.User.update_time:type_name -> google.protobuf.Timestamp
 	13,  // 14: core.mgmt.v1beta.User.profile:type_name -> core.mgmt.v1beta.UserProfile
 	0,   // 15: core.mgmt.v1beta.ListUsersAdminRequest.view:type_name -> core.mgmt.v1beta.View
 	17,  // 16: core.mgmt.v1beta.ListUsersAdminResponse.users:type_name -> core.mgmt.v1beta.User
@@ -6334,7 +6234,7 @@ var file_core_mgmt_v1beta_mgmt_proto_depIdxs = []int32{
 	17,  // 30: core.mgmt.v1beta.GetUserResponse.user:type_name -> core.mgmt.v1beta.User
 	15,  // 31: core.mgmt.v1beta.GetAuthenticatedUserResponse.user:type_name -> core.mgmt.v1beta.AuthenticatedUser
 	15,  // 32: core.mgmt.v1beta.PatchAuthenticatedUserRequest.user:type_name -> core.mgmt.v1beta.AuthenticatedUser
-	103, // 33: core.mgmt.v1beta.PatchAuthenticatedUserRequest.update_mask:type_name -> google.protobuf.FieldMask
+	101, // 33: core.mgmt.v1beta.PatchAuthenticatedUserRequest.update_mask:type_name -> google.protobuf.FieldMask
 	15,  // 34: core.mgmt.v1beta.PatchAuthenticatedUserResponse.user:type_name -> core.mgmt.v1beta.AuthenticatedUser
 	4,   // 35: core.mgmt.v1beta.CheckNamespaceResponse.type:type_name -> core.mgmt.v1beta.CheckNamespaceResponse.Namespace
 	5,   // 36: core.mgmt.v1beta.CheckNamespaceAdminResponse.type:type_name -> core.mgmt.v1beta.CheckNamespaceAdminResponse.Namespace
@@ -6343,22 +6243,22 @@ var file_core_mgmt_v1beta_mgmt_proto_depIdxs = []int32{
 	6,   // 39: core.mgmt.v1beta.CheckNamespaceByUIDAdminResponse.type:type_name -> core.mgmt.v1beta.CheckNamespaceByUIDAdminResponse.Namespace
 	17,  // 40: core.mgmt.v1beta.CheckNamespaceByUIDAdminResponse.user:type_name -> core.mgmt.v1beta.User
 	65,  // 41: core.mgmt.v1beta.CheckNamespaceByUIDAdminResponse.organization:type_name -> core.mgmt.v1beta.Organization
-	102, // 42: core.mgmt.v1beta.ApiToken.last_use_time:type_name -> google.protobuf.Timestamp
-	102, // 43: core.mgmt.v1beta.ApiToken.create_time:type_name -> google.protobuf.Timestamp
-	102, // 44: core.mgmt.v1beta.ApiToken.update_time:type_name -> google.protobuf.Timestamp
+	100, // 42: core.mgmt.v1beta.ApiToken.last_use_time:type_name -> google.protobuf.Timestamp
+	100, // 43: core.mgmt.v1beta.ApiToken.create_time:type_name -> google.protobuf.Timestamp
+	100, // 44: core.mgmt.v1beta.ApiToken.update_time:type_name -> google.protobuf.Timestamp
 	7,   // 45: core.mgmt.v1beta.ApiToken.state:type_name -> core.mgmt.v1beta.ApiToken.State
-	102, // 46: core.mgmt.v1beta.ApiToken.expire_time:type_name -> google.protobuf.Timestamp
+	100, // 46: core.mgmt.v1beta.ApiToken.expire_time:type_name -> google.protobuf.Timestamp
 	44,  // 47: core.mgmt.v1beta.CreateTokenRequest.token:type_name -> core.mgmt.v1beta.ApiToken
 	44,  // 48: core.mgmt.v1beta.CreateTokenResponse.token:type_name -> core.mgmt.v1beta.ApiToken
 	44,  // 49: core.mgmt.v1beta.ListTokensResponse.tokens:type_name -> core.mgmt.v1beta.ApiToken
 	44,  // 50: core.mgmt.v1beta.GetTokenResponse.token:type_name -> core.mgmt.v1beta.ApiToken
-	98,  // 51: core.mgmt.v1beta.AuthTokenIssuerResponse.access_token:type_name -> core.mgmt.v1beta.AuthTokenIssuerResponse.UnsignedAccessToken
-	102, // 52: core.mgmt.v1beta.Organization.create_time:type_name -> google.protobuf.Timestamp
-	102, // 53: core.mgmt.v1beta.Organization.update_time:type_name -> google.protobuf.Timestamp
+	96,  // 51: core.mgmt.v1beta.AuthTokenIssuerResponse.access_token:type_name -> core.mgmt.v1beta.AuthTokenIssuerResponse.UnsignedAccessToken
+	100, // 52: core.mgmt.v1beta.Organization.create_time:type_name -> google.protobuf.Timestamp
+	100, // 53: core.mgmt.v1beta.Organization.update_time:type_name -> google.protobuf.Timestamp
 	17,  // 54: core.mgmt.v1beta.Organization.owner:type_name -> core.mgmt.v1beta.User
 	14,  // 55: core.mgmt.v1beta.Organization.profile:type_name -> core.mgmt.v1beta.OrganizationProfile
 	12,  // 56: core.mgmt.v1beta.Organization.permission:type_name -> core.mgmt.v1beta.Permission
-	99,  // 57: core.mgmt.v1beta.Organization.stats:type_name -> core.mgmt.v1beta.Organization.Stats
+	97,  // 57: core.mgmt.v1beta.Organization.stats:type_name -> core.mgmt.v1beta.Organization.Stats
 	0,   // 58: core.mgmt.v1beta.ListOrganizationsRequest.view:type_name -> core.mgmt.v1beta.View
 	65,  // 59: core.mgmt.v1beta.ListOrganizationsResponse.organizations:type_name -> core.mgmt.v1beta.Organization
 	65,  // 60: core.mgmt.v1beta.CreateOrganizationRequest.organization:type_name -> core.mgmt.v1beta.Organization
@@ -6366,7 +6266,7 @@ var file_core_mgmt_v1beta_mgmt_proto_depIdxs = []int32{
 	0,   // 62: core.mgmt.v1beta.GetOrganizationRequest.view:type_name -> core.mgmt.v1beta.View
 	65,  // 63: core.mgmt.v1beta.GetOrganizationResponse.organization:type_name -> core.mgmt.v1beta.Organization
 	65,  // 64: core.mgmt.v1beta.UpdateOrganizationRequest.organization:type_name -> core.mgmt.v1beta.Organization
-	103, // 65: core.mgmt.v1beta.UpdateOrganizationRequest.update_mask:type_name -> google.protobuf.FieldMask
+	101, // 65: core.mgmt.v1beta.UpdateOrganizationRequest.update_mask:type_name -> google.protobuf.FieldMask
 	65,  // 66: core.mgmt.v1beta.UpdateOrganizationResponse.organization:type_name -> core.mgmt.v1beta.Organization
 	2,   // 67: core.mgmt.v1beta.OrganizationMembership.state:type_name -> core.mgmt.v1beta.MembershipState
 	17,  // 68: core.mgmt.v1beta.OrganizationMembership.user:type_name -> core.mgmt.v1beta.User
@@ -6378,13 +6278,13 @@ var file_core_mgmt_v1beta_mgmt_proto_depIdxs = []int32{
 	0,   // 74: core.mgmt.v1beta.GetUserMembershipRequest.view:type_name -> core.mgmt.v1beta.View
 	77,  // 75: core.mgmt.v1beta.GetUserMembershipResponse.membership:type_name -> core.mgmt.v1beta.UserMembership
 	77,  // 76: core.mgmt.v1beta.UpdateUserMembershipRequest.membership:type_name -> core.mgmt.v1beta.UserMembership
-	103, // 77: core.mgmt.v1beta.UpdateUserMembershipRequest.update_mask:type_name -> google.protobuf.FieldMask
+	101, // 77: core.mgmt.v1beta.UpdateUserMembershipRequest.update_mask:type_name -> google.protobuf.FieldMask
 	77,  // 78: core.mgmt.v1beta.UpdateUserMembershipResponse.membership:type_name -> core.mgmt.v1beta.UserMembership
 	76,  // 79: core.mgmt.v1beta.ListOrganizationMembershipsResponse.memberships:type_name -> core.mgmt.v1beta.OrganizationMembership
 	0,   // 80: core.mgmt.v1beta.GetOrganizationMembershipRequest.view:type_name -> core.mgmt.v1beta.View
 	76,  // 81: core.mgmt.v1beta.GetOrganizationMembershipResponse.membership:type_name -> core.mgmt.v1beta.OrganizationMembership
 	76,  // 82: core.mgmt.v1beta.UpdateOrganizationMembershipRequest.membership:type_name -> core.mgmt.v1beta.OrganizationMembership
-	103, // 83: core.mgmt.v1beta.UpdateOrganizationMembershipRequest.update_mask:type_name -> google.protobuf.FieldMask
+	101, // 83: core.mgmt.v1beta.UpdateOrganizationMembershipRequest.update_mask:type_name -> google.protobuf.FieldMask
 	76,  // 84: core.mgmt.v1beta.UpdateOrganizationMembershipResponse.membership:type_name -> core.mgmt.v1beta.OrganizationMembership
 	85,  // [85:85] is the sub-list for method output_type
 	85,  // [85:85] is the sub-list for method input_type
@@ -6439,7 +6339,7 @@ func file_core_mgmt_v1beta_mgmt_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_core_mgmt_v1beta_mgmt_proto_rawDesc), len(file_core_mgmt_v1beta_mgmt_proto_rawDesc)),
 			NumEnums:      8,
-			NumMessages:   92,
+			NumMessages:   90,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
