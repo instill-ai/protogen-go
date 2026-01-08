@@ -79,70 +79,77 @@ func (KnowledgeBaseType) EnumDescriptor() ([]byte, []int) {
 }
 
 // KnowledgeBase represents a knowledge base.
+// Field ordering convention: uid (1), id (2), name (3), display_name (4), description (5)
 type KnowledgeBase struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The knowledge base uid (internal UUID).
 	Uid string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
-	// The knowledge base id (user-provided or system-generated).
+	// The knowledge base id (URL slug, user-provided or system-generated).
 	Id string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
 	// The resource name of the knowledge base.
 	// Format: `namespaces/{namespace}/knowledge-bases/{knowledge_base}`.
 	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	// The human-readable display name for UI presentation.
+	// If not provided, defaults to the id.
+	DisplayName string `protobuf:"bytes,4,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
 	// The knowledge base description.
-	Description string `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
+	Description string `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
 	// The creation time of the knowledge base.
-	CreateTime *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+	CreateTime *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
 	// The last update time of the knowledge base.
-	UpdateTime *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
+	UpdateTime *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
 	// The owner/namespace of the knowledge base.
-	OwnerName string `protobuf:"bytes,7,opt,name=owner_name,json=ownerName,proto3" json:"owner_name,omitempty"`
+	OwnerName string `protobuf:"bytes,8,opt,name=owner_name,json=ownerName,proto3" json:"owner_name,omitempty"`
 	// The knowledge base tags.
-	Tags []string `protobuf:"bytes,8,rep,name=tags,proto3" json:"tags,omitempty"`
+	Tags []string `protobuf:"bytes,9,rep,name=tags,proto3" json:"tags,omitempty"`
 	// The knowledge base converting pipelines.
 	// Deprecated: Conversion is now handled by AI providers.
 	//
 	// Deprecated: Marked as deprecated in artifact/artifact/v1alpha/knowledge_base.proto.
-	ConvertingPipelines []string `protobuf:"bytes,9,rep,name=converting_pipelines,json=convertingPipelines,proto3" json:"converting_pipelines,omitempty"`
+	ConvertingPipelines []string `protobuf:"bytes,10,rep,name=converting_pipelines,json=convertingPipelines,proto3" json:"converting_pipelines,omitempty"`
 	// The knowledge base splitting pipelines.
 	// Deprecated: Chunking is now handled internally.
 	//
 	// Deprecated: Marked as deprecated in artifact/artifact/v1alpha/knowledge_base.proto.
-	SplittingPipelines []string `protobuf:"bytes,10,rep,name=splitting_pipelines,json=splittingPipelines,proto3" json:"splitting_pipelines,omitempty"`
+	SplittingPipelines []string `protobuf:"bytes,11,rep,name=splitting_pipelines,json=splittingPipelines,proto3" json:"splitting_pipelines,omitempty"`
 	// The knowledge base embedding pipelines.
 	// Deprecated: Use embedding_config instead.
 	//
 	// Deprecated: Marked as deprecated in artifact/artifact/v1alpha/knowledge_base.proto.
-	EmbeddingPipelines []string `protobuf:"bytes,11,rep,name=embedding_pipelines,json=embeddingPipelines,proto3" json:"embedding_pipelines,omitempty"`
+	EmbeddingPipelines []string `protobuf:"bytes,12,rep,name=embedding_pipelines,json=embeddingPipelines,proto3" json:"embedding_pipelines,omitempty"`
 	// The downstream apps
-	DownstreamApps []string `protobuf:"bytes,12,rep,name=downstream_apps,json=downstreamApps,proto3" json:"downstream_apps,omitempty"`
+	DownstreamApps []string `protobuf:"bytes,13,rep,name=downstream_apps,json=downstreamApps,proto3" json:"downstream_apps,omitempty"`
 	// The total files in knowledge base.
-	TotalFiles uint32 `protobuf:"varint,13,opt,name=total_files,json=totalFiles,proto3" json:"total_files,omitempty"`
+	TotalFiles uint32 `protobuf:"varint,14,opt,name=total_files,json=totalFiles,proto3" json:"total_files,omitempty"`
 	// The total tokens in knowledge base.
-	TotalTokens uint32 `protobuf:"varint,14,opt,name=total_tokens,json=totalTokens,proto3" json:"total_tokens,omitempty"`
+	TotalTokens uint32 `protobuf:"varint,15,opt,name=total_tokens,json=totalTokens,proto3" json:"total_tokens,omitempty"`
 	// The current used storage in knowledge base.
-	UsedStorage uint64 `protobuf:"varint,15,opt,name=used_storage,json=usedStorage,proto3" json:"used_storage,omitempty"`
+	UsedStorage uint64 `protobuf:"varint,16,opt,name=used_storage,json=usedStorage,proto3" json:"used_storage,omitempty"`
 	// The knowledge base summarizing pipelines.
 	// Deprecated: Summarization is now handled by AI providers.
 	//
 	// Deprecated: Marked as deprecated in artifact/artifact/v1alpha/knowledge_base.proto.
-	SummarizingPipelines []string `protobuf:"bytes,16,rep,name=summarizing_pipelines,json=summarizingPipelines,proto3" json:"summarizing_pipelines,omitempty"`
+	SummarizingPipelines []string `protobuf:"bytes,17,rep,name=summarizing_pipelines,json=summarizingPipelines,proto3" json:"summarizing_pipelines,omitempty"`
 	// The embedding configuration for the knowledge base.
-	EmbeddingConfig *KnowledgeBase_EmbeddingConfig `protobuf:"bytes,17,opt,name=embedding_config,json=embeddingConfig,proto3" json:"embedding_config,omitempty"`
+	EmbeddingConfig *KnowledgeBase_EmbeddingConfig `protobuf:"bytes,18,opt,name=embedding_config,json=embeddingConfig,proto3" json:"embedding_config,omitempty"`
 	// The UID of the active Milvus collection for this knowledge base.
 	// This supports collection versioning for embedding dimension changes.
-	ActiveCollectionUid string `protobuf:"bytes,18,opt,name=active_collection_uid,json=activeCollectionUid,proto3" json:"active_collection_uid,omitempty"`
+	ActiveCollectionUid string `protobuf:"bytes,19,opt,name=active_collection_uid,json=activeCollectionUid,proto3" json:"active_collection_uid,omitempty"`
 	// Knowledge base owner.
-	Owner *v1beta.Owner `protobuf:"bytes,19,opt,name=owner,proto3,oneof" json:"owner,omitempty"`
+	Owner *v1beta.Owner `protobuf:"bytes,20,opt,name=owner,proto3,oneof" json:"owner,omitempty"`
 	// The UID of the user who created this knowledge base.
 	// This field is optional for system-created knowledge bases (e.g., instill-agent)
 	// or legacy knowledge bases created before this field was introduced.
-	CreatorUid *string `protobuf:"bytes,20,opt,name=creator_uid,json=creatorUid,proto3,oneof" json:"creator_uid,omitempty"`
+	CreatorUid *string `protobuf:"bytes,21,opt,name=creator_uid,json=creatorUid,proto3,oneof" json:"creator_uid,omitempty"`
 	// The user who created this knowledge base.
 	// Populated when creator_uid is present.
-	Creator *v1beta.User `protobuf:"bytes,21,opt,name=creator,proto3,oneof" json:"creator,omitempty"`
+	Creator *v1beta.User `protobuf:"bytes,22,opt,name=creator,proto3,oneof" json:"creator,omitempty"`
 	// The UID of the owner namespace (User or Organization) of this knowledge base.
 	// This is an immutable identifier, unlike owner_name which may change.
-	OwnerUid      string `protobuf:"bytes,22,opt,name=owner_uid,json=ownerUid,proto3" json:"owner_uid,omitempty"`
+	OwnerUid string `protobuf:"bytes,23,opt,name=owner_uid,json=ownerUid,proto3" json:"owner_uid,omitempty"`
+	// The knowledge base type (persistent or ephemeral).
+	// Default is PERSISTENT if not specified during creation.
+	Type          KnowledgeBaseType `protobuf:"varint,24,opt,name=type,proto3,enum=artifact.artifact.v1alpha.KnowledgeBaseType" json:"type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -194,6 +201,13 @@ func (x *KnowledgeBase) GetId() string {
 func (x *KnowledgeBase) GetName() string {
 	if x != nil {
 		return x.Name
+	}
+	return ""
+}
+
+func (x *KnowledgeBase) GetDisplayName() string {
+	if x != nil {
+		return x.DisplayName
 	}
 	return ""
 }
@@ -335,63 +349,25 @@ func (x *KnowledgeBase) GetOwnerUid() string {
 	return ""
 }
 
+func (x *KnowledgeBase) GetType() KnowledgeBaseType {
+	if x != nil {
+		return x.Type
+	}
+	return KnowledgeBaseType_KNOWLEDGE_BASE_TYPE_UNSPECIFIED
+}
+
 // CreateKnowledgeBaseRequest represents a request to create a knowledge base.
+// Follows the same pattern as CreateCollectionRequest.
 type CreateKnowledgeBaseRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The knowledge base's owner(namespaces).
+	// The ID of the namespace where the knowledge base will be created.
 	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// The knowledge base id (user-provided or auto-generated).
-	Id string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
-	// The knowledge base description.
-	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	// The knowledge base tags.
-	Tags []string `protobuf:"bytes,4,rep,name=tags,proto3" json:"tags,omitempty"`
-	// The knowledge base type. default is PERSISTENT
-	Type KnowledgeBaseType `protobuf:"varint,5,opt,name=type,proto3,enum=artifact.artifact.v1alpha.KnowledgeBaseType" json:"type,omitempty"`
-	// Pipelines used for converting page-based documents (i.e., files with pdf,
-	// doc[x] or ppt[x] extension) to Markdown. The strings in the list identify
-	// the pipelines and MUST have the format
-	// `{namespaceID}/{pipelineID}@{version}`. The pipeline recipes MUST have the
-	// following variable and output fields:
-	// ```yaml variable
-	// variable:
+	// The knowledge base resource to create.
+	// Required fields: display_name
+	// Optional fields: id (auto-generated from display_name if not provided),
 	//
-	//	document_input:
-	//	  title: document-input
-	//	  description: Upload a document (PDF/DOCX/DOC/PPTX/PPT)
-	//	  type: file
-	//
-	// ```
-	// The `convert_result` output should be a list of strings, one per page.
-	// ```yaml output
-	// output:
-	//
-	//	convert_result:
-	//	  title: convert-result
-	//	  value: ${merge-markdown-refinement.output.results[0]}
-	//
-	// ```
-	// Other variable and output fields will be ignored.
-	//
-	// The pipelines will be executed in order until one produces a successful,
-	// non-empty result.
-	//
-	// If no pipelines are provided, a default pipeline will be used. For
-	// non-document knowledge base files, the conversion pipeline is deterministic (such
-	// files are typically trivial to convert and don't require a dedicated
-	// pipeline to improve the conversion performance).
-	ConvertingPipelines []string `protobuf:"bytes,6,rep,name=converting_pipelines,json=convertingPipelines,proto3" json:"converting_pipelines,omitempty"`
-	// System ID to use for this knowledge base.
-	// References a system configuration in the system table that defines how the knowledge base
-	// will be created based on the system's RAG configurations including:
-	// - AI model family (e.g., "openai", "gemini")
-	// - Embedding vector dimensionality (e.g., 1536 for OpenAI, 3072 for Gemini)
-	// - Chunking method
-	// - Other RAG-related settings
-	//
-	// Available systems: "openai", "gemini", or custom systems defined in the system table.
-	// If not specified, defaults to "openai" system.
-	SystemId      *string `protobuf:"bytes,7,opt,name=system_id,json=systemId,proto3,oneof" json:"system_id,omitempty"`
+	//	description, tags, type, system_id
+	KnowledgeBase *KnowledgeBase `protobuf:"bytes,2,opt,name=knowledge_base,json=knowledgeBase,proto3" json:"knowledge_base,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -433,52 +409,17 @@ func (x *CreateKnowledgeBaseRequest) GetNamespaceId() string {
 	return ""
 }
 
-func (x *CreateKnowledgeBaseRequest) GetId() string {
+func (x *CreateKnowledgeBaseRequest) GetKnowledgeBase() *KnowledgeBase {
 	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *CreateKnowledgeBaseRequest) GetDescription() string {
-	if x != nil {
-		return x.Description
-	}
-	return ""
-}
-
-func (x *CreateKnowledgeBaseRequest) GetTags() []string {
-	if x != nil {
-		return x.Tags
+		return x.KnowledgeBase
 	}
 	return nil
-}
-
-func (x *CreateKnowledgeBaseRequest) GetType() KnowledgeBaseType {
-	if x != nil {
-		return x.Type
-	}
-	return KnowledgeBaseType_KNOWLEDGE_BASE_TYPE_UNSPECIFIED
-}
-
-func (x *CreateKnowledgeBaseRequest) GetConvertingPipelines() []string {
-	if x != nil {
-		return x.ConvertingPipelines
-	}
-	return nil
-}
-
-func (x *CreateKnowledgeBaseRequest) GetSystemId() string {
-	if x != nil && x.SystemId != nil {
-		return *x.SystemId
-	}
-	return ""
 }
 
 // CreateKnowledgeBaseResponse represents a response for creating a knowledge base.
 type CreateKnowledgeBaseResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The created knowledge base.
+	// The created knowledge base resource.
 	KnowledgeBase *KnowledgeBase `protobuf:"bytes,1,opt,name=knowledge_base,json=knowledgeBase,proto3" json:"knowledge_base,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -524,9 +465,9 @@ func (x *CreateKnowledgeBaseResponse) GetKnowledgeBase() *KnowledgeBase {
 // GetKnowledgeBaseRequest represents a request to get a knowledge base.
 type GetKnowledgeBaseRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Namespace ID.
+	// The ID of the namespace that owns the knowledge base.
 	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Knowledge Base ID.
+	// Knowledge base ID - the resource ID of the knowledge base to fetch.
 	KnowledgeBaseId string `protobuf:"bytes,2,opt,name=knowledge_base_id,json=knowledgeBaseId,proto3" json:"knowledge_base_id,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
@@ -622,16 +563,17 @@ func (x *GetKnowledgeBaseResponse) GetKnowledgeBase() *KnowledgeBase {
 	return nil
 }
 
-// Request message for ListKnowledgeBases(not include the ephemeral knowledge bases)
+// ListKnowledgeBasesRequest represents a request to list knowledge bases.
+// Does not include ephemeral knowledge bases.
 type ListKnowledgeBasesRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// User ID for which to list the knowledge bases
+	// The ID of the namespace for which to list the knowledge bases.
 	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
 	// The maximum number of knowledge bases to return. If this parameter is unspecified,
 	// at most 10 knowledge bases will be returned. The cap value for this parameter
 	// is 100 (i.e. any value above that will be coerced to 100).
 	PageSize *int32 `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
-	// Page token.
+	// Page token for pagination.
 	PageToken *string `protobuf:"bytes,3,opt,name=page_token,json=pageToken,proto3,oneof" json:"page_token,omitempty"`
 	// Filter can hold an [AIP-160](https://google.aip.dev/160)-compliant filter expression.
 	// - `id="<knowledge_base_id>"` or `uid="<uuid>"` - Filter by specific knowledge base ID/UID
@@ -703,14 +645,14 @@ func (x *ListKnowledgeBasesRequest) GetFilter() string {
 	return ""
 }
 
-// ListKnowledgeBasesResponse represents a response for getting all knowledge bases from users.
+// ListKnowledgeBasesResponse represents a response for listing knowledge bases.
 type ListKnowledgeBasesResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The knowledge bases container.
+	// The list of knowledge bases.
 	KnowledgeBases []*KnowledgeBase `protobuf:"bytes,1,rep,name=knowledge_bases,json=knowledgeBases,proto3" json:"knowledge_bases,omitempty"`
-	// Next page token.
+	// Next page token for pagination.
 	NextPageToken string `protobuf:"bytes,2,opt,name=next_page_token,json=nextPageToken,proto3" json:"next_page_token,omitempty"`
-	// Total number of knowledge bases.
+	// Total number of knowledge bases matching the request.
 	TotalSize     int32 `protobuf:"varint,3,opt,name=total_size,json=totalSize,proto3" json:"total_size,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -770,9 +712,9 @@ func (x *ListKnowledgeBasesResponse) GetTotalSize() int32 {
 // UpdateKnowledgeBaseRequest represents a request to update a knowledge base.
 type UpdateKnowledgeBaseRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Namespace ID.
+	// The ID of the namespace that owns the knowledge base.
 	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Knowledge Base ID.
+	// Knowledge base ID - the resource ID of the knowledge base to update.
 	KnowledgeBaseId string `protobuf:"bytes,2,opt,name=knowledge_base_id,json=knowledgeBaseId,proto3" json:"knowledge_base_id,omitempty"`
 	// The knowledge base fields that will replace the existing ones.
 	KnowledgeBase *KnowledgeBase `protobuf:"bytes,3,opt,name=knowledge_base,json=knowledgeBase,proto3" json:"knowledge_base,omitempty"`
@@ -846,7 +788,7 @@ func (x *UpdateKnowledgeBaseRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
 // UpdateKnowledgeBaseResponse represents a response for updating a knowledge base.
 type UpdateKnowledgeBaseResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The updated knowledge base.
+	// The updated knowledge base resource.
 	KnowledgeBase *KnowledgeBase `protobuf:"bytes,1,opt,name=knowledge_base,json=knowledgeBase,proto3" json:"knowledge_base,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -892,9 +834,9 @@ func (x *UpdateKnowledgeBaseResponse) GetKnowledgeBase() *KnowledgeBase {
 // DeleteKnowledgeBaseRequest represents a request to delete a knowledge base.
 type DeleteKnowledgeBaseRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The owner's id. i.e. namespace.
+	// The ID of the namespace that owns the knowledge base.
 	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// The knowledge base id.
+	// Knowledge base ID - the resource ID of the knowledge base to delete.
 	KnowledgeBaseId string `protobuf:"bytes,2,opt,name=knowledge_base_id,json=knowledgeBaseId,proto3" json:"knowledge_base_id,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
@@ -947,7 +889,7 @@ func (x *DeleteKnowledgeBaseRequest) GetKnowledgeBaseId() string {
 // DeleteKnowledgeBaseResponse represents a response for deleting a knowledge base.
 type DeleteKnowledgeBaseResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The knowledge base identifier.
+	// The deleted knowledge base resource.
 	KnowledgeBase *KnowledgeBase `protobuf:"bytes,1,opt,name=knowledge_base,json=knowledgeBase,proto3" json:"knowledge_base,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -994,16 +936,12 @@ func (x *DeleteKnowledgeBaseResponse) GetKnowledgeBase() *KnowledgeBase {
 // knowledge base without a creator (admin only).
 type CreateKnowledgeBaseAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The knowledge base's owner (namespace ID).
+	// The ID of the namespace where the knowledge base will be created.
 	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// The knowledge base id (user-provided or auto-generated).
-	Id string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
-	// The knowledge base description.
-	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	// The knowledge base tags.
-	Tags []string `protobuf:"bytes,4,rep,name=tags,proto3" json:"tags,omitempty"`
-	// The knowledge base type. default is PERSISTENT
-	Type          KnowledgeBaseType `protobuf:"varint,5,opt,name=type,proto3,enum=artifact.artifact.v1alpha.KnowledgeBaseType" json:"type,omitempty"`
+	// The knowledge base resource to create.
+	// Required fields: id (for admin, id is required rather than auto-generated)
+	// Optional fields: display_name (defaults to id), description, tags, type
+	KnowledgeBase *KnowledgeBase `protobuf:"bytes,2,opt,name=knowledge_base,json=knowledgeBase,proto3" json:"knowledge_base,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1045,39 +983,18 @@ func (x *CreateKnowledgeBaseAdminRequest) GetNamespaceId() string {
 	return ""
 }
 
-func (x *CreateKnowledgeBaseAdminRequest) GetId() string {
+func (x *CreateKnowledgeBaseAdminRequest) GetKnowledgeBase() *KnowledgeBase {
 	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *CreateKnowledgeBaseAdminRequest) GetDescription() string {
-	if x != nil {
-		return x.Description
-	}
-	return ""
-}
-
-func (x *CreateKnowledgeBaseAdminRequest) GetTags() []string {
-	if x != nil {
-		return x.Tags
+		return x.KnowledgeBase
 	}
 	return nil
-}
-
-func (x *CreateKnowledgeBaseAdminRequest) GetType() KnowledgeBaseType {
-	if x != nil {
-		return x.Type
-	}
-	return KnowledgeBaseType_KNOWLEDGE_BASE_TYPE_UNSPECIFIED
 }
 
 // CreateKnowledgeBaseAdminResponse represents a response for creating a system-level
 // knowledge base.
 type CreateKnowledgeBaseAdminResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The created knowledge base.
+	// The created knowledge base resource.
 	KnowledgeBase *KnowledgeBase `protobuf:"bytes,1,opt,name=knowledge_base,json=knowledgeBase,proto3" json:"knowledge_base,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1124,9 +1041,9 @@ func (x *CreateKnowledgeBaseAdminResponse) GetKnowledgeBase() *KnowledgeBase {
 // with system-reserved tags (admin only).
 type UpdateKnowledgeBaseAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The knowledge base's owner (namespace ID).
+	// The ID of the namespace that owns the knowledge base.
 	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// The knowledge base id.
+	// Knowledge base ID - the resource ID of the knowledge base to update.
 	KnowledgeBaseId string `protobuf:"bytes,2,opt,name=knowledge_base_id,json=knowledgeBaseId,proto3" json:"knowledge_base_id,omitempty"`
 	// The knowledge base fields that will replace the existing ones.
 	KnowledgeBase *KnowledgeBase `protobuf:"bytes,3,opt,name=knowledge_base,json=knowledgeBase,proto3" json:"knowledge_base,omitempty"`
@@ -1197,7 +1114,7 @@ func (x *UpdateKnowledgeBaseAdminRequest) GetUpdateMask() *fieldmaskpb.FieldMask
 // UpdateKnowledgeBaseAdminResponse represents a response for updating a knowledge base.
 type UpdateKnowledgeBaseAdminResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The updated knowledge base.
+	// The updated knowledge base resource.
 	KnowledgeBase *KnowledgeBase `protobuf:"bytes,1,opt,name=knowledge_base,json=knowledgeBase,proto3" json:"knowledge_base,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1299,53 +1216,49 @@ var File_artifact_artifact_v1alpha_knowledge_base_proto protoreflect.FileDescrip
 
 const file_artifact_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"\n" +
-	".artifact/artifact/v1alpha/knowledge_base.proto\x12\x19artifact.artifact.v1alpha\x1a\x1bcore/mgmt/v1beta/mgmt.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xed\t\n" +
+	".artifact/artifact/v1alpha/knowledge_base.proto\x12\x19artifact.artifact.v1alpha\x1a\x1bcore/mgmt/v1beta/mgmt.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xdc\n" +
+	"\n" +
 	"\rKnowledgeBase\x12\x15\n" +
 	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x05R\x02id\x12\x17\n" +
-	"\x04name\x18\x03 \x01(\tB\x03\xe0A\x03R\x04name\x12%\n" +
-	"\vdescription\x18\x04 \x01(\tB\x03\xe0A\x01R\vdescription\x12@\n" +
-	"\vcreate_time\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
+	"\x04name\x18\x03 \x01(\tB\x03\xe0A\x03R\x04name\x12&\n" +
+	"\fdisplay_name\x18\x04 \x01(\tB\x03\xe0A\x01R\vdisplayName\x12%\n" +
+	"\vdescription\x18\x05 \x01(\tB\x03\xe0A\x01R\vdescription\x12@\n" +
+	"\vcreate_time\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
 	"createTime\x12@\n" +
-	"\vupdate_time\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
+	"\vupdate_time\x18\a \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
 	"updateTime\x12\"\n" +
 	"\n" +
-	"owner_name\x18\a \x01(\tB\x03\xe0A\x03R\townerName\x12\x17\n" +
-	"\x04tags\x18\b \x03(\tB\x03\xe0A\x01R\x04tags\x128\n" +
-	"\x14converting_pipelines\x18\t \x03(\tB\x05\xe0A\x01\x18\x01R\x13convertingPipelines\x126\n" +
-	"\x13splitting_pipelines\x18\n" +
-	" \x03(\tB\x05\xe0A\x01\x18\x01R\x12splittingPipelines\x126\n" +
-	"\x13embedding_pipelines\x18\v \x03(\tB\x05\xe0A\x01\x18\x01R\x12embeddingPipelines\x12,\n" +
-	"\x0fdownstream_apps\x18\f \x03(\tB\x03\xe0A\x03R\x0edownstreamApps\x12$\n" +
-	"\vtotal_files\x18\r \x01(\rB\x03\xe0A\x03R\n" +
+	"owner_name\x18\b \x01(\tB\x03\xe0A\x03R\townerName\x12\x17\n" +
+	"\x04tags\x18\t \x03(\tB\x03\xe0A\x01R\x04tags\x128\n" +
+	"\x14converting_pipelines\x18\n" +
+	" \x03(\tB\x05\xe0A\x01\x18\x01R\x13convertingPipelines\x126\n" +
+	"\x13splitting_pipelines\x18\v \x03(\tB\x05\xe0A\x01\x18\x01R\x12splittingPipelines\x126\n" +
+	"\x13embedding_pipelines\x18\f \x03(\tB\x05\xe0A\x01\x18\x01R\x12embeddingPipelines\x12,\n" +
+	"\x0fdownstream_apps\x18\r \x03(\tB\x03\xe0A\x03R\x0edownstreamApps\x12$\n" +
+	"\vtotal_files\x18\x0e \x01(\rB\x03\xe0A\x03R\n" +
 	"totalFiles\x12&\n" +
-	"\ftotal_tokens\x18\x0e \x01(\rB\x03\xe0A\x03R\vtotalTokens\x12&\n" +
-	"\fused_storage\x18\x0f \x01(\x04B\x03\xe0A\x03R\vusedStorage\x12:\n" +
-	"\x15summarizing_pipelines\x18\x10 \x03(\tB\x05\xe0A\x01\x18\x01R\x14summarizingPipelines\x12h\n" +
-	"\x10embedding_config\x18\x11 \x01(\v28.artifact.artifact.v1alpha.KnowledgeBase.EmbeddingConfigB\x03\xe0A\x01R\x0fembeddingConfig\x127\n" +
-	"\x15active_collection_uid\x18\x12 \x01(\tB\x03\xe0A\x03R\x13activeCollectionUid\x127\n" +
-	"\x05owner\x18\x13 \x01(\v2\x17.core.mgmt.v1beta.OwnerB\x03\xe0A\x03H\x00R\x05owner\x88\x01\x01\x12)\n" +
-	"\vcreator_uid\x18\x14 \x01(\tB\x03\xe0A\x03H\x01R\n" +
+	"\ftotal_tokens\x18\x0f \x01(\rB\x03\xe0A\x03R\vtotalTokens\x12&\n" +
+	"\fused_storage\x18\x10 \x01(\x04B\x03\xe0A\x03R\vusedStorage\x12:\n" +
+	"\x15summarizing_pipelines\x18\x11 \x03(\tB\x05\xe0A\x01\x18\x01R\x14summarizingPipelines\x12h\n" +
+	"\x10embedding_config\x18\x12 \x01(\v28.artifact.artifact.v1alpha.KnowledgeBase.EmbeddingConfigB\x03\xe0A\x01R\x0fembeddingConfig\x127\n" +
+	"\x15active_collection_uid\x18\x13 \x01(\tB\x03\xe0A\x03R\x13activeCollectionUid\x127\n" +
+	"\x05owner\x18\x14 \x01(\v2\x17.core.mgmt.v1beta.OwnerB\x03\xe0A\x03H\x00R\x05owner\x88\x01\x01\x12)\n" +
+	"\vcreator_uid\x18\x15 \x01(\tB\x03\xe0A\x03H\x01R\n" +
 	"creatorUid\x88\x01\x01\x12:\n" +
-	"\acreator\x18\x15 \x01(\v2\x16.core.mgmt.v1beta.UserB\x03\xe0A\x03H\x02R\acreator\x88\x01\x01\x12 \n" +
-	"\towner_uid\x18\x16 \x01(\tB\x03\xe0A\x03R\bownerUid\x1a\\\n" +
+	"\acreator\x18\x16 \x01(\v2\x16.core.mgmt.v1beta.UserB\x03\xe0A\x03H\x02R\acreator\x88\x01\x01\x12 \n" +
+	"\towner_uid\x18\x17 \x01(\tB\x03\xe0A\x03R\bownerUid\x12E\n" +
+	"\x04type\x18\x18 \x01(\x0e2,.artifact.artifact.v1alpha.KnowledgeBaseTypeB\x03\xe0A\x01R\x04type\x1a\\\n" +
 	"\x0fEmbeddingConfig\x12!\n" +
 	"\fmodel_family\x18\x01 \x01(\tR\vmodelFamily\x12&\n" +
 	"\x0edimensionality\x18\x02 \x01(\rR\x0edimensionality:<\xeaA9\x127namespaces/{namespace}/knowledge-bases/{knowledge_base}B\b\n" +
 	"\x06_ownerB\x0e\n" +
 	"\f_creator_uidB\n" +
 	"\n" +
-	"\b_creator\"\xcd\x02\n" +
+	"\b_creator\"\x9a\x01\n" +
 	"\x1aCreateKnowledgeBaseRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\x13\n" +
-	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x01R\x02id\x12%\n" +
-	"\vdescription\x18\x03 \x01(\tB\x03\xe0A\x01R\vdescription\x12\x17\n" +
-	"\x04tags\x18\x04 \x03(\tB\x03\xe0A\x01R\x04tags\x12E\n" +
-	"\x04type\x18\x05 \x01(\x0e2,.artifact.artifact.v1alpha.KnowledgeBaseTypeB\x03\xe0A\x01R\x04type\x126\n" +
-	"\x14converting_pipelines\x18\x06 \x03(\tB\x03\xe0A\x01R\x13convertingPipelines\x12%\n" +
-	"\tsystem_id\x18\a \x01(\tB\x03\xe0A\x01H\x00R\bsystemId\x88\x01\x01B\f\n" +
-	"\n" +
-	"_system_id\"s\n" +
+	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12T\n" +
+	"\x0eknowledge_base\x18\x02 \x01(\v2(.artifact.artifact.v1alpha.KnowledgeBaseB\x03\xe0A\x02R\rknowledgeBase\"s\n" +
 	"\x1bCreateKnowledgeBaseResponse\x12T\n" +
 	"\x0eknowledge_base\x18\x01 \x01(\v2(.artifact.artifact.v1alpha.KnowledgeBaseB\x03\xe0A\x03R\rknowledgeBase\"r\n" +
 	"\x17GetKnowledgeBaseRequest\x12&\n" +
@@ -1380,19 +1293,16 @@ const file_artifact_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12/\n" +
 	"\x11knowledge_base_id\x18\x02 \x01(\tB\x03\xe0A\x02R\x0fknowledgeBaseId\"s\n" +
 	"\x1bDeleteKnowledgeBaseResponse\x12T\n" +
-	"\x0eknowledge_base\x18\x01 \x01(\v2(.artifact.artifact.v1alpha.KnowledgeBaseB\x03\xe0A\x03R\rknowledgeBase\"\xe5\x01\n" +
+	"\x0eknowledge_base\x18\x01 \x01(\v2(.artifact.artifact.v1alpha.KnowledgeBaseB\x03\xe0A\x03R\rknowledgeBase\"\x9f\x01\n" +
 	"\x1fCreateKnowledgeBaseAdminRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\x13\n" +
-	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x02R\x02id\x12%\n" +
-	"\vdescription\x18\x03 \x01(\tB\x03\xe0A\x01R\vdescription\x12\x17\n" +
-	"\x04tags\x18\x04 \x03(\tB\x03\xe0A\x01R\x04tags\x12E\n" +
-	"\x04type\x18\x05 \x01(\x0e2,.artifact.artifact.v1alpha.KnowledgeBaseTypeB\x03\xe0A\x01R\x04type\"x\n" +
+	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12T\n" +
+	"\x0eknowledge_base\x18\x02 \x01(\v2(.artifact.artifact.v1alpha.KnowledgeBaseB\x03\xe0A\x02R\rknowledgeBase\"x\n" +
 	" CreateKnowledgeBaseAdminResponse\x12T\n" +
 	"\x0eknowledge_base\x18\x01 \x01(\v2(.artifact.artifact.v1alpha.KnowledgeBaseB\x03\xe0A\x03R\rknowledgeBase\"\x92\x02\n" +
 	"\x1fUpdateKnowledgeBaseAdminRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12/\n" +
 	"\x11knowledge_base_id\x18\x02 \x01(\tB\x03\xe0A\x02R\x0fknowledgeBaseId\x12T\n" +
-	"\x0eknowledge_base\x18\x03 \x01(\v2(.artifact.artifact.v1alpha.KnowledgeBaseB\x03\xe0A\x01R\rknowledgeBase\x12@\n" +
+	"\x0eknowledge_base\x18\x03 \x01(\v2(.artifact.artifact.v1alpha.KnowledgeBaseB\x03\xe0A\x02R\rknowledgeBase\x12@\n" +
 	"\vupdate_mask\x18\x04 \x01(\v2\x1a.google.protobuf.FieldMaskB\x03\xe0A\x02R\n" +
 	"updateMask\"x\n" +
 	" UpdateKnowledgeBaseAdminResponse\x12T\n" +
@@ -1446,24 +1356,25 @@ var file_artifact_artifact_v1alpha_knowledge_base_proto_depIdxs = []int32{
 	16, // 2: artifact.artifact.v1alpha.KnowledgeBase.embedding_config:type_name -> artifact.artifact.v1alpha.KnowledgeBase.EmbeddingConfig
 	18, // 3: artifact.artifact.v1alpha.KnowledgeBase.owner:type_name -> core.mgmt.v1beta.Owner
 	19, // 4: artifact.artifact.v1alpha.KnowledgeBase.creator:type_name -> core.mgmt.v1beta.User
-	0,  // 5: artifact.artifact.v1alpha.CreateKnowledgeBaseRequest.type:type_name -> artifact.artifact.v1alpha.KnowledgeBaseType
-	1,  // 6: artifact.artifact.v1alpha.CreateKnowledgeBaseResponse.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
-	1,  // 7: artifact.artifact.v1alpha.GetKnowledgeBaseResponse.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
-	1,  // 8: artifact.artifact.v1alpha.ListKnowledgeBasesResponse.knowledge_bases:type_name -> artifact.artifact.v1alpha.KnowledgeBase
-	1,  // 9: artifact.artifact.v1alpha.UpdateKnowledgeBaseRequest.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
-	20, // 10: artifact.artifact.v1alpha.UpdateKnowledgeBaseRequest.update_mask:type_name -> google.protobuf.FieldMask
-	1,  // 11: artifact.artifact.v1alpha.UpdateKnowledgeBaseResponse.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
-	1,  // 12: artifact.artifact.v1alpha.DeleteKnowledgeBaseResponse.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
-	0,  // 13: artifact.artifact.v1alpha.CreateKnowledgeBaseAdminRequest.type:type_name -> artifact.artifact.v1alpha.KnowledgeBaseType
-	1,  // 14: artifact.artifact.v1alpha.CreateKnowledgeBaseAdminResponse.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
-	1,  // 15: artifact.artifact.v1alpha.UpdateKnowledgeBaseAdminRequest.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
-	20, // 16: artifact.artifact.v1alpha.UpdateKnowledgeBaseAdminRequest.update_mask:type_name -> google.protobuf.FieldMask
-	1,  // 17: artifact.artifact.v1alpha.UpdateKnowledgeBaseAdminResponse.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
-	18, // [18:18] is the sub-list for method output_type
-	18, // [18:18] is the sub-list for method input_type
-	18, // [18:18] is the sub-list for extension type_name
-	18, // [18:18] is the sub-list for extension extendee
-	0,  // [0:18] is the sub-list for field type_name
+	0,  // 5: artifact.artifact.v1alpha.KnowledgeBase.type:type_name -> artifact.artifact.v1alpha.KnowledgeBaseType
+	1,  // 6: artifact.artifact.v1alpha.CreateKnowledgeBaseRequest.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
+	1,  // 7: artifact.artifact.v1alpha.CreateKnowledgeBaseResponse.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
+	1,  // 8: artifact.artifact.v1alpha.GetKnowledgeBaseResponse.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
+	1,  // 9: artifact.artifact.v1alpha.ListKnowledgeBasesResponse.knowledge_bases:type_name -> artifact.artifact.v1alpha.KnowledgeBase
+	1,  // 10: artifact.artifact.v1alpha.UpdateKnowledgeBaseRequest.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
+	20, // 11: artifact.artifact.v1alpha.UpdateKnowledgeBaseRequest.update_mask:type_name -> google.protobuf.FieldMask
+	1,  // 12: artifact.artifact.v1alpha.UpdateKnowledgeBaseResponse.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
+	1,  // 13: artifact.artifact.v1alpha.DeleteKnowledgeBaseResponse.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
+	1,  // 14: artifact.artifact.v1alpha.CreateKnowledgeBaseAdminRequest.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
+	1,  // 15: artifact.artifact.v1alpha.CreateKnowledgeBaseAdminResponse.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
+	1,  // 16: artifact.artifact.v1alpha.UpdateKnowledgeBaseAdminRequest.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
+	20, // 17: artifact.artifact.v1alpha.UpdateKnowledgeBaseAdminRequest.update_mask:type_name -> google.protobuf.FieldMask
+	1,  // 18: artifact.artifact.v1alpha.UpdateKnowledgeBaseAdminResponse.knowledge_base:type_name -> artifact.artifact.v1alpha.KnowledgeBase
+	19, // [19:19] is the sub-list for method output_type
+	19, // [19:19] is the sub-list for method input_type
+	19, // [19:19] is the sub-list for extension type_name
+	19, // [19:19] is the sub-list for extension extendee
+	0,  // [0:19] is the sub-list for field type_name
 }
 
 func init() { file_artifact_artifact_v1alpha_knowledge_base_proto_init() }
@@ -1472,7 +1383,6 @@ func file_artifact_artifact_v1alpha_knowledge_base_proto_init() {
 		return
 	}
 	file_artifact_artifact_v1alpha_knowledge_base_proto_msgTypes[0].OneofWrappers = []any{}
-	file_artifact_artifact_v1alpha_knowledge_base_proto_msgTypes[1].OneofWrappers = []any{}
 	file_artifact_artifact_v1alpha_knowledge_base_proto_msgTypes[5].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{

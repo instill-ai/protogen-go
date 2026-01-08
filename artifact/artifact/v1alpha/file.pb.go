@@ -625,46 +625,49 @@ type File struct {
 	// The resource name of the file.
 	// Format: `namespaces/{namespace}/knowledge-bases/{knowledge_base}/files/{file}`.
 	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	// The filename provided by the user.
-	Filename string `protobuf:"bytes,4,opt,name=filename,proto3" json:"filename,omitempty"`
-	// file type
-	Type File_Type `protobuf:"varint,5,opt,name=type,proto3,enum=artifact.artifact.v1alpha.File_Type" json:"type,omitempty"`
-	// file process status
-	ProcessStatus FileProcessStatus `protobuf:"varint,6,opt,name=process_status,json=processStatus,proto3,enum=artifact.artifact.v1alpha.FileProcessStatus" json:"process_status,omitempty"`
-	// file process message
-	ProcessOutcome string `protobuf:"bytes,7,opt,name=process_outcome,json=processOutcome,proto3" json:"process_outcome,omitempty"`
-	// retrievable(this is reserved for future use)
-	Retrievable bool `protobuf:"varint,8,opt,name=retrievable,proto3" json:"retrievable,omitempty"`
-	// content(this is reserved for future use)
-	Content string `protobuf:"bytes,9,opt,name=content,proto3" json:"content,omitempty"`
+	// The human-readable display name (filename) provided by the user.
+	// This is typically the original filename of the uploaded file.
+	DisplayName string `protobuf:"bytes,4,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	// A description of the file.
+	Description string `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
+	// File type.
+	Type File_Type `protobuf:"varint,6,opt,name=type,proto3,enum=artifact.artifact.v1alpha.File_Type" json:"type,omitempty"`
+	// File process status.
+	ProcessStatus FileProcessStatus `protobuf:"varint,7,opt,name=process_status,json=processStatus,proto3,enum=artifact.artifact.v1alpha.FileProcessStatus" json:"process_status,omitempty"`
+	// File process outcome message.
+	ProcessOutcome string `protobuf:"bytes,8,opt,name=process_outcome,json=processOutcome,proto3" json:"process_outcome,omitempty"`
+	// Retrievable flag (reserved for future use).
+	Retrievable bool `protobuf:"varint,9,opt,name=retrievable,proto3" json:"retrievable,omitempty"`
+	// Base64-encoded file content (reserved for future use).
+	Content string `protobuf:"bytes,10,opt,name=content,proto3" json:"content,omitempty"`
 	// The UID of the owner namespace (User or Organization) of this file.
 	// This is an immutable identifier, unlike owner_name which may change.
-	OwnerUid string `protobuf:"bytes,10,opt,name=owner_uid,json=ownerUid,proto3" json:"owner_uid,omitempty"`
-	// creator uid from authn token
-	CreatorUid string `protobuf:"bytes,11,opt,name=creator_uid,json=creatorUid,proto3" json:"creator_uid,omitempty"`
+	OwnerUid string `protobuf:"bytes,11,opt,name=owner_uid,json=ownerUid,proto3" json:"owner_uid,omitempty"`
+	// The UID of the user who created this file.
+	CreatorUid string `protobuf:"bytes,12,opt,name=creator_uid,json=creatorUid,proto3" json:"creator_uid,omitempty"`
 	// The user who created this file.
 	// Populated when creator_uid is present.
-	Creator *v1beta.User `protobuf:"bytes,26,opt,name=creator,proto3,oneof" json:"creator,omitempty"`
+	Creator *v1beta.User `protobuf:"bytes,27,opt,name=creator,proto3,oneof" json:"creator,omitempty"`
 	// Resource name of the owner namespace.
-	OwnerName string `protobuf:"bytes,27,opt,name=owner_name,json=ownerName,proto3" json:"owner_name,omitempty"`
+	OwnerName string `protobuf:"bytes,28,opt,name=owner_name,json=ownerName,proto3" json:"owner_name,omitempty"`
 	// File owner (User or Organization).
-	Owner *v1beta.Owner `protobuf:"bytes,28,opt,name=owner,proto3,oneof" json:"owner,omitempty"`
-	// knowledge base uid
-	KnowledgeBaseUid string `protobuf:"bytes,12,opt,name=knowledge_base_uid,json=knowledgeBaseUid,proto3" json:"knowledge_base_uid,omitempty"`
-	// create time
-	CreateTime *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
-	// update time
-	UpdateTime *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
-	// delete time
-	DeleteTime *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=delete_time,json=deleteTime,proto3" json:"delete_time,omitempty"`
-	// file size in bytes
-	Size int64 `protobuf:"varint,16,opt,name=size,proto3" json:"size,omitempty"`
-	// total chunks
-	TotalChunks int32 `protobuf:"varint,17,opt,name=total_chunks,json=totalChunks,proto3" json:"total_chunks,omitempty"`
-	// total tokens
-	TotalTokens int32 `protobuf:"varint,18,opt,name=total_tokens,json=totalTokens,proto3" json:"total_tokens,omitempty"`
-	// Custom metadata provided by the user during file upload
-	ExternalMetadata *structpb.Struct `protobuf:"bytes,19,opt,name=external_metadata,json=externalMetadata,proto3,oneof" json:"external_metadata,omitempty"`
+	Owner *v1beta.Owner `protobuf:"bytes,29,opt,name=owner,proto3,oneof" json:"owner,omitempty"`
+	// The UID of the knowledge base this file belongs to.
+	KnowledgeBaseUid string `protobuf:"bytes,13,opt,name=knowledge_base_uid,json=knowledgeBaseUid,proto3" json:"knowledge_base_uid,omitempty"`
+	// The timestamp when the file was created.
+	CreateTime *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+	// The timestamp when the file was last updated.
+	UpdateTime *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
+	// The timestamp when the file was deleted (soft delete).
+	DeleteTime *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=delete_time,json=deleteTime,proto3" json:"delete_time,omitempty"`
+	// File size in bytes.
+	Size int64 `protobuf:"varint,17,opt,name=size,proto3" json:"size,omitempty"`
+	// Total number of chunks created from this file.
+	TotalChunks int32 `protobuf:"varint,18,opt,name=total_chunks,json=totalChunks,proto3" json:"total_chunks,omitempty"`
+	// Total number of tokens in this file.
+	TotalTokens int32 `protobuf:"varint,19,opt,name=total_tokens,json=totalTokens,proto3" json:"total_tokens,omitempty"`
+	// Custom metadata provided by the user during file upload.
+	ExternalMetadata *structpb.Struct `protobuf:"bytes,20,opt,name=external_metadata,json=externalMetadata,proto3,oneof" json:"external_metadata,omitempty"`
 	// Object UID referencing a file already uploaded to blob storage.
 	// Two upload approaches are supported:
 	//  1. Direct upload: Upload file directly to MinIO via GetObjectUploadURL, then provide the object_uid here.
@@ -673,9 +676,9 @@ type File struct {
 	//     The system will handle the blob storage upload internally.
 	//
 	// When object_uid is provided, the 'content' field is ignored.
-	ObjectUid string `protobuf:"bytes,20,opt,name=object_uid,json=objectUid,proto3" json:"object_uid,omitempty"`
-	// download url of the file
-	DownloadUrl string `protobuf:"bytes,22,opt,name=download_url,json=downloadUrl,proto3" json:"download_url,omitempty"`
+	ObjectUid string `protobuf:"bytes,21,opt,name=object_uid,json=objectUid,proto3" json:"object_uid,omitempty"`
+	// Pre-signed download URL for the file.
+	DownloadUrl string `protobuf:"bytes,23,opt,name=download_url,json=downloadUrl,proto3" json:"download_url,omitempty"`
 	// Pipeline used for converting the file to Markdown if the file is a
 	// document (i.e., a file with pdf, doc[x] or ppt[x] extension). The value
 	// identifies the pipeline release and and MUST have the format
@@ -708,16 +711,16 @@ type File struct {
 	// For non-document knowledge base files, the conversion pipeline is deterministic
 	// (such files are typically trivial to convert and don't require a dedicated
 	// pipeline to improve the conversion performance).
-	ConvertingPipeline *string `protobuf:"bytes,23,opt,name=converting_pipeline,json=convertingPipeline,proto3,oneof" json:"converting_pipeline,omitempty"`
+	ConvertingPipeline *string `protobuf:"bytes,24,opt,name=converting_pipeline,json=convertingPipeline,proto3,oneof" json:"converting_pipeline,omitempty"`
 	// Length of the file in the specified unit type. It is defined as the number
 	// of positions (the unit will depend on the file type) that can be accessed
 	// in the file.
-	Length *File_Position `protobuf:"bytes,24,opt,name=length,proto3" json:"length,omitempty"`
-	// Array of tags associated with the file
-	Tags []string `protobuf:"bytes,25,rep,name=tags,proto3" json:"tags,omitempty"`
+	Length *File_Position `protobuf:"bytes,25,opt,name=length,proto3" json:"length,omitempty"`
+	// Array of tags associated with the file.
+	Tags []string `protobuf:"bytes,26,rep,name=tags,proto3" json:"tags,omitempty"`
 	// Collection UIDs that this file belongs to.
 	// This field is system-managed and populated from collection membership.
-	CollectionUids []string `protobuf:"bytes,29,rep,name=collection_uids,json=collectionUids,proto3" json:"collection_uids,omitempty"`
+	CollectionUids []string `protobuf:"bytes,30,rep,name=collection_uids,json=collectionUids,proto3" json:"collection_uids,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -773,9 +776,16 @@ func (x *File) GetName() string {
 	return ""
 }
 
-func (x *File) GetFilename() string {
+func (x *File) GetDisplayName() string {
 	if x != nil {
-		return x.Filename
+		return x.DisplayName
+	}
+	return ""
+}
+
+func (x *File) GetDescription() string {
+	if x != nil {
+		return x.Description
 	}
 	return ""
 }
@@ -2009,43 +2019,44 @@ var File_artifact_artifact_v1alpha_file_proto protoreflect.FileDescriptor
 
 const file_artifact_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\n" +
-	"$artifact/artifact/v1alpha/file.proto\x12\x19artifact.artifact.v1alpha\x1a\x1bcore/mgmt/v1beta/mgmt.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x97\x15\n" +
+	"$artifact/artifact/v1alpha/file.proto\x12\x19artifact.artifact.v1alpha\x1a\x1bcore/mgmt/v1beta/mgmt.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc5\x15\n" +
 	"\x04File\x12\x15\n" +
 	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12\x17\n" +
-	"\x04name\x18\x03 \x01(\tB\x03\xe0A\x03R\x04name\x12\x1f\n" +
-	"\bfilename\x18\x04 \x01(\tB\x03\xe0A\x01R\bfilename\x12=\n" +
-	"\x04type\x18\x05 \x01(\x0e2$.artifact.artifact.v1alpha.File.TypeB\x03\xe0A\x01R\x04type\x12X\n" +
-	"\x0eprocess_status\x18\x06 \x01(\x0e2,.artifact.artifact.v1alpha.FileProcessStatusB\x03\xe0A\x03R\rprocessStatus\x12,\n" +
-	"\x0fprocess_outcome\x18\a \x01(\tB\x03\xe0A\x03R\x0eprocessOutcome\x12%\n" +
-	"\vretrievable\x18\b \x01(\bB\x03\xe0A\x03R\vretrievable\x12\x1d\n" +
-	"\acontent\x18\t \x01(\tB\x03\xe0A\x01R\acontent\x12 \n" +
-	"\towner_uid\x18\n" +
-	" \x01(\tB\x03\xe0A\x03R\bownerUid\x12$\n" +
-	"\vcreator_uid\x18\v \x01(\tB\x03\xe0A\x03R\n" +
+	"\x04name\x18\x03 \x01(\tB\x03\xe0A\x03R\x04name\x12&\n" +
+	"\fdisplay_name\x18\x04 \x01(\tB\x03\xe0A\x01R\vdisplayName\x12%\n" +
+	"\vdescription\x18\x05 \x01(\tB\x03\xe0A\x01R\vdescription\x12=\n" +
+	"\x04type\x18\x06 \x01(\x0e2$.artifact.artifact.v1alpha.File.TypeB\x03\xe0A\x01R\x04type\x12X\n" +
+	"\x0eprocess_status\x18\a \x01(\x0e2,.artifact.artifact.v1alpha.FileProcessStatusB\x03\xe0A\x03R\rprocessStatus\x12,\n" +
+	"\x0fprocess_outcome\x18\b \x01(\tB\x03\xe0A\x03R\x0eprocessOutcome\x12%\n" +
+	"\vretrievable\x18\t \x01(\bB\x03\xe0A\x03R\vretrievable\x12\x1d\n" +
+	"\acontent\x18\n" +
+	" \x01(\tB\x03\xe0A\x01R\acontent\x12 \n" +
+	"\towner_uid\x18\v \x01(\tB\x03\xe0A\x03R\bownerUid\x12$\n" +
+	"\vcreator_uid\x18\f \x01(\tB\x03\xe0A\x03R\n" +
 	"creatorUid\x12:\n" +
-	"\acreator\x18\x1a \x01(\v2\x16.core.mgmt.v1beta.UserB\x03\xe0A\x03H\x00R\acreator\x88\x01\x01\x12\"\n" +
+	"\acreator\x18\x1b \x01(\v2\x16.core.mgmt.v1beta.UserB\x03\xe0A\x03H\x00R\acreator\x88\x01\x01\x12\"\n" +
 	"\n" +
-	"owner_name\x18\x1b \x01(\tB\x03\xe0A\x03R\townerName\x12:\n" +
-	"\x05owner\x18\x1c \x01(\v2\x17.core.mgmt.v1beta.OwnerB\x06\xe0A\x01\xe0A\x03H\x01R\x05owner\x88\x01\x01\x121\n" +
-	"\x12knowledge_base_uid\x18\f \x01(\tB\x03\xe0A\x03R\x10knowledgeBaseUid\x12@\n" +
-	"\vcreate_time\x18\r \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
+	"owner_name\x18\x1c \x01(\tB\x03\xe0A\x03R\townerName\x12:\n" +
+	"\x05owner\x18\x1d \x01(\v2\x17.core.mgmt.v1beta.OwnerB\x06\xe0A\x01\xe0A\x03H\x01R\x05owner\x88\x01\x01\x121\n" +
+	"\x12knowledge_base_uid\x18\r \x01(\tB\x03\xe0A\x03R\x10knowledgeBaseUid\x12@\n" +
+	"\vcreate_time\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
 	"createTime\x12@\n" +
-	"\vupdate_time\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
+	"\vupdate_time\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
 	"updateTime\x12@\n" +
-	"\vdelete_time\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
+	"\vdelete_time\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
 	"deleteTime\x12\x17\n" +
-	"\x04size\x18\x10 \x01(\x03B\x03\xe0A\x03R\x04size\x12&\n" +
-	"\ftotal_chunks\x18\x11 \x01(\x05B\x03\xe0A\x03R\vtotalChunks\x12&\n" +
-	"\ftotal_tokens\x18\x12 \x01(\x05B\x03\xe0A\x03R\vtotalTokens\x12N\n" +
-	"\x11external_metadata\x18\x13 \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x01H\x02R\x10externalMetadata\x88\x01\x01\x12\"\n" +
+	"\x04size\x18\x11 \x01(\x03B\x03\xe0A\x03R\x04size\x12&\n" +
+	"\ftotal_chunks\x18\x12 \x01(\x05B\x03\xe0A\x03R\vtotalChunks\x12&\n" +
+	"\ftotal_tokens\x18\x13 \x01(\x05B\x03\xe0A\x03R\vtotalTokens\x12N\n" +
+	"\x11external_metadata\x18\x14 \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x01H\x02R\x10externalMetadata\x88\x01\x01\x12\"\n" +
 	"\n" +
-	"object_uid\x18\x14 \x01(\tB\x03\xe0A\x01R\tobjectUid\x12&\n" +
-	"\fdownload_url\x18\x16 \x01(\tB\x03\xe0A\x03R\vdownloadUrl\x129\n" +
-	"\x13converting_pipeline\x18\x17 \x01(\tB\x03\xe0A\x01H\x03R\x12convertingPipeline\x88\x01\x01\x12E\n" +
-	"\x06length\x18\x18 \x01(\v2(.artifact.artifact.v1alpha.File.PositionB\x03\xe0A\x03R\x06length\x12\x17\n" +
-	"\x04tags\x18\x19 \x03(\tB\x03\xe0A\x01R\x04tags\x12,\n" +
-	"\x0fcollection_uids\x18\x1d \x03(\tB\x03\xe0A\x03R\x0ecollectionUids\x1a\xdc\x01\n" +
+	"object_uid\x18\x15 \x01(\tB\x03\xe0A\x01R\tobjectUid\x12&\n" +
+	"\fdownload_url\x18\x17 \x01(\tB\x03\xe0A\x03R\vdownloadUrl\x129\n" +
+	"\x13converting_pipeline\x18\x18 \x01(\tB\x03\xe0A\x01H\x03R\x12convertingPipeline\x88\x01\x01\x12E\n" +
+	"\x06length\x18\x19 \x01(\v2(.artifact.artifact.v1alpha.File.PositionB\x03\xe0A\x03R\x06length\x12\x17\n" +
+	"\x04tags\x18\x1a \x03(\tB\x03\xe0A\x01R\x04tags\x12,\n" +
+	"\x0fcollection_uids\x18\x1e \x03(\tB\x03\xe0A\x03R\x0ecollectionUids\x1a\xdc\x01\n" +
 	"\bPosition\x12F\n" +
 	"\x04unit\x18\x01 \x01(\x0e2-.artifact.artifact.v1alpha.File.Position.UnitB\x03\xe0A\x03R\x04unit\x12%\n" +
 	"\vcoordinates\x18\x02 \x03(\rB\x03\xe0A\x03R\vcoordinates\"a\n" +
@@ -2121,7 +2132,7 @@ const file_artifact_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\b_creatorB\b\n" +
 	"\x06_ownerB\x14\n" +
 	"\x12_external_metadataB\x16\n" +
-	"\x14_converting_pipelineJ\x04\b\x15\x10\x16\"\xa6\x01\n" +
+	"\x14_converting_pipelineJ\x04\b\x16\x10\x17\"\xa6\x01\n" +
 	"\x11CreateFileRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12/\n" +
 	"\x11knowledge_base_id\x18\x02 \x01(\tB\x03\xe0A\x02R\x0fknowledgeBaseId\x128\n" +
