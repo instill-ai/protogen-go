@@ -8,10 +8,10 @@ package pipelinev1beta
 
 import (
 	longrunningpb "cloud.google.com/go/longrunning/autogen/longrunningpb"
-	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	v1beta "github.com/instill-ai/protogen-go/common/healthcheck/v1beta"
 	v1alpha "github.com/instill-ai/protogen-go/common/run/v1alpha"
 	v1beta1 "github.com/instill-ai/protogen-go/core/mgmt/v1beta"
+	_ "github.com/instill-ai/protogen-go/protoc-gen-openapiv2/options"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
