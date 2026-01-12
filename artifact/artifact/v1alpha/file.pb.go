@@ -721,8 +721,12 @@ type File struct {
 	// Collection UIDs that this file belongs to.
 	// This field is system-managed and populated from collection membership.
 	CollectionUids []string `protobuf:"bytes,30,rep,name=collection_uids,json=collectionUids,proto3" json:"collection_uids,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	// Previous IDs that redirect to this file.
+	// When display_name changes, a new ID is generated and old IDs are stored as aliases.
+	// This enables backward compatibility for bookmarks, links, and LLM hallucination recovery.
+	Aliases       []string `protobuf:"bytes,31,rep,name=aliases,proto3" json:"aliases,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *File) Reset() {
@@ -954,6 +958,13 @@ func (x *File) GetTags() []string {
 func (x *File) GetCollectionUids() []string {
 	if x != nil {
 		return x.CollectionUids
+	}
+	return nil
+}
+
+func (x *File) GetAliases() []string {
+	if x != nil {
+		return x.Aliases
 	}
 	return nil
 }
@@ -2019,7 +2030,7 @@ var File_artifact_artifact_v1alpha_file_proto protoreflect.FileDescriptor
 
 const file_artifact_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\n" +
-	"$artifact/artifact/v1alpha/file.proto\x12\x19artifact.artifact.v1alpha\x1a\x1bcore/mgmt/v1beta/mgmt.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc5\x15\n" +
+	"$artifact/artifact/v1alpha/file.proto\x12\x19artifact.artifact.v1alpha\x1a\x1bcore/mgmt/v1beta/mgmt.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe4\x15\n" +
 	"\x04File\x12\x15\n" +
 	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12\x17\n" +
@@ -2056,7 +2067,8 @@ const file_artifact_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\x13converting_pipeline\x18\x18 \x01(\tB\x03\xe0A\x01H\x03R\x12convertingPipeline\x88\x01\x01\x12E\n" +
 	"\x06length\x18\x19 \x01(\v2(.artifact.artifact.v1alpha.File.PositionB\x03\xe0A\x03R\x06length\x12\x17\n" +
 	"\x04tags\x18\x1a \x03(\tB\x03\xe0A\x01R\x04tags\x12,\n" +
-	"\x0fcollection_uids\x18\x1e \x03(\tB\x03\xe0A\x03R\x0ecollectionUids\x1a\xdc\x01\n" +
+	"\x0fcollection_uids\x18\x1e \x03(\tB\x03\xe0A\x03R\x0ecollectionUids\x12\x1d\n" +
+	"\aaliases\x18\x1f \x03(\tB\x03\xe0A\x03R\aaliases\x1a\xdc\x01\n" +
 	"\bPosition\x12F\n" +
 	"\x04unit\x18\x01 \x01(\x0e2-.artifact.artifact.v1alpha.File.Position.UnitB\x03\xe0A\x03R\x04unit\x12%\n" +
 	"\vcoordinates\x18\x02 \x03(\rB\x03\xe0A\x03R\vcoordinates\"a\n" +

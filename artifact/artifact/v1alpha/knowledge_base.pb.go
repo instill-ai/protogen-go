@@ -159,7 +159,11 @@ type KnowledgeBase struct {
 	//
 	// Available systems: "openai", "gemini", or custom systems defined in the system table.
 	// If not specified, defaults to the default system.
-	SystemId      *string `protobuf:"bytes,25,opt,name=system_id,json=systemId,proto3,oneof" json:"system_id,omitempty"`
+	SystemId *string `protobuf:"bytes,25,opt,name=system_id,json=systemId,proto3,oneof" json:"system_id,omitempty"`
+	// Previous IDs that redirect to this knowledge base.
+	// When display_name changes, a new ID is generated and old IDs are stored as aliases.
+	// This enables backward compatibility for bookmarks, links, and LLM hallucination recovery.
+	Aliases       []string `protobuf:"bytes,26,rep,name=aliases,proto3" json:"aliases,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -371,6 +375,13 @@ func (x *KnowledgeBase) GetSystemId() string {
 		return *x.SystemId
 	}
 	return ""
+}
+
+func (x *KnowledgeBase) GetAliases() []string {
+	if x != nil {
+		return x.Aliases
+	}
+	return nil
 }
 
 // CreateKnowledgeBaseRequest represents a request to create a knowledge base.
@@ -1233,7 +1244,7 @@ var File_artifact_artifact_v1alpha_knowledge_base_proto protoreflect.FileDescrip
 
 const file_artifact_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"\n" +
-	".artifact/artifact/v1alpha/knowledge_base.proto\x12\x19artifact.artifact.v1alpha\x1a\x1bcore/mgmt/v1beta/mgmt.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x91\v\n" +
+	".artifact/artifact/v1alpha/knowledge_base.proto\x12\x19artifact.artifact.v1alpha\x1a\x1bcore/mgmt/v1beta/mgmt.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb0\v\n" +
 	"\rKnowledgeBase\x12\x15\n" +
 	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x05R\x02id\x12\x17\n" +
@@ -1265,7 +1276,8 @@ const file_artifact_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"\acreator\x18\x16 \x01(\v2\x16.core.mgmt.v1beta.UserB\x03\xe0A\x03H\x02R\acreator\x88\x01\x01\x12 \n" +
 	"\towner_uid\x18\x17 \x01(\tB\x03\xe0A\x03R\bownerUid\x12E\n" +
 	"\x04type\x18\x18 \x01(\x0e2,.artifact.artifact.v1alpha.KnowledgeBaseTypeB\x03\xe0A\x01R\x04type\x12%\n" +
-	"\tsystem_id\x18\x19 \x01(\tB\x03\xe0A\x01H\x03R\bsystemId\x88\x01\x01\x1a\\\n" +
+	"\tsystem_id\x18\x19 \x01(\tB\x03\xe0A\x01H\x03R\bsystemId\x88\x01\x01\x12\x1d\n" +
+	"\aaliases\x18\x1a \x03(\tB\x03\xe0A\x03R\aaliases\x1a\\\n" +
 	"\x0fEmbeddingConfig\x12!\n" +
 	"\fmodel_family\x18\x01 \x01(\tR\vmodelFamily\x12&\n" +
 	"\x0edimensionality\x18\x02 \x01(\rR\x0edimensionality:<\xeaA9\x127namespaces/{namespace}/knowledge-bases/{knowledge_base}B\b\n" +
