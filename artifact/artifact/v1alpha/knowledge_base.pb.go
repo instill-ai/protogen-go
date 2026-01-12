@@ -149,7 +149,17 @@ type KnowledgeBase struct {
 	OwnerUid string `protobuf:"bytes,23,opt,name=owner_uid,json=ownerUid,proto3" json:"owner_uid,omitempty"`
 	// The knowledge base type (persistent or ephemeral).
 	// Default is PERSISTENT if not specified during creation.
-	Type          KnowledgeBaseType `protobuf:"varint,24,opt,name=type,proto3,enum=artifact.artifact.v1alpha.KnowledgeBaseType" json:"type,omitempty"`
+	Type KnowledgeBaseType `protobuf:"varint,24,opt,name=type,proto3,enum=artifact.artifact.v1alpha.KnowledgeBaseType" json:"type,omitempty"`
+	// System ID defines how the knowledge base will be created based on the system's
+	// RAG configurations including:
+	// - AI model family (e.g., "openai", "gemini")
+	// - Embedding vector dimensionality
+	// - Chunking method
+	// - Other RAG-related settings
+	//
+	// Available systems: "openai", "gemini", or custom systems defined in the system table.
+	// If not specified, defaults to the default system.
+	SystemId      *string `protobuf:"bytes,25,opt,name=system_id,json=systemId,proto3,oneof" json:"system_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -354,6 +364,13 @@ func (x *KnowledgeBase) GetType() KnowledgeBaseType {
 		return x.Type
 	}
 	return KnowledgeBaseType_KNOWLEDGE_BASE_TYPE_UNSPECIFIED
+}
+
+func (x *KnowledgeBase) GetSystemId() string {
+	if x != nil && x.SystemId != nil {
+		return *x.SystemId
+	}
+	return ""
 }
 
 // CreateKnowledgeBaseRequest represents a request to create a knowledge base.
@@ -1216,8 +1233,7 @@ var File_artifact_artifact_v1alpha_knowledge_base_proto protoreflect.FileDescrip
 
 const file_artifact_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"\n" +
-	".artifact/artifact/v1alpha/knowledge_base.proto\x12\x19artifact.artifact.v1alpha\x1a\x1bcore/mgmt/v1beta/mgmt.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xdc\n" +
-	"\n" +
+	".artifact/artifact/v1alpha/knowledge_base.proto\x12\x19artifact.artifact.v1alpha\x1a\x1bcore/mgmt/v1beta/mgmt.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x91\v\n" +
 	"\rKnowledgeBase\x12\x15\n" +
 	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x05R\x02id\x12\x17\n" +
@@ -1248,14 +1264,17 @@ const file_artifact_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"creatorUid\x88\x01\x01\x12:\n" +
 	"\acreator\x18\x16 \x01(\v2\x16.core.mgmt.v1beta.UserB\x03\xe0A\x03H\x02R\acreator\x88\x01\x01\x12 \n" +
 	"\towner_uid\x18\x17 \x01(\tB\x03\xe0A\x03R\bownerUid\x12E\n" +
-	"\x04type\x18\x18 \x01(\x0e2,.artifact.artifact.v1alpha.KnowledgeBaseTypeB\x03\xe0A\x01R\x04type\x1a\\\n" +
+	"\x04type\x18\x18 \x01(\x0e2,.artifact.artifact.v1alpha.KnowledgeBaseTypeB\x03\xe0A\x01R\x04type\x12%\n" +
+	"\tsystem_id\x18\x19 \x01(\tB\x03\xe0A\x01H\x03R\bsystemId\x88\x01\x01\x1a\\\n" +
 	"\x0fEmbeddingConfig\x12!\n" +
 	"\fmodel_family\x18\x01 \x01(\tR\vmodelFamily\x12&\n" +
 	"\x0edimensionality\x18\x02 \x01(\rR\x0edimensionality:<\xeaA9\x127namespaces/{namespace}/knowledge-bases/{knowledge_base}B\b\n" +
 	"\x06_ownerB\x0e\n" +
 	"\f_creator_uidB\n" +
 	"\n" +
-	"\b_creator\"\x9a\x01\n" +
+	"\b_creatorB\f\n" +
+	"\n" +
+	"_system_id\"\x9a\x01\n" +
 	"\x1aCreateKnowledgeBaseRequest\x12&\n" +
 	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12T\n" +
 	"\x0eknowledge_base\x18\x02 \x01(\v2(.artifact.artifact.v1alpha.KnowledgeBaseB\x03\xe0A\x02R\rknowledgeBase\"s\n" +
