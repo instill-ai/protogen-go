@@ -174,8 +174,8 @@ func (SetRollbackRetentionAdminRequest_TimeUnit) EnumDescriptor() ([]byte, []int
 // KnowledgeBaseUpdateDetails provides detailed information about a knowledge base update
 type KnowledgeBaseUpdateDetails struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// UID of the knowledge base
-	KnowledgeBaseUid string `protobuf:"bytes,1,opt,name=knowledge_base_uid,json=knowledgeBaseUid,proto3" json:"knowledge_base_uid,omitempty"`
+	// ID of the knowledge base
+	KnowledgeBaseId string `protobuf:"bytes,1,opt,name=knowledge_base_id,json=knowledgeBaseId,proto3" json:"knowledge_base_id,omitempty"`
 	// Status of the knowledge base update
 	Status KnowledgeBaseUpdateStatus `protobuf:"varint,2,opt,name=status,proto3,enum=artifact.artifact.v1alpha.KnowledgeBaseUpdateStatus" json:"status,omitempty"`
 	// Workflow ID of the knowledge base update
@@ -240,9 +240,9 @@ func (*KnowledgeBaseUpdateDetails) Descriptor() ([]byte, []int) {
 	return file_artifact_artifact_v1alpha_update_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *KnowledgeBaseUpdateDetails) GetKnowledgeBaseUid() string {
+func (x *KnowledgeBaseUpdateDetails) GetKnowledgeBaseId() string {
 	if x != nil {
-		return x.KnowledgeBaseUid
+		return x.KnowledgeBaseId
 	}
 	return ""
 }
@@ -462,8 +462,8 @@ type PurgeRollbackAdminResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Whether the purge was successful
 	Success bool `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	// UID of the purged knowledge base
-	PurgedKnowledgeBaseUid string `protobuf:"bytes,2,opt,name=purged_knowledge_base_uid,json=purgedKnowledgeBaseUid,proto3" json:"purged_knowledge_base_uid,omitempty"`
+	// ID of the purged knowledge base
+	PurgedKnowledgeBaseId string `protobuf:"bytes,2,opt,name=purged_knowledge_base_id,json=purgedKnowledgeBaseId,proto3" json:"purged_knowledge_base_id,omitempty"`
 	// Number of files deleted
 	DeletedFiles int32 `protobuf:"varint,3,opt,name=deleted_files,json=deletedFiles,proto3" json:"deleted_files,omitempty"`
 	// Status message
@@ -509,9 +509,9 @@ func (x *PurgeRollbackAdminResponse) GetSuccess() bool {
 	return false
 }
 
-func (x *PurgeRollbackAdminResponse) GetPurgedKnowledgeBaseUid() string {
+func (x *PurgeRollbackAdminResponse) GetPurgedKnowledgeBaseId() string {
 	if x != nil {
-		return x.PurgedKnowledgeBaseUid
+		return x.PurgedKnowledgeBaseId
 	}
 	return ""
 }
@@ -1003,9 +1003,9 @@ var File_artifact_artifact_v1alpha_update_proto protoreflect.FileDescriptor
 
 const file_artifact_artifact_v1alpha_update_proto_rawDesc = "" +
 	"\n" +
-	"&artifact/artifact/v1alpha/update.proto\x12\x19artifact.artifact.v1alpha\x1a.artifact/artifact/v1alpha/knowledge_base.proto\"\xc4\x03\n" +
-	"\x1aKnowledgeBaseUpdateDetails\x12,\n" +
-	"\x12knowledge_base_uid\x18\x01 \x01(\tR\x10knowledgeBaseUid\x12L\n" +
+	"&artifact/artifact/v1alpha/update.proto\x12\x19artifact.artifact.v1alpha\x1a.artifact/artifact/v1alpha/knowledge_base.proto\"\xc2\x03\n" +
+	"\x1aKnowledgeBaseUpdateDetails\x12*\n" +
+	"\x11knowledge_base_id\x18\x01 \x01(\tR\x0fknowledgeBaseId\x12L\n" +
 	"\x06status\x18\x02 \x01(\x0e24.artifact.artifact.v1alpha.KnowledgeBaseUpdateStatusR\x06status\x12\x1f\n" +
 	"\vworkflow_id\x18\x03 \x01(\tR\n" +
 	"workflowId\x12\x1d\n" +
@@ -1025,10 +1025,10 @@ const file_artifact_artifact_v1alpha_update_proto_rawDesc = "" +
 	"\x0eknowledge_base\x18\x01 \x01(\v2(.artifact.artifact.v1alpha.KnowledgeBaseR\rknowledgeBase\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"/\n" +
 	"\x19PurgeRollbackAdminRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\"\xb0\x01\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\"\xae\x01\n" +
 	"\x1aPurgeRollbackAdminResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\x129\n" +
-	"\x19purged_knowledge_base_uid\x18\x02 \x01(\tR\x16purgedKnowledgeBaseUid\x12#\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x127\n" +
+	"\x18purged_knowledge_base_id\x18\x02 \x01(\tR\x15purgedKnowledgeBaseId\x12#\n" +
 	"\rdeleted_files\x18\x03 \x01(\x05R\fdeletedFiles\x12\x18\n" +
 	"\amessage\x18\x04 \x01(\tR\amessage\"\xaf\x02\n" +
 	" SetRollbackRetentionAdminRequest\x12\x12\n" +

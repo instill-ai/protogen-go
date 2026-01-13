@@ -35,8 +35,8 @@ type Object struct {
 	// content type
 	// this is mime type from content-type header of http request or from file extension
 	ContentType string `protobuf:"bytes,4,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
-	// namespace uid
-	NamespaceUid string `protobuf:"bytes,6,opt,name=namespace_uid,json=namespaceUid,proto3" json:"namespace_uid,omitempty"`
+	// namespace id
+	NamespaceId string `protobuf:"bytes,6,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
 	// creator
 	Creator string `protobuf:"bytes,7,opt,name=creator,proto3" json:"creator,omitempty"`
 	// if file is uploaded
@@ -114,9 +114,9 @@ func (x *Object) GetContentType() string {
 	return ""
 }
 
-func (x *Object) GetNamespaceUid() string {
+func (x *Object) GetNamespaceId() string {
 	if x != nil {
-		return x.NamespaceUid
+		return x.NamespaceId
 	}
 	return ""
 }
@@ -903,13 +903,13 @@ var File_artifact_artifact_v1alpha_object_proto protoreflect.FileDescriptor
 
 const file_artifact_artifact_v1alpha_object_proto_rawDesc = "" +
 	"\n" +
-	"&artifact/artifact/v1alpha/object.proto\x12\x19artifact.artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xf9\x03\n" +
+	"&artifact/artifact/v1alpha/object.proto\x12\x19artifact.artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xf7\x03\n" +
 	"\x06Object\x12\x10\n" +
 	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
 	"\x04size\x18\x03 \x01(\x03R\x04size\x12!\n" +
-	"\fcontent_type\x18\x04 \x01(\tR\vcontentType\x12#\n" +
-	"\rnamespace_uid\x18\x06 \x01(\tR\fnamespaceUid\x12\x18\n" +
+	"\fcontent_type\x18\x04 \x01(\tR\vcontentType\x12!\n" +
+	"\fnamespace_id\x18\x06 \x01(\tR\vnamespaceId\x12\x18\n" +
 	"\acreator\x18\a \x01(\tR\acreator\x12\x1f\n" +
 	"\vis_uploaded\x18\b \x01(\bR\n" +
 	"isUploaded\x12\x17\n" +

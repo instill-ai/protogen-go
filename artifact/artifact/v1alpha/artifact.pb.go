@@ -284,10 +284,10 @@ type KnowledgeBaseRun struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Unique identifier for each run.
 	Uid string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
-	// knowledge base uid
-	KnowledgeBaseUid string `protobuf:"bytes,2,opt,name=knowledge_base_uid,json=knowledgeBaseUid,proto3" json:"knowledge_base_uid,omitempty"`
-	// The file uids.
-	FileUids []string `protobuf:"bytes,3,rep,name=file_uids,json=fileUids,proto3" json:"file_uids,omitempty"`
+	// knowledge base id
+	KnowledgeBaseId string `protobuf:"bytes,2,opt,name=knowledge_base_id,json=knowledgeBaseId,proto3" json:"knowledge_base_id,omitempty"`
+	// The file ids.
+	FileIds []string `protobuf:"bytes,3,rep,name=file_ids,json=fileIds,proto3" json:"file_ids,omitempty"`
 	// Action of the knowledge base run.
 	Action KnowledgeBaseRunAction `protobuf:"varint,4,opt,name=action,proto3,enum=artifact.artifact.v1alpha.KnowledgeBaseRunAction" json:"action,omitempty"`
 	// Current status of the run.
@@ -351,16 +351,16 @@ func (x *KnowledgeBaseRun) GetUid() string {
 	return ""
 }
 
-func (x *KnowledgeBaseRun) GetKnowledgeBaseUid() string {
+func (x *KnowledgeBaseRun) GetKnowledgeBaseId() string {
 	if x != nil {
-		return x.KnowledgeBaseUid
+		return x.KnowledgeBaseId
 	}
 	return ""
 }
 
-func (x *KnowledgeBaseRun) GetFileUids() []string {
+func (x *KnowledgeBaseRun) GetFileIds() []string {
 	if x != nil {
-		return x.FileUids
+		return x.FileIds
 	}
 	return nil
 }
@@ -624,11 +624,11 @@ const file_artifact_artifact_v1alpha_artifact_proto_rawDesc = "" +
 	"\x14health_check_request\x18\x01 \x01(\v2-.common.healthcheck.v1beta.HealthCheckRequestB\x03\xe0A\x01H\x00R\x12healthCheckRequest\x88\x01\x01B\x17\n" +
 	"\x15_health_check_request\"w\n" +
 	"\x11ReadinessResponse\x12b\n" +
-	"\x15health_check_response\x18\x01 \x01(\v2..common.healthcheck.v1beta.HealthCheckResponseR\x13healthCheckResponse\"\xe6\x06\n" +
+	"\x15health_check_response\x18\x01 \x01(\v2..common.healthcheck.v1beta.HealthCheckResponseR\x13healthCheckResponse\"\xe2\x06\n" +
 	"\x10KnowledgeBaseRun\x12\x15\n" +
-	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x121\n" +
-	"\x12knowledge_base_uid\x18\x02 \x01(\tB\x03\xe0A\x03R\x10knowledgeBaseUid\x12#\n" +
-	"\tfile_uids\x18\x03 \x03(\tB\x06\xe0A\x03\xe0A\x01R\bfileUids\x12N\n" +
+	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12/\n" +
+	"\x11knowledge_base_id\x18\x02 \x01(\tB\x03\xe0A\x03R\x0fknowledgeBaseId\x12!\n" +
+	"\bfile_ids\x18\x03 \x03(\tB\x06\xe0A\x03\xe0A\x01R\afileIds\x12N\n" +
 	"\x06action\x18\x04 \x01(\x0e21.artifact.artifact.v1alpha.KnowledgeBaseRunActionB\x03\xe0A\x03R\x06action\x12:\n" +
 	"\x06status\x18\x05 \x01(\x0e2\x1d.common.run.v1alpha.RunStatusB\x03\xe0A\x03R\x06status\x12:\n" +
 	"\x06source\x18\x06 \x01(\x0e2\x1d.common.run.v1alpha.RunSourceB\x03\xe0A\x03R\x06source\x122\n" +

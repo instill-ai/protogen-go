@@ -84,7 +84,7 @@ type KnowledgeBase struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The knowledge base uid (internal UUID).
 	Uid string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
-	// The knowledge base id (URL slug, user-provided or system-generated).
+	// The knowledge base id (URL-safe slug derived from display_name with hash suffix).
 	Id string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
 	// The resource name of the knowledge base.
 	// Format: `namespaces/{namespace}/knowledge-bases/{knowledge_base}`.
@@ -132,9 +132,9 @@ type KnowledgeBase struct {
 	SummarizingPipelines []string `protobuf:"bytes,17,rep,name=summarizing_pipelines,json=summarizingPipelines,proto3" json:"summarizing_pipelines,omitempty"`
 	// The embedding configuration for the knowledge base.
 	EmbeddingConfig *KnowledgeBase_EmbeddingConfig `protobuf:"bytes,18,opt,name=embedding_config,json=embeddingConfig,proto3" json:"embedding_config,omitempty"`
-	// The UID of the active Milvus collection for this knowledge base.
+	// The ID of the active Milvus collection for this knowledge base.
 	// This supports collection versioning for embedding dimension changes.
-	ActiveCollectionUid string `protobuf:"bytes,19,opt,name=active_collection_uid,json=activeCollectionUid,proto3" json:"active_collection_uid,omitempty"`
+	ActiveCollectionId string `protobuf:"bytes,19,opt,name=active_collection_id,json=activeCollectionId,proto3" json:"active_collection_id,omitempty"`
 	// Knowledge base owner.
 	Owner *v1beta.Owner `protobuf:"bytes,20,opt,name=owner,proto3,oneof" json:"owner,omitempty"`
 	// The UID of the user who created this knowledge base.
@@ -328,9 +328,9 @@ func (x *KnowledgeBase) GetEmbeddingConfig() *KnowledgeBase_EmbeddingConfig {
 	return nil
 }
 
-func (x *KnowledgeBase) GetActiveCollectionUid() string {
+func (x *KnowledgeBase) GetActiveCollectionId() string {
 	if x != nil {
-		return x.ActiveCollectionUid
+		return x.ActiveCollectionId
 	}
 	return ""
 }
@@ -1244,10 +1244,10 @@ var File_artifact_artifact_v1alpha_knowledge_base_proto protoreflect.FileDescrip
 
 const file_artifact_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"\n" +
-	".artifact/artifact/v1alpha/knowledge_base.proto\x12\x19artifact.artifact.v1alpha\x1a\x1bcore/mgmt/v1beta/mgmt.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb0\v\n" +
+	".artifact/artifact/v1alpha/knowledge_base.proto\x12\x19artifact.artifact.v1alpha\x1a\x1bcore/mgmt/v1beta/mgmt.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xae\v\n" +
 	"\rKnowledgeBase\x12\x15\n" +
 	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x13\n" +
-	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x05R\x02id\x12\x17\n" +
+	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12\x17\n" +
 	"\x04name\x18\x03 \x01(\tB\x03\xe0A\x03R\x04name\x12&\n" +
 	"\fdisplay_name\x18\x04 \x01(\tB\x03\xe0A\x01R\vdisplayName\x12%\n" +
 	"\vdescription\x18\x05 \x01(\tB\x03\xe0A\x01R\vdescription\x12@\n" +
@@ -1268,8 +1268,8 @@ const file_artifact_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"\ftotal_tokens\x18\x0f \x01(\rB\x03\xe0A\x03R\vtotalTokens\x12&\n" +
 	"\fused_storage\x18\x10 \x01(\x04B\x03\xe0A\x03R\vusedStorage\x12:\n" +
 	"\x15summarizing_pipelines\x18\x11 \x03(\tB\x05\xe0A\x01\x18\x01R\x14summarizingPipelines\x12h\n" +
-	"\x10embedding_config\x18\x12 \x01(\v28.artifact.artifact.v1alpha.KnowledgeBase.EmbeddingConfigB\x03\xe0A\x01R\x0fembeddingConfig\x127\n" +
-	"\x15active_collection_uid\x18\x13 \x01(\tB\x03\xe0A\x03R\x13activeCollectionUid\x127\n" +
+	"\x10embedding_config\x18\x12 \x01(\v28.artifact.artifact.v1alpha.KnowledgeBase.EmbeddingConfigB\x03\xe0A\x01R\x0fembeddingConfig\x125\n" +
+	"\x14active_collection_id\x18\x13 \x01(\tB\x03\xe0A\x03R\x12activeCollectionId\x127\n" +
 	"\x05owner\x18\x14 \x01(\v2\x17.core.mgmt.v1beta.OwnerB\x03\xe0A\x03H\x00R\x05owner\x88\x01\x01\x12)\n" +
 	"\vcreator_uid\x18\x15 \x01(\tB\x03\xe0A\x03H\x01R\n" +
 	"creatorUid\x88\x01\x01\x12:\n" +

@@ -618,9 +618,9 @@ func (File_Position_Unit) EnumDescriptor() ([]byte, []int) {
 // File represents a file in a knowledge base.
 type File struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The file uid (internal UUID, also used as id).
+	// The file uid (internal UUID).
 	Uid string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
-	// The file id (same as uid).
+	// The file id (URL-safe slug derived from display_name with hash suffix).
 	Id string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
 	// The resource name of the file.
 	// Format: `namespaces/{namespace}/knowledge-bases/{knowledge_base}/files/{file}`.
@@ -652,8 +652,8 @@ type File struct {
 	OwnerName string `protobuf:"bytes,28,opt,name=owner_name,json=ownerName,proto3" json:"owner_name,omitempty"`
 	// File owner (User or Organization).
 	Owner *v1beta.Owner `protobuf:"bytes,29,opt,name=owner,proto3,oneof" json:"owner,omitempty"`
-	// The UID of the knowledge base this file belongs to.
-	KnowledgeBaseUid string `protobuf:"bytes,13,opt,name=knowledge_base_uid,json=knowledgeBaseUid,proto3" json:"knowledge_base_uid,omitempty"`
+	// The ID of the knowledge base this file belongs to.
+	KnowledgeBaseId string `protobuf:"bytes,13,opt,name=knowledge_base_id,json=knowledgeBaseId,proto3" json:"knowledge_base_id,omitempty"`
 	// The timestamp when the file was created.
 	CreateTime *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
 	// The timestamp when the file was last updated.
@@ -718,9 +718,9 @@ type File struct {
 	Length *File_Position `protobuf:"bytes,25,opt,name=length,proto3" json:"length,omitempty"`
 	// Array of tags associated with the file.
 	Tags []string `protobuf:"bytes,26,rep,name=tags,proto3" json:"tags,omitempty"`
-	// Collection UIDs that this file belongs to.
+	// Collection IDs that this file belongs to.
 	// This field is system-managed and populated from collection membership.
-	CollectionUids []string `protobuf:"bytes,30,rep,name=collection_uids,json=collectionUids,proto3" json:"collection_uids,omitempty"`
+	CollectionIds []string `protobuf:"bytes,30,rep,name=collection_ids,json=collectionIds,proto3" json:"collection_ids,omitempty"`
 	// Previous IDs that redirect to this file.
 	// When display_name changes, a new ID is generated and old IDs are stored as aliases.
 	// This enables backward compatibility for bookmarks, links, and LLM hallucination recovery.
@@ -864,9 +864,9 @@ func (x *File) GetOwner() *v1beta.Owner {
 	return nil
 }
 
-func (x *File) GetKnowledgeBaseUid() string {
+func (x *File) GetKnowledgeBaseId() string {
 	if x != nil {
-		return x.KnowledgeBaseUid
+		return x.KnowledgeBaseId
 	}
 	return ""
 }
@@ -955,9 +955,9 @@ func (x *File) GetTags() []string {
 	return nil
 }
 
-func (x *File) GetCollectionUids() []string {
+func (x *File) GetCollectionIds() []string {
 	if x != nil {
-		return x.CollectionUids
+		return x.CollectionIds
 	}
 	return nil
 }
@@ -2030,7 +2030,7 @@ var File_artifact_artifact_v1alpha_file_proto protoreflect.FileDescriptor
 
 const file_artifact_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\n" +
-	"$artifact/artifact/v1alpha/file.proto\x12\x19artifact.artifact.v1alpha\x1a\x1bcore/mgmt/v1beta/mgmt.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe4\x15\n" +
+	"$artifact/artifact/v1alpha/file.proto\x12\x19artifact.artifact.v1alpha\x1a\x1bcore/mgmt/v1beta/mgmt.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe0\x15\n" +
 	"\x04File\x12\x15\n" +
 	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12\x17\n" +
@@ -2049,8 +2049,8 @@ const file_artifact_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\acreator\x18\x1b \x01(\v2\x16.core.mgmt.v1beta.UserB\x03\xe0A\x03H\x00R\acreator\x88\x01\x01\x12\"\n" +
 	"\n" +
 	"owner_name\x18\x1c \x01(\tB\x03\xe0A\x03R\townerName\x12:\n" +
-	"\x05owner\x18\x1d \x01(\v2\x17.core.mgmt.v1beta.OwnerB\x06\xe0A\x01\xe0A\x03H\x01R\x05owner\x88\x01\x01\x121\n" +
-	"\x12knowledge_base_uid\x18\r \x01(\tB\x03\xe0A\x03R\x10knowledgeBaseUid\x12@\n" +
+	"\x05owner\x18\x1d \x01(\v2\x17.core.mgmt.v1beta.OwnerB\x06\xe0A\x01\xe0A\x03H\x01R\x05owner\x88\x01\x01\x12/\n" +
+	"\x11knowledge_base_id\x18\r \x01(\tB\x03\xe0A\x03R\x0fknowledgeBaseId\x12@\n" +
 	"\vcreate_time\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
 	"createTime\x12@\n" +
 	"\vupdate_time\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
@@ -2066,8 +2066,8 @@ const file_artifact_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\fdownload_url\x18\x17 \x01(\tB\x03\xe0A\x03R\vdownloadUrl\x129\n" +
 	"\x13converting_pipeline\x18\x18 \x01(\tB\x03\xe0A\x01H\x03R\x12convertingPipeline\x88\x01\x01\x12E\n" +
 	"\x06length\x18\x19 \x01(\v2(.artifact.artifact.v1alpha.File.PositionB\x03\xe0A\x03R\x06length\x12\x17\n" +
-	"\x04tags\x18\x1a \x03(\tB\x03\xe0A\x01R\x04tags\x12,\n" +
-	"\x0fcollection_uids\x18\x1e \x03(\tB\x03\xe0A\x03R\x0ecollectionUids\x12\x1d\n" +
+	"\x04tags\x18\x1a \x03(\tB\x03\xe0A\x01R\x04tags\x12*\n" +
+	"\x0ecollection_ids\x18\x1e \x03(\tB\x03\xe0A\x03R\rcollectionIds\x12\x1d\n" +
 	"\aaliases\x18\x1f \x03(\tB\x03\xe0A\x03R\aaliases\x1a\xdc\x01\n" +
 	"\bPosition\x12F\n" +
 	"\x04unit\x18\x01 \x01(\x0e2-.artifact.artifact.v1alpha.File.Position.UnitB\x03\xe0A\x03R\x04unit\x12%\n" +
