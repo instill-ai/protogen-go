@@ -196,59 +196,6 @@ func (View) EnumDescriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_common_proto_rawDescGZIP(), []int{2}
 }
 
-// Name defines the availability of a resource name.
-type CheckNameResponse_Name int32
-
-const (
-	// Unspecified.
-	CheckNameResponse_NAME_UNSPECIFIED CheckNameResponse_Name = 0
-	// Available.
-	CheckNameResponse_NAME_AVAILABLE CheckNameResponse_Name = 1
-	// Unavailable.
-	CheckNameResponse_NAME_UNAVAILABLE CheckNameResponse_Name = 2
-)
-
-// Enum value maps for CheckNameResponse_Name.
-var (
-	CheckNameResponse_Name_name = map[int32]string{
-		0: "NAME_UNSPECIFIED",
-		1: "NAME_AVAILABLE",
-		2: "NAME_UNAVAILABLE",
-	}
-	CheckNameResponse_Name_value = map[string]int32{
-		"NAME_UNSPECIFIED": 0,
-		"NAME_AVAILABLE":   1,
-		"NAME_UNAVAILABLE": 2,
-	}
-)
-
-func (x CheckNameResponse_Name) Enum() *CheckNameResponse_Name {
-	p := new(CheckNameResponse_Name)
-	*p = x
-	return p
-}
-
-func (x CheckNameResponse_Name) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (CheckNameResponse_Name) Descriptor() protoreflect.EnumDescriptor {
-	return file_pipeline_v1beta_common_proto_enumTypes[3].Descriptor()
-}
-
-func (CheckNameResponse_Name) Type() protoreflect.EnumType {
-	return &file_pipeline_v1beta_common_proto_enumTypes[3]
-}
-
-func (x CheckNameResponse_Name) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use CheckNameResponse_Name.Descriptor instead.
-func (CheckNameResponse_Name) EnumDescriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_common_proto_rawDescGZIP(), []int{3, 0}
-}
-
 // Sharing contains the information to share a resource with other users.
 //
 // For more information, see [Share Pipelines](https://instill-ai.dev/docs/pipeline/share-pipeline).
@@ -377,104 +324,6 @@ func (x *Permission) GetCanRelease() bool {
 	return false
 }
 
-// CheckNameRequest represents a request to verify if a name is
-// available.
-type CheckNameRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The name of the resource to be checked. For the moment, only pipeline and
-	// connector names can be checked. The following formats are accepted:
-	// - `users/{user.id}/pipelines/{pipeline.id}`
-	// - `users/{user.id}/connectors/{connector.id}`
-	// - `organizations/{organization.id}/pipelines/{pipeline.id}`
-	// - `organizations/{organization.id}/connectors/{connector.id}`
-	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CheckNameRequest) Reset() {
-	*x = CheckNameRequest{}
-	mi := &file_pipeline_v1beta_common_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CheckNameRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CheckNameRequest) ProtoMessage() {}
-
-func (x *CheckNameRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_common_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CheckNameRequest.ProtoReflect.Descriptor instead.
-func (*CheckNameRequest) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_common_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *CheckNameRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-// CheckNameResponse contains the availability of a resource name.
-type CheckNameResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The availability of the requested name.
-	Availability  CheckNameResponse_Name `protobuf:"varint,1,opt,name=availability,proto3,enum=pipeline.v1beta.CheckNameResponse_Name" json:"availability,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CheckNameResponse) Reset() {
-	*x = CheckNameResponse{}
-	mi := &file_pipeline_v1beta_common_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CheckNameResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CheckNameResponse) ProtoMessage() {}
-
-func (x *CheckNameResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_common_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CheckNameResponse.ProtoReflect.Descriptor instead.
-func (*CheckNameResponse) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_common_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *CheckNameResponse) GetAvailability() CheckNameResponse_Name {
-	if x != nil {
-		return x.Availability
-	}
-	return CheckNameResponse_NAME_UNSPECIFIED
-}
-
 // ComponentTask contains information about a task that a component can
 // perform.
 type ComponentTask struct {
@@ -491,7 +340,7 @@ type ComponentTask struct {
 
 func (x *ComponentTask) Reset() {
 	*x = ComponentTask{}
-	mi := &file_pipeline_v1beta_common_proto_msgTypes[4]
+	mi := &file_pipeline_v1beta_common_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -503,7 +352,7 @@ func (x *ComponentTask) String() string {
 func (*ComponentTask) ProtoMessage() {}
 
 func (x *ComponentTask) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_common_proto_msgTypes[4]
+	mi := &file_pipeline_v1beta_common_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -516,7 +365,7 @@ func (x *ComponentTask) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ComponentTask.ProtoReflect.Descriptor instead.
 func (*ComponentTask) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_common_proto_rawDescGZIP(), []int{4}
+	return file_pipeline_v1beta_common_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ComponentTask) GetName() string {
@@ -556,7 +405,7 @@ type ComponentEvent struct {
 
 func (x *ComponentEvent) Reset() {
 	*x = ComponentEvent{}
-	mi := &file_pipeline_v1beta_common_proto_msgTypes[5]
+	mi := &file_pipeline_v1beta_common_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -568,7 +417,7 @@ func (x *ComponentEvent) String() string {
 func (*ComponentEvent) ProtoMessage() {}
 
 func (x *ComponentEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_common_proto_msgTypes[5]
+	mi := &file_pipeline_v1beta_common_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -581,7 +430,7 @@ func (x *ComponentEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ComponentEvent.ProtoReflect.Descriptor instead.
 func (*ComponentEvent) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_common_proto_rawDescGZIP(), []int{5}
+	return file_pipeline_v1beta_common_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *ComponentEvent) GetName() string {
@@ -618,7 +467,7 @@ type Sharing_User struct {
 
 func (x *Sharing_User) Reset() {
 	*x = Sharing_User{}
-	mi := &file_pipeline_v1beta_common_proto_msgTypes[6]
+	mi := &file_pipeline_v1beta_common_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -630,7 +479,7 @@ func (x *Sharing_User) String() string {
 func (*Sharing_User) ProtoMessage() {}
 
 func (x *Sharing_User) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_common_proto_msgTypes[6]
+	mi := &file_pipeline_v1beta_common_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -680,7 +529,7 @@ type Sharing_ShareCode struct {
 
 func (x *Sharing_ShareCode) Reset() {
 	*x = Sharing_ShareCode{}
-	mi := &file_pipeline_v1beta_common_proto_msgTypes[7]
+	mi := &file_pipeline_v1beta_common_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -692,7 +541,7 @@ func (x *Sharing_ShareCode) String() string {
 func (*Sharing_ShareCode) ProtoMessage() {}
 
 func (x *Sharing_ShareCode) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_common_proto_msgTypes[7]
+	mi := &file_pipeline_v1beta_common_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -763,15 +612,7 @@ const file_pipeline_v1beta_common_proto_rawDesc = "" +
 	"\vcan_trigger\x18\x02 \x01(\bR\n" +
 	"canTrigger\x12\x1f\n" +
 	"\vcan_release\x18\x03 \x01(\bR\n" +
-	"canRelease\"+\n" +
-	"\x10CheckNameRequest\x12\x17\n" +
-	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"\xa8\x01\n" +
-	"\x11CheckNameResponse\x12K\n" +
-	"\favailability\x18\x01 \x01(\x0e2'.pipeline.v1beta.CheckNameResponse.NameR\favailability\"F\n" +
-	"\x04Name\x12\x14\n" +
-	"\x10NAME_UNSPECIFIED\x10\x00\x12\x12\n" +
-	"\x0eNAME_AVAILABLE\x10\x01\x12\x14\n" +
-	"\x10NAME_UNAVAILABLE\x10\x02\"j\n" +
+	"canRelease\"j\n" +
 	"\rComponentTask\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x19\n" +
 	"\x05title\x18\x02 \x01(\tB\x03\xe0A\x03R\x05title\x12%\n" +
@@ -810,35 +651,31 @@ func file_pipeline_v1beta_common_proto_rawDescGZIP() []byte {
 	return file_pipeline_v1beta_common_proto_rawDescData
 }
 
-var file_pipeline_v1beta_common_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
-var file_pipeline_v1beta_common_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_pipeline_v1beta_common_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
+var file_pipeline_v1beta_common_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_pipeline_v1beta_common_proto_goTypes = []any{
-	(Role)(0),                   // 0: pipeline.v1beta.Role
-	(ComponentType)(0),          // 1: pipeline.v1beta.ComponentType
-	(View)(0),                   // 2: pipeline.v1beta.View
-	(CheckNameResponse_Name)(0), // 3: pipeline.v1beta.CheckNameResponse.Name
-	(*Sharing)(nil),             // 4: pipeline.v1beta.Sharing
-	(*Permission)(nil),          // 5: pipeline.v1beta.Permission
-	(*CheckNameRequest)(nil),    // 6: pipeline.v1beta.CheckNameRequest
-	(*CheckNameResponse)(nil),   // 7: pipeline.v1beta.CheckNameResponse
-	(*ComponentTask)(nil),       // 8: pipeline.v1beta.ComponentTask
-	(*ComponentEvent)(nil),      // 9: pipeline.v1beta.ComponentEvent
-	(*Sharing_User)(nil),        // 10: pipeline.v1beta.Sharing.User
-	(*Sharing_ShareCode)(nil),   // 11: pipeline.v1beta.Sharing.ShareCode
-	nil,                         // 12: pipeline.v1beta.Sharing.UsersEntry
+	(Role)(0),                 // 0: pipeline.v1beta.Role
+	(ComponentType)(0),        // 1: pipeline.v1beta.ComponentType
+	(View)(0),                 // 2: pipeline.v1beta.View
+	(*Sharing)(nil),           // 3: pipeline.v1beta.Sharing
+	(*Permission)(nil),        // 4: pipeline.v1beta.Permission
+	(*ComponentTask)(nil),     // 5: pipeline.v1beta.ComponentTask
+	(*ComponentEvent)(nil),    // 6: pipeline.v1beta.ComponentEvent
+	(*Sharing_User)(nil),      // 7: pipeline.v1beta.Sharing.User
+	(*Sharing_ShareCode)(nil), // 8: pipeline.v1beta.Sharing.ShareCode
+	nil,                       // 9: pipeline.v1beta.Sharing.UsersEntry
 }
 var file_pipeline_v1beta_common_proto_depIdxs = []int32{
-	12, // 0: pipeline.v1beta.Sharing.users:type_name -> pipeline.v1beta.Sharing.UsersEntry
-	11, // 1: pipeline.v1beta.Sharing.share_code:type_name -> pipeline.v1beta.Sharing.ShareCode
-	3,  // 2: pipeline.v1beta.CheckNameResponse.availability:type_name -> pipeline.v1beta.CheckNameResponse.Name
-	0,  // 3: pipeline.v1beta.Sharing.User.role:type_name -> pipeline.v1beta.Role
-	0,  // 4: pipeline.v1beta.Sharing.ShareCode.role:type_name -> pipeline.v1beta.Role
-	10, // 5: pipeline.v1beta.Sharing.UsersEntry.value:type_name -> pipeline.v1beta.Sharing.User
-	6,  // [6:6] is the sub-list for method output_type
-	6,  // [6:6] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	9, // 0: pipeline.v1beta.Sharing.users:type_name -> pipeline.v1beta.Sharing.UsersEntry
+	8, // 1: pipeline.v1beta.Sharing.share_code:type_name -> pipeline.v1beta.Sharing.ShareCode
+	0, // 2: pipeline.v1beta.Sharing.User.role:type_name -> pipeline.v1beta.Role
+	0, // 3: pipeline.v1beta.Sharing.ShareCode.role:type_name -> pipeline.v1beta.Role
+	7, // 4: pipeline.v1beta.Sharing.UsersEntry.value:type_name -> pipeline.v1beta.Sharing.User
+	5, // [5:5] is the sub-list for method output_type
+	5, // [5:5] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_pipeline_v1beta_common_proto_init() }
@@ -851,8 +688,8 @@ func file_pipeline_v1beta_common_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_pipeline_v1beta_common_proto_rawDesc), len(file_pipeline_v1beta_common_proto_rawDesc)),
-			NumEnums:      4,
-			NumMessages:   9,
+			NumEnums:      3,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
