@@ -2171,7 +2171,7 @@ func RegisterPipelinePublicServiceHandlerServer(ctx context.Context, mux *runtim
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/LookUpPipeline", runtime.WithHTTPPathPattern("/v1beta/{permalink=pipelines/*}/lookUp"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/LookUpPipeline", runtime.WithHTTPPathPattern("/v1beta/{permalink=pipelines/*}/look-up"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3081,7 +3081,7 @@ func RegisterPipelinePublicServiceHandlerClient(ctx context.Context, mux *runtim
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/LookUpPipeline", runtime.WithHTTPPathPattern("/v1beta/{permalink=pipelines/*}/lookUp"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/LookUpPipeline", runtime.WithHTTPPathPattern("/v1beta/{permalink=pipelines/*}/look-up"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3774,7 +3774,7 @@ var (
 	pattern_PipelinePublicService_Readiness_0                            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "__readiness"}, ""))
 	pattern_PipelinePublicService_GetHubStats_0                          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "hub-stats"}, ""))
 	pattern_PipelinePublicService_ListPipelines_0                        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "pipelines"}, ""))
-	pattern_PipelinePublicService_LookUpPipeline_0                       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1beta", "pipelines", "permalink", "lookUp"}, ""))
+	pattern_PipelinePublicService_LookUpPipeline_0                       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1beta", "pipelines", "permalink", "look-up"}, ""))
 	pattern_PipelinePublicService_ListNamespacePipelines_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1beta", "namespaces", "parent", "pipelines"}, ""))
 	pattern_PipelinePublicService_CreateNamespacePipeline_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1beta", "namespaces", "parent", "pipelines"}, ""))
 	pattern_PipelinePublicService_GetNamespacePipeline_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1beta", "namespaces", "pipelines", "name"}, ""))

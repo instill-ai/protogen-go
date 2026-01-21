@@ -60,7 +60,7 @@ const file_mgmt_v1beta_mgmt_public_service_proto_rawDesc = "" +
 	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x19*\x17/v1beta/{name=tokens/*}\x12\x97\x01\n" +
 	"\rValidateToken\x12!.mgmt.v1beta.ValidateTokenRequest\x1a\".mgmt.v1beta.ValidateTokenResponse\"?\x92A\x1e\n" +
 	"\tNamespacej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x18\"\x16/v1beta/validate_token\x12\x9e\x01\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x18\"\x16/v1beta/validate-token\x12\x9e\x01\n" +
 	"\x0eCheckNamespace\x12\".mgmt.v1beta.CheckNamespaceRequest\x1a#.mgmt.v1beta.CheckNamespaceResponse\"C\x92A\x1e\n" +
 	"\tNamespacej\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/v1beta/check-namespace\x12\xc8\x01\n" +
@@ -79,16 +79,16 @@ const file_mgmt_v1beta_mgmt_public_service_proto_rawDesc = "" +
 	"\aMetricsj\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02!\x12\x1f/v1beta/model-runs/query-charts\x12\x92\x01\n" +
 	"\x0fAuthTokenIssuer\x12#.mgmt.v1beta.AuthTokenIssuerRequest\x1a$.mgmt.v1beta.AuthTokenIssuerResponse\"4\xfa\xd2\xe4\x93\x02\n" +
-	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/v1beta/auth/token_issuer\x12v\n" +
+	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/v1beta/auth/token-issuer\x12v\n" +
 	"\tAuthLogin\x12\x1d.mgmt.v1beta.AuthLoginRequest\x1a\x1e.mgmt.v1beta.AuthLoginResponse\"*\xfa\xd2\xe4\x93\x02\n" +
 	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02\x14\"\x12/v1beta/auth/login\x12z\n" +
 	"\n" +
 	"AuthLogout\x12\x1e.mgmt.v1beta.AuthLogoutRequest\x1a\x1f.mgmt.v1beta.AuthLogoutResponse\"+\xfa\xd2\xe4\x93\x02\n" +
 	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02\x15\"\x13/v1beta/auth/logout\x12\x9e\x01\n" +
 	"\x12AuthChangePassword\x12&.mgmt.v1beta.AuthChangePasswordRequest\x1a'.mgmt.v1beta.AuthChangePasswordResponse\"7\xfa\xd2\xe4\x93\x02\n" +
-	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02!:\x01*\"\x1c/v1beta/auth/change_password\x12\xb0\x01\n" +
+	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02!:\x01*\"\x1c/v1beta/auth/change-password\x12\xb0\x01\n" +
 	"\x17AuthValidateAccessToken\x12+.mgmt.v1beta.AuthValidateAccessTokenRequest\x1a,.mgmt.v1beta.AuthValidateAccessTokenResponse\":\xfa\xd2\xe4\x93\x02\n" +
-	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02$\"\"/v1beta/auth/validate_access_token\x1a\x1a\x92A\x17\x12\x15Public Mgmt endpointsB\xb0\x01\n" +
+	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02$\"\"/v1beta/auth/validate-access-token\x1a\x1a\x92A\x17\x12\x15Public Mgmt endpointsB\xb0\x01\n" +
 	"\x0fcom.mgmt.v1betaB\x16MgmtPublicServiceProtoP\x01Z8github.com/instill-ai/protogen-go/mgmt/v1beta;mgmtv1beta\xa2\x02\x03MXX\xaa\x02\vMgmt.V1beta\xca\x02\vMgmt\\V1beta\xe2\x02\x17Mgmt\\V1beta\\GPBMetadata\xea\x02\fMgmt::V1betab\x06proto3"
 
 var file_mgmt_v1beta_mgmt_public_service_proto_goTypes = []any{

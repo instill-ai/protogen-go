@@ -27,7 +27,7 @@ var File_artifact_v1alpha_artifact_public_service_proto protoreflect.FileDescrip
 
 const file_artifact_v1alpha_artifact_public_service_proto_rawDesc = "" +
 	"\n" +
-	".artifact/v1alpha/artifact_public_service.proto\x12\x10artifact.v1alpha\x1a\x1fartifact/v1alpha/artifact.proto\x1a\x1cartifact/v1alpha/chunk.proto\x1a\x1bartifact/v1alpha/file.proto\x1a%artifact/v1alpha/knowledge_base.proto\x1a\x1dartifact/v1alpha/object.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xde!\n" +
+	".artifact/v1alpha/artifact_public_service.proto\x12\x10artifact.v1alpha\x1a\x1fartifact/v1alpha/artifact.proto\x1a\x1cartifact/v1alpha/chunk.proto\x1a\x1bartifact/v1alpha/file.proto\x1a%artifact/v1alpha/knowledge_base.proto\x1a\x1dartifact/v1alpha/object.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xdf!\n" +
 	"\x15ArtifactPublicService\x12\x9a\x01\n" +
 	"\bLiveness\x12!.artifact.v1alpha.LivenessRequest\x1a\".artifact.v1alpha.LivenessResponse\"G\xfa\xd2\xe4\x93\x02\n" +
 	"\x12\bINTERNAL\x82\xd3\xe4\x93\x021Z\x1a\x12\x18/v1alpha/health/artifact\x12\x13/v1alpha/__liveness\x12\x9d\x01\n" +
@@ -78,12 +78,12 @@ const file_artifact_v1alpha_artifact_public_service_proto_rawDesc = "" +
 	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02/\x12-/v1alpha/{parent=namespaces/*/files/*}/chunks\x12\xb5\x01\n" +
 	"\vUpdateChunk\x12$.artifact.v1alpha.UpdateChunkRequest\x1a%.artifact.v1alpha.UpdateChunkResponse\"Y\x92A\x1e\n" +
 	"\bArtifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x022:\x01*2-/v1alpha/{name=namespaces/*/files/*/chunks/*}\x12\xdb\x02\n" +
-	"\fSearchChunks\x12%.artifact.v1alpha.SearchChunksRequest\x1a&.artifact.v1alpha.SearchChunksResponse\"\xfb\x01\x92A\xc1\x01\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x022:\x01*2-/v1alpha/{name=namespaces/*/files/*/chunks/*}\x12\xdc\x02\n" +
+	"\fSearchChunks\x12%.artifact.v1alpha.SearchChunksRequest\x1a&.artifact.v1alpha.SearchChunksResponse\"\xfc\x01\x92A\xc1\x01\n" +
 	"\bArtifactj\x12\n" +
 	"\ax-stage\x12\a\x1a\x05alphar\xa0\x01\n" +
 	"\x9d\x01\n" +
-	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x020:\x01*\"+/v1alpha/{parent=namespaces/*}/searchChunks\x12\xca\x01\n" +
+	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x021:\x01*\",/v1alpha/{parent=namespaces/*}/search-chunks\x12\xca\x01\n" +
 	"\x12GetObjectUploadURL\x12+.artifact.v1alpha.GetObjectUploadURLRequest\x1a,.artifact.v1alpha.GetObjectUploadURLResponse\"Y\x92A\x1e\n" +
 	"\bArtifactj\x12\n" +
 	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x022\x120/v1alpha/{parent=namespaces/*}/object-upload-url\x12\xd3\x01\n" +

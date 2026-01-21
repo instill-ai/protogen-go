@@ -27,7 +27,7 @@ var File_model_v1alpha_model_public_service_proto protoreflect.FileDescriptor
 
 const file_model_v1alpha_model_public_service_proto_rawDesc = "" +
 	"\n" +
-	"(model/v1alpha/model_public_service.proto\x12\rmodel.v1alpha\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a\x19model/v1alpha/model.proto\x1a$model/v1alpha/model_definition.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xde4\n" +
+	"(model/v1alpha/model_public_service.proto\x12\rmodel.v1alpha\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a\x19model/v1alpha/model.proto\x1a$model/v1alpha/model_definition.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xe14\n" +
 	"\x12ModelPublicService\x12\x91\x01\n" +
 	"\bLiveness\x12\x1e.model.v1alpha.LivenessRequest\x1a\x1f.model.v1alpha.LivenessResponse\"D\xfa\xd2\xe4\x93\x02\n" +
 	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02.Z\x17\x12\x15/v1alpha/health/model\x12\x13/v1alpha/__liveness\x12\x94\x01\n" +
@@ -45,11 +45,11 @@ const file_model_v1alpha_model_public_service_proto_rawDesc = "" +
 	"\n" +
 	"ListModels\x12 .model.v1alpha.ListModelsRequest\x1a!.model.v1alpha.ListModelsResponse\"5\x92A\x1b\n" +
 	"\x05Modelj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02\x11\x12\x0f/v1alpha/models\x12\xb0\x01\n" +
-	"\vLookUpModel\x12!.model.v1alpha.LookUpModelRequest\x1a\".model.v1alpha.LookUpModelResponse\"Z\x92A\x1b\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02\x11\x12\x0f/v1alpha/models\x12\xb1\x01\n" +
+	"\vLookUpModel\x12!.model.v1alpha.LookUpModelRequest\x1a\".model.v1alpha.LookUpModelResponse\"[\x92A\x1b\n" +
 	"\x05Modelj\x12\n" +
 	"\ax-stage\x12\a\x1a\x05alpha\xfa\xd2\xe4\x93\x02\n" +
-	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02&\x12$/v1alpha/{permalink=models/*}/lookUp\x12\xb9\x01\n" +
+	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02'\x12%/v1alpha/{permalink=models/*}/look-up\x12\xb9\x01\n" +
 	"\x13ListNamespaceModels\x12).model.v1alpha.ListNamespaceModelsRequest\x1a*.model.v1alpha.ListNamespaceModelsResponse\"K\x92A\x1b\n" +
 	"\x05Modelj\x12\n" +
 	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02'\x12%/v1alpha/{parent=namespaces/*}/models\x12\xc3\x01\n" +
@@ -84,22 +84,22 @@ const file_model_v1alpha_model_public_service_proto_rawDesc = "" +
 	"\x05Modelj\x12\n" +
 	"\ax-stage\x12\a\x1a\x05alphar\xa0\x01\n" +
 	"\x9d\x01\n" +
-	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x02=:\x01*\"8/v1alpha/{name=namespaces/*/models/*/versions/*}/trigger\x12\x8e\x03\n" +
-	"\x1aTriggerAsyncNamespaceModel\x120.model.v1alpha.TriggerAsyncNamespaceModelRequest\x1a1.model.v1alpha.TriggerAsyncNamespaceModelResponse\"\x8a\x02\x92A\xbe\x01\n" +
+	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x02=:\x01*\"8/v1alpha/{name=namespaces/*/models/*/versions/*}/trigger\x12\x8f\x03\n" +
+	"\x1aTriggerAsyncNamespaceModel\x120.model.v1alpha.TriggerAsyncNamespaceModelRequest\x1a1.model.v1alpha.TriggerAsyncNamespaceModelResponse\"\x8b\x02\x92A\xbe\x01\n" +
 	"\x05Modelj\x12\n" +
 	"\ax-stage\x12\a\x1a\x05alphar\xa0\x01\n" +
 	"\x9d\x01\n" +
-	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x02B:\x01*\"=/v1alpha/{name=namespaces/*/models/*/versions/*}/triggerAsync\x12\x81\x03\n" +
+	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x02C:\x01*\">/v1alpha/{name=namespaces/*/models/*/versions/*}/trigger-async\x12\x81\x03\n" +
 	"\x1bTriggerNamespaceLatestModel\x121.model.v1alpha.TriggerNamespaceLatestModelRequest\x1a2.model.v1alpha.TriggerNamespaceLatestModelResponse\"\xfa\x01\x92A\xbe\x01\n" +
 	"\x05Modelj\x12\n" +
 	"\ax-stage\x12\a\x1a\x05alphar\xa0\x01\n" +
 	"\x9d\x01\n" +
-	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x022:\x01*\"-/v1alpha/{name=namespaces/*/models/*}/trigger\x12\x95\x03\n" +
-	" TriggerAsyncNamespaceLatestModel\x126.model.v1alpha.TriggerAsyncNamespaceLatestModelRequest\x1a7.model.v1alpha.TriggerAsyncNamespaceLatestModelResponse\"\xff\x01\x92A\xbe\x01\n" +
+	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x022:\x01*\"-/v1alpha/{name=namespaces/*/models/*}/trigger\x12\x96\x03\n" +
+	" TriggerAsyncNamespaceLatestModel\x126.model.v1alpha.TriggerAsyncNamespaceLatestModelRequest\x1a7.model.v1alpha.TriggerAsyncNamespaceLatestModelResponse\"\x80\x02\x92A\xbe\x01\n" +
 	"\x05Modelj\x12\n" +
 	"\ax-stage\x12\a\x1a\x05alphar\xa0\x01\n" +
 	"\x9d\x01\n" +
-	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x027:\x01*\"2/v1alpha/{name=namespaces/*/models/*}/triggerAsync\x12\xe3\x02\n" +
+	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x028:\x01*\"3/v1alpha/{name=namespaces/*/models/*}/trigger-async\x12\xe3\x02\n" +
 	"%TriggerNamespaceModelBinaryFileUpload\x12;.model.v1alpha.TriggerNamespaceModelBinaryFileUploadRequest\x1a<.model.v1alpha.TriggerNamespaceModelBinaryFileUploadResponse\"\xbc\x01\x92A\xb8\x01\n" +
 	"\x05Modelj\x12\n" +
 	"\ax-stage\x12\a\x1a\x05alphar\x9a\x01\n" +

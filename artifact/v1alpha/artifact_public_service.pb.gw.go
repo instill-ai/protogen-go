@@ -1539,7 +1539,7 @@ func RegisterArtifactPublicServiceHandlerServer(ctx context.Context, mux *runtim
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.v1alpha.ArtifactPublicService/SearchChunks", runtime.WithHTTPPathPattern("/v1alpha/{parent=namespaces/*}/searchChunks"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.v1alpha.ArtifactPublicService/SearchChunks", runtime.WithHTTPPathPattern("/v1alpha/{parent=namespaces/*}/search-chunks"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2003,7 +2003,7 @@ func RegisterArtifactPublicServiceHandlerClient(ctx context.Context, mux *runtim
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.v1alpha.ArtifactPublicService/SearchChunks", runtime.WithHTTPPathPattern("/v1alpha/{parent=namespaces/*}/searchChunks"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.v1alpha.ArtifactPublicService/SearchChunks", runtime.WithHTTPPathPattern("/v1alpha/{parent=namespaces/*}/search-chunks"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2123,7 +2123,7 @@ var (
 	pattern_ArtifactPublicService_GetChunk_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4}, []string{"v1alpha", "namespaces", "files", "chunks", "name"}, ""))
 	pattern_ArtifactPublicService_ListChunks_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "namespaces", "files", "parent", "chunks"}, ""))
 	pattern_ArtifactPublicService_UpdateChunk_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4}, []string{"v1alpha", "namespaces", "files", "chunks", "name"}, ""))
-	pattern_ArtifactPublicService_SearchChunks_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "parent", "searchChunks"}, ""))
+	pattern_ArtifactPublicService_SearchChunks_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "parent", "search-chunks"}, ""))
 	pattern_ArtifactPublicService_GetObjectUploadURL_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "parent", "object-upload-url"}, ""))
 	pattern_ArtifactPublicService_GetObjectDownloadURL_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "namespaces", "objects", "name", "download-url"}, ""))
 	pattern_ArtifactPublicService_GetObject_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "namespaces", "objects", "name"}, ""))

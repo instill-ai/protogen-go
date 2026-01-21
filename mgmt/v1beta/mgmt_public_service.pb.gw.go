@@ -1007,7 +1007,7 @@ func RegisterMgmtPublicServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/mgmt.v1beta.MgmtPublicService/ValidateToken", runtime.WithHTTPPathPattern("/v1beta/validate_token"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/mgmt.v1beta.MgmtPublicService/ValidateToken", runtime.WithHTTPPathPattern("/v1beta/validate-token"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1127,7 +1127,7 @@ func RegisterMgmtPublicServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/mgmt.v1beta.MgmtPublicService/AuthTokenIssuer", runtime.WithHTTPPathPattern("/v1beta/auth/token_issuer"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/mgmt.v1beta.MgmtPublicService/AuthTokenIssuer", runtime.WithHTTPPathPattern("/v1beta/auth/token-issuer"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1187,7 +1187,7 @@ func RegisterMgmtPublicServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/mgmt.v1beta.MgmtPublicService/AuthChangePassword", runtime.WithHTTPPathPattern("/v1beta/auth/change_password"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/mgmt.v1beta.MgmtPublicService/AuthChangePassword", runtime.WithHTTPPathPattern("/v1beta/auth/change-password"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1207,7 +1207,7 @@ func RegisterMgmtPublicServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/mgmt.v1beta.MgmtPublicService/AuthValidateAccessToken", runtime.WithHTTPPathPattern("/v1beta/auth/validate_access_token"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/mgmt.v1beta.MgmtPublicService/AuthValidateAccessToken", runtime.WithHTTPPathPattern("/v1beta/auth/validate-access-token"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1469,7 +1469,7 @@ func RegisterMgmtPublicServiceHandlerClient(ctx context.Context, mux *runtime.Se
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/mgmt.v1beta.MgmtPublicService/ValidateToken", runtime.WithHTTPPathPattern("/v1beta/validate_token"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/mgmt.v1beta.MgmtPublicService/ValidateToken", runtime.WithHTTPPathPattern("/v1beta/validate-token"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1571,7 +1571,7 @@ func RegisterMgmtPublicServiceHandlerClient(ctx context.Context, mux *runtime.Se
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/mgmt.v1beta.MgmtPublicService/AuthTokenIssuer", runtime.WithHTTPPathPattern("/v1beta/auth/token_issuer"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/mgmt.v1beta.MgmtPublicService/AuthTokenIssuer", runtime.WithHTTPPathPattern("/v1beta/auth/token-issuer"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1622,7 +1622,7 @@ func RegisterMgmtPublicServiceHandlerClient(ctx context.Context, mux *runtime.Se
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/mgmt.v1beta.MgmtPublicService/AuthChangePassword", runtime.WithHTTPPathPattern("/v1beta/auth/change_password"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/mgmt.v1beta.MgmtPublicService/AuthChangePassword", runtime.WithHTTPPathPattern("/v1beta/auth/change-password"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1639,7 +1639,7 @@ func RegisterMgmtPublicServiceHandlerClient(ctx context.Context, mux *runtime.Se
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/mgmt.v1beta.MgmtPublicService/AuthValidateAccessToken", runtime.WithHTTPPathPattern("/v1beta/auth/validate_access_token"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/mgmt.v1beta.MgmtPublicService/AuthValidateAccessToken", runtime.WithHTTPPathPattern("/v1beta/auth/validate-access-token"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1668,17 +1668,17 @@ var (
 	pattern_MgmtPublicService_ListTokens_0                      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "tokens"}, ""))
 	pattern_MgmtPublicService_GetToken_0                        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1beta", "tokens", "name"}, ""))
 	pattern_MgmtPublicService_DeleteToken_0                     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2}, []string{"v1beta", "tokens", "name"}, ""))
-	pattern_MgmtPublicService_ValidateToken_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "validate_token"}, ""))
+	pattern_MgmtPublicService_ValidateToken_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "validate-token"}, ""))
 	pattern_MgmtPublicService_CheckNamespace_0                  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "check-namespace"}, ""))
 	pattern_MgmtPublicService_GetPipelineTriggerCount_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "pipeline-runs", "count"}, ""))
 	pattern_MgmtPublicService_GetModelTriggerCount_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "model-runs", "count"}, ""))
 	pattern_MgmtPublicService_ListPipelineTriggerChartRecords_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "pipeline-runs", "query-charts"}, ""))
 	pattern_MgmtPublicService_ListModelTriggerChartRecords_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "model-runs", "query-charts"}, ""))
-	pattern_MgmtPublicService_AuthTokenIssuer_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "auth", "token_issuer"}, ""))
+	pattern_MgmtPublicService_AuthTokenIssuer_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "auth", "token-issuer"}, ""))
 	pattern_MgmtPublicService_AuthLogin_0                       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "auth", "login"}, ""))
 	pattern_MgmtPublicService_AuthLogout_0                      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "auth", "logout"}, ""))
-	pattern_MgmtPublicService_AuthChangePassword_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "auth", "change_password"}, ""))
-	pattern_MgmtPublicService_AuthValidateAccessToken_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "auth", "validate_access_token"}, ""))
+	pattern_MgmtPublicService_AuthChangePassword_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "auth", "change-password"}, ""))
+	pattern_MgmtPublicService_AuthValidateAccessToken_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "auth", "validate-access-token"}, ""))
 )
 
 var (

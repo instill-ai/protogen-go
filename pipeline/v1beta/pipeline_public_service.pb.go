@@ -27,7 +27,7 @@ var File_pipeline_v1beta_pipeline_public_service_proto protoreflect.FileDescript
 
 const file_pipeline_v1beta_pipeline_public_service_proto_rawDesc = "" +
 	"\n" +
-	"-pipeline/v1beta/pipeline_public_service.proto\x12\x0fpipeline.v1beta\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a*pipeline/v1beta/component_definition.proto\x1a!pipeline/v1beta/integration.proto\x1a\x1epipeline/v1beta/pipeline.proto\x1a\x1cpipeline/v1beta/secret.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\x8aT\n" +
+	"-pipeline/v1beta/pipeline_public_service.proto\x12\x0fpipeline.v1beta\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a*pipeline/v1beta/component_definition.proto\x1a!pipeline/v1beta/integration.proto\x1a\x1epipeline/v1beta/pipeline.proto\x1a\x1cpipeline/v1beta/secret.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\x8bT\n" +
 	"\x15PipelinePublicService\x12\x96\x01\n" +
 	"\bLiveness\x12 .pipeline.v1beta.LivenessRequest\x1a!.pipeline.v1beta.LivenessResponse\"E\xfa\xd2\xe4\x93\x02\n" +
 	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02/Z\x19\x12\x17/v1beta/health/pipeline\x12\x12/v1beta/__liveness\x12\x7f\n" +
@@ -39,11 +39,11 @@ const file_pipeline_v1beta_pipeline_public_service_proto_rawDesc = "" +
 	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02\x13\x12\x11/v1beta/hub-stats\x12\x99\x01\n" +
 	"\rListPipelines\x12%.pipeline.v1beta.ListPipelinesRequest\x1a&.pipeline.v1beta.ListPipelinesResponse\"9\x92A\x1d\n" +
 	"\bPipelinej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x13\x12\x11/v1beta/pipelines\x12\xc1\x01\n" +
-	"\x0eLookUpPipeline\x12&.pipeline.v1beta.LookUpPipelineRequest\x1a'.pipeline.v1beta.LookUpPipelineResponse\"^\x92A\x1d\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x13\x12\x11/v1beta/pipelines\x12\xc2\x01\n" +
+	"\x0eLookUpPipeline\x12&.pipeline.v1beta.LookUpPipelineRequest\x1a'.pipeline.v1beta.LookUpPipelineResponse\"_\x92A\x1d\n" +
 	"\bPipelinej\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04beta\xfa\xd2\xe4\x93\x02\n" +
-	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02(\x12&/v1beta/{permalink=pipelines/*}/lookUp\x12\xca\x01\n" +
+	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02)\x12'/v1beta/{permalink=pipelines/*}/look-up\x12\xca\x01\n" +
 	"\x16ListNamespacePipelines\x12..pipeline.v1beta.ListNamespacePipelinesRequest\x1a/.pipeline.v1beta.ListNamespacePipelinesResponse\"O\x92A\x1d\n" +
 	"\bPipelinej\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02)\x12'/v1beta/{parent=namespaces/*}/pipelines\x12\xd7\x01\n" +

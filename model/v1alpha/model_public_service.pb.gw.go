@@ -1478,7 +1478,7 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/LookUpModel", runtime.WithHTTPPathPattern("/v1alpha/{permalink=models/*}/lookUp"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/LookUpModel", runtime.WithHTTPPathPattern("/v1alpha/{permalink=models/*}/look-up"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1718,7 +1718,7 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerAsyncNamespaceModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*/versions/*}/triggerAsync"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerAsyncNamespaceModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*/versions/*}/trigger-async"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1758,7 +1758,7 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerAsyncNamespaceLatestModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/triggerAsync"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerAsyncNamespaceLatestModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/trigger-async"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2066,7 +2066,7 @@ func RegisterModelPublicServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/LookUpModel", runtime.WithHTTPPathPattern("/v1alpha/{permalink=models/*}/lookUp"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/LookUpModel", runtime.WithHTTPPathPattern("/v1alpha/{permalink=models/*}/look-up"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2270,7 +2270,7 @@ func RegisterModelPublicServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerAsyncNamespaceModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*/versions/*}/triggerAsync"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerAsyncNamespaceModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*/versions/*}/trigger-async"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2304,7 +2304,7 @@ func RegisterModelPublicServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerAsyncNamespaceLatestModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/triggerAsync"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerAsyncNamespaceLatestModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/trigger-async"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2448,7 +2448,7 @@ var (
 	pattern_ModelPublicService_ListAvailableRegions_0                        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "available-regions"}, ""))
 	pattern_ModelPublicService_GetModelDefinition_0                          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1alpha", "model-definitions", "model_definition_id"}, ""))
 	pattern_ModelPublicService_ListModels_0                                  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "models"}, ""))
-	pattern_ModelPublicService_LookUpModel_0                                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "models", "permalink", "lookUp"}, ""))
+	pattern_ModelPublicService_LookUpModel_0                                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "models", "permalink", "look-up"}, ""))
 	pattern_ModelPublicService_ListNamespaceModels_0                         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "parent", "models"}, ""))
 	pattern_ModelPublicService_CreateNamespaceModel_0                        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "parent", "models"}, ""))
 	pattern_ModelPublicService_GetNamespaceModel_0                           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "namespaces", "models", "name"}, ""))
@@ -2460,9 +2460,9 @@ var (
 	pattern_ModelPublicService_ListNamespaceModelVersions_0                  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "namespaces", "models", "parent", "versions"}, ""))
 	pattern_ModelPublicService_DeleteNamespaceModelVersion_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4}, []string{"v1alpha", "namespaces", "models", "versions", "name"}, ""))
 	pattern_ModelPublicService_TriggerNamespaceModel_0                       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "models", "versions", "name", "trigger"}, ""))
-	pattern_ModelPublicService_TriggerAsyncNamespaceModel_0                  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "models", "versions", "name", "triggerAsync"}, ""))
+	pattern_ModelPublicService_TriggerAsyncNamespaceModel_0                  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "models", "versions", "name", "trigger-async"}, ""))
 	pattern_ModelPublicService_TriggerNamespaceLatestModel_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "namespaces", "models", "name", "trigger"}, ""))
-	pattern_ModelPublicService_TriggerAsyncNamespaceLatestModel_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "namespaces", "models", "name", "triggerAsync"}, ""))
+	pattern_ModelPublicService_TriggerAsyncNamespaceLatestModel_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "namespaces", "models", "name", "trigger-async"}, ""))
 	pattern_ModelPublicService_TriggerNamespaceModelBinaryFileUpload_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.v1alpha.ModelPublicService", "TriggerNamespaceModelBinaryFileUpload"}, ""))
 	pattern_ModelPublicService_TriggerNamespaceLatestModelBinaryFileUpload_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.v1alpha.ModelPublicService", "TriggerNamespaceLatestModelBinaryFileUpload"}, ""))
 	pattern_ModelPublicService_GetNamespaceModelOperation_0                  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "models", "versions", "name", "operation"}, ""))
