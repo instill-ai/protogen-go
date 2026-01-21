@@ -27,7 +27,7 @@ var File_pipeline_v1beta_pipeline_public_service_proto protoreflect.FileDescript
 
 const file_pipeline_v1beta_pipeline_public_service_proto_rawDesc = "" +
 	"\n" +
-	"-pipeline/v1beta/pipeline_public_service.proto\x12\x0fpipeline.v1beta\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a*pipeline/v1beta/component_definition.proto\x1a!pipeline/v1beta/integration.proto\x1a\x1epipeline/v1beta/pipeline.proto\x1a\x1cpipeline/v1beta/secret.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\x8bT\n" +
+	"-pipeline/v1beta/pipeline_public_service.proto\x12\x0fpipeline.v1beta\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a*pipeline/v1beta/component_definition.proto\x1a!pipeline/v1beta/integration.proto\x1a\x1epipeline/v1beta/pipeline.proto\x1a\x1cpipeline/v1beta/secret.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xc6R\n" +
 	"\x15PipelinePublicService\x12\x96\x01\n" +
 	"\bLiveness\x12 .pipeline.v1beta.LivenessRequest\x1a!.pipeline.v1beta.LivenessResponse\"E\xfa\xd2\xe4\x93\x02\n" +
 	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02/Z\x19\x12\x17/v1beta/health/pipeline\x12\x12/v1beta/__liveness\x12\x7f\n" +
@@ -39,11 +39,7 @@ const file_pipeline_v1beta_pipeline_public_service_proto_rawDesc = "" +
 	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02\x13\x12\x11/v1beta/hub-stats\x12\x99\x01\n" +
 	"\rListPipelines\x12%.pipeline.v1beta.ListPipelinesRequest\x1a&.pipeline.v1beta.ListPipelinesResponse\"9\x92A\x1d\n" +
 	"\bPipelinej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x13\x12\x11/v1beta/pipelines\x12\xc2\x01\n" +
-	"\x0eLookUpPipeline\x12&.pipeline.v1beta.LookUpPipelineRequest\x1a'.pipeline.v1beta.LookUpPipelineResponse\"_\x92A\x1d\n" +
-	"\bPipelinej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\xfa\xd2\xe4\x93\x02\n" +
-	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02)\x12'/v1beta/{permalink=pipelines/*}/look-up\x12\xca\x01\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\x13\x12\x11/v1beta/pipelines\x12\xca\x01\n" +
 	"\x16ListNamespacePipelines\x12..pipeline.v1beta.ListNamespacePipelinesRequest\x1a/.pipeline.v1beta.ListNamespacePipelinesResponse\"O\x92A\x1d\n" +
 	"\bPipelinej\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02)\x12'/v1beta/{parent=namespaces/*}/pipelines\x12\xd7\x01\n" +
@@ -185,182 +181,178 @@ var file_pipeline_v1beta_pipeline_public_service_proto_goTypes = []any{
 	(*ReadinessRequest)(nil),                             // 1: pipeline.v1beta.ReadinessRequest
 	(*GetHubStatsRequest)(nil),                           // 2: pipeline.v1beta.GetHubStatsRequest
 	(*ListPipelinesRequest)(nil),                         // 3: pipeline.v1beta.ListPipelinesRequest
-	(*LookUpPipelineRequest)(nil),                        // 4: pipeline.v1beta.LookUpPipelineRequest
-	(*ListNamespacePipelinesRequest)(nil),                // 5: pipeline.v1beta.ListNamespacePipelinesRequest
-	(*CreateNamespacePipelineRequest)(nil),               // 6: pipeline.v1beta.CreateNamespacePipelineRequest
-	(*GetNamespacePipelineRequest)(nil),                  // 7: pipeline.v1beta.GetNamespacePipelineRequest
-	(*UpdateNamespacePipelineRequest)(nil),               // 8: pipeline.v1beta.UpdateNamespacePipelineRequest
-	(*DeleteNamespacePipelineRequest)(nil),               // 9: pipeline.v1beta.DeleteNamespacePipelineRequest
-	(*ValidateNamespacePipelineRequest)(nil),             // 10: pipeline.v1beta.ValidateNamespacePipelineRequest
-	(*RenameNamespacePipelineRequest)(nil),               // 11: pipeline.v1beta.RenameNamespacePipelineRequest
-	(*CloneNamespacePipelineRequest)(nil),                // 12: pipeline.v1beta.CloneNamespacePipelineRequest
-	(*DispatchPipelineWebhookEventRequest)(nil),          // 13: pipeline.v1beta.DispatchPipelineWebhookEventRequest
-	(*TriggerNamespacePipelineRequest)(nil),              // 14: pipeline.v1beta.TriggerNamespacePipelineRequest
-	(*TriggerNamespacePipelineWithStreamRequest)(nil),    // 15: pipeline.v1beta.TriggerNamespacePipelineWithStreamRequest
-	(*TriggerAsyncNamespacePipelineRequest)(nil),         // 16: pipeline.v1beta.TriggerAsyncNamespacePipelineRequest
-	(*CreateNamespacePipelineReleaseRequest)(nil),        // 17: pipeline.v1beta.CreateNamespacePipelineReleaseRequest
-	(*ListNamespacePipelineReleasesRequest)(nil),         // 18: pipeline.v1beta.ListNamespacePipelineReleasesRequest
-	(*GetNamespacePipelineReleaseRequest)(nil),           // 19: pipeline.v1beta.GetNamespacePipelineReleaseRequest
-	(*UpdateNamespacePipelineReleaseRequest)(nil),        // 20: pipeline.v1beta.UpdateNamespacePipelineReleaseRequest
-	(*DeleteNamespacePipelineReleaseRequest)(nil),        // 21: pipeline.v1beta.DeleteNamespacePipelineReleaseRequest
-	(*CloneNamespacePipelineReleaseRequest)(nil),         // 22: pipeline.v1beta.CloneNamespacePipelineReleaseRequest
-	(*TriggerNamespacePipelineReleaseRequest)(nil),       // 23: pipeline.v1beta.TriggerNamespacePipelineReleaseRequest
-	(*TriggerAsyncNamespacePipelineReleaseRequest)(nil),  // 24: pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseRequest
-	(*CreateNamespaceSecretRequest)(nil),                 // 25: pipeline.v1beta.CreateNamespaceSecretRequest
-	(*ListNamespaceSecretsRequest)(nil),                  // 26: pipeline.v1beta.ListNamespaceSecretsRequest
-	(*GetNamespaceSecretRequest)(nil),                    // 27: pipeline.v1beta.GetNamespaceSecretRequest
-	(*UpdateNamespaceSecretRequest)(nil),                 // 28: pipeline.v1beta.UpdateNamespaceSecretRequest
-	(*DeleteNamespaceSecretRequest)(nil),                 // 29: pipeline.v1beta.DeleteNamespaceSecretRequest
-	(*ListComponentDefinitionsRequest)(nil),              // 30: pipeline.v1beta.ListComponentDefinitionsRequest
-	(*GetOperationRequest)(nil),                          // 31: pipeline.v1beta.GetOperationRequest
-	(*ListPipelineRunsRequest)(nil),                      // 32: pipeline.v1beta.ListPipelineRunsRequest
-	(*ListComponentRunsRequest)(nil),                     // 33: pipeline.v1beta.ListComponentRunsRequest
-	(*ListPipelineRunsByRequesterRequest)(nil),           // 34: pipeline.v1beta.ListPipelineRunsByRequesterRequest
-	(*ListNamespaceConnectionsRequest)(nil),              // 35: pipeline.v1beta.ListNamespaceConnectionsRequest
-	(*GetNamespaceConnectionRequest)(nil),                // 36: pipeline.v1beta.GetNamespaceConnectionRequest
-	(*CreateNamespaceConnectionRequest)(nil),             // 37: pipeline.v1beta.CreateNamespaceConnectionRequest
-	(*UpdateNamespaceConnectionRequest)(nil),             // 38: pipeline.v1beta.UpdateNamespaceConnectionRequest
-	(*DeleteNamespaceConnectionRequest)(nil),             // 39: pipeline.v1beta.DeleteNamespaceConnectionRequest
-	(*TestNamespaceConnectionRequest)(nil),               // 40: pipeline.v1beta.TestNamespaceConnectionRequest
-	(*ListPipelineIDsByConnectionIDRequest)(nil),         // 41: pipeline.v1beta.ListPipelineIDsByConnectionIDRequest
-	(*ListIntegrationsRequest)(nil),                      // 42: pipeline.v1beta.ListIntegrationsRequest
-	(*GetIntegrationRequest)(nil),                        // 43: pipeline.v1beta.GetIntegrationRequest
-	(*LivenessResponse)(nil),                             // 44: pipeline.v1beta.LivenessResponse
-	(*ReadinessResponse)(nil),                            // 45: pipeline.v1beta.ReadinessResponse
-	(*GetHubStatsResponse)(nil),                          // 46: pipeline.v1beta.GetHubStatsResponse
-	(*ListPipelinesResponse)(nil),                        // 47: pipeline.v1beta.ListPipelinesResponse
-	(*LookUpPipelineResponse)(nil),                       // 48: pipeline.v1beta.LookUpPipelineResponse
-	(*ListNamespacePipelinesResponse)(nil),               // 49: pipeline.v1beta.ListNamespacePipelinesResponse
-	(*CreateNamespacePipelineResponse)(nil),              // 50: pipeline.v1beta.CreateNamespacePipelineResponse
-	(*GetNamespacePipelineResponse)(nil),                 // 51: pipeline.v1beta.GetNamespacePipelineResponse
-	(*UpdateNamespacePipelineResponse)(nil),              // 52: pipeline.v1beta.UpdateNamespacePipelineResponse
-	(*DeleteNamespacePipelineResponse)(nil),              // 53: pipeline.v1beta.DeleteNamespacePipelineResponse
-	(*ValidateNamespacePipelineResponse)(nil),            // 54: pipeline.v1beta.ValidateNamespacePipelineResponse
-	(*RenameNamespacePipelineResponse)(nil),              // 55: pipeline.v1beta.RenameNamespacePipelineResponse
-	(*CloneNamespacePipelineResponse)(nil),               // 56: pipeline.v1beta.CloneNamespacePipelineResponse
-	(*DispatchPipelineWebhookEventResponse)(nil),         // 57: pipeline.v1beta.DispatchPipelineWebhookEventResponse
-	(*TriggerNamespacePipelineResponse)(nil),             // 58: pipeline.v1beta.TriggerNamespacePipelineResponse
-	(*TriggerNamespacePipelineWithStreamResponse)(nil),   // 59: pipeline.v1beta.TriggerNamespacePipelineWithStreamResponse
-	(*TriggerAsyncNamespacePipelineResponse)(nil),        // 60: pipeline.v1beta.TriggerAsyncNamespacePipelineResponse
-	(*CreateNamespacePipelineReleaseResponse)(nil),       // 61: pipeline.v1beta.CreateNamespacePipelineReleaseResponse
-	(*ListNamespacePipelineReleasesResponse)(nil),        // 62: pipeline.v1beta.ListNamespacePipelineReleasesResponse
-	(*GetNamespacePipelineReleaseResponse)(nil),          // 63: pipeline.v1beta.GetNamespacePipelineReleaseResponse
-	(*UpdateNamespacePipelineReleaseResponse)(nil),       // 64: pipeline.v1beta.UpdateNamespacePipelineReleaseResponse
-	(*DeleteNamespacePipelineReleaseResponse)(nil),       // 65: pipeline.v1beta.DeleteNamespacePipelineReleaseResponse
-	(*CloneNamespacePipelineReleaseResponse)(nil),        // 66: pipeline.v1beta.CloneNamespacePipelineReleaseResponse
-	(*TriggerNamespacePipelineReleaseResponse)(nil),      // 67: pipeline.v1beta.TriggerNamespacePipelineReleaseResponse
-	(*TriggerAsyncNamespacePipelineReleaseResponse)(nil), // 68: pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseResponse
-	(*CreateNamespaceSecretResponse)(nil),                // 69: pipeline.v1beta.CreateNamespaceSecretResponse
-	(*ListNamespaceSecretsResponse)(nil),                 // 70: pipeline.v1beta.ListNamespaceSecretsResponse
-	(*GetNamespaceSecretResponse)(nil),                   // 71: pipeline.v1beta.GetNamespaceSecretResponse
-	(*UpdateNamespaceSecretResponse)(nil),                // 72: pipeline.v1beta.UpdateNamespaceSecretResponse
-	(*DeleteNamespaceSecretResponse)(nil),                // 73: pipeline.v1beta.DeleteNamespaceSecretResponse
-	(*ListComponentDefinitionsResponse)(nil),             // 74: pipeline.v1beta.ListComponentDefinitionsResponse
-	(*GetOperationResponse)(nil),                         // 75: pipeline.v1beta.GetOperationResponse
-	(*ListPipelineRunsResponse)(nil),                     // 76: pipeline.v1beta.ListPipelineRunsResponse
-	(*ListComponentRunsResponse)(nil),                    // 77: pipeline.v1beta.ListComponentRunsResponse
-	(*ListPipelineRunsByRequesterResponse)(nil),          // 78: pipeline.v1beta.ListPipelineRunsByRequesterResponse
-	(*ListNamespaceConnectionsResponse)(nil),             // 79: pipeline.v1beta.ListNamespaceConnectionsResponse
-	(*GetNamespaceConnectionResponse)(nil),               // 80: pipeline.v1beta.GetNamespaceConnectionResponse
-	(*CreateNamespaceConnectionResponse)(nil),            // 81: pipeline.v1beta.CreateNamespaceConnectionResponse
-	(*UpdateNamespaceConnectionResponse)(nil),            // 82: pipeline.v1beta.UpdateNamespaceConnectionResponse
-	(*DeleteNamespaceConnectionResponse)(nil),            // 83: pipeline.v1beta.DeleteNamespaceConnectionResponse
-	(*TestNamespaceConnectionResponse)(nil),              // 84: pipeline.v1beta.TestNamespaceConnectionResponse
-	(*ListPipelineIDsByConnectionIDResponse)(nil),        // 85: pipeline.v1beta.ListPipelineIDsByConnectionIDResponse
-	(*ListIntegrationsResponse)(nil),                     // 86: pipeline.v1beta.ListIntegrationsResponse
-	(*GetIntegrationResponse)(nil),                       // 87: pipeline.v1beta.GetIntegrationResponse
+	(*ListNamespacePipelinesRequest)(nil),                // 4: pipeline.v1beta.ListNamespacePipelinesRequest
+	(*CreateNamespacePipelineRequest)(nil),               // 5: pipeline.v1beta.CreateNamespacePipelineRequest
+	(*GetNamespacePipelineRequest)(nil),                  // 6: pipeline.v1beta.GetNamespacePipelineRequest
+	(*UpdateNamespacePipelineRequest)(nil),               // 7: pipeline.v1beta.UpdateNamespacePipelineRequest
+	(*DeleteNamespacePipelineRequest)(nil),               // 8: pipeline.v1beta.DeleteNamespacePipelineRequest
+	(*ValidateNamespacePipelineRequest)(nil),             // 9: pipeline.v1beta.ValidateNamespacePipelineRequest
+	(*RenameNamespacePipelineRequest)(nil),               // 10: pipeline.v1beta.RenameNamespacePipelineRequest
+	(*CloneNamespacePipelineRequest)(nil),                // 11: pipeline.v1beta.CloneNamespacePipelineRequest
+	(*DispatchPipelineWebhookEventRequest)(nil),          // 12: pipeline.v1beta.DispatchPipelineWebhookEventRequest
+	(*TriggerNamespacePipelineRequest)(nil),              // 13: pipeline.v1beta.TriggerNamespacePipelineRequest
+	(*TriggerNamespacePipelineWithStreamRequest)(nil),    // 14: pipeline.v1beta.TriggerNamespacePipelineWithStreamRequest
+	(*TriggerAsyncNamespacePipelineRequest)(nil),         // 15: pipeline.v1beta.TriggerAsyncNamespacePipelineRequest
+	(*CreateNamespacePipelineReleaseRequest)(nil),        // 16: pipeline.v1beta.CreateNamespacePipelineReleaseRequest
+	(*ListNamespacePipelineReleasesRequest)(nil),         // 17: pipeline.v1beta.ListNamespacePipelineReleasesRequest
+	(*GetNamespacePipelineReleaseRequest)(nil),           // 18: pipeline.v1beta.GetNamespacePipelineReleaseRequest
+	(*UpdateNamespacePipelineReleaseRequest)(nil),        // 19: pipeline.v1beta.UpdateNamespacePipelineReleaseRequest
+	(*DeleteNamespacePipelineReleaseRequest)(nil),        // 20: pipeline.v1beta.DeleteNamespacePipelineReleaseRequest
+	(*CloneNamespacePipelineReleaseRequest)(nil),         // 21: pipeline.v1beta.CloneNamespacePipelineReleaseRequest
+	(*TriggerNamespacePipelineReleaseRequest)(nil),       // 22: pipeline.v1beta.TriggerNamespacePipelineReleaseRequest
+	(*TriggerAsyncNamespacePipelineReleaseRequest)(nil),  // 23: pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseRequest
+	(*CreateNamespaceSecretRequest)(nil),                 // 24: pipeline.v1beta.CreateNamespaceSecretRequest
+	(*ListNamespaceSecretsRequest)(nil),                  // 25: pipeline.v1beta.ListNamespaceSecretsRequest
+	(*GetNamespaceSecretRequest)(nil),                    // 26: pipeline.v1beta.GetNamespaceSecretRequest
+	(*UpdateNamespaceSecretRequest)(nil),                 // 27: pipeline.v1beta.UpdateNamespaceSecretRequest
+	(*DeleteNamespaceSecretRequest)(nil),                 // 28: pipeline.v1beta.DeleteNamespaceSecretRequest
+	(*ListComponentDefinitionsRequest)(nil),              // 29: pipeline.v1beta.ListComponentDefinitionsRequest
+	(*GetOperationRequest)(nil),                          // 30: pipeline.v1beta.GetOperationRequest
+	(*ListPipelineRunsRequest)(nil),                      // 31: pipeline.v1beta.ListPipelineRunsRequest
+	(*ListComponentRunsRequest)(nil),                     // 32: pipeline.v1beta.ListComponentRunsRequest
+	(*ListPipelineRunsByRequesterRequest)(nil),           // 33: pipeline.v1beta.ListPipelineRunsByRequesterRequest
+	(*ListNamespaceConnectionsRequest)(nil),              // 34: pipeline.v1beta.ListNamespaceConnectionsRequest
+	(*GetNamespaceConnectionRequest)(nil),                // 35: pipeline.v1beta.GetNamespaceConnectionRequest
+	(*CreateNamespaceConnectionRequest)(nil),             // 36: pipeline.v1beta.CreateNamespaceConnectionRequest
+	(*UpdateNamespaceConnectionRequest)(nil),             // 37: pipeline.v1beta.UpdateNamespaceConnectionRequest
+	(*DeleteNamespaceConnectionRequest)(nil),             // 38: pipeline.v1beta.DeleteNamespaceConnectionRequest
+	(*TestNamespaceConnectionRequest)(nil),               // 39: pipeline.v1beta.TestNamespaceConnectionRequest
+	(*ListPipelineIDsByConnectionIDRequest)(nil),         // 40: pipeline.v1beta.ListPipelineIDsByConnectionIDRequest
+	(*ListIntegrationsRequest)(nil),                      // 41: pipeline.v1beta.ListIntegrationsRequest
+	(*GetIntegrationRequest)(nil),                        // 42: pipeline.v1beta.GetIntegrationRequest
+	(*LivenessResponse)(nil),                             // 43: pipeline.v1beta.LivenessResponse
+	(*ReadinessResponse)(nil),                            // 44: pipeline.v1beta.ReadinessResponse
+	(*GetHubStatsResponse)(nil),                          // 45: pipeline.v1beta.GetHubStatsResponse
+	(*ListPipelinesResponse)(nil),                        // 46: pipeline.v1beta.ListPipelinesResponse
+	(*ListNamespacePipelinesResponse)(nil),               // 47: pipeline.v1beta.ListNamespacePipelinesResponse
+	(*CreateNamespacePipelineResponse)(nil),              // 48: pipeline.v1beta.CreateNamespacePipelineResponse
+	(*GetNamespacePipelineResponse)(nil),                 // 49: pipeline.v1beta.GetNamespacePipelineResponse
+	(*UpdateNamespacePipelineResponse)(nil),              // 50: pipeline.v1beta.UpdateNamespacePipelineResponse
+	(*DeleteNamespacePipelineResponse)(nil),              // 51: pipeline.v1beta.DeleteNamespacePipelineResponse
+	(*ValidateNamespacePipelineResponse)(nil),            // 52: pipeline.v1beta.ValidateNamespacePipelineResponse
+	(*RenameNamespacePipelineResponse)(nil),              // 53: pipeline.v1beta.RenameNamespacePipelineResponse
+	(*CloneNamespacePipelineResponse)(nil),               // 54: pipeline.v1beta.CloneNamespacePipelineResponse
+	(*DispatchPipelineWebhookEventResponse)(nil),         // 55: pipeline.v1beta.DispatchPipelineWebhookEventResponse
+	(*TriggerNamespacePipelineResponse)(nil),             // 56: pipeline.v1beta.TriggerNamespacePipelineResponse
+	(*TriggerNamespacePipelineWithStreamResponse)(nil),   // 57: pipeline.v1beta.TriggerNamespacePipelineWithStreamResponse
+	(*TriggerAsyncNamespacePipelineResponse)(nil),        // 58: pipeline.v1beta.TriggerAsyncNamespacePipelineResponse
+	(*CreateNamespacePipelineReleaseResponse)(nil),       // 59: pipeline.v1beta.CreateNamespacePipelineReleaseResponse
+	(*ListNamespacePipelineReleasesResponse)(nil),        // 60: pipeline.v1beta.ListNamespacePipelineReleasesResponse
+	(*GetNamespacePipelineReleaseResponse)(nil),          // 61: pipeline.v1beta.GetNamespacePipelineReleaseResponse
+	(*UpdateNamespacePipelineReleaseResponse)(nil),       // 62: pipeline.v1beta.UpdateNamespacePipelineReleaseResponse
+	(*DeleteNamespacePipelineReleaseResponse)(nil),       // 63: pipeline.v1beta.DeleteNamespacePipelineReleaseResponse
+	(*CloneNamespacePipelineReleaseResponse)(nil),        // 64: pipeline.v1beta.CloneNamespacePipelineReleaseResponse
+	(*TriggerNamespacePipelineReleaseResponse)(nil),      // 65: pipeline.v1beta.TriggerNamespacePipelineReleaseResponse
+	(*TriggerAsyncNamespacePipelineReleaseResponse)(nil), // 66: pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseResponse
+	(*CreateNamespaceSecretResponse)(nil),                // 67: pipeline.v1beta.CreateNamespaceSecretResponse
+	(*ListNamespaceSecretsResponse)(nil),                 // 68: pipeline.v1beta.ListNamespaceSecretsResponse
+	(*GetNamespaceSecretResponse)(nil),                   // 69: pipeline.v1beta.GetNamespaceSecretResponse
+	(*UpdateNamespaceSecretResponse)(nil),                // 70: pipeline.v1beta.UpdateNamespaceSecretResponse
+	(*DeleteNamespaceSecretResponse)(nil),                // 71: pipeline.v1beta.DeleteNamespaceSecretResponse
+	(*ListComponentDefinitionsResponse)(nil),             // 72: pipeline.v1beta.ListComponentDefinitionsResponse
+	(*GetOperationResponse)(nil),                         // 73: pipeline.v1beta.GetOperationResponse
+	(*ListPipelineRunsResponse)(nil),                     // 74: pipeline.v1beta.ListPipelineRunsResponse
+	(*ListComponentRunsResponse)(nil),                    // 75: pipeline.v1beta.ListComponentRunsResponse
+	(*ListPipelineRunsByRequesterResponse)(nil),          // 76: pipeline.v1beta.ListPipelineRunsByRequesterResponse
+	(*ListNamespaceConnectionsResponse)(nil),             // 77: pipeline.v1beta.ListNamespaceConnectionsResponse
+	(*GetNamespaceConnectionResponse)(nil),               // 78: pipeline.v1beta.GetNamespaceConnectionResponse
+	(*CreateNamespaceConnectionResponse)(nil),            // 79: pipeline.v1beta.CreateNamespaceConnectionResponse
+	(*UpdateNamespaceConnectionResponse)(nil),            // 80: pipeline.v1beta.UpdateNamespaceConnectionResponse
+	(*DeleteNamespaceConnectionResponse)(nil),            // 81: pipeline.v1beta.DeleteNamespaceConnectionResponse
+	(*TestNamespaceConnectionResponse)(nil),              // 82: pipeline.v1beta.TestNamespaceConnectionResponse
+	(*ListPipelineIDsByConnectionIDResponse)(nil),        // 83: pipeline.v1beta.ListPipelineIDsByConnectionIDResponse
+	(*ListIntegrationsResponse)(nil),                     // 84: pipeline.v1beta.ListIntegrationsResponse
+	(*GetIntegrationResponse)(nil),                       // 85: pipeline.v1beta.GetIntegrationResponse
 }
 var file_pipeline_v1beta_pipeline_public_service_proto_depIdxs = []int32{
 	0,  // 0: pipeline.v1beta.PipelinePublicService.Liveness:input_type -> pipeline.v1beta.LivenessRequest
 	1,  // 1: pipeline.v1beta.PipelinePublicService.Readiness:input_type -> pipeline.v1beta.ReadinessRequest
 	2,  // 2: pipeline.v1beta.PipelinePublicService.GetHubStats:input_type -> pipeline.v1beta.GetHubStatsRequest
 	3,  // 3: pipeline.v1beta.PipelinePublicService.ListPipelines:input_type -> pipeline.v1beta.ListPipelinesRequest
-	4,  // 4: pipeline.v1beta.PipelinePublicService.LookUpPipeline:input_type -> pipeline.v1beta.LookUpPipelineRequest
-	5,  // 5: pipeline.v1beta.PipelinePublicService.ListNamespacePipelines:input_type -> pipeline.v1beta.ListNamespacePipelinesRequest
-	6,  // 6: pipeline.v1beta.PipelinePublicService.CreateNamespacePipeline:input_type -> pipeline.v1beta.CreateNamespacePipelineRequest
-	7,  // 7: pipeline.v1beta.PipelinePublicService.GetNamespacePipeline:input_type -> pipeline.v1beta.GetNamespacePipelineRequest
-	8,  // 8: pipeline.v1beta.PipelinePublicService.UpdateNamespacePipeline:input_type -> pipeline.v1beta.UpdateNamespacePipelineRequest
-	9,  // 9: pipeline.v1beta.PipelinePublicService.DeleteNamespacePipeline:input_type -> pipeline.v1beta.DeleteNamespacePipelineRequest
-	10, // 10: pipeline.v1beta.PipelinePublicService.ValidateNamespacePipeline:input_type -> pipeline.v1beta.ValidateNamespacePipelineRequest
-	11, // 11: pipeline.v1beta.PipelinePublicService.RenameNamespacePipeline:input_type -> pipeline.v1beta.RenameNamespacePipelineRequest
-	12, // 12: pipeline.v1beta.PipelinePublicService.CloneNamespacePipeline:input_type -> pipeline.v1beta.CloneNamespacePipelineRequest
-	13, // 13: pipeline.v1beta.PipelinePublicService.DispatchPipelineWebhookEvent:input_type -> pipeline.v1beta.DispatchPipelineWebhookEventRequest
-	14, // 14: pipeline.v1beta.PipelinePublicService.TriggerNamespacePipeline:input_type -> pipeline.v1beta.TriggerNamespacePipelineRequest
-	15, // 15: pipeline.v1beta.PipelinePublicService.TriggerNamespacePipelineWithStream:input_type -> pipeline.v1beta.TriggerNamespacePipelineWithStreamRequest
-	16, // 16: pipeline.v1beta.PipelinePublicService.TriggerAsyncNamespacePipeline:input_type -> pipeline.v1beta.TriggerAsyncNamespacePipelineRequest
-	17, // 17: pipeline.v1beta.PipelinePublicService.CreateNamespacePipelineRelease:input_type -> pipeline.v1beta.CreateNamespacePipelineReleaseRequest
-	18, // 18: pipeline.v1beta.PipelinePublicService.ListNamespacePipelineReleases:input_type -> pipeline.v1beta.ListNamespacePipelineReleasesRequest
-	19, // 19: pipeline.v1beta.PipelinePublicService.GetNamespacePipelineRelease:input_type -> pipeline.v1beta.GetNamespacePipelineReleaseRequest
-	20, // 20: pipeline.v1beta.PipelinePublicService.UpdateNamespacePipelineRelease:input_type -> pipeline.v1beta.UpdateNamespacePipelineReleaseRequest
-	21, // 21: pipeline.v1beta.PipelinePublicService.DeleteNamespacePipelineRelease:input_type -> pipeline.v1beta.DeleteNamespacePipelineReleaseRequest
-	22, // 22: pipeline.v1beta.PipelinePublicService.CloneNamespacePipelineRelease:input_type -> pipeline.v1beta.CloneNamespacePipelineReleaseRequest
-	23, // 23: pipeline.v1beta.PipelinePublicService.TriggerNamespacePipelineRelease:input_type -> pipeline.v1beta.TriggerNamespacePipelineReleaseRequest
-	24, // 24: pipeline.v1beta.PipelinePublicService.TriggerAsyncNamespacePipelineRelease:input_type -> pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseRequest
-	25, // 25: pipeline.v1beta.PipelinePublicService.CreateNamespaceSecret:input_type -> pipeline.v1beta.CreateNamespaceSecretRequest
-	26, // 26: pipeline.v1beta.PipelinePublicService.ListNamespaceSecrets:input_type -> pipeline.v1beta.ListNamespaceSecretsRequest
-	27, // 27: pipeline.v1beta.PipelinePublicService.GetNamespaceSecret:input_type -> pipeline.v1beta.GetNamespaceSecretRequest
-	28, // 28: pipeline.v1beta.PipelinePublicService.UpdateNamespaceSecret:input_type -> pipeline.v1beta.UpdateNamespaceSecretRequest
-	29, // 29: pipeline.v1beta.PipelinePublicService.DeleteNamespaceSecret:input_type -> pipeline.v1beta.DeleteNamespaceSecretRequest
-	30, // 30: pipeline.v1beta.PipelinePublicService.ListComponentDefinitions:input_type -> pipeline.v1beta.ListComponentDefinitionsRequest
-	31, // 31: pipeline.v1beta.PipelinePublicService.GetOperation:input_type -> pipeline.v1beta.GetOperationRequest
-	32, // 32: pipeline.v1beta.PipelinePublicService.ListPipelineRuns:input_type -> pipeline.v1beta.ListPipelineRunsRequest
-	33, // 33: pipeline.v1beta.PipelinePublicService.ListComponentRuns:input_type -> pipeline.v1beta.ListComponentRunsRequest
-	34, // 34: pipeline.v1beta.PipelinePublicService.ListPipelineRunsByRequester:input_type -> pipeline.v1beta.ListPipelineRunsByRequesterRequest
-	35, // 35: pipeline.v1beta.PipelinePublicService.ListNamespaceConnections:input_type -> pipeline.v1beta.ListNamespaceConnectionsRequest
-	36, // 36: pipeline.v1beta.PipelinePublicService.GetNamespaceConnection:input_type -> pipeline.v1beta.GetNamespaceConnectionRequest
-	37, // 37: pipeline.v1beta.PipelinePublicService.CreateNamespaceConnection:input_type -> pipeline.v1beta.CreateNamespaceConnectionRequest
-	38, // 38: pipeline.v1beta.PipelinePublicService.UpdateNamespaceConnection:input_type -> pipeline.v1beta.UpdateNamespaceConnectionRequest
-	39, // 39: pipeline.v1beta.PipelinePublicService.DeleteNamespaceConnection:input_type -> pipeline.v1beta.DeleteNamespaceConnectionRequest
-	40, // 40: pipeline.v1beta.PipelinePublicService.TestNamespaceConnection:input_type -> pipeline.v1beta.TestNamespaceConnectionRequest
-	41, // 41: pipeline.v1beta.PipelinePublicService.ListPipelineIDsByConnectionID:input_type -> pipeline.v1beta.ListPipelineIDsByConnectionIDRequest
-	42, // 42: pipeline.v1beta.PipelinePublicService.ListIntegrations:input_type -> pipeline.v1beta.ListIntegrationsRequest
-	43, // 43: pipeline.v1beta.PipelinePublicService.GetIntegration:input_type -> pipeline.v1beta.GetIntegrationRequest
-	44, // 44: pipeline.v1beta.PipelinePublicService.Liveness:output_type -> pipeline.v1beta.LivenessResponse
-	45, // 45: pipeline.v1beta.PipelinePublicService.Readiness:output_type -> pipeline.v1beta.ReadinessResponse
-	46, // 46: pipeline.v1beta.PipelinePublicService.GetHubStats:output_type -> pipeline.v1beta.GetHubStatsResponse
-	47, // 47: pipeline.v1beta.PipelinePublicService.ListPipelines:output_type -> pipeline.v1beta.ListPipelinesResponse
-	48, // 48: pipeline.v1beta.PipelinePublicService.LookUpPipeline:output_type -> pipeline.v1beta.LookUpPipelineResponse
-	49, // 49: pipeline.v1beta.PipelinePublicService.ListNamespacePipelines:output_type -> pipeline.v1beta.ListNamespacePipelinesResponse
-	50, // 50: pipeline.v1beta.PipelinePublicService.CreateNamespacePipeline:output_type -> pipeline.v1beta.CreateNamespacePipelineResponse
-	51, // 51: pipeline.v1beta.PipelinePublicService.GetNamespacePipeline:output_type -> pipeline.v1beta.GetNamespacePipelineResponse
-	52, // 52: pipeline.v1beta.PipelinePublicService.UpdateNamespacePipeline:output_type -> pipeline.v1beta.UpdateNamespacePipelineResponse
-	53, // 53: pipeline.v1beta.PipelinePublicService.DeleteNamespacePipeline:output_type -> pipeline.v1beta.DeleteNamespacePipelineResponse
-	54, // 54: pipeline.v1beta.PipelinePublicService.ValidateNamespacePipeline:output_type -> pipeline.v1beta.ValidateNamespacePipelineResponse
-	55, // 55: pipeline.v1beta.PipelinePublicService.RenameNamespacePipeline:output_type -> pipeline.v1beta.RenameNamespacePipelineResponse
-	56, // 56: pipeline.v1beta.PipelinePublicService.CloneNamespacePipeline:output_type -> pipeline.v1beta.CloneNamespacePipelineResponse
-	57, // 57: pipeline.v1beta.PipelinePublicService.DispatchPipelineWebhookEvent:output_type -> pipeline.v1beta.DispatchPipelineWebhookEventResponse
-	58, // 58: pipeline.v1beta.PipelinePublicService.TriggerNamespacePipeline:output_type -> pipeline.v1beta.TriggerNamespacePipelineResponse
-	59, // 59: pipeline.v1beta.PipelinePublicService.TriggerNamespacePipelineWithStream:output_type -> pipeline.v1beta.TriggerNamespacePipelineWithStreamResponse
-	60, // 60: pipeline.v1beta.PipelinePublicService.TriggerAsyncNamespacePipeline:output_type -> pipeline.v1beta.TriggerAsyncNamespacePipelineResponse
-	61, // 61: pipeline.v1beta.PipelinePublicService.CreateNamespacePipelineRelease:output_type -> pipeline.v1beta.CreateNamespacePipelineReleaseResponse
-	62, // 62: pipeline.v1beta.PipelinePublicService.ListNamespacePipelineReleases:output_type -> pipeline.v1beta.ListNamespacePipelineReleasesResponse
-	63, // 63: pipeline.v1beta.PipelinePublicService.GetNamespacePipelineRelease:output_type -> pipeline.v1beta.GetNamespacePipelineReleaseResponse
-	64, // 64: pipeline.v1beta.PipelinePublicService.UpdateNamespacePipelineRelease:output_type -> pipeline.v1beta.UpdateNamespacePipelineReleaseResponse
-	65, // 65: pipeline.v1beta.PipelinePublicService.DeleteNamespacePipelineRelease:output_type -> pipeline.v1beta.DeleteNamespacePipelineReleaseResponse
-	66, // 66: pipeline.v1beta.PipelinePublicService.CloneNamespacePipelineRelease:output_type -> pipeline.v1beta.CloneNamespacePipelineReleaseResponse
-	67, // 67: pipeline.v1beta.PipelinePublicService.TriggerNamespacePipelineRelease:output_type -> pipeline.v1beta.TriggerNamespacePipelineReleaseResponse
-	68, // 68: pipeline.v1beta.PipelinePublicService.TriggerAsyncNamespacePipelineRelease:output_type -> pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseResponse
-	69, // 69: pipeline.v1beta.PipelinePublicService.CreateNamespaceSecret:output_type -> pipeline.v1beta.CreateNamespaceSecretResponse
-	70, // 70: pipeline.v1beta.PipelinePublicService.ListNamespaceSecrets:output_type -> pipeline.v1beta.ListNamespaceSecretsResponse
-	71, // 71: pipeline.v1beta.PipelinePublicService.GetNamespaceSecret:output_type -> pipeline.v1beta.GetNamespaceSecretResponse
-	72, // 72: pipeline.v1beta.PipelinePublicService.UpdateNamespaceSecret:output_type -> pipeline.v1beta.UpdateNamespaceSecretResponse
-	73, // 73: pipeline.v1beta.PipelinePublicService.DeleteNamespaceSecret:output_type -> pipeline.v1beta.DeleteNamespaceSecretResponse
-	74, // 74: pipeline.v1beta.PipelinePublicService.ListComponentDefinitions:output_type -> pipeline.v1beta.ListComponentDefinitionsResponse
-	75, // 75: pipeline.v1beta.PipelinePublicService.GetOperation:output_type -> pipeline.v1beta.GetOperationResponse
-	76, // 76: pipeline.v1beta.PipelinePublicService.ListPipelineRuns:output_type -> pipeline.v1beta.ListPipelineRunsResponse
-	77, // 77: pipeline.v1beta.PipelinePublicService.ListComponentRuns:output_type -> pipeline.v1beta.ListComponentRunsResponse
-	78, // 78: pipeline.v1beta.PipelinePublicService.ListPipelineRunsByRequester:output_type -> pipeline.v1beta.ListPipelineRunsByRequesterResponse
-	79, // 79: pipeline.v1beta.PipelinePublicService.ListNamespaceConnections:output_type -> pipeline.v1beta.ListNamespaceConnectionsResponse
-	80, // 80: pipeline.v1beta.PipelinePublicService.GetNamespaceConnection:output_type -> pipeline.v1beta.GetNamespaceConnectionResponse
-	81, // 81: pipeline.v1beta.PipelinePublicService.CreateNamespaceConnection:output_type -> pipeline.v1beta.CreateNamespaceConnectionResponse
-	82, // 82: pipeline.v1beta.PipelinePublicService.UpdateNamespaceConnection:output_type -> pipeline.v1beta.UpdateNamespaceConnectionResponse
-	83, // 83: pipeline.v1beta.PipelinePublicService.DeleteNamespaceConnection:output_type -> pipeline.v1beta.DeleteNamespaceConnectionResponse
-	84, // 84: pipeline.v1beta.PipelinePublicService.TestNamespaceConnection:output_type -> pipeline.v1beta.TestNamespaceConnectionResponse
-	85, // 85: pipeline.v1beta.PipelinePublicService.ListPipelineIDsByConnectionID:output_type -> pipeline.v1beta.ListPipelineIDsByConnectionIDResponse
-	86, // 86: pipeline.v1beta.PipelinePublicService.ListIntegrations:output_type -> pipeline.v1beta.ListIntegrationsResponse
-	87, // 87: pipeline.v1beta.PipelinePublicService.GetIntegration:output_type -> pipeline.v1beta.GetIntegrationResponse
-	44, // [44:88] is the sub-list for method output_type
-	0,  // [0:44] is the sub-list for method input_type
+	4,  // 4: pipeline.v1beta.PipelinePublicService.ListNamespacePipelines:input_type -> pipeline.v1beta.ListNamespacePipelinesRequest
+	5,  // 5: pipeline.v1beta.PipelinePublicService.CreateNamespacePipeline:input_type -> pipeline.v1beta.CreateNamespacePipelineRequest
+	6,  // 6: pipeline.v1beta.PipelinePublicService.GetNamespacePipeline:input_type -> pipeline.v1beta.GetNamespacePipelineRequest
+	7,  // 7: pipeline.v1beta.PipelinePublicService.UpdateNamespacePipeline:input_type -> pipeline.v1beta.UpdateNamespacePipelineRequest
+	8,  // 8: pipeline.v1beta.PipelinePublicService.DeleteNamespacePipeline:input_type -> pipeline.v1beta.DeleteNamespacePipelineRequest
+	9,  // 9: pipeline.v1beta.PipelinePublicService.ValidateNamespacePipeline:input_type -> pipeline.v1beta.ValidateNamespacePipelineRequest
+	10, // 10: pipeline.v1beta.PipelinePublicService.RenameNamespacePipeline:input_type -> pipeline.v1beta.RenameNamespacePipelineRequest
+	11, // 11: pipeline.v1beta.PipelinePublicService.CloneNamespacePipeline:input_type -> pipeline.v1beta.CloneNamespacePipelineRequest
+	12, // 12: pipeline.v1beta.PipelinePublicService.DispatchPipelineWebhookEvent:input_type -> pipeline.v1beta.DispatchPipelineWebhookEventRequest
+	13, // 13: pipeline.v1beta.PipelinePublicService.TriggerNamespacePipeline:input_type -> pipeline.v1beta.TriggerNamespacePipelineRequest
+	14, // 14: pipeline.v1beta.PipelinePublicService.TriggerNamespacePipelineWithStream:input_type -> pipeline.v1beta.TriggerNamespacePipelineWithStreamRequest
+	15, // 15: pipeline.v1beta.PipelinePublicService.TriggerAsyncNamespacePipeline:input_type -> pipeline.v1beta.TriggerAsyncNamespacePipelineRequest
+	16, // 16: pipeline.v1beta.PipelinePublicService.CreateNamespacePipelineRelease:input_type -> pipeline.v1beta.CreateNamespacePipelineReleaseRequest
+	17, // 17: pipeline.v1beta.PipelinePublicService.ListNamespacePipelineReleases:input_type -> pipeline.v1beta.ListNamespacePipelineReleasesRequest
+	18, // 18: pipeline.v1beta.PipelinePublicService.GetNamespacePipelineRelease:input_type -> pipeline.v1beta.GetNamespacePipelineReleaseRequest
+	19, // 19: pipeline.v1beta.PipelinePublicService.UpdateNamespacePipelineRelease:input_type -> pipeline.v1beta.UpdateNamespacePipelineReleaseRequest
+	20, // 20: pipeline.v1beta.PipelinePublicService.DeleteNamespacePipelineRelease:input_type -> pipeline.v1beta.DeleteNamespacePipelineReleaseRequest
+	21, // 21: pipeline.v1beta.PipelinePublicService.CloneNamespacePipelineRelease:input_type -> pipeline.v1beta.CloneNamespacePipelineReleaseRequest
+	22, // 22: pipeline.v1beta.PipelinePublicService.TriggerNamespacePipelineRelease:input_type -> pipeline.v1beta.TriggerNamespacePipelineReleaseRequest
+	23, // 23: pipeline.v1beta.PipelinePublicService.TriggerAsyncNamespacePipelineRelease:input_type -> pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseRequest
+	24, // 24: pipeline.v1beta.PipelinePublicService.CreateNamespaceSecret:input_type -> pipeline.v1beta.CreateNamespaceSecretRequest
+	25, // 25: pipeline.v1beta.PipelinePublicService.ListNamespaceSecrets:input_type -> pipeline.v1beta.ListNamespaceSecretsRequest
+	26, // 26: pipeline.v1beta.PipelinePublicService.GetNamespaceSecret:input_type -> pipeline.v1beta.GetNamespaceSecretRequest
+	27, // 27: pipeline.v1beta.PipelinePublicService.UpdateNamespaceSecret:input_type -> pipeline.v1beta.UpdateNamespaceSecretRequest
+	28, // 28: pipeline.v1beta.PipelinePublicService.DeleteNamespaceSecret:input_type -> pipeline.v1beta.DeleteNamespaceSecretRequest
+	29, // 29: pipeline.v1beta.PipelinePublicService.ListComponentDefinitions:input_type -> pipeline.v1beta.ListComponentDefinitionsRequest
+	30, // 30: pipeline.v1beta.PipelinePublicService.GetOperation:input_type -> pipeline.v1beta.GetOperationRequest
+	31, // 31: pipeline.v1beta.PipelinePublicService.ListPipelineRuns:input_type -> pipeline.v1beta.ListPipelineRunsRequest
+	32, // 32: pipeline.v1beta.PipelinePublicService.ListComponentRuns:input_type -> pipeline.v1beta.ListComponentRunsRequest
+	33, // 33: pipeline.v1beta.PipelinePublicService.ListPipelineRunsByRequester:input_type -> pipeline.v1beta.ListPipelineRunsByRequesterRequest
+	34, // 34: pipeline.v1beta.PipelinePublicService.ListNamespaceConnections:input_type -> pipeline.v1beta.ListNamespaceConnectionsRequest
+	35, // 35: pipeline.v1beta.PipelinePublicService.GetNamespaceConnection:input_type -> pipeline.v1beta.GetNamespaceConnectionRequest
+	36, // 36: pipeline.v1beta.PipelinePublicService.CreateNamespaceConnection:input_type -> pipeline.v1beta.CreateNamespaceConnectionRequest
+	37, // 37: pipeline.v1beta.PipelinePublicService.UpdateNamespaceConnection:input_type -> pipeline.v1beta.UpdateNamespaceConnectionRequest
+	38, // 38: pipeline.v1beta.PipelinePublicService.DeleteNamespaceConnection:input_type -> pipeline.v1beta.DeleteNamespaceConnectionRequest
+	39, // 39: pipeline.v1beta.PipelinePublicService.TestNamespaceConnection:input_type -> pipeline.v1beta.TestNamespaceConnectionRequest
+	40, // 40: pipeline.v1beta.PipelinePublicService.ListPipelineIDsByConnectionID:input_type -> pipeline.v1beta.ListPipelineIDsByConnectionIDRequest
+	41, // 41: pipeline.v1beta.PipelinePublicService.ListIntegrations:input_type -> pipeline.v1beta.ListIntegrationsRequest
+	42, // 42: pipeline.v1beta.PipelinePublicService.GetIntegration:input_type -> pipeline.v1beta.GetIntegrationRequest
+	43, // 43: pipeline.v1beta.PipelinePublicService.Liveness:output_type -> pipeline.v1beta.LivenessResponse
+	44, // 44: pipeline.v1beta.PipelinePublicService.Readiness:output_type -> pipeline.v1beta.ReadinessResponse
+	45, // 45: pipeline.v1beta.PipelinePublicService.GetHubStats:output_type -> pipeline.v1beta.GetHubStatsResponse
+	46, // 46: pipeline.v1beta.PipelinePublicService.ListPipelines:output_type -> pipeline.v1beta.ListPipelinesResponse
+	47, // 47: pipeline.v1beta.PipelinePublicService.ListNamespacePipelines:output_type -> pipeline.v1beta.ListNamespacePipelinesResponse
+	48, // 48: pipeline.v1beta.PipelinePublicService.CreateNamespacePipeline:output_type -> pipeline.v1beta.CreateNamespacePipelineResponse
+	49, // 49: pipeline.v1beta.PipelinePublicService.GetNamespacePipeline:output_type -> pipeline.v1beta.GetNamespacePipelineResponse
+	50, // 50: pipeline.v1beta.PipelinePublicService.UpdateNamespacePipeline:output_type -> pipeline.v1beta.UpdateNamespacePipelineResponse
+	51, // 51: pipeline.v1beta.PipelinePublicService.DeleteNamespacePipeline:output_type -> pipeline.v1beta.DeleteNamespacePipelineResponse
+	52, // 52: pipeline.v1beta.PipelinePublicService.ValidateNamespacePipeline:output_type -> pipeline.v1beta.ValidateNamespacePipelineResponse
+	53, // 53: pipeline.v1beta.PipelinePublicService.RenameNamespacePipeline:output_type -> pipeline.v1beta.RenameNamespacePipelineResponse
+	54, // 54: pipeline.v1beta.PipelinePublicService.CloneNamespacePipeline:output_type -> pipeline.v1beta.CloneNamespacePipelineResponse
+	55, // 55: pipeline.v1beta.PipelinePublicService.DispatchPipelineWebhookEvent:output_type -> pipeline.v1beta.DispatchPipelineWebhookEventResponse
+	56, // 56: pipeline.v1beta.PipelinePublicService.TriggerNamespacePipeline:output_type -> pipeline.v1beta.TriggerNamespacePipelineResponse
+	57, // 57: pipeline.v1beta.PipelinePublicService.TriggerNamespacePipelineWithStream:output_type -> pipeline.v1beta.TriggerNamespacePipelineWithStreamResponse
+	58, // 58: pipeline.v1beta.PipelinePublicService.TriggerAsyncNamespacePipeline:output_type -> pipeline.v1beta.TriggerAsyncNamespacePipelineResponse
+	59, // 59: pipeline.v1beta.PipelinePublicService.CreateNamespacePipelineRelease:output_type -> pipeline.v1beta.CreateNamespacePipelineReleaseResponse
+	60, // 60: pipeline.v1beta.PipelinePublicService.ListNamespacePipelineReleases:output_type -> pipeline.v1beta.ListNamespacePipelineReleasesResponse
+	61, // 61: pipeline.v1beta.PipelinePublicService.GetNamespacePipelineRelease:output_type -> pipeline.v1beta.GetNamespacePipelineReleaseResponse
+	62, // 62: pipeline.v1beta.PipelinePublicService.UpdateNamespacePipelineRelease:output_type -> pipeline.v1beta.UpdateNamespacePipelineReleaseResponse
+	63, // 63: pipeline.v1beta.PipelinePublicService.DeleteNamespacePipelineRelease:output_type -> pipeline.v1beta.DeleteNamespacePipelineReleaseResponse
+	64, // 64: pipeline.v1beta.PipelinePublicService.CloneNamespacePipelineRelease:output_type -> pipeline.v1beta.CloneNamespacePipelineReleaseResponse
+	65, // 65: pipeline.v1beta.PipelinePublicService.TriggerNamespacePipelineRelease:output_type -> pipeline.v1beta.TriggerNamespacePipelineReleaseResponse
+	66, // 66: pipeline.v1beta.PipelinePublicService.TriggerAsyncNamespacePipelineRelease:output_type -> pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseResponse
+	67, // 67: pipeline.v1beta.PipelinePublicService.CreateNamespaceSecret:output_type -> pipeline.v1beta.CreateNamespaceSecretResponse
+	68, // 68: pipeline.v1beta.PipelinePublicService.ListNamespaceSecrets:output_type -> pipeline.v1beta.ListNamespaceSecretsResponse
+	69, // 69: pipeline.v1beta.PipelinePublicService.GetNamespaceSecret:output_type -> pipeline.v1beta.GetNamespaceSecretResponse
+	70, // 70: pipeline.v1beta.PipelinePublicService.UpdateNamespaceSecret:output_type -> pipeline.v1beta.UpdateNamespaceSecretResponse
+	71, // 71: pipeline.v1beta.PipelinePublicService.DeleteNamespaceSecret:output_type -> pipeline.v1beta.DeleteNamespaceSecretResponse
+	72, // 72: pipeline.v1beta.PipelinePublicService.ListComponentDefinitions:output_type -> pipeline.v1beta.ListComponentDefinitionsResponse
+	73, // 73: pipeline.v1beta.PipelinePublicService.GetOperation:output_type -> pipeline.v1beta.GetOperationResponse
+	74, // 74: pipeline.v1beta.PipelinePublicService.ListPipelineRuns:output_type -> pipeline.v1beta.ListPipelineRunsResponse
+	75, // 75: pipeline.v1beta.PipelinePublicService.ListComponentRuns:output_type -> pipeline.v1beta.ListComponentRunsResponse
+	76, // 76: pipeline.v1beta.PipelinePublicService.ListPipelineRunsByRequester:output_type -> pipeline.v1beta.ListPipelineRunsByRequesterResponse
+	77, // 77: pipeline.v1beta.PipelinePublicService.ListNamespaceConnections:output_type -> pipeline.v1beta.ListNamespaceConnectionsResponse
+	78, // 78: pipeline.v1beta.PipelinePublicService.GetNamespaceConnection:output_type -> pipeline.v1beta.GetNamespaceConnectionResponse
+	79, // 79: pipeline.v1beta.PipelinePublicService.CreateNamespaceConnection:output_type -> pipeline.v1beta.CreateNamespaceConnectionResponse
+	80, // 80: pipeline.v1beta.PipelinePublicService.UpdateNamespaceConnection:output_type -> pipeline.v1beta.UpdateNamespaceConnectionResponse
+	81, // 81: pipeline.v1beta.PipelinePublicService.DeleteNamespaceConnection:output_type -> pipeline.v1beta.DeleteNamespaceConnectionResponse
+	82, // 82: pipeline.v1beta.PipelinePublicService.TestNamespaceConnection:output_type -> pipeline.v1beta.TestNamespaceConnectionResponse
+	83, // 83: pipeline.v1beta.PipelinePublicService.ListPipelineIDsByConnectionID:output_type -> pipeline.v1beta.ListPipelineIDsByConnectionIDResponse
+	84, // 84: pipeline.v1beta.PipelinePublicService.ListIntegrations:output_type -> pipeline.v1beta.ListIntegrationsResponse
+	85, // 85: pipeline.v1beta.PipelinePublicService.GetIntegration:output_type -> pipeline.v1beta.GetIntegrationResponse
+	43, // [43:86] is the sub-list for method output_type
+	0,  // [0:43] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name

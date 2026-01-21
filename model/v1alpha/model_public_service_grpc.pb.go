@@ -25,7 +25,6 @@ const (
 	ModelPublicService_ListAvailableRegions_FullMethodName                        = "/model.v1alpha.ModelPublicService/ListAvailableRegions"
 	ModelPublicService_GetModelDefinition_FullMethodName                          = "/model.v1alpha.ModelPublicService/GetModelDefinition"
 	ModelPublicService_ListModels_FullMethodName                                  = "/model.v1alpha.ModelPublicService/ListModels"
-	ModelPublicService_LookUpModel_FullMethodName                                 = "/model.v1alpha.ModelPublicService/LookUpModel"
 	ModelPublicService_ListNamespaceModels_FullMethodName                         = "/model.v1alpha.ModelPublicService/ListNamespaceModels"
 	ModelPublicService_CreateNamespaceModel_FullMethodName                        = "/model.v1alpha.ModelPublicService/CreateNamespaceModel"
 	ModelPublicService_GetNamespaceModel_FullMethodName                           = "/model.v1alpha.ModelPublicService/GetNamespaceModel"
@@ -82,10 +81,6 @@ type ModelPublicServiceClient interface {
 	//
 	// Returns a paginated list of models.
 	ListModels(ctx context.Context, in *ListModelsRequest, opts ...grpc.CallOption) (*ListModelsResponse, error)
-	// Get a model by UID
-	//
-	// Returns the details of a model by a permalink defined by the resource UID.
-	LookUpModel(ctx context.Context, in *LookUpModelRequest, opts ...grpc.CallOption) (*LookUpModelResponse, error)
 	// List namespace models
 	//
 	// Returns a paginated list of models.
@@ -266,16 +261,6 @@ func (c *modelPublicServiceClient) ListModels(ctx context.Context, in *ListModel
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListModelsResponse)
 	err := c.cc.Invoke(ctx, ModelPublicService_ListModels_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *modelPublicServiceClient) LookUpModel(ctx context.Context, in *LookUpModelRequest, opts ...grpc.CallOption) (*LookUpModelResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(LookUpModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_LookUpModel_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -531,10 +516,6 @@ type ModelPublicServiceServer interface {
 	//
 	// Returns a paginated list of models.
 	ListModels(context.Context, *ListModelsRequest) (*ListModelsResponse, error)
-	// Get a model by UID
-	//
-	// Returns the details of a model by a permalink defined by the resource UID.
-	LookUpModel(context.Context, *LookUpModelRequest) (*LookUpModelResponse, error)
 	// List namespace models
 	//
 	// Returns a paginated list of models.
@@ -677,9 +658,6 @@ func (UnimplementedModelPublicServiceServer) GetModelDefinition(context.Context,
 }
 func (UnimplementedModelPublicServiceServer) ListModels(context.Context, *ListModelsRequest) (*ListModelsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListModels not implemented")
-}
-func (UnimplementedModelPublicServiceServer) LookUpModel(context.Context, *LookUpModelRequest) (*LookUpModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LookUpModel not implemented")
 }
 func (UnimplementedModelPublicServiceServer) ListNamespaceModels(context.Context, *ListNamespaceModelsRequest) (*ListNamespaceModelsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListNamespaceModels not implemented")
@@ -868,24 +846,6 @@ func _ModelPublicService_ListModels_Handler(srv interface{}, ctx context.Context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelPublicServiceServer).ListModels(ctx, req.(*ListModelsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ModelPublicService_LookUpModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(LookUpModelRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).LookUpModel(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ModelPublicService_LookUpModel_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).LookUpModel(ctx, req.(*LookUpModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1276,10 +1236,6 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListModels",
 			Handler:    _ModelPublicService_ListModels_Handler,
-		},
-		{
-			MethodName: "LookUpModel",
-			Handler:    _ModelPublicService_LookUpModel_Handler,
 		},
 		{
 			MethodName: "ListNamespaceModels",

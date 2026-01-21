@@ -23,7 +23,6 @@ const (
 	PipelinePublicService_Readiness_FullMethodName                            = "/pipeline.v1beta.PipelinePublicService/Readiness"
 	PipelinePublicService_GetHubStats_FullMethodName                          = "/pipeline.v1beta.PipelinePublicService/GetHubStats"
 	PipelinePublicService_ListPipelines_FullMethodName                        = "/pipeline.v1beta.PipelinePublicService/ListPipelines"
-	PipelinePublicService_LookUpPipeline_FullMethodName                       = "/pipeline.v1beta.PipelinePublicService/LookUpPipeline"
 	PipelinePublicService_ListNamespacePipelines_FullMethodName               = "/pipeline.v1beta.PipelinePublicService/ListNamespacePipelines"
 	PipelinePublicService_CreateNamespacePipeline_FullMethodName              = "/pipeline.v1beta.PipelinePublicService/CreateNamespacePipeline"
 	PipelinePublicService_GetNamespacePipeline_FullMethodName                 = "/pipeline.v1beta.PipelinePublicService/GetNamespacePipeline"
@@ -90,11 +89,6 @@ type PipelinePublicServiceClient interface {
 	//
 	// Returns a paginated list of pipelines that are visible to the requester.
 	ListPipelines(ctx context.Context, in *ListPipelinesRequest, opts ...grpc.CallOption) (*ListPipelinesResponse, error)
-	// Get a pipeline by UID
-	//
-	// Returns the details of a pipeline by a permalink defined by the resource
-	// UID.
-	LookUpPipeline(ctx context.Context, in *LookUpPipelineRequest, opts ...grpc.CallOption) (*LookUpPipelineResponse, error)
 	// List namespace pipelines
 	//
 	// Returns a paginated list of pipelines of a namespace
@@ -390,16 +384,6 @@ func (c *pipelinePublicServiceClient) ListPipelines(ctx context.Context, in *Lis
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListPipelinesResponse)
 	err := c.cc.Invoke(ctx, PipelinePublicService_ListPipelines_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *pipelinePublicServiceClient) LookUpPipeline(ctx context.Context, in *LookUpPipelineRequest, opts ...grpc.CallOption) (*LookUpPipelineResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(LookUpPipelineResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_LookUpPipeline_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -830,11 +814,6 @@ type PipelinePublicServiceServer interface {
 	//
 	// Returns a paginated list of pipelines that are visible to the requester.
 	ListPipelines(context.Context, *ListPipelinesRequest) (*ListPipelinesResponse, error)
-	// Get a pipeline by UID
-	//
-	// Returns the details of a pipeline by a permalink defined by the resource
-	// UID.
-	LookUpPipeline(context.Context, *LookUpPipelineRequest) (*LookUpPipelineResponse, error)
 	// List namespace pipelines
 	//
 	// Returns a paginated list of pipelines of a namespace
@@ -1107,9 +1086,6 @@ func (UnimplementedPipelinePublicServiceServer) GetHubStats(context.Context, *Ge
 func (UnimplementedPipelinePublicServiceServer) ListPipelines(context.Context, *ListPipelinesRequest) (*ListPipelinesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPipelines not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) LookUpPipeline(context.Context, *LookUpPipelineRequest) (*LookUpPipelineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LookUpPipeline not implemented")
-}
 func (UnimplementedPipelinePublicServiceServer) ListNamespacePipelines(context.Context, *ListNamespacePipelinesRequest) (*ListNamespacePipelinesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListNamespacePipelines not implemented")
 }
@@ -1315,24 +1291,6 @@ func _PipelinePublicService_ListPipelines_Handler(srv interface{}, ctx context.C
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PipelinePublicServiceServer).ListPipelines(ctx, req.(*ListPipelinesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PipelinePublicService_LookUpPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(LookUpPipelineRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).LookUpPipeline(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PipelinePublicService_LookUpPipeline_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).LookUpPipeline(ctx, req.(*LookUpPipelineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2054,10 +2012,6 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListPipelines",
 			Handler:    _PipelinePublicService_ListPipelines_Handler,
-		},
-		{
-			MethodName: "LookUpPipeline",
-			Handler:    _PipelinePublicService_LookUpPipeline_Handler,
 		},
 		{
 			MethodName: "ListNamespacePipelines",

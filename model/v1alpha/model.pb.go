@@ -1026,108 +1026,6 @@ func (x *ListModelsResponse) GetTotalSize() int32 {
 	return 0
 }
 
-// LookUpModelRequest represents a request to query a model by its UID.
-type LookUpModelRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The permalink of the model, which allows its access by UID.
-	// - Format: `models/{model.uid}`.
-	Permalink string `protobuf:"bytes,1,opt,name=permalink,proto3" json:"permalink,omitempty"`
-	// View allows clients to specify the desired model view in the response.
-	View          *View `protobuf:"varint,2,opt,name=view,proto3,enum=model.v1alpha.View,oneof" json:"view,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *LookUpModelRequest) Reset() {
-	*x = LookUpModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[10]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *LookUpModelRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*LookUpModelRequest) ProtoMessage() {}
-
-func (x *LookUpModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[10]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use LookUpModelRequest.ProtoReflect.Descriptor instead.
-func (*LookUpModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *LookUpModelRequest) GetPermalink() string {
-	if x != nil {
-		return x.Permalink
-	}
-	return ""
-}
-
-func (x *LookUpModelRequest) GetView() View {
-	if x != nil && x.View != nil {
-		return *x.View
-	}
-	return View_VIEW_UNSPECIFIED
-}
-
-// LookUpModelResponse contains the requested model.
-type LookUpModelResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The requested model.
-	Model         *Model `protobuf:"bytes,1,opt,name=model,proto3" json:"model,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *LookUpModelResponse) Reset() {
-	*x = LookUpModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[11]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *LookUpModelResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*LookUpModelResponse) ProtoMessage() {}
-
-func (x *LookUpModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[11]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use LookUpModelResponse.ProtoReflect.Descriptor instead.
-func (*LookUpModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{11}
-}
-
-func (x *LookUpModelResponse) GetModel() *Model {
-	if x != nil {
-		return x.Model
-	}
-	return nil
-}
-
 // ListNamespaceModelsRequest represents a request to list namepsace models.
 // Follows AIP-132: https://google.aip.dev/132
 type ListNamespaceModelsRequest struct {
@@ -1161,7 +1059,7 @@ type ListNamespaceModelsRequest struct {
 
 func (x *ListNamespaceModelsRequest) Reset() {
 	*x = ListNamespaceModelsRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[12]
+	mi := &file_model_v1alpha_model_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1173,7 +1071,7 @@ func (x *ListNamespaceModelsRequest) String() string {
 func (*ListNamespaceModelsRequest) ProtoMessage() {}
 
 func (x *ListNamespaceModelsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[12]
+	mi := &file_model_v1alpha_model_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1186,7 +1084,7 @@ func (x *ListNamespaceModelsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListNamespaceModelsRequest.ProtoReflect.Descriptor instead.
 func (*ListNamespaceModelsRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{12}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *ListNamespaceModelsRequest) GetParent() string {
@@ -1260,7 +1158,7 @@ type ListNamespaceModelsResponse struct {
 
 func (x *ListNamespaceModelsResponse) Reset() {
 	*x = ListNamespaceModelsResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[13]
+	mi := &file_model_v1alpha_model_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1272,7 +1170,7 @@ func (x *ListNamespaceModelsResponse) String() string {
 func (*ListNamespaceModelsResponse) ProtoMessage() {}
 
 func (x *ListNamespaceModelsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[13]
+	mi := &file_model_v1alpha_model_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1285,7 +1183,7 @@ func (x *ListNamespaceModelsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListNamespaceModelsResponse.ProtoReflect.Descriptor instead.
 func (*ListNamespaceModelsResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{13}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *ListNamespaceModelsResponse) GetModels() []*Model {
@@ -1325,7 +1223,7 @@ type CreateNamespaceModelRequest struct {
 
 func (x *CreateNamespaceModelRequest) Reset() {
 	*x = CreateNamespaceModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[14]
+	mi := &file_model_v1alpha_model_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1337,7 +1235,7 @@ func (x *CreateNamespaceModelRequest) String() string {
 func (*CreateNamespaceModelRequest) ProtoMessage() {}
 
 func (x *CreateNamespaceModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[14]
+	mi := &file_model_v1alpha_model_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1350,7 +1248,7 @@ func (x *CreateNamespaceModelRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateNamespaceModelRequest.ProtoReflect.Descriptor instead.
 func (*CreateNamespaceModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{14}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *CreateNamespaceModelRequest) GetParent() string {
@@ -1378,7 +1276,7 @@ type CreateNamespaceModelResponse struct {
 
 func (x *CreateNamespaceModelResponse) Reset() {
 	*x = CreateNamespaceModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[15]
+	mi := &file_model_v1alpha_model_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1390,7 +1288,7 @@ func (x *CreateNamespaceModelResponse) String() string {
 func (*CreateNamespaceModelResponse) ProtoMessage() {}
 
 func (x *CreateNamespaceModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[15]
+	mi := &file_model_v1alpha_model_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1403,7 +1301,7 @@ func (x *CreateNamespaceModelResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateNamespaceModelResponse.ProtoReflect.Descriptor instead.
 func (*CreateNamespaceModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{15}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *CreateNamespaceModelResponse) GetModel() *Model {
@@ -1429,7 +1327,7 @@ type GetNamespaceModelRequest struct {
 
 func (x *GetNamespaceModelRequest) Reset() {
 	*x = GetNamespaceModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[16]
+	mi := &file_model_v1alpha_model_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1441,7 +1339,7 @@ func (x *GetNamespaceModelRequest) String() string {
 func (*GetNamespaceModelRequest) ProtoMessage() {}
 
 func (x *GetNamespaceModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[16]
+	mi := &file_model_v1alpha_model_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1454,7 +1352,7 @@ func (x *GetNamespaceModelRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetNamespaceModelRequest.ProtoReflect.Descriptor instead.
 func (*GetNamespaceModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{16}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *GetNamespaceModelRequest) GetName() string {
@@ -1482,7 +1380,7 @@ type GetNamespaceModelResponse struct {
 
 func (x *GetNamespaceModelResponse) Reset() {
 	*x = GetNamespaceModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[17]
+	mi := &file_model_v1alpha_model_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1494,7 +1392,7 @@ func (x *GetNamespaceModelResponse) String() string {
 func (*GetNamespaceModelResponse) ProtoMessage() {}
 
 func (x *GetNamespaceModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[17]
+	mi := &file_model_v1alpha_model_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1507,7 +1405,7 @@ func (x *GetNamespaceModelResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetNamespaceModelResponse.ProtoReflect.Descriptor instead.
 func (*GetNamespaceModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{17}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *GetNamespaceModelResponse) GetModel() *Model {
@@ -1536,7 +1434,7 @@ type UpdateNamespaceModelRequest struct {
 
 func (x *UpdateNamespaceModelRequest) Reset() {
 	*x = UpdateNamespaceModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[18]
+	mi := &file_model_v1alpha_model_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1548,7 +1446,7 @@ func (x *UpdateNamespaceModelRequest) String() string {
 func (*UpdateNamespaceModelRequest) ProtoMessage() {}
 
 func (x *UpdateNamespaceModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[18]
+	mi := &file_model_v1alpha_model_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1561,7 +1459,7 @@ func (x *UpdateNamespaceModelRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateNamespaceModelRequest.ProtoReflect.Descriptor instead.
 func (*UpdateNamespaceModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{18}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *UpdateNamespaceModelRequest) GetModel() *Model {
@@ -1589,7 +1487,7 @@ type UpdateNamespaceModelResponse struct {
 
 func (x *UpdateNamespaceModelResponse) Reset() {
 	*x = UpdateNamespaceModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[19]
+	mi := &file_model_v1alpha_model_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1601,7 +1499,7 @@ func (x *UpdateNamespaceModelResponse) String() string {
 func (*UpdateNamespaceModelResponse) ProtoMessage() {}
 
 func (x *UpdateNamespaceModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[19]
+	mi := &file_model_v1alpha_model_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1614,7 +1512,7 @@ func (x *UpdateNamespaceModelResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateNamespaceModelResponse.ProtoReflect.Descriptor instead.
 func (*UpdateNamespaceModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{19}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *UpdateNamespaceModelResponse) GetModel() *Model {
@@ -1638,7 +1536,7 @@ type DeleteNamespaceModelRequest struct {
 
 func (x *DeleteNamespaceModelRequest) Reset() {
 	*x = DeleteNamespaceModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[20]
+	mi := &file_model_v1alpha_model_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1650,7 +1548,7 @@ func (x *DeleteNamespaceModelRequest) String() string {
 func (*DeleteNamespaceModelRequest) ProtoMessage() {}
 
 func (x *DeleteNamespaceModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[20]
+	mi := &file_model_v1alpha_model_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1663,7 +1561,7 @@ func (x *DeleteNamespaceModelRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteNamespaceModelRequest.ProtoReflect.Descriptor instead.
 func (*DeleteNamespaceModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{20}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *DeleteNamespaceModelRequest) GetName() string {
@@ -1682,7 +1580,7 @@ type DeleteNamespaceModelResponse struct {
 
 func (x *DeleteNamespaceModelResponse) Reset() {
 	*x = DeleteNamespaceModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[21]
+	mi := &file_model_v1alpha_model_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1694,7 +1592,7 @@ func (x *DeleteNamespaceModelResponse) String() string {
 func (*DeleteNamespaceModelResponse) ProtoMessage() {}
 
 func (x *DeleteNamespaceModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[21]
+	mi := &file_model_v1alpha_model_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1707,7 +1605,7 @@ func (x *DeleteNamespaceModelResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteNamespaceModelResponse.ProtoReflect.Descriptor instead.
 func (*DeleteNamespaceModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{21}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{19}
 }
 
 // RenameNamespaceModelRequest represents a request to rename a model
@@ -1725,7 +1623,7 @@ type RenameNamespaceModelRequest struct {
 
 func (x *RenameNamespaceModelRequest) Reset() {
 	*x = RenameNamespaceModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[22]
+	mi := &file_model_v1alpha_model_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1737,7 +1635,7 @@ func (x *RenameNamespaceModelRequest) String() string {
 func (*RenameNamespaceModelRequest) ProtoMessage() {}
 
 func (x *RenameNamespaceModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[22]
+	mi := &file_model_v1alpha_model_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1750,7 +1648,7 @@ func (x *RenameNamespaceModelRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RenameNamespaceModelRequest.ProtoReflect.Descriptor instead.
 func (*RenameNamespaceModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{22}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *RenameNamespaceModelRequest) GetName() string {
@@ -1778,7 +1676,7 @@ type RenameNamespaceModelResponse struct {
 
 func (x *RenameNamespaceModelResponse) Reset() {
 	*x = RenameNamespaceModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[23]
+	mi := &file_model_v1alpha_model_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1790,7 +1688,7 @@ func (x *RenameNamespaceModelResponse) String() string {
 func (*RenameNamespaceModelResponse) ProtoMessage() {}
 
 func (x *RenameNamespaceModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[23]
+	mi := &file_model_v1alpha_model_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1803,7 +1701,7 @@ func (x *RenameNamespaceModelResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RenameNamespaceModelResponse.ProtoReflect.Descriptor instead.
 func (*RenameNamespaceModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{23}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *RenameNamespaceModelResponse) GetModel() *Model {
@@ -1828,7 +1726,7 @@ type WatchNamespaceModelRequest struct {
 
 func (x *WatchNamespaceModelRequest) Reset() {
 	*x = WatchNamespaceModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[24]
+	mi := &file_model_v1alpha_model_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1840,7 +1738,7 @@ func (x *WatchNamespaceModelRequest) String() string {
 func (*WatchNamespaceModelRequest) ProtoMessage() {}
 
 func (x *WatchNamespaceModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[24]
+	mi := &file_model_v1alpha_model_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1853,7 +1751,7 @@ func (x *WatchNamespaceModelRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WatchNamespaceModelRequest.ProtoReflect.Descriptor instead.
 func (*WatchNamespaceModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{24}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *WatchNamespaceModelRequest) GetName() string {
@@ -1883,7 +1781,7 @@ type WatchNamespaceModelResponse struct {
 
 func (x *WatchNamespaceModelResponse) Reset() {
 	*x = WatchNamespaceModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[25]
+	mi := &file_model_v1alpha_model_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1895,7 +1793,7 @@ func (x *WatchNamespaceModelResponse) String() string {
 func (*WatchNamespaceModelResponse) ProtoMessage() {}
 
 func (x *WatchNamespaceModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[25]
+	mi := &file_model_v1alpha_model_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1908,7 +1806,7 @@ func (x *WatchNamespaceModelResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WatchNamespaceModelResponse.ProtoReflect.Descriptor instead.
 func (*WatchNamespaceModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{25}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *WatchNamespaceModelResponse) GetState() State {
@@ -1938,7 +1836,7 @@ type WatchNamespaceLatestModelRequest struct {
 
 func (x *WatchNamespaceLatestModelRequest) Reset() {
 	*x = WatchNamespaceLatestModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[26]
+	mi := &file_model_v1alpha_model_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1950,7 +1848,7 @@ func (x *WatchNamespaceLatestModelRequest) String() string {
 func (*WatchNamespaceLatestModelRequest) ProtoMessage() {}
 
 func (x *WatchNamespaceLatestModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[26]
+	mi := &file_model_v1alpha_model_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1963,7 +1861,7 @@ func (x *WatchNamespaceLatestModelRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WatchNamespaceLatestModelRequest.ProtoReflect.Descriptor instead.
 func (*WatchNamespaceLatestModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{26}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *WatchNamespaceLatestModelRequest) GetName() string {
@@ -1987,7 +1885,7 @@ type WatchNamespaceLatestModelResponse struct {
 
 func (x *WatchNamespaceLatestModelResponse) Reset() {
 	*x = WatchNamespaceLatestModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[27]
+	mi := &file_model_v1alpha_model_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1999,7 +1897,7 @@ func (x *WatchNamespaceLatestModelResponse) String() string {
 func (*WatchNamespaceLatestModelResponse) ProtoMessage() {}
 
 func (x *WatchNamespaceLatestModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[27]
+	mi := &file_model_v1alpha_model_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2012,7 +1910,7 @@ func (x *WatchNamespaceLatestModelResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use WatchNamespaceLatestModelResponse.ProtoReflect.Descriptor instead.
 func (*WatchNamespaceLatestModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{27}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *WatchNamespaceLatestModelResponse) GetState() State {
@@ -2048,7 +1946,7 @@ type ListNamespaceModelVersionsRequest struct {
 
 func (x *ListNamespaceModelVersionsRequest) Reset() {
 	*x = ListNamespaceModelVersionsRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[28]
+	mi := &file_model_v1alpha_model_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2060,7 +1958,7 @@ func (x *ListNamespaceModelVersionsRequest) String() string {
 func (*ListNamespaceModelVersionsRequest) ProtoMessage() {}
 
 func (x *ListNamespaceModelVersionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[28]
+	mi := &file_model_v1alpha_model_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2073,7 +1971,7 @@ func (x *ListNamespaceModelVersionsRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use ListNamespaceModelVersionsRequest.ProtoReflect.Descriptor instead.
 func (*ListNamespaceModelVersionsRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{28}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *ListNamespaceModelVersionsRequest) GetParent() string {
@@ -2114,7 +2012,7 @@ type ListNamespaceModelVersionsResponse struct {
 
 func (x *ListNamespaceModelVersionsResponse) Reset() {
 	*x = ListNamespaceModelVersionsResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[29]
+	mi := &file_model_v1alpha_model_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2126,7 +2024,7 @@ func (x *ListNamespaceModelVersionsResponse) String() string {
 func (*ListNamespaceModelVersionsResponse) ProtoMessage() {}
 
 func (x *ListNamespaceModelVersionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[29]
+	mi := &file_model_v1alpha_model_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2139,7 +2037,7 @@ func (x *ListNamespaceModelVersionsResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use ListNamespaceModelVersionsResponse.ProtoReflect.Descriptor instead.
 func (*ListNamespaceModelVersionsResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{29}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *ListNamespaceModelVersionsResponse) GetVersions() []*ModelVersion {
@@ -2184,7 +2082,7 @@ type DeleteNamespaceModelVersionRequest struct {
 
 func (x *DeleteNamespaceModelVersionRequest) Reset() {
 	*x = DeleteNamespaceModelVersionRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[30]
+	mi := &file_model_v1alpha_model_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2196,7 +2094,7 @@ func (x *DeleteNamespaceModelVersionRequest) String() string {
 func (*DeleteNamespaceModelVersionRequest) ProtoMessage() {}
 
 func (x *DeleteNamespaceModelVersionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[30]
+	mi := &file_model_v1alpha_model_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2209,7 +2107,7 @@ func (x *DeleteNamespaceModelVersionRequest) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use DeleteNamespaceModelVersionRequest.ProtoReflect.Descriptor instead.
 func (*DeleteNamespaceModelVersionRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{30}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *DeleteNamespaceModelVersionRequest) GetName() string {
@@ -2228,7 +2126,7 @@ type DeleteNamespaceModelVersionResponse struct {
 
 func (x *DeleteNamespaceModelVersionResponse) Reset() {
 	*x = DeleteNamespaceModelVersionResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[31]
+	mi := &file_model_v1alpha_model_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2240,7 +2138,7 @@ func (x *DeleteNamespaceModelVersionResponse) String() string {
 func (*DeleteNamespaceModelVersionResponse) ProtoMessage() {}
 
 func (x *DeleteNamespaceModelVersionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[31]
+	mi := &file_model_v1alpha_model_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2253,7 +2151,7 @@ func (x *DeleteNamespaceModelVersionResponse) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use DeleteNamespaceModelVersionResponse.ProtoReflect.Descriptor instead.
 func (*DeleteNamespaceModelVersionResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{31}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{29}
 }
 
 // TriggerNamespaceModelRequest represents a request to trigger a model
@@ -2271,7 +2169,7 @@ type TriggerNamespaceModelRequest struct {
 
 func (x *TriggerNamespaceModelRequest) Reset() {
 	*x = TriggerNamespaceModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[32]
+	mi := &file_model_v1alpha_model_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2283,7 +2181,7 @@ func (x *TriggerNamespaceModelRequest) String() string {
 func (*TriggerNamespaceModelRequest) ProtoMessage() {}
 
 func (x *TriggerNamespaceModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[32]
+	mi := &file_model_v1alpha_model_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2296,7 +2194,7 @@ func (x *TriggerNamespaceModelRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TriggerNamespaceModelRequest.ProtoReflect.Descriptor instead.
 func (*TriggerNamespaceModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{32}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *TriggerNamespaceModelRequest) GetName() string {
@@ -2326,7 +2224,7 @@ type TriggerNamespaceModelResponse struct {
 
 func (x *TriggerNamespaceModelResponse) Reset() {
 	*x = TriggerNamespaceModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[33]
+	mi := &file_model_v1alpha_model_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2338,7 +2236,7 @@ func (x *TriggerNamespaceModelResponse) String() string {
 func (*TriggerNamespaceModelResponse) ProtoMessage() {}
 
 func (x *TriggerNamespaceModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[33]
+	mi := &file_model_v1alpha_model_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2351,7 +2249,7 @@ func (x *TriggerNamespaceModelResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TriggerNamespaceModelResponse.ProtoReflect.Descriptor instead.
 func (*TriggerNamespaceModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{33}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *TriggerNamespaceModelResponse) GetTask() v1alpha.Task {
@@ -2383,7 +2281,7 @@ type TriggerAsyncNamespaceModelRequest struct {
 
 func (x *TriggerAsyncNamespaceModelRequest) Reset() {
 	*x = TriggerAsyncNamespaceModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[34]
+	mi := &file_model_v1alpha_model_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2395,7 +2293,7 @@ func (x *TriggerAsyncNamespaceModelRequest) String() string {
 func (*TriggerAsyncNamespaceModelRequest) ProtoMessage() {}
 
 func (x *TriggerAsyncNamespaceModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[34]
+	mi := &file_model_v1alpha_model_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2408,7 +2306,7 @@ func (x *TriggerAsyncNamespaceModelRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use TriggerAsyncNamespaceModelRequest.ProtoReflect.Descriptor instead.
 func (*TriggerAsyncNamespaceModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{34}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *TriggerAsyncNamespaceModelRequest) GetName() string {
@@ -2437,7 +2335,7 @@ type TriggerAsyncNamespaceModelResponse struct {
 
 func (x *TriggerAsyncNamespaceModelResponse) Reset() {
 	*x = TriggerAsyncNamespaceModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[35]
+	mi := &file_model_v1alpha_model_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2449,7 +2347,7 @@ func (x *TriggerAsyncNamespaceModelResponse) String() string {
 func (*TriggerAsyncNamespaceModelResponse) ProtoMessage() {}
 
 func (x *TriggerAsyncNamespaceModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[35]
+	mi := &file_model_v1alpha_model_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2462,7 +2360,7 @@ func (x *TriggerAsyncNamespaceModelResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use TriggerAsyncNamespaceModelResponse.ProtoReflect.Descriptor instead.
 func (*TriggerAsyncNamespaceModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{35}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *TriggerAsyncNamespaceModelResponse) GetOperation() *longrunningpb.Operation {
@@ -2487,7 +2385,7 @@ type TriggerNamespaceLatestModelRequest struct {
 
 func (x *TriggerNamespaceLatestModelRequest) Reset() {
 	*x = TriggerNamespaceLatestModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[36]
+	mi := &file_model_v1alpha_model_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2499,7 +2397,7 @@ func (x *TriggerNamespaceLatestModelRequest) String() string {
 func (*TriggerNamespaceLatestModelRequest) ProtoMessage() {}
 
 func (x *TriggerNamespaceLatestModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[36]
+	mi := &file_model_v1alpha_model_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2512,7 +2410,7 @@ func (x *TriggerNamespaceLatestModelRequest) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use TriggerNamespaceLatestModelRequest.ProtoReflect.Descriptor instead.
 func (*TriggerNamespaceLatestModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{36}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *TriggerNamespaceLatestModelRequest) GetName() string {
@@ -2542,7 +2440,7 @@ type TriggerNamespaceLatestModelResponse struct {
 
 func (x *TriggerNamespaceLatestModelResponse) Reset() {
 	*x = TriggerNamespaceLatestModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[37]
+	mi := &file_model_v1alpha_model_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2554,7 +2452,7 @@ func (x *TriggerNamespaceLatestModelResponse) String() string {
 func (*TriggerNamespaceLatestModelResponse) ProtoMessage() {}
 
 func (x *TriggerNamespaceLatestModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[37]
+	mi := &file_model_v1alpha_model_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2567,7 +2465,7 @@ func (x *TriggerNamespaceLatestModelResponse) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use TriggerNamespaceLatestModelResponse.ProtoReflect.Descriptor instead.
 func (*TriggerNamespaceLatestModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{37}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *TriggerNamespaceLatestModelResponse) GetTask() v1alpha.Task {
@@ -2599,7 +2497,7 @@ type TriggerAsyncNamespaceLatestModelRequest struct {
 
 func (x *TriggerAsyncNamespaceLatestModelRequest) Reset() {
 	*x = TriggerAsyncNamespaceLatestModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[38]
+	mi := &file_model_v1alpha_model_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2611,7 +2509,7 @@ func (x *TriggerAsyncNamespaceLatestModelRequest) String() string {
 func (*TriggerAsyncNamespaceLatestModelRequest) ProtoMessage() {}
 
 func (x *TriggerAsyncNamespaceLatestModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[38]
+	mi := &file_model_v1alpha_model_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2624,7 +2522,7 @@ func (x *TriggerAsyncNamespaceLatestModelRequest) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use TriggerAsyncNamespaceLatestModelRequest.ProtoReflect.Descriptor instead.
 func (*TriggerAsyncNamespaceLatestModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{38}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *TriggerAsyncNamespaceLatestModelRequest) GetName() string {
@@ -2653,7 +2551,7 @@ type TriggerAsyncNamespaceLatestModelResponse struct {
 
 func (x *TriggerAsyncNamespaceLatestModelResponse) Reset() {
 	*x = TriggerAsyncNamespaceLatestModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[39]
+	mi := &file_model_v1alpha_model_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2665,7 +2563,7 @@ func (x *TriggerAsyncNamespaceLatestModelResponse) String() string {
 func (*TriggerAsyncNamespaceLatestModelResponse) ProtoMessage() {}
 
 func (x *TriggerAsyncNamespaceLatestModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[39]
+	mi := &file_model_v1alpha_model_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2678,7 +2576,7 @@ func (x *TriggerAsyncNamespaceLatestModelResponse) ProtoReflect() protoreflect.M
 
 // Deprecated: Use TriggerAsyncNamespaceLatestModelResponse.ProtoReflect.Descriptor instead.
 func (*TriggerAsyncNamespaceLatestModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{39}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *TriggerAsyncNamespaceLatestModelResponse) GetOperation() *longrunningpb.Operation {
@@ -2703,7 +2601,7 @@ type TriggerNamespaceModelBinaryFileUploadRequest struct {
 
 func (x *TriggerNamespaceModelBinaryFileUploadRequest) Reset() {
 	*x = TriggerNamespaceModelBinaryFileUploadRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[40]
+	mi := &file_model_v1alpha_model_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2715,7 +2613,7 @@ func (x *TriggerNamespaceModelBinaryFileUploadRequest) String() string {
 func (*TriggerNamespaceModelBinaryFileUploadRequest) ProtoMessage() {}
 
 func (x *TriggerNamespaceModelBinaryFileUploadRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[40]
+	mi := &file_model_v1alpha_model_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2728,7 +2626,7 @@ func (x *TriggerNamespaceModelBinaryFileUploadRequest) ProtoReflect() protorefle
 
 // Deprecated: Use TriggerNamespaceModelBinaryFileUploadRequest.ProtoReflect.Descriptor instead.
 func (*TriggerNamespaceModelBinaryFileUploadRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{40}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *TriggerNamespaceModelBinaryFileUploadRequest) GetName() string {
@@ -2759,7 +2657,7 @@ type TriggerNamespaceModelBinaryFileUploadResponse struct {
 
 func (x *TriggerNamespaceModelBinaryFileUploadResponse) Reset() {
 	*x = TriggerNamespaceModelBinaryFileUploadResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[41]
+	mi := &file_model_v1alpha_model_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2771,7 +2669,7 @@ func (x *TriggerNamespaceModelBinaryFileUploadResponse) String() string {
 func (*TriggerNamespaceModelBinaryFileUploadResponse) ProtoMessage() {}
 
 func (x *TriggerNamespaceModelBinaryFileUploadResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[41]
+	mi := &file_model_v1alpha_model_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2784,7 +2682,7 @@ func (x *TriggerNamespaceModelBinaryFileUploadResponse) ProtoReflect() protorefl
 
 // Deprecated: Use TriggerNamespaceModelBinaryFileUploadResponse.ProtoReflect.Descriptor instead.
 func (*TriggerNamespaceModelBinaryFileUploadResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{41}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *TriggerNamespaceModelBinaryFileUploadResponse) GetTask() v1alpha.Task {
@@ -2816,7 +2714,7 @@ type TriggerNamespaceLatestModelBinaryFileUploadRequest struct {
 
 func (x *TriggerNamespaceLatestModelBinaryFileUploadRequest) Reset() {
 	*x = TriggerNamespaceLatestModelBinaryFileUploadRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[42]
+	mi := &file_model_v1alpha_model_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2828,7 +2726,7 @@ func (x *TriggerNamespaceLatestModelBinaryFileUploadRequest) String() string {
 func (*TriggerNamespaceLatestModelBinaryFileUploadRequest) ProtoMessage() {}
 
 func (x *TriggerNamespaceLatestModelBinaryFileUploadRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[42]
+	mi := &file_model_v1alpha_model_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2841,7 +2739,7 @@ func (x *TriggerNamespaceLatestModelBinaryFileUploadRequest) ProtoReflect() prot
 
 // Deprecated: Use TriggerNamespaceLatestModelBinaryFileUploadRequest.ProtoReflect.Descriptor instead.
 func (*TriggerNamespaceLatestModelBinaryFileUploadRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{42}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *TriggerNamespaceLatestModelBinaryFileUploadRequest) GetName() string {
@@ -2872,7 +2770,7 @@ type TriggerNamespaceLatestModelBinaryFileUploadResponse struct {
 
 func (x *TriggerNamespaceLatestModelBinaryFileUploadResponse) Reset() {
 	*x = TriggerNamespaceLatestModelBinaryFileUploadResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[43]
+	mi := &file_model_v1alpha_model_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2884,7 +2782,7 @@ func (x *TriggerNamespaceLatestModelBinaryFileUploadResponse) String() string {
 func (*TriggerNamespaceLatestModelBinaryFileUploadResponse) ProtoMessage() {}
 
 func (x *TriggerNamespaceLatestModelBinaryFileUploadResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[43]
+	mi := &file_model_v1alpha_model_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2897,7 +2795,7 @@ func (x *TriggerNamespaceLatestModelBinaryFileUploadResponse) ProtoReflect() pro
 
 // Deprecated: Use TriggerNamespaceLatestModelBinaryFileUploadResponse.ProtoReflect.Descriptor instead.
 func (*TriggerNamespaceLatestModelBinaryFileUploadResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{43}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *TriggerNamespaceLatestModelBinaryFileUploadResponse) GetTask() v1alpha.Task {
@@ -2930,7 +2828,7 @@ type GetNamespaceLatestModelOperationRequest struct {
 
 func (x *GetNamespaceLatestModelOperationRequest) Reset() {
 	*x = GetNamespaceLatestModelOperationRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[44]
+	mi := &file_model_v1alpha_model_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2942,7 +2840,7 @@ func (x *GetNamespaceLatestModelOperationRequest) String() string {
 func (*GetNamespaceLatestModelOperationRequest) ProtoMessage() {}
 
 func (x *GetNamespaceLatestModelOperationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[44]
+	mi := &file_model_v1alpha_model_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2955,7 +2853,7 @@ func (x *GetNamespaceLatestModelOperationRequest) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use GetNamespaceLatestModelOperationRequest.ProtoReflect.Descriptor instead.
 func (*GetNamespaceLatestModelOperationRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{44}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *GetNamespaceLatestModelOperationRequest) GetName() string {
@@ -2984,7 +2882,7 @@ type GetNamespaceLatestModelOperationResponse struct {
 
 func (x *GetNamespaceLatestModelOperationResponse) Reset() {
 	*x = GetNamespaceLatestModelOperationResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[45]
+	mi := &file_model_v1alpha_model_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2996,7 +2894,7 @@ func (x *GetNamespaceLatestModelOperationResponse) String() string {
 func (*GetNamespaceLatestModelOperationResponse) ProtoMessage() {}
 
 func (x *GetNamespaceLatestModelOperationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[45]
+	mi := &file_model_v1alpha_model_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3009,7 +2907,7 @@ func (x *GetNamespaceLatestModelOperationResponse) ProtoReflect() protoreflect.M
 
 // Deprecated: Use GetNamespaceLatestModelOperationResponse.ProtoReflect.Descriptor instead.
 func (*GetNamespaceLatestModelOperationResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{45}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *GetNamespaceLatestModelOperationResponse) GetOperation() *longrunningpb.Operation {
@@ -3036,7 +2934,7 @@ type GetNamespaceModelOperationRequest struct {
 
 func (x *GetNamespaceModelOperationRequest) Reset() {
 	*x = GetNamespaceModelOperationRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[46]
+	mi := &file_model_v1alpha_model_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3048,7 +2946,7 @@ func (x *GetNamespaceModelOperationRequest) String() string {
 func (*GetNamespaceModelOperationRequest) ProtoMessage() {}
 
 func (x *GetNamespaceModelOperationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[46]
+	mi := &file_model_v1alpha_model_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3061,7 +2959,7 @@ func (x *GetNamespaceModelOperationRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use GetNamespaceModelOperationRequest.ProtoReflect.Descriptor instead.
 func (*GetNamespaceModelOperationRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{46}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *GetNamespaceModelOperationRequest) GetName() string {
@@ -3090,7 +2988,7 @@ type GetNamespaceModelOperationResponse struct {
 
 func (x *GetNamespaceModelOperationResponse) Reset() {
 	*x = GetNamespaceModelOperationResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[47]
+	mi := &file_model_v1alpha_model_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3102,7 +3000,7 @@ func (x *GetNamespaceModelOperationResponse) String() string {
 func (*GetNamespaceModelOperationResponse) ProtoMessage() {}
 
 func (x *GetNamespaceModelOperationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[47]
+	mi := &file_model_v1alpha_model_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3115,7 +3013,7 @@ func (x *GetNamespaceModelOperationResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use GetNamespaceModelOperationResponse.ProtoReflect.Descriptor instead.
 func (*GetNamespaceModelOperationResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{47}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *GetNamespaceModelOperationResponse) GetOperation() *longrunningpb.Operation {
@@ -3140,7 +3038,7 @@ type DeployNamespaceModelAdminRequest struct {
 
 func (x *DeployNamespaceModelAdminRequest) Reset() {
 	*x = DeployNamespaceModelAdminRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[48]
+	mi := &file_model_v1alpha_model_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3152,7 +3050,7 @@ func (x *DeployNamespaceModelAdminRequest) String() string {
 func (*DeployNamespaceModelAdminRequest) ProtoMessage() {}
 
 func (x *DeployNamespaceModelAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[48]
+	mi := &file_model_v1alpha_model_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3165,7 +3063,7 @@ func (x *DeployNamespaceModelAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeployNamespaceModelAdminRequest.ProtoReflect.Descriptor instead.
 func (*DeployNamespaceModelAdminRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{48}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *DeployNamespaceModelAdminRequest) GetName() string {
@@ -3191,7 +3089,7 @@ type DeployNamespaceModelAdminResponse struct {
 
 func (x *DeployNamespaceModelAdminResponse) Reset() {
 	*x = DeployNamespaceModelAdminResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[49]
+	mi := &file_model_v1alpha_model_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3203,7 +3101,7 @@ func (x *DeployNamespaceModelAdminResponse) String() string {
 func (*DeployNamespaceModelAdminResponse) ProtoMessage() {}
 
 func (x *DeployNamespaceModelAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[49]
+	mi := &file_model_v1alpha_model_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3216,7 +3114,7 @@ func (x *DeployNamespaceModelAdminResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use DeployNamespaceModelAdminResponse.ProtoReflect.Descriptor instead.
 func (*DeployNamespaceModelAdminResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{49}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{47}
 }
 
 // UndeployNamespaceModelAdminRequest represents a request to undeploy a model
@@ -3234,7 +3132,7 @@ type UndeployNamespaceModelAdminRequest struct {
 
 func (x *UndeployNamespaceModelAdminRequest) Reset() {
 	*x = UndeployNamespaceModelAdminRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[50]
+	mi := &file_model_v1alpha_model_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3246,7 +3144,7 @@ func (x *UndeployNamespaceModelAdminRequest) String() string {
 func (*UndeployNamespaceModelAdminRequest) ProtoMessage() {}
 
 func (x *UndeployNamespaceModelAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[50]
+	mi := &file_model_v1alpha_model_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3259,7 +3157,7 @@ func (x *UndeployNamespaceModelAdminRequest) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use UndeployNamespaceModelAdminRequest.ProtoReflect.Descriptor instead.
 func (*UndeployNamespaceModelAdminRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{50}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *UndeployNamespaceModelAdminRequest) GetName() string {
@@ -3286,7 +3184,7 @@ type UndeployNamespaceModelAdminResponse struct {
 
 func (x *UndeployNamespaceModelAdminResponse) Reset() {
 	*x = UndeployNamespaceModelAdminResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[51]
+	mi := &file_model_v1alpha_model_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3298,7 +3196,7 @@ func (x *UndeployNamespaceModelAdminResponse) String() string {
 func (*UndeployNamespaceModelAdminResponse) ProtoMessage() {}
 
 func (x *UndeployNamespaceModelAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[51]
+	mi := &file_model_v1alpha_model_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3311,7 +3209,7 @@ func (x *UndeployNamespaceModelAdminResponse) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use UndeployNamespaceModelAdminResponse.ProtoReflect.Descriptor instead.
 func (*UndeployNamespaceModelAdminResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{51}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{49}
 }
 
 // GetModelOperationRequest represents a request to fetch a long-running
@@ -3326,7 +3224,7 @@ type GetModelOperationRequest struct {
 
 func (x *GetModelOperationRequest) Reset() {
 	*x = GetModelOperationRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[52]
+	mi := &file_model_v1alpha_model_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3338,7 +3236,7 @@ func (x *GetModelOperationRequest) String() string {
 func (*GetModelOperationRequest) ProtoMessage() {}
 
 func (x *GetModelOperationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[52]
+	mi := &file_model_v1alpha_model_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3351,7 +3249,7 @@ func (x *GetModelOperationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetModelOperationRequest.ProtoReflect.Descriptor instead.
 func (*GetModelOperationRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{52}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *GetModelOperationRequest) GetOperationId() string {
@@ -3373,7 +3271,7 @@ type GetModelOperationResponse struct {
 
 func (x *GetModelOperationResponse) Reset() {
 	*x = GetModelOperationResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[53]
+	mi := &file_model_v1alpha_model_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3385,7 +3283,7 @@ func (x *GetModelOperationResponse) String() string {
 func (*GetModelOperationResponse) ProtoMessage() {}
 
 func (x *GetModelOperationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[53]
+	mi := &file_model_v1alpha_model_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3398,7 +3296,7 @@ func (x *GetModelOperationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetModelOperationResponse.ProtoReflect.Descriptor instead.
 func (*GetModelOperationResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{53}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *GetModelOperationResponse) GetOperation() *longrunningpb.Operation {
@@ -3422,7 +3320,7 @@ type LatestOperation struct {
 
 func (x *LatestOperation) Reset() {
 	*x = LatestOperation{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[54]
+	mi := &file_model_v1alpha_model_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3434,7 +3332,7 @@ func (x *LatestOperation) String() string {
 func (*LatestOperation) ProtoMessage() {}
 
 func (x *LatestOperation) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[54]
+	mi := &file_model_v1alpha_model_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3447,7 +3345,7 @@ func (x *LatestOperation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LatestOperation.ProtoReflect.Descriptor instead.
 func (*LatestOperation) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{54}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *LatestOperation) GetRequest() *TriggerNamespaceModelRequest {
@@ -3474,7 +3372,7 @@ type ListAvailableRegionsRequest struct {
 
 func (x *ListAvailableRegionsRequest) Reset() {
 	*x = ListAvailableRegionsRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[55]
+	mi := &file_model_v1alpha_model_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3486,7 +3384,7 @@ func (x *ListAvailableRegionsRequest) String() string {
 func (*ListAvailableRegionsRequest) ProtoMessage() {}
 
 func (x *ListAvailableRegionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[55]
+	mi := &file_model_v1alpha_model_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3499,7 +3397,7 @@ func (x *ListAvailableRegionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListAvailableRegionsRequest.ProtoReflect.Descriptor instead.
 func (*ListAvailableRegionsRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{55}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{53}
 }
 
 // ListAvailableRegionsResponse contains a list of available
@@ -3514,7 +3412,7 @@ type ListAvailableRegionsResponse struct {
 
 func (x *ListAvailableRegionsResponse) Reset() {
 	*x = ListAvailableRegionsResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[56]
+	mi := &file_model_v1alpha_model_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3526,7 +3424,7 @@ func (x *ListAvailableRegionsResponse) String() string {
 func (*ListAvailableRegionsResponse) ProtoMessage() {}
 
 func (x *ListAvailableRegionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[56]
+	mi := &file_model_v1alpha_model_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3539,7 +3437,7 @@ func (x *ListAvailableRegionsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListAvailableRegionsResponse.ProtoReflect.Descriptor instead.
 func (*ListAvailableRegionsResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{56}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *ListAvailableRegionsResponse) GetRegions() []*Region {
@@ -3576,7 +3474,7 @@ type ListModelsAdminRequest struct {
 
 func (x *ListModelsAdminRequest) Reset() {
 	*x = ListModelsAdminRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[57]
+	mi := &file_model_v1alpha_model_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3588,7 +3486,7 @@ func (x *ListModelsAdminRequest) String() string {
 func (*ListModelsAdminRequest) ProtoMessage() {}
 
 func (x *ListModelsAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[57]
+	mi := &file_model_v1alpha_model_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3601,7 +3499,7 @@ func (x *ListModelsAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListModelsAdminRequest.ProtoReflect.Descriptor instead.
 func (*ListModelsAdminRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{57}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *ListModelsAdminRequest) GetPageSize() int32 {
@@ -3654,7 +3552,7 @@ type ListModelsAdminResponse struct {
 
 func (x *ListModelsAdminResponse) Reset() {
 	*x = ListModelsAdminResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[58]
+	mi := &file_model_v1alpha_model_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3666,7 +3564,7 @@ func (x *ListModelsAdminResponse) String() string {
 func (*ListModelsAdminResponse) ProtoMessage() {}
 
 func (x *ListModelsAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[58]
+	mi := &file_model_v1alpha_model_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3679,7 +3577,7 @@ func (x *ListModelsAdminResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListModelsAdminResponse.ProtoReflect.Descriptor instead.
 func (*ListModelsAdminResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{58}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *ListModelsAdminResponse) GetModels() []*Model {
@@ -3720,7 +3618,7 @@ type LookUpModelAdminRequest struct {
 
 func (x *LookUpModelAdminRequest) Reset() {
 	*x = LookUpModelAdminRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[59]
+	mi := &file_model_v1alpha_model_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3732,7 +3630,7 @@ func (x *LookUpModelAdminRequest) String() string {
 func (*LookUpModelAdminRequest) ProtoMessage() {}
 
 func (x *LookUpModelAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[59]
+	mi := &file_model_v1alpha_model_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3745,7 +3643,7 @@ func (x *LookUpModelAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LookUpModelAdminRequest.ProtoReflect.Descriptor instead.
 func (*LookUpModelAdminRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{59}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *LookUpModelAdminRequest) GetPermalink() string {
@@ -3773,7 +3671,7 @@ type LookUpModelAdminResponse struct {
 
 func (x *LookUpModelAdminResponse) Reset() {
 	*x = LookUpModelAdminResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[60]
+	mi := &file_model_v1alpha_model_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3785,7 +3683,7 @@ func (x *LookUpModelAdminResponse) String() string {
 func (*LookUpModelAdminResponse) ProtoMessage() {}
 
 func (x *LookUpModelAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[60]
+	mi := &file_model_v1alpha_model_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3798,7 +3696,7 @@ func (x *LookUpModelAdminResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LookUpModelAdminResponse.ProtoReflect.Descriptor instead.
 func (*LookUpModelAdminResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{60}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *LookUpModelAdminResponse) GetModel() *Model {
@@ -3853,7 +3751,7 @@ type ModelRun struct {
 
 func (x *ModelRun) Reset() {
 	*x = ModelRun{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[61]
+	mi := &file_model_v1alpha_model_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3865,7 +3763,7 @@ func (x *ModelRun) String() string {
 func (*ModelRun) ProtoMessage() {}
 
 func (x *ModelRun) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[61]
+	mi := &file_model_v1alpha_model_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3878,7 +3776,7 @@ func (x *ModelRun) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ModelRun.ProtoReflect.Descriptor instead.
 func (*ModelRun) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{61}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{59}
 }
 
 func (x *ModelRun) GetName() string {
@@ -4022,7 +3920,7 @@ type ListModelRunsRequest struct {
 
 func (x *ListModelRunsRequest) Reset() {
 	*x = ListModelRunsRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[62]
+	mi := &file_model_v1alpha_model_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4034,7 +3932,7 @@ func (x *ListModelRunsRequest) String() string {
 func (*ListModelRunsRequest) ProtoMessage() {}
 
 func (x *ListModelRunsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[62]
+	mi := &file_model_v1alpha_model_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4047,7 +3945,7 @@ func (x *ListModelRunsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListModelRunsRequest.ProtoReflect.Descriptor instead.
 func (*ListModelRunsRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{62}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{60}
 }
 
 func (x *ListModelRunsRequest) GetParent() string {
@@ -4122,7 +4020,7 @@ type ListModelRunsByRequesterRequest struct {
 
 func (x *ListModelRunsByRequesterRequest) Reset() {
 	*x = ListModelRunsByRequesterRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[63]
+	mi := &file_model_v1alpha_model_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4134,7 +4032,7 @@ func (x *ListModelRunsByRequesterRequest) String() string {
 func (*ListModelRunsByRequesterRequest) ProtoMessage() {}
 
 func (x *ListModelRunsByRequesterRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[63]
+	mi := &file_model_v1alpha_model_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4147,7 +4045,7 @@ func (x *ListModelRunsByRequesterRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListModelRunsByRequesterRequest.ProtoReflect.Descriptor instead.
 func (*ListModelRunsByRequesterRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{63}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{61}
 }
 
 func (x *ListModelRunsByRequesterRequest) GetRequester() string {
@@ -4216,7 +4114,7 @@ type ListModelRunsResponse struct {
 
 func (x *ListModelRunsResponse) Reset() {
 	*x = ListModelRunsResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[64]
+	mi := &file_model_v1alpha_model_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4228,7 +4126,7 @@ func (x *ListModelRunsResponse) String() string {
 func (*ListModelRunsResponse) ProtoMessage() {}
 
 func (x *ListModelRunsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[64]
+	mi := &file_model_v1alpha_model_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4241,7 +4139,7 @@ func (x *ListModelRunsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListModelRunsResponse.ProtoReflect.Descriptor instead.
 func (*ListModelRunsResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{64}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{62}
 }
 
 func (x *ListModelRunsResponse) GetRuns() []*ModelRun {
@@ -4290,7 +4188,7 @@ type ListModelRunsByRequesterResponse struct {
 
 func (x *ListModelRunsByRequesterResponse) Reset() {
 	*x = ListModelRunsByRequesterResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[65]
+	mi := &file_model_v1alpha_model_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4302,7 +4200,7 @@ func (x *ListModelRunsByRequesterResponse) String() string {
 func (*ListModelRunsByRequesterResponse) ProtoMessage() {}
 
 func (x *ListModelRunsByRequesterResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[65]
+	mi := &file_model_v1alpha_model_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4315,7 +4213,7 @@ func (x *ListModelRunsByRequesterResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListModelRunsByRequesterResponse.ProtoReflect.Descriptor instead.
 func (*ListModelRunsByRequesterResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{65}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{63}
 }
 
 func (x *ListModelRunsByRequesterResponse) GetRuns() []*ModelRun {
@@ -4365,7 +4263,7 @@ type RepositoryTag struct {
 
 func (x *RepositoryTag) Reset() {
 	*x = RepositoryTag{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[66]
+	mi := &file_model_v1alpha_model_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4377,7 +4275,7 @@ func (x *RepositoryTag) String() string {
 func (*RepositoryTag) ProtoMessage() {}
 
 func (x *RepositoryTag) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[66]
+	mi := &file_model_v1alpha_model_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4390,7 +4288,7 @@ func (x *RepositoryTag) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RepositoryTag.ProtoReflect.Descriptor instead.
 func (*RepositoryTag) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{66}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{64}
 }
 
 func (x *RepositoryTag) GetName() string {
@@ -4440,7 +4338,7 @@ type ListRepositoryTagsRequest struct {
 
 func (x *ListRepositoryTagsRequest) Reset() {
 	*x = ListRepositoryTagsRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[67]
+	mi := &file_model_v1alpha_model_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4452,7 +4350,7 @@ func (x *ListRepositoryTagsRequest) String() string {
 func (*ListRepositoryTagsRequest) ProtoMessage() {}
 
 func (x *ListRepositoryTagsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[67]
+	mi := &file_model_v1alpha_model_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4465,7 +4363,7 @@ func (x *ListRepositoryTagsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListRepositoryTagsRequest.ProtoReflect.Descriptor instead.
 func (*ListRepositoryTagsRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{67}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{65}
 }
 
 func (x *ListRepositoryTagsRequest) GetPageSize() int32 {
@@ -4506,7 +4404,7 @@ type ListRepositoryTagsResponse struct {
 
 func (x *ListRepositoryTagsResponse) Reset() {
 	*x = ListRepositoryTagsResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[68]
+	mi := &file_model_v1alpha_model_proto_msgTypes[66]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4518,7 +4416,7 @@ func (x *ListRepositoryTagsResponse) String() string {
 func (*ListRepositoryTagsResponse) ProtoMessage() {}
 
 func (x *ListRepositoryTagsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[68]
+	mi := &file_model_v1alpha_model_proto_msgTypes[66]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4531,7 +4429,7 @@ func (x *ListRepositoryTagsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListRepositoryTagsResponse.ProtoReflect.Descriptor instead.
 func (*ListRepositoryTagsResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{68}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{66}
 }
 
 func (x *ListRepositoryTagsResponse) GetTags() []*RepositoryTag {
@@ -4574,7 +4472,7 @@ type CreateRepositoryTagRequest struct {
 
 func (x *CreateRepositoryTagRequest) Reset() {
 	*x = CreateRepositoryTagRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[69]
+	mi := &file_model_v1alpha_model_proto_msgTypes[67]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4586,7 +4484,7 @@ func (x *CreateRepositoryTagRequest) String() string {
 func (*CreateRepositoryTagRequest) ProtoMessage() {}
 
 func (x *CreateRepositoryTagRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[69]
+	mi := &file_model_v1alpha_model_proto_msgTypes[67]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4599,7 +4497,7 @@ func (x *CreateRepositoryTagRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateRepositoryTagRequest.ProtoReflect.Descriptor instead.
 func (*CreateRepositoryTagRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{69}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{67}
 }
 
 func (x *CreateRepositoryTagRequest) GetTag() *RepositoryTag {
@@ -4620,7 +4518,7 @@ type CreateRepositoryTagResponse struct {
 
 func (x *CreateRepositoryTagResponse) Reset() {
 	*x = CreateRepositoryTagResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[70]
+	mi := &file_model_v1alpha_model_proto_msgTypes[68]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4632,7 +4530,7 @@ func (x *CreateRepositoryTagResponse) String() string {
 func (*CreateRepositoryTagResponse) ProtoMessage() {}
 
 func (x *CreateRepositoryTagResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[70]
+	mi := &file_model_v1alpha_model_proto_msgTypes[68]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4645,7 +4543,7 @@ func (x *CreateRepositoryTagResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateRepositoryTagResponse.ProtoReflect.Descriptor instead.
 func (*CreateRepositoryTagResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{70}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{68}
 }
 
 func (x *CreateRepositoryTagResponse) GetTag() *RepositoryTag {
@@ -4668,7 +4566,7 @@ type GetRepositoryTagRequest struct {
 
 func (x *GetRepositoryTagRequest) Reset() {
 	*x = GetRepositoryTagRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[71]
+	mi := &file_model_v1alpha_model_proto_msgTypes[69]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4680,7 +4578,7 @@ func (x *GetRepositoryTagRequest) String() string {
 func (*GetRepositoryTagRequest) ProtoMessage() {}
 
 func (x *GetRepositoryTagRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[71]
+	mi := &file_model_v1alpha_model_proto_msgTypes[69]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4693,7 +4591,7 @@ func (x *GetRepositoryTagRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRepositoryTagRequest.ProtoReflect.Descriptor instead.
 func (*GetRepositoryTagRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{71}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{69}
 }
 
 func (x *GetRepositoryTagRequest) GetName() string {
@@ -4714,7 +4612,7 @@ type GetRepositoryTagResponse struct {
 
 func (x *GetRepositoryTagResponse) Reset() {
 	*x = GetRepositoryTagResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[72]
+	mi := &file_model_v1alpha_model_proto_msgTypes[70]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4726,7 +4624,7 @@ func (x *GetRepositoryTagResponse) String() string {
 func (*GetRepositoryTagResponse) ProtoMessage() {}
 
 func (x *GetRepositoryTagResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[72]
+	mi := &file_model_v1alpha_model_proto_msgTypes[70]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4739,7 +4637,7 @@ func (x *GetRepositoryTagResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRepositoryTagResponse.ProtoReflect.Descriptor instead.
 func (*GetRepositoryTagResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{72}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{70}
 }
 
 func (x *GetRepositoryTagResponse) GetTag() *RepositoryTag {
@@ -4762,7 +4660,7 @@ type DeleteRepositoryTagRequest struct {
 
 func (x *DeleteRepositoryTagRequest) Reset() {
 	*x = DeleteRepositoryTagRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[73]
+	mi := &file_model_v1alpha_model_proto_msgTypes[71]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4774,7 +4672,7 @@ func (x *DeleteRepositoryTagRequest) String() string {
 func (*DeleteRepositoryTagRequest) ProtoMessage() {}
 
 func (x *DeleteRepositoryTagRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[73]
+	mi := &file_model_v1alpha_model_proto_msgTypes[71]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4787,7 +4685,7 @@ func (x *DeleteRepositoryTagRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRepositoryTagRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRepositoryTagRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{73}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{71}
 }
 
 func (x *DeleteRepositoryTagRequest) GetName() string {
@@ -4806,7 +4704,7 @@ type DeleteRepositoryTagResponse struct {
 
 func (x *DeleteRepositoryTagResponse) Reset() {
 	*x = DeleteRepositoryTagResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[74]
+	mi := &file_model_v1alpha_model_proto_msgTypes[72]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4818,7 +4716,7 @@ func (x *DeleteRepositoryTagResponse) String() string {
 func (*DeleteRepositoryTagResponse) ProtoMessage() {}
 
 func (x *DeleteRepositoryTagResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[74]
+	mi := &file_model_v1alpha_model_proto_msgTypes[72]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4831,7 +4729,7 @@ func (x *DeleteRepositoryTagResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRepositoryTagResponse.ProtoReflect.Descriptor instead.
 func (*DeleteRepositoryTagResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{74}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{72}
 }
 
 // Statistic data
@@ -4847,7 +4745,7 @@ type Model_Stats struct {
 
 func (x *Model_Stats) Reset() {
 	*x = Model_Stats{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[75]
+	mi := &file_model_v1alpha_model_proto_msgTypes[73]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4859,7 +4757,7 @@ func (x *Model_Stats) String() string {
 func (*Model_Stats) ProtoMessage() {}
 
 func (x *Model_Stats) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[75]
+	mi := &file_model_v1alpha_model_proto_msgTypes[73]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5002,13 +4900,7 @@ const file_model_v1alpha_model_proto_rawDesc = "" +
 	"\x06models\x18\x01 \x03(\v2\x14.model.v1alpha.ModelB\x03\xe0A\x03R\x06models\x12+\n" +
 	"\x0fnext_page_token\x18\x02 \x01(\tB\x03\xe0A\x03R\rnextPageToken\x12\"\n" +
 	"\n" +
-	"total_size\x18\x03 \x01(\x05B\x03\xe0A\x03R\ttotalSize\"s\n" +
-	"\x12LookUpModelRequest\x12!\n" +
-	"\tpermalink\x18\x01 \x01(\tB\x03\xe0A\x02R\tpermalink\x121\n" +
-	"\x04view\x18\x02 \x01(\x0e2\x13.model.v1alpha.ViewB\x03\xe0A\x01H\x00R\x04view\x88\x01\x01B\a\n" +
-	"\x05_view\"F\n" +
-	"\x13LookUpModelResponse\x12/\n" +
-	"\x05model\x18\x01 \x01(\v2\x14.model.v1alpha.ModelB\x03\xe0A\x03R\x05model\"\xd9\x03\n" +
+	"total_size\x18\x03 \x01(\x05B\x03\xe0A\x03R\ttotalSize\"\xd9\x03\n" +
 	"\x1aListNamespaceModelsRequest\x12\x1b\n" +
 	"\x06parent\x18\x01 \x01(\tB\x03\xe0A\x02R\x06parent\x12%\n" +
 	"\tpage_size\x18\x02 \x01(\x05B\x03\xe0A\x01H\x00R\bpageSize\x88\x01\x01\x12'\n" +
@@ -5320,7 +5212,7 @@ func file_model_v1alpha_model_proto_rawDescGZIP() []byte {
 }
 
 var file_model_v1alpha_model_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_model_v1alpha_model_proto_msgTypes = make([]protoimpl.MessageInfo, 76)
+var file_model_v1alpha_model_proto_msgTypes = make([]protoimpl.MessageInfo, 74)
 var file_model_v1alpha_model_proto_goTypes = []any{
 	(State)(0),                                                  // 0: model.v1alpha.State
 	(Model_Visibility)(0),                                       // 1: model.v1alpha.Model.Visibility
@@ -5334,175 +5226,171 @@ var file_model_v1alpha_model_proto_goTypes = []any{
 	(*Model)(nil),                                               // 9: model.v1alpha.Model
 	(*ListModelsRequest)(nil),                                   // 10: model.v1alpha.ListModelsRequest
 	(*ListModelsResponse)(nil),                                  // 11: model.v1alpha.ListModelsResponse
-	(*LookUpModelRequest)(nil),                                  // 12: model.v1alpha.LookUpModelRequest
-	(*LookUpModelResponse)(nil),                                 // 13: model.v1alpha.LookUpModelResponse
-	(*ListNamespaceModelsRequest)(nil),                          // 14: model.v1alpha.ListNamespaceModelsRequest
-	(*ListNamespaceModelsResponse)(nil),                         // 15: model.v1alpha.ListNamespaceModelsResponse
-	(*CreateNamespaceModelRequest)(nil),                         // 16: model.v1alpha.CreateNamespaceModelRequest
-	(*CreateNamespaceModelResponse)(nil),                        // 17: model.v1alpha.CreateNamespaceModelResponse
-	(*GetNamespaceModelRequest)(nil),                            // 18: model.v1alpha.GetNamespaceModelRequest
-	(*GetNamespaceModelResponse)(nil),                           // 19: model.v1alpha.GetNamespaceModelResponse
-	(*UpdateNamespaceModelRequest)(nil),                         // 20: model.v1alpha.UpdateNamespaceModelRequest
-	(*UpdateNamespaceModelResponse)(nil),                        // 21: model.v1alpha.UpdateNamespaceModelResponse
-	(*DeleteNamespaceModelRequest)(nil),                         // 22: model.v1alpha.DeleteNamespaceModelRequest
-	(*DeleteNamespaceModelResponse)(nil),                        // 23: model.v1alpha.DeleteNamespaceModelResponse
-	(*RenameNamespaceModelRequest)(nil),                         // 24: model.v1alpha.RenameNamespaceModelRequest
-	(*RenameNamespaceModelResponse)(nil),                        // 25: model.v1alpha.RenameNamespaceModelResponse
-	(*WatchNamespaceModelRequest)(nil),                          // 26: model.v1alpha.WatchNamespaceModelRequest
-	(*WatchNamespaceModelResponse)(nil),                         // 27: model.v1alpha.WatchNamespaceModelResponse
-	(*WatchNamespaceLatestModelRequest)(nil),                    // 28: model.v1alpha.WatchNamespaceLatestModelRequest
-	(*WatchNamespaceLatestModelResponse)(nil),                   // 29: model.v1alpha.WatchNamespaceLatestModelResponse
-	(*ListNamespaceModelVersionsRequest)(nil),                   // 30: model.v1alpha.ListNamespaceModelVersionsRequest
-	(*ListNamespaceModelVersionsResponse)(nil),                  // 31: model.v1alpha.ListNamespaceModelVersionsResponse
-	(*DeleteNamespaceModelVersionRequest)(nil),                  // 32: model.v1alpha.DeleteNamespaceModelVersionRequest
-	(*DeleteNamespaceModelVersionResponse)(nil),                 // 33: model.v1alpha.DeleteNamespaceModelVersionResponse
-	(*TriggerNamespaceModelRequest)(nil),                        // 34: model.v1alpha.TriggerNamespaceModelRequest
-	(*TriggerNamespaceModelResponse)(nil),                       // 35: model.v1alpha.TriggerNamespaceModelResponse
-	(*TriggerAsyncNamespaceModelRequest)(nil),                   // 36: model.v1alpha.TriggerAsyncNamespaceModelRequest
-	(*TriggerAsyncNamespaceModelResponse)(nil),                  // 37: model.v1alpha.TriggerAsyncNamespaceModelResponse
-	(*TriggerNamespaceLatestModelRequest)(nil),                  // 38: model.v1alpha.TriggerNamespaceLatestModelRequest
-	(*TriggerNamespaceLatestModelResponse)(nil),                 // 39: model.v1alpha.TriggerNamespaceLatestModelResponse
-	(*TriggerAsyncNamespaceLatestModelRequest)(nil),             // 40: model.v1alpha.TriggerAsyncNamespaceLatestModelRequest
-	(*TriggerAsyncNamespaceLatestModelResponse)(nil),            // 41: model.v1alpha.TriggerAsyncNamespaceLatestModelResponse
-	(*TriggerNamespaceModelBinaryFileUploadRequest)(nil),        // 42: model.v1alpha.TriggerNamespaceModelBinaryFileUploadRequest
-	(*TriggerNamespaceModelBinaryFileUploadResponse)(nil),       // 43: model.v1alpha.TriggerNamespaceModelBinaryFileUploadResponse
-	(*TriggerNamespaceLatestModelBinaryFileUploadRequest)(nil),  // 44: model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadRequest
-	(*TriggerNamespaceLatestModelBinaryFileUploadResponse)(nil), // 45: model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadResponse
-	(*GetNamespaceLatestModelOperationRequest)(nil),             // 46: model.v1alpha.GetNamespaceLatestModelOperationRequest
-	(*GetNamespaceLatestModelOperationResponse)(nil),            // 47: model.v1alpha.GetNamespaceLatestModelOperationResponse
-	(*GetNamespaceModelOperationRequest)(nil),                   // 48: model.v1alpha.GetNamespaceModelOperationRequest
-	(*GetNamespaceModelOperationResponse)(nil),                  // 49: model.v1alpha.GetNamespaceModelOperationResponse
-	(*DeployNamespaceModelAdminRequest)(nil),                    // 50: model.v1alpha.DeployNamespaceModelAdminRequest
-	(*DeployNamespaceModelAdminResponse)(nil),                   // 51: model.v1alpha.DeployNamespaceModelAdminResponse
-	(*UndeployNamespaceModelAdminRequest)(nil),                  // 52: model.v1alpha.UndeployNamespaceModelAdminRequest
-	(*UndeployNamespaceModelAdminResponse)(nil),                 // 53: model.v1alpha.UndeployNamespaceModelAdminResponse
-	(*GetModelOperationRequest)(nil),                            // 54: model.v1alpha.GetModelOperationRequest
-	(*GetModelOperationResponse)(nil),                           // 55: model.v1alpha.GetModelOperationResponse
-	(*LatestOperation)(nil),                                     // 56: model.v1alpha.LatestOperation
-	(*ListAvailableRegionsRequest)(nil),                         // 57: model.v1alpha.ListAvailableRegionsRequest
-	(*ListAvailableRegionsResponse)(nil),                        // 58: model.v1alpha.ListAvailableRegionsResponse
-	(*ListModelsAdminRequest)(nil),                              // 59: model.v1alpha.ListModelsAdminRequest
-	(*ListModelsAdminResponse)(nil),                             // 60: model.v1alpha.ListModelsAdminResponse
-	(*LookUpModelAdminRequest)(nil),                             // 61: model.v1alpha.LookUpModelAdminRequest
-	(*LookUpModelAdminResponse)(nil),                            // 62: model.v1alpha.LookUpModelAdminResponse
-	(*ModelRun)(nil),                                            // 63: model.v1alpha.ModelRun
-	(*ListModelRunsRequest)(nil),                                // 64: model.v1alpha.ListModelRunsRequest
-	(*ListModelRunsByRequesterRequest)(nil),                     // 65: model.v1alpha.ListModelRunsByRequesterRequest
-	(*ListModelRunsResponse)(nil),                               // 66: model.v1alpha.ListModelRunsResponse
-	(*ListModelRunsByRequesterResponse)(nil),                    // 67: model.v1alpha.ListModelRunsByRequesterResponse
-	(*RepositoryTag)(nil),                                       // 68: model.v1alpha.RepositoryTag
-	(*ListRepositoryTagsRequest)(nil),                           // 69: model.v1alpha.ListRepositoryTagsRequest
-	(*ListRepositoryTagsResponse)(nil),                          // 70: model.v1alpha.ListRepositoryTagsResponse
-	(*CreateRepositoryTagRequest)(nil),                          // 71: model.v1alpha.CreateRepositoryTagRequest
-	(*CreateRepositoryTagResponse)(nil),                         // 72: model.v1alpha.CreateRepositoryTagResponse
-	(*GetRepositoryTagRequest)(nil),                             // 73: model.v1alpha.GetRepositoryTagRequest
-	(*GetRepositoryTagResponse)(nil),                            // 74: model.v1alpha.GetRepositoryTagResponse
-	(*DeleteRepositoryTagRequest)(nil),                          // 75: model.v1alpha.DeleteRepositoryTagRequest
-	(*DeleteRepositoryTagResponse)(nil),                         // 76: model.v1alpha.DeleteRepositoryTagResponse
-	(*Model_Stats)(nil),                                         // 77: model.v1alpha.Model.Stats
-	(*v1beta.HealthCheckRequest)(nil),                           // 78: common.healthcheck.v1beta.HealthCheckRequest
-	(*v1beta.HealthCheckResponse)(nil),                          // 79: common.healthcheck.v1beta.HealthCheckResponse
-	(*timestamppb.Timestamp)(nil),                               // 80: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),                                     // 81: google.protobuf.Struct
-	(v1alpha.Task)(0),                                           // 82: common.task.v1alpha.Task
-	(*Permission)(nil),                                          // 83: model.v1alpha.Permission
-	(*v1beta1.Owner)(nil),                                       // 84: mgmt.v1beta.Owner
-	(*v1beta1.User)(nil),                                        // 85: mgmt.v1beta.User
-	(View)(0),                                                   // 86: model.v1alpha.View
-	(*fieldmaskpb.FieldMask)(nil),                               // 87: google.protobuf.FieldMask
-	(*longrunningpb.Operation)(nil),                             // 88: google.longrunning.Operation
-	(v1alpha1.RunStatus)(0),                                     // 89: common.run.v1alpha.RunStatus
-	(v1alpha1.RunSource)(0),                                     // 90: common.run.v1alpha.RunSource
+	(*ListNamespaceModelsRequest)(nil),                          // 12: model.v1alpha.ListNamespaceModelsRequest
+	(*ListNamespaceModelsResponse)(nil),                         // 13: model.v1alpha.ListNamespaceModelsResponse
+	(*CreateNamespaceModelRequest)(nil),                         // 14: model.v1alpha.CreateNamespaceModelRequest
+	(*CreateNamespaceModelResponse)(nil),                        // 15: model.v1alpha.CreateNamespaceModelResponse
+	(*GetNamespaceModelRequest)(nil),                            // 16: model.v1alpha.GetNamespaceModelRequest
+	(*GetNamespaceModelResponse)(nil),                           // 17: model.v1alpha.GetNamespaceModelResponse
+	(*UpdateNamespaceModelRequest)(nil),                         // 18: model.v1alpha.UpdateNamespaceModelRequest
+	(*UpdateNamespaceModelResponse)(nil),                        // 19: model.v1alpha.UpdateNamespaceModelResponse
+	(*DeleteNamespaceModelRequest)(nil),                         // 20: model.v1alpha.DeleteNamespaceModelRequest
+	(*DeleteNamespaceModelResponse)(nil),                        // 21: model.v1alpha.DeleteNamespaceModelResponse
+	(*RenameNamespaceModelRequest)(nil),                         // 22: model.v1alpha.RenameNamespaceModelRequest
+	(*RenameNamespaceModelResponse)(nil),                        // 23: model.v1alpha.RenameNamespaceModelResponse
+	(*WatchNamespaceModelRequest)(nil),                          // 24: model.v1alpha.WatchNamespaceModelRequest
+	(*WatchNamespaceModelResponse)(nil),                         // 25: model.v1alpha.WatchNamespaceModelResponse
+	(*WatchNamespaceLatestModelRequest)(nil),                    // 26: model.v1alpha.WatchNamespaceLatestModelRequest
+	(*WatchNamespaceLatestModelResponse)(nil),                   // 27: model.v1alpha.WatchNamespaceLatestModelResponse
+	(*ListNamespaceModelVersionsRequest)(nil),                   // 28: model.v1alpha.ListNamespaceModelVersionsRequest
+	(*ListNamespaceModelVersionsResponse)(nil),                  // 29: model.v1alpha.ListNamespaceModelVersionsResponse
+	(*DeleteNamespaceModelVersionRequest)(nil),                  // 30: model.v1alpha.DeleteNamespaceModelVersionRequest
+	(*DeleteNamespaceModelVersionResponse)(nil),                 // 31: model.v1alpha.DeleteNamespaceModelVersionResponse
+	(*TriggerNamespaceModelRequest)(nil),                        // 32: model.v1alpha.TriggerNamespaceModelRequest
+	(*TriggerNamespaceModelResponse)(nil),                       // 33: model.v1alpha.TriggerNamespaceModelResponse
+	(*TriggerAsyncNamespaceModelRequest)(nil),                   // 34: model.v1alpha.TriggerAsyncNamespaceModelRequest
+	(*TriggerAsyncNamespaceModelResponse)(nil),                  // 35: model.v1alpha.TriggerAsyncNamespaceModelResponse
+	(*TriggerNamespaceLatestModelRequest)(nil),                  // 36: model.v1alpha.TriggerNamespaceLatestModelRequest
+	(*TriggerNamespaceLatestModelResponse)(nil),                 // 37: model.v1alpha.TriggerNamespaceLatestModelResponse
+	(*TriggerAsyncNamespaceLatestModelRequest)(nil),             // 38: model.v1alpha.TriggerAsyncNamespaceLatestModelRequest
+	(*TriggerAsyncNamespaceLatestModelResponse)(nil),            // 39: model.v1alpha.TriggerAsyncNamespaceLatestModelResponse
+	(*TriggerNamespaceModelBinaryFileUploadRequest)(nil),        // 40: model.v1alpha.TriggerNamespaceModelBinaryFileUploadRequest
+	(*TriggerNamespaceModelBinaryFileUploadResponse)(nil),       // 41: model.v1alpha.TriggerNamespaceModelBinaryFileUploadResponse
+	(*TriggerNamespaceLatestModelBinaryFileUploadRequest)(nil),  // 42: model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadRequest
+	(*TriggerNamespaceLatestModelBinaryFileUploadResponse)(nil), // 43: model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadResponse
+	(*GetNamespaceLatestModelOperationRequest)(nil),             // 44: model.v1alpha.GetNamespaceLatestModelOperationRequest
+	(*GetNamespaceLatestModelOperationResponse)(nil),            // 45: model.v1alpha.GetNamespaceLatestModelOperationResponse
+	(*GetNamespaceModelOperationRequest)(nil),                   // 46: model.v1alpha.GetNamespaceModelOperationRequest
+	(*GetNamespaceModelOperationResponse)(nil),                  // 47: model.v1alpha.GetNamespaceModelOperationResponse
+	(*DeployNamespaceModelAdminRequest)(nil),                    // 48: model.v1alpha.DeployNamespaceModelAdminRequest
+	(*DeployNamespaceModelAdminResponse)(nil),                   // 49: model.v1alpha.DeployNamespaceModelAdminResponse
+	(*UndeployNamespaceModelAdminRequest)(nil),                  // 50: model.v1alpha.UndeployNamespaceModelAdminRequest
+	(*UndeployNamespaceModelAdminResponse)(nil),                 // 51: model.v1alpha.UndeployNamespaceModelAdminResponse
+	(*GetModelOperationRequest)(nil),                            // 52: model.v1alpha.GetModelOperationRequest
+	(*GetModelOperationResponse)(nil),                           // 53: model.v1alpha.GetModelOperationResponse
+	(*LatestOperation)(nil),                                     // 54: model.v1alpha.LatestOperation
+	(*ListAvailableRegionsRequest)(nil),                         // 55: model.v1alpha.ListAvailableRegionsRequest
+	(*ListAvailableRegionsResponse)(nil),                        // 56: model.v1alpha.ListAvailableRegionsResponse
+	(*ListModelsAdminRequest)(nil),                              // 57: model.v1alpha.ListModelsAdminRequest
+	(*ListModelsAdminResponse)(nil),                             // 58: model.v1alpha.ListModelsAdminResponse
+	(*LookUpModelAdminRequest)(nil),                             // 59: model.v1alpha.LookUpModelAdminRequest
+	(*LookUpModelAdminResponse)(nil),                            // 60: model.v1alpha.LookUpModelAdminResponse
+	(*ModelRun)(nil),                                            // 61: model.v1alpha.ModelRun
+	(*ListModelRunsRequest)(nil),                                // 62: model.v1alpha.ListModelRunsRequest
+	(*ListModelRunsByRequesterRequest)(nil),                     // 63: model.v1alpha.ListModelRunsByRequesterRequest
+	(*ListModelRunsResponse)(nil),                               // 64: model.v1alpha.ListModelRunsResponse
+	(*ListModelRunsByRequesterResponse)(nil),                    // 65: model.v1alpha.ListModelRunsByRequesterResponse
+	(*RepositoryTag)(nil),                                       // 66: model.v1alpha.RepositoryTag
+	(*ListRepositoryTagsRequest)(nil),                           // 67: model.v1alpha.ListRepositoryTagsRequest
+	(*ListRepositoryTagsResponse)(nil),                          // 68: model.v1alpha.ListRepositoryTagsResponse
+	(*CreateRepositoryTagRequest)(nil),                          // 69: model.v1alpha.CreateRepositoryTagRequest
+	(*CreateRepositoryTagResponse)(nil),                         // 70: model.v1alpha.CreateRepositoryTagResponse
+	(*GetRepositoryTagRequest)(nil),                             // 71: model.v1alpha.GetRepositoryTagRequest
+	(*GetRepositoryTagResponse)(nil),                            // 72: model.v1alpha.GetRepositoryTagResponse
+	(*DeleteRepositoryTagRequest)(nil),                          // 73: model.v1alpha.DeleteRepositoryTagRequest
+	(*DeleteRepositoryTagResponse)(nil),                         // 74: model.v1alpha.DeleteRepositoryTagResponse
+	(*Model_Stats)(nil),                                         // 75: model.v1alpha.Model.Stats
+	(*v1beta.HealthCheckRequest)(nil),                           // 76: common.healthcheck.v1beta.HealthCheckRequest
+	(*v1beta.HealthCheckResponse)(nil),                          // 77: common.healthcheck.v1beta.HealthCheckResponse
+	(*timestamppb.Timestamp)(nil),                               // 78: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),                                     // 79: google.protobuf.Struct
+	(v1alpha.Task)(0),                                           // 80: common.task.v1alpha.Task
+	(*Permission)(nil),                                          // 81: model.v1alpha.Permission
+	(*v1beta1.Owner)(nil),                                       // 82: mgmt.v1beta.Owner
+	(*v1beta1.User)(nil),                                        // 83: mgmt.v1beta.User
+	(View)(0),                                                   // 84: model.v1alpha.View
+	(*fieldmaskpb.FieldMask)(nil),                               // 85: google.protobuf.FieldMask
+	(*longrunningpb.Operation)(nil),                             // 86: google.longrunning.Operation
+	(v1alpha1.RunStatus)(0),                                     // 87: common.run.v1alpha.RunStatus
+	(v1alpha1.RunSource)(0),                                     // 88: common.run.v1alpha.RunSource
 }
 var file_model_v1alpha_model_proto_depIdxs = []int32{
-	78, // 0: model.v1alpha.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	79, // 1: model.v1alpha.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
-	78, // 2: model.v1alpha.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	79, // 3: model.v1alpha.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	76, // 0: model.v1alpha.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	77, // 1: model.v1alpha.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	76, // 2: model.v1alpha.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	77, // 3: model.v1alpha.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
 	7,  // 4: model.v1alpha.Region.hardware:type_name -> model.v1alpha.Hardware
 	0,  // 5: model.v1alpha.ModelVersion.state:type_name -> model.v1alpha.State
-	80, // 6: model.v1alpha.ModelVersion.update_time:type_name -> google.protobuf.Timestamp
-	80, // 7: model.v1alpha.Model.create_time:type_name -> google.protobuf.Timestamp
-	80, // 8: model.v1alpha.Model.update_time:type_name -> google.protobuf.Timestamp
-	81, // 9: model.v1alpha.Model.configuration:type_name -> google.protobuf.Struct
-	82, // 10: model.v1alpha.Model.task:type_name -> common.task.v1alpha.Task
+	78, // 6: model.v1alpha.ModelVersion.update_time:type_name -> google.protobuf.Timestamp
+	78, // 7: model.v1alpha.Model.create_time:type_name -> google.protobuf.Timestamp
+	78, // 8: model.v1alpha.Model.update_time:type_name -> google.protobuf.Timestamp
+	79, // 9: model.v1alpha.Model.configuration:type_name -> google.protobuf.Struct
+	80, // 10: model.v1alpha.Model.task:type_name -> common.task.v1alpha.Task
 	1,  // 11: model.v1alpha.Model.visibility:type_name -> model.v1alpha.Model.Visibility
-	83, // 12: model.v1alpha.Model.permission:type_name -> model.v1alpha.Permission
-	81, // 13: model.v1alpha.Model.input_schema:type_name -> google.protobuf.Struct
-	81, // 14: model.v1alpha.Model.output_schema:type_name -> google.protobuf.Struct
-	77, // 15: model.v1alpha.Model.stats:type_name -> model.v1alpha.Model.Stats
-	84, // 16: model.v1alpha.Model.owner:type_name -> mgmt.v1beta.Owner
-	85, // 17: model.v1alpha.Model.creator:type_name -> mgmt.v1beta.User
-	80, // 18: model.v1alpha.Model.delete_time:type_name -> google.protobuf.Timestamp
-	86, // 19: model.v1alpha.ListModelsRequest.view:type_name -> model.v1alpha.View
+	81, // 12: model.v1alpha.Model.permission:type_name -> model.v1alpha.Permission
+	79, // 13: model.v1alpha.Model.input_schema:type_name -> google.protobuf.Struct
+	79, // 14: model.v1alpha.Model.output_schema:type_name -> google.protobuf.Struct
+	75, // 15: model.v1alpha.Model.stats:type_name -> model.v1alpha.Model.Stats
+	82, // 16: model.v1alpha.Model.owner:type_name -> mgmt.v1beta.Owner
+	83, // 17: model.v1alpha.Model.creator:type_name -> mgmt.v1beta.User
+	78, // 18: model.v1alpha.Model.delete_time:type_name -> google.protobuf.Timestamp
+	84, // 19: model.v1alpha.ListModelsRequest.view:type_name -> model.v1alpha.View
 	1,  // 20: model.v1alpha.ListModelsRequest.visibility:type_name -> model.v1alpha.Model.Visibility
 	9,  // 21: model.v1alpha.ListModelsResponse.models:type_name -> model.v1alpha.Model
-	86, // 22: model.v1alpha.LookUpModelRequest.view:type_name -> model.v1alpha.View
-	9,  // 23: model.v1alpha.LookUpModelResponse.model:type_name -> model.v1alpha.Model
-	86, // 24: model.v1alpha.ListNamespaceModelsRequest.view:type_name -> model.v1alpha.View
-	1,  // 25: model.v1alpha.ListNamespaceModelsRequest.visibility:type_name -> model.v1alpha.Model.Visibility
-	9,  // 26: model.v1alpha.ListNamespaceModelsResponse.models:type_name -> model.v1alpha.Model
-	9,  // 27: model.v1alpha.CreateNamespaceModelRequest.model:type_name -> model.v1alpha.Model
-	9,  // 28: model.v1alpha.CreateNamespaceModelResponse.model:type_name -> model.v1alpha.Model
-	86, // 29: model.v1alpha.GetNamespaceModelRequest.view:type_name -> model.v1alpha.View
-	9,  // 30: model.v1alpha.GetNamespaceModelResponse.model:type_name -> model.v1alpha.Model
-	9,  // 31: model.v1alpha.UpdateNamespaceModelRequest.model:type_name -> model.v1alpha.Model
-	87, // 32: model.v1alpha.UpdateNamespaceModelRequest.update_mask:type_name -> google.protobuf.FieldMask
-	9,  // 33: model.v1alpha.UpdateNamespaceModelResponse.model:type_name -> model.v1alpha.Model
-	9,  // 34: model.v1alpha.RenameNamespaceModelResponse.model:type_name -> model.v1alpha.Model
-	0,  // 35: model.v1alpha.WatchNamespaceModelResponse.state:type_name -> model.v1alpha.State
-	0,  // 36: model.v1alpha.WatchNamespaceLatestModelResponse.state:type_name -> model.v1alpha.State
-	8,  // 37: model.v1alpha.ListNamespaceModelVersionsResponse.versions:type_name -> model.v1alpha.ModelVersion
-	81, // 38: model.v1alpha.TriggerNamespaceModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	82, // 39: model.v1alpha.TriggerNamespaceModelResponse.task:type_name -> common.task.v1alpha.Task
-	81, // 40: model.v1alpha.TriggerNamespaceModelResponse.task_outputs:type_name -> google.protobuf.Struct
-	81, // 41: model.v1alpha.TriggerAsyncNamespaceModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	88, // 42: model.v1alpha.TriggerAsyncNamespaceModelResponse.operation:type_name -> google.longrunning.Operation
-	81, // 43: model.v1alpha.TriggerNamespaceLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	82, // 44: model.v1alpha.TriggerNamespaceLatestModelResponse.task:type_name -> common.task.v1alpha.Task
-	81, // 45: model.v1alpha.TriggerNamespaceLatestModelResponse.task_outputs:type_name -> google.protobuf.Struct
-	81, // 46: model.v1alpha.TriggerAsyncNamespaceLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	88, // 47: model.v1alpha.TriggerAsyncNamespaceLatestModelResponse.operation:type_name -> google.longrunning.Operation
-	81, // 48: model.v1alpha.TriggerNamespaceModelBinaryFileUploadRequest.task_input:type_name -> google.protobuf.Struct
-	82, // 49: model.v1alpha.TriggerNamespaceModelBinaryFileUploadResponse.task:type_name -> common.task.v1alpha.Task
-	81, // 50: model.v1alpha.TriggerNamespaceModelBinaryFileUploadResponse.task_outputs:type_name -> google.protobuf.Struct
-	81, // 51: model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadRequest.task_input:type_name -> google.protobuf.Struct
-	82, // 52: model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadResponse.task:type_name -> common.task.v1alpha.Task
-	81, // 53: model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadResponse.task_outputs:type_name -> google.protobuf.Struct
-	86, // 54: model.v1alpha.GetNamespaceLatestModelOperationRequest.view:type_name -> model.v1alpha.View
-	88, // 55: model.v1alpha.GetNamespaceLatestModelOperationResponse.operation:type_name -> google.longrunning.Operation
-	86, // 56: model.v1alpha.GetNamespaceModelOperationRequest.view:type_name -> model.v1alpha.View
-	88, // 57: model.v1alpha.GetNamespaceModelOperationResponse.operation:type_name -> google.longrunning.Operation
-	88, // 58: model.v1alpha.GetModelOperationResponse.operation:type_name -> google.longrunning.Operation
-	34, // 59: model.v1alpha.LatestOperation.request:type_name -> model.v1alpha.TriggerNamespaceModelRequest
-	35, // 60: model.v1alpha.LatestOperation.response:type_name -> model.v1alpha.TriggerNamespaceModelResponse
-	6,  // 61: model.v1alpha.ListAvailableRegionsResponse.regions:type_name -> model.v1alpha.Region
-	86, // 62: model.v1alpha.ListModelsAdminRequest.view:type_name -> model.v1alpha.View
-	9,  // 63: model.v1alpha.ListModelsAdminResponse.models:type_name -> model.v1alpha.Model
-	86, // 64: model.v1alpha.LookUpModelAdminRequest.view:type_name -> model.v1alpha.View
-	9,  // 65: model.v1alpha.LookUpModelAdminResponse.model:type_name -> model.v1alpha.Model
-	80, // 66: model.v1alpha.ModelRun.create_time:type_name -> google.protobuf.Timestamp
-	80, // 67: model.v1alpha.ModelRun.update_time:type_name -> google.protobuf.Timestamp
-	89, // 68: model.v1alpha.ModelRun.status:type_name -> common.run.v1alpha.RunStatus
-	90, // 69: model.v1alpha.ModelRun.source:type_name -> common.run.v1alpha.RunSource
-	80, // 70: model.v1alpha.ModelRun.end_time:type_name -> google.protobuf.Timestamp
-	81, // 71: model.v1alpha.ModelRun.task_inputs:type_name -> google.protobuf.Struct
-	81, // 72: model.v1alpha.ModelRun.task_outputs:type_name -> google.protobuf.Struct
-	80, // 73: model.v1alpha.ListModelRunsByRequesterRequest.start:type_name -> google.protobuf.Timestamp
-	80, // 74: model.v1alpha.ListModelRunsByRequesterRequest.stop:type_name -> google.protobuf.Timestamp
-	63, // 75: model.v1alpha.ListModelRunsResponse.runs:type_name -> model.v1alpha.ModelRun
-	63, // 76: model.v1alpha.ListModelRunsByRequesterResponse.runs:type_name -> model.v1alpha.ModelRun
-	80, // 77: model.v1alpha.RepositoryTag.update_time:type_name -> google.protobuf.Timestamp
-	68, // 78: model.v1alpha.ListRepositoryTagsResponse.tags:type_name -> model.v1alpha.RepositoryTag
-	68, // 79: model.v1alpha.CreateRepositoryTagRequest.tag:type_name -> model.v1alpha.RepositoryTag
-	68, // 80: model.v1alpha.CreateRepositoryTagResponse.tag:type_name -> model.v1alpha.RepositoryTag
-	68, // 81: model.v1alpha.GetRepositoryTagResponse.tag:type_name -> model.v1alpha.RepositoryTag
-	80, // 82: model.v1alpha.Model.Stats.last_run_time:type_name -> google.protobuf.Timestamp
-	83, // [83:83] is the sub-list for method output_type
-	83, // [83:83] is the sub-list for method input_type
-	83, // [83:83] is the sub-list for extension type_name
-	83, // [83:83] is the sub-list for extension extendee
-	0,  // [0:83] is the sub-list for field type_name
+	84, // 22: model.v1alpha.ListNamespaceModelsRequest.view:type_name -> model.v1alpha.View
+	1,  // 23: model.v1alpha.ListNamespaceModelsRequest.visibility:type_name -> model.v1alpha.Model.Visibility
+	9,  // 24: model.v1alpha.ListNamespaceModelsResponse.models:type_name -> model.v1alpha.Model
+	9,  // 25: model.v1alpha.CreateNamespaceModelRequest.model:type_name -> model.v1alpha.Model
+	9,  // 26: model.v1alpha.CreateNamespaceModelResponse.model:type_name -> model.v1alpha.Model
+	84, // 27: model.v1alpha.GetNamespaceModelRequest.view:type_name -> model.v1alpha.View
+	9,  // 28: model.v1alpha.GetNamespaceModelResponse.model:type_name -> model.v1alpha.Model
+	9,  // 29: model.v1alpha.UpdateNamespaceModelRequest.model:type_name -> model.v1alpha.Model
+	85, // 30: model.v1alpha.UpdateNamespaceModelRequest.update_mask:type_name -> google.protobuf.FieldMask
+	9,  // 31: model.v1alpha.UpdateNamespaceModelResponse.model:type_name -> model.v1alpha.Model
+	9,  // 32: model.v1alpha.RenameNamespaceModelResponse.model:type_name -> model.v1alpha.Model
+	0,  // 33: model.v1alpha.WatchNamespaceModelResponse.state:type_name -> model.v1alpha.State
+	0,  // 34: model.v1alpha.WatchNamespaceLatestModelResponse.state:type_name -> model.v1alpha.State
+	8,  // 35: model.v1alpha.ListNamespaceModelVersionsResponse.versions:type_name -> model.v1alpha.ModelVersion
+	79, // 36: model.v1alpha.TriggerNamespaceModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	80, // 37: model.v1alpha.TriggerNamespaceModelResponse.task:type_name -> common.task.v1alpha.Task
+	79, // 38: model.v1alpha.TriggerNamespaceModelResponse.task_outputs:type_name -> google.protobuf.Struct
+	79, // 39: model.v1alpha.TriggerAsyncNamespaceModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	86, // 40: model.v1alpha.TriggerAsyncNamespaceModelResponse.operation:type_name -> google.longrunning.Operation
+	79, // 41: model.v1alpha.TriggerNamespaceLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	80, // 42: model.v1alpha.TriggerNamespaceLatestModelResponse.task:type_name -> common.task.v1alpha.Task
+	79, // 43: model.v1alpha.TriggerNamespaceLatestModelResponse.task_outputs:type_name -> google.protobuf.Struct
+	79, // 44: model.v1alpha.TriggerAsyncNamespaceLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	86, // 45: model.v1alpha.TriggerAsyncNamespaceLatestModelResponse.operation:type_name -> google.longrunning.Operation
+	79, // 46: model.v1alpha.TriggerNamespaceModelBinaryFileUploadRequest.task_input:type_name -> google.protobuf.Struct
+	80, // 47: model.v1alpha.TriggerNamespaceModelBinaryFileUploadResponse.task:type_name -> common.task.v1alpha.Task
+	79, // 48: model.v1alpha.TriggerNamespaceModelBinaryFileUploadResponse.task_outputs:type_name -> google.protobuf.Struct
+	79, // 49: model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadRequest.task_input:type_name -> google.protobuf.Struct
+	80, // 50: model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadResponse.task:type_name -> common.task.v1alpha.Task
+	79, // 51: model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadResponse.task_outputs:type_name -> google.protobuf.Struct
+	84, // 52: model.v1alpha.GetNamespaceLatestModelOperationRequest.view:type_name -> model.v1alpha.View
+	86, // 53: model.v1alpha.GetNamespaceLatestModelOperationResponse.operation:type_name -> google.longrunning.Operation
+	84, // 54: model.v1alpha.GetNamespaceModelOperationRequest.view:type_name -> model.v1alpha.View
+	86, // 55: model.v1alpha.GetNamespaceModelOperationResponse.operation:type_name -> google.longrunning.Operation
+	86, // 56: model.v1alpha.GetModelOperationResponse.operation:type_name -> google.longrunning.Operation
+	32, // 57: model.v1alpha.LatestOperation.request:type_name -> model.v1alpha.TriggerNamespaceModelRequest
+	33, // 58: model.v1alpha.LatestOperation.response:type_name -> model.v1alpha.TriggerNamespaceModelResponse
+	6,  // 59: model.v1alpha.ListAvailableRegionsResponse.regions:type_name -> model.v1alpha.Region
+	84, // 60: model.v1alpha.ListModelsAdminRequest.view:type_name -> model.v1alpha.View
+	9,  // 61: model.v1alpha.ListModelsAdminResponse.models:type_name -> model.v1alpha.Model
+	84, // 62: model.v1alpha.LookUpModelAdminRequest.view:type_name -> model.v1alpha.View
+	9,  // 63: model.v1alpha.LookUpModelAdminResponse.model:type_name -> model.v1alpha.Model
+	78, // 64: model.v1alpha.ModelRun.create_time:type_name -> google.protobuf.Timestamp
+	78, // 65: model.v1alpha.ModelRun.update_time:type_name -> google.protobuf.Timestamp
+	87, // 66: model.v1alpha.ModelRun.status:type_name -> common.run.v1alpha.RunStatus
+	88, // 67: model.v1alpha.ModelRun.source:type_name -> common.run.v1alpha.RunSource
+	78, // 68: model.v1alpha.ModelRun.end_time:type_name -> google.protobuf.Timestamp
+	79, // 69: model.v1alpha.ModelRun.task_inputs:type_name -> google.protobuf.Struct
+	79, // 70: model.v1alpha.ModelRun.task_outputs:type_name -> google.protobuf.Struct
+	78, // 71: model.v1alpha.ListModelRunsByRequesterRequest.start:type_name -> google.protobuf.Timestamp
+	78, // 72: model.v1alpha.ListModelRunsByRequesterRequest.stop:type_name -> google.protobuf.Timestamp
+	61, // 73: model.v1alpha.ListModelRunsResponse.runs:type_name -> model.v1alpha.ModelRun
+	61, // 74: model.v1alpha.ListModelRunsByRequesterResponse.runs:type_name -> model.v1alpha.ModelRun
+	78, // 75: model.v1alpha.RepositoryTag.update_time:type_name -> google.protobuf.Timestamp
+	66, // 76: model.v1alpha.ListRepositoryTagsResponse.tags:type_name -> model.v1alpha.RepositoryTag
+	66, // 77: model.v1alpha.CreateRepositoryTagRequest.tag:type_name -> model.v1alpha.RepositoryTag
+	66, // 78: model.v1alpha.CreateRepositoryTagResponse.tag:type_name -> model.v1alpha.RepositoryTag
+	66, // 79: model.v1alpha.GetRepositoryTagResponse.tag:type_name -> model.v1alpha.RepositoryTag
+	78, // 80: model.v1alpha.Model.Stats.last_run_time:type_name -> google.protobuf.Timestamp
+	81, // [81:81] is the sub-list for method output_type
+	81, // [81:81] is the sub-list for method input_type
+	81, // [81:81] is the sub-list for extension type_name
+	81, // [81:81] is the sub-list for extension extendee
+	0,  // [0:81] is the sub-list for field type_name
 }
 
 func init() { file_model_v1alpha_model_proto_init() }
@@ -5517,24 +5405,23 @@ func file_model_v1alpha_model_proto_init() {
 	file_model_v1alpha_model_proto_msgTypes[7].OneofWrappers = []any{}
 	file_model_v1alpha_model_proto_msgTypes[8].OneofWrappers = []any{}
 	file_model_v1alpha_model_proto_msgTypes[10].OneofWrappers = []any{}
-	file_model_v1alpha_model_proto_msgTypes[12].OneofWrappers = []any{}
-	file_model_v1alpha_model_proto_msgTypes[16].OneofWrappers = []any{}
-	file_model_v1alpha_model_proto_msgTypes[28].OneofWrappers = []any{}
+	file_model_v1alpha_model_proto_msgTypes[14].OneofWrappers = []any{}
+	file_model_v1alpha_model_proto_msgTypes[26].OneofWrappers = []any{}
+	file_model_v1alpha_model_proto_msgTypes[42].OneofWrappers = []any{}
 	file_model_v1alpha_model_proto_msgTypes[44].OneofWrappers = []any{}
-	file_model_v1alpha_model_proto_msgTypes[46].OneofWrappers = []any{}
+	file_model_v1alpha_model_proto_msgTypes[55].OneofWrappers = []any{}
 	file_model_v1alpha_model_proto_msgTypes[57].OneofWrappers = []any{}
 	file_model_v1alpha_model_proto_msgTypes[59].OneofWrappers = []any{}
+	file_model_v1alpha_model_proto_msgTypes[60].OneofWrappers = []any{}
 	file_model_v1alpha_model_proto_msgTypes[61].OneofWrappers = []any{}
-	file_model_v1alpha_model_proto_msgTypes[62].OneofWrappers = []any{}
-	file_model_v1alpha_model_proto_msgTypes[63].OneofWrappers = []any{}
-	file_model_v1alpha_model_proto_msgTypes[67].OneofWrappers = []any{}
+	file_model_v1alpha_model_proto_msgTypes[65].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_model_v1alpha_model_proto_rawDesc), len(file_model_v1alpha_model_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   76,
+			NumMessages:   74,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

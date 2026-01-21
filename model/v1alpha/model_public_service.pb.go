@@ -27,7 +27,7 @@ var File_model_v1alpha_model_public_service_proto protoreflect.FileDescriptor
 
 const file_model_v1alpha_model_public_service_proto_rawDesc = "" +
 	"\n" +
-	"(model/v1alpha/model_public_service.proto\x12\rmodel.v1alpha\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a\x19model/v1alpha/model.proto\x1a$model/v1alpha/model_definition.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xe14\n" +
+	"(model/v1alpha/model_public_service.proto\x12\rmodel.v1alpha\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a\x19model/v1alpha/model.proto\x1a$model/v1alpha/model_definition.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xad3\n" +
 	"\x12ModelPublicService\x12\x91\x01\n" +
 	"\bLiveness\x12\x1e.model.v1alpha.LivenessRequest\x1a\x1f.model.v1alpha.LivenessResponse\"D\xfa\xd2\xe4\x93\x02\n" +
 	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02.Z\x17\x12\x15/v1alpha/health/model\x12\x13/v1alpha/__liveness\x12\x94\x01\n" +
@@ -45,11 +45,7 @@ const file_model_v1alpha_model_public_service_proto_rawDesc = "" +
 	"\n" +
 	"ListModels\x12 .model.v1alpha.ListModelsRequest\x1a!.model.v1alpha.ListModelsResponse\"5\x92A\x1b\n" +
 	"\x05Modelj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02\x11\x12\x0f/v1alpha/models\x12\xb1\x01\n" +
-	"\vLookUpModel\x12!.model.v1alpha.LookUpModelRequest\x1a\".model.v1alpha.LookUpModelResponse\"[\x92A\x1b\n" +
-	"\x05Modelj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\xfa\xd2\xe4\x93\x02\n" +
-	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02'\x12%/v1alpha/{permalink=models/*}/look-up\x12\xb9\x01\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02\x11\x12\x0f/v1alpha/models\x12\xb9\x01\n" +
 	"\x13ListNamespaceModels\x12).model.v1alpha.ListNamespaceModelsRequest\x1a*.model.v1alpha.ListNamespaceModelsResponse\"K\x92A\x1b\n" +
 	"\x05Modelj\x12\n" +
 	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02'\x12%/v1alpha/{parent=namespaces/*}/models\x12\xc3\x01\n" +
@@ -136,56 +132,54 @@ var file_model_v1alpha_model_public_service_proto_goTypes = []any{
 	(*ListAvailableRegionsRequest)(nil),                         // 3: model.v1alpha.ListAvailableRegionsRequest
 	(*GetModelDefinitionRequest)(nil),                           // 4: model.v1alpha.GetModelDefinitionRequest
 	(*ListModelsRequest)(nil),                                   // 5: model.v1alpha.ListModelsRequest
-	(*LookUpModelRequest)(nil),                                  // 6: model.v1alpha.LookUpModelRequest
-	(*ListNamespaceModelsRequest)(nil),                          // 7: model.v1alpha.ListNamespaceModelsRequest
-	(*CreateNamespaceModelRequest)(nil),                         // 8: model.v1alpha.CreateNamespaceModelRequest
-	(*GetNamespaceModelRequest)(nil),                            // 9: model.v1alpha.GetNamespaceModelRequest
-	(*UpdateNamespaceModelRequest)(nil),                         // 10: model.v1alpha.UpdateNamespaceModelRequest
-	(*DeleteNamespaceModelRequest)(nil),                         // 11: model.v1alpha.DeleteNamespaceModelRequest
-	(*RenameNamespaceModelRequest)(nil),                         // 12: model.v1alpha.RenameNamespaceModelRequest
-	(*WatchNamespaceModelRequest)(nil),                          // 13: model.v1alpha.WatchNamespaceModelRequest
-	(*WatchNamespaceLatestModelRequest)(nil),                    // 14: model.v1alpha.WatchNamespaceLatestModelRequest
-	(*ListNamespaceModelVersionsRequest)(nil),                   // 15: model.v1alpha.ListNamespaceModelVersionsRequest
-	(*DeleteNamespaceModelVersionRequest)(nil),                  // 16: model.v1alpha.DeleteNamespaceModelVersionRequest
-	(*TriggerNamespaceModelRequest)(nil),                        // 17: model.v1alpha.TriggerNamespaceModelRequest
-	(*TriggerAsyncNamespaceModelRequest)(nil),                   // 18: model.v1alpha.TriggerAsyncNamespaceModelRequest
-	(*TriggerNamespaceLatestModelRequest)(nil),                  // 19: model.v1alpha.TriggerNamespaceLatestModelRequest
-	(*TriggerAsyncNamespaceLatestModelRequest)(nil),             // 20: model.v1alpha.TriggerAsyncNamespaceLatestModelRequest
-	(*TriggerNamespaceModelBinaryFileUploadRequest)(nil),        // 21: model.v1alpha.TriggerNamespaceModelBinaryFileUploadRequest
-	(*TriggerNamespaceLatestModelBinaryFileUploadRequest)(nil),  // 22: model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadRequest
-	(*GetNamespaceModelOperationRequest)(nil),                   // 23: model.v1alpha.GetNamespaceModelOperationRequest
-	(*GetNamespaceLatestModelOperationRequest)(nil),             // 24: model.v1alpha.GetNamespaceLatestModelOperationRequest
-	(*GetModelOperationRequest)(nil),                            // 25: model.v1alpha.GetModelOperationRequest
-	(*ListModelRunsRequest)(nil),                                // 26: model.v1alpha.ListModelRunsRequest
-	(*ListModelRunsByRequesterRequest)(nil),                     // 27: model.v1alpha.ListModelRunsByRequesterRequest
-	(*LivenessResponse)(nil),                                    // 28: model.v1alpha.LivenessResponse
-	(*ReadinessResponse)(nil),                                   // 29: model.v1alpha.ReadinessResponse
-	(*ListModelDefinitionsResponse)(nil),                        // 30: model.v1alpha.ListModelDefinitionsResponse
-	(*ListAvailableRegionsResponse)(nil),                        // 31: model.v1alpha.ListAvailableRegionsResponse
-	(*GetModelDefinitionResponse)(nil),                          // 32: model.v1alpha.GetModelDefinitionResponse
-	(*ListModelsResponse)(nil),                                  // 33: model.v1alpha.ListModelsResponse
-	(*LookUpModelResponse)(nil),                                 // 34: model.v1alpha.LookUpModelResponse
-	(*ListNamespaceModelsResponse)(nil),                         // 35: model.v1alpha.ListNamespaceModelsResponse
-	(*CreateNamespaceModelResponse)(nil),                        // 36: model.v1alpha.CreateNamespaceModelResponse
-	(*GetNamespaceModelResponse)(nil),                           // 37: model.v1alpha.GetNamespaceModelResponse
-	(*UpdateNamespaceModelResponse)(nil),                        // 38: model.v1alpha.UpdateNamespaceModelResponse
-	(*DeleteNamespaceModelResponse)(nil),                        // 39: model.v1alpha.DeleteNamespaceModelResponse
-	(*RenameNamespaceModelResponse)(nil),                        // 40: model.v1alpha.RenameNamespaceModelResponse
-	(*WatchNamespaceModelResponse)(nil),                         // 41: model.v1alpha.WatchNamespaceModelResponse
-	(*WatchNamespaceLatestModelResponse)(nil),                   // 42: model.v1alpha.WatchNamespaceLatestModelResponse
-	(*ListNamespaceModelVersionsResponse)(nil),                  // 43: model.v1alpha.ListNamespaceModelVersionsResponse
-	(*DeleteNamespaceModelVersionResponse)(nil),                 // 44: model.v1alpha.DeleteNamespaceModelVersionResponse
-	(*TriggerNamespaceModelResponse)(nil),                       // 45: model.v1alpha.TriggerNamespaceModelResponse
-	(*TriggerAsyncNamespaceModelResponse)(nil),                  // 46: model.v1alpha.TriggerAsyncNamespaceModelResponse
-	(*TriggerNamespaceLatestModelResponse)(nil),                 // 47: model.v1alpha.TriggerNamespaceLatestModelResponse
-	(*TriggerAsyncNamespaceLatestModelResponse)(nil),            // 48: model.v1alpha.TriggerAsyncNamespaceLatestModelResponse
-	(*TriggerNamespaceModelBinaryFileUploadResponse)(nil),       // 49: model.v1alpha.TriggerNamespaceModelBinaryFileUploadResponse
-	(*TriggerNamespaceLatestModelBinaryFileUploadResponse)(nil), // 50: model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadResponse
-	(*GetNamespaceModelOperationResponse)(nil),                  // 51: model.v1alpha.GetNamespaceModelOperationResponse
-	(*GetNamespaceLatestModelOperationResponse)(nil),            // 52: model.v1alpha.GetNamespaceLatestModelOperationResponse
-	(*GetModelOperationResponse)(nil),                           // 53: model.v1alpha.GetModelOperationResponse
-	(*ListModelRunsResponse)(nil),                               // 54: model.v1alpha.ListModelRunsResponse
-	(*ListModelRunsByRequesterResponse)(nil),                    // 55: model.v1alpha.ListModelRunsByRequesterResponse
+	(*ListNamespaceModelsRequest)(nil),                          // 6: model.v1alpha.ListNamespaceModelsRequest
+	(*CreateNamespaceModelRequest)(nil),                         // 7: model.v1alpha.CreateNamespaceModelRequest
+	(*GetNamespaceModelRequest)(nil),                            // 8: model.v1alpha.GetNamespaceModelRequest
+	(*UpdateNamespaceModelRequest)(nil),                         // 9: model.v1alpha.UpdateNamespaceModelRequest
+	(*DeleteNamespaceModelRequest)(nil),                         // 10: model.v1alpha.DeleteNamespaceModelRequest
+	(*RenameNamespaceModelRequest)(nil),                         // 11: model.v1alpha.RenameNamespaceModelRequest
+	(*WatchNamespaceModelRequest)(nil),                          // 12: model.v1alpha.WatchNamespaceModelRequest
+	(*WatchNamespaceLatestModelRequest)(nil),                    // 13: model.v1alpha.WatchNamespaceLatestModelRequest
+	(*ListNamespaceModelVersionsRequest)(nil),                   // 14: model.v1alpha.ListNamespaceModelVersionsRequest
+	(*DeleteNamespaceModelVersionRequest)(nil),                  // 15: model.v1alpha.DeleteNamespaceModelVersionRequest
+	(*TriggerNamespaceModelRequest)(nil),                        // 16: model.v1alpha.TriggerNamespaceModelRequest
+	(*TriggerAsyncNamespaceModelRequest)(nil),                   // 17: model.v1alpha.TriggerAsyncNamespaceModelRequest
+	(*TriggerNamespaceLatestModelRequest)(nil),                  // 18: model.v1alpha.TriggerNamespaceLatestModelRequest
+	(*TriggerAsyncNamespaceLatestModelRequest)(nil),             // 19: model.v1alpha.TriggerAsyncNamespaceLatestModelRequest
+	(*TriggerNamespaceModelBinaryFileUploadRequest)(nil),        // 20: model.v1alpha.TriggerNamespaceModelBinaryFileUploadRequest
+	(*TriggerNamespaceLatestModelBinaryFileUploadRequest)(nil),  // 21: model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadRequest
+	(*GetNamespaceModelOperationRequest)(nil),                   // 22: model.v1alpha.GetNamespaceModelOperationRequest
+	(*GetNamespaceLatestModelOperationRequest)(nil),             // 23: model.v1alpha.GetNamespaceLatestModelOperationRequest
+	(*GetModelOperationRequest)(nil),                            // 24: model.v1alpha.GetModelOperationRequest
+	(*ListModelRunsRequest)(nil),                                // 25: model.v1alpha.ListModelRunsRequest
+	(*ListModelRunsByRequesterRequest)(nil),                     // 26: model.v1alpha.ListModelRunsByRequesterRequest
+	(*LivenessResponse)(nil),                                    // 27: model.v1alpha.LivenessResponse
+	(*ReadinessResponse)(nil),                                   // 28: model.v1alpha.ReadinessResponse
+	(*ListModelDefinitionsResponse)(nil),                        // 29: model.v1alpha.ListModelDefinitionsResponse
+	(*ListAvailableRegionsResponse)(nil),                        // 30: model.v1alpha.ListAvailableRegionsResponse
+	(*GetModelDefinitionResponse)(nil),                          // 31: model.v1alpha.GetModelDefinitionResponse
+	(*ListModelsResponse)(nil),                                  // 32: model.v1alpha.ListModelsResponse
+	(*ListNamespaceModelsResponse)(nil),                         // 33: model.v1alpha.ListNamespaceModelsResponse
+	(*CreateNamespaceModelResponse)(nil),                        // 34: model.v1alpha.CreateNamespaceModelResponse
+	(*GetNamespaceModelResponse)(nil),                           // 35: model.v1alpha.GetNamespaceModelResponse
+	(*UpdateNamespaceModelResponse)(nil),                        // 36: model.v1alpha.UpdateNamespaceModelResponse
+	(*DeleteNamespaceModelResponse)(nil),                        // 37: model.v1alpha.DeleteNamespaceModelResponse
+	(*RenameNamespaceModelResponse)(nil),                        // 38: model.v1alpha.RenameNamespaceModelResponse
+	(*WatchNamespaceModelResponse)(nil),                         // 39: model.v1alpha.WatchNamespaceModelResponse
+	(*WatchNamespaceLatestModelResponse)(nil),                   // 40: model.v1alpha.WatchNamespaceLatestModelResponse
+	(*ListNamespaceModelVersionsResponse)(nil),                  // 41: model.v1alpha.ListNamespaceModelVersionsResponse
+	(*DeleteNamespaceModelVersionResponse)(nil),                 // 42: model.v1alpha.DeleteNamespaceModelVersionResponse
+	(*TriggerNamespaceModelResponse)(nil),                       // 43: model.v1alpha.TriggerNamespaceModelResponse
+	(*TriggerAsyncNamespaceModelResponse)(nil),                  // 44: model.v1alpha.TriggerAsyncNamespaceModelResponse
+	(*TriggerNamespaceLatestModelResponse)(nil),                 // 45: model.v1alpha.TriggerNamespaceLatestModelResponse
+	(*TriggerAsyncNamespaceLatestModelResponse)(nil),            // 46: model.v1alpha.TriggerAsyncNamespaceLatestModelResponse
+	(*TriggerNamespaceModelBinaryFileUploadResponse)(nil),       // 47: model.v1alpha.TriggerNamespaceModelBinaryFileUploadResponse
+	(*TriggerNamespaceLatestModelBinaryFileUploadResponse)(nil), // 48: model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadResponse
+	(*GetNamespaceModelOperationResponse)(nil),                  // 49: model.v1alpha.GetNamespaceModelOperationResponse
+	(*GetNamespaceLatestModelOperationResponse)(nil),            // 50: model.v1alpha.GetNamespaceLatestModelOperationResponse
+	(*GetModelOperationResponse)(nil),                           // 51: model.v1alpha.GetModelOperationResponse
+	(*ListModelRunsResponse)(nil),                               // 52: model.v1alpha.ListModelRunsResponse
+	(*ListModelRunsByRequesterResponse)(nil),                    // 53: model.v1alpha.ListModelRunsByRequesterResponse
 }
 var file_model_v1alpha_model_public_service_proto_depIdxs = []int32{
 	0,  // 0: model.v1alpha.ModelPublicService.Liveness:input_type -> model.v1alpha.LivenessRequest
@@ -194,58 +188,56 @@ var file_model_v1alpha_model_public_service_proto_depIdxs = []int32{
 	3,  // 3: model.v1alpha.ModelPublicService.ListAvailableRegions:input_type -> model.v1alpha.ListAvailableRegionsRequest
 	4,  // 4: model.v1alpha.ModelPublicService.GetModelDefinition:input_type -> model.v1alpha.GetModelDefinitionRequest
 	5,  // 5: model.v1alpha.ModelPublicService.ListModels:input_type -> model.v1alpha.ListModelsRequest
-	6,  // 6: model.v1alpha.ModelPublicService.LookUpModel:input_type -> model.v1alpha.LookUpModelRequest
-	7,  // 7: model.v1alpha.ModelPublicService.ListNamespaceModels:input_type -> model.v1alpha.ListNamespaceModelsRequest
-	8,  // 8: model.v1alpha.ModelPublicService.CreateNamespaceModel:input_type -> model.v1alpha.CreateNamespaceModelRequest
-	9,  // 9: model.v1alpha.ModelPublicService.GetNamespaceModel:input_type -> model.v1alpha.GetNamespaceModelRequest
-	10, // 10: model.v1alpha.ModelPublicService.UpdateNamespaceModel:input_type -> model.v1alpha.UpdateNamespaceModelRequest
-	11, // 11: model.v1alpha.ModelPublicService.DeleteNamespaceModel:input_type -> model.v1alpha.DeleteNamespaceModelRequest
-	12, // 12: model.v1alpha.ModelPublicService.RenameNamespaceModel:input_type -> model.v1alpha.RenameNamespaceModelRequest
-	13, // 13: model.v1alpha.ModelPublicService.WatchNamespaceModel:input_type -> model.v1alpha.WatchNamespaceModelRequest
-	14, // 14: model.v1alpha.ModelPublicService.WatchNamespaceLatestModel:input_type -> model.v1alpha.WatchNamespaceLatestModelRequest
-	15, // 15: model.v1alpha.ModelPublicService.ListNamespaceModelVersions:input_type -> model.v1alpha.ListNamespaceModelVersionsRequest
-	16, // 16: model.v1alpha.ModelPublicService.DeleteNamespaceModelVersion:input_type -> model.v1alpha.DeleteNamespaceModelVersionRequest
-	17, // 17: model.v1alpha.ModelPublicService.TriggerNamespaceModel:input_type -> model.v1alpha.TriggerNamespaceModelRequest
-	18, // 18: model.v1alpha.ModelPublicService.TriggerAsyncNamespaceModel:input_type -> model.v1alpha.TriggerAsyncNamespaceModelRequest
-	19, // 19: model.v1alpha.ModelPublicService.TriggerNamespaceLatestModel:input_type -> model.v1alpha.TriggerNamespaceLatestModelRequest
-	20, // 20: model.v1alpha.ModelPublicService.TriggerAsyncNamespaceLatestModel:input_type -> model.v1alpha.TriggerAsyncNamespaceLatestModelRequest
-	21, // 21: model.v1alpha.ModelPublicService.TriggerNamespaceModelBinaryFileUpload:input_type -> model.v1alpha.TriggerNamespaceModelBinaryFileUploadRequest
-	22, // 22: model.v1alpha.ModelPublicService.TriggerNamespaceLatestModelBinaryFileUpload:input_type -> model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadRequest
-	23, // 23: model.v1alpha.ModelPublicService.GetNamespaceModelOperation:input_type -> model.v1alpha.GetNamespaceModelOperationRequest
-	24, // 24: model.v1alpha.ModelPublicService.GetNamespaceLatestModelOperation:input_type -> model.v1alpha.GetNamespaceLatestModelOperationRequest
-	25, // 25: model.v1alpha.ModelPublicService.GetModelOperation:input_type -> model.v1alpha.GetModelOperationRequest
-	26, // 26: model.v1alpha.ModelPublicService.ListModelRuns:input_type -> model.v1alpha.ListModelRunsRequest
-	27, // 27: model.v1alpha.ModelPublicService.ListModelRunsByRequester:input_type -> model.v1alpha.ListModelRunsByRequesterRequest
-	28, // 28: model.v1alpha.ModelPublicService.Liveness:output_type -> model.v1alpha.LivenessResponse
-	29, // 29: model.v1alpha.ModelPublicService.Readiness:output_type -> model.v1alpha.ReadinessResponse
-	30, // 30: model.v1alpha.ModelPublicService.ListModelDefinitions:output_type -> model.v1alpha.ListModelDefinitionsResponse
-	31, // 31: model.v1alpha.ModelPublicService.ListAvailableRegions:output_type -> model.v1alpha.ListAvailableRegionsResponse
-	32, // 32: model.v1alpha.ModelPublicService.GetModelDefinition:output_type -> model.v1alpha.GetModelDefinitionResponse
-	33, // 33: model.v1alpha.ModelPublicService.ListModels:output_type -> model.v1alpha.ListModelsResponse
-	34, // 34: model.v1alpha.ModelPublicService.LookUpModel:output_type -> model.v1alpha.LookUpModelResponse
-	35, // 35: model.v1alpha.ModelPublicService.ListNamespaceModels:output_type -> model.v1alpha.ListNamespaceModelsResponse
-	36, // 36: model.v1alpha.ModelPublicService.CreateNamespaceModel:output_type -> model.v1alpha.CreateNamespaceModelResponse
-	37, // 37: model.v1alpha.ModelPublicService.GetNamespaceModel:output_type -> model.v1alpha.GetNamespaceModelResponse
-	38, // 38: model.v1alpha.ModelPublicService.UpdateNamespaceModel:output_type -> model.v1alpha.UpdateNamespaceModelResponse
-	39, // 39: model.v1alpha.ModelPublicService.DeleteNamespaceModel:output_type -> model.v1alpha.DeleteNamespaceModelResponse
-	40, // 40: model.v1alpha.ModelPublicService.RenameNamespaceModel:output_type -> model.v1alpha.RenameNamespaceModelResponse
-	41, // 41: model.v1alpha.ModelPublicService.WatchNamespaceModel:output_type -> model.v1alpha.WatchNamespaceModelResponse
-	42, // 42: model.v1alpha.ModelPublicService.WatchNamespaceLatestModel:output_type -> model.v1alpha.WatchNamespaceLatestModelResponse
-	43, // 43: model.v1alpha.ModelPublicService.ListNamespaceModelVersions:output_type -> model.v1alpha.ListNamespaceModelVersionsResponse
-	44, // 44: model.v1alpha.ModelPublicService.DeleteNamespaceModelVersion:output_type -> model.v1alpha.DeleteNamespaceModelVersionResponse
-	45, // 45: model.v1alpha.ModelPublicService.TriggerNamespaceModel:output_type -> model.v1alpha.TriggerNamespaceModelResponse
-	46, // 46: model.v1alpha.ModelPublicService.TriggerAsyncNamespaceModel:output_type -> model.v1alpha.TriggerAsyncNamespaceModelResponse
-	47, // 47: model.v1alpha.ModelPublicService.TriggerNamespaceLatestModel:output_type -> model.v1alpha.TriggerNamespaceLatestModelResponse
-	48, // 48: model.v1alpha.ModelPublicService.TriggerAsyncNamespaceLatestModel:output_type -> model.v1alpha.TriggerAsyncNamespaceLatestModelResponse
-	49, // 49: model.v1alpha.ModelPublicService.TriggerNamespaceModelBinaryFileUpload:output_type -> model.v1alpha.TriggerNamespaceModelBinaryFileUploadResponse
-	50, // 50: model.v1alpha.ModelPublicService.TriggerNamespaceLatestModelBinaryFileUpload:output_type -> model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadResponse
-	51, // 51: model.v1alpha.ModelPublicService.GetNamespaceModelOperation:output_type -> model.v1alpha.GetNamespaceModelOperationResponse
-	52, // 52: model.v1alpha.ModelPublicService.GetNamespaceLatestModelOperation:output_type -> model.v1alpha.GetNamespaceLatestModelOperationResponse
-	53, // 53: model.v1alpha.ModelPublicService.GetModelOperation:output_type -> model.v1alpha.GetModelOperationResponse
-	54, // 54: model.v1alpha.ModelPublicService.ListModelRuns:output_type -> model.v1alpha.ListModelRunsResponse
-	55, // 55: model.v1alpha.ModelPublicService.ListModelRunsByRequester:output_type -> model.v1alpha.ListModelRunsByRequesterResponse
-	28, // [28:56] is the sub-list for method output_type
-	0,  // [0:28] is the sub-list for method input_type
+	6,  // 6: model.v1alpha.ModelPublicService.ListNamespaceModels:input_type -> model.v1alpha.ListNamespaceModelsRequest
+	7,  // 7: model.v1alpha.ModelPublicService.CreateNamespaceModel:input_type -> model.v1alpha.CreateNamespaceModelRequest
+	8,  // 8: model.v1alpha.ModelPublicService.GetNamespaceModel:input_type -> model.v1alpha.GetNamespaceModelRequest
+	9,  // 9: model.v1alpha.ModelPublicService.UpdateNamespaceModel:input_type -> model.v1alpha.UpdateNamespaceModelRequest
+	10, // 10: model.v1alpha.ModelPublicService.DeleteNamespaceModel:input_type -> model.v1alpha.DeleteNamespaceModelRequest
+	11, // 11: model.v1alpha.ModelPublicService.RenameNamespaceModel:input_type -> model.v1alpha.RenameNamespaceModelRequest
+	12, // 12: model.v1alpha.ModelPublicService.WatchNamespaceModel:input_type -> model.v1alpha.WatchNamespaceModelRequest
+	13, // 13: model.v1alpha.ModelPublicService.WatchNamespaceLatestModel:input_type -> model.v1alpha.WatchNamespaceLatestModelRequest
+	14, // 14: model.v1alpha.ModelPublicService.ListNamespaceModelVersions:input_type -> model.v1alpha.ListNamespaceModelVersionsRequest
+	15, // 15: model.v1alpha.ModelPublicService.DeleteNamespaceModelVersion:input_type -> model.v1alpha.DeleteNamespaceModelVersionRequest
+	16, // 16: model.v1alpha.ModelPublicService.TriggerNamespaceModel:input_type -> model.v1alpha.TriggerNamespaceModelRequest
+	17, // 17: model.v1alpha.ModelPublicService.TriggerAsyncNamespaceModel:input_type -> model.v1alpha.TriggerAsyncNamespaceModelRequest
+	18, // 18: model.v1alpha.ModelPublicService.TriggerNamespaceLatestModel:input_type -> model.v1alpha.TriggerNamespaceLatestModelRequest
+	19, // 19: model.v1alpha.ModelPublicService.TriggerAsyncNamespaceLatestModel:input_type -> model.v1alpha.TriggerAsyncNamespaceLatestModelRequest
+	20, // 20: model.v1alpha.ModelPublicService.TriggerNamespaceModelBinaryFileUpload:input_type -> model.v1alpha.TriggerNamespaceModelBinaryFileUploadRequest
+	21, // 21: model.v1alpha.ModelPublicService.TriggerNamespaceLatestModelBinaryFileUpload:input_type -> model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadRequest
+	22, // 22: model.v1alpha.ModelPublicService.GetNamespaceModelOperation:input_type -> model.v1alpha.GetNamespaceModelOperationRequest
+	23, // 23: model.v1alpha.ModelPublicService.GetNamespaceLatestModelOperation:input_type -> model.v1alpha.GetNamespaceLatestModelOperationRequest
+	24, // 24: model.v1alpha.ModelPublicService.GetModelOperation:input_type -> model.v1alpha.GetModelOperationRequest
+	25, // 25: model.v1alpha.ModelPublicService.ListModelRuns:input_type -> model.v1alpha.ListModelRunsRequest
+	26, // 26: model.v1alpha.ModelPublicService.ListModelRunsByRequester:input_type -> model.v1alpha.ListModelRunsByRequesterRequest
+	27, // 27: model.v1alpha.ModelPublicService.Liveness:output_type -> model.v1alpha.LivenessResponse
+	28, // 28: model.v1alpha.ModelPublicService.Readiness:output_type -> model.v1alpha.ReadinessResponse
+	29, // 29: model.v1alpha.ModelPublicService.ListModelDefinitions:output_type -> model.v1alpha.ListModelDefinitionsResponse
+	30, // 30: model.v1alpha.ModelPublicService.ListAvailableRegions:output_type -> model.v1alpha.ListAvailableRegionsResponse
+	31, // 31: model.v1alpha.ModelPublicService.GetModelDefinition:output_type -> model.v1alpha.GetModelDefinitionResponse
+	32, // 32: model.v1alpha.ModelPublicService.ListModels:output_type -> model.v1alpha.ListModelsResponse
+	33, // 33: model.v1alpha.ModelPublicService.ListNamespaceModels:output_type -> model.v1alpha.ListNamespaceModelsResponse
+	34, // 34: model.v1alpha.ModelPublicService.CreateNamespaceModel:output_type -> model.v1alpha.CreateNamespaceModelResponse
+	35, // 35: model.v1alpha.ModelPublicService.GetNamespaceModel:output_type -> model.v1alpha.GetNamespaceModelResponse
+	36, // 36: model.v1alpha.ModelPublicService.UpdateNamespaceModel:output_type -> model.v1alpha.UpdateNamespaceModelResponse
+	37, // 37: model.v1alpha.ModelPublicService.DeleteNamespaceModel:output_type -> model.v1alpha.DeleteNamespaceModelResponse
+	38, // 38: model.v1alpha.ModelPublicService.RenameNamespaceModel:output_type -> model.v1alpha.RenameNamespaceModelResponse
+	39, // 39: model.v1alpha.ModelPublicService.WatchNamespaceModel:output_type -> model.v1alpha.WatchNamespaceModelResponse
+	40, // 40: model.v1alpha.ModelPublicService.WatchNamespaceLatestModel:output_type -> model.v1alpha.WatchNamespaceLatestModelResponse
+	41, // 41: model.v1alpha.ModelPublicService.ListNamespaceModelVersions:output_type -> model.v1alpha.ListNamespaceModelVersionsResponse
+	42, // 42: model.v1alpha.ModelPublicService.DeleteNamespaceModelVersion:output_type -> model.v1alpha.DeleteNamespaceModelVersionResponse
+	43, // 43: model.v1alpha.ModelPublicService.TriggerNamespaceModel:output_type -> model.v1alpha.TriggerNamespaceModelResponse
+	44, // 44: model.v1alpha.ModelPublicService.TriggerAsyncNamespaceModel:output_type -> model.v1alpha.TriggerAsyncNamespaceModelResponse
+	45, // 45: model.v1alpha.ModelPublicService.TriggerNamespaceLatestModel:output_type -> model.v1alpha.TriggerNamespaceLatestModelResponse
+	46, // 46: model.v1alpha.ModelPublicService.TriggerAsyncNamespaceLatestModel:output_type -> model.v1alpha.TriggerAsyncNamespaceLatestModelResponse
+	47, // 47: model.v1alpha.ModelPublicService.TriggerNamespaceModelBinaryFileUpload:output_type -> model.v1alpha.TriggerNamespaceModelBinaryFileUploadResponse
+	48, // 48: model.v1alpha.ModelPublicService.TriggerNamespaceLatestModelBinaryFileUpload:output_type -> model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadResponse
+	49, // 49: model.v1alpha.ModelPublicService.GetNamespaceModelOperation:output_type -> model.v1alpha.GetNamespaceModelOperationResponse
+	50, // 50: model.v1alpha.ModelPublicService.GetNamespaceLatestModelOperation:output_type -> model.v1alpha.GetNamespaceLatestModelOperationResponse
+	51, // 51: model.v1alpha.ModelPublicService.GetModelOperation:output_type -> model.v1alpha.GetModelOperationResponse
+	52, // 52: model.v1alpha.ModelPublicService.ListModelRuns:output_type -> model.v1alpha.ListModelRunsResponse
+	53, // 53: model.v1alpha.ModelPublicService.ListModelRunsByRequester:output_type -> model.v1alpha.ListModelRunsByRequesterResponse
+	27, // [27:54] is the sub-list for method output_type
+	0,  // [0:27] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
