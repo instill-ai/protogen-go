@@ -670,10 +670,11 @@ type File struct {
 	OwnerName string `protobuf:"bytes,18,opt,name=owner_name,json=ownerName,proto3" json:"owner_name,omitempty"`
 	// File owner (User or Organization).
 	Owner *v1beta.Owner `protobuf:"bytes,19,opt,name=owner,proto3,oneof" json:"owner,omitempty"`
-	// The UID of the user who created this file.
-	CreatorUid string `protobuf:"bytes,20,opt,name=creator_uid,json=creatorUid,proto3" json:"creator_uid,omitempty"`
+	// Full resource name of the user who created this file.
+	// Format: `users/{user}`
+	CreatorName string `protobuf:"bytes,20,opt,name=creator_name,json=creatorName,proto3" json:"creator_name,omitempty"`
 	// The user who created this file.
-	// Populated when creator_uid is present.
+	// Populated when creator_name is present.
 	Creator *v1beta.User `protobuf:"bytes,21,opt,name=creator,proto3,oneof" json:"creator,omitempty"`
 	// Base64-encoded file content for inline upload.
 	// Alternative to object_uid for smaller files.
@@ -867,9 +868,9 @@ func (x *File) GetOwner() *v1beta.Owner {
 	return nil
 }
 
-func (x *File) GetCreatorUid() string {
+func (x *File) GetCreatorName() string {
 	if x != nil {
-		return x.CreatorUid
+		return x.CreatorName
 	}
 	return ""
 }
@@ -1897,7 +1898,7 @@ var File_artifact_v1alpha_file_proto protoreflect.FileDescriptor
 
 const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\n" +
-	"\x1bartifact/v1alpha/file.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16mgmt/v1beta/mgmt.proto\"\xc3\x14\n" +
+	"\x1bartifact/v1alpha/file.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16mgmt/v1beta/mgmt.proto\"\xdc\x14\n" +
 	"\x04File\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12&\n" +
@@ -1921,9 +1922,8 @@ const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\x12knowledge_base_ids\x18\x11 \x03(\tB\x03\xe0A\x03R\x10knowledgeBaseIds\x12\"\n" +
 	"\n" +
 	"owner_name\x18\x12 \x01(\tB\x03\xe0A\x03R\townerName\x122\n" +
-	"\x05owner\x18\x13 \x01(\v2\x12.mgmt.v1beta.OwnerB\x03\xe0A\x03H\x01R\x05owner\x88\x01\x01\x12$\n" +
-	"\vcreator_uid\x18\x14 \x01(\tB\x03\xe0A\x03R\n" +
-	"creatorUid\x125\n" +
+	"\x05owner\x18\x13 \x01(\v2\x12.mgmt.v1beta.OwnerB\x03\xe0A\x03H\x01R\x05owner\x88\x01\x01\x12&\n" +
+	"\fcreator_name\x18\x14 \x01(\tB\x03\xe0A\x03R\vcreatorName\x125\n" +
 	"\acreator\x18\x15 \x01(\v2\x11.mgmt.v1beta.UserB\x03\xe0A\x03H\x02R\acreator\x88\x01\x01\x12\x1d\n" +
 	"\acontent\x18\x16 \x01(\tB\x03\xe0A\x04R\acontent\x12\"\n" +
 	"\n" +
@@ -2004,7 +2004,8 @@ const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\x18FILE_MEDIA_TYPE_DOCUMENT\x10\x01\x12\x19\n" +
 	"\x15FILE_MEDIA_TYPE_IMAGE\x10\x02\x12\x19\n" +
 	"\x15FILE_MEDIA_TYPE_AUDIO\x10\x03\x12\x19\n" +
-	"\x15FILE_MEDIA_TYPE_VIDEO\x10\x04:(\xeaA%\x12#namespaces/{namespace}/files/{file}B\x14\n" +
+	"\x15FILE_MEDIA_TYPE_VIDEO\x10\x04:?\xeaA<\n" +
+	"\x15api.instill.tech/File\x12#namespaces/{namespace}/files/{file}B\x14\n" +
 	"\x12_external_metadataB\b\n" +
 	"\x06_ownerB\n" +
 	"\n" +

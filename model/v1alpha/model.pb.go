@@ -8,7 +8,6 @@ package modelv1alpha
 
 import (
 	longrunningpb "cloud.google.com/go/longrunning/autogen/longrunningpb"
-	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	v1beta "github.com/instill-ai/protogen-go/common/healthcheck/v1beta"
 	v1alpha1 "github.com/instill-ai/protogen-go/common/run/v1alpha"
 	v1alpha "github.com/instill-ai/protogen-go/common/task/v1alpha"
@@ -42,20 +41,20 @@ const (
 	// Offline is the state when the model instance number is 0.
 	State_STATE_OFFLINE State = 1
 	// Active is the state when a model is processing requests.
-	State_STATE_ACTIVE State = 3
+	State_STATE_ACTIVE State = 2
 	// Idle is the state when a model is alive but not processing requests.
-	State_STATE_IDLE State = 4
+	State_STATE_IDLE State = 3
 	// Error is the state when the model is undeployable.
-	State_STATE_ERROR State = 5
+	State_STATE_ERROR State = 4
 	// Starting is the state when the system is provisioning the necessary
 	// resources for the model
-	State_STATE_STARTING State = 6
+	State_STATE_STARTING State = 5
 	// Scaling Up is the transition state when the system is provisioning compute
 	// resource for this model instance.
-	State_STATE_SCALING_UP State = 7
+	State_STATE_SCALING_UP State = 6
 	// Scaling is the transition state when the system is releasing compute
 	// resource for this model instance.
-	State_STATE_SCALING_DOWN State = 8
+	State_STATE_SCALING_DOWN State = 7
 )
 
 // Enum value maps for State.
@@ -63,22 +62,22 @@ var (
 	State_name = map[int32]string{
 		0: "STATE_UNSPECIFIED",
 		1: "STATE_OFFLINE",
-		3: "STATE_ACTIVE",
-		4: "STATE_IDLE",
-		5: "STATE_ERROR",
-		6: "STATE_STARTING",
-		7: "STATE_SCALING_UP",
-		8: "STATE_SCALING_DOWN",
+		2: "STATE_ACTIVE",
+		3: "STATE_IDLE",
+		4: "STATE_ERROR",
+		5: "STATE_STARTING",
+		6: "STATE_SCALING_UP",
+		7: "STATE_SCALING_DOWN",
 	}
 	State_value = map[string]int32{
 		"STATE_UNSPECIFIED":  0,
 		"STATE_OFFLINE":      1,
-		"STATE_ACTIVE":       3,
-		"STATE_IDLE":         4,
-		"STATE_ERROR":        5,
-		"STATE_STARTING":     6,
-		"STATE_SCALING_UP":   7,
-		"STATE_SCALING_DOWN": 8,
+		"STATE_ACTIVE":       2,
+		"STATE_IDLE":         3,
+		"STATE_ERROR":        4,
+		"STATE_STARTING":     5,
+		"STATE_SCALING_UP":   6,
+		"STATE_SCALING_DOWN": 7,
 	}
 )
 
@@ -460,13 +459,8 @@ func (x *Hardware) GetValue() string {
 // ModelVersion contains information about the version of a model.
 type ModelVersion struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The parent resource, i.e., the user that created the models.
-	// - Format: `users/{user.id}`.
-	// The resource name of the model, which allows its access by parent user
-	// and ID.
-	// - Format: `users/{user.id}/models/{model.id}`.
-	// The name of the Version.
-	// - Format: `users/{user.id}/models/{model.id}/versions/{version.id}`.
+	// The resource name of the model version.
+	// Format: `namespaces/{namespace}/models/{model}/versions/{version}`.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// The model version identifier, which is equal to image tag.
 	Version string `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
@@ -548,7 +542,8 @@ func (x *ModelVersion) GetUpdateTime() *timestamppb.Timestamp {
 // Model represents an AI model, i.e. a program that performs tasks as decision
 // making or or pattern recognition based on its training data
 // Model represents an AI/ML model.
-// Field ordering follows AIP standard: name(1), id(2), display_name(3), slug(4), aliases(5), description(6)
+// Field ordering follows AIP standard: name(1), id(2), display_name(3),
+// slug(4), aliases(5), description(6)
 type Model struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Field 1: Canonical resource name.
@@ -610,8 +605,9 @@ type Model struct {
 	OwnerName string `protobuf:"bytes,26,opt,name=owner_name,json=ownerName,proto3" json:"owner_name,omitempty"`
 	// Model owner (User or Organization).
 	Owner *v1beta1.Owner `protobuf:"bytes,27,opt,name=owner,proto3,oneof" json:"owner,omitempty"`
-	// The UID of the user who created this model.
-	CreatorUid *string `protobuf:"bytes,28,opt,name=creator_uid,json=creatorUid,proto3,oneof" json:"creator_uid,omitempty"`
+	// Full resource name of the user who created this model.
+	// Format: `users/{user}`
+	CreatorName *string `protobuf:"bytes,28,opt,name=creator_name,json=creatorName,proto3,oneof" json:"creator_name,omitempty"`
 	// The user who created this model.
 	Creator *v1beta1.User `protobuf:"bytes,29,opt,name=creator,proto3,oneof" json:"creator,omitempty"`
 	// Soft delete timestamp.
@@ -839,9 +835,9 @@ func (x *Model) GetOwner() *v1beta1.Owner {
 	return nil
 }
 
-func (x *Model) GetCreatorUid() string {
-	if x != nil && x.CreatorUid != nil {
-		return *x.CreatorUid
+func (x *Model) GetCreatorName() string {
+	if x != nil && x.CreatorName != nil {
+		return *x.CreatorName
 	}
 	return ""
 }
@@ -1717,13 +1713,12 @@ func (*DeleteNamespaceModelResponse) Descriptor() ([]byte, []int) {
 // RenameNamespaceModelRequest represents a request to rename a model
 type RenameNamespaceModelRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Namespace ID
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Model ID
-	ModelId string `protobuf:"bytes,2,opt,name=model_id,json=modelId,proto3" json:"model_id,omitempty"`
+	// The resource name of the model to rename.
+	// Format: namespaces/{namespace}/models/{model}
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// The new resource ID. This will transform the resource name into
-	// `namespaces/{namespace.id}/models/{new_model_id}`.
-	NewModelId    string `protobuf:"bytes,3,opt,name=new_model_id,json=newModelId,proto3" json:"new_model_id,omitempty"`
+	// `namespaces/{namespace}/models/{new_model_id}`.
+	NewModelId    string `protobuf:"bytes,2,opt,name=new_model_id,json=newModelId,proto3" json:"new_model_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1758,16 +1753,9 @@ func (*RenameNamespaceModelRequest) Descriptor() ([]byte, []int) {
 	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{22}
 }
 
-func (x *RenameNamespaceModelRequest) GetNamespaceId() string {
+func (x *RenameNamespaceModelRequest) GetName() string {
 	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *RenameNamespaceModelRequest) GetModelId() string {
-	if x != nil {
-		return x.ModelId
+		return x.Name
 	}
 	return ""
 }
@@ -1829,12 +1817,11 @@ func (x *RenameNamespaceModelResponse) GetModel() *Model {
 // model
 type WatchNamespaceModelRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Namespace ID
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Model ID
-	ModelId string `protobuf:"bytes,2,opt,name=model_id,json=modelId,proto3" json:"model_id,omitempty"`
+	// The resource name of the model to watch.
+	// Format: namespaces/{namespace}/models/{model}
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Model version
-	Version       string `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
+	Version       string `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1869,16 +1856,9 @@ func (*WatchNamespaceModelRequest) Descriptor() ([]byte, []int) {
 	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{24}
 }
 
-func (x *WatchNamespaceModelRequest) GetNamespaceId() string {
+func (x *WatchNamespaceModelRequest) GetName() string {
 	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *WatchNamespaceModelRequest) GetModelId() string {
-	if x != nil {
-		return x.ModelId
+		return x.Name
 	}
 	return ""
 }
@@ -1896,7 +1876,7 @@ type WatchNamespaceModelResponse struct {
 	// State.
 	State State `protobuf:"varint,1,opt,name=state,proto3,enum=model.v1alpha.State" json:"state,omitempty"`
 	// Detail description of the state
-	Message       string `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
+	Message       string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1949,10 +1929,9 @@ func (x *WatchNamespaceModelResponse) GetMessage() string {
 // current state of the latest model version.
 type WatchNamespaceLatestModelRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Namespace ID
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Model ID
-	ModelId       string `protobuf:"bytes,2,opt,name=model_id,json=modelId,proto3" json:"model_id,omitempty"`
+	// The resource name of the model to watch.
+	// Format: namespaces/{namespace}/models/{model}
+	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1987,16 +1966,9 @@ func (*WatchNamespaceLatestModelRequest) Descriptor() ([]byte, []int) {
 	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{26}
 }
 
-func (x *WatchNamespaceLatestModelRequest) GetNamespaceId() string {
+func (x *WatchNamespaceLatestModelRequest) GetName() string {
 	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *WatchNamespaceLatestModelRequest) GetModelId() string {
-	if x != nil {
-		return x.ModelId
+		return x.Name
 	}
 	return ""
 }
@@ -2008,7 +1980,7 @@ type WatchNamespaceLatestModelResponse struct {
 	// State.
 	State State `protobuf:"varint,1,opt,name=state,proto3,enum=model.v1alpha.State" json:"state,omitempty"`
 	// Detail description of the state
-	Message       string `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
+	Message       string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2288,14 +2260,11 @@ func (*DeleteNamespaceModelVersionResponse) Descriptor() ([]byte, []int) {
 // inference.
 type TriggerNamespaceModelRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Namespace ID
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Model ID
-	ModelId string `protobuf:"bytes,2,opt,name=model_id,json=modelId,proto3" json:"model_id,omitempty"`
-	// Model version
-	Version string `protobuf:"bytes,4,opt,name=version,proto3" json:"version,omitempty"`
+	// The resource name of the model version to trigger.
+	// Format: `namespaces/{namespace}/models/{model}/versions/{version}`
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Model inference inputs.
-	TaskInputs    []*structpb.Struct `protobuf:"bytes,5,rep,name=task_inputs,json=taskInputs,proto3" json:"task_inputs,omitempty"`
+	TaskInputs    []*structpb.Struct `protobuf:"bytes,2,rep,name=task_inputs,json=taskInputs,proto3" json:"task_inputs,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2330,23 +2299,9 @@ func (*TriggerNamespaceModelRequest) Descriptor() ([]byte, []int) {
 	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{32}
 }
 
-func (x *TriggerNamespaceModelRequest) GetNamespaceId() string {
+func (x *TriggerNamespaceModelRequest) GetName() string {
 	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *TriggerNamespaceModelRequest) GetModelId() string {
-	if x != nil {
-		return x.ModelId
-	}
-	return ""
-}
-
-func (x *TriggerNamespaceModelRequest) GetVersion() string {
-	if x != nil {
-		return x.Version
+		return x.Name
 	}
 	return ""
 }
@@ -2364,7 +2319,7 @@ type TriggerNamespaceModelResponse struct {
 	// Task type.
 	Task v1alpha.Task `protobuf:"varint,1,opt,name=task,proto3,enum=common.task.v1alpha.Task" json:"task,omitempty"`
 	// Model inference outputs.
-	TaskOutputs   []*structpb.Struct `protobuf:"bytes,3,rep,name=task_outputs,json=taskOutputs,proto3" json:"task_outputs,omitempty"`
+	TaskOutputs   []*structpb.Struct `protobuf:"bytes,2,rep,name=task_outputs,json=taskOutputs,proto3" json:"task_outputs,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2417,14 +2372,11 @@ func (x *TriggerNamespaceModelResponse) GetTaskOutputs() []*structpb.Struct {
 // inference asynchronously.
 type TriggerAsyncNamespaceModelRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Namespace ID
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Model ID
-	ModelId string `protobuf:"bytes,2,opt,name=model_id,json=modelId,proto3" json:"model_id,omitempty"`
-	// Model version
-	Version string `protobuf:"bytes,4,opt,name=version,proto3" json:"version,omitempty"`
+	// The resource name of the model version to trigger.
+	// Format: `namespaces/{namespace}/models/{model}/versions/{version}`
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Model inference inputs.
-	TaskInputs    []*structpb.Struct `protobuf:"bytes,5,rep,name=task_inputs,json=taskInputs,proto3" json:"task_inputs,omitempty"`
+	TaskInputs    []*structpb.Struct `protobuf:"bytes,2,rep,name=task_inputs,json=taskInputs,proto3" json:"task_inputs,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2459,23 +2411,9 @@ func (*TriggerAsyncNamespaceModelRequest) Descriptor() ([]byte, []int) {
 	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{34}
 }
 
-func (x *TriggerAsyncNamespaceModelRequest) GetNamespaceId() string {
+func (x *TriggerAsyncNamespaceModelRequest) GetName() string {
 	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *TriggerAsyncNamespaceModelRequest) GetModelId() string {
-	if x != nil {
-		return x.ModelId
-	}
-	return ""
-}
-
-func (x *TriggerAsyncNamespaceModelRequest) GetVersion() string {
-	if x != nil {
-		return x.Version
+		return x.Name
 	}
 	return ""
 }
@@ -2538,12 +2476,11 @@ func (x *TriggerAsyncNamespaceModelResponse) GetOperation() *longrunningpb.Opera
 // inference with the latest uploaded version.
 type TriggerNamespaceLatestModelRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Namespace ID
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Model ID
-	ModelId string `protobuf:"bytes,2,opt,name=model_id,json=modelId,proto3" json:"model_id,omitempty"`
+	// The resource name of the model to trigger (uses latest version).
+	// Format: `namespaces/{namespace}/models/{model}`
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Model inference inputs.
-	TaskInputs    []*structpb.Struct `protobuf:"bytes,4,rep,name=task_inputs,json=taskInputs,proto3" json:"task_inputs,omitempty"`
+	TaskInputs    []*structpb.Struct `protobuf:"bytes,2,rep,name=task_inputs,json=taskInputs,proto3" json:"task_inputs,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2578,16 +2515,9 @@ func (*TriggerNamespaceLatestModelRequest) Descriptor() ([]byte, []int) {
 	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{36}
 }
 
-func (x *TriggerNamespaceLatestModelRequest) GetNamespaceId() string {
+func (x *TriggerNamespaceLatestModelRequest) GetName() string {
 	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *TriggerNamespaceLatestModelRequest) GetModelId() string {
-	if x != nil {
-		return x.ModelId
+		return x.Name
 	}
 	return ""
 }
@@ -2605,7 +2535,7 @@ type TriggerNamespaceLatestModelResponse struct {
 	// Task type.
 	Task v1alpha.Task `protobuf:"varint,1,opt,name=task,proto3,enum=common.task.v1alpha.Task" json:"task,omitempty"`
 	// Model inference outputs.
-	TaskOutputs   []*structpb.Struct `protobuf:"bytes,3,rep,name=task_outputs,json=taskOutputs,proto3" json:"task_outputs,omitempty"`
+	TaskOutputs   []*structpb.Struct `protobuf:"bytes,2,rep,name=task_outputs,json=taskOutputs,proto3" json:"task_outputs,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2658,12 +2588,11 @@ func (x *TriggerNamespaceLatestModelResponse) GetTaskOutputs() []*structpb.Struc
 // model inference asynchronously with the latest uploaded version.
 type TriggerAsyncNamespaceLatestModelRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Namespace ID
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Model ID
-	ModelId string `protobuf:"bytes,2,opt,name=model_id,json=modelId,proto3" json:"model_id,omitempty"`
+	// The resource name of the model to trigger (uses latest version).
+	// Format: `namespaces/{namespace}/models/{model}`
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Model inference inputs.
-	TaskInputs    []*structpb.Struct `protobuf:"bytes,4,rep,name=task_inputs,json=taskInputs,proto3" json:"task_inputs,omitempty"`
+	TaskInputs    []*structpb.Struct `protobuf:"bytes,2,rep,name=task_inputs,json=taskInputs,proto3" json:"task_inputs,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2698,16 +2627,9 @@ func (*TriggerAsyncNamespaceLatestModelRequest) Descriptor() ([]byte, []int) {
 	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{38}
 }
 
-func (x *TriggerAsyncNamespaceLatestModelRequest) GetNamespaceId() string {
+func (x *TriggerAsyncNamespaceLatestModelRequest) GetName() string {
 	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *TriggerAsyncNamespaceLatestModelRequest) GetModelId() string {
-	if x != nil {
-		return x.ModelId
+		return x.Name
 	}
 	return ""
 }
@@ -2770,14 +2692,11 @@ func (x *TriggerAsyncNamespaceLatestModelResponse) GetOperation() *longrunningpb
 // model inference by uploading a binary file as the input.
 type TriggerNamespaceModelBinaryFileUploadRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Namespace ID
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Model ID
-	ModelId string `protobuf:"bytes,2,opt,name=model_id,json=modelId,proto3" json:"model_id,omitempty"`
-	// Model version
-	Version string `protobuf:"bytes,4,opt,name=version,proto3" json:"version,omitempty"`
+	// The resource name of the model version to trigger.
+	// Format: `namespaces/{namespace}/models/{model}/versions/{version}`
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Inference input as a binary file.
-	TaskInput     []*structpb.Struct `protobuf:"bytes,5,rep,name=task_input,json=taskInput,proto3" json:"task_input,omitempty"`
+	TaskInput     []*structpb.Struct `protobuf:"bytes,2,rep,name=task_input,json=taskInput,proto3" json:"task_input,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2812,23 +2731,9 @@ func (*TriggerNamespaceModelBinaryFileUploadRequest) Descriptor() ([]byte, []int
 	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{40}
 }
 
-func (x *TriggerNamespaceModelBinaryFileUploadRequest) GetNamespaceId() string {
+func (x *TriggerNamespaceModelBinaryFileUploadRequest) GetName() string {
 	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *TriggerNamespaceModelBinaryFileUploadRequest) GetModelId() string {
-	if x != nil {
-		return x.ModelId
-	}
-	return ""
-}
-
-func (x *TriggerNamespaceModelBinaryFileUploadRequest) GetVersion() string {
-	if x != nil {
-		return x.Version
+		return x.Name
 	}
 	return ""
 }
@@ -2847,7 +2752,7 @@ type TriggerNamespaceModelBinaryFileUploadResponse struct {
 	// Task type.
 	Task v1alpha.Task `protobuf:"varint,1,opt,name=task,proto3,enum=common.task.v1alpha.Task" json:"task,omitempty"`
 	// Model inference outputs.
-	TaskOutputs   []*structpb.Struct `protobuf:"bytes,4,rep,name=task_outputs,json=taskOutputs,proto3" json:"task_outputs,omitempty"`
+	TaskOutputs   []*structpb.Struct `protobuf:"bytes,2,rep,name=task_outputs,json=taskOutputs,proto3" json:"task_outputs,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2900,12 +2805,11 @@ func (x *TriggerNamespaceModelBinaryFileUploadResponse) GetTaskOutputs() []*stru
 // trigger a model inference by uploading a binary file as the input.
 type TriggerNamespaceLatestModelBinaryFileUploadRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Namespace ID
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Model ID
-	ModelId string `protobuf:"bytes,2,opt,name=model_id,json=modelId,proto3" json:"model_id,omitempty"`
+	// The resource name of the model to trigger (uses latest version).
+	// Format: `namespaces/{namespace}/models/{model}`
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Inference input as a binary file.
-	TaskInput     []*structpb.Struct `protobuf:"bytes,4,rep,name=task_input,json=taskInput,proto3" json:"task_input,omitempty"`
+	TaskInput     []*structpb.Struct `protobuf:"bytes,2,rep,name=task_input,json=taskInput,proto3" json:"task_input,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2940,16 +2844,9 @@ func (*TriggerNamespaceLatestModelBinaryFileUploadRequest) Descriptor() ([]byte,
 	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{42}
 }
 
-func (x *TriggerNamespaceLatestModelBinaryFileUploadRequest) GetNamespaceId() string {
+func (x *TriggerNamespaceLatestModelBinaryFileUploadRequest) GetName() string {
 	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *TriggerNamespaceLatestModelBinaryFileUploadRequest) GetModelId() string {
-	if x != nil {
-		return x.ModelId
+		return x.Name
 	}
 	return ""
 }
@@ -2967,9 +2864,8 @@ type TriggerNamespaceLatestModelBinaryFileUploadResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Task type.
 	Task v1alpha.Task `protobuf:"varint,1,opt,name=task,proto3,enum=common.task.v1alpha.Task" json:"task,omitempty"`
-	// Deleteted field.
 	// Model inference outputs.
-	TaskOutputs   []*structpb.Struct `protobuf:"bytes,3,rep,name=task_outputs,json=taskOutputs,proto3" json:"task_outputs,omitempty"`
+	TaskOutputs   []*structpb.Struct `protobuf:"bytes,2,rep,name=task_outputs,json=taskOutputs,proto3" json:"task_outputs,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3022,13 +2918,12 @@ func (x *TriggerNamespaceLatestModelBinaryFileUploadResponse) GetTaskOutputs() [
 // latest long-running operation performed on a model for a namespace.
 type GetNamespaceLatestModelOperationRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Namespace ID
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Model ID
-	ModelId string `protobuf:"bytes,2,opt,name=model_id,json=modelId,proto3" json:"model_id,omitempty"`
+	// The resource name of the model.
+	// Format: `namespaces/{namespace}/models/{model}`
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// View allows clients to specify the desired operation result in the
 	// response.
-	View          *View `protobuf:"varint,3,opt,name=view,proto3,enum=model.v1alpha.View,oneof" json:"view,omitempty"`
+	View          *View `protobuf:"varint,2,opt,name=view,proto3,enum=model.v1alpha.View,oneof" json:"view,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3063,16 +2958,9 @@ func (*GetNamespaceLatestModelOperationRequest) Descriptor() ([]byte, []int) {
 	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{44}
 }
 
-func (x *GetNamespaceLatestModelOperationRequest) GetNamespaceId() string {
+func (x *GetNamespaceLatestModelOperationRequest) GetName() string {
 	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *GetNamespaceLatestModelOperationRequest) GetModelId() string {
-	if x != nil {
-		return x.ModelId
+		return x.Name
 	}
 	return ""
 }
@@ -3136,15 +3024,12 @@ func (x *GetNamespaceLatestModelOperationResponse) GetOperation() *longrunningpb
 // namespace.
 type GetNamespaceModelOperationRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Namespace ID
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Model ID
-	ModelId string `protobuf:"bytes,2,opt,name=model_id,json=modelId,proto3" json:"model_id,omitempty"`
-	// Model version
-	Version string `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
+	// The resource name of the model version.
+	// Format: `namespaces/{namespace}/models/{model}/versions/{version}`
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// View allows clients to specify the desired operation result in the
 	// response.
-	View          *View `protobuf:"varint,4,opt,name=view,proto3,enum=model.v1alpha.View,oneof" json:"view,omitempty"`
+	View          *View `protobuf:"varint,2,opt,name=view,proto3,enum=model.v1alpha.View,oneof" json:"view,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3179,23 +3064,9 @@ func (*GetNamespaceModelOperationRequest) Descriptor() ([]byte, []int) {
 	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{46}
 }
 
-func (x *GetNamespaceModelOperationRequest) GetNamespaceId() string {
+func (x *GetNamespaceModelOperationRequest) GetName() string {
 	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *GetNamespaceModelOperationRequest) GetModelId() string {
-	if x != nil {
-		return x.ModelId
-	}
-	return ""
-}
-
-func (x *GetNamespaceModelOperationRequest) GetVersion() string {
-	if x != nil {
-		return x.Version
+		return x.Name
 	}
 	return ""
 }
@@ -3258,14 +3129,11 @@ func (x *GetNamespaceModelOperationResponse) GetOperation() *longrunningpb.Opera
 // online state
 type DeployNamespaceModelAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Namespace ID
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Model ID
-	ModelId string `protobuf:"bytes,2,opt,name=model_id,json=modelId,proto3" json:"model_id,omitempty"`
-	// Model version
-	Version string `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
+	// The resource name of the model version to deploy.
+	// Format: `namespaces/{namespace}/models/{model}/versions/{version}`
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Model image digest
-	Digest        string `protobuf:"bytes,4,opt,name=digest,proto3" json:"digest,omitempty"`
+	Digest        string `protobuf:"bytes,2,opt,name=digest,proto3" json:"digest,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3300,23 +3168,9 @@ func (*DeployNamespaceModelAdminRequest) Descriptor() ([]byte, []int) {
 	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{48}
 }
 
-func (x *DeployNamespaceModelAdminRequest) GetNamespaceId() string {
+func (x *DeployNamespaceModelAdminRequest) GetName() string {
 	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *DeployNamespaceModelAdminRequest) GetModelId() string {
-	if x != nil {
-		return x.ModelId
-	}
-	return ""
-}
-
-func (x *DeployNamespaceModelAdminRequest) GetVersion() string {
-	if x != nil {
-		return x.Version
+		return x.Name
 	}
 	return ""
 }
@@ -3369,14 +3223,11 @@ func (*DeployNamespaceModelAdminResponse) Descriptor() ([]byte, []int) {
 // to offline state
 type UndeployNamespaceModelAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Namespace ID
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Model ID
-	ModelId string `protobuf:"bytes,2,opt,name=model_id,json=modelId,proto3" json:"model_id,omitempty"`
-	// Model version
-	Version string `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
+	// The resource name of the model version to undeploy.
+	// Format: `namespaces/{namespace}/models/{model}/versions/{version}`
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Model image digest
-	Digest        string `protobuf:"bytes,4,opt,name=digest,proto3" json:"digest,omitempty"`
+	Digest        string `protobuf:"bytes,2,opt,name=digest,proto3" json:"digest,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3411,23 +3262,9 @@ func (*UndeployNamespaceModelAdminRequest) Descriptor() ([]byte, []int) {
 	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{50}
 }
 
-func (x *UndeployNamespaceModelAdminRequest) GetNamespaceId() string {
+func (x *UndeployNamespaceModelAdminRequest) GetName() string {
 	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *UndeployNamespaceModelAdminRequest) GetModelId() string {
-	if x != nil {
-		return x.ModelId
-	}
-	return ""
-}
-
-func (x *UndeployNamespaceModelAdminRequest) GetVersion() string {
-	if x != nil {
-		return x.Version
+		return x.Name
 	}
 	return ""
 }
@@ -3477,3455 +3314,19 @@ func (*UndeployNamespaceModelAdminResponse) Descriptor() ([]byte, []int) {
 	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{51}
 }
 
-// CreateUserModelRequest represents a request from a user to create a model.
-type CreateUserModelRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The properties of the model to be created.
-	Model *Model `protobuf:"bytes,1,opt,name=model,proto3" json:"model,omitempty"`
-	// The parent resource, i.e., the user that creates the model.
-	// Format: `users/{user.id}`.
-	Parent        string `protobuf:"bytes,2,opt,name=parent,proto3" json:"parent,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CreateUserModelRequest) Reset() {
-	*x = CreateUserModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[52]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreateUserModelRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateUserModelRequest) ProtoMessage() {}
-
-func (x *CreateUserModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[52]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateUserModelRequest.ProtoReflect.Descriptor instead.
-func (*CreateUserModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{52}
-}
-
-func (x *CreateUserModelRequest) GetModel() *Model {
-	if x != nil {
-		return x.Model
-	}
-	return nil
-}
-
-func (x *CreateUserModelRequest) GetParent() string {
-	if x != nil {
-		return x.Parent
-	}
-	return ""
-}
-
-// CreateUserModelResponse contains the created model.
-type CreateUserModelResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The created model resource.
-	Model         *Model `protobuf:"bytes,1,opt,name=model,proto3" json:"model,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CreateUserModelResponse) Reset() {
-	*x = CreateUserModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[53]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreateUserModelResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateUserModelResponse) ProtoMessage() {}
-
-func (x *CreateUserModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[53]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateUserModelResponse.ProtoReflect.Descriptor instead.
-func (*CreateUserModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{53}
-}
-
-func (x *CreateUserModelResponse) GetModel() *Model {
-	if x != nil {
-		return x.Model
-	}
-	return nil
-}
-
-// ListUserModelsRequest represents a request to list the models of a user.
-type ListUserModelsRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The maximum number of models to return. If this parameter is unspecified,
-	// at most 10 models will be returned. The cap value for this parameter is
-	// 100 (i.e. any value above that will be coerced to 100).
-	PageSize *int32 `protobuf:"varint,1,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
-	// Page token.
-	PageToken *string `protobuf:"bytes,2,opt,name=page_token,json=pageToken,proto3,oneof" json:"page_token,omitempty"`
-	// View allows clients to specify the desired model view in the response.
-	View *View `protobuf:"varint,3,opt,name=view,proto3,enum=model.v1alpha.View,oneof" json:"view,omitempty"`
-	// The parent resource, i.e., the user that created the models.
-	// - Format: `users/{user.id}`.
-	Parent string `protobuf:"bytes,4,opt,name=parent,proto3" json:"parent,omitempty"`
-	// Include soft-deleted models in the result.
-	ShowDeleted *bool `protobuf:"varint,5,opt,name=show_deleted,json=showDeleted,proto3,oneof" json:"show_deleted,omitempty"`
-	// Filter can hold an [AIP-160](https://google.aip.dev/160)-compliant filter
-	// expression.
-	// - Example: `create_time>timestamp("2000-06-19T23:31:08.657Z")`.
-	Filter *string `protobuf:"bytes,6,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
-	// Limit results to pipelines with the specified visibility.
-	Visibility *Model_Visibility `protobuf:"varint,7,opt,name=visibility,proto3,enum=model.v1alpha.Model_Visibility,oneof" json:"visibility,omitempty"`
-	// Order by field, with options for ordering by `id`, `create_time` or
-	// `update_time`. Format: `order_by=id` or `order_by=create_time desc`,
-	// default is `asc`.
-	OrderBy       *string `protobuf:"bytes,8,opt,name=order_by,json=orderBy,proto3,oneof" json:"order_by,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListUserModelsRequest) Reset() {
-	*x = ListUserModelsRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[54]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListUserModelsRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListUserModelsRequest) ProtoMessage() {}
-
-func (x *ListUserModelsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[54]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListUserModelsRequest.ProtoReflect.Descriptor instead.
-func (*ListUserModelsRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{54}
-}
-
-func (x *ListUserModelsRequest) GetPageSize() int32 {
-	if x != nil && x.PageSize != nil {
-		return *x.PageSize
-	}
-	return 0
-}
-
-func (x *ListUserModelsRequest) GetPageToken() string {
-	if x != nil && x.PageToken != nil {
-		return *x.PageToken
-	}
-	return ""
-}
-
-func (x *ListUserModelsRequest) GetView() View {
-	if x != nil && x.View != nil {
-		return *x.View
-	}
-	return View_VIEW_UNSPECIFIED
-}
-
-func (x *ListUserModelsRequest) GetParent() string {
-	if x != nil {
-		return x.Parent
-	}
-	return ""
-}
-
-func (x *ListUserModelsRequest) GetShowDeleted() bool {
-	if x != nil && x.ShowDeleted != nil {
-		return *x.ShowDeleted
-	}
-	return false
-}
-
-func (x *ListUserModelsRequest) GetFilter() string {
-	if x != nil && x.Filter != nil {
-		return *x.Filter
-	}
-	return ""
-}
-
-func (x *ListUserModelsRequest) GetVisibility() Model_Visibility {
-	if x != nil && x.Visibility != nil {
-		return *x.Visibility
-	}
-	return Model_VISIBILITY_UNSPECIFIED
-}
-
-func (x *ListUserModelsRequest) GetOrderBy() string {
-	if x != nil && x.OrderBy != nil {
-		return *x.OrderBy
-	}
-	return ""
-}
-
-// ListUserModelsResponse contains a list of models.
-type ListUserModelsResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// A list of model resources.
-	Models []*Model `protobuf:"bytes,1,rep,name=models,proto3" json:"models,omitempty"`
-	// Next page token.
-	NextPageToken string `protobuf:"bytes,2,opt,name=next_page_token,json=nextPageToken,proto3" json:"next_page_token,omitempty"`
-	// Total number of models.
-	TotalSize     int32 `protobuf:"varint,3,opt,name=total_size,json=totalSize,proto3" json:"total_size,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListUserModelsResponse) Reset() {
-	*x = ListUserModelsResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[55]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListUserModelsResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListUserModelsResponse) ProtoMessage() {}
-
-func (x *ListUserModelsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[55]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListUserModelsResponse.ProtoReflect.Descriptor instead.
-func (*ListUserModelsResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{55}
-}
-
-func (x *ListUserModelsResponse) GetModels() []*Model {
-	if x != nil {
-		return x.Models
-	}
-	return nil
-}
-
-func (x *ListUserModelsResponse) GetNextPageToken() string {
-	if x != nil {
-		return x.NextPageToken
-	}
-	return ""
-}
-
-func (x *ListUserModelsResponse) GetTotalSize() int32 {
-	if x != nil {
-		return x.TotalSize
-	}
-	return 0
-}
-
-// GetUserModelRequest represents a request to fetch the details of a model
-// owned by a user.
-type GetUserModelRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The resource name of the model, which allows its access by parent user
-	// and ID.
-	// - Format: `users/{user.id}/models/{model.id}`.
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// View allows clients to specify the desired model view in the response.
-	View          *View `protobuf:"varint,2,opt,name=view,proto3,enum=model.v1alpha.View,oneof" json:"view,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetUserModelRequest) Reset() {
-	*x = GetUserModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[56]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetUserModelRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetUserModelRequest) ProtoMessage() {}
-
-func (x *GetUserModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[56]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetUserModelRequest.ProtoReflect.Descriptor instead.
-func (*GetUserModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{56}
-}
-
-func (x *GetUserModelRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *GetUserModelRequest) GetView() View {
-	if x != nil && x.View != nil {
-		return *x.View
-	}
-	return View_VIEW_UNSPECIFIED
-}
-
-// GetUserModelResponse contains the requested model.
-type GetUserModelResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The model resource.
-	Model         *Model `protobuf:"bytes,1,opt,name=model,proto3" json:"model,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetUserModelResponse) Reset() {
-	*x = GetUserModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[57]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetUserModelResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetUserModelResponse) ProtoMessage() {}
-
-func (x *GetUserModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[57]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetUserModelResponse.ProtoReflect.Descriptor instead.
-func (*GetUserModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{57}
-}
-
-func (x *GetUserModelResponse) GetModel() *Model {
-	if x != nil {
-		return x.Model
-	}
-	return nil
-}
-
-// UpdateUserModelRequest represents a request to update a model owned by a
-// user.
-type UpdateUserModelRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The model to update
-	Model *Model `protobuf:"bytes,1,opt,name=model,proto3" json:"model,omitempty"`
-	// The update mask specifies the subset of fields that should be modified.
-	//
-	// For more information about this field, see
-	// https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#field-mask.
-	UpdateMask    *fieldmaskpb.FieldMask `protobuf:"bytes,2,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UpdateUserModelRequest) Reset() {
-	*x = UpdateUserModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[58]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UpdateUserModelRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateUserModelRequest) ProtoMessage() {}
-
-func (x *UpdateUserModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[58]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpdateUserModelRequest.ProtoReflect.Descriptor instead.
-func (*UpdateUserModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{58}
-}
-
-func (x *UpdateUserModelRequest) GetModel() *Model {
-	if x != nil {
-		return x.Model
-	}
-	return nil
-}
-
-func (x *UpdateUserModelRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
-	if x != nil {
-		return x.UpdateMask
-	}
-	return nil
-}
-
-// UpdateUserModelResponse contains the updated model.
-type UpdateUserModelResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The updated model resource.
-	Model         *Model `protobuf:"bytes,1,opt,name=model,proto3" json:"model,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UpdateUserModelResponse) Reset() {
-	*x = UpdateUserModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[59]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UpdateUserModelResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateUserModelResponse) ProtoMessage() {}
-
-func (x *UpdateUserModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[59]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpdateUserModelResponse.ProtoReflect.Descriptor instead.
-func (*UpdateUserModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{59}
-}
-
-func (x *UpdateUserModelResponse) GetModel() *Model {
-	if x != nil {
-		return x.Model
-	}
-	return nil
-}
-
-// DeleteUserModelRequest represents a request to delete a model owned by a
-// user.
-type DeleteUserModelRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The resource name of the model, which allows its access by parent user
-	// and ID.
-	// - Format: `users/{user.id}/models/{model.id}`.
-	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeleteUserModelRequest) Reset() {
-	*x = DeleteUserModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[60]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeleteUserModelRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteUserModelRequest) ProtoMessage() {}
-
-func (x *DeleteUserModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[60]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteUserModelRequest.ProtoReflect.Descriptor instead.
-func (*DeleteUserModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{60}
-}
-
-func (x *DeleteUserModelRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-// DeleteUserModelResponse is an empty response.
-type DeleteUserModelResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeleteUserModelResponse) Reset() {
-	*x = DeleteUserModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[61]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeleteUserModelResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteUserModelResponse) ProtoMessage() {}
-
-func (x *DeleteUserModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[61]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteUserModelResponse.ProtoReflect.Descriptor instead.
-func (*DeleteUserModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{61}
-}
-
-// RenameUserModelRequest represents a request to rename a model
-type RenameUserModelRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The resource name of the model, which allows its access by parent user
-	// and ID.
-	// - Format: `users/{user.id}/models/{model.id}`.
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// The new resource ID. This will transform the resource name into
-	// `users/{user.id}/models/{new_model_id}`.
-	NewModelId    string `protobuf:"bytes,2,opt,name=new_model_id,json=newModelId,proto3" json:"new_model_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RenameUserModelRequest) Reset() {
-	*x = RenameUserModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[62]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RenameUserModelRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RenameUserModelRequest) ProtoMessage() {}
-
-func (x *RenameUserModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[62]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RenameUserModelRequest.ProtoReflect.Descriptor instead.
-func (*RenameUserModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{62}
-}
-
-func (x *RenameUserModelRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *RenameUserModelRequest) GetNewModelId() string {
-	if x != nil {
-		return x.NewModelId
-	}
-	return ""
-}
-
-// RenameUserModelResponse contains a renamed model.
-type RenameUserModelResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The renamed model resource.
-	Model         *Model `protobuf:"bytes,1,opt,name=model,proto3" json:"model,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RenameUserModelResponse) Reset() {
-	*x = RenameUserModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[63]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RenameUserModelResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RenameUserModelResponse) ProtoMessage() {}
-
-func (x *RenameUserModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[63]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RenameUserModelResponse.ProtoReflect.Descriptor instead.
-func (*RenameUserModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{63}
-}
-
-func (x *RenameUserModelResponse) GetModel() *Model {
-	if x != nil {
-		return x.Model
-	}
-	return nil
-}
-
-// WatchUserModelRequest represents a request to fetch current state of a model
-type WatchUserModelRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The resource name of the model, which allows its access by parent user
-	// and ID.
-	// - Format: `users/{user.id}/models/{model.id}`.
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Model version
-	Version       string `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *WatchUserModelRequest) Reset() {
-	*x = WatchUserModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[64]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *WatchUserModelRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*WatchUserModelRequest) ProtoMessage() {}
-
-func (x *WatchUserModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[64]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use WatchUserModelRequest.ProtoReflect.Descriptor instead.
-func (*WatchUserModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{64}
-}
-
-func (x *WatchUserModelRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *WatchUserModelRequest) GetVersion() string {
-	if x != nil {
-		return x.Version
-	}
-	return ""
-}
-
-// WatchUserModelResponse contains the state of a model.
-type WatchUserModelResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// State.
-	State State `protobuf:"varint,1,opt,name=state,proto3,enum=model.v1alpha.State" json:"state,omitempty"`
-	// Detail description of the state
-	Message       string `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *WatchUserModelResponse) Reset() {
-	*x = WatchUserModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[65]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *WatchUserModelResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*WatchUserModelResponse) ProtoMessage() {}
-
-func (x *WatchUserModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[65]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use WatchUserModelResponse.ProtoReflect.Descriptor instead.
-func (*WatchUserModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{65}
-}
-
-func (x *WatchUserModelResponse) GetState() State {
-	if x != nil {
-		return x.State
-	}
-	return State_STATE_UNSPECIFIED
-}
-
-func (x *WatchUserModelResponse) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
-
-// WatchUserLatestModelRequest represents a request to fetch current state of
-// the latest model version.
-type WatchUserLatestModelRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The resource name of the model, which allows its access by parent user
-	// and ID.
-	// - Format: `users/{user.id}/models/{model.id}`.
-	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *WatchUserLatestModelRequest) Reset() {
-	*x = WatchUserLatestModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[66]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *WatchUserLatestModelRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*WatchUserLatestModelRequest) ProtoMessage() {}
-
-func (x *WatchUserLatestModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[66]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use WatchUserLatestModelRequest.ProtoReflect.Descriptor instead.
-func (*WatchUserLatestModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{66}
-}
-
-func (x *WatchUserLatestModelRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-// WatchUserLatestModelResponse contains the state of the latest model version.
-type WatchUserLatestModelResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// State.
-	State State `protobuf:"varint,1,opt,name=state,proto3,enum=model.v1alpha.State" json:"state,omitempty"`
-	// Detail description of the state
-	Message       string `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *WatchUserLatestModelResponse) Reset() {
-	*x = WatchUserLatestModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[67]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *WatchUserLatestModelResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*WatchUserLatestModelResponse) ProtoMessage() {}
-
-func (x *WatchUserLatestModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[67]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use WatchUserLatestModelResponse.ProtoReflect.Descriptor instead.
-func (*WatchUserLatestModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{67}
-}
-
-func (x *WatchUserLatestModelResponse) GetState() State {
-	if x != nil {
-		return x.State
-	}
-	return State_STATE_UNSPECIFIED
-}
-
-func (x *WatchUserLatestModelResponse) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
-
-// ListUserModelVersionsRequest represents a request to list all the versions
-// of a model namespace of a user.
-type ListUserModelVersionsRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The maximum number of versions to return. The default and cap values are 10
-	// and 100, respectively.
-	PageSize *int32 `protobuf:"varint,1,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
-	// Page number.
-	Page *int32 `protobuf:"varint,2,opt,name=page,proto3,oneof" json:"page,omitempty"`
-	// The parent resource, i.e., the user that created the models.
-	// - Format: `users/{user.id}`.
-	// The resource name of the model, which allows its access by parent user
-	// and ID.
-	// - Format: `users/{user.id}/models/{model.id}`.
-	Name          string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListUserModelVersionsRequest) Reset() {
-	*x = ListUserModelVersionsRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[68]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListUserModelVersionsRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListUserModelVersionsRequest) ProtoMessage() {}
-
-func (x *ListUserModelVersionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[68]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListUserModelVersionsRequest.ProtoReflect.Descriptor instead.
-func (*ListUserModelVersionsRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{68}
-}
-
-func (x *ListUserModelVersionsRequest) GetPageSize() int32 {
-	if x != nil && x.PageSize != nil {
-		return *x.PageSize
-	}
-	return 0
-}
-
-func (x *ListUserModelVersionsRequest) GetPage() int32 {
-	if x != nil && x.Page != nil {
-		return *x.Page
-	}
-	return 0
-}
-
-func (x *ListUserModelVersionsRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-// ListUserModelVersionsResponse contains a list of models.
-type ListUserModelVersionsResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// A list of model resources.
-	Versions []*ModelVersion `protobuf:"bytes,1,rep,name=versions,proto3" json:"versions,omitempty"`
-	// Total number of versions.
-	TotalSize int32 `protobuf:"varint,2,opt,name=total_size,json=totalSize,proto3" json:"total_size,omitempty"`
-	// The requested page size.
-	PageSize int32 `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
-	// The requested page offset.
-	Page          int32 `protobuf:"varint,4,opt,name=page,proto3" json:"page,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListUserModelVersionsResponse) Reset() {
-	*x = ListUserModelVersionsResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[69]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListUserModelVersionsResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListUserModelVersionsResponse) ProtoMessage() {}
-
-func (x *ListUserModelVersionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[69]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListUserModelVersionsResponse.ProtoReflect.Descriptor instead.
-func (*ListUserModelVersionsResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{69}
-}
-
-func (x *ListUserModelVersionsResponse) GetVersions() []*ModelVersion {
-	if x != nil {
-		return x.Versions
-	}
-	return nil
-}
-
-func (x *ListUserModelVersionsResponse) GetTotalSize() int32 {
-	if x != nil {
-		return x.TotalSize
-	}
-	return 0
-}
-
-func (x *ListUserModelVersionsResponse) GetPageSize() int32 {
-	if x != nil {
-		return x.PageSize
-	}
-	return 0
-}
-
-func (x *ListUserModelVersionsResponse) GetPage() int32 {
-	if x != nil {
-		return x.Page
-	}
-	return 0
-}
-
-// DeleteUserModelVersionRequest represents a request to delete a model version
-//
-//	owned by a user.
-type DeleteUserModelVersionRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The resource name of the model, which allows its access by parent user
-	// and ID.
-	// - Format: `users/{user.id}/models/{model.id}`.
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Model version
-	Version       string `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeleteUserModelVersionRequest) Reset() {
-	*x = DeleteUserModelVersionRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[70]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeleteUserModelVersionRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteUserModelVersionRequest) ProtoMessage() {}
-
-func (x *DeleteUserModelVersionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[70]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteUserModelVersionRequest.ProtoReflect.Descriptor instead.
-func (*DeleteUserModelVersionRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{70}
-}
-
-func (x *DeleteUserModelVersionRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *DeleteUserModelVersionRequest) GetVersion() string {
-	if x != nil {
-		return x.Version
-	}
-	return ""
-}
-
-// DeleteUserModelVersionResponse is an empty response.
-type DeleteUserModelVersionResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeleteUserModelVersionResponse) Reset() {
-	*x = DeleteUserModelVersionResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[71]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeleteUserModelVersionResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteUserModelVersionResponse) ProtoMessage() {}
-
-func (x *DeleteUserModelVersionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[71]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteUserModelVersionResponse.ProtoReflect.Descriptor instead.
-func (*DeleteUserModelVersionResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{71}
-}
-
-// TriggerUserModelRequest represents a request to trigger a model inference.
-type TriggerUserModelRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The resource name of the model , which allows its access by parent user
-	// and ID.
-	// - Format: `users/{user.id}/models/{model.id}`.
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Model version
-	Version string `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
-	// Model inference inputs.
-	TaskInputs    []*structpb.Struct `protobuf:"bytes,4,rep,name=task_inputs,json=taskInputs,proto3" json:"task_inputs,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TriggerUserModelRequest) Reset() {
-	*x = TriggerUserModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[72]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TriggerUserModelRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TriggerUserModelRequest) ProtoMessage() {}
-
-func (x *TriggerUserModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[72]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TriggerUserModelRequest.ProtoReflect.Descriptor instead.
-func (*TriggerUserModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{72}
-}
-
-func (x *TriggerUserModelRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *TriggerUserModelRequest) GetVersion() string {
-	if x != nil {
-		return x.Version
-	}
-	return ""
-}
-
-func (x *TriggerUserModelRequest) GetTaskInputs() []*structpb.Struct {
-	if x != nil {
-		return x.TaskInputs
-	}
-	return nil
-}
-
-// TriggerUserModelResponse contains the model inference results.
-type TriggerUserModelResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Task type.
-	Task v1alpha.Task `protobuf:"varint,1,opt,name=task,proto3,enum=common.task.v1alpha.Task" json:"task,omitempty"`
-	// Model inference outputs.
-	TaskOutputs   []*structpb.Struct `protobuf:"bytes,3,rep,name=task_outputs,json=taskOutputs,proto3" json:"task_outputs,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TriggerUserModelResponse) Reset() {
-	*x = TriggerUserModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[73]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TriggerUserModelResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TriggerUserModelResponse) ProtoMessage() {}
-
-func (x *TriggerUserModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[73]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TriggerUserModelResponse.ProtoReflect.Descriptor instead.
-func (*TriggerUserModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{73}
-}
-
-func (x *TriggerUserModelResponse) GetTask() v1alpha.Task {
-	if x != nil {
-		return x.Task
-	}
-	return v1alpha.Task(0)
-}
-
-func (x *TriggerUserModelResponse) GetTaskOutputs() []*structpb.Struct {
-	if x != nil {
-		return x.TaskOutputs
-	}
-	return nil
-}
-
-// TriggerAsyncUserModelRequest represents a request to trigger a model
-// inference asynchronously.
-type TriggerAsyncUserModelRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The resource name of the model , which allows its access by parent user
-	// and ID.
-	// - Format: `users/{user.id}/models/{model.id}`.
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Model version
-	Version string `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
-	// Model inference inputs.
-	TaskInputs    []*structpb.Struct `protobuf:"bytes,4,rep,name=task_inputs,json=taskInputs,proto3" json:"task_inputs,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TriggerAsyncUserModelRequest) Reset() {
-	*x = TriggerAsyncUserModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[74]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TriggerAsyncUserModelRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TriggerAsyncUserModelRequest) ProtoMessage() {}
-
-func (x *TriggerAsyncUserModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[74]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TriggerAsyncUserModelRequest.ProtoReflect.Descriptor instead.
-func (*TriggerAsyncUserModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{74}
-}
-
-func (x *TriggerAsyncUserModelRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *TriggerAsyncUserModelRequest) GetVersion() string {
-	if x != nil {
-		return x.Version
-	}
-	return ""
-}
-
-func (x *TriggerAsyncUserModelRequest) GetTaskInputs() []*structpb.Struct {
-	if x != nil {
-		return x.TaskInputs
-	}
-	return nil
-}
-
-// TriggerAsyncUserModelResponse contains the information to access the
-// status of an asynchronous model inference.
-type TriggerAsyncUserModelResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Long-running operation information.
-	Operation     *longrunningpb.Operation `protobuf:"bytes,1,opt,name=operation,proto3" json:"operation,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TriggerAsyncUserModelResponse) Reset() {
-	*x = TriggerAsyncUserModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[75]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TriggerAsyncUserModelResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TriggerAsyncUserModelResponse) ProtoMessage() {}
-
-func (x *TriggerAsyncUserModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[75]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TriggerAsyncUserModelResponse.ProtoReflect.Descriptor instead.
-func (*TriggerAsyncUserModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{75}
-}
-
-func (x *TriggerAsyncUserModelResponse) GetOperation() *longrunningpb.Operation {
-	if x != nil {
-		return x.Operation
-	}
-	return nil
-}
-
-// TriggerUserLatestModelRequest represents a request to trigger a model
-// inference with the latest uploaded version.
-type TriggerUserLatestModelRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The resource name of the model , which allows its access by parent user
-	// and ID.
-	// - Format: `users/{user.id}/models/{model.id}`.
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Model inference inputs.
-	TaskInputs    []*structpb.Struct `protobuf:"bytes,3,rep,name=task_inputs,json=taskInputs,proto3" json:"task_inputs,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TriggerUserLatestModelRequest) Reset() {
-	*x = TriggerUserLatestModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[76]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TriggerUserLatestModelRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TriggerUserLatestModelRequest) ProtoMessage() {}
-
-func (x *TriggerUserLatestModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[76]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TriggerUserLatestModelRequest.ProtoReflect.Descriptor instead.
-func (*TriggerUserLatestModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{76}
-}
-
-func (x *TriggerUserLatestModelRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *TriggerUserLatestModelRequest) GetTaskInputs() []*structpb.Struct {
-	if x != nil {
-		return x.TaskInputs
-	}
-	return nil
-}
-
-// TriggerUserLatestModelResponse contains the model inference results.
-type TriggerUserLatestModelResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Task type.
-	Task v1alpha.Task `protobuf:"varint,1,opt,name=task,proto3,enum=common.task.v1alpha.Task" json:"task,omitempty"`
-	// Model inference outputs.
-	TaskOutputs   []*structpb.Struct `protobuf:"bytes,3,rep,name=task_outputs,json=taskOutputs,proto3" json:"task_outputs,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TriggerUserLatestModelResponse) Reset() {
-	*x = TriggerUserLatestModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[77]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TriggerUserLatestModelResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TriggerUserLatestModelResponse) ProtoMessage() {}
-
-func (x *TriggerUserLatestModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[77]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TriggerUserLatestModelResponse.ProtoReflect.Descriptor instead.
-func (*TriggerUserLatestModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{77}
-}
-
-func (x *TriggerUserLatestModelResponse) GetTask() v1alpha.Task {
-	if x != nil {
-		return x.Task
-	}
-	return v1alpha.Task(0)
-}
-
-func (x *TriggerUserLatestModelResponse) GetTaskOutputs() []*structpb.Struct {
-	if x != nil {
-		return x.TaskOutputs
-	}
-	return nil
-}
-
-// TriggerAsyncUserLatestModelRequest represents a request to trigger a model
-// inference asynchronously with the latest uploaded version.
-type TriggerAsyncUserLatestModelRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The resource name of the model , which allows its access by parent user
-	// and ID.
-	// - Format: `users/{user.id}/models/{model.id}`.
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Model inference inputs.
-	TaskInputs    []*structpb.Struct `protobuf:"bytes,3,rep,name=task_inputs,json=taskInputs,proto3" json:"task_inputs,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TriggerAsyncUserLatestModelRequest) Reset() {
-	*x = TriggerAsyncUserLatestModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[78]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TriggerAsyncUserLatestModelRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TriggerAsyncUserLatestModelRequest) ProtoMessage() {}
-
-func (x *TriggerAsyncUserLatestModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[78]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TriggerAsyncUserLatestModelRequest.ProtoReflect.Descriptor instead.
-func (*TriggerAsyncUserLatestModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{78}
-}
-
-func (x *TriggerAsyncUserLatestModelRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *TriggerAsyncUserLatestModelRequest) GetTaskInputs() []*structpb.Struct {
-	if x != nil {
-		return x.TaskInputs
-	}
-	return nil
-}
-
-// TriggerAsyncUserLatestModelResponse contains the information to access the
-// status of an asynchronous model inference.
-type TriggerAsyncUserLatestModelResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Long-running operation information.
-	Operation     *longrunningpb.Operation `protobuf:"bytes,1,opt,name=operation,proto3" json:"operation,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TriggerAsyncUserLatestModelResponse) Reset() {
-	*x = TriggerAsyncUserLatestModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[79]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TriggerAsyncUserLatestModelResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TriggerAsyncUserLatestModelResponse) ProtoMessage() {}
-
-func (x *TriggerAsyncUserLatestModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[79]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TriggerAsyncUserLatestModelResponse.ProtoReflect.Descriptor instead.
-func (*TriggerAsyncUserLatestModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{79}
-}
-
-func (x *TriggerAsyncUserLatestModelResponse) GetOperation() *longrunningpb.Operation {
-	if x != nil {
-		return x.Operation
-	}
-	return nil
-}
-
-// TriggerUserModelBinaryFileUploadRequest represents a request trigger a model
-// inference by uploading a binary file as the input.
-type TriggerUserModelBinaryFileUploadRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The resource name of the model , which allows its access by parent user
-	// and ID.
-	// - Format: `users/{user.id}/models/{model.id}`.
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Model version
-	Version string `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
-	// Model inference inputs.
-	TaskInputs    []*structpb.Struct `protobuf:"bytes,4,rep,name=task_inputs,json=taskInputs,proto3" json:"task_inputs,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TriggerUserModelBinaryFileUploadRequest) Reset() {
-	*x = TriggerUserModelBinaryFileUploadRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[80]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TriggerUserModelBinaryFileUploadRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TriggerUserModelBinaryFileUploadRequest) ProtoMessage() {}
-
-func (x *TriggerUserModelBinaryFileUploadRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[80]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TriggerUserModelBinaryFileUploadRequest.ProtoReflect.Descriptor instead.
-func (*TriggerUserModelBinaryFileUploadRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{80}
-}
-
-func (x *TriggerUserModelBinaryFileUploadRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *TriggerUserModelBinaryFileUploadRequest) GetVersion() string {
-	if x != nil {
-		return x.Version
-	}
-	return ""
-}
-
-func (x *TriggerUserModelBinaryFileUploadRequest) GetTaskInputs() []*structpb.Struct {
-	if x != nil {
-		return x.TaskInputs
-	}
-	return nil
-}
-
-// TriggerUserModelBinaryFileUploadResponse contains the model inference
-// results.
-type TriggerUserModelBinaryFileUploadResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Task type.
-	Task v1alpha.Task `protobuf:"varint,1,opt,name=task,proto3,enum=common.task.v1alpha.Task" json:"task,omitempty"`
-	// Model inference outputs.
-	TaskOutputs   []*structpb.Struct `protobuf:"bytes,4,rep,name=task_outputs,json=taskOutputs,proto3" json:"task_outputs,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TriggerUserModelBinaryFileUploadResponse) Reset() {
-	*x = TriggerUserModelBinaryFileUploadResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[81]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TriggerUserModelBinaryFileUploadResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TriggerUserModelBinaryFileUploadResponse) ProtoMessage() {}
-
-func (x *TriggerUserModelBinaryFileUploadResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[81]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TriggerUserModelBinaryFileUploadResponse.ProtoReflect.Descriptor instead.
-func (*TriggerUserModelBinaryFileUploadResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{81}
-}
-
-func (x *TriggerUserModelBinaryFileUploadResponse) GetTask() v1alpha.Task {
-	if x != nil {
-		return x.Task
-	}
-	return v1alpha.Task(0)
-}
-
-func (x *TriggerUserModelBinaryFileUploadResponse) GetTaskOutputs() []*structpb.Struct {
-	if x != nil {
-		return x.TaskOutputs
-	}
-	return nil
-}
-
-// CreateOrganizationModelRequest represents a request from an organization to
-// create a model.
-type CreateOrganizationModelRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The properties of the model to be created.
-	Model *Model `protobuf:"bytes,1,opt,name=model,proto3" json:"model,omitempty"`
-	// The parent resource, i.e., the organization that creates the model.
-	// Format: `organizations/{organization.id}`.
-	Parent        string `protobuf:"bytes,2,opt,name=parent,proto3" json:"parent,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CreateOrganizationModelRequest) Reset() {
-	*x = CreateOrganizationModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[82]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreateOrganizationModelRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateOrganizationModelRequest) ProtoMessage() {}
-
-func (x *CreateOrganizationModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[82]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateOrganizationModelRequest.ProtoReflect.Descriptor instead.
-func (*CreateOrganizationModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{82}
-}
-
-func (x *CreateOrganizationModelRequest) GetModel() *Model {
-	if x != nil {
-		return x.Model
-	}
-	return nil
-}
-
-func (x *CreateOrganizationModelRequest) GetParent() string {
-	if x != nil {
-		return x.Parent
-	}
-	return ""
-}
-
-// CreateOrganizationModelResponse contains the created model.
-type CreateOrganizationModelResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The created model resource.
-	Model         *Model `protobuf:"bytes,1,opt,name=model,proto3" json:"model,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CreateOrganizationModelResponse) Reset() {
-	*x = CreateOrganizationModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[83]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreateOrganizationModelResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateOrganizationModelResponse) ProtoMessage() {}
-
-func (x *CreateOrganizationModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[83]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateOrganizationModelResponse.ProtoReflect.Descriptor instead.
-func (*CreateOrganizationModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{83}
-}
-
-func (x *CreateOrganizationModelResponse) GetModel() *Model {
-	if x != nil {
-		return x.Model
-	}
-	return nil
-}
-
-// ListOrganizationModelsRequest represents a request to list the models
-// of an organization.
-type ListOrganizationModelsRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The maximum number of models to return. If this parameter is unspecified,
-	// at most 10 models will be returned. The cap value for this parameter is
-	// 100 (i.e. any value above that will be coerced to 100).
-	PageSize *int32 `protobuf:"varint,1,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
-	// Page token.
-	PageToken *string `protobuf:"bytes,2,opt,name=page_token,json=pageToken,proto3,oneof" json:"page_token,omitempty"`
-	// View allows clients to specify the desired model view in the response.
-	View *View `protobuf:"varint,3,opt,name=view,proto3,enum=model.v1alpha.View,oneof" json:"view,omitempty"`
-	// The parent resource, i.e., the organization that created the models.
-	// - Format: `organizations/{organizations.id}`.
-	Parent string `protobuf:"bytes,4,opt,name=parent,proto3" json:"parent,omitempty"`
-	// Include soft-deleted models in the result.
-	ShowDeleted *bool `protobuf:"varint,5,opt,name=show_deleted,json=showDeleted,proto3,oneof" json:"show_deleted,omitempty"`
-	// Filter can hold an [AIP-160](https://google.aip.dev/160)-compliant filter
-	// expression.
-	// - Example: `create_time>timestamp("2000-06-19T23:31:08.657Z")`.
-	Filter *string `protobuf:"bytes,6,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
-	// Limit results to pipelines with the specified visibility.
-	Visibility *Model_Visibility `protobuf:"varint,7,opt,name=visibility,proto3,enum=model.v1alpha.Model_Visibility,oneof" json:"visibility,omitempty"`
-	// Order by field, with options for ordering by `id`, `create_time` or
-	// `update_time`. Format: `order_by=id` or `order_by=create_time desc`,
-	// default is `asc`.
-	OrderBy       *string `protobuf:"bytes,8,opt,name=order_by,json=orderBy,proto3,oneof" json:"order_by,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListOrganizationModelsRequest) Reset() {
-	*x = ListOrganizationModelsRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[84]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListOrganizationModelsRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListOrganizationModelsRequest) ProtoMessage() {}
-
-func (x *ListOrganizationModelsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[84]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListOrganizationModelsRequest.ProtoReflect.Descriptor instead.
-func (*ListOrganizationModelsRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{84}
-}
-
-func (x *ListOrganizationModelsRequest) GetPageSize() int32 {
-	if x != nil && x.PageSize != nil {
-		return *x.PageSize
-	}
-	return 0
-}
-
-func (x *ListOrganizationModelsRequest) GetPageToken() string {
-	if x != nil && x.PageToken != nil {
-		return *x.PageToken
-	}
-	return ""
-}
-
-func (x *ListOrganizationModelsRequest) GetView() View {
-	if x != nil && x.View != nil {
-		return *x.View
-	}
-	return View_VIEW_UNSPECIFIED
-}
-
-func (x *ListOrganizationModelsRequest) GetParent() string {
-	if x != nil {
-		return x.Parent
-	}
-	return ""
-}
-
-func (x *ListOrganizationModelsRequest) GetShowDeleted() bool {
-	if x != nil && x.ShowDeleted != nil {
-		return *x.ShowDeleted
-	}
-	return false
-}
-
-func (x *ListOrganizationModelsRequest) GetFilter() string {
-	if x != nil && x.Filter != nil {
-		return *x.Filter
-	}
-	return ""
-}
-
-func (x *ListOrganizationModelsRequest) GetVisibility() Model_Visibility {
-	if x != nil && x.Visibility != nil {
-		return *x.Visibility
-	}
-	return Model_VISIBILITY_UNSPECIFIED
-}
-
-func (x *ListOrganizationModelsRequest) GetOrderBy() string {
-	if x != nil && x.OrderBy != nil {
-		return *x.OrderBy
-	}
-	return ""
-}
-
-// ListOrganizationModelsResponse contains a list of models.
-type ListOrganizationModelsResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// A list of model resources.
-	Models []*Model `protobuf:"bytes,1,rep,name=models,proto3" json:"models,omitempty"`
-	// Next page token.
-	NextPageToken string `protobuf:"bytes,2,opt,name=next_page_token,json=nextPageToken,proto3" json:"next_page_token,omitempty"`
-	// Total number of models.
-	TotalSize     int32 `protobuf:"varint,3,opt,name=total_size,json=totalSize,proto3" json:"total_size,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListOrganizationModelsResponse) Reset() {
-	*x = ListOrganizationModelsResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[85]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListOrganizationModelsResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListOrganizationModelsResponse) ProtoMessage() {}
-
-func (x *ListOrganizationModelsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[85]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListOrganizationModelsResponse.ProtoReflect.Descriptor instead.
-func (*ListOrganizationModelsResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{85}
-}
-
-func (x *ListOrganizationModelsResponse) GetModels() []*Model {
-	if x != nil {
-		return x.Models
-	}
-	return nil
-}
-
-func (x *ListOrganizationModelsResponse) GetNextPageToken() string {
-	if x != nil {
-		return x.NextPageToken
-	}
-	return ""
-}
-
-func (x *ListOrganizationModelsResponse) GetTotalSize() int32 {
-	if x != nil {
-		return x.TotalSize
-	}
-	return 0
-}
-
-// GetOrganizationModelRequest represents a request to fetch the details of a
-// model owned by an organization.
-type GetOrganizationModelRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The resource name of the model, which allows its access by parent
-	// organization and ID.
-	// - Format: `organizations/{organization.id}/models/{model.id}`.
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// View allows clients to specify the desired model view in the response.
-	View          *View `protobuf:"varint,2,opt,name=view,proto3,enum=model.v1alpha.View,oneof" json:"view,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetOrganizationModelRequest) Reset() {
-	*x = GetOrganizationModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[86]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetOrganizationModelRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetOrganizationModelRequest) ProtoMessage() {}
-
-func (x *GetOrganizationModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[86]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetOrganizationModelRequest.ProtoReflect.Descriptor instead.
-func (*GetOrganizationModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{86}
-}
-
-func (x *GetOrganizationModelRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *GetOrganizationModelRequest) GetView() View {
-	if x != nil && x.View != nil {
-		return *x.View
-	}
-	return View_VIEW_UNSPECIFIED
-}
-
-// GetOrganizationModelResponse contains the requested model.
-type GetOrganizationModelResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The model resource.
-	Model         *Model `protobuf:"bytes,1,opt,name=model,proto3" json:"model,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetOrganizationModelResponse) Reset() {
-	*x = GetOrganizationModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[87]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetOrganizationModelResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetOrganizationModelResponse) ProtoMessage() {}
-
-func (x *GetOrganizationModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[87]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetOrganizationModelResponse.ProtoReflect.Descriptor instead.
-func (*GetOrganizationModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{87}
-}
-
-func (x *GetOrganizationModelResponse) GetModel() *Model {
-	if x != nil {
-		return x.Model
-	}
-	return nil
-}
-
-// UpdateOrganizationModelRequest represents a request to update a model owned
-// by an organization.
-type UpdateOrganizationModelRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The model to update
-	Model *Model `protobuf:"bytes,1,opt,name=model,proto3" json:"model,omitempty"`
-	// The update mask specifies the subset of fields that should be modified.
-	//
-	// For more information about this field, see
-	// https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#field-mask.
-	UpdateMask    *fieldmaskpb.FieldMask `protobuf:"bytes,2,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UpdateOrganizationModelRequest) Reset() {
-	*x = UpdateOrganizationModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[88]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UpdateOrganizationModelRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateOrganizationModelRequest) ProtoMessage() {}
-
-func (x *UpdateOrganizationModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[88]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpdateOrganizationModelRequest.ProtoReflect.Descriptor instead.
-func (*UpdateOrganizationModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{88}
-}
-
-func (x *UpdateOrganizationModelRequest) GetModel() *Model {
-	if x != nil {
-		return x.Model
-	}
-	return nil
-}
-
-func (x *UpdateOrganizationModelRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
-	if x != nil {
-		return x.UpdateMask
-	}
-	return nil
-}
-
-// UpdateOrganizationModelResponse contains the updated model.
-type UpdateOrganizationModelResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The updated model resource.
-	Model         *Model `protobuf:"bytes,1,opt,name=model,proto3" json:"model,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UpdateOrganizationModelResponse) Reset() {
-	*x = UpdateOrganizationModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[89]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UpdateOrganizationModelResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateOrganizationModelResponse) ProtoMessage() {}
-
-func (x *UpdateOrganizationModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[89]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpdateOrganizationModelResponse.ProtoReflect.Descriptor instead.
-func (*UpdateOrganizationModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{89}
-}
-
-func (x *UpdateOrganizationModelResponse) GetModel() *Model {
-	if x != nil {
-		return x.Model
-	}
-	return nil
-}
-
-// DeleteOrganizationModelRequest represents a request to delete a model owned
-// by an organization.
-type DeleteOrganizationModelRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The resource name of the model, which allows its access by parent
-	// organization and ID.
-	// - Format: `organizations/{organization.id}/models/{model.id}`.
-	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeleteOrganizationModelRequest) Reset() {
-	*x = DeleteOrganizationModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[90]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeleteOrganizationModelRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteOrganizationModelRequest) ProtoMessage() {}
-
-func (x *DeleteOrganizationModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[90]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteOrganizationModelRequest.ProtoReflect.Descriptor instead.
-func (*DeleteOrganizationModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{90}
-}
-
-func (x *DeleteOrganizationModelRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-// DeleteOrganizationModelResponse is an empty response.
-type DeleteOrganizationModelResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeleteOrganizationModelResponse) Reset() {
-	*x = DeleteOrganizationModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[91]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeleteOrganizationModelResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteOrganizationModelResponse) ProtoMessage() {}
-
-func (x *DeleteOrganizationModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[91]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteOrganizationModelResponse.ProtoReflect.Descriptor instead.
-func (*DeleteOrganizationModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{91}
-}
-
-// RenameOrganizationModelRequest represents a request to rename a model
-type RenameOrganizationModelRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The resource name of the model, which allows its access by parent
-	// organization and ID.
-	// - Format: `organizations/{organization.id}/models/{model.id}`.
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// The new resource ID. This will transform the resource name into
-	// `organizations/{organization.id}/models/{new_model_id}`.
-	NewModelId    string `protobuf:"bytes,2,opt,name=new_model_id,json=newModelId,proto3" json:"new_model_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RenameOrganizationModelRequest) Reset() {
-	*x = RenameOrganizationModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[92]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RenameOrganizationModelRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RenameOrganizationModelRequest) ProtoMessage() {}
-
-func (x *RenameOrganizationModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[92]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RenameOrganizationModelRequest.ProtoReflect.Descriptor instead.
-func (*RenameOrganizationModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{92}
-}
-
-func (x *RenameOrganizationModelRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *RenameOrganizationModelRequest) GetNewModelId() string {
-	if x != nil {
-		return x.NewModelId
-	}
-	return ""
-}
-
-// RenameOrganizationModelResponse contains a renamed model.
-type RenameOrganizationModelResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The renamed model resource.
-	Model         *Model `protobuf:"bytes,1,opt,name=model,proto3" json:"model,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RenameOrganizationModelResponse) Reset() {
-	*x = RenameOrganizationModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[93]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RenameOrganizationModelResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RenameOrganizationModelResponse) ProtoMessage() {}
-
-func (x *RenameOrganizationModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[93]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RenameOrganizationModelResponse.ProtoReflect.Descriptor instead.
-func (*RenameOrganizationModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{93}
-}
-
-func (x *RenameOrganizationModelResponse) GetModel() *Model {
-	if x != nil {
-		return x.Model
-	}
-	return nil
-}
-
-// WatchOrganizationModelRequest represents a request to fetch current state of
-// a model.
-type WatchOrganizationModelRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The resource name of the model, which allows its access by parent
-	// organization and ID.
-	// - Format: `organizations/{organization.id}/models/{model.id}`.
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Model version
-	Version       string `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *WatchOrganizationModelRequest) Reset() {
-	*x = WatchOrganizationModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[94]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *WatchOrganizationModelRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*WatchOrganizationModelRequest) ProtoMessage() {}
-
-func (x *WatchOrganizationModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[94]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use WatchOrganizationModelRequest.ProtoReflect.Descriptor instead.
-func (*WatchOrganizationModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{94}
-}
-
-func (x *WatchOrganizationModelRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *WatchOrganizationModelRequest) GetVersion() string {
-	if x != nil {
-		return x.Version
-	}
-	return ""
-}
-
-// WatchOrganizationModelResponse contains the state of a model.
-type WatchOrganizationModelResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// State.
-	State State `protobuf:"varint,1,opt,name=state,proto3,enum=model.v1alpha.State" json:"state,omitempty"`
-	// Detail description of the state
-	Message       string `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *WatchOrganizationModelResponse) Reset() {
-	*x = WatchOrganizationModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[95]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *WatchOrganizationModelResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*WatchOrganizationModelResponse) ProtoMessage() {}
-
-func (x *WatchOrganizationModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[95]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use WatchOrganizationModelResponse.ProtoReflect.Descriptor instead.
-func (*WatchOrganizationModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{95}
-}
-
-func (x *WatchOrganizationModelResponse) GetState() State {
-	if x != nil {
-		return x.State
-	}
-	return State_STATE_UNSPECIFIED
-}
-
-func (x *WatchOrganizationModelResponse) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
-
-// WatchOrganizationLatestModelRequest represents a request to fetch current
-// state of the latest model version
-type WatchOrganizationLatestModelRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The resource name of the model, which allows its access by parent
-	// organization and ID.
-	// - Format: `organizations/{organization.id}/models/{model.id}`.
-	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *WatchOrganizationLatestModelRequest) Reset() {
-	*x = WatchOrganizationLatestModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[96]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *WatchOrganizationLatestModelRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*WatchOrganizationLatestModelRequest) ProtoMessage() {}
-
-func (x *WatchOrganizationLatestModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[96]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use WatchOrganizationLatestModelRequest.ProtoReflect.Descriptor instead.
-func (*WatchOrganizationLatestModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{96}
-}
-
-func (x *WatchOrganizationLatestModelRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-// WatchOrganizationLatestModelResponse contains the state of the latest model
-// version.
-type WatchOrganizationLatestModelResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// State.
-	State State `protobuf:"varint,1,opt,name=state,proto3,enum=model.v1alpha.State" json:"state,omitempty"`
-	// Detail description of the state
-	Message       string `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *WatchOrganizationLatestModelResponse) Reset() {
-	*x = WatchOrganizationLatestModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[97]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *WatchOrganizationLatestModelResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*WatchOrganizationLatestModelResponse) ProtoMessage() {}
-
-func (x *WatchOrganizationLatestModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[97]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use WatchOrganizationLatestModelResponse.ProtoReflect.Descriptor instead.
-func (*WatchOrganizationLatestModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{97}
-}
-
-func (x *WatchOrganizationLatestModelResponse) GetState() State {
-	if x != nil {
-		return x.State
-	}
-	return State_STATE_UNSPECIFIED
-}
-
-func (x *WatchOrganizationLatestModelResponse) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
-
-// ListOrganizationModelVersionsRequest represents a request to list all the
-// versions of a model namespace of an organization.
-type ListOrganizationModelVersionsRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The maximum number of versions to return. The default and cap values are 10
-	// and 100, respectively.
-	PageSize *int32 `protobuf:"varint,1,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
-	// Page number.
-	Page *int32 `protobuf:"varint,2,opt,name=page,proto3,oneof" json:"page,omitempty"`
-	// The parent resource, i.e., the user that created the models.
-	// - Format: `organizations/{organization.id}`.
-	// The resource name of the model, which allows its access by parent user
-	// and ID.
-	// - Format: `organizations/{organization.id}/models/{model.id}`.
-	Name          string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListOrganizationModelVersionsRequest) Reset() {
-	*x = ListOrganizationModelVersionsRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[98]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListOrganizationModelVersionsRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListOrganizationModelVersionsRequest) ProtoMessage() {}
-
-func (x *ListOrganizationModelVersionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[98]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListOrganizationModelVersionsRequest.ProtoReflect.Descriptor instead.
-func (*ListOrganizationModelVersionsRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{98}
-}
-
-func (x *ListOrganizationModelVersionsRequest) GetPageSize() int32 {
-	if x != nil && x.PageSize != nil {
-		return *x.PageSize
-	}
-	return 0
-}
-
-func (x *ListOrganizationModelVersionsRequest) GetPage() int32 {
-	if x != nil && x.Page != nil {
-		return *x.Page
-	}
-	return 0
-}
-
-func (x *ListOrganizationModelVersionsRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-// ListOrganizationModelVersionsResponse contains a list of models.
-type ListOrganizationModelVersionsResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// A list of model resources.
-	Versions []*ModelVersion `protobuf:"bytes,1,rep,name=versions,proto3" json:"versions,omitempty"`
-	// Total number of versions.
-	TotalSize int32 `protobuf:"varint,2,opt,name=total_size,json=totalSize,proto3" json:"total_size,omitempty"`
-	// The requested page size.
-	PageSize int32 `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
-	// The requested page offset.
-	Page          int32 `protobuf:"varint,4,opt,name=page,proto3" json:"page,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListOrganizationModelVersionsResponse) Reset() {
-	*x = ListOrganizationModelVersionsResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[99]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListOrganizationModelVersionsResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListOrganizationModelVersionsResponse) ProtoMessage() {}
-
-func (x *ListOrganizationModelVersionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[99]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListOrganizationModelVersionsResponse.ProtoReflect.Descriptor instead.
-func (*ListOrganizationModelVersionsResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{99}
-}
-
-func (x *ListOrganizationModelVersionsResponse) GetVersions() []*ModelVersion {
-	if x != nil {
-		return x.Versions
-	}
-	return nil
-}
-
-func (x *ListOrganizationModelVersionsResponse) GetTotalSize() int32 {
-	if x != nil {
-		return x.TotalSize
-	}
-	return 0
-}
-
-func (x *ListOrganizationModelVersionsResponse) GetPageSize() int32 {
-	if x != nil {
-		return x.PageSize
-	}
-	return 0
-}
-
-func (x *ListOrganizationModelVersionsResponse) GetPage() int32 {
-	if x != nil {
-		return x.Page
-	}
-	return 0
-}
-
-// DeleteOrganizationModelVersionRequest represents a request to delete a model
-// version
-//
-//	owned by an organization.
-type DeleteOrganizationModelVersionRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The parent resource, i.e., the user that created the models.
-	// - Format: `organizations/{organization.id}`.
-	// The resource name of the model, which allows its access by parent user
-	// and ID.
-	// - Format: `organizations/{organization.id}/models/{model.id}`.
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Model version
-	Version       string `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeleteOrganizationModelVersionRequest) Reset() {
-	*x = DeleteOrganizationModelVersionRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[100]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeleteOrganizationModelVersionRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteOrganizationModelVersionRequest) ProtoMessage() {}
-
-func (x *DeleteOrganizationModelVersionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[100]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteOrganizationModelVersionRequest.ProtoReflect.Descriptor instead.
-func (*DeleteOrganizationModelVersionRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{100}
-}
-
-func (x *DeleteOrganizationModelVersionRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *DeleteOrganizationModelVersionRequest) GetVersion() string {
-	if x != nil {
-		return x.Version
-	}
-	return ""
-}
-
-// DeleteOrganizationModelVersionResponse is an empty response.
-type DeleteOrganizationModelVersionResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeleteOrganizationModelVersionResponse) Reset() {
-	*x = DeleteOrganizationModelVersionResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[101]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeleteOrganizationModelVersionResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteOrganizationModelVersionResponse) ProtoMessage() {}
-
-func (x *DeleteOrganizationModelVersionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[101]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteOrganizationModelVersionResponse.ProtoReflect.Descriptor instead.
-func (*DeleteOrganizationModelVersionResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{101}
-}
-
-// TriggerOrganizationModelRequest represents a request to trigger a model
-// inference.
-type TriggerOrganizationModelRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The resource name of the model , which allows its access by parent
-	// organization and ID.
-	// - Format: `organizations/{organization.id}/models/{model.id}`.
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Model version
-	Version string `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
-	// Model inference inputs.
-	TaskInputs    []*structpb.Struct `protobuf:"bytes,4,rep,name=task_inputs,json=taskInputs,proto3" json:"task_inputs,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TriggerOrganizationModelRequest) Reset() {
-	*x = TriggerOrganizationModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[102]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TriggerOrganizationModelRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TriggerOrganizationModelRequest) ProtoMessage() {}
-
-func (x *TriggerOrganizationModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[102]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TriggerOrganizationModelRequest.ProtoReflect.Descriptor instead.
-func (*TriggerOrganizationModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{102}
-}
-
-func (x *TriggerOrganizationModelRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *TriggerOrganizationModelRequest) GetVersion() string {
-	if x != nil {
-		return x.Version
-	}
-	return ""
-}
-
-func (x *TriggerOrganizationModelRequest) GetTaskInputs() []*structpb.Struct {
-	if x != nil {
-		return x.TaskInputs
-	}
-	return nil
-}
-
-// TriggerOrganizationModelResponse contains the model inference results.
-type TriggerOrganizationModelResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Task type.
-	Task v1alpha.Task `protobuf:"varint,1,opt,name=task,proto3,enum=common.task.v1alpha.Task" json:"task,omitempty"`
-	// Model inference outputs.
-	TaskOutputs   []*structpb.Struct `protobuf:"bytes,3,rep,name=task_outputs,json=taskOutputs,proto3" json:"task_outputs,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TriggerOrganizationModelResponse) Reset() {
-	*x = TriggerOrganizationModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[103]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TriggerOrganizationModelResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TriggerOrganizationModelResponse) ProtoMessage() {}
-
-func (x *TriggerOrganizationModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[103]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TriggerOrganizationModelResponse.ProtoReflect.Descriptor instead.
-func (*TriggerOrganizationModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{103}
-}
-
-func (x *TriggerOrganizationModelResponse) GetTask() v1alpha.Task {
-	if x != nil {
-		return x.Task
-	}
-	return v1alpha.Task(0)
-}
-
-func (x *TriggerOrganizationModelResponse) GetTaskOutputs() []*structpb.Struct {
-	if x != nil {
-		return x.TaskOutputs
-	}
-	return nil
-}
-
-// TriggerAsyncOrganizationModelRequest represents a request to trigger a model
-// inference asynchronously
-type TriggerAsyncOrganizationModelRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The resource name of the model , which allows its access by parent
-	// organization and ID.
-	// - Format: `organizations/{organization.id}/models/{model.id}`.
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Model version
-	Version string `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
-	// Model inference inputs.
-	TaskInputs    []*structpb.Struct `protobuf:"bytes,4,rep,name=task_inputs,json=taskInputs,proto3" json:"task_inputs,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TriggerAsyncOrganizationModelRequest) Reset() {
-	*x = TriggerAsyncOrganizationModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[104]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TriggerAsyncOrganizationModelRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TriggerAsyncOrganizationModelRequest) ProtoMessage() {}
-
-func (x *TriggerAsyncOrganizationModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[104]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TriggerAsyncOrganizationModelRequest.ProtoReflect.Descriptor instead.
-func (*TriggerAsyncOrganizationModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{104}
-}
-
-func (x *TriggerAsyncOrganizationModelRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *TriggerAsyncOrganizationModelRequest) GetVersion() string {
-	if x != nil {
-		return x.Version
-	}
-	return ""
-}
-
-func (x *TriggerAsyncOrganizationModelRequest) GetTaskInputs() []*structpb.Struct {
-	if x != nil {
-		return x.TaskInputs
-	}
-	return nil
-}
-
-// TriggerAsyncOrganizationModelResponse contains the information to access the
-// status of an asynchronous model inference.
-type TriggerAsyncOrganizationModelResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Long-running operation information.
-	Operation     *longrunningpb.Operation `protobuf:"bytes,1,opt,name=operation,proto3" json:"operation,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TriggerAsyncOrganizationModelResponse) Reset() {
-	*x = TriggerAsyncOrganizationModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[105]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TriggerAsyncOrganizationModelResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TriggerAsyncOrganizationModelResponse) ProtoMessage() {}
-
-func (x *TriggerAsyncOrganizationModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[105]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TriggerAsyncOrganizationModelResponse.ProtoReflect.Descriptor instead.
-func (*TriggerAsyncOrganizationModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{105}
-}
-
-func (x *TriggerAsyncOrganizationModelResponse) GetOperation() *longrunningpb.Operation {
-	if x != nil {
-		return x.Operation
-	}
-	return nil
-}
-
-// TriggerOrganizationLatestModelRequest represents a request to trigger a model
-// inference.
-type TriggerOrganizationLatestModelRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The resource name of the model , which allows its access by parent
-	// organization and ID.
-	// - Format: `organizations/{organization.id}/models/{model.id}`.
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Model inference inputs.
-	TaskInputs    []*structpb.Struct `protobuf:"bytes,3,rep,name=task_inputs,json=taskInputs,proto3" json:"task_inputs,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TriggerOrganizationLatestModelRequest) Reset() {
-	*x = TriggerOrganizationLatestModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[106]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TriggerOrganizationLatestModelRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TriggerOrganizationLatestModelRequest) ProtoMessage() {}
-
-func (x *TriggerOrganizationLatestModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[106]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TriggerOrganizationLatestModelRequest.ProtoReflect.Descriptor instead.
-func (*TriggerOrganizationLatestModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{106}
-}
-
-func (x *TriggerOrganizationLatestModelRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *TriggerOrganizationLatestModelRequest) GetTaskInputs() []*structpb.Struct {
-	if x != nil {
-		return x.TaskInputs
-	}
-	return nil
-}
-
-// TriggerOrganizationLatestModelResponse contains the model inference results.
-type TriggerOrganizationLatestModelResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Task type.
-	Task v1alpha.Task `protobuf:"varint,1,opt,name=task,proto3,enum=common.task.v1alpha.Task" json:"task,omitempty"`
-	// Model inference outputs.
-	TaskOutputs   []*structpb.Struct `protobuf:"bytes,3,rep,name=task_outputs,json=taskOutputs,proto3" json:"task_outputs,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TriggerOrganizationLatestModelResponse) Reset() {
-	*x = TriggerOrganizationLatestModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[107]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TriggerOrganizationLatestModelResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TriggerOrganizationLatestModelResponse) ProtoMessage() {}
-
-func (x *TriggerOrganizationLatestModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[107]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TriggerOrganizationLatestModelResponse.ProtoReflect.Descriptor instead.
-func (*TriggerOrganizationLatestModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{107}
-}
-
-func (x *TriggerOrganizationLatestModelResponse) GetTask() v1alpha.Task {
-	if x != nil {
-		return x.Task
-	}
-	return v1alpha.Task(0)
-}
-
-func (x *TriggerOrganizationLatestModelResponse) GetTaskOutputs() []*structpb.Struct {
-	if x != nil {
-		return x.TaskOutputs
-	}
-	return nil
-}
-
-// TriggerAsyncOrganizationLatestModelRequest represents a request to trigger a
-// model inference asynchronously
-type TriggerAsyncOrganizationLatestModelRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The resource name of the model , which allows its access by parent
-	// organization and ID.
-	// - Format: `organizations/{organization.id}/models/{model.id}`.
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Model inference inputs.
-	TaskInputs    []*structpb.Struct `protobuf:"bytes,3,rep,name=task_inputs,json=taskInputs,proto3" json:"task_inputs,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TriggerAsyncOrganizationLatestModelRequest) Reset() {
-	*x = TriggerAsyncOrganizationLatestModelRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[108]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TriggerAsyncOrganizationLatestModelRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TriggerAsyncOrganizationLatestModelRequest) ProtoMessage() {}
-
-func (x *TriggerAsyncOrganizationLatestModelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[108]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TriggerAsyncOrganizationLatestModelRequest.ProtoReflect.Descriptor instead.
-func (*TriggerAsyncOrganizationLatestModelRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{108}
-}
-
-func (x *TriggerAsyncOrganizationLatestModelRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *TriggerAsyncOrganizationLatestModelRequest) GetTaskInputs() []*structpb.Struct {
-	if x != nil {
-		return x.TaskInputs
-	}
-	return nil
-}
-
-// TriggerAsyncOrganizationLatestModelResponse contains the information to
-// access the status of an asynchronous model inference.
-type TriggerAsyncOrganizationLatestModelResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Long-running operation information.
-	Operation     *longrunningpb.Operation `protobuf:"bytes,1,opt,name=operation,proto3" json:"operation,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TriggerAsyncOrganizationLatestModelResponse) Reset() {
-	*x = TriggerAsyncOrganizationLatestModelResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[109]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TriggerAsyncOrganizationLatestModelResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TriggerAsyncOrganizationLatestModelResponse) ProtoMessage() {}
-
-func (x *TriggerAsyncOrganizationLatestModelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[109]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TriggerAsyncOrganizationLatestModelResponse.ProtoReflect.Descriptor instead.
-func (*TriggerAsyncOrganizationLatestModelResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{109}
-}
-
-func (x *TriggerAsyncOrganizationLatestModelResponse) GetOperation() *longrunningpb.Operation {
-	if x != nil {
-		return x.Operation
-	}
-	return nil
-}
-
-// TriggerOrganizationModelBinaryFileUploadRequest represents a request trigger
-// a model inference by uploading a binary file as the input.
-type TriggerOrganizationModelBinaryFileUploadRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The resource name of the model , which allows its access by parent
-	// organization and ID.
-	// - Format: `organizations/{organization.id}/models/{model.id}`.
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Model version
-	Version string `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
-	// Model inference inputs.
-	TaskInputs    []*structpb.Struct `protobuf:"bytes,4,rep,name=task_inputs,json=taskInputs,proto3" json:"task_inputs,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TriggerOrganizationModelBinaryFileUploadRequest) Reset() {
-	*x = TriggerOrganizationModelBinaryFileUploadRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[110]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TriggerOrganizationModelBinaryFileUploadRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TriggerOrganizationModelBinaryFileUploadRequest) ProtoMessage() {}
-
-func (x *TriggerOrganizationModelBinaryFileUploadRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[110]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TriggerOrganizationModelBinaryFileUploadRequest.ProtoReflect.Descriptor instead.
-func (*TriggerOrganizationModelBinaryFileUploadRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{110}
-}
-
-func (x *TriggerOrganizationModelBinaryFileUploadRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *TriggerOrganizationModelBinaryFileUploadRequest) GetVersion() string {
-	if x != nil {
-		return x.Version
-	}
-	return ""
-}
-
-func (x *TriggerOrganizationModelBinaryFileUploadRequest) GetTaskInputs() []*structpb.Struct {
-	if x != nil {
-		return x.TaskInputs
-	}
-	return nil
-}
-
-// TriggerOrganizationModelBinaryFileUploadResponse contains the model inference
-// results.
-type TriggerOrganizationModelBinaryFileUploadResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Task type.
-	Task v1alpha.Task `protobuf:"varint,1,opt,name=task,proto3,enum=common.task.v1alpha.Task" json:"task,omitempty"`
-	// Model inference outputs.
-	TaskOutputs   []*structpb.Struct `protobuf:"bytes,4,rep,name=task_outputs,json=taskOutputs,proto3" json:"task_outputs,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TriggerOrganizationModelBinaryFileUploadResponse) Reset() {
-	*x = TriggerOrganizationModelBinaryFileUploadResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[111]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TriggerOrganizationModelBinaryFileUploadResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TriggerOrganizationModelBinaryFileUploadResponse) ProtoMessage() {}
-
-func (x *TriggerOrganizationModelBinaryFileUploadResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[111]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TriggerOrganizationModelBinaryFileUploadResponse.ProtoReflect.Descriptor instead.
-func (*TriggerOrganizationModelBinaryFileUploadResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{111}
-}
-
-func (x *TriggerOrganizationModelBinaryFileUploadResponse) GetTask() v1alpha.Task {
-	if x != nil {
-		return x.Task
-	}
-	return v1alpha.Task(0)
-}
-
-func (x *TriggerOrganizationModelBinaryFileUploadResponse) GetTaskOutputs() []*structpb.Struct {
-	if x != nil {
-		return x.TaskOutputs
-	}
-	return nil
-}
-
 // GetModelOperationRequest represents a request to fetch a long-running
 // operation performed on a model.
 type GetModelOperationRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the model, which allows its access ID.
-	OperationId string `protobuf:"bytes,1,opt,name=operation_id,json=operationId,proto3" json:"operation_id,omitempty"`
-	// View allows clients to specify the desired model view in the response.
-	//
-	// Deprecated: Marked as deprecated in model/v1alpha/model.proto.
-	View          *View `protobuf:"varint,2,opt,name=view,proto3,enum=model.v1alpha.View,oneof" json:"view,omitempty"`
+	OperationId   string `protobuf:"bytes,1,opt,name=operation_id,json=operationId,proto3" json:"operation_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetModelOperationRequest) Reset() {
 	*x = GetModelOperationRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[112]
+	mi := &file_model_v1alpha_model_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6937,7 +3338,7 @@ func (x *GetModelOperationRequest) String() string {
 func (*GetModelOperationRequest) ProtoMessage() {}
 
 func (x *GetModelOperationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[112]
+	mi := &file_model_v1alpha_model_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6950,7 +3351,7 @@ func (x *GetModelOperationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetModelOperationRequest.ProtoReflect.Descriptor instead.
 func (*GetModelOperationRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{112}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *GetModelOperationRequest) GetOperationId() string {
@@ -6958,14 +3359,6 @@ func (x *GetModelOperationRequest) GetOperationId() string {
 		return x.OperationId
 	}
 	return ""
-}
-
-// Deprecated: Marked as deprecated in model/v1alpha/model.proto.
-func (x *GetModelOperationRequest) GetView() View {
-	if x != nil && x.View != nil {
-		return *x.View
-	}
-	return View_VIEW_UNSPECIFIED
 }
 
 // GetModelOperationRequest represents a request to query a long-running
@@ -6980,7 +3373,7 @@ type GetModelOperationResponse struct {
 
 func (x *GetModelOperationResponse) Reset() {
 	*x = GetModelOperationResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[113]
+	mi := &file_model_v1alpha_model_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6992,7 +3385,7 @@ func (x *GetModelOperationResponse) String() string {
 func (*GetModelOperationResponse) ProtoMessage() {}
 
 func (x *GetModelOperationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[113]
+	mi := &file_model_v1alpha_model_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7005,7 +3398,7 @@ func (x *GetModelOperationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetModelOperationResponse.ProtoReflect.Descriptor instead.
 func (*GetModelOperationResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{113}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *GetModelOperationResponse) GetOperation() *longrunningpb.Operation {
@@ -7020,16 +3413,16 @@ func (x *GetModelOperationResponse) GetOperation() *longrunningpb.Operation {
 type LatestOperation struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Input request
-	Request *TriggerNamespaceModelRequest `protobuf:"bytes,3,opt,name=request,proto3" json:"request,omitempty"`
+	Request *TriggerNamespaceModelRequest `protobuf:"bytes,1,opt,name=request,proto3" json:"request,omitempty"`
 	// Output response
-	Response      *TriggerNamespaceModelResponse `protobuf:"bytes,4,opt,name=response,proto3" json:"response,omitempty"`
+	Response      *TriggerNamespaceModelResponse `protobuf:"bytes,2,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *LatestOperation) Reset() {
 	*x = LatestOperation{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[114]
+	mi := &file_model_v1alpha_model_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7041,7 +3434,7 @@ func (x *LatestOperation) String() string {
 func (*LatestOperation) ProtoMessage() {}
 
 func (x *LatestOperation) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[114]
+	mi := &file_model_v1alpha_model_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7054,7 +3447,7 @@ func (x *LatestOperation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LatestOperation.ProtoReflect.Descriptor instead.
 func (*LatestOperation) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{114}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *LatestOperation) GetRequest() *TriggerNamespaceModelRequest {
@@ -7071,218 +3464,6 @@ func (x *LatestOperation) GetResponse() *TriggerNamespaceModelResponse {
 	return nil
 }
 
-// GetUserLatestModelOperationRequest represents a request to fetch the latest
-// long-running operation performed on a model for a user.
-type GetUserLatestModelOperationRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The resource name of the model, which allows its access by parent user
-	// and ID.
-	// - Format: `users/{user.id}/models/{model.id}`.
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// View allows clients to specify the desired operation result in the
-	// response.
-	View          *View `protobuf:"varint,2,opt,name=view,proto3,enum=model.v1alpha.View,oneof" json:"view,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetUserLatestModelOperationRequest) Reset() {
-	*x = GetUserLatestModelOperationRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[115]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetUserLatestModelOperationRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetUserLatestModelOperationRequest) ProtoMessage() {}
-
-func (x *GetUserLatestModelOperationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[115]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetUserLatestModelOperationRequest.ProtoReflect.Descriptor instead.
-func (*GetUserLatestModelOperationRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{115}
-}
-
-func (x *GetUserLatestModelOperationRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *GetUserLatestModelOperationRequest) GetView() View {
-	if x != nil && x.View != nil {
-		return *x.View
-	}
-	return View_VIEW_UNSPECIFIED
-}
-
-// GetUserLatestModelOperationRequest represents a request to query a
-// long-running operation.
-type GetUserLatestModelOperationResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The long-running operation.
-	Operation     *longrunningpb.Operation `protobuf:"bytes,1,opt,name=operation,proto3" json:"operation,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetUserLatestModelOperationResponse) Reset() {
-	*x = GetUserLatestModelOperationResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[116]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetUserLatestModelOperationResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetUserLatestModelOperationResponse) ProtoMessage() {}
-
-func (x *GetUserLatestModelOperationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[116]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetUserLatestModelOperationResponse.ProtoReflect.Descriptor instead.
-func (*GetUserLatestModelOperationResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{116}
-}
-
-func (x *GetUserLatestModelOperationResponse) GetOperation() *longrunningpb.Operation {
-	if x != nil {
-		return x.Operation
-	}
-	return nil
-}
-
-// GetOrganizationLatestModelOperationRequest represents a request to fetch the
-// latest long-running operation performed on a model for a user.
-type GetOrganizationLatestModelOperationRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The resource name of the model, which allows its access by parent
-	// organization and ID.
-	// - Format: `organizations/{organization.id}/models/{model.id}`.
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// View allows clients to specify the desired operation result in the
-	// response.
-	View          *View `protobuf:"varint,2,opt,name=view,proto3,enum=model.v1alpha.View,oneof" json:"view,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetOrganizationLatestModelOperationRequest) Reset() {
-	*x = GetOrganizationLatestModelOperationRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[117]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetOrganizationLatestModelOperationRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetOrganizationLatestModelOperationRequest) ProtoMessage() {}
-
-func (x *GetOrganizationLatestModelOperationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[117]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetOrganizationLatestModelOperationRequest.ProtoReflect.Descriptor instead.
-func (*GetOrganizationLatestModelOperationRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{117}
-}
-
-func (x *GetOrganizationLatestModelOperationRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *GetOrganizationLatestModelOperationRequest) GetView() View {
-	if x != nil && x.View != nil {
-		return *x.View
-	}
-	return View_VIEW_UNSPECIFIED
-}
-
-// GetOrganizationLatestModelOperationRequest represents a request to query a
-// long-running operation.
-type GetOrganizationLatestModelOperationResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The long-running operation.
-	Operation     *longrunningpb.Operation `protobuf:"bytes,1,opt,name=operation,proto3" json:"operation,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetOrganizationLatestModelOperationResponse) Reset() {
-	*x = GetOrganizationLatestModelOperationResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[118]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetOrganizationLatestModelOperationResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetOrganizationLatestModelOperationResponse) ProtoMessage() {}
-
-func (x *GetOrganizationLatestModelOperationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[118]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetOrganizationLatestModelOperationResponse.ProtoReflect.Descriptor instead.
-func (*GetOrganizationLatestModelOperationResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{118}
-}
-
-func (x *GetOrganizationLatestModelOperationResponse) GetOperation() *longrunningpb.Operation {
-	if x != nil {
-		return x.Operation
-	}
-	return nil
-}
-
 // ListAvailableRegionsRequest represents a request to fetch a list
 // of available regions and hardware types a model can be deployed on.
 type ListAvailableRegionsRequest struct {
@@ -7293,7 +3474,7 @@ type ListAvailableRegionsRequest struct {
 
 func (x *ListAvailableRegionsRequest) Reset() {
 	*x = ListAvailableRegionsRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[119]
+	mi := &file_model_v1alpha_model_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7305,7 +3486,7 @@ func (x *ListAvailableRegionsRequest) String() string {
 func (*ListAvailableRegionsRequest) ProtoMessage() {}
 
 func (x *ListAvailableRegionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[119]
+	mi := &file_model_v1alpha_model_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7318,7 +3499,7 @@ func (x *ListAvailableRegionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListAvailableRegionsRequest.ProtoReflect.Descriptor instead.
 func (*ListAvailableRegionsRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{119}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{55}
 }
 
 // ListAvailableRegionsResponse contains a list of available
@@ -7333,7 +3514,7 @@ type ListAvailableRegionsResponse struct {
 
 func (x *ListAvailableRegionsResponse) Reset() {
 	*x = ListAvailableRegionsResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[120]
+	mi := &file_model_v1alpha_model_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7345,7 +3526,7 @@ func (x *ListAvailableRegionsResponse) String() string {
 func (*ListAvailableRegionsResponse) ProtoMessage() {}
 
 func (x *ListAvailableRegionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[120]
+	mi := &file_model_v1alpha_model_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7358,7 +3539,7 @@ func (x *ListAvailableRegionsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListAvailableRegionsResponse.ProtoReflect.Descriptor instead.
 func (*ListAvailableRegionsResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{120}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *ListAvailableRegionsResponse) GetRegions() []*Region {
@@ -7395,7 +3576,7 @@ type ListModelsAdminRequest struct {
 
 func (x *ListModelsAdminRequest) Reset() {
 	*x = ListModelsAdminRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[121]
+	mi := &file_model_v1alpha_model_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7407,7 +3588,7 @@ func (x *ListModelsAdminRequest) String() string {
 func (*ListModelsAdminRequest) ProtoMessage() {}
 
 func (x *ListModelsAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[121]
+	mi := &file_model_v1alpha_model_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7420,7 +3601,7 @@ func (x *ListModelsAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListModelsAdminRequest.ProtoReflect.Descriptor instead.
 func (*ListModelsAdminRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{121}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *ListModelsAdminRequest) GetPageSize() int32 {
@@ -7473,7 +3654,7 @@ type ListModelsAdminResponse struct {
 
 func (x *ListModelsAdminResponse) Reset() {
 	*x = ListModelsAdminResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[122]
+	mi := &file_model_v1alpha_model_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7485,7 +3666,7 @@ func (x *ListModelsAdminResponse) String() string {
 func (*ListModelsAdminResponse) ProtoMessage() {}
 
 func (x *ListModelsAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[122]
+	mi := &file_model_v1alpha_model_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7498,7 +3679,7 @@ func (x *ListModelsAdminResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListModelsAdminResponse.ProtoReflect.Descriptor instead.
 func (*ListModelsAdminResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{122}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *ListModelsAdminResponse) GetModels() []*Model {
@@ -7539,7 +3720,7 @@ type LookUpModelAdminRequest struct {
 
 func (x *LookUpModelAdminRequest) Reset() {
 	*x = LookUpModelAdminRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[123]
+	mi := &file_model_v1alpha_model_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7551,7 +3732,7 @@ func (x *LookUpModelAdminRequest) String() string {
 func (*LookUpModelAdminRequest) ProtoMessage() {}
 
 func (x *LookUpModelAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[123]
+	mi := &file_model_v1alpha_model_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7564,7 +3745,7 @@ func (x *LookUpModelAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LookUpModelAdminRequest.ProtoReflect.Descriptor instead.
 func (*LookUpModelAdminRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{123}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{59}
 }
 
 func (x *LookUpModelAdminRequest) GetPermalink() string {
@@ -7592,7 +3773,7 @@ type LookUpModelAdminResponse struct {
 
 func (x *LookUpModelAdminResponse) Reset() {
 	*x = LookUpModelAdminResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[124]
+	mi := &file_model_v1alpha_model_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7604,7 +3785,7 @@ func (x *LookUpModelAdminResponse) String() string {
 func (*LookUpModelAdminResponse) ProtoMessage() {}
 
 func (x *LookUpModelAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[124]
+	mi := &file_model_v1alpha_model_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7617,7 +3798,7 @@ func (x *LookUpModelAdminResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LookUpModelAdminResponse.ProtoReflect.Descriptor instead.
 func (*LookUpModelAdminResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{124}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{60}
 }
 
 func (x *LookUpModelAdminResponse) GetModel() *Model {
@@ -7627,469 +3808,52 @@ func (x *LookUpModelAdminResponse) GetModel() *Model {
 	return nil
 }
 
-// DeployUserModelAdminRequest represents a request to deploy a model to online
-// state
-type DeployUserModelAdminRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The resource name of the model, which allows its access by parent user
-	// and ID.
-	// - Format: `users/{user.id}/models/{model.id}`.
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// Model version
-	Version string `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
-	// Model image digest
-	Digest        string `protobuf:"bytes,4,opt,name=digest,proto3" json:"digest,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeployUserModelAdminRequest) Reset() {
-	*x = DeployUserModelAdminRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[125]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeployUserModelAdminRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeployUserModelAdminRequest) ProtoMessage() {}
-
-func (x *DeployUserModelAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[125]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeployUserModelAdminRequest.ProtoReflect.Descriptor instead.
-func (*DeployUserModelAdminRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{125}
-}
-
-func (x *DeployUserModelAdminRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *DeployUserModelAdminRequest) GetVersion() string {
-	if x != nil {
-		return x.Version
-	}
-	return ""
-}
-
-func (x *DeployUserModelAdminRequest) GetDigest() string {
-	if x != nil {
-		return x.Digest
-	}
-	return ""
-}
-
-// DeployUserModelAdminResponse represents a response for a deployed model
-type DeployUserModelAdminResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeployUserModelAdminResponse) Reset() {
-	*x = DeployUserModelAdminResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[126]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeployUserModelAdminResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeployUserModelAdminResponse) ProtoMessage() {}
-
-func (x *DeployUserModelAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[126]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeployUserModelAdminResponse.ProtoReflect.Descriptor instead.
-func (*DeployUserModelAdminResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{126}
-}
-
-// DeployOrganizationModelAdminRequest represents a request to deploy a model to
-// online state
-type DeployOrganizationModelAdminRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The resource name of the model, which allows its access by parent user
-	// and ID.
-	// - Format: `organizations/{user.id}/models/{model.id}`.
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// Model version
-	Version string `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
-	// Model image digest
-	Digest        string `protobuf:"bytes,4,opt,name=digest,proto3" json:"digest,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeployOrganizationModelAdminRequest) Reset() {
-	*x = DeployOrganizationModelAdminRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[127]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeployOrganizationModelAdminRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeployOrganizationModelAdminRequest) ProtoMessage() {}
-
-func (x *DeployOrganizationModelAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[127]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeployOrganizationModelAdminRequest.ProtoReflect.Descriptor instead.
-func (*DeployOrganizationModelAdminRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{127}
-}
-
-func (x *DeployOrganizationModelAdminRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *DeployOrganizationModelAdminRequest) GetVersion() string {
-	if x != nil {
-		return x.Version
-	}
-	return ""
-}
-
-func (x *DeployOrganizationModelAdminRequest) GetDigest() string {
-	if x != nil {
-		return x.Digest
-	}
-	return ""
-}
-
-// DeployOrganizationModelAdminResponse represents a response for a deployed
-// model
-type DeployOrganizationModelAdminResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeployOrganizationModelAdminResponse) Reset() {
-	*x = DeployOrganizationModelAdminResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[128]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeployOrganizationModelAdminResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeployOrganizationModelAdminResponse) ProtoMessage() {}
-
-func (x *DeployOrganizationModelAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[128]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeployOrganizationModelAdminResponse.ProtoReflect.Descriptor instead.
-func (*DeployOrganizationModelAdminResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{128}
-}
-
-// UndeployUserModelAdminRequest represents a request to undeploy a model to
-// offline state
-type UndeployUserModelAdminRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The resource name of the model, which allows its access by parent user
-	// and ID.
-	// - Format: `users/{user.id}/models/{model.id}`.
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// Model version
-	Version string `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
-	// Model image digest
-	Digest        string `protobuf:"bytes,4,opt,name=digest,proto3" json:"digest,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UndeployUserModelAdminRequest) Reset() {
-	*x = UndeployUserModelAdminRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[129]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UndeployUserModelAdminRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UndeployUserModelAdminRequest) ProtoMessage() {}
-
-func (x *UndeployUserModelAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[129]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UndeployUserModelAdminRequest.ProtoReflect.Descriptor instead.
-func (*UndeployUserModelAdminRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{129}
-}
-
-func (x *UndeployUserModelAdminRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *UndeployUserModelAdminRequest) GetVersion() string {
-	if x != nil {
-		return x.Version
-	}
-	return ""
-}
-
-func (x *UndeployUserModelAdminRequest) GetDigest() string {
-	if x != nil {
-		return x.Digest
-	}
-	return ""
-}
-
-// UndeployUserModelAdminResponse represents a response for a undeployed model
-type UndeployUserModelAdminResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UndeployUserModelAdminResponse) Reset() {
-	*x = UndeployUserModelAdminResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[130]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UndeployUserModelAdminResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UndeployUserModelAdminResponse) ProtoMessage() {}
-
-func (x *UndeployUserModelAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[130]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UndeployUserModelAdminResponse.ProtoReflect.Descriptor instead.
-func (*UndeployUserModelAdminResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{130}
-}
-
-// UndeployOrganizationModelAdminRequest represents a request to undeploy a
-// model to offline state
-type UndeployOrganizationModelAdminRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The resource name of the model, which allows its access by parent user
-	// and ID.
-	// - Format: `organizations/{organization.id}/models/{model.id}`.
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// Model version
-	Version string `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
-	// Model image digest
-	Digest        string `protobuf:"bytes,4,opt,name=digest,proto3" json:"digest,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UndeployOrganizationModelAdminRequest) Reset() {
-	*x = UndeployOrganizationModelAdminRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[131]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UndeployOrganizationModelAdminRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UndeployOrganizationModelAdminRequest) ProtoMessage() {}
-
-func (x *UndeployOrganizationModelAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[131]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UndeployOrganizationModelAdminRequest.ProtoReflect.Descriptor instead.
-func (*UndeployOrganizationModelAdminRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{131}
-}
-
-func (x *UndeployOrganizationModelAdminRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *UndeployOrganizationModelAdminRequest) GetVersion() string {
-	if x != nil {
-		return x.Version
-	}
-	return ""
-}
-
-func (x *UndeployOrganizationModelAdminRequest) GetDigest() string {
-	if x != nil {
-		return x.Digest
-	}
-	return ""
-}
-
-// UndeployOrganizationModelAdminResponse represents a response for a undeployed
-// model
-type UndeployOrganizationModelAdminResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UndeployOrganizationModelAdminResponse) Reset() {
-	*x = UndeployOrganizationModelAdminResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[132]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UndeployOrganizationModelAdminResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UndeployOrganizationModelAdminResponse) ProtoMessage() {}
-
-func (x *UndeployOrganizationModelAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[132]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UndeployOrganizationModelAdminResponse.ProtoReflect.Descriptor instead.
-func (*UndeployOrganizationModelAdminResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{132}
-}
-
 // ModelRun contains information about a run of models.
 type ModelRun struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Model Run UUID.
-	Uid string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
-	// Model run status.
-	Status v1alpha1.RunStatus `protobuf:"varint,3,opt,name=status,proto3,enum=common.run.v1alpha.RunStatus" json:"status,omitempty"`
-	// Run source.
-	Source v1alpha1.RunSource `protobuf:"varint,4,opt,name=source,proto3,enum=common.run.v1alpha.RunSource" json:"source,omitempty"`
-	// Run total duration in milliseconds.
-	TotalDuration *int32 `protobuf:"varint,5,opt,name=total_duration,json=totalDuration,proto3,oneof" json:"total_duration,omitempty"`
-	// Run end time.
-	EndTime *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=end_time,json=endTime,proto3,oneof" json:"end_time,omitempty"`
-	// Runner ID. If current viewing requester does not have enough permission, it
-	// will return null.
-	RunnerId *string `protobuf:"bytes,7,opt,name=runner_id,json=runnerId,proto3,oneof" json:"runner_id,omitempty"`
-	// The amount of Instill Credit consumed by the run. This field will only be
-	// present on Instill Cloud.
-	CreditAmount *float32 `protobuf:"fixed32,8,opt,name=credit_amount,json=creditAmount,proto3,oneof" json:"credit_amount,omitempty"`
-	// Error message occurred during model run.
-	Error *string `protobuf:"bytes,9,opt,name=error,proto3,oneof" json:"error,omitempty"`
+	// The resource name of the model run.
+	// Format: namespaces/{namespace}/models/{model}/runs/{run}
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// Unique identifier for each run (immutable).
+	Id string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
 	// Model run created time.
-	CreateTime *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+	CreateTime *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
 	// Model run updated time.
-	UpdateTime *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
+	UpdateTime *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
+	// Runner who triggered the run.
+	// Full resource name: users/{user}.
+	Runner *string `protobuf:"bytes,9,opt,name=runner,proto3,oneof" json:"runner,omitempty"`
+	// The model resource name.
+	// Full resource name: namespaces/{namespace}/models/{model}
+	Model *string `protobuf:"bytes,10,opt,name=model,proto3,oneof" json:"model,omitempty"`
+	// Requester namespace.
+	// Full resource name: namespaces/{namespace}.
+	Requester string `protobuf:"bytes,11,opt,name=requester,proto3" json:"requester,omitempty"`
+	// Model run status.
+	Status v1alpha1.RunStatus `protobuf:"varint,12,opt,name=status,proto3,enum=common.run.v1alpha.RunStatus" json:"status,omitempty"`
+	// Run source.
+	Source v1alpha1.RunSource `protobuf:"varint,13,opt,name=source,proto3,enum=common.run.v1alpha.RunSource" json:"source,omitempty"`
+	// Run total duration in milliseconds.
+	TotalDuration *int32 `protobuf:"varint,14,opt,name=total_duration,json=totalDuration,proto3,oneof" json:"total_duration,omitempty"`
+	// Run end time.
+	EndTime *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=end_time,json=endTime,proto3,oneof" json:"end_time,omitempty"`
+	// The amount of Instill Credit consumed by the run.
+	CreditAmount *float32 `protobuf:"fixed32,16,opt,name=credit_amount,json=creditAmount,proto3,oneof" json:"credit_amount,omitempty"`
+	// Error message occurred during model run.
+	Error *string `protobuf:"bytes,17,opt,name=error,proto3,oneof" json:"error,omitempty"`
 	// The model version identifier, which is same as image tag.
-	Version string `protobuf:"bytes,12,opt,name=version,proto3" json:"version,omitempty"`
+	Version string `protobuf:"bytes,18,opt,name=version,proto3" json:"version,omitempty"`
 	// Model inference input.
-	TaskInputs []*structpb.Struct `protobuf:"bytes,13,rep,name=task_inputs,json=taskInputs,proto3" json:"task_inputs,omitempty"`
+	TaskInputs []*structpb.Struct `protobuf:"bytes,19,rep,name=task_inputs,json=taskInputs,proto3" json:"task_inputs,omitempty"`
 	// Model inference outputs.
-	TaskOutputs []*structpb.Struct `protobuf:"bytes,14,rep,name=task_outputs,json=taskOutputs,proto3" json:"task_outputs,omitempty"`
-	// Model ID.
-	ModelId *string `protobuf:"bytes,15,opt,name=model_id,json=modelId,proto3,oneof" json:"model_id,omitempty"`
-	// Requester ID. The namespace used to trigger the run. This field might be
-	// empty if the model run belongs to a deleted namespace.
-	RequesterId string `protobuf:"bytes,16,opt,name=requester_id,json=requesterId,proto3" json:"requester_id,omitempty"`
-	// ID of the namespace that owns the model.
-	ModelNamespaceId string `protobuf:"bytes,21,opt,name=model_namespace_id,json=modelNamespaceId,proto3" json:"model_namespace_id,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	TaskOutputs   []*structpb.Struct `protobuf:"bytes,20,rep,name=task_outputs,json=taskOutputs,proto3" json:"task_outputs,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ModelRun) Reset() {
 	*x = ModelRun{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[133]
+	mi := &file_model_v1alpha_model_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8101,7 +3865,7 @@ func (x *ModelRun) String() string {
 func (*ModelRun) ProtoMessage() {}
 
 func (x *ModelRun) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[133]
+	mi := &file_model_v1alpha_model_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8114,12 +3878,54 @@ func (x *ModelRun) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ModelRun.ProtoReflect.Descriptor instead.
 func (*ModelRun) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{133}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{61}
 }
 
-func (x *ModelRun) GetUid() string {
+func (x *ModelRun) GetName() string {
 	if x != nil {
-		return x.Uid
+		return x.Name
+	}
+	return ""
+}
+
+func (x *ModelRun) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *ModelRun) GetCreateTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreateTime
+	}
+	return nil
+}
+
+func (x *ModelRun) GetUpdateTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdateTime
+	}
+	return nil
+}
+
+func (x *ModelRun) GetRunner() string {
+	if x != nil && x.Runner != nil {
+		return *x.Runner
+	}
+	return ""
+}
+
+func (x *ModelRun) GetModel() string {
+	if x != nil && x.Model != nil {
+		return *x.Model
+	}
+	return ""
+}
+
+func (x *ModelRun) GetRequester() string {
+	if x != nil {
+		return x.Requester
 	}
 	return ""
 }
@@ -8152,13 +3958,6 @@ func (x *ModelRun) GetEndTime() *timestamppb.Timestamp {
 	return nil
 }
 
-func (x *ModelRun) GetRunnerId() string {
-	if x != nil && x.RunnerId != nil {
-		return *x.RunnerId
-	}
-	return ""
-}
-
 func (x *ModelRun) GetCreditAmount() float32 {
 	if x != nil && x.CreditAmount != nil {
 		return *x.CreditAmount
@@ -8171,20 +3970,6 @@ func (x *ModelRun) GetError() string {
 		return *x.Error
 	}
 	return ""
-}
-
-func (x *ModelRun) GetCreateTime() *timestamppb.Timestamp {
-	if x != nil {
-		return x.CreateTime
-	}
-	return nil
-}
-
-func (x *ModelRun) GetUpdateTime() *timestamppb.Timestamp {
-	if x != nil {
-		return x.UpdateTime
-	}
-	return nil
 }
 
 func (x *ModelRun) GetVersion() string {
@@ -8208,58 +3993,36 @@ func (x *ModelRun) GetTaskOutputs() []*structpb.Struct {
 	return nil
 }
 
-func (x *ModelRun) GetModelId() string {
-	if x != nil && x.ModelId != nil {
-		return *x.ModelId
-	}
-	return ""
-}
-
-func (x *ModelRun) GetRequesterId() string {
-	if x != nil {
-		return x.RequesterId
-	}
-	return ""
-}
-
-func (x *ModelRun) GetModelNamespaceId() string {
-	if x != nil {
-		return x.ModelNamespaceId
-	}
-	return ""
-}
-
 // ListModelRunsRequest represents a request to list of model runs.
 type ListModelRunsRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
+	// The parent model resource name.
+	// Format: namespaces/{namespace}/models/{model}
+	Parent string `protobuf:"bytes,1,opt,name=parent,proto3" json:"parent,omitempty"`
 	// The maximum number of runs to return. The default and cap values are 10
 	// and 100, respectively.
-	PageSize *int32 `protobuf:"varint,1,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
+	PageSize *int32 `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
 	// Page number.
-	Page *int32 `protobuf:"varint,2,opt,name=page,proto3,oneof" json:"page,omitempty"`
+	Page *int32 `protobuf:"varint,3,opt,name=page,proto3,oneof" json:"page,omitempty"`
 	// Sort the results by the given expression.
 	// Format: `field [ASC | DESC], where `field` can be:
 	// - `create_time`
 	// - `update_time`
 	// By default, results are sorted by descending creation time.
 	OrderBy *string `protobuf:"bytes,4,opt,name=order_by,json=orderBy,proto3,oneof" json:"order_by,omitempty"`
-	// Namespace ID.
-	NamespaceId string `protobuf:"bytes,5,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Model ID.
-	ModelId string `protobuf:"bytes,6,opt,name=model_id,json=modelId,proto3" json:"model_id,omitempty"`
 	// Filter can hold an [AIP-160](https://google.aip.dev/160)-compliant filter
 	// expression.
 	// - Example: `create_time>timestamp("2000-06-19T23:31:08.657Z")`.
 	// The filter can be applied to the following fields:
 	// - `create_time`
-	Filter        *string `protobuf:"bytes,7,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
+	Filter        *string `protobuf:"bytes,5,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ListModelRunsRequest) Reset() {
 	*x = ListModelRunsRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[134]
+	mi := &file_model_v1alpha_model_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8271,7 +4034,7 @@ func (x *ListModelRunsRequest) String() string {
 func (*ListModelRunsRequest) ProtoMessage() {}
 
 func (x *ListModelRunsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[134]
+	mi := &file_model_v1alpha_model_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8284,7 +4047,14 @@ func (x *ListModelRunsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListModelRunsRequest.ProtoReflect.Descriptor instead.
 func (*ListModelRunsRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{134}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{62}
+}
+
+func (x *ListModelRunsRequest) GetParent() string {
+	if x != nil {
+		return x.Parent
+	}
+	return ""
 }
 
 func (x *ListModelRunsRequest) GetPageSize() int32 {
@@ -8308,20 +4078,6 @@ func (x *ListModelRunsRequest) GetOrderBy() string {
 	return ""
 }
 
-func (x *ListModelRunsRequest) GetNamespaceId() string {
-	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *ListModelRunsRequest) GetModelId() string {
-	if x != nil {
-		return x.ModelId
-	}
-	return ""
-}
-
 func (x *ListModelRunsRequest) GetFilter() string {
 	if x != nil && x.Filter != nil {
 		return *x.Filter
@@ -8333,39 +4089,40 @@ func (x *ListModelRunsRequest) GetFilter() string {
 // ListModelRunsByRequester.
 type ListModelRunsByRequesterRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
+	// Requester namespace resource name.
+	// Format: namespaces/{namespace}
+	Requester string `protobuf:"bytes,1,opt,name=requester,proto3" json:"requester,omitempty"`
 	// The maximum number of runs to return. The default and cap values are 10
 	// and 100, respectively.
-	PageSize *int32 `protobuf:"varint,1,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
+	PageSize *int32 `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
 	// Page number.
-	Page *int32 `protobuf:"varint,2,opt,name=page,proto3,oneof" json:"page,omitempty"`
+	Page *int32 `protobuf:"varint,3,opt,name=page,proto3,oneof" json:"page,omitempty"`
 	// Sort the results by the given expression.
 	// Format: `field [ASC | DESC], where `field` can be:
 	// - `create_time`
 	// - `update_time`
 	// By default, results are sorted by descending creation time.
-	OrderBy *string `protobuf:"bytes,3,opt,name=order_by,json=orderBy,proto3,oneof" json:"order_by,omitempty"`
+	OrderBy *string `protobuf:"bytes,4,opt,name=order_by,json=orderBy,proto3,oneof" json:"order_by,omitempty"`
 	// Filter can hold an [AIP-160](https://google.aip.dev/160)-compliant filter
 	// expression.
 	// - Example: `status="RUN_STATUS_COMPLETED"`.
 	// The filter can be applied to the following fields:
 	// - `status`
 	// - `source`
-	Filter *string `protobuf:"bytes,4,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
+	Filter *string `protobuf:"bytes,5,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
 	// Beginning of the time range from which the records will be fetched.
 	// The default value is the beginning of the current day, in UTC.
-	Start *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=start,proto3,oneof" json:"start,omitempty"`
+	Start *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=start,proto3,oneof" json:"start,omitempty"`
 	// End of the time range from which the records will be fetched.
 	// The default value is the current timestamp.
-	Stop *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=stop,proto3,oneof" json:"stop,omitempty"`
-	// Requester ID.
-	RequesterId   string `protobuf:"bytes,7,opt,name=requester_id,json=requesterId,proto3" json:"requester_id,omitempty"`
+	Stop          *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=stop,proto3,oneof" json:"stop,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ListModelRunsByRequesterRequest) Reset() {
 	*x = ListModelRunsByRequesterRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[135]
+	mi := &file_model_v1alpha_model_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8377,7 +4134,7 @@ func (x *ListModelRunsByRequesterRequest) String() string {
 func (*ListModelRunsByRequesterRequest) ProtoMessage() {}
 
 func (x *ListModelRunsByRequesterRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[135]
+	mi := &file_model_v1alpha_model_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8390,7 +4147,14 @@ func (x *ListModelRunsByRequesterRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListModelRunsByRequesterRequest.ProtoReflect.Descriptor instead.
 func (*ListModelRunsByRequesterRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{135}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{63}
+}
+
+func (x *ListModelRunsByRequesterRequest) GetRequester() string {
+	if x != nil {
+		return x.Requester
+	}
+	return ""
 }
 
 func (x *ListModelRunsByRequesterRequest) GetPageSize() int32 {
@@ -8435,13 +4199,6 @@ func (x *ListModelRunsByRequesterRequest) GetStop() *timestamppb.Timestamp {
 	return nil
 }
 
-func (x *ListModelRunsByRequesterRequest) GetRequesterId() string {
-	if x != nil {
-		return x.RequesterId
-	}
-	return ""
-}
-
 // ListModelRunsResponse contains a list of model runs.
 type ListModelRunsResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -8459,7 +4216,7 @@ type ListModelRunsResponse struct {
 
 func (x *ListModelRunsResponse) Reset() {
 	*x = ListModelRunsResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[136]
+	mi := &file_model_v1alpha_model_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8471,7 +4228,7 @@ func (x *ListModelRunsResponse) String() string {
 func (*ListModelRunsResponse) ProtoMessage() {}
 
 func (x *ListModelRunsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[136]
+	mi := &file_model_v1alpha_model_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8484,7 +4241,7 @@ func (x *ListModelRunsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListModelRunsResponse.ProtoReflect.Descriptor instead.
 func (*ListModelRunsResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{136}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{64}
 }
 
 func (x *ListModelRunsResponse) GetRuns() []*ModelRun {
@@ -8533,7 +4290,7 @@ type ListModelRunsByRequesterResponse struct {
 
 func (x *ListModelRunsByRequesterResponse) Reset() {
 	*x = ListModelRunsByRequesterResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[137]
+	mi := &file_model_v1alpha_model_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8545,7 +4302,7 @@ func (x *ListModelRunsByRequesterResponse) String() string {
 func (*ListModelRunsByRequesterResponse) ProtoMessage() {}
 
 func (x *ListModelRunsByRequesterResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[137]
+	mi := &file_model_v1alpha_model_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8558,7 +4315,7 @@ func (x *ListModelRunsByRequesterResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListModelRunsByRequesterResponse.ProtoReflect.Descriptor instead.
 func (*ListModelRunsByRequesterResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{137}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{65}
 }
 
 func (x *ListModelRunsByRequesterResponse) GetRuns() []*ModelRun {
@@ -8608,7 +4365,7 @@ type RepositoryTag struct {
 
 func (x *RepositoryTag) Reset() {
 	*x = RepositoryTag{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[138]
+	mi := &file_model_v1alpha_model_proto_msgTypes[66]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8620,7 +4377,7 @@ func (x *RepositoryTag) String() string {
 func (*RepositoryTag) ProtoMessage() {}
 
 func (x *RepositoryTag) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[138]
+	mi := &file_model_v1alpha_model_proto_msgTypes[66]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8633,7 +4390,7 @@ func (x *RepositoryTag) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RepositoryTag.ProtoReflect.Descriptor instead.
 func (*RepositoryTag) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{138}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{66}
 }
 
 func (x *RepositoryTag) GetName() string {
@@ -8683,7 +4440,7 @@ type ListRepositoryTagsRequest struct {
 
 func (x *ListRepositoryTagsRequest) Reset() {
 	*x = ListRepositoryTagsRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[139]
+	mi := &file_model_v1alpha_model_proto_msgTypes[67]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8695,7 +4452,7 @@ func (x *ListRepositoryTagsRequest) String() string {
 func (*ListRepositoryTagsRequest) ProtoMessage() {}
 
 func (x *ListRepositoryTagsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[139]
+	mi := &file_model_v1alpha_model_proto_msgTypes[67]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8708,7 +4465,7 @@ func (x *ListRepositoryTagsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListRepositoryTagsRequest.ProtoReflect.Descriptor instead.
 func (*ListRepositoryTagsRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{139}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{67}
 }
 
 func (x *ListRepositoryTagsRequest) GetPageSize() int32 {
@@ -8749,7 +4506,7 @@ type ListRepositoryTagsResponse struct {
 
 func (x *ListRepositoryTagsResponse) Reset() {
 	*x = ListRepositoryTagsResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[140]
+	mi := &file_model_v1alpha_model_proto_msgTypes[68]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8761,7 +4518,7 @@ func (x *ListRepositoryTagsResponse) String() string {
 func (*ListRepositoryTagsResponse) ProtoMessage() {}
 
 func (x *ListRepositoryTagsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[140]
+	mi := &file_model_v1alpha_model_proto_msgTypes[68]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8774,7 +4531,7 @@ func (x *ListRepositoryTagsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListRepositoryTagsResponse.ProtoReflect.Descriptor instead.
 func (*ListRepositoryTagsResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{140}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{68}
 }
 
 func (x *ListRepositoryTagsResponse) GetTags() []*RepositoryTag {
@@ -8817,7 +4574,7 @@ type CreateRepositoryTagRequest struct {
 
 func (x *CreateRepositoryTagRequest) Reset() {
 	*x = CreateRepositoryTagRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[141]
+	mi := &file_model_v1alpha_model_proto_msgTypes[69]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8829,7 +4586,7 @@ func (x *CreateRepositoryTagRequest) String() string {
 func (*CreateRepositoryTagRequest) ProtoMessage() {}
 
 func (x *CreateRepositoryTagRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[141]
+	mi := &file_model_v1alpha_model_proto_msgTypes[69]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8842,7 +4599,7 @@ func (x *CreateRepositoryTagRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateRepositoryTagRequest.ProtoReflect.Descriptor instead.
 func (*CreateRepositoryTagRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{141}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{69}
 }
 
 func (x *CreateRepositoryTagRequest) GetTag() *RepositoryTag {
@@ -8863,7 +4620,7 @@ type CreateRepositoryTagResponse struct {
 
 func (x *CreateRepositoryTagResponse) Reset() {
 	*x = CreateRepositoryTagResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[142]
+	mi := &file_model_v1alpha_model_proto_msgTypes[70]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8875,7 +4632,7 @@ func (x *CreateRepositoryTagResponse) String() string {
 func (*CreateRepositoryTagResponse) ProtoMessage() {}
 
 func (x *CreateRepositoryTagResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[142]
+	mi := &file_model_v1alpha_model_proto_msgTypes[70]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8888,7 +4645,7 @@ func (x *CreateRepositoryTagResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateRepositoryTagResponse.ProtoReflect.Descriptor instead.
 func (*CreateRepositoryTagResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{142}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{70}
 }
 
 func (x *CreateRepositoryTagResponse) GetTag() *RepositoryTag {
@@ -8911,7 +4668,7 @@ type GetRepositoryTagRequest struct {
 
 func (x *GetRepositoryTagRequest) Reset() {
 	*x = GetRepositoryTagRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[143]
+	mi := &file_model_v1alpha_model_proto_msgTypes[71]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8923,7 +4680,7 @@ func (x *GetRepositoryTagRequest) String() string {
 func (*GetRepositoryTagRequest) ProtoMessage() {}
 
 func (x *GetRepositoryTagRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[143]
+	mi := &file_model_v1alpha_model_proto_msgTypes[71]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8936,7 +4693,7 @@ func (x *GetRepositoryTagRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRepositoryTagRequest.ProtoReflect.Descriptor instead.
 func (*GetRepositoryTagRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{143}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{71}
 }
 
 func (x *GetRepositoryTagRequest) GetName() string {
@@ -8957,7 +4714,7 @@ type GetRepositoryTagResponse struct {
 
 func (x *GetRepositoryTagResponse) Reset() {
 	*x = GetRepositoryTagResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[144]
+	mi := &file_model_v1alpha_model_proto_msgTypes[72]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8969,7 +4726,7 @@ func (x *GetRepositoryTagResponse) String() string {
 func (*GetRepositoryTagResponse) ProtoMessage() {}
 
 func (x *GetRepositoryTagResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[144]
+	mi := &file_model_v1alpha_model_proto_msgTypes[72]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8982,7 +4739,7 @@ func (x *GetRepositoryTagResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRepositoryTagResponse.ProtoReflect.Descriptor instead.
 func (*GetRepositoryTagResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{144}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{72}
 }
 
 func (x *GetRepositoryTagResponse) GetTag() *RepositoryTag {
@@ -9005,7 +4762,7 @@ type DeleteRepositoryTagRequest struct {
 
 func (x *DeleteRepositoryTagRequest) Reset() {
 	*x = DeleteRepositoryTagRequest{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[145]
+	mi := &file_model_v1alpha_model_proto_msgTypes[73]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9017,7 +4774,7 @@ func (x *DeleteRepositoryTagRequest) String() string {
 func (*DeleteRepositoryTagRequest) ProtoMessage() {}
 
 func (x *DeleteRepositoryTagRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[145]
+	mi := &file_model_v1alpha_model_proto_msgTypes[73]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9030,7 +4787,7 @@ func (x *DeleteRepositoryTagRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRepositoryTagRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRepositoryTagRequest) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{145}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{73}
 }
 
 func (x *DeleteRepositoryTagRequest) GetName() string {
@@ -9049,7 +4806,7 @@ type DeleteRepositoryTagResponse struct {
 
 func (x *DeleteRepositoryTagResponse) Reset() {
 	*x = DeleteRepositoryTagResponse{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[146]
+	mi := &file_model_v1alpha_model_proto_msgTypes[74]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9061,7 +4818,7 @@ func (x *DeleteRepositoryTagResponse) String() string {
 func (*DeleteRepositoryTagResponse) ProtoMessage() {}
 
 func (x *DeleteRepositoryTagResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[146]
+	mi := &file_model_v1alpha_model_proto_msgTypes[74]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9074,7 +4831,7 @@ func (x *DeleteRepositoryTagResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRepositoryTagResponse.ProtoReflect.Descriptor instead.
 func (*DeleteRepositoryTagResponse) Descriptor() ([]byte, []int) {
-	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{146}
+	return file_model_v1alpha_model_proto_rawDescGZIP(), []int{74}
 }
 
 // Statistic data
@@ -9090,7 +4847,7 @@ type Model_Stats struct {
 
 func (x *Model_Stats) Reset() {
 	*x = Model_Stats{}
-	mi := &file_model_v1alpha_model_proto_msgTypes[147]
+	mi := &file_model_v1alpha_model_proto_msgTypes[75]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9102,7 +4859,7 @@ func (x *Model_Stats) String() string {
 func (*Model_Stats) ProtoMessage() {}
 
 func (x *Model_Stats) ProtoReflect() protoreflect.Message {
-	mi := &file_model_v1alpha_model_proto_msgTypes[147]
+	mi := &file_model_v1alpha_model_proto_msgTypes[75]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9136,7 +4893,7 @@ var File_model_v1alpha_model_proto protoreflect.FileDescriptor
 
 const file_model_v1alpha_model_proto_rawDesc = "" +
 	"\n" +
-	"\x19model/v1alpha/model.proto\x12\rmodel.v1alpha\x1a+common/healthcheck/v1beta/healthcheck.proto\x1a\x1ccommon/run/v1alpha/run.proto\x1a\x1ecommon/task/v1alpha/task.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a#google/longrunning/operations.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16mgmt/v1beta/mgmt.proto\x1a\x1amodel/v1alpha/common.proto\x1a$model/v1alpha/model_definition.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x95\x01\n" +
+	"\x19model/v1alpha/model.proto\x12\rmodel.v1alpha\x1a+common/healthcheck/v1beta/healthcheck.proto\x1a\x1ccommon/run/v1alpha/run.proto\x1a\x1ecommon/task/v1alpha/task.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a#google/longrunning/operations.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16mgmt/v1beta/mgmt.proto\x1a\x1amodel/v1alpha/common.proto\x1a$model/v1alpha/model_definition.proto\"\x95\x01\n" +
 	"\x0fLivenessRequest\x12i\n" +
 	"\x14health_check_request\x18\x01 \x01(\v2-.common.healthcheck.v1beta.HealthCheckRequestB\x03\xe0A\x01H\x00R\x12healthCheckRequest\x88\x01\x01B\x17\n" +
 	"\x15_health_check_request\"v\n" +
@@ -9160,7 +4917,7 @@ const file_model_v1alpha_model_proto_rawDesc = "" +
 	"\x06digest\x18\x03 \x01(\tB\x03\xe0A\x01R\x06digest\x12/\n" +
 	"\x05state\x18\x04 \x01(\x0e2\x14.model.v1alpha.StateB\x03\xe0A\x03R\x05state\x12C\n" +
 	"\vupdate_time\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampB\x06\xe0A\x03\xe0A\x01R\n" +
-	"updateTime\"\x85\x0e\n" +
+	"updateTime\"\xa0\x0e\n" +
 	"\x05Model\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12&\n" +
@@ -9197,9 +4954,8 @@ const file_model_v1alpha_model_proto_rawDesc = "" +
 	"\rprofile_image\x18\x19 \x01(\tB\x03\xe0A\x01H\x05R\fprofileImage\x88\x01\x01\x12\"\n" +
 	"\n" +
 	"owner_name\x18\x1a \x01(\tB\x03\xe0A\x03R\townerName\x122\n" +
-	"\x05owner\x18\x1b \x01(\v2\x12.mgmt.v1beta.OwnerB\x03\xe0A\x03H\x06R\x05owner\x88\x01\x01\x12)\n" +
-	"\vcreator_uid\x18\x1c \x01(\tB\x03\xe0A\x03H\aR\n" +
-	"creatorUid\x88\x01\x01\x125\n" +
+	"\x05owner\x18\x1b \x01(\v2\x12.mgmt.v1beta.OwnerB\x03\xe0A\x03H\x06R\x05owner\x88\x01\x01\x12+\n" +
+	"\fcreator_name\x18\x1c \x01(\tB\x03\xe0A\x03H\aR\vcreatorName\x88\x01\x01\x125\n" +
 	"\acreator\x18\x1d \x01(\v2\x11.mgmt.v1beta.UserB\x03\xe0A\x03H\bR\acreator\x88\x01\x01\x12@\n" +
 	"\vdelete_time\x18\x1e \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
 	"deleteTime\x1aw\n" +
@@ -9210,7 +4966,8 @@ const file_model_v1alpha_model_proto_rawDesc = "" +
 	"Visibility\x12\x1a\n" +
 	"\x16VISIBILITY_UNSPECIFIED\x10\x00\x12\x16\n" +
 	"\x12VISIBILITY_PRIVATE\x10\x01\x12\x15\n" +
-	"\x11VISIBILITY_PUBLIC\x10\x02:*\xeaA'\x12%namespaces/{namespace}/models/{model}B\x0e\n" +
+	"\x11VISIBILITY_PUBLIC\x10\x02:B\xeaA?\n" +
+	"\x16api.instill.tech/Model\x12%namespaces/{namespace}/models/{model}B\x0e\n" +
 	"\f_descriptionB\t\n" +
 	"\a_readmeB\r\n" +
 	"\v_source_urlB\x14\n" +
@@ -9218,8 +4975,8 @@ const file_model_v1alpha_model_proto_rawDesc = "" +
 	"\n" +
 	"\b_licenseB\x10\n" +
 	"\x0e_profile_imageB\b\n" +
-	"\x06_ownerB\x0e\n" +
-	"\f_creator_uidB\n" +
+	"\x06_ownerB\x0f\n" +
+	"\r_creator_nameB\n" +
 	"\n" +
 	"\b_creator\"\xb3\x03\n" +
 	"\x11ListModelsRequest\x12%\n" +
@@ -9296,27 +5053,27 @@ const file_model_v1alpha_model_proto_rawDesc = "" +
 	"\x05model\x18\x01 \x01(\v2\x14.model.v1alpha.ModelB\x03\xe0A\x03R\x05model\"6\n" +
 	"\x1bDeleteNamespaceModelRequest\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"\x1e\n" +
-	"\x1cDeleteNamespaceModelResponse\"\x8c\x01\n" +
-	"\x1bRenameNamespaceModelRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\x1e\n" +
-	"\bmodel_id\x18\x02 \x01(\tB\x03\xe0A\x02R\amodelId\x12%\n" +
-	"\fnew_model_id\x18\x03 \x01(\tB\x03\xe0A\x02R\n" +
+	"\x1cDeleteNamespaceModelResponse\"x\n" +
+	"\x1bRenameNamespaceModelRequest\x122\n" +
+	"\x04name\x18\x01 \x01(\tB\x1e\xe0A\x02\xfaA\x18\n" +
+	"\x16api.instill.tech/ModelR\x04name\x12%\n" +
+	"\fnew_model_id\x18\x02 \x01(\tB\x03\xe0A\x02R\n" +
 	"newModelId\"O\n" +
 	"\x1cRenameNamespaceModelResponse\x12/\n" +
-	"\x05model\x18\x01 \x01(\v2\x14.model.v1alpha.ModelB\x03\xe0A\x03R\x05model\"\x83\x01\n" +
-	"\x1aWatchNamespaceModelRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\x1e\n" +
-	"\bmodel_id\x18\x02 \x01(\tB\x03\xe0A\x02R\amodelId\x12\x1d\n" +
-	"\aversion\x18\x03 \x01(\tB\x03\xe0A\x02R\aversion\"s\n" +
+	"\x05model\x18\x01 \x01(\v2\x14.model.v1alpha.ModelB\x03\xe0A\x03R\x05model\"o\n" +
+	"\x1aWatchNamespaceModelRequest\x122\n" +
+	"\x04name\x18\x01 \x01(\tB\x1e\xe0A\x02\xfaA\x18\n" +
+	"\x16api.instill.tech/ModelR\x04name\x12\x1d\n" +
+	"\aversion\x18\x02 \x01(\tB\x03\xe0A\x02R\aversion\"m\n" +
 	"\x1bWatchNamespaceModelResponse\x12/\n" +
 	"\x05state\x18\x01 \x01(\x0e2\x14.model.v1alpha.StateB\x03\xe0A\x03R\x05state\x12\x1d\n" +
-	"\amessage\x18\x03 \x01(\tB\x03\xe0A\x03R\amessageJ\x04\b\x02\x10\x03\"j\n" +
-	" WatchNamespaceLatestModelRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\x1e\n" +
-	"\bmodel_id\x18\x02 \x01(\tB\x03\xe0A\x02R\amodelId\"y\n" +
+	"\amessage\x18\x02 \x01(\tB\x03\xe0A\x03R\amessage\"V\n" +
+	" WatchNamespaceLatestModelRequest\x122\n" +
+	"\x04name\x18\x01 \x01(\tB\x1e\xe0A\x02\xfaA\x18\n" +
+	"\x16api.instill.tech/ModelR\x04name\"s\n" +
 	"!WatchNamespaceLatestModelResponse\x12/\n" +
 	"\x05state\x18\x01 \x01(\x0e2\x14.model.v1alpha.StateB\x03\xe0A\x03R\x05state\x12\x1d\n" +
-	"\amessage\x18\x03 \x01(\tB\x03\xe0A\x03R\amessageJ\x04\b\x02\x10\x03\"\x9c\x01\n" +
+	"\amessage\x18\x02 \x01(\tB\x03\xe0A\x03R\amessage\"\x9c\x01\n" +
 	"!ListNamespaceModelVersionsRequest\x12\x1b\n" +
 	"\x06parent\x18\x01 \x01(\tB\x03\xe0A\x02R\x06parent\x12%\n" +
 	"\tpage_size\x18\x02 \x01(\x05B\x03\xe0A\x01H\x00R\bpageSize\x88\x01\x01\x12\x1c\n" +
@@ -9332,334 +5089,84 @@ const file_model_v1alpha_model_proto_rawDesc = "" +
 	"\x04page\x18\x04 \x01(\x05B\x03\xe0A\x03R\x04page\"=\n" +
 	"\"DeleteNamespaceModelVersionRequest\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"%\n" +
-	"#DeleteNamespaceModelVersionResponse\"\xca\x01\n" +
-	"\x1cTriggerNamespaceModelRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\x1e\n" +
-	"\bmodel_id\x18\x02 \x01(\tB\x03\xe0A\x02R\amodelId\x12\x1d\n" +
-	"\aversion\x18\x04 \x01(\tB\x03\xe0A\x02R\aversion\x12=\n" +
-	"\vtask_inputs\x18\x05 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\n" +
-	"taskInputsJ\x04\b\x03\x10\x04\"\x9a\x01\n" +
+	"#DeleteNamespaceModelVersionResponse\"\x91\x01\n" +
+	"\x1cTriggerNamespaceModelRequest\x122\n" +
+	"\x04name\x18\x01 \x01(\tB\x1e\xe0A\x02\xfaA\x18\n" +
+	"\x16api.instill.tech/ModelR\x04name\x12=\n" +
+	"\vtask_inputs\x18\x02 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\n" +
+	"taskInputs\"\x94\x01\n" +
 	"\x1dTriggerNamespaceModelResponse\x122\n" +
 	"\x04task\x18\x01 \x01(\x0e2\x19.common.task.v1alpha.TaskB\x03\xe0A\x03R\x04task\x12?\n" +
-	"\ftask_outputs\x18\x03 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\vtaskOutputsJ\x04\b\x02\x10\x03\"\xcf\x01\n" +
-	"!TriggerAsyncNamespaceModelRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\x1e\n" +
-	"\bmodel_id\x18\x02 \x01(\tB\x03\xe0A\x02R\amodelId\x12\x1d\n" +
-	"\aversion\x18\x04 \x01(\tB\x03\xe0A\x02R\aversion\x12=\n" +
-	"\vtask_inputs\x18\x05 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\n" +
-	"taskInputsJ\x04\b\x03\x10\x04\"f\n" +
+	"\ftask_outputs\x18\x02 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\vtaskOutputs\"\x96\x01\n" +
+	"!TriggerAsyncNamespaceModelRequest\x122\n" +
+	"\x04name\x18\x01 \x01(\tB\x1e\xe0A\x02\xfaA\x18\n" +
+	"\x16api.instill.tech/ModelR\x04name\x12=\n" +
+	"\vtask_inputs\x18\x02 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\n" +
+	"taskInputs\"f\n" +
 	"\"TriggerAsyncNamespaceModelResponse\x12@\n" +
-	"\toperation\x18\x01 \x01(\v2\x1d.google.longrunning.OperationB\x03\xe0A\x03R\toperation\"\xb1\x01\n" +
-	"\"TriggerNamespaceLatestModelRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\x1e\n" +
-	"\bmodel_id\x18\x02 \x01(\tB\x03\xe0A\x02R\amodelId\x12=\n" +
-	"\vtask_inputs\x18\x04 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\n" +
-	"taskInputsJ\x04\b\x03\x10\x04\"\xa0\x01\n" +
+	"\toperation\x18\x01 \x01(\v2\x1d.google.longrunning.OperationB\x03\xe0A\x03R\toperation\"\x97\x01\n" +
+	"\"TriggerNamespaceLatestModelRequest\x122\n" +
+	"\x04name\x18\x01 \x01(\tB\x1e\xe0A\x02\xfaA\x18\n" +
+	"\x16api.instill.tech/ModelR\x04name\x12=\n" +
+	"\vtask_inputs\x18\x02 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\n" +
+	"taskInputs\"\x9a\x01\n" +
 	"#TriggerNamespaceLatestModelResponse\x122\n" +
 	"\x04task\x18\x01 \x01(\x0e2\x19.common.task.v1alpha.TaskB\x03\xe0A\x03R\x04task\x12?\n" +
-	"\ftask_outputs\x18\x03 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\vtaskOutputsJ\x04\b\x02\x10\x03\"\xb6\x01\n" +
-	"'TriggerAsyncNamespaceLatestModelRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\x1e\n" +
-	"\bmodel_id\x18\x02 \x01(\tB\x03\xe0A\x02R\amodelId\x12=\n" +
-	"\vtask_inputs\x18\x04 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\n" +
-	"taskInputsJ\x04\b\x03\x10\x04\"l\n" +
+	"\ftask_outputs\x18\x02 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\vtaskOutputs\"\x9c\x01\n" +
+	"'TriggerAsyncNamespaceLatestModelRequest\x122\n" +
+	"\x04name\x18\x01 \x01(\tB\x1e\xe0A\x02\xfaA\x18\n" +
+	"\x16api.instill.tech/ModelR\x04name\x12=\n" +
+	"\vtask_inputs\x18\x02 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\n" +
+	"taskInputs\"l\n" +
 	"(TriggerAsyncNamespaceLatestModelResponse\x12@\n" +
-	"\toperation\x18\x01 \x01(\v2\x1d.google.longrunning.OperationB\x03\xe0A\x03R\toperation\"\xd8\x01\n" +
-	",TriggerNamespaceModelBinaryFileUploadRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\x1e\n" +
-	"\bmodel_id\x18\x02 \x01(\tB\x03\xe0A\x02R\amodelId\x12\x1d\n" +
-	"\aversion\x18\x04 \x01(\tB\x03\xe0A\x02R\aversion\x12;\n" +
+	"\toperation\x18\x01 \x01(\v2\x1d.google.longrunning.OperationB\x03\xe0A\x03R\toperation\"\x9f\x01\n" +
+	",TriggerNamespaceModelBinaryFileUploadRequest\x122\n" +
+	"\x04name\x18\x01 \x01(\tB\x1e\xe0A\x02\xfaA\x18\n" +
+	"\x16api.instill.tech/ModelR\x04name\x12;\n" +
 	"\n" +
-	"task_input\x18\x05 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\ttaskInputJ\x04\b\x03\x10\x04\"\xb0\x01\n" +
+	"task_input\x18\x02 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\ttaskInput\"\xa4\x01\n" +
 	"-TriggerNamespaceModelBinaryFileUploadResponse\x122\n" +
 	"\x04task\x18\x01 \x01(\x0e2\x19.common.task.v1alpha.TaskB\x03\xe0A\x02R\x04task\x12?\n" +
-	"\ftask_outputs\x18\x04 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\vtaskOutputsJ\x04\b\x02\x10\x03J\x04\b\x03\x10\x04\"\xbf\x01\n" +
-	"2TriggerNamespaceLatestModelBinaryFileUploadRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\x1e\n" +
-	"\bmodel_id\x18\x02 \x01(\tB\x03\xe0A\x02R\amodelId\x12;\n" +
+	"\ftask_outputs\x18\x02 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\vtaskOutputs\"\xa5\x01\n" +
+	"2TriggerNamespaceLatestModelBinaryFileUploadRequest\x122\n" +
+	"\x04name\x18\x01 \x01(\tB\x1e\xe0A\x02\xfaA\x18\n" +
+	"\x16api.instill.tech/ModelR\x04name\x12;\n" +
 	"\n" +
-	"task_input\x18\x04 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\ttaskInputJ\x04\b\x03\x10\x04\"\xb0\x01\n" +
+	"task_input\x18\x02 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\ttaskInput\"\xaa\x01\n" +
 	"3TriggerNamespaceLatestModelBinaryFileUploadResponse\x122\n" +
 	"\x04task\x18\x01 \x01(\x0e2\x19.common.task.v1alpha.TaskB\x03\xe0A\x02R\x04task\x12?\n" +
-	"\ftask_outputs\x18\x03 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\vtaskOutputsJ\x04\b\x02\x10\x03\"\xad\x01\n" +
-	"'GetNamespaceLatestModelOperationRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\x1e\n" +
-	"\bmodel_id\x18\x02 \x01(\tB\x03\xe0A\x02R\amodelId\x121\n" +
-	"\x04view\x18\x03 \x01(\x0e2\x13.model.v1alpha.ViewB\x03\xe0A\x01H\x00R\x04view\x88\x01\x01B\a\n" +
+	"\ftask_outputs\x18\x02 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\vtaskOutputs\"\x99\x01\n" +
+	"'GetNamespaceLatestModelOperationRequest\x122\n" +
+	"\x04name\x18\x01 \x01(\tB\x1e\xe0A\x02\xfaA\x18\n" +
+	"\x16api.instill.tech/ModelR\x04name\x121\n" +
+	"\x04view\x18\x02 \x01(\x0e2\x13.model.v1alpha.ViewB\x03\xe0A\x01H\x00R\x04view\x88\x01\x01B\a\n" +
 	"\x05_view\"l\n" +
 	"(GetNamespaceLatestModelOperationResponse\x12@\n" +
-	"\toperation\x18\x01 \x01(\v2\x1d.google.longrunning.OperationB\x03\xe0A\x03R\toperation\"\xc6\x01\n" +
-	"!GetNamespaceModelOperationRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\x1e\n" +
-	"\bmodel_id\x18\x02 \x01(\tB\x03\xe0A\x02R\amodelId\x12\x1d\n" +
-	"\aversion\x18\x03 \x01(\tB\x03\xe0A\x02R\aversion\x121\n" +
-	"\x04view\x18\x04 \x01(\x0e2\x13.model.v1alpha.ViewB\x03\xe0A\x01H\x00R\x04view\x88\x01\x01B\a\n" +
+	"\toperation\x18\x01 \x01(\v2\x1d.google.longrunning.OperationB\x03\xe0A\x03R\toperation\"\x93\x01\n" +
+	"!GetNamespaceModelOperationRequest\x122\n" +
+	"\x04name\x18\x01 \x01(\tB\x1e\xe0A\x02\xfaA\x18\n" +
+	"\x16api.instill.tech/ModelR\x04name\x121\n" +
+	"\x04view\x18\x02 \x01(\x0e2\x13.model.v1alpha.ViewB\x03\xe0A\x01H\x00R\x04view\x88\x01\x01B\a\n" +
 	"\x05_view\"a\n" +
 	"\"GetNamespaceModelOperationResponse\x12;\n" +
-	"\toperation\x18\x01 \x01(\v2\x1d.google.longrunning.OperationR\toperation\"\xa6\x01\n" +
-	" DeployNamespaceModelAdminRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\x1e\n" +
-	"\bmodel_id\x18\x02 \x01(\tB\x03\xe0A\x02R\amodelId\x12\x1d\n" +
-	"\aversion\x18\x03 \x01(\tB\x03\xe0A\x02R\aversion\x12\x1b\n" +
-	"\x06digest\x18\x04 \x01(\tB\x03\xe0A\x01R\x06digest\")\n" +
-	"!DeployNamespaceModelAdminResponseJ\x04\b\x01\x10\x02\"\xa8\x01\n" +
-	"\"UndeployNamespaceModelAdminRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\x1e\n" +
-	"\bmodel_id\x18\x02 \x01(\tB\x03\xe0A\x02R\amodelId\x12\x1d\n" +
-	"\aversion\x18\x03 \x01(\tB\x03\xe0A\x02R\aversion\x12\x1b\n" +
-	"\x06digest\x18\x04 \x01(\tB\x03\xe0A\x01R\x06digest\"+\n" +
-	"#UndeployNamespaceModelAdminResponseJ\x04\b\x01\x10\x02\"s\n" +
-	"\x16CreateUserModelRequest\x12*\n" +
-	"\x05model\x18\x01 \x01(\v2\x14.model.v1alpha.ModelR\x05model\x12-\n" +
-	"\x06parent\x18\x02 \x01(\tB\x15\x92A\x0f\xca>\f\xfa\x02\tuser_name\xe0A\x02R\x06parent\"J\n" +
-	"\x17CreateUserModelResponse\x12/\n" +
-	"\x05model\x18\x01 \x01(\v2\x14.model.v1alpha.ModelB\x03\xe0A\x03R\x05model\"\xe6\x03\n" +
-	"\x15ListUserModelsRequest\x12%\n" +
-	"\tpage_size\x18\x01 \x01(\x05B\x03\xe0A\x01H\x00R\bpageSize\x88\x01\x01\x12'\n" +
-	"\n" +
-	"page_token\x18\x02 \x01(\tB\x03\xe0A\x01H\x01R\tpageToken\x88\x01\x01\x121\n" +
-	"\x04view\x18\x03 \x01(\x0e2\x13.model.v1alpha.ViewB\x03\xe0A\x01H\x02R\x04view\x88\x01\x01\x12-\n" +
-	"\x06parent\x18\x04 \x01(\tB\x15\x92A\x0f\xca>\f\xfa\x02\tuser_name\xe0A\x02R\x06parent\x12+\n" +
-	"\fshow_deleted\x18\x05 \x01(\bB\x03\xe0A\x01H\x03R\vshowDeleted\x88\x01\x01\x12 \n" +
-	"\x06filter\x18\x06 \x01(\tB\x03\xe0A\x01H\x04R\x06filter\x88\x01\x01\x12I\n" +
-	"\n" +
-	"visibility\x18\a \x01(\x0e2\x1f.model.v1alpha.Model.VisibilityB\x03\xe0A\x01H\x05R\n" +
-	"visibility\x88\x01\x01\x12#\n" +
-	"\border_by\x18\b \x01(\tB\x03\xe0A\x01H\x06R\aorderBy\x88\x01\x01B\f\n" +
-	"\n" +
-	"_page_sizeB\r\n" +
-	"\v_page_tokenB\a\n" +
-	"\x05_viewB\x0f\n" +
-	"\r_show_deletedB\t\n" +
-	"\a_filterB\r\n" +
-	"\v_visibilityB\v\n" +
-	"\t_order_by\"\x9c\x01\n" +
-	"\x16ListUserModelsResponse\x121\n" +
-	"\x06models\x18\x01 \x03(\v2\x14.model.v1alpha.ModelB\x03\xe0A\x03R\x06models\x12+\n" +
-	"\x0fnext_page_token\x18\x02 \x01(\tB\x03\xe0A\x03R\rnextPageToken\x12\"\n" +
-	"\n" +
-	"total_size\x18\x03 \x01(\x05B\x03\xe0A\x03R\ttotalSize\"\x82\x01\n" +
-	"\x13GetUserModelRequest\x12/\n" +
-	"\x04name\x18\x01 \x01(\tB\x1b\x92A\x15\xca>\x12\xfa\x02\x0fuser_model_name\xe0A\x02R\x04name\x121\n" +
-	"\x04view\x18\x02 \x01(\x0e2\x13.model.v1alpha.ViewB\x03\xe0A\x01H\x00R\x04view\x88\x01\x01B\a\n" +
-	"\x05_view\"G\n" +
-	"\x14GetUserModelResponse\x12/\n" +
-	"\x05model\x18\x01 \x01(\v2\x14.model.v1alpha.ModelB\x03\xe0A\x03R\x05model\"\x8b\x01\n" +
-	"\x16UpdateUserModelRequest\x12/\n" +
-	"\x05model\x18\x01 \x01(\v2\x14.model.v1alpha.ModelB\x03\xe0A\x02R\x05model\x12@\n" +
-	"\vupdate_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskB\x03\xe0A\x02R\n" +
-	"updateMask\"J\n" +
-	"\x17UpdateUserModelResponse\x12/\n" +
-	"\x05model\x18\x01 \x01(\v2\x14.model.v1alpha.ModelB\x03\xe0A\x03R\x05model\"I\n" +
-	"\x16DeleteUserModelRequest\x12/\n" +
-	"\x04name\x18\x01 \x01(\tB\x1b\x92A\x15\xca>\x12\xfa\x02\x0fuser_model_name\xe0A\x02R\x04name\"\x19\n" +
-	"\x17DeleteUserModelResponse\"p\n" +
-	"\x16RenameUserModelRequest\x12/\n" +
-	"\x04name\x18\x01 \x01(\tB\x1b\x92A\x15\xca>\x12\xfa\x02\x0fuser_model_name\xe0A\x02R\x04name\x12%\n" +
-	"\fnew_model_id\x18\x02 \x01(\tB\x03\xe0A\x02R\n" +
-	"newModelId\"J\n" +
-	"\x17RenameUserModelResponse\x12/\n" +
-	"\x05model\x18\x01 \x01(\v2\x14.model.v1alpha.ModelB\x03\xe0A\x03R\x05model\"g\n" +
-	"\x15WatchUserModelRequest\x12/\n" +
-	"\x04name\x18\x01 \x01(\tB\x1b\x92A\x15\xca>\x12\xfa\x02\x0fuser_model_name\xe0A\x02R\x04name\x12\x1d\n" +
-	"\aversion\x18\x02 \x01(\tB\x03\xe0A\x02R\aversion\"n\n" +
-	"\x16WatchUserModelResponse\x12/\n" +
-	"\x05state\x18\x01 \x01(\x0e2\x14.model.v1alpha.StateB\x03\xe0A\x03R\x05state\x12\x1d\n" +
-	"\amessage\x18\x03 \x01(\tB\x03\xe0A\x03R\amessageJ\x04\b\x02\x10\x03\"N\n" +
-	"\x1bWatchUserLatestModelRequest\x12/\n" +
-	"\x04name\x18\x01 \x01(\tB\x1b\x92A\x15\xca>\x12\xfa\x02\x0fuser_model_name\xe0A\x02R\x04name\"t\n" +
-	"\x1cWatchUserLatestModelResponse\x12/\n" +
-	"\x05state\x18\x01 \x01(\x0e2\x14.model.v1alpha.StateB\x03\xe0A\x03R\x05state\x12\x1d\n" +
-	"\amessage\x18\x03 \x01(\tB\x03\xe0A\x03R\amessageJ\x04\b\x02\x10\x03\"\xab\x01\n" +
-	"\x1cListUserModelVersionsRequest\x12%\n" +
-	"\tpage_size\x18\x01 \x01(\x05B\x03\xe0A\x01H\x00R\bpageSize\x88\x01\x01\x12\x1c\n" +
-	"\x04page\x18\x02 \x01(\x05B\x03\xe0A\x01H\x01R\x04page\x88\x01\x01\x12/\n" +
-	"\x04name\x18\x03 \x01(\tB\x1b\x92A\x15\xca>\x12\xfa\x02\x0fuser_model_name\xe0A\x02R\x04nameB\f\n" +
-	"\n" +
-	"_page_sizeB\a\n" +
-	"\x05_page\"\xbc\x01\n" +
-	"\x1dListUserModelVersionsResponse\x12<\n" +
-	"\bversions\x18\x01 \x03(\v2\x1b.model.v1alpha.ModelVersionB\x03\xe0A\x03R\bversions\x12\"\n" +
-	"\n" +
-	"total_size\x18\x02 \x01(\x05B\x03\xe0A\x03R\ttotalSize\x12 \n" +
-	"\tpage_size\x18\x03 \x01(\x05B\x03\xe0A\x03R\bpageSize\x12\x17\n" +
-	"\x04page\x18\x04 \x01(\x05B\x03\xe0A\x03R\x04page\"o\n" +
-	"\x1dDeleteUserModelVersionRequest\x12/\n" +
-	"\x04name\x18\x01 \x01(\tB\x1b\x92A\x15\xca>\x12\xfa\x02\x0fuser_model_name\xe0A\x02R\x04name\x12\x1d\n" +
-	"\aversion\x18\x02 \x01(\tB\x03\xe0A\x02R\aversion\" \n" +
-	"\x1eDeleteUserModelVersionResponse\"\xae\x01\n" +
-	"\x17TriggerUserModelRequest\x12/\n" +
-	"\x04name\x18\x01 \x01(\tB\x1b\x92A\x15\xca>\x12\xfa\x02\x0fuser_model_name\xe0A\x02R\x04name\x12\x1d\n" +
-	"\aversion\x18\x03 \x01(\tB\x03\xe0A\x02R\aversion\x12=\n" +
-	"\vtask_inputs\x18\x04 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\n" +
-	"taskInputsJ\x04\b\x02\x10\x03\"\x95\x01\n" +
-	"\x18TriggerUserModelResponse\x122\n" +
-	"\x04task\x18\x01 \x01(\x0e2\x19.common.task.v1alpha.TaskB\x03\xe0A\x03R\x04task\x12?\n" +
-	"\ftask_outputs\x18\x03 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\vtaskOutputsJ\x04\b\x02\x10\x03\"\xb3\x01\n" +
-	"\x1cTriggerAsyncUserModelRequest\x12/\n" +
-	"\x04name\x18\x01 \x01(\tB\x1b\x92A\x15\xca>\x12\xfa\x02\x0fuser_model_name\xe0A\x02R\x04name\x12\x1d\n" +
-	"\aversion\x18\x03 \x01(\tB\x03\xe0A\x02R\aversion\x12=\n" +
-	"\vtask_inputs\x18\x04 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\n" +
-	"taskInputsJ\x04\b\x02\x10\x03\"a\n" +
-	"\x1dTriggerAsyncUserModelResponse\x12@\n" +
-	"\toperation\x18\x01 \x01(\v2\x1d.google.longrunning.OperationB\x03\xe0A\x03R\toperation\"\x95\x01\n" +
-	"\x1dTriggerUserLatestModelRequest\x12/\n" +
-	"\x04name\x18\x01 \x01(\tB\x1b\x92A\x15\xca>\x12\xfa\x02\x0fuser_model_name\xe0A\x02R\x04name\x12=\n" +
-	"\vtask_inputs\x18\x03 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\n" +
-	"taskInputsJ\x04\b\x02\x10\x03\"\x9b\x01\n" +
-	"\x1eTriggerUserLatestModelResponse\x122\n" +
-	"\x04task\x18\x01 \x01(\x0e2\x19.common.task.v1alpha.TaskB\x03\xe0A\x03R\x04task\x12?\n" +
-	"\ftask_outputs\x18\x03 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\vtaskOutputsJ\x04\b\x02\x10\x03\"\x9a\x01\n" +
-	"\"TriggerAsyncUserLatestModelRequest\x12/\n" +
-	"\x04name\x18\x01 \x01(\tB\x1b\x92A\x15\xca>\x12\xfa\x02\x0fuser_model_name\xe0A\x02R\x04name\x12=\n" +
-	"\vtask_inputs\x18\x03 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\n" +
-	"taskInputsJ\x04\b\x02\x10\x03\"g\n" +
-	"#TriggerAsyncUserLatestModelResponse\x12@\n" +
-	"\toperation\x18\x01 \x01(\v2\x1d.google.longrunning.OperationB\x03\xe0A\x03R\toperation\"\xbe\x01\n" +
-	"'TriggerUserModelBinaryFileUploadRequest\x12/\n" +
-	"\x04name\x18\x01 \x01(\tB\x1b\x92A\x15\xca>\x12\xfa\x02\x0fuser_model_name\xe0A\x02R\x04name\x12\x1d\n" +
-	"\aversion\x18\x03 \x01(\tB\x03\xe0A\x02R\aversion\x12=\n" +
-	"\vtask_inputs\x18\x04 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\n" +
-	"taskInputsJ\x04\b\x02\x10\x03\"\xab\x01\n" +
-	"(TriggerUserModelBinaryFileUploadResponse\x122\n" +
-	"\x04task\x18\x01 \x01(\x0e2\x19.common.task.v1alpha.TaskB\x03\xe0A\x02R\x04task\x12?\n" +
-	"\ftask_outputs\x18\x04 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\vtaskOutputsJ\x04\b\x02\x10\x03J\x04\b\x03\x10\x04\"\x83\x01\n" +
-	"\x1eCreateOrganizationModelRequest\x12*\n" +
-	"\x05model\x18\x01 \x01(\v2\x14.model.v1alpha.ModelR\x05model\x125\n" +
-	"\x06parent\x18\x02 \x01(\tB\x1d\x92A\x17\xca>\x14\xfa\x02\x11organization_name\xe0A\x02R\x06parent\"R\n" +
-	"\x1fCreateOrganizationModelResponse\x12/\n" +
-	"\x05model\x18\x01 \x01(\v2\x14.model.v1alpha.ModelB\x03\xe0A\x03R\x05model\"\xf6\x03\n" +
-	"\x1dListOrganizationModelsRequest\x12%\n" +
-	"\tpage_size\x18\x01 \x01(\x05B\x03\xe0A\x01H\x00R\bpageSize\x88\x01\x01\x12'\n" +
-	"\n" +
-	"page_token\x18\x02 \x01(\tB\x03\xe0A\x01H\x01R\tpageToken\x88\x01\x01\x121\n" +
-	"\x04view\x18\x03 \x01(\x0e2\x13.model.v1alpha.ViewB\x03\xe0A\x01H\x02R\x04view\x88\x01\x01\x125\n" +
-	"\x06parent\x18\x04 \x01(\tB\x1d\x92A\x17\xca>\x14\xfa\x02\x11organization_name\xe0A\x02R\x06parent\x12+\n" +
-	"\fshow_deleted\x18\x05 \x01(\bB\x03\xe0A\x01H\x03R\vshowDeleted\x88\x01\x01\x12 \n" +
-	"\x06filter\x18\x06 \x01(\tB\x03\xe0A\x01H\x04R\x06filter\x88\x01\x01\x12I\n" +
-	"\n" +
-	"visibility\x18\a \x01(\x0e2\x1f.model.v1alpha.Model.VisibilityB\x03\xe0A\x01H\x05R\n" +
-	"visibility\x88\x01\x01\x12#\n" +
-	"\border_by\x18\b \x01(\tB\x03\xe0A\x01H\x06R\aorderBy\x88\x01\x01B\f\n" +
-	"\n" +
-	"_page_sizeB\r\n" +
-	"\v_page_tokenB\a\n" +
-	"\x05_viewB\x0f\n" +
-	"\r_show_deletedB\t\n" +
-	"\a_filterB\r\n" +
-	"\v_visibilityB\v\n" +
-	"\t_order_by\"\xa4\x01\n" +
-	"\x1eListOrganizationModelsResponse\x121\n" +
-	"\x06models\x18\x01 \x03(\v2\x14.model.v1alpha.ModelB\x03\xe0A\x03R\x06models\x12+\n" +
-	"\x0fnext_page_token\x18\x02 \x01(\tB\x03\xe0A\x03R\rnextPageToken\x12\"\n" +
-	"\n" +
-	"total_size\x18\x03 \x01(\x05B\x03\xe0A\x03R\ttotalSize\"\x92\x01\n" +
-	"\x1bGetOrganizationModelRequest\x127\n" +
-	"\x04name\x18\x01 \x01(\tB#\x92A\x1d\xca>\x1a\xfa\x02\x17organization_model_name\xe0A\x02R\x04name\x121\n" +
-	"\x04view\x18\x02 \x01(\x0e2\x13.model.v1alpha.ViewB\x03\xe0A\x01H\x00R\x04view\x88\x01\x01B\a\n" +
-	"\x05_view\"O\n" +
-	"\x1cGetOrganizationModelResponse\x12/\n" +
-	"\x05model\x18\x01 \x01(\v2\x14.model.v1alpha.ModelB\x03\xe0A\x03R\x05model\"\x93\x01\n" +
-	"\x1eUpdateOrganizationModelRequest\x12/\n" +
-	"\x05model\x18\x01 \x01(\v2\x14.model.v1alpha.ModelB\x03\xe0A\x02R\x05model\x12@\n" +
-	"\vupdate_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskB\x03\xe0A\x02R\n" +
-	"updateMask\"R\n" +
-	"\x1fUpdateOrganizationModelResponse\x12/\n" +
-	"\x05model\x18\x01 \x01(\v2\x14.model.v1alpha.ModelB\x03\xe0A\x03R\x05model\"Y\n" +
-	"\x1eDeleteOrganizationModelRequest\x127\n" +
-	"\x04name\x18\x01 \x01(\tB#\x92A\x1d\xca>\x1a\xfa\x02\x17organization_model_name\xe0A\x02R\x04name\"!\n" +
-	"\x1fDeleteOrganizationModelResponse\"\x80\x01\n" +
-	"\x1eRenameOrganizationModelRequest\x127\n" +
-	"\x04name\x18\x01 \x01(\tB#\x92A\x1d\xca>\x1a\xfa\x02\x17organization_model_name\xe0A\x02R\x04name\x12%\n" +
-	"\fnew_model_id\x18\x02 \x01(\tB\x03\xe0A\x02R\n" +
-	"newModelId\"R\n" +
-	"\x1fRenameOrganizationModelResponse\x12/\n" +
-	"\x05model\x18\x01 \x01(\v2\x14.model.v1alpha.ModelB\x03\xe0A\x03R\x05model\"w\n" +
-	"\x1dWatchOrganizationModelRequest\x127\n" +
-	"\x04name\x18\x01 \x01(\tB#\x92A\x1d\xca>\x1a\xfa\x02\x17organization_model_name\xe0A\x02R\x04name\x12\x1d\n" +
-	"\aversion\x18\x02 \x01(\tB\x03\xe0A\x02R\aversion\"v\n" +
-	"\x1eWatchOrganizationModelResponse\x12/\n" +
-	"\x05state\x18\x01 \x01(\x0e2\x14.model.v1alpha.StateB\x03\xe0A\x03R\x05state\x12\x1d\n" +
-	"\amessage\x18\x03 \x01(\tB\x03\xe0A\x03R\amessageJ\x04\b\x02\x10\x03\"^\n" +
-	"#WatchOrganizationLatestModelRequest\x127\n" +
-	"\x04name\x18\x01 \x01(\tB#\x92A\x1d\xca>\x1a\xfa\x02\x17organization_model_name\xe0A\x02R\x04name\"|\n" +
-	"$WatchOrganizationLatestModelResponse\x12/\n" +
-	"\x05state\x18\x01 \x01(\x0e2\x14.model.v1alpha.StateB\x03\xe0A\x03R\x05state\x12\x1d\n" +
-	"\amessage\x18\x03 \x01(\tB\x03\xe0A\x03R\amessageJ\x04\b\x02\x10\x03\"\xbb\x01\n" +
-	"$ListOrganizationModelVersionsRequest\x12%\n" +
-	"\tpage_size\x18\x01 \x01(\x05B\x03\xe0A\x01H\x00R\bpageSize\x88\x01\x01\x12\x1c\n" +
-	"\x04page\x18\x02 \x01(\x05B\x03\xe0A\x01H\x01R\x04page\x88\x01\x01\x127\n" +
-	"\x04name\x18\x03 \x01(\tB#\x92A\x1d\xca>\x1a\xfa\x02\x17organization_model_name\xe0A\x02R\x04nameB\f\n" +
-	"\n" +
-	"_page_sizeB\a\n" +
-	"\x05_page\"\xc4\x01\n" +
-	"%ListOrganizationModelVersionsResponse\x12<\n" +
-	"\bversions\x18\x01 \x03(\v2\x1b.model.v1alpha.ModelVersionB\x03\xe0A\x03R\bversions\x12\"\n" +
-	"\n" +
-	"total_size\x18\x02 \x01(\x05B\x03\xe0A\x03R\ttotalSize\x12 \n" +
-	"\tpage_size\x18\x03 \x01(\x05B\x03\xe0A\x03R\bpageSize\x12\x17\n" +
-	"\x04page\x18\x04 \x01(\x05B\x03\xe0A\x03R\x04page\"\x7f\n" +
-	"%DeleteOrganizationModelVersionRequest\x127\n" +
-	"\x04name\x18\x01 \x01(\tB#\x92A\x1d\xca>\x1a\xfa\x02\x17organization_model_name\xe0A\x02R\x04name\x12\x1d\n" +
-	"\aversion\x18\x02 \x01(\tB\x03\xe0A\x02R\aversion\"(\n" +
-	"&DeleteOrganizationModelVersionResponse\"\xbe\x01\n" +
-	"\x1fTriggerOrganizationModelRequest\x127\n" +
-	"\x04name\x18\x01 \x01(\tB#\x92A\x1d\xca>\x1a\xfa\x02\x17organization_model_name\xe0A\x02R\x04name\x12\x1d\n" +
-	"\aversion\x18\x03 \x01(\tB\x03\xe0A\x02R\aversion\x12=\n" +
-	"\vtask_inputs\x18\x04 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\n" +
-	"taskInputsJ\x04\b\x02\x10\x03\"\x9d\x01\n" +
-	" TriggerOrganizationModelResponse\x122\n" +
-	"\x04task\x18\x01 \x01(\x0e2\x19.common.task.v1alpha.TaskB\x03\xe0A\x03R\x04task\x12?\n" +
-	"\ftask_outputs\x18\x03 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\vtaskOutputsJ\x04\b\x02\x10\x03\"\xc3\x01\n" +
-	"$TriggerAsyncOrganizationModelRequest\x127\n" +
-	"\x04name\x18\x01 \x01(\tB#\x92A\x1d\xca>\x1a\xfa\x02\x17organization_model_name\xe0A\x02R\x04name\x12\x1d\n" +
-	"\aversion\x18\x03 \x01(\tB\x03\xe0A\x02R\aversion\x12=\n" +
-	"\vtask_inputs\x18\x04 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\n" +
-	"taskInputsJ\x04\b\x02\x10\x03\"i\n" +
-	"%TriggerAsyncOrganizationModelResponse\x12@\n" +
-	"\toperation\x18\x01 \x01(\v2\x1d.google.longrunning.OperationB\x03\xe0A\x03R\toperation\"\xa5\x01\n" +
-	"%TriggerOrganizationLatestModelRequest\x127\n" +
-	"\x04name\x18\x01 \x01(\tB#\x92A\x1d\xca>\x1a\xfa\x02\x17organization_model_name\xe0A\x02R\x04name\x12=\n" +
-	"\vtask_inputs\x18\x03 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\n" +
-	"taskInputsJ\x04\b\x02\x10\x03\"\xa3\x01\n" +
-	"&TriggerOrganizationLatestModelResponse\x122\n" +
-	"\x04task\x18\x01 \x01(\x0e2\x19.common.task.v1alpha.TaskB\x03\xe0A\x03R\x04task\x12?\n" +
-	"\ftask_outputs\x18\x03 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\vtaskOutputsJ\x04\b\x02\x10\x03\"\xaa\x01\n" +
-	"*TriggerAsyncOrganizationLatestModelRequest\x127\n" +
-	"\x04name\x18\x01 \x01(\tB#\x92A\x1d\xca>\x1a\xfa\x02\x17organization_model_name\xe0A\x02R\x04name\x12=\n" +
-	"\vtask_inputs\x18\x03 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\n" +
-	"taskInputsJ\x04\b\x02\x10\x03\"o\n" +
-	"+TriggerAsyncOrganizationLatestModelResponse\x12@\n" +
-	"\toperation\x18\x01 \x01(\v2\x1d.google.longrunning.OperationB\x03\xe0A\x03R\toperation\"\xce\x01\n" +
-	"/TriggerOrganizationModelBinaryFileUploadRequest\x127\n" +
-	"\x04name\x18\x01 \x01(\tB#\x92A\x1d\xca>\x1a\xfa\x02\x17organization_model_name\xe0A\x02R\x04name\x12\x1d\n" +
-	"\aversion\x18\x03 \x01(\tB\x03\xe0A\x02R\aversion\x12=\n" +
-	"\vtask_inputs\x18\x04 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\n" +
-	"taskInputsJ\x04\b\x02\x10\x03\"\xa8\x01\n" +
-	"0TriggerOrganizationModelBinaryFileUploadResponse\x122\n" +
-	"\x04task\x18\x01 \x01(\x0e2\x19.common.task.v1alpha.TaskB\x03\xe0A\x02R\x04task\x12:\n" +
-	"\ftask_outputs\x18\x04 \x03(\v2\x17.google.protobuf.StructR\vtaskOutputsJ\x04\b\x02\x10\x03\"\x80\x01\n" +
+	"\toperation\x18\x01 \x01(\v2\x1d.google.longrunning.OperationR\toperation\"s\n" +
+	" DeployNamespaceModelAdminRequest\x122\n" +
+	"\x04name\x18\x01 \x01(\tB\x1e\xe0A\x02\xfaA\x18\n" +
+	"\x16api.instill.tech/ModelR\x04name\x12\x1b\n" +
+	"\x06digest\x18\x02 \x01(\tB\x03\xe0A\x01R\x06digest\"#\n" +
+	"!DeployNamespaceModelAdminResponse\"u\n" +
+	"\"UndeployNamespaceModelAdminRequest\x122\n" +
+	"\x04name\x18\x01 \x01(\tB\x1e\xe0A\x02\xfaA\x18\n" +
+	"\x16api.instill.tech/ModelR\x04name\x12\x1b\n" +
+	"\x06digest\x18\x02 \x01(\tB\x03\xe0A\x01R\x06digest\"%\n" +
+	"#UndeployNamespaceModelAdminResponse\"B\n" +
 	"\x18GetModelOperationRequest\x12&\n" +
-	"\foperation_id\x18\x01 \x01(\tB\x03\xe0A\x02R\voperationId\x123\n" +
-	"\x04view\x18\x02 \x01(\x0e2\x13.model.v1alpha.ViewB\x05\xe0A\x01\x18\x01H\x00R\x04view\x88\x01\x01B\a\n" +
-	"\x05_view\"]\n" +
+	"\foperation_id\x18\x01 \x01(\tB\x03\xe0A\x02R\voperationId\"]\n" +
 	"\x19GetModelOperationResponse\x12@\n" +
-	"\toperation\x18\x01 \x01(\v2\x1d.google.longrunning.OperationB\x03\xe0A\x03R\toperation\"\xae\x01\n" +
+	"\toperation\x18\x01 \x01(\v2\x1d.google.longrunning.OperationB\x03\xe0A\x03R\toperation\"\xa2\x01\n" +
 	"\x0fLatestOperation\x12E\n" +
-	"\arequest\x18\x03 \x01(\v2+.model.v1alpha.TriggerNamespaceModelRequestR\arequest\x12H\n" +
-	"\bresponse\x18\x04 \x01(\v2,.model.v1alpha.TriggerNamespaceModelResponseR\bresponseJ\x04\b\x01\x10\x02J\x04\b\x02\x10\x03\"\x91\x01\n" +
-	"\"GetUserLatestModelOperationRequest\x12/\n" +
-	"\x04name\x18\x01 \x01(\tB\x1b\x92A\x15\xca>\x12\xfa\x02\x0fuser_model_name\xe0A\x02R\x04name\x121\n" +
-	"\x04view\x18\x02 \x01(\x0e2\x13.model.v1alpha.ViewB\x03\xe0A\x01H\x00R\x04view\x88\x01\x01B\a\n" +
-	"\x05_view\"g\n" +
-	"#GetUserLatestModelOperationResponse\x12@\n" +
-	"\toperation\x18\x01 \x01(\v2\x1d.google.longrunning.OperationB\x03\xe0A\x03R\toperation\"\xa1\x01\n" +
-	"*GetOrganizationLatestModelOperationRequest\x127\n" +
-	"\x04name\x18\x01 \x01(\tB#\x92A\x1d\xca>\x1a\xfa\x02\x17organization_model_name\xe0A\x02R\x04name\x121\n" +
-	"\x04view\x18\x02 \x01(\x0e2\x13.model.v1alpha.ViewB\x03\xe0A\x01H\x00R\x04view\x88\x01\x01B\a\n" +
-	"\x05_view\"o\n" +
-	"+GetOrganizationLatestModelOperationResponse\x12@\n" +
-	"\toperation\x18\x01 \x01(\v2\x1d.google.longrunning.OperationB\x03\xe0A\x03R\toperation\"\x1d\n" +
+	"\arequest\x18\x01 \x01(\v2+.model.v1alpha.TriggerNamespaceModelRequestR\arequest\x12H\n" +
+	"\bresponse\x18\x02 \x01(\v2,.model.v1alpha.TriggerNamespaceModelResponseR\bresponse\"\x1d\n" +
 	"\x1bListAvailableRegionsRequest\"T\n" +
 	"\x1cListAvailableRegionsResponse\x124\n" +
 	"\aregions\x18\x01 \x03(\v2\x15.model.v1alpha.RegionB\x03\xe0A\x03R\aregions\"\xac\x02\n" +
@@ -9686,75 +5193,58 @@ const file_model_v1alpha_model_proto_rawDesc = "" +
 	"\x04view\x18\x02 \x01(\x0e2\x13.model.v1alpha.ViewB\x03\xe0A\x01H\x00R\x04view\x88\x01\x01B\a\n" +
 	"\x05_view\"F\n" +
 	"\x18LookUpModelAdminResponse\x12*\n" +
-	"\x05model\x18\x01 \x01(\v2\x14.model.v1alpha.ModelR\x05model\"\x90\x01\n" +
-	"\x1bDeployUserModelAdminRequest\x12/\n" +
-	"\x04name\x18\x02 \x01(\tB\x1b\x92A\x15\xca>\x12\xfa\x02\x0fuser_model_name\xe0A\x02R\x04name\x12\x1d\n" +
-	"\aversion\x18\x03 \x01(\tB\x03\xe0A\x02R\aversion\x12\x1b\n" +
-	"\x06digest\x18\x04 \x01(\tB\x03\xe0A\x01R\x06digestJ\x04\b\x01\x10\x02\"$\n" +
-	"\x1cDeployUserModelAdminResponseJ\x04\b\x01\x10\x02\"\xa0\x01\n" +
-	"#DeployOrganizationModelAdminRequest\x127\n" +
-	"\x04name\x18\x02 \x01(\tB#\x92A\x1d\xca>\x1a\xfa\x02\x17organization_model_name\xe0A\x02R\x04name\x12\x1d\n" +
-	"\aversion\x18\x03 \x01(\tB\x03\xe0A\x02R\aversion\x12\x1b\n" +
-	"\x06digest\x18\x04 \x01(\tB\x03\xe0A\x01R\x06digestJ\x04\b\x01\x10\x02\"&\n" +
-	"$DeployOrganizationModelAdminResponse\"\x92\x01\n" +
-	"\x1dUndeployUserModelAdminRequest\x12/\n" +
-	"\x04name\x18\x02 \x01(\tB\x1b\x92A\x15\xca>\x12\xfa\x02\x0fuser_model_name\xe0A\x02R\x04name\x12\x1d\n" +
-	"\aversion\x18\x03 \x01(\tB\x03\xe0A\x02R\aversion\x12\x1b\n" +
-	"\x06digest\x18\x04 \x01(\tB\x03\xe0A\x01R\x06digestJ\x04\b\x01\x10\x02\"&\n" +
-	"\x1eUndeployUserModelAdminResponseJ\x04\b\x01\x10\x02\"\xa2\x01\n" +
-	"%UndeployOrganizationModelAdminRequest\x127\n" +
-	"\x04name\x18\x02 \x01(\tB#\x92A\x1d\xca>\x1a\xfa\x02\x17organization_model_name\xe0A\x02R\x04name\x12\x1d\n" +
-	"\aversion\x18\x03 \x01(\tB\x03\xe0A\x02R\aversion\x12\x1b\n" +
-	"\x06digest\x18\x04 \x01(\tB\x03\xe0A\x01R\x06digestJ\x04\b\x01\x10\x02\"(\n" +
-	"&UndeployOrganizationModelAdminResponse\"\x93\a\n" +
-	"\bModelRun\x12\x15\n" +
-	"\x03uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x03uid\x12:\n" +
-	"\x06status\x18\x03 \x01(\x0e2\x1d.common.run.v1alpha.RunStatusB\x03\xe0A\x03R\x06status\x12:\n" +
-	"\x06source\x18\x04 \x01(\x0e2\x1d.common.run.v1alpha.RunSourceB\x03\xe0A\x03R\x06source\x122\n" +
-	"\x0etotal_duration\x18\x05 \x01(\x05B\x06\xe0A\x03\xe0A\x01H\x00R\rtotalDuration\x88\x01\x01\x12B\n" +
-	"\bend_time\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampB\x06\xe0A\x03\xe0A\x01H\x01R\aendTime\x88\x01\x01\x12(\n" +
-	"\trunner_id\x18\a \x01(\tB\x06\xe0A\x03\xe0A\x01H\x02R\brunnerId\x88\x01\x01\x120\n" +
-	"\rcredit_amount\x18\b \x01(\x02B\x06\xe0A\x03\xe0A\x01H\x03R\fcreditAmount\x88\x01\x01\x12!\n" +
-	"\x05error\x18\t \x01(\tB\x06\xe0A\x03\xe0A\x01H\x04R\x05error\x88\x01\x01\x12@\n" +
-	"\vcreate_time\x18\n" +
-	" \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
+	"\x05model\x18\x01 \x01(\v2\x14.model.v1alpha.ModelR\x05model\"\x88\b\n" +
+	"\bModelRun\x12\x17\n" +
+	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
+	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12@\n" +
+	"\vcreate_time\x18\a \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
 	"createTime\x12@\n" +
-	"\vupdate_time\x18\v \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
-	"updateTime\x12\x1d\n" +
-	"\aversion\x18\f \x01(\tB\x03\xe0A\x03R\aversion\x12=\n" +
-	"\vtask_inputs\x18\r \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\n" +
+	"\vupdate_time\x18\b \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
+	"updateTime\x12:\n" +
+	"\x06runner\x18\t \x01(\tB\x1d\xe0A\x03\xfaA\x17\n" +
+	"\x15api.instill.tech/UserH\x00R\x06runner\x88\x01\x01\x129\n" +
+	"\x05model\x18\n" +
+	" \x01(\tB\x1e\xe0A\x03\xfaA\x18\n" +
+	"\x16api.instill.tech/ModelH\x01R\x05model\x88\x01\x01\x12@\n" +
+	"\trequester\x18\v \x01(\tB\"\xe0A\x03\xfaA\x1c\n" +
+	"\x1aapi.instill.tech/NamespaceR\trequester\x12:\n" +
+	"\x06status\x18\f \x01(\x0e2\x1d.common.run.v1alpha.RunStatusB\x03\xe0A\x03R\x06status\x12:\n" +
+	"\x06source\x18\r \x01(\x0e2\x1d.common.run.v1alpha.RunSourceB\x03\xe0A\x03R\x06source\x12/\n" +
+	"\x0etotal_duration\x18\x0e \x01(\x05B\x03\xe0A\x03H\x02R\rtotalDuration\x88\x01\x01\x12?\n" +
+	"\bend_time\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03H\x03R\aendTime\x88\x01\x01\x12-\n" +
+	"\rcredit_amount\x18\x10 \x01(\x02B\x03\xe0A\x03H\x04R\fcreditAmount\x88\x01\x01\x12\x1e\n" +
+	"\x05error\x18\x11 \x01(\tB\x03\xe0A\x03H\x05R\x05error\x88\x01\x01\x12\x1d\n" +
+	"\aversion\x18\x12 \x01(\tB\x03\xe0A\x03R\aversion\x12=\n" +
+	"\vtask_inputs\x18\x13 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\n" +
 	"taskInputs\x12?\n" +
-	"\ftask_outputs\x18\x0e \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\vtaskOutputs\x12&\n" +
-	"\bmodel_id\x18\x0f \x01(\tB\x06\xe0A\x03\xe0A\x01H\x05R\amodelId\x88\x01\x01\x12&\n" +
-	"\frequester_id\x18\x10 \x01(\tB\x03\xe0A\x03R\vrequesterId\x121\n" +
-	"\x12model_namespace_id\x18\x15 \x01(\tB\x03\xe0A\x03R\x10modelNamespaceIdB\x11\n" +
+	"\ftask_outputs\x18\x14 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\vtaskOutputs:P\xeaAM\n" +
+	"\x19api.instill.tech/ModelRun\x120namespaces/{namespace}/models/{model}/runs/{run}B\t\n" +
+	"\a_runnerB\b\n" +
+	"\x06_modelB\x11\n" +
 	"\x0f_total_durationB\v\n" +
-	"\t_end_timeB\f\n" +
-	"\n" +
-	"_runner_idB\x10\n" +
+	"\t_end_timeB\x10\n" +
 	"\x0e_credit_amountB\b\n" +
-	"\x06_errorB\v\n" +
-	"\t_model_idJ\x04\b\x02\x10\x03\"\x9f\x02\n" +
-	"\x14ListModelRunsRequest\x12%\n" +
-	"\tpage_size\x18\x01 \x01(\x05B\x03\xe0A\x01H\x00R\bpageSize\x88\x01\x01\x12\x1c\n" +
-	"\x04page\x18\x02 \x01(\x05B\x03\xe0A\x01H\x01R\x04page\x88\x01\x01\x12#\n" +
-	"\border_by\x18\x04 \x01(\tB\x03\xe0A\x01H\x02R\aorderBy\x88\x01\x01\x12&\n" +
-	"\fnamespace_id\x18\x05 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12\x1e\n" +
-	"\bmodel_id\x18\x06 \x01(\tB\x03\xe0A\x02R\amodelId\x12 \n" +
-	"\x06filter\x18\a \x01(\tB\x03\xe0A\x01H\x03R\x06filter\x88\x01\x01B\f\n" +
+	"\x06_errorJ\x04\b\x03\x10\x04J\x04\b\x04\x10\x05J\x04\b\x05\x10\x06J\x04\b\x06\x10\a\"\x89\x02\n" +
+	"\x14ListModelRunsRequest\x126\n" +
+	"\x06parent\x18\x01 \x01(\tB\x1e\xe0A\x02\xfaA\x18\n" +
+	"\x16api.instill.tech/ModelR\x06parent\x12%\n" +
+	"\tpage_size\x18\x02 \x01(\x05B\x03\xe0A\x01H\x00R\bpageSize\x88\x01\x01\x12\x1c\n" +
+	"\x04page\x18\x03 \x01(\x05B\x03\xe0A\x01H\x01R\x04page\x88\x01\x01\x12#\n" +
+	"\border_by\x18\x04 \x01(\tB\x03\xe0A\x01H\x02R\aorderBy\x88\x01\x01\x12 \n" +
+	"\x06filter\x18\x05 \x01(\tB\x03\xe0A\x01H\x03R\x06filter\x88\x01\x01B\f\n" +
 	"\n" +
 	"_page_sizeB\a\n" +
 	"\x05_pageB\v\n" +
 	"\t_order_byB\t\n" +
-	"\a_filterJ\x04\b\x03\x10\x04\"\x83\x03\n" +
-	"\x1fListModelRunsByRequesterRequest\x12%\n" +
-	"\tpage_size\x18\x01 \x01(\x05B\x03\xe0A\x01H\x00R\bpageSize\x88\x01\x01\x12\x1c\n" +
-	"\x04page\x18\x02 \x01(\x05B\x03\xe0A\x01H\x01R\x04page\x88\x01\x01\x12#\n" +
-	"\border_by\x18\x03 \x01(\tB\x03\xe0A\x01H\x02R\aorderBy\x88\x01\x01\x12 \n" +
-	"\x06filter\x18\x04 \x01(\tB\x03\xe0A\x01H\x03R\x06filter\x88\x01\x01\x125\n" +
-	"\x05start\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampH\x04R\x05start\x88\x01\x01\x123\n" +
-	"\x04stop\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampH\x05R\x04stop\x88\x01\x01\x12&\n" +
-	"\frequester_id\x18\a \x01(\tB\x03\xe0A\x02R\vrequesterIdB\f\n" +
+	"\a_filter\"\xfe\x02\n" +
+	"\x1fListModelRunsByRequesterRequest\x12!\n" +
+	"\trequester\x18\x01 \x01(\tB\x03\xe0A\x02R\trequester\x12%\n" +
+	"\tpage_size\x18\x02 \x01(\x05B\x03\xe0A\x01H\x00R\bpageSize\x88\x01\x01\x12\x1c\n" +
+	"\x04page\x18\x03 \x01(\x05B\x03\xe0A\x01H\x01R\x04page\x88\x01\x01\x12#\n" +
+	"\border_by\x18\x04 \x01(\tB\x03\xe0A\x01H\x02R\aorderBy\x88\x01\x01\x12 \n" +
+	"\x06filter\x18\x05 \x01(\tB\x03\xe0A\x01H\x03R\x06filter\x88\x01\x01\x125\n" +
+	"\x05start\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampH\x04R\x05start\x88\x01\x01\x123\n" +
+	"\x04stop\x18\a \x01(\v2\x1a.google.protobuf.TimestampH\x05R\x04stop\x88\x01\x01B\f\n" +
 	"\n" +
 	"_page_sizeB\a\n" +
 	"\x05_pageB\v\n" +
@@ -9803,17 +5293,17 @@ const file_model_v1alpha_model_proto_rawDesc = "" +
 	"\x03tag\x18\x01 \x01(\v2\x1c.model.v1alpha.RepositoryTagR\x03tag\"5\n" +
 	"\x1aDeleteRepositoryTagRequest\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"\x1d\n" +
-	"\x1bDeleteRepositoryTagResponse*\xac\x01\n" +
+	"\x1bDeleteRepositoryTagResponse*\xa6\x01\n" +
 	"\x05State\x12\x15\n" +
 	"\x11STATE_UNSPECIFIED\x10\x00\x12\x11\n" +
 	"\rSTATE_OFFLINE\x10\x01\x12\x10\n" +
-	"\fSTATE_ACTIVE\x10\x03\x12\x0e\n" +
+	"\fSTATE_ACTIVE\x10\x02\x12\x0e\n" +
 	"\n" +
-	"STATE_IDLE\x10\x04\x12\x0f\n" +
-	"\vSTATE_ERROR\x10\x05\x12\x12\n" +
-	"\x0eSTATE_STARTING\x10\x06\x12\x14\n" +
-	"\x10STATE_SCALING_UP\x10\a\x12\x16\n" +
-	"\x12STATE_SCALING_DOWN\x10\b\"\x04\b\x02\x10\x02B\xb2\x01\n" +
+	"STATE_IDLE\x10\x03\x12\x0f\n" +
+	"\vSTATE_ERROR\x10\x04\x12\x12\n" +
+	"\x0eSTATE_STARTING\x10\x05\x12\x14\n" +
+	"\x10STATE_SCALING_UP\x10\x06\x12\x16\n" +
+	"\x12STATE_SCALING_DOWN\x10\aB\xb2\x01\n" +
 	"\x11com.model.v1alphaB\n" +
 	"ModelProtoP\x01Z<github.com/instill-ai/protogen-go/model/v1alpha;modelv1alpha\xa2\x02\x03MXX\xaa\x02\rModel.V1alpha\xca\x02\rModel\\V1alpha\xe2\x02\x19Model\\V1alpha\\GPBMetadata\xea\x02\x0eModel::V1alphab\x06proto3"
 
@@ -9830,7 +5320,7 @@ func file_model_v1alpha_model_proto_rawDescGZIP() []byte {
 }
 
 var file_model_v1alpha_model_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_model_v1alpha_model_proto_msgTypes = make([]protoimpl.MessageInfo, 148)
+var file_model_v1alpha_model_proto_msgTypes = make([]protoimpl.MessageInfo, 76)
 var file_model_v1alpha_model_proto_goTypes = []any{
 	(State)(0),                                                  // 0: model.v1alpha.State
 	(Model_Visibility)(0),                                       // 1: model.v1alpha.Model.Visibility
@@ -9886,264 +5376,133 @@ var file_model_v1alpha_model_proto_goTypes = []any{
 	(*DeployNamespaceModelAdminResponse)(nil),                   // 51: model.v1alpha.DeployNamespaceModelAdminResponse
 	(*UndeployNamespaceModelAdminRequest)(nil),                  // 52: model.v1alpha.UndeployNamespaceModelAdminRequest
 	(*UndeployNamespaceModelAdminResponse)(nil),                 // 53: model.v1alpha.UndeployNamespaceModelAdminResponse
-	(*CreateUserModelRequest)(nil),                              // 54: model.v1alpha.CreateUserModelRequest
-	(*CreateUserModelResponse)(nil),                             // 55: model.v1alpha.CreateUserModelResponse
-	(*ListUserModelsRequest)(nil),                               // 56: model.v1alpha.ListUserModelsRequest
-	(*ListUserModelsResponse)(nil),                              // 57: model.v1alpha.ListUserModelsResponse
-	(*GetUserModelRequest)(nil),                                 // 58: model.v1alpha.GetUserModelRequest
-	(*GetUserModelResponse)(nil),                                // 59: model.v1alpha.GetUserModelResponse
-	(*UpdateUserModelRequest)(nil),                              // 60: model.v1alpha.UpdateUserModelRequest
-	(*UpdateUserModelResponse)(nil),                             // 61: model.v1alpha.UpdateUserModelResponse
-	(*DeleteUserModelRequest)(nil),                              // 62: model.v1alpha.DeleteUserModelRequest
-	(*DeleteUserModelResponse)(nil),                             // 63: model.v1alpha.DeleteUserModelResponse
-	(*RenameUserModelRequest)(nil),                              // 64: model.v1alpha.RenameUserModelRequest
-	(*RenameUserModelResponse)(nil),                             // 65: model.v1alpha.RenameUserModelResponse
-	(*WatchUserModelRequest)(nil),                               // 66: model.v1alpha.WatchUserModelRequest
-	(*WatchUserModelResponse)(nil),                              // 67: model.v1alpha.WatchUserModelResponse
-	(*WatchUserLatestModelRequest)(nil),                         // 68: model.v1alpha.WatchUserLatestModelRequest
-	(*WatchUserLatestModelResponse)(nil),                        // 69: model.v1alpha.WatchUserLatestModelResponse
-	(*ListUserModelVersionsRequest)(nil),                        // 70: model.v1alpha.ListUserModelVersionsRequest
-	(*ListUserModelVersionsResponse)(nil),                       // 71: model.v1alpha.ListUserModelVersionsResponse
-	(*DeleteUserModelVersionRequest)(nil),                       // 72: model.v1alpha.DeleteUserModelVersionRequest
-	(*DeleteUserModelVersionResponse)(nil),                      // 73: model.v1alpha.DeleteUserModelVersionResponse
-	(*TriggerUserModelRequest)(nil),                             // 74: model.v1alpha.TriggerUserModelRequest
-	(*TriggerUserModelResponse)(nil),                            // 75: model.v1alpha.TriggerUserModelResponse
-	(*TriggerAsyncUserModelRequest)(nil),                        // 76: model.v1alpha.TriggerAsyncUserModelRequest
-	(*TriggerAsyncUserModelResponse)(nil),                       // 77: model.v1alpha.TriggerAsyncUserModelResponse
-	(*TriggerUserLatestModelRequest)(nil),                       // 78: model.v1alpha.TriggerUserLatestModelRequest
-	(*TriggerUserLatestModelResponse)(nil),                      // 79: model.v1alpha.TriggerUserLatestModelResponse
-	(*TriggerAsyncUserLatestModelRequest)(nil),                  // 80: model.v1alpha.TriggerAsyncUserLatestModelRequest
-	(*TriggerAsyncUserLatestModelResponse)(nil),                 // 81: model.v1alpha.TriggerAsyncUserLatestModelResponse
-	(*TriggerUserModelBinaryFileUploadRequest)(nil),             // 82: model.v1alpha.TriggerUserModelBinaryFileUploadRequest
-	(*TriggerUserModelBinaryFileUploadResponse)(nil),            // 83: model.v1alpha.TriggerUserModelBinaryFileUploadResponse
-	(*CreateOrganizationModelRequest)(nil),                      // 84: model.v1alpha.CreateOrganizationModelRequest
-	(*CreateOrganizationModelResponse)(nil),                     // 85: model.v1alpha.CreateOrganizationModelResponse
-	(*ListOrganizationModelsRequest)(nil),                       // 86: model.v1alpha.ListOrganizationModelsRequest
-	(*ListOrganizationModelsResponse)(nil),                      // 87: model.v1alpha.ListOrganizationModelsResponse
-	(*GetOrganizationModelRequest)(nil),                         // 88: model.v1alpha.GetOrganizationModelRequest
-	(*GetOrganizationModelResponse)(nil),                        // 89: model.v1alpha.GetOrganizationModelResponse
-	(*UpdateOrganizationModelRequest)(nil),                      // 90: model.v1alpha.UpdateOrganizationModelRequest
-	(*UpdateOrganizationModelResponse)(nil),                     // 91: model.v1alpha.UpdateOrganizationModelResponse
-	(*DeleteOrganizationModelRequest)(nil),                      // 92: model.v1alpha.DeleteOrganizationModelRequest
-	(*DeleteOrganizationModelResponse)(nil),                     // 93: model.v1alpha.DeleteOrganizationModelResponse
-	(*RenameOrganizationModelRequest)(nil),                      // 94: model.v1alpha.RenameOrganizationModelRequest
-	(*RenameOrganizationModelResponse)(nil),                     // 95: model.v1alpha.RenameOrganizationModelResponse
-	(*WatchOrganizationModelRequest)(nil),                       // 96: model.v1alpha.WatchOrganizationModelRequest
-	(*WatchOrganizationModelResponse)(nil),                      // 97: model.v1alpha.WatchOrganizationModelResponse
-	(*WatchOrganizationLatestModelRequest)(nil),                 // 98: model.v1alpha.WatchOrganizationLatestModelRequest
-	(*WatchOrganizationLatestModelResponse)(nil),                // 99: model.v1alpha.WatchOrganizationLatestModelResponse
-	(*ListOrganizationModelVersionsRequest)(nil),                // 100: model.v1alpha.ListOrganizationModelVersionsRequest
-	(*ListOrganizationModelVersionsResponse)(nil),               // 101: model.v1alpha.ListOrganizationModelVersionsResponse
-	(*DeleteOrganizationModelVersionRequest)(nil),               // 102: model.v1alpha.DeleteOrganizationModelVersionRequest
-	(*DeleteOrganizationModelVersionResponse)(nil),              // 103: model.v1alpha.DeleteOrganizationModelVersionResponse
-	(*TriggerOrganizationModelRequest)(nil),                     // 104: model.v1alpha.TriggerOrganizationModelRequest
-	(*TriggerOrganizationModelResponse)(nil),                    // 105: model.v1alpha.TriggerOrganizationModelResponse
-	(*TriggerAsyncOrganizationModelRequest)(nil),                // 106: model.v1alpha.TriggerAsyncOrganizationModelRequest
-	(*TriggerAsyncOrganizationModelResponse)(nil),               // 107: model.v1alpha.TriggerAsyncOrganizationModelResponse
-	(*TriggerOrganizationLatestModelRequest)(nil),               // 108: model.v1alpha.TriggerOrganizationLatestModelRequest
-	(*TriggerOrganizationLatestModelResponse)(nil),              // 109: model.v1alpha.TriggerOrganizationLatestModelResponse
-	(*TriggerAsyncOrganizationLatestModelRequest)(nil),          // 110: model.v1alpha.TriggerAsyncOrganizationLatestModelRequest
-	(*TriggerAsyncOrganizationLatestModelResponse)(nil),         // 111: model.v1alpha.TriggerAsyncOrganizationLatestModelResponse
-	(*TriggerOrganizationModelBinaryFileUploadRequest)(nil),     // 112: model.v1alpha.TriggerOrganizationModelBinaryFileUploadRequest
-	(*TriggerOrganizationModelBinaryFileUploadResponse)(nil),    // 113: model.v1alpha.TriggerOrganizationModelBinaryFileUploadResponse
-	(*GetModelOperationRequest)(nil),                            // 114: model.v1alpha.GetModelOperationRequest
-	(*GetModelOperationResponse)(nil),                           // 115: model.v1alpha.GetModelOperationResponse
-	(*LatestOperation)(nil),                                     // 116: model.v1alpha.LatestOperation
-	(*GetUserLatestModelOperationRequest)(nil),                  // 117: model.v1alpha.GetUserLatestModelOperationRequest
-	(*GetUserLatestModelOperationResponse)(nil),                 // 118: model.v1alpha.GetUserLatestModelOperationResponse
-	(*GetOrganizationLatestModelOperationRequest)(nil),          // 119: model.v1alpha.GetOrganizationLatestModelOperationRequest
-	(*GetOrganizationLatestModelOperationResponse)(nil),         // 120: model.v1alpha.GetOrganizationLatestModelOperationResponse
-	(*ListAvailableRegionsRequest)(nil),                         // 121: model.v1alpha.ListAvailableRegionsRequest
-	(*ListAvailableRegionsResponse)(nil),                        // 122: model.v1alpha.ListAvailableRegionsResponse
-	(*ListModelsAdminRequest)(nil),                              // 123: model.v1alpha.ListModelsAdminRequest
-	(*ListModelsAdminResponse)(nil),                             // 124: model.v1alpha.ListModelsAdminResponse
-	(*LookUpModelAdminRequest)(nil),                             // 125: model.v1alpha.LookUpModelAdminRequest
-	(*LookUpModelAdminResponse)(nil),                            // 126: model.v1alpha.LookUpModelAdminResponse
-	(*DeployUserModelAdminRequest)(nil),                         // 127: model.v1alpha.DeployUserModelAdminRequest
-	(*DeployUserModelAdminResponse)(nil),                        // 128: model.v1alpha.DeployUserModelAdminResponse
-	(*DeployOrganizationModelAdminRequest)(nil),                 // 129: model.v1alpha.DeployOrganizationModelAdminRequest
-	(*DeployOrganizationModelAdminResponse)(nil),                // 130: model.v1alpha.DeployOrganizationModelAdminResponse
-	(*UndeployUserModelAdminRequest)(nil),                       // 131: model.v1alpha.UndeployUserModelAdminRequest
-	(*UndeployUserModelAdminResponse)(nil),                      // 132: model.v1alpha.UndeployUserModelAdminResponse
-	(*UndeployOrganizationModelAdminRequest)(nil),               // 133: model.v1alpha.UndeployOrganizationModelAdminRequest
-	(*UndeployOrganizationModelAdminResponse)(nil),              // 134: model.v1alpha.UndeployOrganizationModelAdminResponse
-	(*ModelRun)(nil),                                            // 135: model.v1alpha.ModelRun
-	(*ListModelRunsRequest)(nil),                                // 136: model.v1alpha.ListModelRunsRequest
-	(*ListModelRunsByRequesterRequest)(nil),                     // 137: model.v1alpha.ListModelRunsByRequesterRequest
-	(*ListModelRunsResponse)(nil),                               // 138: model.v1alpha.ListModelRunsResponse
-	(*ListModelRunsByRequesterResponse)(nil),                    // 139: model.v1alpha.ListModelRunsByRequesterResponse
-	(*RepositoryTag)(nil),                                       // 140: model.v1alpha.RepositoryTag
-	(*ListRepositoryTagsRequest)(nil),                           // 141: model.v1alpha.ListRepositoryTagsRequest
-	(*ListRepositoryTagsResponse)(nil),                          // 142: model.v1alpha.ListRepositoryTagsResponse
-	(*CreateRepositoryTagRequest)(nil),                          // 143: model.v1alpha.CreateRepositoryTagRequest
-	(*CreateRepositoryTagResponse)(nil),                         // 144: model.v1alpha.CreateRepositoryTagResponse
-	(*GetRepositoryTagRequest)(nil),                             // 145: model.v1alpha.GetRepositoryTagRequest
-	(*GetRepositoryTagResponse)(nil),                            // 146: model.v1alpha.GetRepositoryTagResponse
-	(*DeleteRepositoryTagRequest)(nil),                          // 147: model.v1alpha.DeleteRepositoryTagRequest
-	(*DeleteRepositoryTagResponse)(nil),                         // 148: model.v1alpha.DeleteRepositoryTagResponse
-	(*Model_Stats)(nil),                                         // 149: model.v1alpha.Model.Stats
-	(*v1beta.HealthCheckRequest)(nil),                           // 150: common.healthcheck.v1beta.HealthCheckRequest
-	(*v1beta.HealthCheckResponse)(nil),                          // 151: common.healthcheck.v1beta.HealthCheckResponse
-	(*timestamppb.Timestamp)(nil),                               // 152: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),                                     // 153: google.protobuf.Struct
-	(v1alpha.Task)(0),                                           // 154: common.task.v1alpha.Task
-	(*Permission)(nil),                                          // 155: model.v1alpha.Permission
-	(*v1beta1.Owner)(nil),                                       // 156: mgmt.v1beta.Owner
-	(*v1beta1.User)(nil),                                        // 157: mgmt.v1beta.User
-	(View)(0),                                                   // 158: model.v1alpha.View
-	(*fieldmaskpb.FieldMask)(nil),                               // 159: google.protobuf.FieldMask
-	(*longrunningpb.Operation)(nil),                             // 160: google.longrunning.Operation
-	(v1alpha1.RunStatus)(0),                                     // 161: common.run.v1alpha.RunStatus
-	(v1alpha1.RunSource)(0),                                     // 162: common.run.v1alpha.RunSource
+	(*GetModelOperationRequest)(nil),                            // 54: model.v1alpha.GetModelOperationRequest
+	(*GetModelOperationResponse)(nil),                           // 55: model.v1alpha.GetModelOperationResponse
+	(*LatestOperation)(nil),                                     // 56: model.v1alpha.LatestOperation
+	(*ListAvailableRegionsRequest)(nil),                         // 57: model.v1alpha.ListAvailableRegionsRequest
+	(*ListAvailableRegionsResponse)(nil),                        // 58: model.v1alpha.ListAvailableRegionsResponse
+	(*ListModelsAdminRequest)(nil),                              // 59: model.v1alpha.ListModelsAdminRequest
+	(*ListModelsAdminResponse)(nil),                             // 60: model.v1alpha.ListModelsAdminResponse
+	(*LookUpModelAdminRequest)(nil),                             // 61: model.v1alpha.LookUpModelAdminRequest
+	(*LookUpModelAdminResponse)(nil),                            // 62: model.v1alpha.LookUpModelAdminResponse
+	(*ModelRun)(nil),                                            // 63: model.v1alpha.ModelRun
+	(*ListModelRunsRequest)(nil),                                // 64: model.v1alpha.ListModelRunsRequest
+	(*ListModelRunsByRequesterRequest)(nil),                     // 65: model.v1alpha.ListModelRunsByRequesterRequest
+	(*ListModelRunsResponse)(nil),                               // 66: model.v1alpha.ListModelRunsResponse
+	(*ListModelRunsByRequesterResponse)(nil),                    // 67: model.v1alpha.ListModelRunsByRequesterResponse
+	(*RepositoryTag)(nil),                                       // 68: model.v1alpha.RepositoryTag
+	(*ListRepositoryTagsRequest)(nil),                           // 69: model.v1alpha.ListRepositoryTagsRequest
+	(*ListRepositoryTagsResponse)(nil),                          // 70: model.v1alpha.ListRepositoryTagsResponse
+	(*CreateRepositoryTagRequest)(nil),                          // 71: model.v1alpha.CreateRepositoryTagRequest
+	(*CreateRepositoryTagResponse)(nil),                         // 72: model.v1alpha.CreateRepositoryTagResponse
+	(*GetRepositoryTagRequest)(nil),                             // 73: model.v1alpha.GetRepositoryTagRequest
+	(*GetRepositoryTagResponse)(nil),                            // 74: model.v1alpha.GetRepositoryTagResponse
+	(*DeleteRepositoryTagRequest)(nil),                          // 75: model.v1alpha.DeleteRepositoryTagRequest
+	(*DeleteRepositoryTagResponse)(nil),                         // 76: model.v1alpha.DeleteRepositoryTagResponse
+	(*Model_Stats)(nil),                                         // 77: model.v1alpha.Model.Stats
+	(*v1beta.HealthCheckRequest)(nil),                           // 78: common.healthcheck.v1beta.HealthCheckRequest
+	(*v1beta.HealthCheckResponse)(nil),                          // 79: common.healthcheck.v1beta.HealthCheckResponse
+	(*timestamppb.Timestamp)(nil),                               // 80: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),                                     // 81: google.protobuf.Struct
+	(v1alpha.Task)(0),                                           // 82: common.task.v1alpha.Task
+	(*Permission)(nil),                                          // 83: model.v1alpha.Permission
+	(*v1beta1.Owner)(nil),                                       // 84: mgmt.v1beta.Owner
+	(*v1beta1.User)(nil),                                        // 85: mgmt.v1beta.User
+	(View)(0),                                                   // 86: model.v1alpha.View
+	(*fieldmaskpb.FieldMask)(nil),                               // 87: google.protobuf.FieldMask
+	(*longrunningpb.Operation)(nil),                             // 88: google.longrunning.Operation
+	(v1alpha1.RunStatus)(0),                                     // 89: common.run.v1alpha.RunStatus
+	(v1alpha1.RunSource)(0),                                     // 90: common.run.v1alpha.RunSource
 }
 var file_model_v1alpha_model_proto_depIdxs = []int32{
-	150, // 0: model.v1alpha.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	151, // 1: model.v1alpha.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
-	150, // 2: model.v1alpha.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
-	151, // 3: model.v1alpha.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
-	7,   // 4: model.v1alpha.Region.hardware:type_name -> model.v1alpha.Hardware
-	0,   // 5: model.v1alpha.ModelVersion.state:type_name -> model.v1alpha.State
-	152, // 6: model.v1alpha.ModelVersion.update_time:type_name -> google.protobuf.Timestamp
-	152, // 7: model.v1alpha.Model.create_time:type_name -> google.protobuf.Timestamp
-	152, // 8: model.v1alpha.Model.update_time:type_name -> google.protobuf.Timestamp
-	153, // 9: model.v1alpha.Model.configuration:type_name -> google.protobuf.Struct
-	154, // 10: model.v1alpha.Model.task:type_name -> common.task.v1alpha.Task
-	1,   // 11: model.v1alpha.Model.visibility:type_name -> model.v1alpha.Model.Visibility
-	155, // 12: model.v1alpha.Model.permission:type_name -> model.v1alpha.Permission
-	153, // 13: model.v1alpha.Model.input_schema:type_name -> google.protobuf.Struct
-	153, // 14: model.v1alpha.Model.output_schema:type_name -> google.protobuf.Struct
-	149, // 15: model.v1alpha.Model.stats:type_name -> model.v1alpha.Model.Stats
-	156, // 16: model.v1alpha.Model.owner:type_name -> mgmt.v1beta.Owner
-	157, // 17: model.v1alpha.Model.creator:type_name -> mgmt.v1beta.User
-	152, // 18: model.v1alpha.Model.delete_time:type_name -> google.protobuf.Timestamp
-	158, // 19: model.v1alpha.ListModelsRequest.view:type_name -> model.v1alpha.View
-	1,   // 20: model.v1alpha.ListModelsRequest.visibility:type_name -> model.v1alpha.Model.Visibility
-	9,   // 21: model.v1alpha.ListModelsResponse.models:type_name -> model.v1alpha.Model
-	158, // 22: model.v1alpha.LookUpModelRequest.view:type_name -> model.v1alpha.View
-	9,   // 23: model.v1alpha.LookUpModelResponse.model:type_name -> model.v1alpha.Model
-	158, // 24: model.v1alpha.ListNamespaceModelsRequest.view:type_name -> model.v1alpha.View
-	1,   // 25: model.v1alpha.ListNamespaceModelsRequest.visibility:type_name -> model.v1alpha.Model.Visibility
-	9,   // 26: model.v1alpha.ListNamespaceModelsResponse.models:type_name -> model.v1alpha.Model
-	9,   // 27: model.v1alpha.CreateNamespaceModelRequest.model:type_name -> model.v1alpha.Model
-	9,   // 28: model.v1alpha.CreateNamespaceModelResponse.model:type_name -> model.v1alpha.Model
-	158, // 29: model.v1alpha.GetNamespaceModelRequest.view:type_name -> model.v1alpha.View
-	9,   // 30: model.v1alpha.GetNamespaceModelResponse.model:type_name -> model.v1alpha.Model
-	9,   // 31: model.v1alpha.UpdateNamespaceModelRequest.model:type_name -> model.v1alpha.Model
-	159, // 32: model.v1alpha.UpdateNamespaceModelRequest.update_mask:type_name -> google.protobuf.FieldMask
-	9,   // 33: model.v1alpha.UpdateNamespaceModelResponse.model:type_name -> model.v1alpha.Model
-	9,   // 34: model.v1alpha.RenameNamespaceModelResponse.model:type_name -> model.v1alpha.Model
-	0,   // 35: model.v1alpha.WatchNamespaceModelResponse.state:type_name -> model.v1alpha.State
-	0,   // 36: model.v1alpha.WatchNamespaceLatestModelResponse.state:type_name -> model.v1alpha.State
-	8,   // 37: model.v1alpha.ListNamespaceModelVersionsResponse.versions:type_name -> model.v1alpha.ModelVersion
-	153, // 38: model.v1alpha.TriggerNamespaceModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	154, // 39: model.v1alpha.TriggerNamespaceModelResponse.task:type_name -> common.task.v1alpha.Task
-	153, // 40: model.v1alpha.TriggerNamespaceModelResponse.task_outputs:type_name -> google.protobuf.Struct
-	153, // 41: model.v1alpha.TriggerAsyncNamespaceModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	160, // 42: model.v1alpha.TriggerAsyncNamespaceModelResponse.operation:type_name -> google.longrunning.Operation
-	153, // 43: model.v1alpha.TriggerNamespaceLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	154, // 44: model.v1alpha.TriggerNamespaceLatestModelResponse.task:type_name -> common.task.v1alpha.Task
-	153, // 45: model.v1alpha.TriggerNamespaceLatestModelResponse.task_outputs:type_name -> google.protobuf.Struct
-	153, // 46: model.v1alpha.TriggerAsyncNamespaceLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	160, // 47: model.v1alpha.TriggerAsyncNamespaceLatestModelResponse.operation:type_name -> google.longrunning.Operation
-	153, // 48: model.v1alpha.TriggerNamespaceModelBinaryFileUploadRequest.task_input:type_name -> google.protobuf.Struct
-	154, // 49: model.v1alpha.TriggerNamespaceModelBinaryFileUploadResponse.task:type_name -> common.task.v1alpha.Task
-	153, // 50: model.v1alpha.TriggerNamespaceModelBinaryFileUploadResponse.task_outputs:type_name -> google.protobuf.Struct
-	153, // 51: model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadRequest.task_input:type_name -> google.protobuf.Struct
-	154, // 52: model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadResponse.task:type_name -> common.task.v1alpha.Task
-	153, // 53: model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadResponse.task_outputs:type_name -> google.protobuf.Struct
-	158, // 54: model.v1alpha.GetNamespaceLatestModelOperationRequest.view:type_name -> model.v1alpha.View
-	160, // 55: model.v1alpha.GetNamespaceLatestModelOperationResponse.operation:type_name -> google.longrunning.Operation
-	158, // 56: model.v1alpha.GetNamespaceModelOperationRequest.view:type_name -> model.v1alpha.View
-	160, // 57: model.v1alpha.GetNamespaceModelOperationResponse.operation:type_name -> google.longrunning.Operation
-	9,   // 58: model.v1alpha.CreateUserModelRequest.model:type_name -> model.v1alpha.Model
-	9,   // 59: model.v1alpha.CreateUserModelResponse.model:type_name -> model.v1alpha.Model
-	158, // 60: model.v1alpha.ListUserModelsRequest.view:type_name -> model.v1alpha.View
-	1,   // 61: model.v1alpha.ListUserModelsRequest.visibility:type_name -> model.v1alpha.Model.Visibility
-	9,   // 62: model.v1alpha.ListUserModelsResponse.models:type_name -> model.v1alpha.Model
-	158, // 63: model.v1alpha.GetUserModelRequest.view:type_name -> model.v1alpha.View
-	9,   // 64: model.v1alpha.GetUserModelResponse.model:type_name -> model.v1alpha.Model
-	9,   // 65: model.v1alpha.UpdateUserModelRequest.model:type_name -> model.v1alpha.Model
-	159, // 66: model.v1alpha.UpdateUserModelRequest.update_mask:type_name -> google.protobuf.FieldMask
-	9,   // 67: model.v1alpha.UpdateUserModelResponse.model:type_name -> model.v1alpha.Model
-	9,   // 68: model.v1alpha.RenameUserModelResponse.model:type_name -> model.v1alpha.Model
-	0,   // 69: model.v1alpha.WatchUserModelResponse.state:type_name -> model.v1alpha.State
-	0,   // 70: model.v1alpha.WatchUserLatestModelResponse.state:type_name -> model.v1alpha.State
-	8,   // 71: model.v1alpha.ListUserModelVersionsResponse.versions:type_name -> model.v1alpha.ModelVersion
-	153, // 72: model.v1alpha.TriggerUserModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	154, // 73: model.v1alpha.TriggerUserModelResponse.task:type_name -> common.task.v1alpha.Task
-	153, // 74: model.v1alpha.TriggerUserModelResponse.task_outputs:type_name -> google.protobuf.Struct
-	153, // 75: model.v1alpha.TriggerAsyncUserModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	160, // 76: model.v1alpha.TriggerAsyncUserModelResponse.operation:type_name -> google.longrunning.Operation
-	153, // 77: model.v1alpha.TriggerUserLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	154, // 78: model.v1alpha.TriggerUserLatestModelResponse.task:type_name -> common.task.v1alpha.Task
-	153, // 79: model.v1alpha.TriggerUserLatestModelResponse.task_outputs:type_name -> google.protobuf.Struct
-	153, // 80: model.v1alpha.TriggerAsyncUserLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	160, // 81: model.v1alpha.TriggerAsyncUserLatestModelResponse.operation:type_name -> google.longrunning.Operation
-	153, // 82: model.v1alpha.TriggerUserModelBinaryFileUploadRequest.task_inputs:type_name -> google.protobuf.Struct
-	154, // 83: model.v1alpha.TriggerUserModelBinaryFileUploadResponse.task:type_name -> common.task.v1alpha.Task
-	153, // 84: model.v1alpha.TriggerUserModelBinaryFileUploadResponse.task_outputs:type_name -> google.protobuf.Struct
-	9,   // 85: model.v1alpha.CreateOrganizationModelRequest.model:type_name -> model.v1alpha.Model
-	9,   // 86: model.v1alpha.CreateOrganizationModelResponse.model:type_name -> model.v1alpha.Model
-	158, // 87: model.v1alpha.ListOrganizationModelsRequest.view:type_name -> model.v1alpha.View
-	1,   // 88: model.v1alpha.ListOrganizationModelsRequest.visibility:type_name -> model.v1alpha.Model.Visibility
-	9,   // 89: model.v1alpha.ListOrganizationModelsResponse.models:type_name -> model.v1alpha.Model
-	158, // 90: model.v1alpha.GetOrganizationModelRequest.view:type_name -> model.v1alpha.View
-	9,   // 91: model.v1alpha.GetOrganizationModelResponse.model:type_name -> model.v1alpha.Model
-	9,   // 92: model.v1alpha.UpdateOrganizationModelRequest.model:type_name -> model.v1alpha.Model
-	159, // 93: model.v1alpha.UpdateOrganizationModelRequest.update_mask:type_name -> google.protobuf.FieldMask
-	9,   // 94: model.v1alpha.UpdateOrganizationModelResponse.model:type_name -> model.v1alpha.Model
-	9,   // 95: model.v1alpha.RenameOrganizationModelResponse.model:type_name -> model.v1alpha.Model
-	0,   // 96: model.v1alpha.WatchOrganizationModelResponse.state:type_name -> model.v1alpha.State
-	0,   // 97: model.v1alpha.WatchOrganizationLatestModelResponse.state:type_name -> model.v1alpha.State
-	8,   // 98: model.v1alpha.ListOrganizationModelVersionsResponse.versions:type_name -> model.v1alpha.ModelVersion
-	153, // 99: model.v1alpha.TriggerOrganizationModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	154, // 100: model.v1alpha.TriggerOrganizationModelResponse.task:type_name -> common.task.v1alpha.Task
-	153, // 101: model.v1alpha.TriggerOrganizationModelResponse.task_outputs:type_name -> google.protobuf.Struct
-	153, // 102: model.v1alpha.TriggerAsyncOrganizationModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	160, // 103: model.v1alpha.TriggerAsyncOrganizationModelResponse.operation:type_name -> google.longrunning.Operation
-	153, // 104: model.v1alpha.TriggerOrganizationLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	154, // 105: model.v1alpha.TriggerOrganizationLatestModelResponse.task:type_name -> common.task.v1alpha.Task
-	153, // 106: model.v1alpha.TriggerOrganizationLatestModelResponse.task_outputs:type_name -> google.protobuf.Struct
-	153, // 107: model.v1alpha.TriggerAsyncOrganizationLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
-	160, // 108: model.v1alpha.TriggerAsyncOrganizationLatestModelResponse.operation:type_name -> google.longrunning.Operation
-	153, // 109: model.v1alpha.TriggerOrganizationModelBinaryFileUploadRequest.task_inputs:type_name -> google.protobuf.Struct
-	154, // 110: model.v1alpha.TriggerOrganizationModelBinaryFileUploadResponse.task:type_name -> common.task.v1alpha.Task
-	153, // 111: model.v1alpha.TriggerOrganizationModelBinaryFileUploadResponse.task_outputs:type_name -> google.protobuf.Struct
-	158, // 112: model.v1alpha.GetModelOperationRequest.view:type_name -> model.v1alpha.View
-	160, // 113: model.v1alpha.GetModelOperationResponse.operation:type_name -> google.longrunning.Operation
-	34,  // 114: model.v1alpha.LatestOperation.request:type_name -> model.v1alpha.TriggerNamespaceModelRequest
-	35,  // 115: model.v1alpha.LatestOperation.response:type_name -> model.v1alpha.TriggerNamespaceModelResponse
-	158, // 116: model.v1alpha.GetUserLatestModelOperationRequest.view:type_name -> model.v1alpha.View
-	160, // 117: model.v1alpha.GetUserLatestModelOperationResponse.operation:type_name -> google.longrunning.Operation
-	158, // 118: model.v1alpha.GetOrganizationLatestModelOperationRequest.view:type_name -> model.v1alpha.View
-	160, // 119: model.v1alpha.GetOrganizationLatestModelOperationResponse.operation:type_name -> google.longrunning.Operation
-	6,   // 120: model.v1alpha.ListAvailableRegionsResponse.regions:type_name -> model.v1alpha.Region
-	158, // 121: model.v1alpha.ListModelsAdminRequest.view:type_name -> model.v1alpha.View
-	9,   // 122: model.v1alpha.ListModelsAdminResponse.models:type_name -> model.v1alpha.Model
-	158, // 123: model.v1alpha.LookUpModelAdminRequest.view:type_name -> model.v1alpha.View
-	9,   // 124: model.v1alpha.LookUpModelAdminResponse.model:type_name -> model.v1alpha.Model
-	161, // 125: model.v1alpha.ModelRun.status:type_name -> common.run.v1alpha.RunStatus
-	162, // 126: model.v1alpha.ModelRun.source:type_name -> common.run.v1alpha.RunSource
-	152, // 127: model.v1alpha.ModelRun.end_time:type_name -> google.protobuf.Timestamp
-	152, // 128: model.v1alpha.ModelRun.create_time:type_name -> google.protobuf.Timestamp
-	152, // 129: model.v1alpha.ModelRun.update_time:type_name -> google.protobuf.Timestamp
-	153, // 130: model.v1alpha.ModelRun.task_inputs:type_name -> google.protobuf.Struct
-	153, // 131: model.v1alpha.ModelRun.task_outputs:type_name -> google.protobuf.Struct
-	152, // 132: model.v1alpha.ListModelRunsByRequesterRequest.start:type_name -> google.protobuf.Timestamp
-	152, // 133: model.v1alpha.ListModelRunsByRequesterRequest.stop:type_name -> google.protobuf.Timestamp
-	135, // 134: model.v1alpha.ListModelRunsResponse.runs:type_name -> model.v1alpha.ModelRun
-	135, // 135: model.v1alpha.ListModelRunsByRequesterResponse.runs:type_name -> model.v1alpha.ModelRun
-	152, // 136: model.v1alpha.RepositoryTag.update_time:type_name -> google.protobuf.Timestamp
-	140, // 137: model.v1alpha.ListRepositoryTagsResponse.tags:type_name -> model.v1alpha.RepositoryTag
-	140, // 138: model.v1alpha.CreateRepositoryTagRequest.tag:type_name -> model.v1alpha.RepositoryTag
-	140, // 139: model.v1alpha.CreateRepositoryTagResponse.tag:type_name -> model.v1alpha.RepositoryTag
-	140, // 140: model.v1alpha.GetRepositoryTagResponse.tag:type_name -> model.v1alpha.RepositoryTag
-	152, // 141: model.v1alpha.Model.Stats.last_run_time:type_name -> google.protobuf.Timestamp
-	142, // [142:142] is the sub-list for method output_type
-	142, // [142:142] is the sub-list for method input_type
-	142, // [142:142] is the sub-list for extension type_name
-	142, // [142:142] is the sub-list for extension extendee
-	0,   // [0:142] is the sub-list for field type_name
+	78, // 0: model.v1alpha.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	79, // 1: model.v1alpha.LivenessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	78, // 2: model.v1alpha.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
+	79, // 3: model.v1alpha.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
+	7,  // 4: model.v1alpha.Region.hardware:type_name -> model.v1alpha.Hardware
+	0,  // 5: model.v1alpha.ModelVersion.state:type_name -> model.v1alpha.State
+	80, // 6: model.v1alpha.ModelVersion.update_time:type_name -> google.protobuf.Timestamp
+	80, // 7: model.v1alpha.Model.create_time:type_name -> google.protobuf.Timestamp
+	80, // 8: model.v1alpha.Model.update_time:type_name -> google.protobuf.Timestamp
+	81, // 9: model.v1alpha.Model.configuration:type_name -> google.protobuf.Struct
+	82, // 10: model.v1alpha.Model.task:type_name -> common.task.v1alpha.Task
+	1,  // 11: model.v1alpha.Model.visibility:type_name -> model.v1alpha.Model.Visibility
+	83, // 12: model.v1alpha.Model.permission:type_name -> model.v1alpha.Permission
+	81, // 13: model.v1alpha.Model.input_schema:type_name -> google.protobuf.Struct
+	81, // 14: model.v1alpha.Model.output_schema:type_name -> google.protobuf.Struct
+	77, // 15: model.v1alpha.Model.stats:type_name -> model.v1alpha.Model.Stats
+	84, // 16: model.v1alpha.Model.owner:type_name -> mgmt.v1beta.Owner
+	85, // 17: model.v1alpha.Model.creator:type_name -> mgmt.v1beta.User
+	80, // 18: model.v1alpha.Model.delete_time:type_name -> google.protobuf.Timestamp
+	86, // 19: model.v1alpha.ListModelsRequest.view:type_name -> model.v1alpha.View
+	1,  // 20: model.v1alpha.ListModelsRequest.visibility:type_name -> model.v1alpha.Model.Visibility
+	9,  // 21: model.v1alpha.ListModelsResponse.models:type_name -> model.v1alpha.Model
+	86, // 22: model.v1alpha.LookUpModelRequest.view:type_name -> model.v1alpha.View
+	9,  // 23: model.v1alpha.LookUpModelResponse.model:type_name -> model.v1alpha.Model
+	86, // 24: model.v1alpha.ListNamespaceModelsRequest.view:type_name -> model.v1alpha.View
+	1,  // 25: model.v1alpha.ListNamespaceModelsRequest.visibility:type_name -> model.v1alpha.Model.Visibility
+	9,  // 26: model.v1alpha.ListNamespaceModelsResponse.models:type_name -> model.v1alpha.Model
+	9,  // 27: model.v1alpha.CreateNamespaceModelRequest.model:type_name -> model.v1alpha.Model
+	9,  // 28: model.v1alpha.CreateNamespaceModelResponse.model:type_name -> model.v1alpha.Model
+	86, // 29: model.v1alpha.GetNamespaceModelRequest.view:type_name -> model.v1alpha.View
+	9,  // 30: model.v1alpha.GetNamespaceModelResponse.model:type_name -> model.v1alpha.Model
+	9,  // 31: model.v1alpha.UpdateNamespaceModelRequest.model:type_name -> model.v1alpha.Model
+	87, // 32: model.v1alpha.UpdateNamespaceModelRequest.update_mask:type_name -> google.protobuf.FieldMask
+	9,  // 33: model.v1alpha.UpdateNamespaceModelResponse.model:type_name -> model.v1alpha.Model
+	9,  // 34: model.v1alpha.RenameNamespaceModelResponse.model:type_name -> model.v1alpha.Model
+	0,  // 35: model.v1alpha.WatchNamespaceModelResponse.state:type_name -> model.v1alpha.State
+	0,  // 36: model.v1alpha.WatchNamespaceLatestModelResponse.state:type_name -> model.v1alpha.State
+	8,  // 37: model.v1alpha.ListNamespaceModelVersionsResponse.versions:type_name -> model.v1alpha.ModelVersion
+	81, // 38: model.v1alpha.TriggerNamespaceModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	82, // 39: model.v1alpha.TriggerNamespaceModelResponse.task:type_name -> common.task.v1alpha.Task
+	81, // 40: model.v1alpha.TriggerNamespaceModelResponse.task_outputs:type_name -> google.protobuf.Struct
+	81, // 41: model.v1alpha.TriggerAsyncNamespaceModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	88, // 42: model.v1alpha.TriggerAsyncNamespaceModelResponse.operation:type_name -> google.longrunning.Operation
+	81, // 43: model.v1alpha.TriggerNamespaceLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	82, // 44: model.v1alpha.TriggerNamespaceLatestModelResponse.task:type_name -> common.task.v1alpha.Task
+	81, // 45: model.v1alpha.TriggerNamespaceLatestModelResponse.task_outputs:type_name -> google.protobuf.Struct
+	81, // 46: model.v1alpha.TriggerAsyncNamespaceLatestModelRequest.task_inputs:type_name -> google.protobuf.Struct
+	88, // 47: model.v1alpha.TriggerAsyncNamespaceLatestModelResponse.operation:type_name -> google.longrunning.Operation
+	81, // 48: model.v1alpha.TriggerNamespaceModelBinaryFileUploadRequest.task_input:type_name -> google.protobuf.Struct
+	82, // 49: model.v1alpha.TriggerNamespaceModelBinaryFileUploadResponse.task:type_name -> common.task.v1alpha.Task
+	81, // 50: model.v1alpha.TriggerNamespaceModelBinaryFileUploadResponse.task_outputs:type_name -> google.protobuf.Struct
+	81, // 51: model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadRequest.task_input:type_name -> google.protobuf.Struct
+	82, // 52: model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadResponse.task:type_name -> common.task.v1alpha.Task
+	81, // 53: model.v1alpha.TriggerNamespaceLatestModelBinaryFileUploadResponse.task_outputs:type_name -> google.protobuf.Struct
+	86, // 54: model.v1alpha.GetNamespaceLatestModelOperationRequest.view:type_name -> model.v1alpha.View
+	88, // 55: model.v1alpha.GetNamespaceLatestModelOperationResponse.operation:type_name -> google.longrunning.Operation
+	86, // 56: model.v1alpha.GetNamespaceModelOperationRequest.view:type_name -> model.v1alpha.View
+	88, // 57: model.v1alpha.GetNamespaceModelOperationResponse.operation:type_name -> google.longrunning.Operation
+	88, // 58: model.v1alpha.GetModelOperationResponse.operation:type_name -> google.longrunning.Operation
+	34, // 59: model.v1alpha.LatestOperation.request:type_name -> model.v1alpha.TriggerNamespaceModelRequest
+	35, // 60: model.v1alpha.LatestOperation.response:type_name -> model.v1alpha.TriggerNamespaceModelResponse
+	6,  // 61: model.v1alpha.ListAvailableRegionsResponse.regions:type_name -> model.v1alpha.Region
+	86, // 62: model.v1alpha.ListModelsAdminRequest.view:type_name -> model.v1alpha.View
+	9,  // 63: model.v1alpha.ListModelsAdminResponse.models:type_name -> model.v1alpha.Model
+	86, // 64: model.v1alpha.LookUpModelAdminRequest.view:type_name -> model.v1alpha.View
+	9,  // 65: model.v1alpha.LookUpModelAdminResponse.model:type_name -> model.v1alpha.Model
+	80, // 66: model.v1alpha.ModelRun.create_time:type_name -> google.protobuf.Timestamp
+	80, // 67: model.v1alpha.ModelRun.update_time:type_name -> google.protobuf.Timestamp
+	89, // 68: model.v1alpha.ModelRun.status:type_name -> common.run.v1alpha.RunStatus
+	90, // 69: model.v1alpha.ModelRun.source:type_name -> common.run.v1alpha.RunSource
+	80, // 70: model.v1alpha.ModelRun.end_time:type_name -> google.protobuf.Timestamp
+	81, // 71: model.v1alpha.ModelRun.task_inputs:type_name -> google.protobuf.Struct
+	81, // 72: model.v1alpha.ModelRun.task_outputs:type_name -> google.protobuf.Struct
+	80, // 73: model.v1alpha.ListModelRunsByRequesterRequest.start:type_name -> google.protobuf.Timestamp
+	80, // 74: model.v1alpha.ListModelRunsByRequesterRequest.stop:type_name -> google.protobuf.Timestamp
+	63, // 75: model.v1alpha.ListModelRunsResponse.runs:type_name -> model.v1alpha.ModelRun
+	63, // 76: model.v1alpha.ListModelRunsByRequesterResponse.runs:type_name -> model.v1alpha.ModelRun
+	80, // 77: model.v1alpha.RepositoryTag.update_time:type_name -> google.protobuf.Timestamp
+	68, // 78: model.v1alpha.ListRepositoryTagsResponse.tags:type_name -> model.v1alpha.RepositoryTag
+	68, // 79: model.v1alpha.CreateRepositoryTagRequest.tag:type_name -> model.v1alpha.RepositoryTag
+	68, // 80: model.v1alpha.CreateRepositoryTagResponse.tag:type_name -> model.v1alpha.RepositoryTag
+	68, // 81: model.v1alpha.GetRepositoryTagResponse.tag:type_name -> model.v1alpha.RepositoryTag
+	80, // 82: model.v1alpha.Model.Stats.last_run_time:type_name -> google.protobuf.Timestamp
+	83, // [83:83] is the sub-list for method output_type
+	83, // [83:83] is the sub-list for method input_type
+	83, // [83:83] is the sub-list for extension type_name
+	83, // [83:83] is the sub-list for extension extendee
+	0,  // [0:83] is the sub-list for field type_name
 }
 
 func init() { file_model_v1alpha_model_proto_init() }
@@ -10163,28 +5522,19 @@ func file_model_v1alpha_model_proto_init() {
 	file_model_v1alpha_model_proto_msgTypes[28].OneofWrappers = []any{}
 	file_model_v1alpha_model_proto_msgTypes[44].OneofWrappers = []any{}
 	file_model_v1alpha_model_proto_msgTypes[46].OneofWrappers = []any{}
-	file_model_v1alpha_model_proto_msgTypes[54].OneofWrappers = []any{}
-	file_model_v1alpha_model_proto_msgTypes[56].OneofWrappers = []any{}
-	file_model_v1alpha_model_proto_msgTypes[68].OneofWrappers = []any{}
-	file_model_v1alpha_model_proto_msgTypes[84].OneofWrappers = []any{}
-	file_model_v1alpha_model_proto_msgTypes[86].OneofWrappers = []any{}
-	file_model_v1alpha_model_proto_msgTypes[98].OneofWrappers = []any{}
-	file_model_v1alpha_model_proto_msgTypes[112].OneofWrappers = []any{}
-	file_model_v1alpha_model_proto_msgTypes[115].OneofWrappers = []any{}
-	file_model_v1alpha_model_proto_msgTypes[117].OneofWrappers = []any{}
-	file_model_v1alpha_model_proto_msgTypes[121].OneofWrappers = []any{}
-	file_model_v1alpha_model_proto_msgTypes[123].OneofWrappers = []any{}
-	file_model_v1alpha_model_proto_msgTypes[133].OneofWrappers = []any{}
-	file_model_v1alpha_model_proto_msgTypes[134].OneofWrappers = []any{}
-	file_model_v1alpha_model_proto_msgTypes[135].OneofWrappers = []any{}
-	file_model_v1alpha_model_proto_msgTypes[139].OneofWrappers = []any{}
+	file_model_v1alpha_model_proto_msgTypes[57].OneofWrappers = []any{}
+	file_model_v1alpha_model_proto_msgTypes[59].OneofWrappers = []any{}
+	file_model_v1alpha_model_proto_msgTypes[61].OneofWrappers = []any{}
+	file_model_v1alpha_model_proto_msgTypes[62].OneofWrappers = []any{}
+	file_model_v1alpha_model_proto_msgTypes[63].OneofWrappers = []any{}
+	file_model_v1alpha_model_proto_msgTypes[67].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_model_v1alpha_model_proto_rawDesc), len(file_model_v1alpha_model_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   148,
+			NumMessages:   76,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

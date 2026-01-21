@@ -132,11 +132,12 @@ type KnowledgeBase struct {
 	OwnerName string `protobuf:"bytes,14,opt,name=owner_name,json=ownerName,proto3" json:"owner_name,omitempty"`
 	// Knowledge base owner (User or Organization).
 	Owner *v1beta.Owner `protobuf:"bytes,15,opt,name=owner,proto3,oneof" json:"owner,omitempty"`
-	// The UID of the user who created this knowledge base.
+	// Full resource name of the user who created this knowledge base.
+	// Format: `users/{user}`
 	// Optional for system-created knowledge bases (e.g., instill-agent).
-	CreatorUid *string `protobuf:"bytes,16,opt,name=creator_uid,json=creatorUid,proto3,oneof" json:"creator_uid,omitempty"`
+	CreatorName *string `protobuf:"bytes,16,opt,name=creator_name,json=creatorName,proto3,oneof" json:"creator_name,omitempty"`
 	// The user who created this knowledge base.
-	// Populated when creator_uid is present.
+	// Populated when creator_name is present.
 	Creator *v1beta.User `protobuf:"bytes,17,opt,name=creator,proto3,oneof" json:"creator,omitempty"`
 	// The total files in knowledge base.
 	TotalFiles uint32 `protobuf:"varint,18,opt,name=total_files,json=totalFiles,proto3" json:"total_files,omitempty"`
@@ -285,9 +286,9 @@ func (x *KnowledgeBase) GetOwner() *v1beta.Owner {
 	return nil
 }
 
-func (x *KnowledgeBase) GetCreatorUid() string {
-	if x != nil && x.CreatorUid != nil {
-		return *x.CreatorUid
+func (x *KnowledgeBase) GetCreatorName() string {
+	if x != nil && x.CreatorName != nil {
+		return *x.CreatorName
 	}
 	return ""
 }
@@ -1154,7 +1155,7 @@ var File_artifact_v1alpha_knowledge_base_proto protoreflect.FileDescriptor
 
 const file_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"\n" +
-	"%artifact/v1alpha/knowledge_base.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16mgmt/v1beta/mgmt.proto\"\x8c\t\n" +
+	"%artifact/v1alpha/knowledge_base.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16mgmt/v1beta/mgmt.proto\"\xaf\t\n" +
 	"\rKnowledgeBase\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12&\n" +
@@ -1174,9 +1175,8 @@ const file_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"\x14active_collection_id\x18\r \x01(\tB\x03\xe0A\x03R\x12activeCollectionId\x12\"\n" +
 	"\n" +
 	"owner_name\x18\x0e \x01(\tB\x03\xe0A\x03R\townerName\x122\n" +
-	"\x05owner\x18\x0f \x01(\v2\x12.mgmt.v1beta.OwnerB\x03\xe0A\x03H\x01R\x05owner\x88\x01\x01\x12)\n" +
-	"\vcreator_uid\x18\x10 \x01(\tB\x03\xe0A\x03H\x02R\n" +
-	"creatorUid\x88\x01\x01\x125\n" +
+	"\x05owner\x18\x0f \x01(\v2\x12.mgmt.v1beta.OwnerB\x03\xe0A\x03H\x01R\x05owner\x88\x01\x01\x12+\n" +
+	"\fcreator_name\x18\x10 \x01(\tB\x03\xe0A\x03H\x02R\vcreatorName\x88\x01\x01\x125\n" +
 	"\acreator\x18\x11 \x01(\v2\x11.mgmt.v1beta.UserB\x03\xe0A\x03H\x03R\acreator\x88\x01\x01\x12$\n" +
 	"\vtotal_files\x18\x12 \x01(\rB\x03\xe0A\x03R\n" +
 	"totalFiles\x12&\n" +
@@ -1185,11 +1185,12 @@ const file_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"\x0fdownstream_apps\x18\x15 \x03(\tB\x03\xe0A\x03R\x0edownstreamApps\x1a\\\n" +
 	"\x0fEmbeddingConfig\x12!\n" +
 	"\fmodel_family\x18\x01 \x01(\tR\vmodelFamily\x12&\n" +
-	"\x0edimensionality\x18\x02 \x01(\rR\x0edimensionality:<\xeaA9\x127namespaces/{namespace}/knowledge-bases/{knowledge_base}B\f\n" +
+	"\x0edimensionality\x18\x02 \x01(\rR\x0edimensionality:\\\xeaAY\n" +
+	"\x1eapi.instill.tech/KnowledgeBase\x127namespaces/{namespace}/knowledge-bases/{knowledge_base}B\f\n" +
 	"\n" +
 	"_system_idB\b\n" +
-	"\x06_ownerB\x0e\n" +
-	"\f_creator_uidB\n" +
+	"\x06_ownerB\x0f\n" +
+	"\r_creator_nameB\n" +
 	"\n" +
 	"\b_creator\"\x86\x01\n" +
 	"\x1aCreateKnowledgeBaseRequest\x12\x1b\n" +

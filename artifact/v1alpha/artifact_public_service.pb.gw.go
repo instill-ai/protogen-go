@@ -913,57 +913,6 @@ func local_request_ArtifactPublicService_SearchChunks_0(ctx context.Context, mar
 	return msg, metadata, err
 }
 
-var filter_ArtifactPublicService_ListKnowledgeBaseRuns_0 = &utilities.DoubleArray{Encoding: map[string]int{"parent": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
-
-func request_ArtifactPublicService_ListKnowledgeBaseRuns_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq ListKnowledgeBaseRunsRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	io.Copy(io.Discard, req.Body)
-	val, ok := pathParams["parent"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "parent")
-	}
-	protoReq.Parent, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "parent", err)
-	}
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ArtifactPublicService_ListKnowledgeBaseRuns_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := client.ListKnowledgeBaseRuns(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_ArtifactPublicService_ListKnowledgeBaseRuns_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq ListKnowledgeBaseRunsRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	val, ok := pathParams["parent"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "parent")
-	}
-	protoReq.Parent, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "parent", err)
-	}
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ArtifactPublicService_ListKnowledgeBaseRuns_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := server.ListKnowledgeBaseRuns(ctx, &protoReq)
-	return msg, metadata, err
-}
-
 var filter_ArtifactPublicService_GetObjectUploadURL_0 = &utilities.DoubleArray{Encoding: map[string]int{"parent": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 
 func request_ArtifactPublicService_GetObjectUploadURL_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -1604,26 +1553,6 @@ func RegisterArtifactPublicServiceHandlerServer(ctx context.Context, mux *runtim
 		}
 		forward_ArtifactPublicService_SearchChunks_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_ListKnowledgeBaseRuns_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.v1alpha.ArtifactPublicService/ListKnowledgeBaseRuns", runtime.WithHTTPPathPattern("/v1alpha/{parent=namespaces/*/knowledge-bases/*}/runs"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_ArtifactPublicService_ListKnowledgeBaseRuns_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ArtifactPublicService_ListKnowledgeBaseRuns_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
 	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_GetObjectUploadURL_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -2087,23 +2016,6 @@ func RegisterArtifactPublicServiceHandlerClient(ctx context.Context, mux *runtim
 		}
 		forward_ArtifactPublicService_SearchChunks_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_ListKnowledgeBaseRuns_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.v1alpha.ArtifactPublicService/ListKnowledgeBaseRuns", runtime.WithHTTPPathPattern("/v1alpha/{parent=namespaces/*/knowledge-bases/*}/runs"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ArtifactPublicService_ListKnowledgeBaseRuns_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ArtifactPublicService_ListKnowledgeBaseRuns_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
 	mux.Handle(http.MethodGet, pattern_ArtifactPublicService_GetObjectUploadURL_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -2193,57 +2105,55 @@ func RegisterArtifactPublicServiceHandlerClient(ctx context.Context, mux *runtim
 }
 
 var (
-	pattern_ArtifactPublicService_Liveness_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "__liveness"}, ""))
-	pattern_ArtifactPublicService_Liveness_1              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "health", "artifact"}, ""))
-	pattern_ArtifactPublicService_Readiness_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "__readiness"}, ""))
-	pattern_ArtifactPublicService_Readiness_1             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "ready", "artifact"}, ""))
-	pattern_ArtifactPublicService_CreateKnowledgeBase_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "parent", "knowledge-bases"}, ""))
-	pattern_ArtifactPublicService_GetKnowledgeBase_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "namespaces", "knowledge-bases", "name"}, ""))
-	pattern_ArtifactPublicService_ListKnowledgeBases_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "parent", "knowledge-bases"}, ""))
-	pattern_ArtifactPublicService_UpdateKnowledgeBase_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "namespaces", "knowledge-bases", "knowledge_base.name"}, ""))
-	pattern_ArtifactPublicService_DeleteKnowledgeBase_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "namespaces", "knowledge-bases", "name"}, ""))
-	pattern_ArtifactPublicService_CreateFile_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "parent", "files"}, ""))
-	pattern_ArtifactPublicService_GetFile_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "namespaces", "files", "name"}, ""))
-	pattern_ArtifactPublicService_ListFiles_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "parent", "files"}, ""))
-	pattern_ArtifactPublicService_UpdateFile_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "namespaces", "files", "file.name"}, ""))
-	pattern_ArtifactPublicService_ReprocessFile_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "namespaces", "files", "name", "reprocess"}, ""))
-	pattern_ArtifactPublicService_DeleteFile_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "namespaces", "files", "name"}, ""))
-	pattern_ArtifactPublicService_GetChunk_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4}, []string{"v1alpha", "namespaces", "files", "chunks", "name"}, ""))
-	pattern_ArtifactPublicService_ListChunks_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "namespaces", "files", "parent", "chunks"}, ""))
-	pattern_ArtifactPublicService_UpdateChunk_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4}, []string{"v1alpha", "namespaces", "files", "chunks", "name"}, ""))
-	pattern_ArtifactPublicService_SearchChunks_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "parent", "searchChunks"}, ""))
-	pattern_ArtifactPublicService_ListKnowledgeBaseRuns_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "namespaces", "knowledge-bases", "parent", "runs"}, ""))
-	pattern_ArtifactPublicService_GetObjectUploadURL_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "parent", "object-upload-url"}, ""))
-	pattern_ArtifactPublicService_GetObjectDownloadURL_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "namespaces", "objects", "name", "download-url"}, ""))
-	pattern_ArtifactPublicService_GetObject_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "namespaces", "objects", "name"}, ""))
-	pattern_ArtifactPublicService_UpdateObject_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "namespaces", "objects", "object.name"}, ""))
-	pattern_ArtifactPublicService_DeleteObject_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "namespaces", "objects", "name"}, ""))
+	pattern_ArtifactPublicService_Liveness_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "__liveness"}, ""))
+	pattern_ArtifactPublicService_Liveness_1             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "health", "artifact"}, ""))
+	pattern_ArtifactPublicService_Readiness_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "__readiness"}, ""))
+	pattern_ArtifactPublicService_Readiness_1            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "ready", "artifact"}, ""))
+	pattern_ArtifactPublicService_CreateKnowledgeBase_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "parent", "knowledge-bases"}, ""))
+	pattern_ArtifactPublicService_GetKnowledgeBase_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "namespaces", "knowledge-bases", "name"}, ""))
+	pattern_ArtifactPublicService_ListKnowledgeBases_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "parent", "knowledge-bases"}, ""))
+	pattern_ArtifactPublicService_UpdateKnowledgeBase_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "namespaces", "knowledge-bases", "knowledge_base.name"}, ""))
+	pattern_ArtifactPublicService_DeleteKnowledgeBase_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "namespaces", "knowledge-bases", "name"}, ""))
+	pattern_ArtifactPublicService_CreateFile_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "parent", "files"}, ""))
+	pattern_ArtifactPublicService_GetFile_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "namespaces", "files", "name"}, ""))
+	pattern_ArtifactPublicService_ListFiles_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "parent", "files"}, ""))
+	pattern_ArtifactPublicService_UpdateFile_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "namespaces", "files", "file.name"}, ""))
+	pattern_ArtifactPublicService_ReprocessFile_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "namespaces", "files", "name", "reprocess"}, ""))
+	pattern_ArtifactPublicService_DeleteFile_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "namespaces", "files", "name"}, ""))
+	pattern_ArtifactPublicService_GetChunk_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4}, []string{"v1alpha", "namespaces", "files", "chunks", "name"}, ""))
+	pattern_ArtifactPublicService_ListChunks_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "namespaces", "files", "parent", "chunks"}, ""))
+	pattern_ArtifactPublicService_UpdateChunk_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4}, []string{"v1alpha", "namespaces", "files", "chunks", "name"}, ""))
+	pattern_ArtifactPublicService_SearchChunks_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "parent", "searchChunks"}, ""))
+	pattern_ArtifactPublicService_GetObjectUploadURL_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "parent", "object-upload-url"}, ""))
+	pattern_ArtifactPublicService_GetObjectDownloadURL_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "namespaces", "objects", "name", "download-url"}, ""))
+	pattern_ArtifactPublicService_GetObject_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "namespaces", "objects", "name"}, ""))
+	pattern_ArtifactPublicService_UpdateObject_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "namespaces", "objects", "object.name"}, ""))
+	pattern_ArtifactPublicService_DeleteObject_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "namespaces", "objects", "name"}, ""))
 )
 
 var (
-	forward_ArtifactPublicService_Liveness_0              = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_Liveness_1              = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_Readiness_0             = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_Readiness_1             = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_CreateKnowledgeBase_0   = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_GetKnowledgeBase_0      = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_ListKnowledgeBases_0    = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_UpdateKnowledgeBase_0   = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_DeleteKnowledgeBase_0   = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_CreateFile_0            = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_GetFile_0               = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_ListFiles_0             = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_UpdateFile_0            = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_ReprocessFile_0         = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_DeleteFile_0            = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_GetChunk_0              = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_ListChunks_0            = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_UpdateChunk_0           = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_SearchChunks_0          = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_ListKnowledgeBaseRuns_0 = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_GetObjectUploadURL_0    = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_GetObjectDownloadURL_0  = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_GetObject_0             = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_UpdateObject_0          = runtime.ForwardResponseMessage
-	forward_ArtifactPublicService_DeleteObject_0          = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_Liveness_0             = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_Liveness_1             = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_Readiness_0            = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_Readiness_1            = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_CreateKnowledgeBase_0  = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_GetKnowledgeBase_0     = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_ListKnowledgeBases_0   = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_UpdateKnowledgeBase_0  = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_DeleteKnowledgeBase_0  = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_CreateFile_0           = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_GetFile_0              = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_ListFiles_0            = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_UpdateFile_0           = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_ReprocessFile_0        = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_DeleteFile_0           = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_GetChunk_0             = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_ListChunks_0           = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_UpdateChunk_0          = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_SearchChunks_0         = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_GetObjectUploadURL_0   = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_GetObjectDownloadURL_0 = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_GetObject_0            = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_UpdateObject_0         = runtime.ForwardResponseMessage
+	forward_ArtifactPublicService_DeleteObject_0         = runtime.ForwardResponseMessage
 )

@@ -19,30 +19,27 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	MgmtPublicService_Liveness_FullMethodName                          = "/mgmt.v1beta.MgmtPublicService/Liveness"
-	MgmtPublicService_Readiness_FullMethodName                         = "/mgmt.v1beta.MgmtPublicService/Readiness"
-	MgmtPublicService_GetAuthenticatedUser_FullMethodName              = "/mgmt.v1beta.MgmtPublicService/GetAuthenticatedUser"
-	MgmtPublicService_PatchAuthenticatedUser_FullMethodName            = "/mgmt.v1beta.MgmtPublicService/PatchAuthenticatedUser"
-	MgmtPublicService_ListUsers_FullMethodName                         = "/mgmt.v1beta.MgmtPublicService/ListUsers"
-	MgmtPublicService_GetUser_FullMethodName                           = "/mgmt.v1beta.MgmtPublicService/GetUser"
-	MgmtPublicService_CreateToken_FullMethodName                       = "/mgmt.v1beta.MgmtPublicService/CreateToken"
-	MgmtPublicService_ListTokens_FullMethodName                        = "/mgmt.v1beta.MgmtPublicService/ListTokens"
-	MgmtPublicService_GetToken_FullMethodName                          = "/mgmt.v1beta.MgmtPublicService/GetToken"
-	MgmtPublicService_DeleteToken_FullMethodName                       = "/mgmt.v1beta.MgmtPublicService/DeleteToken"
-	MgmtPublicService_ValidateToken_FullMethodName                     = "/mgmt.v1beta.MgmtPublicService/ValidateToken"
-	MgmtPublicService_CheckNamespace_FullMethodName                    = "/mgmt.v1beta.MgmtPublicService/CheckNamespace"
-	MgmtPublicService_GetPipelineTriggerCount_FullMethodName           = "/mgmt.v1beta.MgmtPublicService/GetPipelineTriggerCount"
-	MgmtPublicService_GetModelTriggerCount_FullMethodName              = "/mgmt.v1beta.MgmtPublicService/GetModelTriggerCount"
-	MgmtPublicService_ListPipelineTriggerChartRecords_FullMethodName   = "/mgmt.v1beta.MgmtPublicService/ListPipelineTriggerChartRecords"
-	MgmtPublicService_ListModelTriggerChartRecords_FullMethodName      = "/mgmt.v1beta.MgmtPublicService/ListModelTriggerChartRecords"
-	MgmtPublicService_AuthTokenIssuer_FullMethodName                   = "/mgmt.v1beta.MgmtPublicService/AuthTokenIssuer"
-	MgmtPublicService_AuthLogin_FullMethodName                         = "/mgmt.v1beta.MgmtPublicService/AuthLogin"
-	MgmtPublicService_AuthLogout_FullMethodName                        = "/mgmt.v1beta.MgmtPublicService/AuthLogout"
-	MgmtPublicService_AuthChangePassword_FullMethodName                = "/mgmt.v1beta.MgmtPublicService/AuthChangePassword"
-	MgmtPublicService_AuthValidateAccessToken_FullMethodName           = "/mgmt.v1beta.MgmtPublicService/AuthValidateAccessToken"
-	MgmtPublicService_ListPipelineTriggerRecords_FullMethodName        = "/mgmt.v1beta.MgmtPublicService/ListPipelineTriggerRecords"
-	MgmtPublicService_ListPipelineTriggerTableRecords_FullMethodName   = "/mgmt.v1beta.MgmtPublicService/ListPipelineTriggerTableRecords"
-	MgmtPublicService_ListPipelineTriggerChartRecordsV0_FullMethodName = "/mgmt.v1beta.MgmtPublicService/ListPipelineTriggerChartRecordsV0"
+	MgmtPublicService_Liveness_FullMethodName                        = "/mgmt.v1beta.MgmtPublicService/Liveness"
+	MgmtPublicService_Readiness_FullMethodName                       = "/mgmt.v1beta.MgmtPublicService/Readiness"
+	MgmtPublicService_GetAuthenticatedUser_FullMethodName            = "/mgmt.v1beta.MgmtPublicService/GetAuthenticatedUser"
+	MgmtPublicService_PatchAuthenticatedUser_FullMethodName          = "/mgmt.v1beta.MgmtPublicService/PatchAuthenticatedUser"
+	MgmtPublicService_ListUsers_FullMethodName                       = "/mgmt.v1beta.MgmtPublicService/ListUsers"
+	MgmtPublicService_GetUser_FullMethodName                         = "/mgmt.v1beta.MgmtPublicService/GetUser"
+	MgmtPublicService_CreateToken_FullMethodName                     = "/mgmt.v1beta.MgmtPublicService/CreateToken"
+	MgmtPublicService_ListTokens_FullMethodName                      = "/mgmt.v1beta.MgmtPublicService/ListTokens"
+	MgmtPublicService_GetToken_FullMethodName                        = "/mgmt.v1beta.MgmtPublicService/GetToken"
+	MgmtPublicService_DeleteToken_FullMethodName                     = "/mgmt.v1beta.MgmtPublicService/DeleteToken"
+	MgmtPublicService_ValidateToken_FullMethodName                   = "/mgmt.v1beta.MgmtPublicService/ValidateToken"
+	MgmtPublicService_CheckNamespace_FullMethodName                  = "/mgmt.v1beta.MgmtPublicService/CheckNamespace"
+	MgmtPublicService_GetPipelineTriggerCount_FullMethodName         = "/mgmt.v1beta.MgmtPublicService/GetPipelineTriggerCount"
+	MgmtPublicService_GetModelTriggerCount_FullMethodName            = "/mgmt.v1beta.MgmtPublicService/GetModelTriggerCount"
+	MgmtPublicService_ListPipelineTriggerChartRecords_FullMethodName = "/mgmt.v1beta.MgmtPublicService/ListPipelineTriggerChartRecords"
+	MgmtPublicService_ListModelTriggerChartRecords_FullMethodName    = "/mgmt.v1beta.MgmtPublicService/ListModelTriggerChartRecords"
+	MgmtPublicService_AuthTokenIssuer_FullMethodName                 = "/mgmt.v1beta.MgmtPublicService/AuthTokenIssuer"
+	MgmtPublicService_AuthLogin_FullMethodName                       = "/mgmt.v1beta.MgmtPublicService/AuthLogin"
+	MgmtPublicService_AuthLogout_FullMethodName                      = "/mgmt.v1beta.MgmtPublicService/AuthLogout"
+	MgmtPublicService_AuthChangePassword_FullMethodName              = "/mgmt.v1beta.MgmtPublicService/AuthChangePassword"
+	MgmtPublicService_AuthValidateAccessToken_FullMethodName         = "/mgmt.v1beta.MgmtPublicService/AuthValidateAccessToken"
 )
 
 // MgmtPublicServiceClient is the client API for MgmtPublicService service.
@@ -149,26 +146,6 @@ type MgmtPublicServiceClient interface {
 	//
 	// Checks the validity of an access token.
 	AuthValidateAccessToken(ctx context.Context, in *AuthValidateAccessTokenRequest, opts ...grpc.CallOption) (*AuthValidateAccessTokenResponse, error)
-	// Deprecated: Do not use.
-	// List pipeline triggers
-	//
-	// Returns a paginated list of pipeline executions.
-	// NOTE: This method is deprecated and will be retired soon.
-	ListPipelineTriggerRecords(ctx context.Context, in *ListPipelineTriggerRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerRecordsResponse, error)
-	// Deprecated: Do not use.
-	// List pipeline trigger metrics
-	//
-	// Returns a paginated list of pipeline executions aggregated by pipeline ID.
-	// NOTE: This method is deprecated and will be retired soon.
-	ListPipelineTriggerTableRecords(ctx context.Context, in *ListPipelineTriggerTableRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerTableRecordsResponse, error)
-	// Deprecated: Do not use.
-	// List pipeline trigger time charts
-	//
-	// Returns a timeline of pipeline trigger counts for the pipelines of a given
-	// owner.
-	// NOTE: This method will soon be retired and replaced by
-	// ListPipelineTriggerChartRecords.
-	ListPipelineTriggerChartRecordsV0(ctx context.Context, in *ListPipelineTriggerChartRecordsV0Request, opts ...grpc.CallOption) (*ListPipelineTriggerChartRecordsV0Response, error)
 }
 
 type mgmtPublicServiceClient struct {
@@ -389,39 +366,6 @@ func (c *mgmtPublicServiceClient) AuthValidateAccessToken(ctx context.Context, i
 	return out, nil
 }
 
-// Deprecated: Do not use.
-func (c *mgmtPublicServiceClient) ListPipelineTriggerRecords(ctx context.Context, in *ListPipelineTriggerRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerRecordsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListPipelineTriggerRecordsResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_ListPipelineTriggerRecords_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// Deprecated: Do not use.
-func (c *mgmtPublicServiceClient) ListPipelineTriggerTableRecords(ctx context.Context, in *ListPipelineTriggerTableRecordsRequest, opts ...grpc.CallOption) (*ListPipelineTriggerTableRecordsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListPipelineTriggerTableRecordsResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_ListPipelineTriggerTableRecords_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// Deprecated: Do not use.
-func (c *mgmtPublicServiceClient) ListPipelineTriggerChartRecordsV0(ctx context.Context, in *ListPipelineTriggerChartRecordsV0Request, opts ...grpc.CallOption) (*ListPipelineTriggerChartRecordsV0Response, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListPipelineTriggerChartRecordsV0Response)
-	err := c.cc.Invoke(ctx, MgmtPublicService_ListPipelineTriggerChartRecordsV0_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // MgmtPublicServiceServer is the server API for MgmtPublicService service.
 // All implementations should embed UnimplementedMgmtPublicServiceServer
 // for forward compatibility.
@@ -526,26 +470,6 @@ type MgmtPublicServiceServer interface {
 	//
 	// Checks the validity of an access token.
 	AuthValidateAccessToken(context.Context, *AuthValidateAccessTokenRequest) (*AuthValidateAccessTokenResponse, error)
-	// Deprecated: Do not use.
-	// List pipeline triggers
-	//
-	// Returns a paginated list of pipeline executions.
-	// NOTE: This method is deprecated and will be retired soon.
-	ListPipelineTriggerRecords(context.Context, *ListPipelineTriggerRecordsRequest) (*ListPipelineTriggerRecordsResponse, error)
-	// Deprecated: Do not use.
-	// List pipeline trigger metrics
-	//
-	// Returns a paginated list of pipeline executions aggregated by pipeline ID.
-	// NOTE: This method is deprecated and will be retired soon.
-	ListPipelineTriggerTableRecords(context.Context, *ListPipelineTriggerTableRecordsRequest) (*ListPipelineTriggerTableRecordsResponse, error)
-	// Deprecated: Do not use.
-	// List pipeline trigger time charts
-	//
-	// Returns a timeline of pipeline trigger counts for the pipelines of a given
-	// owner.
-	// NOTE: This method will soon be retired and replaced by
-	// ListPipelineTriggerChartRecords.
-	ListPipelineTriggerChartRecordsV0(context.Context, *ListPipelineTriggerChartRecordsV0Request) (*ListPipelineTriggerChartRecordsV0Response, error)
 }
 
 // UnimplementedMgmtPublicServiceServer should be embedded to have
@@ -617,15 +541,6 @@ func (UnimplementedMgmtPublicServiceServer) AuthChangePassword(context.Context, 
 }
 func (UnimplementedMgmtPublicServiceServer) AuthValidateAccessToken(context.Context, *AuthValidateAccessTokenRequest) (*AuthValidateAccessTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AuthValidateAccessToken not implemented")
-}
-func (UnimplementedMgmtPublicServiceServer) ListPipelineTriggerRecords(context.Context, *ListPipelineTriggerRecordsRequest) (*ListPipelineTriggerRecordsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineTriggerRecords not implemented")
-}
-func (UnimplementedMgmtPublicServiceServer) ListPipelineTriggerTableRecords(context.Context, *ListPipelineTriggerTableRecordsRequest) (*ListPipelineTriggerTableRecordsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineTriggerTableRecords not implemented")
-}
-func (UnimplementedMgmtPublicServiceServer) ListPipelineTriggerChartRecordsV0(context.Context, *ListPipelineTriggerChartRecordsV0Request) (*ListPipelineTriggerChartRecordsV0Response, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineTriggerChartRecordsV0 not implemented")
 }
 func (UnimplementedMgmtPublicServiceServer) testEmbeddedByValue() {}
 
@@ -1025,60 +940,6 @@ func _MgmtPublicService_AuthValidateAccessToken_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MgmtPublicService_ListPipelineTriggerRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListPipelineTriggerRecordsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).ListPipelineTriggerRecords(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_ListPipelineTriggerRecords_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).ListPipelineTriggerRecords(ctx, req.(*ListPipelineTriggerRecordsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MgmtPublicService_ListPipelineTriggerTableRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListPipelineTriggerTableRecordsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).ListPipelineTriggerTableRecords(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_ListPipelineTriggerTableRecords_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).ListPipelineTriggerTableRecords(ctx, req.(*ListPipelineTriggerTableRecordsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MgmtPublicService_ListPipelineTriggerChartRecordsV0_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListPipelineTriggerChartRecordsV0Request)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).ListPipelineTriggerChartRecordsV0(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_ListPipelineTriggerChartRecordsV0_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).ListPipelineTriggerChartRecordsV0(ctx, req.(*ListPipelineTriggerChartRecordsV0Request))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // MgmtPublicService_ServiceDesc is the grpc.ServiceDesc for MgmtPublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1169,18 +1030,6 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AuthValidateAccessToken",
 			Handler:    _MgmtPublicService_AuthValidateAccessToken_Handler,
-		},
-		{
-			MethodName: "ListPipelineTriggerRecords",
-			Handler:    _MgmtPublicService_ListPipelineTriggerRecords_Handler,
-		},
-		{
-			MethodName: "ListPipelineTriggerTableRecords",
-			Handler:    _MgmtPublicService_ListPipelineTriggerTableRecords_Handler,
-		},
-		{
-			MethodName: "ListPipelineTriggerChartRecordsV0",
-			Handler:    _MgmtPublicService_ListPipelineTriggerChartRecordsV0_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

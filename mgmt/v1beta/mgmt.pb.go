@@ -905,7 +905,7 @@ func (x *OrganizationProfile) GetSocialProfileLinks() map[string]string {
 type AuthenticatedUser struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Field 1: Canonical resource name.
-	// Format: `users/{user.id}`.
+	// Format: `users/{user}`.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Field 2: Resource ID (used in `name` as the last segment). This conforms to
 	// RFC-1034, which restricts to letters, numbers, and hyphen, with the first
@@ -1086,7 +1086,8 @@ func (x *AuthenticatedUser) GetIsEligibleForOrganizationTrial() bool {
 	return false
 }
 
-// Owner is a wrapper for User and Organization, used to embed owner information in other resources.
+// Owner is a wrapper for User and Organization, used to embed owner information
+// in other resources.
 type Owner struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The owner, which can be either a User or an Organization.
@@ -1188,7 +1189,7 @@ func (*Owner_Organization) isOwner_Owner() {}
 type User struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Field 1: Canonical resource name.
-	// Format: `users/{user.id}`.
+	// Format: `users/{user}`.
 	// Example: "users/john-doe"
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Field 2: Resource ID (used in `name` as the last segment). This conforms to
@@ -1664,7 +1665,8 @@ func (x *LookUpUserAdminResponse) GetUser() *User {
 	return nil
 }
 
-// ListOrganizationsAdminRequest represents a request to list all organizations by admin
+// ListOrganizationsAdminRequest represents a request to list all organizations
+// by admin
 type ListOrganizationsAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The maximum number of organizations to return. If this parameter is
@@ -1741,7 +1743,8 @@ func (x *ListOrganizationsAdminRequest) GetFilter() string {
 	return ""
 }
 
-// ListOrganizationsAdminResponse represents a response for a list of organizations
+// ListOrganizationsAdminResponse represents a response for a list of
+// organizations
 type ListOrganizationsAdminResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// A list of organizations
@@ -1805,8 +1808,8 @@ func (x *ListOrganizationsAdminResponse) GetTotalSize() int32 {
 	return 0
 }
 
-// GetOrganizationAdminRequest represents a request to query an organization by admin.
-// Follows AIP-131: https://google.aip.dev/131
+// GetOrganizationAdminRequest represents a request to query an organization by
+// admin. Follows AIP-131: https://google.aip.dev/131
 type GetOrganizationAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the organization.
@@ -1862,7 +1865,8 @@ func (x *GetOrganizationAdminRequest) GetView() View {
 	return View_VIEW_UNSPECIFIED
 }
 
-// GetOrganizationAdminResponse represents a response for an organization resource
+// GetOrganizationAdminResponse represents a response for an organization
+// resource
 type GetOrganizationAdminResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// An organization resource
@@ -1908,16 +1912,17 @@ func (x *GetOrganizationAdminResponse) GetOrganization() *Organization {
 	return nil
 }
 
-// LookUpOrganizationAdminRequest represents a request to query an organization via permalink by
-// admin
+// LookUpOrganizationAdminRequest represents a request to query an organization
+// via permalink by admin
 type LookUpOrganizationAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
+	// Full resource name of the organization.
+	// Format: `organizations/{organization}`
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// View allows clients to specify the desired resource view in the response.
-	View *View `protobuf:"varint,2,opt,name=view,proto3,enum=mgmt.v1beta.View,oneof" json:"view,omitempty"`
-	// Organization UID
-	OrganizationUid string `protobuf:"bytes,3,opt,name=organization_uid,json=organizationUid,proto3" json:"organization_uid,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	View          *View `protobuf:"varint,2,opt,name=view,proto3,enum=mgmt.v1beta.View,oneof" json:"view,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *LookUpOrganizationAdminRequest) Reset() {
@@ -1950,6 +1955,13 @@ func (*LookUpOrganizationAdminRequest) Descriptor() ([]byte, []int) {
 	return file_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{20}
 }
 
+func (x *LookUpOrganizationAdminRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
 func (x *LookUpOrganizationAdminRequest) GetView() View {
 	if x != nil && x.View != nil {
 		return *x.View
@@ -1957,14 +1969,8 @@ func (x *LookUpOrganizationAdminRequest) GetView() View {
 	return View_VIEW_UNSPECIFIED
 }
 
-func (x *LookUpOrganizationAdminRequest) GetOrganizationUid() string {
-	if x != nil {
-		return x.OrganizationUid
-	}
-	return ""
-}
-
-// LookUpOrganizationAdminResponse represents a response for an organization resource by admin
+// LookUpOrganizationAdminResponse represents a response for an organization
+// resource by admin
 type LookUpOrganizationAdminResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// An organization resource
@@ -2585,8 +2591,8 @@ func (x *CheckNamespaceAdminRequest) GetId() string {
 	return ""
 }
 
-// CheckNamespaceAdminResponse contains the availability of a namespace or the type
-// of resource that's using it.
+// CheckNamespaceAdminResponse contains the availability of a namespace or the
+// type of resource that's using it.
 type CheckNamespaceAdminResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Namespace type.
@@ -2691,8 +2697,8 @@ func (*CheckNamespaceAdminResponse_User) isCheckNamespaceAdminResponse_Owner() {
 
 func (*CheckNamespaceAdminResponse_Organization) isCheckNamespaceAdminResponse_Owner() {}
 
-// CheckNamespaceByUIDAdminRequest represents a request to verify if a namespace is
-// available.
+// CheckNamespaceByUIDAdminRequest represents a request to verify if a namespace
+// is available.
 type CheckNamespaceByUIDAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The namespace UID to be checked.
@@ -2738,8 +2744,8 @@ func (x *CheckNamespaceByUIDAdminRequest) GetUid() string {
 	return ""
 }
 
-// CheckNamespaceByUIDAdminResponse contains the availability of a namespace or the type
-// of resource that's using it.
+// CheckNamespaceByUIDAdminResponse contains the availability of a namespace or
+// the type of resource that's using it.
 type CheckNamespaceByUIDAdminResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Namespace type.
@@ -2847,35 +2853,33 @@ func (*CheckNamespaceByUIDAdminResponse_Organization) isCheckNamespaceByUIDAdmin
 // API tokens allow users to make requests to the Instill AI API.
 type ApiToken struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// When users trigger a pipeline which uses an API token, the token is
-	// updated with the current time. This field is used to track the last time
-	// the token was used.
-	LastUseTime *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=last_use_time,json=lastUseTime,proto3" json:"last_use_time,omitempty"`
-	// The name of the token, define by its ID.
-	// - Format: `tokens/{token.id}`.
+	// The resource name of the token.
+	// Format: users/{user}/tokens/{token}
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// API token UUID.
-	Uid string `protobuf:"bytes,2,opt,name=uid,proto3" json:"uid,omitempty"`
 	// API token resource ID (used in `name` as the last segment). This conforms
 	// to RFC-1034, which restricts to letters, numbers, and hyphen, with the
 	// first character a letter, the last a letter or a number, and a 63
 	// character maximum.
 	//
 	// This field can reflect the client(s) that will use the token.
-	Id string `protobuf:"bytes,3,opt,name=id,proto3" json:"id,omitempty"`
+	Id string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
 	// Creation time.
-	CreateTime *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+	CreateTime *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
 	// Update time.
-	UpdateTime *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
+	UpdateTime *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
 	// An opaque access token representing the API token string.
 	//
 	// To validate the token, the recipient of the token needs to call the server
 	// that issued the token.
-	AccessToken string `protobuf:"bytes,7,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
+	AccessToken string `protobuf:"bytes,9,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
 	// State.
-	State ApiToken_State `protobuf:"varint,8,opt,name=state,proto3,enum=mgmt.v1beta.ApiToken_State" json:"state,omitempty"`
+	State ApiToken_State `protobuf:"varint,10,opt,name=state,proto3,enum=mgmt.v1beta.ApiToken_State" json:"state,omitempty"`
 	// Token type. Value is fixed to "Bearer".
-	TokenType string `protobuf:"bytes,9,opt,name=token_type,json=tokenType,proto3" json:"token_type,omitempty"`
+	TokenType string `protobuf:"bytes,11,opt,name=token_type,json=tokenType,proto3" json:"token_type,omitempty"`
+	// When users trigger a pipeline which uses an API token, the token is
+	// updated with the current time. This field is used to track the last time
+	// the token was used.
+	LastUseTime *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=last_use_time,json=lastUseTime,proto3" json:"last_use_time,omitempty"`
 	// Expiration.
 	//
 	// Types that are valid to be assigned to Expiration:
@@ -2917,23 +2921,9 @@ func (*ApiToken) Descriptor() ([]byte, []int) {
 	return file_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{36}
 }
 
-func (x *ApiToken) GetLastUseTime() *timestamppb.Timestamp {
-	if x != nil {
-		return x.LastUseTime
-	}
-	return nil
-}
-
 func (x *ApiToken) GetName() string {
 	if x != nil {
 		return x.Name
-	}
-	return ""
-}
-
-func (x *ApiToken) GetUid() string {
-	if x != nil {
-		return x.Uid
 	}
 	return ""
 }
@@ -2980,6 +2970,13 @@ func (x *ApiToken) GetTokenType() string {
 	return ""
 }
 
+func (x *ApiToken) GetLastUseTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.LastUseTime
+	}
+	return nil
+}
+
 func (x *ApiToken) GetExpiration() isApiToken_Expiration {
 	if x != nil {
 		return x.Expiration
@@ -3011,12 +3008,12 @@ type isApiToken_Expiration interface {
 
 type ApiToken_Ttl struct {
 	// The time-to-live in seconds for this resource.
-	Ttl int32 `protobuf:"varint,10,opt,name=ttl,proto3,oneof"`
+	Ttl int32 `protobuf:"varint,13,opt,name=ttl,proto3,oneof"`
 }
 
 type ApiToken_ExpireTime struct {
 	// Expiration time.
-	ExpireTime *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=expire_time,json=expireTime,proto3,oneof"`
+	ExpireTime *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=expire_time,json=expireTime,proto3,oneof"`
 }
 
 func (*ApiToken_Ttl) isApiToken_Expiration() {}
@@ -3116,14 +3113,19 @@ func (x *CreateTokenResponse) GetToken() *ApiToken {
 }
 
 // ListTokensRequest represents a request to list the API tokens of a user.
+// Follows AIP-132: https://google.aip.dev/132
 type ListTokensRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
+	// The parent resource name.
+	// Format: `users/{user}`
+	// If not provided, defaults to the authenticated user.
+	Parent *string `protobuf:"bytes,1,opt,name=parent,proto3,oneof" json:"parent,omitempty"`
 	// The maximum number of tokens to return. If this parameter is unspecified,
-	// at most 10 pipelines will be returned. The cap value for this parameter is
+	// at most 10 tokens will be returned. The cap value for this parameter is
 	// 100 (i.e. any value above that will be coerced to 100).
-	PageSize *int32 `protobuf:"varint,1,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
+	PageSize *int32 `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
 	// Page token.
-	PageToken     *string `protobuf:"bytes,2,opt,name=page_token,json=pageToken,proto3,oneof" json:"page_token,omitempty"`
+	PageToken     *string `protobuf:"bytes,3,opt,name=page_token,json=pageToken,proto3,oneof" json:"page_token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3156,6 +3158,13 @@ func (x *ListTokensRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use ListTokensRequest.ProtoReflect.Descriptor instead.
 func (*ListTokensRequest) Descriptor() ([]byte, []int) {
 	return file_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{39}
+}
+
+func (x *ListTokensRequest) GetParent() string {
+	if x != nil && x.Parent != nil {
+		return *x.Parent
+	}
+	return ""
 }
 
 func (x *ListTokensRequest) GetPageSize() int32 {
@@ -3241,7 +3250,7 @@ func (x *ListTokensResponse) GetTotalSize() int32 {
 type GetTokenRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the token.
-	// Format: `tokens/{token}`
+	// Format: `users/{user}/tokens/{token}`
 	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -3335,7 +3344,7 @@ func (x *GetTokenResponse) GetToken() *ApiToken {
 type DeleteTokenRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the token to delete.
-	// Format: `tokens/{token}`
+	// Format: `users/{user}/tokens/{token}`
 	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -3455,8 +3464,9 @@ func (*ValidateTokenRequest) Descriptor() ([]byte, []int) {
 // ValidateTokenResponse contains the validation of a token.
 type ValidateTokenResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// If token is valid, UUID of the user that owns it.
-	UserUid       string `protobuf:"bytes,1,opt,name=user_uid,json=userUid,proto3" json:"user_uid,omitempty"`
+	// If token is valid, full resource name of the user that owns it.
+	// Format: `users/{user}`
+	User          string `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3491,9 +3501,9 @@ func (*ValidateTokenResponse) Descriptor() ([]byte, []int) {
 	return file_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{46}
 }
 
-func (x *ValidateTokenResponse) GetUserUid() string {
+func (x *ValidateTokenResponse) GetUser() string {
 	if x != nil {
-		return x.UserUid
+		return x.User
 	}
 	return ""
 }
@@ -3775,7 +3785,8 @@ func (*AuthLogoutResponse) Descriptor() ([]byte, []int) {
 	return file_mgmt_v1beta_mgmt_proto_rawDescGZIP(), []int{52}
 }
 
-// AuthValidateAccessTokenRequest represents a request for access token validation.
+// AuthValidateAccessTokenRequest represents a request for access token
+// validation.
 type AuthValidateAccessTokenRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -3958,7 +3969,7 @@ func (*AuthChangePasswordResponse) Descriptor() ([]byte, []int) {
 type Organization struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Field 1: Canonical resource name.
-	// Format: `organizations/{organization.id}`.
+	// Format: `organizations/{organization}`.
 	// Example: "organizations/acme-corp"
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Field 2: Resource ID (used in `name` as the last segment). This conforms to
@@ -3981,7 +3992,7 @@ type Organization struct {
 	// Field 8: Update time.
 	UpdateTime *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
 	// Field 9: Owner reference (the user that owns the organization).
-	// Format: `users/{user.id}`.
+	// Format: `users/{user}`.
 	Owner string `protobuf:"bytes,9,opt,name=owner,proto3" json:"owner,omitempty"`
 	// Profile containing additional organization information.
 	Profile *OrganizationProfile `protobuf:"bytes,12,opt,name=profile,proto3" json:"profile,omitempty"`
@@ -4641,7 +4652,7 @@ type OrganizationMembership struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the membership, which allows its access by
 	// organization and user ID.
-	// - Format: `organizations/{organization.id}/memberships/{user.id}`.
+	// - Format: `organizations/{organization}/memberships/{user}`.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Role of the user in the organization.
 	Role string `protobuf:"bytes,3,opt,name=role,proto3" json:"role,omitempty"`
@@ -4726,7 +4737,7 @@ type UserMembership struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the membership, which allows its access by user and
 	// organization ID.
-	// - Format: `users/{user.id}/memberships/{organization.id}`.
+	// - Format: `users/{user}/memberships/{organization}`.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Role of the user in the organization.
 	Role string `protobuf:"bytes,3,opt,name=role,proto3" json:"role,omitempty"`
@@ -5783,7 +5794,7 @@ const file_mgmt_v1beta_mgmt_proto_rawDesc = "" +
 	"\x05Owner\x12,\n" +
 	"\x04user\x18\x01 \x01(\v2\x11.mgmt.v1beta.UserB\x03\xe0A\x03H\x00R\x04user\x12D\n" +
 	"\forganization\x18\x02 \x01(\v2\x19.mgmt.v1beta.OrganizationB\x03\xe0A\x03H\x00R\forganizationB\a\n" +
-	"\x05owner\"\xa4\x03\n" +
+	"\x05owner\"\xb8\x03\n" +
 	"\x04User\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x05R\x02id\x12&\n" +
@@ -5796,7 +5807,8 @@ const file_mgmt_v1beta_mgmt_proto_rawDesc = "" +
 	"\vupdate_time\x18\b \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
 	"updateTime\x122\n" +
 	"\aprofile\x18\v \x01(\v2\x18.mgmt.v1beta.UserProfileR\aprofile\x12\x19\n" +
-	"\x05email\x18\f \x01(\tB\x03\xe0A\x03R\x05email:\x14\xeaA\x11\x12\x0fusers/{user.id}\"\xeb\x01\n" +
+	"\x05email\x18\f \x01(\tB\x03\xe0A\x03R\x05email:(\xeaA%\n" +
+	"\x15api.instill.tech/User\x12\fusers/{user}\"\xeb\x01\n" +
 	"\x15ListUsersAdminRequest\x12%\n" +
 	"\tpage_size\x18\x01 \x01(\x05B\x03\xe0A\x01H\x00R\bpageSize\x88\x01\x01\x12'\n" +
 	"\n" +
@@ -5846,11 +5858,11 @@ const file_mgmt_v1beta_mgmt_proto_rawDesc = "" +
 	"\x04view\x18\x02 \x01(\x0e2\x11.mgmt.v1beta.ViewH\x00R\x04view\x88\x01\x01B\a\n" +
 	"\x05_view\"]\n" +
 	"\x1cGetOrganizationAdminResponse\x12=\n" +
-	"\forganization\x18\x01 \x01(\v2\x19.mgmt.v1beta.OrganizationR\forganization\"\x86\x01\n" +
-	"\x1eLookUpOrganizationAdminRequest\x12*\n" +
-	"\x04view\x18\x02 \x01(\x0e2\x11.mgmt.v1beta.ViewH\x00R\x04view\x88\x01\x01\x12)\n" +
-	"\x10organization_uid\x18\x03 \x01(\tR\x0forganizationUidB\a\n" +
-	"\x05_viewJ\x04\b\x01\x10\x02\"`\n" +
+	"\forganization\x18\x01 \x01(\v2\x19.mgmt.v1beta.OrganizationR\forganization\"n\n" +
+	"\x1eLookUpOrganizationAdminRequest\x12\x17\n" +
+	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\x12*\n" +
+	"\x04view\x18\x02 \x01(\x0e2\x11.mgmt.v1beta.ViewH\x00R\x04view\x88\x01\x01B\a\n" +
+	"\x05_view\"`\n" +
 	"\x1fLookUpOrganizationAdminResponse\x12=\n" +
 	"\forganization\x18\x01 \x01(\v2\x19.mgmt.v1beta.OrganizationR\forganization\"\xe6\x01\n" +
 	"\x10ListUsersRequest\x12%\n" +
@@ -5921,39 +5933,42 @@ const file_mgmt_v1beta_mgmt_proto_rawDesc = "" +
 	"\x0eNAMESPACE_USER\x10\x02\x12\x1a\n" +
 	"\x16NAMESPACE_ORGANIZATION\x10\x03\x12\x16\n" +
 	"\x12NAMESPACE_RESERVED\x10\x04B\a\n" +
-	"\x05owner\"\xd6\x04\n" +
-	"\bApiToken\x12>\n" +
-	"\rlast_use_time\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\vlastUseTime\x12\x17\n" +
-	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x15\n" +
-	"\x03uid\x18\x02 \x01(\tB\x03\xe0A\x03R\x03uid\x12\x13\n" +
-	"\x02id\x18\x03 \x01(\tB\x03\xe0A\x05R\x02id\x12@\n" +
-	"\vcreate_time\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
+	"\x05owner\"\x99\x05\n" +
+	"\bApiToken\x12\x17\n" +
+	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
+	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x05R\x02id\x12@\n" +
+	"\vcreate_time\x18\a \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
 	"createTime\x12@\n" +
-	"\vupdate_time\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
+	"\vupdate_time\x18\b \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
 	"updateTime\x12&\n" +
-	"\faccess_token\x18\a \x01(\tB\x03\xe0A\x03R\vaccessToken\x126\n" +
-	"\x05state\x18\b \x01(\x0e2\x1b.mgmt.v1beta.ApiToken.StateB\x03\xe0A\x03R\x05state\x12\"\n" +
+	"\faccess_token\x18\t \x01(\tB\x03\xe0A\x03R\vaccessToken\x126\n" +
+	"\x05state\x18\n" +
+	" \x01(\x0e2\x1b.mgmt.v1beta.ApiToken.StateB\x03\xe0A\x03R\x05state\x12\"\n" +
 	"\n" +
-	"token_type\x18\t \x01(\tB\x03\xe0A\x03R\ttokenType\x12\x17\n" +
-	"\x03ttl\x18\n" +
-	" \x01(\x05B\x03\xe0A\x04H\x00R\x03ttl\x12=\n" +
-	"\vexpire_time\x18\v \x01(\v2\x1a.google.protobuf.TimestampH\x00R\n" +
+	"token_type\x18\v \x01(\tB\x03\xe0A\x03R\ttokenType\x12C\n" +
+	"\rlast_use_time\x18\f \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\vlastUseTime\x12\x17\n" +
+	"\x03ttl\x18\r \x01(\x05B\x03\xe0A\x04H\x00R\x03ttl\x12=\n" +
+	"\vexpire_time\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampH\x00R\n" +
 	"expireTime\"W\n" +
 	"\x05State\x12\x15\n" +
 	"\x11STATE_UNSPECIFIED\x10\x00\x12\x12\n" +
 	"\x0eSTATE_INACTIVE\x10\x01\x12\x10\n" +
 	"\fSTATE_ACTIVE\x10\x02\x12\x11\n" +
-	"\rSTATE_EXPIRED\x10\x03B\f\n" +
+	"\rSTATE_EXPIRED\x10\x03:;\xeaA8\n" +
+	"\x19api.instill.tech/ApiToken\x12\x1busers/{user}/tokens/{token}B\f\n" +
 	"\n" +
-	"expiration\"A\n" +
+	"expirationJ\x04\b\x03\x10\x04J\x04\b\x04\x10\x05J\x04\b\x05\x10\x06J\x04\b\x06\x10\a\"A\n" +
 	"\x12CreateTokenRequest\x12+\n" +
 	"\x05token\x18\x01 \x01(\v2\x15.mgmt.v1beta.ApiTokenR\x05token\"G\n" +
 	"\x13CreateTokenResponse\x120\n" +
-	"\x05token\x18\x01 \x01(\v2\x15.mgmt.v1beta.ApiTokenB\x03\xe0A\x03R\x05token\"\x80\x01\n" +
-	"\x11ListTokensRequest\x12%\n" +
-	"\tpage_size\x18\x01 \x01(\x05B\x03\xe0A\x01H\x00R\bpageSize\x88\x01\x01\x12'\n" +
+	"\x05token\x18\x01 \x01(\v2\x15.mgmt.v1beta.ApiTokenB\x03\xe0A\x03R\x05token\"\xc7\x01\n" +
+	"\x11ListTokensRequest\x12:\n" +
+	"\x06parent\x18\x01 \x01(\tB\x1d\xe0A\x01\xfaA\x17\n" +
+	"\x15api.instill.tech/UserH\x00R\x06parent\x88\x01\x01\x12%\n" +
+	"\tpage_size\x18\x02 \x01(\x05B\x03\xe0A\x01H\x01R\bpageSize\x88\x01\x01\x12'\n" +
 	"\n" +
-	"page_token\x18\x02 \x01(\tB\x03\xe0A\x01H\x01R\tpageToken\x88\x01\x01B\f\n" +
+	"page_token\x18\x03 \x01(\tB\x03\xe0A\x01H\x02R\tpageToken\x88\x01\x01B\t\n" +
+	"\a_parentB\f\n" +
 	"\n" +
 	"_page_sizeB\r\n" +
 	"\v_page_token\"\x8a\x01\n" +
@@ -5961,17 +5976,19 @@ const file_mgmt_v1beta_mgmt_proto_rawDesc = "" +
 	"\x06tokens\x18\x01 \x03(\v2\x15.mgmt.v1beta.ApiTokenR\x06tokens\x12&\n" +
 	"\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\x12\x1d\n" +
 	"\n" +
-	"total_size\x18\x03 \x01(\x05R\ttotalSize\"*\n" +
-	"\x0fGetTokenRequest\x12\x17\n" +
-	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"D\n" +
+	"total_size\x18\x03 \x01(\x05R\ttotalSize\"H\n" +
+	"\x0fGetTokenRequest\x125\n" +
+	"\x04name\x18\x01 \x01(\tB!\xe0A\x02\xfaA\x1b\n" +
+	"\x19api.instill.tech/ApiTokenR\x04name\"D\n" +
 	"\x10GetTokenResponse\x120\n" +
-	"\x05token\x18\x01 \x01(\v2\x15.mgmt.v1beta.ApiTokenB\x03\xe0A\x03R\x05token\"-\n" +
-	"\x12DeleteTokenRequest\x12\x17\n" +
-	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"\x15\n" +
+	"\x05token\x18\x01 \x01(\v2\x15.mgmt.v1beta.ApiTokenB\x03\xe0A\x03R\x05token\"K\n" +
+	"\x12DeleteTokenRequest\x125\n" +
+	"\x04name\x18\x01 \x01(\tB!\xe0A\x02\xfaA\x1b\n" +
+	"\x19api.instill.tech/ApiTokenR\x04name\"\x15\n" +
 	"\x13DeleteTokenResponse\"\x16\n" +
-	"\x14ValidateTokenRequest\"7\n" +
-	"\x15ValidateTokenResponse\x12\x1e\n" +
-	"\buser_uid\x18\x01 \x01(\tB\x03\xe0A\x03R\auserUid\"Z\n" +
+	"\x14ValidateTokenRequest\"0\n" +
+	"\x15ValidateTokenResponse\x12\x17\n" +
+	"\x04user\x18\x01 \x01(\tB\x03\xe0A\x03R\x04user\"Z\n" +
 	"\x16AuthTokenIssuerRequest\x12\x1f\n" +
 	"\busername\x18\x01 \x01(\tB\x03\xe0A\x02R\busername\x12\x1f\n" +
 	"\bpassword\x18\x02 \x01(\tB\x03\xe0A\x02R\bpassword\"\xe7\x01\n" +
@@ -5995,7 +6012,7 @@ const file_mgmt_v1beta_mgmt_proto_rawDesc = "" +
 	"\x19AuthChangePasswordRequest\x12!\n" +
 	"\fold_password\x18\x01 \x01(\tR\voldPassword\x12!\n" +
 	"\fnew_password\x18\x02 \x01(\tR\vnewPassword\"\x1c\n" +
-	"\x1aAuthChangePasswordResponse\"\xeb\x04\n" +
+	"\x1aAuthChangePasswordResponse\"\x87\x05\n" +
 	"\fOrganization\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x05R\x02id\x12&\n" +
@@ -6015,7 +6032,8 @@ const file_mgmt_v1beta_mgmt_proto_rawDesc = "" +
 	"\x05stats\x18\x0e \x01(\v2\x1f.mgmt.v1beta.Organization.StatsB\x03\xe0A\x03R\x05stats\x1a&\n" +
 	"\x05Stats\x12\x1d\n" +
 	"\n" +
-	"user_count\x18\x01 \x01(\x05R\tuserCount:$\xeaA!\x12\x1forganizations/{organization.id}\"\xee\x01\n" +
+	"user_count\x18\x01 \x01(\x05R\tuserCount:@\xeaA=\n" +
+	"\x1dapi.instill.tech/Organization\x12\x1corganizations/{organization}\"\xee\x01\n" +
 	"\x18ListOrganizationsRequest\x12%\n" +
 	"\tpage_size\x18\x01 \x01(\x05B\x03\xe0A\x01H\x00R\bpageSize\x88\x01\x01\x12'\n" +
 	"\n" +
@@ -6293,10 +6311,10 @@ var file_mgmt_v1beta_mgmt_proto_depIdxs = []int32{
 	6,   // 39: mgmt.v1beta.CheckNamespaceByUIDAdminResponse.type:type_name -> mgmt.v1beta.CheckNamespaceByUIDAdminResponse.Namespace
 	17,  // 40: mgmt.v1beta.CheckNamespaceByUIDAdminResponse.user:type_name -> mgmt.v1beta.User
 	65,  // 41: mgmt.v1beta.CheckNamespaceByUIDAdminResponse.organization:type_name -> mgmt.v1beta.Organization
-	100, // 42: mgmt.v1beta.ApiToken.last_use_time:type_name -> google.protobuf.Timestamp
-	100, // 43: mgmt.v1beta.ApiToken.create_time:type_name -> google.protobuf.Timestamp
-	100, // 44: mgmt.v1beta.ApiToken.update_time:type_name -> google.protobuf.Timestamp
-	7,   // 45: mgmt.v1beta.ApiToken.state:type_name -> mgmt.v1beta.ApiToken.State
+	100, // 42: mgmt.v1beta.ApiToken.create_time:type_name -> google.protobuf.Timestamp
+	100, // 43: mgmt.v1beta.ApiToken.update_time:type_name -> google.protobuf.Timestamp
+	7,   // 44: mgmt.v1beta.ApiToken.state:type_name -> mgmt.v1beta.ApiToken.State
+	100, // 45: mgmt.v1beta.ApiToken.last_use_time:type_name -> google.protobuf.Timestamp
 	100, // 46: mgmt.v1beta.ApiToken.expire_time:type_name -> google.protobuf.Timestamp
 	44,  // 47: mgmt.v1beta.CreateTokenRequest.token:type_name -> mgmt.v1beta.ApiToken
 	44,  // 48: mgmt.v1beta.CreateTokenResponse.token:type_name -> mgmt.v1beta.ApiToken

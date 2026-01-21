@@ -27,7 +27,7 @@ var File_mgmt_v1beta_mgmt_public_service_proto protoreflect.FileDescriptor
 
 const file_mgmt_v1beta_mgmt_public_service_proto_rawDesc = "" +
 	"\n" +
-	"%mgmt/v1beta/mgmt_public_service.proto\x12\vmgmt.v1beta\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a\x18mgmt/v1beta/metric.proto\x1a\x16mgmt/v1beta/mgmt.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xf9\x1f\n" +
+	"%mgmt/v1beta/mgmt_public_service.proto\x12\vmgmt.v1beta\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a\x18mgmt/v1beta/metric.proto\x1a\x16mgmt/v1beta/mgmt.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xb6\x1a\n" +
 	"\x11MgmtPublicService\x12\x8a\x01\n" +
 	"\bLiveness\x12\x1c.mgmt.v1beta.LivenessRequest\x1a\x1d.mgmt.v1beta.LivenessResponse\"A\xfa\xd2\xe4\x93\x02\n" +
 	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02+Z\x15\x12\x13/v1beta/health/mgmt\x12\x12/v1beta/__liveness\x12\x8d\x01\n" +
@@ -88,70 +88,52 @@ const file_mgmt_v1beta_mgmt_public_service_proto_rawDesc = "" +
 	"\x12AuthChangePassword\x12&.mgmt.v1beta.AuthChangePasswordRequest\x1a'.mgmt.v1beta.AuthChangePasswordResponse\"7\xfa\xd2\xe4\x93\x02\n" +
 	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02!:\x01*\"\x1c/v1beta/auth/change_password\x12\xb0\x01\n" +
 	"\x17AuthValidateAccessToken\x12+.mgmt.v1beta.AuthValidateAccessTokenRequest\x1a,.mgmt.v1beta.AuthValidateAccessTokenResponse\":\xfa\xd2\xe4\x93\x02\n" +
-	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02$\"\"/v1beta/auth/validate_access_token\x12\xde\x01\n" +
-	"\x1aListPipelineTriggerRecords\x12..mgmt.v1beta.ListPipelineTriggerRecordsRequest\x1a/.mgmt.v1beta.ListPipelineTriggerRecordsResponse\"_\x92A\x1c\n" +
-	"\aMetricsj\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\xfa\xd2\xe4\x93\x02\n" +
-	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02'\x12%/v1beta/metrics/vdp/pipeline/triggers\x88\x02\x01\x12\xeb\x01\n" +
-	"\x1fListPipelineTriggerTableRecords\x123.mgmt.v1beta.ListPipelineTriggerTableRecordsRequest\x1a4.mgmt.v1beta.ListPipelineTriggerTableRecordsResponse\"]\x92A\x1c\n" +
-	"\aMetricsj\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\xfa\xd2\xe4\x93\x02\n" +
-	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02%\x12#/v1beta/metrics/vdp/pipeline/tables\x88\x02\x01\x12\xf1\x01\n" +
-	"!ListPipelineTriggerChartRecordsV0\x125.mgmt.v1beta.ListPipelineTriggerChartRecordsV0Request\x1a6.mgmt.v1beta.ListPipelineTriggerChartRecordsV0Response\"]\x92A\x1c\n" +
-	"\aMetricsj\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\xfa\xd2\xe4\x93\x02\n" +
-	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02%\x12#/v1beta/metrics/vdp/pipeline/charts\x88\x02\x01\x1a\x1a\x92A\x17\x12\x15Public Mgmt endpointsB\xb0\x01\n" +
+	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02$\"\"/v1beta/auth/validate_access_token\x1a\x1a\x92A\x17\x12\x15Public Mgmt endpointsB\xb0\x01\n" +
 	"\x0fcom.mgmt.v1betaB\x16MgmtPublicServiceProtoP\x01Z8github.com/instill-ai/protogen-go/mgmt/v1beta;mgmtv1beta\xa2\x02\x03MXX\xaa\x02\vMgmt.V1beta\xca\x02\vMgmt\\V1beta\xe2\x02\x17Mgmt\\V1beta\\GPBMetadata\xea\x02\fMgmt::V1betab\x06proto3"
 
 var file_mgmt_v1beta_mgmt_public_service_proto_goTypes = []any{
-	(*LivenessRequest)(nil),                           // 0: mgmt.v1beta.LivenessRequest
-	(*ReadinessRequest)(nil),                          // 1: mgmt.v1beta.ReadinessRequest
-	(*GetAuthenticatedUserRequest)(nil),               // 2: mgmt.v1beta.GetAuthenticatedUserRequest
-	(*PatchAuthenticatedUserRequest)(nil),             // 3: mgmt.v1beta.PatchAuthenticatedUserRequest
-	(*ListUsersRequest)(nil),                          // 4: mgmt.v1beta.ListUsersRequest
-	(*GetUserRequest)(nil),                            // 5: mgmt.v1beta.GetUserRequest
-	(*CreateTokenRequest)(nil),                        // 6: mgmt.v1beta.CreateTokenRequest
-	(*ListTokensRequest)(nil),                         // 7: mgmt.v1beta.ListTokensRequest
-	(*GetTokenRequest)(nil),                           // 8: mgmt.v1beta.GetTokenRequest
-	(*DeleteTokenRequest)(nil),                        // 9: mgmt.v1beta.DeleteTokenRequest
-	(*ValidateTokenRequest)(nil),                      // 10: mgmt.v1beta.ValidateTokenRequest
-	(*CheckNamespaceRequest)(nil),                     // 11: mgmt.v1beta.CheckNamespaceRequest
-	(*GetPipelineTriggerCountRequest)(nil),            // 12: mgmt.v1beta.GetPipelineTriggerCountRequest
-	(*GetModelTriggerCountRequest)(nil),               // 13: mgmt.v1beta.GetModelTriggerCountRequest
-	(*ListPipelineTriggerChartRecordsRequest)(nil),    // 14: mgmt.v1beta.ListPipelineTriggerChartRecordsRequest
-	(*ListModelTriggerChartRecordsRequest)(nil),       // 15: mgmt.v1beta.ListModelTriggerChartRecordsRequest
-	(*AuthTokenIssuerRequest)(nil),                    // 16: mgmt.v1beta.AuthTokenIssuerRequest
-	(*AuthLoginRequest)(nil),                          // 17: mgmt.v1beta.AuthLoginRequest
-	(*AuthLogoutRequest)(nil),                         // 18: mgmt.v1beta.AuthLogoutRequest
-	(*AuthChangePasswordRequest)(nil),                 // 19: mgmt.v1beta.AuthChangePasswordRequest
-	(*AuthValidateAccessTokenRequest)(nil),            // 20: mgmt.v1beta.AuthValidateAccessTokenRequest
-	(*ListPipelineTriggerRecordsRequest)(nil),         // 21: mgmt.v1beta.ListPipelineTriggerRecordsRequest
-	(*ListPipelineTriggerTableRecordsRequest)(nil),    // 22: mgmt.v1beta.ListPipelineTriggerTableRecordsRequest
-	(*ListPipelineTriggerChartRecordsV0Request)(nil),  // 23: mgmt.v1beta.ListPipelineTriggerChartRecordsV0Request
-	(*LivenessResponse)(nil),                          // 24: mgmt.v1beta.LivenessResponse
-	(*ReadinessResponse)(nil),                         // 25: mgmt.v1beta.ReadinessResponse
-	(*GetAuthenticatedUserResponse)(nil),              // 26: mgmt.v1beta.GetAuthenticatedUserResponse
-	(*PatchAuthenticatedUserResponse)(nil),            // 27: mgmt.v1beta.PatchAuthenticatedUserResponse
-	(*ListUsersResponse)(nil),                         // 28: mgmt.v1beta.ListUsersResponse
-	(*GetUserResponse)(nil),                           // 29: mgmt.v1beta.GetUserResponse
-	(*CreateTokenResponse)(nil),                       // 30: mgmt.v1beta.CreateTokenResponse
-	(*ListTokensResponse)(nil),                        // 31: mgmt.v1beta.ListTokensResponse
-	(*GetTokenResponse)(nil),                          // 32: mgmt.v1beta.GetTokenResponse
-	(*DeleteTokenResponse)(nil),                       // 33: mgmt.v1beta.DeleteTokenResponse
-	(*ValidateTokenResponse)(nil),                     // 34: mgmt.v1beta.ValidateTokenResponse
-	(*CheckNamespaceResponse)(nil),                    // 35: mgmt.v1beta.CheckNamespaceResponse
-	(*GetPipelineTriggerCountResponse)(nil),           // 36: mgmt.v1beta.GetPipelineTriggerCountResponse
-	(*GetModelTriggerCountResponse)(nil),              // 37: mgmt.v1beta.GetModelTriggerCountResponse
-	(*ListPipelineTriggerChartRecordsResponse)(nil),   // 38: mgmt.v1beta.ListPipelineTriggerChartRecordsResponse
-	(*ListModelTriggerChartRecordsResponse)(nil),      // 39: mgmt.v1beta.ListModelTriggerChartRecordsResponse
-	(*AuthTokenIssuerResponse)(nil),                   // 40: mgmt.v1beta.AuthTokenIssuerResponse
-	(*AuthLoginResponse)(nil),                         // 41: mgmt.v1beta.AuthLoginResponse
-	(*AuthLogoutResponse)(nil),                        // 42: mgmt.v1beta.AuthLogoutResponse
-	(*AuthChangePasswordResponse)(nil),                // 43: mgmt.v1beta.AuthChangePasswordResponse
-	(*AuthValidateAccessTokenResponse)(nil),           // 44: mgmt.v1beta.AuthValidateAccessTokenResponse
-	(*ListPipelineTriggerRecordsResponse)(nil),        // 45: mgmt.v1beta.ListPipelineTriggerRecordsResponse
-	(*ListPipelineTriggerTableRecordsResponse)(nil),   // 46: mgmt.v1beta.ListPipelineTriggerTableRecordsResponse
-	(*ListPipelineTriggerChartRecordsV0Response)(nil), // 47: mgmt.v1beta.ListPipelineTriggerChartRecordsV0Response
+	(*LivenessRequest)(nil),                         // 0: mgmt.v1beta.LivenessRequest
+	(*ReadinessRequest)(nil),                        // 1: mgmt.v1beta.ReadinessRequest
+	(*GetAuthenticatedUserRequest)(nil),             // 2: mgmt.v1beta.GetAuthenticatedUserRequest
+	(*PatchAuthenticatedUserRequest)(nil),           // 3: mgmt.v1beta.PatchAuthenticatedUserRequest
+	(*ListUsersRequest)(nil),                        // 4: mgmt.v1beta.ListUsersRequest
+	(*GetUserRequest)(nil),                          // 5: mgmt.v1beta.GetUserRequest
+	(*CreateTokenRequest)(nil),                      // 6: mgmt.v1beta.CreateTokenRequest
+	(*ListTokensRequest)(nil),                       // 7: mgmt.v1beta.ListTokensRequest
+	(*GetTokenRequest)(nil),                         // 8: mgmt.v1beta.GetTokenRequest
+	(*DeleteTokenRequest)(nil),                      // 9: mgmt.v1beta.DeleteTokenRequest
+	(*ValidateTokenRequest)(nil),                    // 10: mgmt.v1beta.ValidateTokenRequest
+	(*CheckNamespaceRequest)(nil),                   // 11: mgmt.v1beta.CheckNamespaceRequest
+	(*GetPipelineTriggerCountRequest)(nil),          // 12: mgmt.v1beta.GetPipelineTriggerCountRequest
+	(*GetModelTriggerCountRequest)(nil),             // 13: mgmt.v1beta.GetModelTriggerCountRequest
+	(*ListPipelineTriggerChartRecordsRequest)(nil),  // 14: mgmt.v1beta.ListPipelineTriggerChartRecordsRequest
+	(*ListModelTriggerChartRecordsRequest)(nil),     // 15: mgmt.v1beta.ListModelTriggerChartRecordsRequest
+	(*AuthTokenIssuerRequest)(nil),                  // 16: mgmt.v1beta.AuthTokenIssuerRequest
+	(*AuthLoginRequest)(nil),                        // 17: mgmt.v1beta.AuthLoginRequest
+	(*AuthLogoutRequest)(nil),                       // 18: mgmt.v1beta.AuthLogoutRequest
+	(*AuthChangePasswordRequest)(nil),               // 19: mgmt.v1beta.AuthChangePasswordRequest
+	(*AuthValidateAccessTokenRequest)(nil),          // 20: mgmt.v1beta.AuthValidateAccessTokenRequest
+	(*LivenessResponse)(nil),                        // 21: mgmt.v1beta.LivenessResponse
+	(*ReadinessResponse)(nil),                       // 22: mgmt.v1beta.ReadinessResponse
+	(*GetAuthenticatedUserResponse)(nil),            // 23: mgmt.v1beta.GetAuthenticatedUserResponse
+	(*PatchAuthenticatedUserResponse)(nil),          // 24: mgmt.v1beta.PatchAuthenticatedUserResponse
+	(*ListUsersResponse)(nil),                       // 25: mgmt.v1beta.ListUsersResponse
+	(*GetUserResponse)(nil),                         // 26: mgmt.v1beta.GetUserResponse
+	(*CreateTokenResponse)(nil),                     // 27: mgmt.v1beta.CreateTokenResponse
+	(*ListTokensResponse)(nil),                      // 28: mgmt.v1beta.ListTokensResponse
+	(*GetTokenResponse)(nil),                        // 29: mgmt.v1beta.GetTokenResponse
+	(*DeleteTokenResponse)(nil),                     // 30: mgmt.v1beta.DeleteTokenResponse
+	(*ValidateTokenResponse)(nil),                   // 31: mgmt.v1beta.ValidateTokenResponse
+	(*CheckNamespaceResponse)(nil),                  // 32: mgmt.v1beta.CheckNamespaceResponse
+	(*GetPipelineTriggerCountResponse)(nil),         // 33: mgmt.v1beta.GetPipelineTriggerCountResponse
+	(*GetModelTriggerCountResponse)(nil),            // 34: mgmt.v1beta.GetModelTriggerCountResponse
+	(*ListPipelineTriggerChartRecordsResponse)(nil), // 35: mgmt.v1beta.ListPipelineTriggerChartRecordsResponse
+	(*ListModelTriggerChartRecordsResponse)(nil),    // 36: mgmt.v1beta.ListModelTriggerChartRecordsResponse
+	(*AuthTokenIssuerResponse)(nil),                 // 37: mgmt.v1beta.AuthTokenIssuerResponse
+	(*AuthLoginResponse)(nil),                       // 38: mgmt.v1beta.AuthLoginResponse
+	(*AuthLogoutResponse)(nil),                      // 39: mgmt.v1beta.AuthLogoutResponse
+	(*AuthChangePasswordResponse)(nil),              // 40: mgmt.v1beta.AuthChangePasswordResponse
+	(*AuthValidateAccessTokenResponse)(nil),         // 41: mgmt.v1beta.AuthValidateAccessTokenResponse
 }
 var file_mgmt_v1beta_mgmt_public_service_proto_depIdxs = []int32{
 	0,  // 0: mgmt.v1beta.MgmtPublicService.Liveness:input_type -> mgmt.v1beta.LivenessRequest
@@ -175,35 +157,29 @@ var file_mgmt_v1beta_mgmt_public_service_proto_depIdxs = []int32{
 	18, // 18: mgmt.v1beta.MgmtPublicService.AuthLogout:input_type -> mgmt.v1beta.AuthLogoutRequest
 	19, // 19: mgmt.v1beta.MgmtPublicService.AuthChangePassword:input_type -> mgmt.v1beta.AuthChangePasswordRequest
 	20, // 20: mgmt.v1beta.MgmtPublicService.AuthValidateAccessToken:input_type -> mgmt.v1beta.AuthValidateAccessTokenRequest
-	21, // 21: mgmt.v1beta.MgmtPublicService.ListPipelineTriggerRecords:input_type -> mgmt.v1beta.ListPipelineTriggerRecordsRequest
-	22, // 22: mgmt.v1beta.MgmtPublicService.ListPipelineTriggerTableRecords:input_type -> mgmt.v1beta.ListPipelineTriggerTableRecordsRequest
-	23, // 23: mgmt.v1beta.MgmtPublicService.ListPipelineTriggerChartRecordsV0:input_type -> mgmt.v1beta.ListPipelineTriggerChartRecordsV0Request
-	24, // 24: mgmt.v1beta.MgmtPublicService.Liveness:output_type -> mgmt.v1beta.LivenessResponse
-	25, // 25: mgmt.v1beta.MgmtPublicService.Readiness:output_type -> mgmt.v1beta.ReadinessResponse
-	26, // 26: mgmt.v1beta.MgmtPublicService.GetAuthenticatedUser:output_type -> mgmt.v1beta.GetAuthenticatedUserResponse
-	27, // 27: mgmt.v1beta.MgmtPublicService.PatchAuthenticatedUser:output_type -> mgmt.v1beta.PatchAuthenticatedUserResponse
-	28, // 28: mgmt.v1beta.MgmtPublicService.ListUsers:output_type -> mgmt.v1beta.ListUsersResponse
-	29, // 29: mgmt.v1beta.MgmtPublicService.GetUser:output_type -> mgmt.v1beta.GetUserResponse
-	30, // 30: mgmt.v1beta.MgmtPublicService.CreateToken:output_type -> mgmt.v1beta.CreateTokenResponse
-	31, // 31: mgmt.v1beta.MgmtPublicService.ListTokens:output_type -> mgmt.v1beta.ListTokensResponse
-	32, // 32: mgmt.v1beta.MgmtPublicService.GetToken:output_type -> mgmt.v1beta.GetTokenResponse
-	33, // 33: mgmt.v1beta.MgmtPublicService.DeleteToken:output_type -> mgmt.v1beta.DeleteTokenResponse
-	34, // 34: mgmt.v1beta.MgmtPublicService.ValidateToken:output_type -> mgmt.v1beta.ValidateTokenResponse
-	35, // 35: mgmt.v1beta.MgmtPublicService.CheckNamespace:output_type -> mgmt.v1beta.CheckNamespaceResponse
-	36, // 36: mgmt.v1beta.MgmtPublicService.GetPipelineTriggerCount:output_type -> mgmt.v1beta.GetPipelineTriggerCountResponse
-	37, // 37: mgmt.v1beta.MgmtPublicService.GetModelTriggerCount:output_type -> mgmt.v1beta.GetModelTriggerCountResponse
-	38, // 38: mgmt.v1beta.MgmtPublicService.ListPipelineTriggerChartRecords:output_type -> mgmt.v1beta.ListPipelineTriggerChartRecordsResponse
-	39, // 39: mgmt.v1beta.MgmtPublicService.ListModelTriggerChartRecords:output_type -> mgmt.v1beta.ListModelTriggerChartRecordsResponse
-	40, // 40: mgmt.v1beta.MgmtPublicService.AuthTokenIssuer:output_type -> mgmt.v1beta.AuthTokenIssuerResponse
-	41, // 41: mgmt.v1beta.MgmtPublicService.AuthLogin:output_type -> mgmt.v1beta.AuthLoginResponse
-	42, // 42: mgmt.v1beta.MgmtPublicService.AuthLogout:output_type -> mgmt.v1beta.AuthLogoutResponse
-	43, // 43: mgmt.v1beta.MgmtPublicService.AuthChangePassword:output_type -> mgmt.v1beta.AuthChangePasswordResponse
-	44, // 44: mgmt.v1beta.MgmtPublicService.AuthValidateAccessToken:output_type -> mgmt.v1beta.AuthValidateAccessTokenResponse
-	45, // 45: mgmt.v1beta.MgmtPublicService.ListPipelineTriggerRecords:output_type -> mgmt.v1beta.ListPipelineTriggerRecordsResponse
-	46, // 46: mgmt.v1beta.MgmtPublicService.ListPipelineTriggerTableRecords:output_type -> mgmt.v1beta.ListPipelineTriggerTableRecordsResponse
-	47, // 47: mgmt.v1beta.MgmtPublicService.ListPipelineTriggerChartRecordsV0:output_type -> mgmt.v1beta.ListPipelineTriggerChartRecordsV0Response
-	24, // [24:48] is the sub-list for method output_type
-	0,  // [0:24] is the sub-list for method input_type
+	21, // 21: mgmt.v1beta.MgmtPublicService.Liveness:output_type -> mgmt.v1beta.LivenessResponse
+	22, // 22: mgmt.v1beta.MgmtPublicService.Readiness:output_type -> mgmt.v1beta.ReadinessResponse
+	23, // 23: mgmt.v1beta.MgmtPublicService.GetAuthenticatedUser:output_type -> mgmt.v1beta.GetAuthenticatedUserResponse
+	24, // 24: mgmt.v1beta.MgmtPublicService.PatchAuthenticatedUser:output_type -> mgmt.v1beta.PatchAuthenticatedUserResponse
+	25, // 25: mgmt.v1beta.MgmtPublicService.ListUsers:output_type -> mgmt.v1beta.ListUsersResponse
+	26, // 26: mgmt.v1beta.MgmtPublicService.GetUser:output_type -> mgmt.v1beta.GetUserResponse
+	27, // 27: mgmt.v1beta.MgmtPublicService.CreateToken:output_type -> mgmt.v1beta.CreateTokenResponse
+	28, // 28: mgmt.v1beta.MgmtPublicService.ListTokens:output_type -> mgmt.v1beta.ListTokensResponse
+	29, // 29: mgmt.v1beta.MgmtPublicService.GetToken:output_type -> mgmt.v1beta.GetTokenResponse
+	30, // 30: mgmt.v1beta.MgmtPublicService.DeleteToken:output_type -> mgmt.v1beta.DeleteTokenResponse
+	31, // 31: mgmt.v1beta.MgmtPublicService.ValidateToken:output_type -> mgmt.v1beta.ValidateTokenResponse
+	32, // 32: mgmt.v1beta.MgmtPublicService.CheckNamespace:output_type -> mgmt.v1beta.CheckNamespaceResponse
+	33, // 33: mgmt.v1beta.MgmtPublicService.GetPipelineTriggerCount:output_type -> mgmt.v1beta.GetPipelineTriggerCountResponse
+	34, // 34: mgmt.v1beta.MgmtPublicService.GetModelTriggerCount:output_type -> mgmt.v1beta.GetModelTriggerCountResponse
+	35, // 35: mgmt.v1beta.MgmtPublicService.ListPipelineTriggerChartRecords:output_type -> mgmt.v1beta.ListPipelineTriggerChartRecordsResponse
+	36, // 36: mgmt.v1beta.MgmtPublicService.ListModelTriggerChartRecords:output_type -> mgmt.v1beta.ListModelTriggerChartRecordsResponse
+	37, // 37: mgmt.v1beta.MgmtPublicService.AuthTokenIssuer:output_type -> mgmt.v1beta.AuthTokenIssuerResponse
+	38, // 38: mgmt.v1beta.MgmtPublicService.AuthLogin:output_type -> mgmt.v1beta.AuthLoginResponse
+	39, // 39: mgmt.v1beta.MgmtPublicService.AuthLogout:output_type -> mgmt.v1beta.AuthLogoutResponse
+	40, // 40: mgmt.v1beta.MgmtPublicService.AuthChangePassword:output_type -> mgmt.v1beta.AuthChangePasswordResponse
+	41, // 41: mgmt.v1beta.MgmtPublicService.AuthValidateAccessToken:output_type -> mgmt.v1beta.AuthValidateAccessTokenResponse
+	21, // [21:42] is the sub-list for method output_type
+	0,  // [0:21] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name

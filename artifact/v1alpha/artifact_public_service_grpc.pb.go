@@ -19,29 +19,28 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ArtifactPublicService_Liveness_FullMethodName              = "/artifact.v1alpha.ArtifactPublicService/Liveness"
-	ArtifactPublicService_Readiness_FullMethodName             = "/artifact.v1alpha.ArtifactPublicService/Readiness"
-	ArtifactPublicService_CreateKnowledgeBase_FullMethodName   = "/artifact.v1alpha.ArtifactPublicService/CreateKnowledgeBase"
-	ArtifactPublicService_GetKnowledgeBase_FullMethodName      = "/artifact.v1alpha.ArtifactPublicService/GetKnowledgeBase"
-	ArtifactPublicService_ListKnowledgeBases_FullMethodName    = "/artifact.v1alpha.ArtifactPublicService/ListKnowledgeBases"
-	ArtifactPublicService_UpdateKnowledgeBase_FullMethodName   = "/artifact.v1alpha.ArtifactPublicService/UpdateKnowledgeBase"
-	ArtifactPublicService_DeleteKnowledgeBase_FullMethodName   = "/artifact.v1alpha.ArtifactPublicService/DeleteKnowledgeBase"
-	ArtifactPublicService_CreateFile_FullMethodName            = "/artifact.v1alpha.ArtifactPublicService/CreateFile"
-	ArtifactPublicService_GetFile_FullMethodName               = "/artifact.v1alpha.ArtifactPublicService/GetFile"
-	ArtifactPublicService_ListFiles_FullMethodName             = "/artifact.v1alpha.ArtifactPublicService/ListFiles"
-	ArtifactPublicService_UpdateFile_FullMethodName            = "/artifact.v1alpha.ArtifactPublicService/UpdateFile"
-	ArtifactPublicService_ReprocessFile_FullMethodName         = "/artifact.v1alpha.ArtifactPublicService/ReprocessFile"
-	ArtifactPublicService_DeleteFile_FullMethodName            = "/artifact.v1alpha.ArtifactPublicService/DeleteFile"
-	ArtifactPublicService_GetChunk_FullMethodName              = "/artifact.v1alpha.ArtifactPublicService/GetChunk"
-	ArtifactPublicService_ListChunks_FullMethodName            = "/artifact.v1alpha.ArtifactPublicService/ListChunks"
-	ArtifactPublicService_UpdateChunk_FullMethodName           = "/artifact.v1alpha.ArtifactPublicService/UpdateChunk"
-	ArtifactPublicService_SearchChunks_FullMethodName          = "/artifact.v1alpha.ArtifactPublicService/SearchChunks"
-	ArtifactPublicService_ListKnowledgeBaseRuns_FullMethodName = "/artifact.v1alpha.ArtifactPublicService/ListKnowledgeBaseRuns"
-	ArtifactPublicService_GetObjectUploadURL_FullMethodName    = "/artifact.v1alpha.ArtifactPublicService/GetObjectUploadURL"
-	ArtifactPublicService_GetObjectDownloadURL_FullMethodName  = "/artifact.v1alpha.ArtifactPublicService/GetObjectDownloadURL"
-	ArtifactPublicService_GetObject_FullMethodName             = "/artifact.v1alpha.ArtifactPublicService/GetObject"
-	ArtifactPublicService_UpdateObject_FullMethodName          = "/artifact.v1alpha.ArtifactPublicService/UpdateObject"
-	ArtifactPublicService_DeleteObject_FullMethodName          = "/artifact.v1alpha.ArtifactPublicService/DeleteObject"
+	ArtifactPublicService_Liveness_FullMethodName             = "/artifact.v1alpha.ArtifactPublicService/Liveness"
+	ArtifactPublicService_Readiness_FullMethodName            = "/artifact.v1alpha.ArtifactPublicService/Readiness"
+	ArtifactPublicService_CreateKnowledgeBase_FullMethodName  = "/artifact.v1alpha.ArtifactPublicService/CreateKnowledgeBase"
+	ArtifactPublicService_GetKnowledgeBase_FullMethodName     = "/artifact.v1alpha.ArtifactPublicService/GetKnowledgeBase"
+	ArtifactPublicService_ListKnowledgeBases_FullMethodName   = "/artifact.v1alpha.ArtifactPublicService/ListKnowledgeBases"
+	ArtifactPublicService_UpdateKnowledgeBase_FullMethodName  = "/artifact.v1alpha.ArtifactPublicService/UpdateKnowledgeBase"
+	ArtifactPublicService_DeleteKnowledgeBase_FullMethodName  = "/artifact.v1alpha.ArtifactPublicService/DeleteKnowledgeBase"
+	ArtifactPublicService_CreateFile_FullMethodName           = "/artifact.v1alpha.ArtifactPublicService/CreateFile"
+	ArtifactPublicService_GetFile_FullMethodName              = "/artifact.v1alpha.ArtifactPublicService/GetFile"
+	ArtifactPublicService_ListFiles_FullMethodName            = "/artifact.v1alpha.ArtifactPublicService/ListFiles"
+	ArtifactPublicService_UpdateFile_FullMethodName           = "/artifact.v1alpha.ArtifactPublicService/UpdateFile"
+	ArtifactPublicService_ReprocessFile_FullMethodName        = "/artifact.v1alpha.ArtifactPublicService/ReprocessFile"
+	ArtifactPublicService_DeleteFile_FullMethodName           = "/artifact.v1alpha.ArtifactPublicService/DeleteFile"
+	ArtifactPublicService_GetChunk_FullMethodName             = "/artifact.v1alpha.ArtifactPublicService/GetChunk"
+	ArtifactPublicService_ListChunks_FullMethodName           = "/artifact.v1alpha.ArtifactPublicService/ListChunks"
+	ArtifactPublicService_UpdateChunk_FullMethodName          = "/artifact.v1alpha.ArtifactPublicService/UpdateChunk"
+	ArtifactPublicService_SearchChunks_FullMethodName         = "/artifact.v1alpha.ArtifactPublicService/SearchChunks"
+	ArtifactPublicService_GetObjectUploadURL_FullMethodName   = "/artifact.v1alpha.ArtifactPublicService/GetObjectUploadURL"
+	ArtifactPublicService_GetObjectDownloadURL_FullMethodName = "/artifact.v1alpha.ArtifactPublicService/GetObjectDownloadURL"
+	ArtifactPublicService_GetObject_FullMethodName            = "/artifact.v1alpha.ArtifactPublicService/GetObject"
+	ArtifactPublicService_UpdateObject_FullMethodName         = "/artifact.v1alpha.ArtifactPublicService/UpdateObject"
+	ArtifactPublicService_DeleteObject_FullMethodName         = "/artifact.v1alpha.ArtifactPublicService/DeleteObject"
 )
 
 // ArtifactPublicServiceClient is the client API for ArtifactPublicService service.
@@ -120,10 +119,6 @@ type ArtifactPublicServiceClient interface {
 	//
 	// Returns the top-K most similar chunks to a text prompt.
 	SearchChunks(ctx context.Context, in *SearchChunksRequest, opts ...grpc.CallOption) (*SearchChunksResponse, error)
-	// List Knowledge Base Runs
-	//
-	// Returns a paginated list of knowledge base runs.
-	ListKnowledgeBaseRuns(ctx context.Context, in *ListKnowledgeBaseRunsRequest, opts ...grpc.CallOption) (*ListKnowledgeBaseRunsResponse, error)
 	// Get Object Upload URL
 	//
 	// Returns the upload URL of an object.
@@ -324,16 +319,6 @@ func (c *artifactPublicServiceClient) SearchChunks(ctx context.Context, in *Sear
 	return out, nil
 }
 
-func (c *artifactPublicServiceClient) ListKnowledgeBaseRuns(ctx context.Context, in *ListKnowledgeBaseRunsRequest, opts ...grpc.CallOption) (*ListKnowledgeBaseRunsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListKnowledgeBaseRunsResponse)
-	err := c.cc.Invoke(ctx, ArtifactPublicService_ListKnowledgeBaseRuns_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *artifactPublicServiceClient) GetObjectUploadURL(ctx context.Context, in *GetObjectUploadURLRequest, opts ...grpc.CallOption) (*GetObjectUploadURLResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetObjectUploadURLResponse)
@@ -460,10 +445,6 @@ type ArtifactPublicServiceServer interface {
 	//
 	// Returns the top-K most similar chunks to a text prompt.
 	SearchChunks(context.Context, *SearchChunksRequest) (*SearchChunksResponse, error)
-	// List Knowledge Base Runs
-	//
-	// Returns a paginated list of knowledge base runs.
-	ListKnowledgeBaseRuns(context.Context, *ListKnowledgeBaseRunsRequest) (*ListKnowledgeBaseRunsResponse, error)
 	// Get Object Upload URL
 	//
 	// Returns the upload URL of an object.
@@ -543,9 +524,6 @@ func (UnimplementedArtifactPublicServiceServer) UpdateChunk(context.Context, *Up
 }
 func (UnimplementedArtifactPublicServiceServer) SearchChunks(context.Context, *SearchChunksRequest) (*SearchChunksResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SearchChunks not implemented")
-}
-func (UnimplementedArtifactPublicServiceServer) ListKnowledgeBaseRuns(context.Context, *ListKnowledgeBaseRunsRequest) (*ListKnowledgeBaseRunsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListKnowledgeBaseRuns not implemented")
 }
 func (UnimplementedArtifactPublicServiceServer) GetObjectUploadURL(context.Context, *GetObjectUploadURLRequest) (*GetObjectUploadURLResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetObjectUploadURL not implemented")
@@ -888,24 +866,6 @@ func _ArtifactPublicService_SearchChunks_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPublicService_ListKnowledgeBaseRuns_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListKnowledgeBaseRunsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactPublicServiceServer).ListKnowledgeBaseRuns(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ArtifactPublicService_ListKnowledgeBaseRuns_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPublicServiceServer).ListKnowledgeBaseRuns(ctx, req.(*ListKnowledgeBaseRunsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _ArtifactPublicService_GetObjectUploadURL_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetObjectUploadURLRequest)
 	if err := dec(in); err != nil {
@@ -1070,10 +1030,6 @@ var ArtifactPublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SearchChunks",
 			Handler:    _ArtifactPublicService_SearchChunks_Handler,
-		},
-		{
-			MethodName: "ListKnowledgeBaseRuns",
-			Handler:    _ArtifactPublicService_ListKnowledgeBaseRuns_Handler,
 		},
 		{
 			MethodName: "GetObjectUploadURL",

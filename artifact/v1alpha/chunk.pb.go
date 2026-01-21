@@ -702,15 +702,17 @@ func (x *SearchChunksResponse) GetSimilarChunks() []*SimilarityChunk {
 // SimilarityChunk represents a chunk with similarity score.
 type SimilarityChunk struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// chunk id
-	ChunkId string `protobuf:"bytes,1,opt,name=chunk_id,json=chunkId,proto3" json:"chunk_id,omitempty"`
-	// similarity score
+	// Chunk resource name.
+	// Full resource name: namespaces/{namespace}/files/{file}/chunks/{chunk}
+	Chunk string `protobuf:"bytes,1,opt,name=chunk,proto3" json:"chunk,omitempty"`
+	// Similarity score.
 	SimilarityScore float32 `protobuf:"fixed32,2,opt,name=similarity_score,json=similarityScore,proto3" json:"similarity_score,omitempty"`
-	// content
+	// Content.
 	TextContent string `protobuf:"bytes,3,opt,name=text_content,json=textContent,proto3" json:"text_content,omitempty"`
-	// source file's name
-	SourceFile string `protobuf:"bytes,4,opt,name=source_file,json=sourceFile,proto3" json:"source_file,omitempty"`
-	// chunk metadata
+	// Source file resource name.
+	// Full resource name: namespaces/{namespace}/files/{file}
+	File string `protobuf:"bytes,4,opt,name=file,proto3" json:"file,omitempty"`
+	// Chunk metadata.
 	ChunkMetadata *Chunk `protobuf:"bytes,5,opt,name=chunk_metadata,json=chunkMetadata,proto3" json:"chunk_metadata,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -746,9 +748,9 @@ func (*SimilarityChunk) Descriptor() ([]byte, []int) {
 	return file_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *SimilarityChunk) GetChunkId() string {
+func (x *SimilarityChunk) GetChunk() string {
 	if x != nil {
-		return x.ChunkId
+		return x.Chunk
 	}
 	return ""
 }
@@ -767,9 +769,9 @@ func (x *SimilarityChunk) GetTextContent() string {
 	return ""
 }
 
-func (x *SimilarityChunk) GetSourceFile() string {
+func (x *SimilarityChunk) GetFile() string {
 	if x != nil {
-		return x.SourceFile
+		return x.File
 	}
 	return ""
 }
@@ -896,13 +898,14 @@ const file_artifact_v1alpha_chunk_proto_rawDesc = "" +
 	"\x04tags\x18\n" +
 	" \x03(\tB\x03\xe0A\x01R\x04tagsJ\x04\b\x05\x10\x06J\x04\b\b\x10\t\"e\n" +
 	"\x14SearchChunksResponse\x12M\n" +
-	"\x0esimilar_chunks\x18\x01 \x03(\v2!.artifact.v1alpha.SimilarityChunkB\x03\xe0A\x03R\rsimilarChunks\"\xf4\x01\n" +
-	"\x0fSimilarityChunk\x12\x1e\n" +
-	"\bchunk_id\x18\x01 \x01(\tB\x03\xe0A\x03R\achunkId\x12.\n" +
+	"\x0esimilar_chunks\x18\x01 \x03(\v2!.artifact.v1alpha.SimilarityChunkB\x03\xe0A\x03R\rsimilarChunks\"\x97\x02\n" +
+	"\x0fSimilarityChunk\x124\n" +
+	"\x05chunk\x18\x01 \x01(\tB\x1e\xe0A\x03\xfaA\x18\n" +
+	"\x16api.instill.tech/ChunkR\x05chunk\x12.\n" +
 	"\x10similarity_score\x18\x02 \x01(\x02B\x03\xe0A\x03R\x0fsimilarityScore\x12&\n" +
-	"\ftext_content\x18\x03 \x01(\tB\x03\xe0A\x03R\vtextContent\x12$\n" +
-	"\vsource_file\x18\x04 \x01(\tB\x03\xe0A\x03R\n" +
-	"sourceFile\x12C\n" +
+	"\ftext_content\x18\x03 \x01(\tB\x03\xe0A\x03R\vtextContent\x121\n" +
+	"\x04file\x18\x04 \x01(\tB\x1d\xe0A\x03\xfaA\x17\n" +
+	"\x15api.instill.tech/FileR\x04file\x12C\n" +
 	"\x0echunk_metadata\x18\x05 \x01(\v2\x17.artifact.v1alpha.ChunkB\x03\xe0A\x03R\rchunkMetadataB\xc7\x01\n" +
 	"\x14com.artifact.v1alphaB\n" +
 	"ChunkProtoP\x01ZBgithub.com/instill-ai/protogen-go/artifact/v1alpha;artifactv1alpha\xa2\x02\x03AXX\xaa\x02\x10Artifact.V1alpha\xca\x02\x10Artifact\\V1alpha\xe2\x02\x1cArtifact\\V1alpha\\GPBMetadata\xea\x02\x11Artifact::V1alphab\x06proto3"

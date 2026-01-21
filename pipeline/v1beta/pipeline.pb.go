@@ -549,8 +549,9 @@ type Pipeline struct {
 	OwnerName string `protobuf:"bytes,25,opt,name=owner_name,json=ownerName,proto3" json:"owner_name,omitempty"`
 	// Pipeline owner (User or Organization).
 	Owner *v1beta1.Owner `protobuf:"bytes,26,opt,name=owner,proto3,oneof" json:"owner,omitempty"`
-	// The UID of the user who created this pipeline.
-	CreatorUid *string `protobuf:"bytes,27,opt,name=creator_uid,json=creatorUid,proto3,oneof" json:"creator_uid,omitempty"`
+	// Full resource name of the user who created this pipeline.
+	// Format: `users/{user}`
+	CreatorName *string `protobuf:"bytes,27,opt,name=creator_name,json=creatorName,proto3,oneof" json:"creator_name,omitempty"`
 	// The user who created this pipeline.
 	Creator *v1beta1.User `protobuf:"bytes,28,opt,name=creator,proto3,oneof" json:"creator,omitempty"`
 	// Soft delete timestamp.
@@ -771,9 +772,9 @@ func (x *Pipeline) GetOwner() *v1beta1.Owner {
 	return nil
 }
 
-func (x *Pipeline) GetCreatorUid() string {
-	if x != nil && x.CreatorUid != nil {
-		return *x.CreatorUid
+func (x *Pipeline) GetCreatorName() string {
+	if x != nil && x.CreatorName != nil {
+		return *x.CreatorName
 	}
 	return ""
 }
@@ -1018,8 +1019,8 @@ func (x *GetHubStatsResponse) GetNumberOfFeaturedPipelines() int32 {
 // Field ordering follows AIP standard: name (1), id (2), display_name (3), slug (4), aliases (5), description (6)
 type PipelineRelease struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Field 1: The name of the release, defined by its parent and ID.
-	// - Format: `{parent_type}/{parent.id}/pipelines/{pipeline.id}/releases/{release.id}`.
+	// Field 1: The name of the release.
+	// - Format: `namespaces/{namespace}/pipelines/{pipeline}/releases/{release}`.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Field 2: Release resource ID (used in `name` as the last segment). It must be a
 	// sematic version vX.Y.Z.
@@ -2051,10 +2052,9 @@ func (*DeleteNamespacePipelineResponse) Descriptor() ([]byte, []int) {
 // owned by a user.
 type ValidateNamespacePipelineRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Namespace ID
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Pipeline ID
-	PipelineId    string `protobuf:"bytes,2,opt,name=pipeline_id,json=pipelineId,proto3" json:"pipeline_id,omitempty"`
+	// The resource name of the pipeline to validate.
+	// Format: namespaces/{namespace}/pipelines/{pipeline}
+	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2089,16 +2089,9 @@ func (*ValidateNamespacePipelineRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{25}
 }
 
-func (x *ValidateNamespacePipelineRequest) GetNamespaceId() string {
+func (x *ValidateNamespacePipelineRequest) GetName() string {
 	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *ValidateNamespacePipelineRequest) GetPipelineId() string {
-	if x != nil {
-		return x.PipelineId
+		return x.Name
 	}
 	return ""
 }
@@ -2162,13 +2155,12 @@ func (x *ValidateNamespacePipelineResponse) GetErrors() []*ErrPipelineValidation
 // pipeline owned by a namespace.
 type RenameNamespacePipelineRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Namespace ID
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Pipeline ID
-	PipelineId string `protobuf:"bytes,2,opt,name=pipeline_id,json=pipelineId,proto3" json:"pipeline_id,omitempty"`
+	// The resource name of the pipeline to rename.
+	// Format: namespaces/{namespace}/pipelines/{pipeline}
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// The new resource ID. This will transform the resource name into
-	// `namespaces/{namespace.id}/pipelines/{new_pipeline_id}`.
-	NewPipelineId string `protobuf:"bytes,3,opt,name=new_pipeline_id,json=newPipelineId,proto3" json:"new_pipeline_id,omitempty"`
+	// `namespaces/{namespace}/pipelines/{new_pipeline_id}`.
+	NewPipelineId string `protobuf:"bytes,2,opt,name=new_pipeline_id,json=newPipelineId,proto3" json:"new_pipeline_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2203,16 +2195,9 @@ func (*RenameNamespacePipelineRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{27}
 }
 
-func (x *RenameNamespacePipelineRequest) GetNamespaceId() string {
+func (x *RenameNamespacePipelineRequest) GetName() string {
 	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *RenameNamespacePipelineRequest) GetPipelineId() string {
-	if x != nil {
-		return x.PipelineId
+		return x.Name
 	}
 	return ""
 }
@@ -2274,20 +2259,18 @@ func (x *RenameNamespacePipelineResponse) GetPipeline() *Pipeline {
 // user.
 type CloneNamespacePipelineRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Namespace ID
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Pipeline ID
-	PipelineId string `protobuf:"bytes,2,opt,name=pipeline_id,json=pipelineId,proto3" json:"pipeline_id,omitempty"`
+	// The resource name of the source pipeline to clone.
+	// Format: namespaces/{namespace}/pipelines/{pipeline}
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// The resource name of the target pipeline.
+	// Format: namespaces/{namespace}/pipelines/{pipeline}
+	Target string `protobuf:"bytes,2,opt,name=target,proto3" json:"target,omitempty"`
 	// Pipeline description.
-	Description string `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
+	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
 	// Pipeline sharing information.
-	Sharing *Sharing `protobuf:"bytes,5,opt,name=sharing,proto3" json:"sharing,omitempty"`
-	// Target Namespace ID.
-	TargetNamespaceId string `protobuf:"bytes,6,opt,name=target_namespace_id,json=targetNamespaceId,proto3" json:"target_namespace_id,omitempty"`
-	// Target Pipeline ID.
-	TargetPipelineId string `protobuf:"bytes,7,opt,name=target_pipeline_id,json=targetPipelineId,proto3" json:"target_pipeline_id,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	Sharing       *Sharing `protobuf:"bytes,4,opt,name=sharing,proto3" json:"sharing,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CloneNamespacePipelineRequest) Reset() {
@@ -2320,16 +2303,16 @@ func (*CloneNamespacePipelineRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{29}
 }
 
-func (x *CloneNamespacePipelineRequest) GetNamespaceId() string {
+func (x *CloneNamespacePipelineRequest) GetName() string {
 	if x != nil {
-		return x.NamespaceId
+		return x.Name
 	}
 	return ""
 }
 
-func (x *CloneNamespacePipelineRequest) GetPipelineId() string {
+func (x *CloneNamespacePipelineRequest) GetTarget() string {
 	if x != nil {
-		return x.PipelineId
+		return x.Target
 	}
 	return ""
 }
@@ -2346,20 +2329,6 @@ func (x *CloneNamespacePipelineRequest) GetSharing() *Sharing {
 		return x.Sharing
 	}
 	return nil
-}
-
-func (x *CloneNamespacePipelineRequest) GetTargetNamespaceId() string {
-	if x != nil {
-		return x.TargetNamespaceId
-	}
-	return ""
-}
-
-func (x *CloneNamespacePipelineRequest) GetTargetPipelineId() string {
-	if x != nil {
-		return x.TargetPipelineId
-	}
-	return ""
 }
 
 // CloneNamespacePipelineResponse contains a cloned pipeline.
@@ -2403,22 +2372,18 @@ func (*CloneNamespacePipelineResponse) Descriptor() ([]byte, []int) {
 // release owned by a user.
 type CloneNamespacePipelineReleaseRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Namespace ID
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Pipeline ID
-	PipelineId string `protobuf:"bytes,2,opt,name=pipeline_id,json=pipelineId,proto3" json:"pipeline_id,omitempty"`
-	// Release ID
-	ReleaseId string `protobuf:"bytes,3,opt,name=release_id,json=releaseId,proto3" json:"release_id,omitempty"`
+	// The resource name of the pipeline release to clone.
+	// Format: namespaces/{namespace}/pipelines/{pipeline}/releases/{release}
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Pipeline description.
-	Description string `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
+	Description string `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
 	// Pipeline sharing information.
-	Sharing *Sharing `protobuf:"bytes,6,opt,name=sharing,proto3" json:"sharing,omitempty"`
-	// Target Namespace ID.
-	TargetNamespaceId string `protobuf:"bytes,7,opt,name=target_namespace_id,json=targetNamespaceId,proto3" json:"target_namespace_id,omitempty"`
-	// Target Pipeline ID.
-	TargetPipelineId string `protobuf:"bytes,8,opt,name=target_pipeline_id,json=targetPipelineId,proto3" json:"target_pipeline_id,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	Sharing *Sharing `protobuf:"bytes,3,opt,name=sharing,proto3" json:"sharing,omitempty"`
+	// The target pipeline resource name.
+	// Format: namespaces/{namespace}/pipelines/{pipeline}
+	Target        string `protobuf:"bytes,4,opt,name=target,proto3" json:"target,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CloneNamespacePipelineReleaseRequest) Reset() {
@@ -2451,23 +2416,9 @@ func (*CloneNamespacePipelineReleaseRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{31}
 }
 
-func (x *CloneNamespacePipelineReleaseRequest) GetNamespaceId() string {
+func (x *CloneNamespacePipelineReleaseRequest) GetName() string {
 	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *CloneNamespacePipelineReleaseRequest) GetPipelineId() string {
-	if x != nil {
-		return x.PipelineId
-	}
-	return ""
-}
-
-func (x *CloneNamespacePipelineReleaseRequest) GetReleaseId() string {
-	if x != nil {
-		return x.ReleaseId
+		return x.Name
 	}
 	return ""
 }
@@ -2486,16 +2437,9 @@ func (x *CloneNamespacePipelineReleaseRequest) GetSharing() *Sharing {
 	return nil
 }
 
-func (x *CloneNamespacePipelineReleaseRequest) GetTargetNamespaceId() string {
+func (x *CloneNamespacePipelineReleaseRequest) GetTarget() string {
 	if x != nil {
-		return x.TargetNamespaceId
-	}
-	return ""
-}
-
-func (x *CloneNamespacePipelineReleaseRequest) GetTargetPipelineId() string {
-	if x != nil {
-		return x.TargetPipelineId
+		return x.Target
 	}
 	return ""
 }
@@ -2540,16 +2484,15 @@ func (*CloneNamespacePipelineReleaseResponse) Descriptor() ([]byte, []int) {
 // HandleNamespacePipelineWebhookEventRequest
 type HandleNamespacePipelineWebhookEventRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Namespace ID
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Pipeline ID
-	PipelineId string `protobuf:"bytes,2,opt,name=pipeline_id,json=pipelineId,proto3" json:"pipeline_id,omitempty"`
+	// The resource name of the pipeline.
+	// Format: namespaces/{namespace}/pipelines/{pipeline}
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Event
-	Event string `protobuf:"bytes,3,opt,name=event,proto3" json:"event,omitempty"`
+	Event string `protobuf:"bytes,2,opt,name=event,proto3" json:"event,omitempty"`
 	// Code
-	Code string `protobuf:"bytes,4,opt,name=code,proto3" json:"code,omitempty"`
+	Code string `protobuf:"bytes,3,opt,name=code,proto3" json:"code,omitempty"`
 	// Input data
-	Data          *structpb.Struct `protobuf:"bytes,5,opt,name=data,proto3" json:"data,omitempty"`
+	Data          *structpb.Struct `protobuf:"bytes,4,opt,name=data,proto3" json:"data,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2584,16 +2527,9 @@ func (*HandleNamespacePipelineWebhookEventRequest) Descriptor() ([]byte, []int) 
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{33}
 }
 
-func (x *HandleNamespacePipelineWebhookEventRequest) GetNamespaceId() string {
+func (x *HandleNamespacePipelineWebhookEventRequest) GetName() string {
 	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *HandleNamespacePipelineWebhookEventRequest) GetPipelineId() string {
-	if x != nil {
-		return x.PipelineId
+		return x.Name
 	}
 	return ""
 }
@@ -2668,18 +2604,15 @@ func (x *HandleNamespacePipelineWebhookEventResponse) GetData() *structpb.Struct
 // HandleNamespacePipelineReleaseWebhookEventRequest
 type HandleNamespacePipelineReleaseWebhookEventRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Namespace ID
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Pipeline ID
-	PipelineId string `protobuf:"bytes,2,opt,name=pipeline_id,json=pipelineId,proto3" json:"pipeline_id,omitempty"`
-	// Pipeline ID
-	ReleaseId string `protobuf:"bytes,3,opt,name=release_id,json=releaseId,proto3" json:"release_id,omitempty"`
+	// The resource name of the pipeline release.
+	// Format: namespaces/{namespace}/pipelines/{pipeline}/releases/{release}
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Event
-	Event string `protobuf:"bytes,4,opt,name=event,proto3" json:"event,omitempty"`
+	Event string `protobuf:"bytes,2,opt,name=event,proto3" json:"event,omitempty"`
 	// Code
-	Code string `protobuf:"bytes,5,opt,name=code,proto3" json:"code,omitempty"`
+	Code string `protobuf:"bytes,3,opt,name=code,proto3" json:"code,omitempty"`
 	// Input data
-	Data          *structpb.Struct `protobuf:"bytes,6,opt,name=data,proto3" json:"data,omitempty"`
+	Data          *structpb.Struct `protobuf:"bytes,4,opt,name=data,proto3" json:"data,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2714,23 +2647,9 @@ func (*HandleNamespacePipelineReleaseWebhookEventRequest) Descriptor() ([]byte, 
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{35}
 }
 
-func (x *HandleNamespacePipelineReleaseWebhookEventRequest) GetNamespaceId() string {
+func (x *HandleNamespacePipelineReleaseWebhookEventRequest) GetName() string {
 	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *HandleNamespacePipelineReleaseWebhookEventRequest) GetPipelineId() string {
-	if x != nil {
-		return x.PipelineId
-	}
-	return ""
-}
-
-func (x *HandleNamespacePipelineReleaseWebhookEventRequest) GetReleaseId() string {
-	if x != nil {
-		return x.ReleaseId
+		return x.Name
 	}
 	return ""
 }
@@ -2913,14 +2832,13 @@ func (x *DispatchPipelineWebhookEventResponse) GetResponse() *structpb.Struct {
 // pipeline synchronously.
 type TriggerNamespacePipelineRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Namespace ID
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Pipeline ID
-	PipelineId string `protobuf:"bytes,2,opt,name=pipeline_id,json=pipelineId,proto3" json:"pipeline_id,omitempty"`
+	// The resource name of the pipeline to trigger.
+	// Format: namespaces/{namespace}/pipelines/{pipeline}
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Pipeline input parameters, it will be deprecated soon.
-	Inputs []*structpb.Struct `protobuf:"bytes,3,rep,name=inputs,proto3" json:"inputs,omitempty"`
+	Inputs []*structpb.Struct `protobuf:"bytes,2,rep,name=inputs,proto3" json:"inputs,omitempty"`
 	// Data
-	Data          []*TriggerData `protobuf:"bytes,4,rep,name=data,proto3" json:"data,omitempty"`
+	Data          []*TriggerData `protobuf:"bytes,3,rep,name=data,proto3" json:"data,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2955,16 +2873,9 @@ func (*TriggerNamespacePipelineRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{39}
 }
 
-func (x *TriggerNamespacePipelineRequest) GetNamespaceId() string {
+func (x *TriggerNamespacePipelineRequest) GetName() string {
 	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *TriggerNamespacePipelineRequest) GetPipelineId() string {
-	if x != nil {
-		return x.PipelineId
+		return x.Name
 	}
 	return ""
 }
@@ -3043,14 +2954,13 @@ func (x *TriggerNamespacePipelineResponse) GetMetadata() *TriggerMetadata {
 // pipeline synchronously and streams back the results.
 type TriggerNamespacePipelineWithStreamRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Namespace ID
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Pipeline ID
-	PipelineId string `protobuf:"bytes,2,opt,name=pipeline_id,json=pipelineId,proto3" json:"pipeline_id,omitempty"`
+	// The resource name of the pipeline to trigger.
+	// Format: namespaces/{namespace}/pipelines/{pipeline}
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Pipeline input parameters, it will be deprecated soon.
-	Inputs []*structpb.Struct `protobuf:"bytes,3,rep,name=inputs,proto3" json:"inputs,omitempty"`
+	Inputs []*structpb.Struct `protobuf:"bytes,2,rep,name=inputs,proto3" json:"inputs,omitempty"`
 	// Data
-	Data          []*TriggerData `protobuf:"bytes,4,rep,name=data,proto3" json:"data,omitempty"`
+	Data          []*TriggerData `protobuf:"bytes,3,rep,name=data,proto3" json:"data,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3085,16 +2995,9 @@ func (*TriggerNamespacePipelineWithStreamRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{41}
 }
 
-func (x *TriggerNamespacePipelineWithStreamRequest) GetNamespaceId() string {
+func (x *TriggerNamespacePipelineWithStreamRequest) GetName() string {
 	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *TriggerNamespacePipelineWithStreamRequest) GetPipelineId() string {
-	if x != nil {
-		return x.PipelineId
+		return x.Name
 	}
 	return ""
 }
@@ -3173,14 +3076,13 @@ func (x *TriggerNamespacePipelineWithStreamResponse) GetMetadata() *TriggerMetad
 // pipeline synchronously.
 type TriggerAsyncNamespacePipelineRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Namespace ID
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Pipeline ID
-	PipelineId string `protobuf:"bytes,2,opt,name=pipeline_id,json=pipelineId,proto3" json:"pipeline_id,omitempty"`
+	// The resource name of the pipeline to trigger.
+	// Format: namespaces/{namespace}/pipelines/{pipeline}
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Pipeline input parameters, it will be deprecated soon.
-	Inputs []*structpb.Struct `protobuf:"bytes,3,rep,name=inputs,proto3" json:"inputs,omitempty"`
+	Inputs []*structpb.Struct `protobuf:"bytes,2,rep,name=inputs,proto3" json:"inputs,omitempty"`
 	// Data
-	Data          []*TriggerData `protobuf:"bytes,4,rep,name=data,proto3" json:"data,omitempty"`
+	Data          []*TriggerData `protobuf:"bytes,3,rep,name=data,proto3" json:"data,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3215,16 +3117,9 @@ func (*TriggerAsyncNamespacePipelineRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{43}
 }
 
-func (x *TriggerAsyncNamespacePipelineRequest) GetNamespaceId() string {
+func (x *TriggerAsyncNamespacePipelineRequest) GetName() string {
 	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *TriggerAsyncNamespacePipelineRequest) GetPipelineId() string {
-	if x != nil {
-		return x.PipelineId
+		return x.Name
 	}
 	return ""
 }
@@ -3858,16 +3753,13 @@ func (*DeleteNamespacePipelineReleaseResponse) Descriptor() ([]byte, []int) {
 // release of a user-owned pipeline.
 type TriggerNamespacePipelineReleaseRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Namespace ID
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Pipeline ID
-	PipelineId string `protobuf:"bytes,2,opt,name=pipeline_id,json=pipelineId,proto3" json:"pipeline_id,omitempty"`
-	// Release ID
-	ReleaseId string `protobuf:"bytes,3,opt,name=release_id,json=releaseId,proto3" json:"release_id,omitempty"`
+	// The resource name of the pipeline release to trigger.
+	// Format: namespaces/{namespace}/pipelines/{pipeline}/releases/{release}
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Pipeline input parameters, it will be deprecated soon.
-	Inputs []*structpb.Struct `protobuf:"bytes,4,rep,name=inputs,proto3" json:"inputs,omitempty"`
+	Inputs []*structpb.Struct `protobuf:"bytes,2,rep,name=inputs,proto3" json:"inputs,omitempty"`
 	// Data
-	Data          []*TriggerData `protobuf:"bytes,5,rep,name=data,proto3" json:"data,omitempty"`
+	Data          []*TriggerData `protobuf:"bytes,3,rep,name=data,proto3" json:"data,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3902,23 +3794,9 @@ func (*TriggerNamespacePipelineReleaseRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{55}
 }
 
-func (x *TriggerNamespacePipelineReleaseRequest) GetNamespaceId() string {
+func (x *TriggerNamespacePipelineReleaseRequest) GetName() string {
 	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *TriggerNamespacePipelineReleaseRequest) GetPipelineId() string {
-	if x != nil {
-		return x.PipelineId
-	}
-	return ""
-}
-
-func (x *TriggerNamespacePipelineReleaseRequest) GetReleaseId() string {
-	if x != nil {
-		return x.ReleaseId
+		return x.Name
 	}
 	return ""
 }
@@ -3997,16 +3875,13 @@ func (x *TriggerNamespacePipelineReleaseResponse) GetMetadata() *TriggerMetadata
 // release of a user-owned pipeline asynchronously.
 type TriggerAsyncNamespacePipelineReleaseRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Namespace ID
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Pipeline ID
-	PipelineId string `protobuf:"bytes,2,opt,name=pipeline_id,json=pipelineId,proto3" json:"pipeline_id,omitempty"`
-	// Release ID
-	ReleaseId string `protobuf:"bytes,3,opt,name=release_id,json=releaseId,proto3" json:"release_id,omitempty"`
+	// The resource name of the pipeline release to trigger.
+	// Format: namespaces/{namespace}/pipelines/{pipeline}/releases/{release}
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Pipeline input parameters, it will be deprecated soon.
-	Inputs []*structpb.Struct `protobuf:"bytes,4,rep,name=inputs,proto3" json:"inputs,omitempty"`
+	Inputs []*structpb.Struct `protobuf:"bytes,2,rep,name=inputs,proto3" json:"inputs,omitempty"`
 	// Data
-	Data          []*TriggerData `protobuf:"bytes,5,rep,name=data,proto3" json:"data,omitempty"`
+	Data          []*TriggerData `protobuf:"bytes,3,rep,name=data,proto3" json:"data,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4041,23 +3916,9 @@ func (*TriggerAsyncNamespacePipelineReleaseRequest) Descriptor() ([]byte, []int)
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{57}
 }
 
-func (x *TriggerAsyncNamespacePipelineReleaseRequest) GetNamespaceId() string {
+func (x *TriggerAsyncNamespacePipelineReleaseRequest) GetName() string {
 	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *TriggerAsyncNamespacePipelineReleaseRequest) GetPipelineId() string {
-	if x != nil {
-		return x.PipelineId
-	}
-	return ""
-}
-
-func (x *TriggerAsyncNamespacePipelineReleaseRequest) GetReleaseId() string {
-	if x != nil {
-		return x.ReleaseId
+		return x.Name
 	}
 	return ""
 }
@@ -4768,22 +4629,21 @@ func (x *LookUpPipelineAdminResponse) GetPipeline() *Pipeline {
 // ListPipelineRunsRequest is the request message for ListPipelineRuns.
 type ListPipelineRunsRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The ID of the owner of the pipeline.
-	NamespaceId string `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// The ID of the pipeline for which the runs will be listed.
-	PipelineId string `protobuf:"bytes,2,opt,name=pipeline_id,json=pipelineId,proto3" json:"pipeline_id,omitempty"`
+	// The parent pipeline resource name.
+	// Format: namespaces/{namespace}/pipelines/{pipeline}
+	Parent string `protobuf:"bytes,1,opt,name=parent,proto3" json:"parent,omitempty"`
 	// The page number to retrieve.
-	Page int32 `protobuf:"varint,3,opt,name=page,proto3" json:"page,omitempty"`
+	Page int32 `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
 	// The maximum number of items per page to return. The default and cap values
 	// are 10 and 100, respectively.
-	PageSize int32 `protobuf:"varint,4,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	PageSize int32 `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
 	// Filter can hold an [AIP-160](https://google.aip.dev/160)-compliant filter
 	// expression.
 	// - Example: `create_time>timestamp("2000-06-19T23:31:08.657Z")`.
-	Filter *string `protobuf:"bytes,6,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
+	Filter *string `protobuf:"bytes,4,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
 	// Order by field, with options for ordering by `id`, `create_time` or `update_time`.
 	// Format: `order_by=id` or `order_by=create_time desc`, default is `asc`.
-	OrderBy       *string `protobuf:"bytes,7,opt,name=order_by,json=orderBy,proto3,oneof" json:"order_by,omitempty"`
+	OrderBy       *string `protobuf:"bytes,5,opt,name=order_by,json=orderBy,proto3,oneof" json:"order_by,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4818,16 +4678,9 @@ func (*ListPipelineRunsRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{69}
 }
 
-func (x *ListPipelineRunsRequest) GetNamespaceId() string {
+func (x *ListPipelineRunsRequest) GetParent() string {
 	if x != nil {
-		return x.NamespaceId
-	}
-	return ""
-}
-
-func (x *ListPipelineRunsRequest) GetPipelineId() string {
-	if x != nil {
-		return x.PipelineId
+		return x.Parent
 	}
 	return ""
 }
@@ -4863,11 +4716,14 @@ func (x *ListPipelineRunsRequest) GetOrderBy() string {
 // ListPipelineRunsByRequesterRequest is the request message for ListPipelineRunsByRequester.
 type ListPipelineRunsByRequesterRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
+	// Requester namespace resource name.
+	// Format: namespaces/{namespace}
+	Requester string `protobuf:"bytes,1,opt,name=requester,proto3" json:"requester,omitempty"`
 	// The page number to retrieve.
-	Page int32 `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
+	Page int32 `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
 	// The maximum number of items per page to return. The default and cap values
 	// are 10 and 100, respectively.
-	PageSize int32 `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	PageSize int32 `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
 	// Filter can hold an [AIP-160](https://google.aip.dev/160)-compliant filter
 	// expression.
 	// The following filters are supported:
@@ -4875,18 +4731,16 @@ type ListPipelineRunsByRequesterRequest struct {
 	// - `source`
 	//
 	// **Example**: `status="RUN_STATUS_COMPLETED"`.
-	Filter *string `protobuf:"bytes,3,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
+	Filter *string `protobuf:"bytes,4,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
 	// Order by field, with options for ordering by `id`, `create_time` or `update_time`.
 	// Format: `order_by=id` or `order_by=create_time desc`, default is `asc`.
-	OrderBy *string `protobuf:"bytes,4,opt,name=order_by,json=orderBy,proto3,oneof" json:"order_by,omitempty"`
+	OrderBy *string `protobuf:"bytes,5,opt,name=order_by,json=orderBy,proto3,oneof" json:"order_by,omitempty"`
 	// Beginning of the time range from which the records will be fetched.
 	// The default value is the beginning of the current day, in UTC.
-	Start *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=start,proto3,oneof" json:"start,omitempty"`
+	Start *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=start,proto3,oneof" json:"start,omitempty"`
 	// End of the time range from which the records will be fetched.
 	// The default value is the current timestamp.
-	Stop *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=stop,proto3,oneof" json:"stop,omitempty"`
-	// Requester ID.
-	RequesterId   string `protobuf:"bytes,7,opt,name=requester_id,json=requesterId,proto3" json:"requester_id,omitempty"`
+	Stop          *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=stop,proto3,oneof" json:"stop,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4919,6 +4773,13 @@ func (x *ListPipelineRunsByRequesterRequest) ProtoReflect() protoreflect.Message
 // Deprecated: Use ListPipelineRunsByRequesterRequest.ProtoReflect.Descriptor instead.
 func (*ListPipelineRunsByRequesterRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{70}
+}
+
+func (x *ListPipelineRunsByRequesterRequest) GetRequester() string {
+	if x != nil {
+		return x.Requester
+	}
+	return ""
 }
 
 func (x *ListPipelineRunsByRequesterRequest) GetPage() int32 {
@@ -4961,13 +4822,6 @@ func (x *ListPipelineRunsByRequesterRequest) GetStop() *timestamppb.Timestamp {
 		return x.Stop
 	}
 	return nil
-}
-
-func (x *ListPipelineRunsByRequesterRequest) GetRequesterId() string {
-	if x != nil {
-		return x.RequesterId
-	}
-	return ""
 }
 
 // ListPipelineRunsResponse is the response message for ListPipelineRuns.
@@ -5119,8 +4973,9 @@ func (x *ListPipelineRunsByRequesterResponse) GetPageSize() int32 {
 // ListComponentRunsRequest is the request message for ListComponentRuns.
 type ListComponentRunsRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The unique identifier of the pipeline run to list component runs for.
-	PipelineRunId string `protobuf:"bytes,1,opt,name=pipeline_run_id,json=pipelineRunId,proto3" json:"pipeline_run_id,omitempty"`
+	// The parent pipeline run resource name.
+	// Format: namespaces/{namespace}/pipelines/{pipeline}/runs/{run}
+	Parent string `protobuf:"bytes,1,opt,name=parent,proto3" json:"parent,omitempty"`
 	// The page number to retrieve.
 	Page *int32 `protobuf:"varint,2,opt,name=page,proto3,oneof" json:"page,omitempty"`
 	// The maximum number of items per page to return. The default and cap values
@@ -5170,9 +5025,9 @@ func (*ListComponentRunsRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{73}
 }
 
-func (x *ListComponentRunsRequest) GetPipelineRunId() string {
+func (x *ListComponentRunsRequest) GetParent() string {
 	if x != nil {
-		return x.PipelineRunId
+		return x.Parent
 	}
 	return ""
 }
@@ -5361,47 +5216,50 @@ func (x *FileReference) GetUrl() string {
 // PipelineRun represents a single execution of a pipeline.
 type PipelineRun struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Unique identifier for each run.
-	PipelineRunUid string `protobuf:"bytes,2,opt,name=pipeline_run_uid,json=pipelineRunUid,proto3" json:"pipeline_run_uid,omitempty"`
+	// The resource name of the pipeline run.
+	// Format: namespaces/{namespace}/pipelines/{pipeline}/runs/{run}
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// Unique identifier for each run (immutable).
+	Id string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	// Time when the run was created.
+	CreateTime *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+	// Time when the run was last updated.
+	UpdateTime *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
+	// Runner who triggered the run.
+	// Full resource name: users/{user}.
+	Runner *string `protobuf:"bytes,9,opt,name=runner,proto3,oneof" json:"runner,omitempty"`
+	// The pipeline resource name.
+	// Full resource name: namespaces/{namespace}/pipelines/{pipeline}
+	Pipeline *string `protobuf:"bytes,10,opt,name=pipeline,proto3,oneof" json:"pipeline,omitempty"`
+	// Requester namespace.
+	// Full resource name: namespaces/{namespace}.
+	Requester string `protobuf:"bytes,11,opt,name=requester,proto3" json:"requester,omitempty"`
 	// Pipeline version used in the run.
-	PipelineVersion string `protobuf:"bytes,3,opt,name=pipeline_version,json=pipelineVersion,proto3" json:"pipeline_version,omitempty"`
+	PipelineVersion string `protobuf:"bytes,12,opt,name=pipeline_version,json=pipelineVersion,proto3" json:"pipeline_version,omitempty"`
 	// Current status of the run.
-	Status v1alpha.RunStatus `protobuf:"varint,4,opt,name=status,proto3,enum=common.run.v1alpha.RunStatus" json:"status,omitempty"`
+	Status v1alpha.RunStatus `protobuf:"varint,13,opt,name=status,proto3,enum=common.run.v1alpha.RunStatus" json:"status,omitempty"`
 	// Origin of the run.
-	Source v1alpha.RunSource `protobuf:"varint,5,opt,name=source,proto3,enum=common.run.v1alpha.RunSource" json:"source,omitempty"`
+	Source v1alpha.RunSource `protobuf:"varint,14,opt,name=source,proto3,enum=common.run.v1alpha.RunSource" json:"source,omitempty"`
 	// Time taken to complete the run in milliseconds.
-	TotalDuration *int32 `protobuf:"varint,6,opt,name=total_duration,json=totalDuration,proto3,oneof" json:"total_duration,omitempty"`
-	// Runner ID. The authenticated user that triggered the run. If current
-	// viewing requester does not have enough permission, it will return null.
-	RunnerId *string `protobuf:"bytes,7,opt,name=runner_id,json=runnerId,proto3,oneof" json:"runner_id,omitempty"`
+	TotalDuration *int32 `protobuf:"varint,15,opt,name=total_duration,json=totalDuration,proto3,oneof" json:"total_duration,omitempty"`
 	// Pipeline input parameters.
-	Inputs []*structpb.Struct `protobuf:"bytes,10,rep,name=inputs,proto3" json:"inputs,omitempty"`
+	Inputs []*structpb.Struct `protobuf:"bytes,16,rep,name=inputs,proto3" json:"inputs,omitempty"`
 	// Pipeline inference outputs.
-	Outputs []*structpb.Struct `protobuf:"bytes,12,rep,name=outputs,proto3" json:"outputs,omitempty"`
+	Outputs []*structpb.Struct `protobuf:"bytes,17,rep,name=outputs,proto3" json:"outputs,omitempty"`
 	// Snapshot of the pipeline recipe used for this run.
-	RecipeSnapshot *structpb.Struct `protobuf:"bytes,13,opt,name=recipe_snapshot,json=recipeSnapshot,proto3" json:"recipe_snapshot,omitempty"`
+	RecipeSnapshot *structpb.Struct `protobuf:"bytes,18,opt,name=recipe_snapshot,json=recipeSnapshot,proto3" json:"recipe_snapshot,omitempty"`
 	// Time when the run started execution.
-	StartTime *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=start_time,json=startTime,proto3" json:"start_time,omitempty"`
+	StartTime *timestamppb.Timestamp `protobuf:"bytes,19,opt,name=start_time,json=startTime,proto3" json:"start_time,omitempty"`
 	// Time when the run completed.
-	CompleteTime *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=complete_time,json=completeTime,proto3,oneof" json:"complete_time,omitempty"`
+	CompleteTime *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=complete_time,json=completeTime,proto3,oneof" json:"complete_time,omitempty"`
 	// Error message if the run failed.
-	Error *string `protobuf:"bytes,16,opt,name=error,proto3,oneof" json:"error,omitempty"`
+	Error *string `protobuf:"bytes,21,opt,name=error,proto3,oneof" json:"error,omitempty"`
 	// Credits used of internal accounting metric.
-	CreditAmount *float32 `protobuf:"fixed32,17,opt,name=credit_amount,json=creditAmount,proto3,oneof" json:"credit_amount,omitempty"`
+	CreditAmount *float32 `protobuf:"fixed32,22,opt,name=credit_amount,json=creditAmount,proto3,oneof" json:"credit_amount,omitempty"`
 	// Data specifications.
-	DataSpecification *DataSpecification `protobuf:"bytes,18,opt,name=data_specification,json=dataSpecification,proto3" json:"data_specification,omitempty"`
-	// The ID of the pipeline
-	PipelineId *string `protobuf:"bytes,19,opt,name=pipeline_id,json=pipelineId,proto3,oneof" json:"pipeline_id,omitempty"`
-	// Requester ID. The namespace used to trigger the run. This field might be
-	// empty if the pipeline run belongs to a deleted namespace.
-	RequesterId string `protobuf:"bytes,20,opt,name=requester_id,json=requesterId,proto3" json:"requester_id,omitempty"`
-	// ID of the namespace that owns the pipeline.
-	PipelineNamespaceId string `protobuf:"bytes,21,opt,name=pipeline_namespace_id,json=pipelineNamespaceId,proto3" json:"pipeline_namespace_id,omitempty"`
-	// Expiration time for the blob data associated with the pipeline run (e.g.
-	// input data, recipe). When the run is accessed after the expiration, that
-	// information will be empty, but this field will allow the user identify
-	// that the data isn't there because it has expired.
-	BlobDataExpirationTime *timestamppb.Timestamp `protobuf:"bytes,22,opt,name=blob_data_expiration_time,json=blobDataExpirationTime,proto3,oneof" json:"blob_data_expiration_time,omitempty"`
+	DataSpecification *DataSpecification `protobuf:"bytes,23,opt,name=data_specification,json=dataSpecification,proto3" json:"data_specification,omitempty"`
+	// Expiration time for the blob data associated with the pipeline run.
+	BlobDataExpirationTime *timestamppb.Timestamp `protobuf:"bytes,24,opt,name=blob_data_expiration_time,json=blobDataExpirationTime,proto3,oneof" json:"blob_data_expiration_time,omitempty"`
 	unknownFields          protoimpl.UnknownFields
 	sizeCache              protoimpl.SizeCache
 }
@@ -5436,9 +5294,51 @@ func (*PipelineRun) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{76}
 }
 
-func (x *PipelineRun) GetPipelineRunUid() string {
+func (x *PipelineRun) GetName() string {
 	if x != nil {
-		return x.PipelineRunUid
+		return x.Name
+	}
+	return ""
+}
+
+func (x *PipelineRun) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *PipelineRun) GetCreateTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreateTime
+	}
+	return nil
+}
+
+func (x *PipelineRun) GetUpdateTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdateTime
+	}
+	return nil
+}
+
+func (x *PipelineRun) GetRunner() string {
+	if x != nil && x.Runner != nil {
+		return *x.Runner
+	}
+	return ""
+}
+
+func (x *PipelineRun) GetPipeline() string {
+	if x != nil && x.Pipeline != nil {
+		return *x.Pipeline
+	}
+	return ""
+}
+
+func (x *PipelineRun) GetRequester() string {
+	if x != nil {
+		return x.Requester
 	}
 	return ""
 }
@@ -5469,13 +5369,6 @@ func (x *PipelineRun) GetTotalDuration() int32 {
 		return *x.TotalDuration
 	}
 	return 0
-}
-
-func (x *PipelineRun) GetRunnerId() string {
-	if x != nil && x.RunnerId != nil {
-		return *x.RunnerId
-	}
-	return ""
 }
 
 func (x *PipelineRun) GetInputs() []*structpb.Struct {
@@ -5534,27 +5427,6 @@ func (x *PipelineRun) GetDataSpecification() *DataSpecification {
 	return nil
 }
 
-func (x *PipelineRun) GetPipelineId() string {
-	if x != nil && x.PipelineId != nil {
-		return *x.PipelineId
-	}
-	return ""
-}
-
-func (x *PipelineRun) GetRequesterId() string {
-	if x != nil {
-		return x.RequesterId
-	}
-	return ""
-}
-
-func (x *PipelineRun) GetPipelineNamespaceId() string {
-	if x != nil {
-		return x.PipelineNamespaceId
-	}
-	return ""
-}
-
 func (x *PipelineRun) GetBlobDataExpirationTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.BlobDataExpirationTime
@@ -5565,35 +5437,40 @@ func (x *PipelineRun) GetBlobDataExpirationTime() *timestamppb.Timestamp {
 // ComponentRun represents the execution details of a single component within a pipeline run.
 type ComponentRun struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Links to the parent PipelineRun.
-	PipelineRunUid string `protobuf:"bytes,1,opt,name=pipeline_run_uid,json=pipelineRunUid,proto3" json:"pipeline_run_uid,omitempty"`
-	// Unique identifier for each pipeline component.
-	ComponentId string `protobuf:"bytes,2,opt,name=component_id,json=componentId,proto3" json:"component_id,omitempty"`
+	// The resource name of the component run.
+	// Format: namespaces/{namespace}/pipelines/{pipeline}/runs/{run}/components/{component}
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// Unique identifier for the component within the pipeline.
+	Id string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	// Time when the component run was created.
+	CreateTime *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+	// Time when the component run was last updated.
+	UpdateTime *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
+	// Parent pipeline run resource name.
+	// Full resource name: namespaces/{namespace}/pipelines/{pipeline}/runs/{run}
+	PipelineRun string `protobuf:"bytes,9,opt,name=pipeline_run,json=pipelineRun,proto3" json:"pipeline_run,omitempty"`
 	// Completion status of the component.
-	Status v1alpha.RunStatus `protobuf:"varint,3,opt,name=status,proto3,enum=common.run.v1alpha.RunStatus" json:"status,omitempty"`
+	Status v1alpha.RunStatus `protobuf:"varint,10,opt,name=status,proto3,enum=common.run.v1alpha.RunStatus" json:"status,omitempty"`
 	// Time taken to execute the component in milliseconds.
-	TotalDuration *int32 `protobuf:"varint,4,opt,name=total_duration,json=totalDuration,proto3,oneof" json:"total_duration,omitempty"`
+	TotalDuration *int32 `protobuf:"varint,11,opt,name=total_duration,json=totalDuration,proto3,oneof" json:"total_duration,omitempty"`
 	// Time when the component started execution.
-	StartTime *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=start_time,json=startTime,proto3" json:"start_time,omitempty"`
+	StartTime *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=start_time,json=startTime,proto3" json:"start_time,omitempty"`
 	// Time when the component finished execution.
-	CompleteTime *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=complete_time,json=completeTime,proto3,oneof" json:"complete_time,omitempty"`
+	CompleteTime *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=complete_time,json=completeTime,proto3,oneof" json:"complete_time,omitempty"`
 	// Error message if the component failed.
-	Error *string `protobuf:"bytes,7,opt,name=error,proto3,oneof" json:"error,omitempty"`
+	Error *string `protobuf:"bytes,14,opt,name=error,proto3,oneof" json:"error,omitempty"`
 	// Input files for the run.
-	InputsReference []*FileReference `protobuf:"bytes,8,rep,name=inputs_reference,json=inputsReference,proto3" json:"inputs_reference,omitempty"`
+	InputsReference []*FileReference `protobuf:"bytes,15,rep,name=inputs_reference,json=inputsReference,proto3" json:"inputs_reference,omitempty"`
 	// Component input parameters.
-	Inputs []*structpb.Struct `protobuf:"bytes,9,rep,name=inputs,proto3" json:"inputs,omitempty"`
+	Inputs []*structpb.Struct `protobuf:"bytes,16,rep,name=inputs,proto3" json:"inputs,omitempty"`
 	// Output files from the run.
-	OutputsReference []*FileReference `protobuf:"bytes,10,rep,name=outputs_reference,json=outputsReference,proto3" json:"outputs_reference,omitempty"`
+	OutputsReference []*FileReference `protobuf:"bytes,17,rep,name=outputs_reference,json=outputsReference,proto3" json:"outputs_reference,omitempty"`
 	// Component inference outputs.
-	Outputs []*structpb.Struct `protobuf:"bytes,11,rep,name=outputs,proto3" json:"outputs,omitempty"`
+	Outputs []*structpb.Struct `protobuf:"bytes,18,rep,name=outputs,proto3" json:"outputs,omitempty"`
 	// Credits used of internal accounting metric.
-	CreditAmount *float32 `protobuf:"fixed32,12,opt,name=credit_amount,json=creditAmount,proto3,oneof" json:"credit_amount,omitempty"`
-	// Expiration time for the blob data associated with the component run (e.g.
-	// input / output data). When the run is accessed after the expiration, that
-	// information will be empty, but this field will allow the user identify
-	// that the data isn't there because it has expired.
-	BlobDataExpirationTime *timestamppb.Timestamp `protobuf:"bytes,22,opt,name=blob_data_expiration_time,json=blobDataExpirationTime,proto3,oneof" json:"blob_data_expiration_time,omitempty"`
+	CreditAmount *float32 `protobuf:"fixed32,19,opt,name=credit_amount,json=creditAmount,proto3,oneof" json:"credit_amount,omitempty"`
+	// Expiration time for the blob data associated with the component run.
+	BlobDataExpirationTime *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=blob_data_expiration_time,json=blobDataExpirationTime,proto3,oneof" json:"blob_data_expiration_time,omitempty"`
 	unknownFields          protoimpl.UnknownFields
 	sizeCache              protoimpl.SizeCache
 }
@@ -5628,16 +5505,37 @@ func (*ComponentRun) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{77}
 }
 
-func (x *ComponentRun) GetPipelineRunUid() string {
+func (x *ComponentRun) GetName() string {
 	if x != nil {
-		return x.PipelineRunUid
+		return x.Name
 	}
 	return ""
 }
 
-func (x *ComponentRun) GetComponentId() string {
+func (x *ComponentRun) GetId() string {
 	if x != nil {
-		return x.ComponentId
+		return x.Id
+	}
+	return ""
+}
+
+func (x *ComponentRun) GetCreateTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreateTime
+	}
+	return nil
+}
+
+func (x *ComponentRun) GetUpdateTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdateTime
+	}
+	return nil
+}
+
+func (x *ComponentRun) GetPipelineRun() string {
+	if x != nil {
+		return x.PipelineRun
 	}
 	return ""
 }
@@ -5842,7 +5740,7 @@ var File_pipeline_v1beta_pipeline_proto protoreflect.FileDescriptor
 
 const file_pipeline_v1beta_pipeline_proto_rawDesc = "" +
 	"\n" +
-	"\x1epipeline/v1beta/pipeline.proto\x12\x0fpipeline.v1beta\x1a+common/healthcheck/v1beta/healthcheck.proto\x1a\x1ccommon/run/v1alpha/run.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a#google/longrunning/operations.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16mgmt/v1beta/mgmt.proto\x1a\x1cpipeline/v1beta/common.proto\x1a*pipeline/v1beta/component_definition.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x95\x01\n" +
+	"\x1epipeline/v1beta/pipeline.proto\x12\x0fpipeline.v1beta\x1a+common/healthcheck/v1beta/healthcheck.proto\x1a\x1ccommon/run/v1alpha/run.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a#google/longrunning/operations.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16mgmt/v1beta/mgmt.proto\x1a\x1cpipeline/v1beta/common.proto\x1a*pipeline/v1beta/component_definition.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x95\x01\n" +
 	"\x0fLivenessRequest\x12i\n" +
 	"\x14health_check_request\x18\x01 \x01(\v2-.common.healthcheck.v1beta.HealthCheckRequestB\x03\xe0A\x01H\x00R\x12healthCheckRequest\x88\x01\x01B\x17\n" +
 	"\x15_health_check_request\"v\n" +
@@ -5860,7 +5758,7 @@ const file_pipeline_v1beta_pipeline_proto_rawDesc = "" +
 	"\vdescription\x18\x02 \x01(\tB\x03\xe0A\x03R\vdescription\x1ag\n" +
 	"\rWebhooksEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12@\n" +
-	"\x05value\x18\x02 \x01(\v2*.pipeline.v1beta.Endpoints.WebhookEndpointR\x05value:\x028\x01\"\xe6\x0e\n" +
+	"\x05value\x18\x02 \x01(\v2*.pipeline.v1beta.Endpoints.WebhookEndpointR\x05value:\x028\x01\"\xb6\x0f\n" +
 	"\bPipeline\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12&\n" +
@@ -5897,9 +5795,8 @@ const file_pipeline_v1beta_pipeline_proto_rawDesc = "" +
 	"\rprofile_image\x18\x18 \x01(\tB\x03\xe0A\x01H\x04R\fprofileImage\x88\x01\x01\x12\"\n" +
 	"\n" +
 	"owner_name\x18\x19 \x01(\tB\x03\xe0A\x03R\townerName\x122\n" +
-	"\x05owner\x18\x1a \x01(\v2\x12.mgmt.v1beta.OwnerB\x03\xe0A\x03H\x05R\x05owner\x88\x01\x01\x12)\n" +
-	"\vcreator_uid\x18\x1b \x01(\tB\x03\xe0A\x03H\x06R\n" +
-	"creatorUid\x88\x01\x01\x125\n" +
+	"\x05owner\x18\x1a \x01(\v2\x12.mgmt.v1beta.OwnerB\x03\xe0A\x03H\x05R\x05owner\x88\x01\x01\x12+\n" +
+	"\fcreator_name\x18\x1b \x01(\tB\x03\xe0A\x03H\x06R\vcreatorName\x88\x01\x01\x125\n" +
 	"\acreator\x18\x1c \x01(\v2\x11.mgmt.v1beta.UserB\x03\xe0A\x03H\aR\acreator\x88\x01\x01\x12@\n" +
 	"\vdelete_time\x18\x1d \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
 	"deleteTime\x1a\xa6\x01\n" +
@@ -5917,15 +5814,16 @@ const file_pipeline_v1beta_pipeline_proto_rawDesc = "" +
 	"Visibility\x12\x1a\n" +
 	"\x16VISIBILITY_UNSPECIFIED\x10\x00\x12\x16\n" +
 	"\x12VISIBILITY_PRIVATE\x10\x01\x12\x15\n" +
-	"\x11VISIBILITY_PUBLIC\x10\x02B\x0e\n" +
+	"\x11VISIBILITY_PUBLIC\x10\x02:K\xeaAH\n" +
+	"\x19api.instill.tech/Pipeline\x12+namespaces/{namespace}/pipelines/{pipeline}B\x0e\n" +
 	"\f_descriptionB\r\n" +
 	"\v_source_urlB\x14\n" +
 	"\x12_documentation_urlB\n" +
 	"\n" +
 	"\b_licenseB\x10\n" +
 	"\x0e_profile_imageB\b\n" +
-	"\x06_ownerB\x0e\n" +
-	"\f_creator_uidB\n" +
+	"\x06_ownerB\x0f\n" +
+	"\r_creator_nameB\n" +
 	"\n" +
 	"\b_creator\"\xaf\x01\n" +
 	"\x0fTriggerMetadata\x12I\n" +
@@ -5947,7 +5845,7 @@ const file_pipeline_v1beta_pipeline_proto_rawDesc = "" +
 	"\x12GetHubStatsRequest\"\x9d\x01\n" +
 	"\x13GetHubStatsResponse\x12@\n" +
 	"\x1anumber_of_public_pipelines\x18\x01 \x01(\x05B\x03\xe0A\x03R\x17numberOfPublicPipelines\x12D\n" +
-	"\x1cnumber_of_featured_pipelines\x18\x02 \x01(\x05B\x03\xe0A\x03R\x19numberOfFeaturedPipelines\"\xe4\x05\n" +
+	"\x1cnumber_of_featured_pipelines\x18\x02 \x01(\x05B\x03\xe0A\x03R\x19numberOfFeaturedPipelines\"\xcb\x06\n" +
 	"\x0fPipelineRelease\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x05R\x02id\x12&\n" +
@@ -5968,7 +5866,8 @@ const file_pipeline_v1beta_pipeline_proto_rawDesc = "" +
 	"\x12data_specification\x18\r \x01(\v2\".pipeline.v1beta.DataSpecificationB\x03\xe0A\x03R\x11dataSpecification\x12\"\n" +
 	"\n" +
 	"raw_recipe\x18\x0e \x01(\tB\x03\xe0A\x01R\trawRecipe\x12=\n" +
-	"\tendpoints\x18\x0f \x01(\v2\x1a.pipeline.v1beta.EndpointsB\x03\xe0A\x03R\tendpointsB\x0e\n" +
+	"\tendpoints\x18\x0f \x01(\v2\x1a.pipeline.v1beta.EndpointsB\x03\xe0A\x03R\tendpoints:e\xeaAb\n" +
+	" api.instill.tech/PipelineRelease\x12>namespaces/{namespace}/pipelines/{pipeline}/releases/{release}B\x0e\n" +
 	"\f_description\"\xc6\x03\n" +
 	"\x14ListPipelinesRequest\x12%\n" +
 	"\tpage_size\x18\x01 \x01(\x05B\x03\xe0A\x01H\x00R\bpageSize\x88\x01\x01\x12'\n" +
@@ -6044,90 +5943,77 @@ const file_pipeline_v1beta_pipeline_proto_rawDesc = "" +
 	"\bpipeline\x18\x01 \x01(\v2\x19.pipeline.v1beta.PipelineB\x03\xe0A\x03R\bpipeline\"9\n" +
 	"\x1eDeleteNamespacePipelineRequest\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"!\n" +
-	"\x1fDeleteNamespacePipelineResponse\"p\n" +
-	" ValidateNamespacePipelineRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12$\n" +
-	"\vpipeline_id\x18\x02 \x01(\tB\x03\xe0A\x02R\n" +
-	"pipelineId\"\x87\x01\n" +
+	"\x1fDeleteNamespacePipelineResponse\"Y\n" +
+	" ValidateNamespacePipelineRequest\x125\n" +
+	"\x04name\x18\x01 \x01(\tB!\xe0A\x02\xfaA\x1b\n" +
+	"\x19api.instill.tech/PipelineR\x04name\"\x87\x01\n" +
 	"!ValidateNamespacePipelineResponse\x12\x1d\n" +
 	"\asuccess\x18\x01 \x01(\bB\x03\xe0A\x03R\asuccess\x12C\n" +
-	"\x06errors\x18\x02 \x03(\v2&.pipeline.v1beta.ErrPipelineValidationB\x03\xe0A\x03R\x06errors\"\x9b\x01\n" +
-	"\x1eRenameNamespacePipelineRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12$\n" +
-	"\vpipeline_id\x18\x02 \x01(\tB\x03\xe0A\x02R\n" +
-	"pipelineId\x12+\n" +
-	"\x0fnew_pipeline_id\x18\x03 \x01(\tB\x03\xe0A\x02R\rnewPipelineId\"]\n" +
+	"\x06errors\x18\x02 \x03(\v2&.pipeline.v1beta.ErrPipelineValidationB\x03\xe0A\x03R\x06errors\"\x84\x01\n" +
+	"\x1eRenameNamespacePipelineRequest\x125\n" +
+	"\x04name\x18\x01 \x01(\tB!\xe0A\x02\xfaA\x1b\n" +
+	"\x19api.instill.tech/PipelineR\x04name\x12+\n" +
+	"\x0fnew_pipeline_id\x18\x02 \x01(\tB\x03\xe0A\x02R\rnewPipelineId\"]\n" +
 	"\x1fRenameNamespacePipelineResponse\x12:\n" +
-	"\bpipeline\x18\x01 \x01(\v2\x19.pipeline.v1beta.PipelineB\x03\xe0A\x03R\bpipeline\"\xbb\x02\n" +
-	"\x1dCloneNamespacePipelineRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12$\n" +
-	"\vpipeline_id\x18\x02 \x01(\tB\x03\xe0A\x02R\n" +
-	"pipelineId\x12%\n" +
-	"\vdescription\x18\x04 \x01(\tB\x03\xe0A\x01R\vdescription\x127\n" +
-	"\asharing\x18\x05 \x01(\v2\x18.pipeline.v1beta.SharingB\x03\xe0A\x01R\asharing\x123\n" +
-	"\x13target_namespace_id\x18\x06 \x01(\tB\x03\xe0A\x02R\x11targetNamespaceId\x121\n" +
-	"\x12target_pipeline_id\x18\a \x01(\tB\x03\xe0A\x02R\x10targetPipelineIdJ\x04\b\x03\x10\x04\" \n" +
-	"\x1eCloneNamespacePipelineResponse\"\xe6\x02\n" +
-	"$CloneNamespacePipelineReleaseRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12$\n" +
-	"\vpipeline_id\x18\x02 \x01(\tB\x03\xe0A\x02R\n" +
-	"pipelineId\x12\"\n" +
-	"\n" +
-	"release_id\x18\x03 \x01(\tB\x03\xe0A\x02R\treleaseId\x12%\n" +
-	"\vdescription\x18\x05 \x01(\tB\x03\xe0A\x01R\vdescription\x127\n" +
-	"\asharing\x18\x06 \x01(\v2\x18.pipeline.v1beta.SharingB\x03\xe0A\x01R\asharing\x123\n" +
-	"\x13target_namespace_id\x18\a \x01(\tB\x03\xe0A\x02R\x11targetNamespaceId\x121\n" +
-	"\x12target_pipeline_id\x18\b \x01(\tB\x03\xe0A\x02R\x10targetPipelineIdJ\x04\b\x04\x10\x05\"'\n" +
-	"%CloneNamespacePipelineReleaseResponse\"\xd1\x01\n" +
-	"*HandleNamespacePipelineWebhookEventRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12$\n" +
-	"\vpipeline_id\x18\x02 \x01(\tB\x03\xe0A\x02R\n" +
-	"pipelineId\x12\x14\n" +
-	"\x05event\x18\x03 \x01(\tR\x05event\x12\x12\n" +
-	"\x04code\x18\x04 \x01(\tR\x04code\x12+\n" +
-	"\x04data\x18\x05 \x01(\v2\x17.google.protobuf.StructR\x04data\"Z\n" +
+	"\bpipeline\x18\x01 \x01(\v2\x19.pipeline.v1beta.PipelineB\x03\xe0A\x03R\bpipeline\"\xf1\x01\n" +
+	"\x1dCloneNamespacePipelineRequest\x125\n" +
+	"\x04name\x18\x01 \x01(\tB!\xe0A\x02\xfaA\x1b\n" +
+	"\x19api.instill.tech/PipelineR\x04name\x129\n" +
+	"\x06target\x18\x02 \x01(\tB!\xe0A\x02\xfaA\x1b\n" +
+	"\x19api.instill.tech/PipelineR\x06target\x12%\n" +
+	"\vdescription\x18\x03 \x01(\tB\x03\xe0A\x01R\vdescription\x127\n" +
+	"\asharing\x18\x04 \x01(\v2\x18.pipeline.v1beta.SharingB\x03\xe0A\x01R\asharing\" \n" +
+	"\x1eCloneNamespacePipelineResponse\"\xff\x01\n" +
+	"$CloneNamespacePipelineReleaseRequest\x12<\n" +
+	"\x04name\x18\x01 \x01(\tB(\xe0A\x02\xfaA\"\n" +
+	" api.instill.tech/PipelineReleaseR\x04name\x12%\n" +
+	"\vdescription\x18\x02 \x01(\tB\x03\xe0A\x01R\vdescription\x127\n" +
+	"\asharing\x18\x03 \x01(\v2\x18.pipeline.v1beta.SharingB\x03\xe0A\x01R\asharing\x129\n" +
+	"\x06target\x18\x04 \x01(\tB!\xe0A\x02\xfaA\x1b\n" +
+	"\x19api.instill.tech/PipelineR\x06target\"'\n" +
+	"%CloneNamespacePipelineReleaseResponse\"\xba\x01\n" +
+	"*HandleNamespacePipelineWebhookEventRequest\x125\n" +
+	"\x04name\x18\x01 \x01(\tB!\xe0A\x02\xfaA\x1b\n" +
+	"\x19api.instill.tech/PipelineR\x04name\x12\x14\n" +
+	"\x05event\x18\x02 \x01(\tR\x05event\x12\x12\n" +
+	"\x04code\x18\x03 \x01(\tR\x04code\x12+\n" +
+	"\x04data\x18\x04 \x01(\v2\x17.google.protobuf.StructR\x04data\"Z\n" +
 	"+HandleNamespacePipelineWebhookEventResponse\x12+\n" +
-	"\x04data\x18\x01 \x01(\v2\x17.google.protobuf.StructR\x04data\"\xfc\x01\n" +
-	"1HandleNamespacePipelineReleaseWebhookEventRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12$\n" +
-	"\vpipeline_id\x18\x02 \x01(\tB\x03\xe0A\x02R\n" +
-	"pipelineId\x12\"\n" +
-	"\n" +
-	"release_id\x18\x03 \x01(\tB\x03\xe0A\x02R\treleaseId\x12\x14\n" +
-	"\x05event\x18\x04 \x01(\tR\x05event\x12\x12\n" +
-	"\x04code\x18\x05 \x01(\tR\x04code\x12+\n" +
-	"\x04data\x18\x06 \x01(\v2\x17.google.protobuf.StructR\x04data\"a\n" +
+	"\x04data\x18\x01 \x01(\v2\x17.google.protobuf.StructR\x04data\"\xc8\x01\n" +
+	"1HandleNamespacePipelineReleaseWebhookEventRequest\x12<\n" +
+	"\x04name\x18\x01 \x01(\tB(\xe0A\x02\xfaA\"\n" +
+	" api.instill.tech/PipelineReleaseR\x04name\x12\x14\n" +
+	"\x05event\x18\x02 \x01(\tR\x05event\x12\x12\n" +
+	"\x04code\x18\x03 \x01(\tR\x04code\x12+\n" +
+	"\x04data\x18\x04 \x01(\v2\x17.google.protobuf.StructR\x04data\"a\n" +
 	"2HandleNamespacePipelineReleaseWebhookEventResponse\x12+\n" +
 	"\x04data\x18\x01 \x01(\v2\x17.google.protobuf.StructR\x04data\"\x85\x01\n" +
 	"#DispatchPipelineWebhookEventRequest\x12&\n" +
 	"\fwebhook_type\x18\x01 \x01(\tB\x03\xe0A\x02R\vwebhookType\x126\n" +
 	"\amessage\x18\x02 \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\amessage\"`\n" +
 	"$DispatchPipelineWebhookEventResponse\x128\n" +
-	"\bresponse\x18\x01 \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\bresponse\"\xdc\x01\n" +
-	"\x1fTriggerNamespacePipelineRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12$\n" +
-	"\vpipeline_id\x18\x02 \x01(\tB\x03\xe0A\x02R\n" +
-	"pipelineId\x124\n" +
-	"\x06inputs\x18\x03 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\x06inputs\x125\n" +
-	"\x04data\x18\x04 \x03(\v2\x1c.pipeline.v1beta.TriggerDataB\x03\xe0A\x02R\x04data\"\x9d\x01\n" +
+	"\bresponse\x18\x01 \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\bresponse\"\xc5\x01\n" +
+	"\x1fTriggerNamespacePipelineRequest\x125\n" +
+	"\x04name\x18\x01 \x01(\tB!\xe0A\x02\xfaA\x1b\n" +
+	"\x19api.instill.tech/PipelineR\x04name\x124\n" +
+	"\x06inputs\x18\x02 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\x06inputs\x125\n" +
+	"\x04data\x18\x03 \x03(\v2\x1c.pipeline.v1beta.TriggerDataB\x03\xe0A\x02R\x04data\"\x9d\x01\n" +
 	" TriggerNamespacePipelineResponse\x126\n" +
 	"\aoutputs\x18\x01 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\aoutputs\x12A\n" +
-	"\bmetadata\x18\x02 \x01(\v2 .pipeline.v1beta.TriggerMetadataB\x03\xe0A\x03R\bmetadata\"\xe6\x01\n" +
-	")TriggerNamespacePipelineWithStreamRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12$\n" +
-	"\vpipeline_id\x18\x02 \x01(\tB\x03\xe0A\x02R\n" +
-	"pipelineId\x124\n" +
-	"\x06inputs\x18\x03 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x01R\x06inputs\x125\n" +
-	"\x04data\x18\x04 \x03(\v2\x1c.pipeline.v1beta.TriggerDataB\x03\xe0A\x01R\x04data\"\xa7\x01\n" +
+	"\bmetadata\x18\x02 \x01(\v2 .pipeline.v1beta.TriggerMetadataB\x03\xe0A\x03R\bmetadata\"\xcf\x01\n" +
+	")TriggerNamespacePipelineWithStreamRequest\x125\n" +
+	"\x04name\x18\x01 \x01(\tB!\xe0A\x02\xfaA\x1b\n" +
+	"\x19api.instill.tech/PipelineR\x04name\x124\n" +
+	"\x06inputs\x18\x02 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x01R\x06inputs\x125\n" +
+	"\x04data\x18\x03 \x03(\v2\x1c.pipeline.v1beta.TriggerDataB\x03\xe0A\x01R\x04data\"\xa7\x01\n" +
 	"*TriggerNamespacePipelineWithStreamResponse\x126\n" +
 	"\aoutputs\x18\x01 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\aoutputs\x12A\n" +
-	"\bmetadata\x18\x02 \x01(\v2 .pipeline.v1beta.TriggerMetadataB\x03\xe0A\x03R\bmetadata\"\xe1\x01\n" +
-	"$TriggerAsyncNamespacePipelineRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12$\n" +
-	"\vpipeline_id\x18\x02 \x01(\tB\x03\xe0A\x02R\n" +
-	"pipelineId\x124\n" +
-	"\x06inputs\x18\x03 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x01R\x06inputs\x125\n" +
-	"\x04data\x18\x04 \x03(\v2\x1c.pipeline.v1beta.TriggerDataB\x03\xe0A\x01R\x04data\"i\n" +
+	"\bmetadata\x18\x02 \x01(\v2 .pipeline.v1beta.TriggerMetadataB\x03\xe0A\x03R\bmetadata\"\xca\x01\n" +
+	"$TriggerAsyncNamespacePipelineRequest\x125\n" +
+	"\x04name\x18\x01 \x01(\tB!\xe0A\x02\xfaA\x1b\n" +
+	"\x19api.instill.tech/PipelineR\x04name\x124\n" +
+	"\x06inputs\x18\x02 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x01R\x06inputs\x125\n" +
+	"\x04data\x18\x03 \x03(\v2\x1c.pipeline.v1beta.TriggerDataB\x03\xe0A\x01R\x04data\"i\n" +
 	"%TriggerAsyncNamespacePipelineResponse\x12@\n" +
 	"\toperation\x18\x01 \x01(\v2\x1d.google.longrunning.OperationB\x03\xe0A\x03R\toperation\"\x80\x01\n" +
 	"%CreateNamespacePipelineReleaseRequest\x12\x1b\n" +
@@ -6168,26 +6054,20 @@ const file_pipeline_v1beta_pipeline_proto_rawDesc = "" +
 	"\arelease\x18\x01 \x01(\v2 .pipeline.v1beta.PipelineReleaseB\x03\xe0A\x03R\arelease\"@\n" +
 	"%DeleteNamespacePipelineReleaseRequest\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"(\n" +
-	"&DeleteNamespacePipelineReleaseResponse\"\x87\x02\n" +
-	"&TriggerNamespacePipelineReleaseRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12$\n" +
-	"\vpipeline_id\x18\x02 \x01(\tB\x03\xe0A\x02R\n" +
-	"pipelineId\x12\"\n" +
-	"\n" +
-	"release_id\x18\x03 \x01(\tB\x03\xe0A\x02R\treleaseId\x124\n" +
-	"\x06inputs\x18\x04 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x01R\x06inputs\x125\n" +
-	"\x04data\x18\x05 \x03(\v2\x1c.pipeline.v1beta.TriggerDataB\x03\xe0A\x01R\x04data\"\xa4\x01\n" +
+	"&DeleteNamespacePipelineReleaseResponse\"\xd3\x01\n" +
+	"&TriggerNamespacePipelineReleaseRequest\x12<\n" +
+	"\x04name\x18\x01 \x01(\tB(\xe0A\x02\xfaA\"\n" +
+	" api.instill.tech/PipelineReleaseR\x04name\x124\n" +
+	"\x06inputs\x18\x02 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x01R\x06inputs\x125\n" +
+	"\x04data\x18\x03 \x03(\v2\x1c.pipeline.v1beta.TriggerDataB\x03\xe0A\x01R\x04data\"\xa4\x01\n" +
 	"'TriggerNamespacePipelineReleaseResponse\x126\n" +
 	"\aoutputs\x18\x01 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\aoutputs\x12A\n" +
-	"\bmetadata\x18\x02 \x01(\v2 .pipeline.v1beta.TriggerMetadataB\x03\xe0A\x03R\bmetadata\"\x8c\x02\n" +
-	"+TriggerAsyncNamespacePipelineReleaseRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12$\n" +
-	"\vpipeline_id\x18\x02 \x01(\tB\x03\xe0A\x02R\n" +
-	"pipelineId\x12\"\n" +
-	"\n" +
-	"release_id\x18\x03 \x01(\tB\x03\xe0A\x02R\treleaseId\x124\n" +
-	"\x06inputs\x18\x04 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x01R\x06inputs\x125\n" +
-	"\x04data\x18\x05 \x03(\v2\x1c.pipeline.v1beta.TriggerDataB\x03\xe0A\x01R\x04data\"p\n" +
+	"\bmetadata\x18\x02 \x01(\v2 .pipeline.v1beta.TriggerMetadataB\x03\xe0A\x03R\bmetadata\"\xd8\x01\n" +
+	"+TriggerAsyncNamespacePipelineReleaseRequest\x12<\n" +
+	"\x04name\x18\x01 \x01(\tB(\xe0A\x02\xfaA\"\n" +
+	" api.instill.tech/PipelineReleaseR\x04name\x124\n" +
+	"\x06inputs\x18\x02 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x01R\x06inputs\x125\n" +
+	"\x04data\x18\x03 \x03(\v2\x1c.pipeline.v1beta.TriggerDataB\x03\xe0A\x01R\x04data\"p\n" +
 	",TriggerAsyncNamespacePipelineReleaseResponse\x12@\n" +
 	"\toperation\x18\x01 \x01(\v2\x1d.google.longrunning.OperationB\x03\xe0A\x03R\toperation\"I\n" +
 	"\x15ErrPipelineValidation\x12\x1a\n" +
@@ -6248,25 +6128,24 @@ const file_pipeline_v1beta_pipeline_proto_rawDesc = "" +
 	"\x04view\x18\x02 \x01(\x0e2\x1e.pipeline.v1beta.Pipeline.ViewB\x03\xe0A\x01H\x00R\x04view\x88\x01\x01B\a\n" +
 	"\x05_view\"T\n" +
 	"\x1bLookUpPipelineAdminResponse\x125\n" +
-	"\bpipeline\x18\x01 \x01(\v2\x19.pipeline.v1beta.PipelineR\bpipeline\"\x87\x02\n" +
-	"\x17ListPipelineRunsRequest\x12&\n" +
-	"\fnamespace_id\x18\x01 \x01(\tB\x03\xe0A\x02R\vnamespaceId\x12$\n" +
-	"\vpipeline_id\x18\x02 \x01(\tB\x03\xe0A\x02R\n" +
-	"pipelineId\x12\x17\n" +
-	"\x04page\x18\x03 \x01(\x05B\x03\xe0A\x01R\x04page\x12 \n" +
-	"\tpage_size\x18\x04 \x01(\x05B\x03\xe0A\x01R\bpageSize\x12 \n" +
-	"\x06filter\x18\x06 \x01(\tB\x03\xe0A\x01H\x00R\x06filter\x88\x01\x01\x12#\n" +
-	"\border_by\x18\a \x01(\tB\x03\xe0A\x01H\x01R\aorderBy\x88\x01\x01B\t\n" +
+	"\bpipeline\x18\x01 \x01(\v2\x19.pipeline.v1beta.PipelineR\bpipeline\"\xee\x01\n" +
+	"\x17ListPipelineRunsRequest\x129\n" +
+	"\x06parent\x18\x01 \x01(\tB!\xe0A\x02\xfaA\x1b\n" +
+	"\x19api.instill.tech/PipelineR\x06parent\x12\x17\n" +
+	"\x04page\x18\x02 \x01(\x05B\x03\xe0A\x01R\x04page\x12 \n" +
+	"\tpage_size\x18\x03 \x01(\x05B\x03\xe0A\x01R\bpageSize\x12 \n" +
+	"\x06filter\x18\x04 \x01(\tB\x03\xe0A\x01H\x00R\x06filter\x88\x01\x01\x12#\n" +
+	"\border_by\x18\x05 \x01(\tB\x03\xe0A\x01H\x01R\aorderBy\x88\x01\x01B\t\n" +
 	"\a_filterB\v\n" +
-	"\t_order_byJ\x04\b\x05\x10\x06\"\xe5\x02\n" +
-	"\"ListPipelineRunsByRequesterRequest\x12\x17\n" +
-	"\x04page\x18\x01 \x01(\x05B\x03\xe0A\x01R\x04page\x12 \n" +
-	"\tpage_size\x18\x02 \x01(\x05B\x03\xe0A\x01R\bpageSize\x12 \n" +
-	"\x06filter\x18\x03 \x01(\tB\x03\xe0A\x01H\x00R\x06filter\x88\x01\x01\x12#\n" +
-	"\border_by\x18\x04 \x01(\tB\x03\xe0A\x01H\x01R\aorderBy\x88\x01\x01\x125\n" +
-	"\x05start\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampH\x02R\x05start\x88\x01\x01\x123\n" +
-	"\x04stop\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampH\x03R\x04stop\x88\x01\x01\x12&\n" +
-	"\frequester_id\x18\a \x01(\tB\x03\xe0A\x02R\vrequesterIdB\t\n" +
+	"\t_order_by\"\xe0\x02\n" +
+	"\"ListPipelineRunsByRequesterRequest\x12!\n" +
+	"\trequester\x18\x01 \x01(\tB\x03\xe0A\x02R\trequester\x12\x17\n" +
+	"\x04page\x18\x02 \x01(\x05B\x03\xe0A\x01R\x04page\x12 \n" +
+	"\tpage_size\x18\x03 \x01(\x05B\x03\xe0A\x01R\bpageSize\x12 \n" +
+	"\x06filter\x18\x04 \x01(\tB\x03\xe0A\x01H\x00R\x06filter\x88\x01\x01\x12#\n" +
+	"\border_by\x18\x05 \x01(\tB\x03\xe0A\x01H\x01R\aorderBy\x88\x01\x01\x125\n" +
+	"\x05start\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampH\x02R\x05start\x88\x01\x01\x123\n" +
+	"\x04stop\x18\a \x01(\v2\x1a.google.protobuf.TimestampH\x03R\x04stop\x88\x01\x01B\t\n" +
 	"\a_filterB\v\n" +
 	"\t_order_byB\b\n" +
 	"\x06_startB\a\n" +
@@ -6282,9 +6161,10 @@ const file_pipeline_v1beta_pipeline_proto_rawDesc = "" +
 	"\n" +
 	"total_size\x18\x02 \x01(\x05B\x03\xe0A\x03R\ttotalSize\x12\x17\n" +
 	"\x04page\x18\x03 \x01(\x05B\x03\xe0A\x03R\x04page\x12 \n" +
-	"\tpage_size\x18\x04 \x01(\x05B\x03\xe0A\x03R\bpageSize\"\xc9\x02\n" +
-	"\x18ListComponentRunsRequest\x12+\n" +
-	"\x0fpipeline_run_id\x18\x01 \x01(\tB\x03\xe0A\x02R\rpipelineRunId\x12\x1c\n" +
+	"\tpage_size\x18\x04 \x01(\x05B\x03\xe0A\x03R\bpageSize\"\xda\x02\n" +
+	"\x18ListComponentRunsRequest\x12<\n" +
+	"\x06parent\x18\x01 \x01(\tB$\xe0A\x02\xfaA\x1e\n" +
+	"\x1capi.instill.tech/PipelineRunR\x06parent\x12\x1c\n" +
 	"\x04page\x18\x02 \x01(\x05B\x03\xe0A\x01H\x00R\x04page\x88\x01\x01\x12%\n" +
 	"\tpage_size\x18\x03 \x01(\x05B\x03\xe0A\x01H\x01R\bpageSize\x88\x01\x01\x12 \n" +
 	"\x06filter\x18\x04 \x01(\tB\x03\xe0A\x01H\x02R\x06filter\x88\x01\x01\x12#\n" +
@@ -6306,59 +6186,71 @@ const file_pipeline_v1beta_pipeline_proto_rawDesc = "" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\x12\x17\n" +
 	"\x04type\x18\x02 \x01(\tB\x03\xe0A\x02R\x04type\x12\x17\n" +
 	"\x04size\x18\x03 \x01(\x03B\x03\xe0A\x02R\x04size\x12\x15\n" +
-	"\x03url\x18\x04 \x01(\tB\x03\xe0A\x02R\x03url\"\xba\t\n" +
-	"\vPipelineRun\x12-\n" +
-	"\x10pipeline_run_uid\x18\x02 \x01(\tB\x03\xe0A\x03R\x0epipelineRunUid\x12.\n" +
-	"\x10pipeline_version\x18\x03 \x01(\tB\x03\xe0A\x03R\x0fpipelineVersion\x12:\n" +
-	"\x06status\x18\x04 \x01(\x0e2\x1d.common.run.v1alpha.RunStatusB\x03\xe0A\x03R\x06status\x12:\n" +
-	"\x06source\x18\x05 \x01(\x0e2\x1d.common.run.v1alpha.RunSourceB\x03\xe0A\x03R\x06source\x122\n" +
-	"\x0etotal_duration\x18\x06 \x01(\x05B\x06\xe0A\x03\xe0A\x01H\x00R\rtotalDuration\x88\x01\x01\x12(\n" +
-	"\trunner_id\x18\a \x01(\tB\x06\xe0A\x03\xe0A\x01H\x01R\brunnerId\x88\x01\x01\x127\n" +
-	"\x06inputs\x18\n" +
-	" \x03(\v2\x17.google.protobuf.StructB\x06\xe0A\x03\xe0A\x01R\x06inputs\x129\n" +
-	"\aoutputs\x18\f \x03(\v2\x17.google.protobuf.StructB\x06\xe0A\x03\xe0A\x01R\aoutputs\x12E\n" +
-	"\x0frecipe_snapshot\x18\r \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\x0erecipeSnapshot\x12>\n" +
+	"\x03url\x18\x04 \x01(\tB\x03\xe0A\x02R\x03url\"\x8c\v\n" +
+	"\vPipelineRun\x12\x17\n" +
+	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
+	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12@\n" +
+	"\vcreate_time\x18\a \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
+	"createTime\x12@\n" +
+	"\vupdate_time\x18\b \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
+	"updateTime\x12:\n" +
+	"\x06runner\x18\t \x01(\tB\x1d\xe0A\x03\xfaA\x17\n" +
+	"\x15api.instill.tech/UserH\x00R\x06runner\x88\x01\x01\x12B\n" +
+	"\bpipeline\x18\n" +
+	" \x01(\tB!\xe0A\x03\xfaA\x1b\n" +
+	"\x19api.instill.tech/PipelineH\x01R\bpipeline\x88\x01\x01\x12@\n" +
+	"\trequester\x18\v \x01(\tB\"\xe0A\x03\xfaA\x1c\n" +
+	"\x1aapi.instill.tech/NamespaceR\trequester\x12.\n" +
+	"\x10pipeline_version\x18\f \x01(\tB\x03\xe0A\x03R\x0fpipelineVersion\x12:\n" +
+	"\x06status\x18\r \x01(\x0e2\x1d.common.run.v1alpha.RunStatusB\x03\xe0A\x03R\x06status\x12:\n" +
+	"\x06source\x18\x0e \x01(\x0e2\x1d.common.run.v1alpha.RunSourceB\x03\xe0A\x03R\x06source\x12/\n" +
+	"\x0etotal_duration\x18\x0f \x01(\x05B\x03\xe0A\x03H\x02R\rtotalDuration\x88\x01\x01\x124\n" +
+	"\x06inputs\x18\x10 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\x06inputs\x126\n" +
+	"\aoutputs\x18\x11 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\aoutputs\x12E\n" +
+	"\x0frecipe_snapshot\x18\x12 \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\x0erecipeSnapshot\x12>\n" +
 	"\n" +
-	"start_time\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\tstartTime\x12L\n" +
-	"\rcomplete_time\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampB\x06\xe0A\x03\xe0A\x01H\x02R\fcompleteTime\x88\x01\x01\x12!\n" +
-	"\x05error\x18\x10 \x01(\tB\x06\xe0A\x03\xe0A\x01H\x03R\x05error\x88\x01\x01\x120\n" +
-	"\rcredit_amount\x18\x11 \x01(\x02B\x06\xe0A\x03\xe0A\x01H\x04R\fcreditAmount\x88\x01\x01\x12V\n" +
-	"\x12data_specification\x18\x12 \x01(\v2\".pipeline.v1beta.DataSpecificationB\x03\xe0A\x03R\x11dataSpecification\x12,\n" +
-	"\vpipeline_id\x18\x13 \x01(\tB\x06\xe0A\x03\xe0A\x01H\x05R\n" +
-	"pipelineId\x88\x01\x01\x12&\n" +
-	"\frequester_id\x18\x14 \x01(\tB\x03\xe0A\x03R\vrequesterId\x127\n" +
-	"\x15pipeline_namespace_id\x18\x15 \x01(\tB\x03\xe0A\x03R\x13pipelineNamespaceId\x12b\n" +
-	"\x19blob_data_expiration_time\x18\x16 \x01(\v2\x1a.google.protobuf.TimestampB\x06\xe0A\x03\xe0A\x01H\x06R\x16blobDataExpirationTime\x88\x01\x01B\x11\n" +
-	"\x0f_total_durationB\f\n" +
-	"\n" +
-	"_runner_idB\x10\n" +
-	"\x0e_complete_timeB\b\n" +
-	"\x06_errorB\x10\n" +
-	"\x0e_credit_amountB\x0e\n" +
-	"\f_pipeline_idB\x1c\n" +
-	"\x1a_blob_data_expiration_timeJ\x04\b\x01\x10\x02J\x04\b\t\x10\n" +
-	"J\x04\b\v\x10\f\"\x91\a\n" +
-	"\fComponentRun\x12-\n" +
-	"\x10pipeline_run_uid\x18\x01 \x01(\tB\x03\xe0A\x03R\x0epipelineRunUid\x12&\n" +
-	"\fcomponent_id\x18\x02 \x01(\tB\x03\xe0A\x03R\vcomponentId\x12:\n" +
-	"\x06status\x18\x03 \x01(\x0e2\x1d.common.run.v1alpha.RunStatusB\x03\xe0A\x03R\x06status\x122\n" +
-	"\x0etotal_duration\x18\x04 \x01(\x05B\x06\xe0A\x03\xe0A\x01H\x00R\rtotalDuration\x88\x01\x01\x12>\n" +
-	"\n" +
-	"start_time\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\tstartTime\x12L\n" +
-	"\rcomplete_time\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampB\x06\xe0A\x03\xe0A\x01H\x01R\fcompleteTime\x88\x01\x01\x12!\n" +
-	"\x05error\x18\a \x01(\tB\x06\xe0A\x03\xe0A\x01H\x02R\x05error\x88\x01\x01\x12N\n" +
-	"\x10inputs_reference\x18\b \x03(\v2\x1e.pipeline.v1beta.FileReferenceB\x03\xe0A\x03R\x0finputsReference\x127\n" +
-	"\x06inputs\x18\t \x03(\v2\x17.google.protobuf.StructB\x06\xe0A\x03\xe0A\x01R\x06inputs\x12P\n" +
-	"\x11outputs_reference\x18\n" +
-	" \x03(\v2\x1e.pipeline.v1beta.FileReferenceB\x03\xe0A\x03R\x10outputsReference\x129\n" +
-	"\aoutputs\x18\v \x03(\v2\x17.google.protobuf.StructB\x06\xe0A\x03\xe0A\x01R\aoutputs\x120\n" +
-	"\rcredit_amount\x18\f \x01(\x02B\x06\xe0A\x03\xe0A\x01H\x03R\fcreditAmount\x88\x01\x01\x12b\n" +
-	"\x19blob_data_expiration_time\x18\x16 \x01(\v2\x1a.google.protobuf.TimestampB\x06\xe0A\x03\xe0A\x01H\x04R\x16blobDataExpirationTime\x88\x01\x01B\x11\n" +
+	"start_time\x18\x13 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\tstartTime\x12I\n" +
+	"\rcomplete_time\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03H\x03R\fcompleteTime\x88\x01\x01\x12\x1e\n" +
+	"\x05error\x18\x15 \x01(\tB\x03\xe0A\x03H\x04R\x05error\x88\x01\x01\x12-\n" +
+	"\rcredit_amount\x18\x16 \x01(\x02B\x03\xe0A\x03H\x05R\fcreditAmount\x88\x01\x01\x12V\n" +
+	"\x12data_specification\x18\x17 \x01(\v2\".pipeline.v1beta.DataSpecificationB\x03\xe0A\x03R\x11dataSpecification\x12_\n" +
+	"\x19blob_data_expiration_time\x18\x18 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03H\x06R\x16blobDataExpirationTime\x88\x01\x01:Y\xeaAV\n" +
+	"\x1capi.instill.tech/PipelineRun\x126namespaces/{namespace}/pipelines/{pipeline}/runs/{run}B\t\n" +
+	"\a_runnerB\v\n" +
+	"\t_pipelineB\x11\n" +
 	"\x0f_total_durationB\x10\n" +
 	"\x0e_complete_timeB\b\n" +
 	"\x06_errorB\x10\n" +
 	"\x0e_credit_amountB\x1c\n" +
-	"\x1a_blob_data_expiration_time*U\n" +
+	"\x1a_blob_data_expiration_timeJ\x04\b\x03\x10\x04J\x04\b\x04\x10\x05J\x04\b\x05\x10\x06J\x04\b\x06\x10\a\"\xab\t\n" +
+	"\fComponentRun\x12\x17\n" +
+	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
+	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12@\n" +
+	"\vcreate_time\x18\a \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
+	"createTime\x12@\n" +
+	"\vupdate_time\x18\b \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
+	"updateTime\x12G\n" +
+	"\fpipeline_run\x18\t \x01(\tB$\xe0A\x03\xfaA\x1e\n" +
+	"\x1capi.instill.tech/PipelineRunR\vpipelineRun\x12:\n" +
+	"\x06status\x18\n" +
+	" \x01(\x0e2\x1d.common.run.v1alpha.RunStatusB\x03\xe0A\x03R\x06status\x12/\n" +
+	"\x0etotal_duration\x18\v \x01(\x05B\x03\xe0A\x03H\x00R\rtotalDuration\x88\x01\x01\x12>\n" +
+	"\n" +
+	"start_time\x18\f \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\tstartTime\x12I\n" +
+	"\rcomplete_time\x18\r \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03H\x01R\fcompleteTime\x88\x01\x01\x12\x1e\n" +
+	"\x05error\x18\x0e \x01(\tB\x03\xe0A\x03H\x02R\x05error\x88\x01\x01\x12N\n" +
+	"\x10inputs_reference\x18\x0f \x03(\v2\x1e.pipeline.v1beta.FileReferenceB\x03\xe0A\x03R\x0finputsReference\x124\n" +
+	"\x06inputs\x18\x10 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\x06inputs\x12P\n" +
+	"\x11outputs_reference\x18\x11 \x03(\v2\x1e.pipeline.v1beta.FileReferenceB\x03\xe0A\x03R\x10outputsReference\x126\n" +
+	"\aoutputs\x18\x12 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\aoutputs\x12-\n" +
+	"\rcredit_amount\x18\x13 \x01(\x02B\x03\xe0A\x03H\x03R\fcreditAmount\x88\x01\x01\x12_\n" +
+	"\x19blob_data_expiration_time\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03H\x04R\x16blobDataExpirationTime\x88\x01\x01:q\xeaAn\n" +
+	"\x1dapi.instill.tech/ComponentRun\x12Mnamespaces/{namespace}/pipelines/{pipeline}/runs/{run}/components/{component}B\x11\n" +
+	"\x0f_total_durationB\x10\n" +
+	"\x0e_complete_timeB\b\n" +
+	"\x06_errorB\x10\n" +
+	"\x0e_credit_amountB\x1c\n" +
+	"\x1a_blob_data_expiration_timeJ\x04\b\x03\x10\x04J\x04\b\x04\x10\x05J\x04\b\x05\x10\x06J\x04\b\x06\x10\a*U\n" +
 	"\x05State\x12\x15\n" +
 	"\x11STATE_UNSPECIFIED\x10\x00\x12\x12\n" +
 	"\x0eSTATE_INACTIVE\x10\x01\x12\x10\n" +
@@ -6583,31 +6475,35 @@ var file_pipeline_v1beta_pipeline_proto_depIdxs = []int32{
 	80,  // 96: pipeline.v1beta.ListPipelineRunsByRequesterResponse.pipeline_runs:type_name -> pipeline.v1beta.PipelineRun
 	1,   // 97: pipeline.v1beta.ListComponentRunsRequest.view:type_name -> pipeline.v1beta.Pipeline.View
 	81,  // 98: pipeline.v1beta.ListComponentRunsResponse.component_runs:type_name -> pipeline.v1beta.ComponentRun
-	99,  // 99: pipeline.v1beta.PipelineRun.status:type_name -> common.run.v1alpha.RunStatus
-	100, // 100: pipeline.v1beta.PipelineRun.source:type_name -> common.run.v1alpha.RunSource
-	91,  // 101: pipeline.v1beta.PipelineRun.inputs:type_name -> google.protobuf.Struct
-	91,  // 102: pipeline.v1beta.PipelineRun.outputs:type_name -> google.protobuf.Struct
-	91,  // 103: pipeline.v1beta.PipelineRun.recipe_snapshot:type_name -> google.protobuf.Struct
-	90,  // 104: pipeline.v1beta.PipelineRun.start_time:type_name -> google.protobuf.Timestamp
-	90,  // 105: pipeline.v1beta.PipelineRun.complete_time:type_name -> google.protobuf.Timestamp
-	94,  // 106: pipeline.v1beta.PipelineRun.data_specification:type_name -> pipeline.v1beta.DataSpecification
-	90,  // 107: pipeline.v1beta.PipelineRun.blob_data_expiration_time:type_name -> google.protobuf.Timestamp
-	99,  // 108: pipeline.v1beta.ComponentRun.status:type_name -> common.run.v1alpha.RunStatus
-	90,  // 109: pipeline.v1beta.ComponentRun.start_time:type_name -> google.protobuf.Timestamp
-	90,  // 110: pipeline.v1beta.ComponentRun.complete_time:type_name -> google.protobuf.Timestamp
-	79,  // 111: pipeline.v1beta.ComponentRun.inputs_reference:type_name -> pipeline.v1beta.FileReference
-	91,  // 112: pipeline.v1beta.ComponentRun.inputs:type_name -> google.protobuf.Struct
-	79,  // 113: pipeline.v1beta.ComponentRun.outputs_reference:type_name -> pipeline.v1beta.FileReference
-	91,  // 114: pipeline.v1beta.ComponentRun.outputs:type_name -> google.protobuf.Struct
-	90,  // 115: pipeline.v1beta.ComponentRun.blob_data_expiration_time:type_name -> google.protobuf.Timestamp
-	82,  // 116: pipeline.v1beta.Endpoints.WebhooksEntry.value:type_name -> pipeline.v1beta.Endpoints.WebhookEndpoint
-	90,  // 117: pipeline.v1beta.Pipeline.Stats.last_run_time:type_name -> google.protobuf.Timestamp
-	11,  // 118: pipeline.v1beta.TriggerMetadata.TracesEntry.value:type_name -> pipeline.v1beta.Trace
-	119, // [119:119] is the sub-list for method output_type
-	119, // [119:119] is the sub-list for method input_type
-	119, // [119:119] is the sub-list for extension type_name
-	119, // [119:119] is the sub-list for extension extendee
-	0,   // [0:119] is the sub-list for field type_name
+	90,  // 99: pipeline.v1beta.PipelineRun.create_time:type_name -> google.protobuf.Timestamp
+	90,  // 100: pipeline.v1beta.PipelineRun.update_time:type_name -> google.protobuf.Timestamp
+	99,  // 101: pipeline.v1beta.PipelineRun.status:type_name -> common.run.v1alpha.RunStatus
+	100, // 102: pipeline.v1beta.PipelineRun.source:type_name -> common.run.v1alpha.RunSource
+	91,  // 103: pipeline.v1beta.PipelineRun.inputs:type_name -> google.protobuf.Struct
+	91,  // 104: pipeline.v1beta.PipelineRun.outputs:type_name -> google.protobuf.Struct
+	91,  // 105: pipeline.v1beta.PipelineRun.recipe_snapshot:type_name -> google.protobuf.Struct
+	90,  // 106: pipeline.v1beta.PipelineRun.start_time:type_name -> google.protobuf.Timestamp
+	90,  // 107: pipeline.v1beta.PipelineRun.complete_time:type_name -> google.protobuf.Timestamp
+	94,  // 108: pipeline.v1beta.PipelineRun.data_specification:type_name -> pipeline.v1beta.DataSpecification
+	90,  // 109: pipeline.v1beta.PipelineRun.blob_data_expiration_time:type_name -> google.protobuf.Timestamp
+	90,  // 110: pipeline.v1beta.ComponentRun.create_time:type_name -> google.protobuf.Timestamp
+	90,  // 111: pipeline.v1beta.ComponentRun.update_time:type_name -> google.protobuf.Timestamp
+	99,  // 112: pipeline.v1beta.ComponentRun.status:type_name -> common.run.v1alpha.RunStatus
+	90,  // 113: pipeline.v1beta.ComponentRun.start_time:type_name -> google.protobuf.Timestamp
+	90,  // 114: pipeline.v1beta.ComponentRun.complete_time:type_name -> google.protobuf.Timestamp
+	79,  // 115: pipeline.v1beta.ComponentRun.inputs_reference:type_name -> pipeline.v1beta.FileReference
+	91,  // 116: pipeline.v1beta.ComponentRun.inputs:type_name -> google.protobuf.Struct
+	79,  // 117: pipeline.v1beta.ComponentRun.outputs_reference:type_name -> pipeline.v1beta.FileReference
+	91,  // 118: pipeline.v1beta.ComponentRun.outputs:type_name -> google.protobuf.Struct
+	90,  // 119: pipeline.v1beta.ComponentRun.blob_data_expiration_time:type_name -> google.protobuf.Timestamp
+	82,  // 120: pipeline.v1beta.Endpoints.WebhooksEntry.value:type_name -> pipeline.v1beta.Endpoints.WebhookEndpoint
+	90,  // 121: pipeline.v1beta.Pipeline.Stats.last_run_time:type_name -> google.protobuf.Timestamp
+	11,  // 122: pipeline.v1beta.TriggerMetadata.TracesEntry.value:type_name -> pipeline.v1beta.Trace
+	123, // [123:123] is the sub-list for method output_type
+	123, // [123:123] is the sub-list for method input_type
+	123, // [123:123] is the sub-list for extension type_name
+	123, // [123:123] is the sub-list for extension extendee
+	0,   // [0:123] is the sub-list for field type_name
 }
 
 func init() { file_pipeline_v1beta_pipeline_proto_init() }

@@ -27,8 +27,8 @@ const (
 // Object represents a blob storage object.
 type Object struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Canonical resource name (e.g., "namespaces/{namespace_id}/objects/{id}").
-	// Output only.
+	// Canonical resource name.
+	// Format: `namespaces/{namespace}/objects/{object}`
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Immutable canonical resource ID (e.g., "obj-3k7m9p2w5t1").
 	// Hash-based, unique within a namespace.
@@ -748,12 +748,13 @@ func (*DeleteObjectResponse) Descriptor() ([]byte, []int) {
 	return file_artifact_v1alpha_object_proto_rawDescGZIP(), []int{10}
 }
 
-// GetObjectAdminRequest represents a request to get an object by UID (admin
+// GetObjectAdminRequest represents a request to get an object by name (admin
 // only).
 type GetObjectAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Object UID (internal UUID).
-	ObjectUid     string `protobuf:"bytes,1,opt,name=object_uid,json=objectUid,proto3" json:"object_uid,omitempty"`
+	// Full resource name of the object.
+	// Format: `objects/{object}`
+	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -788,9 +789,9 @@ func (*GetObjectAdminRequest) Descriptor() ([]byte, []int) {
 	return file_artifact_v1alpha_object_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *GetObjectAdminRequest) GetObjectUid() string {
+func (x *GetObjectAdminRequest) GetName() string {
 	if x != nil {
-		return x.ObjectUid
+		return x.Name
 	}
 	return ""
 }
@@ -841,12 +842,13 @@ func (x *GetObjectAdminResponse) GetObject() *Object {
 	return nil
 }
 
-// UpdateObjectAdminRequest represents a request to update an object by UID
+// UpdateObjectAdminRequest represents a request to update an object by name
 // (admin only).
 type UpdateObjectAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Object UID (internal UUID).
-	ObjectUid string `protobuf:"bytes,1,opt,name=object_uid,json=objectUid,proto3" json:"object_uid,omitempty"`
+	// Full resource name of the object.
+	// Format: `objects/{object}`
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Size in bytes.
 	Size *int64 `protobuf:"varint,2,opt,name=size,proto3,oneof" json:"size,omitempty"`
 	// Content type (MIME type).
@@ -889,9 +891,9 @@ func (*UpdateObjectAdminRequest) Descriptor() ([]byte, []int) {
 	return file_artifact_v1alpha_object_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *UpdateObjectAdminRequest) GetObjectUid() string {
+func (x *UpdateObjectAdminRequest) GetName() string {
 	if x != nil {
-		return x.ObjectUid
+		return x.Name
 	}
 	return ""
 }
@@ -974,7 +976,7 @@ var File_artifact_v1alpha_object_proto protoreflect.FileDescriptor
 
 const file_artifact_v1alpha_object_proto_rawDesc = "" +
 	"\n" +
-	"\x1dartifact/v1alpha/object.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x85\x05\n" +
+	"\x1dartifact/v1alpha/object.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xcc\x05\n" +
 	"\x06Object\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12&\n" +
@@ -993,7 +995,8 @@ const file_artifact_v1alpha_object_proto_rawDesc = "" +
 	"\x12object_expire_days\x18\v \x01(\x05B\x03\xe0A\x01R\x10objectExpireDays\x12R\n" +
 	"\x12last_modified_time\x18\f \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x01H\x00R\x10lastModifiedTime\x88\x01\x01\x12E\n" +
 	"\vdelete_time\x18\r \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03H\x01R\n" +
-	"deleteTime\x88\x01\x01B\x15\n" +
+	"deleteTime\x88\x01\x01:E\xeaAB\n" +
+	"\x17api.instill.tech/Object\x12'namespaces/{namespace}/objects/{object}B\x15\n" +
 	"\x13_last_modified_timeB\x0e\n" +
 	"\f_delete_time\"\x8f\x02\n" +
 	"\x19GetObjectUploadURLRequest\x12\x1b\n" +
@@ -1027,15 +1030,13 @@ const file_artifact_v1alpha_object_proto_rawDesc = "" +
 	"\x06object\x18\x01 \x01(\v2\x18.artifact.v1alpha.ObjectR\x06object\".\n" +
 	"\x13DeleteObjectRequest\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"\x16\n" +
-	"\x14DeleteObjectResponse\";\n" +
-	"\x15GetObjectAdminRequest\x12\"\n" +
-	"\n" +
-	"object_uid\x18\x01 \x01(\tB\x03\xe0A\x02R\tobjectUid\"J\n" +
+	"\x14DeleteObjectResponse\"0\n" +
+	"\x15GetObjectAdminRequest\x12\x17\n" +
+	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"J\n" +
 	"\x16GetObjectAdminResponse\x120\n" +
-	"\x06object\x18\x01 \x01(\v2\x18.artifact.v1alpha.ObjectR\x06object\"\xc9\x02\n" +
-	"\x18UpdateObjectAdminRequest\x12\"\n" +
-	"\n" +
-	"object_uid\x18\x01 \x01(\tB\x03\xe0A\x02R\tobjectUid\x12\x1c\n" +
+	"\x06object\x18\x01 \x01(\v2\x18.artifact.v1alpha.ObjectR\x06object\"\xbe\x02\n" +
+	"\x18UpdateObjectAdminRequest\x12\x17\n" +
+	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\x12\x1c\n" +
 	"\x04size\x18\x02 \x01(\x03B\x03\xe0A\x01H\x00R\x04size\x88\x01\x01\x12+\n" +
 	"\fcontent_type\x18\x03 \x01(\tB\x03\xe0A\x01H\x01R\vcontentType\x88\x01\x01\x12)\n" +
 	"\vis_uploaded\x18\x04 \x01(\bB\x03\xe0A\x01H\x02R\n" +

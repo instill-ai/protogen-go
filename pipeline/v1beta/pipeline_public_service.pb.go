@@ -27,7 +27,7 @@ var File_pipeline_v1beta_pipeline_public_service_proto protoreflect.FileDescript
 
 const file_pipeline_v1beta_pipeline_public_service_proto_rawDesc = "" +
 	"\n" +
-	"-pipeline/v1beta/pipeline_public_service.proto\x12\x0fpipeline.v1beta\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a*pipeline/v1beta/component_definition.proto\x1a!pipeline/v1beta/integration.proto\x1a\x1epipeline/v1beta/pipeline.proto\x1a\x1cpipeline/v1beta/secret.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xd5U\n" +
+	"-pipeline/v1beta/pipeline_public_service.proto\x12\x0fpipeline.v1beta\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a*pipeline/v1beta/component_definition.proto\x1a!pipeline/v1beta/integration.proto\x1a\x1epipeline/v1beta/pipeline.proto\x1a\x1cpipeline/v1beta/secret.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\x8aT\n" +
 	"\x15PipelinePublicService\x12\x96\x01\n" +
 	"\bLiveness\x12 .pipeline.v1beta.LivenessRequest\x1a!.pipeline.v1beta.LivenessResponse\"E\xfa\xd2\xe4\x93\x02\n" +
 	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02/Z\x19\x12\x17/v1beta/health/pipeline\x12\x12/v1beta/__liveness\x12\x7f\n" +
@@ -58,33 +58,33 @@ const file_pipeline_v1beta_pipeline_public_service_proto_rawDesc = "" +
 	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02<:\bpipeline20/v1beta/{pipeline.name=namespaces/*/pipelines/*}\x12\xcd\x01\n" +
 	"\x17DeleteNamespacePipeline\x12/.pipeline.v1beta.DeleteNamespacePipelineRequest\x1a0.pipeline.v1beta.DeleteNamespacePipelineResponse\"O\x92A\x1d\n" +
 	"\bPipelinej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02)*'/v1beta/{name=namespaces/*/pipelines/*}\x12\xf1\x01\n" +
-	"\x19ValidateNamespacePipeline\x121.pipeline.v1beta.ValidateNamespacePipelineRequest\x1a2.pipeline.v1beta.ValidateNamespacePipelineResponse\"m\x92A\x1d\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02)*'/v1beta/{name=namespaces/*/pipelines/*}\x12\xdf\x01\n" +
+	"\x19ValidateNamespacePipeline\x121.pipeline.v1beta.ValidateNamespacePipelineRequest\x1a2.pipeline.v1beta.ValidateNamespacePipelineResponse\"[\x92A\x1d\n" +
 	"\bPipelinej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02G:\x01*\"B/v1beta/namespaces/{namespace_id}/pipelines/{pipeline_id}/validate\x12\xe9\x01\n" +
-	"\x17RenameNamespacePipeline\x12/.pipeline.v1beta.RenameNamespacePipelineRequest\x1a0.pipeline.v1beta.RenameNamespacePipelineResponse\"k\x92A\x1d\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x025:\x01*\"0/v1beta/{name=namespaces/*/pipelines/*}/validate\x12\xd7\x01\n" +
+	"\x17RenameNamespacePipeline\x12/.pipeline.v1beta.RenameNamespacePipelineRequest\x1a0.pipeline.v1beta.RenameNamespacePipelineResponse\"Y\x92A\x1d\n" +
 	"\bPipelinej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02E:\x01*\"@/v1beta/namespaces/{namespace_id}/pipelines/{pipeline_id}/rename\x12\xe5\x01\n" +
-	"\x16CloneNamespacePipeline\x12..pipeline.v1beta.CloneNamespacePipelineRequest\x1a/.pipeline.v1beta.CloneNamespacePipelineResponse\"j\x92A\x1d\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x023:\x01*\"./v1beta/{name=namespaces/*/pipelines/*}/rename\x12\xd3\x01\n" +
+	"\x16CloneNamespacePipeline\x12..pipeline.v1beta.CloneNamespacePipelineRequest\x1a/.pipeline.v1beta.CloneNamespacePipelineResponse\"X\x92A\x1d\n" +
 	"\bPipelinej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02D:\x01*\"?/v1beta/namespaces/{namespace_id}/pipelines/{pipeline_id}/clone\x12\xe0\x01\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x022:\x01*\"-/v1beta/{name=namespaces/*/pipelines/*}/clone\x12\xe0\x01\n" +
 	"\x1cDispatchPipelineWebhookEvent\x124.pipeline.v1beta.DispatchPipelineWebhookEventRequest\x1a5.pipeline.v1beta.DispatchPipelineWebhookEventResponse\"S\xfa\xd2\xe4\x93\x02\n" +
-	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02=:\amessageb\bresponse\"(/v1beta/pipeline-webhooks/{webhook_type}\x12\x92\x03\n" +
-	"\x18TriggerNamespacePipeline\x120.pipeline.v1beta.TriggerNamespacePipelineRequest\x1a1.pipeline.v1beta.TriggerNamespacePipelineResponse\"\x90\x02\x92A\xc0\x01\n" +
+	"\x12\bINTERNAL\x82\xd3\xe4\x93\x02=:\amessageb\bresponse\"(/v1beta/pipeline-webhooks/{webhook_type}\x12\x80\x03\n" +
+	"\x18TriggerNamespacePipeline\x120.pipeline.v1beta.TriggerNamespacePipelineRequest\x1a1.pipeline.v1beta.TriggerNamespacePipelineResponse\"\xfe\x01\x92A\xc0\x01\n" +
 	"\bPipelinej\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04betar\xa0\x01\n" +
 	"\x9d\x01\n" +
-	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x02F:\x01*\"A/v1beta/namespaces/{namespace_id}/pipelines/{pipeline_id}/trigger\x12\xb9\x03\n" +
-	"\"TriggerNamespacePipelineWithStream\x12:.pipeline.v1beta.TriggerNamespacePipelineWithStreamRequest\x1a;.pipeline.v1beta.TriggerNamespacePipelineWithStreamResponse\"\x97\x02\x92A\xc0\x01\n" +
+	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x024:\x01*\"//v1beta/{name=namespaces/*/pipelines/*}/trigger\x12\xa7\x03\n" +
+	"\"TriggerNamespacePipelineWithStream\x12:.pipeline.v1beta.TriggerNamespacePipelineWithStreamRequest\x1a;.pipeline.v1beta.TriggerNamespacePipelineWithStreamResponse\"\x85\x02\x92A\xc0\x01\n" +
 	"\bPipelinej\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04betar\xa0\x01\n" +
 	"\x9d\x01\n" +
-	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x02M:\x01*\"H/v1beta/namespaces/{namespace_id}/pipelines/{pipeline_id}/trigger-stream0\x01\x12\xa7\x03\n" +
-	"\x1dTriggerAsyncNamespacePipeline\x125.pipeline.v1beta.TriggerAsyncNamespacePipelineRequest\x1a6.pipeline.v1beta.TriggerAsyncNamespacePipelineResponse\"\x96\x02\x92A\xc0\x01\n" +
+	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x02;:\x01*\"6/v1beta/{name=namespaces/*/pipelines/*}/trigger-stream0\x01\x12\x95\x03\n" +
+	"\x1dTriggerAsyncNamespacePipeline\x125.pipeline.v1beta.TriggerAsyncNamespacePipelineRequest\x1a6.pipeline.v1beta.TriggerAsyncNamespacePipelineResponse\"\x84\x02\x92A\xc0\x01\n" +
 	"\bPipelinej\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04betar\xa0\x01\n" +
 	"\x9d\x01\n" +
-	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x02L:\x01*\"G/v1beta/namespaces/{namespace_id}/pipelines/{pipeline_id}/trigger-async\x12\xf6\x01\n" +
+	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x02::\x01*\"5/v1beta/{name=namespaces/*/pipelines/*}/trigger-async\x12\xf6\x01\n" +
 	"\x1eCreateNamespacePipelineRelease\x126.pipeline.v1beta.CreateNamespacePipelineReleaseRequest\x1a7.pipeline.v1beta.CreateNamespacePipelineReleaseResponse\"c\x92A\x1d\n" +
 	"\bPipelinej\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02=:\arelease\"2/v1beta/{parent=namespaces/*/pipelines/*}/releases\x12\xea\x01\n" +
@@ -99,20 +99,20 @@ const file_pipeline_v1beta_pipeline_public_service_proto_rawDesc = "" +
 	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02E:\arelease2:/v1beta/{release.name=namespaces/*/pipelines/*/releases/*}\x12\xed\x01\n" +
 	"\x1eDeleteNamespacePipelineRelease\x126.pipeline.v1beta.DeleteNamespacePipelineReleaseRequest\x1a7.pipeline.v1beta.DeleteNamespacePipelineReleaseResponse\"Z\x92A\x1d\n" +
 	"\bPipelinej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x024*2/v1beta/{name=namespaces/*/pipelines/*/releases/*}\x12\x91\x02\n" +
-	"\x1dCloneNamespacePipelineRelease\x125.pipeline.v1beta.CloneNamespacePipelineReleaseRequest\x1a6.pipeline.v1beta.CloneNamespacePipelineReleaseResponse\"\x80\x01\x92A\x1d\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x024*2/v1beta/{name=namespaces/*/pipelines/*/releases/*}\x12\xf3\x01\n" +
+	"\x1dCloneNamespacePipelineRelease\x125.pipeline.v1beta.CloneNamespacePipelineReleaseRequest\x1a6.pipeline.v1beta.CloneNamespacePipelineReleaseResponse\"c\x92A\x1d\n" +
 	"\bPipelinej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02Z:\x01*\"U/v1beta/namespaces/{namespace_id}/pipelines/{pipeline_id}/releases/{release_id}/clone\x12\xbd\x03\n" +
-	"\x1fTriggerNamespacePipelineRelease\x127.pipeline.v1beta.TriggerNamespacePipelineReleaseRequest\x1a8.pipeline.v1beta.TriggerNamespacePipelineReleaseResponse\"\xa6\x02\x92A\xc0\x01\n" +
-	"\bPipelinej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04betar\xa0\x01\n" +
-	"\x9d\x01\n" +
-	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x02\\:\x01*\"W/v1beta/namespaces/{namespace_id}/pipelines/{pipeline_id}/releases/{release_id}/trigger\x12\xd2\x03\n" +
-	"$TriggerAsyncNamespacePipelineRelease\x12<.pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseRequest\x1a=.pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseResponse\"\xac\x02\x92A\xc0\x01\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02=:\x01*\"8/v1beta/{name=namespaces/*/pipelines/*/releases/*}/clone\x12\xa0\x03\n" +
+	"\x1fTriggerNamespacePipelineRelease\x127.pipeline.v1beta.TriggerNamespacePipelineReleaseRequest\x1a8.pipeline.v1beta.TriggerNamespacePipelineReleaseResponse\"\x89\x02\x92A\xc0\x01\n" +
 	"\bPipelinej\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04betar\xa0\x01\n" +
 	"\x9d\x01\n" +
-	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x02b:\x01*\"]/v1beta/namespaces/{namespace_id}/pipelines/{pipeline_id}/releases/{release_id}/trigger-async\x12\xcd\x01\n" +
+	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x02?:\x01*\":/v1beta/{name=namespaces/*/pipelines/*/releases/*}/trigger\x12\xb5\x03\n" +
+	"$TriggerAsyncNamespacePipelineRelease\x12<.pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseRequest\x1a=.pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseResponse\"\x8f\x02\x92A\xc0\x01\n" +
+	"\bPipelinej\x11\n" +
+	"\ax-stage\x12\x06\x1a\x04betar\xa0\x01\n" +
+	"\x9d\x01\n" +
+	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x02E:\x01*\"@/v1beta/{name=namespaces/*/pipelines/*/releases/*}/trigger-async\x12\xcd\x01\n" +
 	"\x15CreateNamespaceSecret\x12-.pipeline.v1beta.CreateNamespaceSecretRequest\x1a..pipeline.v1beta.CreateNamespaceSecretResponse\"U\x92A\x1d\n" +
 	"\bPipelinej\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02/:\x06secret\"%/v1beta/{parent=namespaces/*}/secrets\x12\xc2\x01\n" +
@@ -135,17 +135,17 @@ const file_pipeline_v1beta_pipeline_public_service_proto_rawDesc = "" +
 	"\bPipelinej\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04betar\x9a\x01\n" +
 	"\x97\x01\n" +
-	"\x15Instill-Requester-Uid\x12|Indicates the authenticated user is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x02#\x12!/v1beta/operations/{operation_id}\x12\xf4\x02\n" +
-	"\x10ListPipelineRuns\x12(.pipeline.v1beta.ListPipelineRunsRequest\x1a).pipeline.v1beta.ListPipelineRunsResponse\"\x8a\x02\x92A\xc0\x01\n" +
+	"\x15Instill-Requester-Uid\x12|Indicates the authenticated user is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x02#\x12!/v1beta/operations/{operation_id}\x12\xe4\x02\n" +
+	"\x10ListPipelineRuns\x12(.pipeline.v1beta.ListPipelineRunsRequest\x1a).pipeline.v1beta.ListPipelineRunsResponse\"\xfa\x01\x92A\xc0\x01\n" +
 	"\bPipelinej\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04betar\xa0\x01\n" +
 	"\x9d\x01\n" +
-	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x02@\x12>/v1beta/namespaces/{namespace_id}/pipelines/{pipeline_id}/runs\x12\xef\x02\n" +
-	"\x11ListComponentRuns\x12).pipeline.v1beta.ListComponentRunsRequest\x1a*.pipeline.v1beta.ListComponentRunsResponse\"\x82\x02\x92A\xc0\x01\n" +
+	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x020\x12./v1beta/{parent=namespaces/*/pipelines/*}/runs\x12\xf8\x02\n" +
+	"\x11ListComponentRuns\x12).pipeline.v1beta.ListComponentRunsRequest\x1a*.pipeline.v1beta.ListComponentRunsResponse\"\x8b\x02\x92A\xc0\x01\n" +
 	"\bPipelinej\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04betar\xa0\x01\n" +
 	"\x9d\x01\n" +
-	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x028\x126/v1beta/pipeline-runs/{pipeline_run_id}/component-runs\x12\xd2\x01\n" +
+	"\x15Instill-Requester-Uid\x12\x81\x01Indicates the authenticated namespace is making the request on behalf of another entity, typically an organization they belong to\x18\x01\x82\xd3\xe4\x93\x02A\x12?/v1beta/{parent=namespaces/*/pipelines/*/runs/*}/component-runs\x12\xd2\x01\n" +
 	"\x1bListPipelineRunsByRequester\x123.pipeline.v1beta.ListPipelineRunsByRequesterRequest\x1a4.pipeline.v1beta.ListPipelineRunsByRequesterResponse\"H\x92A\x1d\n" +
 	"\bPipelinej\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02\"\x12 /v1beta/dashboard/pipelines/runs\x12\xd2\x01\n" +
@@ -168,7 +168,7 @@ const file_pipeline_v1beta_pipeline_public_service_proto_rawDesc = "" +
 	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02+*)/v1beta/{name=namespaces/*/connections/*}\x12\xd4\x01\n" +
 	"\x17TestNamespaceConnection\x12/.pipeline.v1beta.TestNamespaceConnectionRequest\x1a0.pipeline.v1beta.TestNamespaceConnectionResponse\"V\x92A\x1d\n" +
 	"\bPipelinej\x11\n" +
-	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x020\"./v1beta/{name=namespaces/*/connections/*}:test\x12\x8a\x02\n" +
+	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x020\"./v1beta/{name=namespaces/*/connections/*}/test\x12\x8a\x02\n" +
 	"\x1dListPipelineIDsByConnectionID\x125.pipeline.v1beta.ListPipelineIDsByConnectionIDRequest\x1a6.pipeline.v1beta.ListPipelineIDsByConnectionIDResponse\"z\x92A\x1d\n" +
 	"\bPipelinej\x11\n" +
 	"\ax-stage\x12\x06\x1a\x04beta\x82\xd3\xe4\x93\x02T\x12R/v1beta/namespaces/{namespace_id}/connections/{connection_id}/referenced-pipelines\x12\xa5\x01\n" +
