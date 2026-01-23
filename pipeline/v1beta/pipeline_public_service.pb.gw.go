@@ -153,14 +153,56 @@ func local_request_PipelinePublicService_GetHubStats_0(ctx context.Context, mars
 	return msg, metadata, err
 }
 
-var filter_PipelinePublicService_ListPipelines_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+var filter_PipelinePublicService_ListPublicPipelines_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+
+func request_PipelinePublicService_ListPublicPipelines_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListPublicPipelinesRequest
+		metadata runtime.ServerMetadata
+	)
+	io.Copy(io.Discard, req.Body)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_ListPublicPipelines_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.ListPublicPipelines(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_PipelinePublicService_ListPublicPipelines_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListPublicPipelinesRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_ListPublicPipelines_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.ListPublicPipelines(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+var filter_PipelinePublicService_ListPipelines_0 = &utilities.DoubleArray{Encoding: map[string]int{"parent": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 
 func request_PipelinePublicService_ListPipelines_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq ListPipelinesRequest
 		metadata runtime.ServerMetadata
+		err      error
 	)
 	io.Copy(io.Discard, req.Body)
+	val, ok := pathParams["parent"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "parent")
+	}
+	protoReq.Parent, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "parent", err)
+	}
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
@@ -175,7 +217,16 @@ func local_request_PipelinePublicService_ListPipelines_0(ctx context.Context, ma
 	var (
 		protoReq ListPipelinesRequest
 		metadata runtime.ServerMetadata
+		err      error
 	)
+	val, ok := pathParams["parent"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "parent")
+	}
+	protoReq.Parent, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "parent", err)
+	}
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
@@ -186,60 +237,9 @@ func local_request_PipelinePublicService_ListPipelines_0(ctx context.Context, ma
 	return msg, metadata, err
 }
 
-var filter_PipelinePublicService_ListNamespacePipelines_0 = &utilities.DoubleArray{Encoding: map[string]int{"parent": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
-
-func request_PipelinePublicService_ListNamespacePipelines_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_PipelinePublicService_CreatePipeline_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq ListNamespacePipelinesRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	io.Copy(io.Discard, req.Body)
-	val, ok := pathParams["parent"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "parent")
-	}
-	protoReq.Parent, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "parent", err)
-	}
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_ListNamespacePipelines_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := client.ListNamespacePipelines(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_PipelinePublicService_ListNamespacePipelines_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq ListNamespacePipelinesRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	val, ok := pathParams["parent"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "parent")
-	}
-	protoReq.Parent, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "parent", err)
-	}
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_ListNamespacePipelines_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := server.ListNamespacePipelines(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-func request_PipelinePublicService_CreateNamespacePipeline_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq CreateNamespacePipelineRequest
+		protoReq CreatePipelineRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -254,13 +254,13 @@ func request_PipelinePublicService_CreateNamespacePipeline_0(ctx context.Context
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "parent", err)
 	}
-	msg, err := client.CreateNamespacePipeline(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.CreatePipeline(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_PipelinePublicService_CreateNamespacePipeline_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_PipelinePublicService_CreatePipeline_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq CreateNamespacePipelineRequest
+		protoReq CreatePipelineRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -275,15 +275,15 @@ func local_request_PipelinePublicService_CreateNamespacePipeline_0(ctx context.C
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "parent", err)
 	}
-	msg, err := server.CreateNamespacePipeline(ctx, &protoReq)
+	msg, err := server.CreatePipeline(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-var filter_PipelinePublicService_GetNamespacePipeline_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+var filter_PipelinePublicService_GetPipeline_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 
-func request_PipelinePublicService_GetNamespacePipeline_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_PipelinePublicService_GetPipeline_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq GetNamespacePipelineRequest
+		protoReq GetPipelineRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -299,16 +299,16 @@ func request_PipelinePublicService_GetNamespacePipeline_0(ctx context.Context, m
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_GetNamespacePipeline_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_GetPipeline_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := client.GetNamespacePipeline(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetPipeline(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_PipelinePublicService_GetNamespacePipeline_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_PipelinePublicService_GetPipeline_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq GetNamespacePipelineRequest
+		protoReq GetPipelineRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -323,18 +323,18 @@ func local_request_PipelinePublicService_GetNamespacePipeline_0(ctx context.Cont
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_GetNamespacePipeline_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_GetPipeline_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := server.GetNamespacePipeline(ctx, &protoReq)
+	msg, err := server.GetPipeline(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-var filter_PipelinePublicService_UpdateNamespacePipeline_0 = &utilities.DoubleArray{Encoding: map[string]int{"pipeline": 0, "name": 1}, Base: []int{1, 2, 1, 0, 0}, Check: []int{0, 1, 2, 3, 2}}
+var filter_PipelinePublicService_UpdatePipeline_0 = &utilities.DoubleArray{Encoding: map[string]int{"pipeline": 0, "name": 1}, Base: []int{1, 2, 1, 0, 0}, Check: []int{0, 1, 2, 3, 2}}
 
-func request_PipelinePublicService_UpdateNamespacePipeline_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_PipelinePublicService_UpdatePipeline_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq UpdateNamespacePipelineRequest
+		protoReq UpdatePipelineRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -363,16 +363,16 @@ func request_PipelinePublicService_UpdateNamespacePipeline_0(ctx context.Context
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_UpdateNamespacePipeline_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_UpdatePipeline_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := client.UpdateNamespacePipeline(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.UpdatePipeline(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_PipelinePublicService_UpdateNamespacePipeline_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_PipelinePublicService_UpdatePipeline_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq UpdateNamespacePipelineRequest
+		protoReq UpdatePipelineRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -401,16 +401,16 @@ func local_request_PipelinePublicService_UpdateNamespacePipeline_0(ctx context.C
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_UpdateNamespacePipeline_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_UpdatePipeline_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := server.UpdateNamespacePipeline(ctx, &protoReq)
+	msg, err := server.UpdatePipeline(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func request_PipelinePublicService_DeleteNamespacePipeline_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_PipelinePublicService_DeletePipeline_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq DeleteNamespacePipelineRequest
+		protoReq DeletePipelineRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -423,13 +423,13 @@ func request_PipelinePublicService_DeleteNamespacePipeline_0(ctx context.Context
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := client.DeleteNamespacePipeline(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.DeletePipeline(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_PipelinePublicService_DeleteNamespacePipeline_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_PipelinePublicService_DeletePipeline_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq DeleteNamespacePipelineRequest
+		protoReq DeletePipelineRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -441,34 +441,13 @@ func local_request_PipelinePublicService_DeleteNamespacePipeline_0(ctx context.C
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := server.DeleteNamespacePipeline(ctx, &protoReq)
+	msg, err := server.DeletePipeline(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func request_PipelinePublicService_ValidateNamespacePipeline_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_PipelinePublicService_ValidatePipeline_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq ValidateNamespacePipelineRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	val, ok := pathParams["name"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
-	}
-	protoReq.Name, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
-	}
-	msg, err := client.ValidateNamespacePipeline(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_PipelinePublicService_ValidateNamespacePipeline_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq ValidateNamespacePipelineRequest
+		protoReq ValidatePipelineRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -483,13 +462,13 @@ func local_request_PipelinePublicService_ValidateNamespacePipeline_0(ctx context
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := server.ValidateNamespacePipeline(ctx, &protoReq)
+	msg, err := client.ValidatePipeline(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func request_PipelinePublicService_RenameNamespacePipeline_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_PipelinePublicService_ValidatePipeline_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq RenameNamespacePipelineRequest
+		protoReq ValidatePipelineRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -504,13 +483,13 @@ func request_PipelinePublicService_RenameNamespacePipeline_0(ctx context.Context
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := client.RenameNamespacePipeline(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := server.ValidatePipeline(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func local_request_PipelinePublicService_RenameNamespacePipeline_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_PipelinePublicService_RenamePipeline_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq RenameNamespacePipelineRequest
+		protoReq RenamePipelineRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -525,13 +504,13 @@ func local_request_PipelinePublicService_RenameNamespacePipeline_0(ctx context.C
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := server.RenameNamespacePipeline(ctx, &protoReq)
+	msg, err := client.RenamePipeline(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func request_PipelinePublicService_CloneNamespacePipeline_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_PipelinePublicService_RenamePipeline_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq CloneNamespacePipelineRequest
+		protoReq RenamePipelineRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -546,13 +525,13 @@ func request_PipelinePublicService_CloneNamespacePipeline_0(ctx context.Context,
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := client.CloneNamespacePipeline(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := server.RenamePipeline(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func local_request_PipelinePublicService_CloneNamespacePipeline_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_PipelinePublicService_ClonePipeline_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq CloneNamespacePipelineRequest
+		protoReq ClonePipelineRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -567,7 +546,28 @@ func local_request_PipelinePublicService_CloneNamespacePipeline_0(ctx context.Co
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := server.CloneNamespacePipeline(ctx, &protoReq)
+	msg, err := client.ClonePipeline(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_PipelinePublicService_ClonePipeline_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ClonePipelineRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	msg, err := server.ClonePipeline(ctx, &protoReq)
 	return msg, metadata, err
 }
 
@@ -613,9 +613,9 @@ func local_request_PipelinePublicService_DispatchPipelineWebhookEvent_0(ctx cont
 	return msg, metadata, err
 }
 
-func request_PipelinePublicService_TriggerNamespacePipeline_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_PipelinePublicService_TriggerPipeline_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq TriggerNamespacePipelineRequest
+		protoReq TriggerPipelineRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -630,13 +630,13 @@ func request_PipelinePublicService_TriggerNamespacePipeline_0(ctx context.Contex
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := client.TriggerNamespacePipeline(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.TriggerPipeline(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_PipelinePublicService_TriggerNamespacePipeline_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_PipelinePublicService_TriggerPipeline_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq TriggerNamespacePipelineRequest
+		protoReq TriggerPipelineRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -651,13 +651,13 @@ func local_request_PipelinePublicService_TriggerNamespacePipeline_0(ctx context.
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := server.TriggerNamespacePipeline(ctx, &protoReq)
+	msg, err := server.TriggerPipeline(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func request_PipelinePublicService_TriggerNamespacePipelineWithStream_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (PipelinePublicService_TriggerNamespacePipelineWithStreamClient, runtime.ServerMetadata, error) {
+func request_PipelinePublicService_TriggerPipelineWithStream_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (PipelinePublicService_TriggerPipelineWithStreamClient, runtime.ServerMetadata, error) {
 	var (
-		protoReq TriggerNamespacePipelineWithStreamRequest
+		protoReq TriggerPipelineWithStreamRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -672,7 +672,7 @@ func request_PipelinePublicService_TriggerNamespacePipelineWithStream_0(ctx cont
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	stream, err := client.TriggerNamespacePipelineWithStream(ctx, &protoReq)
+	stream, err := client.TriggerPipelineWithStream(ctx, &protoReq)
 	if err != nil {
 		return nil, metadata, err
 	}
@@ -684,9 +684,9 @@ func request_PipelinePublicService_TriggerNamespacePipelineWithStream_0(ctx cont
 	return stream, metadata, nil
 }
 
-func request_PipelinePublicService_TriggerAsyncNamespacePipeline_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_PipelinePublicService_TriggerAsyncPipeline_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq TriggerAsyncNamespacePipelineRequest
+		protoReq TriggerAsyncPipelineRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -701,13 +701,13 @@ func request_PipelinePublicService_TriggerAsyncNamespacePipeline_0(ctx context.C
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := client.TriggerAsyncNamespacePipeline(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.TriggerAsyncPipeline(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_PipelinePublicService_TriggerAsyncNamespacePipeline_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_PipelinePublicService_TriggerAsyncPipeline_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq TriggerAsyncNamespacePipelineRequest
+		protoReq TriggerAsyncPipelineRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -722,13 +722,13 @@ func local_request_PipelinePublicService_TriggerAsyncNamespacePipeline_0(ctx con
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := server.TriggerAsyncNamespacePipeline(ctx, &protoReq)
+	msg, err := server.TriggerAsyncPipeline(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func request_PipelinePublicService_CreateNamespacePipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_PipelinePublicService_CreatePipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq CreateNamespacePipelineReleaseRequest
+		protoReq CreatePipelineReleaseRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -743,13 +743,13 @@ func request_PipelinePublicService_CreateNamespacePipelineRelease_0(ctx context.
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "parent", err)
 	}
-	msg, err := client.CreateNamespacePipelineRelease(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.CreatePipelineRelease(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_PipelinePublicService_CreateNamespacePipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_PipelinePublicService_CreatePipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq CreateNamespacePipelineReleaseRequest
+		protoReq CreatePipelineReleaseRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -764,15 +764,15 @@ func local_request_PipelinePublicService_CreateNamespacePipelineRelease_0(ctx co
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "parent", err)
 	}
-	msg, err := server.CreateNamespacePipelineRelease(ctx, &protoReq)
+	msg, err := server.CreatePipelineRelease(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-var filter_PipelinePublicService_ListNamespacePipelineReleases_0 = &utilities.DoubleArray{Encoding: map[string]int{"parent": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+var filter_PipelinePublicService_ListPipelineReleases_0 = &utilities.DoubleArray{Encoding: map[string]int{"parent": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 
-func request_PipelinePublicService_ListNamespacePipelineReleases_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_PipelinePublicService_ListPipelineReleases_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq ListNamespacePipelineReleasesRequest
+		protoReq ListPipelineReleasesRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -788,16 +788,16 @@ func request_PipelinePublicService_ListNamespacePipelineReleases_0(ctx context.C
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_ListNamespacePipelineReleases_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_ListPipelineReleases_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := client.ListNamespacePipelineReleases(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.ListPipelineReleases(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_PipelinePublicService_ListNamespacePipelineReleases_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_PipelinePublicService_ListPipelineReleases_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq ListNamespacePipelineReleasesRequest
+		protoReq ListPipelineReleasesRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -812,18 +812,18 @@ func local_request_PipelinePublicService_ListNamespacePipelineReleases_0(ctx con
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_ListNamespacePipelineReleases_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_ListPipelineReleases_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := server.ListNamespacePipelineReleases(ctx, &protoReq)
+	msg, err := server.ListPipelineReleases(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-var filter_PipelinePublicService_GetNamespacePipelineRelease_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+var filter_PipelinePublicService_GetPipelineRelease_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 
-func request_PipelinePublicService_GetNamespacePipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_PipelinePublicService_GetPipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq GetNamespacePipelineReleaseRequest
+		protoReq GetPipelineReleaseRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -839,16 +839,16 @@ func request_PipelinePublicService_GetNamespacePipelineRelease_0(ctx context.Con
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_GetNamespacePipelineRelease_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_GetPipelineRelease_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := client.GetNamespacePipelineRelease(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetPipelineRelease(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_PipelinePublicService_GetNamespacePipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_PipelinePublicService_GetPipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq GetNamespacePipelineReleaseRequest
+		protoReq GetPipelineReleaseRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -863,18 +863,18 @@ func local_request_PipelinePublicService_GetNamespacePipelineRelease_0(ctx conte
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_GetNamespacePipelineRelease_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_GetPipelineRelease_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := server.GetNamespacePipelineRelease(ctx, &protoReq)
+	msg, err := server.GetPipelineRelease(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-var filter_PipelinePublicService_UpdateNamespacePipelineRelease_0 = &utilities.DoubleArray{Encoding: map[string]int{"release": 0, "name": 1}, Base: []int{1, 2, 1, 0, 0}, Check: []int{0, 1, 2, 3, 2}}
+var filter_PipelinePublicService_UpdatePipelineRelease_0 = &utilities.DoubleArray{Encoding: map[string]int{"release": 0, "name": 1}, Base: []int{1, 2, 1, 0, 0}, Check: []int{0, 1, 2, 3, 2}}
 
-func request_PipelinePublicService_UpdateNamespacePipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_PipelinePublicService_UpdatePipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq UpdateNamespacePipelineReleaseRequest
+		protoReq UpdatePipelineReleaseRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -903,16 +903,16 @@ func request_PipelinePublicService_UpdateNamespacePipelineRelease_0(ctx context.
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_UpdateNamespacePipelineRelease_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_UpdatePipelineRelease_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := client.UpdateNamespacePipelineRelease(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.UpdatePipelineRelease(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_PipelinePublicService_UpdateNamespacePipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_PipelinePublicService_UpdatePipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq UpdateNamespacePipelineReleaseRequest
+		protoReq UpdatePipelineReleaseRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -941,16 +941,16 @@ func local_request_PipelinePublicService_UpdateNamespacePipelineRelease_0(ctx co
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_UpdateNamespacePipelineRelease_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PipelinePublicService_UpdatePipelineRelease_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := server.UpdateNamespacePipelineRelease(ctx, &protoReq)
+	msg, err := server.UpdatePipelineRelease(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func request_PipelinePublicService_DeleteNamespacePipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_PipelinePublicService_DeletePipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq DeleteNamespacePipelineReleaseRequest
+		protoReq DeletePipelineReleaseRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -963,13 +963,13 @@ func request_PipelinePublicService_DeleteNamespacePipelineRelease_0(ctx context.
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := client.DeleteNamespacePipelineRelease(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.DeletePipelineRelease(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_PipelinePublicService_DeleteNamespacePipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_PipelinePublicService_DeletePipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq DeleteNamespacePipelineReleaseRequest
+		protoReq DeletePipelineReleaseRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -981,34 +981,13 @@ func local_request_PipelinePublicService_DeleteNamespacePipelineRelease_0(ctx co
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := server.DeleteNamespacePipelineRelease(ctx, &protoReq)
+	msg, err := server.DeletePipelineRelease(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func request_PipelinePublicService_CloneNamespacePipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_PipelinePublicService_ClonePipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq CloneNamespacePipelineReleaseRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	val, ok := pathParams["name"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
-	}
-	protoReq.Name, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
-	}
-	msg, err := client.CloneNamespacePipelineRelease(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_PipelinePublicService_CloneNamespacePipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq CloneNamespacePipelineReleaseRequest
+		protoReq ClonePipelineReleaseRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -1023,13 +1002,13 @@ func local_request_PipelinePublicService_CloneNamespacePipelineRelease_0(ctx con
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := server.CloneNamespacePipelineRelease(ctx, &protoReq)
+	msg, err := client.ClonePipelineRelease(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func request_PipelinePublicService_TriggerNamespacePipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_PipelinePublicService_ClonePipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq TriggerNamespacePipelineReleaseRequest
+		protoReq ClonePipelineReleaseRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -1044,13 +1023,13 @@ func request_PipelinePublicService_TriggerNamespacePipelineRelease_0(ctx context
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := client.TriggerNamespacePipelineRelease(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := server.ClonePipelineRelease(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func local_request_PipelinePublicService_TriggerNamespacePipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_PipelinePublicService_TriggerPipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq TriggerNamespacePipelineReleaseRequest
+		protoReq TriggerPipelineReleaseRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -1065,13 +1044,13 @@ func local_request_PipelinePublicService_TriggerNamespacePipelineRelease_0(ctx c
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := server.TriggerNamespacePipelineRelease(ctx, &protoReq)
+	msg, err := client.TriggerPipelineRelease(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func request_PipelinePublicService_TriggerAsyncNamespacePipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_PipelinePublicService_TriggerPipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq TriggerAsyncNamespacePipelineReleaseRequest
+		protoReq TriggerPipelineReleaseRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -1086,13 +1065,13 @@ func request_PipelinePublicService_TriggerAsyncNamespacePipelineRelease_0(ctx co
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := client.TriggerAsyncNamespacePipelineRelease(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := server.TriggerPipelineRelease(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func local_request_PipelinePublicService_TriggerAsyncNamespacePipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_PipelinePublicService_TriggerAsyncPipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, client PipelinePublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq TriggerAsyncNamespacePipelineReleaseRequest
+		protoReq TriggerAsyncPipelineReleaseRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -1107,7 +1086,28 @@ func local_request_PipelinePublicService_TriggerAsyncNamespacePipelineRelease_0(
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := server.TriggerAsyncNamespacePipelineRelease(ctx, &protoReq)
+	msg, err := client.TriggerAsyncPipelineRelease(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_PipelinePublicService_TriggerAsyncPipelineRelease_0(ctx context.Context, marshaler runtime.Marshaler, server PipelinePublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq TriggerAsyncPipelineReleaseRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	msg, err := server.TriggerAsyncPipelineRelease(ctx, &protoReq)
 	return msg, metadata, err
 }
 
@@ -2094,13 +2094,33 @@ func RegisterPipelinePublicServiceHandlerServer(ctx context.Context, mux *runtim
 		}
 		forward_PipelinePublicService_GetHubStats_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_PipelinePublicService_ListPublicPipelines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/ListPublicPipelines", runtime.WithHTTPPathPattern("/v1beta/pipelines"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_PipelinePublicService_ListPublicPipelines_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_PipelinePublicService_ListPublicPipelines_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodGet, pattern_PipelinePublicService_ListPipelines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/ListPipelines", runtime.WithHTTPPathPattern("/v1beta/pipelines"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/ListPipelines", runtime.WithHTTPPathPattern("/v1beta/{parent=namespaces/*}/pipelines"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2114,165 +2134,145 @@ func RegisterPipelinePublicServiceHandlerServer(ctx context.Context, mux *runtim
 		}
 		forward_PipelinePublicService_ListPipelines_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_PipelinePublicService_ListNamespacePipelines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelinePublicService_CreatePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/ListNamespacePipelines", runtime.WithHTTPPathPattern("/v1beta/{parent=namespaces/*}/pipelines"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/CreatePipeline", runtime.WithHTTPPathPattern("/v1beta/{parent=namespaces/*}/pipelines"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelinePublicService_ListNamespacePipelines_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelinePublicService_CreatePipeline_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_ListNamespacePipelines_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_CreatePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_PipelinePublicService_CreateNamespacePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_PipelinePublicService_GetPipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/CreateNamespacePipeline", runtime.WithHTTPPathPattern("/v1beta/{parent=namespaces/*}/pipelines"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/GetPipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelinePublicService_CreateNamespacePipeline_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelinePublicService_GetPipeline_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_CreateNamespacePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_GetPipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_PipelinePublicService_GetNamespacePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPatch, pattern_PipelinePublicService_UpdatePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/GetNamespacePipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/UpdatePipeline", runtime.WithHTTPPathPattern("/v1beta/{pipeline.name=namespaces/*/pipelines/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelinePublicService_GetNamespacePipeline_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelinePublicService_UpdatePipeline_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_GetNamespacePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_UpdatePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPatch, pattern_PipelinePublicService_UpdateNamespacePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_PipelinePublicService_DeletePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/UpdateNamespacePipeline", runtime.WithHTTPPathPattern("/v1beta/{pipeline.name=namespaces/*/pipelines/*}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/DeletePipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelinePublicService_UpdateNamespacePipeline_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelinePublicService_DeletePipeline_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_UpdateNamespacePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_DeletePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodDelete, pattern_PipelinePublicService_DeleteNamespacePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelinePublicService_ValidatePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/DeleteNamespacePipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/ValidatePipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}/validate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelinePublicService_DeleteNamespacePipeline_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelinePublicService_ValidatePipeline_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_DeleteNamespacePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_ValidatePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_PipelinePublicService_ValidateNamespacePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelinePublicService_RenamePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/ValidateNamespacePipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}/validate"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/RenamePipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}/rename"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelinePublicService_ValidateNamespacePipeline_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelinePublicService_RenamePipeline_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_ValidateNamespacePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_RenamePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_PipelinePublicService_RenameNamespacePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelinePublicService_ClonePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/RenameNamespacePipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}/rename"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/ClonePipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}/clone"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelinePublicService_RenameNamespacePipeline_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelinePublicService_ClonePipeline_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_RenameNamespacePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_PipelinePublicService_CloneNamespacePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/CloneNamespacePipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}/clone"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_PipelinePublicService_CloneNamespacePipeline_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_PipelinePublicService_CloneNamespacePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_ClonePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_PipelinePublicService_DispatchPipelineWebhookEvent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -2294,212 +2294,212 @@ func RegisterPipelinePublicServiceHandlerServer(ctx context.Context, mux *runtim
 		}
 		forward_PipelinePublicService_DispatchPipelineWebhookEvent_0(annotatedContext, mux, outboundMarshaler, w, req, response_PipelinePublicService_DispatchPipelineWebhookEvent_0{resp.(*DispatchPipelineWebhookEventResponse)}, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_PipelinePublicService_TriggerNamespacePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelinePublicService_TriggerPipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/TriggerNamespacePipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}/trigger"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/TriggerPipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}/trigger"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelinePublicService_TriggerNamespacePipeline_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelinePublicService_TriggerPipeline_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_TriggerNamespacePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_TriggerPipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
-	mux.Handle(http.MethodPost, pattern_PipelinePublicService_TriggerNamespacePipelineWithStream_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelinePublicService_TriggerPipelineWithStream_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 		return
 	})
-	mux.Handle(http.MethodPost, pattern_PipelinePublicService_TriggerAsyncNamespacePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelinePublicService_TriggerAsyncPipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/TriggerAsyncNamespacePipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}/trigger-async"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/TriggerAsyncPipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}/trigger-async"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelinePublicService_TriggerAsyncNamespacePipeline_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelinePublicService_TriggerAsyncPipeline_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_TriggerAsyncNamespacePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_TriggerAsyncPipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_PipelinePublicService_CreateNamespacePipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelinePublicService_CreatePipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/CreateNamespacePipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{parent=namespaces/*/pipelines/*}/releases"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/CreatePipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{parent=namespaces/*/pipelines/*}/releases"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelinePublicService_CreateNamespacePipelineRelease_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelinePublicService_CreatePipelineRelease_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_CreateNamespacePipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_CreatePipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_PipelinePublicService_ListNamespacePipelineReleases_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_PipelinePublicService_ListPipelineReleases_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/ListNamespacePipelineReleases", runtime.WithHTTPPathPattern("/v1beta/{parent=namespaces/*/pipelines/*}/releases"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/ListPipelineReleases", runtime.WithHTTPPathPattern("/v1beta/{parent=namespaces/*/pipelines/*}/releases"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelinePublicService_ListNamespacePipelineReleases_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelinePublicService_ListPipelineReleases_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_ListNamespacePipelineReleases_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_ListPipelineReleases_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_PipelinePublicService_GetNamespacePipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_PipelinePublicService_GetPipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/GetNamespacePipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*/releases/*}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/GetPipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*/releases/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelinePublicService_GetNamespacePipelineRelease_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelinePublicService_GetPipelineRelease_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_GetNamespacePipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_GetPipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPatch, pattern_PipelinePublicService_UpdateNamespacePipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPatch, pattern_PipelinePublicService_UpdatePipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/UpdateNamespacePipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{release.name=namespaces/*/pipelines/*/releases/*}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/UpdatePipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{release.name=namespaces/*/pipelines/*/releases/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelinePublicService_UpdateNamespacePipelineRelease_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelinePublicService_UpdatePipelineRelease_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_UpdateNamespacePipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_UpdatePipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodDelete, pattern_PipelinePublicService_DeleteNamespacePipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_PipelinePublicService_DeletePipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/DeleteNamespacePipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*/releases/*}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/DeletePipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*/releases/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelinePublicService_DeleteNamespacePipelineRelease_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelinePublicService_DeletePipelineRelease_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_DeleteNamespacePipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_DeletePipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_PipelinePublicService_CloneNamespacePipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelinePublicService_ClonePipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/CloneNamespacePipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*/releases/*}/clone"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/ClonePipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*/releases/*}/clone"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelinePublicService_CloneNamespacePipelineRelease_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelinePublicService_ClonePipelineRelease_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_CloneNamespacePipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_ClonePipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_PipelinePublicService_TriggerNamespacePipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelinePublicService_TriggerPipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/TriggerNamespacePipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*/releases/*}/trigger"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/TriggerPipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*/releases/*}/trigger"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelinePublicService_TriggerNamespacePipelineRelease_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelinePublicService_TriggerPipelineRelease_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_TriggerNamespacePipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_TriggerPipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_PipelinePublicService_TriggerAsyncNamespacePipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelinePublicService_TriggerAsyncPipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/TriggerAsyncNamespacePipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*/releases/*}/trigger-async"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/TriggerAsyncPipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*/releases/*}/trigger-async"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PipelinePublicService_TriggerAsyncNamespacePipelineRelease_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PipelinePublicService_TriggerAsyncPipelineRelease_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_TriggerAsyncNamespacePipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_TriggerAsyncPipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_PipelinePublicService_CreateNamespaceSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -2989,11 +2989,28 @@ func RegisterPipelinePublicServiceHandlerClient(ctx context.Context, mux *runtim
 		}
 		forward_PipelinePublicService_GetHubStats_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_PipelinePublicService_ListPublicPipelines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/ListPublicPipelines", runtime.WithHTTPPathPattern("/v1beta/pipelines"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_PipelinePublicService_ListPublicPipelines_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_PipelinePublicService_ListPublicPipelines_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodGet, pattern_PipelinePublicService_ListPipelines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/ListPipelines", runtime.WithHTTPPathPattern("/v1beta/pipelines"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/ListPipelines", runtime.WithHTTPPathPattern("/v1beta/{parent=namespaces/*}/pipelines"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3006,141 +3023,124 @@ func RegisterPipelinePublicServiceHandlerClient(ctx context.Context, mux *runtim
 		}
 		forward_PipelinePublicService_ListPipelines_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_PipelinePublicService_ListNamespacePipelines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelinePublicService_CreatePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/ListNamespacePipelines", runtime.WithHTTPPathPattern("/v1beta/{parent=namespaces/*}/pipelines"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/CreatePipeline", runtime.WithHTTPPathPattern("/v1beta/{parent=namespaces/*}/pipelines"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelinePublicService_ListNamespacePipelines_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelinePublicService_CreatePipeline_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_ListNamespacePipelines_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_CreatePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_PipelinePublicService_CreateNamespacePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_PipelinePublicService_GetPipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/CreateNamespacePipeline", runtime.WithHTTPPathPattern("/v1beta/{parent=namespaces/*}/pipelines"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/GetPipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelinePublicService_CreateNamespacePipeline_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelinePublicService_GetPipeline_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_CreateNamespacePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_GetPipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_PipelinePublicService_GetNamespacePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPatch, pattern_PipelinePublicService_UpdatePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/GetNamespacePipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/UpdatePipeline", runtime.WithHTTPPathPattern("/v1beta/{pipeline.name=namespaces/*/pipelines/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelinePublicService_GetNamespacePipeline_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelinePublicService_UpdatePipeline_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_GetNamespacePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_UpdatePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPatch, pattern_PipelinePublicService_UpdateNamespacePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_PipelinePublicService_DeletePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/UpdateNamespacePipeline", runtime.WithHTTPPathPattern("/v1beta/{pipeline.name=namespaces/*/pipelines/*}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/DeletePipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelinePublicService_UpdateNamespacePipeline_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelinePublicService_DeletePipeline_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_UpdateNamespacePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_DeletePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodDelete, pattern_PipelinePublicService_DeleteNamespacePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelinePublicService_ValidatePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/DeleteNamespacePipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/ValidatePipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}/validate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelinePublicService_DeleteNamespacePipeline_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelinePublicService_ValidatePipeline_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_DeleteNamespacePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_ValidatePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_PipelinePublicService_ValidateNamespacePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelinePublicService_RenamePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/ValidateNamespacePipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}/validate"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/RenamePipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}/rename"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelinePublicService_ValidateNamespacePipeline_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelinePublicService_RenamePipeline_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_ValidateNamespacePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_RenamePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_PipelinePublicService_RenameNamespacePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelinePublicService_ClonePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/RenameNamespacePipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}/rename"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/ClonePipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}/clone"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelinePublicService_RenameNamespacePipeline_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelinePublicService_ClonePipeline_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_RenameNamespacePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_PipelinePublicService_CloneNamespacePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/CloneNamespacePipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}/clone"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_PipelinePublicService_CloneNamespacePipeline_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_PipelinePublicService_CloneNamespacePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_ClonePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_PipelinePublicService_DispatchPipelineWebhookEvent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -3159,192 +3159,192 @@ func RegisterPipelinePublicServiceHandlerClient(ctx context.Context, mux *runtim
 		}
 		forward_PipelinePublicService_DispatchPipelineWebhookEvent_0(annotatedContext, mux, outboundMarshaler, w, req, response_PipelinePublicService_DispatchPipelineWebhookEvent_0{resp.(*DispatchPipelineWebhookEventResponse)}, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_PipelinePublicService_TriggerNamespacePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelinePublicService_TriggerPipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/TriggerNamespacePipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}/trigger"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/TriggerPipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}/trigger"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelinePublicService_TriggerNamespacePipeline_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelinePublicService_TriggerPipeline_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_TriggerNamespacePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_TriggerPipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_PipelinePublicService_TriggerNamespacePipelineWithStream_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelinePublicService_TriggerPipelineWithStream_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/TriggerNamespacePipelineWithStream", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}/trigger-stream"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/TriggerPipelineWithStream", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}/trigger-stream"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelinePublicService_TriggerNamespacePipelineWithStream_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelinePublicService_TriggerPipelineWithStream_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_TriggerNamespacePipelineWithStream_0(annotatedContext, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_TriggerPipelineWithStream_0(annotatedContext, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_PipelinePublicService_TriggerAsyncNamespacePipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelinePublicService_TriggerAsyncPipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/TriggerAsyncNamespacePipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}/trigger-async"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/TriggerAsyncPipeline", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*}/trigger-async"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelinePublicService_TriggerAsyncNamespacePipeline_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelinePublicService_TriggerAsyncPipeline_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_TriggerAsyncNamespacePipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_TriggerAsyncPipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_PipelinePublicService_CreateNamespacePipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelinePublicService_CreatePipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/CreateNamespacePipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{parent=namespaces/*/pipelines/*}/releases"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/CreatePipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{parent=namespaces/*/pipelines/*}/releases"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelinePublicService_CreateNamespacePipelineRelease_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelinePublicService_CreatePipelineRelease_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_CreateNamespacePipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_CreatePipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_PipelinePublicService_ListNamespacePipelineReleases_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_PipelinePublicService_ListPipelineReleases_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/ListNamespacePipelineReleases", runtime.WithHTTPPathPattern("/v1beta/{parent=namespaces/*/pipelines/*}/releases"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/ListPipelineReleases", runtime.WithHTTPPathPattern("/v1beta/{parent=namespaces/*/pipelines/*}/releases"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelinePublicService_ListNamespacePipelineReleases_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelinePublicService_ListPipelineReleases_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_ListNamespacePipelineReleases_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_ListPipelineReleases_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_PipelinePublicService_GetNamespacePipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_PipelinePublicService_GetPipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/GetNamespacePipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*/releases/*}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/GetPipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*/releases/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelinePublicService_GetNamespacePipelineRelease_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelinePublicService_GetPipelineRelease_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_GetNamespacePipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_GetPipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPatch, pattern_PipelinePublicService_UpdateNamespacePipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPatch, pattern_PipelinePublicService_UpdatePipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/UpdateNamespacePipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{release.name=namespaces/*/pipelines/*/releases/*}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/UpdatePipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{release.name=namespaces/*/pipelines/*/releases/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelinePublicService_UpdateNamespacePipelineRelease_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelinePublicService_UpdatePipelineRelease_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_UpdateNamespacePipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_UpdatePipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodDelete, pattern_PipelinePublicService_DeleteNamespacePipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_PipelinePublicService_DeletePipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/DeleteNamespacePipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*/releases/*}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/DeletePipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*/releases/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelinePublicService_DeleteNamespacePipelineRelease_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelinePublicService_DeletePipelineRelease_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_DeleteNamespacePipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_DeletePipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_PipelinePublicService_CloneNamespacePipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelinePublicService_ClonePipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/CloneNamespacePipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*/releases/*}/clone"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/ClonePipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*/releases/*}/clone"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelinePublicService_CloneNamespacePipelineRelease_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelinePublicService_ClonePipelineRelease_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_CloneNamespacePipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_ClonePipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_PipelinePublicService_TriggerNamespacePipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelinePublicService_TriggerPipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/TriggerNamespacePipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*/releases/*}/trigger"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/TriggerPipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*/releases/*}/trigger"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelinePublicService_TriggerNamespacePipelineRelease_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelinePublicService_TriggerPipelineRelease_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_TriggerNamespacePipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_TriggerPipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_PipelinePublicService_TriggerAsyncNamespacePipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PipelinePublicService_TriggerAsyncPipelineRelease_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/TriggerAsyncNamespacePipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*/releases/*}/trigger-async"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/pipeline.v1beta.PipelinePublicService/TriggerAsyncPipelineRelease", runtime.WithHTTPPathPattern("/v1beta/{name=namespaces/*/pipelines/*/releases/*}/trigger-async"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PipelinePublicService_TriggerAsyncNamespacePipelineRelease_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PipelinePublicService_TriggerAsyncPipelineRelease_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PipelinePublicService_TriggerAsyncNamespacePipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PipelinePublicService_TriggerAsyncPipelineRelease_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_PipelinePublicService_CreateNamespaceSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -3681,95 +3681,95 @@ func (m response_PipelinePublicService_DispatchPipelineWebhookEvent_0) XXX_Respo
 }
 
 var (
-	pattern_PipelinePublicService_Liveness_0                             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "__liveness"}, ""))
-	pattern_PipelinePublicService_Liveness_1                             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "health", "pipeline"}, ""))
-	pattern_PipelinePublicService_Readiness_0                            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "__readiness"}, ""))
-	pattern_PipelinePublicService_GetHubStats_0                          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "hub-stats"}, ""))
-	pattern_PipelinePublicService_ListPipelines_0                        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "pipelines"}, ""))
-	pattern_PipelinePublicService_ListNamespacePipelines_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1beta", "namespaces", "parent", "pipelines"}, ""))
-	pattern_PipelinePublicService_CreateNamespacePipeline_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1beta", "namespaces", "parent", "pipelines"}, ""))
-	pattern_PipelinePublicService_GetNamespacePipeline_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1beta", "namespaces", "pipelines", "name"}, ""))
-	pattern_PipelinePublicService_UpdateNamespacePipeline_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1beta", "namespaces", "pipelines", "pipeline.name"}, ""))
-	pattern_PipelinePublicService_DeleteNamespacePipeline_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1beta", "namespaces", "pipelines", "name"}, ""))
-	pattern_PipelinePublicService_ValidateNamespacePipeline_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1beta", "namespaces", "pipelines", "name", "validate"}, ""))
-	pattern_PipelinePublicService_RenameNamespacePipeline_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1beta", "namespaces", "pipelines", "name", "rename"}, ""))
-	pattern_PipelinePublicService_CloneNamespacePipeline_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1beta", "namespaces", "pipelines", "name", "clone"}, ""))
-	pattern_PipelinePublicService_DispatchPipelineWebhookEvent_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1beta", "pipeline-webhooks", "webhook_type"}, ""))
-	pattern_PipelinePublicService_TriggerNamespacePipeline_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1beta", "namespaces", "pipelines", "name", "trigger"}, ""))
-	pattern_PipelinePublicService_TriggerNamespacePipelineWithStream_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1beta", "namespaces", "pipelines", "name", "trigger-stream"}, ""))
-	pattern_PipelinePublicService_TriggerAsyncNamespacePipeline_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1beta", "namespaces", "pipelines", "name", "trigger-async"}, ""))
-	pattern_PipelinePublicService_CreateNamespacePipelineRelease_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1beta", "namespaces", "pipelines", "parent", "releases"}, ""))
-	pattern_PipelinePublicService_ListNamespacePipelineReleases_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1beta", "namespaces", "pipelines", "parent", "releases"}, ""))
-	pattern_PipelinePublicService_GetNamespacePipelineRelease_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4}, []string{"v1beta", "namespaces", "pipelines", "releases", "name"}, ""))
-	pattern_PipelinePublicService_UpdateNamespacePipelineRelease_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4}, []string{"v1beta", "namespaces", "pipelines", "releases", "release.name"}, ""))
-	pattern_PipelinePublicService_DeleteNamespacePipelineRelease_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4}, []string{"v1beta", "namespaces", "pipelines", "releases", "name"}, ""))
-	pattern_PipelinePublicService_CloneNamespacePipelineRelease_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4, 2, 5}, []string{"v1beta", "namespaces", "pipelines", "releases", "name", "clone"}, ""))
-	pattern_PipelinePublicService_TriggerNamespacePipelineRelease_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4, 2, 5}, []string{"v1beta", "namespaces", "pipelines", "releases", "name", "trigger"}, ""))
-	pattern_PipelinePublicService_TriggerAsyncNamespacePipelineRelease_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4, 2, 5}, []string{"v1beta", "namespaces", "pipelines", "releases", "name", "trigger-async"}, ""))
-	pattern_PipelinePublicService_CreateNamespaceSecret_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1beta", "namespaces", "parent", "secrets"}, ""))
-	pattern_PipelinePublicService_ListNamespaceSecrets_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1beta", "namespaces", "parent", "secrets"}, ""))
-	pattern_PipelinePublicService_GetNamespaceSecret_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1beta", "namespaces", "secrets", "name"}, ""))
-	pattern_PipelinePublicService_UpdateNamespaceSecret_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1beta", "namespaces", "secrets", "secret.name"}, ""))
-	pattern_PipelinePublicService_DeleteNamespaceSecret_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1beta", "namespaces", "secrets", "name"}, ""))
-	pattern_PipelinePublicService_ListComponentDefinitions_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "component-definitions"}, ""))
-	pattern_PipelinePublicService_GetOperation_0                         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1beta", "operations", "operation_id"}, ""))
-	pattern_PipelinePublicService_ListPipelineRuns_0                     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1beta", "namespaces", "pipelines", "parent", "runs"}, ""))
-	pattern_PipelinePublicService_ListComponentRuns_0                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4, 2, 5}, []string{"v1beta", "namespaces", "pipelines", "runs", "parent", "component-runs"}, ""))
-	pattern_PipelinePublicService_ListPipelineRunsByRequester_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"v1beta", "dashboard", "pipelines", "runs"}, ""))
-	pattern_PipelinePublicService_ListNamespaceConnections_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1beta", "namespaces", "parent", "connections"}, ""))
-	pattern_PipelinePublicService_GetNamespaceConnection_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1beta", "namespaces", "connections", "name"}, ""))
-	pattern_PipelinePublicService_CreateNamespaceConnection_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1beta", "namespaces", "parent", "connections"}, ""))
-	pattern_PipelinePublicService_UpdateNamespaceConnection_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1beta", "namespaces", "connections", "connection.name"}, ""))
-	pattern_PipelinePublicService_DeleteNamespaceConnection_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1beta", "namespaces", "connections", "name"}, ""))
-	pattern_PipelinePublicService_TestNamespaceConnection_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1beta", "namespaces", "connections", "name", "test"}, ""))
-	pattern_PipelinePublicService_ListPipelineIDsByConnectionID_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1beta", "namespaces", "namespace_id", "connections", "connection_id", "referenced-pipelines"}, ""))
-	pattern_PipelinePublicService_ListIntegrations_0                     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "integrations"}, ""))
-	pattern_PipelinePublicService_GetIntegration_0                       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1beta", "integrations", "integration_id"}, ""))
+	pattern_PipelinePublicService_Liveness_0                      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "__liveness"}, ""))
+	pattern_PipelinePublicService_Liveness_1                      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1beta", "health", "pipeline"}, ""))
+	pattern_PipelinePublicService_Readiness_0                     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "__readiness"}, ""))
+	pattern_PipelinePublicService_GetHubStats_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "hub-stats"}, ""))
+	pattern_PipelinePublicService_ListPublicPipelines_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "pipelines"}, ""))
+	pattern_PipelinePublicService_ListPipelines_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1beta", "namespaces", "parent", "pipelines"}, ""))
+	pattern_PipelinePublicService_CreatePipeline_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1beta", "namespaces", "parent", "pipelines"}, ""))
+	pattern_PipelinePublicService_GetPipeline_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1beta", "namespaces", "pipelines", "name"}, ""))
+	pattern_PipelinePublicService_UpdatePipeline_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1beta", "namespaces", "pipelines", "pipeline.name"}, ""))
+	pattern_PipelinePublicService_DeletePipeline_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1beta", "namespaces", "pipelines", "name"}, ""))
+	pattern_PipelinePublicService_ValidatePipeline_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1beta", "namespaces", "pipelines", "name", "validate"}, ""))
+	pattern_PipelinePublicService_RenamePipeline_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1beta", "namespaces", "pipelines", "name", "rename"}, ""))
+	pattern_PipelinePublicService_ClonePipeline_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1beta", "namespaces", "pipelines", "name", "clone"}, ""))
+	pattern_PipelinePublicService_DispatchPipelineWebhookEvent_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1beta", "pipeline-webhooks", "webhook_type"}, ""))
+	pattern_PipelinePublicService_TriggerPipeline_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1beta", "namespaces", "pipelines", "name", "trigger"}, ""))
+	pattern_PipelinePublicService_TriggerPipelineWithStream_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1beta", "namespaces", "pipelines", "name", "trigger-stream"}, ""))
+	pattern_PipelinePublicService_TriggerAsyncPipeline_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1beta", "namespaces", "pipelines", "name", "trigger-async"}, ""))
+	pattern_PipelinePublicService_CreatePipelineRelease_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1beta", "namespaces", "pipelines", "parent", "releases"}, ""))
+	pattern_PipelinePublicService_ListPipelineReleases_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1beta", "namespaces", "pipelines", "parent", "releases"}, ""))
+	pattern_PipelinePublicService_GetPipelineRelease_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4}, []string{"v1beta", "namespaces", "pipelines", "releases", "name"}, ""))
+	pattern_PipelinePublicService_UpdatePipelineRelease_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4}, []string{"v1beta", "namespaces", "pipelines", "releases", "release.name"}, ""))
+	pattern_PipelinePublicService_DeletePipelineRelease_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4}, []string{"v1beta", "namespaces", "pipelines", "releases", "name"}, ""))
+	pattern_PipelinePublicService_ClonePipelineRelease_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4, 2, 5}, []string{"v1beta", "namespaces", "pipelines", "releases", "name", "clone"}, ""))
+	pattern_PipelinePublicService_TriggerPipelineRelease_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4, 2, 5}, []string{"v1beta", "namespaces", "pipelines", "releases", "name", "trigger"}, ""))
+	pattern_PipelinePublicService_TriggerAsyncPipelineRelease_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4, 2, 5}, []string{"v1beta", "namespaces", "pipelines", "releases", "name", "trigger-async"}, ""))
+	pattern_PipelinePublicService_CreateNamespaceSecret_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1beta", "namespaces", "parent", "secrets"}, ""))
+	pattern_PipelinePublicService_ListNamespaceSecrets_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1beta", "namespaces", "parent", "secrets"}, ""))
+	pattern_PipelinePublicService_GetNamespaceSecret_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1beta", "namespaces", "secrets", "name"}, ""))
+	pattern_PipelinePublicService_UpdateNamespaceSecret_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1beta", "namespaces", "secrets", "secret.name"}, ""))
+	pattern_PipelinePublicService_DeleteNamespaceSecret_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1beta", "namespaces", "secrets", "name"}, ""))
+	pattern_PipelinePublicService_ListComponentDefinitions_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "component-definitions"}, ""))
+	pattern_PipelinePublicService_GetOperation_0                  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1beta", "operations", "operation_id"}, ""))
+	pattern_PipelinePublicService_ListPipelineRuns_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1beta", "namespaces", "pipelines", "parent", "runs"}, ""))
+	pattern_PipelinePublicService_ListComponentRuns_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4, 2, 5}, []string{"v1beta", "namespaces", "pipelines", "runs", "parent", "component-runs"}, ""))
+	pattern_PipelinePublicService_ListPipelineRunsByRequester_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"v1beta", "dashboard", "pipelines", "runs"}, ""))
+	pattern_PipelinePublicService_ListNamespaceConnections_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1beta", "namespaces", "parent", "connections"}, ""))
+	pattern_PipelinePublicService_GetNamespaceConnection_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1beta", "namespaces", "connections", "name"}, ""))
+	pattern_PipelinePublicService_CreateNamespaceConnection_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1beta", "namespaces", "parent", "connections"}, ""))
+	pattern_PipelinePublicService_UpdateNamespaceConnection_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1beta", "namespaces", "connections", "connection.name"}, ""))
+	pattern_PipelinePublicService_DeleteNamespaceConnection_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1beta", "namespaces", "connections", "name"}, ""))
+	pattern_PipelinePublicService_TestNamespaceConnection_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1beta", "namespaces", "connections", "name", "test"}, ""))
+	pattern_PipelinePublicService_ListPipelineIDsByConnectionID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1beta", "namespaces", "namespace_id", "connections", "connection_id", "referenced-pipelines"}, ""))
+	pattern_PipelinePublicService_ListIntegrations_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1beta", "integrations"}, ""))
+	pattern_PipelinePublicService_GetIntegration_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1beta", "integrations", "integration_id"}, ""))
 )
 
 var (
-	forward_PipelinePublicService_Liveness_0                             = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_Liveness_1                             = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_Readiness_0                            = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_GetHubStats_0                          = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_ListPipelines_0                        = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_ListNamespacePipelines_0               = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_CreateNamespacePipeline_0              = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_GetNamespacePipeline_0                 = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_UpdateNamespacePipeline_0              = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_DeleteNamespacePipeline_0              = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_ValidateNamespacePipeline_0            = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_RenameNamespacePipeline_0              = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_CloneNamespacePipeline_0               = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_DispatchPipelineWebhookEvent_0         = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_TriggerNamespacePipeline_0             = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_TriggerNamespacePipelineWithStream_0   = runtime.ForwardResponseStream
-	forward_PipelinePublicService_TriggerAsyncNamespacePipeline_0        = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_CreateNamespacePipelineRelease_0       = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_ListNamespacePipelineReleases_0        = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_GetNamespacePipelineRelease_0          = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_UpdateNamespacePipelineRelease_0       = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_DeleteNamespacePipelineRelease_0       = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_CloneNamespacePipelineRelease_0        = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_TriggerNamespacePipelineRelease_0      = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_TriggerAsyncNamespacePipelineRelease_0 = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_CreateNamespaceSecret_0                = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_ListNamespaceSecrets_0                 = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_GetNamespaceSecret_0                   = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_UpdateNamespaceSecret_0                = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_DeleteNamespaceSecret_0                = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_ListComponentDefinitions_0             = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_GetOperation_0                         = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_ListPipelineRuns_0                     = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_ListComponentRuns_0                    = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_ListPipelineRunsByRequester_0          = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_ListNamespaceConnections_0             = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_GetNamespaceConnection_0               = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_CreateNamespaceConnection_0            = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_UpdateNamespaceConnection_0            = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_DeleteNamespaceConnection_0            = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_TestNamespaceConnection_0              = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_ListPipelineIDsByConnectionID_0        = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_ListIntegrations_0                     = runtime.ForwardResponseMessage
-	forward_PipelinePublicService_GetIntegration_0                       = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_Liveness_0                      = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_Liveness_1                      = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_Readiness_0                     = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_GetHubStats_0                   = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_ListPublicPipelines_0           = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_ListPipelines_0                 = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_CreatePipeline_0                = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_GetPipeline_0                   = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_UpdatePipeline_0                = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_DeletePipeline_0                = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_ValidatePipeline_0              = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_RenamePipeline_0                = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_ClonePipeline_0                 = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_DispatchPipelineWebhookEvent_0  = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_TriggerPipeline_0               = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_TriggerPipelineWithStream_0     = runtime.ForwardResponseStream
+	forward_PipelinePublicService_TriggerAsyncPipeline_0          = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_CreatePipelineRelease_0         = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_ListPipelineReleases_0          = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_GetPipelineRelease_0            = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_UpdatePipelineRelease_0         = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_DeletePipelineRelease_0         = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_ClonePipelineRelease_0          = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_TriggerPipelineRelease_0        = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_TriggerAsyncPipelineRelease_0   = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_CreateNamespaceSecret_0         = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_ListNamespaceSecrets_0          = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_GetNamespaceSecret_0            = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_UpdateNamespaceSecret_0         = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_DeleteNamespaceSecret_0         = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_ListComponentDefinitions_0      = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_GetOperation_0                  = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_ListPipelineRuns_0              = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_ListComponentRuns_0             = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_ListPipelineRunsByRequester_0   = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_ListNamespaceConnections_0      = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_GetNamespaceConnection_0        = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_CreateNamespaceConnection_0     = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_UpdateNamespaceConnection_0     = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_DeleteNamespaceConnection_0     = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_TestNamespaceConnection_0       = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_ListPipelineIDsByConnectionID_0 = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_ListIntegrations_0              = runtime.ForwardResponseMessage
+	forward_PipelinePublicService_GetIntegration_0                = runtime.ForwardResponseMessage
 )

@@ -689,9 +689,6 @@ type UpdateKnowledgeBaseRequest struct {
 	// Format: `namespaces/{namespace}/knowledge-bases/{knowledge_base}`
 	KnowledgeBase *KnowledgeBase `protobuf:"bytes,1,opt,name=knowledge_base,json=knowledgeBase,proto3" json:"knowledge_base,omitempty"`
 	// The update mask specifies the subset of fields that should be modified.
-	//
-	// For more information about this field, see
-	// https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#field-mask.
 	UpdateMask    *fieldmaskpb.FieldMask `protobuf:"bytes,2,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1197,9 +1194,10 @@ const file_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"\x06parent\x18\x01 \x01(\tB\x03\xe0A\x02R\x06parent\x12K\n" +
 	"\x0eknowledge_base\x18\x02 \x01(\v2\x1f.artifact.v1alpha.KnowledgeBaseB\x03\xe0A\x02R\rknowledgeBase\"j\n" +
 	"\x1bCreateKnowledgeBaseResponse\x12K\n" +
-	"\x0eknowledge_base\x18\x01 \x01(\v2\x1f.artifact.v1alpha.KnowledgeBaseB\x03\xe0A\x03R\rknowledgeBase\"2\n" +
-	"\x17GetKnowledgeBaseRequest\x12\x17\n" +
-	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"g\n" +
+	"\x0eknowledge_base\x18\x01 \x01(\v2\x1f.artifact.v1alpha.KnowledgeBaseB\x03\xe0A\x03R\rknowledgeBase\"U\n" +
+	"\x17GetKnowledgeBaseRequest\x12:\n" +
+	"\x04name\x18\x01 \x01(\tB&\xe0A\x02\xfaA \n" +
+	"\x1eapi.instill.tech/KnowledgeBaseR\x04name\"g\n" +
 	"\x18GetKnowledgeBaseResponse\x12K\n" +
 	"\x0eknowledge_base\x18\x01 \x01(\v2\x1f.artifact.v1alpha.KnowledgeBaseB\x03\xe0A\x03R\rknowledgeBase\"\xd2\x01\n" +
 	"\x19ListKnowledgeBasesRequest\x12\x1b\n" +
@@ -1222,9 +1220,10 @@ const file_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"\vupdate_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskB\x03\xe0A\x02R\n" +
 	"updateMask\"j\n" +
 	"\x1bUpdateKnowledgeBaseResponse\x12K\n" +
-	"\x0eknowledge_base\x18\x01 \x01(\v2\x1f.artifact.v1alpha.KnowledgeBaseB\x03\xe0A\x03R\rknowledgeBase\"5\n" +
-	"\x1aDeleteKnowledgeBaseRequest\x12\x17\n" +
-	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"j\n" +
+	"\x0eknowledge_base\x18\x01 \x01(\v2\x1f.artifact.v1alpha.KnowledgeBaseB\x03\xe0A\x03R\rknowledgeBase\"X\n" +
+	"\x1aDeleteKnowledgeBaseRequest\x12:\n" +
+	"\x04name\x18\x01 \x01(\tB&\xe0A\x02\xfaA \n" +
+	"\x1eapi.instill.tech/KnowledgeBaseR\x04name\"j\n" +
 	"\x1bDeleteKnowledgeBaseResponse\x12K\n" +
 	"\x0eknowledge_base\x18\x01 \x01(\v2\x1f.artifact.v1alpha.KnowledgeBaseB\x03\xe0A\x03R\rknowledgeBase\"\x8b\x01\n" +
 	"\x1fCreateKnowledgeBaseAdminRequest\x12\x1b\n" +

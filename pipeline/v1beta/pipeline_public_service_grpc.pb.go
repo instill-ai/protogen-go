@@ -19,49 +19,49 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	PipelinePublicService_Liveness_FullMethodName                             = "/pipeline.v1beta.PipelinePublicService/Liveness"
-	PipelinePublicService_Readiness_FullMethodName                            = "/pipeline.v1beta.PipelinePublicService/Readiness"
-	PipelinePublicService_GetHubStats_FullMethodName                          = "/pipeline.v1beta.PipelinePublicService/GetHubStats"
-	PipelinePublicService_ListPipelines_FullMethodName                        = "/pipeline.v1beta.PipelinePublicService/ListPipelines"
-	PipelinePublicService_ListNamespacePipelines_FullMethodName               = "/pipeline.v1beta.PipelinePublicService/ListNamespacePipelines"
-	PipelinePublicService_CreateNamespacePipeline_FullMethodName              = "/pipeline.v1beta.PipelinePublicService/CreateNamespacePipeline"
-	PipelinePublicService_GetNamespacePipeline_FullMethodName                 = "/pipeline.v1beta.PipelinePublicService/GetNamespacePipeline"
-	PipelinePublicService_UpdateNamespacePipeline_FullMethodName              = "/pipeline.v1beta.PipelinePublicService/UpdateNamespacePipeline"
-	PipelinePublicService_DeleteNamespacePipeline_FullMethodName              = "/pipeline.v1beta.PipelinePublicService/DeleteNamespacePipeline"
-	PipelinePublicService_ValidateNamespacePipeline_FullMethodName            = "/pipeline.v1beta.PipelinePublicService/ValidateNamespacePipeline"
-	PipelinePublicService_RenameNamespacePipeline_FullMethodName              = "/pipeline.v1beta.PipelinePublicService/RenameNamespacePipeline"
-	PipelinePublicService_CloneNamespacePipeline_FullMethodName               = "/pipeline.v1beta.PipelinePublicService/CloneNamespacePipeline"
-	PipelinePublicService_DispatchPipelineWebhookEvent_FullMethodName         = "/pipeline.v1beta.PipelinePublicService/DispatchPipelineWebhookEvent"
-	PipelinePublicService_TriggerNamespacePipeline_FullMethodName             = "/pipeline.v1beta.PipelinePublicService/TriggerNamespacePipeline"
-	PipelinePublicService_TriggerNamespacePipelineWithStream_FullMethodName   = "/pipeline.v1beta.PipelinePublicService/TriggerNamespacePipelineWithStream"
-	PipelinePublicService_TriggerAsyncNamespacePipeline_FullMethodName        = "/pipeline.v1beta.PipelinePublicService/TriggerAsyncNamespacePipeline"
-	PipelinePublicService_CreateNamespacePipelineRelease_FullMethodName       = "/pipeline.v1beta.PipelinePublicService/CreateNamespacePipelineRelease"
-	PipelinePublicService_ListNamespacePipelineReleases_FullMethodName        = "/pipeline.v1beta.PipelinePublicService/ListNamespacePipelineReleases"
-	PipelinePublicService_GetNamespacePipelineRelease_FullMethodName          = "/pipeline.v1beta.PipelinePublicService/GetNamespacePipelineRelease"
-	PipelinePublicService_UpdateNamespacePipelineRelease_FullMethodName       = "/pipeline.v1beta.PipelinePublicService/UpdateNamespacePipelineRelease"
-	PipelinePublicService_DeleteNamespacePipelineRelease_FullMethodName       = "/pipeline.v1beta.PipelinePublicService/DeleteNamespacePipelineRelease"
-	PipelinePublicService_CloneNamespacePipelineRelease_FullMethodName        = "/pipeline.v1beta.PipelinePublicService/CloneNamespacePipelineRelease"
-	PipelinePublicService_TriggerNamespacePipelineRelease_FullMethodName      = "/pipeline.v1beta.PipelinePublicService/TriggerNamespacePipelineRelease"
-	PipelinePublicService_TriggerAsyncNamespacePipelineRelease_FullMethodName = "/pipeline.v1beta.PipelinePublicService/TriggerAsyncNamespacePipelineRelease"
-	PipelinePublicService_CreateNamespaceSecret_FullMethodName                = "/pipeline.v1beta.PipelinePublicService/CreateNamespaceSecret"
-	PipelinePublicService_ListNamespaceSecrets_FullMethodName                 = "/pipeline.v1beta.PipelinePublicService/ListNamespaceSecrets"
-	PipelinePublicService_GetNamespaceSecret_FullMethodName                   = "/pipeline.v1beta.PipelinePublicService/GetNamespaceSecret"
-	PipelinePublicService_UpdateNamespaceSecret_FullMethodName                = "/pipeline.v1beta.PipelinePublicService/UpdateNamespaceSecret"
-	PipelinePublicService_DeleteNamespaceSecret_FullMethodName                = "/pipeline.v1beta.PipelinePublicService/DeleteNamespaceSecret"
-	PipelinePublicService_ListComponentDefinitions_FullMethodName             = "/pipeline.v1beta.PipelinePublicService/ListComponentDefinitions"
-	PipelinePublicService_GetOperation_FullMethodName                         = "/pipeline.v1beta.PipelinePublicService/GetOperation"
-	PipelinePublicService_ListPipelineRuns_FullMethodName                     = "/pipeline.v1beta.PipelinePublicService/ListPipelineRuns"
-	PipelinePublicService_ListComponentRuns_FullMethodName                    = "/pipeline.v1beta.PipelinePublicService/ListComponentRuns"
-	PipelinePublicService_ListPipelineRunsByRequester_FullMethodName          = "/pipeline.v1beta.PipelinePublicService/ListPipelineRunsByRequester"
-	PipelinePublicService_ListNamespaceConnections_FullMethodName             = "/pipeline.v1beta.PipelinePublicService/ListNamespaceConnections"
-	PipelinePublicService_GetNamespaceConnection_FullMethodName               = "/pipeline.v1beta.PipelinePublicService/GetNamespaceConnection"
-	PipelinePublicService_CreateNamespaceConnection_FullMethodName            = "/pipeline.v1beta.PipelinePublicService/CreateNamespaceConnection"
-	PipelinePublicService_UpdateNamespaceConnection_FullMethodName            = "/pipeline.v1beta.PipelinePublicService/UpdateNamespaceConnection"
-	PipelinePublicService_DeleteNamespaceConnection_FullMethodName            = "/pipeline.v1beta.PipelinePublicService/DeleteNamespaceConnection"
-	PipelinePublicService_TestNamespaceConnection_FullMethodName              = "/pipeline.v1beta.PipelinePublicService/TestNamespaceConnection"
-	PipelinePublicService_ListPipelineIDsByConnectionID_FullMethodName        = "/pipeline.v1beta.PipelinePublicService/ListPipelineIDsByConnectionID"
-	PipelinePublicService_ListIntegrations_FullMethodName                     = "/pipeline.v1beta.PipelinePublicService/ListIntegrations"
-	PipelinePublicService_GetIntegration_FullMethodName                       = "/pipeline.v1beta.PipelinePublicService/GetIntegration"
+	PipelinePublicService_Liveness_FullMethodName                      = "/pipeline.v1beta.PipelinePublicService/Liveness"
+	PipelinePublicService_Readiness_FullMethodName                     = "/pipeline.v1beta.PipelinePublicService/Readiness"
+	PipelinePublicService_GetHubStats_FullMethodName                   = "/pipeline.v1beta.PipelinePublicService/GetHubStats"
+	PipelinePublicService_ListPublicPipelines_FullMethodName           = "/pipeline.v1beta.PipelinePublicService/ListPublicPipelines"
+	PipelinePublicService_ListPipelines_FullMethodName                 = "/pipeline.v1beta.PipelinePublicService/ListPipelines"
+	PipelinePublicService_CreatePipeline_FullMethodName                = "/pipeline.v1beta.PipelinePublicService/CreatePipeline"
+	PipelinePublicService_GetPipeline_FullMethodName                   = "/pipeline.v1beta.PipelinePublicService/GetPipeline"
+	PipelinePublicService_UpdatePipeline_FullMethodName                = "/pipeline.v1beta.PipelinePublicService/UpdatePipeline"
+	PipelinePublicService_DeletePipeline_FullMethodName                = "/pipeline.v1beta.PipelinePublicService/DeletePipeline"
+	PipelinePublicService_ValidatePipeline_FullMethodName              = "/pipeline.v1beta.PipelinePublicService/ValidatePipeline"
+	PipelinePublicService_RenamePipeline_FullMethodName                = "/pipeline.v1beta.PipelinePublicService/RenamePipeline"
+	PipelinePublicService_ClonePipeline_FullMethodName                 = "/pipeline.v1beta.PipelinePublicService/ClonePipeline"
+	PipelinePublicService_DispatchPipelineWebhookEvent_FullMethodName  = "/pipeline.v1beta.PipelinePublicService/DispatchPipelineWebhookEvent"
+	PipelinePublicService_TriggerPipeline_FullMethodName               = "/pipeline.v1beta.PipelinePublicService/TriggerPipeline"
+	PipelinePublicService_TriggerPipelineWithStream_FullMethodName     = "/pipeline.v1beta.PipelinePublicService/TriggerPipelineWithStream"
+	PipelinePublicService_TriggerAsyncPipeline_FullMethodName          = "/pipeline.v1beta.PipelinePublicService/TriggerAsyncPipeline"
+	PipelinePublicService_CreatePipelineRelease_FullMethodName         = "/pipeline.v1beta.PipelinePublicService/CreatePipelineRelease"
+	PipelinePublicService_ListPipelineReleases_FullMethodName          = "/pipeline.v1beta.PipelinePublicService/ListPipelineReleases"
+	PipelinePublicService_GetPipelineRelease_FullMethodName            = "/pipeline.v1beta.PipelinePublicService/GetPipelineRelease"
+	PipelinePublicService_UpdatePipelineRelease_FullMethodName         = "/pipeline.v1beta.PipelinePublicService/UpdatePipelineRelease"
+	PipelinePublicService_DeletePipelineRelease_FullMethodName         = "/pipeline.v1beta.PipelinePublicService/DeletePipelineRelease"
+	PipelinePublicService_ClonePipelineRelease_FullMethodName          = "/pipeline.v1beta.PipelinePublicService/ClonePipelineRelease"
+	PipelinePublicService_TriggerPipelineRelease_FullMethodName        = "/pipeline.v1beta.PipelinePublicService/TriggerPipelineRelease"
+	PipelinePublicService_TriggerAsyncPipelineRelease_FullMethodName   = "/pipeline.v1beta.PipelinePublicService/TriggerAsyncPipelineRelease"
+	PipelinePublicService_CreateNamespaceSecret_FullMethodName         = "/pipeline.v1beta.PipelinePublicService/CreateNamespaceSecret"
+	PipelinePublicService_ListNamespaceSecrets_FullMethodName          = "/pipeline.v1beta.PipelinePublicService/ListNamespaceSecrets"
+	PipelinePublicService_GetNamespaceSecret_FullMethodName            = "/pipeline.v1beta.PipelinePublicService/GetNamespaceSecret"
+	PipelinePublicService_UpdateNamespaceSecret_FullMethodName         = "/pipeline.v1beta.PipelinePublicService/UpdateNamespaceSecret"
+	PipelinePublicService_DeleteNamespaceSecret_FullMethodName         = "/pipeline.v1beta.PipelinePublicService/DeleteNamespaceSecret"
+	PipelinePublicService_ListComponentDefinitions_FullMethodName      = "/pipeline.v1beta.PipelinePublicService/ListComponentDefinitions"
+	PipelinePublicService_GetOperation_FullMethodName                  = "/pipeline.v1beta.PipelinePublicService/GetOperation"
+	PipelinePublicService_ListPipelineRuns_FullMethodName              = "/pipeline.v1beta.PipelinePublicService/ListPipelineRuns"
+	PipelinePublicService_ListComponentRuns_FullMethodName             = "/pipeline.v1beta.PipelinePublicService/ListComponentRuns"
+	PipelinePublicService_ListPipelineRunsByRequester_FullMethodName   = "/pipeline.v1beta.PipelinePublicService/ListPipelineRunsByRequester"
+	PipelinePublicService_ListNamespaceConnections_FullMethodName      = "/pipeline.v1beta.PipelinePublicService/ListNamespaceConnections"
+	PipelinePublicService_GetNamespaceConnection_FullMethodName        = "/pipeline.v1beta.PipelinePublicService/GetNamespaceConnection"
+	PipelinePublicService_CreateNamespaceConnection_FullMethodName     = "/pipeline.v1beta.PipelinePublicService/CreateNamespaceConnection"
+	PipelinePublicService_UpdateNamespaceConnection_FullMethodName     = "/pipeline.v1beta.PipelinePublicService/UpdateNamespaceConnection"
+	PipelinePublicService_DeleteNamespaceConnection_FullMethodName     = "/pipeline.v1beta.PipelinePublicService/DeleteNamespaceConnection"
+	PipelinePublicService_TestNamespaceConnection_FullMethodName       = "/pipeline.v1beta.PipelinePublicService/TestNamespaceConnection"
+	PipelinePublicService_ListPipelineIDsByConnectionID_FullMethodName = "/pipeline.v1beta.PipelinePublicService/ListPipelineIDsByConnectionID"
+	PipelinePublicService_ListIntegrations_FullMethodName              = "/pipeline.v1beta.PipelinePublicService/ListIntegrations"
+	PipelinePublicService_GetIntegration_FullMethodName                = "/pipeline.v1beta.PipelinePublicService/GetIntegration"
 )
 
 // PipelinePublicServiceClient is the client API for PipelinePublicService service.
@@ -88,19 +88,19 @@ type PipelinePublicServiceClient interface {
 	// List accessible pipelines
 	//
 	// Returns a paginated list of pipelines that are visible to the requester.
-	ListPipelines(ctx context.Context, in *ListPipelinesRequest, opts ...grpc.CallOption) (*ListPipelinesResponse, error)
+	ListPublicPipelines(ctx context.Context, in *ListPublicPipelinesRequest, opts ...grpc.CallOption) (*ListPublicPipelinesResponse, error)
 	// List namespace pipelines
 	//
 	// Returns a paginated list of pipelines of a namespace
-	ListNamespacePipelines(ctx context.Context, in *ListNamespacePipelinesRequest, opts ...grpc.CallOption) (*ListNamespacePipelinesResponse, error)
+	ListPipelines(ctx context.Context, in *ListPipelinesRequest, opts ...grpc.CallOption) (*ListPipelinesResponse, error)
 	// Create a new pipeline
 	//
 	// Creates a new pipeline under a namespace.
-	CreateNamespacePipeline(ctx context.Context, in *CreateNamespacePipelineRequest, opts ...grpc.CallOption) (*CreateNamespacePipelineResponse, error)
+	CreatePipeline(ctx context.Context, in *CreatePipelineRequest, opts ...grpc.CallOption) (*CreatePipelineResponse, error)
 	// Get a pipeline
 	//
 	// Returns the details of a pipeline.
-	GetNamespacePipeline(ctx context.Context, in *GetNamespacePipelineRequest, opts ...grpc.CallOption) (*GetNamespacePipelineResponse, error)
+	GetPipeline(ctx context.Context, in *GetPipelineRequest, opts ...grpc.CallOption) (*GetPipelineResponse, error)
 	// Update a pipeline
 	//
 	// Udpates a pipeline, accessing it by its resource name, which is defined by
@@ -109,13 +109,13 @@ type PipelinePublicServiceClient interface {
 	//
 	// In REST requests, only the supplied pipeline fields will be taken into
 	// account when updating the resource.
-	UpdateNamespacePipeline(ctx context.Context, in *UpdateNamespacePipelineRequest, opts ...grpc.CallOption) (*UpdateNamespacePipelineResponse, error)
+	UpdatePipeline(ctx context.Context, in *UpdatePipelineRequest, opts ...grpc.CallOption) (*UpdatePipelineResponse, error)
 	// Delete a pipeline
 	//
 	// Deletes a pipeline, accesing it by its resource name, which is defined by
 	// the parent namespace and the ID of the pipeline. The authenticated
 	// namespace must be the parent of the pipeline in order to delete it.
-	DeleteNamespacePipeline(ctx context.Context, in *DeleteNamespacePipelineRequest, opts ...grpc.CallOption) (*DeleteNamespacePipelineResponse, error)
+	DeletePipeline(ctx context.Context, in *DeletePipelineRequest, opts ...grpc.CallOption) (*DeletePipelineResponse, error)
 	// Validate a pipeline
 	//
 	// Validates a pipeline by its resource name, which is defined by the parent
@@ -123,7 +123,7 @@ type PipelinePublicServiceClient interface {
 	//
 	// Validation checks the recipe of the pipeline and the status of its
 	// components.
-	ValidateNamespacePipeline(ctx context.Context, in *ValidateNamespacePipelineRequest, opts ...grpc.CallOption) (*ValidateNamespacePipelineResponse, error)
+	ValidatePipeline(ctx context.Context, in *ValidatePipelineRequest, opts ...grpc.CallOption) (*ValidatePipelineResponse, error)
 	// Rename a pipeline
 	//
 	// Updates the ID of a pipeline. Since this is an output-only field, a custom
@@ -135,12 +135,12 @@ type PipelinePublicServiceClient interface {
 	//
 	// The authenticated namespace must be the parent of the pipeline in order to
 	// perform this action.
-	RenameNamespacePipeline(ctx context.Context, in *RenameNamespacePipelineRequest, opts ...grpc.CallOption) (*RenameNamespacePipelineResponse, error)
+	RenamePipeline(ctx context.Context, in *RenamePipelineRequest, opts ...grpc.CallOption) (*RenamePipelineResponse, error)
 	// Clone a pipeline
 	//
 	// Clones a pipeline owned by a namespace. The new pipeline may have a
 	// different parent, and this can be either a namespace or an organization.
-	CloneNamespacePipeline(ctx context.Context, in *CloneNamespacePipelineRequest, opts ...grpc.CallOption) (*CloneNamespacePipelineResponse, error)
+	ClonePipeline(ctx context.Context, in *ClonePipelineRequest, opts ...grpc.CallOption) (*ClonePipelineResponse, error)
 	// Dispatch Pipeline Webhook Event
 	//
 	// Handles webhook events by routing them to the appropriate pipeline based on
@@ -159,8 +159,8 @@ type PipelinePublicServiceClient interface {
 	// namespace and ID of the pipeline.
 	//
 	// For more information, see [Run
-	// NamespacePipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
-	TriggerNamespacePipeline(ctx context.Context, in *TriggerNamespacePipelineRequest, opts ...grpc.CallOption) (*TriggerNamespacePipelineResponse, error)
+	// Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
+	TriggerPipeline(ctx context.Context, in *TriggerPipelineRequest, opts ...grpc.CallOption) (*TriggerPipelineResponse, error)
 	// Trigger a pipeline via streaming
 	//
 	// Triggers the execution of a pipeline asynchronously and streams back the
@@ -169,7 +169,7 @@ type PipelinePublicServiceClient interface {
 	//
 	// The pipeline is identified by its resource name, formed by the parent
 	// namespace and ID of the pipeline.
-	TriggerNamespacePipelineWithStream(ctx context.Context, in *TriggerNamespacePipelineWithStreamRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[TriggerNamespacePipelineWithStreamResponse], error)
+	TriggerPipelineWithStream(ctx context.Context, in *TriggerPipelineWithStreamRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[TriggerPipelineWithStreamResponse], error)
 	// Trigger a pipeline asynchronously
 	//
 	// Triggers the execution of a pipeline asynchronously, i.e., the result
@@ -181,8 +181,8 @@ type PipelinePublicServiceClient interface {
 	// namespace and ID of the pipeline.
 	//
 	// For more information, see [Run
-	// NamespacePipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
-	TriggerAsyncNamespacePipeline(ctx context.Context, in *TriggerAsyncNamespacePipelineRequest, opts ...grpc.CallOption) (*TriggerAsyncNamespacePipelineResponse, error)
+	// Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
+	TriggerAsyncPipeline(ctx context.Context, in *TriggerAsyncPipelineRequest, opts ...grpc.CallOption) (*TriggerAsyncPipelineResponse, error)
 	// Create a pipeline release
 	//
 	// Commits the version of a pipeline, identified by its resource name, which
@@ -190,17 +190,17 @@ type PipelinePublicServiceClient interface {
 	//
 	// The authenticated namespace must be the parent of the pipeline in order to
 	// perform this action.
-	CreateNamespacePipelineRelease(ctx context.Context, in *CreateNamespacePipelineReleaseRequest, opts ...grpc.CallOption) (*CreateNamespacePipelineReleaseResponse, error)
+	CreatePipelineRelease(ctx context.Context, in *CreatePipelineReleaseRequest, opts ...grpc.CallOption) (*CreatePipelineReleaseResponse, error)
 	// List the releases in a pipeline
 	//
 	// Lists the commited versions of a pipeline, identified by its resource
 	// name, which is formed by the parent namespace and ID of the pipeline.
-	ListNamespacePipelineReleases(ctx context.Context, in *ListNamespacePipelineReleasesRequest, opts ...grpc.CallOption) (*ListNamespacePipelineReleasesResponse, error)
+	ListPipelineReleases(ctx context.Context, in *ListPipelineReleasesRequest, opts ...grpc.CallOption) (*ListPipelineReleasesResponse, error)
 	// Get a pipeline release
 	//
 	// Gets the details of a pipeline release, where the pipeline is identified
 	// by its resource name, formed by its parent namespace and ID.
-	GetNamespacePipelineRelease(ctx context.Context, in *GetNamespacePipelineReleaseRequest, opts ...grpc.CallOption) (*GetNamespacePipelineReleaseResponse, error)
+	GetPipelineRelease(ctx context.Context, in *GetPipelineReleaseRequest, opts ...grpc.CallOption) (*GetPipelineReleaseResponse, error)
 	// Update a pipeline release
 	//
 	// Updates the details of a pipeline release, where the pipeline is
@@ -208,7 +208,7 @@ type PipelinePublicServiceClient interface {
 	//
 	// The authenticated namespace must be the parent of the pipeline in order to
 	// perform this action.
-	UpdateNamespacePipelineRelease(ctx context.Context, in *UpdateNamespacePipelineReleaseRequest, opts ...grpc.CallOption) (*UpdateNamespacePipelineReleaseResponse, error)
+	UpdatePipelineRelease(ctx context.Context, in *UpdatePipelineReleaseRequest, opts ...grpc.CallOption) (*UpdatePipelineReleaseResponse, error)
 	// Delete a pipeline release
 	//
 	// Deletes a pipeline release, where the pipeline is identified by its
@@ -216,12 +216,12 @@ type PipelinePublicServiceClient interface {
 	//
 	// The authenticated namespace must be the parent of the pipeline in order to
 	// perform this action.
-	DeleteNamespacePipelineRelease(ctx context.Context, in *DeleteNamespacePipelineReleaseRequest, opts ...grpc.CallOption) (*DeleteNamespacePipelineReleaseResponse, error)
+	DeletePipelineRelease(ctx context.Context, in *DeletePipelineReleaseRequest, opts ...grpc.CallOption) (*DeletePipelineReleaseResponse, error)
 	// Clone a pipeline release
 	//
 	// Clones a pipeline release owned by a namespace. The new pipeline may have a
 	// different parent, and this can be either a namespace or an organization.
-	CloneNamespacePipelineRelease(ctx context.Context, in *CloneNamespacePipelineReleaseRequest, opts ...grpc.CallOption) (*CloneNamespacePipelineReleaseResponse, error)
+	ClonePipelineRelease(ctx context.Context, in *ClonePipelineReleaseRequest, opts ...grpc.CallOption) (*ClonePipelineReleaseResponse, error)
 	// Trigger a pipeline release
 	//
 	// Triggers the synchronous execution of of a pipeline. While the trigger
@@ -231,7 +231,7 @@ type PipelinePublicServiceClient interface {
 	//
 	// The pipeline is identified by its resource name, formed by its parent
 	// namespace and ID.
-	TriggerNamespacePipelineRelease(ctx context.Context, in *TriggerNamespacePipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerNamespacePipelineReleaseResponse, error)
+	TriggerPipelineRelease(ctx context.Context, in *TriggerPipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerPipelineReleaseResponse, error)
 	// Trigger a pipeline release asynchronously
 	//
 	// Triggers the asynchronous execution of of a pipeline. While the trigger
@@ -241,7 +241,7 @@ type PipelinePublicServiceClient interface {
 	//
 	// The pipeline is identified by its resource name, formed by its parent
 	// namespace and ID.
-	TriggerAsyncNamespacePipelineRelease(ctx context.Context, in *TriggerAsyncNamespacePipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerAsyncNamespacePipelineReleaseResponse, error)
+	TriggerAsyncPipelineRelease(ctx context.Context, in *TriggerAsyncPipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerAsyncPipelineReleaseResponse, error)
 	// Create a secret
 	//
 	// Creates a new secret under the parenthood of an namespace.
@@ -380,6 +380,16 @@ func (c *pipelinePublicServiceClient) GetHubStats(ctx context.Context, in *GetHu
 	return out, nil
 }
 
+func (c *pipelinePublicServiceClient) ListPublicPipelines(ctx context.Context, in *ListPublicPipelinesRequest, opts ...grpc.CallOption) (*ListPublicPipelinesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListPublicPipelinesResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ListPublicPipelines_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *pipelinePublicServiceClient) ListPipelines(ctx context.Context, in *ListPipelinesRequest, opts ...grpc.CallOption) (*ListPipelinesResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListPipelinesResponse)
@@ -390,80 +400,70 @@ func (c *pipelinePublicServiceClient) ListPipelines(ctx context.Context, in *Lis
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) ListNamespacePipelines(ctx context.Context, in *ListNamespacePipelinesRequest, opts ...grpc.CallOption) (*ListNamespacePipelinesResponse, error) {
+func (c *pipelinePublicServiceClient) CreatePipeline(ctx context.Context, in *CreatePipelineRequest, opts ...grpc.CallOption) (*CreatePipelineResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListNamespacePipelinesResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_ListNamespacePipelines_FullMethodName, in, out, cOpts...)
+	out := new(CreatePipelineResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_CreatePipeline_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) CreateNamespacePipeline(ctx context.Context, in *CreateNamespacePipelineRequest, opts ...grpc.CallOption) (*CreateNamespacePipelineResponse, error) {
+func (c *pipelinePublicServiceClient) GetPipeline(ctx context.Context, in *GetPipelineRequest, opts ...grpc.CallOption) (*GetPipelineResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateNamespacePipelineResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_CreateNamespacePipeline_FullMethodName, in, out, cOpts...)
+	out := new(GetPipelineResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_GetPipeline_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) GetNamespacePipeline(ctx context.Context, in *GetNamespacePipelineRequest, opts ...grpc.CallOption) (*GetNamespacePipelineResponse, error) {
+func (c *pipelinePublicServiceClient) UpdatePipeline(ctx context.Context, in *UpdatePipelineRequest, opts ...grpc.CallOption) (*UpdatePipelineResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetNamespacePipelineResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_GetNamespacePipeline_FullMethodName, in, out, cOpts...)
+	out := new(UpdatePipelineResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_UpdatePipeline_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) UpdateNamespacePipeline(ctx context.Context, in *UpdateNamespacePipelineRequest, opts ...grpc.CallOption) (*UpdateNamespacePipelineResponse, error) {
+func (c *pipelinePublicServiceClient) DeletePipeline(ctx context.Context, in *DeletePipelineRequest, opts ...grpc.CallOption) (*DeletePipelineResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateNamespacePipelineResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_UpdateNamespacePipeline_FullMethodName, in, out, cOpts...)
+	out := new(DeletePipelineResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_DeletePipeline_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) DeleteNamespacePipeline(ctx context.Context, in *DeleteNamespacePipelineRequest, opts ...grpc.CallOption) (*DeleteNamespacePipelineResponse, error) {
+func (c *pipelinePublicServiceClient) ValidatePipeline(ctx context.Context, in *ValidatePipelineRequest, opts ...grpc.CallOption) (*ValidatePipelineResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteNamespacePipelineResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_DeleteNamespacePipeline_FullMethodName, in, out, cOpts...)
+	out := new(ValidatePipelineResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ValidatePipeline_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) ValidateNamespacePipeline(ctx context.Context, in *ValidateNamespacePipelineRequest, opts ...grpc.CallOption) (*ValidateNamespacePipelineResponse, error) {
+func (c *pipelinePublicServiceClient) RenamePipeline(ctx context.Context, in *RenamePipelineRequest, opts ...grpc.CallOption) (*RenamePipelineResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ValidateNamespacePipelineResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_ValidateNamespacePipeline_FullMethodName, in, out, cOpts...)
+	out := new(RenamePipelineResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_RenamePipeline_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) RenameNamespacePipeline(ctx context.Context, in *RenameNamespacePipelineRequest, opts ...grpc.CallOption) (*RenameNamespacePipelineResponse, error) {
+func (c *pipelinePublicServiceClient) ClonePipeline(ctx context.Context, in *ClonePipelineRequest, opts ...grpc.CallOption) (*ClonePipelineResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RenameNamespacePipelineResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_RenameNamespacePipeline_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *pipelinePublicServiceClient) CloneNamespacePipeline(ctx context.Context, in *CloneNamespacePipelineRequest, opts ...grpc.CallOption) (*CloneNamespacePipelineResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CloneNamespacePipelineResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_CloneNamespacePipeline_FullMethodName, in, out, cOpts...)
+	out := new(ClonePipelineResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ClonePipeline_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -480,23 +480,23 @@ func (c *pipelinePublicServiceClient) DispatchPipelineWebhookEvent(ctx context.C
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) TriggerNamespacePipeline(ctx context.Context, in *TriggerNamespacePipelineRequest, opts ...grpc.CallOption) (*TriggerNamespacePipelineResponse, error) {
+func (c *pipelinePublicServiceClient) TriggerPipeline(ctx context.Context, in *TriggerPipelineRequest, opts ...grpc.CallOption) (*TriggerPipelineResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TriggerNamespacePipelineResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_TriggerNamespacePipeline_FullMethodName, in, out, cOpts...)
+	out := new(TriggerPipelineResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_TriggerPipeline_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) TriggerNamespacePipelineWithStream(ctx context.Context, in *TriggerNamespacePipelineWithStreamRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[TriggerNamespacePipelineWithStreamResponse], error) {
+func (c *pipelinePublicServiceClient) TriggerPipelineWithStream(ctx context.Context, in *TriggerPipelineWithStreamRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[TriggerPipelineWithStreamResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &PipelinePublicService_ServiceDesc.Streams[0], PipelinePublicService_TriggerNamespacePipelineWithStream_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &PipelinePublicService_ServiceDesc.Streams[0], PipelinePublicService_TriggerPipelineWithStream_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[TriggerNamespacePipelineWithStreamRequest, TriggerNamespacePipelineWithStreamResponse]{ClientStream: stream}
+	x := &grpc.GenericClientStream[TriggerPipelineWithStreamRequest, TriggerPipelineWithStreamResponse]{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -507,92 +507,92 @@ func (c *pipelinePublicServiceClient) TriggerNamespacePipelineWithStream(ctx con
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type PipelinePublicService_TriggerNamespacePipelineWithStreamClient = grpc.ServerStreamingClient[TriggerNamespacePipelineWithStreamResponse]
+type PipelinePublicService_TriggerPipelineWithStreamClient = grpc.ServerStreamingClient[TriggerPipelineWithStreamResponse]
 
-func (c *pipelinePublicServiceClient) TriggerAsyncNamespacePipeline(ctx context.Context, in *TriggerAsyncNamespacePipelineRequest, opts ...grpc.CallOption) (*TriggerAsyncNamespacePipelineResponse, error) {
+func (c *pipelinePublicServiceClient) TriggerAsyncPipeline(ctx context.Context, in *TriggerAsyncPipelineRequest, opts ...grpc.CallOption) (*TriggerAsyncPipelineResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TriggerAsyncNamespacePipelineResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_TriggerAsyncNamespacePipeline_FullMethodName, in, out, cOpts...)
+	out := new(TriggerAsyncPipelineResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_TriggerAsyncPipeline_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) CreateNamespacePipelineRelease(ctx context.Context, in *CreateNamespacePipelineReleaseRequest, opts ...grpc.CallOption) (*CreateNamespacePipelineReleaseResponse, error) {
+func (c *pipelinePublicServiceClient) CreatePipelineRelease(ctx context.Context, in *CreatePipelineReleaseRequest, opts ...grpc.CallOption) (*CreatePipelineReleaseResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateNamespacePipelineReleaseResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_CreateNamespacePipelineRelease_FullMethodName, in, out, cOpts...)
+	out := new(CreatePipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_CreatePipelineRelease_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) ListNamespacePipelineReleases(ctx context.Context, in *ListNamespacePipelineReleasesRequest, opts ...grpc.CallOption) (*ListNamespacePipelineReleasesResponse, error) {
+func (c *pipelinePublicServiceClient) ListPipelineReleases(ctx context.Context, in *ListPipelineReleasesRequest, opts ...grpc.CallOption) (*ListPipelineReleasesResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListNamespacePipelineReleasesResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_ListNamespacePipelineReleases_FullMethodName, in, out, cOpts...)
+	out := new(ListPipelineReleasesResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ListPipelineReleases_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) GetNamespacePipelineRelease(ctx context.Context, in *GetNamespacePipelineReleaseRequest, opts ...grpc.CallOption) (*GetNamespacePipelineReleaseResponse, error) {
+func (c *pipelinePublicServiceClient) GetPipelineRelease(ctx context.Context, in *GetPipelineReleaseRequest, opts ...grpc.CallOption) (*GetPipelineReleaseResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetNamespacePipelineReleaseResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_GetNamespacePipelineRelease_FullMethodName, in, out, cOpts...)
+	out := new(GetPipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_GetPipelineRelease_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) UpdateNamespacePipelineRelease(ctx context.Context, in *UpdateNamespacePipelineReleaseRequest, opts ...grpc.CallOption) (*UpdateNamespacePipelineReleaseResponse, error) {
+func (c *pipelinePublicServiceClient) UpdatePipelineRelease(ctx context.Context, in *UpdatePipelineReleaseRequest, opts ...grpc.CallOption) (*UpdatePipelineReleaseResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateNamespacePipelineReleaseResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_UpdateNamespacePipelineRelease_FullMethodName, in, out, cOpts...)
+	out := new(UpdatePipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_UpdatePipelineRelease_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) DeleteNamespacePipelineRelease(ctx context.Context, in *DeleteNamespacePipelineReleaseRequest, opts ...grpc.CallOption) (*DeleteNamespacePipelineReleaseResponse, error) {
+func (c *pipelinePublicServiceClient) DeletePipelineRelease(ctx context.Context, in *DeletePipelineReleaseRequest, opts ...grpc.CallOption) (*DeletePipelineReleaseResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteNamespacePipelineReleaseResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_DeleteNamespacePipelineRelease_FullMethodName, in, out, cOpts...)
+	out := new(DeletePipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_DeletePipelineRelease_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) CloneNamespacePipelineRelease(ctx context.Context, in *CloneNamespacePipelineReleaseRequest, opts ...grpc.CallOption) (*CloneNamespacePipelineReleaseResponse, error) {
+func (c *pipelinePublicServiceClient) ClonePipelineRelease(ctx context.Context, in *ClonePipelineReleaseRequest, opts ...grpc.CallOption) (*ClonePipelineReleaseResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CloneNamespacePipelineReleaseResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_CloneNamespacePipelineRelease_FullMethodName, in, out, cOpts...)
+	out := new(ClonePipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_ClonePipelineRelease_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) TriggerNamespacePipelineRelease(ctx context.Context, in *TriggerNamespacePipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerNamespacePipelineReleaseResponse, error) {
+func (c *pipelinePublicServiceClient) TriggerPipelineRelease(ctx context.Context, in *TriggerPipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerPipelineReleaseResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TriggerNamespacePipelineReleaseResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_TriggerNamespacePipelineRelease_FullMethodName, in, out, cOpts...)
+	out := new(TriggerPipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_TriggerPipelineRelease_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) TriggerAsyncNamespacePipelineRelease(ctx context.Context, in *TriggerAsyncNamespacePipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerAsyncNamespacePipelineReleaseResponse, error) {
+func (c *pipelinePublicServiceClient) TriggerAsyncPipelineRelease(ctx context.Context, in *TriggerAsyncPipelineReleaseRequest, opts ...grpc.CallOption) (*TriggerAsyncPipelineReleaseResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TriggerAsyncNamespacePipelineReleaseResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_TriggerAsyncNamespacePipelineRelease_FullMethodName, in, out, cOpts...)
+	out := new(TriggerAsyncPipelineReleaseResponse)
+	err := c.cc.Invoke(ctx, PipelinePublicService_TriggerAsyncPipelineRelease_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -813,19 +813,19 @@ type PipelinePublicServiceServer interface {
 	// List accessible pipelines
 	//
 	// Returns a paginated list of pipelines that are visible to the requester.
-	ListPipelines(context.Context, *ListPipelinesRequest) (*ListPipelinesResponse, error)
+	ListPublicPipelines(context.Context, *ListPublicPipelinesRequest) (*ListPublicPipelinesResponse, error)
 	// List namespace pipelines
 	//
 	// Returns a paginated list of pipelines of a namespace
-	ListNamespacePipelines(context.Context, *ListNamespacePipelinesRequest) (*ListNamespacePipelinesResponse, error)
+	ListPipelines(context.Context, *ListPipelinesRequest) (*ListPipelinesResponse, error)
 	// Create a new pipeline
 	//
 	// Creates a new pipeline under a namespace.
-	CreateNamespacePipeline(context.Context, *CreateNamespacePipelineRequest) (*CreateNamespacePipelineResponse, error)
+	CreatePipeline(context.Context, *CreatePipelineRequest) (*CreatePipelineResponse, error)
 	// Get a pipeline
 	//
 	// Returns the details of a pipeline.
-	GetNamespacePipeline(context.Context, *GetNamespacePipelineRequest) (*GetNamespacePipelineResponse, error)
+	GetPipeline(context.Context, *GetPipelineRequest) (*GetPipelineResponse, error)
 	// Update a pipeline
 	//
 	// Udpates a pipeline, accessing it by its resource name, which is defined by
@@ -834,13 +834,13 @@ type PipelinePublicServiceServer interface {
 	//
 	// In REST requests, only the supplied pipeline fields will be taken into
 	// account when updating the resource.
-	UpdateNamespacePipeline(context.Context, *UpdateNamespacePipelineRequest) (*UpdateNamespacePipelineResponse, error)
+	UpdatePipeline(context.Context, *UpdatePipelineRequest) (*UpdatePipelineResponse, error)
 	// Delete a pipeline
 	//
 	// Deletes a pipeline, accesing it by its resource name, which is defined by
 	// the parent namespace and the ID of the pipeline. The authenticated
 	// namespace must be the parent of the pipeline in order to delete it.
-	DeleteNamespacePipeline(context.Context, *DeleteNamespacePipelineRequest) (*DeleteNamespacePipelineResponse, error)
+	DeletePipeline(context.Context, *DeletePipelineRequest) (*DeletePipelineResponse, error)
 	// Validate a pipeline
 	//
 	// Validates a pipeline by its resource name, which is defined by the parent
@@ -848,7 +848,7 @@ type PipelinePublicServiceServer interface {
 	//
 	// Validation checks the recipe of the pipeline and the status of its
 	// components.
-	ValidateNamespacePipeline(context.Context, *ValidateNamespacePipelineRequest) (*ValidateNamespacePipelineResponse, error)
+	ValidatePipeline(context.Context, *ValidatePipelineRequest) (*ValidatePipelineResponse, error)
 	// Rename a pipeline
 	//
 	// Updates the ID of a pipeline. Since this is an output-only field, a custom
@@ -860,12 +860,12 @@ type PipelinePublicServiceServer interface {
 	//
 	// The authenticated namespace must be the parent of the pipeline in order to
 	// perform this action.
-	RenameNamespacePipeline(context.Context, *RenameNamespacePipelineRequest) (*RenameNamespacePipelineResponse, error)
+	RenamePipeline(context.Context, *RenamePipelineRequest) (*RenamePipelineResponse, error)
 	// Clone a pipeline
 	//
 	// Clones a pipeline owned by a namespace. The new pipeline may have a
 	// different parent, and this can be either a namespace or an organization.
-	CloneNamespacePipeline(context.Context, *CloneNamespacePipelineRequest) (*CloneNamespacePipelineResponse, error)
+	ClonePipeline(context.Context, *ClonePipelineRequest) (*ClonePipelineResponse, error)
 	// Dispatch Pipeline Webhook Event
 	//
 	// Handles webhook events by routing them to the appropriate pipeline based on
@@ -884,8 +884,8 @@ type PipelinePublicServiceServer interface {
 	// namespace and ID of the pipeline.
 	//
 	// For more information, see [Run
-	// NamespacePipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
-	TriggerNamespacePipeline(context.Context, *TriggerNamespacePipelineRequest) (*TriggerNamespacePipelineResponse, error)
+	// Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
+	TriggerPipeline(context.Context, *TriggerPipelineRequest) (*TriggerPipelineResponse, error)
 	// Trigger a pipeline via streaming
 	//
 	// Triggers the execution of a pipeline asynchronously and streams back the
@@ -894,7 +894,7 @@ type PipelinePublicServiceServer interface {
 	//
 	// The pipeline is identified by its resource name, formed by the parent
 	// namespace and ID of the pipeline.
-	TriggerNamespacePipelineWithStream(*TriggerNamespacePipelineWithStreamRequest, grpc.ServerStreamingServer[TriggerNamespacePipelineWithStreamResponse]) error
+	TriggerPipelineWithStream(*TriggerPipelineWithStreamRequest, grpc.ServerStreamingServer[TriggerPipelineWithStreamResponse]) error
 	// Trigger a pipeline asynchronously
 	//
 	// Triggers the execution of a pipeline asynchronously, i.e., the result
@@ -906,8 +906,8 @@ type PipelinePublicServiceServer interface {
 	// namespace and ID of the pipeline.
 	//
 	// For more information, see [Run
-	// NamespacePipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
-	TriggerAsyncNamespacePipeline(context.Context, *TriggerAsyncNamespacePipelineRequest) (*TriggerAsyncNamespacePipelineResponse, error)
+	// Pipeline](https://instill-ai.dev/docs/pipeline/run-pipeline).
+	TriggerAsyncPipeline(context.Context, *TriggerAsyncPipelineRequest) (*TriggerAsyncPipelineResponse, error)
 	// Create a pipeline release
 	//
 	// Commits the version of a pipeline, identified by its resource name, which
@@ -915,17 +915,17 @@ type PipelinePublicServiceServer interface {
 	//
 	// The authenticated namespace must be the parent of the pipeline in order to
 	// perform this action.
-	CreateNamespacePipelineRelease(context.Context, *CreateNamespacePipelineReleaseRequest) (*CreateNamespacePipelineReleaseResponse, error)
+	CreatePipelineRelease(context.Context, *CreatePipelineReleaseRequest) (*CreatePipelineReleaseResponse, error)
 	// List the releases in a pipeline
 	//
 	// Lists the commited versions of a pipeline, identified by its resource
 	// name, which is formed by the parent namespace and ID of the pipeline.
-	ListNamespacePipelineReleases(context.Context, *ListNamespacePipelineReleasesRequest) (*ListNamespacePipelineReleasesResponse, error)
+	ListPipelineReleases(context.Context, *ListPipelineReleasesRequest) (*ListPipelineReleasesResponse, error)
 	// Get a pipeline release
 	//
 	// Gets the details of a pipeline release, where the pipeline is identified
 	// by its resource name, formed by its parent namespace and ID.
-	GetNamespacePipelineRelease(context.Context, *GetNamespacePipelineReleaseRequest) (*GetNamespacePipelineReleaseResponse, error)
+	GetPipelineRelease(context.Context, *GetPipelineReleaseRequest) (*GetPipelineReleaseResponse, error)
 	// Update a pipeline release
 	//
 	// Updates the details of a pipeline release, where the pipeline is
@@ -933,7 +933,7 @@ type PipelinePublicServiceServer interface {
 	//
 	// The authenticated namespace must be the parent of the pipeline in order to
 	// perform this action.
-	UpdateNamespacePipelineRelease(context.Context, *UpdateNamespacePipelineReleaseRequest) (*UpdateNamespacePipelineReleaseResponse, error)
+	UpdatePipelineRelease(context.Context, *UpdatePipelineReleaseRequest) (*UpdatePipelineReleaseResponse, error)
 	// Delete a pipeline release
 	//
 	// Deletes a pipeline release, where the pipeline is identified by its
@@ -941,12 +941,12 @@ type PipelinePublicServiceServer interface {
 	//
 	// The authenticated namespace must be the parent of the pipeline in order to
 	// perform this action.
-	DeleteNamespacePipelineRelease(context.Context, *DeleteNamespacePipelineReleaseRequest) (*DeleteNamespacePipelineReleaseResponse, error)
+	DeletePipelineRelease(context.Context, *DeletePipelineReleaseRequest) (*DeletePipelineReleaseResponse, error)
 	// Clone a pipeline release
 	//
 	// Clones a pipeline release owned by a namespace. The new pipeline may have a
 	// different parent, and this can be either a namespace or an organization.
-	CloneNamespacePipelineRelease(context.Context, *CloneNamespacePipelineReleaseRequest) (*CloneNamespacePipelineReleaseResponse, error)
+	ClonePipelineRelease(context.Context, *ClonePipelineReleaseRequest) (*ClonePipelineReleaseResponse, error)
 	// Trigger a pipeline release
 	//
 	// Triggers the synchronous execution of of a pipeline. While the trigger
@@ -956,7 +956,7 @@ type PipelinePublicServiceServer interface {
 	//
 	// The pipeline is identified by its resource name, formed by its parent
 	// namespace and ID.
-	TriggerNamespacePipelineRelease(context.Context, *TriggerNamespacePipelineReleaseRequest) (*TriggerNamespacePipelineReleaseResponse, error)
+	TriggerPipelineRelease(context.Context, *TriggerPipelineReleaseRequest) (*TriggerPipelineReleaseResponse, error)
 	// Trigger a pipeline release asynchronously
 	//
 	// Triggers the asynchronous execution of of a pipeline. While the trigger
@@ -966,7 +966,7 @@ type PipelinePublicServiceServer interface {
 	//
 	// The pipeline is identified by its resource name, formed by its parent
 	// namespace and ID.
-	TriggerAsyncNamespacePipelineRelease(context.Context, *TriggerAsyncNamespacePipelineReleaseRequest) (*TriggerAsyncNamespacePipelineReleaseResponse, error)
+	TriggerAsyncPipelineRelease(context.Context, *TriggerAsyncPipelineReleaseRequest) (*TriggerAsyncPipelineReleaseResponse, error)
 	// Create a secret
 	//
 	// Creates a new secret under the parenthood of an namespace.
@@ -1083,68 +1083,68 @@ func (UnimplementedPipelinePublicServiceServer) Readiness(context.Context, *Read
 func (UnimplementedPipelinePublicServiceServer) GetHubStats(context.Context, *GetHubStatsRequest) (*GetHubStatsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetHubStats not implemented")
 }
+func (UnimplementedPipelinePublicServiceServer) ListPublicPipelines(context.Context, *ListPublicPipelinesRequest) (*ListPublicPipelinesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListPublicPipelines not implemented")
+}
 func (UnimplementedPipelinePublicServiceServer) ListPipelines(context.Context, *ListPipelinesRequest) (*ListPipelinesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPipelines not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) ListNamespacePipelines(context.Context, *ListNamespacePipelinesRequest) (*ListNamespacePipelinesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListNamespacePipelines not implemented")
+func (UnimplementedPipelinePublicServiceServer) CreatePipeline(context.Context, *CreatePipelineRequest) (*CreatePipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreatePipeline not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) CreateNamespacePipeline(context.Context, *CreateNamespacePipelineRequest) (*CreateNamespacePipelineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateNamespacePipeline not implemented")
+func (UnimplementedPipelinePublicServiceServer) GetPipeline(context.Context, *GetPipelineRequest) (*GetPipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPipeline not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) GetNamespacePipeline(context.Context, *GetNamespacePipelineRequest) (*GetNamespacePipelineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetNamespacePipeline not implemented")
+func (UnimplementedPipelinePublicServiceServer) UpdatePipeline(context.Context, *UpdatePipelineRequest) (*UpdatePipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdatePipeline not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) UpdateNamespacePipeline(context.Context, *UpdateNamespacePipelineRequest) (*UpdateNamespacePipelineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateNamespacePipeline not implemented")
+func (UnimplementedPipelinePublicServiceServer) DeletePipeline(context.Context, *DeletePipelineRequest) (*DeletePipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeletePipeline not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) DeleteNamespacePipeline(context.Context, *DeleteNamespacePipelineRequest) (*DeleteNamespacePipelineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteNamespacePipeline not implemented")
+func (UnimplementedPipelinePublicServiceServer) ValidatePipeline(context.Context, *ValidatePipelineRequest) (*ValidatePipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ValidatePipeline not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) ValidateNamespacePipeline(context.Context, *ValidateNamespacePipelineRequest) (*ValidateNamespacePipelineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ValidateNamespacePipeline not implemented")
+func (UnimplementedPipelinePublicServiceServer) RenamePipeline(context.Context, *RenamePipelineRequest) (*RenamePipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RenamePipeline not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) RenameNamespacePipeline(context.Context, *RenameNamespacePipelineRequest) (*RenameNamespacePipelineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RenameNamespacePipeline not implemented")
-}
-func (UnimplementedPipelinePublicServiceServer) CloneNamespacePipeline(context.Context, *CloneNamespacePipelineRequest) (*CloneNamespacePipelineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CloneNamespacePipeline not implemented")
+func (UnimplementedPipelinePublicServiceServer) ClonePipeline(context.Context, *ClonePipelineRequest) (*ClonePipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ClonePipeline not implemented")
 }
 func (UnimplementedPipelinePublicServiceServer) DispatchPipelineWebhookEvent(context.Context, *DispatchPipelineWebhookEventRequest) (*DispatchPipelineWebhookEventResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DispatchPipelineWebhookEvent not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) TriggerNamespacePipeline(context.Context, *TriggerNamespacePipelineRequest) (*TriggerNamespacePipelineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TriggerNamespacePipeline not implemented")
+func (UnimplementedPipelinePublicServiceServer) TriggerPipeline(context.Context, *TriggerPipelineRequest) (*TriggerPipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerPipeline not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) TriggerNamespacePipelineWithStream(*TriggerNamespacePipelineWithStreamRequest, grpc.ServerStreamingServer[TriggerNamespacePipelineWithStreamResponse]) error {
-	return status.Errorf(codes.Unimplemented, "method TriggerNamespacePipelineWithStream not implemented")
+func (UnimplementedPipelinePublicServiceServer) TriggerPipelineWithStream(*TriggerPipelineWithStreamRequest, grpc.ServerStreamingServer[TriggerPipelineWithStreamResponse]) error {
+	return status.Errorf(codes.Unimplemented, "method TriggerPipelineWithStream not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) TriggerAsyncNamespacePipeline(context.Context, *TriggerAsyncNamespacePipelineRequest) (*TriggerAsyncNamespacePipelineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncNamespacePipeline not implemented")
+func (UnimplementedPipelinePublicServiceServer) TriggerAsyncPipeline(context.Context, *TriggerAsyncPipelineRequest) (*TriggerAsyncPipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncPipeline not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) CreateNamespacePipelineRelease(context.Context, *CreateNamespacePipelineReleaseRequest) (*CreateNamespacePipelineReleaseResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateNamespacePipelineRelease not implemented")
+func (UnimplementedPipelinePublicServiceServer) CreatePipelineRelease(context.Context, *CreatePipelineReleaseRequest) (*CreatePipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreatePipelineRelease not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) ListNamespacePipelineReleases(context.Context, *ListNamespacePipelineReleasesRequest) (*ListNamespacePipelineReleasesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListNamespacePipelineReleases not implemented")
+func (UnimplementedPipelinePublicServiceServer) ListPipelineReleases(context.Context, *ListPipelineReleasesRequest) (*ListPipelineReleasesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineReleases not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) GetNamespacePipelineRelease(context.Context, *GetNamespacePipelineReleaseRequest) (*GetNamespacePipelineReleaseResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetNamespacePipelineRelease not implemented")
+func (UnimplementedPipelinePublicServiceServer) GetPipelineRelease(context.Context, *GetPipelineReleaseRequest) (*GetPipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPipelineRelease not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) UpdateNamespacePipelineRelease(context.Context, *UpdateNamespacePipelineReleaseRequest) (*UpdateNamespacePipelineReleaseResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateNamespacePipelineRelease not implemented")
+func (UnimplementedPipelinePublicServiceServer) UpdatePipelineRelease(context.Context, *UpdatePipelineReleaseRequest) (*UpdatePipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdatePipelineRelease not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) DeleteNamespacePipelineRelease(context.Context, *DeleteNamespacePipelineReleaseRequest) (*DeleteNamespacePipelineReleaseResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteNamespacePipelineRelease not implemented")
+func (UnimplementedPipelinePublicServiceServer) DeletePipelineRelease(context.Context, *DeletePipelineReleaseRequest) (*DeletePipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeletePipelineRelease not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) CloneNamespacePipelineRelease(context.Context, *CloneNamespacePipelineReleaseRequest) (*CloneNamespacePipelineReleaseResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CloneNamespacePipelineRelease not implemented")
+func (UnimplementedPipelinePublicServiceServer) ClonePipelineRelease(context.Context, *ClonePipelineReleaseRequest) (*ClonePipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ClonePipelineRelease not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) TriggerNamespacePipelineRelease(context.Context, *TriggerNamespacePipelineReleaseRequest) (*TriggerNamespacePipelineReleaseResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TriggerNamespacePipelineRelease not implemented")
+func (UnimplementedPipelinePublicServiceServer) TriggerPipelineRelease(context.Context, *TriggerPipelineReleaseRequest) (*TriggerPipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerPipelineRelease not implemented")
 }
-func (UnimplementedPipelinePublicServiceServer) TriggerAsyncNamespacePipelineRelease(context.Context, *TriggerAsyncNamespacePipelineReleaseRequest) (*TriggerAsyncNamespacePipelineReleaseResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncNamespacePipelineRelease not implemented")
+func (UnimplementedPipelinePublicServiceServer) TriggerAsyncPipelineRelease(context.Context, *TriggerAsyncPipelineReleaseRequest) (*TriggerAsyncPipelineReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncPipelineRelease not implemented")
 }
 func (UnimplementedPipelinePublicServiceServer) CreateNamespaceSecret(context.Context, *CreateNamespaceSecretRequest) (*CreateNamespaceSecretResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateNamespaceSecret not implemented")
@@ -1277,6 +1277,24 @@ func _PipelinePublicService_GetHubStats_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PipelinePublicService_ListPublicPipelines_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListPublicPipelinesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PipelinePublicServiceServer).ListPublicPipelines(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PipelinePublicService_ListPublicPipelines_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PipelinePublicServiceServer).ListPublicPipelines(ctx, req.(*ListPublicPipelinesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PipelinePublicService_ListPipelines_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListPipelinesRequest)
 	if err := dec(in); err != nil {
@@ -1295,146 +1313,128 @@ func _PipelinePublicService_ListPipelines_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_ListNamespacePipelines_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListNamespacePipelinesRequest)
+func _PipelinePublicService_CreatePipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreatePipelineRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).ListNamespacePipelines(ctx, in)
+		return srv.(PipelinePublicServiceServer).CreatePipeline(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_ListNamespacePipelines_FullMethodName,
+		FullMethod: PipelinePublicService_CreatePipeline_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).ListNamespacePipelines(ctx, req.(*ListNamespacePipelinesRequest))
+		return srv.(PipelinePublicServiceServer).CreatePipeline(ctx, req.(*CreatePipelineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_CreateNamespacePipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateNamespacePipelineRequest)
+func _PipelinePublicService_GetPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPipelineRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).CreateNamespacePipeline(ctx, in)
+		return srv.(PipelinePublicServiceServer).GetPipeline(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_CreateNamespacePipeline_FullMethodName,
+		FullMethod: PipelinePublicService_GetPipeline_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).CreateNamespacePipeline(ctx, req.(*CreateNamespacePipelineRequest))
+		return srv.(PipelinePublicServiceServer).GetPipeline(ctx, req.(*GetPipelineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_GetNamespacePipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetNamespacePipelineRequest)
+func _PipelinePublicService_UpdatePipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdatePipelineRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).GetNamespacePipeline(ctx, in)
+		return srv.(PipelinePublicServiceServer).UpdatePipeline(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_GetNamespacePipeline_FullMethodName,
+		FullMethod: PipelinePublicService_UpdatePipeline_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).GetNamespacePipeline(ctx, req.(*GetNamespacePipelineRequest))
+		return srv.(PipelinePublicServiceServer).UpdatePipeline(ctx, req.(*UpdatePipelineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_UpdateNamespacePipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateNamespacePipelineRequest)
+func _PipelinePublicService_DeletePipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeletePipelineRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).UpdateNamespacePipeline(ctx, in)
+		return srv.(PipelinePublicServiceServer).DeletePipeline(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_UpdateNamespacePipeline_FullMethodName,
+		FullMethod: PipelinePublicService_DeletePipeline_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).UpdateNamespacePipeline(ctx, req.(*UpdateNamespacePipelineRequest))
+		return srv.(PipelinePublicServiceServer).DeletePipeline(ctx, req.(*DeletePipelineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_DeleteNamespacePipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteNamespacePipelineRequest)
+func _PipelinePublicService_ValidatePipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ValidatePipelineRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).DeleteNamespacePipeline(ctx, in)
+		return srv.(PipelinePublicServiceServer).ValidatePipeline(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_DeleteNamespacePipeline_FullMethodName,
+		FullMethod: PipelinePublicService_ValidatePipeline_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).DeleteNamespacePipeline(ctx, req.(*DeleteNamespacePipelineRequest))
+		return srv.(PipelinePublicServiceServer).ValidatePipeline(ctx, req.(*ValidatePipelineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_ValidateNamespacePipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ValidateNamespacePipelineRequest)
+func _PipelinePublicService_RenamePipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RenamePipelineRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).ValidateNamespacePipeline(ctx, in)
+		return srv.(PipelinePublicServiceServer).RenamePipeline(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_ValidateNamespacePipeline_FullMethodName,
+		FullMethod: PipelinePublicService_RenamePipeline_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).ValidateNamespacePipeline(ctx, req.(*ValidateNamespacePipelineRequest))
+		return srv.(PipelinePublicServiceServer).RenamePipeline(ctx, req.(*RenamePipelineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_RenameNamespacePipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RenameNamespacePipelineRequest)
+func _PipelinePublicService_ClonePipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ClonePipelineRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).RenameNamespacePipeline(ctx, in)
+		return srv.(PipelinePublicServiceServer).ClonePipeline(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_RenameNamespacePipeline_FullMethodName,
+		FullMethod: PipelinePublicService_ClonePipeline_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).RenameNamespacePipeline(ctx, req.(*RenameNamespacePipelineRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PipelinePublicService_CloneNamespacePipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CloneNamespacePipelineRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).CloneNamespacePipeline(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PipelinePublicService_CloneNamespacePipeline_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).CloneNamespacePipeline(ctx, req.(*CloneNamespacePipelineRequest))
+		return srv.(PipelinePublicServiceServer).ClonePipeline(ctx, req.(*ClonePipelineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1457,193 +1457,193 @@ func _PipelinePublicService_DispatchPipelineWebhookEvent_Handler(srv interface{}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_TriggerNamespacePipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TriggerNamespacePipelineRequest)
+func _PipelinePublicService_TriggerPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerPipelineRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).TriggerNamespacePipeline(ctx, in)
+		return srv.(PipelinePublicServiceServer).TriggerPipeline(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_TriggerNamespacePipeline_FullMethodName,
+		FullMethod: PipelinePublicService_TriggerPipeline_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).TriggerNamespacePipeline(ctx, req.(*TriggerNamespacePipelineRequest))
+		return srv.(PipelinePublicServiceServer).TriggerPipeline(ctx, req.(*TriggerPipelineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_TriggerNamespacePipelineWithStream_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(TriggerNamespacePipelineWithStreamRequest)
+func _PipelinePublicService_TriggerPipelineWithStream_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(TriggerPipelineWithStreamRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(PipelinePublicServiceServer).TriggerNamespacePipelineWithStream(m, &grpc.GenericServerStream[TriggerNamespacePipelineWithStreamRequest, TriggerNamespacePipelineWithStreamResponse]{ServerStream: stream})
+	return srv.(PipelinePublicServiceServer).TriggerPipelineWithStream(m, &grpc.GenericServerStream[TriggerPipelineWithStreamRequest, TriggerPipelineWithStreamResponse]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type PipelinePublicService_TriggerNamespacePipelineWithStreamServer = grpc.ServerStreamingServer[TriggerNamespacePipelineWithStreamResponse]
+type PipelinePublicService_TriggerPipelineWithStreamServer = grpc.ServerStreamingServer[TriggerPipelineWithStreamResponse]
 
-func _PipelinePublicService_TriggerAsyncNamespacePipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TriggerAsyncNamespacePipelineRequest)
+func _PipelinePublicService_TriggerAsyncPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerAsyncPipelineRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).TriggerAsyncNamespacePipeline(ctx, in)
+		return srv.(PipelinePublicServiceServer).TriggerAsyncPipeline(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_TriggerAsyncNamespacePipeline_FullMethodName,
+		FullMethod: PipelinePublicService_TriggerAsyncPipeline_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).TriggerAsyncNamespacePipeline(ctx, req.(*TriggerAsyncNamespacePipelineRequest))
+		return srv.(PipelinePublicServiceServer).TriggerAsyncPipeline(ctx, req.(*TriggerAsyncPipelineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_CreateNamespacePipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateNamespacePipelineReleaseRequest)
+func _PipelinePublicService_CreatePipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreatePipelineReleaseRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).CreateNamespacePipelineRelease(ctx, in)
+		return srv.(PipelinePublicServiceServer).CreatePipelineRelease(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_CreateNamespacePipelineRelease_FullMethodName,
+		FullMethod: PipelinePublicService_CreatePipelineRelease_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).CreateNamespacePipelineRelease(ctx, req.(*CreateNamespacePipelineReleaseRequest))
+		return srv.(PipelinePublicServiceServer).CreatePipelineRelease(ctx, req.(*CreatePipelineReleaseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_ListNamespacePipelineReleases_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListNamespacePipelineReleasesRequest)
+func _PipelinePublicService_ListPipelineReleases_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListPipelineReleasesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).ListNamespacePipelineReleases(ctx, in)
+		return srv.(PipelinePublicServiceServer).ListPipelineReleases(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_ListNamespacePipelineReleases_FullMethodName,
+		FullMethod: PipelinePublicService_ListPipelineReleases_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).ListNamespacePipelineReleases(ctx, req.(*ListNamespacePipelineReleasesRequest))
+		return srv.(PipelinePublicServiceServer).ListPipelineReleases(ctx, req.(*ListPipelineReleasesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_GetNamespacePipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetNamespacePipelineReleaseRequest)
+func _PipelinePublicService_GetPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPipelineReleaseRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).GetNamespacePipelineRelease(ctx, in)
+		return srv.(PipelinePublicServiceServer).GetPipelineRelease(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_GetNamespacePipelineRelease_FullMethodName,
+		FullMethod: PipelinePublicService_GetPipelineRelease_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).GetNamespacePipelineRelease(ctx, req.(*GetNamespacePipelineReleaseRequest))
+		return srv.(PipelinePublicServiceServer).GetPipelineRelease(ctx, req.(*GetPipelineReleaseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_UpdateNamespacePipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateNamespacePipelineReleaseRequest)
+func _PipelinePublicService_UpdatePipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdatePipelineReleaseRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).UpdateNamespacePipelineRelease(ctx, in)
+		return srv.(PipelinePublicServiceServer).UpdatePipelineRelease(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_UpdateNamespacePipelineRelease_FullMethodName,
+		FullMethod: PipelinePublicService_UpdatePipelineRelease_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).UpdateNamespacePipelineRelease(ctx, req.(*UpdateNamespacePipelineReleaseRequest))
+		return srv.(PipelinePublicServiceServer).UpdatePipelineRelease(ctx, req.(*UpdatePipelineReleaseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_DeleteNamespacePipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteNamespacePipelineReleaseRequest)
+func _PipelinePublicService_DeletePipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeletePipelineReleaseRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).DeleteNamespacePipelineRelease(ctx, in)
+		return srv.(PipelinePublicServiceServer).DeletePipelineRelease(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_DeleteNamespacePipelineRelease_FullMethodName,
+		FullMethod: PipelinePublicService_DeletePipelineRelease_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).DeleteNamespacePipelineRelease(ctx, req.(*DeleteNamespacePipelineReleaseRequest))
+		return srv.(PipelinePublicServiceServer).DeletePipelineRelease(ctx, req.(*DeletePipelineReleaseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_CloneNamespacePipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CloneNamespacePipelineReleaseRequest)
+func _PipelinePublicService_ClonePipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ClonePipelineReleaseRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).CloneNamespacePipelineRelease(ctx, in)
+		return srv.(PipelinePublicServiceServer).ClonePipelineRelease(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_CloneNamespacePipelineRelease_FullMethodName,
+		FullMethod: PipelinePublicService_ClonePipelineRelease_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).CloneNamespacePipelineRelease(ctx, req.(*CloneNamespacePipelineReleaseRequest))
+		return srv.(PipelinePublicServiceServer).ClonePipelineRelease(ctx, req.(*ClonePipelineReleaseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_TriggerNamespacePipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TriggerNamespacePipelineReleaseRequest)
+func _PipelinePublicService_TriggerPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerPipelineReleaseRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).TriggerNamespacePipelineRelease(ctx, in)
+		return srv.(PipelinePublicServiceServer).TriggerPipelineRelease(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_TriggerNamespacePipelineRelease_FullMethodName,
+		FullMethod: PipelinePublicService_TriggerPipelineRelease_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).TriggerNamespacePipelineRelease(ctx, req.(*TriggerNamespacePipelineReleaseRequest))
+		return srv.(PipelinePublicServiceServer).TriggerPipelineRelease(ctx, req.(*TriggerPipelineReleaseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_TriggerAsyncNamespacePipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TriggerAsyncNamespacePipelineReleaseRequest)
+func _PipelinePublicService_TriggerAsyncPipelineRelease_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerAsyncPipelineReleaseRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).TriggerAsyncNamespacePipelineRelease(ctx, in)
+		return srv.(PipelinePublicServiceServer).TriggerAsyncPipelineRelease(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PipelinePublicService_TriggerAsyncNamespacePipelineRelease_FullMethodName,
+		FullMethod: PipelinePublicService_TriggerAsyncPipelineRelease_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).TriggerAsyncNamespacePipelineRelease(ctx, req.(*TriggerAsyncNamespacePipelineReleaseRequest))
+		return srv.(PipelinePublicServiceServer).TriggerAsyncPipelineRelease(ctx, req.(*TriggerAsyncPipelineReleaseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2010,84 +2010,84 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _PipelinePublicService_GetHubStats_Handler,
 		},
 		{
+			MethodName: "ListPublicPipelines",
+			Handler:    _PipelinePublicService_ListPublicPipelines_Handler,
+		},
+		{
 			MethodName: "ListPipelines",
 			Handler:    _PipelinePublicService_ListPipelines_Handler,
 		},
 		{
-			MethodName: "ListNamespacePipelines",
-			Handler:    _PipelinePublicService_ListNamespacePipelines_Handler,
+			MethodName: "CreatePipeline",
+			Handler:    _PipelinePublicService_CreatePipeline_Handler,
 		},
 		{
-			MethodName: "CreateNamespacePipeline",
-			Handler:    _PipelinePublicService_CreateNamespacePipeline_Handler,
+			MethodName: "GetPipeline",
+			Handler:    _PipelinePublicService_GetPipeline_Handler,
 		},
 		{
-			MethodName: "GetNamespacePipeline",
-			Handler:    _PipelinePublicService_GetNamespacePipeline_Handler,
+			MethodName: "UpdatePipeline",
+			Handler:    _PipelinePublicService_UpdatePipeline_Handler,
 		},
 		{
-			MethodName: "UpdateNamespacePipeline",
-			Handler:    _PipelinePublicService_UpdateNamespacePipeline_Handler,
+			MethodName: "DeletePipeline",
+			Handler:    _PipelinePublicService_DeletePipeline_Handler,
 		},
 		{
-			MethodName: "DeleteNamespacePipeline",
-			Handler:    _PipelinePublicService_DeleteNamespacePipeline_Handler,
+			MethodName: "ValidatePipeline",
+			Handler:    _PipelinePublicService_ValidatePipeline_Handler,
 		},
 		{
-			MethodName: "ValidateNamespacePipeline",
-			Handler:    _PipelinePublicService_ValidateNamespacePipeline_Handler,
+			MethodName: "RenamePipeline",
+			Handler:    _PipelinePublicService_RenamePipeline_Handler,
 		},
 		{
-			MethodName: "RenameNamespacePipeline",
-			Handler:    _PipelinePublicService_RenameNamespacePipeline_Handler,
-		},
-		{
-			MethodName: "CloneNamespacePipeline",
-			Handler:    _PipelinePublicService_CloneNamespacePipeline_Handler,
+			MethodName: "ClonePipeline",
+			Handler:    _PipelinePublicService_ClonePipeline_Handler,
 		},
 		{
 			MethodName: "DispatchPipelineWebhookEvent",
 			Handler:    _PipelinePublicService_DispatchPipelineWebhookEvent_Handler,
 		},
 		{
-			MethodName: "TriggerNamespacePipeline",
-			Handler:    _PipelinePublicService_TriggerNamespacePipeline_Handler,
+			MethodName: "TriggerPipeline",
+			Handler:    _PipelinePublicService_TriggerPipeline_Handler,
 		},
 		{
-			MethodName: "TriggerAsyncNamespacePipeline",
-			Handler:    _PipelinePublicService_TriggerAsyncNamespacePipeline_Handler,
+			MethodName: "TriggerAsyncPipeline",
+			Handler:    _PipelinePublicService_TriggerAsyncPipeline_Handler,
 		},
 		{
-			MethodName: "CreateNamespacePipelineRelease",
-			Handler:    _PipelinePublicService_CreateNamespacePipelineRelease_Handler,
+			MethodName: "CreatePipelineRelease",
+			Handler:    _PipelinePublicService_CreatePipelineRelease_Handler,
 		},
 		{
-			MethodName: "ListNamespacePipelineReleases",
-			Handler:    _PipelinePublicService_ListNamespacePipelineReleases_Handler,
+			MethodName: "ListPipelineReleases",
+			Handler:    _PipelinePublicService_ListPipelineReleases_Handler,
 		},
 		{
-			MethodName: "GetNamespacePipelineRelease",
-			Handler:    _PipelinePublicService_GetNamespacePipelineRelease_Handler,
+			MethodName: "GetPipelineRelease",
+			Handler:    _PipelinePublicService_GetPipelineRelease_Handler,
 		},
 		{
-			MethodName: "UpdateNamespacePipelineRelease",
-			Handler:    _PipelinePublicService_UpdateNamespacePipelineRelease_Handler,
+			MethodName: "UpdatePipelineRelease",
+			Handler:    _PipelinePublicService_UpdatePipelineRelease_Handler,
 		},
 		{
-			MethodName: "DeleteNamespacePipelineRelease",
-			Handler:    _PipelinePublicService_DeleteNamespacePipelineRelease_Handler,
+			MethodName: "DeletePipelineRelease",
+			Handler:    _PipelinePublicService_DeletePipelineRelease_Handler,
 		},
 		{
-			MethodName: "CloneNamespacePipelineRelease",
-			Handler:    _PipelinePublicService_CloneNamespacePipelineRelease_Handler,
+			MethodName: "ClonePipelineRelease",
+			Handler:    _PipelinePublicService_ClonePipelineRelease_Handler,
 		},
 		{
-			MethodName: "TriggerNamespacePipelineRelease",
-			Handler:    _PipelinePublicService_TriggerNamespacePipelineRelease_Handler,
+			MethodName: "TriggerPipelineRelease",
+			Handler:    _PipelinePublicService_TriggerPipelineRelease_Handler,
 		},
 		{
-			MethodName: "TriggerAsyncNamespacePipelineRelease",
-			Handler:    _PipelinePublicService_TriggerAsyncNamespacePipelineRelease_Handler,
+			MethodName: "TriggerAsyncPipelineRelease",
+			Handler:    _PipelinePublicService_TriggerAsyncPipelineRelease_Handler,
 		},
 		{
 			MethodName: "CreateNamespaceSecret",
@@ -2168,8 +2168,8 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "TriggerNamespacePipelineWithStream",
-			Handler:       _PipelinePublicService_TriggerNamespacePipelineWithStream_Handler,
+			StreamName:    "TriggerPipelineWithStream",
+			Handler:       _PipelinePublicService_TriggerPipelineWithStream_Handler,
 			ServerStreams: true,
 		},
 	},

@@ -661,10 +661,12 @@ type File struct {
 	Tags []string `protobuf:"bytes,15,rep,name=tags,proto3" json:"tags,omitempty"`
 	// Custom metadata provided by the user during file upload.
 	ExternalMetadata *structpb.Struct `protobuf:"bytes,16,opt,name=external_metadata,json=externalMetadata,proto3,oneof" json:"external_metadata,omitempty"`
-	// Knowledge base IDs (hash-based) that this file is associated with.
+	// Knowledge base resource names that this file is associated with.
+	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}`
 	// A file can belong to multiple knowledge bases within the same namespace.
 	// This field is populated from the file_knowledge_base junction table.
-	KnowledgeBaseIds []string `protobuf:"bytes,17,rep,name=knowledge_base_ids,json=knowledgeBaseIds,proto3" json:"knowledge_base_ids,omitempty"`
+	// Follows AIP-122 for resource name references.
+	KnowledgeBases []string `protobuf:"bytes,17,rep,name=knowledge_bases,json=knowledgeBases,proto3" json:"knowledge_bases,omitempty"`
 	// Resource name of the owner namespace.
 	// Example: "namespaces/usr-7k2m9p4w1n3" or "namespaces/org-3t8f5q2x6b1"
 	OwnerName string `protobuf:"bytes,18,opt,name=owner_name,json=ownerName,proto3" json:"owner_name,omitempty"`
@@ -696,9 +698,11 @@ type File struct {
 	ConvertingPipeline *string `protobuf:"bytes,25,opt,name=converting_pipeline,json=convertingPipeline,proto3,oneof" json:"converting_pipeline,omitempty"`
 	// Length of the file in the specified unit type.
 	Length *File_Position `protobuf:"bytes,26,opt,name=length,proto3" json:"length,omitempty"`
-	// Collection IDs (hash-based) that this file belongs to.
+	// Collection resource names that this file belongs to.
+	// Format: `namespaces/{namespace}/collections/{collection}`
 	// This field is system-managed and populated from collection membership.
-	CollectionIds []string `protobuf:"bytes,27,rep,name=collection_ids,json=collectionIds,proto3" json:"collection_ids,omitempty"`
+	// Follows AIP-122 for resource name references.
+	Collections []string `protobuf:"bytes,27,rep,name=collections,proto3" json:"collections,omitempty"`
 	// Soft delete timestamp.
 	DeleteTime    *timestamppb.Timestamp `protobuf:"bytes,28,opt,name=delete_time,json=deleteTime,proto3" json:"delete_time,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -847,9 +851,9 @@ func (x *File) GetExternalMetadata() *structpb.Struct {
 	return nil
 }
 
-func (x *File) GetKnowledgeBaseIds() []string {
+func (x *File) GetKnowledgeBases() []string {
 	if x != nil {
-		return x.KnowledgeBaseIds
+		return x.KnowledgeBases
 	}
 	return nil
 }
@@ -917,9 +921,9 @@ func (x *File) GetLength() *File_Position {
 	return nil
 }
 
-func (x *File) GetCollectionIds() []string {
+func (x *File) GetCollections() []string {
 	if x != nil {
-		return x.CollectionIds
+		return x.Collections
 	}
 	return nil
 }
@@ -940,12 +944,13 @@ type CreateFileRequest struct {
 	Parent string `protobuf:"bytes,1,opt,name=parent,proto3" json:"parent,omitempty"`
 	// The file to create.
 	File *File `protobuf:"bytes,2,opt,name=file,proto3" json:"file,omitempty"`
-	// The knowledge base ID to associate this file with.
+	// The knowledge base resource name to associate this file with.
+	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}`
 	// Files can be associated with multiple KBs, this specifies the initial
-	// association.
-	KnowledgeBaseId string `protobuf:"bytes,3,opt,name=knowledge_base_id,json=knowledgeBaseId,proto3" json:"knowledge_base_id,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	// association. Follows AIP-122 for resource name references.
+	KnowledgeBase string `protobuf:"bytes,3,opt,name=knowledge_base,json=knowledgeBase,proto3" json:"knowledge_base,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CreateFileRequest) Reset() {
@@ -992,9 +997,9 @@ func (x *CreateFileRequest) GetFile() *File {
 	return nil
 }
 
-func (x *CreateFileRequest) GetKnowledgeBaseId() string {
+func (x *CreateFileRequest) GetKnowledgeBase() string {
 	if x != nil {
-		return x.KnowledgeBaseId
+		return x.KnowledgeBase
 	}
 	return ""
 }
@@ -1096,8 +1101,9 @@ func (x *DeleteFileRequest) GetName() string {
 // DeleteFileResponse represents a response for deleting a file.
 type DeleteFileResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The file id.
-	FileId        string `protobuf:"bytes,1,opt,name=file_id,json=fileId,proto3" json:"file_id,omitempty"`
+	// The resource name of the deleted file.
+	// Format: `namespaces/{namespace}/files/{file}`
+	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1132,9 +1138,9 @@ func (*DeleteFileResponse) Descriptor() ([]byte, []int) {
 	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *DeleteFileResponse) GetFileId() string {
+func (x *DeleteFileResponse) GetName() string {
 	if x != nil {
-		return x.FileId
+		return x.Name
 	}
 	return ""
 }
@@ -1142,8 +1148,9 @@ func (x *DeleteFileResponse) GetFileId() string {
 // DeleteFileAdminRequest represents a request to delete a file (admin only).
 type DeleteFileAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The file id.
-	FileId        string `protobuf:"bytes,1,opt,name=file_id,json=fileId,proto3" json:"file_id,omitempty"`
+	// The resource name of the file to delete.
+	// Format: `namespaces/{namespace}/files/{file}`
+	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1178,9 +1185,9 @@ func (*DeleteFileAdminRequest) Descriptor() ([]byte, []int) {
 	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *DeleteFileAdminRequest) GetFileId() string {
+func (x *DeleteFileAdminRequest) GetName() string {
 	if x != nil {
-		return x.FileId
+		return x.Name
 	}
 	return ""
 }
@@ -1189,8 +1196,9 @@ func (x *DeleteFileAdminRequest) GetFileId() string {
 // only).
 type DeleteFileAdminResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The file id.
-	FileId        string `protobuf:"bytes,1,opt,name=file_id,json=fileId,proto3" json:"file_id,omitempty"`
+	// The resource name of the deleted file.
+	// Format: `namespaces/{namespace}/files/{file}`
+	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1225,9 +1233,9 @@ func (*DeleteFileAdminResponse) Descriptor() ([]byte, []int) {
 	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *DeleteFileAdminResponse) GetFileId() string {
+func (x *DeleteFileAdminResponse) GetName() string {
 	if x != nil {
-		return x.FileId
+		return x.Name
 	}
 	return ""
 }
@@ -1532,9 +1540,6 @@ type UpdateFileRequest struct {
 	// resource. Format: `namespaces/{namespace}/files/{file}`
 	File *File `protobuf:"bytes,1,opt,name=file,proto3" json:"file,omitempty"`
 	// The update mask specifies the subset of fields that should be modified.
-	//
-	// For more information about this field, see
-	// https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#field-mask.
 	UpdateMask    *fieldmaskpb.FieldMask `protobuf:"bytes,2,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1898,7 +1903,7 @@ var File_artifact_v1alpha_file_proto protoreflect.FileDescriptor
 
 const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\n" +
-	"\x1bartifact/v1alpha/file.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16mgmt/v1beta/mgmt.proto\"\xdc\x14\n" +
+	"\x1bartifact/v1alpha/file.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16mgmt/v1beta/mgmt.proto\"\x95\x15\n" +
 	"\x04File\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12&\n" +
@@ -1918,8 +1923,9 @@ const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\ftotal_chunks\x18\r \x01(\x05B\x03\xe0A\x03R\vtotalChunks\x12&\n" +
 	"\ftotal_tokens\x18\x0e \x01(\x05B\x03\xe0A\x03R\vtotalTokens\x12\x17\n" +
 	"\x04tags\x18\x0f \x03(\tB\x03\xe0A\x01R\x04tags\x12N\n" +
-	"\x11external_metadata\x18\x10 \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x01H\x00R\x10externalMetadata\x88\x01\x01\x121\n" +
-	"\x12knowledge_base_ids\x18\x11 \x03(\tB\x03\xe0A\x03R\x10knowledgeBaseIds\x12\"\n" +
+	"\x11external_metadata\x18\x10 \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x01H\x00R\x10externalMetadata\x88\x01\x01\x12O\n" +
+	"\x0fknowledge_bases\x18\x11 \x03(\tB&\xe0A\x03\xfaA \n" +
+	"\x1eapi.instill.tech/KnowledgeBaseR\x0eknowledgeBases\x12\"\n" +
 	"\n" +
 	"owner_name\x18\x12 \x01(\tB\x03\xe0A\x03R\townerName\x122\n" +
 	"\x05owner\x18\x13 \x01(\v2\x12.mgmt.v1beta.OwnerB\x03\xe0A\x03H\x01R\x05owner\x88\x01\x01\x12&\n" +
@@ -1930,8 +1936,9 @@ const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"object_uid\x18\x17 \x01(\tB\x03\xe0A\x04R\tobjectUid\x12&\n" +
 	"\fdownload_url\x18\x18 \x01(\tB\x03\xe0A\x03R\vdownloadUrl\x129\n" +
 	"\x13converting_pipeline\x18\x19 \x01(\tB\x03\xe0A\x01H\x03R\x12convertingPipeline\x88\x01\x01\x12<\n" +
-	"\x06length\x18\x1a \x01(\v2\x1f.artifact.v1alpha.File.PositionB\x03\xe0A\x03R\x06length\x12*\n" +
-	"\x0ecollection_ids\x18\x1b \x03(\tB\x03\xe0A\x03R\rcollectionIds\x12@\n" +
+	"\x06length\x18\x1a \x01(\v2\x1f.artifact.v1alpha.File.PositionB\x03\xe0A\x03R\x06length\x12E\n" +
+	"\vcollections\x18\x1b \x03(\tB#\xe0A\x03\xfaA\x1d\n" +
+	"\x1bapi.instill.tech/CollectionR\vcollections\x12@\n" +
 	"\vdelete_time\x18\x1c \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
 	"deleteTime\x1a\xd3\x01\n" +
 	"\bPosition\x12=\n" +
@@ -2010,21 +2017,24 @@ const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\x06_ownerB\n" +
 	"\n" +
 	"\b_creatorB\x16\n" +
-	"\x14_converting_pipeline\"\x92\x01\n" +
+	"\x14_converting_pipeline\"\xb0\x01\n" +
 	"\x11CreateFileRequest\x12\x1b\n" +
 	"\x06parent\x18\x01 \x01(\tB\x03\xe0A\x02R\x06parent\x12/\n" +
-	"\x04file\x18\x02 \x01(\v2\x16.artifact.v1alpha.FileB\x03\xe0A\x01R\x04file\x12/\n" +
-	"\x11knowledge_base_id\x18\x03 \x01(\tB\x03\xe0A\x02R\x0fknowledgeBaseId\"E\n" +
+	"\x04file\x18\x02 \x01(\v2\x16.artifact.v1alpha.FileB\x03\xe0A\x01R\x04file\x12M\n" +
+	"\x0eknowledge_base\x18\x03 \x01(\tB&\xe0A\x02\xfaA \n" +
+	"\x1eapi.instill.tech/KnowledgeBaseR\rknowledgeBase\"E\n" +
 	"\x12CreateFileResponse\x12/\n" +
-	"\x04file\x18\x01 \x01(\v2\x16.artifact.v1alpha.FileB\x03\xe0A\x03R\x04file\",\n" +
-	"\x11DeleteFileRequest\x12\x17\n" +
-	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"2\n" +
-	"\x12DeleteFileResponse\x12\x1c\n" +
-	"\afile_id\x18\x01 \x01(\tB\x03\xe0A\x03R\x06fileId\"6\n" +
-	"\x16DeleteFileAdminRequest\x12\x1c\n" +
-	"\afile_id\x18\x01 \x01(\tB\x03\xe0A\x02R\x06fileId\"7\n" +
-	"\x17DeleteFileAdminResponse\x12\x1c\n" +
-	"\afile_id\x18\x01 \x01(\tB\x03\xe0A\x03R\x06fileId\"\xc9\x01\n" +
+	"\x04file\x18\x01 \x01(\v2\x16.artifact.v1alpha.FileB\x03\xe0A\x03R\x04file\"F\n" +
+	"\x11DeleteFileRequest\x121\n" +
+	"\x04name\x18\x01 \x01(\tB\x1d\xe0A\x02\xfaA\x17\n" +
+	"\x15api.instill.tech/FileR\x04name\"-\n" +
+	"\x12DeleteFileResponse\x12\x17\n" +
+	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\"K\n" +
+	"\x16DeleteFileAdminRequest\x121\n" +
+	"\x04name\x18\x01 \x01(\tB\x1d\xe0A\x02\xfaA\x17\n" +
+	"\x15api.instill.tech/FileR\x04name\"2\n" +
+	"\x17DeleteFileAdminResponse\x12\x17\n" +
+	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\"\xc9\x01\n" +
 	"\x10ListFilesRequest\x12\x1b\n" +
 	"\x06parent\x18\x01 \x01(\tB\x03\xe0A\x02R\x06parent\x12%\n" +
 	"\tpage_size\x18\x02 \x01(\x05B\x03\xe0A\x01H\x00R\bpageSize\x88\x01\x01\x12'\n" +
@@ -2040,9 +2050,10 @@ const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\n" +
 	"total_size\x18\x02 \x01(\x05B\x03\xe0A\x03R\ttotalSize\x12 \n" +
 	"\tpage_size\x18\x03 \x01(\x05B\x03\xe0A\x03R\bpageSize\x12+\n" +
-	"\x0fnext_page_token\x18\x04 \x01(\tB\x03\xe0A\x03R\rnextPageToken\"\xdf\x01\n" +
-	"\x0eGetFileRequest\x12\x17\n" +
-	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\x129\n" +
+	"\x0fnext_page_token\x18\x04 \x01(\tB\x03\xe0A\x03R\rnextPageToken\"\xf9\x01\n" +
+	"\x0eGetFileRequest\x121\n" +
+	"\x04name\x18\x01 \x01(\tB\x1d\xe0A\x02\xfaA\x17\n" +
+	"\x15api.instill.tech/FileR\x04name\x129\n" +
 	"\x04view\x18\x02 \x01(\x0e2\x1b.artifact.v1alpha.File.ViewB\x03\xe0A\x01H\x00R\x04view\x88\x01\x01\x12[\n" +
 	"\x10storage_provider\x18\x03 \x01(\x0e2&.artifact.v1alpha.File.StorageProviderB\x03\xe0A\x01H\x01R\x0fstorageProvider\x88\x01\x01B\a\n" +
 	"\x05_viewB\x13\n" +
@@ -2056,9 +2067,10 @@ const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\vupdate_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskB\x03\xe0A\x02R\n" +
 	"updateMask\"E\n" +
 	"\x12UpdateFileResponse\x12/\n" +
-	"\x04file\x18\x01 \x01(\v2\x16.artifact.v1alpha.FileB\x03\xe0A\x03R\x04file\"/\n" +
-	"\x14ReprocessFileRequest\x12\x17\n" +
-	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"g\n" +
+	"\x04file\x18\x01 \x01(\v2\x16.artifact.v1alpha.FileB\x03\xe0A\x03R\x04file\"I\n" +
+	"\x14ReprocessFileRequest\x121\n" +
+	"\x04name\x18\x01 \x01(\tB\x1d\xe0A\x02\xfaA\x17\n" +
+	"\x15api.instill.tech/FileR\x04name\"g\n" +
 	"\x15ReprocessFileResponse\x12/\n" +
 	"\x04file\x18\x01 \x01(\v2\x16.artifact.v1alpha.FileB\x03\xe0A\x03R\x04file\x12\x1d\n" +
 	"\amessage\x18\x02 \x01(\tB\x03\xe0A\x03R\amessage\"\x8b\x01\n" +

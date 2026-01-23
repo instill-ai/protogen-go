@@ -189,9 +189,10 @@ func (x *System) GetDeleteTime() *timestamppb.Timestamp {
 // GetSystemAdminRequest (admin only)
 type GetSystemAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// System ID (e.g., "sys-8f3a2k9e7c1") or slug (e.g., "openai")
+	// The resource name of the system to retrieve.
+	// Format: `systems/{system}`
 	// If not specified, returns the default system.
-	SystemId      string `protobuf:"bytes,1,opt,name=system_id,json=systemId,proto3" json:"system_id,omitempty"`
+	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -226,9 +227,9 @@ func (*GetSystemAdminRequest) Descriptor() ([]byte, []int) {
 	return file_artifact_v1alpha_system_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *GetSystemAdminRequest) GetSystemId() string {
+func (x *GetSystemAdminRequest) GetName() string {
 	if x != nil {
-		return x.SystemId
+		return x.Name
 	}
 	return ""
 }
@@ -377,11 +378,6 @@ type UpdateSystemAdminRequest struct {
 	// The system fields to update.
 	System *System `protobuf:"bytes,1,opt,name=system,proto3" json:"system,omitempty"`
 	// The update mask specifies the subset of fields that should be modified.
-	// Fields specified in the mask are relative to the system (e.g., `config`,
-	// `description`).
-	//
-	// For more information about field masks, see:
-	// https://google.aip.dev/161
 	UpdateMask    *fieldmaskpb.FieldMask `protobuf:"bytes,2,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -563,9 +559,10 @@ func (x *ListSystemsAdminResponse) GetSystems() []*System {
 // DeleteSystemAdminRequest (admin only)
 type DeleteSystemAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// System ID (e.g., "sys-8f3a2k9e7c1") or slug (e.g., "openai") to delete.
+	// The resource name of the system to delete.
+	// Format: `systems/{system}`
 	// The default system cannot be deleted.
-	SystemId      string `protobuf:"bytes,1,opt,name=system_id,json=systemId,proto3" json:"system_id,omitempty"`
+	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -600,9 +597,9 @@ func (*DeleteSystemAdminRequest) Descriptor() ([]byte, []int) {
 	return file_artifact_v1alpha_system_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *DeleteSystemAdminRequest) GetSystemId() string {
+func (x *DeleteSystemAdminRequest) GetName() string {
 	if x != nil {
-		return x.SystemId
+		return x.Name
 	}
 	return ""
 }
@@ -668,8 +665,9 @@ func (x *DeleteSystemAdminResponse) GetMessage() string {
 // change.
 type RenameSystemAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// System ID (e.g., "sys-8f3a2k9e7c1") or slug (e.g., "openai") to rename.
-	SystemId string `protobuf:"bytes,1,opt,name=system_id,json=systemId,proto3" json:"system_id,omitempty"`
+	// The resource name of the system to rename.
+	// Format: `systems/{system}`
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// The new display name. A new slug will be generated from this.
 	// The old slug will be added to aliases for backward compatibility.
 	NewDisplayName string `protobuf:"bytes,2,opt,name=new_display_name,json=newDisplayName,proto3" json:"new_display_name,omitempty"`
@@ -707,9 +705,9 @@ func (*RenameSystemAdminRequest) Descriptor() ([]byte, []int) {
 	return file_artifact_v1alpha_system_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *RenameSystemAdminRequest) GetSystemId() string {
+func (x *RenameSystemAdminRequest) GetName() string {
 	if x != nil {
-		return x.SystemId
+		return x.Name
 	}
 	return ""
 }
@@ -771,9 +769,9 @@ func (x *RenameSystemAdminResponse) GetSystem() *System {
 // Sets a system as the default. This will unset any currently default system.
 type SetDefaultSystemAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// System ID (e.g., "sys-8f3a2k9e7c1") or slug (e.g., "openai") to set as
-	// default.
-	SystemId      string `protobuf:"bytes,1,opt,name=system_id,json=systemId,proto3" json:"system_id,omitempty"`
+	// The resource name of the system to set as default.
+	// Format: `systems/{system}`
+	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -808,9 +806,9 @@ func (*SetDefaultSystemAdminRequest) Descriptor() ([]byte, []int) {
 	return file_artifact_v1alpha_system_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *SetDefaultSystemAdminRequest) GetSystemId() string {
+func (x *SetDefaultSystemAdminRequest) GetName() string {
 	if x != nil {
-		return x.SystemId
+		return x.Name
 	}
 	return ""
 }
@@ -949,7 +947,7 @@ var File_artifact_v1alpha_system_proto protoreflect.FileDescriptor
 
 const file_artifact_v1alpha_system_proto_rawDesc = "" +
 	"\n" +
-	"\x1dartifact/v1alpha/system.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x87\x04\n" +
+	"\x1dartifact/v1alpha/system.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb7\x04\n" +
 	"\x06System\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12&\n" +
@@ -966,11 +964,13 @@ const file_artifact_v1alpha_system_proto_rawDesc = "" +
 	"is_default\x18\n" +
 	" \x01(\bB\x03\xe0A\x03R\tisDefault\x12E\n" +
 	"\vdelete_time\x18\v \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03H\x01R\n" +
-	"deleteTime\x88\x01\x01B\x0e\n" +
+	"deleteTime\x88\x01\x01:.\xeaA+\n" +
+	"\x17api.instill.tech/System\x12\x10systems/{system}B\x0e\n" +
 	"\f_descriptionB\x0e\n" +
-	"\f_delete_time\"4\n" +
-	"\x15GetSystemAdminRequest\x12\x1b\n" +
-	"\tsystem_id\x18\x01 \x01(\tR\bsystemId\"J\n" +
+	"\f_delete_time\"L\n" +
+	"\x15GetSystemAdminRequest\x123\n" +
+	"\x04name\x18\x01 \x01(\tB\x1f\xe0A\x01\xfaA\x19\n" +
+	"\x17api.instill.tech/SystemR\x04name\"J\n" +
 	"\x16GetSystemAdminResponse\x120\n" +
 	"\x06system\x18\x01 \x01(\v2\x18.artifact.v1alpha.SystemR\x06system\"L\n" +
 	"\x18CreateSystemAdminRequest\x120\n" +
@@ -985,19 +985,22 @@ const file_artifact_v1alpha_system_proto_rawDesc = "" +
 	"\x06system\x18\x01 \x01(\v2\x18.artifact.v1alpha.SystemR\x06system\"\x19\n" +
 	"\x17ListSystemsAdminRequest\"N\n" +
 	"\x18ListSystemsAdminResponse\x122\n" +
-	"\asystems\x18\x01 \x03(\v2\x18.artifact.v1alpha.SystemR\asystems\"7\n" +
-	"\x18DeleteSystemAdminRequest\x12\x1b\n" +
-	"\tsystem_id\x18\x01 \x01(\tR\bsystemId\"O\n" +
+	"\asystems\x18\x01 \x03(\v2\x18.artifact.v1alpha.SystemR\asystems\"O\n" +
+	"\x18DeleteSystemAdminRequest\x123\n" +
+	"\x04name\x18\x01 \x01(\tB\x1f\xe0A\x02\xfaA\x19\n" +
+	"\x17api.instill.tech/SystemR\x04name\"O\n" +
 	"\x19DeleteSystemAdminResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"k\n" +
-	"\x18RenameSystemAdminRequest\x12 \n" +
-	"\tsystem_id\x18\x01 \x01(\tB\x03\xe0A\x02R\bsystemId\x12-\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"~\n" +
+	"\x18RenameSystemAdminRequest\x123\n" +
+	"\x04name\x18\x01 \x01(\tB\x1f\xe0A\x02\xfaA\x19\n" +
+	"\x17api.instill.tech/SystemR\x04name\x12-\n" +
 	"\x10new_display_name\x18\x02 \x01(\tB\x03\xe0A\x02R\x0enewDisplayName\"M\n" +
 	"\x19RenameSystemAdminResponse\x120\n" +
-	"\x06system\x18\x01 \x01(\v2\x18.artifact.v1alpha.SystemR\x06system\";\n" +
-	"\x1cSetDefaultSystemAdminRequest\x12\x1b\n" +
-	"\tsystem_id\x18\x01 \x01(\tR\bsystemId\"Q\n" +
+	"\x06system\x18\x01 \x01(\v2\x18.artifact.v1alpha.SystemR\x06system\"S\n" +
+	"\x1cSetDefaultSystemAdminRequest\x123\n" +
+	"\x04name\x18\x01 \x01(\tB\x1f\xe0A\x02\xfaA\x19\n" +
+	"\x17api.instill.tech/SystemR\x04name\"Q\n" +
 	"\x1dSetDefaultSystemAdminResponse\x120\n" +
 	"\x06system\x18\x01 \x01(\v2\x18.artifact.v1alpha.SystemR\x06system\"\x1e\n" +
 	"\x1cGetDefaultSystemAdminRequest\"Q\n" +

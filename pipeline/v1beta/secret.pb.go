@@ -487,9 +487,6 @@ type UpdateNamespaceSecretRequest struct {
 	// the resource. Format: `namespaces/{namespace}/secrets/{secret}`
 	Secret *Secret `protobuf:"bytes,1,opt,name=secret,proto3" json:"secret,omitempty"`
 	// The update mask specifies the subset of fields that should be modified.
-	//
-	// For more information about this field, see
-	// https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#field-mask.
 	UpdateMask    *fieldmaskpb.FieldMask `protobuf:"bytes,2,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache

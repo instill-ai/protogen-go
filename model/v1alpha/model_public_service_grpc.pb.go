@@ -19,33 +19,33 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ModelPublicService_Liveness_FullMethodName                                    = "/model.v1alpha.ModelPublicService/Liveness"
-	ModelPublicService_Readiness_FullMethodName                                   = "/model.v1alpha.ModelPublicService/Readiness"
-	ModelPublicService_ListModelDefinitions_FullMethodName                        = "/model.v1alpha.ModelPublicService/ListModelDefinitions"
-	ModelPublicService_ListAvailableRegions_FullMethodName                        = "/model.v1alpha.ModelPublicService/ListAvailableRegions"
-	ModelPublicService_GetModelDefinition_FullMethodName                          = "/model.v1alpha.ModelPublicService/GetModelDefinition"
-	ModelPublicService_ListModels_FullMethodName                                  = "/model.v1alpha.ModelPublicService/ListModels"
-	ModelPublicService_ListNamespaceModels_FullMethodName                         = "/model.v1alpha.ModelPublicService/ListNamespaceModels"
-	ModelPublicService_CreateNamespaceModel_FullMethodName                        = "/model.v1alpha.ModelPublicService/CreateNamespaceModel"
-	ModelPublicService_GetNamespaceModel_FullMethodName                           = "/model.v1alpha.ModelPublicService/GetNamespaceModel"
-	ModelPublicService_UpdateNamespaceModel_FullMethodName                        = "/model.v1alpha.ModelPublicService/UpdateNamespaceModel"
-	ModelPublicService_DeleteNamespaceModel_FullMethodName                        = "/model.v1alpha.ModelPublicService/DeleteNamespaceModel"
-	ModelPublicService_RenameNamespaceModel_FullMethodName                        = "/model.v1alpha.ModelPublicService/RenameNamespaceModel"
-	ModelPublicService_WatchNamespaceModel_FullMethodName                         = "/model.v1alpha.ModelPublicService/WatchNamespaceModel"
-	ModelPublicService_WatchNamespaceLatestModel_FullMethodName                   = "/model.v1alpha.ModelPublicService/WatchNamespaceLatestModel"
-	ModelPublicService_ListNamespaceModelVersions_FullMethodName                  = "/model.v1alpha.ModelPublicService/ListNamespaceModelVersions"
-	ModelPublicService_DeleteNamespaceModelVersion_FullMethodName                 = "/model.v1alpha.ModelPublicService/DeleteNamespaceModelVersion"
-	ModelPublicService_TriggerNamespaceModel_FullMethodName                       = "/model.v1alpha.ModelPublicService/TriggerNamespaceModel"
-	ModelPublicService_TriggerAsyncNamespaceModel_FullMethodName                  = "/model.v1alpha.ModelPublicService/TriggerAsyncNamespaceModel"
-	ModelPublicService_TriggerNamespaceLatestModel_FullMethodName                 = "/model.v1alpha.ModelPublicService/TriggerNamespaceLatestModel"
-	ModelPublicService_TriggerAsyncNamespaceLatestModel_FullMethodName            = "/model.v1alpha.ModelPublicService/TriggerAsyncNamespaceLatestModel"
-	ModelPublicService_TriggerNamespaceModelBinaryFileUpload_FullMethodName       = "/model.v1alpha.ModelPublicService/TriggerNamespaceModelBinaryFileUpload"
-	ModelPublicService_TriggerNamespaceLatestModelBinaryFileUpload_FullMethodName = "/model.v1alpha.ModelPublicService/TriggerNamespaceLatestModelBinaryFileUpload"
-	ModelPublicService_GetNamespaceModelOperation_FullMethodName                  = "/model.v1alpha.ModelPublicService/GetNamespaceModelOperation"
-	ModelPublicService_GetNamespaceLatestModelOperation_FullMethodName            = "/model.v1alpha.ModelPublicService/GetNamespaceLatestModelOperation"
-	ModelPublicService_GetModelOperation_FullMethodName                           = "/model.v1alpha.ModelPublicService/GetModelOperation"
-	ModelPublicService_ListModelRuns_FullMethodName                               = "/model.v1alpha.ModelPublicService/ListModelRuns"
-	ModelPublicService_ListModelRunsByRequester_FullMethodName                    = "/model.v1alpha.ModelPublicService/ListModelRunsByRequester"
+	ModelPublicService_Liveness_FullMethodName                            = "/model.v1alpha.ModelPublicService/Liveness"
+	ModelPublicService_Readiness_FullMethodName                           = "/model.v1alpha.ModelPublicService/Readiness"
+	ModelPublicService_ListModelDefinitions_FullMethodName                = "/model.v1alpha.ModelPublicService/ListModelDefinitions"
+	ModelPublicService_ListAvailableRegions_FullMethodName                = "/model.v1alpha.ModelPublicService/ListAvailableRegions"
+	ModelPublicService_GetModelDefinition_FullMethodName                  = "/model.v1alpha.ModelPublicService/GetModelDefinition"
+	ModelPublicService_ListPublicModels_FullMethodName                    = "/model.v1alpha.ModelPublicService/ListPublicModels"
+	ModelPublicService_ListModels_FullMethodName                          = "/model.v1alpha.ModelPublicService/ListModels"
+	ModelPublicService_CreateModel_FullMethodName                         = "/model.v1alpha.ModelPublicService/CreateModel"
+	ModelPublicService_GetModel_FullMethodName                            = "/model.v1alpha.ModelPublicService/GetModel"
+	ModelPublicService_UpdateModel_FullMethodName                         = "/model.v1alpha.ModelPublicService/UpdateModel"
+	ModelPublicService_DeleteModel_FullMethodName                         = "/model.v1alpha.ModelPublicService/DeleteModel"
+	ModelPublicService_RenameModel_FullMethodName                         = "/model.v1alpha.ModelPublicService/RenameModel"
+	ModelPublicService_WatchModelVersion_FullMethodName                   = "/model.v1alpha.ModelPublicService/WatchModelVersion"
+	ModelPublicService_WatchModel_FullMethodName                          = "/model.v1alpha.ModelPublicService/WatchModel"
+	ModelPublicService_ListModelVersions_FullMethodName                   = "/model.v1alpha.ModelPublicService/ListModelVersions"
+	ModelPublicService_DeleteModelVersion_FullMethodName                  = "/model.v1alpha.ModelPublicService/DeleteModelVersion"
+	ModelPublicService_TriggerModelVersion_FullMethodName                 = "/model.v1alpha.ModelPublicService/TriggerModelVersion"
+	ModelPublicService_TriggerAsyncModelVersion_FullMethodName            = "/model.v1alpha.ModelPublicService/TriggerAsyncModelVersion"
+	ModelPublicService_TriggerModel_FullMethodName                        = "/model.v1alpha.ModelPublicService/TriggerModel"
+	ModelPublicService_TriggerAsyncModel_FullMethodName                   = "/model.v1alpha.ModelPublicService/TriggerAsyncModel"
+	ModelPublicService_TriggerModelVersionBinaryFileUpload_FullMethodName = "/model.v1alpha.ModelPublicService/TriggerModelVersionBinaryFileUpload"
+	ModelPublicService_TriggerModelBinaryFileUpload_FullMethodName        = "/model.v1alpha.ModelPublicService/TriggerModelBinaryFileUpload"
+	ModelPublicService_GetModelVersionOperation_FullMethodName            = "/model.v1alpha.ModelPublicService/GetModelVersionOperation"
+	ModelPublicService_GetModelOperation_FullMethodName                   = "/model.v1alpha.ModelPublicService/GetModelOperation"
+	ModelPublicService_GetOperation_FullMethodName                        = "/model.v1alpha.ModelPublicService/GetOperation"
+	ModelPublicService_ListModelRuns_FullMethodName                       = "/model.v1alpha.ModelPublicService/ListModelRuns"
+	ModelPublicService_ListModelRunsByRequester_FullMethodName            = "/model.v1alpha.ModelPublicService/ListModelRunsByRequester"
 )
 
 // ModelPublicServiceClient is the client API for ModelPublicService service.
@@ -77,14 +77,14 @@ type ModelPublicServiceClient interface {
 	//
 	// Returns the details of a model definition.
 	GetModelDefinition(ctx context.Context, in *GetModelDefinitionRequest, opts ...grpc.CallOption) (*GetModelDefinitionResponse, error)
+	// List public models
+	//
+	// Returns a paginated list of public models.
+	ListPublicModels(ctx context.Context, in *ListPublicModelsRequest, opts ...grpc.CallOption) (*ListPublicModelsResponse, error)
 	// List models
 	//
 	// Returns a paginated list of models.
 	ListModels(ctx context.Context, in *ListModelsRequest, opts ...grpc.CallOption) (*ListModelsResponse, error)
-	// List namespace models
-	//
-	// Returns a paginated list of models.
-	ListNamespaceModels(ctx context.Context, in *ListNamespaceModelsRequest, opts ...grpc.CallOption) (*ListNamespaceModelsResponse, error)
 	// Create a new model
 	//
 	// Creates a new model under the parenthood of a namespace. This is an
@@ -92,12 +92,12 @@ type ModelPublicServiceClient interface {
 	// created in order to respond. Instead, it will return a response with the
 	// necessary information to access the result and status of the creation
 	// operation.
-	CreateNamespaceModel(ctx context.Context, in *CreateNamespaceModelRequest, opts ...grpc.CallOption) (*CreateNamespaceModelResponse, error)
+	CreateModel(ctx context.Context, in *CreateModelRequest, opts ...grpc.CallOption) (*CreateModelResponse, error)
 	// Get a model
 	//
 	// Returns the detail of a model, accessing it by the model ID and its parent
 	// namespace.
-	GetNamespaceModel(ctx context.Context, in *GetNamespaceModelRequest, opts ...grpc.CallOption) (*GetNamespaceModelResponse, error)
+	GetModel(ctx context.Context, in *GetModelRequest, opts ...grpc.CallOption) (*GetModelResponse, error)
 	// Update a model
 	//
 	// Updates a model, accessing it by its resource name, which is defined by
@@ -105,85 +105,84 @@ type ModelPublicServiceClient interface {
 	//
 	// In REST requests, only the supplied model fields will be taken into
 	// account when updating the resource.
-	UpdateNamespaceModel(ctx context.Context, in *UpdateNamespaceModelRequest, opts ...grpc.CallOption) (*UpdateNamespaceModelResponse, error)
+	UpdateModel(ctx context.Context, in *UpdateModelRequest, opts ...grpc.CallOption) (*UpdateModelResponse, error)
 	// Delete a model
 	//
 	// Deletes a model, accesing it by its resource name, which is defined by the
 	// parent namespace and the ID of the model.
-	DeleteNamespaceModel(ctx context.Context, in *DeleteNamespaceModelRequest, opts ...grpc.CallOption) (*DeleteNamespaceModelResponse, error)
+	DeleteModel(ctx context.Context, in *DeleteModelRequest, opts ...grpc.CallOption) (*DeleteModelResponse, error)
 	// Rename a model
 	//
 	// Renames a model, accesing it by its resource name, which is defined by the
 	// parent namespace and the ID of the model.
-	RenameNamespaceModel(ctx context.Context, in *RenameNamespaceModelRequest, opts ...grpc.CallOption) (*RenameNamespaceModelResponse, error)
+	RenameModel(ctx context.Context, in *RenameModelRequest, opts ...grpc.CallOption) (*RenameModelResponse, error)
 	// Watch the state of a model version
 	//
 	// Returns the state of a model. The model resource allocation and scaling
 	// actions take some time, during which a model will be in various state. This
 	// endpoint allows clients to track the state.
-	WatchNamespaceModel(ctx context.Context, in *WatchNamespaceModelRequest, opts ...grpc.CallOption) (*WatchNamespaceModelResponse, error)
+	WatchModelVersion(ctx context.Context, in *WatchModelVersionRequest, opts ...grpc.CallOption) (*WatchModelVersionResponse, error)
 	// Watch the state of the latest model version
 	//
 	// Returns the state of the latest model version. The model resource
 	// allocation and scaling actions take some time, during which a model will be
 	// in various state. This endpoint allows clients to track the state.
-	WatchNamespaceLatestModel(ctx context.Context, in *WatchNamespaceLatestModelRequest, opts ...grpc.CallOption) (*WatchNamespaceLatestModelResponse, error)
+	WatchModel(ctx context.Context, in *WatchModelRequest, opts ...grpc.CallOption) (*WatchModelResponse, error)
 	// List namespace model versions
 	//
 	// Returns a paginated list of version of a model namespace that belong to the
 	// specified namespace. Contains model version and digest.
-	ListNamespaceModelVersions(ctx context.Context, in *ListNamespaceModelVersionsRequest, opts ...grpc.CallOption) (*ListNamespaceModelVersionsResponse, error)
+	ListModelVersions(ctx context.Context, in *ListModelVersionsRequest, opts ...grpc.CallOption) (*ListModelVersionsResponse, error)
 	// Delete a model version
 	//
 	// Deletes a model version, accesing it by its resource name, which is defined
 	// by the parent namespace and the ID of the model, and version.
-	DeleteNamespaceModelVersion(ctx context.Context, in *DeleteNamespaceModelVersionRequest, opts ...grpc.CallOption) (*DeleteNamespaceModelVersionResponse, error)
+	DeleteModelVersion(ctx context.Context, in *DeleteModelVersionRequest, opts ...grpc.CallOption) (*DeleteModelVersionResponse, error)
 	// Trigger model inference
 	//
 	// Triggers a deployed model to infer the result of a set of task or
 	// questions.
-	TriggerNamespaceModel(ctx context.Context, in *TriggerNamespaceModelRequest, opts ...grpc.CallOption) (*TriggerNamespaceModelResponse, error)
+	TriggerModelVersion(ctx context.Context, in *TriggerModelVersionRequest, opts ...grpc.CallOption) (*TriggerModelVersionResponse, error)
 	// Trigger model inference asynchronously
 	//
 	// Triggers a deployed model to infer the result of a set of task or
 	// questions.
-	TriggerAsyncNamespaceModel(ctx context.Context, in *TriggerAsyncNamespaceModelRequest, opts ...grpc.CallOption) (*TriggerAsyncNamespaceModelResponse, error)
+	TriggerAsyncModelVersion(ctx context.Context, in *TriggerAsyncModelVersionRequest, opts ...grpc.CallOption) (*TriggerAsyncModelVersionResponse, error)
 	// Trigger model inference
 	//
 	// Triggers the latest deployed model version to infer the result of a set of
 	// task or questions.
-	TriggerNamespaceLatestModel(ctx context.Context, in *TriggerNamespaceLatestModelRequest, opts ...grpc.CallOption) (*TriggerNamespaceLatestModelResponse, error)
+	TriggerModel(ctx context.Context, in *TriggerModelRequest, opts ...grpc.CallOption) (*TriggerModelResponse, error)
 	// Trigger model inference asynchronously
 	//
 	// Triggers the latest deployed model version to infer the result of a set of
 	// task or questions.
-	TriggerAsyncNamespaceLatestModel(ctx context.Context, in *TriggerAsyncNamespaceLatestModelRequest, opts ...grpc.CallOption) (*TriggerAsyncNamespaceLatestModelResponse, error)
+	TriggerAsyncModel(ctx context.Context, in *TriggerAsyncModelRequest, opts ...grpc.CallOption) (*TriggerAsyncModelResponse, error)
 	// Trigger model inference with a binary input
 	//
 	// Triggers a deployed model to infer the result of a task or question,
 	// submitted as a binary file.
-	TriggerNamespaceModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[TriggerNamespaceModelBinaryFileUploadRequest, TriggerNamespaceModelBinaryFileUploadResponse], error)
+	TriggerModelVersionBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[TriggerModelVersionBinaryFileUploadRequest, TriggerModelVersionBinaryFileUploadResponse], error)
 	// Trigger model inference with a binary input
 	//
 	// Triggers the latest deployed model version to infer the result of a set of
 	// task or questions, submitted as a binary file.
-	TriggerNamespaceLatestModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[TriggerNamespaceLatestModelBinaryFileUploadRequest, TriggerNamespaceLatestModelBinaryFileUploadResponse], error)
-	// Get the details of the long-running operation from a namespace model
-	// with a particular version
+	TriggerModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[TriggerModelBinaryFileUploadRequest, TriggerModelBinaryFileUploadResponse], error)
+	// Get the details of the long-running operation from a model version
 	//
 	// This method allows requesters to request the status and outcome of
 	// long-running operations in a model, such as trigger.
-	GetNamespaceModelOperation(ctx context.Context, in *GetNamespaceModelOperationRequest, opts ...grpc.CallOption) (*GetNamespaceModelOperationResponse, error)
-	// Get the details of the latest long-running operation from a namespace model
-	//
-	// This method allows requesters to request the status and outcome of
-	// long-running operations in a model, such as trigger.
-	GetNamespaceLatestModelOperation(ctx context.Context, in *GetNamespaceLatestModelOperationRequest, opts ...grpc.CallOption) (*GetNamespaceLatestModelOperationResponse, error)
-	// Get the details of a long-running operation
+	GetModelVersionOperation(ctx context.Context, in *GetModelVersionOperationRequest, opts ...grpc.CallOption) (*GetModelVersionOperationResponse, error)
+	// Get the details of the latest long-running operation from a model
 	//
 	// This method allows requesters to request the status and outcome of
 	// long-running operations in a model, such as trigger.
 	GetModelOperation(ctx context.Context, in *GetModelOperationRequest, opts ...grpc.CallOption) (*GetModelOperationResponse, error)
+	// Get the details of a long-running operation
+	//
+	// This method allows requesters to request the status and outcome of
+	// long-running operations in a model, such as trigger.
+	GetOperation(ctx context.Context, in *GetOperationRequest, opts ...grpc.CallOption) (*GetOperationResponse, error)
 	// List Model Runs
 	//
 	// Returns a paginated list of runs for a given model. When the requester is
@@ -257,6 +256,16 @@ func (c *modelPublicServiceClient) GetModelDefinition(ctx context.Context, in *G
 	return out, nil
 }
 
+func (c *modelPublicServiceClient) ListPublicModels(ctx context.Context, in *ListPublicModelsRequest, opts ...grpc.CallOption) (*ListPublicModelsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListPublicModelsResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_ListPublicModels_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *modelPublicServiceClient) ListModels(ctx context.Context, in *ListModelsRequest, opts ...grpc.CallOption) (*ListModelsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListModelsResponse)
@@ -267,186 +276,166 @@ func (c *modelPublicServiceClient) ListModels(ctx context.Context, in *ListModel
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) ListNamespaceModels(ctx context.Context, in *ListNamespaceModelsRequest, opts ...grpc.CallOption) (*ListNamespaceModelsResponse, error) {
+func (c *modelPublicServiceClient) CreateModel(ctx context.Context, in *CreateModelRequest, opts ...grpc.CallOption) (*CreateModelResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListNamespaceModelsResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_ListNamespaceModels_FullMethodName, in, out, cOpts...)
+	out := new(CreateModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_CreateModel_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) CreateNamespaceModel(ctx context.Context, in *CreateNamespaceModelRequest, opts ...grpc.CallOption) (*CreateNamespaceModelResponse, error) {
+func (c *modelPublicServiceClient) GetModel(ctx context.Context, in *GetModelRequest, opts ...grpc.CallOption) (*GetModelResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateNamespaceModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_CreateNamespaceModel_FullMethodName, in, out, cOpts...)
+	out := new(GetModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_GetModel_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) GetNamespaceModel(ctx context.Context, in *GetNamespaceModelRequest, opts ...grpc.CallOption) (*GetNamespaceModelResponse, error) {
+func (c *modelPublicServiceClient) UpdateModel(ctx context.Context, in *UpdateModelRequest, opts ...grpc.CallOption) (*UpdateModelResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetNamespaceModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_GetNamespaceModel_FullMethodName, in, out, cOpts...)
+	out := new(UpdateModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_UpdateModel_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) UpdateNamespaceModel(ctx context.Context, in *UpdateNamespaceModelRequest, opts ...grpc.CallOption) (*UpdateNamespaceModelResponse, error) {
+func (c *modelPublicServiceClient) DeleteModel(ctx context.Context, in *DeleteModelRequest, opts ...grpc.CallOption) (*DeleteModelResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateNamespaceModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_UpdateNamespaceModel_FullMethodName, in, out, cOpts...)
+	out := new(DeleteModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_DeleteModel_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) DeleteNamespaceModel(ctx context.Context, in *DeleteNamespaceModelRequest, opts ...grpc.CallOption) (*DeleteNamespaceModelResponse, error) {
+func (c *modelPublicServiceClient) RenameModel(ctx context.Context, in *RenameModelRequest, opts ...grpc.CallOption) (*RenameModelResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteNamespaceModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_DeleteNamespaceModel_FullMethodName, in, out, cOpts...)
+	out := new(RenameModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_RenameModel_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) RenameNamespaceModel(ctx context.Context, in *RenameNamespaceModelRequest, opts ...grpc.CallOption) (*RenameNamespaceModelResponse, error) {
+func (c *modelPublicServiceClient) WatchModelVersion(ctx context.Context, in *WatchModelVersionRequest, opts ...grpc.CallOption) (*WatchModelVersionResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RenameNamespaceModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_RenameNamespaceModel_FullMethodName, in, out, cOpts...)
+	out := new(WatchModelVersionResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_WatchModelVersion_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) WatchNamespaceModel(ctx context.Context, in *WatchNamespaceModelRequest, opts ...grpc.CallOption) (*WatchNamespaceModelResponse, error) {
+func (c *modelPublicServiceClient) WatchModel(ctx context.Context, in *WatchModelRequest, opts ...grpc.CallOption) (*WatchModelResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(WatchNamespaceModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_WatchNamespaceModel_FullMethodName, in, out, cOpts...)
+	out := new(WatchModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_WatchModel_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) WatchNamespaceLatestModel(ctx context.Context, in *WatchNamespaceLatestModelRequest, opts ...grpc.CallOption) (*WatchNamespaceLatestModelResponse, error) {
+func (c *modelPublicServiceClient) ListModelVersions(ctx context.Context, in *ListModelVersionsRequest, opts ...grpc.CallOption) (*ListModelVersionsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(WatchNamespaceLatestModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_WatchNamespaceLatestModel_FullMethodName, in, out, cOpts...)
+	out := new(ListModelVersionsResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_ListModelVersions_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) ListNamespaceModelVersions(ctx context.Context, in *ListNamespaceModelVersionsRequest, opts ...grpc.CallOption) (*ListNamespaceModelVersionsResponse, error) {
+func (c *modelPublicServiceClient) DeleteModelVersion(ctx context.Context, in *DeleteModelVersionRequest, opts ...grpc.CallOption) (*DeleteModelVersionResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListNamespaceModelVersionsResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_ListNamespaceModelVersions_FullMethodName, in, out, cOpts...)
+	out := new(DeleteModelVersionResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_DeleteModelVersion_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) DeleteNamespaceModelVersion(ctx context.Context, in *DeleteNamespaceModelVersionRequest, opts ...grpc.CallOption) (*DeleteNamespaceModelVersionResponse, error) {
+func (c *modelPublicServiceClient) TriggerModelVersion(ctx context.Context, in *TriggerModelVersionRequest, opts ...grpc.CallOption) (*TriggerModelVersionResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteNamespaceModelVersionResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_DeleteNamespaceModelVersion_FullMethodName, in, out, cOpts...)
+	out := new(TriggerModelVersionResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_TriggerModelVersion_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) TriggerNamespaceModel(ctx context.Context, in *TriggerNamespaceModelRequest, opts ...grpc.CallOption) (*TriggerNamespaceModelResponse, error) {
+func (c *modelPublicServiceClient) TriggerAsyncModelVersion(ctx context.Context, in *TriggerAsyncModelVersionRequest, opts ...grpc.CallOption) (*TriggerAsyncModelVersionResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TriggerNamespaceModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_TriggerNamespaceModel_FullMethodName, in, out, cOpts...)
+	out := new(TriggerAsyncModelVersionResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_TriggerAsyncModelVersion_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) TriggerAsyncNamespaceModel(ctx context.Context, in *TriggerAsyncNamespaceModelRequest, opts ...grpc.CallOption) (*TriggerAsyncNamespaceModelResponse, error) {
+func (c *modelPublicServiceClient) TriggerModel(ctx context.Context, in *TriggerModelRequest, opts ...grpc.CallOption) (*TriggerModelResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TriggerAsyncNamespaceModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_TriggerAsyncNamespaceModel_FullMethodName, in, out, cOpts...)
+	out := new(TriggerModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_TriggerModel_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) TriggerNamespaceLatestModel(ctx context.Context, in *TriggerNamespaceLatestModelRequest, opts ...grpc.CallOption) (*TriggerNamespaceLatestModelResponse, error) {
+func (c *modelPublicServiceClient) TriggerAsyncModel(ctx context.Context, in *TriggerAsyncModelRequest, opts ...grpc.CallOption) (*TriggerAsyncModelResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TriggerNamespaceLatestModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_TriggerNamespaceLatestModel_FullMethodName, in, out, cOpts...)
+	out := new(TriggerAsyncModelResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_TriggerAsyncModel_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *modelPublicServiceClient) TriggerAsyncNamespaceLatestModel(ctx context.Context, in *TriggerAsyncNamespaceLatestModelRequest, opts ...grpc.CallOption) (*TriggerAsyncNamespaceLatestModelResponse, error) {
+func (c *modelPublicServiceClient) TriggerModelVersionBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[TriggerModelVersionBinaryFileUploadRequest, TriggerModelVersionBinaryFileUploadResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TriggerAsyncNamespaceLatestModelResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_TriggerAsyncNamespaceLatestModel_FullMethodName, in, out, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[0], ModelPublicService_TriggerModelVersionBinaryFileUpload_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
-}
-
-func (c *modelPublicServiceClient) TriggerNamespaceModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[TriggerNamespaceModelBinaryFileUploadRequest, TriggerNamespaceModelBinaryFileUploadResponse], error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[0], ModelPublicService_TriggerNamespaceModelBinaryFileUpload_FullMethodName, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &grpc.GenericClientStream[TriggerNamespaceModelBinaryFileUploadRequest, TriggerNamespaceModelBinaryFileUploadResponse]{ClientStream: stream}
+	x := &grpc.GenericClientStream[TriggerModelVersionBinaryFileUploadRequest, TriggerModelVersionBinaryFileUploadResponse]{ClientStream: stream}
 	return x, nil
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type ModelPublicService_TriggerNamespaceModelBinaryFileUploadClient = grpc.ClientStreamingClient[TriggerNamespaceModelBinaryFileUploadRequest, TriggerNamespaceModelBinaryFileUploadResponse]
+type ModelPublicService_TriggerModelVersionBinaryFileUploadClient = grpc.ClientStreamingClient[TriggerModelVersionBinaryFileUploadRequest, TriggerModelVersionBinaryFileUploadResponse]
 
-func (c *modelPublicServiceClient) TriggerNamespaceLatestModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[TriggerNamespaceLatestModelBinaryFileUploadRequest, TriggerNamespaceLatestModelBinaryFileUploadResponse], error) {
+func (c *modelPublicServiceClient) TriggerModelBinaryFileUpload(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[TriggerModelBinaryFileUploadRequest, TriggerModelBinaryFileUploadResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[1], ModelPublicService_TriggerNamespaceLatestModelBinaryFileUpload_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &ModelPublicService_ServiceDesc.Streams[1], ModelPublicService_TriggerModelBinaryFileUpload_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[TriggerNamespaceLatestModelBinaryFileUploadRequest, TriggerNamespaceLatestModelBinaryFileUploadResponse]{ClientStream: stream}
+	x := &grpc.GenericClientStream[TriggerModelBinaryFileUploadRequest, TriggerModelBinaryFileUploadResponse]{ClientStream: stream}
 	return x, nil
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type ModelPublicService_TriggerNamespaceLatestModelBinaryFileUploadClient = grpc.ClientStreamingClient[TriggerNamespaceLatestModelBinaryFileUploadRequest, TriggerNamespaceLatestModelBinaryFileUploadResponse]
+type ModelPublicService_TriggerModelBinaryFileUploadClient = grpc.ClientStreamingClient[TriggerModelBinaryFileUploadRequest, TriggerModelBinaryFileUploadResponse]
 
-func (c *modelPublicServiceClient) GetNamespaceModelOperation(ctx context.Context, in *GetNamespaceModelOperationRequest, opts ...grpc.CallOption) (*GetNamespaceModelOperationResponse, error) {
+func (c *modelPublicServiceClient) GetModelVersionOperation(ctx context.Context, in *GetModelVersionOperationRequest, opts ...grpc.CallOption) (*GetModelVersionOperationResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetNamespaceModelOperationResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_GetNamespaceModelOperation_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *modelPublicServiceClient) GetNamespaceLatestModelOperation(ctx context.Context, in *GetNamespaceLatestModelOperationRequest, opts ...grpc.CallOption) (*GetNamespaceLatestModelOperationResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetNamespaceLatestModelOperationResponse)
-	err := c.cc.Invoke(ctx, ModelPublicService_GetNamespaceLatestModelOperation_FullMethodName, in, out, cOpts...)
+	out := new(GetModelVersionOperationResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_GetModelVersionOperation_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -457,6 +446,16 @@ func (c *modelPublicServiceClient) GetModelOperation(ctx context.Context, in *Ge
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetModelOperationResponse)
 	err := c.cc.Invoke(ctx, ModelPublicService_GetModelOperation_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *modelPublicServiceClient) GetOperation(ctx context.Context, in *GetOperationRequest, opts ...grpc.CallOption) (*GetOperationResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetOperationResponse)
+	err := c.cc.Invoke(ctx, ModelPublicService_GetOperation_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -512,14 +511,14 @@ type ModelPublicServiceServer interface {
 	//
 	// Returns the details of a model definition.
 	GetModelDefinition(context.Context, *GetModelDefinitionRequest) (*GetModelDefinitionResponse, error)
+	// List public models
+	//
+	// Returns a paginated list of public models.
+	ListPublicModels(context.Context, *ListPublicModelsRequest) (*ListPublicModelsResponse, error)
 	// List models
 	//
 	// Returns a paginated list of models.
 	ListModels(context.Context, *ListModelsRequest) (*ListModelsResponse, error)
-	// List namespace models
-	//
-	// Returns a paginated list of models.
-	ListNamespaceModels(context.Context, *ListNamespaceModelsRequest) (*ListNamespaceModelsResponse, error)
 	// Create a new model
 	//
 	// Creates a new model under the parenthood of a namespace. This is an
@@ -527,12 +526,12 @@ type ModelPublicServiceServer interface {
 	// created in order to respond. Instead, it will return a response with the
 	// necessary information to access the result and status of the creation
 	// operation.
-	CreateNamespaceModel(context.Context, *CreateNamespaceModelRequest) (*CreateNamespaceModelResponse, error)
+	CreateModel(context.Context, *CreateModelRequest) (*CreateModelResponse, error)
 	// Get a model
 	//
 	// Returns the detail of a model, accessing it by the model ID and its parent
 	// namespace.
-	GetNamespaceModel(context.Context, *GetNamespaceModelRequest) (*GetNamespaceModelResponse, error)
+	GetModel(context.Context, *GetModelRequest) (*GetModelResponse, error)
 	// Update a model
 	//
 	// Updates a model, accessing it by its resource name, which is defined by
@@ -540,85 +539,84 @@ type ModelPublicServiceServer interface {
 	//
 	// In REST requests, only the supplied model fields will be taken into
 	// account when updating the resource.
-	UpdateNamespaceModel(context.Context, *UpdateNamespaceModelRequest) (*UpdateNamespaceModelResponse, error)
+	UpdateModel(context.Context, *UpdateModelRequest) (*UpdateModelResponse, error)
 	// Delete a model
 	//
 	// Deletes a model, accesing it by its resource name, which is defined by the
 	// parent namespace and the ID of the model.
-	DeleteNamespaceModel(context.Context, *DeleteNamespaceModelRequest) (*DeleteNamespaceModelResponse, error)
+	DeleteModel(context.Context, *DeleteModelRequest) (*DeleteModelResponse, error)
 	// Rename a model
 	//
 	// Renames a model, accesing it by its resource name, which is defined by the
 	// parent namespace and the ID of the model.
-	RenameNamespaceModel(context.Context, *RenameNamespaceModelRequest) (*RenameNamespaceModelResponse, error)
+	RenameModel(context.Context, *RenameModelRequest) (*RenameModelResponse, error)
 	// Watch the state of a model version
 	//
 	// Returns the state of a model. The model resource allocation and scaling
 	// actions take some time, during which a model will be in various state. This
 	// endpoint allows clients to track the state.
-	WatchNamespaceModel(context.Context, *WatchNamespaceModelRequest) (*WatchNamespaceModelResponse, error)
+	WatchModelVersion(context.Context, *WatchModelVersionRequest) (*WatchModelVersionResponse, error)
 	// Watch the state of the latest model version
 	//
 	// Returns the state of the latest model version. The model resource
 	// allocation and scaling actions take some time, during which a model will be
 	// in various state. This endpoint allows clients to track the state.
-	WatchNamespaceLatestModel(context.Context, *WatchNamespaceLatestModelRequest) (*WatchNamespaceLatestModelResponse, error)
+	WatchModel(context.Context, *WatchModelRequest) (*WatchModelResponse, error)
 	// List namespace model versions
 	//
 	// Returns a paginated list of version of a model namespace that belong to the
 	// specified namespace. Contains model version and digest.
-	ListNamespaceModelVersions(context.Context, *ListNamespaceModelVersionsRequest) (*ListNamespaceModelVersionsResponse, error)
+	ListModelVersions(context.Context, *ListModelVersionsRequest) (*ListModelVersionsResponse, error)
 	// Delete a model version
 	//
 	// Deletes a model version, accesing it by its resource name, which is defined
 	// by the parent namespace and the ID of the model, and version.
-	DeleteNamespaceModelVersion(context.Context, *DeleteNamespaceModelVersionRequest) (*DeleteNamespaceModelVersionResponse, error)
+	DeleteModelVersion(context.Context, *DeleteModelVersionRequest) (*DeleteModelVersionResponse, error)
 	// Trigger model inference
 	//
 	// Triggers a deployed model to infer the result of a set of task or
 	// questions.
-	TriggerNamespaceModel(context.Context, *TriggerNamespaceModelRequest) (*TriggerNamespaceModelResponse, error)
+	TriggerModelVersion(context.Context, *TriggerModelVersionRequest) (*TriggerModelVersionResponse, error)
 	// Trigger model inference asynchronously
 	//
 	// Triggers a deployed model to infer the result of a set of task or
 	// questions.
-	TriggerAsyncNamespaceModel(context.Context, *TriggerAsyncNamespaceModelRequest) (*TriggerAsyncNamespaceModelResponse, error)
+	TriggerAsyncModelVersion(context.Context, *TriggerAsyncModelVersionRequest) (*TriggerAsyncModelVersionResponse, error)
 	// Trigger model inference
 	//
 	// Triggers the latest deployed model version to infer the result of a set of
 	// task or questions.
-	TriggerNamespaceLatestModel(context.Context, *TriggerNamespaceLatestModelRequest) (*TriggerNamespaceLatestModelResponse, error)
+	TriggerModel(context.Context, *TriggerModelRequest) (*TriggerModelResponse, error)
 	// Trigger model inference asynchronously
 	//
 	// Triggers the latest deployed model version to infer the result of a set of
 	// task or questions.
-	TriggerAsyncNamespaceLatestModel(context.Context, *TriggerAsyncNamespaceLatestModelRequest) (*TriggerAsyncNamespaceLatestModelResponse, error)
+	TriggerAsyncModel(context.Context, *TriggerAsyncModelRequest) (*TriggerAsyncModelResponse, error)
 	// Trigger model inference with a binary input
 	//
 	// Triggers a deployed model to infer the result of a task or question,
 	// submitted as a binary file.
-	TriggerNamespaceModelBinaryFileUpload(grpc.ClientStreamingServer[TriggerNamespaceModelBinaryFileUploadRequest, TriggerNamespaceModelBinaryFileUploadResponse]) error
+	TriggerModelVersionBinaryFileUpload(grpc.ClientStreamingServer[TriggerModelVersionBinaryFileUploadRequest, TriggerModelVersionBinaryFileUploadResponse]) error
 	// Trigger model inference with a binary input
 	//
 	// Triggers the latest deployed model version to infer the result of a set of
 	// task or questions, submitted as a binary file.
-	TriggerNamespaceLatestModelBinaryFileUpload(grpc.ClientStreamingServer[TriggerNamespaceLatestModelBinaryFileUploadRequest, TriggerNamespaceLatestModelBinaryFileUploadResponse]) error
-	// Get the details of the long-running operation from a namespace model
-	// with a particular version
+	TriggerModelBinaryFileUpload(grpc.ClientStreamingServer[TriggerModelBinaryFileUploadRequest, TriggerModelBinaryFileUploadResponse]) error
+	// Get the details of the long-running operation from a model version
 	//
 	// This method allows requesters to request the status and outcome of
 	// long-running operations in a model, such as trigger.
-	GetNamespaceModelOperation(context.Context, *GetNamespaceModelOperationRequest) (*GetNamespaceModelOperationResponse, error)
-	// Get the details of the latest long-running operation from a namespace model
-	//
-	// This method allows requesters to request the status and outcome of
-	// long-running operations in a model, such as trigger.
-	GetNamespaceLatestModelOperation(context.Context, *GetNamespaceLatestModelOperationRequest) (*GetNamespaceLatestModelOperationResponse, error)
-	// Get the details of a long-running operation
+	GetModelVersionOperation(context.Context, *GetModelVersionOperationRequest) (*GetModelVersionOperationResponse, error)
+	// Get the details of the latest long-running operation from a model
 	//
 	// This method allows requesters to request the status and outcome of
 	// long-running operations in a model, such as trigger.
 	GetModelOperation(context.Context, *GetModelOperationRequest) (*GetModelOperationResponse, error)
+	// Get the details of a long-running operation
+	//
+	// This method allows requesters to request the status and outcome of
+	// long-running operations in a model, such as trigger.
+	GetOperation(context.Context, *GetOperationRequest) (*GetOperationResponse, error)
 	// List Model Runs
 	//
 	// Returns a paginated list of runs for a given model. When the requester is
@@ -656,65 +654,65 @@ func (UnimplementedModelPublicServiceServer) ListAvailableRegions(context.Contex
 func (UnimplementedModelPublicServiceServer) GetModelDefinition(context.Context, *GetModelDefinitionRequest) (*GetModelDefinitionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetModelDefinition not implemented")
 }
+func (UnimplementedModelPublicServiceServer) ListPublicModels(context.Context, *ListPublicModelsRequest) (*ListPublicModelsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListPublicModels not implemented")
+}
 func (UnimplementedModelPublicServiceServer) ListModels(context.Context, *ListModelsRequest) (*ListModelsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListModels not implemented")
 }
-func (UnimplementedModelPublicServiceServer) ListNamespaceModels(context.Context, *ListNamespaceModelsRequest) (*ListNamespaceModelsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListNamespaceModels not implemented")
+func (UnimplementedModelPublicServiceServer) CreateModel(context.Context, *CreateModelRequest) (*CreateModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) CreateNamespaceModel(context.Context, *CreateNamespaceModelRequest) (*CreateNamespaceModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateNamespaceModel not implemented")
+func (UnimplementedModelPublicServiceServer) GetModel(context.Context, *GetModelRequest) (*GetModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) GetNamespaceModel(context.Context, *GetNamespaceModelRequest) (*GetNamespaceModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetNamespaceModel not implemented")
+func (UnimplementedModelPublicServiceServer) UpdateModel(context.Context, *UpdateModelRequest) (*UpdateModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) UpdateNamespaceModel(context.Context, *UpdateNamespaceModelRequest) (*UpdateNamespaceModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateNamespaceModel not implemented")
+func (UnimplementedModelPublicServiceServer) DeleteModel(context.Context, *DeleteModelRequest) (*DeleteModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) DeleteNamespaceModel(context.Context, *DeleteNamespaceModelRequest) (*DeleteNamespaceModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteNamespaceModel not implemented")
+func (UnimplementedModelPublicServiceServer) RenameModel(context.Context, *RenameModelRequest) (*RenameModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RenameModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) RenameNamespaceModel(context.Context, *RenameNamespaceModelRequest) (*RenameNamespaceModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RenameNamespaceModel not implemented")
+func (UnimplementedModelPublicServiceServer) WatchModelVersion(context.Context, *WatchModelVersionRequest) (*WatchModelVersionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WatchModelVersion not implemented")
 }
-func (UnimplementedModelPublicServiceServer) WatchNamespaceModel(context.Context, *WatchNamespaceModelRequest) (*WatchNamespaceModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method WatchNamespaceModel not implemented")
+func (UnimplementedModelPublicServiceServer) WatchModel(context.Context, *WatchModelRequest) (*WatchModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WatchModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) WatchNamespaceLatestModel(context.Context, *WatchNamespaceLatestModelRequest) (*WatchNamespaceLatestModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method WatchNamespaceLatestModel not implemented")
+func (UnimplementedModelPublicServiceServer) ListModelVersions(context.Context, *ListModelVersionsRequest) (*ListModelVersionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListModelVersions not implemented")
 }
-func (UnimplementedModelPublicServiceServer) ListNamespaceModelVersions(context.Context, *ListNamespaceModelVersionsRequest) (*ListNamespaceModelVersionsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListNamespaceModelVersions not implemented")
+func (UnimplementedModelPublicServiceServer) DeleteModelVersion(context.Context, *DeleteModelVersionRequest) (*DeleteModelVersionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteModelVersion not implemented")
 }
-func (UnimplementedModelPublicServiceServer) DeleteNamespaceModelVersion(context.Context, *DeleteNamespaceModelVersionRequest) (*DeleteNamespaceModelVersionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteNamespaceModelVersion not implemented")
+func (UnimplementedModelPublicServiceServer) TriggerModelVersion(context.Context, *TriggerModelVersionRequest) (*TriggerModelVersionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerModelVersion not implemented")
 }
-func (UnimplementedModelPublicServiceServer) TriggerNamespaceModel(context.Context, *TriggerNamespaceModelRequest) (*TriggerNamespaceModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TriggerNamespaceModel not implemented")
+func (UnimplementedModelPublicServiceServer) TriggerAsyncModelVersion(context.Context, *TriggerAsyncModelVersionRequest) (*TriggerAsyncModelVersionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncModelVersion not implemented")
 }
-func (UnimplementedModelPublicServiceServer) TriggerAsyncNamespaceModel(context.Context, *TriggerAsyncNamespaceModelRequest) (*TriggerAsyncNamespaceModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncNamespaceModel not implemented")
+func (UnimplementedModelPublicServiceServer) TriggerModel(context.Context, *TriggerModelRequest) (*TriggerModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) TriggerNamespaceLatestModel(context.Context, *TriggerNamespaceLatestModelRequest) (*TriggerNamespaceLatestModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TriggerNamespaceLatestModel not implemented")
+func (UnimplementedModelPublicServiceServer) TriggerAsyncModel(context.Context, *TriggerAsyncModelRequest) (*TriggerAsyncModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncModel not implemented")
 }
-func (UnimplementedModelPublicServiceServer) TriggerAsyncNamespaceLatestModel(context.Context, *TriggerAsyncNamespaceLatestModelRequest) (*TriggerAsyncNamespaceLatestModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TriggerAsyncNamespaceLatestModel not implemented")
+func (UnimplementedModelPublicServiceServer) TriggerModelVersionBinaryFileUpload(grpc.ClientStreamingServer[TriggerModelVersionBinaryFileUploadRequest, TriggerModelVersionBinaryFileUploadResponse]) error {
+	return status.Errorf(codes.Unimplemented, "method TriggerModelVersionBinaryFileUpload not implemented")
 }
-func (UnimplementedModelPublicServiceServer) TriggerNamespaceModelBinaryFileUpload(grpc.ClientStreamingServer[TriggerNamespaceModelBinaryFileUploadRequest, TriggerNamespaceModelBinaryFileUploadResponse]) error {
-	return status.Errorf(codes.Unimplemented, "method TriggerNamespaceModelBinaryFileUpload not implemented")
+func (UnimplementedModelPublicServiceServer) TriggerModelBinaryFileUpload(grpc.ClientStreamingServer[TriggerModelBinaryFileUploadRequest, TriggerModelBinaryFileUploadResponse]) error {
+	return status.Errorf(codes.Unimplemented, "method TriggerModelBinaryFileUpload not implemented")
 }
-func (UnimplementedModelPublicServiceServer) TriggerNamespaceLatestModelBinaryFileUpload(grpc.ClientStreamingServer[TriggerNamespaceLatestModelBinaryFileUploadRequest, TriggerNamespaceLatestModelBinaryFileUploadResponse]) error {
-	return status.Errorf(codes.Unimplemented, "method TriggerNamespaceLatestModelBinaryFileUpload not implemented")
-}
-func (UnimplementedModelPublicServiceServer) GetNamespaceModelOperation(context.Context, *GetNamespaceModelOperationRequest) (*GetNamespaceModelOperationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetNamespaceModelOperation not implemented")
-}
-func (UnimplementedModelPublicServiceServer) GetNamespaceLatestModelOperation(context.Context, *GetNamespaceLatestModelOperationRequest) (*GetNamespaceLatestModelOperationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetNamespaceLatestModelOperation not implemented")
+func (UnimplementedModelPublicServiceServer) GetModelVersionOperation(context.Context, *GetModelVersionOperationRequest) (*GetModelVersionOperationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetModelVersionOperation not implemented")
 }
 func (UnimplementedModelPublicServiceServer) GetModelOperation(context.Context, *GetModelOperationRequest) (*GetModelOperationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetModelOperation not implemented")
+}
+func (UnimplementedModelPublicServiceServer) GetOperation(context.Context, *GetOperationRequest) (*GetOperationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOperation not implemented")
 }
 func (UnimplementedModelPublicServiceServer) ListModelRuns(context.Context, *ListModelRunsRequest) (*ListModelRunsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListModelRuns not implemented")
@@ -832,6 +830,24 @@ func _ModelPublicService_GetModelDefinition_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ModelPublicService_ListPublicModels_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListPublicModelsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPublicServiceServer).ListPublicModels(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPublicService_ListPublicModels_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPublicServiceServer).ListPublicModels(ctx, req.(*ListPublicModelsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ModelPublicService_ListModels_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListModelsRequest)
 	if err := dec(in); err != nil {
@@ -850,304 +866,268 @@ func _ModelPublicService_ListModels_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_ListNamespaceModels_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListNamespaceModelsRequest)
+func _ModelPublicService_CreateModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).ListNamespaceModels(ctx, in)
+		return srv.(ModelPublicServiceServer).CreateModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_ListNamespaceModels_FullMethodName,
+		FullMethod: ModelPublicService_CreateModel_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).ListNamespaceModels(ctx, req.(*ListNamespaceModelsRequest))
+		return srv.(ModelPublicServiceServer).CreateModel(ctx, req.(*CreateModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_CreateNamespaceModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateNamespaceModelRequest)
+func _ModelPublicService_GetModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).CreateNamespaceModel(ctx, in)
+		return srv.(ModelPublicServiceServer).GetModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_CreateNamespaceModel_FullMethodName,
+		FullMethod: ModelPublicService_GetModel_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).CreateNamespaceModel(ctx, req.(*CreateNamespaceModelRequest))
+		return srv.(ModelPublicServiceServer).GetModel(ctx, req.(*GetModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_GetNamespaceModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetNamespaceModelRequest)
+func _ModelPublicService_UpdateModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).GetNamespaceModel(ctx, in)
+		return srv.(ModelPublicServiceServer).UpdateModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_GetNamespaceModel_FullMethodName,
+		FullMethod: ModelPublicService_UpdateModel_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).GetNamespaceModel(ctx, req.(*GetNamespaceModelRequest))
+		return srv.(ModelPublicServiceServer).UpdateModel(ctx, req.(*UpdateModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_UpdateNamespaceModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateNamespaceModelRequest)
+func _ModelPublicService_DeleteModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).UpdateNamespaceModel(ctx, in)
+		return srv.(ModelPublicServiceServer).DeleteModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_UpdateNamespaceModel_FullMethodName,
+		FullMethod: ModelPublicService_DeleteModel_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).UpdateNamespaceModel(ctx, req.(*UpdateNamespaceModelRequest))
+		return srv.(ModelPublicServiceServer).DeleteModel(ctx, req.(*DeleteModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_DeleteNamespaceModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteNamespaceModelRequest)
+func _ModelPublicService_RenameModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RenameModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).DeleteNamespaceModel(ctx, in)
+		return srv.(ModelPublicServiceServer).RenameModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_DeleteNamespaceModel_FullMethodName,
+		FullMethod: ModelPublicService_RenameModel_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).DeleteNamespaceModel(ctx, req.(*DeleteNamespaceModelRequest))
+		return srv.(ModelPublicServiceServer).RenameModel(ctx, req.(*RenameModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_RenameNamespaceModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RenameNamespaceModelRequest)
+func _ModelPublicService_WatchModelVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WatchModelVersionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).RenameNamespaceModel(ctx, in)
+		return srv.(ModelPublicServiceServer).WatchModelVersion(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_RenameNamespaceModel_FullMethodName,
+		FullMethod: ModelPublicService_WatchModelVersion_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).RenameNamespaceModel(ctx, req.(*RenameNamespaceModelRequest))
+		return srv.(ModelPublicServiceServer).WatchModelVersion(ctx, req.(*WatchModelVersionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_WatchNamespaceModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(WatchNamespaceModelRequest)
+func _ModelPublicService_WatchModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WatchModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).WatchNamespaceModel(ctx, in)
+		return srv.(ModelPublicServiceServer).WatchModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_WatchNamespaceModel_FullMethodName,
+		FullMethod: ModelPublicService_WatchModel_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).WatchNamespaceModel(ctx, req.(*WatchNamespaceModelRequest))
+		return srv.(ModelPublicServiceServer).WatchModel(ctx, req.(*WatchModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_WatchNamespaceLatestModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(WatchNamespaceLatestModelRequest)
+func _ModelPublicService_ListModelVersions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListModelVersionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).WatchNamespaceLatestModel(ctx, in)
+		return srv.(ModelPublicServiceServer).ListModelVersions(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_WatchNamespaceLatestModel_FullMethodName,
+		FullMethod: ModelPublicService_ListModelVersions_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).WatchNamespaceLatestModel(ctx, req.(*WatchNamespaceLatestModelRequest))
+		return srv.(ModelPublicServiceServer).ListModelVersions(ctx, req.(*ListModelVersionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_ListNamespaceModelVersions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListNamespaceModelVersionsRequest)
+func _ModelPublicService_DeleteModelVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteModelVersionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).ListNamespaceModelVersions(ctx, in)
+		return srv.(ModelPublicServiceServer).DeleteModelVersion(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_ListNamespaceModelVersions_FullMethodName,
+		FullMethod: ModelPublicService_DeleteModelVersion_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).ListNamespaceModelVersions(ctx, req.(*ListNamespaceModelVersionsRequest))
+		return srv.(ModelPublicServiceServer).DeleteModelVersion(ctx, req.(*DeleteModelVersionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_DeleteNamespaceModelVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteNamespaceModelVersionRequest)
+func _ModelPublicService_TriggerModelVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerModelVersionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).DeleteNamespaceModelVersion(ctx, in)
+		return srv.(ModelPublicServiceServer).TriggerModelVersion(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_DeleteNamespaceModelVersion_FullMethodName,
+		FullMethod: ModelPublicService_TriggerModelVersion_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).DeleteNamespaceModelVersion(ctx, req.(*DeleteNamespaceModelVersionRequest))
+		return srv.(ModelPublicServiceServer).TriggerModelVersion(ctx, req.(*TriggerModelVersionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_TriggerNamespaceModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TriggerNamespaceModelRequest)
+func _ModelPublicService_TriggerAsyncModelVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerAsyncModelVersionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).TriggerNamespaceModel(ctx, in)
+		return srv.(ModelPublicServiceServer).TriggerAsyncModelVersion(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_TriggerNamespaceModel_FullMethodName,
+		FullMethod: ModelPublicService_TriggerAsyncModelVersion_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).TriggerNamespaceModel(ctx, req.(*TriggerNamespaceModelRequest))
+		return srv.(ModelPublicServiceServer).TriggerAsyncModelVersion(ctx, req.(*TriggerAsyncModelVersionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_TriggerAsyncNamespaceModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TriggerAsyncNamespaceModelRequest)
+func _ModelPublicService_TriggerModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).TriggerAsyncNamespaceModel(ctx, in)
+		return srv.(ModelPublicServiceServer).TriggerModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_TriggerAsyncNamespaceModel_FullMethodName,
+		FullMethod: ModelPublicService_TriggerModel_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).TriggerAsyncNamespaceModel(ctx, req.(*TriggerAsyncNamespaceModelRequest))
+		return srv.(ModelPublicServiceServer).TriggerModel(ctx, req.(*TriggerModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_TriggerNamespaceLatestModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TriggerNamespaceLatestModelRequest)
+func _ModelPublicService_TriggerAsyncModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerAsyncModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).TriggerNamespaceLatestModel(ctx, in)
+		return srv.(ModelPublicServiceServer).TriggerAsyncModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_TriggerNamespaceLatestModel_FullMethodName,
+		FullMethod: ModelPublicService_TriggerAsyncModel_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).TriggerNamespaceLatestModel(ctx, req.(*TriggerNamespaceLatestModelRequest))
+		return srv.(ModelPublicServiceServer).TriggerAsyncModel(ctx, req.(*TriggerAsyncModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModelPublicService_TriggerAsyncNamespaceLatestModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TriggerAsyncNamespaceLatestModelRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).TriggerAsyncNamespaceLatestModel(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ModelPublicService_TriggerAsyncNamespaceLatestModel_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).TriggerAsyncNamespaceLatestModel(ctx, req.(*TriggerAsyncNamespaceLatestModelRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ModelPublicService_TriggerNamespaceModelBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(ModelPublicServiceServer).TriggerNamespaceModelBinaryFileUpload(&grpc.GenericServerStream[TriggerNamespaceModelBinaryFileUploadRequest, TriggerNamespaceModelBinaryFileUploadResponse]{ServerStream: stream})
+func _ModelPublicService_TriggerModelVersionBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ModelPublicServiceServer).TriggerModelVersionBinaryFileUpload(&grpc.GenericServerStream[TriggerModelVersionBinaryFileUploadRequest, TriggerModelVersionBinaryFileUploadResponse]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type ModelPublicService_TriggerNamespaceModelBinaryFileUploadServer = grpc.ClientStreamingServer[TriggerNamespaceModelBinaryFileUploadRequest, TriggerNamespaceModelBinaryFileUploadResponse]
+type ModelPublicService_TriggerModelVersionBinaryFileUploadServer = grpc.ClientStreamingServer[TriggerModelVersionBinaryFileUploadRequest, TriggerModelVersionBinaryFileUploadResponse]
 
-func _ModelPublicService_TriggerNamespaceLatestModelBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(ModelPublicServiceServer).TriggerNamespaceLatestModelBinaryFileUpload(&grpc.GenericServerStream[TriggerNamespaceLatestModelBinaryFileUploadRequest, TriggerNamespaceLatestModelBinaryFileUploadResponse]{ServerStream: stream})
+func _ModelPublicService_TriggerModelBinaryFileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ModelPublicServiceServer).TriggerModelBinaryFileUpload(&grpc.GenericServerStream[TriggerModelBinaryFileUploadRequest, TriggerModelBinaryFileUploadResponse]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type ModelPublicService_TriggerNamespaceLatestModelBinaryFileUploadServer = grpc.ClientStreamingServer[TriggerNamespaceLatestModelBinaryFileUploadRequest, TriggerNamespaceLatestModelBinaryFileUploadResponse]
+type ModelPublicService_TriggerModelBinaryFileUploadServer = grpc.ClientStreamingServer[TriggerModelBinaryFileUploadRequest, TriggerModelBinaryFileUploadResponse]
 
-func _ModelPublicService_GetNamespaceModelOperation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetNamespaceModelOperationRequest)
+func _ModelPublicService_GetModelVersionOperation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetModelVersionOperationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).GetNamespaceModelOperation(ctx, in)
+		return srv.(ModelPublicServiceServer).GetModelVersionOperation(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ModelPublicService_GetNamespaceModelOperation_FullMethodName,
+		FullMethod: ModelPublicService_GetModelVersionOperation_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).GetNamespaceModelOperation(ctx, req.(*GetNamespaceModelOperationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ModelPublicService_GetNamespaceLatestModelOperation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetNamespaceLatestModelOperationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ModelPublicServiceServer).GetNamespaceLatestModelOperation(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ModelPublicService_GetNamespaceLatestModelOperation_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModelPublicServiceServer).GetNamespaceLatestModelOperation(ctx, req.(*GetNamespaceLatestModelOperationRequest))
+		return srv.(ModelPublicServiceServer).GetModelVersionOperation(ctx, req.(*GetModelVersionOperationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1166,6 +1146,24 @@ func _ModelPublicService_GetModelOperation_Handler(srv interface{}, ctx context.
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelPublicServiceServer).GetModelOperation(ctx, req.(*GetModelOperationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ModelPublicService_GetOperation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOperationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelPublicServiceServer).GetOperation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ModelPublicService_GetOperation_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelPublicServiceServer).GetOperation(ctx, req.(*GetOperationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1234,76 +1232,76 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ModelPublicService_GetModelDefinition_Handler,
 		},
 		{
+			MethodName: "ListPublicModels",
+			Handler:    _ModelPublicService_ListPublicModels_Handler,
+		},
+		{
 			MethodName: "ListModels",
 			Handler:    _ModelPublicService_ListModels_Handler,
 		},
 		{
-			MethodName: "ListNamespaceModels",
-			Handler:    _ModelPublicService_ListNamespaceModels_Handler,
+			MethodName: "CreateModel",
+			Handler:    _ModelPublicService_CreateModel_Handler,
 		},
 		{
-			MethodName: "CreateNamespaceModel",
-			Handler:    _ModelPublicService_CreateNamespaceModel_Handler,
+			MethodName: "GetModel",
+			Handler:    _ModelPublicService_GetModel_Handler,
 		},
 		{
-			MethodName: "GetNamespaceModel",
-			Handler:    _ModelPublicService_GetNamespaceModel_Handler,
+			MethodName: "UpdateModel",
+			Handler:    _ModelPublicService_UpdateModel_Handler,
 		},
 		{
-			MethodName: "UpdateNamespaceModel",
-			Handler:    _ModelPublicService_UpdateNamespaceModel_Handler,
+			MethodName: "DeleteModel",
+			Handler:    _ModelPublicService_DeleteModel_Handler,
 		},
 		{
-			MethodName: "DeleteNamespaceModel",
-			Handler:    _ModelPublicService_DeleteNamespaceModel_Handler,
+			MethodName: "RenameModel",
+			Handler:    _ModelPublicService_RenameModel_Handler,
 		},
 		{
-			MethodName: "RenameNamespaceModel",
-			Handler:    _ModelPublicService_RenameNamespaceModel_Handler,
+			MethodName: "WatchModelVersion",
+			Handler:    _ModelPublicService_WatchModelVersion_Handler,
 		},
 		{
-			MethodName: "WatchNamespaceModel",
-			Handler:    _ModelPublicService_WatchNamespaceModel_Handler,
+			MethodName: "WatchModel",
+			Handler:    _ModelPublicService_WatchModel_Handler,
 		},
 		{
-			MethodName: "WatchNamespaceLatestModel",
-			Handler:    _ModelPublicService_WatchNamespaceLatestModel_Handler,
+			MethodName: "ListModelVersions",
+			Handler:    _ModelPublicService_ListModelVersions_Handler,
 		},
 		{
-			MethodName: "ListNamespaceModelVersions",
-			Handler:    _ModelPublicService_ListNamespaceModelVersions_Handler,
+			MethodName: "DeleteModelVersion",
+			Handler:    _ModelPublicService_DeleteModelVersion_Handler,
 		},
 		{
-			MethodName: "DeleteNamespaceModelVersion",
-			Handler:    _ModelPublicService_DeleteNamespaceModelVersion_Handler,
+			MethodName: "TriggerModelVersion",
+			Handler:    _ModelPublicService_TriggerModelVersion_Handler,
 		},
 		{
-			MethodName: "TriggerNamespaceModel",
-			Handler:    _ModelPublicService_TriggerNamespaceModel_Handler,
+			MethodName: "TriggerAsyncModelVersion",
+			Handler:    _ModelPublicService_TriggerAsyncModelVersion_Handler,
 		},
 		{
-			MethodName: "TriggerAsyncNamespaceModel",
-			Handler:    _ModelPublicService_TriggerAsyncNamespaceModel_Handler,
+			MethodName: "TriggerModel",
+			Handler:    _ModelPublicService_TriggerModel_Handler,
 		},
 		{
-			MethodName: "TriggerNamespaceLatestModel",
-			Handler:    _ModelPublicService_TriggerNamespaceLatestModel_Handler,
+			MethodName: "TriggerAsyncModel",
+			Handler:    _ModelPublicService_TriggerAsyncModel_Handler,
 		},
 		{
-			MethodName: "TriggerAsyncNamespaceLatestModel",
-			Handler:    _ModelPublicService_TriggerAsyncNamespaceLatestModel_Handler,
-		},
-		{
-			MethodName: "GetNamespaceModelOperation",
-			Handler:    _ModelPublicService_GetNamespaceModelOperation_Handler,
-		},
-		{
-			MethodName: "GetNamespaceLatestModelOperation",
-			Handler:    _ModelPublicService_GetNamespaceLatestModelOperation_Handler,
+			MethodName: "GetModelVersionOperation",
+			Handler:    _ModelPublicService_GetModelVersionOperation_Handler,
 		},
 		{
 			MethodName: "GetModelOperation",
 			Handler:    _ModelPublicService_GetModelOperation_Handler,
+		},
+		{
+			MethodName: "GetOperation",
+			Handler:    _ModelPublicService_GetOperation_Handler,
 		},
 		{
 			MethodName: "ListModelRuns",
@@ -1316,13 +1314,13 @@ var ModelPublicService_ServiceDesc = grpc.ServiceDesc{
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "TriggerNamespaceModelBinaryFileUpload",
-			Handler:       _ModelPublicService_TriggerNamespaceModelBinaryFileUpload_Handler,
+			StreamName:    "TriggerModelVersionBinaryFileUpload",
+			Handler:       _ModelPublicService_TriggerModelVersionBinaryFileUpload_Handler,
 			ClientStreams: true,
 		},
 		{
-			StreamName:    "TriggerNamespaceLatestModelBinaryFileUpload",
-			Handler:       _ModelPublicService_TriggerNamespaceLatestModelBinaryFileUpload_Handler,
+			StreamName:    "TriggerModelBinaryFileUpload",
+			Handler:       _ModelPublicService_TriggerModelBinaryFileUpload_Handler,
 			ClientStreams: true,
 		},
 	},

@@ -270,14 +270,56 @@ func local_request_ModelPublicService_GetModelDefinition_0(ctx context.Context, 
 	return msg, metadata, err
 }
 
-var filter_ModelPublicService_ListModels_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+var filter_ModelPublicService_ListPublicModels_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+
+func request_ModelPublicService_ListPublicModels_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListPublicModelsRequest
+		metadata runtime.ServerMetadata
+	)
+	io.Copy(io.Discard, req.Body)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_ListPublicModels_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.ListPublicModels(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ModelPublicService_ListPublicModels_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListPublicModelsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_ListPublicModels_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.ListPublicModels(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+var filter_ModelPublicService_ListModels_0 = &utilities.DoubleArray{Encoding: map[string]int{"parent": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 
 func request_ModelPublicService_ListModels_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq ListModelsRequest
 		metadata runtime.ServerMetadata
+		err      error
 	)
 	io.Copy(io.Discard, req.Body)
+	val, ok := pathParams["parent"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "parent")
+	}
+	protoReq.Parent, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "parent", err)
+	}
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
@@ -292,7 +334,16 @@ func local_request_ModelPublicService_ListModels_0(ctx context.Context, marshale
 	var (
 		protoReq ListModelsRequest
 		metadata runtime.ServerMetadata
+		err      error
 	)
+	val, ok := pathParams["parent"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "parent")
+	}
+	protoReq.Parent, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "parent", err)
+	}
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
@@ -303,60 +354,9 @@ func local_request_ModelPublicService_ListModels_0(ctx context.Context, marshale
 	return msg, metadata, err
 }
 
-var filter_ModelPublicService_ListNamespaceModels_0 = &utilities.DoubleArray{Encoding: map[string]int{"parent": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
-
-func request_ModelPublicService_ListNamespaceModels_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_ModelPublicService_CreateModel_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq ListNamespaceModelsRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	io.Copy(io.Discard, req.Body)
-	val, ok := pathParams["parent"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "parent")
-	}
-	protoReq.Parent, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "parent", err)
-	}
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_ListNamespaceModels_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := client.ListNamespaceModels(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_ModelPublicService_ListNamespaceModels_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq ListNamespaceModelsRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	val, ok := pathParams["parent"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "parent")
-	}
-	protoReq.Parent, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "parent", err)
-	}
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_ListNamespaceModels_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := server.ListNamespaceModels(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-func request_ModelPublicService_CreateNamespaceModel_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq CreateNamespaceModelRequest
+		protoReq CreateModelRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -371,13 +371,13 @@ func request_ModelPublicService_CreateNamespaceModel_0(ctx context.Context, mars
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "parent", err)
 	}
-	msg, err := client.CreateNamespaceModel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.CreateModel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_ModelPublicService_CreateNamespaceModel_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_ModelPublicService_CreateModel_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq CreateNamespaceModelRequest
+		protoReq CreateModelRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -392,15 +392,15 @@ func local_request_ModelPublicService_CreateNamespaceModel_0(ctx context.Context
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "parent", err)
 	}
-	msg, err := server.CreateNamespaceModel(ctx, &protoReq)
+	msg, err := server.CreateModel(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-var filter_ModelPublicService_GetNamespaceModel_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+var filter_ModelPublicService_GetModel_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 
-func request_ModelPublicService_GetNamespaceModel_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_ModelPublicService_GetModel_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq GetNamespaceModelRequest
+		protoReq GetModelRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -416,16 +416,16 @@ func request_ModelPublicService_GetNamespaceModel_0(ctx context.Context, marshal
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_GetNamespaceModel_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_GetModel_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := client.GetNamespaceModel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetModel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_ModelPublicService_GetNamespaceModel_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_ModelPublicService_GetModel_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq GetNamespaceModelRequest
+		protoReq GetModelRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -440,18 +440,18 @@ func local_request_ModelPublicService_GetNamespaceModel_0(ctx context.Context, m
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_GetNamespaceModel_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_GetModel_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := server.GetNamespaceModel(ctx, &protoReq)
+	msg, err := server.GetModel(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-var filter_ModelPublicService_UpdateNamespaceModel_0 = &utilities.DoubleArray{Encoding: map[string]int{"model": 0, "name": 1}, Base: []int{1, 2, 1, 0, 0}, Check: []int{0, 1, 2, 3, 2}}
+var filter_ModelPublicService_UpdateModel_0 = &utilities.DoubleArray{Encoding: map[string]int{"model": 0, "name": 1}, Base: []int{1, 2, 1, 0, 0}, Check: []int{0, 1, 2, 3, 2}}
 
-func request_ModelPublicService_UpdateNamespaceModel_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_ModelPublicService_UpdateModel_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq UpdateNamespaceModelRequest
+		protoReq UpdateModelRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -480,16 +480,16 @@ func request_ModelPublicService_UpdateNamespaceModel_0(ctx context.Context, mars
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_UpdateNamespaceModel_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_UpdateModel_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := client.UpdateNamespaceModel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.UpdateModel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_ModelPublicService_UpdateNamespaceModel_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_ModelPublicService_UpdateModel_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq UpdateNamespaceModelRequest
+		protoReq UpdateModelRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -518,16 +518,16 @@ func local_request_ModelPublicService_UpdateNamespaceModel_0(ctx context.Context
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_UpdateNamespaceModel_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_UpdateModel_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := server.UpdateNamespaceModel(ctx, &protoReq)
+	msg, err := server.UpdateModel(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func request_ModelPublicService_DeleteNamespaceModel_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_ModelPublicService_DeleteModel_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq DeleteNamespaceModelRequest
+		protoReq DeleteModelRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -540,13 +540,13 @@ func request_ModelPublicService_DeleteNamespaceModel_0(ctx context.Context, mars
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := client.DeleteNamespaceModel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.DeleteModel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_ModelPublicService_DeleteNamespaceModel_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_ModelPublicService_DeleteModel_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq DeleteNamespaceModelRequest
+		protoReq DeleteModelRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -558,34 +558,13 @@ func local_request_ModelPublicService_DeleteNamespaceModel_0(ctx context.Context
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := server.DeleteNamespaceModel(ctx, &protoReq)
+	msg, err := server.DeleteModel(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func request_ModelPublicService_RenameNamespaceModel_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_ModelPublicService_RenameModel_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq RenameNamespaceModelRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	val, ok := pathParams["name"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
-	}
-	protoReq.Name, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
-	}
-	msg, err := client.RenameNamespaceModel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_ModelPublicService_RenameNamespaceModel_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq RenameNamespaceModelRequest
+		protoReq RenameModelRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -600,13 +579,34 @@ func local_request_ModelPublicService_RenameNamespaceModel_0(ctx context.Context
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := server.RenameNamespaceModel(ctx, &protoReq)
+	msg, err := client.RenameModel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func request_ModelPublicService_WatchNamespaceModel_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_ModelPublicService_RenameModel_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq WatchNamespaceModelRequest
+		protoReq RenameModelRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	msg, err := server.RenameModel(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ModelPublicService_WatchModelVersion_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq WatchModelVersionRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -627,13 +627,13 @@ func request_ModelPublicService_WatchNamespaceModel_0(ctx context.Context, marsh
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
 	}
-	msg, err := client.WatchNamespaceModel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.WatchModelVersion(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_ModelPublicService_WatchNamespaceModel_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_ModelPublicService_WatchModelVersion_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq WatchNamespaceModelRequest
+		protoReq WatchModelVersionRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -653,13 +653,13 @@ func local_request_ModelPublicService_WatchNamespaceModel_0(ctx context.Context,
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
 	}
-	msg, err := server.WatchNamespaceModel(ctx, &protoReq)
+	msg, err := server.WatchModelVersion(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func request_ModelPublicService_WatchNamespaceLatestModel_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_ModelPublicService_WatchModel_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq WatchNamespaceLatestModelRequest
+		protoReq WatchModelRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -672,13 +672,13 @@ func request_ModelPublicService_WatchNamespaceLatestModel_0(ctx context.Context,
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := client.WatchNamespaceLatestModel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.WatchModel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_ModelPublicService_WatchNamespaceLatestModel_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_ModelPublicService_WatchModel_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq WatchNamespaceLatestModelRequest
+		protoReq WatchModelRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -690,15 +690,15 @@ func local_request_ModelPublicService_WatchNamespaceLatestModel_0(ctx context.Co
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := server.WatchNamespaceLatestModel(ctx, &protoReq)
+	msg, err := server.WatchModel(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-var filter_ModelPublicService_ListNamespaceModelVersions_0 = &utilities.DoubleArray{Encoding: map[string]int{"parent": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+var filter_ModelPublicService_ListModelVersions_0 = &utilities.DoubleArray{Encoding: map[string]int{"parent": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 
-func request_ModelPublicService_ListNamespaceModelVersions_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_ModelPublicService_ListModelVersions_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq ListNamespaceModelVersionsRequest
+		protoReq ListModelVersionsRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -714,16 +714,16 @@ func request_ModelPublicService_ListNamespaceModelVersions_0(ctx context.Context
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_ListNamespaceModelVersions_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_ListModelVersions_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := client.ListNamespaceModelVersions(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.ListModelVersions(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_ModelPublicService_ListNamespaceModelVersions_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_ModelPublicService_ListModelVersions_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq ListNamespaceModelVersionsRequest
+		protoReq ListModelVersionsRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -738,16 +738,16 @@ func local_request_ModelPublicService_ListNamespaceModelVersions_0(ctx context.C
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_ListNamespaceModelVersions_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_ListModelVersions_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := server.ListNamespaceModelVersions(ctx, &protoReq)
+	msg, err := server.ListModelVersions(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func request_ModelPublicService_DeleteNamespaceModelVersion_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_ModelPublicService_DeleteModelVersion_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq DeleteNamespaceModelVersionRequest
+		protoReq DeleteModelVersionRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -760,13 +760,13 @@ func request_ModelPublicService_DeleteNamespaceModelVersion_0(ctx context.Contex
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := client.DeleteNamespaceModelVersion(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.DeleteModelVersion(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_ModelPublicService_DeleteNamespaceModelVersion_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_ModelPublicService_DeleteModelVersion_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq DeleteNamespaceModelVersionRequest
+		protoReq DeleteModelVersionRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -778,34 +778,13 @@ func local_request_ModelPublicService_DeleteNamespaceModelVersion_0(ctx context.
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := server.DeleteNamespaceModelVersion(ctx, &protoReq)
+	msg, err := server.DeleteModelVersion(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func request_ModelPublicService_TriggerNamespaceModel_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_ModelPublicService_TriggerModelVersion_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq TriggerNamespaceModelRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	val, ok := pathParams["name"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
-	}
-	protoReq.Name, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
-	}
-	msg, err := client.TriggerNamespaceModel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_ModelPublicService_TriggerNamespaceModel_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq TriggerNamespaceModelRequest
+		protoReq TriggerModelVersionRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -820,13 +799,13 @@ func local_request_ModelPublicService_TriggerNamespaceModel_0(ctx context.Contex
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := server.TriggerNamespaceModel(ctx, &protoReq)
+	msg, err := client.TriggerModelVersion(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func request_ModelPublicService_TriggerAsyncNamespaceModel_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_ModelPublicService_TriggerModelVersion_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq TriggerAsyncNamespaceModelRequest
+		protoReq TriggerModelVersionRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -841,13 +820,13 @@ func request_ModelPublicService_TriggerAsyncNamespaceModel_0(ctx context.Context
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := client.TriggerAsyncNamespaceModel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := server.TriggerModelVersion(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func local_request_ModelPublicService_TriggerAsyncNamespaceModel_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_ModelPublicService_TriggerAsyncModelVersion_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq TriggerAsyncNamespaceModelRequest
+		protoReq TriggerAsyncModelVersionRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -862,13 +841,13 @@ func local_request_ModelPublicService_TriggerAsyncNamespaceModel_0(ctx context.C
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := server.TriggerAsyncNamespaceModel(ctx, &protoReq)
+	msg, err := client.TriggerAsyncModelVersion(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func request_ModelPublicService_TriggerNamespaceLatestModel_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_ModelPublicService_TriggerAsyncModelVersion_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq TriggerNamespaceLatestModelRequest
+		protoReq TriggerAsyncModelVersionRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -883,13 +862,13 @@ func request_ModelPublicService_TriggerNamespaceLatestModel_0(ctx context.Contex
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := client.TriggerNamespaceLatestModel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := server.TriggerAsyncModelVersion(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func local_request_ModelPublicService_TriggerNamespaceLatestModel_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_ModelPublicService_TriggerModel_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq TriggerNamespaceLatestModelRequest
+		protoReq TriggerModelRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -904,13 +883,13 @@ func local_request_ModelPublicService_TriggerNamespaceLatestModel_0(ctx context.
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := server.TriggerNamespaceLatestModel(ctx, &protoReq)
+	msg, err := client.TriggerModel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func request_ModelPublicService_TriggerAsyncNamespaceLatestModel_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_ModelPublicService_TriggerModel_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq TriggerAsyncNamespaceLatestModelRequest
+		protoReq TriggerModelRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -925,13 +904,13 @@ func request_ModelPublicService_TriggerAsyncNamespaceLatestModel_0(ctx context.C
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := client.TriggerAsyncNamespaceLatestModel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := server.TriggerModel(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func local_request_ModelPublicService_TriggerAsyncNamespaceLatestModel_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_ModelPublicService_TriggerAsyncModel_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq TriggerAsyncNamespaceLatestModelRequest
+		protoReq TriggerAsyncModelRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -946,20 +925,41 @@ func local_request_ModelPublicService_TriggerAsyncNamespaceLatestModel_0(ctx con
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-	msg, err := server.TriggerAsyncNamespaceLatestModel(ctx, &protoReq)
+	msg, err := client.TriggerAsyncModel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func request_ModelPublicService_TriggerNamespaceModelBinaryFileUpload_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_ModelPublicService_TriggerAsyncModel_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq TriggerAsyncModelRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	msg, err := server.TriggerAsyncModel(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ModelPublicService_TriggerModelVersionBinaryFileUpload_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var metadata runtime.ServerMetadata
-	stream, err := client.TriggerNamespaceModelBinaryFileUpload(ctx)
+	stream, err := client.TriggerModelVersionBinaryFileUpload(ctx)
 	if err != nil {
 		grpclog.Errorf("Failed to start streaming: %v", err)
 		return nil, metadata, err
 	}
 	dec := marshaler.NewDecoder(req.Body)
 	for {
-		var protoReq TriggerNamespaceModelBinaryFileUploadRequest
+		var protoReq TriggerModelVersionBinaryFileUploadRequest
 		err = dec.Decode(&protoReq)
 		if errors.Is(err, io.EOF) {
 			break
@@ -991,16 +991,16 @@ func request_ModelPublicService_TriggerNamespaceModelBinaryFileUpload_0(ctx cont
 	return msg, metadata, err
 }
 
-func request_ModelPublicService_TriggerNamespaceLatestModelBinaryFileUpload_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_ModelPublicService_TriggerModelBinaryFileUpload_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var metadata runtime.ServerMetadata
-	stream, err := client.TriggerNamespaceLatestModelBinaryFileUpload(ctx)
+	stream, err := client.TriggerModelBinaryFileUpload(ctx)
 	if err != nil {
 		grpclog.Errorf("Failed to start streaming: %v", err)
 		return nil, metadata, err
 	}
 	dec := marshaler.NewDecoder(req.Body)
 	for {
-		var protoReq TriggerNamespaceLatestModelBinaryFileUploadRequest
+		var protoReq TriggerModelBinaryFileUploadRequest
 		err = dec.Decode(&protoReq)
 		if errors.Is(err, io.EOF) {
 			break
@@ -1032,11 +1032,11 @@ func request_ModelPublicService_TriggerNamespaceLatestModelBinaryFileUpload_0(ct
 	return msg, metadata, err
 }
 
-var filter_ModelPublicService_GetNamespaceModelOperation_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+var filter_ModelPublicService_GetModelVersionOperation_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 
-func request_ModelPublicService_GetNamespaceModelOperation_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_ModelPublicService_GetModelVersionOperation_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq GetNamespaceModelOperationRequest
+		protoReq GetModelVersionOperationRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -1052,16 +1052,16 @@ func request_ModelPublicService_GetNamespaceModelOperation_0(ctx context.Context
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_GetNamespaceModelOperation_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_GetModelVersionOperation_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := client.GetNamespaceModelOperation(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetModelVersionOperation(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_ModelPublicService_GetNamespaceModelOperation_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_ModelPublicService_GetModelVersionOperation_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq GetNamespaceModelOperationRequest
+		protoReq GetModelVersionOperationRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -1076,63 +1076,14 @@ func local_request_ModelPublicService_GetNamespaceModelOperation_0(ctx context.C
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_GetNamespaceModelOperation_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_GetModelVersionOperation_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := server.GetNamespaceModelOperation(ctx, &protoReq)
+	msg, err := server.GetModelVersionOperation(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-var filter_ModelPublicService_GetNamespaceLatestModelOperation_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
-
-func request_ModelPublicService_GetNamespaceLatestModelOperation_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetNamespaceLatestModelOperationRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	io.Copy(io.Discard, req.Body)
-	val, ok := pathParams["name"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
-	}
-	protoReq.Name, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
-	}
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_GetNamespaceLatestModelOperation_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := client.GetNamespaceLatestModelOperation(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_ModelPublicService_GetNamespaceLatestModelOperation_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetNamespaceLatestModelOperationRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	val, ok := pathParams["name"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
-	}
-	protoReq.Name, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
-	}
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_GetNamespaceLatestModelOperation_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := server.GetNamespaceLatestModelOperation(ctx, &protoReq)
-	return msg, metadata, err
-}
+var filter_ModelPublicService_GetModelOperation_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 
 func request_ModelPublicService_GetModelOperation_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
@@ -1141,13 +1092,19 @@ func request_ModelPublicService_GetModelOperation_0(ctx context.Context, marshal
 		err      error
 	)
 	io.Copy(io.Discard, req.Body)
-	val, ok := pathParams["operation_id"]
+	val, ok := pathParams["name"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "operation_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-	protoReq.OperationId, err = runtime.String(val)
+	protoReq.Name, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "operation_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_GetModelOperation_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	msg, err := client.GetModelOperation(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
@@ -1159,6 +1116,31 @@ func local_request_ModelPublicService_GetModelOperation_0(ctx context.Context, m
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	val, ok := pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelPublicService_GetModelOperation_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.GetModelOperation(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ModelPublicService_GetOperation_0(ctx context.Context, marshaler runtime.Marshaler, client ModelPublicServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetOperationRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["operation_id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "operation_id")
@@ -1167,7 +1149,25 @@ func local_request_ModelPublicService_GetModelOperation_0(ctx context.Context, m
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "operation_id", err)
 	}
-	msg, err := server.GetModelOperation(ctx, &protoReq)
+	msg, err := client.GetOperation(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ModelPublicService_GetOperation_0(ctx context.Context, marshaler runtime.Marshaler, server ModelPublicServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetOperationRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["operation_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "operation_id")
+	}
+	protoReq.OperationId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "operation_id", err)
+	}
+	msg, err := server.GetOperation(ctx, &protoReq)
 	return msg, metadata, err
 }
 
@@ -1401,13 +1401,33 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 		}
 		forward_ModelPublicService_GetModelDefinition_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_ModelPublicService_ListPublicModels_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/ListPublicModels", runtime.WithHTTPPathPattern("/v1alpha/models"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ModelPublicService_ListPublicModels_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ModelPublicService_ListPublicModels_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodGet, pattern_ModelPublicService_ListModels_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/ListModels", runtime.WithHTTPPathPattern("/v1alpha/models"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/ListModels", runtime.WithHTTPPathPattern("/v1alpha/{parent=namespaces/*}/models"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1421,339 +1441,299 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 		}
 		forward_ModelPublicService_ListModels_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_ModelPublicService_ListNamespaceModels_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPublicService_CreateModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/ListNamespaceModels", runtime.WithHTTPPathPattern("/v1alpha/{parent=namespaces/*}/models"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/CreateModel", runtime.WithHTTPPathPattern("/v1alpha/{parent=namespaces/*}/models"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelPublicService_ListNamespaceModels_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelPublicService_CreateModel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_ListNamespaceModels_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_CreateModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_ModelPublicService_CreateNamespaceModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_ModelPublicService_GetModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/CreateNamespaceModel", runtime.WithHTTPPathPattern("/v1alpha/{parent=namespaces/*}/models"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/GetModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelPublicService_CreateNamespaceModel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelPublicService_GetModel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_CreateNamespaceModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_GetModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_ModelPublicService_GetNamespaceModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPatch, pattern_ModelPublicService_UpdateModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/GetNamespaceModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/UpdateModel", runtime.WithHTTPPathPattern("/v1alpha/{model.name=namespaces/*/models/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelPublicService_GetNamespaceModel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelPublicService_UpdateModel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_GetNamespaceModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_UpdateModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPatch, pattern_ModelPublicService_UpdateNamespaceModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_ModelPublicService_DeleteModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/UpdateNamespaceModel", runtime.WithHTTPPathPattern("/v1alpha/{model.name=namespaces/*/models/*}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/DeleteModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelPublicService_UpdateNamespaceModel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelPublicService_DeleteModel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_UpdateNamespaceModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_DeleteModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodDelete, pattern_ModelPublicService_DeleteNamespaceModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPublicService_RenameModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/DeleteNamespaceModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/RenameModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/rename"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelPublicService_DeleteNamespaceModel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelPublicService_RenameModel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_DeleteNamespaceModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_RenameModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_ModelPublicService_RenameNamespaceModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_ModelPublicService_WatchModelVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/RenameNamespaceModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/rename"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/WatchModelVersion", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/versions/{version}/watch"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelPublicService_RenameNamespaceModel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelPublicService_WatchModelVersion_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_RenameNamespaceModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_WatchModelVersion_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_ModelPublicService_WatchNamespaceModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_ModelPublicService_WatchModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/WatchNamespaceModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/versions/{version}/watch"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/WatchModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/watch"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelPublicService_WatchNamespaceModel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelPublicService_WatchModel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_WatchNamespaceModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_WatchModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_ModelPublicService_WatchNamespaceLatestModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_ModelPublicService_ListModelVersions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/WatchNamespaceLatestModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/watch"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/ListModelVersions", runtime.WithHTTPPathPattern("/v1alpha/{parent=namespaces/*/models/*}/versions"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelPublicService_WatchNamespaceLatestModel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelPublicService_ListModelVersions_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_WatchNamespaceLatestModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_ListModelVersions_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_ModelPublicService_ListNamespaceModelVersions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_ModelPublicService_DeleteModelVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/ListNamespaceModelVersions", runtime.WithHTTPPathPattern("/v1alpha/{parent=namespaces/*/models/*}/versions"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/DeleteModelVersion", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*/versions/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelPublicService_ListNamespaceModelVersions_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelPublicService_DeleteModelVersion_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_ListNamespaceModelVersions_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_DeleteModelVersion_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodDelete, pattern_ModelPublicService_DeleteNamespaceModelVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPublicService_TriggerModelVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/DeleteNamespaceModelVersion", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*/versions/*}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerModelVersion", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*/versions/*}/trigger"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelPublicService_DeleteNamespaceModelVersion_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelPublicService_TriggerModelVersion_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_DeleteNamespaceModelVersion_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_TriggerModelVersion_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_ModelPublicService_TriggerNamespaceModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPublicService_TriggerAsyncModelVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerNamespaceModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*/versions/*}/trigger"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerAsyncModelVersion", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*/versions/*}/trigger-async"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelPublicService_TriggerNamespaceModel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelPublicService_TriggerAsyncModelVersion_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_TriggerNamespaceModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_TriggerAsyncModelVersion_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_ModelPublicService_TriggerAsyncNamespaceModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPublicService_TriggerModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerAsyncNamespaceModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*/versions/*}/trigger-async"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/trigger"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelPublicService_TriggerAsyncNamespaceModel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelPublicService_TriggerModel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_TriggerAsyncNamespaceModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_TriggerModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_ModelPublicService_TriggerNamespaceLatestModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPublicService_TriggerAsyncModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerNamespaceLatestModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/trigger"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerAsyncModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/trigger-async"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelPublicService_TriggerNamespaceLatestModel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelPublicService_TriggerAsyncModel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_TriggerNamespaceLatestModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_ModelPublicService_TriggerAsyncNamespaceLatestModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerAsyncNamespaceLatestModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/trigger-async"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_ModelPublicService_TriggerAsyncNamespaceLatestModel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ModelPublicService_TriggerAsyncNamespaceLatestModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_TriggerAsyncModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
-	mux.Handle(http.MethodPost, pattern_ModelPublicService_TriggerNamespaceModelBinaryFileUpload_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPublicService_TriggerModelVersionBinaryFileUpload_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 		return
 	})
 
-	mux.Handle(http.MethodPost, pattern_ModelPublicService_TriggerNamespaceLatestModelBinaryFileUpload_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPublicService_TriggerModelBinaryFileUpload_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 		return
 	})
-	mux.Handle(http.MethodGet, pattern_ModelPublicService_GetNamespaceModelOperation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_ModelPublicService_GetModelVersionOperation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/GetNamespaceModelOperation", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*/versions/*}/operation"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/GetModelVersionOperation", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*/versions/*}/operation"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelPublicService_GetNamespaceModelOperation_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelPublicService_GetModelVersionOperation_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_GetNamespaceModelOperation_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodGet, pattern_ModelPublicService_GetNamespaceLatestModelOperation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/GetNamespaceLatestModelOperation", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/operation"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_ModelPublicService_GetNamespaceLatestModelOperation_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ModelPublicService_GetNamespaceLatestModelOperation_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_GetModelVersionOperation_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodGet, pattern_ModelPublicService_GetModelOperation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -1761,7 +1741,7 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/GetModelOperation", runtime.WithHTTPPathPattern("/v1alpha/operations/{operation_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/GetModelOperation", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/operation"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1774,6 +1754,26 @@ func RegisterModelPublicServiceHandlerServer(ctx context.Context, mux *runtime.S
 			return
 		}
 		forward_ModelPublicService_GetModelOperation_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ModelPublicService_GetOperation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/GetOperation", runtime.WithHTTPPathPattern("/v1alpha/operations/{operation_id}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ModelPublicService_GetOperation_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ModelPublicService_GetOperation_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodGet, pattern_ModelPublicService_ListModelRuns_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -1974,11 +1974,28 @@ func RegisterModelPublicServiceHandlerClient(ctx context.Context, mux *runtime.S
 		}
 		forward_ModelPublicService_GetModelDefinition_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_ModelPublicService_ListPublicModels_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/ListPublicModels", runtime.WithHTTPPathPattern("/v1alpha/models"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ModelPublicService_ListPublicModels_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ModelPublicService_ListPublicModels_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodGet, pattern_ModelPublicService_ListModels_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/ListModels", runtime.WithHTTPPathPattern("/v1alpha/models"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/ListModels", runtime.WithHTTPPathPattern("/v1alpha/{parent=namespaces/*}/models"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1991,317 +2008,283 @@ func RegisterModelPublicServiceHandlerClient(ctx context.Context, mux *runtime.S
 		}
 		forward_ModelPublicService_ListModels_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_ModelPublicService_ListNamespaceModels_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPublicService_CreateModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/ListNamespaceModels", runtime.WithHTTPPathPattern("/v1alpha/{parent=namespaces/*}/models"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/CreateModel", runtime.WithHTTPPathPattern("/v1alpha/{parent=namespaces/*}/models"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_ListNamespaceModels_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_CreateModel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_ListNamespaceModels_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_CreateModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_ModelPublicService_CreateNamespaceModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_ModelPublicService_GetModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/CreateNamespaceModel", runtime.WithHTTPPathPattern("/v1alpha/{parent=namespaces/*}/models"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/GetModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_CreateNamespaceModel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_GetModel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_CreateNamespaceModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_GetModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_ModelPublicService_GetNamespaceModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPatch, pattern_ModelPublicService_UpdateModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/GetNamespaceModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/UpdateModel", runtime.WithHTTPPathPattern("/v1alpha/{model.name=namespaces/*/models/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_GetNamespaceModel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_UpdateModel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_GetNamespaceModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_UpdateModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPatch, pattern_ModelPublicService_UpdateNamespaceModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_ModelPublicService_DeleteModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/UpdateNamespaceModel", runtime.WithHTTPPathPattern("/v1alpha/{model.name=namespaces/*/models/*}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/DeleteModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_UpdateNamespaceModel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_DeleteModel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_UpdateNamespaceModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_DeleteModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodDelete, pattern_ModelPublicService_DeleteNamespaceModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPublicService_RenameModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/DeleteNamespaceModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/RenameModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/rename"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_DeleteNamespaceModel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_RenameModel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_DeleteNamespaceModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_RenameModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_ModelPublicService_RenameNamespaceModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_ModelPublicService_WatchModelVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/RenameNamespaceModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/rename"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/WatchModelVersion", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/versions/{version}/watch"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_RenameNamespaceModel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_WatchModelVersion_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_RenameNamespaceModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_WatchModelVersion_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_ModelPublicService_WatchNamespaceModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_ModelPublicService_WatchModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/WatchNamespaceModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/versions/{version}/watch"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/WatchModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/watch"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_WatchNamespaceModel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_WatchModel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_WatchNamespaceModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_WatchModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_ModelPublicService_WatchNamespaceLatestModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_ModelPublicService_ListModelVersions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/WatchNamespaceLatestModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/watch"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/ListModelVersions", runtime.WithHTTPPathPattern("/v1alpha/{parent=namespaces/*/models/*}/versions"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_WatchNamespaceLatestModel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_ListModelVersions_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_WatchNamespaceLatestModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_ListModelVersions_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_ModelPublicService_ListNamespaceModelVersions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_ModelPublicService_DeleteModelVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/ListNamespaceModelVersions", runtime.WithHTTPPathPattern("/v1alpha/{parent=namespaces/*/models/*}/versions"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/DeleteModelVersion", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*/versions/*}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_ListNamespaceModelVersions_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_DeleteModelVersion_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_ListNamespaceModelVersions_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_DeleteModelVersion_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodDelete, pattern_ModelPublicService_DeleteNamespaceModelVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPublicService_TriggerModelVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/DeleteNamespaceModelVersion", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*/versions/*}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerModelVersion", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*/versions/*}/trigger"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_DeleteNamespaceModelVersion_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_TriggerModelVersion_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_DeleteNamespaceModelVersion_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_TriggerModelVersion_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_ModelPublicService_TriggerNamespaceModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPublicService_TriggerAsyncModelVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerNamespaceModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*/versions/*}/trigger"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerAsyncModelVersion", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*/versions/*}/trigger-async"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_TriggerNamespaceModel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_TriggerAsyncModelVersion_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_TriggerNamespaceModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_TriggerAsyncModelVersion_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_ModelPublicService_TriggerAsyncNamespaceModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPublicService_TriggerModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerAsyncNamespaceModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*/versions/*}/trigger-async"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/trigger"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_TriggerAsyncNamespaceModel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_TriggerModel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_TriggerAsyncNamespaceModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_TriggerModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_ModelPublicService_TriggerNamespaceLatestModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPublicService_TriggerAsyncModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerNamespaceLatestModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/trigger"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerAsyncModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/trigger-async"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_TriggerNamespaceLatestModel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_TriggerAsyncModel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_TriggerNamespaceLatestModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_TriggerAsyncModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_ModelPublicService_TriggerAsyncNamespaceLatestModel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPublicService_TriggerModelVersionBinaryFileUpload_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerAsyncNamespaceLatestModel", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/trigger-async"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerModelVersionBinaryFileUpload", runtime.WithHTTPPathPattern("/model.v1alpha.ModelPublicService/TriggerModelVersionBinaryFileUpload"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_TriggerAsyncNamespaceLatestModel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_TriggerModelVersionBinaryFileUpload_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_TriggerAsyncNamespaceLatestModel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_TriggerModelVersionBinaryFileUpload_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_ModelPublicService_TriggerNamespaceModelBinaryFileUpload_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ModelPublicService_TriggerModelBinaryFileUpload_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerNamespaceModelBinaryFileUpload", runtime.WithHTTPPathPattern("/model.v1alpha.ModelPublicService/TriggerNamespaceModelBinaryFileUpload"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerModelBinaryFileUpload", runtime.WithHTTPPathPattern("/model.v1alpha.ModelPublicService/TriggerModelBinaryFileUpload"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_TriggerNamespaceModelBinaryFileUpload_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_TriggerModelBinaryFileUpload_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_TriggerNamespaceModelBinaryFileUpload_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_TriggerModelBinaryFileUpload_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_ModelPublicService_TriggerNamespaceLatestModelBinaryFileUpload_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_ModelPublicService_GetModelVersionOperation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/TriggerNamespaceLatestModelBinaryFileUpload", runtime.WithHTTPPathPattern("/model.v1alpha.ModelPublicService/TriggerNamespaceLatestModelBinaryFileUpload"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/GetModelVersionOperation", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*/versions/*}/operation"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelPublicService_TriggerNamespaceLatestModelBinaryFileUpload_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelPublicService_GetModelVersionOperation_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ModelPublicService_TriggerNamespaceLatestModelBinaryFileUpload_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodGet, pattern_ModelPublicService_GetNamespaceModelOperation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/GetNamespaceModelOperation", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*/versions/*}/operation"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ModelPublicService_GetNamespaceModelOperation_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ModelPublicService_GetNamespaceModelOperation_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodGet, pattern_ModelPublicService_GetNamespaceLatestModelOperation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/GetNamespaceLatestModelOperation", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/operation"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ModelPublicService_GetNamespaceLatestModelOperation_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_ModelPublicService_GetNamespaceLatestModelOperation_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModelPublicService_GetModelVersionOperation_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodGet, pattern_ModelPublicService_GetModelOperation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/GetModelOperation", runtime.WithHTTPPathPattern("/v1alpha/operations/{operation_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/GetModelOperation", runtime.WithHTTPPathPattern("/v1alpha/{name=namespaces/*/models/*}/operation"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2313,6 +2296,23 @@ func RegisterModelPublicServiceHandlerClient(ctx context.Context, mux *runtime.S
 			return
 		}
 		forward_ModelPublicService_GetModelOperation_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ModelPublicService_GetOperation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/model.v1alpha.ModelPublicService/GetOperation", runtime.WithHTTPPathPattern("/v1alpha/operations/{operation_id}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ModelPublicService_GetOperation_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ModelPublicService_GetOperation_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodGet, pattern_ModelPublicService_ListModelRuns_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -2352,65 +2352,65 @@ func RegisterModelPublicServiceHandlerClient(ctx context.Context, mux *runtime.S
 }
 
 var (
-	pattern_ModelPublicService_Liveness_0                                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "__liveness"}, ""))
-	pattern_ModelPublicService_Liveness_1                                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "health", "model"}, ""))
-	pattern_ModelPublicService_Readiness_0                                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "__readiness"}, ""))
-	pattern_ModelPublicService_Readiness_1                                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "ready", "model"}, ""))
-	pattern_ModelPublicService_ListModelDefinitions_0                        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "model-definitions"}, ""))
-	pattern_ModelPublicService_ListAvailableRegions_0                        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "available-regions"}, ""))
-	pattern_ModelPublicService_GetModelDefinition_0                          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1alpha", "model-definitions", "model_definition_id"}, ""))
-	pattern_ModelPublicService_ListModels_0                                  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "models"}, ""))
-	pattern_ModelPublicService_ListNamespaceModels_0                         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "parent", "models"}, ""))
-	pattern_ModelPublicService_CreateNamespaceModel_0                        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "parent", "models"}, ""))
-	pattern_ModelPublicService_GetNamespaceModel_0                           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "namespaces", "models", "name"}, ""))
-	pattern_ModelPublicService_UpdateNamespaceModel_0                        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "namespaces", "models", "model.name"}, ""))
-	pattern_ModelPublicService_DeleteNamespaceModel_0                        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "namespaces", "models", "name"}, ""))
-	pattern_ModelPublicService_RenameNamespaceModel_0                        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "namespaces", "models", "name", "rename"}, ""))
-	pattern_ModelPublicService_WatchNamespaceModel_0                         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6}, []string{"v1alpha", "namespaces", "models", "name", "versions", "version", "watch"}, ""))
-	pattern_ModelPublicService_WatchNamespaceLatestModel_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "namespaces", "models", "name", "watch"}, ""))
-	pattern_ModelPublicService_ListNamespaceModelVersions_0                  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "namespaces", "models", "parent", "versions"}, ""))
-	pattern_ModelPublicService_DeleteNamespaceModelVersion_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4}, []string{"v1alpha", "namespaces", "models", "versions", "name"}, ""))
-	pattern_ModelPublicService_TriggerNamespaceModel_0                       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "models", "versions", "name", "trigger"}, ""))
-	pattern_ModelPublicService_TriggerAsyncNamespaceModel_0                  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "models", "versions", "name", "trigger-async"}, ""))
-	pattern_ModelPublicService_TriggerNamespaceLatestModel_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "namespaces", "models", "name", "trigger"}, ""))
-	pattern_ModelPublicService_TriggerAsyncNamespaceLatestModel_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "namespaces", "models", "name", "trigger-async"}, ""))
-	pattern_ModelPublicService_TriggerNamespaceModelBinaryFileUpload_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.v1alpha.ModelPublicService", "TriggerNamespaceModelBinaryFileUpload"}, ""))
-	pattern_ModelPublicService_TriggerNamespaceLatestModelBinaryFileUpload_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.v1alpha.ModelPublicService", "TriggerNamespaceLatestModelBinaryFileUpload"}, ""))
-	pattern_ModelPublicService_GetNamespaceModelOperation_0                  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "models", "versions", "name", "operation"}, ""))
-	pattern_ModelPublicService_GetNamespaceLatestModelOperation_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "namespaces", "models", "name", "operation"}, ""))
-	pattern_ModelPublicService_GetModelOperation_0                           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1alpha", "operations", "operation_id"}, ""))
-	pattern_ModelPublicService_ListModelRuns_0                               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "namespaces", "models", "parent", "runs"}, ""))
-	pattern_ModelPublicService_ListModelRunsByRequester_0                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"v1alpha", "dashboard", "models", "runs"}, ""))
+	pattern_ModelPublicService_Liveness_0                            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "__liveness"}, ""))
+	pattern_ModelPublicService_Liveness_1                            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "health", "model"}, ""))
+	pattern_ModelPublicService_Readiness_0                           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "__readiness"}, ""))
+	pattern_ModelPublicService_Readiness_1                           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1alpha", "ready", "model"}, ""))
+	pattern_ModelPublicService_ListModelDefinitions_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "model-definitions"}, ""))
+	pattern_ModelPublicService_ListAvailableRegions_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "available-regions"}, ""))
+	pattern_ModelPublicService_GetModelDefinition_0                  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1alpha", "model-definitions", "model_definition_id"}, ""))
+	pattern_ModelPublicService_ListPublicModels_0                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha", "models"}, ""))
+	pattern_ModelPublicService_ListModels_0                          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "parent", "models"}, ""))
+	pattern_ModelPublicService_CreateModel_0                         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 2, 5, 2, 2, 3}, []string{"v1alpha", "namespaces", "parent", "models"}, ""))
+	pattern_ModelPublicService_GetModel_0                            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "namespaces", "models", "name"}, ""))
+	pattern_ModelPublicService_UpdateModel_0                         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "namespaces", "models", "model.name"}, ""))
+	pattern_ModelPublicService_DeleteModel_0                         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3}, []string{"v1alpha", "namespaces", "models", "name"}, ""))
+	pattern_ModelPublicService_RenameModel_0                         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "namespaces", "models", "name", "rename"}, ""))
+	pattern_ModelPublicService_WatchModelVersion_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6}, []string{"v1alpha", "namespaces", "models", "name", "versions", "version", "watch"}, ""))
+	pattern_ModelPublicService_WatchModel_0                          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "namespaces", "models", "name", "watch"}, ""))
+	pattern_ModelPublicService_ListModelVersions_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "namespaces", "models", "parent", "versions"}, ""))
+	pattern_ModelPublicService_DeleteModelVersion_0                  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4}, []string{"v1alpha", "namespaces", "models", "versions", "name"}, ""))
+	pattern_ModelPublicService_TriggerModelVersion_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "models", "versions", "name", "trigger"}, ""))
+	pattern_ModelPublicService_TriggerAsyncModelVersion_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "models", "versions", "name", "trigger-async"}, ""))
+	pattern_ModelPublicService_TriggerModel_0                        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "namespaces", "models", "name", "trigger"}, ""))
+	pattern_ModelPublicService_TriggerAsyncModel_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "namespaces", "models", "name", "trigger-async"}, ""))
+	pattern_ModelPublicService_TriggerModelVersionBinaryFileUpload_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.v1alpha.ModelPublicService", "TriggerModelVersionBinaryFileUpload"}, ""))
+	pattern_ModelPublicService_TriggerModelBinaryFileUpload_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"model.v1alpha.ModelPublicService", "TriggerModelBinaryFileUpload"}, ""))
+	pattern_ModelPublicService_GetModelVersionOperation_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 2, 3, 1, 0, 4, 6, 5, 4, 2, 5}, []string{"v1alpha", "namespaces", "models", "versions", "name", "operation"}, ""))
+	pattern_ModelPublicService_GetModelOperation_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "namespaces", "models", "name", "operation"}, ""))
+	pattern_ModelPublicService_GetOperation_0                        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1alpha", "operations", "operation_id"}, ""))
+	pattern_ModelPublicService_ListModelRuns_0                       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 2, 2, 1, 0, 4, 4, 5, 3, 2, 4}, []string{"v1alpha", "namespaces", "models", "parent", "runs"}, ""))
+	pattern_ModelPublicService_ListModelRunsByRequester_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"v1alpha", "dashboard", "models", "runs"}, ""))
 )
 
 var (
-	forward_ModelPublicService_Liveness_0                                    = runtime.ForwardResponseMessage
-	forward_ModelPublicService_Liveness_1                                    = runtime.ForwardResponseMessage
-	forward_ModelPublicService_Readiness_0                                   = runtime.ForwardResponseMessage
-	forward_ModelPublicService_Readiness_1                                   = runtime.ForwardResponseMessage
-	forward_ModelPublicService_ListModelDefinitions_0                        = runtime.ForwardResponseMessage
-	forward_ModelPublicService_ListAvailableRegions_0                        = runtime.ForwardResponseMessage
-	forward_ModelPublicService_GetModelDefinition_0                          = runtime.ForwardResponseMessage
-	forward_ModelPublicService_ListModels_0                                  = runtime.ForwardResponseMessage
-	forward_ModelPublicService_ListNamespaceModels_0                         = runtime.ForwardResponseMessage
-	forward_ModelPublicService_CreateNamespaceModel_0                        = runtime.ForwardResponseMessage
-	forward_ModelPublicService_GetNamespaceModel_0                           = runtime.ForwardResponseMessage
-	forward_ModelPublicService_UpdateNamespaceModel_0                        = runtime.ForwardResponseMessage
-	forward_ModelPublicService_DeleteNamespaceModel_0                        = runtime.ForwardResponseMessage
-	forward_ModelPublicService_RenameNamespaceModel_0                        = runtime.ForwardResponseMessage
-	forward_ModelPublicService_WatchNamespaceModel_0                         = runtime.ForwardResponseMessage
-	forward_ModelPublicService_WatchNamespaceLatestModel_0                   = runtime.ForwardResponseMessage
-	forward_ModelPublicService_ListNamespaceModelVersions_0                  = runtime.ForwardResponseMessage
-	forward_ModelPublicService_DeleteNamespaceModelVersion_0                 = runtime.ForwardResponseMessage
-	forward_ModelPublicService_TriggerNamespaceModel_0                       = runtime.ForwardResponseMessage
-	forward_ModelPublicService_TriggerAsyncNamespaceModel_0                  = runtime.ForwardResponseMessage
-	forward_ModelPublicService_TriggerNamespaceLatestModel_0                 = runtime.ForwardResponseMessage
-	forward_ModelPublicService_TriggerAsyncNamespaceLatestModel_0            = runtime.ForwardResponseMessage
-	forward_ModelPublicService_TriggerNamespaceModelBinaryFileUpload_0       = runtime.ForwardResponseMessage
-	forward_ModelPublicService_TriggerNamespaceLatestModelBinaryFileUpload_0 = runtime.ForwardResponseMessage
-	forward_ModelPublicService_GetNamespaceModelOperation_0                  = runtime.ForwardResponseMessage
-	forward_ModelPublicService_GetNamespaceLatestModelOperation_0            = runtime.ForwardResponseMessage
-	forward_ModelPublicService_GetModelOperation_0                           = runtime.ForwardResponseMessage
-	forward_ModelPublicService_ListModelRuns_0                               = runtime.ForwardResponseMessage
-	forward_ModelPublicService_ListModelRunsByRequester_0                    = runtime.ForwardResponseMessage
+	forward_ModelPublicService_Liveness_0                            = runtime.ForwardResponseMessage
+	forward_ModelPublicService_Liveness_1                            = runtime.ForwardResponseMessage
+	forward_ModelPublicService_Readiness_0                           = runtime.ForwardResponseMessage
+	forward_ModelPublicService_Readiness_1                           = runtime.ForwardResponseMessage
+	forward_ModelPublicService_ListModelDefinitions_0                = runtime.ForwardResponseMessage
+	forward_ModelPublicService_ListAvailableRegions_0                = runtime.ForwardResponseMessage
+	forward_ModelPublicService_GetModelDefinition_0                  = runtime.ForwardResponseMessage
+	forward_ModelPublicService_ListPublicModels_0                    = runtime.ForwardResponseMessage
+	forward_ModelPublicService_ListModels_0                          = runtime.ForwardResponseMessage
+	forward_ModelPublicService_CreateModel_0                         = runtime.ForwardResponseMessage
+	forward_ModelPublicService_GetModel_0                            = runtime.ForwardResponseMessage
+	forward_ModelPublicService_UpdateModel_0                         = runtime.ForwardResponseMessage
+	forward_ModelPublicService_DeleteModel_0                         = runtime.ForwardResponseMessage
+	forward_ModelPublicService_RenameModel_0                         = runtime.ForwardResponseMessage
+	forward_ModelPublicService_WatchModelVersion_0                   = runtime.ForwardResponseMessage
+	forward_ModelPublicService_WatchModel_0                          = runtime.ForwardResponseMessage
+	forward_ModelPublicService_ListModelVersions_0                   = runtime.ForwardResponseMessage
+	forward_ModelPublicService_DeleteModelVersion_0                  = runtime.ForwardResponseMessage
+	forward_ModelPublicService_TriggerModelVersion_0                 = runtime.ForwardResponseMessage
+	forward_ModelPublicService_TriggerAsyncModelVersion_0            = runtime.ForwardResponseMessage
+	forward_ModelPublicService_TriggerModel_0                        = runtime.ForwardResponseMessage
+	forward_ModelPublicService_TriggerAsyncModel_0                   = runtime.ForwardResponseMessage
+	forward_ModelPublicService_TriggerModelVersionBinaryFileUpload_0 = runtime.ForwardResponseMessage
+	forward_ModelPublicService_TriggerModelBinaryFileUpload_0        = runtime.ForwardResponseMessage
+	forward_ModelPublicService_GetModelVersionOperation_0            = runtime.ForwardResponseMessage
+	forward_ModelPublicService_GetModelOperation_0                   = runtime.ForwardResponseMessage
+	forward_ModelPublicService_GetOperation_0                        = runtime.ForwardResponseMessage
+	forward_ModelPublicService_ListModelRuns_0                       = runtime.ForwardResponseMessage
+	forward_ModelPublicService_ListModelRunsByRequester_0            = runtime.ForwardResponseMessage
 )

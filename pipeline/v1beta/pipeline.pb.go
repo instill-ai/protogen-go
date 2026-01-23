@@ -487,10 +487,11 @@ func (x *Endpoints) GetWebhooks() map[string]*Endpoints_WebhookEndpoint {
 // A Pipeline is an end-to-end workflow that automates a sequence of components
 // to process data.
 //
-// For more information, see [Pipeline](https://instill-ai.dev/docs/pipeline/introduction) in
-// the official documentation.
-// Pipeline represents a data pipeline for AI/ML workflows.
-// Field ordering follows AIP standard: name(1), id(2), display_name(3), slug(4), aliases(5), description(6)
+// For more information, see
+// [Pipeline](https://instill-ai.dev/docs/pipeline/introduction) in the official
+// documentation. Pipeline represents a data pipeline for AI/ML workflows. Field
+// ordering follows AIP standard: name(1), id(2), display_name(3), slug(4),
+// aliases(5), description(6)
 type Pipeline struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Field 1: Canonical resource name.
@@ -1016,14 +1017,15 @@ func (x *GetHubStatsResponse) GetNumberOfFeaturedPipelines() int32 {
 
 // Pipeline releases contain the version control information of a pipeline.
 // This allows users to track changes in the pipeline over time.
-// Field ordering follows AIP standard: name (1), id (2), display_name (3), slug (4), aliases (5), description (6)
+// Field ordering follows AIP standard: name (1), id (2), display_name (3), slug
+// (4), aliases (5), description (6)
 type PipelineRelease struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Field 1: The name of the release.
 	// - Format: `namespaces/{namespace}/pipelines/{pipeline}/releases/{release}`.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Field 2: Release resource ID (used in `name` as the last segment). It must be a
-	// sematic version vX.Y.Z.
+	// Field 2: Release resource ID (used in `name` as the last segment). It must
+	// be a sematic version vX.Y.Z.
 	Id string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
 	// Field 3: Human-readable display name for UI.
 	DisplayName string `protobuf:"bytes,3,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
@@ -1192,8 +1194,8 @@ func (x *PipelineRelease) GetEndpoints() *Endpoints {
 	return nil
 }
 
-// ListPipelinesRequest represents a request to list pipelines.
-type ListPipelinesRequest struct {
+// ListPublicPipelinesRequest represents a request to list public pipelines.
+type ListPublicPipelinesRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The maximum number of pipelines to return. If this parameter is
 	// unspecified, at most 10 pipelines will be returned. The cap value for this
@@ -1213,16 +1215,193 @@ type ListPipelinesRequest struct {
 	ShowDeleted *bool `protobuf:"varint,5,opt,name=show_deleted,json=showDeleted,proto3,oneof" json:"show_deleted,omitempty"`
 	// Limit results to pipelines with the specified visibility.
 	Visibility *Pipeline_Visibility `protobuf:"varint,6,opt,name=visibility,proto3,enum=pipeline.v1beta.Pipeline_Visibility,oneof" json:"visibility,omitempty"`
-	// Order by field, with options for ordering by `id`, `create_time` or `update_time`.
-	// Format: `order_by=id` or `order_by=create_time desc`, default is `asc`.
+	// Order by field, with options for ordering by `id`, `create_time` or
+	// `update_time`. Format: `order_by=id` or `order_by=create_time desc`,
+	// default is `asc`.
 	OrderBy       *string `protobuf:"bytes,7,opt,name=order_by,json=orderBy,proto3,oneof" json:"order_by,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListPublicPipelinesRequest) Reset() {
+	*x = ListPublicPipelinesRequest{}
+	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListPublicPipelinesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListPublicPipelinesRequest) ProtoMessage() {}
+
+func (x *ListPublicPipelinesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListPublicPipelinesRequest.ProtoReflect.Descriptor instead.
+func (*ListPublicPipelinesRequest) Descriptor() ([]byte, []int) {
+	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *ListPublicPipelinesRequest) GetPageSize() int32 {
+	if x != nil && x.PageSize != nil {
+		return *x.PageSize
+	}
+	return 0
+}
+
+func (x *ListPublicPipelinesRequest) GetPageToken() string {
+	if x != nil && x.PageToken != nil {
+		return *x.PageToken
+	}
+	return ""
+}
+
+func (x *ListPublicPipelinesRequest) GetView() Pipeline_View {
+	if x != nil && x.View != nil {
+		return *x.View
+	}
+	return Pipeline_VIEW_UNSPECIFIED
+}
+
+func (x *ListPublicPipelinesRequest) GetFilter() string {
+	if x != nil && x.Filter != nil {
+		return *x.Filter
+	}
+	return ""
+}
+
+func (x *ListPublicPipelinesRequest) GetShowDeleted() bool {
+	if x != nil && x.ShowDeleted != nil {
+		return *x.ShowDeleted
+	}
+	return false
+}
+
+func (x *ListPublicPipelinesRequest) GetVisibility() Pipeline_Visibility {
+	if x != nil && x.Visibility != nil {
+		return *x.Visibility
+	}
+	return Pipeline_VISIBILITY_UNSPECIFIED
+}
+
+func (x *ListPublicPipelinesRequest) GetOrderBy() string {
+	if x != nil && x.OrderBy != nil {
+		return *x.OrderBy
+	}
+	return ""
+}
+
+// ListPublicPipelinesResponse contains a list of public pipelines.
+type ListPublicPipelinesResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// A list of pipeline resources.
+	Pipelines []*Pipeline `protobuf:"bytes,1,rep,name=pipelines,proto3" json:"pipelines,omitempty"`
+	// Next page token.
+	NextPageToken string `protobuf:"bytes,2,opt,name=next_page_token,json=nextPageToken,proto3" json:"next_page_token,omitempty"`
+	// Total number of pipelines.
+	TotalSize     int32 `protobuf:"varint,3,opt,name=total_size,json=totalSize,proto3" json:"total_size,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListPublicPipelinesResponse) Reset() {
+	*x = ListPublicPipelinesResponse{}
+	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListPublicPipelinesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListPublicPipelinesResponse) ProtoMessage() {}
+
+func (x *ListPublicPipelinesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListPublicPipelinesResponse.ProtoReflect.Descriptor instead.
+func (*ListPublicPipelinesResponse) Descriptor() ([]byte, []int) {
+	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *ListPublicPipelinesResponse) GetPipelines() []*Pipeline {
+	if x != nil {
+		return x.Pipelines
+	}
+	return nil
+}
+
+func (x *ListPublicPipelinesResponse) GetNextPageToken() string {
+	if x != nil {
+		return x.NextPageToken
+	}
+	return ""
+}
+
+func (x *ListPublicPipelinesResponse) GetTotalSize() int32 {
+	if x != nil {
+		return x.TotalSize
+	}
+	return 0
+}
+
+// ListPipelinesRequest represents a request to list pipelines.
+// Follows AIP-132: https://google.aip.dev/132
+type ListPipelinesRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The parent resource name.
+	// Format: `namespaces/{namespace}`
+	Parent string `protobuf:"bytes,1,opt,name=parent,proto3" json:"parent,omitempty"`
+	// The maximum number of pipelines to return. If this parameter is
+	// unspecified, at most 10 pipelines will be returned. The cap value for this
+	// parameter is 100 (i.e. any value above that will be coerced to 100).
+	PageSize *int32 `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
+	// Page token.
+	PageToken *string `protobuf:"bytes,3,opt,name=page_token,json=pageToken,proto3,oneof" json:"page_token,omitempty"`
+	// View allows clients to specify the desired pipeline view in the response.
+	View *Pipeline_View `protobuf:"varint,4,opt,name=view,proto3,enum=pipeline.v1beta.Pipeline_View,oneof" json:"view,omitempty"`
+	// Filter can hold an [AIP-160](https://google.aip.dev/160)-compliant filter
+	// expression.
+	// - Example: `create_time>timestamp("2000-06-19T23:31:08.657Z")`.
+	// - Example:
+	// `recipe.components.definition_name:"operator-definitions/2ac8be70-0f7a-4b61-a33d-098b8acfa6f3"`.
+	Filter *string `protobuf:"bytes,5,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
+	// Include soft-deleted pipelines in the result.
+	ShowDeleted *bool `protobuf:"varint,6,opt,name=show_deleted,json=showDeleted,proto3,oneof" json:"show_deleted,omitempty"`
+	// Limit results to pipelines with the specified visibility.
+	Visibility *Pipeline_Visibility `protobuf:"varint,7,opt,name=visibility,proto3,enum=pipeline.v1beta.Pipeline_Visibility,oneof" json:"visibility,omitempty"`
+	// Order by field, with options for ordering by `id`, `create_time` or
+	// `update_time`. Format: `order_by=id` or `order_by=create_time desc`,
+	// default is `asc`.
+	OrderBy       *string `protobuf:"bytes,8,opt,name=order_by,json=orderBy,proto3,oneof" json:"order_by,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ListPipelinesRequest) Reset() {
 	*x = ListPipelinesRequest{}
-	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[11]
+	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1234,7 +1413,7 @@ func (x *ListPipelinesRequest) String() string {
 func (*ListPipelinesRequest) ProtoMessage() {}
 
 func (x *ListPipelinesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[11]
+	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1247,7 +1426,14 @@ func (x *ListPipelinesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPipelinesRequest.ProtoReflect.Descriptor instead.
 func (*ListPipelinesRequest) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{11}
+	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *ListPipelinesRequest) GetParent() string {
+	if x != nil {
+		return x.Parent
+	}
+	return ""
 }
 
 func (x *ListPipelinesRequest) GetPageSize() int32 {
@@ -1314,7 +1500,7 @@ type ListPipelinesResponse struct {
 
 func (x *ListPipelinesResponse) Reset() {
 	*x = ListPipelinesResponse{}
-	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[12]
+	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1326,7 +1512,7 @@ func (x *ListPipelinesResponse) String() string {
 func (*ListPipelinesResponse) ProtoMessage() {}
 
 func (x *ListPipelinesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[12]
+	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1339,7 +1525,7 @@ func (x *ListPipelinesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPipelinesResponse.ProtoReflect.Descriptor instead.
 func (*ListPipelinesResponse) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{12}
+	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *ListPipelinesResponse) GetPipelines() []*Pipeline {
@@ -1363,192 +1549,9 @@ func (x *ListPipelinesResponse) GetTotalSize() int32 {
 	return 0
 }
 
-// ListNamespacePipelinesRequest represents a request to list pipelines.
-// Follows AIP-132: https://google.aip.dev/132
-type ListNamespacePipelinesRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The parent resource name.
-	// Format: `namespaces/{namespace}`
-	Parent string `protobuf:"bytes,1,opt,name=parent,proto3" json:"parent,omitempty"`
-	// The maximum number of pipelines to return. If this parameter is
-	// unspecified, at most 10 pipelines will be returned. The cap value for this
-	// parameter is 100 (i.e. any value above that will be coerced to 100).
-	PageSize *int32 `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
-	// Page token.
-	PageToken *string `protobuf:"bytes,3,opt,name=page_token,json=pageToken,proto3,oneof" json:"page_token,omitempty"`
-	// View allows clients to specify the desired pipeline view in the response.
-	View *Pipeline_View `protobuf:"varint,4,opt,name=view,proto3,enum=pipeline.v1beta.Pipeline_View,oneof" json:"view,omitempty"`
-	// Filter can hold an [AIP-160](https://google.aip.dev/160)-compliant filter
-	// expression.
-	// - Example: `create_time>timestamp("2000-06-19T23:31:08.657Z")`.
-	// - Example:
-	// `recipe.components.definition_name:"operator-definitions/2ac8be70-0f7a-4b61-a33d-098b8acfa6f3"`.
-	Filter *string `protobuf:"bytes,5,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
-	// Include soft-deleted pipelines in the result.
-	ShowDeleted *bool `protobuf:"varint,6,opt,name=show_deleted,json=showDeleted,proto3,oneof" json:"show_deleted,omitempty"`
-	// Limit results to pipelines with the specified visibility.
-	Visibility *Pipeline_Visibility `protobuf:"varint,7,opt,name=visibility,proto3,enum=pipeline.v1beta.Pipeline_Visibility,oneof" json:"visibility,omitempty"`
-	// Order by field, with options for ordering by `id`, `create_time` or `update_time`.
-	// Format: `order_by=id` or `order_by=create_time desc`, default is `asc`.
-	OrderBy       *string `protobuf:"bytes,8,opt,name=order_by,json=orderBy,proto3,oneof" json:"order_by,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListNamespacePipelinesRequest) Reset() {
-	*x = ListNamespacePipelinesRequest{}
-	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[13]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListNamespacePipelinesRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListNamespacePipelinesRequest) ProtoMessage() {}
-
-func (x *ListNamespacePipelinesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[13]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListNamespacePipelinesRequest.ProtoReflect.Descriptor instead.
-func (*ListNamespacePipelinesRequest) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{13}
-}
-
-func (x *ListNamespacePipelinesRequest) GetParent() string {
-	if x != nil {
-		return x.Parent
-	}
-	return ""
-}
-
-func (x *ListNamespacePipelinesRequest) GetPageSize() int32 {
-	if x != nil && x.PageSize != nil {
-		return *x.PageSize
-	}
-	return 0
-}
-
-func (x *ListNamespacePipelinesRequest) GetPageToken() string {
-	if x != nil && x.PageToken != nil {
-		return *x.PageToken
-	}
-	return ""
-}
-
-func (x *ListNamespacePipelinesRequest) GetView() Pipeline_View {
-	if x != nil && x.View != nil {
-		return *x.View
-	}
-	return Pipeline_VIEW_UNSPECIFIED
-}
-
-func (x *ListNamespacePipelinesRequest) GetFilter() string {
-	if x != nil && x.Filter != nil {
-		return *x.Filter
-	}
-	return ""
-}
-
-func (x *ListNamespacePipelinesRequest) GetShowDeleted() bool {
-	if x != nil && x.ShowDeleted != nil {
-		return *x.ShowDeleted
-	}
-	return false
-}
-
-func (x *ListNamespacePipelinesRequest) GetVisibility() Pipeline_Visibility {
-	if x != nil && x.Visibility != nil {
-		return *x.Visibility
-	}
-	return Pipeline_VISIBILITY_UNSPECIFIED
-}
-
-func (x *ListNamespacePipelinesRequest) GetOrderBy() string {
-	if x != nil && x.OrderBy != nil {
-		return *x.OrderBy
-	}
-	return ""
-}
-
-// ListNamespacePipelinesResponse contains a list of pipelines.
-type ListNamespacePipelinesResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// A list of pipeline resources.
-	Pipelines []*Pipeline `protobuf:"bytes,1,rep,name=pipelines,proto3" json:"pipelines,omitempty"`
-	// Next page token.
-	NextPageToken string `protobuf:"bytes,2,opt,name=next_page_token,json=nextPageToken,proto3" json:"next_page_token,omitempty"`
-	// Total number of pipelines.
-	TotalSize     int32 `protobuf:"varint,3,opt,name=total_size,json=totalSize,proto3" json:"total_size,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListNamespacePipelinesResponse) Reset() {
-	*x = ListNamespacePipelinesResponse{}
-	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[14]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListNamespacePipelinesResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListNamespacePipelinesResponse) ProtoMessage() {}
-
-func (x *ListNamespacePipelinesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[14]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListNamespacePipelinesResponse.ProtoReflect.Descriptor instead.
-func (*ListNamespacePipelinesResponse) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{14}
-}
-
-func (x *ListNamespacePipelinesResponse) GetPipelines() []*Pipeline {
-	if x != nil {
-		return x.Pipelines
-	}
-	return nil
-}
-
-func (x *ListNamespacePipelinesResponse) GetNextPageToken() string {
-	if x != nil {
-		return x.NextPageToken
-	}
-	return ""
-}
-
-func (x *ListNamespacePipelinesResponse) GetTotalSize() int32 {
-	if x != nil {
-		return x.TotalSize
-	}
-	return 0
-}
-
-// CreateNamespacePipelineRequest represents a request from a namespace to create a
-// pipeline.
-// Follows AIP-133: https://google.aip.dev/133
-type CreateNamespacePipelineRequest struct {
+// CreatePipelineRequest represents a request from a namespace to
+// create a pipeline. Follows AIP-133: https://google.aip.dev/133
+type CreatePipelineRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The parent resource name.
 	// Format: `namespaces/{namespace}`
@@ -1559,20 +1562,20 @@ type CreateNamespacePipelineRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CreateNamespacePipelineRequest) Reset() {
-	*x = CreateNamespacePipelineRequest{}
+func (x *CreatePipelineRequest) Reset() {
+	*x = CreatePipelineRequest{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CreateNamespacePipelineRequest) String() string {
+func (x *CreatePipelineRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateNamespacePipelineRequest) ProtoMessage() {}
+func (*CreatePipelineRequest) ProtoMessage() {}
 
-func (x *CreateNamespacePipelineRequest) ProtoReflect() protoreflect.Message {
+func (x *CreatePipelineRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1584,27 +1587,27 @@ func (x *CreateNamespacePipelineRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateNamespacePipelineRequest.ProtoReflect.Descriptor instead.
-func (*CreateNamespacePipelineRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreatePipelineRequest.ProtoReflect.Descriptor instead.
+func (*CreatePipelineRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{15}
 }
 
-func (x *CreateNamespacePipelineRequest) GetParent() string {
+func (x *CreatePipelineRequest) GetParent() string {
 	if x != nil {
 		return x.Parent
 	}
 	return ""
 }
 
-func (x *CreateNamespacePipelineRequest) GetPipeline() *Pipeline {
+func (x *CreatePipelineRequest) GetPipeline() *Pipeline {
 	if x != nil {
 		return x.Pipeline
 	}
 	return nil
 }
 
-// CreateNamespacePipelineResponse contains the created pipeline.
-type CreateNamespacePipelineResponse struct {
+// CreatePipelineResponse contains the created pipeline.
+type CreatePipelineResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The created pipeline resource.
 	Pipeline      *Pipeline `protobuf:"bytes,1,opt,name=pipeline,proto3" json:"pipeline,omitempty"`
@@ -1612,20 +1615,20 @@ type CreateNamespacePipelineResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CreateNamespacePipelineResponse) Reset() {
-	*x = CreateNamespacePipelineResponse{}
+func (x *CreatePipelineResponse) Reset() {
+	*x = CreatePipelineResponse{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CreateNamespacePipelineResponse) String() string {
+func (x *CreatePipelineResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateNamespacePipelineResponse) ProtoMessage() {}
+func (*CreatePipelineResponse) ProtoMessage() {}
 
-func (x *CreateNamespacePipelineResponse) ProtoReflect() protoreflect.Message {
+func (x *CreatePipelineResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1637,22 +1640,22 @@ func (x *CreateNamespacePipelineResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateNamespacePipelineResponse.ProtoReflect.Descriptor instead.
-func (*CreateNamespacePipelineResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreatePipelineResponse.ProtoReflect.Descriptor instead.
+func (*CreatePipelineResponse) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{16}
 }
 
-func (x *CreateNamespacePipelineResponse) GetPipeline() *Pipeline {
+func (x *CreatePipelineResponse) GetPipeline() *Pipeline {
 	if x != nil {
 		return x.Pipeline
 	}
 	return nil
 }
 
-// GetNamespacePipelineRequest represents a request to fetch the details of a
+// GetPipelineRequest represents a request to fetch the details of a
 // pipeline owned by a namespace.
 // Follows AIP-131: https://google.aip.dev/131
-type GetNamespacePipelineRequest struct {
+type GetPipelineRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the pipeline.
 	// Format: `namespaces/{namespace}/pipelines/{pipeline}`
@@ -1663,20 +1666,20 @@ type GetNamespacePipelineRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetNamespacePipelineRequest) Reset() {
-	*x = GetNamespacePipelineRequest{}
+func (x *GetPipelineRequest) Reset() {
+	*x = GetPipelineRequest{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetNamespacePipelineRequest) String() string {
+func (x *GetPipelineRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetNamespacePipelineRequest) ProtoMessage() {}
+func (*GetPipelineRequest) ProtoMessage() {}
 
-func (x *GetNamespacePipelineRequest) ProtoReflect() protoreflect.Message {
+func (x *GetPipelineRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1688,27 +1691,27 @@ func (x *GetNamespacePipelineRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetNamespacePipelineRequest.ProtoReflect.Descriptor instead.
-func (*GetNamespacePipelineRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetPipelineRequest.ProtoReflect.Descriptor instead.
+func (*GetPipelineRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{17}
 }
 
-func (x *GetNamespacePipelineRequest) GetName() string {
+func (x *GetPipelineRequest) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *GetNamespacePipelineRequest) GetView() Pipeline_View {
+func (x *GetPipelineRequest) GetView() Pipeline_View {
 	if x != nil && x.View != nil {
 		return *x.View
 	}
 	return Pipeline_VIEW_UNSPECIFIED
 }
 
-// GetNamespacePipelineResponse contains the requested pipeline.
-type GetNamespacePipelineResponse struct {
+// GetPipelineResponse contains the requested pipeline.
+type GetPipelineResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The pipeline resource.
 	Pipeline      *Pipeline `protobuf:"bytes,1,opt,name=pipeline,proto3" json:"pipeline,omitempty"`
@@ -1716,20 +1719,20 @@ type GetNamespacePipelineResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetNamespacePipelineResponse) Reset() {
-	*x = GetNamespacePipelineResponse{}
+func (x *GetPipelineResponse) Reset() {
+	*x = GetPipelineResponse{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetNamespacePipelineResponse) String() string {
+func (x *GetPipelineResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetNamespacePipelineResponse) ProtoMessage() {}
+func (*GetPipelineResponse) ProtoMessage() {}
 
-func (x *GetNamespacePipelineResponse) ProtoReflect() protoreflect.Message {
+func (x *GetPipelineResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1741,49 +1744,45 @@ func (x *GetNamespacePipelineResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetNamespacePipelineResponse.ProtoReflect.Descriptor instead.
-func (*GetNamespacePipelineResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetPipelineResponse.ProtoReflect.Descriptor instead.
+func (*GetPipelineResponse) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{18}
 }
 
-func (x *GetNamespacePipelineResponse) GetPipeline() *Pipeline {
+func (x *GetPipelineResponse) GetPipeline() *Pipeline {
 	if x != nil {
 		return x.Pipeline
 	}
 	return nil
 }
 
-// UpdateNamespacePipelineRequest represents a request to update a pipeline owned by
-// a namespace.
-// Follows AIP-134: https://google.aip.dev/134
-type UpdateNamespacePipelineRequest struct {
+// UpdatePipelineRequest represents a request to update a pipeline
+// owned by a namespace. Follows AIP-134: https://google.aip.dev/134
+type UpdatePipelineRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The pipeline resource to update. The pipeline's `name` field identifies
 	// the resource. Format: `namespaces/{namespace}/pipelines/{pipeline}`
 	Pipeline *Pipeline `protobuf:"bytes,1,opt,name=pipeline,proto3" json:"pipeline,omitempty"`
 	// The update mask specifies the subset of fields that should be modified.
-	//
-	// For more information about this field, see
-	// https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#field-mask.
 	UpdateMask    *fieldmaskpb.FieldMask `protobuf:"bytes,2,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UpdateNamespacePipelineRequest) Reset() {
-	*x = UpdateNamespacePipelineRequest{}
+func (x *UpdatePipelineRequest) Reset() {
+	*x = UpdatePipelineRequest{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UpdateNamespacePipelineRequest) String() string {
+func (x *UpdatePipelineRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateNamespacePipelineRequest) ProtoMessage() {}
+func (*UpdatePipelineRequest) ProtoMessage() {}
 
-func (x *UpdateNamespacePipelineRequest) ProtoReflect() protoreflect.Message {
+func (x *UpdatePipelineRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1795,27 +1794,27 @@ func (x *UpdateNamespacePipelineRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateNamespacePipelineRequest.ProtoReflect.Descriptor instead.
-func (*UpdateNamespacePipelineRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use UpdatePipelineRequest.ProtoReflect.Descriptor instead.
+func (*UpdatePipelineRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{19}
 }
 
-func (x *UpdateNamespacePipelineRequest) GetPipeline() *Pipeline {
+func (x *UpdatePipelineRequest) GetPipeline() *Pipeline {
 	if x != nil {
 		return x.Pipeline
 	}
 	return nil
 }
 
-func (x *UpdateNamespacePipelineRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
+func (x *UpdatePipelineRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
 	if x != nil {
 		return x.UpdateMask
 	}
 	return nil
 }
 
-// UpdateNamespacePipelineResponse contains the updated pipeline.
-type UpdateNamespacePipelineResponse struct {
+// UpdatePipelineResponse contains the updated pipeline.
+type UpdatePipelineResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The updated pipeline resource.
 	Pipeline      *Pipeline `protobuf:"bytes,1,opt,name=pipeline,proto3" json:"pipeline,omitempty"`
@@ -1823,20 +1822,20 @@ type UpdateNamespacePipelineResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UpdateNamespacePipelineResponse) Reset() {
-	*x = UpdateNamespacePipelineResponse{}
+func (x *UpdatePipelineResponse) Reset() {
+	*x = UpdatePipelineResponse{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UpdateNamespacePipelineResponse) String() string {
+func (x *UpdatePipelineResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateNamespacePipelineResponse) ProtoMessage() {}
+func (*UpdatePipelineResponse) ProtoMessage() {}
 
-func (x *UpdateNamespacePipelineResponse) ProtoReflect() protoreflect.Message {
+func (x *UpdatePipelineResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1848,22 +1847,21 @@ func (x *UpdateNamespacePipelineResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateNamespacePipelineResponse.ProtoReflect.Descriptor instead.
-func (*UpdateNamespacePipelineResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use UpdatePipelineResponse.ProtoReflect.Descriptor instead.
+func (*UpdatePipelineResponse) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{20}
 }
 
-func (x *UpdateNamespacePipelineResponse) GetPipeline() *Pipeline {
+func (x *UpdatePipelineResponse) GetPipeline() *Pipeline {
 	if x != nil {
 		return x.Pipeline
 	}
 	return nil
 }
 
-// DeleteNamespacePipelineRequest represents a request to delete a pipeline owned by
-// a namespace.
-// Follows AIP-135: https://google.aip.dev/135
-type DeleteNamespacePipelineRequest struct {
+// DeletePipelineRequest represents a request to delete a pipeline
+// owned by a namespace. Follows AIP-135: https://google.aip.dev/135
+type DeletePipelineRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the pipeline to delete.
 	// Format: `namespaces/{namespace}/pipelines/{pipeline}`
@@ -1872,20 +1870,20 @@ type DeleteNamespacePipelineRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *DeleteNamespacePipelineRequest) Reset() {
-	*x = DeleteNamespacePipelineRequest{}
+func (x *DeletePipelineRequest) Reset() {
+	*x = DeletePipelineRequest{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *DeleteNamespacePipelineRequest) String() string {
+func (x *DeletePipelineRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DeleteNamespacePipelineRequest) ProtoMessage() {}
+func (*DeletePipelineRequest) ProtoMessage() {}
 
-func (x *DeleteNamespacePipelineRequest) ProtoReflect() protoreflect.Message {
+func (x *DeletePipelineRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1897,39 +1895,39 @@ func (x *DeleteNamespacePipelineRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DeleteNamespacePipelineRequest.ProtoReflect.Descriptor instead.
-func (*DeleteNamespacePipelineRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use DeletePipelineRequest.ProtoReflect.Descriptor instead.
+func (*DeletePipelineRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{21}
 }
 
-func (x *DeleteNamespacePipelineRequest) GetName() string {
+func (x *DeletePipelineRequest) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-// DeleteNamespacePipelineResponse is an empty response.
-type DeleteNamespacePipelineResponse struct {
+// DeletePipelineResponse is an empty response.
+type DeletePipelineResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *DeleteNamespacePipelineResponse) Reset() {
-	*x = DeleteNamespacePipelineResponse{}
+func (x *DeletePipelineResponse) Reset() {
+	*x = DeletePipelineResponse{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *DeleteNamespacePipelineResponse) String() string {
+func (x *DeletePipelineResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DeleteNamespacePipelineResponse) ProtoMessage() {}
+func (*DeletePipelineResponse) ProtoMessage() {}
 
-func (x *DeleteNamespacePipelineResponse) ProtoReflect() protoreflect.Message {
+func (x *DeletePipelineResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1941,14 +1939,14 @@ func (x *DeleteNamespacePipelineResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DeleteNamespacePipelineResponse.ProtoReflect.Descriptor instead.
-func (*DeleteNamespacePipelineResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use DeletePipelineResponse.ProtoReflect.Descriptor instead.
+func (*DeletePipelineResponse) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{22}
 }
 
-// ValidateNamespacePipelineRequest represents a request to validate a pipeline
+// ValidatePipelineRequest represents a request to validate a pipeline
 // owned by a user.
-type ValidateNamespacePipelineRequest struct {
+type ValidatePipelineRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the pipeline to validate.
 	// Format: namespaces/{namespace}/pipelines/{pipeline}
@@ -1957,20 +1955,20 @@ type ValidateNamespacePipelineRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ValidateNamespacePipelineRequest) Reset() {
-	*x = ValidateNamespacePipelineRequest{}
+func (x *ValidatePipelineRequest) Reset() {
+	*x = ValidatePipelineRequest{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ValidateNamespacePipelineRequest) String() string {
+func (x *ValidatePipelineRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ValidateNamespacePipelineRequest) ProtoMessage() {}
+func (*ValidatePipelineRequest) ProtoMessage() {}
 
-func (x *ValidateNamespacePipelineRequest) ProtoReflect() protoreflect.Message {
+func (x *ValidatePipelineRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1982,20 +1980,20 @@ func (x *ValidateNamespacePipelineRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ValidateNamespacePipelineRequest.ProtoReflect.Descriptor instead.
-func (*ValidateNamespacePipelineRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use ValidatePipelineRequest.ProtoReflect.Descriptor instead.
+func (*ValidatePipelineRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{23}
 }
 
-func (x *ValidateNamespacePipelineRequest) GetName() string {
+func (x *ValidatePipelineRequest) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-// ValidateNamespacePipelineResponse contains a validated pipeline.
-type ValidateNamespacePipelineResponse struct {
+// ValidatePipelineResponse contains a validated pipeline.
+type ValidatePipelineResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Success
 	Success bool `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
@@ -2005,20 +2003,20 @@ type ValidateNamespacePipelineResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ValidateNamespacePipelineResponse) Reset() {
-	*x = ValidateNamespacePipelineResponse{}
+func (x *ValidatePipelineResponse) Reset() {
+	*x = ValidatePipelineResponse{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ValidateNamespacePipelineResponse) String() string {
+func (x *ValidatePipelineResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ValidateNamespacePipelineResponse) ProtoMessage() {}
+func (*ValidatePipelineResponse) ProtoMessage() {}
 
-func (x *ValidateNamespacePipelineResponse) ProtoReflect() protoreflect.Message {
+func (x *ValidatePipelineResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2030,28 +2028,28 @@ func (x *ValidateNamespacePipelineResponse) ProtoReflect() protoreflect.Message 
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ValidateNamespacePipelineResponse.ProtoReflect.Descriptor instead.
-func (*ValidateNamespacePipelineResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ValidatePipelineResponse.ProtoReflect.Descriptor instead.
+func (*ValidatePipelineResponse) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{24}
 }
 
-func (x *ValidateNamespacePipelineResponse) GetSuccess() bool {
+func (x *ValidatePipelineResponse) GetSuccess() bool {
 	if x != nil {
 		return x.Success
 	}
 	return false
 }
 
-func (x *ValidateNamespacePipelineResponse) GetErrors() []*ErrPipelineValidation {
+func (x *ValidatePipelineResponse) GetErrors() []*ErrPipelineValidation {
 	if x != nil {
 		return x.Errors
 	}
 	return nil
 }
 
-// RenameNamespacePipelineRequest represents a request to rename the name of a
+// RenamePipelineRequest represents a request to rename the name of a
 // pipeline owned by a namespace.
-type RenameNamespacePipelineRequest struct {
+type RenamePipelineRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the pipeline to rename.
 	// Format: namespaces/{namespace}/pipelines/{pipeline}
@@ -2063,20 +2061,20 @@ type RenameNamespacePipelineRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RenameNamespacePipelineRequest) Reset() {
-	*x = RenameNamespacePipelineRequest{}
+func (x *RenamePipelineRequest) Reset() {
+	*x = RenamePipelineRequest{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RenameNamespacePipelineRequest) String() string {
+func (x *RenamePipelineRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RenameNamespacePipelineRequest) ProtoMessage() {}
+func (*RenamePipelineRequest) ProtoMessage() {}
 
-func (x *RenameNamespacePipelineRequest) ProtoReflect() protoreflect.Message {
+func (x *RenamePipelineRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2088,27 +2086,27 @@ func (x *RenameNamespacePipelineRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RenameNamespacePipelineRequest.ProtoReflect.Descriptor instead.
-func (*RenameNamespacePipelineRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use RenamePipelineRequest.ProtoReflect.Descriptor instead.
+func (*RenamePipelineRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{25}
 }
 
-func (x *RenameNamespacePipelineRequest) GetName() string {
+func (x *RenamePipelineRequest) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *RenameNamespacePipelineRequest) GetNewPipelineId() string {
+func (x *RenamePipelineRequest) GetNewPipelineId() string {
 	if x != nil {
 		return x.NewPipelineId
 	}
 	return ""
 }
 
-// RenameNamespacePipelineResponse contains a renamed pipeline.
-type RenameNamespacePipelineResponse struct {
+// RenamePipelineResponse contains a renamed pipeline.
+type RenamePipelineResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The renamed pipeline resource.
 	Pipeline      *Pipeline `protobuf:"bytes,1,opt,name=pipeline,proto3" json:"pipeline,omitempty"`
@@ -2116,20 +2114,20 @@ type RenameNamespacePipelineResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RenameNamespacePipelineResponse) Reset() {
-	*x = RenameNamespacePipelineResponse{}
+func (x *RenamePipelineResponse) Reset() {
+	*x = RenamePipelineResponse{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RenameNamespacePipelineResponse) String() string {
+func (x *RenamePipelineResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RenameNamespacePipelineResponse) ProtoMessage() {}
+func (*RenamePipelineResponse) ProtoMessage() {}
 
-func (x *RenameNamespacePipelineResponse) ProtoReflect() protoreflect.Message {
+func (x *RenamePipelineResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2141,21 +2139,21 @@ func (x *RenameNamespacePipelineResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RenameNamespacePipelineResponse.ProtoReflect.Descriptor instead.
-func (*RenameNamespacePipelineResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use RenamePipelineResponse.ProtoReflect.Descriptor instead.
+func (*RenamePipelineResponse) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{26}
 }
 
-func (x *RenameNamespacePipelineResponse) GetPipeline() *Pipeline {
+func (x *RenamePipelineResponse) GetPipeline() *Pipeline {
 	if x != nil {
 		return x.Pipeline
 	}
 	return nil
 }
 
-// CloneNamespacePipelineRequest represents a request to clone a pipeline owned by a
-// user.
-type CloneNamespacePipelineRequest struct {
+// ClonePipelineRequest represents a request to clone a pipeline owned
+// by a user.
+type ClonePipelineRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the source pipeline to clone.
 	// Format: namespaces/{namespace}/pipelines/{pipeline}
@@ -2171,20 +2169,20 @@ type CloneNamespacePipelineRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CloneNamespacePipelineRequest) Reset() {
-	*x = CloneNamespacePipelineRequest{}
+func (x *ClonePipelineRequest) Reset() {
+	*x = ClonePipelineRequest{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CloneNamespacePipelineRequest) String() string {
+func (x *ClonePipelineRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CloneNamespacePipelineRequest) ProtoMessage() {}
+func (*ClonePipelineRequest) ProtoMessage() {}
 
-func (x *CloneNamespacePipelineRequest) ProtoReflect() protoreflect.Message {
+func (x *ClonePipelineRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2196,60 +2194,60 @@ func (x *CloneNamespacePipelineRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CloneNamespacePipelineRequest.ProtoReflect.Descriptor instead.
-func (*CloneNamespacePipelineRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use ClonePipelineRequest.ProtoReflect.Descriptor instead.
+func (*ClonePipelineRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{27}
 }
 
-func (x *CloneNamespacePipelineRequest) GetName() string {
+func (x *ClonePipelineRequest) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *CloneNamespacePipelineRequest) GetTarget() string {
+func (x *ClonePipelineRequest) GetTarget() string {
 	if x != nil {
 		return x.Target
 	}
 	return ""
 }
 
-func (x *CloneNamespacePipelineRequest) GetDescription() string {
+func (x *ClonePipelineRequest) GetDescription() string {
 	if x != nil {
 		return x.Description
 	}
 	return ""
 }
 
-func (x *CloneNamespacePipelineRequest) GetSharing() *Sharing {
+func (x *ClonePipelineRequest) GetSharing() *Sharing {
 	if x != nil {
 		return x.Sharing
 	}
 	return nil
 }
 
-// CloneNamespacePipelineResponse contains a cloned pipeline.
-type CloneNamespacePipelineResponse struct {
+// ClonePipelineResponse contains a cloned pipeline.
+type ClonePipelineResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CloneNamespacePipelineResponse) Reset() {
-	*x = CloneNamespacePipelineResponse{}
+func (x *ClonePipelineResponse) Reset() {
+	*x = ClonePipelineResponse{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CloneNamespacePipelineResponse) String() string {
+func (x *ClonePipelineResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CloneNamespacePipelineResponse) ProtoMessage() {}
+func (*ClonePipelineResponse) ProtoMessage() {}
 
-func (x *CloneNamespacePipelineResponse) ProtoReflect() protoreflect.Message {
+func (x *ClonePipelineResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2261,14 +2259,14 @@ func (x *CloneNamespacePipelineResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CloneNamespacePipelineResponse.ProtoReflect.Descriptor instead.
-func (*CloneNamespacePipelineResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ClonePipelineResponse.ProtoReflect.Descriptor instead.
+func (*ClonePipelineResponse) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{28}
 }
 
-// CloneNamespacePipelineReleaseRequest represents a request to clone a pipeline
+// ClonePipelineReleaseRequest represents a request to clone a pipeline
 // release owned by a user.
-type CloneNamespacePipelineReleaseRequest struct {
+type ClonePipelineReleaseRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the pipeline release to clone.
 	// Format: namespaces/{namespace}/pipelines/{pipeline}/releases/{release}
@@ -2284,20 +2282,20 @@ type CloneNamespacePipelineReleaseRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CloneNamespacePipelineReleaseRequest) Reset() {
-	*x = CloneNamespacePipelineReleaseRequest{}
+func (x *ClonePipelineReleaseRequest) Reset() {
+	*x = ClonePipelineReleaseRequest{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CloneNamespacePipelineReleaseRequest) String() string {
+func (x *ClonePipelineReleaseRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CloneNamespacePipelineReleaseRequest) ProtoMessage() {}
+func (*ClonePipelineReleaseRequest) ProtoMessage() {}
 
-func (x *CloneNamespacePipelineReleaseRequest) ProtoReflect() protoreflect.Message {
+func (x *ClonePipelineReleaseRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2309,60 +2307,60 @@ func (x *CloneNamespacePipelineReleaseRequest) ProtoReflect() protoreflect.Messa
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CloneNamespacePipelineReleaseRequest.ProtoReflect.Descriptor instead.
-func (*CloneNamespacePipelineReleaseRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use ClonePipelineReleaseRequest.ProtoReflect.Descriptor instead.
+func (*ClonePipelineReleaseRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{29}
 }
 
-func (x *CloneNamespacePipelineReleaseRequest) GetName() string {
+func (x *ClonePipelineReleaseRequest) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *CloneNamespacePipelineReleaseRequest) GetDescription() string {
+func (x *ClonePipelineReleaseRequest) GetDescription() string {
 	if x != nil {
 		return x.Description
 	}
 	return ""
 }
 
-func (x *CloneNamespacePipelineReleaseRequest) GetSharing() *Sharing {
+func (x *ClonePipelineReleaseRequest) GetSharing() *Sharing {
 	if x != nil {
 		return x.Sharing
 	}
 	return nil
 }
 
-func (x *CloneNamespacePipelineReleaseRequest) GetTarget() string {
+func (x *ClonePipelineReleaseRequest) GetTarget() string {
 	if x != nil {
 		return x.Target
 	}
 	return ""
 }
 
-// CloneNamespacePipelineReleaseResponse contains a cloned pipeline.
-type CloneNamespacePipelineReleaseResponse struct {
+// ClonePipelineReleaseResponse contains a cloned pipeline.
+type ClonePipelineReleaseResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CloneNamespacePipelineReleaseResponse) Reset() {
-	*x = CloneNamespacePipelineReleaseResponse{}
+func (x *ClonePipelineReleaseResponse) Reset() {
+	*x = ClonePipelineReleaseResponse{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CloneNamespacePipelineReleaseResponse) String() string {
+func (x *ClonePipelineReleaseResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CloneNamespacePipelineReleaseResponse) ProtoMessage() {}
+func (*ClonePipelineReleaseResponse) ProtoMessage() {}
 
-func (x *CloneNamespacePipelineReleaseResponse) ProtoReflect() protoreflect.Message {
+func (x *ClonePipelineReleaseResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2374,13 +2372,13 @@ func (x *CloneNamespacePipelineReleaseResponse) ProtoReflect() protoreflect.Mess
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CloneNamespacePipelineReleaseResponse.ProtoReflect.Descriptor instead.
-func (*CloneNamespacePipelineReleaseResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ClonePipelineReleaseResponse.ProtoReflect.Descriptor instead.
+func (*ClonePipelineReleaseResponse) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{30}
 }
 
-// HandleNamespacePipelineWebhookEventRequest
-type HandleNamespacePipelineWebhookEventRequest struct {
+// HandlePipelineWebhookEventRequest
+type HandlePipelineWebhookEventRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the pipeline.
 	// Format: namespaces/{namespace}/pipelines/{pipeline}
@@ -2395,20 +2393,20 @@ type HandleNamespacePipelineWebhookEventRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *HandleNamespacePipelineWebhookEventRequest) Reset() {
-	*x = HandleNamespacePipelineWebhookEventRequest{}
+func (x *HandlePipelineWebhookEventRequest) Reset() {
+	*x = HandlePipelineWebhookEventRequest{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *HandleNamespacePipelineWebhookEventRequest) String() string {
+func (x *HandlePipelineWebhookEventRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*HandleNamespacePipelineWebhookEventRequest) ProtoMessage() {}
+func (*HandlePipelineWebhookEventRequest) ProtoMessage() {}
 
-func (x *HandleNamespacePipelineWebhookEventRequest) ProtoReflect() protoreflect.Message {
+func (x *HandlePipelineWebhookEventRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2420,41 +2418,41 @@ func (x *HandleNamespacePipelineWebhookEventRequest) ProtoReflect() protoreflect
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use HandleNamespacePipelineWebhookEventRequest.ProtoReflect.Descriptor instead.
-func (*HandleNamespacePipelineWebhookEventRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use HandlePipelineWebhookEventRequest.ProtoReflect.Descriptor instead.
+func (*HandlePipelineWebhookEventRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{31}
 }
 
-func (x *HandleNamespacePipelineWebhookEventRequest) GetName() string {
+func (x *HandlePipelineWebhookEventRequest) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *HandleNamespacePipelineWebhookEventRequest) GetEvent() string {
+func (x *HandlePipelineWebhookEventRequest) GetEvent() string {
 	if x != nil {
 		return x.Event
 	}
 	return ""
 }
 
-func (x *HandleNamespacePipelineWebhookEventRequest) GetCode() string {
+func (x *HandlePipelineWebhookEventRequest) GetCode() string {
 	if x != nil {
 		return x.Code
 	}
 	return ""
 }
 
-func (x *HandleNamespacePipelineWebhookEventRequest) GetData() *structpb.Struct {
+func (x *HandlePipelineWebhookEventRequest) GetData() *structpb.Struct {
 	if x != nil {
 		return x.Data
 	}
 	return nil
 }
 
-// HandleNamespacePipelineWebhookEventResponse
-type HandleNamespacePipelineWebhookEventResponse struct {
+// HandlePipelineWebhookEventResponse
+type HandlePipelineWebhookEventResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// data
 	Data          *structpb.Struct `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
@@ -2462,20 +2460,20 @@ type HandleNamespacePipelineWebhookEventResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *HandleNamespacePipelineWebhookEventResponse) Reset() {
-	*x = HandleNamespacePipelineWebhookEventResponse{}
+func (x *HandlePipelineWebhookEventResponse) Reset() {
+	*x = HandlePipelineWebhookEventResponse{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *HandleNamespacePipelineWebhookEventResponse) String() string {
+func (x *HandlePipelineWebhookEventResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*HandleNamespacePipelineWebhookEventResponse) ProtoMessage() {}
+func (*HandlePipelineWebhookEventResponse) ProtoMessage() {}
 
-func (x *HandleNamespacePipelineWebhookEventResponse) ProtoReflect() protoreflect.Message {
+func (x *HandlePipelineWebhookEventResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2487,20 +2485,20 @@ func (x *HandleNamespacePipelineWebhookEventResponse) ProtoReflect() protoreflec
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use HandleNamespacePipelineWebhookEventResponse.ProtoReflect.Descriptor instead.
-func (*HandleNamespacePipelineWebhookEventResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use HandlePipelineWebhookEventResponse.ProtoReflect.Descriptor instead.
+func (*HandlePipelineWebhookEventResponse) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{32}
 }
 
-func (x *HandleNamespacePipelineWebhookEventResponse) GetData() *structpb.Struct {
+func (x *HandlePipelineWebhookEventResponse) GetData() *structpb.Struct {
 	if x != nil {
 		return x.Data
 	}
 	return nil
 }
 
-// HandleNamespacePipelineReleaseWebhookEventRequest
-type HandleNamespacePipelineReleaseWebhookEventRequest struct {
+// HandlePipelineReleaseWebhookEventRequest
+type HandlePipelineReleaseWebhookEventRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the pipeline release.
 	// Format: namespaces/{namespace}/pipelines/{pipeline}/releases/{release}
@@ -2515,20 +2513,20 @@ type HandleNamespacePipelineReleaseWebhookEventRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *HandleNamespacePipelineReleaseWebhookEventRequest) Reset() {
-	*x = HandleNamespacePipelineReleaseWebhookEventRequest{}
+func (x *HandlePipelineReleaseWebhookEventRequest) Reset() {
+	*x = HandlePipelineReleaseWebhookEventRequest{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *HandleNamespacePipelineReleaseWebhookEventRequest) String() string {
+func (x *HandlePipelineReleaseWebhookEventRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*HandleNamespacePipelineReleaseWebhookEventRequest) ProtoMessage() {}
+func (*HandlePipelineReleaseWebhookEventRequest) ProtoMessage() {}
 
-func (x *HandleNamespacePipelineReleaseWebhookEventRequest) ProtoReflect() protoreflect.Message {
+func (x *HandlePipelineReleaseWebhookEventRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2540,41 +2538,41 @@ func (x *HandleNamespacePipelineReleaseWebhookEventRequest) ProtoReflect() proto
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use HandleNamespacePipelineReleaseWebhookEventRequest.ProtoReflect.Descriptor instead.
-func (*HandleNamespacePipelineReleaseWebhookEventRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use HandlePipelineReleaseWebhookEventRequest.ProtoReflect.Descriptor instead.
+func (*HandlePipelineReleaseWebhookEventRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{33}
 }
 
-func (x *HandleNamespacePipelineReleaseWebhookEventRequest) GetName() string {
+func (x *HandlePipelineReleaseWebhookEventRequest) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *HandleNamespacePipelineReleaseWebhookEventRequest) GetEvent() string {
+func (x *HandlePipelineReleaseWebhookEventRequest) GetEvent() string {
 	if x != nil {
 		return x.Event
 	}
 	return ""
 }
 
-func (x *HandleNamespacePipelineReleaseWebhookEventRequest) GetCode() string {
+func (x *HandlePipelineReleaseWebhookEventRequest) GetCode() string {
 	if x != nil {
 		return x.Code
 	}
 	return ""
 }
 
-func (x *HandleNamespacePipelineReleaseWebhookEventRequest) GetData() *structpb.Struct {
+func (x *HandlePipelineReleaseWebhookEventRequest) GetData() *structpb.Struct {
 	if x != nil {
 		return x.Data
 	}
 	return nil
 }
 
-// HandleNamespacePipelineReleaseWebhookEventResponse
-type HandleNamespacePipelineReleaseWebhookEventResponse struct {
+// HandlePipelineReleaseWebhookEventResponse
+type HandlePipelineReleaseWebhookEventResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// data
 	Data          *structpb.Struct `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
@@ -2582,20 +2580,20 @@ type HandleNamespacePipelineReleaseWebhookEventResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *HandleNamespacePipelineReleaseWebhookEventResponse) Reset() {
-	*x = HandleNamespacePipelineReleaseWebhookEventResponse{}
+func (x *HandlePipelineReleaseWebhookEventResponse) Reset() {
+	*x = HandlePipelineReleaseWebhookEventResponse{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *HandleNamespacePipelineReleaseWebhookEventResponse) String() string {
+func (x *HandlePipelineReleaseWebhookEventResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*HandleNamespacePipelineReleaseWebhookEventResponse) ProtoMessage() {}
+func (*HandlePipelineReleaseWebhookEventResponse) ProtoMessage() {}
 
-func (x *HandleNamespacePipelineReleaseWebhookEventResponse) ProtoReflect() protoreflect.Message {
+func (x *HandlePipelineReleaseWebhookEventResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2607,23 +2605,23 @@ func (x *HandleNamespacePipelineReleaseWebhookEventResponse) ProtoReflect() prot
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use HandleNamespacePipelineReleaseWebhookEventResponse.ProtoReflect.Descriptor instead.
-func (*HandleNamespacePipelineReleaseWebhookEventResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use HandlePipelineReleaseWebhookEventResponse.ProtoReflect.Descriptor instead.
+func (*HandlePipelineReleaseWebhookEventResponse) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{34}
 }
 
-func (x *HandleNamespacePipelineReleaseWebhookEventResponse) GetData() *structpb.Struct {
+func (x *HandlePipelineReleaseWebhookEventResponse) GetData() *structpb.Struct {
 	if x != nil {
 		return x.Data
 	}
 	return nil
 }
 
-// DispatchPipelineWebhookEventRequest represents a request to dispatch webhook events
-// for a pipeline. The request contains the webhook type and event message that
-// will be processed by the event router and dispatched to the appropriate pipeline
-// based on the webhook type and message. The event message contains the payload
-// data that will be used to trigger pipeline execution.
+// DispatchPipelineWebhookEventRequest represents a request to dispatch webhook
+// events for a pipeline. The request contains the webhook type and event
+// message that will be processed by the event router and dispatched to the
+// appropriate pipeline based on the webhook type and message. The event message
+// contains the payload data that will be used to trigger pipeline execution.
 type DispatchPipelineWebhookEventRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Webhook Type
@@ -2678,9 +2676,9 @@ func (x *DispatchPipelineWebhookEventRequest) GetMessage() *structpb.Struct {
 	return nil
 }
 
-// DispatchPipelineWebhookEventResponse represents a response to dispatch webhook events
-// for a pipeline. The response contains the response message that will be sent
-// back to the webhook sender.
+// DispatchPipelineWebhookEventResponse represents a response to dispatch
+// webhook events for a pipeline. The response contains the response message
+// that will be sent back to the webhook sender.
 type DispatchPipelineWebhookEventResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Response
@@ -2726,9 +2724,9 @@ func (x *DispatchPipelineWebhookEventResponse) GetResponse() *structpb.Struct {
 	return nil
 }
 
-// TriggerNamespacePipelineRequest represents a request to trigger a user-owned
+// TriggerPipelineRequest represents a request to trigger a user-owned
 // pipeline synchronously.
-type TriggerNamespacePipelineRequest struct {
+type TriggerPipelineRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the pipeline to trigger.
 	// Format: namespaces/{namespace}/pipelines/{pipeline}
@@ -2741,20 +2739,20 @@ type TriggerNamespacePipelineRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *TriggerNamespacePipelineRequest) Reset() {
-	*x = TriggerNamespacePipelineRequest{}
+func (x *TriggerPipelineRequest) Reset() {
+	*x = TriggerPipelineRequest{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TriggerNamespacePipelineRequest) String() string {
+func (x *TriggerPipelineRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TriggerNamespacePipelineRequest) ProtoMessage() {}
+func (*TriggerPipelineRequest) ProtoMessage() {}
 
-func (x *TriggerNamespacePipelineRequest) ProtoReflect() protoreflect.Message {
+func (x *TriggerPipelineRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2766,35 +2764,35 @@ func (x *TriggerNamespacePipelineRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TriggerNamespacePipelineRequest.ProtoReflect.Descriptor instead.
-func (*TriggerNamespacePipelineRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use TriggerPipelineRequest.ProtoReflect.Descriptor instead.
+func (*TriggerPipelineRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{37}
 }
 
-func (x *TriggerNamespacePipelineRequest) GetName() string {
+func (x *TriggerPipelineRequest) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *TriggerNamespacePipelineRequest) GetInputs() []*structpb.Struct {
+func (x *TriggerPipelineRequest) GetInputs() []*structpb.Struct {
 	if x != nil {
 		return x.Inputs
 	}
 	return nil
 }
 
-func (x *TriggerNamespacePipelineRequest) GetData() []*TriggerData {
+func (x *TriggerPipelineRequest) GetData() []*TriggerData {
 	if x != nil {
 		return x.Data
 	}
 	return nil
 }
 
-// TriggerNamespacePipelineResponse contains the pipeline execution results, i.e.,
-// the multiple model inference outputs.
-type TriggerNamespacePipelineResponse struct {
+// TriggerPipelineResponse contains the pipeline execution results,
+// i.e., the multiple model inference outputs.
+type TriggerPipelineResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Model inference outputs.
 	Outputs []*structpb.Struct `protobuf:"bytes,1,rep,name=outputs,proto3" json:"outputs,omitempty"`
@@ -2804,20 +2802,20 @@ type TriggerNamespacePipelineResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *TriggerNamespacePipelineResponse) Reset() {
-	*x = TriggerNamespacePipelineResponse{}
+func (x *TriggerPipelineResponse) Reset() {
+	*x = TriggerPipelineResponse{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TriggerNamespacePipelineResponse) String() string {
+func (x *TriggerPipelineResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TriggerNamespacePipelineResponse) ProtoMessage() {}
+func (*TriggerPipelineResponse) ProtoMessage() {}
 
-func (x *TriggerNamespacePipelineResponse) ProtoReflect() protoreflect.Message {
+func (x *TriggerPipelineResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2829,28 +2827,28 @@ func (x *TriggerNamespacePipelineResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TriggerNamespacePipelineResponse.ProtoReflect.Descriptor instead.
-func (*TriggerNamespacePipelineResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use TriggerPipelineResponse.ProtoReflect.Descriptor instead.
+func (*TriggerPipelineResponse) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{38}
 }
 
-func (x *TriggerNamespacePipelineResponse) GetOutputs() []*structpb.Struct {
+func (x *TriggerPipelineResponse) GetOutputs() []*structpb.Struct {
 	if x != nil {
 		return x.Outputs
 	}
 	return nil
 }
 
-func (x *TriggerNamespacePipelineResponse) GetMetadata() *TriggerMetadata {
+func (x *TriggerPipelineResponse) GetMetadata() *TriggerMetadata {
 	if x != nil {
 		return x.Metadata
 	}
 	return nil
 }
 
-// TriggerNamespacePipelineWithStreamRequest represents a request to trigger a user-owned
-// pipeline synchronously and streams back the results.
-type TriggerNamespacePipelineWithStreamRequest struct {
+// TriggerPipelineWithStreamRequest represents a request to trigger a
+// user-owned pipeline synchronously and streams back the results.
+type TriggerPipelineWithStreamRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the pipeline to trigger.
 	// Format: namespaces/{namespace}/pipelines/{pipeline}
@@ -2863,20 +2861,20 @@ type TriggerNamespacePipelineWithStreamRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *TriggerNamespacePipelineWithStreamRequest) Reset() {
-	*x = TriggerNamespacePipelineWithStreamRequest{}
+func (x *TriggerPipelineWithStreamRequest) Reset() {
+	*x = TriggerPipelineWithStreamRequest{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TriggerNamespacePipelineWithStreamRequest) String() string {
+func (x *TriggerPipelineWithStreamRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TriggerNamespacePipelineWithStreamRequest) ProtoMessage() {}
+func (*TriggerPipelineWithStreamRequest) ProtoMessage() {}
 
-func (x *TriggerNamespacePipelineWithStreamRequest) ProtoReflect() protoreflect.Message {
+func (x *TriggerPipelineWithStreamRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2888,35 +2886,35 @@ func (x *TriggerNamespacePipelineWithStreamRequest) ProtoReflect() protoreflect.
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TriggerNamespacePipelineWithStreamRequest.ProtoReflect.Descriptor instead.
-func (*TriggerNamespacePipelineWithStreamRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use TriggerPipelineWithStreamRequest.ProtoReflect.Descriptor instead.
+func (*TriggerPipelineWithStreamRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{39}
 }
 
-func (x *TriggerNamespacePipelineWithStreamRequest) GetName() string {
+func (x *TriggerPipelineWithStreamRequest) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *TriggerNamespacePipelineWithStreamRequest) GetInputs() []*structpb.Struct {
+func (x *TriggerPipelineWithStreamRequest) GetInputs() []*structpb.Struct {
 	if x != nil {
 		return x.Inputs
 	}
 	return nil
 }
 
-func (x *TriggerNamespacePipelineWithStreamRequest) GetData() []*TriggerData {
+func (x *TriggerPipelineWithStreamRequest) GetData() []*TriggerData {
 	if x != nil {
 		return x.Data
 	}
 	return nil
 }
 
-// TriggerNamespacePipelineWithStreamResponse contains the pipeline execution results, i.e.,
-// the multiple model inference outputs.
-type TriggerNamespacePipelineWithStreamResponse struct {
+// TriggerPipelineWithStreamResponse contains the pipeline execution
+// results, i.e., the multiple model inference outputs.
+type TriggerPipelineWithStreamResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Model inference outputs.
 	Outputs []*structpb.Struct `protobuf:"bytes,1,rep,name=outputs,proto3" json:"outputs,omitempty"`
@@ -2926,20 +2924,20 @@ type TriggerNamespacePipelineWithStreamResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *TriggerNamespacePipelineWithStreamResponse) Reset() {
-	*x = TriggerNamespacePipelineWithStreamResponse{}
+func (x *TriggerPipelineWithStreamResponse) Reset() {
+	*x = TriggerPipelineWithStreamResponse{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TriggerNamespacePipelineWithStreamResponse) String() string {
+func (x *TriggerPipelineWithStreamResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TriggerNamespacePipelineWithStreamResponse) ProtoMessage() {}
+func (*TriggerPipelineWithStreamResponse) ProtoMessage() {}
 
-func (x *TriggerNamespacePipelineWithStreamResponse) ProtoReflect() protoreflect.Message {
+func (x *TriggerPipelineWithStreamResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2951,28 +2949,28 @@ func (x *TriggerNamespacePipelineWithStreamResponse) ProtoReflect() protoreflect
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TriggerNamespacePipelineWithStreamResponse.ProtoReflect.Descriptor instead.
-func (*TriggerNamespacePipelineWithStreamResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use TriggerPipelineWithStreamResponse.ProtoReflect.Descriptor instead.
+func (*TriggerPipelineWithStreamResponse) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{40}
 }
 
-func (x *TriggerNamespacePipelineWithStreamResponse) GetOutputs() []*structpb.Struct {
+func (x *TriggerPipelineWithStreamResponse) GetOutputs() []*structpb.Struct {
 	if x != nil {
 		return x.Outputs
 	}
 	return nil
 }
 
-func (x *TriggerNamespacePipelineWithStreamResponse) GetMetadata() *TriggerMetadata {
+func (x *TriggerPipelineWithStreamResponse) GetMetadata() *TriggerMetadata {
 	if x != nil {
 		return x.Metadata
 	}
 	return nil
 }
 
-// TriggerNamespacePipelineRequest represents a request to trigger a user-owned
+// TriggerPipelineRequest represents a request to trigger a user-owned
 // pipeline synchronously.
-type TriggerAsyncNamespacePipelineRequest struct {
+type TriggerAsyncPipelineRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the pipeline to trigger.
 	// Format: namespaces/{namespace}/pipelines/{pipeline}
@@ -2985,20 +2983,20 @@ type TriggerAsyncNamespacePipelineRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *TriggerAsyncNamespacePipelineRequest) Reset() {
-	*x = TriggerAsyncNamespacePipelineRequest{}
+func (x *TriggerAsyncPipelineRequest) Reset() {
+	*x = TriggerAsyncPipelineRequest{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TriggerAsyncNamespacePipelineRequest) String() string {
+func (x *TriggerAsyncPipelineRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TriggerAsyncNamespacePipelineRequest) ProtoMessage() {}
+func (*TriggerAsyncPipelineRequest) ProtoMessage() {}
 
-func (x *TriggerAsyncNamespacePipelineRequest) ProtoReflect() protoreflect.Message {
+func (x *TriggerAsyncPipelineRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3010,35 +3008,35 @@ func (x *TriggerAsyncNamespacePipelineRequest) ProtoReflect() protoreflect.Messa
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TriggerAsyncNamespacePipelineRequest.ProtoReflect.Descriptor instead.
-func (*TriggerAsyncNamespacePipelineRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use TriggerAsyncPipelineRequest.ProtoReflect.Descriptor instead.
+func (*TriggerAsyncPipelineRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{41}
 }
 
-func (x *TriggerAsyncNamespacePipelineRequest) GetName() string {
+func (x *TriggerAsyncPipelineRequest) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *TriggerAsyncNamespacePipelineRequest) GetInputs() []*structpb.Struct {
+func (x *TriggerAsyncPipelineRequest) GetInputs() []*structpb.Struct {
 	if x != nil {
 		return x.Inputs
 	}
 	return nil
 }
 
-func (x *TriggerAsyncNamespacePipelineRequest) GetData() []*TriggerData {
+func (x *TriggerAsyncPipelineRequest) GetData() []*TriggerData {
 	if x != nil {
 		return x.Data
 	}
 	return nil
 }
 
-// TriggerAsyncNamespacePipelineResponse contains the information to access the
+// TriggerAsyncPipelineResponse contains the information to access the
 // status of an asynchronous pipeline execution.
-type TriggerAsyncNamespacePipelineResponse struct {
+type TriggerAsyncPipelineResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Long-running operation information.
 	Operation     *longrunningpb.Operation `protobuf:"bytes,1,opt,name=operation,proto3" json:"operation,omitempty"`
@@ -3046,20 +3044,20 @@ type TriggerAsyncNamespacePipelineResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *TriggerAsyncNamespacePipelineResponse) Reset() {
-	*x = TriggerAsyncNamespacePipelineResponse{}
+func (x *TriggerAsyncPipelineResponse) Reset() {
+	*x = TriggerAsyncPipelineResponse{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TriggerAsyncNamespacePipelineResponse) String() string {
+func (x *TriggerAsyncPipelineResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TriggerAsyncNamespacePipelineResponse) ProtoMessage() {}
+func (*TriggerAsyncPipelineResponse) ProtoMessage() {}
 
-func (x *TriggerAsyncNamespacePipelineResponse) ProtoReflect() protoreflect.Message {
+func (x *TriggerAsyncPipelineResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3071,22 +3069,21 @@ func (x *TriggerAsyncNamespacePipelineResponse) ProtoReflect() protoreflect.Mess
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TriggerAsyncNamespacePipelineResponse.ProtoReflect.Descriptor instead.
-func (*TriggerAsyncNamespacePipelineResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use TriggerAsyncPipelineResponse.ProtoReflect.Descriptor instead.
+func (*TriggerAsyncPipelineResponse) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{42}
 }
 
-func (x *TriggerAsyncNamespacePipelineResponse) GetOperation() *longrunningpb.Operation {
+func (x *TriggerAsyncPipelineResponse) GetOperation() *longrunningpb.Operation {
 	if x != nil {
 		return x.Operation
 	}
 	return nil
 }
 
-// CreateNamespacePipelineReleaseRequest represents a request to release a version
-// in a user-owned pipeline.
-// Follows AIP-133: https://google.aip.dev/133
-type CreateNamespacePipelineReleaseRequest struct {
+// CreatePipelineReleaseRequest represents a request to release a
+// version in a user-owned pipeline. Follows AIP-133: https://google.aip.dev/133
+type CreatePipelineReleaseRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The parent resource name (pipeline).
 	// Format: `namespaces/{namespace}/pipelines/{pipeline}`
@@ -3097,20 +3094,20 @@ type CreateNamespacePipelineReleaseRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CreateNamespacePipelineReleaseRequest) Reset() {
-	*x = CreateNamespacePipelineReleaseRequest{}
+func (x *CreatePipelineReleaseRequest) Reset() {
+	*x = CreatePipelineReleaseRequest{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CreateNamespacePipelineReleaseRequest) String() string {
+func (x *CreatePipelineReleaseRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateNamespacePipelineReleaseRequest) ProtoMessage() {}
+func (*CreatePipelineReleaseRequest) ProtoMessage() {}
 
-func (x *CreateNamespacePipelineReleaseRequest) ProtoReflect() protoreflect.Message {
+func (x *CreatePipelineReleaseRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3122,27 +3119,27 @@ func (x *CreateNamespacePipelineReleaseRequest) ProtoReflect() protoreflect.Mess
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateNamespacePipelineReleaseRequest.ProtoReflect.Descriptor instead.
-func (*CreateNamespacePipelineReleaseRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreatePipelineReleaseRequest.ProtoReflect.Descriptor instead.
+func (*CreatePipelineReleaseRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{43}
 }
 
-func (x *CreateNamespacePipelineReleaseRequest) GetParent() string {
+func (x *CreatePipelineReleaseRequest) GetParent() string {
 	if x != nil {
 		return x.Parent
 	}
 	return ""
 }
 
-func (x *CreateNamespacePipelineReleaseRequest) GetRelease() *PipelineRelease {
+func (x *CreatePipelineReleaseRequest) GetRelease() *PipelineRelease {
 	if x != nil {
 		return x.Release
 	}
 	return nil
 }
 
-// CreateNamespacePipelineReleaseResponse contains the created release.
-type CreateNamespacePipelineReleaseResponse struct {
+// CreatePipelineReleaseResponse contains the created release.
+type CreatePipelineReleaseResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The created pipeline release object.
 	Release       *PipelineRelease `protobuf:"bytes,1,opt,name=release,proto3" json:"release,omitempty"`
@@ -3150,20 +3147,20 @@ type CreateNamespacePipelineReleaseResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CreateNamespacePipelineReleaseResponse) Reset() {
-	*x = CreateNamespacePipelineReleaseResponse{}
+func (x *CreatePipelineReleaseResponse) Reset() {
+	*x = CreatePipelineReleaseResponse{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CreateNamespacePipelineReleaseResponse) String() string {
+func (x *CreatePipelineReleaseResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateNamespacePipelineReleaseResponse) ProtoMessage() {}
+func (*CreatePipelineReleaseResponse) ProtoMessage() {}
 
-func (x *CreateNamespacePipelineReleaseResponse) ProtoReflect() protoreflect.Message {
+func (x *CreatePipelineReleaseResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3175,22 +3172,22 @@ func (x *CreateNamespacePipelineReleaseResponse) ProtoReflect() protoreflect.Mes
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateNamespacePipelineReleaseResponse.ProtoReflect.Descriptor instead.
-func (*CreateNamespacePipelineReleaseResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreatePipelineReleaseResponse.ProtoReflect.Descriptor instead.
+func (*CreatePipelineReleaseResponse) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{44}
 }
 
-func (x *CreateNamespacePipelineReleaseResponse) GetRelease() *PipelineRelease {
+func (x *CreatePipelineReleaseResponse) GetRelease() *PipelineRelease {
 	if x != nil {
 		return x.Release
 	}
 	return nil
 }
 
-// ListNamespacePipelineReleasesRequest represents a request to list the releases in
-// a user-owned pipeline.
-// Follows AIP-132: https://google.aip.dev/132
-type ListNamespacePipelineReleasesRequest struct {
+// ListPipelineReleasesRequest represents a request to list the
+// releases in a user-owned pipeline. Follows AIP-132:
+// https://google.aip.dev/132
+type ListPipelineReleasesRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The parent resource name (pipeline).
 	// Format: `namespaces/{namespace}/pipelines/{pipeline}`
@@ -3213,20 +3210,20 @@ type ListNamespacePipelineReleasesRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ListNamespacePipelineReleasesRequest) Reset() {
-	*x = ListNamespacePipelineReleasesRequest{}
+func (x *ListPipelineReleasesRequest) Reset() {
+	*x = ListPipelineReleasesRequest{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ListNamespacePipelineReleasesRequest) String() string {
+func (x *ListPipelineReleasesRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListNamespacePipelineReleasesRequest) ProtoMessage() {}
+func (*ListPipelineReleasesRequest) ProtoMessage() {}
 
-func (x *ListNamespacePipelineReleasesRequest) ProtoReflect() protoreflect.Message {
+func (x *ListPipelineReleasesRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3238,55 +3235,55 @@ func (x *ListNamespacePipelineReleasesRequest) ProtoReflect() protoreflect.Messa
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListNamespacePipelineReleasesRequest.ProtoReflect.Descriptor instead.
-func (*ListNamespacePipelineReleasesRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListPipelineReleasesRequest.ProtoReflect.Descriptor instead.
+func (*ListPipelineReleasesRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{45}
 }
 
-func (x *ListNamespacePipelineReleasesRequest) GetParent() string {
+func (x *ListPipelineReleasesRequest) GetParent() string {
 	if x != nil {
 		return x.Parent
 	}
 	return ""
 }
 
-func (x *ListNamespacePipelineReleasesRequest) GetPageSize() int32 {
+func (x *ListPipelineReleasesRequest) GetPageSize() int32 {
 	if x != nil && x.PageSize != nil {
 		return *x.PageSize
 	}
 	return 0
 }
 
-func (x *ListNamespacePipelineReleasesRequest) GetPageToken() string {
+func (x *ListPipelineReleasesRequest) GetPageToken() string {
 	if x != nil && x.PageToken != nil {
 		return *x.PageToken
 	}
 	return ""
 }
 
-func (x *ListNamespacePipelineReleasesRequest) GetView() Pipeline_View {
+func (x *ListPipelineReleasesRequest) GetView() Pipeline_View {
 	if x != nil && x.View != nil {
 		return *x.View
 	}
 	return Pipeline_VIEW_UNSPECIFIED
 }
 
-func (x *ListNamespacePipelineReleasesRequest) GetFilter() string {
+func (x *ListPipelineReleasesRequest) GetFilter() string {
 	if x != nil && x.Filter != nil {
 		return *x.Filter
 	}
 	return ""
 }
 
-func (x *ListNamespacePipelineReleasesRequest) GetShowDeleted() bool {
+func (x *ListPipelineReleasesRequest) GetShowDeleted() bool {
 	if x != nil && x.ShowDeleted != nil {
 		return *x.ShowDeleted
 	}
 	return false
 }
 
-// ListNamespacePipelineReleasesResponse contains a list of pipeline releases.
-type ListNamespacePipelineReleasesResponse struct {
+// ListPipelineReleasesResponse contains a list of pipeline releases.
+type ListPipelineReleasesResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// A list of pipeline release resources.
 	Releases []*PipelineRelease `protobuf:"bytes,1,rep,name=releases,proto3" json:"releases,omitempty"`
@@ -3298,20 +3295,20 @@ type ListNamespacePipelineReleasesResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ListNamespacePipelineReleasesResponse) Reset() {
-	*x = ListNamespacePipelineReleasesResponse{}
+func (x *ListPipelineReleasesResponse) Reset() {
+	*x = ListPipelineReleasesResponse{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ListNamespacePipelineReleasesResponse) String() string {
+func (x *ListPipelineReleasesResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListNamespacePipelineReleasesResponse) ProtoMessage() {}
+func (*ListPipelineReleasesResponse) ProtoMessage() {}
 
-func (x *ListNamespacePipelineReleasesResponse) ProtoReflect() protoreflect.Message {
+func (x *ListPipelineReleasesResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3323,36 +3320,36 @@ func (x *ListNamespacePipelineReleasesResponse) ProtoReflect() protoreflect.Mess
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListNamespacePipelineReleasesResponse.ProtoReflect.Descriptor instead.
-func (*ListNamespacePipelineReleasesResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListPipelineReleasesResponse.ProtoReflect.Descriptor instead.
+func (*ListPipelineReleasesResponse) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{46}
 }
 
-func (x *ListNamespacePipelineReleasesResponse) GetReleases() []*PipelineRelease {
+func (x *ListPipelineReleasesResponse) GetReleases() []*PipelineRelease {
 	if x != nil {
 		return x.Releases
 	}
 	return nil
 }
 
-func (x *ListNamespacePipelineReleasesResponse) GetNextPageToken() string {
+func (x *ListPipelineReleasesResponse) GetNextPageToken() string {
 	if x != nil {
 		return x.NextPageToken
 	}
 	return ""
 }
 
-func (x *ListNamespacePipelineReleasesResponse) GetTotalSize() int32 {
+func (x *ListPipelineReleasesResponse) GetTotalSize() int32 {
 	if x != nil {
 		return x.TotalSize
 	}
 	return 0
 }
 
-// GetNamespacePipelineReleaseRequest represents a request to fetch the details of a
-// release in a user-owned pipeline.
-// Follows AIP-131: https://google.aip.dev/131
-type GetNamespacePipelineReleaseRequest struct {
+// GetPipelineReleaseRequest represents a request to fetch the details
+// of a release in a user-owned pipeline. Follows AIP-131:
+// https://google.aip.dev/131
+type GetPipelineReleaseRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the release.
 	// Format: `namespaces/{namespace}/pipelines/{pipeline}/releases/{release}`
@@ -3363,20 +3360,20 @@ type GetNamespacePipelineReleaseRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetNamespacePipelineReleaseRequest) Reset() {
-	*x = GetNamespacePipelineReleaseRequest{}
+func (x *GetPipelineReleaseRequest) Reset() {
+	*x = GetPipelineReleaseRequest{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetNamespacePipelineReleaseRequest) String() string {
+func (x *GetPipelineReleaseRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetNamespacePipelineReleaseRequest) ProtoMessage() {}
+func (*GetPipelineReleaseRequest) ProtoMessage() {}
 
-func (x *GetNamespacePipelineReleaseRequest) ProtoReflect() protoreflect.Message {
+func (x *GetPipelineReleaseRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3388,27 +3385,27 @@ func (x *GetNamespacePipelineReleaseRequest) ProtoReflect() protoreflect.Message
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetNamespacePipelineReleaseRequest.ProtoReflect.Descriptor instead.
-func (*GetNamespacePipelineReleaseRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetPipelineReleaseRequest.ProtoReflect.Descriptor instead.
+func (*GetPipelineReleaseRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{47}
 }
 
-func (x *GetNamespacePipelineReleaseRequest) GetName() string {
+func (x *GetPipelineReleaseRequest) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *GetNamespacePipelineReleaseRequest) GetView() Pipeline_View {
+func (x *GetPipelineReleaseRequest) GetView() Pipeline_View {
 	if x != nil && x.View != nil {
 		return *x.View
 	}
 	return Pipeline_VIEW_UNSPECIFIED
 }
 
-// GetNamespacePipelineReleaseResponse contains the requested pipeline release.
-type GetNamespacePipelineReleaseResponse struct {
+// GetPipelineReleaseResponse contains the requested pipeline release.
+type GetPipelineReleaseResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The pipeline release resource.
 	Release       *PipelineRelease `protobuf:"bytes,1,opt,name=release,proto3" json:"release,omitempty"`
@@ -3416,20 +3413,20 @@ type GetNamespacePipelineReleaseResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetNamespacePipelineReleaseResponse) Reset() {
-	*x = GetNamespacePipelineReleaseResponse{}
+func (x *GetPipelineReleaseResponse) Reset() {
+	*x = GetPipelineReleaseResponse{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetNamespacePipelineReleaseResponse) String() string {
+func (x *GetPipelineReleaseResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetNamespacePipelineReleaseResponse) ProtoMessage() {}
+func (*GetPipelineReleaseResponse) ProtoMessage() {}
 
-func (x *GetNamespacePipelineReleaseResponse) ProtoReflect() protoreflect.Message {
+func (x *GetPipelineReleaseResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3441,50 +3438,46 @@ func (x *GetNamespacePipelineReleaseResponse) ProtoReflect() protoreflect.Messag
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetNamespacePipelineReleaseResponse.ProtoReflect.Descriptor instead.
-func (*GetNamespacePipelineReleaseResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetPipelineReleaseResponse.ProtoReflect.Descriptor instead.
+func (*GetPipelineReleaseResponse) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{48}
 }
 
-func (x *GetNamespacePipelineReleaseResponse) GetRelease() *PipelineRelease {
+func (x *GetPipelineReleaseResponse) GetRelease() *PipelineRelease {
 	if x != nil {
 		return x.Release
 	}
 	return nil
 }
 
-// UpdateNamespacePipelineReleaseRequest represents a request to update a user-owned
-// pipeline release.
-// Follows AIP-134: https://google.aip.dev/134
-type UpdateNamespacePipelineReleaseRequest struct {
+// UpdatePipelineReleaseRequest represents a request to update a
+// user-owned pipeline release. Follows AIP-134: https://google.aip.dev/134
+type UpdatePipelineReleaseRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The pipeline release resource to update. The release's `name` field
 	// identifies the resource.
 	// Format: `namespaces/{namespace}/pipelines/{pipeline}/releases/{release}`
 	Release *PipelineRelease `protobuf:"bytes,1,opt,name=release,proto3" json:"release,omitempty"`
 	// The update mask specifies the subset of fields that should be modified.
-	//
-	// For more information about this field, see
-	// https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#field-mask.
 	UpdateMask    *fieldmaskpb.FieldMask `protobuf:"bytes,2,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UpdateNamespacePipelineReleaseRequest) Reset() {
-	*x = UpdateNamespacePipelineReleaseRequest{}
+func (x *UpdatePipelineReleaseRequest) Reset() {
+	*x = UpdatePipelineReleaseRequest{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UpdateNamespacePipelineReleaseRequest) String() string {
+func (x *UpdatePipelineReleaseRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateNamespacePipelineReleaseRequest) ProtoMessage() {}
+func (*UpdatePipelineReleaseRequest) ProtoMessage() {}
 
-func (x *UpdateNamespacePipelineReleaseRequest) ProtoReflect() protoreflect.Message {
+func (x *UpdatePipelineReleaseRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3496,27 +3489,27 @@ func (x *UpdateNamespacePipelineReleaseRequest) ProtoReflect() protoreflect.Mess
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateNamespacePipelineReleaseRequest.ProtoReflect.Descriptor instead.
-func (*UpdateNamespacePipelineReleaseRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use UpdatePipelineReleaseRequest.ProtoReflect.Descriptor instead.
+func (*UpdatePipelineReleaseRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{49}
 }
 
-func (x *UpdateNamespacePipelineReleaseRequest) GetRelease() *PipelineRelease {
+func (x *UpdatePipelineReleaseRequest) GetRelease() *PipelineRelease {
 	if x != nil {
 		return x.Release
 	}
 	return nil
 }
 
-func (x *UpdateNamespacePipelineReleaseRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
+func (x *UpdatePipelineReleaseRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
 	if x != nil {
 		return x.UpdateMask
 	}
 	return nil
 }
 
-// UpdateNamespacePipelineReleaseResponse contains the updated pipeline release.
-type UpdateNamespacePipelineReleaseResponse struct {
+// UpdatePipelineReleaseResponse contains the updated pipeline release.
+type UpdatePipelineReleaseResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The updated pipeline release resource.
 	Release       *PipelineRelease `protobuf:"bytes,1,opt,name=release,proto3" json:"release,omitempty"`
@@ -3524,20 +3517,20 @@ type UpdateNamespacePipelineReleaseResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UpdateNamespacePipelineReleaseResponse) Reset() {
-	*x = UpdateNamespacePipelineReleaseResponse{}
+func (x *UpdatePipelineReleaseResponse) Reset() {
+	*x = UpdatePipelineReleaseResponse{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UpdateNamespacePipelineReleaseResponse) String() string {
+func (x *UpdatePipelineReleaseResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateNamespacePipelineReleaseResponse) ProtoMessage() {}
+func (*UpdatePipelineReleaseResponse) ProtoMessage() {}
 
-func (x *UpdateNamespacePipelineReleaseResponse) ProtoReflect() protoreflect.Message {
+func (x *UpdatePipelineReleaseResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3549,22 +3542,21 @@ func (x *UpdateNamespacePipelineReleaseResponse) ProtoReflect() protoreflect.Mes
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateNamespacePipelineReleaseResponse.ProtoReflect.Descriptor instead.
-func (*UpdateNamespacePipelineReleaseResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use UpdatePipelineReleaseResponse.ProtoReflect.Descriptor instead.
+func (*UpdatePipelineReleaseResponse) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{50}
 }
 
-func (x *UpdateNamespacePipelineReleaseResponse) GetRelease() *PipelineRelease {
+func (x *UpdatePipelineReleaseResponse) GetRelease() *PipelineRelease {
 	if x != nil {
 		return x.Release
 	}
 	return nil
 }
 
-// DeleteNamespacePipelineReleaseRequest represents a request to delete a release in
-// a user-owned pipeline.
-// Follows AIP-135: https://google.aip.dev/135
-type DeleteNamespacePipelineReleaseRequest struct {
+// DeletePipelineReleaseRequest represents a request to delete a
+// release in a user-owned pipeline. Follows AIP-135: https://google.aip.dev/135
+type DeletePipelineReleaseRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the release to delete.
 	// Format: `namespaces/{namespace}/pipelines/{pipeline}/releases/{release}`
@@ -3573,20 +3565,20 @@ type DeleteNamespacePipelineReleaseRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *DeleteNamespacePipelineReleaseRequest) Reset() {
-	*x = DeleteNamespacePipelineReleaseRequest{}
+func (x *DeletePipelineReleaseRequest) Reset() {
+	*x = DeletePipelineReleaseRequest{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *DeleteNamespacePipelineReleaseRequest) String() string {
+func (x *DeletePipelineReleaseRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DeleteNamespacePipelineReleaseRequest) ProtoMessage() {}
+func (*DeletePipelineReleaseRequest) ProtoMessage() {}
 
-func (x *DeleteNamespacePipelineReleaseRequest) ProtoReflect() protoreflect.Message {
+func (x *DeletePipelineReleaseRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3598,39 +3590,39 @@ func (x *DeleteNamespacePipelineReleaseRequest) ProtoReflect() protoreflect.Mess
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DeleteNamespacePipelineReleaseRequest.ProtoReflect.Descriptor instead.
-func (*DeleteNamespacePipelineReleaseRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use DeletePipelineReleaseRequest.ProtoReflect.Descriptor instead.
+func (*DeletePipelineReleaseRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{51}
 }
 
-func (x *DeleteNamespacePipelineReleaseRequest) GetName() string {
+func (x *DeletePipelineReleaseRequest) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-// DeleteNamespacePipelineReleaseResponse is an empty response.
-type DeleteNamespacePipelineReleaseResponse struct {
+// DeletePipelineReleaseResponse is an empty response.
+type DeletePipelineReleaseResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *DeleteNamespacePipelineReleaseResponse) Reset() {
-	*x = DeleteNamespacePipelineReleaseResponse{}
+func (x *DeletePipelineReleaseResponse) Reset() {
+	*x = DeletePipelineReleaseResponse{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *DeleteNamespacePipelineReleaseResponse) String() string {
+func (x *DeletePipelineReleaseResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DeleteNamespacePipelineReleaseResponse) ProtoMessage() {}
+func (*DeletePipelineReleaseResponse) ProtoMessage() {}
 
-func (x *DeleteNamespacePipelineReleaseResponse) ProtoReflect() protoreflect.Message {
+func (x *DeletePipelineReleaseResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3642,14 +3634,14 @@ func (x *DeleteNamespacePipelineReleaseResponse) ProtoReflect() protoreflect.Mes
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DeleteNamespacePipelineReleaseResponse.ProtoReflect.Descriptor instead.
-func (*DeleteNamespacePipelineReleaseResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use DeletePipelineReleaseResponse.ProtoReflect.Descriptor instead.
+func (*DeletePipelineReleaseResponse) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{52}
 }
 
-// TriggerNamespacePipelineReleaseRequest represents a request to trigger a pinned
-// release of a user-owned pipeline.
-type TriggerNamespacePipelineReleaseRequest struct {
+// TriggerPipelineReleaseRequest represents a request to trigger a
+// pinned release of a user-owned pipeline.
+type TriggerPipelineReleaseRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the pipeline release to trigger.
 	// Format: namespaces/{namespace}/pipelines/{pipeline}/releases/{release}
@@ -3662,20 +3654,20 @@ type TriggerNamespacePipelineReleaseRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *TriggerNamespacePipelineReleaseRequest) Reset() {
-	*x = TriggerNamespacePipelineReleaseRequest{}
+func (x *TriggerPipelineReleaseRequest) Reset() {
+	*x = TriggerPipelineReleaseRequest{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TriggerNamespacePipelineReleaseRequest) String() string {
+func (x *TriggerPipelineReleaseRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TriggerNamespacePipelineReleaseRequest) ProtoMessage() {}
+func (*TriggerPipelineReleaseRequest) ProtoMessage() {}
 
-func (x *TriggerNamespacePipelineReleaseRequest) ProtoReflect() protoreflect.Message {
+func (x *TriggerPipelineReleaseRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3687,35 +3679,35 @@ func (x *TriggerNamespacePipelineReleaseRequest) ProtoReflect() protoreflect.Mes
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TriggerNamespacePipelineReleaseRequest.ProtoReflect.Descriptor instead.
-func (*TriggerNamespacePipelineReleaseRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use TriggerPipelineReleaseRequest.ProtoReflect.Descriptor instead.
+func (*TriggerPipelineReleaseRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{53}
 }
 
-func (x *TriggerNamespacePipelineReleaseRequest) GetName() string {
+func (x *TriggerPipelineReleaseRequest) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *TriggerNamespacePipelineReleaseRequest) GetInputs() []*structpb.Struct {
+func (x *TriggerPipelineReleaseRequest) GetInputs() []*structpb.Struct {
 	if x != nil {
 		return x.Inputs
 	}
 	return nil
 }
 
-func (x *TriggerNamespacePipelineReleaseRequest) GetData() []*TriggerData {
+func (x *TriggerPipelineReleaseRequest) GetData() []*TriggerData {
 	if x != nil {
 		return x.Data
 	}
 	return nil
 }
 
-// TriggerNamespacePipelineReleaseResponse contains the pipeline execution results,
-// i.e., the multiple model inference outputs.
-type TriggerNamespacePipelineReleaseResponse struct {
+// TriggerPipelineReleaseResponse contains the pipeline execution
+// results, i.e., the multiple model inference outputs.
+type TriggerPipelineReleaseResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Model inference outputs.
 	Outputs []*structpb.Struct `protobuf:"bytes,1,rep,name=outputs,proto3" json:"outputs,omitempty"`
@@ -3725,20 +3717,20 @@ type TriggerNamespacePipelineReleaseResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *TriggerNamespacePipelineReleaseResponse) Reset() {
-	*x = TriggerNamespacePipelineReleaseResponse{}
+func (x *TriggerPipelineReleaseResponse) Reset() {
+	*x = TriggerPipelineReleaseResponse{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TriggerNamespacePipelineReleaseResponse) String() string {
+func (x *TriggerPipelineReleaseResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TriggerNamespacePipelineReleaseResponse) ProtoMessage() {}
+func (*TriggerPipelineReleaseResponse) ProtoMessage() {}
 
-func (x *TriggerNamespacePipelineReleaseResponse) ProtoReflect() protoreflect.Message {
+func (x *TriggerPipelineReleaseResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3750,28 +3742,28 @@ func (x *TriggerNamespacePipelineReleaseResponse) ProtoReflect() protoreflect.Me
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TriggerNamespacePipelineReleaseResponse.ProtoReflect.Descriptor instead.
-func (*TriggerNamespacePipelineReleaseResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use TriggerPipelineReleaseResponse.ProtoReflect.Descriptor instead.
+func (*TriggerPipelineReleaseResponse) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{54}
 }
 
-func (x *TriggerNamespacePipelineReleaseResponse) GetOutputs() []*structpb.Struct {
+func (x *TriggerPipelineReleaseResponse) GetOutputs() []*structpb.Struct {
 	if x != nil {
 		return x.Outputs
 	}
 	return nil
 }
 
-func (x *TriggerNamespacePipelineReleaseResponse) GetMetadata() *TriggerMetadata {
+func (x *TriggerPipelineReleaseResponse) GetMetadata() *TriggerMetadata {
 	if x != nil {
 		return x.Metadata
 	}
 	return nil
 }
 
-// TriggerNamespacePipelineReleaseRequest represents a request to trigger a pinned
-// release of a user-owned pipeline asynchronously.
-type TriggerAsyncNamespacePipelineReleaseRequest struct {
+// TriggerPipelineReleaseRequest represents a request to trigger a
+// pinned release of a user-owned pipeline asynchronously.
+type TriggerAsyncPipelineReleaseRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the pipeline release to trigger.
 	// Format: namespaces/{namespace}/pipelines/{pipeline}/releases/{release}
@@ -3784,20 +3776,20 @@ type TriggerAsyncNamespacePipelineReleaseRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *TriggerAsyncNamespacePipelineReleaseRequest) Reset() {
-	*x = TriggerAsyncNamespacePipelineReleaseRequest{}
+func (x *TriggerAsyncPipelineReleaseRequest) Reset() {
+	*x = TriggerAsyncPipelineReleaseRequest{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TriggerAsyncNamespacePipelineReleaseRequest) String() string {
+func (x *TriggerAsyncPipelineReleaseRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TriggerAsyncNamespacePipelineReleaseRequest) ProtoMessage() {}
+func (*TriggerAsyncPipelineReleaseRequest) ProtoMessage() {}
 
-func (x *TriggerAsyncNamespacePipelineReleaseRequest) ProtoReflect() protoreflect.Message {
+func (x *TriggerAsyncPipelineReleaseRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3809,35 +3801,35 @@ func (x *TriggerAsyncNamespacePipelineReleaseRequest) ProtoReflect() protoreflec
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TriggerAsyncNamespacePipelineReleaseRequest.ProtoReflect.Descriptor instead.
-func (*TriggerAsyncNamespacePipelineReleaseRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use TriggerAsyncPipelineReleaseRequest.ProtoReflect.Descriptor instead.
+func (*TriggerAsyncPipelineReleaseRequest) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{55}
 }
 
-func (x *TriggerAsyncNamespacePipelineReleaseRequest) GetName() string {
+func (x *TriggerAsyncPipelineReleaseRequest) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *TriggerAsyncNamespacePipelineReleaseRequest) GetInputs() []*structpb.Struct {
+func (x *TriggerAsyncPipelineReleaseRequest) GetInputs() []*structpb.Struct {
 	if x != nil {
 		return x.Inputs
 	}
 	return nil
 }
 
-func (x *TriggerAsyncNamespacePipelineReleaseRequest) GetData() []*TriggerData {
+func (x *TriggerAsyncPipelineReleaseRequest) GetData() []*TriggerData {
 	if x != nil {
 		return x.Data
 	}
 	return nil
 }
 
-// TriggerAsyncNamespacePipelineReleaseResponse contains the information to access
-// the status of an asynchronous pipeline execution.
-type TriggerAsyncNamespacePipelineReleaseResponse struct {
+// TriggerAsyncPipelineReleaseResponse contains the information to
+// access the status of an asynchronous pipeline execution.
+type TriggerAsyncPipelineReleaseResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Long-running operation information.
 	Operation     *longrunningpb.Operation `protobuf:"bytes,1,opt,name=operation,proto3" json:"operation,omitempty"`
@@ -3845,20 +3837,20 @@ type TriggerAsyncNamespacePipelineReleaseResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *TriggerAsyncNamespacePipelineReleaseResponse) Reset() {
-	*x = TriggerAsyncNamespacePipelineReleaseResponse{}
+func (x *TriggerAsyncPipelineReleaseResponse) Reset() {
+	*x = TriggerAsyncPipelineReleaseResponse{}
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TriggerAsyncNamespacePipelineReleaseResponse) String() string {
+func (x *TriggerAsyncPipelineReleaseResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TriggerAsyncNamespacePipelineReleaseResponse) ProtoMessage() {}
+func (*TriggerAsyncPipelineReleaseResponse) ProtoMessage() {}
 
-func (x *TriggerAsyncNamespacePipelineReleaseResponse) ProtoReflect() protoreflect.Message {
+func (x *TriggerAsyncPipelineReleaseResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_pipeline_v1beta_pipeline_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3870,12 +3862,12 @@ func (x *TriggerAsyncNamespacePipelineReleaseResponse) ProtoReflect() protorefle
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TriggerAsyncNamespacePipelineReleaseResponse.ProtoReflect.Descriptor instead.
-func (*TriggerAsyncNamespacePipelineReleaseResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use TriggerAsyncPipelineReleaseResponse.ProtoReflect.Descriptor instead.
+func (*TriggerAsyncPipelineReleaseResponse) Descriptor() ([]byte, []int) {
 	return file_pipeline_v1beta_pipeline_proto_rawDescGZIP(), []int{56}
 }
 
-func (x *TriggerAsyncNamespacePipelineReleaseResponse) GetOperation() *longrunningpb.Operation {
+func (x *TriggerAsyncPipelineReleaseResponse) GetOperation() *longrunningpb.Operation {
 	if x != nil {
 		return x.Operation
 	}
@@ -4539,8 +4531,9 @@ type ListPipelineRunsRequest struct {
 	// expression.
 	// - Example: `create_time>timestamp("2000-06-19T23:31:08.657Z")`.
 	Filter *string `protobuf:"bytes,4,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
-	// Order by field, with options for ordering by `id`, `create_time` or `update_time`.
-	// Format: `order_by=id` or `order_by=create_time desc`, default is `asc`.
+	// Order by field, with options for ordering by `id`, `create_time` or
+	// `update_time`. Format: `order_by=id` or `order_by=create_time desc`,
+	// default is `asc`.
 	OrderBy       *string `protobuf:"bytes,5,opt,name=order_by,json=orderBy,proto3,oneof" json:"order_by,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -4611,7 +4604,8 @@ func (x *ListPipelineRunsRequest) GetOrderBy() string {
 	return ""
 }
 
-// ListPipelineRunsByRequesterRequest is the request message for ListPipelineRunsByRequester.
+// ListPipelineRunsByRequesterRequest is the request message for
+// ListPipelineRunsByRequester.
 type ListPipelineRunsByRequesterRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Requester namespace resource name.
@@ -4630,8 +4624,9 @@ type ListPipelineRunsByRequesterRequest struct {
 	//
 	// **Example**: `status="RUN_STATUS_COMPLETED"`.
 	Filter *string `protobuf:"bytes,4,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
-	// Order by field, with options for ordering by `id`, `create_time` or `update_time`.
-	// Format: `order_by=id` or `order_by=create_time desc`, default is `asc`.
+	// Order by field, with options for ordering by `id`, `create_time` or
+	// `update_time`. Format: `order_by=id` or `order_by=create_time desc`,
+	// default is `asc`.
 	OrderBy *string `protobuf:"bytes,5,opt,name=order_by,json=orderBy,proto3,oneof" json:"order_by,omitempty"`
 	// Beginning of the time range from which the records will be fetched.
 	// The default value is the beginning of the current day, in UTC.
@@ -4795,7 +4790,8 @@ func (x *ListPipelineRunsResponse) GetPageSize() int32 {
 	return 0
 }
 
-// ListPipelineRunsByRequesterResponse is the response message for ListPipelineRunsByRequester.
+// ListPipelineRunsByRequesterResponse is the response message for
+// ListPipelineRunsByRequester.
 type ListPipelineRunsByRequesterResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The list of pipeline runs.
@@ -4883,8 +4879,9 @@ type ListComponentRunsRequest struct {
 	// expression.
 	// - Example: `create_time>timestamp("2000-06-19T23:31:08.657Z")`.
 	Filter *string `protobuf:"bytes,4,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
-	// Order by field, with options for ordering by `id`, `create_time` or `update_time`.
-	// Format: `order_by=id` or `order_by=create_time desc`, default is `asc`.
+	// Order by field, with options for ordering by `id`, `create_time` or
+	// `update_time`. Format: `order_by=id` or `order_by=create_time desc`,
+	// default is `asc`.
 	OrderBy *string `protobuf:"bytes,5,opt,name=order_by,json=orderBy,proto3,oneof" json:"order_by,omitempty"`
 	// View allows clients to specify the desired run view in the response.
 	// The basic view excludes input / output data.
@@ -5332,11 +5329,13 @@ func (x *PipelineRun) GetBlobDataExpirationTime() *timestamppb.Timestamp {
 	return nil
 }
 
-// ComponentRun represents the execution details of a single component within a pipeline run.
+// ComponentRun represents the execution details of a single component within a
+// pipeline run.
 type ComponentRun struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the component run.
-	// Format: namespaces/{namespace}/pipelines/{pipeline}/runs/{run}/components/{component}
+	// Format:
+	// namespaces/{namespace}/pipelines/{pipeline}/runs/{run}/components/{component}
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Unique identifier for the component within the pipeline.
 	Id string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
@@ -5766,8 +5765,8 @@ const file_pipeline_v1beta_pipeline_proto_rawDesc = "" +
 	"raw_recipe\x18\x0e \x01(\tB\x03\xe0A\x01R\trawRecipe\x12=\n" +
 	"\tendpoints\x18\x0f \x01(\v2\x1a.pipeline.v1beta.EndpointsB\x03\xe0A\x03R\tendpoints:e\xeaAb\n" +
 	" api.instill.tech/PipelineRelease\x12>namespaces/{namespace}/pipelines/{pipeline}/releases/{release}B\x0e\n" +
-	"\f_description\"\xc6\x03\n" +
-	"\x14ListPipelinesRequest\x12%\n" +
+	"\f_description\"\xcc\x03\n" +
+	"\x1aListPublicPipelinesRequest\x12%\n" +
 	"\tpage_size\x18\x01 \x01(\x05B\x03\xe0A\x01H\x00R\bpageSize\x88\x01\x01\x12'\n" +
 	"\n" +
 	"page_token\x18\x02 \x01(\tB\x03\xe0A\x01H\x01R\tpageToken\x88\x01\x01\x12<\n" +
@@ -5785,13 +5784,13 @@ const file_pipeline_v1beta_pipeline_proto_rawDesc = "" +
 	"\a_filterB\x0f\n" +
 	"\r_show_deletedB\r\n" +
 	"\v_visibilityB\v\n" +
-	"\t_order_by\"\xa6\x01\n" +
-	"\x15ListPipelinesResponse\x12<\n" +
+	"\t_order_by\"\xac\x01\n" +
+	"\x1bListPublicPipelinesResponse\x12<\n" +
 	"\tpipelines\x18\x01 \x03(\v2\x19.pipeline.v1beta.PipelineB\x03\xe0A\x03R\tpipelines\x12+\n" +
 	"\x0fnext_page_token\x18\x02 \x01(\tB\x03\xe0A\x03R\rnextPageToken\x12\"\n" +
 	"\n" +
-	"total_size\x18\x03 \x01(\x05B\x03\xe0A\x03R\ttotalSize\"\xec\x03\n" +
-	"\x1dListNamespacePipelinesRequest\x12\x1b\n" +
+	"total_size\x18\x03 \x01(\x05B\x03\xe0A\x03R\ttotalSize\"\xe3\x03\n" +
+	"\x14ListPipelinesRequest\x12\x1b\n" +
 	"\x06parent\x18\x01 \x01(\tB\x03\xe0A\x02R\x06parent\x12%\n" +
 	"\tpage_size\x18\x02 \x01(\x05B\x03\xe0A\x01H\x00R\bpageSize\x88\x01\x01\x12'\n" +
 	"\n" +
@@ -5810,110 +5809,110 @@ const file_pipeline_v1beta_pipeline_proto_rawDesc = "" +
 	"\a_filterB\x0f\n" +
 	"\r_show_deletedB\r\n" +
 	"\v_visibilityB\v\n" +
-	"\t_order_by\"\xaf\x01\n" +
-	"\x1eListNamespacePipelinesResponse\x12<\n" +
+	"\t_order_by\"\xa6\x01\n" +
+	"\x15ListPipelinesResponse\x12<\n" +
 	"\tpipelines\x18\x01 \x03(\v2\x19.pipeline.v1beta.PipelineB\x03\xe0A\x03R\tpipelines\x12+\n" +
 	"\x0fnext_page_token\x18\x02 \x01(\tB\x03\xe0A\x03R\rnextPageToken\x12\"\n" +
 	"\n" +
-	"total_size\x18\x03 \x01(\x05B\x03\xe0A\x03R\ttotalSize\"t\n" +
-	"\x1eCreateNamespacePipelineRequest\x12\x1b\n" +
+	"total_size\x18\x03 \x01(\x05B\x03\xe0A\x03R\ttotalSize\"k\n" +
+	"\x15CreatePipelineRequest\x12\x1b\n" +
 	"\x06parent\x18\x01 \x01(\tB\x03\xe0A\x02R\x06parent\x125\n" +
-	"\bpipeline\x18\x02 \x01(\v2\x19.pipeline.v1beta.PipelineR\bpipeline\"]\n" +
-	"\x1fCreateNamespacePipelineResponse\x12:\n" +
-	"\bpipeline\x18\x01 \x01(\v2\x19.pipeline.v1beta.PipelineB\x03\xe0A\x03R\bpipeline\"}\n" +
-	"\x1bGetNamespacePipelineRequest\x12\x17\n" +
+	"\bpipeline\x18\x02 \x01(\v2\x19.pipeline.v1beta.PipelineR\bpipeline\"T\n" +
+	"\x16CreatePipelineResponse\x12:\n" +
+	"\bpipeline\x18\x01 \x01(\v2\x19.pipeline.v1beta.PipelineB\x03\xe0A\x03R\bpipeline\"t\n" +
+	"\x12GetPipelineRequest\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\x12<\n" +
 	"\x04view\x18\x02 \x01(\x0e2\x1e.pipeline.v1beta.Pipeline.ViewB\x03\xe0A\x01H\x00R\x04view\x88\x01\x01B\a\n" +
-	"\x05_view\"Z\n" +
-	"\x1cGetNamespacePipelineResponse\x12:\n" +
-	"\bpipeline\x18\x01 \x01(\v2\x19.pipeline.v1beta.PipelineB\x03\xe0A\x03R\bpipeline\"\x9e\x01\n" +
-	"\x1eUpdateNamespacePipelineRequest\x12:\n" +
+	"\x05_view\"Q\n" +
+	"\x13GetPipelineResponse\x12:\n" +
+	"\bpipeline\x18\x01 \x01(\v2\x19.pipeline.v1beta.PipelineB\x03\xe0A\x03R\bpipeline\"\x95\x01\n" +
+	"\x15UpdatePipelineRequest\x12:\n" +
 	"\bpipeline\x18\x01 \x01(\v2\x19.pipeline.v1beta.PipelineB\x03\xe0A\x02R\bpipeline\x12@\n" +
 	"\vupdate_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskB\x03\xe0A\x02R\n" +
-	"updateMask\"]\n" +
-	"\x1fUpdateNamespacePipelineResponse\x12:\n" +
-	"\bpipeline\x18\x01 \x01(\v2\x19.pipeline.v1beta.PipelineB\x03\xe0A\x03R\bpipeline\"9\n" +
-	"\x1eDeleteNamespacePipelineRequest\x12\x17\n" +
-	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"!\n" +
-	"\x1fDeleteNamespacePipelineResponse\"Y\n" +
-	" ValidateNamespacePipelineRequest\x125\n" +
+	"updateMask\"T\n" +
+	"\x16UpdatePipelineResponse\x12:\n" +
+	"\bpipeline\x18\x01 \x01(\v2\x19.pipeline.v1beta.PipelineB\x03\xe0A\x03R\bpipeline\"0\n" +
+	"\x15DeletePipelineRequest\x12\x17\n" +
+	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"\x18\n" +
+	"\x16DeletePipelineResponse\"P\n" +
+	"\x17ValidatePipelineRequest\x125\n" +
 	"\x04name\x18\x01 \x01(\tB!\xe0A\x02\xfaA\x1b\n" +
-	"\x19api.instill.tech/PipelineR\x04name\"\x87\x01\n" +
-	"!ValidateNamespacePipelineResponse\x12\x1d\n" +
+	"\x19api.instill.tech/PipelineR\x04name\"~\n" +
+	"\x18ValidatePipelineResponse\x12\x1d\n" +
 	"\asuccess\x18\x01 \x01(\bB\x03\xe0A\x03R\asuccess\x12C\n" +
-	"\x06errors\x18\x02 \x03(\v2&.pipeline.v1beta.ErrPipelineValidationB\x03\xe0A\x03R\x06errors\"\x84\x01\n" +
-	"\x1eRenameNamespacePipelineRequest\x125\n" +
+	"\x06errors\x18\x02 \x03(\v2&.pipeline.v1beta.ErrPipelineValidationB\x03\xe0A\x03R\x06errors\"{\n" +
+	"\x15RenamePipelineRequest\x125\n" +
 	"\x04name\x18\x01 \x01(\tB!\xe0A\x02\xfaA\x1b\n" +
 	"\x19api.instill.tech/PipelineR\x04name\x12+\n" +
-	"\x0fnew_pipeline_id\x18\x02 \x01(\tB\x03\xe0A\x02R\rnewPipelineId\"]\n" +
-	"\x1fRenameNamespacePipelineResponse\x12:\n" +
-	"\bpipeline\x18\x01 \x01(\v2\x19.pipeline.v1beta.PipelineB\x03\xe0A\x03R\bpipeline\"\xf1\x01\n" +
-	"\x1dCloneNamespacePipelineRequest\x125\n" +
+	"\x0fnew_pipeline_id\x18\x02 \x01(\tB\x03\xe0A\x02R\rnewPipelineId\"T\n" +
+	"\x16RenamePipelineResponse\x12:\n" +
+	"\bpipeline\x18\x01 \x01(\v2\x19.pipeline.v1beta.PipelineB\x03\xe0A\x03R\bpipeline\"\xe8\x01\n" +
+	"\x14ClonePipelineRequest\x125\n" +
 	"\x04name\x18\x01 \x01(\tB!\xe0A\x02\xfaA\x1b\n" +
 	"\x19api.instill.tech/PipelineR\x04name\x129\n" +
 	"\x06target\x18\x02 \x01(\tB!\xe0A\x02\xfaA\x1b\n" +
 	"\x19api.instill.tech/PipelineR\x06target\x12%\n" +
 	"\vdescription\x18\x03 \x01(\tB\x03\xe0A\x01R\vdescription\x127\n" +
-	"\asharing\x18\x04 \x01(\v2\x18.pipeline.v1beta.SharingB\x03\xe0A\x01R\asharing\" \n" +
-	"\x1eCloneNamespacePipelineResponse\"\xff\x01\n" +
-	"$CloneNamespacePipelineReleaseRequest\x12<\n" +
+	"\asharing\x18\x04 \x01(\v2\x18.pipeline.v1beta.SharingB\x03\xe0A\x01R\asharing\"\x17\n" +
+	"\x15ClonePipelineResponse\"\xf6\x01\n" +
+	"\x1bClonePipelineReleaseRequest\x12<\n" +
 	"\x04name\x18\x01 \x01(\tB(\xe0A\x02\xfaA\"\n" +
 	" api.instill.tech/PipelineReleaseR\x04name\x12%\n" +
 	"\vdescription\x18\x02 \x01(\tB\x03\xe0A\x01R\vdescription\x127\n" +
 	"\asharing\x18\x03 \x01(\v2\x18.pipeline.v1beta.SharingB\x03\xe0A\x01R\asharing\x129\n" +
 	"\x06target\x18\x04 \x01(\tB!\xe0A\x02\xfaA\x1b\n" +
-	"\x19api.instill.tech/PipelineR\x06target\"'\n" +
-	"%CloneNamespacePipelineReleaseResponse\"\xba\x01\n" +
-	"*HandleNamespacePipelineWebhookEventRequest\x125\n" +
+	"\x19api.instill.tech/PipelineR\x06target\"\x1e\n" +
+	"\x1cClonePipelineReleaseResponse\"\xb1\x01\n" +
+	"!HandlePipelineWebhookEventRequest\x125\n" +
 	"\x04name\x18\x01 \x01(\tB!\xe0A\x02\xfaA\x1b\n" +
 	"\x19api.instill.tech/PipelineR\x04name\x12\x14\n" +
 	"\x05event\x18\x02 \x01(\tR\x05event\x12\x12\n" +
 	"\x04code\x18\x03 \x01(\tR\x04code\x12+\n" +
-	"\x04data\x18\x04 \x01(\v2\x17.google.protobuf.StructR\x04data\"Z\n" +
-	"+HandleNamespacePipelineWebhookEventResponse\x12+\n" +
-	"\x04data\x18\x01 \x01(\v2\x17.google.protobuf.StructR\x04data\"\xc8\x01\n" +
-	"1HandleNamespacePipelineReleaseWebhookEventRequest\x12<\n" +
+	"\x04data\x18\x04 \x01(\v2\x17.google.protobuf.StructR\x04data\"Q\n" +
+	"\"HandlePipelineWebhookEventResponse\x12+\n" +
+	"\x04data\x18\x01 \x01(\v2\x17.google.protobuf.StructR\x04data\"\xbf\x01\n" +
+	"(HandlePipelineReleaseWebhookEventRequest\x12<\n" +
 	"\x04name\x18\x01 \x01(\tB(\xe0A\x02\xfaA\"\n" +
 	" api.instill.tech/PipelineReleaseR\x04name\x12\x14\n" +
 	"\x05event\x18\x02 \x01(\tR\x05event\x12\x12\n" +
 	"\x04code\x18\x03 \x01(\tR\x04code\x12+\n" +
-	"\x04data\x18\x04 \x01(\v2\x17.google.protobuf.StructR\x04data\"a\n" +
-	"2HandleNamespacePipelineReleaseWebhookEventResponse\x12+\n" +
+	"\x04data\x18\x04 \x01(\v2\x17.google.protobuf.StructR\x04data\"X\n" +
+	")HandlePipelineReleaseWebhookEventResponse\x12+\n" +
 	"\x04data\x18\x01 \x01(\v2\x17.google.protobuf.StructR\x04data\"\x85\x01\n" +
 	"#DispatchPipelineWebhookEventRequest\x12&\n" +
 	"\fwebhook_type\x18\x01 \x01(\tB\x03\xe0A\x02R\vwebhookType\x126\n" +
 	"\amessage\x18\x02 \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\amessage\"`\n" +
 	"$DispatchPipelineWebhookEventResponse\x128\n" +
-	"\bresponse\x18\x01 \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\bresponse\"\xc5\x01\n" +
-	"\x1fTriggerNamespacePipelineRequest\x125\n" +
+	"\bresponse\x18\x01 \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\bresponse\"\xbc\x01\n" +
+	"\x16TriggerPipelineRequest\x125\n" +
 	"\x04name\x18\x01 \x01(\tB!\xe0A\x02\xfaA\x1b\n" +
 	"\x19api.instill.tech/PipelineR\x04name\x124\n" +
 	"\x06inputs\x18\x02 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\x06inputs\x125\n" +
-	"\x04data\x18\x03 \x03(\v2\x1c.pipeline.v1beta.TriggerDataB\x03\xe0A\x02R\x04data\"\x9d\x01\n" +
-	" TriggerNamespacePipelineResponse\x126\n" +
+	"\x04data\x18\x03 \x03(\v2\x1c.pipeline.v1beta.TriggerDataB\x03\xe0A\x02R\x04data\"\x94\x01\n" +
+	"\x17TriggerPipelineResponse\x126\n" +
 	"\aoutputs\x18\x01 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\aoutputs\x12A\n" +
-	"\bmetadata\x18\x02 \x01(\v2 .pipeline.v1beta.TriggerMetadataB\x03\xe0A\x03R\bmetadata\"\xcf\x01\n" +
-	")TriggerNamespacePipelineWithStreamRequest\x125\n" +
+	"\bmetadata\x18\x02 \x01(\v2 .pipeline.v1beta.TriggerMetadataB\x03\xe0A\x03R\bmetadata\"\xc6\x01\n" +
+	" TriggerPipelineWithStreamRequest\x125\n" +
 	"\x04name\x18\x01 \x01(\tB!\xe0A\x02\xfaA\x1b\n" +
 	"\x19api.instill.tech/PipelineR\x04name\x124\n" +
 	"\x06inputs\x18\x02 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x01R\x06inputs\x125\n" +
-	"\x04data\x18\x03 \x03(\v2\x1c.pipeline.v1beta.TriggerDataB\x03\xe0A\x01R\x04data\"\xa7\x01\n" +
-	"*TriggerNamespacePipelineWithStreamResponse\x126\n" +
+	"\x04data\x18\x03 \x03(\v2\x1c.pipeline.v1beta.TriggerDataB\x03\xe0A\x01R\x04data\"\x9e\x01\n" +
+	"!TriggerPipelineWithStreamResponse\x126\n" +
 	"\aoutputs\x18\x01 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\aoutputs\x12A\n" +
-	"\bmetadata\x18\x02 \x01(\v2 .pipeline.v1beta.TriggerMetadataB\x03\xe0A\x03R\bmetadata\"\xca\x01\n" +
-	"$TriggerAsyncNamespacePipelineRequest\x125\n" +
+	"\bmetadata\x18\x02 \x01(\v2 .pipeline.v1beta.TriggerMetadataB\x03\xe0A\x03R\bmetadata\"\xc1\x01\n" +
+	"\x1bTriggerAsyncPipelineRequest\x125\n" +
 	"\x04name\x18\x01 \x01(\tB!\xe0A\x02\xfaA\x1b\n" +
 	"\x19api.instill.tech/PipelineR\x04name\x124\n" +
 	"\x06inputs\x18\x02 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x01R\x06inputs\x125\n" +
-	"\x04data\x18\x03 \x03(\v2\x1c.pipeline.v1beta.TriggerDataB\x03\xe0A\x01R\x04data\"i\n" +
-	"%TriggerAsyncNamespacePipelineResponse\x12@\n" +
-	"\toperation\x18\x01 \x01(\v2\x1d.google.longrunning.OperationB\x03\xe0A\x03R\toperation\"\x80\x01\n" +
-	"%CreateNamespacePipelineReleaseRequest\x12\x1b\n" +
+	"\x04data\x18\x03 \x03(\v2\x1c.pipeline.v1beta.TriggerDataB\x03\xe0A\x01R\x04data\"`\n" +
+	"\x1cTriggerAsyncPipelineResponse\x12@\n" +
+	"\toperation\x18\x01 \x01(\v2\x1d.google.longrunning.OperationB\x03\xe0A\x03R\toperation\"w\n" +
+	"\x1cCreatePipelineReleaseRequest\x12\x1b\n" +
 	"\x06parent\x18\x01 \x01(\tB\x03\xe0A\x02R\x06parent\x12:\n" +
-	"\arelease\x18\x02 \x01(\v2 .pipeline.v1beta.PipelineReleaseR\arelease\"i\n" +
-	"&CreateNamespacePipelineReleaseResponse\x12?\n" +
-	"\arelease\x18\x01 \x01(\v2 .pipeline.v1beta.PipelineReleaseB\x03\xe0A\x03R\arelease\"\xe2\x02\n" +
-	"$ListNamespacePipelineReleasesRequest\x12\x1b\n" +
+	"\arelease\x18\x02 \x01(\v2 .pipeline.v1beta.PipelineReleaseR\arelease\"`\n" +
+	"\x1dCreatePipelineReleaseResponse\x12?\n" +
+	"\arelease\x18\x01 \x01(\v2 .pipeline.v1beta.PipelineReleaseB\x03\xe0A\x03R\arelease\"\xd9\x02\n" +
+	"\x1bListPipelineReleasesRequest\x12\x1b\n" +
 	"\x06parent\x18\x01 \x01(\tB\x03\xe0A\x02R\x06parent\x12%\n" +
 	"\tpage_size\x18\x02 \x01(\x05B\x03\xe0A\x01H\x00R\bpageSize\x88\x01\x01\x12'\n" +
 	"\n" +
@@ -5926,41 +5925,41 @@ const file_pipeline_v1beta_pipeline_proto_rawDesc = "" +
 	"\v_page_tokenB\a\n" +
 	"\x05_viewB\t\n" +
 	"\a_filterB\x0f\n" +
-	"\r_show_deleted\"\xbb\x01\n" +
-	"%ListNamespacePipelineReleasesResponse\x12A\n" +
+	"\r_show_deleted\"\xb2\x01\n" +
+	"\x1cListPipelineReleasesResponse\x12A\n" +
 	"\breleases\x18\x01 \x03(\v2 .pipeline.v1beta.PipelineReleaseB\x03\xe0A\x03R\breleases\x12+\n" +
 	"\x0fnext_page_token\x18\x02 \x01(\tB\x03\xe0A\x03R\rnextPageToken\x12\"\n" +
 	"\n" +
-	"total_size\x18\x03 \x01(\x05B\x03\xe0A\x03R\ttotalSize\"\x84\x01\n" +
-	"\"GetNamespacePipelineReleaseRequest\x12\x17\n" +
+	"total_size\x18\x03 \x01(\x05B\x03\xe0A\x03R\ttotalSize\"{\n" +
+	"\x19GetPipelineReleaseRequest\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\x12<\n" +
 	"\x04view\x18\x02 \x01(\x0e2\x1e.pipeline.v1beta.Pipeline.ViewB\x03\xe0A\x01H\x00R\x04view\x88\x01\x01B\a\n" +
-	"\x05_view\"f\n" +
-	"#GetNamespacePipelineReleaseResponse\x12?\n" +
-	"\arelease\x18\x01 \x01(\v2 .pipeline.v1beta.PipelineReleaseB\x03\xe0A\x03R\arelease\"\xaa\x01\n" +
-	"%UpdateNamespacePipelineReleaseRequest\x12?\n" +
+	"\x05_view\"]\n" +
+	"\x1aGetPipelineReleaseResponse\x12?\n" +
+	"\arelease\x18\x01 \x01(\v2 .pipeline.v1beta.PipelineReleaseB\x03\xe0A\x03R\arelease\"\xa1\x01\n" +
+	"\x1cUpdatePipelineReleaseRequest\x12?\n" +
 	"\arelease\x18\x01 \x01(\v2 .pipeline.v1beta.PipelineReleaseB\x03\xe0A\x02R\arelease\x12@\n" +
 	"\vupdate_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskB\x03\xe0A\x02R\n" +
-	"updateMask\"i\n" +
-	"&UpdateNamespacePipelineReleaseResponse\x12?\n" +
-	"\arelease\x18\x01 \x01(\v2 .pipeline.v1beta.PipelineReleaseB\x03\xe0A\x03R\arelease\"@\n" +
-	"%DeleteNamespacePipelineReleaseRequest\x12\x17\n" +
-	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"(\n" +
-	"&DeleteNamespacePipelineReleaseResponse\"\xd3\x01\n" +
-	"&TriggerNamespacePipelineReleaseRequest\x12<\n" +
+	"updateMask\"`\n" +
+	"\x1dUpdatePipelineReleaseResponse\x12?\n" +
+	"\arelease\x18\x01 \x01(\v2 .pipeline.v1beta.PipelineReleaseB\x03\xe0A\x03R\arelease\"7\n" +
+	"\x1cDeletePipelineReleaseRequest\x12\x17\n" +
+	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"\x1f\n" +
+	"\x1dDeletePipelineReleaseResponse\"\xca\x01\n" +
+	"\x1dTriggerPipelineReleaseRequest\x12<\n" +
 	"\x04name\x18\x01 \x01(\tB(\xe0A\x02\xfaA\"\n" +
 	" api.instill.tech/PipelineReleaseR\x04name\x124\n" +
 	"\x06inputs\x18\x02 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x01R\x06inputs\x125\n" +
-	"\x04data\x18\x03 \x03(\v2\x1c.pipeline.v1beta.TriggerDataB\x03\xe0A\x01R\x04data\"\xa4\x01\n" +
-	"'TriggerNamespacePipelineReleaseResponse\x126\n" +
+	"\x04data\x18\x03 \x03(\v2\x1c.pipeline.v1beta.TriggerDataB\x03\xe0A\x01R\x04data\"\x9b\x01\n" +
+	"\x1eTriggerPipelineReleaseResponse\x126\n" +
 	"\aoutputs\x18\x01 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\aoutputs\x12A\n" +
-	"\bmetadata\x18\x02 \x01(\v2 .pipeline.v1beta.TriggerMetadataB\x03\xe0A\x03R\bmetadata\"\xd8\x01\n" +
-	"+TriggerAsyncNamespacePipelineReleaseRequest\x12<\n" +
+	"\bmetadata\x18\x02 \x01(\v2 .pipeline.v1beta.TriggerMetadataB\x03\xe0A\x03R\bmetadata\"\xcf\x01\n" +
+	"\"TriggerAsyncPipelineReleaseRequest\x12<\n" +
 	"\x04name\x18\x01 \x01(\tB(\xe0A\x02\xfaA\"\n" +
 	" api.instill.tech/PipelineReleaseR\x04name\x124\n" +
 	"\x06inputs\x18\x02 \x03(\v2\x17.google.protobuf.StructB\x03\xe0A\x01R\x06inputs\x125\n" +
-	"\x04data\x18\x03 \x03(\v2\x1c.pipeline.v1beta.TriggerDataB\x03\xe0A\x01R\x04data\"p\n" +
-	",TriggerAsyncNamespacePipelineReleaseResponse\x12@\n" +
+	"\x04data\x18\x03 \x03(\v2\x1c.pipeline.v1beta.TriggerDataB\x03\xe0A\x01R\x04data\"g\n" +
+	"#TriggerAsyncPipelineReleaseResponse\x12@\n" +
 	"\toperation\x18\x01 \x01(\v2\x1d.google.longrunning.OperationB\x03\xe0A\x03R\toperation\"I\n" +
 	"\x15ErrPipelineValidation\x12\x1a\n" +
 	"\blocation\x18\x01 \x01(\tR\blocation\x12\x14\n" +
@@ -6165,105 +6164,105 @@ func file_pipeline_v1beta_pipeline_proto_rawDescGZIP() []byte {
 var file_pipeline_v1beta_pipeline_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
 var file_pipeline_v1beta_pipeline_proto_msgTypes = make([]protoimpl.MessageInfo, 82)
 var file_pipeline_v1beta_pipeline_proto_goTypes = []any{
-	(State)(0),                                                 // 0: pipeline.v1beta.State
-	(Pipeline_View)(0),                                         // 1: pipeline.v1beta.Pipeline.View
-	(Pipeline_Visibility)(0),                                   // 2: pipeline.v1beta.Pipeline.Visibility
-	(Trace_Status)(0),                                          // 3: pipeline.v1beta.Trace.Status
-	(*LivenessRequest)(nil),                                    // 4: pipeline.v1beta.LivenessRequest
-	(*LivenessResponse)(nil),                                   // 5: pipeline.v1beta.LivenessResponse
-	(*ReadinessRequest)(nil),                                   // 6: pipeline.v1beta.ReadinessRequest
-	(*ReadinessResponse)(nil),                                  // 7: pipeline.v1beta.ReadinessResponse
-	(*Endpoints)(nil),                                          // 8: pipeline.v1beta.Endpoints
-	(*Pipeline)(nil),                                           // 9: pipeline.v1beta.Pipeline
-	(*TriggerMetadata)(nil),                                    // 10: pipeline.v1beta.TriggerMetadata
-	(*Trace)(nil),                                              // 11: pipeline.v1beta.Trace
-	(*GetHubStatsRequest)(nil),                                 // 12: pipeline.v1beta.GetHubStatsRequest
-	(*GetHubStatsResponse)(nil),                                // 13: pipeline.v1beta.GetHubStatsResponse
-	(*PipelineRelease)(nil),                                    // 14: pipeline.v1beta.PipelineRelease
-	(*ListPipelinesRequest)(nil),                               // 15: pipeline.v1beta.ListPipelinesRequest
-	(*ListPipelinesResponse)(nil),                              // 16: pipeline.v1beta.ListPipelinesResponse
-	(*ListNamespacePipelinesRequest)(nil),                      // 17: pipeline.v1beta.ListNamespacePipelinesRequest
-	(*ListNamespacePipelinesResponse)(nil),                     // 18: pipeline.v1beta.ListNamespacePipelinesResponse
-	(*CreateNamespacePipelineRequest)(nil),                     // 19: pipeline.v1beta.CreateNamespacePipelineRequest
-	(*CreateNamespacePipelineResponse)(nil),                    // 20: pipeline.v1beta.CreateNamespacePipelineResponse
-	(*GetNamespacePipelineRequest)(nil),                        // 21: pipeline.v1beta.GetNamespacePipelineRequest
-	(*GetNamespacePipelineResponse)(nil),                       // 22: pipeline.v1beta.GetNamespacePipelineResponse
-	(*UpdateNamespacePipelineRequest)(nil),                     // 23: pipeline.v1beta.UpdateNamespacePipelineRequest
-	(*UpdateNamespacePipelineResponse)(nil),                    // 24: pipeline.v1beta.UpdateNamespacePipelineResponse
-	(*DeleteNamespacePipelineRequest)(nil),                     // 25: pipeline.v1beta.DeleteNamespacePipelineRequest
-	(*DeleteNamespacePipelineResponse)(nil),                    // 26: pipeline.v1beta.DeleteNamespacePipelineResponse
-	(*ValidateNamespacePipelineRequest)(nil),                   // 27: pipeline.v1beta.ValidateNamespacePipelineRequest
-	(*ValidateNamespacePipelineResponse)(nil),                  // 28: pipeline.v1beta.ValidateNamespacePipelineResponse
-	(*RenameNamespacePipelineRequest)(nil),                     // 29: pipeline.v1beta.RenameNamespacePipelineRequest
-	(*RenameNamespacePipelineResponse)(nil),                    // 30: pipeline.v1beta.RenameNamespacePipelineResponse
-	(*CloneNamespacePipelineRequest)(nil),                      // 31: pipeline.v1beta.CloneNamespacePipelineRequest
-	(*CloneNamespacePipelineResponse)(nil),                     // 32: pipeline.v1beta.CloneNamespacePipelineResponse
-	(*CloneNamespacePipelineReleaseRequest)(nil),               // 33: pipeline.v1beta.CloneNamespacePipelineReleaseRequest
-	(*CloneNamespacePipelineReleaseResponse)(nil),              // 34: pipeline.v1beta.CloneNamespacePipelineReleaseResponse
-	(*HandleNamespacePipelineWebhookEventRequest)(nil),         // 35: pipeline.v1beta.HandleNamespacePipelineWebhookEventRequest
-	(*HandleNamespacePipelineWebhookEventResponse)(nil),        // 36: pipeline.v1beta.HandleNamespacePipelineWebhookEventResponse
-	(*HandleNamespacePipelineReleaseWebhookEventRequest)(nil),  // 37: pipeline.v1beta.HandleNamespacePipelineReleaseWebhookEventRequest
-	(*HandleNamespacePipelineReleaseWebhookEventResponse)(nil), // 38: pipeline.v1beta.HandleNamespacePipelineReleaseWebhookEventResponse
-	(*DispatchPipelineWebhookEventRequest)(nil),                // 39: pipeline.v1beta.DispatchPipelineWebhookEventRequest
-	(*DispatchPipelineWebhookEventResponse)(nil),               // 40: pipeline.v1beta.DispatchPipelineWebhookEventResponse
-	(*TriggerNamespacePipelineRequest)(nil),                    // 41: pipeline.v1beta.TriggerNamespacePipelineRequest
-	(*TriggerNamespacePipelineResponse)(nil),                   // 42: pipeline.v1beta.TriggerNamespacePipelineResponse
-	(*TriggerNamespacePipelineWithStreamRequest)(nil),          // 43: pipeline.v1beta.TriggerNamespacePipelineWithStreamRequest
-	(*TriggerNamespacePipelineWithStreamResponse)(nil),         // 44: pipeline.v1beta.TriggerNamespacePipelineWithStreamResponse
-	(*TriggerAsyncNamespacePipelineRequest)(nil),               // 45: pipeline.v1beta.TriggerAsyncNamespacePipelineRequest
-	(*TriggerAsyncNamespacePipelineResponse)(nil),              // 46: pipeline.v1beta.TriggerAsyncNamespacePipelineResponse
-	(*CreateNamespacePipelineReleaseRequest)(nil),              // 47: pipeline.v1beta.CreateNamespacePipelineReleaseRequest
-	(*CreateNamespacePipelineReleaseResponse)(nil),             // 48: pipeline.v1beta.CreateNamespacePipelineReleaseResponse
-	(*ListNamespacePipelineReleasesRequest)(nil),               // 49: pipeline.v1beta.ListNamespacePipelineReleasesRequest
-	(*ListNamespacePipelineReleasesResponse)(nil),              // 50: pipeline.v1beta.ListNamespacePipelineReleasesResponse
-	(*GetNamespacePipelineReleaseRequest)(nil),                 // 51: pipeline.v1beta.GetNamespacePipelineReleaseRequest
-	(*GetNamespacePipelineReleaseResponse)(nil),                // 52: pipeline.v1beta.GetNamespacePipelineReleaseResponse
-	(*UpdateNamespacePipelineReleaseRequest)(nil),              // 53: pipeline.v1beta.UpdateNamespacePipelineReleaseRequest
-	(*UpdateNamespacePipelineReleaseResponse)(nil),             // 54: pipeline.v1beta.UpdateNamespacePipelineReleaseResponse
-	(*DeleteNamespacePipelineReleaseRequest)(nil),              // 55: pipeline.v1beta.DeleteNamespacePipelineReleaseRequest
-	(*DeleteNamespacePipelineReleaseResponse)(nil),             // 56: pipeline.v1beta.DeleteNamespacePipelineReleaseResponse
-	(*TriggerNamespacePipelineReleaseRequest)(nil),             // 57: pipeline.v1beta.TriggerNamespacePipelineReleaseRequest
-	(*TriggerNamespacePipelineReleaseResponse)(nil),            // 58: pipeline.v1beta.TriggerNamespacePipelineReleaseResponse
-	(*TriggerAsyncNamespacePipelineReleaseRequest)(nil),        // 59: pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseRequest
-	(*TriggerAsyncNamespacePipelineReleaseResponse)(nil),       // 60: pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseResponse
-	(*ErrPipelineValidation)(nil),                              // 61: pipeline.v1beta.ErrPipelineValidation
-	(*TriggerData)(nil),                                        // 62: pipeline.v1beta.TriggerData
-	(*GetOperationRequest)(nil),                                // 63: pipeline.v1beta.GetOperationRequest
-	(*GetOperationResponse)(nil),                               // 64: pipeline.v1beta.GetOperationResponse
-	(*ListPipelinesAdminRequest)(nil),                          // 65: pipeline.v1beta.ListPipelinesAdminRequest
-	(*ListPipelinesAdminResponse)(nil),                         // 66: pipeline.v1beta.ListPipelinesAdminResponse
-	(*ListPipelineReleasesAdminRequest)(nil),                   // 67: pipeline.v1beta.ListPipelineReleasesAdminRequest
-	(*ListPipelineReleasesAdminResponse)(nil),                  // 68: pipeline.v1beta.ListPipelineReleasesAdminResponse
-	(*LookUpPipelineAdminRequest)(nil),                         // 69: pipeline.v1beta.LookUpPipelineAdminRequest
-	(*LookUpPipelineAdminResponse)(nil),                        // 70: pipeline.v1beta.LookUpPipelineAdminResponse
-	(*ListPipelineRunsRequest)(nil),                            // 71: pipeline.v1beta.ListPipelineRunsRequest
-	(*ListPipelineRunsByRequesterRequest)(nil),                 // 72: pipeline.v1beta.ListPipelineRunsByRequesterRequest
-	(*ListPipelineRunsResponse)(nil),                           // 73: pipeline.v1beta.ListPipelineRunsResponse
-	(*ListPipelineRunsByRequesterResponse)(nil),                // 74: pipeline.v1beta.ListPipelineRunsByRequesterResponse
-	(*ListComponentRunsRequest)(nil),                           // 75: pipeline.v1beta.ListComponentRunsRequest
-	(*ListComponentRunsResponse)(nil),                          // 76: pipeline.v1beta.ListComponentRunsResponse
-	(*FileReference)(nil),                                      // 77: pipeline.v1beta.FileReference
-	(*PipelineRun)(nil),                                        // 78: pipeline.v1beta.PipelineRun
-	(*ComponentRun)(nil),                                       // 79: pipeline.v1beta.ComponentRun
-	(*Endpoints_WebhookEndpoint)(nil),                          // 80: pipeline.v1beta.Endpoints.WebhookEndpoint
-	nil,                                                        // 81: pipeline.v1beta.Endpoints.WebhooksEntry
-	(*Pipeline_Stats)(nil),                                     // 82: pipeline.v1beta.Pipeline.Stats
-	nil,                                                        // 83: pipeline.v1beta.TriggerMetadata.TracesEntry
-	nil,                                                        // 84: pipeline.v1beta.TriggerData.SecretEntry
-	nil,                                                        // 85: pipeline.v1beta.TriggerData.ConnectionReferencesEntry
-	(*v1beta.HealthCheckRequest)(nil),                          // 86: common.healthcheck.v1beta.HealthCheckRequest
-	(*v1beta.HealthCheckResponse)(nil),                         // 87: common.healthcheck.v1beta.HealthCheckResponse
-	(*timestamppb.Timestamp)(nil),                              // 88: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),                                    // 89: google.protobuf.Struct
-	(*Sharing)(nil),                                            // 90: pipeline.v1beta.Sharing
-	(*Permission)(nil),                                         // 91: pipeline.v1beta.Permission
-	(*DataSpecification)(nil),                                  // 92: pipeline.v1beta.DataSpecification
-	(*v1beta1.Owner)(nil),                                      // 93: mgmt.v1beta.Owner
-	(*v1beta1.User)(nil),                                       // 94: mgmt.v1beta.User
-	(*fieldmaskpb.FieldMask)(nil),                              // 95: google.protobuf.FieldMask
-	(*longrunningpb.Operation)(nil),                            // 96: google.longrunning.Operation
-	(v1alpha.RunStatus)(0),                                     // 97: common.run.v1alpha.RunStatus
-	(v1alpha.RunSource)(0),                                     // 98: common.run.v1alpha.RunSource
+	(State)(0),                                        // 0: pipeline.v1beta.State
+	(Pipeline_View)(0),                                // 1: pipeline.v1beta.Pipeline.View
+	(Pipeline_Visibility)(0),                          // 2: pipeline.v1beta.Pipeline.Visibility
+	(Trace_Status)(0),                                 // 3: pipeline.v1beta.Trace.Status
+	(*LivenessRequest)(nil),                           // 4: pipeline.v1beta.LivenessRequest
+	(*LivenessResponse)(nil),                          // 5: pipeline.v1beta.LivenessResponse
+	(*ReadinessRequest)(nil),                          // 6: pipeline.v1beta.ReadinessRequest
+	(*ReadinessResponse)(nil),                         // 7: pipeline.v1beta.ReadinessResponse
+	(*Endpoints)(nil),                                 // 8: pipeline.v1beta.Endpoints
+	(*Pipeline)(nil),                                  // 9: pipeline.v1beta.Pipeline
+	(*TriggerMetadata)(nil),                           // 10: pipeline.v1beta.TriggerMetadata
+	(*Trace)(nil),                                     // 11: pipeline.v1beta.Trace
+	(*GetHubStatsRequest)(nil),                        // 12: pipeline.v1beta.GetHubStatsRequest
+	(*GetHubStatsResponse)(nil),                       // 13: pipeline.v1beta.GetHubStatsResponse
+	(*PipelineRelease)(nil),                           // 14: pipeline.v1beta.PipelineRelease
+	(*ListPublicPipelinesRequest)(nil),                // 15: pipeline.v1beta.ListPublicPipelinesRequest
+	(*ListPublicPipelinesResponse)(nil),               // 16: pipeline.v1beta.ListPublicPipelinesResponse
+	(*ListPipelinesRequest)(nil),                      // 17: pipeline.v1beta.ListPipelinesRequest
+	(*ListPipelinesResponse)(nil),                     // 18: pipeline.v1beta.ListPipelinesResponse
+	(*CreatePipelineRequest)(nil),                     // 19: pipeline.v1beta.CreatePipelineRequest
+	(*CreatePipelineResponse)(nil),                    // 20: pipeline.v1beta.CreatePipelineResponse
+	(*GetPipelineRequest)(nil),                        // 21: pipeline.v1beta.GetPipelineRequest
+	(*GetPipelineResponse)(nil),                       // 22: pipeline.v1beta.GetPipelineResponse
+	(*UpdatePipelineRequest)(nil),                     // 23: pipeline.v1beta.UpdatePipelineRequest
+	(*UpdatePipelineResponse)(nil),                    // 24: pipeline.v1beta.UpdatePipelineResponse
+	(*DeletePipelineRequest)(nil),                     // 25: pipeline.v1beta.DeletePipelineRequest
+	(*DeletePipelineResponse)(nil),                    // 26: pipeline.v1beta.DeletePipelineResponse
+	(*ValidatePipelineRequest)(nil),                   // 27: pipeline.v1beta.ValidatePipelineRequest
+	(*ValidatePipelineResponse)(nil),                  // 28: pipeline.v1beta.ValidatePipelineResponse
+	(*RenamePipelineRequest)(nil),                     // 29: pipeline.v1beta.RenamePipelineRequest
+	(*RenamePipelineResponse)(nil),                    // 30: pipeline.v1beta.RenamePipelineResponse
+	(*ClonePipelineRequest)(nil),                      // 31: pipeline.v1beta.ClonePipelineRequest
+	(*ClonePipelineResponse)(nil),                     // 32: pipeline.v1beta.ClonePipelineResponse
+	(*ClonePipelineReleaseRequest)(nil),               // 33: pipeline.v1beta.ClonePipelineReleaseRequest
+	(*ClonePipelineReleaseResponse)(nil),              // 34: pipeline.v1beta.ClonePipelineReleaseResponse
+	(*HandlePipelineWebhookEventRequest)(nil),         // 35: pipeline.v1beta.HandlePipelineWebhookEventRequest
+	(*HandlePipelineWebhookEventResponse)(nil),        // 36: pipeline.v1beta.HandlePipelineWebhookEventResponse
+	(*HandlePipelineReleaseWebhookEventRequest)(nil),  // 37: pipeline.v1beta.HandlePipelineReleaseWebhookEventRequest
+	(*HandlePipelineReleaseWebhookEventResponse)(nil), // 38: pipeline.v1beta.HandlePipelineReleaseWebhookEventResponse
+	(*DispatchPipelineWebhookEventRequest)(nil),       // 39: pipeline.v1beta.DispatchPipelineWebhookEventRequest
+	(*DispatchPipelineWebhookEventResponse)(nil),      // 40: pipeline.v1beta.DispatchPipelineWebhookEventResponse
+	(*TriggerPipelineRequest)(nil),                    // 41: pipeline.v1beta.TriggerPipelineRequest
+	(*TriggerPipelineResponse)(nil),                   // 42: pipeline.v1beta.TriggerPipelineResponse
+	(*TriggerPipelineWithStreamRequest)(nil),          // 43: pipeline.v1beta.TriggerPipelineWithStreamRequest
+	(*TriggerPipelineWithStreamResponse)(nil),         // 44: pipeline.v1beta.TriggerPipelineWithStreamResponse
+	(*TriggerAsyncPipelineRequest)(nil),               // 45: pipeline.v1beta.TriggerAsyncPipelineRequest
+	(*TriggerAsyncPipelineResponse)(nil),              // 46: pipeline.v1beta.TriggerAsyncPipelineResponse
+	(*CreatePipelineReleaseRequest)(nil),              // 47: pipeline.v1beta.CreatePipelineReleaseRequest
+	(*CreatePipelineReleaseResponse)(nil),             // 48: pipeline.v1beta.CreatePipelineReleaseResponse
+	(*ListPipelineReleasesRequest)(nil),               // 49: pipeline.v1beta.ListPipelineReleasesRequest
+	(*ListPipelineReleasesResponse)(nil),              // 50: pipeline.v1beta.ListPipelineReleasesResponse
+	(*GetPipelineReleaseRequest)(nil),                 // 51: pipeline.v1beta.GetPipelineReleaseRequest
+	(*GetPipelineReleaseResponse)(nil),                // 52: pipeline.v1beta.GetPipelineReleaseResponse
+	(*UpdatePipelineReleaseRequest)(nil),              // 53: pipeline.v1beta.UpdatePipelineReleaseRequest
+	(*UpdatePipelineReleaseResponse)(nil),             // 54: pipeline.v1beta.UpdatePipelineReleaseResponse
+	(*DeletePipelineReleaseRequest)(nil),              // 55: pipeline.v1beta.DeletePipelineReleaseRequest
+	(*DeletePipelineReleaseResponse)(nil),             // 56: pipeline.v1beta.DeletePipelineReleaseResponse
+	(*TriggerPipelineReleaseRequest)(nil),             // 57: pipeline.v1beta.TriggerPipelineReleaseRequest
+	(*TriggerPipelineReleaseResponse)(nil),            // 58: pipeline.v1beta.TriggerPipelineReleaseResponse
+	(*TriggerAsyncPipelineReleaseRequest)(nil),        // 59: pipeline.v1beta.TriggerAsyncPipelineReleaseRequest
+	(*TriggerAsyncPipelineReleaseResponse)(nil),       // 60: pipeline.v1beta.TriggerAsyncPipelineReleaseResponse
+	(*ErrPipelineValidation)(nil),                     // 61: pipeline.v1beta.ErrPipelineValidation
+	(*TriggerData)(nil),                               // 62: pipeline.v1beta.TriggerData
+	(*GetOperationRequest)(nil),                       // 63: pipeline.v1beta.GetOperationRequest
+	(*GetOperationResponse)(nil),                      // 64: pipeline.v1beta.GetOperationResponse
+	(*ListPipelinesAdminRequest)(nil),                 // 65: pipeline.v1beta.ListPipelinesAdminRequest
+	(*ListPipelinesAdminResponse)(nil),                // 66: pipeline.v1beta.ListPipelinesAdminResponse
+	(*ListPipelineReleasesAdminRequest)(nil),          // 67: pipeline.v1beta.ListPipelineReleasesAdminRequest
+	(*ListPipelineReleasesAdminResponse)(nil),         // 68: pipeline.v1beta.ListPipelineReleasesAdminResponse
+	(*LookUpPipelineAdminRequest)(nil),                // 69: pipeline.v1beta.LookUpPipelineAdminRequest
+	(*LookUpPipelineAdminResponse)(nil),               // 70: pipeline.v1beta.LookUpPipelineAdminResponse
+	(*ListPipelineRunsRequest)(nil),                   // 71: pipeline.v1beta.ListPipelineRunsRequest
+	(*ListPipelineRunsByRequesterRequest)(nil),        // 72: pipeline.v1beta.ListPipelineRunsByRequesterRequest
+	(*ListPipelineRunsResponse)(nil),                  // 73: pipeline.v1beta.ListPipelineRunsResponse
+	(*ListPipelineRunsByRequesterResponse)(nil),       // 74: pipeline.v1beta.ListPipelineRunsByRequesterResponse
+	(*ListComponentRunsRequest)(nil),                  // 75: pipeline.v1beta.ListComponentRunsRequest
+	(*ListComponentRunsResponse)(nil),                 // 76: pipeline.v1beta.ListComponentRunsResponse
+	(*FileReference)(nil),                             // 77: pipeline.v1beta.FileReference
+	(*PipelineRun)(nil),                               // 78: pipeline.v1beta.PipelineRun
+	(*ComponentRun)(nil),                              // 79: pipeline.v1beta.ComponentRun
+	(*Endpoints_WebhookEndpoint)(nil),                 // 80: pipeline.v1beta.Endpoints.WebhookEndpoint
+	nil,                                               // 81: pipeline.v1beta.Endpoints.WebhooksEntry
+	(*Pipeline_Stats)(nil),                            // 82: pipeline.v1beta.Pipeline.Stats
+	nil,                                               // 83: pipeline.v1beta.TriggerMetadata.TracesEntry
+	nil,                                               // 84: pipeline.v1beta.TriggerData.SecretEntry
+	nil,                                               // 85: pipeline.v1beta.TriggerData.ConnectionReferencesEntry
+	(*v1beta.HealthCheckRequest)(nil),                 // 86: common.healthcheck.v1beta.HealthCheckRequest
+	(*v1beta.HealthCheckResponse)(nil),                // 87: common.healthcheck.v1beta.HealthCheckResponse
+	(*timestamppb.Timestamp)(nil),                     // 88: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),                           // 89: google.protobuf.Struct
+	(*Sharing)(nil),                                   // 90: pipeline.v1beta.Sharing
+	(*Permission)(nil),                                // 91: pipeline.v1beta.Permission
+	(*DataSpecification)(nil),                         // 92: pipeline.v1beta.DataSpecification
+	(*v1beta1.Owner)(nil),                             // 93: mgmt.v1beta.Owner
+	(*v1beta1.User)(nil),                              // 94: mgmt.v1beta.User
+	(*fieldmaskpb.FieldMask)(nil),                     // 95: google.protobuf.FieldMask
+	(*longrunningpb.Operation)(nil),                   // 96: google.longrunning.Operation
+	(v1alpha.RunStatus)(0),                            // 97: common.run.v1alpha.RunStatus
+	(v1alpha.RunSource)(0),                            // 98: common.run.v1alpha.RunSource
 }
 var file_pipeline_v1beta_pipeline_proto_depIdxs = []int32{
 	86,  // 0: pipeline.v1beta.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
@@ -6297,56 +6296,56 @@ var file_pipeline_v1beta_pipeline_proto_depIdxs = []int32{
 	89,  // 28: pipeline.v1beta.PipelineRelease.metadata:type_name -> google.protobuf.Struct
 	92,  // 29: pipeline.v1beta.PipelineRelease.data_specification:type_name -> pipeline.v1beta.DataSpecification
 	8,   // 30: pipeline.v1beta.PipelineRelease.endpoints:type_name -> pipeline.v1beta.Endpoints
-	1,   // 31: pipeline.v1beta.ListPipelinesRequest.view:type_name -> pipeline.v1beta.Pipeline.View
-	2,   // 32: pipeline.v1beta.ListPipelinesRequest.visibility:type_name -> pipeline.v1beta.Pipeline.Visibility
-	9,   // 33: pipeline.v1beta.ListPipelinesResponse.pipelines:type_name -> pipeline.v1beta.Pipeline
-	1,   // 34: pipeline.v1beta.ListNamespacePipelinesRequest.view:type_name -> pipeline.v1beta.Pipeline.View
-	2,   // 35: pipeline.v1beta.ListNamespacePipelinesRequest.visibility:type_name -> pipeline.v1beta.Pipeline.Visibility
-	9,   // 36: pipeline.v1beta.ListNamespacePipelinesResponse.pipelines:type_name -> pipeline.v1beta.Pipeline
-	9,   // 37: pipeline.v1beta.CreateNamespacePipelineRequest.pipeline:type_name -> pipeline.v1beta.Pipeline
-	9,   // 38: pipeline.v1beta.CreateNamespacePipelineResponse.pipeline:type_name -> pipeline.v1beta.Pipeline
-	1,   // 39: pipeline.v1beta.GetNamespacePipelineRequest.view:type_name -> pipeline.v1beta.Pipeline.View
-	9,   // 40: pipeline.v1beta.GetNamespacePipelineResponse.pipeline:type_name -> pipeline.v1beta.Pipeline
-	9,   // 41: pipeline.v1beta.UpdateNamespacePipelineRequest.pipeline:type_name -> pipeline.v1beta.Pipeline
-	95,  // 42: pipeline.v1beta.UpdateNamespacePipelineRequest.update_mask:type_name -> google.protobuf.FieldMask
-	9,   // 43: pipeline.v1beta.UpdateNamespacePipelineResponse.pipeline:type_name -> pipeline.v1beta.Pipeline
-	61,  // 44: pipeline.v1beta.ValidateNamespacePipelineResponse.errors:type_name -> pipeline.v1beta.ErrPipelineValidation
-	9,   // 45: pipeline.v1beta.RenameNamespacePipelineResponse.pipeline:type_name -> pipeline.v1beta.Pipeline
-	90,  // 46: pipeline.v1beta.CloneNamespacePipelineRequest.sharing:type_name -> pipeline.v1beta.Sharing
-	90,  // 47: pipeline.v1beta.CloneNamespacePipelineReleaseRequest.sharing:type_name -> pipeline.v1beta.Sharing
-	89,  // 48: pipeline.v1beta.HandleNamespacePipelineWebhookEventRequest.data:type_name -> google.protobuf.Struct
-	89,  // 49: pipeline.v1beta.HandleNamespacePipelineWebhookEventResponse.data:type_name -> google.protobuf.Struct
-	89,  // 50: pipeline.v1beta.HandleNamespacePipelineReleaseWebhookEventRequest.data:type_name -> google.protobuf.Struct
-	89,  // 51: pipeline.v1beta.HandleNamespacePipelineReleaseWebhookEventResponse.data:type_name -> google.protobuf.Struct
+	1,   // 31: pipeline.v1beta.ListPublicPipelinesRequest.view:type_name -> pipeline.v1beta.Pipeline.View
+	2,   // 32: pipeline.v1beta.ListPublicPipelinesRequest.visibility:type_name -> pipeline.v1beta.Pipeline.Visibility
+	9,   // 33: pipeline.v1beta.ListPublicPipelinesResponse.pipelines:type_name -> pipeline.v1beta.Pipeline
+	1,   // 34: pipeline.v1beta.ListPipelinesRequest.view:type_name -> pipeline.v1beta.Pipeline.View
+	2,   // 35: pipeline.v1beta.ListPipelinesRequest.visibility:type_name -> pipeline.v1beta.Pipeline.Visibility
+	9,   // 36: pipeline.v1beta.ListPipelinesResponse.pipelines:type_name -> pipeline.v1beta.Pipeline
+	9,   // 37: pipeline.v1beta.CreatePipelineRequest.pipeline:type_name -> pipeline.v1beta.Pipeline
+	9,   // 38: pipeline.v1beta.CreatePipelineResponse.pipeline:type_name -> pipeline.v1beta.Pipeline
+	1,   // 39: pipeline.v1beta.GetPipelineRequest.view:type_name -> pipeline.v1beta.Pipeline.View
+	9,   // 40: pipeline.v1beta.GetPipelineResponse.pipeline:type_name -> pipeline.v1beta.Pipeline
+	9,   // 41: pipeline.v1beta.UpdatePipelineRequest.pipeline:type_name -> pipeline.v1beta.Pipeline
+	95,  // 42: pipeline.v1beta.UpdatePipelineRequest.update_mask:type_name -> google.protobuf.FieldMask
+	9,   // 43: pipeline.v1beta.UpdatePipelineResponse.pipeline:type_name -> pipeline.v1beta.Pipeline
+	61,  // 44: pipeline.v1beta.ValidatePipelineResponse.errors:type_name -> pipeline.v1beta.ErrPipelineValidation
+	9,   // 45: pipeline.v1beta.RenamePipelineResponse.pipeline:type_name -> pipeline.v1beta.Pipeline
+	90,  // 46: pipeline.v1beta.ClonePipelineRequest.sharing:type_name -> pipeline.v1beta.Sharing
+	90,  // 47: pipeline.v1beta.ClonePipelineReleaseRequest.sharing:type_name -> pipeline.v1beta.Sharing
+	89,  // 48: pipeline.v1beta.HandlePipelineWebhookEventRequest.data:type_name -> google.protobuf.Struct
+	89,  // 49: pipeline.v1beta.HandlePipelineWebhookEventResponse.data:type_name -> google.protobuf.Struct
+	89,  // 50: pipeline.v1beta.HandlePipelineReleaseWebhookEventRequest.data:type_name -> google.protobuf.Struct
+	89,  // 51: pipeline.v1beta.HandlePipelineReleaseWebhookEventResponse.data:type_name -> google.protobuf.Struct
 	89,  // 52: pipeline.v1beta.DispatchPipelineWebhookEventRequest.message:type_name -> google.protobuf.Struct
 	89,  // 53: pipeline.v1beta.DispatchPipelineWebhookEventResponse.response:type_name -> google.protobuf.Struct
-	89,  // 54: pipeline.v1beta.TriggerNamespacePipelineRequest.inputs:type_name -> google.protobuf.Struct
-	62,  // 55: pipeline.v1beta.TriggerNamespacePipelineRequest.data:type_name -> pipeline.v1beta.TriggerData
-	89,  // 56: pipeline.v1beta.TriggerNamespacePipelineResponse.outputs:type_name -> google.protobuf.Struct
-	10,  // 57: pipeline.v1beta.TriggerNamespacePipelineResponse.metadata:type_name -> pipeline.v1beta.TriggerMetadata
-	89,  // 58: pipeline.v1beta.TriggerNamespacePipelineWithStreamRequest.inputs:type_name -> google.protobuf.Struct
-	62,  // 59: pipeline.v1beta.TriggerNamespacePipelineWithStreamRequest.data:type_name -> pipeline.v1beta.TriggerData
-	89,  // 60: pipeline.v1beta.TriggerNamespacePipelineWithStreamResponse.outputs:type_name -> google.protobuf.Struct
-	10,  // 61: pipeline.v1beta.TriggerNamespacePipelineWithStreamResponse.metadata:type_name -> pipeline.v1beta.TriggerMetadata
-	89,  // 62: pipeline.v1beta.TriggerAsyncNamespacePipelineRequest.inputs:type_name -> google.protobuf.Struct
-	62,  // 63: pipeline.v1beta.TriggerAsyncNamespacePipelineRequest.data:type_name -> pipeline.v1beta.TriggerData
-	96,  // 64: pipeline.v1beta.TriggerAsyncNamespacePipelineResponse.operation:type_name -> google.longrunning.Operation
-	14,  // 65: pipeline.v1beta.CreateNamespacePipelineReleaseRequest.release:type_name -> pipeline.v1beta.PipelineRelease
-	14,  // 66: pipeline.v1beta.CreateNamespacePipelineReleaseResponse.release:type_name -> pipeline.v1beta.PipelineRelease
-	1,   // 67: pipeline.v1beta.ListNamespacePipelineReleasesRequest.view:type_name -> pipeline.v1beta.Pipeline.View
-	14,  // 68: pipeline.v1beta.ListNamespacePipelineReleasesResponse.releases:type_name -> pipeline.v1beta.PipelineRelease
-	1,   // 69: pipeline.v1beta.GetNamespacePipelineReleaseRequest.view:type_name -> pipeline.v1beta.Pipeline.View
-	14,  // 70: pipeline.v1beta.GetNamespacePipelineReleaseResponse.release:type_name -> pipeline.v1beta.PipelineRelease
-	14,  // 71: pipeline.v1beta.UpdateNamespacePipelineReleaseRequest.release:type_name -> pipeline.v1beta.PipelineRelease
-	95,  // 72: pipeline.v1beta.UpdateNamespacePipelineReleaseRequest.update_mask:type_name -> google.protobuf.FieldMask
-	14,  // 73: pipeline.v1beta.UpdateNamespacePipelineReleaseResponse.release:type_name -> pipeline.v1beta.PipelineRelease
-	89,  // 74: pipeline.v1beta.TriggerNamespacePipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
-	62,  // 75: pipeline.v1beta.TriggerNamespacePipelineReleaseRequest.data:type_name -> pipeline.v1beta.TriggerData
-	89,  // 76: pipeline.v1beta.TriggerNamespacePipelineReleaseResponse.outputs:type_name -> google.protobuf.Struct
-	10,  // 77: pipeline.v1beta.TriggerNamespacePipelineReleaseResponse.metadata:type_name -> pipeline.v1beta.TriggerMetadata
-	89,  // 78: pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
-	62,  // 79: pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseRequest.data:type_name -> pipeline.v1beta.TriggerData
-	96,  // 80: pipeline.v1beta.TriggerAsyncNamespacePipelineReleaseResponse.operation:type_name -> google.longrunning.Operation
+	89,  // 54: pipeline.v1beta.TriggerPipelineRequest.inputs:type_name -> google.protobuf.Struct
+	62,  // 55: pipeline.v1beta.TriggerPipelineRequest.data:type_name -> pipeline.v1beta.TriggerData
+	89,  // 56: pipeline.v1beta.TriggerPipelineResponse.outputs:type_name -> google.protobuf.Struct
+	10,  // 57: pipeline.v1beta.TriggerPipelineResponse.metadata:type_name -> pipeline.v1beta.TriggerMetadata
+	89,  // 58: pipeline.v1beta.TriggerPipelineWithStreamRequest.inputs:type_name -> google.protobuf.Struct
+	62,  // 59: pipeline.v1beta.TriggerPipelineWithStreamRequest.data:type_name -> pipeline.v1beta.TriggerData
+	89,  // 60: pipeline.v1beta.TriggerPipelineWithStreamResponse.outputs:type_name -> google.protobuf.Struct
+	10,  // 61: pipeline.v1beta.TriggerPipelineWithStreamResponse.metadata:type_name -> pipeline.v1beta.TriggerMetadata
+	89,  // 62: pipeline.v1beta.TriggerAsyncPipelineRequest.inputs:type_name -> google.protobuf.Struct
+	62,  // 63: pipeline.v1beta.TriggerAsyncPipelineRequest.data:type_name -> pipeline.v1beta.TriggerData
+	96,  // 64: pipeline.v1beta.TriggerAsyncPipelineResponse.operation:type_name -> google.longrunning.Operation
+	14,  // 65: pipeline.v1beta.CreatePipelineReleaseRequest.release:type_name -> pipeline.v1beta.PipelineRelease
+	14,  // 66: pipeline.v1beta.CreatePipelineReleaseResponse.release:type_name -> pipeline.v1beta.PipelineRelease
+	1,   // 67: pipeline.v1beta.ListPipelineReleasesRequest.view:type_name -> pipeline.v1beta.Pipeline.View
+	14,  // 68: pipeline.v1beta.ListPipelineReleasesResponse.releases:type_name -> pipeline.v1beta.PipelineRelease
+	1,   // 69: pipeline.v1beta.GetPipelineReleaseRequest.view:type_name -> pipeline.v1beta.Pipeline.View
+	14,  // 70: pipeline.v1beta.GetPipelineReleaseResponse.release:type_name -> pipeline.v1beta.PipelineRelease
+	14,  // 71: pipeline.v1beta.UpdatePipelineReleaseRequest.release:type_name -> pipeline.v1beta.PipelineRelease
+	95,  // 72: pipeline.v1beta.UpdatePipelineReleaseRequest.update_mask:type_name -> google.protobuf.FieldMask
+	14,  // 73: pipeline.v1beta.UpdatePipelineReleaseResponse.release:type_name -> pipeline.v1beta.PipelineRelease
+	89,  // 74: pipeline.v1beta.TriggerPipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
+	62,  // 75: pipeline.v1beta.TriggerPipelineReleaseRequest.data:type_name -> pipeline.v1beta.TriggerData
+	89,  // 76: pipeline.v1beta.TriggerPipelineReleaseResponse.outputs:type_name -> google.protobuf.Struct
+	10,  // 77: pipeline.v1beta.TriggerPipelineReleaseResponse.metadata:type_name -> pipeline.v1beta.TriggerMetadata
+	89,  // 78: pipeline.v1beta.TriggerAsyncPipelineReleaseRequest.inputs:type_name -> google.protobuf.Struct
+	62,  // 79: pipeline.v1beta.TriggerAsyncPipelineReleaseRequest.data:type_name -> pipeline.v1beta.TriggerData
+	96,  // 80: pipeline.v1beta.TriggerAsyncPipelineReleaseResponse.operation:type_name -> google.longrunning.Operation
 	89,  // 81: pipeline.v1beta.TriggerData.variable:type_name -> google.protobuf.Struct
 	84,  // 82: pipeline.v1beta.TriggerData.secret:type_name -> pipeline.v1beta.TriggerData.SecretEntry
 	85,  // 83: pipeline.v1beta.TriggerData.connection_references:type_name -> pipeline.v1beta.TriggerData.ConnectionReferencesEntry

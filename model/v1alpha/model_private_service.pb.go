@@ -24,12 +24,12 @@ var File_model_v1alpha_model_private_service_proto protoreflect.FileDescriptor
 
 const file_model_v1alpha_model_private_service_proto_rawDesc = "" +
 	"\n" +
-	")model/v1alpha/model_private_service.proto\x12\rmodel.v1alpha\x1a\x19model/v1alpha/model.proto2\xa0\a\n" +
+	")model/v1alpha/model_private_service.proto\x12\rmodel.v1alpha\x1a\x19model/v1alpha/model.proto2\xe8\x06\n" +
 	"\x13ModelPrivateService\x12b\n" +
 	"\x0fListModelsAdmin\x12%.model.v1alpha.ListModelsAdminRequest\x1a&.model.v1alpha.ListModelsAdminResponse\"\x00\x12e\n" +
-	"\x10LookUpModelAdmin\x12&.model.v1alpha.LookUpModelAdminRequest\x1a'.model.v1alpha.LookUpModelAdminResponse\"\x00\x12\x80\x01\n" +
-	"\x19DeployNamespaceModelAdmin\x12/.model.v1alpha.DeployNamespaceModelAdminRequest\x1a0.model.v1alpha.DeployNamespaceModelAdminResponse\"\x00\x12\x86\x01\n" +
-	"\x1bUndeployNamespaceModelAdmin\x121.model.v1alpha.UndeployNamespaceModelAdminRequest\x1a2.model.v1alpha.UndeployNamespaceModelAdminResponse\"\x00\x12k\n" +
+	"\x10LookUpModelAdmin\x12&.model.v1alpha.LookUpModelAdminRequest\x1a'.model.v1alpha.LookUpModelAdminResponse\"\x00\x12e\n" +
+	"\x10DeployModelAdmin\x12&.model.v1alpha.DeployModelAdminRequest\x1a'.model.v1alpha.DeployModelAdminResponse\"\x00\x12k\n" +
+	"\x12UndeployModelAdmin\x12(.model.v1alpha.UndeployModelAdminRequest\x1a).model.v1alpha.UndeployModelAdminResponse\"\x00\x12k\n" +
 	"\x12ListRepositoryTags\x12(.model.v1alpha.ListRepositoryTagsRequest\x1a).model.v1alpha.ListRepositoryTagsResponse\"\x00\x12e\n" +
 	"\x10GetRepositoryTag\x12&.model.v1alpha.GetRepositoryTagRequest\x1a'.model.v1alpha.GetRepositoryTagResponse\"\x00\x12n\n" +
 	"\x13CreateRepositoryTag\x12).model.v1alpha.CreateRepositoryTagRequest\x1a*.model.v1alpha.CreateRepositoryTagResponse\"\x00\x12n\n" +
@@ -37,36 +37,36 @@ const file_model_v1alpha_model_private_service_proto_rawDesc = "" +
 	"\x11com.model.v1alphaB\x18ModelPrivateServiceProtoP\x01Z<github.com/instill-ai/protogen-go/model/v1alpha;modelv1alpha\xa2\x02\x03MXX\xaa\x02\rModel.V1alpha\xca\x02\rModel\\V1alpha\xe2\x02\x19Model\\V1alpha\\GPBMetadata\xea\x02\x0eModel::V1alphab\x06proto3"
 
 var file_model_v1alpha_model_private_service_proto_goTypes = []any{
-	(*ListModelsAdminRequest)(nil),              // 0: model.v1alpha.ListModelsAdminRequest
-	(*LookUpModelAdminRequest)(nil),             // 1: model.v1alpha.LookUpModelAdminRequest
-	(*DeployNamespaceModelAdminRequest)(nil),    // 2: model.v1alpha.DeployNamespaceModelAdminRequest
-	(*UndeployNamespaceModelAdminRequest)(nil),  // 3: model.v1alpha.UndeployNamespaceModelAdminRequest
-	(*ListRepositoryTagsRequest)(nil),           // 4: model.v1alpha.ListRepositoryTagsRequest
-	(*GetRepositoryTagRequest)(nil),             // 5: model.v1alpha.GetRepositoryTagRequest
-	(*CreateRepositoryTagRequest)(nil),          // 6: model.v1alpha.CreateRepositoryTagRequest
-	(*DeleteRepositoryTagRequest)(nil),          // 7: model.v1alpha.DeleteRepositoryTagRequest
-	(*ListModelsAdminResponse)(nil),             // 8: model.v1alpha.ListModelsAdminResponse
-	(*LookUpModelAdminResponse)(nil),            // 9: model.v1alpha.LookUpModelAdminResponse
-	(*DeployNamespaceModelAdminResponse)(nil),   // 10: model.v1alpha.DeployNamespaceModelAdminResponse
-	(*UndeployNamespaceModelAdminResponse)(nil), // 11: model.v1alpha.UndeployNamespaceModelAdminResponse
-	(*ListRepositoryTagsResponse)(nil),          // 12: model.v1alpha.ListRepositoryTagsResponse
-	(*GetRepositoryTagResponse)(nil),            // 13: model.v1alpha.GetRepositoryTagResponse
-	(*CreateRepositoryTagResponse)(nil),         // 14: model.v1alpha.CreateRepositoryTagResponse
-	(*DeleteRepositoryTagResponse)(nil),         // 15: model.v1alpha.DeleteRepositoryTagResponse
+	(*ListModelsAdminRequest)(nil),      // 0: model.v1alpha.ListModelsAdminRequest
+	(*LookUpModelAdminRequest)(nil),     // 1: model.v1alpha.LookUpModelAdminRequest
+	(*DeployModelAdminRequest)(nil),     // 2: model.v1alpha.DeployModelAdminRequest
+	(*UndeployModelAdminRequest)(nil),   // 3: model.v1alpha.UndeployModelAdminRequest
+	(*ListRepositoryTagsRequest)(nil),   // 4: model.v1alpha.ListRepositoryTagsRequest
+	(*GetRepositoryTagRequest)(nil),     // 5: model.v1alpha.GetRepositoryTagRequest
+	(*CreateRepositoryTagRequest)(nil),  // 6: model.v1alpha.CreateRepositoryTagRequest
+	(*DeleteRepositoryTagRequest)(nil),  // 7: model.v1alpha.DeleteRepositoryTagRequest
+	(*ListModelsAdminResponse)(nil),     // 8: model.v1alpha.ListModelsAdminResponse
+	(*LookUpModelAdminResponse)(nil),    // 9: model.v1alpha.LookUpModelAdminResponse
+	(*DeployModelAdminResponse)(nil),    // 10: model.v1alpha.DeployModelAdminResponse
+	(*UndeployModelAdminResponse)(nil),  // 11: model.v1alpha.UndeployModelAdminResponse
+	(*ListRepositoryTagsResponse)(nil),  // 12: model.v1alpha.ListRepositoryTagsResponse
+	(*GetRepositoryTagResponse)(nil),    // 13: model.v1alpha.GetRepositoryTagResponse
+	(*CreateRepositoryTagResponse)(nil), // 14: model.v1alpha.CreateRepositoryTagResponse
+	(*DeleteRepositoryTagResponse)(nil), // 15: model.v1alpha.DeleteRepositoryTagResponse
 }
 var file_model_v1alpha_model_private_service_proto_depIdxs = []int32{
 	0,  // 0: model.v1alpha.ModelPrivateService.ListModelsAdmin:input_type -> model.v1alpha.ListModelsAdminRequest
 	1,  // 1: model.v1alpha.ModelPrivateService.LookUpModelAdmin:input_type -> model.v1alpha.LookUpModelAdminRequest
-	2,  // 2: model.v1alpha.ModelPrivateService.DeployNamespaceModelAdmin:input_type -> model.v1alpha.DeployNamespaceModelAdminRequest
-	3,  // 3: model.v1alpha.ModelPrivateService.UndeployNamespaceModelAdmin:input_type -> model.v1alpha.UndeployNamespaceModelAdminRequest
+	2,  // 2: model.v1alpha.ModelPrivateService.DeployModelAdmin:input_type -> model.v1alpha.DeployModelAdminRequest
+	3,  // 3: model.v1alpha.ModelPrivateService.UndeployModelAdmin:input_type -> model.v1alpha.UndeployModelAdminRequest
 	4,  // 4: model.v1alpha.ModelPrivateService.ListRepositoryTags:input_type -> model.v1alpha.ListRepositoryTagsRequest
 	5,  // 5: model.v1alpha.ModelPrivateService.GetRepositoryTag:input_type -> model.v1alpha.GetRepositoryTagRequest
 	6,  // 6: model.v1alpha.ModelPrivateService.CreateRepositoryTag:input_type -> model.v1alpha.CreateRepositoryTagRequest
 	7,  // 7: model.v1alpha.ModelPrivateService.DeleteRepositoryTag:input_type -> model.v1alpha.DeleteRepositoryTagRequest
 	8,  // 8: model.v1alpha.ModelPrivateService.ListModelsAdmin:output_type -> model.v1alpha.ListModelsAdminResponse
 	9,  // 9: model.v1alpha.ModelPrivateService.LookUpModelAdmin:output_type -> model.v1alpha.LookUpModelAdminResponse
-	10, // 10: model.v1alpha.ModelPrivateService.DeployNamespaceModelAdmin:output_type -> model.v1alpha.DeployNamespaceModelAdminResponse
-	11, // 11: model.v1alpha.ModelPrivateService.UndeployNamespaceModelAdmin:output_type -> model.v1alpha.UndeployNamespaceModelAdminResponse
+	10, // 10: model.v1alpha.ModelPrivateService.DeployModelAdmin:output_type -> model.v1alpha.DeployModelAdminResponse
+	11, // 11: model.v1alpha.ModelPrivateService.UndeployModelAdmin:output_type -> model.v1alpha.UndeployModelAdminResponse
 	12, // 12: model.v1alpha.ModelPrivateService.ListRepositoryTags:output_type -> model.v1alpha.ListRepositoryTagsResponse
 	13, // 13: model.v1alpha.ModelPrivateService.GetRepositoryTag:output_type -> model.v1alpha.GetRepositoryTagResponse
 	14, // 14: model.v1alpha.ModelPrivateService.CreateRepositoryTag:output_type -> model.v1alpha.CreateRepositoryTagResponse

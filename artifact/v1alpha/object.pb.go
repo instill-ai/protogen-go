@@ -35,10 +35,12 @@ type Object struct {
 	Id string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
 	// Human-readable display name (user-provided filename).
 	DisplayName string `protobuf:"bytes,3,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
-	// Namespace ID that owns this object.
-	NamespaceId string `protobuf:"bytes,4,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
-	// Creator's user ID.
-	Creator string `protobuf:"bytes,5,opt,name=creator,proto3" json:"creator,omitempty"`
+	// Resource name of the owner namespace.
+	// Format: `namespaces/{namespace}`
+	OwnerName string `protobuf:"bytes,4,opt,name=owner_name,json=ownerName,proto3" json:"owner_name,omitempty"`
+	// Full resource name of the user who created this object.
+	// Format: `users/{user}`
+	CreatorName string `protobuf:"bytes,5,opt,name=creator_name,json=creatorName,proto3" json:"creator_name,omitempty"`
 	// Object creation time.
 	CreateTime *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
 	// Object update time.
@@ -111,16 +113,16 @@ func (x *Object) GetDisplayName() string {
 	return ""
 }
 
-func (x *Object) GetNamespaceId() string {
+func (x *Object) GetOwnerName() string {
 	if x != nil {
-		return x.NamespaceId
+		return x.OwnerName
 	}
 	return ""
 }
 
-func (x *Object) GetCreator() string {
+func (x *Object) GetCreatorName() string {
 	if x != nil {
-		return x.Creator
+		return x.CreatorName
 	}
 	return ""
 }
@@ -752,8 +754,8 @@ func (*DeleteObjectResponse) Descriptor() ([]byte, []int) {
 // only).
 type GetObjectAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Full resource name of the object.
-	// Format: `objects/{object}`
+	// The resource name of the object.
+	// Format: `namespaces/{namespace}/objects/{object}`
 	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -846,8 +848,8 @@ func (x *GetObjectAdminResponse) GetObject() *Object {
 // (admin only).
 type UpdateObjectAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Full resource name of the object.
-	// Format: `objects/{object}`
+	// The resource name of the object.
+	// Format: `namespaces/{namespace}/objects/{object}`
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Size in bytes.
 	Size *int64 `protobuf:"varint,2,opt,name=size,proto3,oneof" json:"size,omitempty"`
@@ -976,13 +978,14 @@ var File_artifact_v1alpha_object_proto protoreflect.FileDescriptor
 
 const file_artifact_v1alpha_object_proto_rawDesc = "" +
 	"\n" +
-	"\x1dartifact/v1alpha/object.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xcc\x05\n" +
+	"\x1dartifact/v1alpha/object.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd1\x05\n" +
 	"\x06Object\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12&\n" +
-	"\fdisplay_name\x18\x03 \x01(\tB\x03\xe0A\x01R\vdisplayName\x12&\n" +
-	"\fnamespace_id\x18\x04 \x01(\tB\x03\xe0A\x03R\vnamespaceId\x12\x1d\n" +
-	"\acreator\x18\x05 \x01(\tB\x03\xe0A\x03R\acreator\x12@\n" +
+	"\fdisplay_name\x18\x03 \x01(\tB\x03\xe0A\x01R\vdisplayName\x12\"\n" +
+	"\n" +
+	"owner_name\x18\x04 \x01(\tB\x03\xe0A\x03R\townerName\x12&\n" +
+	"\fcreator_name\x18\x05 \x01(\tB\x03\xe0A\x03R\vcreatorName\x12@\n" +
 	"\vcreate_time\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
 	"createTime\x12@\n" +
 	"\vupdate_time\x18\a \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
@@ -1009,17 +1012,19 @@ const file_artifact_v1alpha_object_proto_rawDesc = "" +
 	"\n" +
 	"upload_url\x18\x01 \x01(\tR\tuploadUrl\x12>\n" +
 	"\rurl_expire_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\vurlExpireAt\x120\n" +
-	"\x06object\x18\x03 \x01(\v2\x18.artifact.v1alpha.ObjectR\x06object\"\x95\x01\n" +
-	"\x1bGetObjectDownloadURLRequest\x12\x17\n" +
-	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\x12+\n" +
+	"\x06object\x18\x03 \x01(\v2\x18.artifact.v1alpha.ObjectR\x06object\"\xb1\x01\n" +
+	"\x1bGetObjectDownloadURLRequest\x123\n" +
+	"\x04name\x18\x01 \x01(\tB\x1f\xe0A\x02\xfaA\x19\n" +
+	"\x17api.instill.tech/ObjectR\x04name\x12+\n" +
 	"\x0furl_expire_days\x18\x02 \x01(\x05B\x03\xe0A\x01R\rurlExpireDays\x120\n" +
 	"\x11download_filename\x18\x03 \x01(\tB\x03\xe0A\x01R\x10downloadFilename\"\xb3\x01\n" +
 	"\x1cGetObjectDownloadURLResponse\x12!\n" +
 	"\fdownload_url\x18\x01 \x01(\tR\vdownloadUrl\x12>\n" +
 	"\rurl_expire_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\vurlExpireAt\x120\n" +
-	"\x06object\x18\x03 \x01(\v2\x18.artifact.v1alpha.ObjectR\x06object\"+\n" +
-	"\x10GetObjectRequest\x12\x17\n" +
-	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"E\n" +
+	"\x06object\x18\x03 \x01(\v2\x18.artifact.v1alpha.ObjectR\x06object\"G\n" +
+	"\x10GetObjectRequest\x123\n" +
+	"\x04name\x18\x01 \x01(\tB\x1f\xe0A\x02\xfaA\x19\n" +
+	"\x17api.instill.tech/ObjectR\x04name\"E\n" +
 	"\x11GetObjectResponse\x120\n" +
 	"\x06object\x18\x01 \x01(\v2\x18.artifact.v1alpha.ObjectR\x06object\"\x8e\x01\n" +
 	"\x13UpdateObjectRequest\x125\n" +
@@ -1027,16 +1032,19 @@ const file_artifact_v1alpha_object_proto_rawDesc = "" +
 	"\vupdate_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskB\x03\xe0A\x01R\n" +
 	"updateMask\"H\n" +
 	"\x14UpdateObjectResponse\x120\n" +
-	"\x06object\x18\x01 \x01(\v2\x18.artifact.v1alpha.ObjectR\x06object\".\n" +
-	"\x13DeleteObjectRequest\x12\x17\n" +
-	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"\x16\n" +
-	"\x14DeleteObjectResponse\"0\n" +
-	"\x15GetObjectAdminRequest\x12\x17\n" +
-	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"J\n" +
+	"\x06object\x18\x01 \x01(\v2\x18.artifact.v1alpha.ObjectR\x06object\"J\n" +
+	"\x13DeleteObjectRequest\x123\n" +
+	"\x04name\x18\x01 \x01(\tB\x1f\xe0A\x02\xfaA\x19\n" +
+	"\x17api.instill.tech/ObjectR\x04name\"\x16\n" +
+	"\x14DeleteObjectResponse\"L\n" +
+	"\x15GetObjectAdminRequest\x123\n" +
+	"\x04name\x18\x01 \x01(\tB\x1f\xe0A\x02\xfaA\x19\n" +
+	"\x17api.instill.tech/ObjectR\x04name\"J\n" +
 	"\x16GetObjectAdminResponse\x120\n" +
-	"\x06object\x18\x01 \x01(\v2\x18.artifact.v1alpha.ObjectR\x06object\"\xbe\x02\n" +
-	"\x18UpdateObjectAdminRequest\x12\x17\n" +
-	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\x12\x1c\n" +
+	"\x06object\x18\x01 \x01(\v2\x18.artifact.v1alpha.ObjectR\x06object\"\xda\x02\n" +
+	"\x18UpdateObjectAdminRequest\x123\n" +
+	"\x04name\x18\x01 \x01(\tB\x1f\xe0A\x02\xfaA\x19\n" +
+	"\x17api.instill.tech/ObjectR\x04name\x12\x1c\n" +
 	"\x04size\x18\x02 \x01(\x03B\x03\xe0A\x01H\x00R\x04size\x88\x01\x01\x12+\n" +
 	"\fcontent_type\x18\x03 \x01(\tB\x03\xe0A\x01H\x01R\vcontentType\x88\x01\x01\x12)\n" +
 	"\vis_uploaded\x18\x04 \x01(\bB\x03\xe0A\x01H\x02R\n" +
