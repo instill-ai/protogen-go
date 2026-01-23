@@ -119,14 +119,17 @@ type KnowledgeBase struct {
 	// - Chunking method
 	// - Other RAG-related settings
 	//
-	// Available systems: "openai", "gemini", or custom systems defined in the
-	// system table. If not specified, defaults to the default system.
-	SystemId *string `protobuf:"bytes,11,opt,name=system_id,json=systemId,proto3,oneof" json:"system_id,omitempty"`
+	// The resource name of the system configuration.
+	// Format: `systems/{system}`
+	// Available systems: "systems/openai", "systems/gemini", or custom systems.
+	// If not specified, defaults to the default system.
+	System *string `protobuf:"bytes,11,opt,name=system,proto3,oneof" json:"system,omitempty"`
 	// The embedding configuration for the knowledge base.
 	EmbeddingConfig *KnowledgeBase_EmbeddingConfig `protobuf:"bytes,12,opt,name=embedding_config,json=embeddingConfig,proto3" json:"embedding_config,omitempty"`
-	// The ID of the active Milvus collection for this knowledge base.
+	// The resource name of the active Milvus collection for this knowledge base.
+	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}/collections/{collection}`
 	// This supports collection versioning for embedding dimension changes.
-	ActiveCollectionId string `protobuf:"bytes,13,opt,name=active_collection_id,json=activeCollectionId,proto3" json:"active_collection_id,omitempty"`
+	ActiveCollection string `protobuf:"bytes,13,opt,name=active_collection,json=activeCollection,proto3" json:"active_collection,omitempty"`
 	// Resource name of the owner namespace.
 	// Example: "namespaces/usr-7k2m9p4w1n3" or "namespaces/org-3t8f5q2x6b1"
 	OwnerName string `protobuf:"bytes,14,opt,name=owner_name,json=ownerName,proto3" json:"owner_name,omitempty"`
@@ -251,9 +254,9 @@ func (x *KnowledgeBase) GetType() KnowledgeBaseType {
 	return KnowledgeBaseType_KNOWLEDGE_BASE_TYPE_UNSPECIFIED
 }
 
-func (x *KnowledgeBase) GetSystemId() string {
-	if x != nil && x.SystemId != nil {
-		return *x.SystemId
+func (x *KnowledgeBase) GetSystem() string {
+	if x != nil && x.System != nil {
+		return *x.System
 	}
 	return ""
 }
@@ -265,9 +268,9 @@ func (x *KnowledgeBase) GetEmbeddingConfig() *KnowledgeBase_EmbeddingConfig {
 	return nil
 }
 
-func (x *KnowledgeBase) GetActiveCollectionId() string {
+func (x *KnowledgeBase) GetActiveCollection() string {
 	if x != nil {
-		return x.ActiveCollectionId
+		return x.ActiveCollection
 	}
 	return ""
 }
@@ -1152,7 +1155,7 @@ var File_artifact_v1alpha_knowledge_base_proto protoreflect.FileDescriptor
 
 const file_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"\n" +
-	"%artifact/v1alpha/knowledge_base.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16mgmt/v1beta/mgmt.proto\"\xaf\t\n" +
+	"%artifact/v1alpha/knowledge_base.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16mgmt/v1beta/mgmt.proto\"\xa2\t\n" +
 	"\rKnowledgeBase\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12&\n" +
@@ -1166,10 +1169,10 @@ const file_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"updateTime\x12\x17\n" +
 	"\x04tags\x18\t \x03(\tB\x03\xe0A\x01R\x04tags\x12<\n" +
 	"\x04type\x18\n" +
-	" \x01(\x0e2#.artifact.v1alpha.KnowledgeBaseTypeB\x03\xe0A\x01R\x04type\x12%\n" +
-	"\tsystem_id\x18\v \x01(\tB\x03\xe0A\x01H\x00R\bsystemId\x88\x01\x01\x12_\n" +
-	"\x10embedding_config\x18\f \x01(\v2/.artifact.v1alpha.KnowledgeBase.EmbeddingConfigB\x03\xe0A\x01R\x0fembeddingConfig\x125\n" +
-	"\x14active_collection_id\x18\r \x01(\tB\x03\xe0A\x03R\x12activeCollectionId\x12\"\n" +
+	" \x01(\x0e2#.artifact.v1alpha.KnowledgeBaseTypeB\x03\xe0A\x01R\x04type\x12 \n" +
+	"\x06system\x18\v \x01(\tB\x03\xe0A\x01H\x00R\x06system\x88\x01\x01\x12_\n" +
+	"\x10embedding_config\x18\f \x01(\v2/.artifact.v1alpha.KnowledgeBase.EmbeddingConfigB\x03\xe0A\x01R\x0fembeddingConfig\x120\n" +
+	"\x11active_collection\x18\r \x01(\tB\x03\xe0A\x03R\x10activeCollection\x12\"\n" +
 	"\n" +
 	"owner_name\x18\x0e \x01(\tB\x03\xe0A\x03R\townerName\x122\n" +
 	"\x05owner\x18\x0f \x01(\v2\x12.mgmt.v1beta.OwnerB\x03\xe0A\x03H\x01R\x05owner\x88\x01\x01\x12+\n" +
@@ -1183,9 +1186,8 @@ const file_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"\x0fEmbeddingConfig\x12!\n" +
 	"\fmodel_family\x18\x01 \x01(\tR\vmodelFamily\x12&\n" +
 	"\x0edimensionality\x18\x02 \x01(\rR\x0edimensionality:\\\xeaAY\n" +
-	"\x1eapi.instill.tech/KnowledgeBase\x127namespaces/{namespace}/knowledge-bases/{knowledge_base}B\f\n" +
-	"\n" +
-	"_system_idB\b\n" +
+	"\x1eapi.instill.tech/KnowledgeBase\x127namespaces/{namespace}/knowledge-bases/{knowledge_base}B\t\n" +
+	"\a_systemB\b\n" +
 	"\x06_ownerB\x0f\n" +
 	"\r_creator_nameB\n" +
 	"\n" +

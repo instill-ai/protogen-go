@@ -174,8 +174,9 @@ func (SetRollbackRetentionAdminRequest_TimeUnit) EnumDescriptor() ([]byte, []int
 // KnowledgeBaseUpdateDetails provides detailed information about a knowledge base update
 type KnowledgeBaseUpdateDetails struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// ID of the knowledge base
-	KnowledgeBaseId string `protobuf:"bytes,1,opt,name=knowledge_base_id,json=knowledgeBaseId,proto3" json:"knowledge_base_id,omitempty"`
+	// The resource name of the knowledge base.
+	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}`
+	KnowledgeBase string `protobuf:"bytes,1,opt,name=knowledge_base,json=knowledgeBase,proto3" json:"knowledge_base,omitempty"`
 	// Status of the knowledge base update
 	Status KnowledgeBaseUpdateStatus `protobuf:"varint,2,opt,name=status,proto3,enum=artifact.v1alpha.KnowledgeBaseUpdateStatus" json:"status,omitempty"`
 	// Workflow ID of the knowledge base update
@@ -192,22 +193,24 @@ type KnowledgeBaseUpdateDetails struct {
 	// Populated ONLY when status is KNOWLEDGE_BASE_UPDATE_STATUS_FAILED
 	// Empty for all other statuses (NONE, UPDATING, SYNCING, VALIDATING, SWAPPING, COMPLETED, ROLLED_BACK, ABORTED)
 	ErrorMessage string `protobuf:"bytes,8,opt,name=error_message,json=errorMessage,proto3" json:"error_message,omitempty"`
-	// Current system ID (e.g., "openai", "gemini")
-	// The system configuration currently active in the production KB
+	// The resource name of the current system (e.g., "systems/openai", "systems/gemini").
+	// Format: `systems/{system}`
+	// The system configuration currently active in the production KB.
 	// - For UPDATING: The system being updated to (from staging KB - will become current after swap)
-	// - For COMPLETED/FAILED/ROLLED_BACK/ABORTED/NONE: The current production system ID
-	// Always reflects the KB's current state
-	CurrentSystemId string `protobuf:"bytes,9,opt,name=current_system_id,json=currentSystemId,proto3" json:"current_system_id,omitempty"`
-	// Previous system ID before the update (e.g., "openai", "gemini")
-	// Captured at update start for historical audit trail
+	// - For COMPLETED/FAILED/ROLLED_BACK/ABORTED/NONE: The current production system
+	// Always reflects the KB's current state.
+	CurrentSystem string `protobuf:"bytes,9,opt,name=current_system,json=currentSystem,proto3" json:"current_system,omitempty"`
+	// The resource name of the previous system before the update.
+	// Format: `systems/{system}`
+	// Captured at update start for historical audit trail.
 	// - For UPDATING: The system before update started
 	// - For COMPLETED: The system before successful update (what was replaced)
 	// - For FAILED/ABORTED: The system before failed attempt (same as current, since update didn't complete)
 	// - For ROLLED_BACK: The system that was rolled back FROM (before rollback)
 	// - For NONE: Empty (never been updated)
-	PreviousSystemId string `protobuf:"bytes,10,opt,name=previous_system_id,json=previousSystemId,proto3" json:"previous_system_id,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	PreviousSystem string `protobuf:"bytes,10,opt,name=previous_system,json=previousSystem,proto3" json:"previous_system,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *KnowledgeBaseUpdateDetails) Reset() {
@@ -240,9 +243,9 @@ func (*KnowledgeBaseUpdateDetails) Descriptor() ([]byte, []int) {
 	return file_artifact_v1alpha_update_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *KnowledgeBaseUpdateDetails) GetKnowledgeBaseId() string {
+func (x *KnowledgeBaseUpdateDetails) GetKnowledgeBase() string {
 	if x != nil {
-		return x.KnowledgeBaseId
+		return x.KnowledgeBase
 	}
 	return ""
 }
@@ -296,16 +299,16 @@ func (x *KnowledgeBaseUpdateDetails) GetErrorMessage() string {
 	return ""
 }
 
-func (x *KnowledgeBaseUpdateDetails) GetCurrentSystemId() string {
+func (x *KnowledgeBaseUpdateDetails) GetCurrentSystem() string {
 	if x != nil {
-		return x.CurrentSystemId
+		return x.CurrentSystem
 	}
 	return ""
 }
 
-func (x *KnowledgeBaseUpdateDetails) GetPreviousSystemId() string {
+func (x *KnowledgeBaseUpdateDetails) GetPreviousSystem() string {
 	if x != nil {
-		return x.PreviousSystemId
+		return x.PreviousSystem
 	}
 	return ""
 }
@@ -462,8 +465,9 @@ type PurgeRollbackAdminResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Whether the purge was successful
 	Success bool `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	// ID of the purged knowledge base
-	PurgedKnowledgeBaseId string `protobuf:"bytes,2,opt,name=purged_knowledge_base_id,json=purgedKnowledgeBaseId,proto3" json:"purged_knowledge_base_id,omitempty"`
+	// The resource name of the purged knowledge base.
+	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}`
+	PurgedKnowledgeBase string `protobuf:"bytes,2,opt,name=purged_knowledge_base,json=purgedKnowledgeBase,proto3" json:"purged_knowledge_base,omitempty"`
 	// Number of files deleted
 	DeletedFiles int32 `protobuf:"varint,3,opt,name=deleted_files,json=deletedFiles,proto3" json:"deleted_files,omitempty"`
 	// Status message
@@ -509,9 +513,9 @@ func (x *PurgeRollbackAdminResponse) GetSuccess() bool {
 	return false
 }
 
-func (x *PurgeRollbackAdminResponse) GetPurgedKnowledgeBaseId() string {
+func (x *PurgeRollbackAdminResponse) GetPurgedKnowledgeBase() string {
 	if x != nil {
-		return x.PurgedKnowledgeBaseId
+		return x.PurgedKnowledgeBase
 	}
 	return ""
 }
@@ -762,12 +766,14 @@ func (x *GetKnowledgeBaseUpdateStatusAdminResponse) GetMessage() string {
 // ExecuteKnowledgeBaseUpdateAdminRequest (admin only)
 type ExecuteKnowledgeBaseUpdateAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Optional: Specific knowledge base IDs to update. If empty, updates all eligible knowledge bases.
-	KnowledgeBaseIds []string `protobuf:"bytes,1,rep,name=knowledge_base_ids,json=knowledgeBaseIds,proto3" json:"knowledge_base_ids,omitempty"`
-	// Optional: System ID containing configuration to apply.
-	// If specified, uses config from system table where id=<this value>
+	// Optional: Specific knowledge base resource names to update. If empty, updates all eligible knowledge bases.
+	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}`
+	KnowledgeBases []string `protobuf:"bytes,1,rep,name=knowledge_bases,json=knowledgeBases,proto3" json:"knowledge_bases,omitempty"`
+	// Optional: System resource name containing configuration to apply.
+	// Format: `systems/{system}`
+	// If specified, uses config from the specified system.
 	// If not specified, KBs keep their current config (useful for reprocessing).
-	SystemId *string `protobuf:"bytes,2,opt,name=system_id,json=systemId,proto3,oneof" json:"system_id,omitempty"`
+	System *string `protobuf:"bytes,2,opt,name=system,proto3,oneof" json:"system,omitempty"`
 	// Optional: Tags to filter which knowledge bases to update (OR logic - match any tag).
 	Tags          []string `protobuf:"bytes,3,rep,name=tags,proto3" json:"tags,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -804,16 +810,16 @@ func (*ExecuteKnowledgeBaseUpdateAdminRequest) Descriptor() ([]byte, []int) {
 	return file_artifact_v1alpha_update_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *ExecuteKnowledgeBaseUpdateAdminRequest) GetKnowledgeBaseIds() []string {
+func (x *ExecuteKnowledgeBaseUpdateAdminRequest) GetKnowledgeBases() []string {
 	if x != nil {
-		return x.KnowledgeBaseIds
+		return x.KnowledgeBases
 	}
 	return nil
 }
 
-func (x *ExecuteKnowledgeBaseUpdateAdminRequest) GetSystemId() string {
-	if x != nil && x.SystemId != nil {
-		return *x.SystemId
+func (x *ExecuteKnowledgeBaseUpdateAdminRequest) GetSystem() string {
+	if x != nil && x.System != nil {
+		return *x.System
 	}
 	return ""
 }
@@ -892,10 +898,11 @@ func (x *ExecuteKnowledgeBaseUpdateAdminResponse) GetDetails() []*KnowledgeBaseU
 // AbortKnowledgeBaseUpdateAdminRequest (admin only)
 type AbortKnowledgeBaseUpdateAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Optional: Specific knowledge base IDs to abort. If empty, aborts all currently updating knowledge bases.
-	KnowledgeBaseIds []string `protobuf:"bytes,1,rep,name=knowledge_base_ids,json=knowledgeBaseIds,proto3" json:"knowledge_base_ids,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	// Optional: Specific knowledge base resource names to abort. If empty, aborts all currently updating knowledge bases.
+	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}`
+	KnowledgeBases []string `protobuf:"bytes,1,rep,name=knowledge_bases,json=knowledgeBases,proto3" json:"knowledge_bases,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *AbortKnowledgeBaseUpdateAdminRequest) Reset() {
@@ -928,9 +935,9 @@ func (*AbortKnowledgeBaseUpdateAdminRequest) Descriptor() ([]byte, []int) {
 	return file_artifact_v1alpha_update_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *AbortKnowledgeBaseUpdateAdminRequest) GetKnowledgeBaseIds() []string {
+func (x *AbortKnowledgeBaseUpdateAdminRequest) GetKnowledgeBases() []string {
 	if x != nil {
-		return x.KnowledgeBaseIds
+		return x.KnowledgeBases
 	}
 	return nil
 }
@@ -1003,9 +1010,9 @@ var File_artifact_v1alpha_update_proto protoreflect.FileDescriptor
 
 const file_artifact_v1alpha_update_proto_rawDesc = "" +
 	"\n" +
-	"\x1dartifact/v1alpha/update.proto\x12\x10artifact.v1alpha\x1a%artifact/v1alpha/knowledge_base.proto\"\xb9\x03\n" +
-	"\x1aKnowledgeBaseUpdateDetails\x12*\n" +
-	"\x11knowledge_base_id\x18\x01 \x01(\tR\x0fknowledgeBaseId\x12C\n" +
+	"\x1dartifact/v1alpha/update.proto\x12\x10artifact.v1alpha\x1a%artifact/v1alpha/knowledge_base.proto\"\xaa\x03\n" +
+	"\x1aKnowledgeBaseUpdateDetails\x12%\n" +
+	"\x0eknowledge_base\x18\x01 \x01(\tR\rknowledgeBase\x12C\n" +
 	"\x06status\x18\x02 \x01(\x0e2+.artifact.v1alpha.KnowledgeBaseUpdateStatusR\x06status\x12\x1f\n" +
 	"\vworkflow_id\x18\x03 \x01(\tR\n" +
 	"workflowId\x12\x1d\n" +
@@ -1015,20 +1022,20 @@ const file_artifact_v1alpha_update_proto_rawDesc = "" +
 	"\x0ffiles_processed\x18\x06 \x01(\x05R\x0efilesProcessed\x12\x1f\n" +
 	"\vtotal_files\x18\a \x01(\x05R\n" +
 	"totalFiles\x12#\n" +
-	"\rerror_message\x18\b \x01(\tR\ferrorMessage\x12*\n" +
-	"\x11current_system_id\x18\t \x01(\tR\x0fcurrentSystemId\x12,\n" +
-	"\x12previous_system_id\x18\n" +
-	" \x01(\tR\x10previousSystemId\"*\n" +
+	"\rerror_message\x18\b \x01(\tR\ferrorMessage\x12%\n" +
+	"\x0ecurrent_system\x18\t \x01(\tR\rcurrentSystem\x12'\n" +
+	"\x0fprevious_system\x18\n" +
+	" \x01(\tR\x0epreviousSystem\"*\n" +
 	"\x14RollbackAdminRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\"y\n" +
 	"\x15RollbackAdminResponse\x12F\n" +
 	"\x0eknowledge_base\x18\x01 \x01(\v2\x1f.artifact.v1alpha.KnowledgeBaseR\rknowledgeBase\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"/\n" +
 	"\x19PurgeRollbackAdminRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\"\xae\x01\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\"\xa9\x01\n" +
 	"\x1aPurgeRollbackAdminResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\x127\n" +
-	"\x18purged_knowledge_base_id\x18\x02 \x01(\tR\x15purgedKnowledgeBaseId\x12#\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x122\n" +
+	"\x15purged_knowledge_base\x18\x02 \x01(\tR\x13purgedKnowledgeBase\x12#\n" +
 	"\rdeleted_files\x18\x03 \x01(\x05R\fdeletedFiles\x12\x18\n" +
 	"\amessage\x18\x04 \x01(\tR\amessage\"\xa6\x02\n" +
 	" SetRollbackRetentionAdminRequest\x12\x12\n" +
@@ -1049,19 +1056,18 @@ const file_artifact_v1alpha_update_proto_rawDesc = "" +
 	")GetKnowledgeBaseUpdateStatusAdminResponse\x12,\n" +
 	"\x12update_in_progress\x18\x01 \x01(\bR\x10updateInProgress\x12F\n" +
 	"\adetails\x18\x02 \x03(\v2,.artifact.v1alpha.KnowledgeBaseUpdateDetailsR\adetails\x12\x18\n" +
-	"\amessage\x18\x03 \x01(\tR\amessage\"\x9a\x01\n" +
-	"&ExecuteKnowledgeBaseUpdateAdminRequest\x12,\n" +
-	"\x12knowledge_base_ids\x18\x01 \x03(\tR\x10knowledgeBaseIds\x12 \n" +
-	"\tsystem_id\x18\x02 \x01(\tH\x00R\bsystemId\x88\x01\x01\x12\x12\n" +
-	"\x04tags\x18\x03 \x03(\tR\x04tagsB\f\n" +
-	"\n" +
-	"_system_id\"\xa5\x01\n" +
+	"\amessage\x18\x03 \x01(\tR\amessage\"\x8d\x01\n" +
+	"&ExecuteKnowledgeBaseUpdateAdminRequest\x12'\n" +
+	"\x0fknowledge_bases\x18\x01 \x03(\tR\x0eknowledgeBases\x12\x1b\n" +
+	"\x06system\x18\x02 \x01(\tH\x00R\x06system\x88\x01\x01\x12\x12\n" +
+	"\x04tags\x18\x03 \x03(\tR\x04tagsB\t\n" +
+	"\a_system\"\xa5\x01\n" +
 	"'ExecuteKnowledgeBaseUpdateAdminResponse\x12\x18\n" +
 	"\astarted\x18\x01 \x01(\bR\astarted\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12F\n" +
-	"\adetails\x18\x03 \x03(\v2,.artifact.v1alpha.KnowledgeBaseUpdateDetailsR\adetails\"T\n" +
-	"$AbortKnowledgeBaseUpdateAdminRequest\x12,\n" +
-	"\x12knowledge_base_ids\x18\x01 \x03(\tR\x10knowledgeBaseIds\"\xa3\x01\n" +
+	"\adetails\x18\x03 \x03(\v2,.artifact.v1alpha.KnowledgeBaseUpdateDetailsR\adetails\"O\n" +
+	"$AbortKnowledgeBaseUpdateAdminRequest\x12'\n" +
+	"\x0fknowledge_bases\x18\x01 \x03(\tR\x0eknowledgeBases\"\xa3\x01\n" +
 	"%AbortKnowledgeBaseUpdateAdminResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12F\n" +

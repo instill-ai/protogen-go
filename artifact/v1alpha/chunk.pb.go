@@ -94,8 +94,9 @@ type Chunk struct {
 	Tokens uint32 `protobuf:"varint,4,opt,name=tokens,proto3" json:"tokens,omitempty"`
 	// creation time of the chunk
 	CreateTime *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
-	// original file unique identifier
-	OriginalFileId string `protobuf:"bytes,6,opt,name=original_file_id,json=originalFileId,proto3" json:"original_file_id,omitempty"`
+	// The resource name of the original file this chunk belongs to.
+	// Format: `namespaces/{namespace}/files/{file}`
+	OriginalFile string `protobuf:"bytes,6,opt,name=original_file,json=originalFile,proto3" json:"original_file,omitempty"`
 	// chunk type
 	Type Chunk_Type `protobuf:"varint,7,opt,name=type,proto3,enum=artifact.v1alpha.Chunk_Type" json:"type,omitempty"`
 	// Reference to the position of the chunk within the original file.
@@ -171,9 +172,9 @@ func (x *Chunk) GetCreateTime() *timestamppb.Timestamp {
 	return nil
 }
 
-func (x *Chunk) GetOriginalFileId() string {
+func (x *Chunk) GetOriginalFile() string {
 	if x != nil {
-		return x.OriginalFileId
+		return x.OriginalFile
 	}
 	return ""
 }
@@ -547,8 +548,9 @@ type SearchChunksRequest struct {
 	// The parent resource name (namespace).
 	// Format: `namespaces/{namespace}`
 	Parent string `protobuf:"bytes,1,opt,name=parent,proto3" json:"parent,omitempty"`
-	// ID of the knowledge base (optional filter).
-	KnowledgeBaseId string `protobuf:"bytes,2,opt,name=knowledge_base_id,json=knowledgeBaseId,proto3" json:"knowledge_base_id,omitempty"`
+	// The knowledge base resource name to filter by (optional).
+	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}`
+	KnowledgeBase string `protobuf:"bytes,2,opt,name=knowledge_base,json=knowledgeBase,proto3" json:"knowledge_base,omitempty"`
 	// Text prompt to look for similarities.
 	TextPrompt string `protobuf:"bytes,3,opt,name=text_prompt,json=textPrompt,proto3" json:"text_prompt,omitempty"`
 	// Top K. Default value: 5.
@@ -557,11 +559,12 @@ type SearchChunksRequest struct {
 	Type Chunk_Type `protobuf:"varint,6,opt,name=type,proto3,enum=artifact.v1alpha.Chunk_Type" json:"type,omitempty"`
 	// File media type.
 	FileMediaType File_FileMediaType `protobuf:"varint,7,opt,name=file_media_type,json=fileMediaType,proto3,enum=artifact.v1alpha.File_FileMediaType" json:"file_media_type,omitempty"`
-	// File IDs. When this field is provided, the response will return only
-	// chunks that belong to the specified file IDs.
-	FileIds []string `protobuf:"bytes,9,rep,name=file_ids,json=fileIds,proto3" json:"file_ids,omitempty"`
+	// File resource names to filter by. When this field is provided, the response
+	// will return only chunks that belong to the specified files.
+	// Format: `namespaces/{namespace}/files/{file}`
+	Files []string `protobuf:"bytes,9,rep,name=files,proto3" json:"files,omitempty"`
 	// Tags to filter by. When multiple tags are provided, OR logic is applied.
-	// Note: File ID filter takes precedence over tags, as tags apply to files.
+	// Note: File filter takes precedence over tags, as tags apply to files.
 	Tags          []string `protobuf:"bytes,10,rep,name=tags,proto3" json:"tags,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -604,9 +607,9 @@ func (x *SearchChunksRequest) GetParent() string {
 	return ""
 }
 
-func (x *SearchChunksRequest) GetKnowledgeBaseId() string {
+func (x *SearchChunksRequest) GetKnowledgeBase() string {
 	if x != nil {
-		return x.KnowledgeBaseId
+		return x.KnowledgeBase
 	}
 	return ""
 }
@@ -639,9 +642,9 @@ func (x *SearchChunksRequest) GetFileMediaType() File_FileMediaType {
 	return File_FILE_MEDIA_TYPE_UNSPECIFIED
 }
 
-func (x *SearchChunksRequest) GetFileIds() []string {
+func (x *SearchChunksRequest) GetFiles() []string {
 	if x != nil {
-		return x.FileIds
+		return x.Files
 	}
 	return nil
 }
@@ -842,15 +845,16 @@ var File_artifact_v1alpha_chunk_proto protoreflect.FileDescriptor
 
 const file_artifact_v1alpha_chunk_proto_rawDesc = "" +
 	"\n" +
-	"\x1cartifact/v1alpha/chunk.proto\x12\x10artifact.v1alpha\x1a\x1bartifact/v1alpha/file.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xce\x05\n" +
+	"\x1cartifact/v1alpha/chunk.proto\x12\x10artifact.v1alpha\x1a\x1bartifact/v1alpha/file.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe3\x05\n" +
 	"\x05Chunk\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12%\n" +
 	"\vretrievable\x18\x03 \x01(\bB\x03\xe0A\x03R\vretrievable\x12\x1b\n" +
 	"\x06tokens\x18\x04 \x01(\rB\x03\xe0A\x03R\x06tokens\x12@\n" +
 	"\vcreate_time\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
-	"createTime\x12-\n" +
-	"\x10original_file_id\x18\x06 \x01(\tB\x03\xe0A\x03R\x0eoriginalFileId\x125\n" +
+	"createTime\x12B\n" +
+	"\roriginal_file\x18\x06 \x01(\tB\x1d\xe0A\x03\xfaA\x17\n" +
+	"\x15api.instill.tech/FileR\foriginalFile\x125\n" +
 	"\x04type\x18\a \x01(\x0e2\x1c.artifact.v1alpha.Chunk.TypeB\x03\xe0A\x03R\x04type\x12D\n" +
 	"\treference\x18\b \x01(\v2!.artifact.v1alpha.Chunk.ReferenceB\x03\xe0A\x03R\treference\x12U\n" +
 	"\x12markdown_reference\x18\t \x01(\v2!.artifact.v1alpha.Chunk.ReferenceB\x03\xe0A\x03R\x11markdownReference\x1a\x7f\n" +
@@ -885,16 +889,18 @@ const file_artifact_v1alpha_chunk_proto_rawDesc = "" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\x12%\n" +
 	"\vretrievable\x18\x02 \x01(\bB\x03\xe0A\x02R\vretrievable\"I\n" +
 	"\x13UpdateChunkResponse\x122\n" +
-	"\x05chunk\x18\x01 \x01(\v2\x17.artifact.v1alpha.ChunkB\x03\xe0A\x03R\x05chunk\"\xf2\x02\n" +
+	"\x05chunk\x18\x01 \x01(\v2\x17.artifact.v1alpha.ChunkB\x03\xe0A\x03R\x05chunk\"\xa5\x03\n" +
 	"\x13SearchChunksRequest\x12\x1b\n" +
-	"\x06parent\x18\x01 \x01(\tB\x03\xe0A\x02R\x06parent\x12/\n" +
-	"\x11knowledge_base_id\x18\x02 \x01(\tB\x03\xe0A\x01R\x0fknowledgeBaseId\x12$\n" +
+	"\x06parent\x18\x01 \x01(\tB\x03\xe0A\x02R\x06parent\x12M\n" +
+	"\x0eknowledge_base\x18\x02 \x01(\tB&\xe0A\x01\xfaA \n" +
+	"\x1eapi.instill.tech/KnowledgeBaseR\rknowledgeBase\x12$\n" +
 	"\vtext_prompt\x18\x03 \x01(\tB\x03\xe0A\x02R\n" +
 	"textPrompt\x12\x18\n" +
 	"\x05top_k\x18\x04 \x01(\rB\x03\xe0A\x01R\x04topK\x125\n" +
 	"\x04type\x18\x06 \x01(\x0e2\x1c.artifact.v1alpha.Chunk.TypeB\x03\xe0A\x01R\x04type\x12Q\n" +
-	"\x0ffile_media_type\x18\a \x01(\x0e2$.artifact.v1alpha.File.FileMediaTypeB\x03\xe0A\x01R\rfileMediaType\x12\x1e\n" +
-	"\bfile_ids\x18\t \x03(\tB\x03\xe0A\x01R\afileIds\x12\x17\n" +
+	"\x0ffile_media_type\x18\a \x01(\x0e2$.artifact.v1alpha.File.FileMediaTypeB\x03\xe0A\x01R\rfileMediaType\x123\n" +
+	"\x05files\x18\t \x03(\tB\x1d\xe0A\x01\xfaA\x17\n" +
+	"\x15api.instill.tech/FileR\x05files\x12\x17\n" +
 	"\x04tags\x18\n" +
 	" \x03(\tB\x03\xe0A\x01R\x04tagsJ\x04\b\x05\x10\x06J\x04\b\b\x10\t\"e\n" +
 	"\x14SearchChunksResponse\x12M\n" +
