@@ -679,18 +679,8 @@ type File struct {
 	// Populated when creator_name is present.
 	Creator *v1beta.User `protobuf:"bytes,21,opt,name=creator,proto3,oneof" json:"creator,omitempty"`
 	// Base64-encoded file content for inline upload.
-	// Alternative to object_uid for smaller files.
+	// Alternative to object field for smaller files.
 	Content string `protobuf:"bytes,22,opt,name=content,proto3" json:"content,omitempty"`
-	// Object UID referencing a file already uploaded to blob storage.
-	// Two upload approaches are supported:
-	// 1. Direct upload: Upload file directly to MinIO via GetObjectUploadURL,
-	// then provide the object_uid here.
-	//
-	//	This avoids base64 encoding overhead and is preferred for large files.
-	//
-	// 2. Inline content: Provide base64-encoded file content in the 'content'
-	// field. When object_uid is provided, the 'content' field is ignored.
-	ObjectUid string `protobuf:"bytes,23,opt,name=object_uid,json=objectUid,proto3" json:"object_uid,omitempty"`
 	// Pre-signed download URL for the file.
 	DownloadUrl string `protobuf:"bytes,24,opt,name=download_url,json=downloadUrl,proto3" json:"download_url,omitempty"`
 	// Pipeline used for converting the file to Markdown if the file is a
@@ -704,7 +694,18 @@ type File struct {
 	// Follows AIP-122 for resource name references.
 	Collections []string `protobuf:"bytes,27,rep,name=collections,proto3" json:"collections,omitempty"`
 	// Soft delete timestamp.
-	DeleteTime    *timestamppb.Timestamp `protobuf:"bytes,28,opt,name=delete_time,json=deleteTime,proto3" json:"delete_time,omitempty"`
+	DeleteTime *timestamppb.Timestamp `protobuf:"bytes,28,opt,name=delete_time,json=deleteTime,proto3" json:"delete_time,omitempty"`
+	// Object resource name reference for blob storage upload.
+	// Format: `namespaces/{namespace}/objects/{object}`
+	// Two upload approaches are supported:
+	//  1. Direct upload: Upload file directly to MinIO via GetObjectUploadURL,
+	//     then provide the object resource name here.
+	//     This avoids base64 encoding overhead and is preferred for large files.
+	//  2. Inline content: Provide base64-encoded file content in the 'content'
+	//     field. When object is provided, the 'content' field is ignored.
+	//
+	// Follows AIP-122 for resource name references.
+	Object        string `protobuf:"bytes,29,opt,name=object,proto3" json:"object,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -893,13 +894,6 @@ func (x *File) GetContent() string {
 	return ""
 }
 
-func (x *File) GetObjectUid() string {
-	if x != nil {
-		return x.ObjectUid
-	}
-	return ""
-}
-
 func (x *File) GetDownloadUrl() string {
 	if x != nil {
 		return x.DownloadUrl
@@ -933,6 +927,13 @@ func (x *File) GetDeleteTime() *timestamppb.Timestamp {
 		return x.DeleteTime
 	}
 	return nil
+}
+
+func (x *File) GetObject() string {
+	if x != nil {
+		return x.Object
+	}
+	return ""
 }
 
 // CreateFileRequest represents a request to create a file.
@@ -1903,7 +1904,7 @@ var File_artifact_v1alpha_file_proto protoreflect.FileDescriptor
 
 const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\n" +
-	"\x1bartifact/v1alpha/file.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16mgmt/v1beta/mgmt.proto\"\x95\x15\n" +
+	"\x1bartifact/v1alpha/file.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16mgmt/v1beta/mgmt.proto\"\xaa\x15\n" +
 	"\x04File\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12&\n" +
@@ -1931,16 +1932,16 @@ const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\x05owner\x18\x13 \x01(\v2\x12.mgmt.v1beta.OwnerB\x03\xe0A\x03H\x01R\x05owner\x88\x01\x01\x12&\n" +
 	"\fcreator_name\x18\x14 \x01(\tB\x03\xe0A\x03R\vcreatorName\x125\n" +
 	"\acreator\x18\x15 \x01(\v2\x11.mgmt.v1beta.UserB\x03\xe0A\x03H\x02R\acreator\x88\x01\x01\x12\x1d\n" +
-	"\acontent\x18\x16 \x01(\tB\x03\xe0A\x04R\acontent\x12\"\n" +
-	"\n" +
-	"object_uid\x18\x17 \x01(\tB\x03\xe0A\x04R\tobjectUid\x12&\n" +
+	"\acontent\x18\x16 \x01(\tB\x03\xe0A\x04R\acontent\x12&\n" +
 	"\fdownload_url\x18\x18 \x01(\tB\x03\xe0A\x03R\vdownloadUrl\x129\n" +
 	"\x13converting_pipeline\x18\x19 \x01(\tB\x03\xe0A\x01H\x03R\x12convertingPipeline\x88\x01\x01\x12<\n" +
 	"\x06length\x18\x1a \x01(\v2\x1f.artifact.v1alpha.File.PositionB\x03\xe0A\x03R\x06length\x12E\n" +
 	"\vcollections\x18\x1b \x03(\tB#\xe0A\x03\xfaA\x1d\n" +
 	"\x1bapi.instill.tech/CollectionR\vcollections\x12@\n" +
 	"\vdelete_time\x18\x1c \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
-	"deleteTime\x1a\xd3\x01\n" +
+	"deleteTime\x127\n" +
+	"\x06object\x18\x1d \x01(\tB\x1f\xe0A\x01\xfaA\x19\n" +
+	"\x17api.instill.tech/ObjectR\x06object\x1a\xd3\x01\n" +
 	"\bPosition\x12=\n" +
 	"\x04unit\x18\x01 \x01(\x0e2$.artifact.v1alpha.File.Position.UnitB\x03\xe0A\x03R\x04unit\x12%\n" +
 	"\vcoordinates\x18\x02 \x03(\rB\x03\xe0A\x03R\vcoordinates\"a\n" +
