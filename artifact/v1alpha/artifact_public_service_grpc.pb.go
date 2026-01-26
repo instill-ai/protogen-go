@@ -88,7 +88,7 @@ type ArtifactPublicServiceClient interface {
 	GetFile(ctx context.Context, in *GetFileRequest, opts ...grpc.CallOption) (*GetFileResponse, error)
 	// List files
 	//
-	// Returns a paginated list of files.
+	// Returns a paginated list of files in a knowledge base.
 	ListFiles(ctx context.Context, in *ListFilesRequest, opts ...grpc.CallOption) (*ListFilesResponse, error)
 	// Update a file
 	//
@@ -414,7 +414,7 @@ type ArtifactPublicServiceServer interface {
 	GetFile(context.Context, *GetFileRequest) (*GetFileResponse, error)
 	// List files
 	//
-	// Returns a paginated list of files.
+	// Returns a paginated list of files in a knowledge base.
 	ListFiles(context.Context, *ListFilesRequest) (*ListFilesResponse, error)
 	// Update a file
 	//

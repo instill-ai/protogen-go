@@ -27,6 +27,7 @@ const (
 	MgmtPrivateService_LookUpOrganizationAdmin_FullMethodName  = "/mgmt.v1beta.MgmtPrivateService/LookUpOrganizationAdmin"
 	MgmtPrivateService_CheckNamespaceAdmin_FullMethodName      = "/mgmt.v1beta.MgmtPrivateService/CheckNamespaceAdmin"
 	MgmtPrivateService_CheckNamespaceByUIDAdmin_FullMethodName = "/mgmt.v1beta.MgmtPrivateService/CheckNamespaceByUIDAdmin"
+	MgmtPrivateService_LookUpConnectionAdmin_FullMethodName    = "/mgmt.v1beta.MgmtPrivateService/LookUpConnectionAdmin"
 )
 
 // MgmtPrivateServiceClient is the client API for MgmtPrivateService service.
@@ -63,6 +64,11 @@ type MgmtPrivateServiceClient interface {
 	// Returns the availability of a namespace or, alternatively, the type of
 	// resource that is using it.
 	CheckNamespaceByUIDAdmin(ctx context.Context, in *CheckNamespaceByUIDAdminRequest, opts ...grpc.CallOption) (*CheckNamespaceByUIDAdminResponse, error)
+	// Get a connection by UID (admin only)
+	//
+	// This *private* method allows internal clients to access any connection
+	// resource by UID.
+	LookUpConnectionAdmin(ctx context.Context, in *LookUpConnectionAdminRequest, opts ...grpc.CallOption) (*LookUpConnectionAdminResponse, error)
 }
 
 type mgmtPrivateServiceClient struct {
@@ -153,6 +159,16 @@ func (c *mgmtPrivateServiceClient) CheckNamespaceByUIDAdmin(ctx context.Context,
 	return out, nil
 }
 
+func (c *mgmtPrivateServiceClient) LookUpConnectionAdmin(ctx context.Context, in *LookUpConnectionAdminRequest, opts ...grpc.CallOption) (*LookUpConnectionAdminResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(LookUpConnectionAdminResponse)
+	err := c.cc.Invoke(ctx, MgmtPrivateService_LookUpConnectionAdmin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MgmtPrivateServiceServer is the server API for MgmtPrivateService service.
 // All implementations should embed UnimplementedMgmtPrivateServiceServer
 // for forward compatibility.
@@ -187,6 +203,11 @@ type MgmtPrivateServiceServer interface {
 	// Returns the availability of a namespace or, alternatively, the type of
 	// resource that is using it.
 	CheckNamespaceByUIDAdmin(context.Context, *CheckNamespaceByUIDAdminRequest) (*CheckNamespaceByUIDAdminResponse, error)
+	// Get a connection by UID (admin only)
+	//
+	// This *private* method allows internal clients to access any connection
+	// resource by UID.
+	LookUpConnectionAdmin(context.Context, *LookUpConnectionAdminRequest) (*LookUpConnectionAdminResponse, error)
 }
 
 // UnimplementedMgmtPrivateServiceServer should be embedded to have
@@ -219,6 +240,9 @@ func (UnimplementedMgmtPrivateServiceServer) CheckNamespaceAdmin(context.Context
 }
 func (UnimplementedMgmtPrivateServiceServer) CheckNamespaceByUIDAdmin(context.Context, *CheckNamespaceByUIDAdminRequest) (*CheckNamespaceByUIDAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckNamespaceByUIDAdmin not implemented")
+}
+func (UnimplementedMgmtPrivateServiceServer) LookUpConnectionAdmin(context.Context, *LookUpConnectionAdminRequest) (*LookUpConnectionAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LookUpConnectionAdmin not implemented")
 }
 func (UnimplementedMgmtPrivateServiceServer) testEmbeddedByValue() {}
 
@@ -384,6 +408,24 @@ func _MgmtPrivateService_CheckNamespaceByUIDAdmin_Handler(srv interface{}, ctx c
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MgmtPrivateService_LookUpConnectionAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LookUpConnectionAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPrivateServiceServer).LookUpConnectionAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPrivateService_LookUpConnectionAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPrivateServiceServer).LookUpConnectionAdmin(ctx, req.(*LookUpConnectionAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MgmtPrivateService_ServiceDesc is the grpc.ServiceDesc for MgmtPrivateService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -422,6 +464,10 @@ var MgmtPrivateService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CheckNamespaceByUIDAdmin",
 			Handler:    _MgmtPrivateService_CheckNamespaceByUIDAdmin_Handler,
+		},
+		{
+			MethodName: "LookUpConnectionAdmin",
+			Handler:    _MgmtPrivateService_LookUpConnectionAdmin_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

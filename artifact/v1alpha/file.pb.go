@@ -621,7 +621,7 @@ func (File_Position_Unit) EnumDescriptor() ([]byte, []int) {
 type File struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Field 1: Canonical resource name.
-	// Format: `namespaces/{namespace}/files/{file}`.
+	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}/files/{file}`.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Field 2: Immutable canonical resource ID (80-96 bits entropy, base62).
 	// Example: "file-8f3a2k9E7c1"
@@ -936,20 +936,15 @@ func (x *File) GetObject() string {
 	return ""
 }
 
-// CreateFileRequest represents a request to create a file.
+// CreateFileRequest represents a request to create a file in a knowledge base.
 // Follows AIP-133: https://google.aip.dev/133
 type CreateFileRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The parent resource name.
-	// Format: `namespaces/{namespace}`
+	// The parent resource name (knowledge base).
+	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}`
 	Parent string `protobuf:"bytes,1,opt,name=parent,proto3" json:"parent,omitempty"`
 	// The file to create.
-	File *File `protobuf:"bytes,2,opt,name=file,proto3" json:"file,omitempty"`
-	// The knowledge base resource name to associate this file with.
-	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}`
-	// Files can be associated with multiple KBs, this specifies the initial
-	// association. Follows AIP-122 for resource name references.
-	KnowledgeBase string `protobuf:"bytes,3,opt,name=knowledge_base,json=knowledgeBase,proto3" json:"knowledge_base,omitempty"`
+	File          *File `protobuf:"bytes,2,opt,name=file,proto3" json:"file,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -996,13 +991,6 @@ func (x *CreateFileRequest) GetFile() *File {
 		return x.File
 	}
 	return nil
-}
-
-func (x *CreateFileRequest) GetKnowledgeBase() string {
-	if x != nil {
-		return x.KnowledgeBase
-	}
-	return ""
 }
 
 // CreateFileResponse represents a response for creating a file.
@@ -1056,7 +1044,7 @@ func (x *CreateFileResponse) GetFile() *File {
 type DeleteFileRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the file to delete.
-	// Format: `namespaces/{namespace}/files/{file}`
+	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}/files/{file}`
 	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1103,7 +1091,7 @@ func (x *DeleteFileRequest) GetName() string {
 type DeleteFileResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the deleted file.
-	// Format: `namespaces/{namespace}/files/{file}`
+	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}/files/{file}`
 	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1150,7 +1138,7 @@ func (x *DeleteFileResponse) GetName() string {
 type DeleteFileAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the file to delete.
-	// Format: `namespaces/{namespace}/files/{file}`
+	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}/files/{file}`
 	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1198,7 +1186,7 @@ func (x *DeleteFileAdminRequest) GetName() string {
 type DeleteFileAdminResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the deleted file.
-	// Format: `namespaces/{namespace}/files/{file}`
+	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}/files/{file}`
 	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1241,12 +1229,12 @@ func (x *DeleteFileAdminResponse) GetName() string {
 	return ""
 }
 
-// ListFilesRequest represents a request to list files.
+// ListFilesRequest represents a request to list files in a knowledge base.
 // Follows AIP-132: https://google.aip.dev/132
 type ListFilesRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The parent resource name.
-	// Format: `namespaces/{namespace}`
+	// The parent resource name (knowledge base).
+	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}`
 	Parent string `protobuf:"bytes,1,opt,name=parent,proto3" json:"parent,omitempty"`
 	// The page size (default:10; max 100).
 	PageSize *int32 `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
@@ -1403,7 +1391,7 @@ func (x *ListFilesResponse) GetNextPageToken() string {
 type GetFileRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the file to retrieve.
-	// Format: `namespaces/{namespace}/files/{file}`
+	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}/files/{file}`
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// View allows clients to specify the desired file view in the response.
 	View *File_View `protobuf:"varint,2,opt,name=view,proto3,enum=artifact.v1alpha.File_View,oneof" json:"view,omitempty"`
@@ -1538,7 +1526,7 @@ func (x *GetFileResponse) GetDerivedResourceUri() string {
 type UpdateFileRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The file resource to update. The file's `name` field identifies the
-	// resource. Format: `namespaces/{namespace}/files/{file}`
+	// resource. Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}/files/{file}`
 	File *File `protobuf:"bytes,1,opt,name=file,proto3" json:"file,omitempty"`
 	// The update mask specifies the subset of fields that should be modified.
 	UpdateMask    *fieldmaskpb.FieldMask `protobuf:"bytes,2,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`
@@ -1640,7 +1628,7 @@ func (x *UpdateFileResponse) GetFile() *File {
 type ReprocessFileRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the file to reprocess.
-	// Format: `namespaces/{namespace}/files/{file}`
+	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}/files/{file}`
 	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1746,7 +1734,7 @@ func (x *ReprocessFileResponse) GetMessage() string {
 type UpdateFileAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The file resource to update. The file's `name` field identifies the
-	// resource. Format: `namespaces/{namespace}/files/{file}`
+	// resource. Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}/files/{file}`
 	File *File `protobuf:"bytes,1,opt,name=file,proto3" json:"file,omitempty"`
 	// The update mask specifies the subset of fields that should be modified.
 	UpdateMask    *fieldmaskpb.FieldMask `protobuf:"bytes,2,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`
@@ -1904,7 +1892,7 @@ var File_artifact_v1alpha_file_proto protoreflect.FileDescriptor
 
 const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\n" +
-	"\x1bartifact/v1alpha/file.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16mgmt/v1beta/mgmt.proto\"\xaa\x15\n" +
+	"\x1bartifact/v1alpha/file.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16mgmt/v1beta/mgmt.proto\"\xca\x15\n" +
 	"\x04File\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12&\n" +
@@ -2012,18 +2000,16 @@ const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\x18FILE_MEDIA_TYPE_DOCUMENT\x10\x01\x12\x19\n" +
 	"\x15FILE_MEDIA_TYPE_IMAGE\x10\x02\x12\x19\n" +
 	"\x15FILE_MEDIA_TYPE_AUDIO\x10\x03\x12\x19\n" +
-	"\x15FILE_MEDIA_TYPE_VIDEO\x10\x04:?\xeaA<\n" +
-	"\x15api.instill.tech/File\x12#namespaces/{namespace}/files/{file}B\x14\n" +
+	"\x15FILE_MEDIA_TYPE_VIDEO\x10\x04:_\xeaA\\\n" +
+	"\x15api.instill.tech/File\x12Cnamespaces/{namespace}/knowledgeBases/{knowledge_base}/files/{file}B\x14\n" +
 	"\x12_external_metadataB\b\n" +
 	"\x06_ownerB\n" +
 	"\n" +
 	"\b_creatorB\x16\n" +
-	"\x14_converting_pipeline\"\xb0\x01\n" +
+	"\x14_converting_pipeline\"a\n" +
 	"\x11CreateFileRequest\x12\x1b\n" +
 	"\x06parent\x18\x01 \x01(\tB\x03\xe0A\x02R\x06parent\x12/\n" +
-	"\x04file\x18\x02 \x01(\v2\x16.artifact.v1alpha.FileB\x03\xe0A\x01R\x04file\x12M\n" +
-	"\x0eknowledge_base\x18\x03 \x01(\tB&\xe0A\x02\xfaA \n" +
-	"\x1eapi.instill.tech/KnowledgeBaseR\rknowledgeBase\"E\n" +
+	"\x04file\x18\x02 \x01(\v2\x16.artifact.v1alpha.FileB\x03\xe0A\x01R\x04file\"E\n" +
 	"\x12CreateFileResponse\x12/\n" +
 	"\x04file\x18\x01 \x01(\v2\x16.artifact.v1alpha.FileB\x03\xe0A\x03R\x04file\"F\n" +
 	"\x11DeleteFileRequest\x121\n" +

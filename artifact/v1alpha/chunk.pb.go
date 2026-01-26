@@ -84,7 +84,7 @@ func (Chunk_Type) EnumDescriptor() ([]byte, []int) {
 type Chunk struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Field 1: The resource name of the chunk.
-	// Format: `namespaces/{namespace}/files/{file}/chunks/{chunk}`.
+	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}/files/{file}/chunks/{chunk}`.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Field 2: The chunk id (unique identifier).
 	Id string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
@@ -95,7 +95,7 @@ type Chunk struct {
 	// creation time of the chunk
 	CreateTime *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
 	// The resource name of the original file this chunk belongs to.
-	// Format: `namespaces/{namespace}/files/{file}`
+	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}/files/{file}`
 	OriginalFile string `protobuf:"bytes,6,opt,name=original_file,json=originalFile,proto3" json:"original_file,omitempty"`
 	// chunk type
 	Type Chunk_Type `protobuf:"varint,7,opt,name=type,proto3,enum=artifact.v1alpha.Chunk_Type" json:"type,omitempty"`
@@ -205,7 +205,7 @@ func (x *Chunk) GetMarkdownReference() *Chunk_Reference {
 type ListChunksRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The parent resource name.
-	// Format: `namespaces/{namespace}/files/{file}`
+	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}/files/{file}`
 	Parent string `protobuf:"bytes,1,opt,name=parent,proto3" json:"parent,omitempty"`
 	// The maximum number of chunks to return. If this parameter is unspecified,
 	// at most 100 chunks will be returned. The cap value for this parameter
@@ -338,7 +338,7 @@ func (x *ListChunksResponse) GetChunks() []*Chunk {
 type GetChunkRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the chunk to retrieve.
-	// Format: `namespaces/{namespace}/files/{file}/chunks/{chunk}`
+	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}/files/{file}/chunks/{chunk}`
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Optional chunk type filter. If specified, returns a chunk of this type
 	// from the same file. If not specified, returns the chunk identified by name.
@@ -444,7 +444,7 @@ func (x *GetChunkResponse) GetChunk() *Chunk {
 type UpdateChunkRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the chunk to update.
-	// Format: `namespaces/{namespace}/files/{file}/chunks/{chunk}`
+	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}/files/{file}/chunks/{chunk}`
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// whether the chunk is retrievable
 	Retrievable   bool `protobuf:"varint,2,opt,name=retrievable,proto3" json:"retrievable,omitempty"`
@@ -561,7 +561,7 @@ type SearchChunksRequest struct {
 	FileMediaType File_FileMediaType `protobuf:"varint,7,opt,name=file_media_type,json=fileMediaType,proto3,enum=artifact.v1alpha.File_FileMediaType" json:"file_media_type,omitempty"`
 	// File resource names to filter by. When this field is provided, the response
 	// will return only chunks that belong to the specified files.
-	// Format: `namespaces/{namespace}/files/{file}`
+	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}/files/{file}`
 	Files []string `protobuf:"bytes,9,rep,name=files,proto3" json:"files,omitempty"`
 	// Tags to filter by. When multiple tags are provided, OR logic is applied.
 	// Note: File filter takes precedence over tags, as tags apply to files.
@@ -706,14 +706,14 @@ func (x *SearchChunksResponse) GetSimilarChunks() []*SimilarityChunk {
 type SimilarityChunk struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Chunk resource name.
-	// Full resource name: namespaces/{namespace}/files/{file}/chunks/{chunk}
+	// Full resource name: namespaces/{namespace}/knowledgeBases/{knowledge_base}/files/{file}/chunks/{chunk}
 	Chunk string `protobuf:"bytes,1,opt,name=chunk,proto3" json:"chunk,omitempty"`
 	// Similarity score.
 	SimilarityScore float32 `protobuf:"fixed32,2,opt,name=similarity_score,json=similarityScore,proto3" json:"similarity_score,omitempty"`
 	// Content.
 	TextContent string `protobuf:"bytes,3,opt,name=text_content,json=textContent,proto3" json:"text_content,omitempty"`
 	// Source file resource name.
-	// Full resource name: namespaces/{namespace}/files/{file}
+	// Full resource name: namespaces/{namespace}/knowledgeBases/{knowledge_base}/files/{file}
 	File string `protobuf:"bytes,4,opt,name=file,proto3" json:"file,omitempty"`
 	// Chunk metadata.
 	ChunkMetadata *Chunk `protobuf:"bytes,5,opt,name=chunk_metadata,json=chunkMetadata,proto3" json:"chunk_metadata,omitempty"`
@@ -845,7 +845,7 @@ var File_artifact_v1alpha_chunk_proto protoreflect.FileDescriptor
 
 const file_artifact_v1alpha_chunk_proto_rawDesc = "" +
 	"\n" +
-	"\x1cartifact/v1alpha/chunk.proto\x12\x10artifact.v1alpha\x1a\x1bartifact/v1alpha/file.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe3\x05\n" +
+	"\x1cartifact/v1alpha/chunk.proto\x12\x10artifact.v1alpha\x1a\x1bartifact/v1alpha/file.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x83\x06\n" +
 	"\x05Chunk\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12%\n" +
@@ -865,7 +865,7 @@ const file_artifact_v1alpha_chunk_proto_rawDesc = "" +
 	"\x10TYPE_UNSPECIFIED\x10\x00\x12\x10\n" +
 	"\fTYPE_CONTENT\x10\x01\x12\x10\n" +
 	"\fTYPE_SUMMARY\x10\x02\x12\x12\n" +
-	"\x0eTYPE_AUGMENTED\x10\x03:7\xeaA4\x122namespaces/{namespace}/files/{file}/chunks/{chunk}\"\xca\x01\n" +
+	"\x0eTYPE_AUGMENTED\x10\x03:W\xeaAT\x12Rnamespaces/{namespace}/knowledgeBases/{knowledge_base}/files/{file}/chunks/{chunk}\"\xca\x01\n" +
 	"\x11ListChunksRequest\x12\x1b\n" +
 	"\x06parent\x18\x01 \x01(\tB\x03\xe0A\x02R\x06parent\x12%\n" +
 	"\tpage_size\x18\x02 \x01(\x05B\x03\xe0A\x01H\x00R\bpageSize\x88\x01\x01\x12'\n" +

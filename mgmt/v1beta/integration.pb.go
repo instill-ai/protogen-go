@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        (unknown)
-// source: pipeline/v1beta/integration.proto
+// source: mgmt/v1beta/integration.proto
 
-package pipelinev1beta
+package mgmtv1beta
 
 import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
@@ -63,11 +63,11 @@ func (x Connection_Method) String() string {
 }
 
 func (Connection_Method) Descriptor() protoreflect.EnumDescriptor {
-	return file_pipeline_v1beta_integration_proto_enumTypes[0].Descriptor()
+	return file_mgmt_v1beta_integration_proto_enumTypes[0].Descriptor()
 }
 
 func (Connection_Method) Type() protoreflect.EnumType {
-	return &file_pipeline_v1beta_integration_proto_enumTypes[0]
+	return &file_mgmt_v1beta_integration_proto_enumTypes[0]
 }
 
 func (x Connection_Method) Number() protoreflect.EnumNumber {
@@ -76,7 +76,7 @@ func (x Connection_Method) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Connection_Method.Descriptor instead.
 func (Connection_Method) EnumDescriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_integration_proto_rawDescGZIP(), []int{0, 0}
+	return file_mgmt_v1beta_integration_proto_rawDescGZIP(), []int{0, 0}
 }
 
 // Connection contains the parameters to communicate with a 3rd party app. A
@@ -121,7 +121,7 @@ type Connection struct {
 	IntegrationTitle string `protobuf:"bytes,11,opt,name=integration_title,json=integrationTitle,proto3" json:"integration_title,omitempty"`
 	// Field 12: Connection method. It references the setup schema provided by the
 	// integration.
-	Method Connection_Method `protobuf:"varint,12,opt,name=method,proto3,enum=pipeline.v1beta.Connection_Method" json:"method,omitempty"`
+	Method Connection_Method `protobuf:"varint,12,opt,name=method,proto3,enum=mgmt.v1beta.Connection_Method" json:"method,omitempty"`
 	// Field 13: Connection details. This field is required on creation, optional
 	// on view. When viewing the connection details, the setup values will be
 	// redacted.
@@ -131,7 +131,7 @@ type Connection struct {
 	// - setup
 	// - scopes
 	// - oAuthAccessDetails
-	View View `protobuf:"varint,14,opt,name=view,proto3,enum=pipeline.v1beta.View" json:"view,omitempty"`
+	View View `protobuf:"varint,14,opt,name=view,proto3,enum=mgmt.v1beta.View" json:"view,omitempty"`
 	// Field 15: A list of scopes that identify the resources that the connection
 	// will be able to access on the user's behalf. This is typically passed on
 	// creation when the setup has been generated through an OAuth flow with a
@@ -151,7 +151,7 @@ type Connection struct {
 
 func (x *Connection) Reset() {
 	*x = Connection{}
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[0]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -163,7 +163,7 @@ func (x *Connection) String() string {
 func (*Connection) ProtoMessage() {}
 
 func (x *Connection) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[0]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -176,7 +176,7 @@ func (x *Connection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Connection.ProtoReflect.Descriptor instead.
 func (*Connection) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_integration_proto_rawDescGZIP(), []int{0}
+	return file_mgmt_v1beta_integration_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Connection) GetName() string {
@@ -329,7 +329,7 @@ type ListNamespaceConnectionsRequest struct {
 
 func (x *ListNamespaceConnectionsRequest) Reset() {
 	*x = ListNamespaceConnectionsRequest{}
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[1]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -341,7 +341,7 @@ func (x *ListNamespaceConnectionsRequest) String() string {
 func (*ListNamespaceConnectionsRequest) ProtoMessage() {}
 
 func (x *ListNamespaceConnectionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[1]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -354,7 +354,7 @@ func (x *ListNamespaceConnectionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListNamespaceConnectionsRequest.ProtoReflect.Descriptor instead.
 func (*ListNamespaceConnectionsRequest) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_integration_proto_rawDescGZIP(), []int{1}
+	return file_mgmt_v1beta_integration_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *ListNamespaceConnectionsRequest) GetParent() string {
@@ -400,7 +400,7 @@ type ListNamespaceConnectionsResponse struct {
 
 func (x *ListNamespaceConnectionsResponse) Reset() {
 	*x = ListNamespaceConnectionsResponse{}
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[2]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -412,7 +412,7 @@ func (x *ListNamespaceConnectionsResponse) String() string {
 func (*ListNamespaceConnectionsResponse) ProtoMessage() {}
 
 func (x *ListNamespaceConnectionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[2]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -425,7 +425,7 @@ func (x *ListNamespaceConnectionsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListNamespaceConnectionsResponse.ProtoReflect.Descriptor instead.
 func (*ListNamespaceConnectionsResponse) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_integration_proto_rawDescGZIP(), []int{2}
+	return file_mgmt_v1beta_integration_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ListNamespaceConnectionsResponse) GetConnections() []*Connection {
@@ -458,14 +458,14 @@ type GetNamespaceConnectionRequest struct {
 	// Format: `namespaces/{namespace}/connections/{connection}`
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// View allows clients to specify the desired view in the response.
-	View          *View `protobuf:"varint,2,opt,name=view,proto3,enum=pipeline.v1beta.View,oneof" json:"view,omitempty"`
+	View          *View `protobuf:"varint,2,opt,name=view,proto3,enum=mgmt.v1beta.View,oneof" json:"view,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetNamespaceConnectionRequest) Reset() {
 	*x = GetNamespaceConnectionRequest{}
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[3]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -477,7 +477,7 @@ func (x *GetNamespaceConnectionRequest) String() string {
 func (*GetNamespaceConnectionRequest) ProtoMessage() {}
 
 func (x *GetNamespaceConnectionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[3]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -490,7 +490,7 @@ func (x *GetNamespaceConnectionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetNamespaceConnectionRequest.ProtoReflect.Descriptor instead.
 func (*GetNamespaceConnectionRequest) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_integration_proto_rawDescGZIP(), []int{3}
+	return file_mgmt_v1beta_integration_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *GetNamespaceConnectionRequest) GetName() string {
@@ -518,7 +518,7 @@ type GetNamespaceConnectionResponse struct {
 
 func (x *GetNamespaceConnectionResponse) Reset() {
 	*x = GetNamespaceConnectionResponse{}
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[4]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -530,7 +530,7 @@ func (x *GetNamespaceConnectionResponse) String() string {
 func (*GetNamespaceConnectionResponse) ProtoMessage() {}
 
 func (x *GetNamespaceConnectionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[4]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -543,7 +543,7 @@ func (x *GetNamespaceConnectionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetNamespaceConnectionResponse.ProtoReflect.Descriptor instead.
 func (*GetNamespaceConnectionResponse) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_integration_proto_rawDescGZIP(), []int{4}
+	return file_mgmt_v1beta_integration_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetNamespaceConnectionResponse) GetConnection() *Connection {
@@ -569,7 +569,7 @@ type CreateNamespaceConnectionRequest struct {
 
 func (x *CreateNamespaceConnectionRequest) Reset() {
 	*x = CreateNamespaceConnectionRequest{}
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[5]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -581,7 +581,7 @@ func (x *CreateNamespaceConnectionRequest) String() string {
 func (*CreateNamespaceConnectionRequest) ProtoMessage() {}
 
 func (x *CreateNamespaceConnectionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[5]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -594,7 +594,7 @@ func (x *CreateNamespaceConnectionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateNamespaceConnectionRequest.ProtoReflect.Descriptor instead.
 func (*CreateNamespaceConnectionRequest) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_integration_proto_rawDescGZIP(), []int{5}
+	return file_mgmt_v1beta_integration_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *CreateNamespaceConnectionRequest) GetParent() string {
@@ -622,7 +622,7 @@ type CreateNamespaceConnectionResponse struct {
 
 func (x *CreateNamespaceConnectionResponse) Reset() {
 	*x = CreateNamespaceConnectionResponse{}
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[6]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -634,7 +634,7 @@ func (x *CreateNamespaceConnectionResponse) String() string {
 func (*CreateNamespaceConnectionResponse) ProtoMessage() {}
 
 func (x *CreateNamespaceConnectionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[6]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -647,7 +647,7 @@ func (x *CreateNamespaceConnectionResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use CreateNamespaceConnectionResponse.ProtoReflect.Descriptor instead.
 func (*CreateNamespaceConnectionResponse) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_integration_proto_rawDescGZIP(), []int{6}
+	return file_mgmt_v1beta_integration_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *CreateNamespaceConnectionResponse) GetConnection() *Connection {
@@ -676,7 +676,7 @@ type UpdateNamespaceConnectionRequest struct {
 
 func (x *UpdateNamespaceConnectionRequest) Reset() {
 	*x = UpdateNamespaceConnectionRequest{}
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[7]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -688,7 +688,7 @@ func (x *UpdateNamespaceConnectionRequest) String() string {
 func (*UpdateNamespaceConnectionRequest) ProtoMessage() {}
 
 func (x *UpdateNamespaceConnectionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[7]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -701,7 +701,7 @@ func (x *UpdateNamespaceConnectionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateNamespaceConnectionRequest.ProtoReflect.Descriptor instead.
 func (*UpdateNamespaceConnectionRequest) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_integration_proto_rawDescGZIP(), []int{7}
+	return file_mgmt_v1beta_integration_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *UpdateNamespaceConnectionRequest) GetConnection() *Connection {
@@ -729,7 +729,7 @@ type UpdateNamespaceConnectionResponse struct {
 
 func (x *UpdateNamespaceConnectionResponse) Reset() {
 	*x = UpdateNamespaceConnectionResponse{}
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[8]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -741,7 +741,7 @@ func (x *UpdateNamespaceConnectionResponse) String() string {
 func (*UpdateNamespaceConnectionResponse) ProtoMessage() {}
 
 func (x *UpdateNamespaceConnectionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[8]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -754,7 +754,7 @@ func (x *UpdateNamespaceConnectionResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use UpdateNamespaceConnectionResponse.ProtoReflect.Descriptor instead.
 func (*UpdateNamespaceConnectionResponse) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_integration_proto_rawDescGZIP(), []int{8}
+	return file_mgmt_v1beta_integration_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *UpdateNamespaceConnectionResponse) GetConnection() *Connection {
@@ -778,7 +778,7 @@ type DeleteNamespaceConnectionRequest struct {
 
 func (x *DeleteNamespaceConnectionRequest) Reset() {
 	*x = DeleteNamespaceConnectionRequest{}
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[9]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -790,7 +790,7 @@ func (x *DeleteNamespaceConnectionRequest) String() string {
 func (*DeleteNamespaceConnectionRequest) ProtoMessage() {}
 
 func (x *DeleteNamespaceConnectionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[9]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -803,7 +803,7 @@ func (x *DeleteNamespaceConnectionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteNamespaceConnectionRequest.ProtoReflect.Descriptor instead.
 func (*DeleteNamespaceConnectionRequest) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_integration_proto_rawDescGZIP(), []int{9}
+	return file_mgmt_v1beta_integration_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *DeleteNamespaceConnectionRequest) GetName() string {
@@ -822,7 +822,7 @@ type DeleteNamespaceConnectionResponse struct {
 
 func (x *DeleteNamespaceConnectionResponse) Reset() {
 	*x = DeleteNamespaceConnectionResponse{}
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[10]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -834,7 +834,7 @@ func (x *DeleteNamespaceConnectionResponse) String() string {
 func (*DeleteNamespaceConnectionResponse) ProtoMessage() {}
 
 func (x *DeleteNamespaceConnectionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[10]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -847,7 +847,7 @@ func (x *DeleteNamespaceConnectionResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use DeleteNamespaceConnectionResponse.ProtoReflect.Descriptor instead.
 func (*DeleteNamespaceConnectionResponse) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_integration_proto_rawDescGZIP(), []int{10}
+	return file_mgmt_v1beta_integration_proto_rawDescGZIP(), []int{10}
 }
 
 // TestNamespaceConnectionRequest represents a request to test a connection.
@@ -862,7 +862,7 @@ type TestNamespaceConnectionRequest struct {
 
 func (x *TestNamespaceConnectionRequest) Reset() {
 	*x = TestNamespaceConnectionRequest{}
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[11]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -874,7 +874,7 @@ func (x *TestNamespaceConnectionRequest) String() string {
 func (*TestNamespaceConnectionRequest) ProtoMessage() {}
 
 func (x *TestNamespaceConnectionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[11]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -887,7 +887,7 @@ func (x *TestNamespaceConnectionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TestNamespaceConnectionRequest.ProtoReflect.Descriptor instead.
 func (*TestNamespaceConnectionRequest) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_integration_proto_rawDescGZIP(), []int{11}
+	return file_mgmt_v1beta_integration_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *TestNamespaceConnectionRequest) GetName() string {
@@ -906,7 +906,7 @@ type TestNamespaceConnectionResponse struct {
 
 func (x *TestNamespaceConnectionResponse) Reset() {
 	*x = TestNamespaceConnectionResponse{}
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[12]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -918,7 +918,7 @@ func (x *TestNamespaceConnectionResponse) String() string {
 func (*TestNamespaceConnectionResponse) ProtoMessage() {}
 
 func (x *TestNamespaceConnectionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[12]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -931,7 +931,7 @@ func (x *TestNamespaceConnectionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TestNamespaceConnectionResponse.ProtoReflect.Descriptor instead.
 func (*TestNamespaceConnectionResponse) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_integration_proto_rawDescGZIP(), []int{12}
+	return file_mgmt_v1beta_integration_proto_rawDescGZIP(), []int{12}
 }
 
 // Integration contains the parameters to create a connection between
@@ -967,14 +967,14 @@ type Integration struct {
 	// fields are only shown in the FULL view:
 	// - setupSchema
 	// - oAuthConfig
-	View          View `protobuf:"varint,9,opt,name=view,proto3,enum=pipeline.v1beta.View" json:"view,omitempty"`
+	View          View `protobuf:"varint,9,opt,name=view,proto3,enum=mgmt.v1beta.View" json:"view,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Integration) Reset() {
 	*x = Integration{}
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[13]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -986,7 +986,7 @@ func (x *Integration) String() string {
 func (*Integration) ProtoMessage() {}
 
 func (x *Integration) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[13]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -999,7 +999,7 @@ func (x *Integration) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Integration.ProtoReflect.Descriptor instead.
 func (*Integration) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_integration_proto_rawDescGZIP(), []int{13}
+	return file_mgmt_v1beta_integration_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *Integration) GetId() string {
@@ -1088,7 +1088,7 @@ type ListPipelineIDsByConnectionIDRequest struct {
 
 func (x *ListPipelineIDsByConnectionIDRequest) Reset() {
 	*x = ListPipelineIDsByConnectionIDRequest{}
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[14]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1100,7 +1100,7 @@ func (x *ListPipelineIDsByConnectionIDRequest) String() string {
 func (*ListPipelineIDsByConnectionIDRequest) ProtoMessage() {}
 
 func (x *ListPipelineIDsByConnectionIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[14]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1113,7 +1113,7 @@ func (x *ListPipelineIDsByConnectionIDRequest) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use ListPipelineIDsByConnectionIDRequest.ProtoReflect.Descriptor instead.
 func (*ListPipelineIDsByConnectionIDRequest) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_integration_proto_rawDescGZIP(), []int{14}
+	return file_mgmt_v1beta_integration_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *ListPipelineIDsByConnectionIDRequest) GetNamespaceId() string {
@@ -1167,7 +1167,7 @@ type ListPipelineIDsByConnectionIDResponse struct {
 
 func (x *ListPipelineIDsByConnectionIDResponse) Reset() {
 	*x = ListPipelineIDsByConnectionIDResponse{}
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[15]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1179,7 +1179,7 @@ func (x *ListPipelineIDsByConnectionIDResponse) String() string {
 func (*ListPipelineIDsByConnectionIDResponse) ProtoMessage() {}
 
 func (x *ListPipelineIDsByConnectionIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[15]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1192,7 +1192,7 @@ func (x *ListPipelineIDsByConnectionIDResponse) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use ListPipelineIDsByConnectionIDResponse.ProtoReflect.Descriptor instead.
 func (*ListPipelineIDsByConnectionIDResponse) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_integration_proto_rawDescGZIP(), []int{15}
+	return file_mgmt_v1beta_integration_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *ListPipelineIDsByConnectionIDResponse) GetPipelineIds() []string {
@@ -1238,7 +1238,7 @@ type ListIntegrationsRequest struct {
 
 func (x *ListIntegrationsRequest) Reset() {
 	*x = ListIntegrationsRequest{}
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[16]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1250,7 +1250,7 @@ func (x *ListIntegrationsRequest) String() string {
 func (*ListIntegrationsRequest) ProtoMessage() {}
 
 func (x *ListIntegrationsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[16]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1263,7 +1263,7 @@ func (x *ListIntegrationsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListIntegrationsRequest.ProtoReflect.Descriptor instead.
 func (*ListIntegrationsRequest) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_integration_proto_rawDescGZIP(), []int{16}
+	return file_mgmt_v1beta_integration_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *ListIntegrationsRequest) GetPageSize() int32 {
@@ -1302,7 +1302,7 @@ type ListIntegrationsResponse struct {
 
 func (x *ListIntegrationsResponse) Reset() {
 	*x = ListIntegrationsResponse{}
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[17]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1314,7 +1314,7 @@ func (x *ListIntegrationsResponse) String() string {
 func (*ListIntegrationsResponse) ProtoMessage() {}
 
 func (x *ListIntegrationsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[17]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1327,7 +1327,7 @@ func (x *ListIntegrationsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListIntegrationsResponse.ProtoReflect.Descriptor instead.
 func (*ListIntegrationsResponse) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_integration_proto_rawDescGZIP(), []int{17}
+	return file_mgmt_v1beta_integration_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *ListIntegrationsResponse) GetIntegrations() []*Integration {
@@ -1358,14 +1358,14 @@ type GetIntegrationRequest struct {
 	// Integration ID.
 	IntegrationId string `protobuf:"bytes,1,opt,name=integration_id,json=integrationId,proto3" json:"integration_id,omitempty"`
 	// View allows clients to specify the desired view in the response.
-	View          *View `protobuf:"varint,2,opt,name=view,proto3,enum=pipeline.v1beta.View,oneof" json:"view,omitempty"`
+	View          *View `protobuf:"varint,2,opt,name=view,proto3,enum=mgmt.v1beta.View,oneof" json:"view,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetIntegrationRequest) Reset() {
 	*x = GetIntegrationRequest{}
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[18]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1377,7 +1377,7 @@ func (x *GetIntegrationRequest) String() string {
 func (*GetIntegrationRequest) ProtoMessage() {}
 
 func (x *GetIntegrationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[18]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1390,7 +1390,7 @@ func (x *GetIntegrationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetIntegrationRequest.ProtoReflect.Descriptor instead.
 func (*GetIntegrationRequest) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_integration_proto_rawDescGZIP(), []int{18}
+	return file_mgmt_v1beta_integration_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *GetIntegrationRequest) GetIntegrationId() string {
@@ -1418,7 +1418,7 @@ type GetIntegrationResponse struct {
 
 func (x *GetIntegrationResponse) Reset() {
 	*x = GetIntegrationResponse{}
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[19]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1430,7 +1430,7 @@ func (x *GetIntegrationResponse) String() string {
 func (*GetIntegrationResponse) ProtoMessage() {}
 
 func (x *GetIntegrationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[19]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1443,7 +1443,7 @@ func (x *GetIntegrationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetIntegrationResponse.ProtoReflect.Descriptor instead.
 func (*GetIntegrationResponse) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_integration_proto_rawDescGZIP(), []int{19}
+	return file_mgmt_v1beta_integration_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *GetIntegrationResponse) GetIntegration() *Integration {
@@ -1462,14 +1462,14 @@ type LookUpConnectionAdminRequest struct {
 	Permalink string `protobuf:"bytes,1,opt,name=permalink,proto3" json:"permalink,omitempty"`
 	// View allows clients to specify the desired view in the response. It
 	// defaults to `VIEW_BASIC`.
-	View          *View `protobuf:"varint,2,opt,name=view,proto3,enum=pipeline.v1beta.View,oneof" json:"view,omitempty"`
+	View          *View `protobuf:"varint,2,opt,name=view,proto3,enum=mgmt.v1beta.View,oneof" json:"view,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *LookUpConnectionAdminRequest) Reset() {
 	*x = LookUpConnectionAdminRequest{}
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[20]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1481,7 +1481,7 @@ func (x *LookUpConnectionAdminRequest) String() string {
 func (*LookUpConnectionAdminRequest) ProtoMessage() {}
 
 func (x *LookUpConnectionAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[20]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1494,7 +1494,7 @@ func (x *LookUpConnectionAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LookUpConnectionAdminRequest.ProtoReflect.Descriptor instead.
 func (*LookUpConnectionAdminRequest) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_integration_proto_rawDescGZIP(), []int{20}
+	return file_mgmt_v1beta_integration_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *LookUpConnectionAdminRequest) GetPermalink() string {
@@ -1522,7 +1522,7 @@ type LookUpConnectionAdminResponse struct {
 
 func (x *LookUpConnectionAdminResponse) Reset() {
 	*x = LookUpConnectionAdminResponse{}
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[21]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1534,7 +1534,7 @@ func (x *LookUpConnectionAdminResponse) String() string {
 func (*LookUpConnectionAdminResponse) ProtoMessage() {}
 
 func (x *LookUpConnectionAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[21]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1547,7 +1547,7 @@ func (x *LookUpConnectionAdminResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LookUpConnectionAdminResponse.ProtoReflect.Descriptor instead.
 func (*LookUpConnectionAdminResponse) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_integration_proto_rawDescGZIP(), []int{21}
+	return file_mgmt_v1beta_integration_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *LookUpConnectionAdminResponse) GetConnection() *Connection {
@@ -1570,7 +1570,7 @@ type Integration_Link struct {
 
 func (x *Integration_Link) Reset() {
 	*x = Integration_Link{}
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[22]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1582,7 +1582,7 @@ func (x *Integration_Link) String() string {
 func (*Integration_Link) ProtoMessage() {}
 
 func (x *Integration_Link) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[22]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1595,7 +1595,7 @@ func (x *Integration_Link) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Integration_Link.ProtoReflect.Descriptor instead.
 func (*Integration_Link) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_integration_proto_rawDescGZIP(), []int{13, 0}
+	return file_mgmt_v1beta_integration_proto_rawDescGZIP(), []int{13, 0}
 }
 
 func (x *Integration_Link) GetText() string {
@@ -1631,7 +1631,7 @@ type Integration_OAuthConfig struct {
 
 func (x *Integration_OAuthConfig) Reset() {
 	*x = Integration_OAuthConfig{}
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[23]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1643,7 +1643,7 @@ func (x *Integration_OAuthConfig) String() string {
 func (*Integration_OAuthConfig) ProtoMessage() {}
 
 func (x *Integration_OAuthConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_pipeline_v1beta_integration_proto_msgTypes[23]
+	mi := &file_mgmt_v1beta_integration_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1656,7 +1656,7 @@ func (x *Integration_OAuthConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Integration_OAuthConfig.ProtoReflect.Descriptor instead.
 func (*Integration_OAuthConfig) Descriptor() ([]byte, []int) {
-	return file_pipeline_v1beta_integration_proto_rawDescGZIP(), []int{13, 1}
+	return file_mgmt_v1beta_integration_proto_rawDescGZIP(), []int{13, 1}
 }
 
 func (x *Integration_OAuthConfig) GetAuthUrl() string {
@@ -1680,11 +1680,11 @@ func (x *Integration_OAuthConfig) GetScopes() []string {
 	return nil
 }
 
-var File_pipeline_v1beta_integration_proto protoreflect.FileDescriptor
+var File_mgmt_v1beta_integration_proto protoreflect.FileDescriptor
 
-const file_pipeline_v1beta_integration_proto_rawDesc = "" +
+const file_mgmt_v1beta_integration_proto_rawDesc = "" +
 	"\n" +
-	"!pipeline/v1beta/integration.proto\x12\x0fpipeline.v1beta\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1cpipeline/v1beta/common.proto\"\xb4\a\n" +
+	"\x1dmgmt/v1beta/integration.proto\x12\vmgmt.v1beta\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16mgmt/v1beta/mgmt.proto\"\xac\a\n" +
 	"\n" +
 	"Connection\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
@@ -1700,10 +1700,10 @@ const file_pipeline_v1beta_integration_proto_rawDesc = "" +
 	"\fnamespace_id\x18\t \x01(\tB\x03\xe0A\x03R\vnamespaceId\x12-\n" +
 	"\x0eintegration_id\x18\n" +
 	" \x01(\tB\x06\xe0A\x02\xe0A\x05R\rintegrationId\x120\n" +
-	"\x11integration_title\x18\v \x01(\tB\x03\xe0A\x03R\x10integrationTitle\x12?\n" +
-	"\x06method\x18\f \x01(\x0e2\".pipeline.v1beta.Connection.MethodB\x03\xe0A\x02R\x06method\x122\n" +
-	"\x05setup\x18\r \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\x05setup\x12.\n" +
-	"\x04view\x18\x0e \x01(\x0e2\x15.pipeline.v1beta.ViewB\x03\xe0A\x03R\x04view\x12\x1b\n" +
+	"\x11integration_title\x18\v \x01(\tB\x03\xe0A\x03R\x10integrationTitle\x12;\n" +
+	"\x06method\x18\f \x01(\x0e2\x1e.mgmt.v1beta.Connection.MethodB\x03\xe0A\x02R\x06method\x122\n" +
+	"\x05setup\x18\r \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x02R\x05setup\x12*\n" +
+	"\x04view\x18\x0e \x01(\x0e2\x11.mgmt.v1beta.ViewB\x03\xe0A\x03R\x04view\x12\x1b\n" +
 	"\x06scopes\x18\x0f \x03(\tB\x03\xe0A\x01R\x06scopes\x12T\n" +
 	"\x15o_auth_access_details\x18\x10 \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x01H\x00R\x12oAuthAccessDetails\x88\x01\x01\x12$\n" +
 	"\bidentity\x18\x11 \x01(\tB\x03\xe0A\x01H\x01R\bidentity\x88\x01\x01\"I\n" +
@@ -1722,55 +1722,55 @@ const file_pipeline_v1beta_integration_proto_rawDesc = "" +
 	"\n" +
 	"_page_sizeB\r\n" +
 	"\v_page_tokenB\t\n" +
-	"\a_filter\"\xb7\x01\n" +
-	" ListNamespaceConnectionsResponse\x12B\n" +
-	"\vconnections\x18\x01 \x03(\v2\x1b.pipeline.v1beta.ConnectionB\x03\xe0A\x03R\vconnections\x12+\n" +
+	"\a_filter\"\xb3\x01\n" +
+	" ListNamespaceConnectionsResponse\x12>\n" +
+	"\vconnections\x18\x01 \x03(\v2\x17.mgmt.v1beta.ConnectionB\x03\xe0A\x03R\vconnections\x12+\n" +
 	"\x0fnext_page_token\x18\x02 \x01(\tB\x03\xe0A\x03R\rnextPageToken\x12\"\n" +
 	"\n" +
-	"total_size\x18\x03 \x01(\x05B\x03\xe0A\x03R\ttotalSize\"v\n" +
+	"total_size\x18\x03 \x01(\x05B\x03\xe0A\x03R\ttotalSize\"r\n" +
 	"\x1dGetNamespaceConnectionRequest\x12\x17\n" +
-	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\x123\n" +
-	"\x04view\x18\x02 \x01(\x0e2\x15.pipeline.v1beta.ViewB\x03\xe0A\x01H\x00R\x04view\x88\x01\x01B\a\n" +
-	"\x05_view\"b\n" +
-	"\x1eGetNamespaceConnectionResponse\x12@\n" +
+	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\x12/\n" +
+	"\x04view\x18\x02 \x01(\x0e2\x11.mgmt.v1beta.ViewB\x03\xe0A\x01H\x00R\x04view\x88\x01\x01B\a\n" +
+	"\x05_view\"^\n" +
+	"\x1eGetNamespaceConnectionResponse\x12<\n" +
 	"\n" +
-	"connection\x18\x01 \x01(\v2\x1b.pipeline.v1beta.ConnectionB\x03\xe0A\x03R\n" +
-	"connection\"\x81\x01\n" +
+	"connection\x18\x01 \x01(\v2\x17.mgmt.v1beta.ConnectionB\x03\xe0A\x03R\n" +
+	"connection\"}\n" +
 	" CreateNamespaceConnectionRequest\x12\x1b\n" +
-	"\x06parent\x18\x01 \x01(\tB\x03\xe0A\x02R\x06parent\x12@\n" +
+	"\x06parent\x18\x01 \x01(\tB\x03\xe0A\x02R\x06parent\x12<\n" +
 	"\n" +
-	"connection\x18\x02 \x01(\v2\x1b.pipeline.v1beta.ConnectionB\x03\xe0A\x02R\n" +
-	"connection\"e\n" +
-	"!CreateNamespaceConnectionResponse\x12@\n" +
+	"connection\x18\x02 \x01(\v2\x17.mgmt.v1beta.ConnectionB\x03\xe0A\x02R\n" +
+	"connection\"a\n" +
+	"!CreateNamespaceConnectionResponse\x12<\n" +
 	"\n" +
-	"connection\x18\x01 \x01(\v2\x1b.pipeline.v1beta.ConnectionB\x03\xe0A\x03R\n" +
-	"connection\"\xa6\x01\n" +
-	" UpdateNamespaceConnectionRequest\x12@\n" +
+	"connection\x18\x01 \x01(\v2\x17.mgmt.v1beta.ConnectionB\x03\xe0A\x03R\n" +
+	"connection\"\xa2\x01\n" +
+	" UpdateNamespaceConnectionRequest\x12<\n" +
 	"\n" +
-	"connection\x18\x01 \x01(\v2\x1b.pipeline.v1beta.ConnectionB\x03\xe0A\x02R\n" +
+	"connection\x18\x01 \x01(\v2\x17.mgmt.v1beta.ConnectionB\x03\xe0A\x02R\n" +
 	"connection\x12@\n" +
 	"\vupdate_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskB\x03\xe0A\x02R\n" +
-	"updateMask\"e\n" +
-	"!UpdateNamespaceConnectionResponse\x12@\n" +
+	"updateMask\"a\n" +
+	"!UpdateNamespaceConnectionResponse\x12<\n" +
 	"\n" +
-	"connection\x18\x01 \x01(\v2\x1b.pipeline.v1beta.ConnectionB\x03\xe0A\x03R\n" +
+	"connection\x18\x01 \x01(\v2\x17.mgmt.v1beta.ConnectionB\x03\xe0A\x03R\n" +
 	"connection\";\n" +
 	" DeleteNamespaceConnectionRequest\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"#\n" +
 	"!DeleteNamespaceConnectionResponse\"9\n" +
 	"\x1eTestNamespaceConnectionRequest\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\"!\n" +
-	"\x1fTestNamespaceConnectionResponse\"\xf5\x04\n" +
+	"\x1fTestNamespaceConnectionResponse\"\xe9\x04\n" +
 	"\vIntegration\x12\x13\n" +
 	"\x02id\x18\x01 \x01(\tB\x03\xe0A\x03R\x02id\x12\x19\n" +
 	"\x05title\x18\x02 \x01(\tB\x03\xe0A\x03R\x05title\x12%\n" +
 	"\vdescription\x18\x03 \x01(\tB\x03\xe0A\x03R\vdescription\x12\x1b\n" +
 	"\x06vendor\x18\x04 \x01(\tB\x03\xe0A\x03R\x06vendor\x12\x17\n" +
-	"\x04icon\x18\x05 \x01(\tB\x03\xe0A\x03R\x04icon\x12H\n" +
-	"\thelp_link\x18\x06 \x01(\v2!.pipeline.v1beta.Integration.LinkB\x03\xe0A\x03H\x00R\bhelpLink\x88\x01\x01\x12?\n" +
-	"\fsetup_schema\x18\a \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\vsetupSchema\x12V\n" +
-	"\ro_auth_config\x18\b \x01(\v2(.pipeline.v1beta.Integration.OAuthConfigB\x03\xe0A\x03H\x01R\voAuthConfig\x88\x01\x01\x12.\n" +
-	"\x04view\x18\t \x01(\x0e2\x15.pipeline.v1beta.ViewB\x03\xe0A\x03R\x04view\x1a6\n" +
+	"\x04icon\x18\x05 \x01(\tB\x03\xe0A\x03R\x04icon\x12D\n" +
+	"\thelp_link\x18\x06 \x01(\v2\x1d.mgmt.v1beta.Integration.LinkB\x03\xe0A\x03H\x00R\bhelpLink\x88\x01\x01\x12?\n" +
+	"\fsetup_schema\x18\a \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\vsetupSchema\x12R\n" +
+	"\ro_auth_config\x18\b \x01(\v2$.mgmt.v1beta.Integration.OAuthConfigB\x03\xe0A\x03H\x01R\voAuthConfig\x88\x01\x01\x12*\n" +
+	"\x04view\x18\t \x01(\x0e2\x11.mgmt.v1beta.ViewB\x03\xe0A\x03R\x04view\x1a6\n" +
 	"\x04Link\x12\x17\n" +
 	"\x04text\x18\x01 \x01(\tB\x03\xe0A\x03R\x04text\x12\x15\n" +
 	"\x03url\x18\x02 \x01(\tB\x03\xe0A\x03R\x03url\x1an\n" +
@@ -1806,97 +1806,97 @@ const file_pipeline_v1beta_integration_proto_rawDesc = "" +
 	"\n" +
 	"_page_sizeB\r\n" +
 	"\v_page_tokenB\t\n" +
-	"\a_filter\"\xb2\x01\n" +
-	"\x18ListIntegrationsResponse\x12E\n" +
-	"\fintegrations\x18\x01 \x03(\v2\x1c.pipeline.v1beta.IntegrationB\x03\xe0A\x03R\fintegrations\x12+\n" +
+	"\a_filter\"\xae\x01\n" +
+	"\x18ListIntegrationsResponse\x12A\n" +
+	"\fintegrations\x18\x01 \x03(\v2\x18.mgmt.v1beta.IntegrationB\x03\xe0A\x03R\fintegrations\x12+\n" +
 	"\x0fnext_page_token\x18\x02 \x01(\tB\x03\xe0A\x03R\rnextPageToken\x12\"\n" +
 	"\n" +
-	"total_size\x18\x03 \x01(\x05B\x03\xe0A\x03R\ttotalSize\"\x81\x01\n" +
+	"total_size\x18\x03 \x01(\x05B\x03\xe0A\x03R\ttotalSize\"}\n" +
 	"\x15GetIntegrationRequest\x12*\n" +
-	"\x0eintegration_id\x18\x01 \x01(\tB\x03\xe0A\x02R\rintegrationId\x123\n" +
-	"\x04view\x18\x02 \x01(\x0e2\x15.pipeline.v1beta.ViewB\x03\xe0A\x01H\x00R\x04view\x88\x01\x01B\a\n" +
-	"\x05_view\"]\n" +
-	"\x16GetIntegrationResponse\x12C\n" +
-	"\vintegration\x18\x01 \x01(\v2\x1c.pipeline.v1beta.IntegrationB\x03\xe0A\x03R\vintegration\"\x7f\n" +
+	"\x0eintegration_id\x18\x01 \x01(\tB\x03\xe0A\x02R\rintegrationId\x12/\n" +
+	"\x04view\x18\x02 \x01(\x0e2\x11.mgmt.v1beta.ViewB\x03\xe0A\x01H\x00R\x04view\x88\x01\x01B\a\n" +
+	"\x05_view\"Y\n" +
+	"\x16GetIntegrationResponse\x12?\n" +
+	"\vintegration\x18\x01 \x01(\v2\x18.mgmt.v1beta.IntegrationB\x03\xe0A\x03R\vintegration\"{\n" +
 	"\x1cLookUpConnectionAdminRequest\x12!\n" +
-	"\tpermalink\x18\x01 \x01(\tB\x03\xe0A\x02R\tpermalink\x123\n" +
-	"\x04view\x18\x02 \x01(\x0e2\x15.pipeline.v1beta.ViewB\x03\xe0A\x01H\x00R\x04view\x88\x01\x01B\a\n" +
-	"\x05_view\"a\n" +
-	"\x1dLookUpConnectionAdminResponse\x12@\n" +
+	"\tpermalink\x18\x01 \x01(\tB\x03\xe0A\x02R\tpermalink\x12/\n" +
+	"\x04view\x18\x02 \x01(\x0e2\x11.mgmt.v1beta.ViewB\x03\xe0A\x01H\x00R\x04view\x88\x01\x01B\a\n" +
+	"\x05_view\"]\n" +
+	"\x1dLookUpConnectionAdminResponse\x12<\n" +
 	"\n" +
-	"connection\x18\x01 \x01(\v2\x1b.pipeline.v1beta.ConnectionB\x03\xe0A\x03R\n" +
-	"connectionB\xc6\x01\n" +
-	"\x13com.pipeline.v1betaB\x10IntegrationProtoP\x01Z@github.com/instill-ai/protogen-go/pipeline/v1beta;pipelinev1beta\xa2\x02\x03PXX\xaa\x02\x0fPipeline.V1beta\xca\x02\x0fPipeline\\V1beta\xe2\x02\x1bPipeline\\V1beta\\GPBMetadata\xea\x02\x10Pipeline::V1betab\x06proto3"
+	"connection\x18\x01 \x01(\v2\x17.mgmt.v1beta.ConnectionB\x03\xe0A\x03R\n" +
+	"connectionB\xaa\x01\n" +
+	"\x0fcom.mgmt.v1betaB\x10IntegrationProtoP\x01Z8github.com/instill-ai/protogen-go/mgmt/v1beta;mgmtv1beta\xa2\x02\x03MXX\xaa\x02\vMgmt.V1beta\xca\x02\vMgmt\\V1beta\xe2\x02\x17Mgmt\\V1beta\\GPBMetadata\xea\x02\fMgmt::V1betab\x06proto3"
 
 var (
-	file_pipeline_v1beta_integration_proto_rawDescOnce sync.Once
-	file_pipeline_v1beta_integration_proto_rawDescData []byte
+	file_mgmt_v1beta_integration_proto_rawDescOnce sync.Once
+	file_mgmt_v1beta_integration_proto_rawDescData []byte
 )
 
-func file_pipeline_v1beta_integration_proto_rawDescGZIP() []byte {
-	file_pipeline_v1beta_integration_proto_rawDescOnce.Do(func() {
-		file_pipeline_v1beta_integration_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_pipeline_v1beta_integration_proto_rawDesc), len(file_pipeline_v1beta_integration_proto_rawDesc)))
+func file_mgmt_v1beta_integration_proto_rawDescGZIP() []byte {
+	file_mgmt_v1beta_integration_proto_rawDescOnce.Do(func() {
+		file_mgmt_v1beta_integration_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_mgmt_v1beta_integration_proto_rawDesc), len(file_mgmt_v1beta_integration_proto_rawDesc)))
 	})
-	return file_pipeline_v1beta_integration_proto_rawDescData
+	return file_mgmt_v1beta_integration_proto_rawDescData
 }
 
-var file_pipeline_v1beta_integration_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_pipeline_v1beta_integration_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
-var file_pipeline_v1beta_integration_proto_goTypes = []any{
-	(Connection_Method)(0),                        // 0: pipeline.v1beta.Connection.Method
-	(*Connection)(nil),                            // 1: pipeline.v1beta.Connection
-	(*ListNamespaceConnectionsRequest)(nil),       // 2: pipeline.v1beta.ListNamespaceConnectionsRequest
-	(*ListNamespaceConnectionsResponse)(nil),      // 3: pipeline.v1beta.ListNamespaceConnectionsResponse
-	(*GetNamespaceConnectionRequest)(nil),         // 4: pipeline.v1beta.GetNamespaceConnectionRequest
-	(*GetNamespaceConnectionResponse)(nil),        // 5: pipeline.v1beta.GetNamespaceConnectionResponse
-	(*CreateNamespaceConnectionRequest)(nil),      // 6: pipeline.v1beta.CreateNamespaceConnectionRequest
-	(*CreateNamespaceConnectionResponse)(nil),     // 7: pipeline.v1beta.CreateNamespaceConnectionResponse
-	(*UpdateNamespaceConnectionRequest)(nil),      // 8: pipeline.v1beta.UpdateNamespaceConnectionRequest
-	(*UpdateNamespaceConnectionResponse)(nil),     // 9: pipeline.v1beta.UpdateNamespaceConnectionResponse
-	(*DeleteNamespaceConnectionRequest)(nil),      // 10: pipeline.v1beta.DeleteNamespaceConnectionRequest
-	(*DeleteNamespaceConnectionResponse)(nil),     // 11: pipeline.v1beta.DeleteNamespaceConnectionResponse
-	(*TestNamespaceConnectionRequest)(nil),        // 12: pipeline.v1beta.TestNamespaceConnectionRequest
-	(*TestNamespaceConnectionResponse)(nil),       // 13: pipeline.v1beta.TestNamespaceConnectionResponse
-	(*Integration)(nil),                           // 14: pipeline.v1beta.Integration
-	(*ListPipelineIDsByConnectionIDRequest)(nil),  // 15: pipeline.v1beta.ListPipelineIDsByConnectionIDRequest
-	(*ListPipelineIDsByConnectionIDResponse)(nil), // 16: pipeline.v1beta.ListPipelineIDsByConnectionIDResponse
-	(*ListIntegrationsRequest)(nil),               // 17: pipeline.v1beta.ListIntegrationsRequest
-	(*ListIntegrationsResponse)(nil),              // 18: pipeline.v1beta.ListIntegrationsResponse
-	(*GetIntegrationRequest)(nil),                 // 19: pipeline.v1beta.GetIntegrationRequest
-	(*GetIntegrationResponse)(nil),                // 20: pipeline.v1beta.GetIntegrationResponse
-	(*LookUpConnectionAdminRequest)(nil),          // 21: pipeline.v1beta.LookUpConnectionAdminRequest
-	(*LookUpConnectionAdminResponse)(nil),         // 22: pipeline.v1beta.LookUpConnectionAdminResponse
-	(*Integration_Link)(nil),                      // 23: pipeline.v1beta.Integration.Link
-	(*Integration_OAuthConfig)(nil),               // 24: pipeline.v1beta.Integration.OAuthConfig
+var file_mgmt_v1beta_integration_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_mgmt_v1beta_integration_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
+var file_mgmt_v1beta_integration_proto_goTypes = []any{
+	(Connection_Method)(0),                        // 0: mgmt.v1beta.Connection.Method
+	(*Connection)(nil),                            // 1: mgmt.v1beta.Connection
+	(*ListNamespaceConnectionsRequest)(nil),       // 2: mgmt.v1beta.ListNamespaceConnectionsRequest
+	(*ListNamespaceConnectionsResponse)(nil),      // 3: mgmt.v1beta.ListNamespaceConnectionsResponse
+	(*GetNamespaceConnectionRequest)(nil),         // 4: mgmt.v1beta.GetNamespaceConnectionRequest
+	(*GetNamespaceConnectionResponse)(nil),        // 5: mgmt.v1beta.GetNamespaceConnectionResponse
+	(*CreateNamespaceConnectionRequest)(nil),      // 6: mgmt.v1beta.CreateNamespaceConnectionRequest
+	(*CreateNamespaceConnectionResponse)(nil),     // 7: mgmt.v1beta.CreateNamespaceConnectionResponse
+	(*UpdateNamespaceConnectionRequest)(nil),      // 8: mgmt.v1beta.UpdateNamespaceConnectionRequest
+	(*UpdateNamespaceConnectionResponse)(nil),     // 9: mgmt.v1beta.UpdateNamespaceConnectionResponse
+	(*DeleteNamespaceConnectionRequest)(nil),      // 10: mgmt.v1beta.DeleteNamespaceConnectionRequest
+	(*DeleteNamespaceConnectionResponse)(nil),     // 11: mgmt.v1beta.DeleteNamespaceConnectionResponse
+	(*TestNamespaceConnectionRequest)(nil),        // 12: mgmt.v1beta.TestNamespaceConnectionRequest
+	(*TestNamespaceConnectionResponse)(nil),       // 13: mgmt.v1beta.TestNamespaceConnectionResponse
+	(*Integration)(nil),                           // 14: mgmt.v1beta.Integration
+	(*ListPipelineIDsByConnectionIDRequest)(nil),  // 15: mgmt.v1beta.ListPipelineIDsByConnectionIDRequest
+	(*ListPipelineIDsByConnectionIDResponse)(nil), // 16: mgmt.v1beta.ListPipelineIDsByConnectionIDResponse
+	(*ListIntegrationsRequest)(nil),               // 17: mgmt.v1beta.ListIntegrationsRequest
+	(*ListIntegrationsResponse)(nil),              // 18: mgmt.v1beta.ListIntegrationsResponse
+	(*GetIntegrationRequest)(nil),                 // 19: mgmt.v1beta.GetIntegrationRequest
+	(*GetIntegrationResponse)(nil),                // 20: mgmt.v1beta.GetIntegrationResponse
+	(*LookUpConnectionAdminRequest)(nil),          // 21: mgmt.v1beta.LookUpConnectionAdminRequest
+	(*LookUpConnectionAdminResponse)(nil),         // 22: mgmt.v1beta.LookUpConnectionAdminResponse
+	(*Integration_Link)(nil),                      // 23: mgmt.v1beta.Integration.Link
+	(*Integration_OAuthConfig)(nil),               // 24: mgmt.v1beta.Integration.OAuthConfig
 	(*timestamppb.Timestamp)(nil),                 // 25: google.protobuf.Timestamp
 	(*structpb.Struct)(nil),                       // 26: google.protobuf.Struct
-	(View)(0),                                     // 27: pipeline.v1beta.View
+	(View)(0),                                     // 27: mgmt.v1beta.View
 	(*fieldmaskpb.FieldMask)(nil),                 // 28: google.protobuf.FieldMask
 }
-var file_pipeline_v1beta_integration_proto_depIdxs = []int32{
-	25, // 0: pipeline.v1beta.Connection.create_time:type_name -> google.protobuf.Timestamp
-	25, // 1: pipeline.v1beta.Connection.update_time:type_name -> google.protobuf.Timestamp
-	0,  // 2: pipeline.v1beta.Connection.method:type_name -> pipeline.v1beta.Connection.Method
-	26, // 3: pipeline.v1beta.Connection.setup:type_name -> google.protobuf.Struct
-	27, // 4: pipeline.v1beta.Connection.view:type_name -> pipeline.v1beta.View
-	26, // 5: pipeline.v1beta.Connection.o_auth_access_details:type_name -> google.protobuf.Struct
-	1,  // 6: pipeline.v1beta.ListNamespaceConnectionsResponse.connections:type_name -> pipeline.v1beta.Connection
-	27, // 7: pipeline.v1beta.GetNamespaceConnectionRequest.view:type_name -> pipeline.v1beta.View
-	1,  // 8: pipeline.v1beta.GetNamespaceConnectionResponse.connection:type_name -> pipeline.v1beta.Connection
-	1,  // 9: pipeline.v1beta.CreateNamespaceConnectionRequest.connection:type_name -> pipeline.v1beta.Connection
-	1,  // 10: pipeline.v1beta.CreateNamespaceConnectionResponse.connection:type_name -> pipeline.v1beta.Connection
-	1,  // 11: pipeline.v1beta.UpdateNamespaceConnectionRequest.connection:type_name -> pipeline.v1beta.Connection
-	28, // 12: pipeline.v1beta.UpdateNamespaceConnectionRequest.update_mask:type_name -> google.protobuf.FieldMask
-	1,  // 13: pipeline.v1beta.UpdateNamespaceConnectionResponse.connection:type_name -> pipeline.v1beta.Connection
-	23, // 14: pipeline.v1beta.Integration.help_link:type_name -> pipeline.v1beta.Integration.Link
-	26, // 15: pipeline.v1beta.Integration.setup_schema:type_name -> google.protobuf.Struct
-	24, // 16: pipeline.v1beta.Integration.o_auth_config:type_name -> pipeline.v1beta.Integration.OAuthConfig
-	27, // 17: pipeline.v1beta.Integration.view:type_name -> pipeline.v1beta.View
-	14, // 18: pipeline.v1beta.ListIntegrationsResponse.integrations:type_name -> pipeline.v1beta.Integration
-	27, // 19: pipeline.v1beta.GetIntegrationRequest.view:type_name -> pipeline.v1beta.View
-	14, // 20: pipeline.v1beta.GetIntegrationResponse.integration:type_name -> pipeline.v1beta.Integration
-	27, // 21: pipeline.v1beta.LookUpConnectionAdminRequest.view:type_name -> pipeline.v1beta.View
-	1,  // 22: pipeline.v1beta.LookUpConnectionAdminResponse.connection:type_name -> pipeline.v1beta.Connection
+var file_mgmt_v1beta_integration_proto_depIdxs = []int32{
+	25, // 0: mgmt.v1beta.Connection.create_time:type_name -> google.protobuf.Timestamp
+	25, // 1: mgmt.v1beta.Connection.update_time:type_name -> google.protobuf.Timestamp
+	0,  // 2: mgmt.v1beta.Connection.method:type_name -> mgmt.v1beta.Connection.Method
+	26, // 3: mgmt.v1beta.Connection.setup:type_name -> google.protobuf.Struct
+	27, // 4: mgmt.v1beta.Connection.view:type_name -> mgmt.v1beta.View
+	26, // 5: mgmt.v1beta.Connection.o_auth_access_details:type_name -> google.protobuf.Struct
+	1,  // 6: mgmt.v1beta.ListNamespaceConnectionsResponse.connections:type_name -> mgmt.v1beta.Connection
+	27, // 7: mgmt.v1beta.GetNamespaceConnectionRequest.view:type_name -> mgmt.v1beta.View
+	1,  // 8: mgmt.v1beta.GetNamespaceConnectionResponse.connection:type_name -> mgmt.v1beta.Connection
+	1,  // 9: mgmt.v1beta.CreateNamespaceConnectionRequest.connection:type_name -> mgmt.v1beta.Connection
+	1,  // 10: mgmt.v1beta.CreateNamespaceConnectionResponse.connection:type_name -> mgmt.v1beta.Connection
+	1,  // 11: mgmt.v1beta.UpdateNamespaceConnectionRequest.connection:type_name -> mgmt.v1beta.Connection
+	28, // 12: mgmt.v1beta.UpdateNamespaceConnectionRequest.update_mask:type_name -> google.protobuf.FieldMask
+	1,  // 13: mgmt.v1beta.UpdateNamespaceConnectionResponse.connection:type_name -> mgmt.v1beta.Connection
+	23, // 14: mgmt.v1beta.Integration.help_link:type_name -> mgmt.v1beta.Integration.Link
+	26, // 15: mgmt.v1beta.Integration.setup_schema:type_name -> google.protobuf.Struct
+	24, // 16: mgmt.v1beta.Integration.o_auth_config:type_name -> mgmt.v1beta.Integration.OAuthConfig
+	27, // 17: mgmt.v1beta.Integration.view:type_name -> mgmt.v1beta.View
+	14, // 18: mgmt.v1beta.ListIntegrationsResponse.integrations:type_name -> mgmt.v1beta.Integration
+	27, // 19: mgmt.v1beta.GetIntegrationRequest.view:type_name -> mgmt.v1beta.View
+	14, // 20: mgmt.v1beta.GetIntegrationResponse.integration:type_name -> mgmt.v1beta.Integration
+	27, // 21: mgmt.v1beta.LookUpConnectionAdminRequest.view:type_name -> mgmt.v1beta.View
+	1,  // 22: mgmt.v1beta.LookUpConnectionAdminResponse.connection:type_name -> mgmt.v1beta.Connection
 	23, // [23:23] is the sub-list for method output_type
 	23, // [23:23] is the sub-list for method input_type
 	23, // [23:23] is the sub-list for extension type_name
@@ -1904,36 +1904,36 @@ var file_pipeline_v1beta_integration_proto_depIdxs = []int32{
 	0,  // [0:23] is the sub-list for field type_name
 }
 
-func init() { file_pipeline_v1beta_integration_proto_init() }
-func file_pipeline_v1beta_integration_proto_init() {
-	if File_pipeline_v1beta_integration_proto != nil {
+func init() { file_mgmt_v1beta_integration_proto_init() }
+func file_mgmt_v1beta_integration_proto_init() {
+	if File_mgmt_v1beta_integration_proto != nil {
 		return
 	}
-	file_pipeline_v1beta_common_proto_init()
-	file_pipeline_v1beta_integration_proto_msgTypes[0].OneofWrappers = []any{}
-	file_pipeline_v1beta_integration_proto_msgTypes[1].OneofWrappers = []any{}
-	file_pipeline_v1beta_integration_proto_msgTypes[3].OneofWrappers = []any{}
-	file_pipeline_v1beta_integration_proto_msgTypes[13].OneofWrappers = []any{}
-	file_pipeline_v1beta_integration_proto_msgTypes[14].OneofWrappers = []any{}
-	file_pipeline_v1beta_integration_proto_msgTypes[16].OneofWrappers = []any{}
-	file_pipeline_v1beta_integration_proto_msgTypes[18].OneofWrappers = []any{}
-	file_pipeline_v1beta_integration_proto_msgTypes[20].OneofWrappers = []any{}
+	file_mgmt_v1beta_mgmt_proto_init()
+	file_mgmt_v1beta_integration_proto_msgTypes[0].OneofWrappers = []any{}
+	file_mgmt_v1beta_integration_proto_msgTypes[1].OneofWrappers = []any{}
+	file_mgmt_v1beta_integration_proto_msgTypes[3].OneofWrappers = []any{}
+	file_mgmt_v1beta_integration_proto_msgTypes[13].OneofWrappers = []any{}
+	file_mgmt_v1beta_integration_proto_msgTypes[14].OneofWrappers = []any{}
+	file_mgmt_v1beta_integration_proto_msgTypes[16].OneofWrappers = []any{}
+	file_mgmt_v1beta_integration_proto_msgTypes[18].OneofWrappers = []any{}
+	file_mgmt_v1beta_integration_proto_msgTypes[20].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_pipeline_v1beta_integration_proto_rawDesc), len(file_pipeline_v1beta_integration_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_mgmt_v1beta_integration_proto_rawDesc), len(file_mgmt_v1beta_integration_proto_rawDesc)),
 			NumEnums:      1,
 			NumMessages:   24,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_pipeline_v1beta_integration_proto_goTypes,
-		DependencyIndexes: file_pipeline_v1beta_integration_proto_depIdxs,
-		EnumInfos:         file_pipeline_v1beta_integration_proto_enumTypes,
-		MessageInfos:      file_pipeline_v1beta_integration_proto_msgTypes,
+		GoTypes:           file_mgmt_v1beta_integration_proto_goTypes,
+		DependencyIndexes: file_mgmt_v1beta_integration_proto_depIdxs,
+		EnumInfos:         file_mgmt_v1beta_integration_proto_enumTypes,
+		MessageInfos:      file_mgmt_v1beta_integration_proto_msgTypes,
 	}.Build()
-	File_pipeline_v1beta_integration_proto = out.File
-	file_pipeline_v1beta_integration_proto_goTypes = nil
-	file_pipeline_v1beta_integration_proto_depIdxs = nil
+	File_mgmt_v1beta_integration_proto = out.File
+	file_mgmt_v1beta_integration_proto_goTypes = nil
+	file_mgmt_v1beta_integration_proto_depIdxs = nil
 }

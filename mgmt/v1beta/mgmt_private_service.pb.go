@@ -24,7 +24,7 @@ var File_mgmt_v1beta_mgmt_private_service_proto protoreflect.FileDescriptor
 
 const file_mgmt_v1beta_mgmt_private_service_proto_rawDesc = "" +
 	"\n" +
-	"&mgmt/v1beta/mgmt_private_service.proto\x12\vmgmt.v1beta\x1a\x16mgmt/v1beta/mgmt.proto2\xeb\x06\n" +
+	"&mgmt/v1beta/mgmt_private_service.proto\x12\vmgmt.v1beta\x1a\x1dmgmt/v1beta/integration.proto\x1a\x16mgmt/v1beta/mgmt.proto2\xdd\a\n" +
 	"\x12MgmtPrivateService\x12[\n" +
 	"\x0eListUsersAdmin\x12\".mgmt.v1beta.ListUsersAdminRequest\x1a#.mgmt.v1beta.ListUsersAdminResponse\"\x00\x12U\n" +
 	"\fGetUserAdmin\x12 .mgmt.v1beta.GetUserAdminRequest\x1a!.mgmt.v1beta.GetUserAdminResponse\"\x00\x12^\n" +
@@ -33,7 +33,8 @@ const file_mgmt_v1beta_mgmt_private_service_proto_rawDesc = "" +
 	"\x14GetOrganizationAdmin\x12(.mgmt.v1beta.GetOrganizationAdminRequest\x1a).mgmt.v1beta.GetOrganizationAdminResponse\"\x00\x12v\n" +
 	"\x17LookUpOrganizationAdmin\x12+.mgmt.v1beta.LookUpOrganizationAdminRequest\x1a,.mgmt.v1beta.LookUpOrganizationAdminResponse\"\x00\x12j\n" +
 	"\x13CheckNamespaceAdmin\x12'.mgmt.v1beta.CheckNamespaceAdminRequest\x1a(.mgmt.v1beta.CheckNamespaceAdminResponse\"\x00\x12y\n" +
-	"\x18CheckNamespaceByUIDAdmin\x12,.mgmt.v1beta.CheckNamespaceByUIDAdminRequest\x1a-.mgmt.v1beta.CheckNamespaceByUIDAdminResponse\"\x00B\xb1\x01\n" +
+	"\x18CheckNamespaceByUIDAdmin\x12,.mgmt.v1beta.CheckNamespaceByUIDAdminRequest\x1a-.mgmt.v1beta.CheckNamespaceByUIDAdminResponse\"\x00\x12p\n" +
+	"\x15LookUpConnectionAdmin\x12).mgmt.v1beta.LookUpConnectionAdminRequest\x1a*.mgmt.v1beta.LookUpConnectionAdminResponse\"\x00B\xb1\x01\n" +
 	"\x0fcom.mgmt.v1betaB\x17MgmtPrivateServiceProtoP\x01Z8github.com/instill-ai/protogen-go/mgmt/v1beta;mgmtv1beta\xa2\x02\x03MXX\xaa\x02\vMgmt.V1beta\xca\x02\vMgmt\\V1beta\xe2\x02\x17Mgmt\\V1beta\\GPBMetadata\xea\x02\fMgmt::V1betab\x06proto3"
 
 var file_mgmt_v1beta_mgmt_private_service_proto_goTypes = []any{
@@ -45,14 +46,16 @@ var file_mgmt_v1beta_mgmt_private_service_proto_goTypes = []any{
 	(*LookUpOrganizationAdminRequest)(nil),   // 5: mgmt.v1beta.LookUpOrganizationAdminRequest
 	(*CheckNamespaceAdminRequest)(nil),       // 6: mgmt.v1beta.CheckNamespaceAdminRequest
 	(*CheckNamespaceByUIDAdminRequest)(nil),  // 7: mgmt.v1beta.CheckNamespaceByUIDAdminRequest
-	(*ListUsersAdminResponse)(nil),           // 8: mgmt.v1beta.ListUsersAdminResponse
-	(*GetUserAdminResponse)(nil),             // 9: mgmt.v1beta.GetUserAdminResponse
-	(*LookUpUserAdminResponse)(nil),          // 10: mgmt.v1beta.LookUpUserAdminResponse
-	(*ListOrganizationsAdminResponse)(nil),   // 11: mgmt.v1beta.ListOrganizationsAdminResponse
-	(*GetOrganizationAdminResponse)(nil),     // 12: mgmt.v1beta.GetOrganizationAdminResponse
-	(*LookUpOrganizationAdminResponse)(nil),  // 13: mgmt.v1beta.LookUpOrganizationAdminResponse
-	(*CheckNamespaceAdminResponse)(nil),      // 14: mgmt.v1beta.CheckNamespaceAdminResponse
-	(*CheckNamespaceByUIDAdminResponse)(nil), // 15: mgmt.v1beta.CheckNamespaceByUIDAdminResponse
+	(*LookUpConnectionAdminRequest)(nil),     // 8: mgmt.v1beta.LookUpConnectionAdminRequest
+	(*ListUsersAdminResponse)(nil),           // 9: mgmt.v1beta.ListUsersAdminResponse
+	(*GetUserAdminResponse)(nil),             // 10: mgmt.v1beta.GetUserAdminResponse
+	(*LookUpUserAdminResponse)(nil),          // 11: mgmt.v1beta.LookUpUserAdminResponse
+	(*ListOrganizationsAdminResponse)(nil),   // 12: mgmt.v1beta.ListOrganizationsAdminResponse
+	(*GetOrganizationAdminResponse)(nil),     // 13: mgmt.v1beta.GetOrganizationAdminResponse
+	(*LookUpOrganizationAdminResponse)(nil),  // 14: mgmt.v1beta.LookUpOrganizationAdminResponse
+	(*CheckNamespaceAdminResponse)(nil),      // 15: mgmt.v1beta.CheckNamespaceAdminResponse
+	(*CheckNamespaceByUIDAdminResponse)(nil), // 16: mgmt.v1beta.CheckNamespaceByUIDAdminResponse
+	(*LookUpConnectionAdminResponse)(nil),    // 17: mgmt.v1beta.LookUpConnectionAdminResponse
 }
 var file_mgmt_v1beta_mgmt_private_service_proto_depIdxs = []int32{
 	0,  // 0: mgmt.v1beta.MgmtPrivateService.ListUsersAdmin:input_type -> mgmt.v1beta.ListUsersAdminRequest
@@ -63,16 +66,18 @@ var file_mgmt_v1beta_mgmt_private_service_proto_depIdxs = []int32{
 	5,  // 5: mgmt.v1beta.MgmtPrivateService.LookUpOrganizationAdmin:input_type -> mgmt.v1beta.LookUpOrganizationAdminRequest
 	6,  // 6: mgmt.v1beta.MgmtPrivateService.CheckNamespaceAdmin:input_type -> mgmt.v1beta.CheckNamespaceAdminRequest
 	7,  // 7: mgmt.v1beta.MgmtPrivateService.CheckNamespaceByUIDAdmin:input_type -> mgmt.v1beta.CheckNamespaceByUIDAdminRequest
-	8,  // 8: mgmt.v1beta.MgmtPrivateService.ListUsersAdmin:output_type -> mgmt.v1beta.ListUsersAdminResponse
-	9,  // 9: mgmt.v1beta.MgmtPrivateService.GetUserAdmin:output_type -> mgmt.v1beta.GetUserAdminResponse
-	10, // 10: mgmt.v1beta.MgmtPrivateService.LookUpUserAdmin:output_type -> mgmt.v1beta.LookUpUserAdminResponse
-	11, // 11: mgmt.v1beta.MgmtPrivateService.ListOrganizationsAdmin:output_type -> mgmt.v1beta.ListOrganizationsAdminResponse
-	12, // 12: mgmt.v1beta.MgmtPrivateService.GetOrganizationAdmin:output_type -> mgmt.v1beta.GetOrganizationAdminResponse
-	13, // 13: mgmt.v1beta.MgmtPrivateService.LookUpOrganizationAdmin:output_type -> mgmt.v1beta.LookUpOrganizationAdminResponse
-	14, // 14: mgmt.v1beta.MgmtPrivateService.CheckNamespaceAdmin:output_type -> mgmt.v1beta.CheckNamespaceAdminResponse
-	15, // 15: mgmt.v1beta.MgmtPrivateService.CheckNamespaceByUIDAdmin:output_type -> mgmt.v1beta.CheckNamespaceByUIDAdminResponse
-	8,  // [8:16] is the sub-list for method output_type
-	0,  // [0:8] is the sub-list for method input_type
+	8,  // 8: mgmt.v1beta.MgmtPrivateService.LookUpConnectionAdmin:input_type -> mgmt.v1beta.LookUpConnectionAdminRequest
+	9,  // 9: mgmt.v1beta.MgmtPrivateService.ListUsersAdmin:output_type -> mgmt.v1beta.ListUsersAdminResponse
+	10, // 10: mgmt.v1beta.MgmtPrivateService.GetUserAdmin:output_type -> mgmt.v1beta.GetUserAdminResponse
+	11, // 11: mgmt.v1beta.MgmtPrivateService.LookUpUserAdmin:output_type -> mgmt.v1beta.LookUpUserAdminResponse
+	12, // 12: mgmt.v1beta.MgmtPrivateService.ListOrganizationsAdmin:output_type -> mgmt.v1beta.ListOrganizationsAdminResponse
+	13, // 13: mgmt.v1beta.MgmtPrivateService.GetOrganizationAdmin:output_type -> mgmt.v1beta.GetOrganizationAdminResponse
+	14, // 14: mgmt.v1beta.MgmtPrivateService.LookUpOrganizationAdmin:output_type -> mgmt.v1beta.LookUpOrganizationAdminResponse
+	15, // 15: mgmt.v1beta.MgmtPrivateService.CheckNamespaceAdmin:output_type -> mgmt.v1beta.CheckNamespaceAdminResponse
+	16, // 16: mgmt.v1beta.MgmtPrivateService.CheckNamespaceByUIDAdmin:output_type -> mgmt.v1beta.CheckNamespaceByUIDAdminResponse
+	17, // 17: mgmt.v1beta.MgmtPrivateService.LookUpConnectionAdmin:output_type -> mgmt.v1beta.LookUpConnectionAdminResponse
+	9,  // [9:18] is the sub-list for method output_type
+	0,  // [0:9] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
@@ -83,6 +88,7 @@ func file_mgmt_v1beta_mgmt_private_service_proto_init() {
 	if File_mgmt_v1beta_mgmt_private_service_proto != nil {
 		return
 	}
+	file_mgmt_v1beta_integration_proto_init()
 	file_mgmt_v1beta_mgmt_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{

@@ -19,49 +19,40 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	PipelinePublicService_Liveness_FullMethodName                      = "/pipeline.v1beta.PipelinePublicService/Liveness"
-	PipelinePublicService_Readiness_FullMethodName                     = "/pipeline.v1beta.PipelinePublicService/Readiness"
-	PipelinePublicService_GetHubStats_FullMethodName                   = "/pipeline.v1beta.PipelinePublicService/GetHubStats"
-	PipelinePublicService_ListPublicPipelines_FullMethodName           = "/pipeline.v1beta.PipelinePublicService/ListPublicPipelines"
-	PipelinePublicService_ListPipelines_FullMethodName                 = "/pipeline.v1beta.PipelinePublicService/ListPipelines"
-	PipelinePublicService_CreatePipeline_FullMethodName                = "/pipeline.v1beta.PipelinePublicService/CreatePipeline"
-	PipelinePublicService_GetPipeline_FullMethodName                   = "/pipeline.v1beta.PipelinePublicService/GetPipeline"
-	PipelinePublicService_UpdatePipeline_FullMethodName                = "/pipeline.v1beta.PipelinePublicService/UpdatePipeline"
-	PipelinePublicService_DeletePipeline_FullMethodName                = "/pipeline.v1beta.PipelinePublicService/DeletePipeline"
-	PipelinePublicService_ValidatePipeline_FullMethodName              = "/pipeline.v1beta.PipelinePublicService/ValidatePipeline"
-	PipelinePublicService_RenamePipeline_FullMethodName                = "/pipeline.v1beta.PipelinePublicService/RenamePipeline"
-	PipelinePublicService_ClonePipeline_FullMethodName                 = "/pipeline.v1beta.PipelinePublicService/ClonePipeline"
-	PipelinePublicService_DispatchPipelineWebhookEvent_FullMethodName  = "/pipeline.v1beta.PipelinePublicService/DispatchPipelineWebhookEvent"
-	PipelinePublicService_TriggerPipeline_FullMethodName               = "/pipeline.v1beta.PipelinePublicService/TriggerPipeline"
-	PipelinePublicService_TriggerPipelineWithStream_FullMethodName     = "/pipeline.v1beta.PipelinePublicService/TriggerPipelineWithStream"
-	PipelinePublicService_TriggerAsyncPipeline_FullMethodName          = "/pipeline.v1beta.PipelinePublicService/TriggerAsyncPipeline"
-	PipelinePublicService_CreatePipelineRelease_FullMethodName         = "/pipeline.v1beta.PipelinePublicService/CreatePipelineRelease"
-	PipelinePublicService_ListPipelineReleases_FullMethodName          = "/pipeline.v1beta.PipelinePublicService/ListPipelineReleases"
-	PipelinePublicService_GetPipelineRelease_FullMethodName            = "/pipeline.v1beta.PipelinePublicService/GetPipelineRelease"
-	PipelinePublicService_UpdatePipelineRelease_FullMethodName         = "/pipeline.v1beta.PipelinePublicService/UpdatePipelineRelease"
-	PipelinePublicService_DeletePipelineRelease_FullMethodName         = "/pipeline.v1beta.PipelinePublicService/DeletePipelineRelease"
-	PipelinePublicService_ClonePipelineRelease_FullMethodName          = "/pipeline.v1beta.PipelinePublicService/ClonePipelineRelease"
-	PipelinePublicService_TriggerPipelineRelease_FullMethodName        = "/pipeline.v1beta.PipelinePublicService/TriggerPipelineRelease"
-	PipelinePublicService_TriggerAsyncPipelineRelease_FullMethodName   = "/pipeline.v1beta.PipelinePublicService/TriggerAsyncPipelineRelease"
-	PipelinePublicService_CreateNamespaceSecret_FullMethodName         = "/pipeline.v1beta.PipelinePublicService/CreateNamespaceSecret"
-	PipelinePublicService_ListNamespaceSecrets_FullMethodName          = "/pipeline.v1beta.PipelinePublicService/ListNamespaceSecrets"
-	PipelinePublicService_GetNamespaceSecret_FullMethodName            = "/pipeline.v1beta.PipelinePublicService/GetNamespaceSecret"
-	PipelinePublicService_UpdateNamespaceSecret_FullMethodName         = "/pipeline.v1beta.PipelinePublicService/UpdateNamespaceSecret"
-	PipelinePublicService_DeleteNamespaceSecret_FullMethodName         = "/pipeline.v1beta.PipelinePublicService/DeleteNamespaceSecret"
-	PipelinePublicService_ListComponentDefinitions_FullMethodName      = "/pipeline.v1beta.PipelinePublicService/ListComponentDefinitions"
-	PipelinePublicService_GetOperation_FullMethodName                  = "/pipeline.v1beta.PipelinePublicService/GetOperation"
-	PipelinePublicService_ListPipelineRuns_FullMethodName              = "/pipeline.v1beta.PipelinePublicService/ListPipelineRuns"
-	PipelinePublicService_ListComponentRuns_FullMethodName             = "/pipeline.v1beta.PipelinePublicService/ListComponentRuns"
-	PipelinePublicService_ListPipelineRunsByRequester_FullMethodName   = "/pipeline.v1beta.PipelinePublicService/ListPipelineRunsByRequester"
-	PipelinePublicService_ListNamespaceConnections_FullMethodName      = "/pipeline.v1beta.PipelinePublicService/ListNamespaceConnections"
-	PipelinePublicService_GetNamespaceConnection_FullMethodName        = "/pipeline.v1beta.PipelinePublicService/GetNamespaceConnection"
-	PipelinePublicService_CreateNamespaceConnection_FullMethodName     = "/pipeline.v1beta.PipelinePublicService/CreateNamespaceConnection"
-	PipelinePublicService_UpdateNamespaceConnection_FullMethodName     = "/pipeline.v1beta.PipelinePublicService/UpdateNamespaceConnection"
-	PipelinePublicService_DeleteNamespaceConnection_FullMethodName     = "/pipeline.v1beta.PipelinePublicService/DeleteNamespaceConnection"
-	PipelinePublicService_TestNamespaceConnection_FullMethodName       = "/pipeline.v1beta.PipelinePublicService/TestNamespaceConnection"
-	PipelinePublicService_ListPipelineIDsByConnectionID_FullMethodName = "/pipeline.v1beta.PipelinePublicService/ListPipelineIDsByConnectionID"
-	PipelinePublicService_ListIntegrations_FullMethodName              = "/pipeline.v1beta.PipelinePublicService/ListIntegrations"
-	PipelinePublicService_GetIntegration_FullMethodName                = "/pipeline.v1beta.PipelinePublicService/GetIntegration"
+	PipelinePublicService_Liveness_FullMethodName                     = "/pipeline.v1beta.PipelinePublicService/Liveness"
+	PipelinePublicService_Readiness_FullMethodName                    = "/pipeline.v1beta.PipelinePublicService/Readiness"
+	PipelinePublicService_GetHubStats_FullMethodName                  = "/pipeline.v1beta.PipelinePublicService/GetHubStats"
+	PipelinePublicService_ListPublicPipelines_FullMethodName          = "/pipeline.v1beta.PipelinePublicService/ListPublicPipelines"
+	PipelinePublicService_ListPipelines_FullMethodName                = "/pipeline.v1beta.PipelinePublicService/ListPipelines"
+	PipelinePublicService_CreatePipeline_FullMethodName               = "/pipeline.v1beta.PipelinePublicService/CreatePipeline"
+	PipelinePublicService_GetPipeline_FullMethodName                  = "/pipeline.v1beta.PipelinePublicService/GetPipeline"
+	PipelinePublicService_UpdatePipeline_FullMethodName               = "/pipeline.v1beta.PipelinePublicService/UpdatePipeline"
+	PipelinePublicService_DeletePipeline_FullMethodName               = "/pipeline.v1beta.PipelinePublicService/DeletePipeline"
+	PipelinePublicService_ValidatePipeline_FullMethodName             = "/pipeline.v1beta.PipelinePublicService/ValidatePipeline"
+	PipelinePublicService_RenamePipeline_FullMethodName               = "/pipeline.v1beta.PipelinePublicService/RenamePipeline"
+	PipelinePublicService_ClonePipeline_FullMethodName                = "/pipeline.v1beta.PipelinePublicService/ClonePipeline"
+	PipelinePublicService_DispatchPipelineWebhookEvent_FullMethodName = "/pipeline.v1beta.PipelinePublicService/DispatchPipelineWebhookEvent"
+	PipelinePublicService_TriggerPipeline_FullMethodName              = "/pipeline.v1beta.PipelinePublicService/TriggerPipeline"
+	PipelinePublicService_TriggerPipelineWithStream_FullMethodName    = "/pipeline.v1beta.PipelinePublicService/TriggerPipelineWithStream"
+	PipelinePublicService_TriggerAsyncPipeline_FullMethodName         = "/pipeline.v1beta.PipelinePublicService/TriggerAsyncPipeline"
+	PipelinePublicService_CreatePipelineRelease_FullMethodName        = "/pipeline.v1beta.PipelinePublicService/CreatePipelineRelease"
+	PipelinePublicService_ListPipelineReleases_FullMethodName         = "/pipeline.v1beta.PipelinePublicService/ListPipelineReleases"
+	PipelinePublicService_GetPipelineRelease_FullMethodName           = "/pipeline.v1beta.PipelinePublicService/GetPipelineRelease"
+	PipelinePublicService_UpdatePipelineRelease_FullMethodName        = "/pipeline.v1beta.PipelinePublicService/UpdatePipelineRelease"
+	PipelinePublicService_DeletePipelineRelease_FullMethodName        = "/pipeline.v1beta.PipelinePublicService/DeletePipelineRelease"
+	PipelinePublicService_ClonePipelineRelease_FullMethodName         = "/pipeline.v1beta.PipelinePublicService/ClonePipelineRelease"
+	PipelinePublicService_TriggerPipelineRelease_FullMethodName       = "/pipeline.v1beta.PipelinePublicService/TriggerPipelineRelease"
+	PipelinePublicService_TriggerAsyncPipelineRelease_FullMethodName  = "/pipeline.v1beta.PipelinePublicService/TriggerAsyncPipelineRelease"
+	PipelinePublicService_CreateNamespaceSecret_FullMethodName        = "/pipeline.v1beta.PipelinePublicService/CreateNamespaceSecret"
+	PipelinePublicService_ListNamespaceSecrets_FullMethodName         = "/pipeline.v1beta.PipelinePublicService/ListNamespaceSecrets"
+	PipelinePublicService_GetNamespaceSecret_FullMethodName           = "/pipeline.v1beta.PipelinePublicService/GetNamespaceSecret"
+	PipelinePublicService_UpdateNamespaceSecret_FullMethodName        = "/pipeline.v1beta.PipelinePublicService/UpdateNamespaceSecret"
+	PipelinePublicService_DeleteNamespaceSecret_FullMethodName        = "/pipeline.v1beta.PipelinePublicService/DeleteNamespaceSecret"
+	PipelinePublicService_ListComponentDefinitions_FullMethodName     = "/pipeline.v1beta.PipelinePublicService/ListComponentDefinitions"
+	PipelinePublicService_GetOperation_FullMethodName                 = "/pipeline.v1beta.PipelinePublicService/GetOperation"
+	PipelinePublicService_ListPipelineRuns_FullMethodName             = "/pipeline.v1beta.PipelinePublicService/ListPipelineRuns"
+	PipelinePublicService_ListComponentRuns_FullMethodName            = "/pipeline.v1beta.PipelinePublicService/ListComponentRuns"
+	PipelinePublicService_ListPipelineRunsByRequester_FullMethodName  = "/pipeline.v1beta.PipelinePublicService/ListPipelineRunsByRequester"
 )
 
 // PipelinePublicServiceClient is the client API for PipelinePublicService service.
@@ -296,50 +287,6 @@ type PipelinePublicServiceClient interface {
 	// Returns a paginated list of runs for requested by a namespace. The
 	// response may contain runs from several pipelines.
 	ListPipelineRunsByRequester(ctx context.Context, in *ListPipelineRunsByRequesterRequest, opts ...grpc.CallOption) (*ListPipelineRunsByRequesterResponse, error)
-	// List namespace connections
-	//
-	// Returns a paginated list of connections created by a namespace.
-	ListNamespaceConnections(ctx context.Context, in *ListNamespaceConnectionsRequest, opts ...grpc.CallOption) (*ListNamespaceConnectionsResponse, error)
-	// Get a namespace connection
-	//
-	// Returns the details of a connection.
-	GetNamespaceConnection(ctx context.Context, in *GetNamespaceConnectionRequest, opts ...grpc.CallOption) (*GetNamespaceConnectionResponse, error)
-	// Create a connection
-	//
-	// Creates a connection under the ownership of a namespace.
-	CreateNamespaceConnection(ctx context.Context, in *CreateNamespaceConnectionRequest, opts ...grpc.CallOption) (*CreateNamespaceConnectionResponse, error)
-	// Update a connection
-	//
-	// Updates a connection with the supplied connection fields.
-	UpdateNamespaceConnection(ctx context.Context, in *UpdateNamespaceConnectionRequest, opts ...grpc.CallOption) (*UpdateNamespaceConnectionResponse, error)
-	// Delete a connection
-	//
-	// Deletes a connection.
-	DeleteNamespaceConnection(ctx context.Context, in *DeleteNamespaceConnectionRequest, opts ...grpc.CallOption) (*DeleteNamespaceConnectionResponse, error)
-	// Test a connection
-	//
-	// Makes a request to the 3rd party app that the connection is configured to
-	// communicate with, and checks the result of the call. If the test fails,
-	// the response status and error message will provide more information about
-	// the failure.
-	//
-	// Note that this action might affect the quota or billing of the integrated
-	// account in the 3rd party app.
-	TestNamespaceConnection(ctx context.Context, in *TestNamespaceConnectionRequest, opts ...grpc.CallOption) (*TestNamespaceConnectionResponse, error)
-	// List pipelines that reference a connection
-	//
-	// Returns a paginated list with the IDs of the pipelines that reference a
-	// given connection. All the pipelines will belong to the same namespace as
-	// the connection.
-	ListPipelineIDsByConnectionID(ctx context.Context, in *ListPipelineIDsByConnectionIDRequest, opts ...grpc.CallOption) (*ListPipelineIDsByConnectionIDResponse, error)
-	// List integrations
-	//
-	// Returns a paginated list of available integrations.
-	ListIntegrations(ctx context.Context, in *ListIntegrationsRequest, opts ...grpc.CallOption) (*ListIntegrationsResponse, error)
-	// Get an integration
-	//
-	// Returns the details of an integration.
-	GetIntegration(ctx context.Context, in *GetIntegrationRequest, opts ...grpc.CallOption) (*GetIntegrationResponse, error)
 }
 
 type pipelinePublicServiceClient struct {
@@ -699,96 +646,6 @@ func (c *pipelinePublicServiceClient) ListPipelineRunsByRequester(ctx context.Co
 	return out, nil
 }
 
-func (c *pipelinePublicServiceClient) ListNamespaceConnections(ctx context.Context, in *ListNamespaceConnectionsRequest, opts ...grpc.CallOption) (*ListNamespaceConnectionsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListNamespaceConnectionsResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_ListNamespaceConnections_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *pipelinePublicServiceClient) GetNamespaceConnection(ctx context.Context, in *GetNamespaceConnectionRequest, opts ...grpc.CallOption) (*GetNamespaceConnectionResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetNamespaceConnectionResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_GetNamespaceConnection_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *pipelinePublicServiceClient) CreateNamespaceConnection(ctx context.Context, in *CreateNamespaceConnectionRequest, opts ...grpc.CallOption) (*CreateNamespaceConnectionResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateNamespaceConnectionResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_CreateNamespaceConnection_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *pipelinePublicServiceClient) UpdateNamespaceConnection(ctx context.Context, in *UpdateNamespaceConnectionRequest, opts ...grpc.CallOption) (*UpdateNamespaceConnectionResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateNamespaceConnectionResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_UpdateNamespaceConnection_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *pipelinePublicServiceClient) DeleteNamespaceConnection(ctx context.Context, in *DeleteNamespaceConnectionRequest, opts ...grpc.CallOption) (*DeleteNamespaceConnectionResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteNamespaceConnectionResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_DeleteNamespaceConnection_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *pipelinePublicServiceClient) TestNamespaceConnection(ctx context.Context, in *TestNamespaceConnectionRequest, opts ...grpc.CallOption) (*TestNamespaceConnectionResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TestNamespaceConnectionResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_TestNamespaceConnection_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *pipelinePublicServiceClient) ListPipelineIDsByConnectionID(ctx context.Context, in *ListPipelineIDsByConnectionIDRequest, opts ...grpc.CallOption) (*ListPipelineIDsByConnectionIDResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListPipelineIDsByConnectionIDResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_ListPipelineIDsByConnectionID_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *pipelinePublicServiceClient) ListIntegrations(ctx context.Context, in *ListIntegrationsRequest, opts ...grpc.CallOption) (*ListIntegrationsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListIntegrationsResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_ListIntegrations_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *pipelinePublicServiceClient) GetIntegration(ctx context.Context, in *GetIntegrationRequest, opts ...grpc.CallOption) (*GetIntegrationResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetIntegrationResponse)
-	err := c.cc.Invoke(ctx, PipelinePublicService_GetIntegration_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // PipelinePublicServiceServer is the server API for PipelinePublicService service.
 // All implementations should embed UnimplementedPipelinePublicServiceServer
 // for forward compatibility.
@@ -1021,50 +878,6 @@ type PipelinePublicServiceServer interface {
 	// Returns a paginated list of runs for requested by a namespace. The
 	// response may contain runs from several pipelines.
 	ListPipelineRunsByRequester(context.Context, *ListPipelineRunsByRequesterRequest) (*ListPipelineRunsByRequesterResponse, error)
-	// List namespace connections
-	//
-	// Returns a paginated list of connections created by a namespace.
-	ListNamespaceConnections(context.Context, *ListNamespaceConnectionsRequest) (*ListNamespaceConnectionsResponse, error)
-	// Get a namespace connection
-	//
-	// Returns the details of a connection.
-	GetNamespaceConnection(context.Context, *GetNamespaceConnectionRequest) (*GetNamespaceConnectionResponse, error)
-	// Create a connection
-	//
-	// Creates a connection under the ownership of a namespace.
-	CreateNamespaceConnection(context.Context, *CreateNamespaceConnectionRequest) (*CreateNamespaceConnectionResponse, error)
-	// Update a connection
-	//
-	// Updates a connection with the supplied connection fields.
-	UpdateNamespaceConnection(context.Context, *UpdateNamespaceConnectionRequest) (*UpdateNamespaceConnectionResponse, error)
-	// Delete a connection
-	//
-	// Deletes a connection.
-	DeleteNamespaceConnection(context.Context, *DeleteNamespaceConnectionRequest) (*DeleteNamespaceConnectionResponse, error)
-	// Test a connection
-	//
-	// Makes a request to the 3rd party app that the connection is configured to
-	// communicate with, and checks the result of the call. If the test fails,
-	// the response status and error message will provide more information about
-	// the failure.
-	//
-	// Note that this action might affect the quota or billing of the integrated
-	// account in the 3rd party app.
-	TestNamespaceConnection(context.Context, *TestNamespaceConnectionRequest) (*TestNamespaceConnectionResponse, error)
-	// List pipelines that reference a connection
-	//
-	// Returns a paginated list with the IDs of the pipelines that reference a
-	// given connection. All the pipelines will belong to the same namespace as
-	// the connection.
-	ListPipelineIDsByConnectionID(context.Context, *ListPipelineIDsByConnectionIDRequest) (*ListPipelineIDsByConnectionIDResponse, error)
-	// List integrations
-	//
-	// Returns a paginated list of available integrations.
-	ListIntegrations(context.Context, *ListIntegrationsRequest) (*ListIntegrationsResponse, error)
-	// Get an integration
-	//
-	// Returns the details of an integration.
-	GetIntegration(context.Context, *GetIntegrationRequest) (*GetIntegrationResponse, error)
 }
 
 // UnimplementedPipelinePublicServiceServer should be embedded to have
@@ -1175,33 +988,6 @@ func (UnimplementedPipelinePublicServiceServer) ListComponentRuns(context.Contex
 }
 func (UnimplementedPipelinePublicServiceServer) ListPipelineRunsByRequester(context.Context, *ListPipelineRunsByRequesterRequest) (*ListPipelineRunsByRequesterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineRunsByRequester not implemented")
-}
-func (UnimplementedPipelinePublicServiceServer) ListNamespaceConnections(context.Context, *ListNamespaceConnectionsRequest) (*ListNamespaceConnectionsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListNamespaceConnections not implemented")
-}
-func (UnimplementedPipelinePublicServiceServer) GetNamespaceConnection(context.Context, *GetNamespaceConnectionRequest) (*GetNamespaceConnectionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetNamespaceConnection not implemented")
-}
-func (UnimplementedPipelinePublicServiceServer) CreateNamespaceConnection(context.Context, *CreateNamespaceConnectionRequest) (*CreateNamespaceConnectionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateNamespaceConnection not implemented")
-}
-func (UnimplementedPipelinePublicServiceServer) UpdateNamespaceConnection(context.Context, *UpdateNamespaceConnectionRequest) (*UpdateNamespaceConnectionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateNamespaceConnection not implemented")
-}
-func (UnimplementedPipelinePublicServiceServer) DeleteNamespaceConnection(context.Context, *DeleteNamespaceConnectionRequest) (*DeleteNamespaceConnectionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteNamespaceConnection not implemented")
-}
-func (UnimplementedPipelinePublicServiceServer) TestNamespaceConnection(context.Context, *TestNamespaceConnectionRequest) (*TestNamespaceConnectionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TestNamespaceConnection not implemented")
-}
-func (UnimplementedPipelinePublicServiceServer) ListPipelineIDsByConnectionID(context.Context, *ListPipelineIDsByConnectionIDRequest) (*ListPipelineIDsByConnectionIDResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineIDsByConnectionID not implemented")
-}
-func (UnimplementedPipelinePublicServiceServer) ListIntegrations(context.Context, *ListIntegrationsRequest) (*ListIntegrationsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListIntegrations not implemented")
-}
-func (UnimplementedPipelinePublicServiceServer) GetIntegration(context.Context, *GetIntegrationRequest) (*GetIntegrationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetIntegration not implemented")
 }
 func (UnimplementedPipelinePublicServiceServer) testEmbeddedByValue() {}
 
@@ -1828,168 +1614,6 @@ func _PipelinePublicService_ListPipelineRunsByRequester_Handler(srv interface{},
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PipelinePublicService_ListNamespaceConnections_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListNamespaceConnectionsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).ListNamespaceConnections(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PipelinePublicService_ListNamespaceConnections_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).ListNamespaceConnections(ctx, req.(*ListNamespaceConnectionsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PipelinePublicService_GetNamespaceConnection_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetNamespaceConnectionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).GetNamespaceConnection(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PipelinePublicService_GetNamespaceConnection_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).GetNamespaceConnection(ctx, req.(*GetNamespaceConnectionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PipelinePublicService_CreateNamespaceConnection_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateNamespaceConnectionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).CreateNamespaceConnection(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PipelinePublicService_CreateNamespaceConnection_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).CreateNamespaceConnection(ctx, req.(*CreateNamespaceConnectionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PipelinePublicService_UpdateNamespaceConnection_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateNamespaceConnectionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).UpdateNamespaceConnection(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PipelinePublicService_UpdateNamespaceConnection_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).UpdateNamespaceConnection(ctx, req.(*UpdateNamespaceConnectionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PipelinePublicService_DeleteNamespaceConnection_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteNamespaceConnectionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).DeleteNamespaceConnection(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PipelinePublicService_DeleteNamespaceConnection_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).DeleteNamespaceConnection(ctx, req.(*DeleteNamespaceConnectionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PipelinePublicService_TestNamespaceConnection_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TestNamespaceConnectionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).TestNamespaceConnection(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PipelinePublicService_TestNamespaceConnection_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).TestNamespaceConnection(ctx, req.(*TestNamespaceConnectionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PipelinePublicService_ListPipelineIDsByConnectionID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListPipelineIDsByConnectionIDRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).ListPipelineIDsByConnectionID(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PipelinePublicService_ListPipelineIDsByConnectionID_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).ListPipelineIDsByConnectionID(ctx, req.(*ListPipelineIDsByConnectionIDRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PipelinePublicService_ListIntegrations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListIntegrationsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).ListIntegrations(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PipelinePublicService_ListIntegrations_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).ListIntegrations(ctx, req.(*ListIntegrationsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PipelinePublicService_GetIntegration_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetIntegrationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PipelinePublicServiceServer).GetIntegration(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PipelinePublicService_GetIntegration_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PipelinePublicServiceServer).GetIntegration(ctx, req.(*GetIntegrationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // PipelinePublicService_ServiceDesc is the grpc.ServiceDesc for PipelinePublicService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2128,42 +1752,6 @@ var PipelinePublicService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListPipelineRunsByRequester",
 			Handler:    _PipelinePublicService_ListPipelineRunsByRequester_Handler,
-		},
-		{
-			MethodName: "ListNamespaceConnections",
-			Handler:    _PipelinePublicService_ListNamespaceConnections_Handler,
-		},
-		{
-			MethodName: "GetNamespaceConnection",
-			Handler:    _PipelinePublicService_GetNamespaceConnection_Handler,
-		},
-		{
-			MethodName: "CreateNamespaceConnection",
-			Handler:    _PipelinePublicService_CreateNamespaceConnection_Handler,
-		},
-		{
-			MethodName: "UpdateNamespaceConnection",
-			Handler:    _PipelinePublicService_UpdateNamespaceConnection_Handler,
-		},
-		{
-			MethodName: "DeleteNamespaceConnection",
-			Handler:    _PipelinePublicService_DeleteNamespaceConnection_Handler,
-		},
-		{
-			MethodName: "TestNamespaceConnection",
-			Handler:    _PipelinePublicService_TestNamespaceConnection_Handler,
-		},
-		{
-			MethodName: "ListPipelineIDsByConnectionID",
-			Handler:    _PipelinePublicService_ListPipelineIDsByConnectionID_Handler,
-		},
-		{
-			MethodName: "ListIntegrations",
-			Handler:    _PipelinePublicService_ListIntegrations_Handler,
-		},
-		{
-			MethodName: "GetIntegration",
-			Handler:    _PipelinePublicService_GetIntegration_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
