@@ -730,7 +730,7 @@ type UserProfile struct {
 	// Social profile links list the links to the user's social profiles.
 	// The key represents the provider, and the value is the corresponding URL.
 	SocialProfileLinks map[string]string `protobuf:"bytes,6,rep,name=social_profile_links,json=socialProfileLinks,proto3" json:"social_profile_links,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	// Full legal name. Used for billing, invoices, and formal communications.
+	// Full legal name. Used for formal communications.
 	// Example: "John Doe" - this is also used to auto-generate the user ID.
 	FullName *string `protobuf:"bytes,7,opt,name=full_name,json=fullName,proto3,oneof" json:"full_name,omitempty"`
 	// Flexible metadata
@@ -841,7 +841,9 @@ type OrganizationProfile struct {
 	// The key represents the provider, and the value is the corresponding URL.
 	SocialProfileLinks map[string]string `protobuf:"bytes,5,rep,name=social_profile_links,json=socialProfileLinks,proto3" json:"social_profile_links,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	// Flexible metadata
-	Metadata      *structpb.Struct `protobuf:"bytes,6,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	Metadata *structpb.Struct `protobuf:"bytes,6,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	// Full legal name. Used for formal communications.
+	FullName      *string `protobuf:"bytes,7,opt,name=full_name,json=fullName,proto3,oneof" json:"full_name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -916,6 +918,13 @@ func (x *OrganizationProfile) GetMetadata() *structpb.Struct {
 		return x.Metadata
 	}
 	return nil
+}
+
+func (x *OrganizationProfile) GetFullName() string {
+	if x != nil && x.FullName != nil {
+		return *x.FullName
+	}
+	return ""
 }
 
 // AuthenticatedUser contains the information of an authenticated user, i.e.,
@@ -5785,20 +5794,23 @@ const file_mgmt_v1beta_mgmt_proto_rawDesc = "" +
 	"\r_public_emailB\x0f\n" +
 	"\r_company_nameB\f\n" +
 	"\n" +
-	"_full_name\"\xbe\x03\n" +
+	"_full_name\"\xf3\x03\n" +
 	"\x13OrganizationProfile\x12&\n" +
 	"\fdisplay_name\x18\x01 \x01(\tB\x03\xe0A\x02R\vdisplayName\x12\x1a\n" +
 	"\x03bio\x18\x02 \x01(\tB\x03\xe0A\x01H\x00R\x03bio\x88\x01\x01\x12 \n" +
 	"\x06avatar\x18\x03 \x01(\tB\x03\xe0A\x01H\x01R\x06avatar\x88\x01\x01\x12+\n" +
 	"\fpublic_email\x18\x04 \x01(\tB\x03\xe0A\x01H\x02R\vpublicEmail\x88\x01\x01\x12o\n" +
 	"\x14social_profile_links\x18\x05 \x03(\v28.mgmt.v1beta.OrganizationProfile.SocialProfileLinksEntryB\x03\xe0A\x01R\x12socialProfileLinks\x128\n" +
-	"\bmetadata\x18\x06 \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x01R\bmetadata\x1aE\n" +
+	"\bmetadata\x18\x06 \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x01R\bmetadata\x12%\n" +
+	"\tfull_name\x18\a \x01(\tB\x03\xe0A\x01H\x03R\bfullName\x88\x01\x01\x1aE\n" +
 	"\x17SocialProfileLinksEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B\x06\n" +
 	"\x04_bioB\t\n" +
 	"\a_avatarB\x0f\n" +
-	"\r_public_email\"\xe5\x05\n" +
+	"\r_public_emailB\f\n" +
+	"\n" +
+	"_full_name\"\xe5\x05\n" +
 	"\x11AuthenticatedUser\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12&\n" +
