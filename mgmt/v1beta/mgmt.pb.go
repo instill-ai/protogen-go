@@ -13,6 +13,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	fieldmaskpb "google.golang.org/protobuf/types/known/fieldmaskpb"
+	structpb "google.golang.org/protobuf/types/known/structpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
@@ -731,7 +732,9 @@ type UserProfile struct {
 	SocialProfileLinks map[string]string `protobuf:"bytes,6,rep,name=social_profile_links,json=socialProfileLinks,proto3" json:"social_profile_links,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	// Full legal name. Used for billing, invoices, and formal communications.
 	// Example: "John Doe" - this is also used to auto-generate the user ID.
-	FullName      *string `protobuf:"bytes,7,opt,name=full_name,json=fullName,proto3,oneof" json:"full_name,omitempty"`
+	FullName *string `protobuf:"bytes,7,opt,name=full_name,json=fullName,proto3,oneof" json:"full_name,omitempty"`
+	// Flexible metadata
+	Metadata      *structpb.Struct `protobuf:"bytes,8,opt,name=metadata,proto3" json:"metadata,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -815,6 +818,13 @@ func (x *UserProfile) GetFullName() string {
 	return ""
 }
 
+func (x *UserProfile) GetMetadata() *structpb.Struct {
+	if x != nil {
+		return x.Metadata
+	}
+	return nil
+}
+
 // OrganizationProfile describes the public data of an organization.
 type OrganizationProfile struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -830,8 +840,10 @@ type OrganizationProfile struct {
 	// Social profile links list the links to the organization's social profiles.
 	// The key represents the provider, and the value is the corresponding URL.
 	SocialProfileLinks map[string]string `protobuf:"bytes,5,rep,name=social_profile_links,json=socialProfileLinks,proto3" json:"social_profile_links,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
+	// Flexible metadata
+	Metadata      *structpb.Struct `protobuf:"bytes,6,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *OrganizationProfile) Reset() {
@@ -895,6 +907,13 @@ func (x *OrganizationProfile) GetPublicEmail() string {
 func (x *OrganizationProfile) GetSocialProfileLinks() map[string]string {
 	if x != nil {
 		return x.SocialProfileLinks
+	}
+	return nil
+}
+
+func (x *OrganizationProfile) GetMetadata() *structpb.Struct {
+	if x != nil {
+		return x.Metadata
 	}
 	return nil
 }
@@ -5735,7 +5754,7 @@ var File_mgmt_v1beta_mgmt_proto protoreflect.FileDescriptor
 
 const file_mgmt_v1beta_mgmt_proto_rawDesc = "" +
 	"\n" +
-	"\x16mgmt/v1beta/mgmt.proto\x12\vmgmt.v1beta\x1a+common/healthcheck/v1beta/healthcheck.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x95\x01\n" +
+	"\x16mgmt/v1beta/mgmt.proto\x12\vmgmt.v1beta\x1a+common/healthcheck/v1beta/healthcheck.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x95\x01\n" +
 	"\x0fLivenessRequest\x12i\n" +
 	"\x14health_check_request\x18\x01 \x01(\v2-.common.healthcheck.v1beta.HealthCheckRequestB\x03\xe0A\x01H\x00R\x12healthCheckRequest\x88\x01\x01B\x17\n" +
 	"\x15_health_check_request\"{\n" +
@@ -5748,7 +5767,7 @@ const file_mgmt_v1beta_mgmt_proto_rawDesc = "" +
 	"\x15health_check_response\x18\x01 \x01(\v2..common.healthcheck.v1beta.HealthCheckResponseB\x03\xe0A\x03R\x13healthCheckResponse\",\n" +
 	"\n" +
 	"Permission\x12\x1e\n" +
-	"\bcan_edit\x18\x01 \x01(\bB\x03\xe0A\x03R\acanEdit\"\xe7\x03\n" +
+	"\bcan_edit\x18\x01 \x01(\bB\x03\xe0A\x03R\acanEdit\"\xa1\x04\n" +
 	"\vUserProfile\x12&\n" +
 	"\fdisplay_name\x18\x01 \x01(\tB\x03\xe0A\x02R\vdisplayName\x12\x1a\n" +
 	"\x03bio\x18\x02 \x01(\tB\x03\xe0A\x01H\x00R\x03bio\x88\x01\x01\x12 \n" +
@@ -5756,7 +5775,8 @@ const file_mgmt_v1beta_mgmt_proto_rawDesc = "" +
 	"\fpublic_email\x18\x04 \x01(\tB\x03\xe0A\x01H\x02R\vpublicEmail\x88\x01\x01\x12+\n" +
 	"\fcompany_name\x18\x05 \x01(\tB\x03\xe0A\x01H\x03R\vcompanyName\x88\x01\x01\x12g\n" +
 	"\x14social_profile_links\x18\x06 \x03(\v20.mgmt.v1beta.UserProfile.SocialProfileLinksEntryB\x03\xe0A\x01R\x12socialProfileLinks\x12%\n" +
-	"\tfull_name\x18\a \x01(\tB\x03\xe0A\x01H\x04R\bfullName\x88\x01\x01\x1aE\n" +
+	"\tfull_name\x18\a \x01(\tB\x03\xe0A\x01H\x04R\bfullName\x88\x01\x01\x128\n" +
+	"\bmetadata\x18\b \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x01R\bmetadata\x1aE\n" +
 	"\x17SocialProfileLinksEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B\x06\n" +
@@ -5765,13 +5785,14 @@ const file_mgmt_v1beta_mgmt_proto_rawDesc = "" +
 	"\r_public_emailB\x0f\n" +
 	"\r_company_nameB\f\n" +
 	"\n" +
-	"_full_name\"\x84\x03\n" +
+	"_full_name\"\xbe\x03\n" +
 	"\x13OrganizationProfile\x12&\n" +
 	"\fdisplay_name\x18\x01 \x01(\tB\x03\xe0A\x02R\vdisplayName\x12\x1a\n" +
 	"\x03bio\x18\x02 \x01(\tB\x03\xe0A\x01H\x00R\x03bio\x88\x01\x01\x12 \n" +
 	"\x06avatar\x18\x03 \x01(\tB\x03\xe0A\x01H\x01R\x06avatar\x88\x01\x01\x12+\n" +
 	"\fpublic_email\x18\x04 \x01(\tB\x03\xe0A\x01H\x02R\vpublicEmail\x88\x01\x01\x12o\n" +
-	"\x14social_profile_links\x18\x05 \x03(\v28.mgmt.v1beta.OrganizationProfile.SocialProfileLinksEntryB\x03\xe0A\x01R\x12socialProfileLinks\x1aE\n" +
+	"\x14social_profile_links\x18\x05 \x03(\v28.mgmt.v1beta.OrganizationProfile.SocialProfileLinksEntryB\x03\xe0A\x01R\x12socialProfileLinks\x128\n" +
+	"\bmetadata\x18\x06 \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x01R\bmetadata\x1aE\n" +
 	"\x17SocialProfileLinksEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B\x06\n" +
@@ -6272,8 +6293,9 @@ var file_mgmt_v1beta_mgmt_proto_goTypes = []any{
 	(*Organization_Stats)(nil),                          // 97: mgmt.v1beta.Organization.Stats
 	(*v1beta.HealthCheckRequest)(nil),                   // 98: common.healthcheck.v1beta.HealthCheckRequest
 	(*v1beta.HealthCheckResponse)(nil),                  // 99: common.healthcheck.v1beta.HealthCheckResponse
-	(*timestamppb.Timestamp)(nil),                       // 100: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil),                       // 101: google.protobuf.FieldMask
+	(*structpb.Struct)(nil),                             // 100: google.protobuf.Struct
+	(*timestamppb.Timestamp)(nil),                       // 101: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil),                       // 102: google.protobuf.FieldMask
 }
 var file_mgmt_v1beta_mgmt_proto_depIdxs = []int32{
 	98,  // 0: mgmt.v1beta.LivenessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
@@ -6281,90 +6303,92 @@ var file_mgmt_v1beta_mgmt_proto_depIdxs = []int32{
 	98,  // 2: mgmt.v1beta.ReadinessRequest.health_check_request:type_name -> common.healthcheck.v1beta.HealthCheckRequest
 	99,  // 3: mgmt.v1beta.ReadinessResponse.health_check_response:type_name -> common.healthcheck.v1beta.HealthCheckResponse
 	94,  // 4: mgmt.v1beta.UserProfile.social_profile_links:type_name -> mgmt.v1beta.UserProfile.SocialProfileLinksEntry
-	95,  // 5: mgmt.v1beta.OrganizationProfile.social_profile_links:type_name -> mgmt.v1beta.OrganizationProfile.SocialProfileLinksEntry
-	100, // 6: mgmt.v1beta.AuthenticatedUser.create_time:type_name -> google.protobuf.Timestamp
-	100, // 7: mgmt.v1beta.AuthenticatedUser.update_time:type_name -> google.protobuf.Timestamp
-	3,   // 8: mgmt.v1beta.AuthenticatedUser.onboarding_status:type_name -> mgmt.v1beta.OnboardingStatus
-	13,  // 9: mgmt.v1beta.AuthenticatedUser.profile:type_name -> mgmt.v1beta.UserProfile
-	17,  // 10: mgmt.v1beta.Owner.user:type_name -> mgmt.v1beta.User
-	65,  // 11: mgmt.v1beta.Owner.organization:type_name -> mgmt.v1beta.Organization
-	100, // 12: mgmt.v1beta.User.create_time:type_name -> google.protobuf.Timestamp
-	100, // 13: mgmt.v1beta.User.update_time:type_name -> google.protobuf.Timestamp
-	13,  // 14: mgmt.v1beta.User.profile:type_name -> mgmt.v1beta.UserProfile
-	0,   // 15: mgmt.v1beta.ListUsersAdminRequest.view:type_name -> mgmt.v1beta.View
-	17,  // 16: mgmt.v1beta.ListUsersAdminResponse.users:type_name -> mgmt.v1beta.User
-	0,   // 17: mgmt.v1beta.GetUserAdminRequest.view:type_name -> mgmt.v1beta.View
-	17,  // 18: mgmt.v1beta.GetUserAdminResponse.user:type_name -> mgmt.v1beta.User
-	0,   // 19: mgmt.v1beta.LookUpUserAdminRequest.view:type_name -> mgmt.v1beta.View
-	17,  // 20: mgmt.v1beta.LookUpUserAdminResponse.user:type_name -> mgmt.v1beta.User
-	0,   // 21: mgmt.v1beta.ListOrganizationsAdminRequest.view:type_name -> mgmt.v1beta.View
-	65,  // 22: mgmt.v1beta.ListOrganizationsAdminResponse.organizations:type_name -> mgmt.v1beta.Organization
-	0,   // 23: mgmt.v1beta.GetOrganizationAdminRequest.view:type_name -> mgmt.v1beta.View
-	65,  // 24: mgmt.v1beta.GetOrganizationAdminResponse.organization:type_name -> mgmt.v1beta.Organization
-	0,   // 25: mgmt.v1beta.LookUpOrganizationAdminRequest.view:type_name -> mgmt.v1beta.View
-	65,  // 26: mgmt.v1beta.LookUpOrganizationAdminResponse.organization:type_name -> mgmt.v1beta.Organization
-	0,   // 27: mgmt.v1beta.ListUsersRequest.view:type_name -> mgmt.v1beta.View
-	17,  // 28: mgmt.v1beta.ListUsersResponse.users:type_name -> mgmt.v1beta.User
-	0,   // 29: mgmt.v1beta.GetUserRequest.view:type_name -> mgmt.v1beta.View
-	17,  // 30: mgmt.v1beta.GetUserResponse.user:type_name -> mgmt.v1beta.User
-	15,  // 31: mgmt.v1beta.GetAuthenticatedUserResponse.user:type_name -> mgmt.v1beta.AuthenticatedUser
-	15,  // 32: mgmt.v1beta.PatchAuthenticatedUserRequest.user:type_name -> mgmt.v1beta.AuthenticatedUser
-	101, // 33: mgmt.v1beta.PatchAuthenticatedUserRequest.update_mask:type_name -> google.protobuf.FieldMask
-	15,  // 34: mgmt.v1beta.PatchAuthenticatedUserResponse.user:type_name -> mgmt.v1beta.AuthenticatedUser
-	4,   // 35: mgmt.v1beta.CheckNamespaceResponse.type:type_name -> mgmt.v1beta.CheckNamespaceResponse.Namespace
-	5,   // 36: mgmt.v1beta.CheckNamespaceAdminResponse.type:type_name -> mgmt.v1beta.CheckNamespaceAdminResponse.Namespace
-	17,  // 37: mgmt.v1beta.CheckNamespaceAdminResponse.user:type_name -> mgmt.v1beta.User
-	65,  // 38: mgmt.v1beta.CheckNamespaceAdminResponse.organization:type_name -> mgmt.v1beta.Organization
-	6,   // 39: mgmt.v1beta.CheckNamespaceByUIDAdminResponse.type:type_name -> mgmt.v1beta.CheckNamespaceByUIDAdminResponse.Namespace
-	17,  // 40: mgmt.v1beta.CheckNamespaceByUIDAdminResponse.user:type_name -> mgmt.v1beta.User
-	65,  // 41: mgmt.v1beta.CheckNamespaceByUIDAdminResponse.organization:type_name -> mgmt.v1beta.Organization
-	100, // 42: mgmt.v1beta.ApiToken.create_time:type_name -> google.protobuf.Timestamp
-	100, // 43: mgmt.v1beta.ApiToken.update_time:type_name -> google.protobuf.Timestamp
-	7,   // 44: mgmt.v1beta.ApiToken.state:type_name -> mgmt.v1beta.ApiToken.State
-	100, // 45: mgmt.v1beta.ApiToken.last_use_time:type_name -> google.protobuf.Timestamp
-	100, // 46: mgmt.v1beta.ApiToken.expire_time:type_name -> google.protobuf.Timestamp
-	44,  // 47: mgmt.v1beta.CreateTokenRequest.token:type_name -> mgmt.v1beta.ApiToken
-	44,  // 48: mgmt.v1beta.CreateTokenResponse.token:type_name -> mgmt.v1beta.ApiToken
-	44,  // 49: mgmt.v1beta.ListTokensResponse.tokens:type_name -> mgmt.v1beta.ApiToken
-	44,  // 50: mgmt.v1beta.GetTokenResponse.token:type_name -> mgmt.v1beta.ApiToken
-	96,  // 51: mgmt.v1beta.AuthTokenIssuerResponse.access_token:type_name -> mgmt.v1beta.AuthTokenIssuerResponse.UnsignedAccessToken
-	100, // 52: mgmt.v1beta.Organization.create_time:type_name -> google.protobuf.Timestamp
-	100, // 53: mgmt.v1beta.Organization.update_time:type_name -> google.protobuf.Timestamp
-	14,  // 54: mgmt.v1beta.Organization.profile:type_name -> mgmt.v1beta.OrganizationProfile
-	12,  // 55: mgmt.v1beta.Organization.permission:type_name -> mgmt.v1beta.Permission
-	97,  // 56: mgmt.v1beta.Organization.stats:type_name -> mgmt.v1beta.Organization.Stats
-	0,   // 57: mgmt.v1beta.ListOrganizationsRequest.view:type_name -> mgmt.v1beta.View
-	65,  // 58: mgmt.v1beta.ListOrganizationsResponse.organizations:type_name -> mgmt.v1beta.Organization
-	65,  // 59: mgmt.v1beta.CreateOrganizationRequest.organization:type_name -> mgmt.v1beta.Organization
-	65,  // 60: mgmt.v1beta.CreateOrganizationResponse.organization:type_name -> mgmt.v1beta.Organization
-	0,   // 61: mgmt.v1beta.GetOrganizationRequest.view:type_name -> mgmt.v1beta.View
-	65,  // 62: mgmt.v1beta.GetOrganizationResponse.organization:type_name -> mgmt.v1beta.Organization
-	65,  // 63: mgmt.v1beta.UpdateOrganizationRequest.organization:type_name -> mgmt.v1beta.Organization
-	101, // 64: mgmt.v1beta.UpdateOrganizationRequest.update_mask:type_name -> google.protobuf.FieldMask
-	65,  // 65: mgmt.v1beta.UpdateOrganizationResponse.organization:type_name -> mgmt.v1beta.Organization
-	2,   // 66: mgmt.v1beta.OrganizationMembership.state:type_name -> mgmt.v1beta.MembershipState
-	17,  // 67: mgmt.v1beta.OrganizationMembership.user:type_name -> mgmt.v1beta.User
-	65,  // 68: mgmt.v1beta.OrganizationMembership.organization:type_name -> mgmt.v1beta.Organization
-	2,   // 69: mgmt.v1beta.UserMembership.state:type_name -> mgmt.v1beta.MembershipState
-	17,  // 70: mgmt.v1beta.UserMembership.user:type_name -> mgmt.v1beta.User
-	65,  // 71: mgmt.v1beta.UserMembership.organization:type_name -> mgmt.v1beta.Organization
-	77,  // 72: mgmt.v1beta.ListUserMembershipsResponse.memberships:type_name -> mgmt.v1beta.UserMembership
-	0,   // 73: mgmt.v1beta.GetUserMembershipRequest.view:type_name -> mgmt.v1beta.View
-	77,  // 74: mgmt.v1beta.GetUserMembershipResponse.membership:type_name -> mgmt.v1beta.UserMembership
-	77,  // 75: mgmt.v1beta.UpdateUserMembershipRequest.membership:type_name -> mgmt.v1beta.UserMembership
-	101, // 76: mgmt.v1beta.UpdateUserMembershipRequest.update_mask:type_name -> google.protobuf.FieldMask
-	77,  // 77: mgmt.v1beta.UpdateUserMembershipResponse.membership:type_name -> mgmt.v1beta.UserMembership
-	76,  // 78: mgmt.v1beta.ListOrganizationMembershipsResponse.memberships:type_name -> mgmt.v1beta.OrganizationMembership
-	0,   // 79: mgmt.v1beta.GetOrganizationMembershipRequest.view:type_name -> mgmt.v1beta.View
-	76,  // 80: mgmt.v1beta.GetOrganizationMembershipResponse.membership:type_name -> mgmt.v1beta.OrganizationMembership
-	76,  // 81: mgmt.v1beta.UpdateOrganizationMembershipRequest.membership:type_name -> mgmt.v1beta.OrganizationMembership
-	101, // 82: mgmt.v1beta.UpdateOrganizationMembershipRequest.update_mask:type_name -> google.protobuf.FieldMask
-	76,  // 83: mgmt.v1beta.UpdateOrganizationMembershipResponse.membership:type_name -> mgmt.v1beta.OrganizationMembership
-	84,  // [84:84] is the sub-list for method output_type
-	84,  // [84:84] is the sub-list for method input_type
-	84,  // [84:84] is the sub-list for extension type_name
-	84,  // [84:84] is the sub-list for extension extendee
-	0,   // [0:84] is the sub-list for field type_name
+	100, // 5: mgmt.v1beta.UserProfile.metadata:type_name -> google.protobuf.Struct
+	95,  // 6: mgmt.v1beta.OrganizationProfile.social_profile_links:type_name -> mgmt.v1beta.OrganizationProfile.SocialProfileLinksEntry
+	100, // 7: mgmt.v1beta.OrganizationProfile.metadata:type_name -> google.protobuf.Struct
+	101, // 8: mgmt.v1beta.AuthenticatedUser.create_time:type_name -> google.protobuf.Timestamp
+	101, // 9: mgmt.v1beta.AuthenticatedUser.update_time:type_name -> google.protobuf.Timestamp
+	3,   // 10: mgmt.v1beta.AuthenticatedUser.onboarding_status:type_name -> mgmt.v1beta.OnboardingStatus
+	13,  // 11: mgmt.v1beta.AuthenticatedUser.profile:type_name -> mgmt.v1beta.UserProfile
+	17,  // 12: mgmt.v1beta.Owner.user:type_name -> mgmt.v1beta.User
+	65,  // 13: mgmt.v1beta.Owner.organization:type_name -> mgmt.v1beta.Organization
+	101, // 14: mgmt.v1beta.User.create_time:type_name -> google.protobuf.Timestamp
+	101, // 15: mgmt.v1beta.User.update_time:type_name -> google.protobuf.Timestamp
+	13,  // 16: mgmt.v1beta.User.profile:type_name -> mgmt.v1beta.UserProfile
+	0,   // 17: mgmt.v1beta.ListUsersAdminRequest.view:type_name -> mgmt.v1beta.View
+	17,  // 18: mgmt.v1beta.ListUsersAdminResponse.users:type_name -> mgmt.v1beta.User
+	0,   // 19: mgmt.v1beta.GetUserAdminRequest.view:type_name -> mgmt.v1beta.View
+	17,  // 20: mgmt.v1beta.GetUserAdminResponse.user:type_name -> mgmt.v1beta.User
+	0,   // 21: mgmt.v1beta.LookUpUserAdminRequest.view:type_name -> mgmt.v1beta.View
+	17,  // 22: mgmt.v1beta.LookUpUserAdminResponse.user:type_name -> mgmt.v1beta.User
+	0,   // 23: mgmt.v1beta.ListOrganizationsAdminRequest.view:type_name -> mgmt.v1beta.View
+	65,  // 24: mgmt.v1beta.ListOrganizationsAdminResponse.organizations:type_name -> mgmt.v1beta.Organization
+	0,   // 25: mgmt.v1beta.GetOrganizationAdminRequest.view:type_name -> mgmt.v1beta.View
+	65,  // 26: mgmt.v1beta.GetOrganizationAdminResponse.organization:type_name -> mgmt.v1beta.Organization
+	0,   // 27: mgmt.v1beta.LookUpOrganizationAdminRequest.view:type_name -> mgmt.v1beta.View
+	65,  // 28: mgmt.v1beta.LookUpOrganizationAdminResponse.organization:type_name -> mgmt.v1beta.Organization
+	0,   // 29: mgmt.v1beta.ListUsersRequest.view:type_name -> mgmt.v1beta.View
+	17,  // 30: mgmt.v1beta.ListUsersResponse.users:type_name -> mgmt.v1beta.User
+	0,   // 31: mgmt.v1beta.GetUserRequest.view:type_name -> mgmt.v1beta.View
+	17,  // 32: mgmt.v1beta.GetUserResponse.user:type_name -> mgmt.v1beta.User
+	15,  // 33: mgmt.v1beta.GetAuthenticatedUserResponse.user:type_name -> mgmt.v1beta.AuthenticatedUser
+	15,  // 34: mgmt.v1beta.PatchAuthenticatedUserRequest.user:type_name -> mgmt.v1beta.AuthenticatedUser
+	102, // 35: mgmt.v1beta.PatchAuthenticatedUserRequest.update_mask:type_name -> google.protobuf.FieldMask
+	15,  // 36: mgmt.v1beta.PatchAuthenticatedUserResponse.user:type_name -> mgmt.v1beta.AuthenticatedUser
+	4,   // 37: mgmt.v1beta.CheckNamespaceResponse.type:type_name -> mgmt.v1beta.CheckNamespaceResponse.Namespace
+	5,   // 38: mgmt.v1beta.CheckNamespaceAdminResponse.type:type_name -> mgmt.v1beta.CheckNamespaceAdminResponse.Namespace
+	17,  // 39: mgmt.v1beta.CheckNamespaceAdminResponse.user:type_name -> mgmt.v1beta.User
+	65,  // 40: mgmt.v1beta.CheckNamespaceAdminResponse.organization:type_name -> mgmt.v1beta.Organization
+	6,   // 41: mgmt.v1beta.CheckNamespaceByUIDAdminResponse.type:type_name -> mgmt.v1beta.CheckNamespaceByUIDAdminResponse.Namespace
+	17,  // 42: mgmt.v1beta.CheckNamespaceByUIDAdminResponse.user:type_name -> mgmt.v1beta.User
+	65,  // 43: mgmt.v1beta.CheckNamespaceByUIDAdminResponse.organization:type_name -> mgmt.v1beta.Organization
+	101, // 44: mgmt.v1beta.ApiToken.create_time:type_name -> google.protobuf.Timestamp
+	101, // 45: mgmt.v1beta.ApiToken.update_time:type_name -> google.protobuf.Timestamp
+	7,   // 46: mgmt.v1beta.ApiToken.state:type_name -> mgmt.v1beta.ApiToken.State
+	101, // 47: mgmt.v1beta.ApiToken.last_use_time:type_name -> google.protobuf.Timestamp
+	101, // 48: mgmt.v1beta.ApiToken.expire_time:type_name -> google.protobuf.Timestamp
+	44,  // 49: mgmt.v1beta.CreateTokenRequest.token:type_name -> mgmt.v1beta.ApiToken
+	44,  // 50: mgmt.v1beta.CreateTokenResponse.token:type_name -> mgmt.v1beta.ApiToken
+	44,  // 51: mgmt.v1beta.ListTokensResponse.tokens:type_name -> mgmt.v1beta.ApiToken
+	44,  // 52: mgmt.v1beta.GetTokenResponse.token:type_name -> mgmt.v1beta.ApiToken
+	96,  // 53: mgmt.v1beta.AuthTokenIssuerResponse.access_token:type_name -> mgmt.v1beta.AuthTokenIssuerResponse.UnsignedAccessToken
+	101, // 54: mgmt.v1beta.Organization.create_time:type_name -> google.protobuf.Timestamp
+	101, // 55: mgmt.v1beta.Organization.update_time:type_name -> google.protobuf.Timestamp
+	14,  // 56: mgmt.v1beta.Organization.profile:type_name -> mgmt.v1beta.OrganizationProfile
+	12,  // 57: mgmt.v1beta.Organization.permission:type_name -> mgmt.v1beta.Permission
+	97,  // 58: mgmt.v1beta.Organization.stats:type_name -> mgmt.v1beta.Organization.Stats
+	0,   // 59: mgmt.v1beta.ListOrganizationsRequest.view:type_name -> mgmt.v1beta.View
+	65,  // 60: mgmt.v1beta.ListOrganizationsResponse.organizations:type_name -> mgmt.v1beta.Organization
+	65,  // 61: mgmt.v1beta.CreateOrganizationRequest.organization:type_name -> mgmt.v1beta.Organization
+	65,  // 62: mgmt.v1beta.CreateOrganizationResponse.organization:type_name -> mgmt.v1beta.Organization
+	0,   // 63: mgmt.v1beta.GetOrganizationRequest.view:type_name -> mgmt.v1beta.View
+	65,  // 64: mgmt.v1beta.GetOrganizationResponse.organization:type_name -> mgmt.v1beta.Organization
+	65,  // 65: mgmt.v1beta.UpdateOrganizationRequest.organization:type_name -> mgmt.v1beta.Organization
+	102, // 66: mgmt.v1beta.UpdateOrganizationRequest.update_mask:type_name -> google.protobuf.FieldMask
+	65,  // 67: mgmt.v1beta.UpdateOrganizationResponse.organization:type_name -> mgmt.v1beta.Organization
+	2,   // 68: mgmt.v1beta.OrganizationMembership.state:type_name -> mgmt.v1beta.MembershipState
+	17,  // 69: mgmt.v1beta.OrganizationMembership.user:type_name -> mgmt.v1beta.User
+	65,  // 70: mgmt.v1beta.OrganizationMembership.organization:type_name -> mgmt.v1beta.Organization
+	2,   // 71: mgmt.v1beta.UserMembership.state:type_name -> mgmt.v1beta.MembershipState
+	17,  // 72: mgmt.v1beta.UserMembership.user:type_name -> mgmt.v1beta.User
+	65,  // 73: mgmt.v1beta.UserMembership.organization:type_name -> mgmt.v1beta.Organization
+	77,  // 74: mgmt.v1beta.ListUserMembershipsResponse.memberships:type_name -> mgmt.v1beta.UserMembership
+	0,   // 75: mgmt.v1beta.GetUserMembershipRequest.view:type_name -> mgmt.v1beta.View
+	77,  // 76: mgmt.v1beta.GetUserMembershipResponse.membership:type_name -> mgmt.v1beta.UserMembership
+	77,  // 77: mgmt.v1beta.UpdateUserMembershipRequest.membership:type_name -> mgmt.v1beta.UserMembership
+	102, // 78: mgmt.v1beta.UpdateUserMembershipRequest.update_mask:type_name -> google.protobuf.FieldMask
+	77,  // 79: mgmt.v1beta.UpdateUserMembershipResponse.membership:type_name -> mgmt.v1beta.UserMembership
+	76,  // 80: mgmt.v1beta.ListOrganizationMembershipsResponse.memberships:type_name -> mgmt.v1beta.OrganizationMembership
+	0,   // 81: mgmt.v1beta.GetOrganizationMembershipRequest.view:type_name -> mgmt.v1beta.View
+	76,  // 82: mgmt.v1beta.GetOrganizationMembershipResponse.membership:type_name -> mgmt.v1beta.OrganizationMembership
+	76,  // 83: mgmt.v1beta.UpdateOrganizationMembershipRequest.membership:type_name -> mgmt.v1beta.OrganizationMembership
+	102, // 84: mgmt.v1beta.UpdateOrganizationMembershipRequest.update_mask:type_name -> google.protobuf.FieldMask
+	76,  // 85: mgmt.v1beta.UpdateOrganizationMembershipResponse.membership:type_name -> mgmt.v1beta.OrganizationMembership
+	86,  // [86:86] is the sub-list for method output_type
+	86,  // [86:86] is the sub-list for method input_type
+	86,  // [86:86] is the sub-list for extension type_name
+	86,  // [86:86] is the sub-list for extension extendee
+	0,   // [0:86] is the sub-list for field type_name
 }
 
 func init() { file_mgmt_v1beta_mgmt_proto_init() }
