@@ -59,6 +59,30 @@ func local_request_ArtifactPrivateService_CreateKnowledgeBaseAdmin_0(ctx context
 	return msg, metadata, err
 }
 
+func request_ArtifactPrivateService_ListKnowledgeBasesAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListKnowledgeBasesAdminRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.ListKnowledgeBasesAdmin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ArtifactPrivateService_ListKnowledgeBasesAdmin_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListKnowledgeBasesAdminRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.ListKnowledgeBasesAdmin(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 func request_ArtifactPrivateService_UpdateKnowledgeBaseAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq UpdateKnowledgeBaseAdminRequest
@@ -176,6 +200,30 @@ func local_request_ArtifactPrivateService_DeleteFileAdmin_0(ctx context.Context,
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	msg, err := server.DeleteFileAdmin(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ArtifactPrivateService_ReprocessFileAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ReprocessFileAdminRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.ReprocessFileAdmin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ArtifactPrivateService_ReprocessFileAdmin_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ReprocessFileAdminRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.ReprocessFileAdmin(ctx, &protoReq)
 	return msg, metadata, err
 }
 
@@ -541,6 +589,26 @@ func RegisterArtifactPrivateServiceHandlerServer(ctx context.Context, mux *runti
 		}
 		forward_ArtifactPrivateService_CreateKnowledgeBaseAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_ListKnowledgeBasesAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.v1alpha.ArtifactPrivateService/ListKnowledgeBasesAdmin", runtime.WithHTTPPathPattern("/artifact.v1alpha.ArtifactPrivateService/ListKnowledgeBasesAdmin"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ArtifactPrivateService_ListKnowledgeBasesAdmin_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ArtifactPrivateService_ListKnowledgeBasesAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_UpdateKnowledgeBaseAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -640,6 +708,26 @@ func RegisterArtifactPrivateServiceHandlerServer(ctx context.Context, mux *runti
 			return
 		}
 		forward_ArtifactPrivateService_DeleteFileAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_ReprocessFileAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.v1alpha.ArtifactPrivateService/ReprocessFileAdmin", runtime.WithHTTPPathPattern("/artifact.v1alpha.ArtifactPrivateService/ReprocessFileAdmin"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ArtifactPrivateService_ReprocessFileAdmin_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ArtifactPrivateService_ReprocessFileAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_ExecuteKnowledgeBaseUpdateAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -978,6 +1066,23 @@ func RegisterArtifactPrivateServiceHandlerClient(ctx context.Context, mux *runti
 		}
 		forward_ArtifactPrivateService_CreateKnowledgeBaseAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_ListKnowledgeBasesAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.v1alpha.ArtifactPrivateService/ListKnowledgeBasesAdmin", runtime.WithHTTPPathPattern("/artifact.v1alpha.ArtifactPrivateService/ListKnowledgeBasesAdmin"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ArtifactPrivateService_ListKnowledgeBasesAdmin_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ArtifactPrivateService_ListKnowledgeBasesAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_UpdateKnowledgeBaseAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -1062,6 +1167,23 @@ func RegisterArtifactPrivateServiceHandlerClient(ctx context.Context, mux *runti
 			return
 		}
 		forward_ArtifactPrivateService_DeleteFileAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_ReprocessFileAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.v1alpha.ArtifactPrivateService/ReprocessFileAdmin", runtime.WithHTTPPathPattern("/artifact.v1alpha.ArtifactPrivateService/ReprocessFileAdmin"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ArtifactPrivateService_ReprocessFileAdmin_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ArtifactPrivateService_ReprocessFileAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_ExecuteKnowledgeBaseUpdateAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -1306,11 +1428,13 @@ func RegisterArtifactPrivateServiceHandlerClient(ctx context.Context, mux *runti
 
 var (
 	pattern_ArtifactPrivateService_CreateKnowledgeBaseAdmin_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.v1alpha.ArtifactPrivateService", "CreateKnowledgeBaseAdmin"}, ""))
+	pattern_ArtifactPrivateService_ListKnowledgeBasesAdmin_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.v1alpha.ArtifactPrivateService", "ListKnowledgeBasesAdmin"}, ""))
 	pattern_ArtifactPrivateService_UpdateKnowledgeBaseAdmin_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.v1alpha.ArtifactPrivateService", "UpdateKnowledgeBaseAdmin"}, ""))
 	pattern_ArtifactPrivateService_UpdateFileAdmin_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.v1alpha.ArtifactPrivateService", "UpdateFileAdmin"}, ""))
 	pattern_ArtifactPrivateService_GetObjectAdmin_0                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.v1alpha.ArtifactPrivateService", "GetObjectAdmin"}, ""))
 	pattern_ArtifactPrivateService_UpdateObjectAdmin_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.v1alpha.ArtifactPrivateService", "UpdateObjectAdmin"}, ""))
 	pattern_ArtifactPrivateService_DeleteFileAdmin_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.v1alpha.ArtifactPrivateService", "DeleteFileAdmin"}, ""))
+	pattern_ArtifactPrivateService_ReprocessFileAdmin_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.v1alpha.ArtifactPrivateService", "ReprocessFileAdmin"}, ""))
 	pattern_ArtifactPrivateService_ExecuteKnowledgeBaseUpdateAdmin_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.v1alpha.ArtifactPrivateService", "ExecuteKnowledgeBaseUpdateAdmin"}, ""))
 	pattern_ArtifactPrivateService_AbortKnowledgeBaseUpdateAdmin_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.v1alpha.ArtifactPrivateService", "AbortKnowledgeBaseUpdateAdmin"}, ""))
 	pattern_ArtifactPrivateService_RollbackAdmin_0                     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.v1alpha.ArtifactPrivateService", "RollbackAdmin"}, ""))
@@ -1329,11 +1453,13 @@ var (
 
 var (
 	forward_ArtifactPrivateService_CreateKnowledgeBaseAdmin_0          = runtime.ForwardResponseMessage
+	forward_ArtifactPrivateService_ListKnowledgeBasesAdmin_0           = runtime.ForwardResponseMessage
 	forward_ArtifactPrivateService_UpdateKnowledgeBaseAdmin_0          = runtime.ForwardResponseMessage
 	forward_ArtifactPrivateService_UpdateFileAdmin_0                   = runtime.ForwardResponseMessage
 	forward_ArtifactPrivateService_GetObjectAdmin_0                    = runtime.ForwardResponseMessage
 	forward_ArtifactPrivateService_UpdateObjectAdmin_0                 = runtime.ForwardResponseMessage
 	forward_ArtifactPrivateService_DeleteFileAdmin_0                   = runtime.ForwardResponseMessage
+	forward_ArtifactPrivateService_ReprocessFileAdmin_0                = runtime.ForwardResponseMessage
 	forward_ArtifactPrivateService_ExecuteKnowledgeBaseUpdateAdmin_0   = runtime.ForwardResponseMessage
 	forward_ArtifactPrivateService_AbortKnowledgeBaseUpdateAdmin_0     = runtime.ForwardResponseMessage
 	forward_ArtifactPrivateService_RollbackAdmin_0                     = runtime.ForwardResponseMessage

@@ -20,11 +20,13 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	ArtifactPrivateService_CreateKnowledgeBaseAdmin_FullMethodName          = "/artifact.v1alpha.ArtifactPrivateService/CreateKnowledgeBaseAdmin"
+	ArtifactPrivateService_ListKnowledgeBasesAdmin_FullMethodName           = "/artifact.v1alpha.ArtifactPrivateService/ListKnowledgeBasesAdmin"
 	ArtifactPrivateService_UpdateKnowledgeBaseAdmin_FullMethodName          = "/artifact.v1alpha.ArtifactPrivateService/UpdateKnowledgeBaseAdmin"
 	ArtifactPrivateService_UpdateFileAdmin_FullMethodName                   = "/artifact.v1alpha.ArtifactPrivateService/UpdateFileAdmin"
 	ArtifactPrivateService_GetObjectAdmin_FullMethodName                    = "/artifact.v1alpha.ArtifactPrivateService/GetObjectAdmin"
 	ArtifactPrivateService_UpdateObjectAdmin_FullMethodName                 = "/artifact.v1alpha.ArtifactPrivateService/UpdateObjectAdmin"
 	ArtifactPrivateService_DeleteFileAdmin_FullMethodName                   = "/artifact.v1alpha.ArtifactPrivateService/DeleteFileAdmin"
+	ArtifactPrivateService_ReprocessFileAdmin_FullMethodName                = "/artifact.v1alpha.ArtifactPrivateService/ReprocessFileAdmin"
 	ArtifactPrivateService_ExecuteKnowledgeBaseUpdateAdmin_FullMethodName   = "/artifact.v1alpha.ArtifactPrivateService/ExecuteKnowledgeBaseUpdateAdmin"
 	ArtifactPrivateService_AbortKnowledgeBaseUpdateAdmin_FullMethodName     = "/artifact.v1alpha.ArtifactPrivateService/AbortKnowledgeBaseUpdateAdmin"
 	ArtifactPrivateService_RollbackAdmin_FullMethodName                     = "/artifact.v1alpha.ArtifactPrivateService/RollbackAdmin"
@@ -54,15 +56,26 @@ type ArtifactPrivateServiceClient interface {
 	// services (e.g., agent-backend) to create shared knowledge bases like
 	// "instill-agent" that are not owned by any specific user.
 	CreateKnowledgeBaseAdmin(ctx context.Context, in *CreateKnowledgeBaseAdminRequest, opts ...grpc.CallOption) (*CreateKnowledgeBaseAdminResponse, error)
+	// List knowledge bases without ACL filtering (admin only)
+	//
+	// Lists all knowledge bases in a namespace without ACL filtering. Unlike the
+	// public ListKnowledgeBases endpoint which filters results based on user
+	// permissions, this admin endpoint returns all knowledge bases including
+	// system-created ones (e.g., those created via CreateKnowledgeBaseAdmin).
+	// Used by internal services (e.g., agent-backend) to find existing system
+	// knowledge bases.
+	ListKnowledgeBasesAdmin(ctx context.Context, in *ListKnowledgeBasesAdminRequest, opts ...grpc.CallOption) (*ListKnowledgeBasesAdminResponse, error)
 	// Update a knowledge base with system-reserved tags (admin only)
 	//
-	// Updates a knowledge base allowing system-reserved tag prefixes like "instill-".
-	// Used by internal services to manage system-level knowledge base metadata.
+	// Updates a knowledge base allowing system-reserved tag prefixes like
+	// "instill-". Used by internal services to manage system-level knowledge base
+	// metadata.
 	UpdateKnowledgeBaseAdmin(ctx context.Context, in *UpdateKnowledgeBaseAdminRequest, opts ...grpc.CallOption) (*UpdateKnowledgeBaseAdminResponse, error)
 	// Update a file with system-reserved tags (admin only)
 	//
 	// Updates a file allowing system-reserved tag prefixes like "agent:".
-	// Used by agent-backend to set collection association tags (e.g., "agent:collection:{uid}").
+	// Used by agent-backend to set collection association tags (e.g.,
+	// "agent:collection:{uid}").
 	UpdateFileAdmin(ctx context.Context, in *UpdateFileAdminRequest, opts ...grpc.CallOption) (*UpdateFileAdminResponse, error)
 	// Get Object (admin only)
 	GetObjectAdmin(ctx context.Context, in *GetObjectAdminRequest, opts ...grpc.CallOption) (*GetObjectAdminResponse, error)
@@ -70,21 +83,30 @@ type ArtifactPrivateServiceClient interface {
 	UpdateObjectAdmin(ctx context.Context, in *UpdateObjectAdminRequest, opts ...grpc.CallOption) (*UpdateObjectAdminResponse, error)
 	// Delete a knowledge base file (admin only)
 	//
-	// Deletes a file from a knowledge base using only the file ID. Unlike the public
-	// DeleteFile endpoint which requires namespace and knowledge base IDs, this
-	// admin endpoint automatically looks up the file's knowledge base and owner to
-	// perform the deletion. Primarily used for integration testing and internal
-	// operations where the caller has a file ID but not the full resource path.
-	// Authentication metadata is injected automatically based on the file owner.
+	// Deletes a file from a knowledge base using only the file ID. Unlike the
+	// public DeleteFile endpoint which requires namespace and knowledge base IDs,
+	// this admin endpoint automatically looks up the file's knowledge base and
+	// owner to perform the deletion. Primarily used for integration testing and
+	// internal operations where the caller has a file ID but not the full
+	// resource path. Authentication metadata is injected automatically based on
+	// the file owner.
 	DeleteFileAdmin(ctx context.Context, in *DeleteFileAdminRequest, opts ...grpc.CallOption) (*DeleteFileAdminResponse, error)
+	// Reprocess a file (admin only)
+	//
+	// Triggers file reprocessing without ACL checks. This allows admin tools like
+	// commander to reprocess files directly by UID, bypassing OpenFGA permission
+	// validation. The file's knowledge base and owner are automatically looked
+	// up. Used for administrative operations where the caller needs to force
+	// reprocess files without authentication context.
+	ReprocessFileAdmin(ctx context.Context, in *ReprocessFileAdminRequest, opts ...grpc.CallOption) (*ReprocessFileAdminResponse, error)
 	// Execute knowledge base update (admin only)
 	ExecuteKnowledgeBaseUpdateAdmin(ctx context.Context, in *ExecuteKnowledgeBaseUpdateAdminRequest, opts ...grpc.CallOption) (*ExecuteKnowledgeBaseUpdateAdminResponse, error)
 	// Abort knowledge base update (admin only)
 	//
 	// Cancels ongoing update workflows and cleans up staging KB resources
 	// (both finished and unfinished). Can abort specific knowledge bases by ID or
-	// all currently updating knowledge bases if no IDs provided. Sets knowledge base status
-	// to 'aborted'.
+	// all currently updating knowledge bases if no IDs provided. Sets knowledge
+	// base status to 'aborted'.
 	AbortKnowledgeBaseUpdateAdmin(ctx context.Context, in *AbortKnowledgeBaseUpdateAdminRequest, opts ...grpc.CallOption) (*AbortKnowledgeBaseUpdateAdminResponse, error)
 	// Rollback a specific knowledge base to previous version (admin only)
 	RollbackAdmin(ctx context.Context, in *RollbackAdminRequest, opts ...grpc.CallOption) (*RollbackAdminResponse, error)
@@ -124,6 +146,16 @@ func (c *artifactPrivateServiceClient) CreateKnowledgeBaseAdmin(ctx context.Cont
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CreateKnowledgeBaseAdminResponse)
 	err := c.cc.Invoke(ctx, ArtifactPrivateService_CreateKnowledgeBaseAdmin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPrivateServiceClient) ListKnowledgeBasesAdmin(ctx context.Context, in *ListKnowledgeBasesAdminRequest, opts ...grpc.CallOption) (*ListKnowledgeBasesAdminResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListKnowledgeBasesAdminResponse)
+	err := c.cc.Invoke(ctx, ArtifactPrivateService_ListKnowledgeBasesAdmin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -174,6 +206,16 @@ func (c *artifactPrivateServiceClient) DeleteFileAdmin(ctx context.Context, in *
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteFileAdminResponse)
 	err := c.cc.Invoke(ctx, ArtifactPrivateService_DeleteFileAdmin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPrivateServiceClient) ReprocessFileAdmin(ctx context.Context, in *ReprocessFileAdminRequest, opts ...grpc.CallOption) (*ReprocessFileAdminResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ReprocessFileAdminResponse)
+	err := c.cc.Invoke(ctx, ArtifactPrivateService_ReprocessFileAdmin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -333,15 +375,26 @@ type ArtifactPrivateServiceServer interface {
 	// services (e.g., agent-backend) to create shared knowledge bases like
 	// "instill-agent" that are not owned by any specific user.
 	CreateKnowledgeBaseAdmin(context.Context, *CreateKnowledgeBaseAdminRequest) (*CreateKnowledgeBaseAdminResponse, error)
+	// List knowledge bases without ACL filtering (admin only)
+	//
+	// Lists all knowledge bases in a namespace without ACL filtering. Unlike the
+	// public ListKnowledgeBases endpoint which filters results based on user
+	// permissions, this admin endpoint returns all knowledge bases including
+	// system-created ones (e.g., those created via CreateKnowledgeBaseAdmin).
+	// Used by internal services (e.g., agent-backend) to find existing system
+	// knowledge bases.
+	ListKnowledgeBasesAdmin(context.Context, *ListKnowledgeBasesAdminRequest) (*ListKnowledgeBasesAdminResponse, error)
 	// Update a knowledge base with system-reserved tags (admin only)
 	//
-	// Updates a knowledge base allowing system-reserved tag prefixes like "instill-".
-	// Used by internal services to manage system-level knowledge base metadata.
+	// Updates a knowledge base allowing system-reserved tag prefixes like
+	// "instill-". Used by internal services to manage system-level knowledge base
+	// metadata.
 	UpdateKnowledgeBaseAdmin(context.Context, *UpdateKnowledgeBaseAdminRequest) (*UpdateKnowledgeBaseAdminResponse, error)
 	// Update a file with system-reserved tags (admin only)
 	//
 	// Updates a file allowing system-reserved tag prefixes like "agent:".
-	// Used by agent-backend to set collection association tags (e.g., "agent:collection:{uid}").
+	// Used by agent-backend to set collection association tags (e.g.,
+	// "agent:collection:{uid}").
 	UpdateFileAdmin(context.Context, *UpdateFileAdminRequest) (*UpdateFileAdminResponse, error)
 	// Get Object (admin only)
 	GetObjectAdmin(context.Context, *GetObjectAdminRequest) (*GetObjectAdminResponse, error)
@@ -349,21 +402,30 @@ type ArtifactPrivateServiceServer interface {
 	UpdateObjectAdmin(context.Context, *UpdateObjectAdminRequest) (*UpdateObjectAdminResponse, error)
 	// Delete a knowledge base file (admin only)
 	//
-	// Deletes a file from a knowledge base using only the file ID. Unlike the public
-	// DeleteFile endpoint which requires namespace and knowledge base IDs, this
-	// admin endpoint automatically looks up the file's knowledge base and owner to
-	// perform the deletion. Primarily used for integration testing and internal
-	// operations where the caller has a file ID but not the full resource path.
-	// Authentication metadata is injected automatically based on the file owner.
+	// Deletes a file from a knowledge base using only the file ID. Unlike the
+	// public DeleteFile endpoint which requires namespace and knowledge base IDs,
+	// this admin endpoint automatically looks up the file's knowledge base and
+	// owner to perform the deletion. Primarily used for integration testing and
+	// internal operations where the caller has a file ID but not the full
+	// resource path. Authentication metadata is injected automatically based on
+	// the file owner.
 	DeleteFileAdmin(context.Context, *DeleteFileAdminRequest) (*DeleteFileAdminResponse, error)
+	// Reprocess a file (admin only)
+	//
+	// Triggers file reprocessing without ACL checks. This allows admin tools like
+	// commander to reprocess files directly by UID, bypassing OpenFGA permission
+	// validation. The file's knowledge base and owner are automatically looked
+	// up. Used for administrative operations where the caller needs to force
+	// reprocess files without authentication context.
+	ReprocessFileAdmin(context.Context, *ReprocessFileAdminRequest) (*ReprocessFileAdminResponse, error)
 	// Execute knowledge base update (admin only)
 	ExecuteKnowledgeBaseUpdateAdmin(context.Context, *ExecuteKnowledgeBaseUpdateAdminRequest) (*ExecuteKnowledgeBaseUpdateAdminResponse, error)
 	// Abort knowledge base update (admin only)
 	//
 	// Cancels ongoing update workflows and cleans up staging KB resources
 	// (both finished and unfinished). Can abort specific knowledge bases by ID or
-	// all currently updating knowledge bases if no IDs provided. Sets knowledge base status
-	// to 'aborted'.
+	// all currently updating knowledge bases if no IDs provided. Sets knowledge
+	// base status to 'aborted'.
 	AbortKnowledgeBaseUpdateAdmin(context.Context, *AbortKnowledgeBaseUpdateAdminRequest) (*AbortKnowledgeBaseUpdateAdminResponse, error)
 	// Rollback a specific knowledge base to previous version (admin only)
 	RollbackAdmin(context.Context, *RollbackAdminRequest) (*RollbackAdminResponse, error)
@@ -401,6 +463,9 @@ type UnimplementedArtifactPrivateServiceServer struct{}
 func (UnimplementedArtifactPrivateServiceServer) CreateKnowledgeBaseAdmin(context.Context, *CreateKnowledgeBaseAdminRequest) (*CreateKnowledgeBaseAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateKnowledgeBaseAdmin not implemented")
 }
+func (UnimplementedArtifactPrivateServiceServer) ListKnowledgeBasesAdmin(context.Context, *ListKnowledgeBasesAdminRequest) (*ListKnowledgeBasesAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListKnowledgeBasesAdmin not implemented")
+}
 func (UnimplementedArtifactPrivateServiceServer) UpdateKnowledgeBaseAdmin(context.Context, *UpdateKnowledgeBaseAdminRequest) (*UpdateKnowledgeBaseAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateKnowledgeBaseAdmin not implemented")
 }
@@ -415,6 +480,9 @@ func (UnimplementedArtifactPrivateServiceServer) UpdateObjectAdmin(context.Conte
 }
 func (UnimplementedArtifactPrivateServiceServer) DeleteFileAdmin(context.Context, *DeleteFileAdminRequest) (*DeleteFileAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteFileAdmin not implemented")
+}
+func (UnimplementedArtifactPrivateServiceServer) ReprocessFileAdmin(context.Context, *ReprocessFileAdminRequest) (*ReprocessFileAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReprocessFileAdmin not implemented")
 }
 func (UnimplementedArtifactPrivateServiceServer) ExecuteKnowledgeBaseUpdateAdmin(context.Context, *ExecuteKnowledgeBaseUpdateAdminRequest) (*ExecuteKnowledgeBaseUpdateAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ExecuteKnowledgeBaseUpdateAdmin not implemented")
@@ -492,6 +560,24 @@ func _ArtifactPrivateService_CreateKnowledgeBaseAdmin_Handler(srv interface{}, c
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ArtifactPrivateServiceServer).CreateKnowledgeBaseAdmin(ctx, req.(*CreateKnowledgeBaseAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPrivateService_ListKnowledgeBasesAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListKnowledgeBasesAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPrivateServiceServer).ListKnowledgeBasesAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPrivateService_ListKnowledgeBasesAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPrivateServiceServer).ListKnowledgeBasesAdmin(ctx, req.(*ListKnowledgeBasesAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -582,6 +668,24 @@ func _ArtifactPrivateService_DeleteFileAdmin_Handler(srv interface{}, ctx contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ArtifactPrivateServiceServer).DeleteFileAdmin(ctx, req.(*DeleteFileAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPrivateService_ReprocessFileAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReprocessFileAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPrivateServiceServer).ReprocessFileAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPrivateService_ReprocessFileAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPrivateServiceServer).ReprocessFileAdmin(ctx, req.(*ReprocessFileAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -850,6 +954,10 @@ var ArtifactPrivateService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ArtifactPrivateService_CreateKnowledgeBaseAdmin_Handler,
 		},
 		{
+			MethodName: "ListKnowledgeBasesAdmin",
+			Handler:    _ArtifactPrivateService_ListKnowledgeBasesAdmin_Handler,
+		},
+		{
 			MethodName: "UpdateKnowledgeBaseAdmin",
 			Handler:    _ArtifactPrivateService_UpdateKnowledgeBaseAdmin_Handler,
 		},
@@ -868,6 +976,10 @@ var ArtifactPrivateService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteFileAdmin",
 			Handler:    _ArtifactPrivateService_DeleteFileAdmin_Handler,
+		},
+		{
+			MethodName: "ReprocessFileAdmin",
+			Handler:    _ArtifactPrivateService_ReprocessFileAdmin_Handler,
 		},
 		{
 			MethodName: "ExecuteKnowledgeBaseUpdateAdmin",

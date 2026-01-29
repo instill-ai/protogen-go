@@ -57,7 +57,12 @@ type Object struct {
 	// Last modified time (client-provided metadata).
 	LastModifiedTime *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=last_modified_time,json=lastModifiedTime,proto3,oneof" json:"last_modified_time,omitempty"`
 	// Object delete time (for soft delete). Output only.
-	DeleteTime    *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=delete_time,json=deleteTime,proto3,oneof" json:"delete_time,omitempty"`
+	DeleteTime *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=delete_time,json=deleteTime,proto3,oneof" json:"delete_time,omitempty"`
+	// URL-friendly slug derived from display_name.
+	// Example: "my-document-pdf"
+	Slug string `protobuf:"bytes,14,opt,name=slug,proto3" json:"slug,omitempty"`
+	// Previous slugs for backward compatibility when display_name changes.
+	Aliases       []string `protobuf:"bytes,15,rep,name=aliases,proto3" json:"aliases,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -179,6 +184,20 @@ func (x *Object) GetLastModifiedTime() *timestamppb.Timestamp {
 func (x *Object) GetDeleteTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.DeleteTime
+	}
+	return nil
+}
+
+func (x *Object) GetSlug() string {
+	if x != nil {
+		return x.Slug
+	}
+	return ""
+}
+
+func (x *Object) GetAliases() []string {
+	if x != nil {
+		return x.Aliases
 	}
 	return nil
 }
@@ -978,7 +997,7 @@ var File_artifact_v1alpha_object_proto protoreflect.FileDescriptor
 
 const file_artifact_v1alpha_object_proto_rawDesc = "" +
 	"\n" +
-	"\x1dartifact/v1alpha/object.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd1\x05\n" +
+	"\x1dartifact/v1alpha/object.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x89\x06\n" +
 	"\x06Object\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12&\n" +
@@ -998,7 +1017,9 @@ const file_artifact_v1alpha_object_proto_rawDesc = "" +
 	"\x12object_expire_days\x18\v \x01(\x05B\x03\xe0A\x01R\x10objectExpireDays\x12R\n" +
 	"\x12last_modified_time\x18\f \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x01H\x00R\x10lastModifiedTime\x88\x01\x01\x12E\n" +
 	"\vdelete_time\x18\r \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03H\x01R\n" +
-	"deleteTime\x88\x01\x01:E\xeaAB\n" +
+	"deleteTime\x88\x01\x01\x12\x17\n" +
+	"\x04slug\x18\x0e \x01(\tB\x03\xe0A\x01R\x04slug\x12\x1d\n" +
+	"\aaliases\x18\x0f \x03(\tB\x03\xe0A\x03R\aaliases:E\xeaAB\n" +
 	"\x17api.instill.tech/Object\x12'namespaces/{namespace}/objects/{object}B\x15\n" +
 	"\x13_last_modified_timeB\x0e\n" +
 	"\f_delete_time\"\x8f\x02\n" +

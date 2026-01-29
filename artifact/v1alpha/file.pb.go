@@ -1229,6 +1229,99 @@ func (x *DeleteFileAdminResponse) GetName() string {
 	return ""
 }
 
+// ReprocessFileAdminRequest represents a request to reprocess a file (admin only).
+// This bypasses ACL checks and triggers the ProcessFileWorkflow directly.
+type ReprocessFileAdminRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The file UID to reprocess.
+	FileUid       string `protobuf:"bytes,1,opt,name=file_uid,json=fileUid,proto3" json:"file_uid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ReprocessFileAdminRequest) Reset() {
+	*x = ReprocessFileAdminRequest{}
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ReprocessFileAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReprocessFileAdminRequest) ProtoMessage() {}
+
+func (x *ReprocessFileAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReprocessFileAdminRequest.ProtoReflect.Descriptor instead.
+func (*ReprocessFileAdminRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *ReprocessFileAdminRequest) GetFileUid() string {
+	if x != nil {
+		return x.FileUid
+	}
+	return ""
+}
+
+// ReprocessFileAdminResponse represents a response for reprocessing a file (admin only).
+type ReprocessFileAdminResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The reprocessed file.
+	File          *File `protobuf:"bytes,1,opt,name=file,proto3" json:"file,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ReprocessFileAdminResponse) Reset() {
+	*x = ReprocessFileAdminResponse{}
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ReprocessFileAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReprocessFileAdminResponse) ProtoMessage() {}
+
+func (x *ReprocessFileAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReprocessFileAdminResponse.ProtoReflect.Descriptor instead.
+func (*ReprocessFileAdminResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *ReprocessFileAdminResponse) GetFile() *File {
+	if x != nil {
+		return x.File
+	}
+	return nil
+}
+
 // ListFilesRequest represents a request to list files in a knowledge base.
 // Follows AIP-132: https://google.aip.dev/132
 type ListFilesRequest struct {
@@ -1257,7 +1350,7 @@ type ListFilesRequest struct {
 
 func (x *ListFilesRequest) Reset() {
 	*x = ListFilesRequest{}
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[7]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1269,7 +1362,7 @@ func (x *ListFilesRequest) String() string {
 func (*ListFilesRequest) ProtoMessage() {}
 
 func (x *ListFilesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[7]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1282,7 +1375,7 @@ func (x *ListFilesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListFilesRequest.ProtoReflect.Descriptor instead.
 func (*ListFilesRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{7}
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *ListFilesRequest) GetParent() string {
@@ -1330,7 +1423,7 @@ type ListFilesResponse struct {
 
 func (x *ListFilesResponse) Reset() {
 	*x = ListFilesResponse{}
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[8]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1342,7 +1435,7 @@ func (x *ListFilesResponse) String() string {
 func (*ListFilesResponse) ProtoMessage() {}
 
 func (x *ListFilesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[8]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1355,7 +1448,7 @@ func (x *ListFilesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListFilesResponse.ProtoReflect.Descriptor instead.
 func (*ListFilesResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{8}
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *ListFilesResponse) GetFiles() []*File {
@@ -1411,7 +1504,7 @@ type GetFileRequest struct {
 
 func (x *GetFileRequest) Reset() {
 	*x = GetFileRequest{}
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[9]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1423,7 +1516,7 @@ func (x *GetFileRequest) String() string {
 func (*GetFileRequest) ProtoMessage() {}
 
 func (x *GetFileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[9]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1436,7 +1529,7 @@ func (x *GetFileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFileRequest.ProtoReflect.Descriptor instead.
 func (*GetFileRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{9}
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *GetFileRequest) GetName() string {
@@ -1479,7 +1572,7 @@ type GetFileResponse struct {
 
 func (x *GetFileResponse) Reset() {
 	*x = GetFileResponse{}
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[10]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1491,7 +1584,7 @@ func (x *GetFileResponse) String() string {
 func (*GetFileResponse) ProtoMessage() {}
 
 func (x *GetFileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[10]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1504,7 +1597,7 @@ func (x *GetFileResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFileResponse.ProtoReflect.Descriptor instead.
 func (*GetFileResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{10}
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *GetFileResponse) GetFile() *File {
@@ -1536,7 +1629,7 @@ type UpdateFileRequest struct {
 
 func (x *UpdateFileRequest) Reset() {
 	*x = UpdateFileRequest{}
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[11]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1548,7 +1641,7 @@ func (x *UpdateFileRequest) String() string {
 func (*UpdateFileRequest) ProtoMessage() {}
 
 func (x *UpdateFileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[11]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1561,7 +1654,7 @@ func (x *UpdateFileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateFileRequest.ProtoReflect.Descriptor instead.
 func (*UpdateFileRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{11}
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *UpdateFileRequest) GetFile() *File {
@@ -1589,7 +1682,7 @@ type UpdateFileResponse struct {
 
 func (x *UpdateFileResponse) Reset() {
 	*x = UpdateFileResponse{}
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[12]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1601,7 +1694,7 @@ func (x *UpdateFileResponse) String() string {
 func (*UpdateFileResponse) ProtoMessage() {}
 
 func (x *UpdateFileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[12]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1614,7 +1707,7 @@ func (x *UpdateFileResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateFileResponse.ProtoReflect.Descriptor instead.
 func (*UpdateFileResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{12}
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *UpdateFileResponse) GetFile() *File {
@@ -1636,7 +1729,7 @@ type ReprocessFileRequest struct {
 
 func (x *ReprocessFileRequest) Reset() {
 	*x = ReprocessFileRequest{}
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[13]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1648,7 +1741,7 @@ func (x *ReprocessFileRequest) String() string {
 func (*ReprocessFileRequest) ProtoMessage() {}
 
 func (x *ReprocessFileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[13]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1661,7 +1754,7 @@ func (x *ReprocessFileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReprocessFileRequest.ProtoReflect.Descriptor instead.
 func (*ReprocessFileRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{13}
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *ReprocessFileRequest) GetName() string {
@@ -1684,7 +1777,7 @@ type ReprocessFileResponse struct {
 
 func (x *ReprocessFileResponse) Reset() {
 	*x = ReprocessFileResponse{}
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[14]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1696,7 +1789,7 @@ func (x *ReprocessFileResponse) String() string {
 func (*ReprocessFileResponse) ProtoMessage() {}
 
 func (x *ReprocessFileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[14]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1709,7 +1802,7 @@ func (x *ReprocessFileResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReprocessFileResponse.ProtoReflect.Descriptor instead.
 func (*ReprocessFileResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{14}
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *ReprocessFileResponse) GetFile() *File {
@@ -1744,7 +1837,7 @@ type UpdateFileAdminRequest struct {
 
 func (x *UpdateFileAdminRequest) Reset() {
 	*x = UpdateFileAdminRequest{}
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[15]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1756,7 +1849,7 @@ func (x *UpdateFileAdminRequest) String() string {
 func (*UpdateFileAdminRequest) ProtoMessage() {}
 
 func (x *UpdateFileAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[15]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1769,7 +1862,7 @@ func (x *UpdateFileAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateFileAdminRequest.ProtoReflect.Descriptor instead.
 func (*UpdateFileAdminRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{15}
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *UpdateFileAdminRequest) GetFile() *File {
@@ -1797,7 +1890,7 @@ type UpdateFileAdminResponse struct {
 
 func (x *UpdateFileAdminResponse) Reset() {
 	*x = UpdateFileAdminResponse{}
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[16]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1809,7 +1902,7 @@ func (x *UpdateFileAdminResponse) String() string {
 func (*UpdateFileAdminResponse) ProtoMessage() {}
 
 func (x *UpdateFileAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[16]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1822,7 +1915,7 @@ func (x *UpdateFileAdminResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateFileAdminResponse.ProtoReflect.Descriptor instead.
 func (*UpdateFileAdminResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{16}
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *UpdateFileAdminResponse) GetFile() *File {
@@ -1846,7 +1939,7 @@ type File_Position struct {
 
 func (x *File_Position) Reset() {
 	*x = File_Position{}
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[17]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1858,7 +1951,7 @@ func (x *File_Position) String() string {
 func (*File_Position) ProtoMessage() {}
 
 func (x *File_Position) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[17]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2021,7 +2114,11 @@ const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\x04name\x18\x01 \x01(\tB\x1d\xe0A\x02\xfaA\x17\n" +
 	"\x15api.instill.tech/FileR\x04name\"2\n" +
 	"\x17DeleteFileAdminResponse\x12\x17\n" +
-	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\"\xc9\x01\n" +
+	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\";\n" +
+	"\x19ReprocessFileAdminRequest\x12\x1e\n" +
+	"\bfile_uid\x18\x01 \x01(\tB\x03\xe0A\x02R\afileUid\"M\n" +
+	"\x1aReprocessFileAdminResponse\x12/\n" +
+	"\x04file\x18\x01 \x01(\v2\x16.artifact.v1alpha.FileB\x03\xe0A\x03R\x04file\"\xc9\x01\n" +
 	"\x10ListFilesRequest\x12\x1b\n" +
 	"\x06parent\x18\x01 \x01(\tB\x03\xe0A\x02R\x06parent\x12%\n" +
 	"\tpage_size\x18\x02 \x01(\x05B\x03\xe0A\x01H\x00R\bpageSize\x88\x01\x01\x12'\n" +
@@ -2098,68 +2195,71 @@ func file_artifact_v1alpha_file_proto_rawDescGZIP() []byte {
 }
 
 var file_artifact_v1alpha_file_proto_enumTypes = make([]protoimpl.EnumInfo, 7)
-var file_artifact_v1alpha_file_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
+var file_artifact_v1alpha_file_proto_msgTypes = make([]protoimpl.MessageInfo, 20)
 var file_artifact_v1alpha_file_proto_goTypes = []any{
-	(FileProcessStatus)(0),          // 0: artifact.v1alpha.FileProcessStatus
-	(ConvertedFileType)(0),          // 1: artifact.v1alpha.ConvertedFileType
-	(File_View)(0),                  // 2: artifact.v1alpha.File.View
-	(File_StorageProvider)(0),       // 3: artifact.v1alpha.File.StorageProvider
-	(File_Type)(0),                  // 4: artifact.v1alpha.File.Type
-	(File_FileMediaType)(0),         // 5: artifact.v1alpha.File.FileMediaType
-	(File_Position_Unit)(0),         // 6: artifact.v1alpha.File.Position.Unit
-	(*File)(nil),                    // 7: artifact.v1alpha.File
-	(*CreateFileRequest)(nil),       // 8: artifact.v1alpha.CreateFileRequest
-	(*CreateFileResponse)(nil),      // 9: artifact.v1alpha.CreateFileResponse
-	(*DeleteFileRequest)(nil),       // 10: artifact.v1alpha.DeleteFileRequest
-	(*DeleteFileResponse)(nil),      // 11: artifact.v1alpha.DeleteFileResponse
-	(*DeleteFileAdminRequest)(nil),  // 12: artifact.v1alpha.DeleteFileAdminRequest
-	(*DeleteFileAdminResponse)(nil), // 13: artifact.v1alpha.DeleteFileAdminResponse
-	(*ListFilesRequest)(nil),        // 14: artifact.v1alpha.ListFilesRequest
-	(*ListFilesResponse)(nil),       // 15: artifact.v1alpha.ListFilesResponse
-	(*GetFileRequest)(nil),          // 16: artifact.v1alpha.GetFileRequest
-	(*GetFileResponse)(nil),         // 17: artifact.v1alpha.GetFileResponse
-	(*UpdateFileRequest)(nil),       // 18: artifact.v1alpha.UpdateFileRequest
-	(*UpdateFileResponse)(nil),      // 19: artifact.v1alpha.UpdateFileResponse
-	(*ReprocessFileRequest)(nil),    // 20: artifact.v1alpha.ReprocessFileRequest
-	(*ReprocessFileResponse)(nil),   // 21: artifact.v1alpha.ReprocessFileResponse
-	(*UpdateFileAdminRequest)(nil),  // 22: artifact.v1alpha.UpdateFileAdminRequest
-	(*UpdateFileAdminResponse)(nil), // 23: artifact.v1alpha.UpdateFileAdminResponse
-	(*File_Position)(nil),           // 24: artifact.v1alpha.File.Position
-	(*timestamppb.Timestamp)(nil),   // 25: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),         // 26: google.protobuf.Struct
-	(*v1beta.Owner)(nil),            // 27: mgmt.v1beta.Owner
-	(*v1beta.User)(nil),             // 28: mgmt.v1beta.User
-	(*fieldmaskpb.FieldMask)(nil),   // 29: google.protobuf.FieldMask
+	(FileProcessStatus)(0),             // 0: artifact.v1alpha.FileProcessStatus
+	(ConvertedFileType)(0),             // 1: artifact.v1alpha.ConvertedFileType
+	(File_View)(0),                     // 2: artifact.v1alpha.File.View
+	(File_StorageProvider)(0),          // 3: artifact.v1alpha.File.StorageProvider
+	(File_Type)(0),                     // 4: artifact.v1alpha.File.Type
+	(File_FileMediaType)(0),            // 5: artifact.v1alpha.File.FileMediaType
+	(File_Position_Unit)(0),            // 6: artifact.v1alpha.File.Position.Unit
+	(*File)(nil),                       // 7: artifact.v1alpha.File
+	(*CreateFileRequest)(nil),          // 8: artifact.v1alpha.CreateFileRequest
+	(*CreateFileResponse)(nil),         // 9: artifact.v1alpha.CreateFileResponse
+	(*DeleteFileRequest)(nil),          // 10: artifact.v1alpha.DeleteFileRequest
+	(*DeleteFileResponse)(nil),         // 11: artifact.v1alpha.DeleteFileResponse
+	(*DeleteFileAdminRequest)(nil),     // 12: artifact.v1alpha.DeleteFileAdminRequest
+	(*DeleteFileAdminResponse)(nil),    // 13: artifact.v1alpha.DeleteFileAdminResponse
+	(*ReprocessFileAdminRequest)(nil),  // 14: artifact.v1alpha.ReprocessFileAdminRequest
+	(*ReprocessFileAdminResponse)(nil), // 15: artifact.v1alpha.ReprocessFileAdminResponse
+	(*ListFilesRequest)(nil),           // 16: artifact.v1alpha.ListFilesRequest
+	(*ListFilesResponse)(nil),          // 17: artifact.v1alpha.ListFilesResponse
+	(*GetFileRequest)(nil),             // 18: artifact.v1alpha.GetFileRequest
+	(*GetFileResponse)(nil),            // 19: artifact.v1alpha.GetFileResponse
+	(*UpdateFileRequest)(nil),          // 20: artifact.v1alpha.UpdateFileRequest
+	(*UpdateFileResponse)(nil),         // 21: artifact.v1alpha.UpdateFileResponse
+	(*ReprocessFileRequest)(nil),       // 22: artifact.v1alpha.ReprocessFileRequest
+	(*ReprocessFileResponse)(nil),      // 23: artifact.v1alpha.ReprocessFileResponse
+	(*UpdateFileAdminRequest)(nil),     // 24: artifact.v1alpha.UpdateFileAdminRequest
+	(*UpdateFileAdminResponse)(nil),    // 25: artifact.v1alpha.UpdateFileAdminResponse
+	(*File_Position)(nil),              // 26: artifact.v1alpha.File.Position
+	(*timestamppb.Timestamp)(nil),      // 27: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),            // 28: google.protobuf.Struct
+	(*v1beta.Owner)(nil),               // 29: mgmt.v1beta.Owner
+	(*v1beta.User)(nil),                // 30: mgmt.v1beta.User
+	(*fieldmaskpb.FieldMask)(nil),      // 31: google.protobuf.FieldMask
 }
 var file_artifact_v1alpha_file_proto_depIdxs = []int32{
-	25, // 0: artifact.v1alpha.File.create_time:type_name -> google.protobuf.Timestamp
-	25, // 1: artifact.v1alpha.File.update_time:type_name -> google.protobuf.Timestamp
+	27, // 0: artifact.v1alpha.File.create_time:type_name -> google.protobuf.Timestamp
+	27, // 1: artifact.v1alpha.File.update_time:type_name -> google.protobuf.Timestamp
 	4,  // 2: artifact.v1alpha.File.type:type_name -> artifact.v1alpha.File.Type
 	0,  // 3: artifact.v1alpha.File.process_status:type_name -> artifact.v1alpha.FileProcessStatus
-	26, // 4: artifact.v1alpha.File.external_metadata:type_name -> google.protobuf.Struct
-	27, // 5: artifact.v1alpha.File.owner:type_name -> mgmt.v1beta.Owner
-	28, // 6: artifact.v1alpha.File.creator:type_name -> mgmt.v1beta.User
-	24, // 7: artifact.v1alpha.File.length:type_name -> artifact.v1alpha.File.Position
-	25, // 8: artifact.v1alpha.File.delete_time:type_name -> google.protobuf.Timestamp
+	28, // 4: artifact.v1alpha.File.external_metadata:type_name -> google.protobuf.Struct
+	29, // 5: artifact.v1alpha.File.owner:type_name -> mgmt.v1beta.Owner
+	30, // 6: artifact.v1alpha.File.creator:type_name -> mgmt.v1beta.User
+	26, // 7: artifact.v1alpha.File.length:type_name -> artifact.v1alpha.File.Position
+	27, // 8: artifact.v1alpha.File.delete_time:type_name -> google.protobuf.Timestamp
 	7,  // 9: artifact.v1alpha.CreateFileRequest.file:type_name -> artifact.v1alpha.File
 	7,  // 10: artifact.v1alpha.CreateFileResponse.file:type_name -> artifact.v1alpha.File
-	7,  // 11: artifact.v1alpha.ListFilesResponse.files:type_name -> artifact.v1alpha.File
-	2,  // 12: artifact.v1alpha.GetFileRequest.view:type_name -> artifact.v1alpha.File.View
-	3,  // 13: artifact.v1alpha.GetFileRequest.storage_provider:type_name -> artifact.v1alpha.File.StorageProvider
-	7,  // 14: artifact.v1alpha.GetFileResponse.file:type_name -> artifact.v1alpha.File
-	7,  // 15: artifact.v1alpha.UpdateFileRequest.file:type_name -> artifact.v1alpha.File
-	29, // 16: artifact.v1alpha.UpdateFileRequest.update_mask:type_name -> google.protobuf.FieldMask
-	7,  // 17: artifact.v1alpha.UpdateFileResponse.file:type_name -> artifact.v1alpha.File
-	7,  // 18: artifact.v1alpha.ReprocessFileResponse.file:type_name -> artifact.v1alpha.File
-	7,  // 19: artifact.v1alpha.UpdateFileAdminRequest.file:type_name -> artifact.v1alpha.File
-	29, // 20: artifact.v1alpha.UpdateFileAdminRequest.update_mask:type_name -> google.protobuf.FieldMask
-	7,  // 21: artifact.v1alpha.UpdateFileAdminResponse.file:type_name -> artifact.v1alpha.File
-	6,  // 22: artifact.v1alpha.File.Position.unit:type_name -> artifact.v1alpha.File.Position.Unit
-	23, // [23:23] is the sub-list for method output_type
-	23, // [23:23] is the sub-list for method input_type
-	23, // [23:23] is the sub-list for extension type_name
-	23, // [23:23] is the sub-list for extension extendee
-	0,  // [0:23] is the sub-list for field type_name
+	7,  // 11: artifact.v1alpha.ReprocessFileAdminResponse.file:type_name -> artifact.v1alpha.File
+	7,  // 12: artifact.v1alpha.ListFilesResponse.files:type_name -> artifact.v1alpha.File
+	2,  // 13: artifact.v1alpha.GetFileRequest.view:type_name -> artifact.v1alpha.File.View
+	3,  // 14: artifact.v1alpha.GetFileRequest.storage_provider:type_name -> artifact.v1alpha.File.StorageProvider
+	7,  // 15: artifact.v1alpha.GetFileResponse.file:type_name -> artifact.v1alpha.File
+	7,  // 16: artifact.v1alpha.UpdateFileRequest.file:type_name -> artifact.v1alpha.File
+	31, // 17: artifact.v1alpha.UpdateFileRequest.update_mask:type_name -> google.protobuf.FieldMask
+	7,  // 18: artifact.v1alpha.UpdateFileResponse.file:type_name -> artifact.v1alpha.File
+	7,  // 19: artifact.v1alpha.ReprocessFileResponse.file:type_name -> artifact.v1alpha.File
+	7,  // 20: artifact.v1alpha.UpdateFileAdminRequest.file:type_name -> artifact.v1alpha.File
+	31, // 21: artifact.v1alpha.UpdateFileAdminRequest.update_mask:type_name -> google.protobuf.FieldMask
+	7,  // 22: artifact.v1alpha.UpdateFileAdminResponse.file:type_name -> artifact.v1alpha.File
+	6,  // 23: artifact.v1alpha.File.Position.unit:type_name -> artifact.v1alpha.File.Position.Unit
+	24, // [24:24] is the sub-list for method output_type
+	24, // [24:24] is the sub-list for method input_type
+	24, // [24:24] is the sub-list for extension type_name
+	24, // [24:24] is the sub-list for extension extendee
+	0,  // [0:24] is the sub-list for field type_name
 }
 
 func init() { file_artifact_v1alpha_file_proto_init() }
@@ -2168,16 +2268,16 @@ func file_artifact_v1alpha_file_proto_init() {
 		return
 	}
 	file_artifact_v1alpha_file_proto_msgTypes[0].OneofWrappers = []any{}
-	file_artifact_v1alpha_file_proto_msgTypes[7].OneofWrappers = []any{}
 	file_artifact_v1alpha_file_proto_msgTypes[9].OneofWrappers = []any{}
-	file_artifact_v1alpha_file_proto_msgTypes[10].OneofWrappers = []any{}
+	file_artifact_v1alpha_file_proto_msgTypes[11].OneofWrappers = []any{}
+	file_artifact_v1alpha_file_proto_msgTypes[12].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_artifact_v1alpha_file_proto_rawDesc), len(file_artifact_v1alpha_file_proto_rawDesc)),
 			NumEnums:      7,
-			NumMessages:   18,
+			NumMessages:   20,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
