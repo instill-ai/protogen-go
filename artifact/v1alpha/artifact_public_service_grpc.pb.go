@@ -80,7 +80,7 @@ type ArtifactPublicServiceClient interface {
 	DeleteKnowledgeBase(ctx context.Context, in *DeleteKnowledgeBaseRequest, opts ...grpc.CallOption) (*DeleteKnowledgeBaseResponse, error)
 	// Create a file
 	//
-	// Uploads and converts a file to a knowledge base.
+	// Uploads and converts a file.
 	CreateFile(ctx context.Context, in *CreateFileRequest, opts ...grpc.CallOption) (*CreateFileResponse, error)
 	// Get a file
 	//
@@ -88,7 +88,7 @@ type ArtifactPublicServiceClient interface {
 	GetFile(ctx context.Context, in *GetFileRequest, opts ...grpc.CallOption) (*GetFileResponse, error)
 	// List files
 	//
-	// Returns a paginated list of files in a knowledge base.
+	// Returns a paginated list of files.
 	ListFiles(ctx context.Context, in *ListFilesRequest, opts ...grpc.CallOption) (*ListFilesResponse, error)
 	// Update a file
 	//
@@ -406,7 +406,7 @@ type ArtifactPublicServiceServer interface {
 	DeleteKnowledgeBase(context.Context, *DeleteKnowledgeBaseRequest) (*DeleteKnowledgeBaseResponse, error)
 	// Create a file
 	//
-	// Uploads and converts a file to a knowledge base.
+	// Uploads and converts a file.
 	CreateFile(context.Context, *CreateFileRequest) (*CreateFileResponse, error)
 	// Get a file
 	//
@@ -414,7 +414,7 @@ type ArtifactPublicServiceServer interface {
 	GetFile(context.Context, *GetFileRequest) (*GetFileResponse, error)
 	// List files
 	//
-	// Returns a paginated list of files in a knowledge base.
+	// Returns a paginated list of files.
 	ListFiles(context.Context, *ListFilesRequest) (*ListFilesResponse, error)
 	// Update a file
 	//

@@ -27,7 +27,7 @@ var File_artifact_v1alpha_artifact_public_service_proto protoreflect.FileDescrip
 
 const file_artifact_v1alpha_artifact_public_service_proto_rawDesc = "" +
 	"\n" +
-	".artifact/v1alpha/artifact_public_service.proto\x12\x10artifact.v1alpha\x1a\x1fartifact/v1alpha/artifact.proto\x1a\x1cartifact/v1alpha/chunk.proto\x1a\x1bartifact/v1alpha/file.proto\x1a%artifact/v1alpha/knowledge_base.proto\x1a\x1dartifact/v1alpha/object.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xf8\"\n" +
+	".artifact/v1alpha/artifact_public_service.proto\x12\x10artifact.v1alpha\x1a\x1fartifact/v1alpha/artifact.proto\x1a\x1cartifact/v1alpha/chunk.proto\x1a\x1bartifact/v1alpha/file.proto\x1a%artifact/v1alpha/knowledge_base.proto\x1a\x1dartifact/v1alpha/object.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\x81#\n" +
 	"\x15ArtifactPublicService\x12\x9a\x01\n" +
 	"\bLiveness\x12!.artifact.v1alpha.LivenessRequest\x1a\".artifact.v1alpha.LivenessResponse\"G\xfa\xd2\xe4\x93\x02\n" +
 	"\x12\bINTERNAL\x82\xd3\xe4\x93\x021Z\x1a\x12\x18/v1alpha/health/artifact\x12\x13/v1alpha/__liveness\x12\x9d\x01\n" +
@@ -47,38 +47,38 @@ const file_artifact_v1alpha_artifact_public_service_proto_rawDesc = "" +
 	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02O:\x0eknowledge_base2=/v1alpha/{knowledge_base.name=namespaces/*/knowledge-bases/*}\x12\xcb\x01\n" +
 	"\x13DeleteKnowledgeBase\x12,.artifact.v1alpha.DeleteKnowledgeBaseRequest\x1a-.artifact.v1alpha.DeleteKnowledgeBaseResponse\"W\x92A\x1e\n" +
 	"\bArtifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x020*./v1alpha/{name=namespaces/*/knowledge-bases/*}\x12\xbd\x01\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x020*./v1alpha/{name=namespaces/*/knowledge-bases/*}\x12\xbe\x01\n" +
 	"\n" +
-	"CreateFile\x12#.artifact.v1alpha.CreateFileRequest\x1a$.artifact.v1alpha.CreateFileResponse\"d\x92A\x1e\n" +
+	"CreateFile\x12#.artifact.v1alpha.CreateFileRequest\x1a$.artifact.v1alpha.CreateFileResponse\"e\x92A\x1e\n" +
 	"\bArtifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02=:\x04file\"5/v1alpha/{parent=namespaces/*/knowledgeBases/*}/files\x12\xae\x01\n" +
-	"\aGetFile\x12 .artifact.v1alpha.GetFileRequest\x1a!.artifact.v1alpha.GetFileResponse\"^\x92A\x1e\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02>:\x04file\"6/v1alpha/{parent=namespaces/*/knowledge-bases/*}/files\x12\xaf\x01\n" +
+	"\aGetFile\x12 .artifact.v1alpha.GetFileRequest\x1a!.artifact.v1alpha.GetFileResponse\"_\x92A\x1e\n" +
 	"\bArtifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x027\x125/v1alpha/{name=namespaces/*/knowledgeBases/*/files/*}\x12\xb4\x01\n" +
-	"\tListFiles\x12\".artifact.v1alpha.ListFilesRequest\x1a#.artifact.v1alpha.ListFilesResponse\"^\x92A\x1e\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x028\x126/v1alpha/{name=namespaces/*/knowledge-bases/*/files/*}\x12\xb5\x01\n" +
+	"\tListFiles\x12\".artifact.v1alpha.ListFilesRequest\x1a#.artifact.v1alpha.ListFilesResponse\"_\x92A\x1e\n" +
 	"\bArtifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x027\x125/v1alpha/{parent=namespaces/*/knowledgeBases/*}/files\x12\xc2\x01\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x028\x126/v1alpha/{parent=namespaces/*/knowledge-bases/*}/files\x12\xc3\x01\n" +
 	"\n" +
-	"UpdateFile\x12#.artifact.v1alpha.UpdateFileRequest\x1a$.artifact.v1alpha.UpdateFileResponse\"i\x92A\x1e\n" +
+	"UpdateFile\x12#.artifact.v1alpha.UpdateFileRequest\x1a$.artifact.v1alpha.UpdateFileResponse\"j\x92A\x1e\n" +
 	"\bArtifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02B:\x04file2:/v1alpha/{file.name=namespaces/*/knowledgeBases/*/files/*}\x12\xcd\x01\n" +
-	"\rReprocessFile\x12&.artifact.v1alpha.ReprocessFileRequest\x1a'.artifact.v1alpha.ReprocessFileResponse\"k\x92A\x1e\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02C:\x04file2;/v1alpha/{file.name=namespaces/*/knowledge-bases/*/files/*}\x12\xce\x01\n" +
+	"\rReprocessFile\x12&.artifact.v1alpha.ReprocessFileRequest\x1a'.artifact.v1alpha.ReprocessFileResponse\"l\x92A\x1e\n" +
 	"\bArtifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02D:\x01*\"?/v1alpha/{name=namespaces/*/knowledgeBases/*/files/*}/reprocess\x12\xb7\x01\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02E:\x01*\"@/v1alpha/{name=namespaces/*/knowledge-bases/*/files/*}/reprocess\x12\xb8\x01\n" +
 	"\n" +
-	"DeleteFile\x12#.artifact.v1alpha.DeleteFileRequest\x1a$.artifact.v1alpha.DeleteFileResponse\"^\x92A\x1e\n" +
+	"DeleteFile\x12#.artifact.v1alpha.DeleteFileRequest\x1a$.artifact.v1alpha.DeleteFileResponse\"_\x92A\x1e\n" +
 	"\bArtifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x027*5/v1alpha/{name=namespaces/*/knowledgeBases/*/files/*}\x12\xba\x01\n" +
-	"\bGetChunk\x12!.artifact.v1alpha.GetChunkRequest\x1a\".artifact.v1alpha.GetChunkResponse\"g\x92A\x1e\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x028*6/v1alpha/{name=namespaces/*/knowledge-bases/*/files/*}\x12\xbb\x01\n" +
+	"\bGetChunk\x12!.artifact.v1alpha.GetChunkRequest\x1a\".artifact.v1alpha.GetChunkResponse\"h\x92A\x1e\n" +
 	"\bArtifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02@\x12>/v1alpha/{name=namespaces/*/knowledgeBases/*/files/*/chunks/*}\x12\xc0\x01\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02A\x12?/v1alpha/{name=namespaces/*/knowledge-bases/*/files/*/chunks/*}\x12\xc1\x01\n" +
 	"\n" +
-	"ListChunks\x12#.artifact.v1alpha.ListChunksRequest\x1a$.artifact.v1alpha.ListChunksResponse\"g\x92A\x1e\n" +
+	"ListChunks\x12#.artifact.v1alpha.ListChunksRequest\x1a$.artifact.v1alpha.ListChunksResponse\"h\x92A\x1e\n" +
 	"\bArtifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02@\x12>/v1alpha/{parent=namespaces/*/knowledgeBases/*/files/*}/chunks\x12\xc6\x01\n" +
-	"\vUpdateChunk\x12$.artifact.v1alpha.UpdateChunkRequest\x1a%.artifact.v1alpha.UpdateChunkResponse\"j\x92A\x1e\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02A\x12?/v1alpha/{parent=namespaces/*/knowledge-bases/*/files/*}/chunks\x12\xc7\x01\n" +
+	"\vUpdateChunk\x12$.artifact.v1alpha.UpdateChunkRequest\x1a%.artifact.v1alpha.UpdateChunkResponse\"k\x92A\x1e\n" +
 	"\bArtifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02C:\x01*2>/v1alpha/{name=namespaces/*/knowledgeBases/*/files/*/chunks/*}\x12\xdc\x02\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02D:\x01*2?/v1alpha/{name=namespaces/*/knowledge-bases/*/files/*/chunks/*}\x12\xdc\x02\n" +
 	"\fSearchChunks\x12%.artifact.v1alpha.SearchChunksRequest\x1a&.artifact.v1alpha.SearchChunksResponse\"\xfc\x01\x92A\xc1\x01\n" +
 	"\bArtifactj\x12\n" +
 	"\ax-stage\x12\a\x1a\x05alphar\xa0\x01\n" +

@@ -21,16 +21,19 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// KnowledgeBaseUpdateStatus represents the various states of a Knowledge Base update lifecycle
+// KnowledgeBaseUpdateStatus represents the various states of a Knowledge Base
+// update lifecycle
 type KnowledgeBaseUpdateStatus int32
 
 const (
 	// KNOWLEDGE_BASE_UPDATE_STATUS_UNSPECIFIED - Invalid/unknown state
 	KnowledgeBaseUpdateStatus_KNOWLEDGE_BASE_UPDATE_STATUS_UNSPECIFIED KnowledgeBaseUpdateStatus = 0
-	// KNOWLEDGE_BASE_UPDATE_STATUS_NONE - KB has never been updated (default state for new KBs)
+	// KNOWLEDGE_BASE_UPDATE_STATUS_NONE - KB has never been updated (default
+	// state for new KBs)
 	KnowledgeBaseUpdateStatus_KNOWLEDGE_BASE_UPDATE_STATUS_NONE KnowledgeBaseUpdateStatus = 1
-	// KNOWLEDGE_BASE_UPDATE_STATUS_UPDATING - Phase 1-2: Preparing and reprocessing
-	// The staging KB is being created and populated by reprocessing all files with new configuration
+	// KNOWLEDGE_BASE_UPDATE_STATUS_UPDATING - Phase 1-2: Preparing and
+	// reprocessing The staging KB is being created and populated by reprocessing
+	// all files with new configuration
 	KnowledgeBaseUpdateStatus_KNOWLEDGE_BASE_UPDATE_STATUS_UPDATING KnowledgeBaseUpdateStatus = 2
 	// KNOWLEDGE_BASE_UPDATE_STATUS_SYNCING - Phase 3: Synchronization
 	// Locking KB and waiting for all dual-processed files to complete
@@ -171,11 +174,12 @@ func (SetRollbackRetentionAdminRequest_TimeUnit) EnumDescriptor() ([]byte, []int
 	return file_artifact_v1alpha_update_proto_rawDescGZIP(), []int{5, 0}
 }
 
-// KnowledgeBaseUpdateDetails provides detailed information about a knowledge base update
+// KnowledgeBaseUpdateDetails provides detailed information about a knowledge
+// base update
 type KnowledgeBaseUpdateDetails struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the knowledge base.
-	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}`
+	// Format: `namespaces/{namespace}/knowledge-bases/{knowledge_base}`
 	KnowledgeBase string `protobuf:"bytes,1,opt,name=knowledge_base,json=knowledgeBase,proto3" json:"knowledge_base,omitempty"`
 	// Status of the knowledge base update
 	Status KnowledgeBaseUpdateStatus `protobuf:"varint,2,opt,name=status,proto3,enum=artifact.v1alpha.KnowledgeBaseUpdateStatus" json:"status,omitempty"`
@@ -191,21 +195,24 @@ type KnowledgeBaseUpdateDetails struct {
 	TotalFiles int32 `protobuf:"varint,7,opt,name=total_files,json=totalFiles,proto3" json:"total_files,omitempty"`
 	// Error message explaining why the update failed
 	// Populated ONLY when status is KNOWLEDGE_BASE_UPDATE_STATUS_FAILED
-	// Empty for all other statuses (NONE, UPDATING, SYNCING, VALIDATING, SWAPPING, COMPLETED, ROLLED_BACK, ABORTED)
+	// Empty for all other statuses (NONE, UPDATING, SYNCING, VALIDATING,
+	// SWAPPING, COMPLETED, ROLLED_BACK, ABORTED)
 	ErrorMessage string `protobuf:"bytes,8,opt,name=error_message,json=errorMessage,proto3" json:"error_message,omitempty"`
-	// The resource name of the current system (e.g., "systems/openai", "systems/gemini").
-	// Format: `systems/{system}`
-	// The system configuration currently active in the production KB.
-	// - For UPDATING: The system being updated to (from staging KB - will become current after swap)
-	// - For COMPLETED/FAILED/ROLLED_BACK/ABORTED/NONE: The current production system
-	// Always reflects the KB's current state.
+	// The resource name of the current system (e.g., "systems/openai",
+	// "systems/gemini"). Format: `systems/{system}` The system configuration
+	// currently active in the production KB.
+	// - For UPDATING: The system being updated to (from staging KB - will become
+	// current after swap)
+	// - For COMPLETED/FAILED/ROLLED_BACK/ABORTED/NONE: The current production
+	// system Always reflects the KB's current state.
 	CurrentSystem string `protobuf:"bytes,9,opt,name=current_system,json=currentSystem,proto3" json:"current_system,omitempty"`
 	// The resource name of the previous system before the update.
 	// Format: `systems/{system}`
 	// Captured at update start for historical audit trail.
 	// - For UPDATING: The system before update started
 	// - For COMPLETED: The system before successful update (what was replaced)
-	// - For FAILED/ABORTED: The system before failed attempt (same as current, since update didn't complete)
+	// - For FAILED/ABORTED: The system before failed attempt (same as current,
+	// since update didn't complete)
 	// - For ROLLED_BACK: The system that was rolled back FROM (before rollback)
 	// - For NONE: Empty (never been updated)
 	PreviousSystem string `protobuf:"bytes,10,opt,name=previous_system,json=previousSystem,proto3" json:"previous_system,omitempty"`
@@ -466,7 +473,7 @@ type PurgeRollbackAdminResponse struct {
 	// Whether the purge was successful
 	Success bool `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	// The resource name of the purged knowledge base.
-	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}`
+	// Format: `namespaces/{namespace}/knowledge-bases/{knowledge_base}`
 	PurgedKnowledgeBase string `protobuf:"bytes,2,opt,name=purged_knowledge_base,json=purgedKnowledgeBase,proto3" json:"purged_knowledge_base,omitempty"`
 	// Number of files deleted
 	DeletedFiles int32 `protobuf:"varint,3,opt,name=deleted_files,json=deletedFiles,proto3" json:"deleted_files,omitempty"`
@@ -766,15 +773,17 @@ func (x *GetKnowledgeBaseUpdateStatusAdminResponse) GetMessage() string {
 // ExecuteKnowledgeBaseUpdateAdminRequest (admin only)
 type ExecuteKnowledgeBaseUpdateAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Optional: Specific knowledge base resource names to update. If empty, updates all eligible knowledge bases.
-	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}`
+	// Optional: Specific knowledge base resource names to update. If empty,
+	// updates all eligible knowledge bases. Format:
+	// `namespaces/{namespace}/knowledge-bases/{knowledge_base}`
 	KnowledgeBases []string `protobuf:"bytes,1,rep,name=knowledge_bases,json=knowledgeBases,proto3" json:"knowledge_bases,omitempty"`
 	// Optional: System resource name containing configuration to apply.
 	// Format: `systems/{system}`
 	// If specified, uses config from the specified system.
 	// If not specified, KBs keep their current config (useful for reprocessing).
 	System *string `protobuf:"bytes,2,opt,name=system,proto3,oneof" json:"system,omitempty"`
-	// Optional: Tags to filter which knowledge bases to update (OR logic - match any tag).
+	// Optional: Tags to filter which knowledge bases to update (OR logic - match
+	// any tag).
 	Tags          []string `protobuf:"bytes,3,rep,name=tags,proto3" json:"tags,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -838,7 +847,8 @@ type ExecuteKnowledgeBaseUpdateAdminResponse struct {
 	Started bool `protobuf:"varint,1,opt,name=started,proto3" json:"started,omitempty"`
 	// Human-readable status message explaining the result
 	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	// List of knowledge base update details (populated when update already in progress)
+	// List of knowledge base update details (populated when update already in
+	// progress)
 	Details       []*KnowledgeBaseUpdateDetails `protobuf:"bytes,3,rep,name=details,proto3" json:"details,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -898,8 +908,9 @@ func (x *ExecuteKnowledgeBaseUpdateAdminResponse) GetDetails() []*KnowledgeBaseU
 // AbortKnowledgeBaseUpdateAdminRequest (admin only)
 type AbortKnowledgeBaseUpdateAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Optional: Specific knowledge base resource names to abort. If empty, aborts all currently updating knowledge bases.
-	// Format: `namespaces/{namespace}/knowledgeBases/{knowledge_base}`
+	// Optional: Specific knowledge base resource names to abort. If empty, aborts
+	// all currently updating knowledge bases. Format:
+	// `namespaces/{namespace}/knowledge-bases/{knowledge_base}`
 	KnowledgeBases []string `protobuf:"bytes,1,rep,name=knowledge_bases,json=knowledgeBases,proto3" json:"knowledge_bases,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache

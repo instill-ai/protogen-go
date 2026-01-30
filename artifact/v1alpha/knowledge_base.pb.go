@@ -128,7 +128,7 @@ type KnowledgeBase struct {
 	EmbeddingConfig *KnowledgeBase_EmbeddingConfig `protobuf:"bytes,12,opt,name=embedding_config,json=embeddingConfig,proto3" json:"embedding_config,omitempty"`
 	// The resource name of the active Milvus collection for this knowledge base.
 	// Format:
-	// `namespaces/{namespace}/knowledgeBases/{knowledge_base}/collections/{collection}`
+	// `namespaces/{namespace}/knowledge-bases/{knowledge_base}/collections/{collection}`
 	// This supports collection versioning for embedding dimension changes.
 	ActiveCollection string `protobuf:"bytes,13,opt,name=active_collection,json=activeCollection,proto3" json:"active_collection,omitempty"`
 	// Resource name of the owner namespace.
