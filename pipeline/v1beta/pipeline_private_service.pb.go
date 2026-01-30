@@ -25,30 +25,35 @@ var File_pipeline_v1beta_pipeline_private_service_proto protoreflect.FileDescrip
 
 const file_pipeline_v1beta_pipeline_private_service_proto_rawDesc = "" +
 	"\n" +
-	".pipeline/v1beta/pipeline_private_service.proto\x12\x0fpipeline.v1beta\x1a\x1epipeline/v1beta/pipeline.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xbf\x03\n" +
+	".pipeline/v1beta/pipeline_private_service.proto\x12\x0fpipeline.v1beta\x1a!pipeline/v1beta/integration.proto\x1a\x1epipeline/v1beta/pipeline.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xb9\x04\n" +
 	"\x16PipelinePrivateService\x12o\n" +
 	"\x12ListPipelinesAdmin\x12*.pipeline.v1beta.ListPipelinesAdminRequest\x1a+.pipeline.v1beta.ListPipelinesAdminResponse\"\x00\x12r\n" +
 	"\x13LookUpPipelineAdmin\x12+.pipeline.v1beta.LookUpPipelineAdminRequest\x1a,.pipeline.v1beta.LookUpPipelineAdminResponse\"\x00\x12\x84\x01\n" +
-	"\x19ListPipelineReleasesAdmin\x121.pipeline.v1beta.ListPipelineReleasesAdminRequest\x1a2.pipeline.v1beta.ListPipelineReleasesAdminResponse\"\x00\x1a9\x92A6\x124Private methods to interact with Pipeline resources.B\xd1\x01\n" +
+	"\x19ListPipelineReleasesAdmin\x121.pipeline.v1beta.ListPipelineReleasesAdminRequest\x1a2.pipeline.v1beta.ListPipelineReleasesAdminResponse\"\x00\x12x\n" +
+	"\x15LookUpConnectionAdmin\x12-.pipeline.v1beta.LookUpConnectionAdminRequest\x1a..pipeline.v1beta.LookUpConnectionAdminResponse\"\x00\x1a9\x92A6\x124Private methods to interact with Pipeline resources.B\xd1\x01\n" +
 	"\x13com.pipeline.v1betaB\x1bPipelinePrivateServiceProtoP\x01Z@github.com/instill-ai/protogen-go/pipeline/v1beta;pipelinev1beta\xa2\x02\x03PXX\xaa\x02\x0fPipeline.V1beta\xca\x02\x0fPipeline\\V1beta\xe2\x02\x1bPipeline\\V1beta\\GPBMetadata\xea\x02\x10Pipeline::V1betab\x06proto3"
 
 var file_pipeline_v1beta_pipeline_private_service_proto_goTypes = []any{
 	(*ListPipelinesAdminRequest)(nil),         // 0: pipeline.v1beta.ListPipelinesAdminRequest
 	(*LookUpPipelineAdminRequest)(nil),        // 1: pipeline.v1beta.LookUpPipelineAdminRequest
 	(*ListPipelineReleasesAdminRequest)(nil),  // 2: pipeline.v1beta.ListPipelineReleasesAdminRequest
-	(*ListPipelinesAdminResponse)(nil),        // 3: pipeline.v1beta.ListPipelinesAdminResponse
-	(*LookUpPipelineAdminResponse)(nil),       // 4: pipeline.v1beta.LookUpPipelineAdminResponse
-	(*ListPipelineReleasesAdminResponse)(nil), // 5: pipeline.v1beta.ListPipelineReleasesAdminResponse
+	(*LookUpConnectionAdminRequest)(nil),      // 3: pipeline.v1beta.LookUpConnectionAdminRequest
+	(*ListPipelinesAdminResponse)(nil),        // 4: pipeline.v1beta.ListPipelinesAdminResponse
+	(*LookUpPipelineAdminResponse)(nil),       // 5: pipeline.v1beta.LookUpPipelineAdminResponse
+	(*ListPipelineReleasesAdminResponse)(nil), // 6: pipeline.v1beta.ListPipelineReleasesAdminResponse
+	(*LookUpConnectionAdminResponse)(nil),     // 7: pipeline.v1beta.LookUpConnectionAdminResponse
 }
 var file_pipeline_v1beta_pipeline_private_service_proto_depIdxs = []int32{
 	0, // 0: pipeline.v1beta.PipelinePrivateService.ListPipelinesAdmin:input_type -> pipeline.v1beta.ListPipelinesAdminRequest
 	1, // 1: pipeline.v1beta.PipelinePrivateService.LookUpPipelineAdmin:input_type -> pipeline.v1beta.LookUpPipelineAdminRequest
 	2, // 2: pipeline.v1beta.PipelinePrivateService.ListPipelineReleasesAdmin:input_type -> pipeline.v1beta.ListPipelineReleasesAdminRequest
-	3, // 3: pipeline.v1beta.PipelinePrivateService.ListPipelinesAdmin:output_type -> pipeline.v1beta.ListPipelinesAdminResponse
-	4, // 4: pipeline.v1beta.PipelinePrivateService.LookUpPipelineAdmin:output_type -> pipeline.v1beta.LookUpPipelineAdminResponse
-	5, // 5: pipeline.v1beta.PipelinePrivateService.ListPipelineReleasesAdmin:output_type -> pipeline.v1beta.ListPipelineReleasesAdminResponse
-	3, // [3:6] is the sub-list for method output_type
-	0, // [0:3] is the sub-list for method input_type
+	3, // 3: pipeline.v1beta.PipelinePrivateService.LookUpConnectionAdmin:input_type -> pipeline.v1beta.LookUpConnectionAdminRequest
+	4, // 4: pipeline.v1beta.PipelinePrivateService.ListPipelinesAdmin:output_type -> pipeline.v1beta.ListPipelinesAdminResponse
+	5, // 5: pipeline.v1beta.PipelinePrivateService.LookUpPipelineAdmin:output_type -> pipeline.v1beta.LookUpPipelineAdminResponse
+	6, // 6: pipeline.v1beta.PipelinePrivateService.ListPipelineReleasesAdmin:output_type -> pipeline.v1beta.ListPipelineReleasesAdminResponse
+	7, // 7: pipeline.v1beta.PipelinePrivateService.LookUpConnectionAdmin:output_type -> pipeline.v1beta.LookUpConnectionAdminResponse
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -59,6 +64,7 @@ func file_pipeline_v1beta_pipeline_private_service_proto_init() {
 	if File_pipeline_v1beta_pipeline_private_service_proto != nil {
 		return
 	}
+	file_pipeline_v1beta_integration_proto_init()
 	file_pipeline_v1beta_pipeline_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{

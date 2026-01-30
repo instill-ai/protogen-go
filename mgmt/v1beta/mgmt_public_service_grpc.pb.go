@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	MgmtPublicService_Liveness_FullMethodName                        = "/mgmt.v1beta.MgmtPublicService/Liveness"
 	MgmtPublicService_Readiness_FullMethodName                       = "/mgmt.v1beta.MgmtPublicService/Readiness"
+	MgmtPublicService_AuthenticateUser_FullMethodName                = "/mgmt.v1beta.MgmtPublicService/AuthenticateUser"
 	MgmtPublicService_GetAuthenticatedUser_FullMethodName            = "/mgmt.v1beta.MgmtPublicService/GetAuthenticatedUser"
 	MgmtPublicService_PatchAuthenticatedUser_FullMethodName          = "/mgmt.v1beta.MgmtPublicService/PatchAuthenticatedUser"
 	MgmtPublicService_ListUsers_FullMethodName                       = "/mgmt.v1beta.MgmtPublicService/ListUsers"
@@ -35,11 +36,7 @@ const (
 	MgmtPublicService_GetModelTriggerCount_FullMethodName            = "/mgmt.v1beta.MgmtPublicService/GetModelTriggerCount"
 	MgmtPublicService_ListPipelineTriggerChartRecords_FullMethodName = "/mgmt.v1beta.MgmtPublicService/ListPipelineTriggerChartRecords"
 	MgmtPublicService_ListModelTriggerChartRecords_FullMethodName    = "/mgmt.v1beta.MgmtPublicService/ListModelTriggerChartRecords"
-	MgmtPublicService_AuthTokenIssuer_FullMethodName                 = "/mgmt.v1beta.MgmtPublicService/AuthTokenIssuer"
-	MgmtPublicService_AuthLogin_FullMethodName                       = "/mgmt.v1beta.MgmtPublicService/AuthLogin"
-	MgmtPublicService_AuthLogout_FullMethodName                      = "/mgmt.v1beta.MgmtPublicService/AuthLogout"
 	MgmtPublicService_AuthChangePassword_FullMethodName              = "/mgmt.v1beta.MgmtPublicService/AuthChangePassword"
-	MgmtPublicService_AuthValidateAccessToken_FullMethodName         = "/mgmt.v1beta.MgmtPublicService/AuthValidateAccessToken"
 	MgmtPublicService_ListNamespaceConnections_FullMethodName        = "/mgmt.v1beta.MgmtPublicService/ListNamespaceConnections"
 	MgmtPublicService_GetNamespaceConnection_FullMethodName          = "/mgmt.v1beta.MgmtPublicService/GetNamespaceConnection"
 	MgmtPublicService_CreateNamespaceConnection_FullMethodName       = "/mgmt.v1beta.MgmtPublicService/CreateNamespaceConnection"
@@ -68,6 +65,11 @@ type MgmtPublicServiceClient interface {
 	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error)
+	// Authenticate user with username and password
+	//
+	// Validates Basic Auth credentials and returns the user UID.
+	// Used internally by API Gateway for authentication.
+	AuthenticateUser(ctx context.Context, in *AuthenticateUserRequest, opts ...grpc.CallOption) (*AuthenticateUserResponse, error)
 	// Get the authenticated user
 	//
 	// Returns the details of the authenticated user.
@@ -134,27 +136,10 @@ type MgmtPublicServiceClient interface {
 	// response will contain one set of records (datapoints), representing the
 	// amount of triggers in a time bucket.
 	ListModelTriggerChartRecords(ctx context.Context, in *ListModelTriggerChartRecordsRequest, opts ...grpc.CallOption) (*ListModelTriggerChartRecordsResponse, error)
-	// Get Auth token issuer
-	//
-	// Returns the auth token issuer details. This operation requires admin
-	// permissions.
-	AuthTokenIssuer(ctx context.Context, in *AuthTokenIssuerRequest, opts ...grpc.CallOption) (*AuthTokenIssuerResponse, error)
-	// Log in a user
-	//
-	// Authenticates a user and returns an access token.
-	AuthLogin(ctx context.Context, in *AuthLoginRequest, opts ...grpc.CallOption) (*AuthLoginResponse, error)
-	// Log out a user
-	//
-	// Logs out an authenticated user.
-	AuthLogout(ctx context.Context, in *AuthLogoutRequest, opts ...grpc.CallOption) (*AuthLogoutResponse, error)
 	// Change password
 	//
 	// Updates the password of a user.
 	AuthChangePassword(ctx context.Context, in *AuthChangePasswordRequest, opts ...grpc.CallOption) (*AuthChangePasswordResponse, error)
-	// Validate an access token
-	//
-	// Checks the validity of an access token.
-	AuthValidateAccessToken(ctx context.Context, in *AuthValidateAccessTokenRequest, opts ...grpc.CallOption) (*AuthValidateAccessTokenResponse, error)
 	// List namespace connections
 	//
 	// Returns a paginated list of connections created by a namespace.
@@ -223,6 +208,16 @@ func (c *mgmtPublicServiceClient) Readiness(ctx context.Context, in *ReadinessRe
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ReadinessResponse)
 	err := c.cc.Invoke(ctx, MgmtPublicService_Readiness_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mgmtPublicServiceClient) AuthenticateUser(ctx context.Context, in *AuthenticateUserRequest, opts ...grpc.CallOption) (*AuthenticateUserResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AuthenticateUserResponse)
+	err := c.cc.Invoke(ctx, MgmtPublicService_AuthenticateUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -369,50 +364,10 @@ func (c *mgmtPublicServiceClient) ListModelTriggerChartRecords(ctx context.Conte
 	return out, nil
 }
 
-func (c *mgmtPublicServiceClient) AuthTokenIssuer(ctx context.Context, in *AuthTokenIssuerRequest, opts ...grpc.CallOption) (*AuthTokenIssuerResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AuthTokenIssuerResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_AuthTokenIssuer_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mgmtPublicServiceClient) AuthLogin(ctx context.Context, in *AuthLoginRequest, opts ...grpc.CallOption) (*AuthLoginResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AuthLoginResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_AuthLogin_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mgmtPublicServiceClient) AuthLogout(ctx context.Context, in *AuthLogoutRequest, opts ...grpc.CallOption) (*AuthLogoutResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AuthLogoutResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_AuthLogout_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *mgmtPublicServiceClient) AuthChangePassword(ctx context.Context, in *AuthChangePasswordRequest, opts ...grpc.CallOption) (*AuthChangePasswordResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(AuthChangePasswordResponse)
 	err := c.cc.Invoke(ctx, MgmtPublicService_AuthChangePassword_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mgmtPublicServiceClient) AuthValidateAccessToken(ctx context.Context, in *AuthValidateAccessTokenRequest, opts ...grpc.CallOption) (*AuthValidateAccessTokenResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AuthValidateAccessTokenResponse)
-	err := c.cc.Invoke(ctx, MgmtPublicService_AuthValidateAccessToken_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -526,6 +481,11 @@ type MgmtPublicServiceServer interface {
 	//
 	// See https://github.com/grpc/grpc/blob/master/doc/health-checking.md
 	Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error)
+	// Authenticate user with username and password
+	//
+	// Validates Basic Auth credentials and returns the user UID.
+	// Used internally by API Gateway for authentication.
+	AuthenticateUser(context.Context, *AuthenticateUserRequest) (*AuthenticateUserResponse, error)
 	// Get the authenticated user
 	//
 	// Returns the details of the authenticated user.
@@ -592,27 +552,10 @@ type MgmtPublicServiceServer interface {
 	// response will contain one set of records (datapoints), representing the
 	// amount of triggers in a time bucket.
 	ListModelTriggerChartRecords(context.Context, *ListModelTriggerChartRecordsRequest) (*ListModelTriggerChartRecordsResponse, error)
-	// Get Auth token issuer
-	//
-	// Returns the auth token issuer details. This operation requires admin
-	// permissions.
-	AuthTokenIssuer(context.Context, *AuthTokenIssuerRequest) (*AuthTokenIssuerResponse, error)
-	// Log in a user
-	//
-	// Authenticates a user and returns an access token.
-	AuthLogin(context.Context, *AuthLoginRequest) (*AuthLoginResponse, error)
-	// Log out a user
-	//
-	// Logs out an authenticated user.
-	AuthLogout(context.Context, *AuthLogoutRequest) (*AuthLogoutResponse, error)
 	// Change password
 	//
 	// Updates the password of a user.
 	AuthChangePassword(context.Context, *AuthChangePasswordRequest) (*AuthChangePasswordResponse, error)
-	// Validate an access token
-	//
-	// Checks the validity of an access token.
-	AuthValidateAccessToken(context.Context, *AuthValidateAccessTokenRequest) (*AuthValidateAccessTokenResponse, error)
 	// List namespace connections
 	//
 	// Returns a paginated list of connections created by a namespace.
@@ -672,6 +615,9 @@ func (UnimplementedMgmtPublicServiceServer) Liveness(context.Context, *LivenessR
 func (UnimplementedMgmtPublicServiceServer) Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Readiness not implemented")
 }
+func (UnimplementedMgmtPublicServiceServer) AuthenticateUser(context.Context, *AuthenticateUserRequest) (*AuthenticateUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AuthenticateUser not implemented")
+}
 func (UnimplementedMgmtPublicServiceServer) GetAuthenticatedUser(context.Context, *GetAuthenticatedUserRequest) (*GetAuthenticatedUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAuthenticatedUser not implemented")
 }
@@ -714,20 +660,8 @@ func (UnimplementedMgmtPublicServiceServer) ListPipelineTriggerChartRecords(cont
 func (UnimplementedMgmtPublicServiceServer) ListModelTriggerChartRecords(context.Context, *ListModelTriggerChartRecordsRequest) (*ListModelTriggerChartRecordsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListModelTriggerChartRecords not implemented")
 }
-func (UnimplementedMgmtPublicServiceServer) AuthTokenIssuer(context.Context, *AuthTokenIssuerRequest) (*AuthTokenIssuerResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AuthTokenIssuer not implemented")
-}
-func (UnimplementedMgmtPublicServiceServer) AuthLogin(context.Context, *AuthLoginRequest) (*AuthLoginResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AuthLogin not implemented")
-}
-func (UnimplementedMgmtPublicServiceServer) AuthLogout(context.Context, *AuthLogoutRequest) (*AuthLogoutResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AuthLogout not implemented")
-}
 func (UnimplementedMgmtPublicServiceServer) AuthChangePassword(context.Context, *AuthChangePasswordRequest) (*AuthChangePasswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AuthChangePassword not implemented")
-}
-func (UnimplementedMgmtPublicServiceServer) AuthValidateAccessToken(context.Context, *AuthValidateAccessTokenRequest) (*AuthValidateAccessTokenResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AuthValidateAccessToken not implemented")
 }
 func (UnimplementedMgmtPublicServiceServer) ListNamespaceConnections(context.Context, *ListNamespaceConnectionsRequest) (*ListNamespaceConnectionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListNamespaceConnections not implemented")
@@ -808,6 +742,24 @@ func _MgmtPublicService_Readiness_Handler(srv interface{}, ctx context.Context, 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MgmtPublicServiceServer).Readiness(ctx, req.(*ReadinessRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MgmtPublicService_AuthenticateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthenticateUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MgmtPublicServiceServer).AuthenticateUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MgmtPublicService_AuthenticateUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MgmtPublicServiceServer).AuthenticateUser(ctx, req.(*AuthenticateUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1064,60 +1016,6 @@ func _MgmtPublicService_ListModelTriggerChartRecords_Handler(srv interface{}, ct
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MgmtPublicService_AuthTokenIssuer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AuthTokenIssuerRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).AuthTokenIssuer(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_AuthTokenIssuer_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).AuthTokenIssuer(ctx, req.(*AuthTokenIssuerRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MgmtPublicService_AuthLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AuthLoginRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).AuthLogin(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_AuthLogin_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).AuthLogin(ctx, req.(*AuthLoginRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MgmtPublicService_AuthLogout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AuthLogoutRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).AuthLogout(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_AuthLogout_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).AuthLogout(ctx, req.(*AuthLogoutRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _MgmtPublicService_AuthChangePassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AuthChangePasswordRequest)
 	if err := dec(in); err != nil {
@@ -1132,24 +1030,6 @@ func _MgmtPublicService_AuthChangePassword_Handler(srv interface{}, ctx context.
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MgmtPublicServiceServer).AuthChangePassword(ctx, req.(*AuthChangePasswordRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MgmtPublicService_AuthValidateAccessToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AuthValidateAccessTokenRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MgmtPublicServiceServer).AuthValidateAccessToken(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MgmtPublicService_AuthValidateAccessToken_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MgmtPublicServiceServer).AuthValidateAccessToken(ctx, req.(*AuthValidateAccessTokenRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1332,6 +1212,10 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MgmtPublicService_Readiness_Handler,
 		},
 		{
+			MethodName: "AuthenticateUser",
+			Handler:    _MgmtPublicService_AuthenticateUser_Handler,
+		},
+		{
 			MethodName: "GetAuthenticatedUser",
 			Handler:    _MgmtPublicService_GetAuthenticatedUser_Handler,
 		},
@@ -1388,24 +1272,8 @@ var MgmtPublicService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MgmtPublicService_ListModelTriggerChartRecords_Handler,
 		},
 		{
-			MethodName: "AuthTokenIssuer",
-			Handler:    _MgmtPublicService_AuthTokenIssuer_Handler,
-		},
-		{
-			MethodName: "AuthLogin",
-			Handler:    _MgmtPublicService_AuthLogin_Handler,
-		},
-		{
-			MethodName: "AuthLogout",
-			Handler:    _MgmtPublicService_AuthLogout_Handler,
-		},
-		{
 			MethodName: "AuthChangePassword",
 			Handler:    _MgmtPublicService_AuthChangePassword_Handler,
-		},
-		{
-			MethodName: "AuthValidateAccessToken",
-			Handler:    _MgmtPublicService_AuthValidateAccessToken_Handler,
 		},
 		{
 			MethodName: "ListNamespaceConnections",
