@@ -635,6 +635,30 @@ func local_request_ArtifactPrivateService_DeleteKnowledgeBaseAdmin_0(ctx context
 	return msg, metadata, err
 }
 
+func request_ArtifactPrivateService_ListFilesAdmin_0(ctx context.Context, marshaler runtime.Marshaler, client ArtifactPrivateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListFilesAdminRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.ListFilesAdmin(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ArtifactPrivateService_ListFilesAdmin_0(ctx context.Context, marshaler runtime.Marshaler, server ArtifactPrivateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListFilesAdminRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.ListFilesAdmin(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 // RegisterArtifactPrivateServiceHandlerServer registers the http handlers for service ArtifactPrivateService to "mux".
 // UnaryRPC     :call ArtifactPrivateServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -1141,6 +1165,26 @@ func RegisterArtifactPrivateServiceHandlerServer(ctx context.Context, mux *runti
 		}
 		forward_ArtifactPrivateService_DeleteKnowledgeBaseAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_ListFilesAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/artifact.v1alpha.ArtifactPrivateService/ListFilesAdmin", runtime.WithHTTPPathPattern("/artifact.v1alpha.ArtifactPrivateService/ListFilesAdmin"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ArtifactPrivateService_ListFilesAdmin_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ArtifactPrivateService_ListFilesAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 
 	return nil
 }
@@ -1606,6 +1650,23 @@ func RegisterArtifactPrivateServiceHandlerClient(ctx context.Context, mux *runti
 		}
 		forward_ArtifactPrivateService_DeleteKnowledgeBaseAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_ArtifactPrivateService_ListFilesAdmin_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/artifact.v1alpha.ArtifactPrivateService/ListFilesAdmin", runtime.WithHTTPPathPattern("/artifact.v1alpha.ArtifactPrivateService/ListFilesAdmin"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ArtifactPrivateService_ListFilesAdmin_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ArtifactPrivateService_ListFilesAdmin_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	return nil
 }
 
@@ -1635,6 +1696,7 @@ var (
 	pattern_ArtifactPrivateService_ResetKnowledgeBaseEmbeddingsAdmin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.v1alpha.ArtifactPrivateService", "ResetKnowledgeBaseEmbeddingsAdmin"}, ""))
 	pattern_ArtifactPrivateService_AddFilesToKnowledgeBaseAdmin_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.v1alpha.ArtifactPrivateService", "AddFilesToKnowledgeBaseAdmin"}, ""))
 	pattern_ArtifactPrivateService_DeleteKnowledgeBaseAdmin_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.v1alpha.ArtifactPrivateService", "DeleteKnowledgeBaseAdmin"}, ""))
+	pattern_ArtifactPrivateService_ListFilesAdmin_0                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"artifact.v1alpha.ArtifactPrivateService", "ListFilesAdmin"}, ""))
 )
 
 var (
@@ -1663,4 +1725,5 @@ var (
 	forward_ArtifactPrivateService_ResetKnowledgeBaseEmbeddingsAdmin_0 = runtime.ForwardResponseMessage
 	forward_ArtifactPrivateService_AddFilesToKnowledgeBaseAdmin_0      = runtime.ForwardResponseMessage
 	forward_ArtifactPrivateService_DeleteKnowledgeBaseAdmin_0          = runtime.ForwardResponseMessage
+	forward_ArtifactPrivateService_ListFilesAdmin_0                    = runtime.ForwardResponseMessage
 )

@@ -1530,6 +1530,136 @@ func (*DeleteKnowledgeBaseAdminResponse) Descriptor() ([]byte, []int) {
 	return file_artifact_v1alpha_knowledge_base_proto_rawDescGZIP(), []int{22}
 }
 
+// ListFilesAdminRequest represents a request to list files in a knowledge base
+// (admin only).
+type ListFilesAdminRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The resource name of the knowledge base.
+	// Format: `namespaces/{namespace}/knowledge-bases/{knowledge_base}`
+	Parent string `protobuf:"bytes,1,opt,name=parent,proto3" json:"parent,omitempty"`
+	// Maximum number of files to return. Default is 100.
+	PageSize int32 `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	// Page token for pagination.
+	PageToken     string `protobuf:"bytes,3,opt,name=page_token,json=pageToken,proto3" json:"page_token,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListFilesAdminRequest) Reset() {
+	*x = ListFilesAdminRequest{}
+	mi := &file_artifact_v1alpha_knowledge_base_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListFilesAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListFilesAdminRequest) ProtoMessage() {}
+
+func (x *ListFilesAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_v1alpha_knowledge_base_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListFilesAdminRequest.ProtoReflect.Descriptor instead.
+func (*ListFilesAdminRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_v1alpha_knowledge_base_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *ListFilesAdminRequest) GetParent() string {
+	if x != nil {
+		return x.Parent
+	}
+	return ""
+}
+
+func (x *ListFilesAdminRequest) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+func (x *ListFilesAdminRequest) GetPageToken() string {
+	if x != nil {
+		return x.PageToken
+	}
+	return ""
+}
+
+// ListFilesAdminResponse represents a response for listing files (admin only).
+type ListFilesAdminResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The files in the knowledge base.
+	Files []*File `protobuf:"bytes,1,rep,name=files,proto3" json:"files,omitempty"`
+	// Token for the next page.
+	NextPageToken string `protobuf:"bytes,2,opt,name=next_page_token,json=nextPageToken,proto3" json:"next_page_token,omitempty"`
+	// Total number of files.
+	TotalSize     int32 `protobuf:"varint,3,opt,name=total_size,json=totalSize,proto3" json:"total_size,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListFilesAdminResponse) Reset() {
+	*x = ListFilesAdminResponse{}
+	mi := &file_artifact_v1alpha_knowledge_base_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListFilesAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListFilesAdminResponse) ProtoMessage() {}
+
+func (x *ListFilesAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_v1alpha_knowledge_base_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListFilesAdminResponse.ProtoReflect.Descriptor instead.
+func (*ListFilesAdminResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_v1alpha_knowledge_base_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *ListFilesAdminResponse) GetFiles() []*File {
+	if x != nil {
+		return x.Files
+	}
+	return nil
+}
+
+func (x *ListFilesAdminResponse) GetNextPageToken() string {
+	if x != nil {
+		return x.NextPageToken
+	}
+	return ""
+}
+
+func (x *ListFilesAdminResponse) GetTotalSize() int32 {
+	if x != nil {
+		return x.TotalSize
+	}
+	return 0
+}
+
 // EmbeddingConfig defines the embedding configuration for a knowledge base
 type KnowledgeBase_EmbeddingConfig struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -1543,7 +1673,7 @@ type KnowledgeBase_EmbeddingConfig struct {
 
 func (x *KnowledgeBase_EmbeddingConfig) Reset() {
 	*x = KnowledgeBase_EmbeddingConfig{}
-	mi := &file_artifact_v1alpha_knowledge_base_proto_msgTypes[23]
+	mi := &file_artifact_v1alpha_knowledge_base_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1555,7 +1685,7 @@ func (x *KnowledgeBase_EmbeddingConfig) String() string {
 func (*KnowledgeBase_EmbeddingConfig) ProtoMessage() {}
 
 func (x *KnowledgeBase_EmbeddingConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_knowledge_base_proto_msgTypes[23]
+	mi := &file_artifact_v1alpha_knowledge_base_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1589,7 +1719,7 @@ var File_artifact_v1alpha_knowledge_base_proto protoreflect.FileDescriptor
 
 const file_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"\n" +
-	"%artifact/v1alpha/knowledge_base.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16mgmt/v1beta/mgmt.proto\"\xa2\t\n" +
+	"%artifact/v1alpha/knowledge_base.proto\x12\x10artifact.v1alpha\x1a\x1bartifact/v1alpha/file.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16mgmt/v1beta/mgmt.proto\"\xa2\t\n" +
 	"\rKnowledgeBase\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12&\n" +
@@ -1703,7 +1833,18 @@ const file_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"\x1fDeleteKnowledgeBaseAdminRequest\x12:\n" +
 	"\x04name\x18\x01 \x01(\tB&\xe0A\x02\xfaA \n" +
 	"\x1eapi.instill.tech/KnowledgeBaseR\x04name\"\"\n" +
-	" DeleteKnowledgeBaseAdminResponse*\x7f\n" +
+	" DeleteKnowledgeBaseAdminResponse\"\x9d\x01\n" +
+	"\x15ListFilesAdminRequest\x12>\n" +
+	"\x06parent\x18\x01 \x01(\tB&\xe0A\x02\xfaA \n" +
+	"\x1eapi.instill.tech/KnowledgeBaseR\x06parent\x12 \n" +
+	"\tpage_size\x18\x02 \x01(\x05B\x03\xe0A\x01R\bpageSize\x12\"\n" +
+	"\n" +
+	"page_token\x18\x03 \x01(\tB\x03\xe0A\x01R\tpageToken\"\x9c\x01\n" +
+	"\x16ListFilesAdminResponse\x121\n" +
+	"\x05files\x18\x01 \x03(\v2\x16.artifact.v1alpha.FileB\x03\xe0A\x03R\x05files\x12+\n" +
+	"\x0fnext_page_token\x18\x02 \x01(\tB\x03\xe0A\x03R\rnextPageToken\x12\"\n" +
+	"\n" +
+	"total_size\x18\x03 \x01(\x05B\x03\xe0A\x03R\ttotalSize*\x7f\n" +
 	"\x11KnowledgeBaseType\x12#\n" +
 	"\x1fKNOWLEDGE_BASE_TYPE_UNSPECIFIED\x10\x00\x12\"\n" +
 	"\x1eKNOWLEDGE_BASE_TYPE_PERSISTENT\x10\x01\x12!\n" +
@@ -1723,7 +1864,7 @@ func file_artifact_v1alpha_knowledge_base_proto_rawDescGZIP() []byte {
 }
 
 var file_artifact_v1alpha_knowledge_base_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_artifact_v1alpha_knowledge_base_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
+var file_artifact_v1alpha_knowledge_base_proto_msgTypes = make([]protoimpl.MessageInfo, 26)
 var file_artifact_v1alpha_knowledge_base_proto_goTypes = []any{
 	(KnowledgeBaseType)(0),                            // 0: artifact.v1alpha.KnowledgeBaseType
 	(*KnowledgeBase)(nil),                             // 1: artifact.v1alpha.KnowledgeBase
@@ -1749,39 +1890,43 @@ var file_artifact_v1alpha_knowledge_base_proto_goTypes = []any{
 	(*AddFilesToKnowledgeBaseAdminResponse)(nil),      // 21: artifact.v1alpha.AddFilesToKnowledgeBaseAdminResponse
 	(*DeleteKnowledgeBaseAdminRequest)(nil),           // 22: artifact.v1alpha.DeleteKnowledgeBaseAdminRequest
 	(*DeleteKnowledgeBaseAdminResponse)(nil),          // 23: artifact.v1alpha.DeleteKnowledgeBaseAdminResponse
-	(*KnowledgeBase_EmbeddingConfig)(nil),             // 24: artifact.v1alpha.KnowledgeBase.EmbeddingConfig
-	(*timestamppb.Timestamp)(nil),                     // 25: google.protobuf.Timestamp
-	(*v1beta.Owner)(nil),                              // 26: mgmt.v1beta.Owner
-	(*v1beta.User)(nil),                               // 27: mgmt.v1beta.User
-	(*fieldmaskpb.FieldMask)(nil),                     // 28: google.protobuf.FieldMask
+	(*ListFilesAdminRequest)(nil),                     // 24: artifact.v1alpha.ListFilesAdminRequest
+	(*ListFilesAdminResponse)(nil),                    // 25: artifact.v1alpha.ListFilesAdminResponse
+	(*KnowledgeBase_EmbeddingConfig)(nil),             // 26: artifact.v1alpha.KnowledgeBase.EmbeddingConfig
+	(*timestamppb.Timestamp)(nil),                     // 27: google.protobuf.Timestamp
+	(*v1beta.Owner)(nil),                              // 28: mgmt.v1beta.Owner
+	(*v1beta.User)(nil),                               // 29: mgmt.v1beta.User
+	(*fieldmaskpb.FieldMask)(nil),                     // 30: google.protobuf.FieldMask
+	(*File)(nil),                                      // 31: artifact.v1alpha.File
 }
 var file_artifact_v1alpha_knowledge_base_proto_depIdxs = []int32{
-	25, // 0: artifact.v1alpha.KnowledgeBase.create_time:type_name -> google.protobuf.Timestamp
-	25, // 1: artifact.v1alpha.KnowledgeBase.update_time:type_name -> google.protobuf.Timestamp
+	27, // 0: artifact.v1alpha.KnowledgeBase.create_time:type_name -> google.protobuf.Timestamp
+	27, // 1: artifact.v1alpha.KnowledgeBase.update_time:type_name -> google.protobuf.Timestamp
 	0,  // 2: artifact.v1alpha.KnowledgeBase.type:type_name -> artifact.v1alpha.KnowledgeBaseType
-	24, // 3: artifact.v1alpha.KnowledgeBase.embedding_config:type_name -> artifact.v1alpha.KnowledgeBase.EmbeddingConfig
-	26, // 4: artifact.v1alpha.KnowledgeBase.owner:type_name -> mgmt.v1beta.Owner
-	27, // 5: artifact.v1alpha.KnowledgeBase.creator:type_name -> mgmt.v1beta.User
+	26, // 3: artifact.v1alpha.KnowledgeBase.embedding_config:type_name -> artifact.v1alpha.KnowledgeBase.EmbeddingConfig
+	28, // 4: artifact.v1alpha.KnowledgeBase.owner:type_name -> mgmt.v1beta.Owner
+	29, // 5: artifact.v1alpha.KnowledgeBase.creator:type_name -> mgmt.v1beta.User
 	1,  // 6: artifact.v1alpha.CreateKnowledgeBaseRequest.knowledge_base:type_name -> artifact.v1alpha.KnowledgeBase
 	1,  // 7: artifact.v1alpha.CreateKnowledgeBaseResponse.knowledge_base:type_name -> artifact.v1alpha.KnowledgeBase
 	1,  // 8: artifact.v1alpha.GetKnowledgeBaseResponse.knowledge_base:type_name -> artifact.v1alpha.KnowledgeBase
 	1,  // 9: artifact.v1alpha.ListKnowledgeBasesResponse.knowledge_bases:type_name -> artifact.v1alpha.KnowledgeBase
 	1,  // 10: artifact.v1alpha.UpdateKnowledgeBaseRequest.knowledge_base:type_name -> artifact.v1alpha.KnowledgeBase
-	28, // 11: artifact.v1alpha.UpdateKnowledgeBaseRequest.update_mask:type_name -> google.protobuf.FieldMask
+	30, // 11: artifact.v1alpha.UpdateKnowledgeBaseRequest.update_mask:type_name -> google.protobuf.FieldMask
 	1,  // 12: artifact.v1alpha.UpdateKnowledgeBaseResponse.knowledge_base:type_name -> artifact.v1alpha.KnowledgeBase
 	1,  // 13: artifact.v1alpha.DeleteKnowledgeBaseResponse.knowledge_base:type_name -> artifact.v1alpha.KnowledgeBase
 	1,  // 14: artifact.v1alpha.CreateKnowledgeBaseAdminRequest.knowledge_base:type_name -> artifact.v1alpha.KnowledgeBase
 	1,  // 15: artifact.v1alpha.CreateKnowledgeBaseAdminResponse.knowledge_base:type_name -> artifact.v1alpha.KnowledgeBase
 	1,  // 16: artifact.v1alpha.ListKnowledgeBasesAdminResponse.knowledge_bases:type_name -> artifact.v1alpha.KnowledgeBase
 	1,  // 17: artifact.v1alpha.UpdateKnowledgeBaseAdminRequest.knowledge_base:type_name -> artifact.v1alpha.KnowledgeBase
-	28, // 18: artifact.v1alpha.UpdateKnowledgeBaseAdminRequest.update_mask:type_name -> google.protobuf.FieldMask
+	30, // 18: artifact.v1alpha.UpdateKnowledgeBaseAdminRequest.update_mask:type_name -> google.protobuf.FieldMask
 	1,  // 19: artifact.v1alpha.UpdateKnowledgeBaseAdminResponse.knowledge_base:type_name -> artifact.v1alpha.KnowledgeBase
 	1,  // 20: artifact.v1alpha.ResetKnowledgeBaseEmbeddingsAdminResponse.knowledge_base:type_name -> artifact.v1alpha.KnowledgeBase
-	21, // [21:21] is the sub-list for method output_type
-	21, // [21:21] is the sub-list for method input_type
-	21, // [21:21] is the sub-list for extension type_name
-	21, // [21:21] is the sub-list for extension extendee
-	0,  // [0:21] is the sub-list for field type_name
+	31, // 21: artifact.v1alpha.ListFilesAdminResponse.files:type_name -> artifact.v1alpha.File
+	22, // [22:22] is the sub-list for method output_type
+	22, // [22:22] is the sub-list for method input_type
+	22, // [22:22] is the sub-list for extension type_name
+	22, // [22:22] is the sub-list for extension extendee
+	0,  // [0:22] is the sub-list for field type_name
 }
 
 func init() { file_artifact_v1alpha_knowledge_base_proto_init() }
@@ -1789,6 +1934,7 @@ func file_artifact_v1alpha_knowledge_base_proto_init() {
 	if File_artifact_v1alpha_knowledge_base_proto != nil {
 		return
 	}
+	file_artifact_v1alpha_file_proto_init()
 	file_artifact_v1alpha_knowledge_base_proto_msgTypes[0].OneofWrappers = []any{}
 	file_artifact_v1alpha_knowledge_base_proto_msgTypes[5].OneofWrappers = []any{}
 	file_artifact_v1alpha_knowledge_base_proto_msgTypes[13].OneofWrappers = []any{}
@@ -1798,7 +1944,7 @@ func file_artifact_v1alpha_knowledge_base_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_artifact_v1alpha_knowledge_base_proto_rawDesc), len(file_artifact_v1alpha_knowledge_base_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   24,
+			NumMessages:   26,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
