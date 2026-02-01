@@ -41,6 +41,7 @@ const (
 	ArtifactPrivateService_RenameSystemAdmin_FullMethodName                 = "/artifact.v1alpha.ArtifactPrivateService/RenameSystemAdmin"
 	ArtifactPrivateService_SetDefaultSystemAdmin_FullMethodName             = "/artifact.v1alpha.ArtifactPrivateService/SetDefaultSystemAdmin"
 	ArtifactPrivateService_GetDefaultSystemAdmin_FullMethodName             = "/artifact.v1alpha.ArtifactPrivateService/GetDefaultSystemAdmin"
+	ArtifactPrivateService_ResetKnowledgeBaseEmbeddingsAdmin_FullMethodName = "/artifact.v1alpha.ArtifactPrivateService/ResetKnowledgeBaseEmbeddingsAdmin"
 )
 
 // ArtifactPrivateServiceClient is the client API for ArtifactPrivateService service.
@@ -75,7 +76,7 @@ type ArtifactPrivateServiceClient interface {
 	//
 	// Updates a file allowing system-reserved tag prefixes like "agent:".
 	// Used by agent-backend to set collection association tags (e.g.,
-	// "agent:collection:{uid}").
+	// "agent:collection:{id}" where {id} is hash-based like col-xxx).
 	UpdateFileAdmin(ctx context.Context, in *UpdateFileAdminRequest, opts ...grpc.CallOption) (*UpdateFileAdminResponse, error)
 	// Get Object (admin only)
 	GetObjectAdmin(ctx context.Context, in *GetObjectAdminRequest, opts ...grpc.CallOption) (*GetObjectAdminResponse, error)
@@ -132,6 +133,8 @@ type ArtifactPrivateServiceClient interface {
 	SetDefaultSystemAdmin(ctx context.Context, in *SetDefaultSystemAdminRequest, opts ...grpc.CallOption) (*SetDefaultSystemAdminResponse, error)
 	// Get the current default system configuration (admin only)
 	GetDefaultSystemAdmin(ctx context.Context, in *GetDefaultSystemAdminRequest, opts ...grpc.CallOption) (*GetDefaultSystemAdminResponse, error)
+	// Reset knowledge base embeddings (admin only)
+	ResetKnowledgeBaseEmbeddingsAdmin(ctx context.Context, in *ResetKnowledgeBaseEmbeddingsAdminRequest, opts ...grpc.CallOption) (*ResetKnowledgeBaseEmbeddingsAdminResponse, error)
 }
 
 type artifactPrivateServiceClient struct {
@@ -362,6 +365,16 @@ func (c *artifactPrivateServiceClient) GetDefaultSystemAdmin(ctx context.Context
 	return out, nil
 }
 
+func (c *artifactPrivateServiceClient) ResetKnowledgeBaseEmbeddingsAdmin(ctx context.Context, in *ResetKnowledgeBaseEmbeddingsAdminRequest, opts ...grpc.CallOption) (*ResetKnowledgeBaseEmbeddingsAdminResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ResetKnowledgeBaseEmbeddingsAdminResponse)
+	err := c.cc.Invoke(ctx, ArtifactPrivateService_ResetKnowledgeBaseEmbeddingsAdmin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ArtifactPrivateServiceServer is the server API for ArtifactPrivateService service.
 // All implementations should embed UnimplementedArtifactPrivateServiceServer
 // for forward compatibility.
@@ -394,7 +407,7 @@ type ArtifactPrivateServiceServer interface {
 	//
 	// Updates a file allowing system-reserved tag prefixes like "agent:".
 	// Used by agent-backend to set collection association tags (e.g.,
-	// "agent:collection:{uid}").
+	// "agent:collection:{id}" where {id} is hash-based like col-xxx).
 	UpdateFileAdmin(context.Context, *UpdateFileAdminRequest) (*UpdateFileAdminResponse, error)
 	// Get Object (admin only)
 	GetObjectAdmin(context.Context, *GetObjectAdminRequest) (*GetObjectAdminResponse, error)
@@ -451,6 +464,8 @@ type ArtifactPrivateServiceServer interface {
 	SetDefaultSystemAdmin(context.Context, *SetDefaultSystemAdminRequest) (*SetDefaultSystemAdminResponse, error)
 	// Get the current default system configuration (admin only)
 	GetDefaultSystemAdmin(context.Context, *GetDefaultSystemAdminRequest) (*GetDefaultSystemAdminResponse, error)
+	// Reset knowledge base embeddings (admin only)
+	ResetKnowledgeBaseEmbeddingsAdmin(context.Context, *ResetKnowledgeBaseEmbeddingsAdminRequest) (*ResetKnowledgeBaseEmbeddingsAdminResponse, error)
 }
 
 // UnimplementedArtifactPrivateServiceServer should be embedded to have
@@ -525,6 +540,9 @@ func (UnimplementedArtifactPrivateServiceServer) SetDefaultSystemAdmin(context.C
 }
 func (UnimplementedArtifactPrivateServiceServer) GetDefaultSystemAdmin(context.Context, *GetDefaultSystemAdminRequest) (*GetDefaultSystemAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDefaultSystemAdmin not implemented")
+}
+func (UnimplementedArtifactPrivateServiceServer) ResetKnowledgeBaseEmbeddingsAdmin(context.Context, *ResetKnowledgeBaseEmbeddingsAdminRequest) (*ResetKnowledgeBaseEmbeddingsAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ResetKnowledgeBaseEmbeddingsAdmin not implemented")
 }
 func (UnimplementedArtifactPrivateServiceServer) testEmbeddedByValue() {}
 
@@ -942,6 +960,24 @@ func _ArtifactPrivateService_GetDefaultSystemAdmin_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArtifactPrivateService_ResetKnowledgeBaseEmbeddingsAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ResetKnowledgeBaseEmbeddingsAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPrivateServiceServer).ResetKnowledgeBaseEmbeddingsAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPrivateService_ResetKnowledgeBaseEmbeddingsAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPrivateServiceServer).ResetKnowledgeBaseEmbeddingsAdmin(ctx, req.(*ResetKnowledgeBaseEmbeddingsAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ArtifactPrivateService_ServiceDesc is the grpc.ServiceDesc for ArtifactPrivateService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1036,6 +1072,10 @@ var ArtifactPrivateService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDefaultSystemAdmin",
 			Handler:    _ArtifactPrivateService_GetDefaultSystemAdmin_Handler,
+		},
+		{
+			MethodName: "ResetKnowledgeBaseEmbeddingsAdmin",
+			Handler:    _ArtifactPrivateService_ResetKnowledgeBaseEmbeddingsAdmin_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

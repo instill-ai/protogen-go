@@ -1832,7 +1832,7 @@ func (x *ReprocessFileResponse) GetMessage() string {
 // UpdateFileAdminRequest represents a request to update a file with
 // system-reserved tags (admin only). Used by internal services like
 // agent-backend to set tags with reserved prefixes (e.g.,
-// "agent:collection:{uid}").
+// "agent:collection:{id}" where {id} is hash-based like col-xxx).
 // Follows AIP-134: https://google.aip.dev/134
 type UpdateFileAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
