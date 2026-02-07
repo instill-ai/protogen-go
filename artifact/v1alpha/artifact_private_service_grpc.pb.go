@@ -42,9 +42,9 @@ const (
 	ArtifactPrivateService_SetDefaultSystemAdmin_FullMethodName             = "/artifact.v1alpha.ArtifactPrivateService/SetDefaultSystemAdmin"
 	ArtifactPrivateService_GetDefaultSystemAdmin_FullMethodName             = "/artifact.v1alpha.ArtifactPrivateService/GetDefaultSystemAdmin"
 	ArtifactPrivateService_ResetKnowledgeBaseEmbeddingsAdmin_FullMethodName = "/artifact.v1alpha.ArtifactPrivateService/ResetKnowledgeBaseEmbeddingsAdmin"
-	ArtifactPrivateService_AddFilesToKnowledgeBaseAdmin_FullMethodName      = "/artifact.v1alpha.ArtifactPrivateService/AddFilesToKnowledgeBaseAdmin"
-	ArtifactPrivateService_DeleteKnowledgeBaseAdmin_FullMethodName          = "/artifact.v1alpha.ArtifactPrivateService/DeleteKnowledgeBaseAdmin"
 	ArtifactPrivateService_ListFilesAdmin_FullMethodName                    = "/artifact.v1alpha.ArtifactPrivateService/ListFilesAdmin"
+	ArtifactPrivateService_DeleteKnowledgeBaseAdmin_FullMethodName          = "/artifact.v1alpha.ArtifactPrivateService/DeleteKnowledgeBaseAdmin"
+	ArtifactPrivateService_AddFilesToKnowledgeBaseAdmin_FullMethodName      = "/artifact.v1alpha.ArtifactPrivateService/AddFilesToKnowledgeBaseAdmin"
 )
 
 // ArtifactPrivateServiceClient is the client API for ArtifactPrivateService service.
@@ -138,25 +138,27 @@ type ArtifactPrivateServiceClient interface {
 	GetDefaultSystemAdmin(ctx context.Context, in *GetDefaultSystemAdminRequest, opts ...grpc.CallOption) (*GetDefaultSystemAdminResponse, error)
 	// Reset knowledge base embeddings (admin only)
 	ResetKnowledgeBaseEmbeddingsAdmin(ctx context.Context, in *ResetKnowledgeBaseEmbeddingsAdminRequest, opts ...grpc.CallOption) (*ResetKnowledgeBaseEmbeddingsAdminResponse, error)
-	// Add files to knowledge base (admin only)
+	// List files in a knowledge base without ACL filtering (admin only)
 	//
-	// Adds file associations to a target knowledge base by file UIDs.
-	// Files can belong to multiple KBs (many-to-many relationship).
-	// Files that already exist in the target KB are skipped (no duplicates).
-	AddFilesToKnowledgeBaseAdmin(ctx context.Context, in *AddFilesToKnowledgeBaseAdminRequest, opts ...grpc.CallOption) (*AddFilesToKnowledgeBaseAdminResponse, error)
-	// Delete knowledge base (admin only)
-	//
-	// Force deletes a knowledge base even if it contains files. The files remain
-	// in the file table but lose their KB association (orphaned). Used during
-	// KB consolidation migrations after files have been moved to another KB.
-	DeleteKnowledgeBaseAdmin(ctx context.Context, in *DeleteKnowledgeBaseAdminRequest, opts ...grpc.CallOption) (*DeleteKnowledgeBaseAdminResponse, error)
-	// List files in a knowledge base (admin only)
-	//
-	// Lists all files in a knowledge base without ACL checks. Unlike the public
-	// ListKnowledgeBaseFiles endpoint which requires authentication context, this
-	// admin endpoint allows internal services to list files during migrations and
-	// administrative operations.
+	// Lists all files in a knowledge base without per-file FGA permission checks.
+	// Unlike the public ListFiles endpoint which filters results based on
+	// can_read_file permission, this admin endpoint returns all files.
+	// Supports AIP-160 filter expressions for filtering by file ID and tags.
+	// Used by internal services (e.g., agent-backend) for service-to-service
+	// file lookups where the calling service handles authorization at its own
+	// level.
 	ListFilesAdmin(ctx context.Context, in *ListFilesAdminRequest, opts ...grpc.CallOption) (*ListFilesAdminResponse, error)
+	// Delete a knowledge base (admin only)
+	//
+	// Force-deletes a knowledge base and CASCADE removes file-KB associations.
+	// Used by admin consolidation operations to remove duplicate KBs after moving
+	// files.
+	DeleteKnowledgeBaseAdmin(ctx context.Context, in *DeleteKnowledgeBaseAdminRequest, opts ...grpc.CallOption) (*DeleteKnowledgeBaseAdminResponse, error)
+	// Add files to a knowledge base (admin only)
+	//
+	// Adds file associations to a target KB by file resource names. Files can
+	// belong to multiple KBs (many-to-many relationship).
+	AddFilesToKnowledgeBaseAdmin(ctx context.Context, in *AddFilesToKnowledgeBaseAdminRequest, opts ...grpc.CallOption) (*AddFilesToKnowledgeBaseAdminResponse, error)
 }
 
 type artifactPrivateServiceClient struct {
@@ -397,10 +399,10 @@ func (c *artifactPrivateServiceClient) ResetKnowledgeBaseEmbeddingsAdmin(ctx con
 	return out, nil
 }
 
-func (c *artifactPrivateServiceClient) AddFilesToKnowledgeBaseAdmin(ctx context.Context, in *AddFilesToKnowledgeBaseAdminRequest, opts ...grpc.CallOption) (*AddFilesToKnowledgeBaseAdminResponse, error) {
+func (c *artifactPrivateServiceClient) ListFilesAdmin(ctx context.Context, in *ListFilesAdminRequest, opts ...grpc.CallOption) (*ListFilesAdminResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AddFilesToKnowledgeBaseAdminResponse)
-	err := c.cc.Invoke(ctx, ArtifactPrivateService_AddFilesToKnowledgeBaseAdmin_FullMethodName, in, out, cOpts...)
+	out := new(ListFilesAdminResponse)
+	err := c.cc.Invoke(ctx, ArtifactPrivateService_ListFilesAdmin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -417,10 +419,10 @@ func (c *artifactPrivateServiceClient) DeleteKnowledgeBaseAdmin(ctx context.Cont
 	return out, nil
 }
 
-func (c *artifactPrivateServiceClient) ListFilesAdmin(ctx context.Context, in *ListFilesAdminRequest, opts ...grpc.CallOption) (*ListFilesAdminResponse, error) {
+func (c *artifactPrivateServiceClient) AddFilesToKnowledgeBaseAdmin(ctx context.Context, in *AddFilesToKnowledgeBaseAdminRequest, opts ...grpc.CallOption) (*AddFilesToKnowledgeBaseAdminResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListFilesAdminResponse)
-	err := c.cc.Invoke(ctx, ArtifactPrivateService_ListFilesAdmin_FullMethodName, in, out, cOpts...)
+	out := new(AddFilesToKnowledgeBaseAdminResponse)
+	err := c.cc.Invoke(ctx, ArtifactPrivateService_AddFilesToKnowledgeBaseAdmin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -518,25 +520,27 @@ type ArtifactPrivateServiceServer interface {
 	GetDefaultSystemAdmin(context.Context, *GetDefaultSystemAdminRequest) (*GetDefaultSystemAdminResponse, error)
 	// Reset knowledge base embeddings (admin only)
 	ResetKnowledgeBaseEmbeddingsAdmin(context.Context, *ResetKnowledgeBaseEmbeddingsAdminRequest) (*ResetKnowledgeBaseEmbeddingsAdminResponse, error)
-	// Add files to knowledge base (admin only)
+	// List files in a knowledge base without ACL filtering (admin only)
 	//
-	// Adds file associations to a target knowledge base by file UIDs.
-	// Files can belong to multiple KBs (many-to-many relationship).
-	// Files that already exist in the target KB are skipped (no duplicates).
-	AddFilesToKnowledgeBaseAdmin(context.Context, *AddFilesToKnowledgeBaseAdminRequest) (*AddFilesToKnowledgeBaseAdminResponse, error)
-	// Delete knowledge base (admin only)
-	//
-	// Force deletes a knowledge base even if it contains files. The files remain
-	// in the file table but lose their KB association (orphaned). Used during
-	// KB consolidation migrations after files have been moved to another KB.
-	DeleteKnowledgeBaseAdmin(context.Context, *DeleteKnowledgeBaseAdminRequest) (*DeleteKnowledgeBaseAdminResponse, error)
-	// List files in a knowledge base (admin only)
-	//
-	// Lists all files in a knowledge base without ACL checks. Unlike the public
-	// ListKnowledgeBaseFiles endpoint which requires authentication context, this
-	// admin endpoint allows internal services to list files during migrations and
-	// administrative operations.
+	// Lists all files in a knowledge base without per-file FGA permission checks.
+	// Unlike the public ListFiles endpoint which filters results based on
+	// can_read_file permission, this admin endpoint returns all files.
+	// Supports AIP-160 filter expressions for filtering by file ID and tags.
+	// Used by internal services (e.g., agent-backend) for service-to-service
+	// file lookups where the calling service handles authorization at its own
+	// level.
 	ListFilesAdmin(context.Context, *ListFilesAdminRequest) (*ListFilesAdminResponse, error)
+	// Delete a knowledge base (admin only)
+	//
+	// Force-deletes a knowledge base and CASCADE removes file-KB associations.
+	// Used by admin consolidation operations to remove duplicate KBs after moving
+	// files.
+	DeleteKnowledgeBaseAdmin(context.Context, *DeleteKnowledgeBaseAdminRequest) (*DeleteKnowledgeBaseAdminResponse, error)
+	// Add files to a knowledge base (admin only)
+	//
+	// Adds file associations to a target KB by file resource names. Files can
+	// belong to multiple KBs (many-to-many relationship).
+	AddFilesToKnowledgeBaseAdmin(context.Context, *AddFilesToKnowledgeBaseAdminRequest) (*AddFilesToKnowledgeBaseAdminResponse, error)
 }
 
 // UnimplementedArtifactPrivateServiceServer should be embedded to have
@@ -615,14 +619,14 @@ func (UnimplementedArtifactPrivateServiceServer) GetDefaultSystemAdmin(context.C
 func (UnimplementedArtifactPrivateServiceServer) ResetKnowledgeBaseEmbeddingsAdmin(context.Context, *ResetKnowledgeBaseEmbeddingsAdminRequest) (*ResetKnowledgeBaseEmbeddingsAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResetKnowledgeBaseEmbeddingsAdmin not implemented")
 }
-func (UnimplementedArtifactPrivateServiceServer) AddFilesToKnowledgeBaseAdmin(context.Context, *AddFilesToKnowledgeBaseAdminRequest) (*AddFilesToKnowledgeBaseAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddFilesToKnowledgeBaseAdmin not implemented")
+func (UnimplementedArtifactPrivateServiceServer) ListFilesAdmin(context.Context, *ListFilesAdminRequest) (*ListFilesAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListFilesAdmin not implemented")
 }
 func (UnimplementedArtifactPrivateServiceServer) DeleteKnowledgeBaseAdmin(context.Context, *DeleteKnowledgeBaseAdminRequest) (*DeleteKnowledgeBaseAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteKnowledgeBaseAdmin not implemented")
 }
-func (UnimplementedArtifactPrivateServiceServer) ListFilesAdmin(context.Context, *ListFilesAdminRequest) (*ListFilesAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListFilesAdmin not implemented")
+func (UnimplementedArtifactPrivateServiceServer) AddFilesToKnowledgeBaseAdmin(context.Context, *AddFilesToKnowledgeBaseAdminRequest) (*AddFilesToKnowledgeBaseAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddFilesToKnowledgeBaseAdmin not implemented")
 }
 func (UnimplementedArtifactPrivateServiceServer) testEmbeddedByValue() {}
 
@@ -1058,20 +1062,20 @@ func _ArtifactPrivateService_ResetKnowledgeBaseEmbeddingsAdmin_Handler(srv inter
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPrivateService_AddFilesToKnowledgeBaseAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddFilesToKnowledgeBaseAdminRequest)
+func _ArtifactPrivateService_ListFilesAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListFilesAdminRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPrivateServiceServer).AddFilesToKnowledgeBaseAdmin(ctx, in)
+		return srv.(ArtifactPrivateServiceServer).ListFilesAdmin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPrivateService_AddFilesToKnowledgeBaseAdmin_FullMethodName,
+		FullMethod: ArtifactPrivateService_ListFilesAdmin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPrivateServiceServer).AddFilesToKnowledgeBaseAdmin(ctx, req.(*AddFilesToKnowledgeBaseAdminRequest))
+		return srv.(ArtifactPrivateServiceServer).ListFilesAdmin(ctx, req.(*ListFilesAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1094,20 +1098,20 @@ func _ArtifactPrivateService_DeleteKnowledgeBaseAdmin_Handler(srv interface{}, c
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactPrivateService_ListFilesAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListFilesAdminRequest)
+func _ArtifactPrivateService_AddFilesToKnowledgeBaseAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddFilesToKnowledgeBaseAdminRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactPrivateServiceServer).ListFilesAdmin(ctx, in)
+		return srv.(ArtifactPrivateServiceServer).AddFilesToKnowledgeBaseAdmin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactPrivateService_ListFilesAdmin_FullMethodName,
+		FullMethod: ArtifactPrivateService_AddFilesToKnowledgeBaseAdmin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactPrivateServiceServer).ListFilesAdmin(ctx, req.(*ListFilesAdminRequest))
+		return srv.(ArtifactPrivateServiceServer).AddFilesToKnowledgeBaseAdmin(ctx, req.(*AddFilesToKnowledgeBaseAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1212,16 +1216,16 @@ var ArtifactPrivateService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ArtifactPrivateService_ResetKnowledgeBaseEmbeddingsAdmin_Handler,
 		},
 		{
-			MethodName: "AddFilesToKnowledgeBaseAdmin",
-			Handler:    _ArtifactPrivateService_AddFilesToKnowledgeBaseAdmin_Handler,
+			MethodName: "ListFilesAdmin",
+			Handler:    _ArtifactPrivateService_ListFilesAdmin_Handler,
 		},
 		{
 			MethodName: "DeleteKnowledgeBaseAdmin",
 			Handler:    _ArtifactPrivateService_DeleteKnowledgeBaseAdmin_Handler,
 		},
 		{
-			MethodName: "ListFilesAdmin",
-			Handler:    _ArtifactPrivateService_ListFilesAdmin_Handler,
+			MethodName: "AddFilesToKnowledgeBaseAdmin",
+			Handler:    _ArtifactPrivateService_AddFilesToKnowledgeBaseAdmin_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

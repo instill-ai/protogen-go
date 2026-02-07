@@ -1531,7 +1531,7 @@ func (*DeleteKnowledgeBaseAdminResponse) Descriptor() ([]byte, []int) {
 }
 
 // ListFilesAdminRequest represents a request to list files in a knowledge base
-// (admin only).
+// (admin only, bypasses ACL checks).
 type ListFilesAdminRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource name of the knowledge base.
@@ -1540,7 +1540,13 @@ type ListFilesAdminRequest struct {
 	// Maximum number of files to return. Default is 100.
 	PageSize int32 `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
 	// Page token for pagination.
-	PageToken     string `protobuf:"bytes,3,opt,name=page_token,json=pageToken,proto3" json:"page_token,omitempty"`
+	PageToken string `protobuf:"bytes,3,opt,name=page_token,json=pageToken,proto3" json:"page_token,omitempty"`
+	// AIP-160 filter expression. Supports the same syntax as the public ListFiles API.
+	// Examples:
+	//   - `id="file-abc123"` - filter by hash-based file ID
+	//   - `tags:"agent:collection:col-xxx"` - filter by tag
+	//   - `(id="file-a" OR id="file-b") AND tags:"mytag"` - compound filter
+	Filter        string `protobuf:"bytes,4,opt,name=filter,proto3" json:"filter,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1592,6 +1598,13 @@ func (x *ListFilesAdminRequest) GetPageSize() int32 {
 func (x *ListFilesAdminRequest) GetPageToken() string {
 	if x != nil {
 		return x.PageToken
+	}
+	return ""
+}
+
+func (x *ListFilesAdminRequest) GetFilter() string {
+	if x != nil {
+		return x.Filter
 	}
 	return ""
 }
@@ -1833,13 +1846,14 @@ const file_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"\x1fDeleteKnowledgeBaseAdminRequest\x12:\n" +
 	"\x04name\x18\x01 \x01(\tB&\xe0A\x02\xfaA \n" +
 	"\x1eapi.instill.tech/KnowledgeBaseR\x04name\"\"\n" +
-	" DeleteKnowledgeBaseAdminResponse\"\x9d\x01\n" +
+	" DeleteKnowledgeBaseAdminResponse\"\xba\x01\n" +
 	"\x15ListFilesAdminRequest\x12>\n" +
 	"\x06parent\x18\x01 \x01(\tB&\xe0A\x02\xfaA \n" +
 	"\x1eapi.instill.tech/KnowledgeBaseR\x06parent\x12 \n" +
 	"\tpage_size\x18\x02 \x01(\x05B\x03\xe0A\x01R\bpageSize\x12\"\n" +
 	"\n" +
-	"page_token\x18\x03 \x01(\tB\x03\xe0A\x01R\tpageToken\"\x9c\x01\n" +
+	"page_token\x18\x03 \x01(\tB\x03\xe0A\x01R\tpageToken\x12\x1b\n" +
+	"\x06filter\x18\x04 \x01(\tB\x03\xe0A\x01R\x06filter\"\x9c\x01\n" +
 	"\x16ListFilesAdminResponse\x121\n" +
 	"\x05files\x18\x01 \x03(\v2\x16.artifact.v1alpha.FileB\x03\xe0A\x03R\x05files\x12+\n" +
 	"\x0fnext_page_token\x18\x02 \x01(\tB\x03\xe0A\x03R\rnextPageToken\x12\"\n" +

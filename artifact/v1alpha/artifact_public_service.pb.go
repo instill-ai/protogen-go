@@ -27,7 +27,7 @@ var File_artifact_v1alpha_artifact_public_service_proto protoreflect.FileDescrip
 
 const file_artifact_v1alpha_artifact_public_service_proto_rawDesc = "" +
 	"\n" +
-	".artifact/v1alpha/artifact_public_service.proto\x12\x10artifact.v1alpha\x1a\x1fartifact/v1alpha/artifact.proto\x1a\x1cartifact/v1alpha/chunk.proto\x1a\x1bartifact/v1alpha/file.proto\x1a%artifact/v1alpha/knowledge_base.proto\x1a\x1dartifact/v1alpha/object.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\x81#\n" +
+	".artifact/v1alpha/artifact_public_service.proto\x12\x10artifact.v1alpha\x1a\x1fartifact/v1alpha/artifact.proto\x1a\x1cartifact/v1alpha/chunk.proto\x1a\x1bartifact/v1alpha/file.proto\x1a%artifact/v1alpha/knowledge_base.proto\x1a\x1dartifact/v1alpha/object.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/api/visibility.proto\x1a.protoc-gen-openapiv2/options/annotations.proto2\xfc\"\n" +
 	"\x15ArtifactPublicService\x12\x9a\x01\n" +
 	"\bLiveness\x12!.artifact.v1alpha.LivenessRequest\x1a\".artifact.v1alpha.LivenessResponse\"G\xfa\xd2\xe4\x93\x02\n" +
 	"\x12\bINTERNAL\x82\xd3\xe4\x93\x021Z\x1a\x12\x18/v1alpha/health/artifact\x12\x13/v1alpha/__liveness\x12\x9d\x01\n" +
@@ -92,10 +92,10 @@ const file_artifact_v1alpha_artifact_public_service_proto_rawDesc = "" +
 	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x025\x123/v1alpha/{name=namespaces/*/objects/*}/download-url\x12\xa5\x01\n" +
 	"\tGetObject\x12\".artifact.v1alpha.GetObjectRequest\x1a#.artifact.v1alpha.GetObjectResponse\"O\x92A\x1e\n" +
 	"\bArtifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02(\x12&/v1alpha/{name=namespaces/*/objects/*}\x12\xbd\x01\n" +
-	"\fUpdateObject\x12%.artifact.v1alpha.UpdateObjectRequest\x1a&.artifact.v1alpha.UpdateObjectResponse\"^\x92A\x1e\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02(\x12&/v1alpha/{name=namespaces/*/objects/*}\x12\xb8\x01\n" +
+	"\fUpdateObject\x12%.artifact.v1alpha.UpdateObjectRequest\x1a&.artifact.v1alpha.UpdateObjectResponse\"Y\x92A\x1e\n" +
 	"\bArtifactj\x12\n" +
-	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x027:\x06object2-/v1alpha/{object.name=namespaces/*/objects/*}\x12\xae\x01\n" +
+	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x022:\x01*2-/v1alpha/{object.name=namespaces/*/objects/*}\x12\xae\x01\n" +
 	"\fDeleteObject\x12%.artifact.v1alpha.DeleteObjectRequest\x1a&.artifact.v1alpha.DeleteObjectResponse\"O\x92A\x1e\n" +
 	"\bArtifactj\x12\n" +
 	"\ax-stage\x12\a\x1a\x05alpha\x82\xd3\xe4\x93\x02(*&/v1alpha/{name=namespaces/*/objects/*}\x1a\x1e\x92A\x1b\x12\x19Public Artifact endpointsB\xd7\x01\n" +
