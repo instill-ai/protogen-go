@@ -1005,7 +1005,10 @@ type ListKnowledgeBasesAdminRequest struct {
 	PageSize *int32 `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
 	// The page token, received from a previous ListKnowledgeBasesAdmin call.
 	// Provide this to retrieve the subsequent page.
-	PageToken     *string `protobuf:"bytes,3,opt,name=page_token,json=pageToken,proto3,oneof" json:"page_token,omitempty"`
+	PageToken *string `protobuf:"bytes,3,opt,name=page_token,json=pageToken,proto3,oneof" json:"page_token,omitempty"`
+	// Optional AIP-160 filter expression. Supports:
+	//   - q="<text>" for fuzzy search on display_name using pg_trgm
+	Filter        *string `protobuf:"bytes,4,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1057,6 +1060,13 @@ func (x *ListKnowledgeBasesAdminRequest) GetPageSize() int32 {
 func (x *ListKnowledgeBasesAdminRequest) GetPageToken() string {
 	if x != nil && x.PageToken != nil {
 		return *x.PageToken
+	}
+	return ""
+}
+
+func (x *ListKnowledgeBasesAdminRequest) GetFilter() string {
+	if x != nil && x.Filter != nil {
+		return *x.Filter
 	}
 	return ""
 }
@@ -1809,15 +1819,17 @@ const file_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"\x06parent\x18\x01 \x01(\tB\x03\xe0A\x02R\x06parent\x12K\n" +
 	"\x0eknowledge_base\x18\x02 \x01(\v2\x1f.artifact.v1alpha.KnowledgeBaseB\x03\xe0A\x02R\rknowledgeBase\"o\n" +
 	" CreateKnowledgeBaseAdminResponse\x12K\n" +
-	"\x0eknowledge_base\x18\x01 \x01(\v2\x1f.artifact.v1alpha.KnowledgeBaseB\x03\xe0A\x03R\rknowledgeBase\"\xaa\x01\n" +
+	"\x0eknowledge_base\x18\x01 \x01(\v2\x1f.artifact.v1alpha.KnowledgeBaseB\x03\xe0A\x03R\rknowledgeBase\"\xd7\x01\n" +
 	"\x1eListKnowledgeBasesAdminRequest\x12\x1b\n" +
 	"\x06parent\x18\x01 \x01(\tB\x03\xe0A\x02R\x06parent\x12%\n" +
 	"\tpage_size\x18\x02 \x01(\x05B\x03\xe0A\x01H\x00R\bpageSize\x88\x01\x01\x12'\n" +
 	"\n" +
-	"page_token\x18\x03 \x01(\tB\x03\xe0A\x01H\x01R\tpageToken\x88\x01\x01B\f\n" +
+	"page_token\x18\x03 \x01(\tB\x03\xe0A\x01H\x01R\tpageToken\x88\x01\x01\x12 \n" +
+	"\x06filter\x18\x04 \x01(\tB\x03\xe0A\x01H\x02R\x06filter\x88\x01\x01B\f\n" +
 	"\n" +
 	"_page_sizeB\r\n" +
-	"\v_page_token\"\xb2\x01\n" +
+	"\v_page_tokenB\t\n" +
+	"\a_filter\"\xb2\x01\n" +
 	"\x1fListKnowledgeBasesAdminResponse\x12H\n" +
 	"\x0fknowledge_bases\x18\x01 \x03(\v2\x1f.artifact.v1alpha.KnowledgeBaseR\x0eknowledgeBases\x12&\n" +
 	"\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\x12\x1d\n" +
