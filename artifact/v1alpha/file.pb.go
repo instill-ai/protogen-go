@@ -309,6 +309,8 @@ const (
 	File_TYPE_HTML File_Type = 3
 	// CSV
 	File_TYPE_CSV File_Type = 4
+	// JSON
+	File_TYPE_JSON File_Type = 39
 	// Container-based document types
 	// PDF
 	File_TYPE_PDF File_Type = 5
@@ -343,6 +345,8 @@ const (
 	File_TYPE_HEIF File_Type = 19
 	// AVIF
 	File_TYPE_AVIF File_Type = 20
+	// SVG
+	File_TYPE_SVG File_Type = 38
 	// Audio types
 	// MP3
 	File_TYPE_MP3 File_Type = 21
@@ -389,6 +393,7 @@ var (
 		2:  "TYPE_MARKDOWN",
 		3:  "TYPE_HTML",
 		4:  "TYPE_CSV",
+		39: "TYPE_JSON",
 		5:  "TYPE_PDF",
 		6:  "TYPE_DOC",
 		7:  "TYPE_DOCX",
@@ -405,6 +410,7 @@ var (
 		18: "TYPE_HEIC",
 		19: "TYPE_HEIF",
 		20: "TYPE_AVIF",
+		38: "TYPE_SVG",
 		21: "TYPE_MP3",
 		22: "TYPE_WAV",
 		23: "TYPE_AAC",
@@ -429,6 +435,7 @@ var (
 		"TYPE_MARKDOWN":    2,
 		"TYPE_HTML":        3,
 		"TYPE_CSV":         4,
+		"TYPE_JSON":        39,
 		"TYPE_PDF":         5,
 		"TYPE_DOC":         6,
 		"TYPE_DOCX":        7,
@@ -445,6 +452,7 @@ var (
 		"TYPE_HEIC":        18,
 		"TYPE_HEIF":        19,
 		"TYPE_AVIF":        20,
+		"TYPE_SVG":         38,
 		"TYPE_MP3":         21,
 		"TYPE_WAV":         22,
 		"TYPE_AAC":         23,
@@ -1996,7 +2004,7 @@ var File_artifact_v1alpha_file_proto protoreflect.FileDescriptor
 
 const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\n" +
-	"\x1bartifact/v1alpha/file.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16mgmt/v1beta/mgmt.proto\"\xcb\x15\n" +
+	"\x1bartifact/v1alpha/file.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16mgmt/v1beta/mgmt.proto\"\xe8\x15\n" +
 	"\x04File\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12&\n" +
@@ -2058,13 +2066,14 @@ const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\x0fStorageProvider\x12 \n" +
 	"\x1cSTORAGE_PROVIDER_UNSPECIFIED\x10\x00\x12\x1a\n" +
 	"\x16STORAGE_PROVIDER_MINIO\x10\x01\x12\x18\n" +
-	"\x14STORAGE_PROVIDER_GCS\x10\x02\"\xc3\x04\n" +
+	"\x14STORAGE_PROVIDER_GCS\x10\x02\"\xe0\x04\n" +
 	"\x04Type\x12\x14\n" +
 	"\x10TYPE_UNSPECIFIED\x10\x00\x12\r\n" +
 	"\tTYPE_TEXT\x10\x01\x12\x11\n" +
 	"\rTYPE_MARKDOWN\x10\x02\x12\r\n" +
 	"\tTYPE_HTML\x10\x03\x12\f\n" +
-	"\bTYPE_CSV\x10\x04\x12\f\n" +
+	"\bTYPE_CSV\x10\x04\x12\r\n" +
+	"\tTYPE_JSON\x10'\x12\f\n" +
 	"\bTYPE_PDF\x10\x05\x12\f\n" +
 	"\bTYPE_DOC\x10\x06\x12\r\n" +
 	"\tTYPE_DOCX\x10\a\x12\f\n" +
@@ -2082,6 +2091,7 @@ const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\tTYPE_HEIC\x10\x12\x12\r\n" +
 	"\tTYPE_HEIF\x10\x13\x12\r\n" +
 	"\tTYPE_AVIF\x10\x14\x12\f\n" +
+	"\bTYPE_SVG\x10&\x12\f\n" +
 	"\bTYPE_MP3\x10\x15\x12\f\n" +
 	"\bTYPE_WAV\x10\x16\x12\f\n" +
 	"\bTYPE_AAC\x10\x17\x12\f\n" +
