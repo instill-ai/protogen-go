@@ -24,7 +24,7 @@ var File_artifact_v1alpha_artifact_private_service_proto protoreflect.FileDescri
 
 const file_artifact_v1alpha_artifact_private_service_proto_rawDesc = "" +
 	"\n" +
-	"/artifact/v1alpha/artifact_private_service.proto\x12\x10artifact.v1alpha\x1a\x1bartifact/v1alpha/file.proto\x1a%artifact/v1alpha/knowledge_base.proto\x1a\x1dartifact/v1alpha/object.proto\x1a\x1dartifact/v1alpha/system.proto\x1a\x1dartifact/v1alpha/update.proto2\xed\x18\n" +
+	"/artifact/v1alpha/artifact_private_service.proto\x12\x10artifact.v1alpha\x1a\x1bartifact/v1alpha/file.proto\x1a%artifact/v1alpha/knowledge_base.proto\x1a\x1dartifact/v1alpha/object.proto\x1a\x1dartifact/v1alpha/system.proto\x1a\x1dartifact/v1alpha/update.proto2\xfd\x19\n" +
 	"\x16ArtifactPrivateService\x12\x81\x01\n" +
 	"\x18CreateKnowledgeBaseAdmin\x121.artifact.v1alpha.CreateKnowledgeBaseAdminRequest\x1a2.artifact.v1alpha.CreateKnowledgeBaseAdminResponse\x12~\n" +
 	"\x17ListKnowledgeBasesAdmin\x120.artifact.v1alpha.ListKnowledgeBasesAdminRequest\x1a1.artifact.v1alpha.ListKnowledgeBasesAdminResponse\x12\x81\x01\n" +
@@ -51,7 +51,8 @@ const file_artifact_v1alpha_artifact_private_service_proto_rawDesc = "" +
 	"!ResetKnowledgeBaseEmbeddingsAdmin\x12:.artifact.v1alpha.ResetKnowledgeBaseEmbeddingsAdminRequest\x1a;.artifact.v1alpha.ResetKnowledgeBaseEmbeddingsAdminResponse\x12c\n" +
 	"\x0eListFilesAdmin\x12'.artifact.v1alpha.ListFilesAdminRequest\x1a(.artifact.v1alpha.ListFilesAdminResponse\x12\x81\x01\n" +
 	"\x18DeleteKnowledgeBaseAdmin\x121.artifact.v1alpha.DeleteKnowledgeBaseAdminRequest\x1a2.artifact.v1alpha.DeleteKnowledgeBaseAdminResponse\x12\x8d\x01\n" +
-	"\x1cAddFilesToKnowledgeBaseAdmin\x125.artifact.v1alpha.AddFilesToKnowledgeBaseAdminRequest\x1a6.artifact.v1alpha.AddFilesToKnowledgeBaseAdminResponseB\xd8\x01\n" +
+	"\x1cAddFilesToKnowledgeBaseAdmin\x125.artifact.v1alpha.AddFilesToKnowledgeBaseAdminRequest\x1a6.artifact.v1alpha.AddFilesToKnowledgeBaseAdminResponse\x12\x8d\x01\n" +
+	"\x1cCopyFileToKnowledgeBaseAdmin\x125.artifact.v1alpha.CopyFileToKnowledgeBaseAdminRequest\x1a6.artifact.v1alpha.CopyFileToKnowledgeBaseAdminResponseB\xd8\x01\n" +
 	"\x14com.artifact.v1alphaB\x1bArtifactPrivateServiceProtoP\x01ZBgithub.com/instill-ai/protogen-go/artifact/v1alpha;artifactv1alpha\xa2\x02\x03AXX\xaa\x02\x10Artifact.V1alpha\xca\x02\x10Artifact\\V1alpha\xe2\x02\x1cArtifact\\V1alpha\\GPBMetadata\xea\x02\x11Artifact::V1alphab\x06proto3"
 
 var file_artifact_v1alpha_artifact_private_service_proto_goTypes = []any{
@@ -81,32 +82,34 @@ var file_artifact_v1alpha_artifact_private_service_proto_goTypes = []any{
 	(*ListFilesAdminRequest)(nil),                     // 23: artifact.v1alpha.ListFilesAdminRequest
 	(*DeleteKnowledgeBaseAdminRequest)(nil),           // 24: artifact.v1alpha.DeleteKnowledgeBaseAdminRequest
 	(*AddFilesToKnowledgeBaseAdminRequest)(nil),       // 25: artifact.v1alpha.AddFilesToKnowledgeBaseAdminRequest
-	(*CreateKnowledgeBaseAdminResponse)(nil),          // 26: artifact.v1alpha.CreateKnowledgeBaseAdminResponse
-	(*ListKnowledgeBasesAdminResponse)(nil),           // 27: artifact.v1alpha.ListKnowledgeBasesAdminResponse
-	(*UpdateKnowledgeBaseAdminResponse)(nil),          // 28: artifact.v1alpha.UpdateKnowledgeBaseAdminResponse
-	(*UpdateFileAdminResponse)(nil),                   // 29: artifact.v1alpha.UpdateFileAdminResponse
-	(*GetObjectAdminResponse)(nil),                    // 30: artifact.v1alpha.GetObjectAdminResponse
-	(*UpdateObjectAdminResponse)(nil),                 // 31: artifact.v1alpha.UpdateObjectAdminResponse
-	(*DeleteFileAdminResponse)(nil),                   // 32: artifact.v1alpha.DeleteFileAdminResponse
-	(*ReprocessFileAdminResponse)(nil),                // 33: artifact.v1alpha.ReprocessFileAdminResponse
-	(*ExecuteKnowledgeBaseUpdateAdminResponse)(nil),   // 34: artifact.v1alpha.ExecuteKnowledgeBaseUpdateAdminResponse
-	(*AbortKnowledgeBaseUpdateAdminResponse)(nil),     // 35: artifact.v1alpha.AbortKnowledgeBaseUpdateAdminResponse
-	(*RollbackAdminResponse)(nil),                     // 36: artifact.v1alpha.RollbackAdminResponse
-	(*PurgeRollbackAdminResponse)(nil),                // 37: artifact.v1alpha.PurgeRollbackAdminResponse
-	(*SetRollbackRetentionAdminResponse)(nil),         // 38: artifact.v1alpha.SetRollbackRetentionAdminResponse
-	(*GetKnowledgeBaseUpdateStatusAdminResponse)(nil), // 39: artifact.v1alpha.GetKnowledgeBaseUpdateStatusAdminResponse
-	(*CreateSystemAdminResponse)(nil),                 // 40: artifact.v1alpha.CreateSystemAdminResponse
-	(*GetSystemAdminResponse)(nil),                    // 41: artifact.v1alpha.GetSystemAdminResponse
-	(*UpdateSystemAdminResponse)(nil),                 // 42: artifact.v1alpha.UpdateSystemAdminResponse
-	(*DeleteSystemAdminResponse)(nil),                 // 43: artifact.v1alpha.DeleteSystemAdminResponse
-	(*ListSystemsAdminResponse)(nil),                  // 44: artifact.v1alpha.ListSystemsAdminResponse
-	(*RenameSystemAdminResponse)(nil),                 // 45: artifact.v1alpha.RenameSystemAdminResponse
-	(*SetDefaultSystemAdminResponse)(nil),             // 46: artifact.v1alpha.SetDefaultSystemAdminResponse
-	(*GetDefaultSystemAdminResponse)(nil),             // 47: artifact.v1alpha.GetDefaultSystemAdminResponse
-	(*ResetKnowledgeBaseEmbeddingsAdminResponse)(nil), // 48: artifact.v1alpha.ResetKnowledgeBaseEmbeddingsAdminResponse
-	(*ListFilesAdminResponse)(nil),                    // 49: artifact.v1alpha.ListFilesAdminResponse
-	(*DeleteKnowledgeBaseAdminResponse)(nil),          // 50: artifact.v1alpha.DeleteKnowledgeBaseAdminResponse
-	(*AddFilesToKnowledgeBaseAdminResponse)(nil),      // 51: artifact.v1alpha.AddFilesToKnowledgeBaseAdminResponse
+	(*CopyFileToKnowledgeBaseAdminRequest)(nil),       // 26: artifact.v1alpha.CopyFileToKnowledgeBaseAdminRequest
+	(*CreateKnowledgeBaseAdminResponse)(nil),          // 27: artifact.v1alpha.CreateKnowledgeBaseAdminResponse
+	(*ListKnowledgeBasesAdminResponse)(nil),           // 28: artifact.v1alpha.ListKnowledgeBasesAdminResponse
+	(*UpdateKnowledgeBaseAdminResponse)(nil),          // 29: artifact.v1alpha.UpdateKnowledgeBaseAdminResponse
+	(*UpdateFileAdminResponse)(nil),                   // 30: artifact.v1alpha.UpdateFileAdminResponse
+	(*GetObjectAdminResponse)(nil),                    // 31: artifact.v1alpha.GetObjectAdminResponse
+	(*UpdateObjectAdminResponse)(nil),                 // 32: artifact.v1alpha.UpdateObjectAdminResponse
+	(*DeleteFileAdminResponse)(nil),                   // 33: artifact.v1alpha.DeleteFileAdminResponse
+	(*ReprocessFileAdminResponse)(nil),                // 34: artifact.v1alpha.ReprocessFileAdminResponse
+	(*ExecuteKnowledgeBaseUpdateAdminResponse)(nil),   // 35: artifact.v1alpha.ExecuteKnowledgeBaseUpdateAdminResponse
+	(*AbortKnowledgeBaseUpdateAdminResponse)(nil),     // 36: artifact.v1alpha.AbortKnowledgeBaseUpdateAdminResponse
+	(*RollbackAdminResponse)(nil),                     // 37: artifact.v1alpha.RollbackAdminResponse
+	(*PurgeRollbackAdminResponse)(nil),                // 38: artifact.v1alpha.PurgeRollbackAdminResponse
+	(*SetRollbackRetentionAdminResponse)(nil),         // 39: artifact.v1alpha.SetRollbackRetentionAdminResponse
+	(*GetKnowledgeBaseUpdateStatusAdminResponse)(nil), // 40: artifact.v1alpha.GetKnowledgeBaseUpdateStatusAdminResponse
+	(*CreateSystemAdminResponse)(nil),                 // 41: artifact.v1alpha.CreateSystemAdminResponse
+	(*GetSystemAdminResponse)(nil),                    // 42: artifact.v1alpha.GetSystemAdminResponse
+	(*UpdateSystemAdminResponse)(nil),                 // 43: artifact.v1alpha.UpdateSystemAdminResponse
+	(*DeleteSystemAdminResponse)(nil),                 // 44: artifact.v1alpha.DeleteSystemAdminResponse
+	(*ListSystemsAdminResponse)(nil),                  // 45: artifact.v1alpha.ListSystemsAdminResponse
+	(*RenameSystemAdminResponse)(nil),                 // 46: artifact.v1alpha.RenameSystemAdminResponse
+	(*SetDefaultSystemAdminResponse)(nil),             // 47: artifact.v1alpha.SetDefaultSystemAdminResponse
+	(*GetDefaultSystemAdminResponse)(nil),             // 48: artifact.v1alpha.GetDefaultSystemAdminResponse
+	(*ResetKnowledgeBaseEmbeddingsAdminResponse)(nil), // 49: artifact.v1alpha.ResetKnowledgeBaseEmbeddingsAdminResponse
+	(*ListFilesAdminResponse)(nil),                    // 50: artifact.v1alpha.ListFilesAdminResponse
+	(*DeleteKnowledgeBaseAdminResponse)(nil),          // 51: artifact.v1alpha.DeleteKnowledgeBaseAdminResponse
+	(*AddFilesToKnowledgeBaseAdminResponse)(nil),      // 52: artifact.v1alpha.AddFilesToKnowledgeBaseAdminResponse
+	(*CopyFileToKnowledgeBaseAdminResponse)(nil),      // 53: artifact.v1alpha.CopyFileToKnowledgeBaseAdminResponse
 }
 var file_artifact_v1alpha_artifact_private_service_proto_depIdxs = []int32{
 	0,  // 0: artifact.v1alpha.ArtifactPrivateService.CreateKnowledgeBaseAdmin:input_type -> artifact.v1alpha.CreateKnowledgeBaseAdminRequest
@@ -135,34 +138,36 @@ var file_artifact_v1alpha_artifact_private_service_proto_depIdxs = []int32{
 	23, // 23: artifact.v1alpha.ArtifactPrivateService.ListFilesAdmin:input_type -> artifact.v1alpha.ListFilesAdminRequest
 	24, // 24: artifact.v1alpha.ArtifactPrivateService.DeleteKnowledgeBaseAdmin:input_type -> artifact.v1alpha.DeleteKnowledgeBaseAdminRequest
 	25, // 25: artifact.v1alpha.ArtifactPrivateService.AddFilesToKnowledgeBaseAdmin:input_type -> artifact.v1alpha.AddFilesToKnowledgeBaseAdminRequest
-	26, // 26: artifact.v1alpha.ArtifactPrivateService.CreateKnowledgeBaseAdmin:output_type -> artifact.v1alpha.CreateKnowledgeBaseAdminResponse
-	27, // 27: artifact.v1alpha.ArtifactPrivateService.ListKnowledgeBasesAdmin:output_type -> artifact.v1alpha.ListKnowledgeBasesAdminResponse
-	28, // 28: artifact.v1alpha.ArtifactPrivateService.UpdateKnowledgeBaseAdmin:output_type -> artifact.v1alpha.UpdateKnowledgeBaseAdminResponse
-	29, // 29: artifact.v1alpha.ArtifactPrivateService.UpdateFileAdmin:output_type -> artifact.v1alpha.UpdateFileAdminResponse
-	30, // 30: artifact.v1alpha.ArtifactPrivateService.GetObjectAdmin:output_type -> artifact.v1alpha.GetObjectAdminResponse
-	31, // 31: artifact.v1alpha.ArtifactPrivateService.UpdateObjectAdmin:output_type -> artifact.v1alpha.UpdateObjectAdminResponse
-	32, // 32: artifact.v1alpha.ArtifactPrivateService.DeleteFileAdmin:output_type -> artifact.v1alpha.DeleteFileAdminResponse
-	33, // 33: artifact.v1alpha.ArtifactPrivateService.ReprocessFileAdmin:output_type -> artifact.v1alpha.ReprocessFileAdminResponse
-	34, // 34: artifact.v1alpha.ArtifactPrivateService.ExecuteKnowledgeBaseUpdateAdmin:output_type -> artifact.v1alpha.ExecuteKnowledgeBaseUpdateAdminResponse
-	35, // 35: artifact.v1alpha.ArtifactPrivateService.AbortKnowledgeBaseUpdateAdmin:output_type -> artifact.v1alpha.AbortKnowledgeBaseUpdateAdminResponse
-	36, // 36: artifact.v1alpha.ArtifactPrivateService.RollbackAdmin:output_type -> artifact.v1alpha.RollbackAdminResponse
-	37, // 37: artifact.v1alpha.ArtifactPrivateService.PurgeRollbackAdmin:output_type -> artifact.v1alpha.PurgeRollbackAdminResponse
-	38, // 38: artifact.v1alpha.ArtifactPrivateService.SetRollbackRetentionAdmin:output_type -> artifact.v1alpha.SetRollbackRetentionAdminResponse
-	39, // 39: artifact.v1alpha.ArtifactPrivateService.GetKnowledgeBaseUpdateStatusAdmin:output_type -> artifact.v1alpha.GetKnowledgeBaseUpdateStatusAdminResponse
-	40, // 40: artifact.v1alpha.ArtifactPrivateService.CreateSystemAdmin:output_type -> artifact.v1alpha.CreateSystemAdminResponse
-	41, // 41: artifact.v1alpha.ArtifactPrivateService.GetSystemAdmin:output_type -> artifact.v1alpha.GetSystemAdminResponse
-	42, // 42: artifact.v1alpha.ArtifactPrivateService.UpdateSystemAdmin:output_type -> artifact.v1alpha.UpdateSystemAdminResponse
-	43, // 43: artifact.v1alpha.ArtifactPrivateService.DeleteSystemAdmin:output_type -> artifact.v1alpha.DeleteSystemAdminResponse
-	44, // 44: artifact.v1alpha.ArtifactPrivateService.ListSystemsAdmin:output_type -> artifact.v1alpha.ListSystemsAdminResponse
-	45, // 45: artifact.v1alpha.ArtifactPrivateService.RenameSystemAdmin:output_type -> artifact.v1alpha.RenameSystemAdminResponse
-	46, // 46: artifact.v1alpha.ArtifactPrivateService.SetDefaultSystemAdmin:output_type -> artifact.v1alpha.SetDefaultSystemAdminResponse
-	47, // 47: artifact.v1alpha.ArtifactPrivateService.GetDefaultSystemAdmin:output_type -> artifact.v1alpha.GetDefaultSystemAdminResponse
-	48, // 48: artifact.v1alpha.ArtifactPrivateService.ResetKnowledgeBaseEmbeddingsAdmin:output_type -> artifact.v1alpha.ResetKnowledgeBaseEmbeddingsAdminResponse
-	49, // 49: artifact.v1alpha.ArtifactPrivateService.ListFilesAdmin:output_type -> artifact.v1alpha.ListFilesAdminResponse
-	50, // 50: artifact.v1alpha.ArtifactPrivateService.DeleteKnowledgeBaseAdmin:output_type -> artifact.v1alpha.DeleteKnowledgeBaseAdminResponse
-	51, // 51: artifact.v1alpha.ArtifactPrivateService.AddFilesToKnowledgeBaseAdmin:output_type -> artifact.v1alpha.AddFilesToKnowledgeBaseAdminResponse
-	26, // [26:52] is the sub-list for method output_type
-	0,  // [0:26] is the sub-list for method input_type
+	26, // 26: artifact.v1alpha.ArtifactPrivateService.CopyFileToKnowledgeBaseAdmin:input_type -> artifact.v1alpha.CopyFileToKnowledgeBaseAdminRequest
+	27, // 27: artifact.v1alpha.ArtifactPrivateService.CreateKnowledgeBaseAdmin:output_type -> artifact.v1alpha.CreateKnowledgeBaseAdminResponse
+	28, // 28: artifact.v1alpha.ArtifactPrivateService.ListKnowledgeBasesAdmin:output_type -> artifact.v1alpha.ListKnowledgeBasesAdminResponse
+	29, // 29: artifact.v1alpha.ArtifactPrivateService.UpdateKnowledgeBaseAdmin:output_type -> artifact.v1alpha.UpdateKnowledgeBaseAdminResponse
+	30, // 30: artifact.v1alpha.ArtifactPrivateService.UpdateFileAdmin:output_type -> artifact.v1alpha.UpdateFileAdminResponse
+	31, // 31: artifact.v1alpha.ArtifactPrivateService.GetObjectAdmin:output_type -> artifact.v1alpha.GetObjectAdminResponse
+	32, // 32: artifact.v1alpha.ArtifactPrivateService.UpdateObjectAdmin:output_type -> artifact.v1alpha.UpdateObjectAdminResponse
+	33, // 33: artifact.v1alpha.ArtifactPrivateService.DeleteFileAdmin:output_type -> artifact.v1alpha.DeleteFileAdminResponse
+	34, // 34: artifact.v1alpha.ArtifactPrivateService.ReprocessFileAdmin:output_type -> artifact.v1alpha.ReprocessFileAdminResponse
+	35, // 35: artifact.v1alpha.ArtifactPrivateService.ExecuteKnowledgeBaseUpdateAdmin:output_type -> artifact.v1alpha.ExecuteKnowledgeBaseUpdateAdminResponse
+	36, // 36: artifact.v1alpha.ArtifactPrivateService.AbortKnowledgeBaseUpdateAdmin:output_type -> artifact.v1alpha.AbortKnowledgeBaseUpdateAdminResponse
+	37, // 37: artifact.v1alpha.ArtifactPrivateService.RollbackAdmin:output_type -> artifact.v1alpha.RollbackAdminResponse
+	38, // 38: artifact.v1alpha.ArtifactPrivateService.PurgeRollbackAdmin:output_type -> artifact.v1alpha.PurgeRollbackAdminResponse
+	39, // 39: artifact.v1alpha.ArtifactPrivateService.SetRollbackRetentionAdmin:output_type -> artifact.v1alpha.SetRollbackRetentionAdminResponse
+	40, // 40: artifact.v1alpha.ArtifactPrivateService.GetKnowledgeBaseUpdateStatusAdmin:output_type -> artifact.v1alpha.GetKnowledgeBaseUpdateStatusAdminResponse
+	41, // 41: artifact.v1alpha.ArtifactPrivateService.CreateSystemAdmin:output_type -> artifact.v1alpha.CreateSystemAdminResponse
+	42, // 42: artifact.v1alpha.ArtifactPrivateService.GetSystemAdmin:output_type -> artifact.v1alpha.GetSystemAdminResponse
+	43, // 43: artifact.v1alpha.ArtifactPrivateService.UpdateSystemAdmin:output_type -> artifact.v1alpha.UpdateSystemAdminResponse
+	44, // 44: artifact.v1alpha.ArtifactPrivateService.DeleteSystemAdmin:output_type -> artifact.v1alpha.DeleteSystemAdminResponse
+	45, // 45: artifact.v1alpha.ArtifactPrivateService.ListSystemsAdmin:output_type -> artifact.v1alpha.ListSystemsAdminResponse
+	46, // 46: artifact.v1alpha.ArtifactPrivateService.RenameSystemAdmin:output_type -> artifact.v1alpha.RenameSystemAdminResponse
+	47, // 47: artifact.v1alpha.ArtifactPrivateService.SetDefaultSystemAdmin:output_type -> artifact.v1alpha.SetDefaultSystemAdminResponse
+	48, // 48: artifact.v1alpha.ArtifactPrivateService.GetDefaultSystemAdmin:output_type -> artifact.v1alpha.GetDefaultSystemAdminResponse
+	49, // 49: artifact.v1alpha.ArtifactPrivateService.ResetKnowledgeBaseEmbeddingsAdmin:output_type -> artifact.v1alpha.ResetKnowledgeBaseEmbeddingsAdminResponse
+	50, // 50: artifact.v1alpha.ArtifactPrivateService.ListFilesAdmin:output_type -> artifact.v1alpha.ListFilesAdminResponse
+	51, // 51: artifact.v1alpha.ArtifactPrivateService.DeleteKnowledgeBaseAdmin:output_type -> artifact.v1alpha.DeleteKnowledgeBaseAdminResponse
+	52, // 52: artifact.v1alpha.ArtifactPrivateService.AddFilesToKnowledgeBaseAdmin:output_type -> artifact.v1alpha.AddFilesToKnowledgeBaseAdminResponse
+	53, // 53: artifact.v1alpha.ArtifactPrivateService.CopyFileToKnowledgeBaseAdmin:output_type -> artifact.v1alpha.CopyFileToKnowledgeBaseAdminResponse
+	27, // [27:54] is the sub-list for method output_type
+	0,  // [0:27] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
