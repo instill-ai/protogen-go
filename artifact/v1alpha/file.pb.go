@@ -188,6 +188,8 @@ const (
 	File_VIEW_ORIGINAL_FILE_TYPE File_View = 6
 	// Returns Gemini cache resource name.
 	File_VIEW_CACHE File_View = 7
+	// Returns MinIO pre-signed URL to patch.md (user-submitted content patches).
+	File_VIEW_PATCH File_View = 8
 )
 
 // Enum value maps for File_View.
@@ -201,6 +203,7 @@ var (
 		5: "VIEW_STANDARD_FILE_TYPE",
 		6: "VIEW_ORIGINAL_FILE_TYPE",
 		7: "VIEW_CACHE",
+		8: "VIEW_PATCH",
 	}
 	File_View_value = map[string]int32{
 		"VIEW_UNSPECIFIED":        0,
@@ -211,6 +214,7 @@ var (
 		"VIEW_STANDARD_FILE_TYPE": 5,
 		"VIEW_ORIGINAL_FILE_TYPE": 6,
 		"VIEW_CACHE":              7,
+		"VIEW_PATCH":              8,
 	}
 )
 
@@ -2113,7 +2117,7 @@ var File_artifact_v1alpha_file_proto protoreflect.FileDescriptor
 
 const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\n" +
-	"\x1bartifact/v1alpha/file.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16mgmt/v1beta/mgmt.proto\"\xe8\x15\n" +
+	"\x1bartifact/v1alpha/file.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16mgmt/v1beta/mgmt.proto\"\xf8\x15\n" +
 	"\x04File\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12&\n" +
@@ -2160,7 +2164,7 @@ const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\tUNIT_PAGE\x10\x02\x12\x10\n" +
 	"\fUNIT_TIME_MS\x10\x03\x12\x0e\n" +
 	"\n" +
-	"UNIT_PIXEL\x10\x04\"\xa9\x01\n" +
+	"UNIT_PIXEL\x10\x04\"\xb9\x01\n" +
 	"\x04View\x12\x14\n" +
 	"\x10VIEW_UNSPECIFIED\x10\x00\x12\x0e\n" +
 	"\n" +
@@ -2171,7 +2175,9 @@ const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\x17VIEW_STANDARD_FILE_TYPE\x10\x05\x12\x1b\n" +
 	"\x17VIEW_ORIGINAL_FILE_TYPE\x10\x06\x12\x0e\n" +
 	"\n" +
-	"VIEW_CACHE\x10\a\"i\n" +
+	"VIEW_CACHE\x10\a\x12\x0e\n" +
+	"\n" +
+	"VIEW_PATCH\x10\b\"i\n" +
 	"\x0fStorageProvider\x12 \n" +
 	"\x1cSTORAGE_PROVIDER_UNSPECIFIED\x10\x00\x12\x1a\n" +
 	"\x16STORAGE_PROVIDER_MINIO\x10\x01\x12\x18\n" +
