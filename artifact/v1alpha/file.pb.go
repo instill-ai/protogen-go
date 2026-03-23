@@ -718,7 +718,14 @@ type File struct {
 	//     field. When object is provided, the 'content' field is ignored.
 	//
 	// Follows AIP-122 for resource name references.
-	Object        string `protobuf:"bytes,29,opt,name=object,proto3" json:"object,omitempty"`
+	Object string `protobuf:"bytes,29,opt,name=object,proto3" json:"object,omitempty"`
+	// Whether the document contains a native text layer (true) or is
+	// image-based / scanned (false). Determined during file processing by
+	// attempting PDF text extraction. Used for visual grounding: text-based
+	// documents get precise text highlighting while image-based documents
+	// get bounding-box overlays.
+	// Only meaningful for document file types (PDF, DOCX, PPTX, etc.).
+	IsTextBased   bool `protobuf:"varint,30,opt,name=is_text_based,json=isTextBased,proto3" json:"is_text_based,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -947,6 +954,13 @@ func (x *File) GetObject() string {
 		return x.Object
 	}
 	return ""
+}
+
+func (x *File) GetIsTextBased() bool {
+	if x != nil {
+		return x.IsTextBased
+	}
+	return false
 }
 
 // CreateFileRequest represents a request to create a file in a knowledge base.
@@ -2117,7 +2131,7 @@ var File_artifact_v1alpha_file_proto protoreflect.FileDescriptor
 
 const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\n" +
-	"\x1bartifact/v1alpha/file.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16mgmt/v1beta/mgmt.proto\"\xf8\x15\n" +
+	"\x1bartifact/v1alpha/file.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16mgmt/v1beta/mgmt.proto\"\xa1\x16\n" +
 	"\x04File\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12&\n" +
@@ -2154,7 +2168,8 @@ const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\vdelete_time\x18\x1c \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\n" +
 	"deleteTime\x127\n" +
 	"\x06object\x18\x1d \x01(\tB\x1f\xe0A\x01\xfaA\x19\n" +
-	"\x17api.instill.tech/ObjectR\x06object\x1a\xd3\x01\n" +
+	"\x17api.instill.tech/ObjectR\x06object\x12'\n" +
+	"\ris_text_based\x18\x1e \x01(\bB\x03\xe0A\x03R\visTextBased\x1a\xd3\x01\n" +
 	"\bPosition\x12=\n" +
 	"\x04unit\x18\x01 \x01(\x0e2$.artifact.v1alpha.File.Position.UnitB\x03\xe0A\x03R\x04unit\x12%\n" +
 	"\vcoordinates\x18\x02 \x03(\rB\x03\xe0A\x03R\vcoordinates\"a\n" +
