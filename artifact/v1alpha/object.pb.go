@@ -368,8 +368,14 @@ type GetObjectDownloadURLRequest struct {
 	// Optional custom filename for the download.
 	// If provided, this filename will be used in the Content-Disposition header.
 	DownloadFilename string `protobuf:"bytes,3,opt,name=download_filename,json=downloadFilename,proto3" json:"download_filename,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	// Optional output format for the download.
+	// Supported values: "pdf". When set, the backend converts the object
+	// on-demand (supported for DOC, DOCX, PPT, PPTX, XLS, XLSX) and returns
+	// a presigned URL to the converted file. The result is cached in storage
+	// so subsequent requests are served instantly.
+	Format        string `protobuf:"bytes,4,opt,name=format,proto3" json:"format,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetObjectDownloadURLRequest) Reset() {
@@ -419,6 +425,13 @@ func (x *GetObjectDownloadURLRequest) GetUrlExpireDays() int32 {
 func (x *GetObjectDownloadURLRequest) GetDownloadFilename() string {
 	if x != nil {
 		return x.DownloadFilename
+	}
+	return ""
+}
+
+func (x *GetObjectDownloadURLRequest) GetFormat() string {
+	if x != nil {
+		return x.Format
 	}
 	return ""
 }
@@ -1033,12 +1046,13 @@ const file_artifact_v1alpha_object_proto_rawDesc = "" +
 	"\n" +
 	"upload_url\x18\x01 \x01(\tR\tuploadUrl\x12>\n" +
 	"\rurl_expire_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\vurlExpireAt\x120\n" +
-	"\x06object\x18\x03 \x01(\v2\x18.artifact.v1alpha.ObjectR\x06object\"\xb1\x01\n" +
+	"\x06object\x18\x03 \x01(\v2\x18.artifact.v1alpha.ObjectR\x06object\"\xce\x01\n" +
 	"\x1bGetObjectDownloadURLRequest\x123\n" +
 	"\x04name\x18\x01 \x01(\tB\x1f\xe0A\x02\xfaA\x19\n" +
 	"\x17api.instill.tech/ObjectR\x04name\x12+\n" +
 	"\x0furl_expire_days\x18\x02 \x01(\x05B\x03\xe0A\x01R\rurlExpireDays\x120\n" +
-	"\x11download_filename\x18\x03 \x01(\tB\x03\xe0A\x01R\x10downloadFilename\"\xb3\x01\n" +
+	"\x11download_filename\x18\x03 \x01(\tB\x03\xe0A\x01R\x10downloadFilename\x12\x1b\n" +
+	"\x06format\x18\x04 \x01(\tB\x03\xe0A\x01R\x06format\"\xb3\x01\n" +
 	"\x1cGetObjectDownloadURLResponse\x12!\n" +
 	"\fdownload_url\x18\x01 \x01(\tR\vdownloadUrl\x12>\n" +
 	"\rurl_expire_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\vurlExpireAt\x120\n" +
