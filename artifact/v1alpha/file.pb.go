@@ -1492,10 +1492,12 @@ type ListFilesRequest struct {
 	// (supports multiple IDs separated by OR)
 	// - `process_status="FILE_PROCESS_STATUS_COMPLETED"` - Filter by processing
 	// status
+	// - `q="<text>"` - Fuzzy search on file display name, ID, and description
 	//
 	// **Examples**:
 	// - List specific files: `id="uuid1" OR id="uuid2"`
 	// - List completed files: `process_status="FILE_PROCESS_STATUS_COMPLETED"`
+	// - Search files: `q="aws"`
 	Filter        *string `protobuf:"bytes,4,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
