@@ -571,7 +571,12 @@ type SearchChunksRequest struct {
 	Files []string `protobuf:"bytes,9,rep,name=files,proto3" json:"files,omitempty"`
 	// Tags to filter by. When multiple tags are provided, OR logic is applied.
 	// Note: File filter takes precedence over tags, as tags apply to files.
-	Tags          []string `protobuf:"bytes,10,rep,name=tags,proto3" json:"tags,omitempty"`
+	Tags []string `protobuf:"bytes,10,rep,name=tags,proto3" json:"tags,omitempty"`
+	// When true, results are grouped by file so that no single file dominates
+	// the result set. At most group_size chunks are returned per file.
+	GroupByFile bool `protobuf:"varint,11,opt,name=group_by_file,json=groupByFile,proto3" json:"group_by_file,omitempty"`
+	// Max chunks per file when group_by_file is true. Default: 1.
+	GroupSize     int32 `protobuf:"varint,12,opt,name=group_size,json=groupSize,proto3" json:"group_size,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -660,6 +665,20 @@ func (x *SearchChunksRequest) GetTags() []string {
 		return x.Tags
 	}
 	return nil
+}
+
+func (x *SearchChunksRequest) GetGroupByFile() bool {
+	if x != nil {
+		return x.GroupByFile
+	}
+	return false
+}
+
+func (x *SearchChunksRequest) GetGroupSize() int32 {
+	if x != nil {
+		return x.GroupSize
+	}
+	return 0
 }
 
 // SearchChunksResponse represents a response for searching similar chunks.
@@ -897,7 +916,7 @@ const file_artifact_v1alpha_chunk_proto_rawDesc = "" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x02R\x04name\x12%\n" +
 	"\vretrievable\x18\x02 \x01(\bB\x03\xe0A\x02R\vretrievable\"I\n" +
 	"\x13UpdateChunkResponse\x122\n" +
-	"\x05chunk\x18\x01 \x01(\v2\x17.artifact.v1alpha.ChunkB\x03\xe0A\x03R\x05chunk\"\xa5\x03\n" +
+	"\x05chunk\x18\x01 \x01(\v2\x17.artifact.v1alpha.ChunkB\x03\xe0A\x03R\x05chunk\"\xf2\x03\n" +
 	"\x13SearchChunksRequest\x12\x1b\n" +
 	"\x06parent\x18\x01 \x01(\tB\x03\xe0A\x02R\x06parent\x12M\n" +
 	"\x0eknowledge_base\x18\x02 \x01(\tB&\xe0A\x01\xfaA \n" +
@@ -910,7 +929,10 @@ const file_artifact_v1alpha_chunk_proto_rawDesc = "" +
 	"\x05files\x18\t \x03(\tB\x1d\xe0A\x01\xfaA\x17\n" +
 	"\x15api.instill.tech/FileR\x05files\x12\x17\n" +
 	"\x04tags\x18\n" +
-	" \x03(\tB\x03\xe0A\x01R\x04tagsJ\x04\b\x05\x10\x06J\x04\b\b\x10\t\"e\n" +
+	" \x03(\tB\x03\xe0A\x01R\x04tags\x12'\n" +
+	"\rgroup_by_file\x18\v \x01(\bB\x03\xe0A\x01R\vgroupByFile\x12\"\n" +
+	"\n" +
+	"group_size\x18\f \x01(\x05B\x03\xe0A\x01R\tgroupSizeJ\x04\b\x05\x10\x06J\x04\b\b\x10\t\"e\n" +
 	"\x14SearchChunksResponse\x12M\n" +
 	"\x0esimilar_chunks\x18\x01 \x03(\v2!.artifact.v1alpha.SimilarityChunkB\x03\xe0A\x03R\rsimilarChunks\"\x97\x02\n" +
 	"\x0fSimilarityChunk\x124\n" +

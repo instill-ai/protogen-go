@@ -2105,6 +2105,101 @@ func (x *UpdateFileAdminResponse) GetFile() *File {
 	return nil
 }
 
+// EntityHopAdminRequest represents a request to find files linked through
+// shared KB entities (admin only). Given seed file IDs, returns other file IDs
+// that share at least one entity in the kb_entity_file graph.
+type EntityHopAdminRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Seed file IDs (hash-based, e.g. "file-xxx") to hop from.
+	FileIds       []string `protobuf:"bytes,1,rep,name=file_ids,json=fileIds,proto3" json:"file_ids,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EntityHopAdminRequest) Reset() {
+	*x = EntityHopAdminRequest{}
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EntityHopAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EntityHopAdminRequest) ProtoMessage() {}
+
+func (x *EntityHopAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EntityHopAdminRequest.ProtoReflect.Descriptor instead.
+func (*EntityHopAdminRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *EntityHopAdminRequest) GetFileIds() []string {
+	if x != nil {
+		return x.FileIds
+	}
+	return nil
+}
+
+// EntityHopAdminResponse represents the result of an entity hop query.
+type EntityHopAdminResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// File IDs (hash-based) that share entities with the seed files,
+	// excluding the seed files themselves.
+	FileIds       []string `protobuf:"bytes,1,rep,name=file_ids,json=fileIds,proto3" json:"file_ids,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EntityHopAdminResponse) Reset() {
+	*x = EntityHopAdminResponse{}
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EntityHopAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EntityHopAdminResponse) ProtoMessage() {}
+
+func (x *EntityHopAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EntityHopAdminResponse.ProtoReflect.Descriptor instead.
+func (*EntityHopAdminResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *EntityHopAdminResponse) GetFileIds() []string {
+	if x != nil {
+		return x.FileIds
+	}
+	return nil
+}
+
 // Position within a file, as coordinates in a specific unit. The
 // number of dimensions of the coordinate depends on the unit type.
 type File_Position struct {
@@ -2119,7 +2214,7 @@ type File_Position struct {
 
 func (x *File_Position) Reset() {
 	*x = File_Position{}
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[21]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2131,7 +2226,7 @@ func (x *File_Position) String() string {
 func (*File_Position) ProtoMessage() {}
 
 func (x *File_Position) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[21]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2358,7 +2453,11 @@ const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\vupdate_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskB\x03\xe0A\x02R\n" +
 	"updateMask\"J\n" +
 	"\x17UpdateFileAdminResponse\x12/\n" +
-	"\x04file\x18\x01 \x01(\v2\x16.artifact.v1alpha.FileB\x03\xe0A\x03R\x04file*\x88\x02\n" +
+	"\x04file\x18\x01 \x01(\v2\x16.artifact.v1alpha.FileB\x03\xe0A\x03R\x04file\"7\n" +
+	"\x15EntityHopAdminRequest\x12\x1e\n" +
+	"\bfile_ids\x18\x01 \x03(\tB\x03\xe0A\x02R\afileIds\"8\n" +
+	"\x16EntityHopAdminResponse\x12\x1e\n" +
+	"\bfile_ids\x18\x01 \x03(\tB\x03\xe0A\x03R\afileIds*\x88\x02\n" +
 	"\x11FileProcessStatus\x12#\n" +
 	"\x1fFILE_PROCESS_STATUS_UNSPECIFIED\x10\x00\x12\"\n" +
 	"\x1eFILE_PROCESS_STATUS_NOTSTARTED\x10\x01\x12\"\n" +
@@ -2390,7 +2489,7 @@ func file_artifact_v1alpha_file_proto_rawDescGZIP() []byte {
 }
 
 var file_artifact_v1alpha_file_proto_enumTypes = make([]protoimpl.EnumInfo, 7)
-var file_artifact_v1alpha_file_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
+var file_artifact_v1alpha_file_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
 var file_artifact_v1alpha_file_proto_goTypes = []any{
 	(FileProcessStatus)(0),                       // 0: artifact.v1alpha.FileProcessStatus
 	(ConvertedFileType)(0),                       // 1: artifact.v1alpha.ConvertedFileType
@@ -2420,19 +2519,21 @@ var file_artifact_v1alpha_file_proto_goTypes = []any{
 	(*ReprocessFileResponse)(nil),                // 25: artifact.v1alpha.ReprocessFileResponse
 	(*UpdateFileAdminRequest)(nil),               // 26: artifact.v1alpha.UpdateFileAdminRequest
 	(*UpdateFileAdminResponse)(nil),              // 27: artifact.v1alpha.UpdateFileAdminResponse
-	(*File_Position)(nil),                        // 28: artifact.v1alpha.File.Position
-	(*timestamppb.Timestamp)(nil),                // 29: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),                      // 30: google.protobuf.Struct
-	(*fieldmaskpb.FieldMask)(nil),                // 31: google.protobuf.FieldMask
+	(*EntityHopAdminRequest)(nil),                // 28: artifact.v1alpha.EntityHopAdminRequest
+	(*EntityHopAdminResponse)(nil),               // 29: artifact.v1alpha.EntityHopAdminResponse
+	(*File_Position)(nil),                        // 30: artifact.v1alpha.File.Position
+	(*timestamppb.Timestamp)(nil),                // 31: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),                      // 32: google.protobuf.Struct
+	(*fieldmaskpb.FieldMask)(nil),                // 33: google.protobuf.FieldMask
 }
 var file_artifact_v1alpha_file_proto_depIdxs = []int32{
-	29, // 0: artifact.v1alpha.File.create_time:type_name -> google.protobuf.Timestamp
-	29, // 1: artifact.v1alpha.File.update_time:type_name -> google.protobuf.Timestamp
+	31, // 0: artifact.v1alpha.File.create_time:type_name -> google.protobuf.Timestamp
+	31, // 1: artifact.v1alpha.File.update_time:type_name -> google.protobuf.Timestamp
 	4,  // 2: artifact.v1alpha.File.type:type_name -> artifact.v1alpha.File.Type
 	0,  // 3: artifact.v1alpha.File.process_status:type_name -> artifact.v1alpha.FileProcessStatus
-	30, // 4: artifact.v1alpha.File.external_metadata:type_name -> google.protobuf.Struct
-	28, // 5: artifact.v1alpha.File.length:type_name -> artifact.v1alpha.File.Position
-	29, // 6: artifact.v1alpha.File.delete_time:type_name -> google.protobuf.Timestamp
+	32, // 4: artifact.v1alpha.File.external_metadata:type_name -> google.protobuf.Struct
+	30, // 5: artifact.v1alpha.File.length:type_name -> artifact.v1alpha.File.Position
+	31, // 6: artifact.v1alpha.File.delete_time:type_name -> google.protobuf.Timestamp
 	7,  // 7: artifact.v1alpha.CreateFileRequest.file:type_name -> artifact.v1alpha.File
 	7,  // 8: artifact.v1alpha.CreateFileResponse.file:type_name -> artifact.v1alpha.File
 	7,  // 9: artifact.v1alpha.ReprocessFileAdminResponse.file:type_name -> artifact.v1alpha.File
@@ -2442,11 +2543,11 @@ var file_artifact_v1alpha_file_proto_depIdxs = []int32{
 	3,  // 13: artifact.v1alpha.GetFileRequest.storage_provider:type_name -> artifact.v1alpha.File.StorageProvider
 	7,  // 14: artifact.v1alpha.GetFileResponse.file:type_name -> artifact.v1alpha.File
 	7,  // 15: artifact.v1alpha.UpdateFileRequest.file:type_name -> artifact.v1alpha.File
-	31, // 16: artifact.v1alpha.UpdateFileRequest.update_mask:type_name -> google.protobuf.FieldMask
+	33, // 16: artifact.v1alpha.UpdateFileRequest.update_mask:type_name -> google.protobuf.FieldMask
 	7,  // 17: artifact.v1alpha.UpdateFileResponse.file:type_name -> artifact.v1alpha.File
 	7,  // 18: artifact.v1alpha.ReprocessFileResponse.file:type_name -> artifact.v1alpha.File
 	7,  // 19: artifact.v1alpha.UpdateFileAdminRequest.file:type_name -> artifact.v1alpha.File
-	31, // 20: artifact.v1alpha.UpdateFileAdminRequest.update_mask:type_name -> google.protobuf.FieldMask
+	33, // 20: artifact.v1alpha.UpdateFileAdminRequest.update_mask:type_name -> google.protobuf.FieldMask
 	7,  // 21: artifact.v1alpha.UpdateFileAdminResponse.file:type_name -> artifact.v1alpha.File
 	6,  // 22: artifact.v1alpha.File.Position.unit:type_name -> artifact.v1alpha.File.Position.Unit
 	23, // [23:23] is the sub-list for method output_type
@@ -2471,7 +2572,7 @@ func file_artifact_v1alpha_file_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_artifact_v1alpha_file_proto_rawDesc), len(file_artifact_v1alpha_file_proto_rawDesc)),
 			NumEnums:      7,
-			NumMessages:   22,
+			NumMessages:   24,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
