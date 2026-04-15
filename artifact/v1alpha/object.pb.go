@@ -1006,6 +1006,124 @@ func (x *UpdateObjectAdminResponse) GetObject() *Object {
 	return nil
 }
 
+// TransferObjectsNamespaceAdminRequest transfers objects from one namespace to
+// another (admin only). Follows AIP-136 (custom method).
+//
+// Used by agent-backend during visitor chat claim to move generated artifacts
+// (images, code outputs, etc.) to the new user's namespace after signup.
+type TransferObjectsNamespaceAdminRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The object IDs to transfer.
+	// Format: hash-based IDs (e.g., "obj-a1b2c3d4e5f6g7h8").
+	ObjectIds []string `protobuf:"bytes,1,rep,name=object_ids,json=objectIds,proto3" json:"object_ids,omitempty"`
+	// The target namespace resource name.
+	// Format: `namespaces/{namespace}`
+	NewNamespace string `protobuf:"bytes,2,opt,name=new_namespace,json=newNamespace,proto3" json:"new_namespace,omitempty"`
+	// The new creator's user resource name.
+	// Format: `users/{user}`
+	NewCreator    string `protobuf:"bytes,3,opt,name=new_creator,json=newCreator,proto3" json:"new_creator,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TransferObjectsNamespaceAdminRequest) Reset() {
+	*x = TransferObjectsNamespaceAdminRequest{}
+	mi := &file_artifact_v1alpha_object_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TransferObjectsNamespaceAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TransferObjectsNamespaceAdminRequest) ProtoMessage() {}
+
+func (x *TransferObjectsNamespaceAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_v1alpha_object_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TransferObjectsNamespaceAdminRequest.ProtoReflect.Descriptor instead.
+func (*TransferObjectsNamespaceAdminRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_v1alpha_object_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *TransferObjectsNamespaceAdminRequest) GetObjectIds() []string {
+	if x != nil {
+		return x.ObjectIds
+	}
+	return nil
+}
+
+func (x *TransferObjectsNamespaceAdminRequest) GetNewNamespace() string {
+	if x != nil {
+		return x.NewNamespace
+	}
+	return ""
+}
+
+func (x *TransferObjectsNamespaceAdminRequest) GetNewCreator() string {
+	if x != nil {
+		return x.NewCreator
+	}
+	return ""
+}
+
+// TransferObjectsNamespaceAdminResponse is the response after transferring
+// objects.
+type TransferObjectsNamespaceAdminResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The number of objects successfully transferred.
+	TransferredCount int32 `protobuf:"varint,1,opt,name=transferred_count,json=transferredCount,proto3" json:"transferred_count,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *TransferObjectsNamespaceAdminResponse) Reset() {
+	*x = TransferObjectsNamespaceAdminResponse{}
+	mi := &file_artifact_v1alpha_object_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TransferObjectsNamespaceAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TransferObjectsNamespaceAdminResponse) ProtoMessage() {}
+
+func (x *TransferObjectsNamespaceAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_v1alpha_object_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TransferObjectsNamespaceAdminResponse.ProtoReflect.Descriptor instead.
+func (*TransferObjectsNamespaceAdminResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_v1alpha_object_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *TransferObjectsNamespaceAdminResponse) GetTransferredCount() int32 {
+	if x != nil {
+		return x.TransferredCount
+	}
+	return 0
+}
+
 var File_artifact_v1alpha_object_proto protoreflect.FileDescriptor
 
 const file_artifact_v1alpha_object_proto_rawDesc = "" +
@@ -1090,7 +1208,15 @@ const file_artifact_v1alpha_object_proto_rawDesc = "" +
 	"\f_is_uploadedB\x15\n" +
 	"\x13_last_modified_time\"M\n" +
 	"\x19UpdateObjectAdminResponse\x120\n" +
-	"\x06object\x18\x01 \x01(\v2\x18.artifact.v1alpha.ObjectR\x06objectB\xc8\x01\n" +
+	"\x06object\x18\x01 \x01(\v2\x18.artifact.v1alpha.ObjectR\x06object\"\x9a\x01\n" +
+	"$TransferObjectsNamespaceAdminRequest\x12\"\n" +
+	"\n" +
+	"object_ids\x18\x01 \x03(\tB\x03\xe0A\x02R\tobjectIds\x12(\n" +
+	"\rnew_namespace\x18\x02 \x01(\tB\x03\xe0A\x02R\fnewNamespace\x12$\n" +
+	"\vnew_creator\x18\x03 \x01(\tB\x03\xe0A\x02R\n" +
+	"newCreator\"T\n" +
+	"%TransferObjectsNamespaceAdminResponse\x12+\n" +
+	"\x11transferred_count\x18\x01 \x01(\x05R\x10transferredCountB\xc8\x01\n" +
 	"\x14com.artifact.v1alphaB\vObjectProtoP\x01ZBgithub.com/instill-ai/protogen-go/artifact/v1alpha;artifactv1alpha\xa2\x02\x03AXX\xaa\x02\x10Artifact.V1alpha\xca\x02\x10Artifact\\V1alpha\xe2\x02\x1cArtifact\\V1alpha\\GPBMetadata\xea\x02\x11Artifact::V1alphab\x06proto3"
 
 var (
@@ -1105,42 +1231,44 @@ func file_artifact_v1alpha_object_proto_rawDescGZIP() []byte {
 	return file_artifact_v1alpha_object_proto_rawDescData
 }
 
-var file_artifact_v1alpha_object_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
+var file_artifact_v1alpha_object_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
 var file_artifact_v1alpha_object_proto_goTypes = []any{
-	(*Object)(nil),                       // 0: artifact.v1alpha.Object
-	(*GetObjectUploadURLRequest)(nil),    // 1: artifact.v1alpha.GetObjectUploadURLRequest
-	(*GetObjectUploadURLResponse)(nil),   // 2: artifact.v1alpha.GetObjectUploadURLResponse
-	(*GetObjectDownloadURLRequest)(nil),  // 3: artifact.v1alpha.GetObjectDownloadURLRequest
-	(*GetObjectDownloadURLResponse)(nil), // 4: artifact.v1alpha.GetObjectDownloadURLResponse
-	(*GetObjectRequest)(nil),             // 5: artifact.v1alpha.GetObjectRequest
-	(*GetObjectResponse)(nil),            // 6: artifact.v1alpha.GetObjectResponse
-	(*UpdateObjectRequest)(nil),          // 7: artifact.v1alpha.UpdateObjectRequest
-	(*UpdateObjectResponse)(nil),         // 8: artifact.v1alpha.UpdateObjectResponse
-	(*DeleteObjectRequest)(nil),          // 9: artifact.v1alpha.DeleteObjectRequest
-	(*DeleteObjectResponse)(nil),         // 10: artifact.v1alpha.DeleteObjectResponse
-	(*GetObjectAdminRequest)(nil),        // 11: artifact.v1alpha.GetObjectAdminRequest
-	(*GetObjectAdminResponse)(nil),       // 12: artifact.v1alpha.GetObjectAdminResponse
-	(*UpdateObjectAdminRequest)(nil),     // 13: artifact.v1alpha.UpdateObjectAdminRequest
-	(*UpdateObjectAdminResponse)(nil),    // 14: artifact.v1alpha.UpdateObjectAdminResponse
-	(*timestamppb.Timestamp)(nil),        // 15: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil),        // 16: google.protobuf.FieldMask
+	(*Object)(nil),                                // 0: artifact.v1alpha.Object
+	(*GetObjectUploadURLRequest)(nil),             // 1: artifact.v1alpha.GetObjectUploadURLRequest
+	(*GetObjectUploadURLResponse)(nil),            // 2: artifact.v1alpha.GetObjectUploadURLResponse
+	(*GetObjectDownloadURLRequest)(nil),           // 3: artifact.v1alpha.GetObjectDownloadURLRequest
+	(*GetObjectDownloadURLResponse)(nil),          // 4: artifact.v1alpha.GetObjectDownloadURLResponse
+	(*GetObjectRequest)(nil),                      // 5: artifact.v1alpha.GetObjectRequest
+	(*GetObjectResponse)(nil),                     // 6: artifact.v1alpha.GetObjectResponse
+	(*UpdateObjectRequest)(nil),                   // 7: artifact.v1alpha.UpdateObjectRequest
+	(*UpdateObjectResponse)(nil),                  // 8: artifact.v1alpha.UpdateObjectResponse
+	(*DeleteObjectRequest)(nil),                   // 9: artifact.v1alpha.DeleteObjectRequest
+	(*DeleteObjectResponse)(nil),                  // 10: artifact.v1alpha.DeleteObjectResponse
+	(*GetObjectAdminRequest)(nil),                 // 11: artifact.v1alpha.GetObjectAdminRequest
+	(*GetObjectAdminResponse)(nil),                // 12: artifact.v1alpha.GetObjectAdminResponse
+	(*UpdateObjectAdminRequest)(nil),              // 13: artifact.v1alpha.UpdateObjectAdminRequest
+	(*UpdateObjectAdminResponse)(nil),             // 14: artifact.v1alpha.UpdateObjectAdminResponse
+	(*TransferObjectsNamespaceAdminRequest)(nil),  // 15: artifact.v1alpha.TransferObjectsNamespaceAdminRequest
+	(*TransferObjectsNamespaceAdminResponse)(nil), // 16: artifact.v1alpha.TransferObjectsNamespaceAdminResponse
+	(*timestamppb.Timestamp)(nil),                 // 17: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil),                 // 18: google.protobuf.FieldMask
 }
 var file_artifact_v1alpha_object_proto_depIdxs = []int32{
-	15, // 0: artifact.v1alpha.Object.create_time:type_name -> google.protobuf.Timestamp
-	15, // 1: artifact.v1alpha.Object.update_time:type_name -> google.protobuf.Timestamp
-	15, // 2: artifact.v1alpha.Object.last_modified_time:type_name -> google.protobuf.Timestamp
-	15, // 3: artifact.v1alpha.Object.delete_time:type_name -> google.protobuf.Timestamp
-	15, // 4: artifact.v1alpha.GetObjectUploadURLRequest.last_modified_time:type_name -> google.protobuf.Timestamp
-	15, // 5: artifact.v1alpha.GetObjectUploadURLResponse.url_expire_at:type_name -> google.protobuf.Timestamp
+	17, // 0: artifact.v1alpha.Object.create_time:type_name -> google.protobuf.Timestamp
+	17, // 1: artifact.v1alpha.Object.update_time:type_name -> google.protobuf.Timestamp
+	17, // 2: artifact.v1alpha.Object.last_modified_time:type_name -> google.protobuf.Timestamp
+	17, // 3: artifact.v1alpha.Object.delete_time:type_name -> google.protobuf.Timestamp
+	17, // 4: artifact.v1alpha.GetObjectUploadURLRequest.last_modified_time:type_name -> google.protobuf.Timestamp
+	17, // 5: artifact.v1alpha.GetObjectUploadURLResponse.url_expire_at:type_name -> google.protobuf.Timestamp
 	0,  // 6: artifact.v1alpha.GetObjectUploadURLResponse.object:type_name -> artifact.v1alpha.Object
-	15, // 7: artifact.v1alpha.GetObjectDownloadURLResponse.url_expire_at:type_name -> google.protobuf.Timestamp
+	17, // 7: artifact.v1alpha.GetObjectDownloadURLResponse.url_expire_at:type_name -> google.protobuf.Timestamp
 	0,  // 8: artifact.v1alpha.GetObjectDownloadURLResponse.object:type_name -> artifact.v1alpha.Object
 	0,  // 9: artifact.v1alpha.GetObjectResponse.object:type_name -> artifact.v1alpha.Object
 	0,  // 10: artifact.v1alpha.UpdateObjectRequest.object:type_name -> artifact.v1alpha.Object
-	16, // 11: artifact.v1alpha.UpdateObjectRequest.update_mask:type_name -> google.protobuf.FieldMask
+	18, // 11: artifact.v1alpha.UpdateObjectRequest.update_mask:type_name -> google.protobuf.FieldMask
 	0,  // 12: artifact.v1alpha.UpdateObjectResponse.object:type_name -> artifact.v1alpha.Object
 	0,  // 13: artifact.v1alpha.GetObjectAdminResponse.object:type_name -> artifact.v1alpha.Object
-	15, // 14: artifact.v1alpha.UpdateObjectAdminRequest.last_modified_time:type_name -> google.protobuf.Timestamp
+	17, // 14: artifact.v1alpha.UpdateObjectAdminRequest.last_modified_time:type_name -> google.protobuf.Timestamp
 	0,  // 15: artifact.v1alpha.UpdateObjectAdminResponse.object:type_name -> artifact.v1alpha.Object
 	16, // [16:16] is the sub-list for method output_type
 	16, // [16:16] is the sub-list for method input_type
@@ -1162,7 +1290,7 @@ func file_artifact_v1alpha_object_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_artifact_v1alpha_object_proto_rawDesc), len(file_artifact_v1alpha_object_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   15,
+			NumMessages:   17,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

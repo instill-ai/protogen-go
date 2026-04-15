@@ -47,6 +47,7 @@ const (
 	ArtifactPrivateService_AddFilesToKnowledgeBaseAdmin_FullMethodName      = "/artifact.v1alpha.ArtifactPrivateService/AddFilesToKnowledgeBaseAdmin"
 	ArtifactPrivateService_CopyFileToKnowledgeBaseAdmin_FullMethodName      = "/artifact.v1alpha.ArtifactPrivateService/CopyFileToKnowledgeBaseAdmin"
 	ArtifactPrivateService_EntityHopAdmin_FullMethodName                    = "/artifact.v1alpha.ArtifactPrivateService/EntityHopAdmin"
+	ArtifactPrivateService_TransferObjectsNamespaceAdmin_FullMethodName     = "/artifact.v1alpha.ArtifactPrivateService/TransferObjectsNamespaceAdmin"
 )
 
 // ArtifactPrivateServiceClient is the client API for ArtifactPrivateService service.
@@ -176,6 +177,14 @@ type ArtifactPrivateServiceClient interface {
 	// the seeds via the kb_entity / kb_entity_file graph. Used by agent-backend
 	// for two-phase semantic search expansion.
 	EntityHopAdmin(ctx context.Context, in *EntityHopAdminRequest, opts ...grpc.CallOption) (*EntityHopAdminResponse, error)
+	// Transfer objects to a different namespace (admin only)
+	//
+	// Batch-updates the namespace and creator of the specified objects. The
+	// underlying blob storage is not moved — only the ownership metadata in the
+	// database is changed. Used by agent-backend to transfer visitor-generated
+	// artifacts (images, code outputs, etc.) to the user's namespace after
+	// signup.
+	TransferObjectsNamespaceAdmin(ctx context.Context, in *TransferObjectsNamespaceAdminRequest, opts ...grpc.CallOption) (*TransferObjectsNamespaceAdminResponse, error)
 }
 
 type artifactPrivateServiceClient struct {
@@ -466,6 +475,16 @@ func (c *artifactPrivateServiceClient) EntityHopAdmin(ctx context.Context, in *E
 	return out, nil
 }
 
+func (c *artifactPrivateServiceClient) TransferObjectsNamespaceAdmin(ctx context.Context, in *TransferObjectsNamespaceAdminRequest, opts ...grpc.CallOption) (*TransferObjectsNamespaceAdminResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TransferObjectsNamespaceAdminResponse)
+	err := c.cc.Invoke(ctx, ArtifactPrivateService_TransferObjectsNamespaceAdmin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ArtifactPrivateServiceServer is the server API for ArtifactPrivateService service.
 // All implementations should embed UnimplementedArtifactPrivateServiceServer
 // for forward compatibility.
@@ -593,6 +612,14 @@ type ArtifactPrivateServiceServer interface {
 	// the seeds via the kb_entity / kb_entity_file graph. Used by agent-backend
 	// for two-phase semantic search expansion.
 	EntityHopAdmin(context.Context, *EntityHopAdminRequest) (*EntityHopAdminResponse, error)
+	// Transfer objects to a different namespace (admin only)
+	//
+	// Batch-updates the namespace and creator of the specified objects. The
+	// underlying blob storage is not moved — only the ownership metadata in the
+	// database is changed. Used by agent-backend to transfer visitor-generated
+	// artifacts (images, code outputs, etc.) to the user's namespace after
+	// signup.
+	TransferObjectsNamespaceAdmin(context.Context, *TransferObjectsNamespaceAdminRequest) (*TransferObjectsNamespaceAdminResponse, error)
 }
 
 // UnimplementedArtifactPrivateServiceServer should be embedded to have
@@ -685,6 +712,9 @@ func (UnimplementedArtifactPrivateServiceServer) CopyFileToKnowledgeBaseAdmin(co
 }
 func (UnimplementedArtifactPrivateServiceServer) EntityHopAdmin(context.Context, *EntityHopAdminRequest) (*EntityHopAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method EntityHopAdmin not implemented")
+}
+func (UnimplementedArtifactPrivateServiceServer) TransferObjectsNamespaceAdmin(context.Context, *TransferObjectsNamespaceAdminRequest) (*TransferObjectsNamespaceAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TransferObjectsNamespaceAdmin not implemented")
 }
 func (UnimplementedArtifactPrivateServiceServer) testEmbeddedByValue() {}
 
@@ -1210,6 +1240,24 @@ func _ArtifactPrivateService_EntityHopAdmin_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArtifactPrivateService_TransferObjectsNamespaceAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransferObjectsNamespaceAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPrivateServiceServer).TransferObjectsNamespaceAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPrivateService_TransferObjectsNamespaceAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPrivateServiceServer).TransferObjectsNamespaceAdmin(ctx, req.(*TransferObjectsNamespaceAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ArtifactPrivateService_ServiceDesc is the grpc.ServiceDesc for ArtifactPrivateService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1328,6 +1376,10 @@ var ArtifactPrivateService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "EntityHopAdmin",
 			Handler:    _ArtifactPrivateService_EntityHopAdmin_Handler,
+		},
+		{
+			MethodName: "TransferObjectsNamespaceAdmin",
+			Handler:    _ArtifactPrivateService_TransferObjectsNamespaceAdmin_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
