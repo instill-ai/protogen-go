@@ -564,6 +564,67 @@ func (File_FileMediaType) EnumDescriptor() ([]byte, []int) {
 	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{0, 3}
 }
 
+// Visibility defines who can discover and access the file.
+type File_Visibility int32
+
+const (
+	// Unspecified, treated as WORKSPACE.
+	File_VISIBILITY_UNSPECIFIED File_Visibility = 0
+	// Reserved for future: truly private (only creator + invited users).
+	File_VISIBILITY_PRIVATE File_Visibility = 1
+	// Discoverable by anyone, including anonymous visitors.
+	File_VISIBILITY_PUBLIC File_Visibility = 2
+	// Org members can access via all-members grant. Default for files.
+	File_VISIBILITY_WORKSPACE File_Visibility = 3
+	// Anyone with the share link (/r/{token}) can access via capability token.
+	File_VISIBILITY_LINK_SHARED File_Visibility = 4
+)
+
+// Enum value maps for File_Visibility.
+var (
+	File_Visibility_name = map[int32]string{
+		0: "VISIBILITY_UNSPECIFIED",
+		1: "VISIBILITY_PRIVATE",
+		2: "VISIBILITY_PUBLIC",
+		3: "VISIBILITY_WORKSPACE",
+		4: "VISIBILITY_LINK_SHARED",
+	}
+	File_Visibility_value = map[string]int32{
+		"VISIBILITY_UNSPECIFIED": 0,
+		"VISIBILITY_PRIVATE":     1,
+		"VISIBILITY_PUBLIC":      2,
+		"VISIBILITY_WORKSPACE":   3,
+		"VISIBILITY_LINK_SHARED": 4,
+	}
+)
+
+func (x File_Visibility) Enum() *File_Visibility {
+	p := new(File_Visibility)
+	*p = x
+	return p
+}
+
+func (x File_Visibility) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (File_Visibility) Descriptor() protoreflect.EnumDescriptor {
+	return file_artifact_v1alpha_file_proto_enumTypes[6].Descriptor()
+}
+
+func (File_Visibility) Type() protoreflect.EnumType {
+	return &file_artifact_v1alpha_file_proto_enumTypes[6]
+}
+
+func (x File_Visibility) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use File_Visibility.Descriptor instead.
+func (File_Visibility) EnumDescriptor() ([]byte, []int) {
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{0, 4}
+}
+
 // Unit of measurement for a position within a file.
 type File_Position_Unit int32
 
@@ -610,11 +671,11 @@ func (x File_Position_Unit) String() string {
 }
 
 func (File_Position_Unit) Descriptor() protoreflect.EnumDescriptor {
-	return file_artifact_v1alpha_file_proto_enumTypes[6].Descriptor()
+	return file_artifact_v1alpha_file_proto_enumTypes[7].Descriptor()
 }
 
 func (File_Position_Unit) Type() protoreflect.EnumType {
-	return &file_artifact_v1alpha_file_proto_enumTypes[6]
+	return &file_artifact_v1alpha_file_proto_enumTypes[7]
 }
 
 func (x File_Position_Unit) Number() protoreflect.EnumNumber {
@@ -737,6 +798,8 @@ type File struct {
 	// Avatar URL of the user who created this file.
 	// Populated server-side alongside creator_display_name.
 	CreatorAvatar *string `protobuf:"bytes,35,opt,name=creator_avatar,json=creatorAvatar,proto3,oneof" json:"creator_avatar,omitempty"`
+	// Visibility of the file.
+	Visibility    File_Visibility `protobuf:"varint,36,opt,name=visibility,proto3,enum=artifact.v1alpha.File_Visibility" json:"visibility,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -993,6 +1056,13 @@ func (x *File) GetCreatorAvatar() string {
 		return *x.CreatorAvatar
 	}
 	return ""
+}
+
+func (x *File) GetVisibility() File_Visibility {
+	if x != nil {
+		return x.Visibility
+	}
+	return File_VISIBILITY_UNSPECIFIED
 }
 
 // CreateFileRequest represents a request to create a file in a knowledge base.
@@ -2260,7 +2330,7 @@ var File_artifact_v1alpha_file_proto protoreflect.FileDescriptor
 
 const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\n" +
-	"\x1bartifact/v1alpha/file.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd4\x17\n" +
+	"\x1bartifact/v1alpha/file.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xac\x19\n" +
 	"\x04File\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12&\n" +
@@ -2301,7 +2371,10 @@ const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\x12owner_display_name\x18  \x01(\tB\x03\xe0A\x03R\x10ownerDisplayName\x12+\n" +
 	"\fowner_avatar\x18! \x01(\tB\x03\xe0A\x03H\x02R\vownerAvatar\x88\x01\x01\x125\n" +
 	"\x14creator_display_name\x18\" \x01(\tB\x03\xe0A\x03R\x12creatorDisplayName\x12/\n" +
-	"\x0ecreator_avatar\x18# \x01(\tB\x03\xe0A\x03H\x03R\rcreatorAvatar\x88\x01\x01\x1a\xd3\x01\n" +
+	"\x0ecreator_avatar\x18# \x01(\tB\x03\xe0A\x03H\x03R\rcreatorAvatar\x88\x01\x01\x12F\n" +
+	"\n" +
+	"visibility\x18$ \x01(\x0e2!.artifact.v1alpha.File.VisibilityB\x03\xe0A\x01R\n" +
+	"visibility\x1a\xd3\x01\n" +
 	"\bPosition\x12=\n" +
 	"\x04unit\x18\x01 \x01(\x0e2$.artifact.v1alpha.File.Position.UnitB\x03\xe0A\x03R\x04unit\x12%\n" +
 	"\vcoordinates\x18\x02 \x03(\rB\x03\xe0A\x03R\vcoordinates\"a\n" +
@@ -2376,7 +2449,14 @@ const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\x18FILE_MEDIA_TYPE_DOCUMENT\x10\x01\x12\x19\n" +
 	"\x15FILE_MEDIA_TYPE_IMAGE\x10\x02\x12\x19\n" +
 	"\x15FILE_MEDIA_TYPE_AUDIO\x10\x03\x12\x19\n" +
-	"\x15FILE_MEDIA_TYPE_VIDEO\x10\x04:`\xeaA]\n" +
+	"\x15FILE_MEDIA_TYPE_VIDEO\x10\x04\"\x8d\x01\n" +
+	"\n" +
+	"Visibility\x12\x1a\n" +
+	"\x16VISIBILITY_UNSPECIFIED\x10\x00\x12\x16\n" +
+	"\x12VISIBILITY_PRIVATE\x10\x01\x12\x15\n" +
+	"\x11VISIBILITY_PUBLIC\x10\x02\x12\x18\n" +
+	"\x14VISIBILITY_WORKSPACE\x10\x03\x12\x1a\n" +
+	"\x16VISIBILITY_LINK_SHARED\x10\x04:`\xeaA]\n" +
 	"\x15api.instill.tech/File\x12Dnamespaces/{namespace}/knowledge-bases/{knowledge_base}/files/{file}B\x14\n" +
 	"\x12_external_metadataB\x16\n" +
 	"\x14_converting_pipelineB\x0f\n" +
@@ -2488,7 +2568,7 @@ func file_artifact_v1alpha_file_proto_rawDescGZIP() []byte {
 	return file_artifact_v1alpha_file_proto_rawDescData
 }
 
-var file_artifact_v1alpha_file_proto_enumTypes = make([]protoimpl.EnumInfo, 7)
+var file_artifact_v1alpha_file_proto_enumTypes = make([]protoimpl.EnumInfo, 8)
 var file_artifact_v1alpha_file_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
 var file_artifact_v1alpha_file_proto_goTypes = []any{
 	(FileProcessStatus)(0),                       // 0: artifact.v1alpha.FileProcessStatus
@@ -2497,64 +2577,66 @@ var file_artifact_v1alpha_file_proto_goTypes = []any{
 	(File_StorageProvider)(0),                    // 3: artifact.v1alpha.File.StorageProvider
 	(File_Type)(0),                               // 4: artifact.v1alpha.File.Type
 	(File_FileMediaType)(0),                      // 5: artifact.v1alpha.File.FileMediaType
-	(File_Position_Unit)(0),                      // 6: artifact.v1alpha.File.Position.Unit
-	(*File)(nil),                                 // 7: artifact.v1alpha.File
-	(*CreateFileRequest)(nil),                    // 8: artifact.v1alpha.CreateFileRequest
-	(*CreateFileResponse)(nil),                   // 9: artifact.v1alpha.CreateFileResponse
-	(*DeleteFileRequest)(nil),                    // 10: artifact.v1alpha.DeleteFileRequest
-	(*DeleteFileResponse)(nil),                   // 11: artifact.v1alpha.DeleteFileResponse
-	(*DeleteFileAdminRequest)(nil),               // 12: artifact.v1alpha.DeleteFileAdminRequest
-	(*DeleteFileAdminResponse)(nil),              // 13: artifact.v1alpha.DeleteFileAdminResponse
-	(*ReprocessFileAdminRequest)(nil),            // 14: artifact.v1alpha.ReprocessFileAdminRequest
-	(*ReprocessFileAdminResponse)(nil),           // 15: artifact.v1alpha.ReprocessFileAdminResponse
-	(*CopyFileToKnowledgeBaseAdminRequest)(nil),  // 16: artifact.v1alpha.CopyFileToKnowledgeBaseAdminRequest
-	(*CopyFileToKnowledgeBaseAdminResponse)(nil), // 17: artifact.v1alpha.CopyFileToKnowledgeBaseAdminResponse
-	(*ListFilesRequest)(nil),                     // 18: artifact.v1alpha.ListFilesRequest
-	(*ListFilesResponse)(nil),                    // 19: artifact.v1alpha.ListFilesResponse
-	(*GetFileRequest)(nil),                       // 20: artifact.v1alpha.GetFileRequest
-	(*GetFileResponse)(nil),                      // 21: artifact.v1alpha.GetFileResponse
-	(*UpdateFileRequest)(nil),                    // 22: artifact.v1alpha.UpdateFileRequest
-	(*UpdateFileResponse)(nil),                   // 23: artifact.v1alpha.UpdateFileResponse
-	(*ReprocessFileRequest)(nil),                 // 24: artifact.v1alpha.ReprocessFileRequest
-	(*ReprocessFileResponse)(nil),                // 25: artifact.v1alpha.ReprocessFileResponse
-	(*UpdateFileAdminRequest)(nil),               // 26: artifact.v1alpha.UpdateFileAdminRequest
-	(*UpdateFileAdminResponse)(nil),              // 27: artifact.v1alpha.UpdateFileAdminResponse
-	(*EntityHopAdminRequest)(nil),                // 28: artifact.v1alpha.EntityHopAdminRequest
-	(*EntityHopAdminResponse)(nil),               // 29: artifact.v1alpha.EntityHopAdminResponse
-	(*File_Position)(nil),                        // 30: artifact.v1alpha.File.Position
-	(*timestamppb.Timestamp)(nil),                // 31: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),                      // 32: google.protobuf.Struct
-	(*fieldmaskpb.FieldMask)(nil),                // 33: google.protobuf.FieldMask
+	(File_Visibility)(0),                         // 6: artifact.v1alpha.File.Visibility
+	(File_Position_Unit)(0),                      // 7: artifact.v1alpha.File.Position.Unit
+	(*File)(nil),                                 // 8: artifact.v1alpha.File
+	(*CreateFileRequest)(nil),                    // 9: artifact.v1alpha.CreateFileRequest
+	(*CreateFileResponse)(nil),                   // 10: artifact.v1alpha.CreateFileResponse
+	(*DeleteFileRequest)(nil),                    // 11: artifact.v1alpha.DeleteFileRequest
+	(*DeleteFileResponse)(nil),                   // 12: artifact.v1alpha.DeleteFileResponse
+	(*DeleteFileAdminRequest)(nil),               // 13: artifact.v1alpha.DeleteFileAdminRequest
+	(*DeleteFileAdminResponse)(nil),              // 14: artifact.v1alpha.DeleteFileAdminResponse
+	(*ReprocessFileAdminRequest)(nil),            // 15: artifact.v1alpha.ReprocessFileAdminRequest
+	(*ReprocessFileAdminResponse)(nil),           // 16: artifact.v1alpha.ReprocessFileAdminResponse
+	(*CopyFileToKnowledgeBaseAdminRequest)(nil),  // 17: artifact.v1alpha.CopyFileToKnowledgeBaseAdminRequest
+	(*CopyFileToKnowledgeBaseAdminResponse)(nil), // 18: artifact.v1alpha.CopyFileToKnowledgeBaseAdminResponse
+	(*ListFilesRequest)(nil),                     // 19: artifact.v1alpha.ListFilesRequest
+	(*ListFilesResponse)(nil),                    // 20: artifact.v1alpha.ListFilesResponse
+	(*GetFileRequest)(nil),                       // 21: artifact.v1alpha.GetFileRequest
+	(*GetFileResponse)(nil),                      // 22: artifact.v1alpha.GetFileResponse
+	(*UpdateFileRequest)(nil),                    // 23: artifact.v1alpha.UpdateFileRequest
+	(*UpdateFileResponse)(nil),                   // 24: artifact.v1alpha.UpdateFileResponse
+	(*ReprocessFileRequest)(nil),                 // 25: artifact.v1alpha.ReprocessFileRequest
+	(*ReprocessFileResponse)(nil),                // 26: artifact.v1alpha.ReprocessFileResponse
+	(*UpdateFileAdminRequest)(nil),               // 27: artifact.v1alpha.UpdateFileAdminRequest
+	(*UpdateFileAdminResponse)(nil),              // 28: artifact.v1alpha.UpdateFileAdminResponse
+	(*EntityHopAdminRequest)(nil),                // 29: artifact.v1alpha.EntityHopAdminRequest
+	(*EntityHopAdminResponse)(nil),               // 30: artifact.v1alpha.EntityHopAdminResponse
+	(*File_Position)(nil),                        // 31: artifact.v1alpha.File.Position
+	(*timestamppb.Timestamp)(nil),                // 32: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),                      // 33: google.protobuf.Struct
+	(*fieldmaskpb.FieldMask)(nil),                // 34: google.protobuf.FieldMask
 }
 var file_artifact_v1alpha_file_proto_depIdxs = []int32{
-	31, // 0: artifact.v1alpha.File.create_time:type_name -> google.protobuf.Timestamp
-	31, // 1: artifact.v1alpha.File.update_time:type_name -> google.protobuf.Timestamp
+	32, // 0: artifact.v1alpha.File.create_time:type_name -> google.protobuf.Timestamp
+	32, // 1: artifact.v1alpha.File.update_time:type_name -> google.protobuf.Timestamp
 	4,  // 2: artifact.v1alpha.File.type:type_name -> artifact.v1alpha.File.Type
 	0,  // 3: artifact.v1alpha.File.process_status:type_name -> artifact.v1alpha.FileProcessStatus
-	32, // 4: artifact.v1alpha.File.external_metadata:type_name -> google.protobuf.Struct
-	30, // 5: artifact.v1alpha.File.length:type_name -> artifact.v1alpha.File.Position
-	31, // 6: artifact.v1alpha.File.delete_time:type_name -> google.protobuf.Timestamp
-	7,  // 7: artifact.v1alpha.CreateFileRequest.file:type_name -> artifact.v1alpha.File
-	7,  // 8: artifact.v1alpha.CreateFileResponse.file:type_name -> artifact.v1alpha.File
-	7,  // 9: artifact.v1alpha.ReprocessFileAdminResponse.file:type_name -> artifact.v1alpha.File
-	7,  // 10: artifact.v1alpha.CopyFileToKnowledgeBaseAdminResponse.file:type_name -> artifact.v1alpha.File
-	7,  // 11: artifact.v1alpha.ListFilesResponse.files:type_name -> artifact.v1alpha.File
-	2,  // 12: artifact.v1alpha.GetFileRequest.view:type_name -> artifact.v1alpha.File.View
-	3,  // 13: artifact.v1alpha.GetFileRequest.storage_provider:type_name -> artifact.v1alpha.File.StorageProvider
-	7,  // 14: artifact.v1alpha.GetFileResponse.file:type_name -> artifact.v1alpha.File
-	7,  // 15: artifact.v1alpha.UpdateFileRequest.file:type_name -> artifact.v1alpha.File
-	33, // 16: artifact.v1alpha.UpdateFileRequest.update_mask:type_name -> google.protobuf.FieldMask
-	7,  // 17: artifact.v1alpha.UpdateFileResponse.file:type_name -> artifact.v1alpha.File
-	7,  // 18: artifact.v1alpha.ReprocessFileResponse.file:type_name -> artifact.v1alpha.File
-	7,  // 19: artifact.v1alpha.UpdateFileAdminRequest.file:type_name -> artifact.v1alpha.File
-	33, // 20: artifact.v1alpha.UpdateFileAdminRequest.update_mask:type_name -> google.protobuf.FieldMask
-	7,  // 21: artifact.v1alpha.UpdateFileAdminResponse.file:type_name -> artifact.v1alpha.File
-	6,  // 22: artifact.v1alpha.File.Position.unit:type_name -> artifact.v1alpha.File.Position.Unit
-	23, // [23:23] is the sub-list for method output_type
-	23, // [23:23] is the sub-list for method input_type
-	23, // [23:23] is the sub-list for extension type_name
-	23, // [23:23] is the sub-list for extension extendee
-	0,  // [0:23] is the sub-list for field type_name
+	33, // 4: artifact.v1alpha.File.external_metadata:type_name -> google.protobuf.Struct
+	31, // 5: artifact.v1alpha.File.length:type_name -> artifact.v1alpha.File.Position
+	32, // 6: artifact.v1alpha.File.delete_time:type_name -> google.protobuf.Timestamp
+	6,  // 7: artifact.v1alpha.File.visibility:type_name -> artifact.v1alpha.File.Visibility
+	8,  // 8: artifact.v1alpha.CreateFileRequest.file:type_name -> artifact.v1alpha.File
+	8,  // 9: artifact.v1alpha.CreateFileResponse.file:type_name -> artifact.v1alpha.File
+	8,  // 10: artifact.v1alpha.ReprocessFileAdminResponse.file:type_name -> artifact.v1alpha.File
+	8,  // 11: artifact.v1alpha.CopyFileToKnowledgeBaseAdminResponse.file:type_name -> artifact.v1alpha.File
+	8,  // 12: artifact.v1alpha.ListFilesResponse.files:type_name -> artifact.v1alpha.File
+	2,  // 13: artifact.v1alpha.GetFileRequest.view:type_name -> artifact.v1alpha.File.View
+	3,  // 14: artifact.v1alpha.GetFileRequest.storage_provider:type_name -> artifact.v1alpha.File.StorageProvider
+	8,  // 15: artifact.v1alpha.GetFileResponse.file:type_name -> artifact.v1alpha.File
+	8,  // 16: artifact.v1alpha.UpdateFileRequest.file:type_name -> artifact.v1alpha.File
+	34, // 17: artifact.v1alpha.UpdateFileRequest.update_mask:type_name -> google.protobuf.FieldMask
+	8,  // 18: artifact.v1alpha.UpdateFileResponse.file:type_name -> artifact.v1alpha.File
+	8,  // 19: artifact.v1alpha.ReprocessFileResponse.file:type_name -> artifact.v1alpha.File
+	8,  // 20: artifact.v1alpha.UpdateFileAdminRequest.file:type_name -> artifact.v1alpha.File
+	34, // 21: artifact.v1alpha.UpdateFileAdminRequest.update_mask:type_name -> google.protobuf.FieldMask
+	8,  // 22: artifact.v1alpha.UpdateFileAdminResponse.file:type_name -> artifact.v1alpha.File
+	7,  // 23: artifact.v1alpha.File.Position.unit:type_name -> artifact.v1alpha.File.Position.Unit
+	24, // [24:24] is the sub-list for method output_type
+	24, // [24:24] is the sub-list for method input_type
+	24, // [24:24] is the sub-list for extension type_name
+	24, // [24:24] is the sub-list for extension extendee
+	0,  // [0:24] is the sub-list for field type_name
 }
 
 func init() { file_artifact_v1alpha_file_proto_init() }
@@ -2571,7 +2653,7 @@ func file_artifact_v1alpha_file_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_artifact_v1alpha_file_proto_rawDesc), len(file_artifact_v1alpha_file_proto_rawDesc)),
-			NumEnums:      7,
+			NumEnums:      8,
 			NumMessages:   24,
 			NumExtensions: 0,
 			NumServices:   0,
