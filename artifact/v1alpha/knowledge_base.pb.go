@@ -1557,7 +1557,13 @@ type ListFilesAdminRequest struct {
 	//   - `tags:"agent:collection:col-xxx"` - filter by tag
 	//   - `q="aws"` - fuzzy search on file display name, ID, and description
 	//   - `(id="file-a" OR id="file-b") AND tags:"mytag"` - compound filter
-	Filter        string `protobuf:"bytes,4,opt,name=filter,proto3" json:"filter,omitempty"`
+	Filter string `protobuf:"bytes,4,opt,name=filter,proto3" json:"filter,omitempty"`
+	// View allows trusted admin callers to request an explicit file view so
+	// that each returned `File` carries a populated `derived_resource_uri`
+	// (see `File.derived_resource_uri`). Mirrors `ListFilesRequest.view`;
+	// forwarded to the underlying CE public handler verbatim. Unset leaves
+	// `derived_resource_uri` empty for every row.
+	View          *File_View `protobuf:"varint,5,opt,name=view,proto3,enum=artifact.v1alpha.File_View,oneof" json:"view,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1618,6 +1624,13 @@ func (x *ListFilesAdminRequest) GetFilter() string {
 		return x.Filter
 	}
 	return ""
+}
+
+func (x *ListFilesAdminRequest) GetView() File_View {
+	if x != nil && x.View != nil {
+		return *x.View
+	}
+	return File_VIEW_UNSPECIFIED
 }
 
 // ListFilesAdminResponse represents a response for listing files (admin only).
@@ -1859,14 +1872,16 @@ const file_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"\x1fDeleteKnowledgeBaseAdminRequest\x12:\n" +
 	"\x04name\x18\x01 \x01(\tB&\xe0A\x02\xfaA \n" +
 	"\x1eapi.instill.tech/KnowledgeBaseR\x04name\"\"\n" +
-	" DeleteKnowledgeBaseAdminResponse\"\xba\x01\n" +
+	" DeleteKnowledgeBaseAdminResponse\"\xfe\x01\n" +
 	"\x15ListFilesAdminRequest\x12>\n" +
 	"\x06parent\x18\x01 \x01(\tB&\xe0A\x02\xfaA \n" +
 	"\x1eapi.instill.tech/KnowledgeBaseR\x06parent\x12 \n" +
 	"\tpage_size\x18\x02 \x01(\x05B\x03\xe0A\x01R\bpageSize\x12\"\n" +
 	"\n" +
 	"page_token\x18\x03 \x01(\tB\x03\xe0A\x01R\tpageToken\x12\x1b\n" +
-	"\x06filter\x18\x04 \x01(\tB\x03\xe0A\x01R\x06filter\"\x9c\x01\n" +
+	"\x06filter\x18\x04 \x01(\tB\x03\xe0A\x01R\x06filter\x129\n" +
+	"\x04view\x18\x05 \x01(\x0e2\x1b.artifact.v1alpha.File.ViewB\x03\xe0A\x01H\x00R\x04view\x88\x01\x01B\a\n" +
+	"\x05_view\"\x9c\x01\n" +
 	"\x16ListFilesAdminResponse\x121\n" +
 	"\x05files\x18\x01 \x03(\v2\x16.artifact.v1alpha.FileB\x03\xe0A\x03R\x05files\x12+\n" +
 	"\x0fnext_page_token\x18\x02 \x01(\tB\x03\xe0A\x03R\rnextPageToken\x12\"\n" +
@@ -1924,7 +1939,8 @@ var file_artifact_v1alpha_knowledge_base_proto_goTypes = []any{
 	(*v1beta.Owner)(nil),                              // 28: mgmt.v1beta.Owner
 	(*v1beta.User)(nil),                               // 29: mgmt.v1beta.User
 	(*fieldmaskpb.FieldMask)(nil),                     // 30: google.protobuf.FieldMask
-	(*File)(nil),                                      // 31: artifact.v1alpha.File
+	(File_View)(0),                                    // 31: artifact.v1alpha.File.View
+	(*File)(nil),                                      // 32: artifact.v1alpha.File
 }
 var file_artifact_v1alpha_knowledge_base_proto_depIdxs = []int32{
 	27, // 0: artifact.v1alpha.KnowledgeBase.create_time:type_name -> google.protobuf.Timestamp
@@ -1948,12 +1964,13 @@ var file_artifact_v1alpha_knowledge_base_proto_depIdxs = []int32{
 	30, // 18: artifact.v1alpha.UpdateKnowledgeBaseAdminRequest.update_mask:type_name -> google.protobuf.FieldMask
 	1,  // 19: artifact.v1alpha.UpdateKnowledgeBaseAdminResponse.knowledge_base:type_name -> artifact.v1alpha.KnowledgeBase
 	1,  // 20: artifact.v1alpha.ResetKnowledgeBaseEmbeddingsAdminResponse.knowledge_base:type_name -> artifact.v1alpha.KnowledgeBase
-	31, // 21: artifact.v1alpha.ListFilesAdminResponse.files:type_name -> artifact.v1alpha.File
-	22, // [22:22] is the sub-list for method output_type
-	22, // [22:22] is the sub-list for method input_type
-	22, // [22:22] is the sub-list for extension type_name
-	22, // [22:22] is the sub-list for extension extendee
-	0,  // [0:22] is the sub-list for field type_name
+	31, // 21: artifact.v1alpha.ListFilesAdminRequest.view:type_name -> artifact.v1alpha.File.View
+	32, // 22: artifact.v1alpha.ListFilesAdminResponse.files:type_name -> artifact.v1alpha.File
+	23, // [23:23] is the sub-list for method output_type
+	23, // [23:23] is the sub-list for method input_type
+	23, // [23:23] is the sub-list for extension type_name
+	23, // [23:23] is the sub-list for extension extendee
+	0,  // [0:23] is the sub-list for field type_name
 }
 
 func init() { file_artifact_v1alpha_knowledge_base_proto_init() }
@@ -1965,6 +1982,7 @@ func file_artifact_v1alpha_knowledge_base_proto_init() {
 	file_artifact_v1alpha_knowledge_base_proto_msgTypes[0].OneofWrappers = []any{}
 	file_artifact_v1alpha_knowledge_base_proto_msgTypes[5].OneofWrappers = []any{}
 	file_artifact_v1alpha_knowledge_base_proto_msgTypes[13].OneofWrappers = []any{}
+	file_artifact_v1alpha_knowledge_base_proto_msgTypes[23].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
