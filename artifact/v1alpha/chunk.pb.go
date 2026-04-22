@@ -23,6 +23,68 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Ranker identifies which Milvus hybrid-search reranker produced the
+// scores on a `SearchChunksResponse`. The score distribution depends on
+// the reranker, and downstream consumers that apply score-based
+// thresholds MUST read this field so they can pick the correct floor
+// shape (absolute [0,1] floor for `RANKER_WEIGHTED`; rank-structural
+// `1/(k+topK)` floor for `RANKER_RRF`).
+type Ranker int32
+
+const (
+	// RANKER_UNSPECIFIED is the default zero value and indicates the
+	// server did not populate the field. Treat it as "unknown" — do not
+	// apply ranker-specific floor logic.
+	Ranker_RANKER_UNSPECIFIED Ranker = 0
+	// RANKER_WEIGHTED is Milvus' WeightedRanker (dense + BM25 combined
+	// with static weights); scores are normalised to [0,1].
+	Ranker_RANKER_WEIGHTED Ranker = 1
+	// RANKER_RRF is Reciprocal Rank Fusion with smoothing constant k
+	// (Milvus default 60); scores live in (0, 2/(k+1)].
+	Ranker_RANKER_RRF Ranker = 2
+)
+
+// Enum value maps for Ranker.
+var (
+	Ranker_name = map[int32]string{
+		0: "RANKER_UNSPECIFIED",
+		1: "RANKER_WEIGHTED",
+		2: "RANKER_RRF",
+	}
+	Ranker_value = map[string]int32{
+		"RANKER_UNSPECIFIED": 0,
+		"RANKER_WEIGHTED":    1,
+		"RANKER_RRF":         2,
+	}
+)
+
+func (x Ranker) Enum() *Ranker {
+	p := new(Ranker)
+	*p = x
+	return p
+}
+
+func (x Ranker) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (Ranker) Descriptor() protoreflect.EnumDescriptor {
+	return file_artifact_v1alpha_chunk_proto_enumTypes[0].Descriptor()
+}
+
+func (Ranker) Type() protoreflect.EnumType {
+	return &file_artifact_v1alpha_chunk_proto_enumTypes[0]
+}
+
+func (x Ranker) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use Ranker.Descriptor instead.
+func (Ranker) EnumDescriptor() ([]byte, []int) {
+	return file_artifact_v1alpha_chunk_proto_rawDescGZIP(), []int{0}
+}
+
 // Type describes the type of a chunk content.
 type Chunk_Type int32
 
@@ -64,11 +126,11 @@ func (x Chunk_Type) String() string {
 }
 
 func (Chunk_Type) Descriptor() protoreflect.EnumDescriptor {
-	return file_artifact_v1alpha_chunk_proto_enumTypes[0].Descriptor()
+	return file_artifact_v1alpha_chunk_proto_enumTypes[1].Descriptor()
 }
 
 func (Chunk_Type) Type() protoreflect.EnumType {
-	return &file_artifact_v1alpha_chunk_proto_enumTypes[0]
+	return &file_artifact_v1alpha_chunk_proto_enumTypes[1]
 }
 
 func (x Chunk_Type) Number() protoreflect.EnumNumber {
@@ -686,6 +748,10 @@ type SearchChunksResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// chunks
 	SimilarChunks []*SimilarityChunk `protobuf:"bytes,1,rep,name=similar_chunks,json=similarChunks,proto3" json:"similar_chunks,omitempty"`
+	// The reranker that produced the scores in `similar_chunks`. Read
+	// this before applying any score threshold — see the `Ranker` enum
+	// for why.
+	Ranker        Ranker `protobuf:"varint,2,opt,name=ranker,proto3,enum=artifact.v1alpha.Ranker" json:"ranker,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -725,6 +791,13 @@ func (x *SearchChunksResponse) GetSimilarChunks() []*SimilarityChunk {
 		return x.SimilarChunks
 	}
 	return nil
+}
+
+func (x *SearchChunksResponse) GetRanker() Ranker {
+	if x != nil {
+		return x.Ranker
+	}
+	return Ranker_RANKER_UNSPECIFIED
 }
 
 // SimilarityChunk represents a chunk with similarity score.
@@ -932,9 +1005,10 @@ const file_artifact_v1alpha_chunk_proto_rawDesc = "" +
 	" \x03(\tB\x03\xe0A\x01R\x04tags\x12'\n" +
 	"\rgroup_by_file\x18\v \x01(\bB\x03\xe0A\x01R\vgroupByFile\x12\"\n" +
 	"\n" +
-	"group_size\x18\f \x01(\x05B\x03\xe0A\x01R\tgroupSizeJ\x04\b\x05\x10\x06J\x04\b\b\x10\t\"e\n" +
+	"group_size\x18\f \x01(\x05B\x03\xe0A\x01R\tgroupSizeJ\x04\b\x05\x10\x06J\x04\b\b\x10\t\"\x9c\x01\n" +
 	"\x14SearchChunksResponse\x12M\n" +
-	"\x0esimilar_chunks\x18\x01 \x03(\v2!.artifact.v1alpha.SimilarityChunkB\x03\xe0A\x03R\rsimilarChunks\"\x97\x02\n" +
+	"\x0esimilar_chunks\x18\x01 \x03(\v2!.artifact.v1alpha.SimilarityChunkB\x03\xe0A\x03R\rsimilarChunks\x125\n" +
+	"\x06ranker\x18\x02 \x01(\x0e2\x18.artifact.v1alpha.RankerB\x03\xe0A\x03R\x06ranker\"\x97\x02\n" +
 	"\x0fSimilarityChunk\x124\n" +
 	"\x05chunk\x18\x01 \x01(\tB\x1e\xe0A\x03\xfaA\x18\n" +
 	"\x16api.instill.tech/ChunkR\x05chunk\x12.\n" +
@@ -942,7 +1016,12 @@ const file_artifact_v1alpha_chunk_proto_rawDesc = "" +
 	"\ftext_content\x18\x03 \x01(\tB\x03\xe0A\x03R\vtextContent\x121\n" +
 	"\x04file\x18\x04 \x01(\tB\x1d\xe0A\x03\xfaA\x17\n" +
 	"\x15api.instill.tech/FileR\x04file\x12C\n" +
-	"\x0echunk_metadata\x18\x05 \x01(\v2\x17.artifact.v1alpha.ChunkB\x03\xe0A\x03R\rchunkMetadataB\xc7\x01\n" +
+	"\x0echunk_metadata\x18\x05 \x01(\v2\x17.artifact.v1alpha.ChunkB\x03\xe0A\x03R\rchunkMetadata*E\n" +
+	"\x06Ranker\x12\x16\n" +
+	"\x12RANKER_UNSPECIFIED\x10\x00\x12\x13\n" +
+	"\x0fRANKER_WEIGHTED\x10\x01\x12\x0e\n" +
+	"\n" +
+	"RANKER_RRF\x10\x02B\xc7\x01\n" +
 	"\x14com.artifact.v1alphaB\n" +
 	"ChunkProtoP\x01ZBgithub.com/instill-ai/protogen-go/artifact/v1alpha;artifactv1alpha\xa2\x02\x03AXX\xaa\x02\x10Artifact.V1alpha\xca\x02\x10Artifact\\V1alpha\xe2\x02\x1cArtifact\\V1alpha\\GPBMetadata\xea\x02\x11Artifact::V1alphab\x06proto3"
 
@@ -958,45 +1037,47 @@ func file_artifact_v1alpha_chunk_proto_rawDescGZIP() []byte {
 	return file_artifact_v1alpha_chunk_proto_rawDescData
 }
 
-var file_artifact_v1alpha_chunk_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_artifact_v1alpha_chunk_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
 var file_artifact_v1alpha_chunk_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_artifact_v1alpha_chunk_proto_goTypes = []any{
-	(Chunk_Type)(0),               // 0: artifact.v1alpha.Chunk.Type
-	(*Chunk)(nil),                 // 1: artifact.v1alpha.Chunk
-	(*ListChunksRequest)(nil),     // 2: artifact.v1alpha.ListChunksRequest
-	(*ListChunksResponse)(nil),    // 3: artifact.v1alpha.ListChunksResponse
-	(*GetChunkRequest)(nil),       // 4: artifact.v1alpha.GetChunkRequest
-	(*GetChunkResponse)(nil),      // 5: artifact.v1alpha.GetChunkResponse
-	(*UpdateChunkRequest)(nil),    // 6: artifact.v1alpha.UpdateChunkRequest
-	(*UpdateChunkResponse)(nil),   // 7: artifact.v1alpha.UpdateChunkResponse
-	(*SearchChunksRequest)(nil),   // 8: artifact.v1alpha.SearchChunksRequest
-	(*SearchChunksResponse)(nil),  // 9: artifact.v1alpha.SearchChunksResponse
-	(*SimilarityChunk)(nil),       // 10: artifact.v1alpha.SimilarityChunk
-	(*Chunk_Reference)(nil),       // 11: artifact.v1alpha.Chunk.Reference
-	(*timestamppb.Timestamp)(nil), // 12: google.protobuf.Timestamp
-	(File_FileMediaType)(0),       // 13: artifact.v1alpha.File.FileMediaType
-	(*File_Position)(nil),         // 14: artifact.v1alpha.File.Position
+	(Ranker)(0),                   // 0: artifact.v1alpha.Ranker
+	(Chunk_Type)(0),               // 1: artifact.v1alpha.Chunk.Type
+	(*Chunk)(nil),                 // 2: artifact.v1alpha.Chunk
+	(*ListChunksRequest)(nil),     // 3: artifact.v1alpha.ListChunksRequest
+	(*ListChunksResponse)(nil),    // 4: artifact.v1alpha.ListChunksResponse
+	(*GetChunkRequest)(nil),       // 5: artifact.v1alpha.GetChunkRequest
+	(*GetChunkResponse)(nil),      // 6: artifact.v1alpha.GetChunkResponse
+	(*UpdateChunkRequest)(nil),    // 7: artifact.v1alpha.UpdateChunkRequest
+	(*UpdateChunkResponse)(nil),   // 8: artifact.v1alpha.UpdateChunkResponse
+	(*SearchChunksRequest)(nil),   // 9: artifact.v1alpha.SearchChunksRequest
+	(*SearchChunksResponse)(nil),  // 10: artifact.v1alpha.SearchChunksResponse
+	(*SimilarityChunk)(nil),       // 11: artifact.v1alpha.SimilarityChunk
+	(*Chunk_Reference)(nil),       // 12: artifact.v1alpha.Chunk.Reference
+	(*timestamppb.Timestamp)(nil), // 13: google.protobuf.Timestamp
+	(File_FileMediaType)(0),       // 14: artifact.v1alpha.File.FileMediaType
+	(*File_Position)(nil),         // 15: artifact.v1alpha.File.Position
 }
 var file_artifact_v1alpha_chunk_proto_depIdxs = []int32{
-	12, // 0: artifact.v1alpha.Chunk.create_time:type_name -> google.protobuf.Timestamp
-	0,  // 1: artifact.v1alpha.Chunk.type:type_name -> artifact.v1alpha.Chunk.Type
-	11, // 2: artifact.v1alpha.Chunk.reference:type_name -> artifact.v1alpha.Chunk.Reference
-	11, // 3: artifact.v1alpha.Chunk.markdown_reference:type_name -> artifact.v1alpha.Chunk.Reference
-	1,  // 4: artifact.v1alpha.ListChunksResponse.chunks:type_name -> artifact.v1alpha.Chunk
-	0,  // 5: artifact.v1alpha.GetChunkRequest.chunk_type:type_name -> artifact.v1alpha.Chunk.Type
-	1,  // 6: artifact.v1alpha.GetChunkResponse.chunk:type_name -> artifact.v1alpha.Chunk
-	1,  // 7: artifact.v1alpha.UpdateChunkResponse.chunk:type_name -> artifact.v1alpha.Chunk
-	0,  // 8: artifact.v1alpha.SearchChunksRequest.type:type_name -> artifact.v1alpha.Chunk.Type
-	13, // 9: artifact.v1alpha.SearchChunksRequest.file_media_type:type_name -> artifact.v1alpha.File.FileMediaType
-	10, // 10: artifact.v1alpha.SearchChunksResponse.similar_chunks:type_name -> artifact.v1alpha.SimilarityChunk
-	1,  // 11: artifact.v1alpha.SimilarityChunk.chunk_metadata:type_name -> artifact.v1alpha.Chunk
-	14, // 12: artifact.v1alpha.Chunk.Reference.start:type_name -> artifact.v1alpha.File.Position
-	14, // 13: artifact.v1alpha.Chunk.Reference.end:type_name -> artifact.v1alpha.File.Position
-	14, // [14:14] is the sub-list for method output_type
-	14, // [14:14] is the sub-list for method input_type
-	14, // [14:14] is the sub-list for extension type_name
-	14, // [14:14] is the sub-list for extension extendee
-	0,  // [0:14] is the sub-list for field type_name
+	13, // 0: artifact.v1alpha.Chunk.create_time:type_name -> google.protobuf.Timestamp
+	1,  // 1: artifact.v1alpha.Chunk.type:type_name -> artifact.v1alpha.Chunk.Type
+	12, // 2: artifact.v1alpha.Chunk.reference:type_name -> artifact.v1alpha.Chunk.Reference
+	12, // 3: artifact.v1alpha.Chunk.markdown_reference:type_name -> artifact.v1alpha.Chunk.Reference
+	2,  // 4: artifact.v1alpha.ListChunksResponse.chunks:type_name -> artifact.v1alpha.Chunk
+	1,  // 5: artifact.v1alpha.GetChunkRequest.chunk_type:type_name -> artifact.v1alpha.Chunk.Type
+	2,  // 6: artifact.v1alpha.GetChunkResponse.chunk:type_name -> artifact.v1alpha.Chunk
+	2,  // 7: artifact.v1alpha.UpdateChunkResponse.chunk:type_name -> artifact.v1alpha.Chunk
+	1,  // 8: artifact.v1alpha.SearchChunksRequest.type:type_name -> artifact.v1alpha.Chunk.Type
+	14, // 9: artifact.v1alpha.SearchChunksRequest.file_media_type:type_name -> artifact.v1alpha.File.FileMediaType
+	11, // 10: artifact.v1alpha.SearchChunksResponse.similar_chunks:type_name -> artifact.v1alpha.SimilarityChunk
+	0,  // 11: artifact.v1alpha.SearchChunksResponse.ranker:type_name -> artifact.v1alpha.Ranker
+	2,  // 12: artifact.v1alpha.SimilarityChunk.chunk_metadata:type_name -> artifact.v1alpha.Chunk
+	15, // 13: artifact.v1alpha.Chunk.Reference.start:type_name -> artifact.v1alpha.File.Position
+	15, // 14: artifact.v1alpha.Chunk.Reference.end:type_name -> artifact.v1alpha.File.Position
+	15, // [15:15] is the sub-list for method output_type
+	15, // [15:15] is the sub-list for method input_type
+	15, // [15:15] is the sub-list for extension type_name
+	15, // [15:15] is the sub-list for extension extendee
+	0,  // [0:15] is the sub-list for field type_name
 }
 
 func init() { file_artifact_v1alpha_chunk_proto_init() }
@@ -1012,7 +1093,7 @@ func file_artifact_v1alpha_chunk_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_artifact_v1alpha_chunk_proto_rawDesc), len(file_artifact_v1alpha_chunk_proto_rawDesc)),
-			NumEnums:      1,
+			NumEnums:      2,
 			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   0,

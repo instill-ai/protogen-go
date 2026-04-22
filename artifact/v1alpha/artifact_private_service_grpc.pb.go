@@ -100,8 +100,8 @@ type ArtifactPrivateServiceClient interface {
 	DeleteFileAdmin(ctx context.Context, in *DeleteFileAdminRequest, opts ...grpc.CallOption) (*DeleteFileAdminResponse, error)
 	// Reprocess a file (admin only)
 	//
-	// Triggers file reprocessing without ACL checks. This allows admin tools like
-	// commander to reprocess files directly by UID, bypassing OpenFGA permission
+	// Triggers file reprocessing without ACL checks. This allows internal admin
+	// tooling to reprocess files directly by UID, bypassing OpenFGA permission
 	// validation. The file's knowledge base and owner are automatically looked
 	// up. Used for administrative operations where the caller needs to force
 	// reprocess files without authentication context.
@@ -535,8 +535,8 @@ type ArtifactPrivateServiceServer interface {
 	DeleteFileAdmin(context.Context, *DeleteFileAdminRequest) (*DeleteFileAdminResponse, error)
 	// Reprocess a file (admin only)
 	//
-	// Triggers file reprocessing without ACL checks. This allows admin tools like
-	// commander to reprocess files directly by UID, bypassing OpenFGA permission
+	// Triggers file reprocessing without ACL checks. This allows internal admin
+	// tooling to reprocess files directly by UID, bypassing OpenFGA permission
 	// validation. The file's knowledge base and owner are automatically looked
 	// up. Used for administrative operations where the caller needs to force
 	// reprocess files without authentication context.
