@@ -1563,9 +1563,18 @@ type ListFilesAdminRequest struct {
 	// (see `File.derived_resource_uri`). Mirrors `ListFilesRequest.view`;
 	// forwarded to the underlying CE public handler verbatim. Unset leaves
 	// `derived_resource_uri` empty for every row.
-	View          *File_View `protobuf:"varint,5,opt,name=view,proto3,enum=artifact.v1alpha.File_View,oneof" json:"view,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	View *File_View `protobuf:"varint,5,opt,name=view,proto3,enum=artifact.v1alpha.File_View,oneof" json:"view,omitempty"`
+	// Optional permission filter compiled into the SQL WHERE clause alongside
+	// pagination. When present, both the returned files and total_size reflect
+	// only rows that satisfy at least one clause (OR semantics across clauses,
+	// AND semantics within a clause). When absent, no permission narrowing is
+	// applied and the query returns all files the AIP-160 filter matches.
+	//
+	// Callers are responsible for computing the clauses (e.g. from an
+	// authorization system); the server treats them as opaque predicates.
+	PermissionClauses []*FilePermissionClause `protobuf:"bytes,6,rep,name=permission_clauses,json=permissionClauses,proto3" json:"permission_clauses,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *ListFilesAdminRequest) Reset() {
@@ -1633,6 +1642,96 @@ func (x *ListFilesAdminRequest) GetView() File_View {
 	return File_VIEW_UNSPECIFIED
 }
 
+func (x *ListFilesAdminRequest) GetPermissionClauses() []*FilePermissionClause {
+	if x != nil {
+		return x.PermissionClauses
+	}
+	return nil
+}
+
+// FilePermissionClause is a single conjunction of predicates. Within a clause,
+// every populated field must hold (AND). Across clauses in the request, the
+// semantics are OR: a file passes if it satisfies any one clause.
+//
+// Each field maps to a PostgreSQL predicate on the `file` table. Empty /
+// absent fields are ignored (not applied as a predicate).
+type FilePermissionClause struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Match files whose `tags` column overlaps with the supplied set.
+	// SQL: `file.tags && $tags_overlap` (PostgreSQL array-overlap operator).
+	TagsOverlap []string `protobuf:"bytes,1,rep,name=tags_overlap,json=tagsOverlap,proto3" json:"tags_overlap,omitempty"`
+	// Match files whose primary UID is in the supplied set.
+	// SQL: `file.uid = ANY($uids_in)`.
+	UidsIn []string `protobuf:"bytes,2,rep,name=uids_in,json=uidsIn,proto3" json:"uids_in,omitempty"`
+	// Exclude files that have any tag matching the supplied LIKE patterns.
+	// SQL: `NOT EXISTS (SELECT 1 FROM unnest(file.tags) t WHERE t LIKE $pattern)`
+	// for each pattern.
+	TagsLikeNone []string `protobuf:"bytes,3,rep,name=tags_like_none,json=tagsLikeNone,proto3" json:"tags_like_none,omitempty"`
+	// Match files whose `visibility` column is in the supplied set.
+	// SQL: `file.visibility = ANY($visibility_in)`.
+	VisibilityIn  []string `protobuf:"bytes,4,rep,name=visibility_in,json=visibilityIn,proto3" json:"visibility_in,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FilePermissionClause) Reset() {
+	*x = FilePermissionClause{}
+	mi := &file_artifact_v1alpha_knowledge_base_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FilePermissionClause) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FilePermissionClause) ProtoMessage() {}
+
+func (x *FilePermissionClause) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_v1alpha_knowledge_base_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FilePermissionClause.ProtoReflect.Descriptor instead.
+func (*FilePermissionClause) Descriptor() ([]byte, []int) {
+	return file_artifact_v1alpha_knowledge_base_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *FilePermissionClause) GetTagsOverlap() []string {
+	if x != nil {
+		return x.TagsOverlap
+	}
+	return nil
+}
+
+func (x *FilePermissionClause) GetUidsIn() []string {
+	if x != nil {
+		return x.UidsIn
+	}
+	return nil
+}
+
+func (x *FilePermissionClause) GetTagsLikeNone() []string {
+	if x != nil {
+		return x.TagsLikeNone
+	}
+	return nil
+}
+
+func (x *FilePermissionClause) GetVisibilityIn() []string {
+	if x != nil {
+		return x.VisibilityIn
+	}
+	return nil
+}
+
 // ListFilesAdminResponse represents a response for listing files (admin only).
 type ListFilesAdminResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -1648,7 +1747,7 @@ type ListFilesAdminResponse struct {
 
 func (x *ListFilesAdminResponse) Reset() {
 	*x = ListFilesAdminResponse{}
-	mi := &file_artifact_v1alpha_knowledge_base_proto_msgTypes[24]
+	mi := &file_artifact_v1alpha_knowledge_base_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1660,7 +1759,7 @@ func (x *ListFilesAdminResponse) String() string {
 func (*ListFilesAdminResponse) ProtoMessage() {}
 
 func (x *ListFilesAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_knowledge_base_proto_msgTypes[24]
+	mi := &file_artifact_v1alpha_knowledge_base_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1673,7 +1772,7 @@ func (x *ListFilesAdminResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListFilesAdminResponse.ProtoReflect.Descriptor instead.
 func (*ListFilesAdminResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_v1alpha_knowledge_base_proto_rawDescGZIP(), []int{24}
+	return file_artifact_v1alpha_knowledge_base_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *ListFilesAdminResponse) GetFiles() []*File {
@@ -1710,7 +1809,7 @@ type KnowledgeBase_EmbeddingConfig struct {
 
 func (x *KnowledgeBase_EmbeddingConfig) Reset() {
 	*x = KnowledgeBase_EmbeddingConfig{}
-	mi := &file_artifact_v1alpha_knowledge_base_proto_msgTypes[25]
+	mi := &file_artifact_v1alpha_knowledge_base_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1722,7 +1821,7 @@ func (x *KnowledgeBase_EmbeddingConfig) String() string {
 func (*KnowledgeBase_EmbeddingConfig) ProtoMessage() {}
 
 func (x *KnowledgeBase_EmbeddingConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_knowledge_base_proto_msgTypes[25]
+	mi := &file_artifact_v1alpha_knowledge_base_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1872,7 +1971,7 @@ const file_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"\x1fDeleteKnowledgeBaseAdminRequest\x12:\n" +
 	"\x04name\x18\x01 \x01(\tB&\xe0A\x02\xfaA \n" +
 	"\x1eapi.instill.tech/KnowledgeBaseR\x04name\"\"\n" +
-	" DeleteKnowledgeBaseAdminResponse\"\xfe\x01\n" +
+	" DeleteKnowledgeBaseAdminResponse\"\xda\x02\n" +
 	"\x15ListFilesAdminRequest\x12>\n" +
 	"\x06parent\x18\x01 \x01(\tB&\xe0A\x02\xfaA \n" +
 	"\x1eapi.instill.tech/KnowledgeBaseR\x06parent\x12 \n" +
@@ -1880,8 +1979,14 @@ const file_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"\n" +
 	"page_token\x18\x03 \x01(\tB\x03\xe0A\x01R\tpageToken\x12\x1b\n" +
 	"\x06filter\x18\x04 \x01(\tB\x03\xe0A\x01R\x06filter\x129\n" +
-	"\x04view\x18\x05 \x01(\x0e2\x1b.artifact.v1alpha.File.ViewB\x03\xe0A\x01H\x00R\x04view\x88\x01\x01B\a\n" +
-	"\x05_view\"\x9c\x01\n" +
+	"\x04view\x18\x05 \x01(\x0e2\x1b.artifact.v1alpha.File.ViewB\x03\xe0A\x01H\x00R\x04view\x88\x01\x01\x12Z\n" +
+	"\x12permission_clauses\x18\x06 \x03(\v2&.artifact.v1alpha.FilePermissionClauseB\x03\xe0A\x01R\x11permissionClausesB\a\n" +
+	"\x05_view\"\x9d\x01\n" +
+	"\x14FilePermissionClause\x12!\n" +
+	"\ftags_overlap\x18\x01 \x03(\tR\vtagsOverlap\x12\x17\n" +
+	"\auids_in\x18\x02 \x03(\tR\x06uidsIn\x12$\n" +
+	"\x0etags_like_none\x18\x03 \x03(\tR\ftagsLikeNone\x12#\n" +
+	"\rvisibility_in\x18\x04 \x03(\tR\fvisibilityIn\"\x9c\x01\n" +
 	"\x16ListFilesAdminResponse\x121\n" +
 	"\x05files\x18\x01 \x03(\v2\x16.artifact.v1alpha.FileB\x03\xe0A\x03R\x05files\x12+\n" +
 	"\x0fnext_page_token\x18\x02 \x01(\tB\x03\xe0A\x03R\rnextPageToken\x12\"\n" +
@@ -1906,7 +2011,7 @@ func file_artifact_v1alpha_knowledge_base_proto_rawDescGZIP() []byte {
 }
 
 var file_artifact_v1alpha_knowledge_base_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_artifact_v1alpha_knowledge_base_proto_msgTypes = make([]protoimpl.MessageInfo, 26)
+var file_artifact_v1alpha_knowledge_base_proto_msgTypes = make([]protoimpl.MessageInfo, 27)
 var file_artifact_v1alpha_knowledge_base_proto_goTypes = []any{
 	(KnowledgeBaseType)(0),                            // 0: artifact.v1alpha.KnowledgeBaseType
 	(*KnowledgeBase)(nil),                             // 1: artifact.v1alpha.KnowledgeBase
@@ -1933,44 +2038,46 @@ var file_artifact_v1alpha_knowledge_base_proto_goTypes = []any{
 	(*DeleteKnowledgeBaseAdminRequest)(nil),           // 22: artifact.v1alpha.DeleteKnowledgeBaseAdminRequest
 	(*DeleteKnowledgeBaseAdminResponse)(nil),          // 23: artifact.v1alpha.DeleteKnowledgeBaseAdminResponse
 	(*ListFilesAdminRequest)(nil),                     // 24: artifact.v1alpha.ListFilesAdminRequest
-	(*ListFilesAdminResponse)(nil),                    // 25: artifact.v1alpha.ListFilesAdminResponse
-	(*KnowledgeBase_EmbeddingConfig)(nil),             // 26: artifact.v1alpha.KnowledgeBase.EmbeddingConfig
-	(*timestamppb.Timestamp)(nil),                     // 27: google.protobuf.Timestamp
-	(*v1beta.Owner)(nil),                              // 28: mgmt.v1beta.Owner
-	(*v1beta.User)(nil),                               // 29: mgmt.v1beta.User
-	(*fieldmaskpb.FieldMask)(nil),                     // 30: google.protobuf.FieldMask
-	(File_View)(0),                                    // 31: artifact.v1alpha.File.View
-	(*File)(nil),                                      // 32: artifact.v1alpha.File
+	(*FilePermissionClause)(nil),                      // 25: artifact.v1alpha.FilePermissionClause
+	(*ListFilesAdminResponse)(nil),                    // 26: artifact.v1alpha.ListFilesAdminResponse
+	(*KnowledgeBase_EmbeddingConfig)(nil),             // 27: artifact.v1alpha.KnowledgeBase.EmbeddingConfig
+	(*timestamppb.Timestamp)(nil),                     // 28: google.protobuf.Timestamp
+	(*v1beta.Owner)(nil),                              // 29: mgmt.v1beta.Owner
+	(*v1beta.User)(nil),                               // 30: mgmt.v1beta.User
+	(*fieldmaskpb.FieldMask)(nil),                     // 31: google.protobuf.FieldMask
+	(File_View)(0),                                    // 32: artifact.v1alpha.File.View
+	(*File)(nil),                                      // 33: artifact.v1alpha.File
 }
 var file_artifact_v1alpha_knowledge_base_proto_depIdxs = []int32{
-	27, // 0: artifact.v1alpha.KnowledgeBase.create_time:type_name -> google.protobuf.Timestamp
-	27, // 1: artifact.v1alpha.KnowledgeBase.update_time:type_name -> google.protobuf.Timestamp
+	28, // 0: artifact.v1alpha.KnowledgeBase.create_time:type_name -> google.protobuf.Timestamp
+	28, // 1: artifact.v1alpha.KnowledgeBase.update_time:type_name -> google.protobuf.Timestamp
 	0,  // 2: artifact.v1alpha.KnowledgeBase.type:type_name -> artifact.v1alpha.KnowledgeBaseType
-	26, // 3: artifact.v1alpha.KnowledgeBase.embedding_config:type_name -> artifact.v1alpha.KnowledgeBase.EmbeddingConfig
-	28, // 4: artifact.v1alpha.KnowledgeBase.owner:type_name -> mgmt.v1beta.Owner
-	29, // 5: artifact.v1alpha.KnowledgeBase.creator:type_name -> mgmt.v1beta.User
+	27, // 3: artifact.v1alpha.KnowledgeBase.embedding_config:type_name -> artifact.v1alpha.KnowledgeBase.EmbeddingConfig
+	29, // 4: artifact.v1alpha.KnowledgeBase.owner:type_name -> mgmt.v1beta.Owner
+	30, // 5: artifact.v1alpha.KnowledgeBase.creator:type_name -> mgmt.v1beta.User
 	1,  // 6: artifact.v1alpha.CreateKnowledgeBaseRequest.knowledge_base:type_name -> artifact.v1alpha.KnowledgeBase
 	1,  // 7: artifact.v1alpha.CreateKnowledgeBaseResponse.knowledge_base:type_name -> artifact.v1alpha.KnowledgeBase
 	1,  // 8: artifact.v1alpha.GetKnowledgeBaseResponse.knowledge_base:type_name -> artifact.v1alpha.KnowledgeBase
 	1,  // 9: artifact.v1alpha.ListKnowledgeBasesResponse.knowledge_bases:type_name -> artifact.v1alpha.KnowledgeBase
 	1,  // 10: artifact.v1alpha.UpdateKnowledgeBaseRequest.knowledge_base:type_name -> artifact.v1alpha.KnowledgeBase
-	30, // 11: artifact.v1alpha.UpdateKnowledgeBaseRequest.update_mask:type_name -> google.protobuf.FieldMask
+	31, // 11: artifact.v1alpha.UpdateKnowledgeBaseRequest.update_mask:type_name -> google.protobuf.FieldMask
 	1,  // 12: artifact.v1alpha.UpdateKnowledgeBaseResponse.knowledge_base:type_name -> artifact.v1alpha.KnowledgeBase
 	1,  // 13: artifact.v1alpha.DeleteKnowledgeBaseResponse.knowledge_base:type_name -> artifact.v1alpha.KnowledgeBase
 	1,  // 14: artifact.v1alpha.CreateKnowledgeBaseAdminRequest.knowledge_base:type_name -> artifact.v1alpha.KnowledgeBase
 	1,  // 15: artifact.v1alpha.CreateKnowledgeBaseAdminResponse.knowledge_base:type_name -> artifact.v1alpha.KnowledgeBase
 	1,  // 16: artifact.v1alpha.ListKnowledgeBasesAdminResponse.knowledge_bases:type_name -> artifact.v1alpha.KnowledgeBase
 	1,  // 17: artifact.v1alpha.UpdateKnowledgeBaseAdminRequest.knowledge_base:type_name -> artifact.v1alpha.KnowledgeBase
-	30, // 18: artifact.v1alpha.UpdateKnowledgeBaseAdminRequest.update_mask:type_name -> google.protobuf.FieldMask
+	31, // 18: artifact.v1alpha.UpdateKnowledgeBaseAdminRequest.update_mask:type_name -> google.protobuf.FieldMask
 	1,  // 19: artifact.v1alpha.UpdateKnowledgeBaseAdminResponse.knowledge_base:type_name -> artifact.v1alpha.KnowledgeBase
 	1,  // 20: artifact.v1alpha.ResetKnowledgeBaseEmbeddingsAdminResponse.knowledge_base:type_name -> artifact.v1alpha.KnowledgeBase
-	31, // 21: artifact.v1alpha.ListFilesAdminRequest.view:type_name -> artifact.v1alpha.File.View
-	32, // 22: artifact.v1alpha.ListFilesAdminResponse.files:type_name -> artifact.v1alpha.File
-	23, // [23:23] is the sub-list for method output_type
-	23, // [23:23] is the sub-list for method input_type
-	23, // [23:23] is the sub-list for extension type_name
-	23, // [23:23] is the sub-list for extension extendee
-	0,  // [0:23] is the sub-list for field type_name
+	32, // 21: artifact.v1alpha.ListFilesAdminRequest.view:type_name -> artifact.v1alpha.File.View
+	25, // 22: artifact.v1alpha.ListFilesAdminRequest.permission_clauses:type_name -> artifact.v1alpha.FilePermissionClause
+	33, // 23: artifact.v1alpha.ListFilesAdminResponse.files:type_name -> artifact.v1alpha.File
+	24, // [24:24] is the sub-list for method output_type
+	24, // [24:24] is the sub-list for method input_type
+	24, // [24:24] is the sub-list for extension type_name
+	24, // [24:24] is the sub-list for extension extendee
+	0,  // [0:24] is the sub-list for field type_name
 }
 
 func init() { file_artifact_v1alpha_knowledge_base_proto_init() }
@@ -1989,7 +2096,7 @@ func file_artifact_v1alpha_knowledge_base_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_artifact_v1alpha_knowledge_base_proto_rawDesc), len(file_artifact_v1alpha_knowledge_base_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   26,
+			NumMessages:   27,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
