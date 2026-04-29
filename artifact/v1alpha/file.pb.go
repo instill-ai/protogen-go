@@ -827,7 +827,15 @@ type File struct {
 	// historical rows; ingest covers new ones). Clients should treat this as
 	// the preferred card-tile source and fall back to `derived_resource_uri`
 	// / mime-type icon when absent.
-	ThumbnailUri  *string `protobuf:"bytes,38,opt,name=thumbnail_uri,json=thumbnailUri,proto3,oneof" json:"thumbnail_uri,omitempty"`
+	ThumbnailUri *string `protobuf:"bytes,38,opt,name=thumbnail_uri,json=thumbnailUri,proto3,oneof" json:"thumbnail_uri,omitempty"`
+	// The project that this file belongs to (single parent).
+	// File permissions cascade from this project — the file inherits
+	// viewer/editor/commenter/resource_owner from its parent project.
+	// Format: `namespaces/{namespace}/projects/{project}`
+	// Populated server-side from the file's parent_project_uid DB column.
+	// Files without an explicit parent project default to the namespace's
+	// root project ("Workspace").
+	ParentProject *string `protobuf:"bytes,39,opt,name=parent_project,json=parentProject,proto3,oneof" json:"parent_project,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1103,6 +1111,13 @@ func (x *File) GetDerivedResourceUri() string {
 func (x *File) GetThumbnailUri() string {
 	if x != nil && x.ThumbnailUri != nil {
 		return *x.ThumbnailUri
+	}
+	return ""
+}
+
+func (x *File) GetParentProject() string {
+	if x != nil && x.ParentProject != nil {
+		return *x.ParentProject
 	}
 	return ""
 }
@@ -2388,7 +2403,7 @@ var File_artifact_v1alpha_file_proto protoreflect.FileDescriptor
 
 const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\n" +
-	"\x1bartifact/v1alpha/file.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc2\x1a\n" +
+	"\x1bartifact/v1alpha/file.proto\x12\x10artifact.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa5\x1b\n" +
 	"\x04File\x12\x17\n" +
 	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x03R\x04name\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x03R\x02id\x12&\n" +
@@ -2434,7 +2449,9 @@ const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"visibility\x18$ \x01(\x0e2!.artifact.v1alpha.File.VisibilityB\x03\xe0A\x01R\n" +
 	"visibility\x12:\n" +
 	"\x14derived_resource_uri\x18% \x01(\tB\x03\xe0A\x03H\x04R\x12derivedResourceUri\x88\x01\x01\x12-\n" +
-	"\rthumbnail_uri\x18& \x01(\tB\x03\xe0A\x03H\x05R\fthumbnailUri\x88\x01\x01\x1a\xd3\x01\n" +
+	"\rthumbnail_uri\x18& \x01(\tB\x03\xe0A\x03H\x05R\fthumbnailUri\x88\x01\x01\x12N\n" +
+	"\x0eparent_project\x18' \x01(\tB\"\xe0A\x03\xfaA\x1c\n" +
+	"\x1aagent.instill.tech/ProjectH\x06R\rparentProject\x88\x01\x01\x1a\xd3\x01\n" +
 	"\bPosition\x12=\n" +
 	"\x04unit\x18\x01 \x01(\x0e2$.artifact.v1alpha.File.Position.UnitB\x03\xe0A\x03R\x04unit\x12%\n" +
 	"\vcoordinates\x18\x02 \x03(\rB\x03\xe0A\x03R\vcoordinates\"a\n" +
@@ -2523,7 +2540,8 @@ const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\r_owner_avatarB\x11\n" +
 	"\x0f_creator_avatarB\x17\n" +
 	"\x15_derived_resource_uriB\x10\n" +
-	"\x0e_thumbnail_uriJ\x04\b\x13\x10\x14J\x04\b\x15\x10\x16R\x05ownerR\acreator\"a\n" +
+	"\x0e_thumbnail_uriB\x11\n" +
+	"\x0f_parent_projectJ\x04\b\x13\x10\x14J\x04\b\x15\x10\x16R\x05ownerR\acreator\"a\n" +
 	"\x11CreateFileRequest\x12\x1b\n" +
 	"\x06parent\x18\x01 \x01(\tB\x03\xe0A\x02R\x06parent\x12/\n" +
 	"\x04file\x18\x02 \x01(\v2\x16.artifact.v1alpha.FileB\x03\xe0A\x01R\x04file\"E\n" +
