@@ -172,6 +172,175 @@ func (ConvertedFileType) EnumDescriptor() ([]byte, []int) {
 	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{1}
 }
 
+// IntegrityState classifies the cross-datastore consistency of a knowledge-base
+// file's derived RAG state (PostgreSQL chunk rows, Milvus vectors, MinIO
+// converted-file) against its declared `process_status`. Values that are NOT
+// `INTEGRITY_STATE_HEALTHY` indicate drift that the caller MUST recover from
+// before dispatching downstream work that depends on the file's chunks.
+//
+// Boundary by gRPC code (per `CheckFileChunkIntegrityAdmin` semantics):
+//   - `INTEGRITY_STATE_FILE_NOT_FOUND` is reported only when the file row is
+//     soft-deleted or never existed; in that case the RPC still returns OK
+//     with this enum value rather than `NotFound`, so the caller can read the
+//     `recommended_action` and decide whether to surface the absence to the
+//     end user or skip the gate entirely.
+//   - All other "drift" classes report `IntegrityState != HEALTHY` while the
+//     file row itself is intact.
+type IntegrityState int32
+
+const (
+	// Default; never returned by a successful probe.
+	IntegrityState_INTEGRITY_STATE_UNSPECIFIED IntegrityState = 0
+	// The file's `process_status` is `COMPLETED`, the chunk row count, Milvus
+	// vector count, and the file row's `total_chunks` agree, and the converted
+	// markdown object exists in MinIO. Safe to dispatch.
+	IntegrityState_INTEGRITY_STATE_HEALTHY IntegrityState = 1
+	// The file's `process_status` is anything except `COMPLETED` (e.g. still
+	// processing, failed, not started). Drift detection is not meaningful in
+	// this state — the upstream `process_status` gate handles it.
+	IntegrityState_INTEGRITY_STATE_NOT_COMPLETED IntegrityState = 2
+	// PG row says COMPLETED but the chunk inventory in the `chunk` table is
+	// empty (or non-zero but does not match the file row's `total_chunks`
+	// under strict equality). Indicates the chunks were hard-deleted or never
+	// persisted. Recoverable via `ReprocessFileAdmin`.
+	IntegrityState_INTEGRITY_STATE_EMPTY_PG IntegrityState = 3
+	// PG row says COMPLETED, chunk rows exist, but the Milvus collection for
+	// the parent knowledge base is missing entirely OR the per-file vector
+	// count in Milvus does not match the PG chunk count under strict equality.
+	// Indicates Milvus collection was dropped, never created, or partially
+	// ingested. Recoverable via `ReprocessFileAdmin`.
+	IntegrityState_INTEGRITY_STATE_MISSING_MILVUS IntegrityState = 4
+	// PG row says COMPLETED, chunks + vectors agree, but the converted-file
+	// object is missing from MinIO. The LLM's `get-file-content` tool will
+	// 404. Recoverable via `ReprocessFileAdmin`.
+	IntegrityState_INTEGRITY_STATE_MISSING_CONVERTED_FILE IntegrityState = 5
+	// The file row itself does not exist (or is soft-deleted). The caller
+	// should treat this as a tombstone; reprocess is not the right recovery.
+	IntegrityState_INTEGRITY_STATE_FILE_NOT_FOUND IntegrityState = 6
+)
+
+// Enum value maps for IntegrityState.
+var (
+	IntegrityState_name = map[int32]string{
+		0: "INTEGRITY_STATE_UNSPECIFIED",
+		1: "INTEGRITY_STATE_HEALTHY",
+		2: "INTEGRITY_STATE_NOT_COMPLETED",
+		3: "INTEGRITY_STATE_EMPTY_PG",
+		4: "INTEGRITY_STATE_MISSING_MILVUS",
+		5: "INTEGRITY_STATE_MISSING_CONVERTED_FILE",
+		6: "INTEGRITY_STATE_FILE_NOT_FOUND",
+	}
+	IntegrityState_value = map[string]int32{
+		"INTEGRITY_STATE_UNSPECIFIED":            0,
+		"INTEGRITY_STATE_HEALTHY":                1,
+		"INTEGRITY_STATE_NOT_COMPLETED":          2,
+		"INTEGRITY_STATE_EMPTY_PG":               3,
+		"INTEGRITY_STATE_MISSING_MILVUS":         4,
+		"INTEGRITY_STATE_MISSING_CONVERTED_FILE": 5,
+		"INTEGRITY_STATE_FILE_NOT_FOUND":         6,
+	}
+)
+
+func (x IntegrityState) Enum() *IntegrityState {
+	p := new(IntegrityState)
+	*p = x
+	return p
+}
+
+func (x IntegrityState) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (IntegrityState) Descriptor() protoreflect.EnumDescriptor {
+	return file_artifact_v1alpha_file_proto_enumTypes[2].Descriptor()
+}
+
+func (IntegrityState) Type() protoreflect.EnumType {
+	return &file_artifact_v1alpha_file_proto_enumTypes[2]
+}
+
+func (x IntegrityState) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use IntegrityState.Descriptor instead.
+func (IntegrityState) EnumDescriptor() ([]byte, []int) {
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{2}
+}
+
+// RecommendedAction tells the caller what to do with the probe result. Kept
+// separate from `IntegrityState` so the caller does not have to enumerate
+// state values to decide on behavior, and so future drift classes can map to
+// the same recovery path without breaking callers.
+type RecommendedAction int32
+
+const (
+	// Default; never returned by a successful probe.
+	RecommendedAction_RECOMMENDED_ACTION_UNSPECIFIED RecommendedAction = 0
+	// No action needed. The file is healthy; safe to dispatch downstream work.
+	RecommendedAction_RECOMMENDED_ACTION_NONE RecommendedAction = 1
+	// The caller should kick `ReprocessFileAdmin(file_uid)` to re-derive the
+	// missing chunks / vectors / converted-file, and defer the dependent work
+	// until the file's `process_status` returns to `COMPLETED`. Idempotent —
+	// safe to send concurrently for the same file UID; `ReprocessFileAdmin`
+	// already short-circuits in-flight reprocesses.
+	RecommendedAction_RECOMMENDED_ACTION_REPROCESS_FILE RecommendedAction = 2
+	// The file row is gone. The caller should NOT reprocess; instead it should
+	// surface the absence to the end user (e.g. mark the dependent record as
+	// referencing a deleted file) or skip the gate entirely so downstream
+	// tools handle the missing-file at their own granularity.
+	RecommendedAction_RECOMMENDED_ACTION_SKIP_FILE_NOT_FOUND RecommendedAction = 3
+	// The file's `process_status` is not COMPLETED yet (still processing,
+	// failed, etc.). The caller should defer and let the upstream
+	// `process_status` gate retry once processing finishes.
+	RecommendedAction_RECOMMENDED_ACTION_DEFER_PROCESSING RecommendedAction = 4
+)
+
+// Enum value maps for RecommendedAction.
+var (
+	RecommendedAction_name = map[int32]string{
+		0: "RECOMMENDED_ACTION_UNSPECIFIED",
+		1: "RECOMMENDED_ACTION_NONE",
+		2: "RECOMMENDED_ACTION_REPROCESS_FILE",
+		3: "RECOMMENDED_ACTION_SKIP_FILE_NOT_FOUND",
+		4: "RECOMMENDED_ACTION_DEFER_PROCESSING",
+	}
+	RecommendedAction_value = map[string]int32{
+		"RECOMMENDED_ACTION_UNSPECIFIED":         0,
+		"RECOMMENDED_ACTION_NONE":                1,
+		"RECOMMENDED_ACTION_REPROCESS_FILE":      2,
+		"RECOMMENDED_ACTION_SKIP_FILE_NOT_FOUND": 3,
+		"RECOMMENDED_ACTION_DEFER_PROCESSING":    4,
+	}
+)
+
+func (x RecommendedAction) Enum() *RecommendedAction {
+	p := new(RecommendedAction)
+	*p = x
+	return p
+}
+
+func (x RecommendedAction) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (RecommendedAction) Descriptor() protoreflect.EnumDescriptor {
+	return file_artifact_v1alpha_file_proto_enumTypes[3].Descriptor()
+}
+
+func (RecommendedAction) Type() protoreflect.EnumType {
+	return &file_artifact_v1alpha_file_proto_enumTypes[3]
+}
+
+func (x RecommendedAction) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use RecommendedAction.Descriptor instead.
+func (RecommendedAction) EnumDescriptor() ([]byte, []int) {
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{3}
+}
+
 // View defines how a file is presented.
 type File_View int32
 
@@ -237,11 +406,11 @@ func (x File_View) String() string {
 }
 
 func (File_View) Descriptor() protoreflect.EnumDescriptor {
-	return file_artifact_v1alpha_file_proto_enumTypes[2].Descriptor()
+	return file_artifact_v1alpha_file_proto_enumTypes[4].Descriptor()
 }
 
 func (File_View) Type() protoreflect.EnumType {
-	return &file_artifact_v1alpha_file_proto_enumTypes[2]
+	return &file_artifact_v1alpha_file_proto_enumTypes[4]
 }
 
 func (x File_View) Number() protoreflect.EnumNumber {
@@ -290,11 +459,11 @@ func (x File_StorageProvider) String() string {
 }
 
 func (File_StorageProvider) Descriptor() protoreflect.EnumDescriptor {
-	return file_artifact_v1alpha_file_proto_enumTypes[3].Descriptor()
+	return file_artifact_v1alpha_file_proto_enumTypes[5].Descriptor()
 }
 
 func (File_StorageProvider) Type() protoreflect.EnumType {
-	return &file_artifact_v1alpha_file_proto_enumTypes[3]
+	return &file_artifact_v1alpha_file_proto_enumTypes[5]
 }
 
 func (x File_StorageProvider) Number() protoreflect.EnumNumber {
@@ -496,11 +665,11 @@ func (x File_Type) String() string {
 }
 
 func (File_Type) Descriptor() protoreflect.EnumDescriptor {
-	return file_artifact_v1alpha_file_proto_enumTypes[4].Descriptor()
+	return file_artifact_v1alpha_file_proto_enumTypes[6].Descriptor()
 }
 
 func (File_Type) Type() protoreflect.EnumType {
-	return &file_artifact_v1alpha_file_proto_enumTypes[4]
+	return &file_artifact_v1alpha_file_proto_enumTypes[6]
 }
 
 func (x File_Type) Number() protoreflect.EnumNumber {
@@ -557,11 +726,11 @@ func (x File_FileMediaType) String() string {
 }
 
 func (File_FileMediaType) Descriptor() protoreflect.EnumDescriptor {
-	return file_artifact_v1alpha_file_proto_enumTypes[5].Descriptor()
+	return file_artifact_v1alpha_file_proto_enumTypes[7].Descriptor()
 }
 
 func (File_FileMediaType) Type() protoreflect.EnumType {
-	return &file_artifact_v1alpha_file_proto_enumTypes[5]
+	return &file_artifact_v1alpha_file_proto_enumTypes[7]
 }
 
 func (x File_FileMediaType) Number() protoreflect.EnumNumber {
@@ -618,11 +787,11 @@ func (x File_Visibility) String() string {
 }
 
 func (File_Visibility) Descriptor() protoreflect.EnumDescriptor {
-	return file_artifact_v1alpha_file_proto_enumTypes[6].Descriptor()
+	return file_artifact_v1alpha_file_proto_enumTypes[8].Descriptor()
 }
 
 func (File_Visibility) Type() protoreflect.EnumType {
-	return &file_artifact_v1alpha_file_proto_enumTypes[6]
+	return &file_artifact_v1alpha_file_proto_enumTypes[8]
 }
 
 func (x File_Visibility) Number() protoreflect.EnumNumber {
@@ -680,11 +849,11 @@ func (x File_Position_Unit) String() string {
 }
 
 func (File_Position_Unit) Descriptor() protoreflect.EnumDescriptor {
-	return file_artifact_v1alpha_file_proto_enumTypes[7].Descriptor()
+	return file_artifact_v1alpha_file_proto_enumTypes[9].Descriptor()
 }
 
 func (File_Position_Unit) Type() protoreflect.EnumType {
-	return &file_artifact_v1alpha_file_proto_enumTypes[7]
+	return &file_artifact_v1alpha_file_proto_enumTypes[9]
 }
 
 func (x File_Position_Unit) Number() protoreflect.EnumNumber {
@@ -1514,6 +1683,171 @@ func (x *ReprocessFileAdminResponse) GetFile() *File {
 	return nil
 }
 
+// CheckFileChunkIntegrityAdminRequest represents a request to probe the
+// cross-datastore consistency of a knowledge-base file (admin only).
+type CheckFileChunkIntegrityAdminRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The file UID to probe.
+	FileUid       string `protobuf:"bytes,1,opt,name=file_uid,json=fileUid,proto3" json:"file_uid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CheckFileChunkIntegrityAdminRequest) Reset() {
+	*x = CheckFileChunkIntegrityAdminRequest{}
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CheckFileChunkIntegrityAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CheckFileChunkIntegrityAdminRequest) ProtoMessage() {}
+
+func (x *CheckFileChunkIntegrityAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CheckFileChunkIntegrityAdminRequest.ProtoReflect.Descriptor instead.
+func (*CheckFileChunkIntegrityAdminRequest) Descriptor() ([]byte, []int) {
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *CheckFileChunkIntegrityAdminRequest) GetFileUid() string {
+	if x != nil {
+		return x.FileUid
+	}
+	return ""
+}
+
+// CheckFileChunkIntegrityAdminResponse reports the integrity probe result.
+// All count fields are populated when reachable; the absence of a count is
+// reflected in `state` and is not separately signalled.
+type CheckFileChunkIntegrityAdminResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The drift classification.
+	State IntegrityState `protobuf:"varint,1,opt,name=state,proto3,enum=artifact.v1alpha.IntegrityState" json:"state,omitempty"`
+	// The recovery recommendation derived from `state`.
+	RecommendedAction RecommendedAction `protobuf:"varint,2,opt,name=recommended_action,json=recommendedAction,proto3,enum=artifact.v1alpha.RecommendedAction" json:"recommended_action,omitempty"`
+	// The file's current `process_status` from the `file` table at probe time.
+	// Repeating this here lets a caller short-circuit additional lookups.
+	ProcessStatus FileProcessStatus `protobuf:"varint,3,opt,name=process_status,json=processStatus,proto3,enum=artifact.v1alpha.FileProcessStatus" json:"process_status,omitempty"`
+	// The `file.total_chunks` advertised on the file row. May be zero when
+	// `state = INTEGRITY_STATE_FILE_NOT_FOUND` or when chunk count tracking
+	// was not yet populated.
+	TotalChunksDeclared int64 `protobuf:"varint,4,opt,name=total_chunks_declared,json=totalChunksDeclared,proto3" json:"total_chunks_declared,omitempty"`
+	// The number of non-deleted rows in the `chunk` table for this file_uid
+	// at probe time. Always populated when the file row exists.
+	ChunkRowsInPg int64 `protobuf:"varint,5,opt,name=chunk_rows_in_pg,json=chunkRowsInPg,proto3" json:"chunk_rows_in_pg,omitempty"`
+	// The number of vectors found in the Milvus collection (`kb_<kb_uid>`)
+	// matching this file_uid at probe time. -1 when the Milvus collection
+	// does not exist; non-negative otherwise.
+	VectorsInMilvus int64 `protobuf:"varint,6,opt,name=vectors_in_milvus,json=vectorsInMilvus,proto3" json:"vectors_in_milvus,omitempty"`
+	// True iff the converted-file MinIO object for this file is present.
+	ConvertedFilePresent bool `protobuf:"varint,7,opt,name=converted_file_present,json=convertedFilePresent,proto3" json:"converted_file_present,omitempty"`
+	// Free-form human-readable diagnostic message for ops/log purposes. Not
+	// intended for parsing by callers.
+	Message       string `protobuf:"bytes,8,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CheckFileChunkIntegrityAdminResponse) Reset() {
+	*x = CheckFileChunkIntegrityAdminResponse{}
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CheckFileChunkIntegrityAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CheckFileChunkIntegrityAdminResponse) ProtoMessage() {}
+
+func (x *CheckFileChunkIntegrityAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CheckFileChunkIntegrityAdminResponse.ProtoReflect.Descriptor instead.
+func (*CheckFileChunkIntegrityAdminResponse) Descriptor() ([]byte, []int) {
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *CheckFileChunkIntegrityAdminResponse) GetState() IntegrityState {
+	if x != nil {
+		return x.State
+	}
+	return IntegrityState_INTEGRITY_STATE_UNSPECIFIED
+}
+
+func (x *CheckFileChunkIntegrityAdminResponse) GetRecommendedAction() RecommendedAction {
+	if x != nil {
+		return x.RecommendedAction
+	}
+	return RecommendedAction_RECOMMENDED_ACTION_UNSPECIFIED
+}
+
+func (x *CheckFileChunkIntegrityAdminResponse) GetProcessStatus() FileProcessStatus {
+	if x != nil {
+		return x.ProcessStatus
+	}
+	return FileProcessStatus_FILE_PROCESS_STATUS_UNSPECIFIED
+}
+
+func (x *CheckFileChunkIntegrityAdminResponse) GetTotalChunksDeclared() int64 {
+	if x != nil {
+		return x.TotalChunksDeclared
+	}
+	return 0
+}
+
+func (x *CheckFileChunkIntegrityAdminResponse) GetChunkRowsInPg() int64 {
+	if x != nil {
+		return x.ChunkRowsInPg
+	}
+	return 0
+}
+
+func (x *CheckFileChunkIntegrityAdminResponse) GetVectorsInMilvus() int64 {
+	if x != nil {
+		return x.VectorsInMilvus
+	}
+	return 0
+}
+
+func (x *CheckFileChunkIntegrityAdminResponse) GetConvertedFilePresent() bool {
+	if x != nil {
+		return x.ConvertedFilePresent
+	}
+	return false
+}
+
+func (x *CheckFileChunkIntegrityAdminResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
 // CopyFileToKnowledgeBaseAdminRequest represents a request to copy a file to
 // a different knowledge base (admin only). This performs a lightweight copy:
 // copies the MinIO object, file record, and converted files (markdown/summary)
@@ -1534,7 +1868,7 @@ type CopyFileToKnowledgeBaseAdminRequest struct {
 
 func (x *CopyFileToKnowledgeBaseAdminRequest) Reset() {
 	*x = CopyFileToKnowledgeBaseAdminRequest{}
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[9]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1546,7 +1880,7 @@ func (x *CopyFileToKnowledgeBaseAdminRequest) String() string {
 func (*CopyFileToKnowledgeBaseAdminRequest) ProtoMessage() {}
 
 func (x *CopyFileToKnowledgeBaseAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[9]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1559,7 +1893,7 @@ func (x *CopyFileToKnowledgeBaseAdminRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use CopyFileToKnowledgeBaseAdminRequest.ProtoReflect.Descriptor instead.
 func (*CopyFileToKnowledgeBaseAdminRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{9}
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *CopyFileToKnowledgeBaseAdminRequest) GetSourceFile() string {
@@ -1588,7 +1922,7 @@ type CopyFileToKnowledgeBaseAdminResponse struct {
 
 func (x *CopyFileToKnowledgeBaseAdminResponse) Reset() {
 	*x = CopyFileToKnowledgeBaseAdminResponse{}
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[10]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1600,7 +1934,7 @@ func (x *CopyFileToKnowledgeBaseAdminResponse) String() string {
 func (*CopyFileToKnowledgeBaseAdminResponse) ProtoMessage() {}
 
 func (x *CopyFileToKnowledgeBaseAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[10]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1613,7 +1947,7 @@ func (x *CopyFileToKnowledgeBaseAdminResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use CopyFileToKnowledgeBaseAdminResponse.ProtoReflect.Descriptor instead.
 func (*CopyFileToKnowledgeBaseAdminResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{10}
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *CopyFileToKnowledgeBaseAdminResponse) GetFile() *File {
@@ -1662,7 +1996,7 @@ type ListFilesRequest struct {
 
 func (x *ListFilesRequest) Reset() {
 	*x = ListFilesRequest{}
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[11]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1674,7 +2008,7 @@ func (x *ListFilesRequest) String() string {
 func (*ListFilesRequest) ProtoMessage() {}
 
 func (x *ListFilesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[11]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1687,7 +2021,7 @@ func (x *ListFilesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListFilesRequest.ProtoReflect.Descriptor instead.
 func (*ListFilesRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{11}
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *ListFilesRequest) GetParent() string {
@@ -1742,7 +2076,7 @@ type ListFilesResponse struct {
 
 func (x *ListFilesResponse) Reset() {
 	*x = ListFilesResponse{}
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[12]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1754,7 +2088,7 @@ func (x *ListFilesResponse) String() string {
 func (*ListFilesResponse) ProtoMessage() {}
 
 func (x *ListFilesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[12]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1767,7 +2101,7 @@ func (x *ListFilesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListFilesResponse.ProtoReflect.Descriptor instead.
 func (*ListFilesResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{12}
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *ListFilesResponse) GetFiles() []*File {
@@ -1824,7 +2158,7 @@ type GetFileRequest struct {
 
 func (x *GetFileRequest) Reset() {
 	*x = GetFileRequest{}
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[13]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1836,7 +2170,7 @@ func (x *GetFileRequest) String() string {
 func (*GetFileRequest) ProtoMessage() {}
 
 func (x *GetFileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[13]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1849,7 +2183,7 @@ func (x *GetFileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFileRequest.ProtoReflect.Descriptor instead.
 func (*GetFileRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{13}
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *GetFileRequest) GetName() string {
@@ -1892,7 +2226,7 @@ type GetFileResponse struct {
 
 func (x *GetFileResponse) Reset() {
 	*x = GetFileResponse{}
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[14]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1904,7 +2238,7 @@ func (x *GetFileResponse) String() string {
 func (*GetFileResponse) ProtoMessage() {}
 
 func (x *GetFileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[14]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1917,7 +2251,7 @@ func (x *GetFileResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFileResponse.ProtoReflect.Descriptor instead.
 func (*GetFileResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{14}
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *GetFileResponse) GetFile() *File {
@@ -1950,7 +2284,7 @@ type UpdateFileRequest struct {
 
 func (x *UpdateFileRequest) Reset() {
 	*x = UpdateFileRequest{}
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[15]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1962,7 +2296,7 @@ func (x *UpdateFileRequest) String() string {
 func (*UpdateFileRequest) ProtoMessage() {}
 
 func (x *UpdateFileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[15]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1975,7 +2309,7 @@ func (x *UpdateFileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateFileRequest.ProtoReflect.Descriptor instead.
 func (*UpdateFileRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{15}
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *UpdateFileRequest) GetFile() *File {
@@ -2003,7 +2337,7 @@ type UpdateFileResponse struct {
 
 func (x *UpdateFileResponse) Reset() {
 	*x = UpdateFileResponse{}
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[16]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2015,7 +2349,7 @@ func (x *UpdateFileResponse) String() string {
 func (*UpdateFileResponse) ProtoMessage() {}
 
 func (x *UpdateFileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[16]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2028,7 +2362,7 @@ func (x *UpdateFileResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateFileResponse.ProtoReflect.Descriptor instead.
 func (*UpdateFileResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{16}
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *UpdateFileResponse) GetFile() *File {
@@ -2051,7 +2385,7 @@ type ReprocessFileRequest struct {
 
 func (x *ReprocessFileRequest) Reset() {
 	*x = ReprocessFileRequest{}
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[17]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2063,7 +2397,7 @@ func (x *ReprocessFileRequest) String() string {
 func (*ReprocessFileRequest) ProtoMessage() {}
 
 func (x *ReprocessFileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[17]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2076,7 +2410,7 @@ func (x *ReprocessFileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReprocessFileRequest.ProtoReflect.Descriptor instead.
 func (*ReprocessFileRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{17}
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *ReprocessFileRequest) GetName() string {
@@ -2099,7 +2433,7 @@ type ReprocessFileResponse struct {
 
 func (x *ReprocessFileResponse) Reset() {
 	*x = ReprocessFileResponse{}
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[18]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2111,7 +2445,7 @@ func (x *ReprocessFileResponse) String() string {
 func (*ReprocessFileResponse) ProtoMessage() {}
 
 func (x *ReprocessFileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[18]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2124,7 +2458,7 @@ func (x *ReprocessFileResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReprocessFileResponse.ProtoReflect.Descriptor instead.
 func (*ReprocessFileResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{18}
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *ReprocessFileResponse) GetFile() *File {
@@ -2160,7 +2494,7 @@ type UpdateFileAdminRequest struct {
 
 func (x *UpdateFileAdminRequest) Reset() {
 	*x = UpdateFileAdminRequest{}
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[19]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2172,7 +2506,7 @@ func (x *UpdateFileAdminRequest) String() string {
 func (*UpdateFileAdminRequest) ProtoMessage() {}
 
 func (x *UpdateFileAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[19]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2185,7 +2519,7 @@ func (x *UpdateFileAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateFileAdminRequest.ProtoReflect.Descriptor instead.
 func (*UpdateFileAdminRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{19}
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *UpdateFileAdminRequest) GetFile() *File {
@@ -2213,7 +2547,7 @@ type UpdateFileAdminResponse struct {
 
 func (x *UpdateFileAdminResponse) Reset() {
 	*x = UpdateFileAdminResponse{}
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[20]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2225,7 +2559,7 @@ func (x *UpdateFileAdminResponse) String() string {
 func (*UpdateFileAdminResponse) ProtoMessage() {}
 
 func (x *UpdateFileAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[20]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2238,7 +2572,7 @@ func (x *UpdateFileAdminResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateFileAdminResponse.ProtoReflect.Descriptor instead.
 func (*UpdateFileAdminResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{20}
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *UpdateFileAdminResponse) GetFile() *File {
@@ -2261,7 +2595,7 @@ type EntityHopAdminRequest struct {
 
 func (x *EntityHopAdminRequest) Reset() {
 	*x = EntityHopAdminRequest{}
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[21]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2273,7 +2607,7 @@ func (x *EntityHopAdminRequest) String() string {
 func (*EntityHopAdminRequest) ProtoMessage() {}
 
 func (x *EntityHopAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[21]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2286,7 +2620,7 @@ func (x *EntityHopAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EntityHopAdminRequest.ProtoReflect.Descriptor instead.
 func (*EntityHopAdminRequest) Descriptor() ([]byte, []int) {
-	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{21}
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *EntityHopAdminRequest) GetFileIds() []string {
@@ -2308,7 +2642,7 @@ type EntityHopAdminResponse struct {
 
 func (x *EntityHopAdminResponse) Reset() {
 	*x = EntityHopAdminResponse{}
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[22]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2320,7 +2654,7 @@ func (x *EntityHopAdminResponse) String() string {
 func (*EntityHopAdminResponse) ProtoMessage() {}
 
 func (x *EntityHopAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[22]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2333,7 +2667,7 @@ func (x *EntityHopAdminResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EntityHopAdminResponse.ProtoReflect.Descriptor instead.
 func (*EntityHopAdminResponse) Descriptor() ([]byte, []int) {
-	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{22}
+	return file_artifact_v1alpha_file_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *EntityHopAdminResponse) GetFileIds() []string {
@@ -2357,7 +2691,7 @@ type File_Position struct {
 
 func (x *File_Position) Reset() {
 	*x = File_Position{}
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[23]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2369,7 +2703,7 @@ func (x *File_Position) String() string {
 func (*File_Position) ProtoMessage() {}
 
 func (x *File_Position) ProtoReflect() protoreflect.Message {
-	mi := &file_artifact_v1alpha_file_proto_msgTypes[23]
+	mi := &file_artifact_v1alpha_file_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2560,7 +2894,18 @@ const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\x19ReprocessFileAdminRequest\x12\x1e\n" +
 	"\bfile_uid\x18\x01 \x01(\tB\x03\xe0A\x02R\afileUid\"M\n" +
 	"\x1aReprocessFileAdminResponse\x12/\n" +
-	"\x04file\x18\x01 \x01(\v2\x16.artifact.v1alpha.FileB\x03\xe0A\x03R\x04file\"\xc1\x01\n" +
+	"\x04file\x18\x01 \x01(\v2\x16.artifact.v1alpha.FileB\x03\xe0A\x03R\x04file\"E\n" +
+	"#CheckFileChunkIntegrityAdminRequest\x12\x1e\n" +
+	"\bfile_uid\x18\x01 \x01(\tB\x03\xe0A\x02R\afileUid\"\xff\x03\n" +
+	"$CheckFileChunkIntegrityAdminResponse\x12;\n" +
+	"\x05state\x18\x01 \x01(\x0e2 .artifact.v1alpha.IntegrityStateB\x03\xe0A\x03R\x05state\x12W\n" +
+	"\x12recommended_action\x18\x02 \x01(\x0e2#.artifact.v1alpha.RecommendedActionB\x03\xe0A\x03R\x11recommendedAction\x12O\n" +
+	"\x0eprocess_status\x18\x03 \x01(\x0e2#.artifact.v1alpha.FileProcessStatusB\x03\xe0A\x03R\rprocessStatus\x127\n" +
+	"\x15total_chunks_declared\x18\x04 \x01(\x03B\x03\xe0A\x03R\x13totalChunksDeclared\x12,\n" +
+	"\x10chunk_rows_in_pg\x18\x05 \x01(\x03B\x03\xe0A\x03R\rchunkRowsInPg\x12/\n" +
+	"\x11vectors_in_milvus\x18\x06 \x01(\x03B\x03\xe0A\x03R\x0fvectorsInMilvus\x129\n" +
+	"\x16converted_file_present\x18\a \x01(\bB\x03\xe0A\x03R\x14convertedFilePresent\x12\x1d\n" +
+	"\amessage\x18\b \x01(\tB\x03\xe0A\x03R\amessage\"\xc1\x01\n" +
 	"#CopyFileToKnowledgeBaseAdminRequest\x12>\n" +
 	"\vsource_file\x18\x01 \x01(\tB\x1d\xe0A\x02\xfaA\x17\n" +
 	"\x15api.instill.tech/FileR\n" +
@@ -2636,7 +2981,21 @@ const file_artifact_v1alpha_file_proto_rawDesc = "" +
 	"\x19CONVERTED_FILE_TYPE_IMAGE\x10\x04\x12\x1d\n" +
 	"\x19CONVERTED_FILE_TYPE_AUDIO\x10\x05\x12\x1d\n" +
 	"\x19CONVERTED_FILE_TYPE_VIDEO\x10\x06\x12!\n" +
-	"\x1dCONVERTED_FILE_TYPE_THUMBNAIL\x10\aB\xc6\x01\n" +
+	"\x1dCONVERTED_FILE_TYPE_THUMBNAIL\x10\a*\x83\x02\n" +
+	"\x0eIntegrityState\x12\x1f\n" +
+	"\x1bINTEGRITY_STATE_UNSPECIFIED\x10\x00\x12\x1b\n" +
+	"\x17INTEGRITY_STATE_HEALTHY\x10\x01\x12!\n" +
+	"\x1dINTEGRITY_STATE_NOT_COMPLETED\x10\x02\x12\x1c\n" +
+	"\x18INTEGRITY_STATE_EMPTY_PG\x10\x03\x12\"\n" +
+	"\x1eINTEGRITY_STATE_MISSING_MILVUS\x10\x04\x12*\n" +
+	"&INTEGRITY_STATE_MISSING_CONVERTED_FILE\x10\x05\x12\"\n" +
+	"\x1eINTEGRITY_STATE_FILE_NOT_FOUND\x10\x06*\xd0\x01\n" +
+	"\x11RecommendedAction\x12\"\n" +
+	"\x1eRECOMMENDED_ACTION_UNSPECIFIED\x10\x00\x12\x1b\n" +
+	"\x17RECOMMENDED_ACTION_NONE\x10\x01\x12%\n" +
+	"!RECOMMENDED_ACTION_REPROCESS_FILE\x10\x02\x12*\n" +
+	"&RECOMMENDED_ACTION_SKIP_FILE_NOT_FOUND\x10\x03\x12'\n" +
+	"#RECOMMENDED_ACTION_DEFER_PROCESSING\x10\x04B\xc6\x01\n" +
 	"\x14com.artifact.v1alphaB\tFileProtoP\x01ZBgithub.com/instill-ai/protogen-go/artifact/v1alpha;artifactv1alpha\xa2\x02\x03AXX\xaa\x02\x10Artifact.V1alpha\xca\x02\x10Artifact\\V1alpha\xe2\x02\x1cArtifact\\V1alpha\\GPBMetadata\xea\x02\x11Artifact::V1alphab\x06proto3"
 
 var (
@@ -2651,76 +3010,83 @@ func file_artifact_v1alpha_file_proto_rawDescGZIP() []byte {
 	return file_artifact_v1alpha_file_proto_rawDescData
 }
 
-var file_artifact_v1alpha_file_proto_enumTypes = make([]protoimpl.EnumInfo, 8)
-var file_artifact_v1alpha_file_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
+var file_artifact_v1alpha_file_proto_enumTypes = make([]protoimpl.EnumInfo, 10)
+var file_artifact_v1alpha_file_proto_msgTypes = make([]protoimpl.MessageInfo, 26)
 var file_artifact_v1alpha_file_proto_goTypes = []any{
 	(FileProcessStatus)(0),                       // 0: artifact.v1alpha.FileProcessStatus
 	(ConvertedFileType)(0),                       // 1: artifact.v1alpha.ConvertedFileType
-	(File_View)(0),                               // 2: artifact.v1alpha.File.View
-	(File_StorageProvider)(0),                    // 3: artifact.v1alpha.File.StorageProvider
-	(File_Type)(0),                               // 4: artifact.v1alpha.File.Type
-	(File_FileMediaType)(0),                      // 5: artifact.v1alpha.File.FileMediaType
-	(File_Visibility)(0),                         // 6: artifact.v1alpha.File.Visibility
-	(File_Position_Unit)(0),                      // 7: artifact.v1alpha.File.Position.Unit
-	(*File)(nil),                                 // 8: artifact.v1alpha.File
-	(*CreateFileRequest)(nil),                    // 9: artifact.v1alpha.CreateFileRequest
-	(*CreateFileResponse)(nil),                   // 10: artifact.v1alpha.CreateFileResponse
-	(*DeleteFileRequest)(nil),                    // 11: artifact.v1alpha.DeleteFileRequest
-	(*DeleteFileResponse)(nil),                   // 12: artifact.v1alpha.DeleteFileResponse
-	(*DeleteFileAdminRequest)(nil),               // 13: artifact.v1alpha.DeleteFileAdminRequest
-	(*DeleteFileAdminResponse)(nil),              // 14: artifact.v1alpha.DeleteFileAdminResponse
-	(*ReprocessFileAdminRequest)(nil),            // 15: artifact.v1alpha.ReprocessFileAdminRequest
-	(*ReprocessFileAdminResponse)(nil),           // 16: artifact.v1alpha.ReprocessFileAdminResponse
-	(*CopyFileToKnowledgeBaseAdminRequest)(nil),  // 17: artifact.v1alpha.CopyFileToKnowledgeBaseAdminRequest
-	(*CopyFileToKnowledgeBaseAdminResponse)(nil), // 18: artifact.v1alpha.CopyFileToKnowledgeBaseAdminResponse
-	(*ListFilesRequest)(nil),                     // 19: artifact.v1alpha.ListFilesRequest
-	(*ListFilesResponse)(nil),                    // 20: artifact.v1alpha.ListFilesResponse
-	(*GetFileRequest)(nil),                       // 21: artifact.v1alpha.GetFileRequest
-	(*GetFileResponse)(nil),                      // 22: artifact.v1alpha.GetFileResponse
-	(*UpdateFileRequest)(nil),                    // 23: artifact.v1alpha.UpdateFileRequest
-	(*UpdateFileResponse)(nil),                   // 24: artifact.v1alpha.UpdateFileResponse
-	(*ReprocessFileRequest)(nil),                 // 25: artifact.v1alpha.ReprocessFileRequest
-	(*ReprocessFileResponse)(nil),                // 26: artifact.v1alpha.ReprocessFileResponse
-	(*UpdateFileAdminRequest)(nil),               // 27: artifact.v1alpha.UpdateFileAdminRequest
-	(*UpdateFileAdminResponse)(nil),              // 28: artifact.v1alpha.UpdateFileAdminResponse
-	(*EntityHopAdminRequest)(nil),                // 29: artifact.v1alpha.EntityHopAdminRequest
-	(*EntityHopAdminResponse)(nil),               // 30: artifact.v1alpha.EntityHopAdminResponse
-	(*File_Position)(nil),                        // 31: artifact.v1alpha.File.Position
-	(*timestamppb.Timestamp)(nil),                // 32: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),                      // 33: google.protobuf.Struct
-	(*fieldmaskpb.FieldMask)(nil),                // 34: google.protobuf.FieldMask
+	(IntegrityState)(0),                          // 2: artifact.v1alpha.IntegrityState
+	(RecommendedAction)(0),                       // 3: artifact.v1alpha.RecommendedAction
+	(File_View)(0),                               // 4: artifact.v1alpha.File.View
+	(File_StorageProvider)(0),                    // 5: artifact.v1alpha.File.StorageProvider
+	(File_Type)(0),                               // 6: artifact.v1alpha.File.Type
+	(File_FileMediaType)(0),                      // 7: artifact.v1alpha.File.FileMediaType
+	(File_Visibility)(0),                         // 8: artifact.v1alpha.File.Visibility
+	(File_Position_Unit)(0),                      // 9: artifact.v1alpha.File.Position.Unit
+	(*File)(nil),                                 // 10: artifact.v1alpha.File
+	(*CreateFileRequest)(nil),                    // 11: artifact.v1alpha.CreateFileRequest
+	(*CreateFileResponse)(nil),                   // 12: artifact.v1alpha.CreateFileResponse
+	(*DeleteFileRequest)(nil),                    // 13: artifact.v1alpha.DeleteFileRequest
+	(*DeleteFileResponse)(nil),                   // 14: artifact.v1alpha.DeleteFileResponse
+	(*DeleteFileAdminRequest)(nil),               // 15: artifact.v1alpha.DeleteFileAdminRequest
+	(*DeleteFileAdminResponse)(nil),              // 16: artifact.v1alpha.DeleteFileAdminResponse
+	(*ReprocessFileAdminRequest)(nil),            // 17: artifact.v1alpha.ReprocessFileAdminRequest
+	(*ReprocessFileAdminResponse)(nil),           // 18: artifact.v1alpha.ReprocessFileAdminResponse
+	(*CheckFileChunkIntegrityAdminRequest)(nil),  // 19: artifact.v1alpha.CheckFileChunkIntegrityAdminRequest
+	(*CheckFileChunkIntegrityAdminResponse)(nil), // 20: artifact.v1alpha.CheckFileChunkIntegrityAdminResponse
+	(*CopyFileToKnowledgeBaseAdminRequest)(nil),  // 21: artifact.v1alpha.CopyFileToKnowledgeBaseAdminRequest
+	(*CopyFileToKnowledgeBaseAdminResponse)(nil), // 22: artifact.v1alpha.CopyFileToKnowledgeBaseAdminResponse
+	(*ListFilesRequest)(nil),                     // 23: artifact.v1alpha.ListFilesRequest
+	(*ListFilesResponse)(nil),                    // 24: artifact.v1alpha.ListFilesResponse
+	(*GetFileRequest)(nil),                       // 25: artifact.v1alpha.GetFileRequest
+	(*GetFileResponse)(nil),                      // 26: artifact.v1alpha.GetFileResponse
+	(*UpdateFileRequest)(nil),                    // 27: artifact.v1alpha.UpdateFileRequest
+	(*UpdateFileResponse)(nil),                   // 28: artifact.v1alpha.UpdateFileResponse
+	(*ReprocessFileRequest)(nil),                 // 29: artifact.v1alpha.ReprocessFileRequest
+	(*ReprocessFileResponse)(nil),                // 30: artifact.v1alpha.ReprocessFileResponse
+	(*UpdateFileAdminRequest)(nil),               // 31: artifact.v1alpha.UpdateFileAdminRequest
+	(*UpdateFileAdminResponse)(nil),              // 32: artifact.v1alpha.UpdateFileAdminResponse
+	(*EntityHopAdminRequest)(nil),                // 33: artifact.v1alpha.EntityHopAdminRequest
+	(*EntityHopAdminResponse)(nil),               // 34: artifact.v1alpha.EntityHopAdminResponse
+	(*File_Position)(nil),                        // 35: artifact.v1alpha.File.Position
+	(*timestamppb.Timestamp)(nil),                // 36: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),                      // 37: google.protobuf.Struct
+	(*fieldmaskpb.FieldMask)(nil),                // 38: google.protobuf.FieldMask
 }
 var file_artifact_v1alpha_file_proto_depIdxs = []int32{
-	32, // 0: artifact.v1alpha.File.create_time:type_name -> google.protobuf.Timestamp
-	32, // 1: artifact.v1alpha.File.update_time:type_name -> google.protobuf.Timestamp
-	4,  // 2: artifact.v1alpha.File.type:type_name -> artifact.v1alpha.File.Type
+	36, // 0: artifact.v1alpha.File.create_time:type_name -> google.protobuf.Timestamp
+	36, // 1: artifact.v1alpha.File.update_time:type_name -> google.protobuf.Timestamp
+	6,  // 2: artifact.v1alpha.File.type:type_name -> artifact.v1alpha.File.Type
 	0,  // 3: artifact.v1alpha.File.process_status:type_name -> artifact.v1alpha.FileProcessStatus
-	33, // 4: artifact.v1alpha.File.external_metadata:type_name -> google.protobuf.Struct
-	31, // 5: artifact.v1alpha.File.length:type_name -> artifact.v1alpha.File.Position
-	32, // 6: artifact.v1alpha.File.delete_time:type_name -> google.protobuf.Timestamp
-	6,  // 7: artifact.v1alpha.File.visibility:type_name -> artifact.v1alpha.File.Visibility
-	8,  // 8: artifact.v1alpha.CreateFileRequest.file:type_name -> artifact.v1alpha.File
-	8,  // 9: artifact.v1alpha.CreateFileResponse.file:type_name -> artifact.v1alpha.File
-	8,  // 10: artifact.v1alpha.ReprocessFileAdminResponse.file:type_name -> artifact.v1alpha.File
-	8,  // 11: artifact.v1alpha.CopyFileToKnowledgeBaseAdminResponse.file:type_name -> artifact.v1alpha.File
-	2,  // 12: artifact.v1alpha.ListFilesRequest.view:type_name -> artifact.v1alpha.File.View
-	8,  // 13: artifact.v1alpha.ListFilesResponse.files:type_name -> artifact.v1alpha.File
-	2,  // 14: artifact.v1alpha.GetFileRequest.view:type_name -> artifact.v1alpha.File.View
-	3,  // 15: artifact.v1alpha.GetFileRequest.storage_provider:type_name -> artifact.v1alpha.File.StorageProvider
-	8,  // 16: artifact.v1alpha.GetFileResponse.file:type_name -> artifact.v1alpha.File
-	8,  // 17: artifact.v1alpha.UpdateFileRequest.file:type_name -> artifact.v1alpha.File
-	34, // 18: artifact.v1alpha.UpdateFileRequest.update_mask:type_name -> google.protobuf.FieldMask
-	8,  // 19: artifact.v1alpha.UpdateFileResponse.file:type_name -> artifact.v1alpha.File
-	8,  // 20: artifact.v1alpha.ReprocessFileResponse.file:type_name -> artifact.v1alpha.File
-	8,  // 21: artifact.v1alpha.UpdateFileAdminRequest.file:type_name -> artifact.v1alpha.File
-	34, // 22: artifact.v1alpha.UpdateFileAdminRequest.update_mask:type_name -> google.protobuf.FieldMask
-	8,  // 23: artifact.v1alpha.UpdateFileAdminResponse.file:type_name -> artifact.v1alpha.File
-	7,  // 24: artifact.v1alpha.File.Position.unit:type_name -> artifact.v1alpha.File.Position.Unit
-	25, // [25:25] is the sub-list for method output_type
-	25, // [25:25] is the sub-list for method input_type
-	25, // [25:25] is the sub-list for extension type_name
-	25, // [25:25] is the sub-list for extension extendee
-	0,  // [0:25] is the sub-list for field type_name
+	37, // 4: artifact.v1alpha.File.external_metadata:type_name -> google.protobuf.Struct
+	35, // 5: artifact.v1alpha.File.length:type_name -> artifact.v1alpha.File.Position
+	36, // 6: artifact.v1alpha.File.delete_time:type_name -> google.protobuf.Timestamp
+	8,  // 7: artifact.v1alpha.File.visibility:type_name -> artifact.v1alpha.File.Visibility
+	10, // 8: artifact.v1alpha.CreateFileRequest.file:type_name -> artifact.v1alpha.File
+	10, // 9: artifact.v1alpha.CreateFileResponse.file:type_name -> artifact.v1alpha.File
+	10, // 10: artifact.v1alpha.ReprocessFileAdminResponse.file:type_name -> artifact.v1alpha.File
+	2,  // 11: artifact.v1alpha.CheckFileChunkIntegrityAdminResponse.state:type_name -> artifact.v1alpha.IntegrityState
+	3,  // 12: artifact.v1alpha.CheckFileChunkIntegrityAdminResponse.recommended_action:type_name -> artifact.v1alpha.RecommendedAction
+	0,  // 13: artifact.v1alpha.CheckFileChunkIntegrityAdminResponse.process_status:type_name -> artifact.v1alpha.FileProcessStatus
+	10, // 14: artifact.v1alpha.CopyFileToKnowledgeBaseAdminResponse.file:type_name -> artifact.v1alpha.File
+	4,  // 15: artifact.v1alpha.ListFilesRequest.view:type_name -> artifact.v1alpha.File.View
+	10, // 16: artifact.v1alpha.ListFilesResponse.files:type_name -> artifact.v1alpha.File
+	4,  // 17: artifact.v1alpha.GetFileRequest.view:type_name -> artifact.v1alpha.File.View
+	5,  // 18: artifact.v1alpha.GetFileRequest.storage_provider:type_name -> artifact.v1alpha.File.StorageProvider
+	10, // 19: artifact.v1alpha.GetFileResponse.file:type_name -> artifact.v1alpha.File
+	10, // 20: artifact.v1alpha.UpdateFileRequest.file:type_name -> artifact.v1alpha.File
+	38, // 21: artifact.v1alpha.UpdateFileRequest.update_mask:type_name -> google.protobuf.FieldMask
+	10, // 22: artifact.v1alpha.UpdateFileResponse.file:type_name -> artifact.v1alpha.File
+	10, // 23: artifact.v1alpha.ReprocessFileResponse.file:type_name -> artifact.v1alpha.File
+	10, // 24: artifact.v1alpha.UpdateFileAdminRequest.file:type_name -> artifact.v1alpha.File
+	38, // 25: artifact.v1alpha.UpdateFileAdminRequest.update_mask:type_name -> google.protobuf.FieldMask
+	10, // 26: artifact.v1alpha.UpdateFileAdminResponse.file:type_name -> artifact.v1alpha.File
+	9,  // 27: artifact.v1alpha.File.Position.unit:type_name -> artifact.v1alpha.File.Position.Unit
+	28, // [28:28] is the sub-list for method output_type
+	28, // [28:28] is the sub-list for method input_type
+	28, // [28:28] is the sub-list for extension type_name
+	28, // [28:28] is the sub-list for extension extendee
+	0,  // [0:28] is the sub-list for field type_name
 }
 
 func init() { file_artifact_v1alpha_file_proto_init() }
@@ -2729,16 +3095,16 @@ func file_artifact_v1alpha_file_proto_init() {
 		return
 	}
 	file_artifact_v1alpha_file_proto_msgTypes[0].OneofWrappers = []any{}
-	file_artifact_v1alpha_file_proto_msgTypes[11].OneofWrappers = []any{}
 	file_artifact_v1alpha_file_proto_msgTypes[13].OneofWrappers = []any{}
-	file_artifact_v1alpha_file_proto_msgTypes[14].OneofWrappers = []any{}
+	file_artifact_v1alpha_file_proto_msgTypes[15].OneofWrappers = []any{}
+	file_artifact_v1alpha_file_proto_msgTypes[16].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_artifact_v1alpha_file_proto_rawDesc), len(file_artifact_v1alpha_file_proto_rawDesc)),
-			NumEnums:      8,
-			NumMessages:   24,
+			NumEnums:      10,
+			NumMessages:   26,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

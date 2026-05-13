@@ -27,6 +27,7 @@ const (
 	ArtifactPrivateService_UpdateObjectAdmin_FullMethodName                 = "/artifact.v1alpha.ArtifactPrivateService/UpdateObjectAdmin"
 	ArtifactPrivateService_DeleteFileAdmin_FullMethodName                   = "/artifact.v1alpha.ArtifactPrivateService/DeleteFileAdmin"
 	ArtifactPrivateService_ReprocessFileAdmin_FullMethodName                = "/artifact.v1alpha.ArtifactPrivateService/ReprocessFileAdmin"
+	ArtifactPrivateService_CheckFileChunkIntegrityAdmin_FullMethodName      = "/artifact.v1alpha.ArtifactPrivateService/CheckFileChunkIntegrityAdmin"
 	ArtifactPrivateService_ExecuteKnowledgeBaseUpdateAdmin_FullMethodName   = "/artifact.v1alpha.ArtifactPrivateService/ExecuteKnowledgeBaseUpdateAdmin"
 	ArtifactPrivateService_AbortKnowledgeBaseUpdateAdmin_FullMethodName     = "/artifact.v1alpha.ArtifactPrivateService/AbortKnowledgeBaseUpdateAdmin"
 	ArtifactPrivateService_RollbackAdmin_FullMethodName                     = "/artifact.v1alpha.ArtifactPrivateService/RollbackAdmin"
@@ -106,6 +107,21 @@ type ArtifactPrivateServiceClient interface {
 	// up. Used for administrative operations where the caller needs to force
 	// reprocess files without authentication context.
 	ReprocessFileAdmin(ctx context.Context, in *ReprocessFileAdminRequest, opts ...grpc.CallOption) (*ReprocessFileAdminResponse, error)
+	// Check file chunk integrity (admin only)
+	//
+	// Probes the cross-datastore consistency of a knowledge-base file's derived
+	// RAG state against its `process_status`. Specifically reports drift between
+	// the artifact-backend's PostgreSQL row (which advertises `process_status`
+	// and `total_chunks`), the chunk inventory in the `chunk` table, the vector
+	// inventory in the Milvus collection (`kb_<kb_uid>`), and the converted
+	// markdown object in MinIO (`converted-file/<file_uid>...`). Used by
+	// downstream readiness-gate consumers so dependent work is never dispatched
+	// against a `process_status = COMPLETED` file whose chunks / vectors /
+	// converted-file have silently disappeared (missing Milvus collection,
+	// deleted converted-file, manual chunk wipe, etc.). The recommended action
+	// lets the caller safely kick `ReprocessFileAdmin` and defer the dependent
+	// work.
+	CheckFileChunkIntegrityAdmin(ctx context.Context, in *CheckFileChunkIntegrityAdminRequest, opts ...grpc.CallOption) (*CheckFileChunkIntegrityAdminResponse, error)
 	// Execute knowledge base update (admin only)
 	ExecuteKnowledgeBaseUpdateAdmin(ctx context.Context, in *ExecuteKnowledgeBaseUpdateAdminRequest, opts ...grpc.CallOption) (*ExecuteKnowledgeBaseUpdateAdminResponse, error)
 	// Abort knowledge base update (admin only)
@@ -269,6 +285,16 @@ func (c *artifactPrivateServiceClient) ReprocessFileAdmin(ctx context.Context, i
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ReprocessFileAdminResponse)
 	err := c.cc.Invoke(ctx, ArtifactPrivateService_ReprocessFileAdmin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactPrivateServiceClient) CheckFileChunkIntegrityAdmin(ctx context.Context, in *CheckFileChunkIntegrityAdminRequest, opts ...grpc.CallOption) (*CheckFileChunkIntegrityAdminResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CheckFileChunkIntegrityAdminResponse)
+	err := c.cc.Invoke(ctx, ArtifactPrivateService_CheckFileChunkIntegrityAdmin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -541,6 +567,21 @@ type ArtifactPrivateServiceServer interface {
 	// up. Used for administrative operations where the caller needs to force
 	// reprocess files without authentication context.
 	ReprocessFileAdmin(context.Context, *ReprocessFileAdminRequest) (*ReprocessFileAdminResponse, error)
+	// Check file chunk integrity (admin only)
+	//
+	// Probes the cross-datastore consistency of a knowledge-base file's derived
+	// RAG state against its `process_status`. Specifically reports drift between
+	// the artifact-backend's PostgreSQL row (which advertises `process_status`
+	// and `total_chunks`), the chunk inventory in the `chunk` table, the vector
+	// inventory in the Milvus collection (`kb_<kb_uid>`), and the converted
+	// markdown object in MinIO (`converted-file/<file_uid>...`). Used by
+	// downstream readiness-gate consumers so dependent work is never dispatched
+	// against a `process_status = COMPLETED` file whose chunks / vectors /
+	// converted-file have silently disappeared (missing Milvus collection,
+	// deleted converted-file, manual chunk wipe, etc.). The recommended action
+	// lets the caller safely kick `ReprocessFileAdmin` and defer the dependent
+	// work.
+	CheckFileChunkIntegrityAdmin(context.Context, *CheckFileChunkIntegrityAdminRequest) (*CheckFileChunkIntegrityAdminResponse, error)
 	// Execute knowledge base update (admin only)
 	ExecuteKnowledgeBaseUpdateAdmin(context.Context, *ExecuteKnowledgeBaseUpdateAdminRequest) (*ExecuteKnowledgeBaseUpdateAdminResponse, error)
 	// Abort knowledge base update (admin only)
@@ -652,6 +693,9 @@ func (UnimplementedArtifactPrivateServiceServer) DeleteFileAdmin(context.Context
 }
 func (UnimplementedArtifactPrivateServiceServer) ReprocessFileAdmin(context.Context, *ReprocessFileAdminRequest) (*ReprocessFileAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReprocessFileAdmin not implemented")
+}
+func (UnimplementedArtifactPrivateServiceServer) CheckFileChunkIntegrityAdmin(context.Context, *CheckFileChunkIntegrityAdminRequest) (*CheckFileChunkIntegrityAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckFileChunkIntegrityAdmin not implemented")
 }
 func (UnimplementedArtifactPrivateServiceServer) ExecuteKnowledgeBaseUpdateAdmin(context.Context, *ExecuteKnowledgeBaseUpdateAdminRequest) (*ExecuteKnowledgeBaseUpdateAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ExecuteKnowledgeBaseUpdateAdmin not implemented")
@@ -876,6 +920,24 @@ func _ArtifactPrivateService_ReprocessFileAdmin_Handler(srv interface{}, ctx con
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ArtifactPrivateServiceServer).ReprocessFileAdmin(ctx, req.(*ReprocessFileAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactPrivateService_CheckFileChunkIntegrityAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckFileChunkIntegrityAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactPrivateServiceServer).CheckFileChunkIntegrityAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactPrivateService_CheckFileChunkIntegrityAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactPrivateServiceServer).CheckFileChunkIntegrityAdmin(ctx, req.(*CheckFileChunkIntegrityAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1296,6 +1358,10 @@ var ArtifactPrivateService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ReprocessFileAdmin",
 			Handler:    _ArtifactPrivateService_ReprocessFileAdmin_Handler,
+		},
+		{
+			MethodName: "CheckFileChunkIntegrityAdmin",
+			Handler:    _ArtifactPrivateService_CheckFileChunkIntegrityAdmin_Handler,
 		},
 		{
 			MethodName: "ExecuteKnowledgeBaseUpdateAdmin",
