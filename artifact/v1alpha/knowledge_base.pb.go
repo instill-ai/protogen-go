@@ -1670,14 +1670,14 @@ type FilePermissionClause struct {
 	// Match files whose `visibility` column is in the supplied set.
 	// SQL: `file.visibility = ANY($visibility_in)`.
 	VisibilityIn []string `protobuf:"bytes,4,rep,name=visibility_in,json=visibilityIn,proto3" json:"visibility_in,omitempty"`
-	// Match files whose `parent_project_uid` column is in the supplied set —
+	// Match files whose `parent_folder_uid` column is in the supplied set —
 	// the folder the file lives directly in. Used by the folder-cascade
 	// permission path: the prefilter pushes down "files whose parent folder
 	// is in the caller's set of readable folders".
-	// SQL: `file.parent_project_uid = ANY($parent_project_uid_in)`.
-	ParentProjectUidIn []string `protobuf:"bytes,5,rep,name=parent_project_uid_in,json=parentProjectUidIn,proto3" json:"parent_project_uid_in,omitempty"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
+	// SQL: `file.parent_folder_uid = ANY($parent_folder_uid_in)`.
+	ParentFolderUidIn []string `protobuf:"bytes,5,rep,name=parent_folder_uid_in,json=parentFolderUidIn,proto3" json:"parent_folder_uid_in,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *FilePermissionClause) Reset() {
@@ -1738,9 +1738,9 @@ func (x *FilePermissionClause) GetVisibilityIn() []string {
 	return nil
 }
 
-func (x *FilePermissionClause) GetParentProjectUidIn() []string {
+func (x *FilePermissionClause) GetParentFolderUidIn() []string {
 	if x != nil {
-		return x.ParentProjectUidIn
+		return x.ParentFolderUidIn
 	}
 	return nil
 }
@@ -1994,13 +1994,13 @@ const file_artifact_v1alpha_knowledge_base_proto_rawDesc = "" +
 	"\x06filter\x18\x04 \x01(\tB\x03\xe0A\x01R\x06filter\x129\n" +
 	"\x04view\x18\x05 \x01(\x0e2\x1b.artifact.v1alpha.File.ViewB\x03\xe0A\x01H\x00R\x04view\x88\x01\x01\x12Z\n" +
 	"\x12permission_clauses\x18\x06 \x03(\v2&.artifact.v1alpha.FilePermissionClauseB\x03\xe0A\x01R\x11permissionClausesB\a\n" +
-	"\x05_view\"\xd0\x01\n" +
+	"\x05_view\"\xce\x01\n" +
 	"\x14FilePermissionClause\x12!\n" +
 	"\ftags_overlap\x18\x01 \x03(\tR\vtagsOverlap\x12\x17\n" +
 	"\auids_in\x18\x02 \x03(\tR\x06uidsIn\x12$\n" +
 	"\x0etags_like_none\x18\x03 \x03(\tR\ftagsLikeNone\x12#\n" +
-	"\rvisibility_in\x18\x04 \x03(\tR\fvisibilityIn\x121\n" +
-	"\x15parent_project_uid_in\x18\x05 \x03(\tR\x12parentProjectUidIn\"\x9c\x01\n" +
+	"\rvisibility_in\x18\x04 \x03(\tR\fvisibilityIn\x12/\n" +
+	"\x14parent_folder_uid_in\x18\x05 \x03(\tR\x11parentFolderUidIn\"\x9c\x01\n" +
 	"\x16ListFilesAdminResponse\x121\n" +
 	"\x05files\x18\x01 \x03(\v2\x16.artifact.v1alpha.FileB\x03\xe0A\x03R\x05files\x12+\n" +
 	"\x0fnext_page_token\x18\x02 \x01(\tB\x03\xe0A\x03R\rnextPageToken\x12\"\n" +
